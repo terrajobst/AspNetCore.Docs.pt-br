@@ -4,14 +4,14 @@ author: ardalis
 description: Saiba como migrar uma implementação de API da web da API de Web do ASP.NET 4.x para ASP.NET Core MVC.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/01/2018
+ms.date: 12/10/2018
 uid: migration/webapi
-ms.openlocfilehash: f5d886a7c3182b5cd372762ade67c2e748051049
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: 9806c502f8f5244740f9f9614657a40cfaa03314
+ms.sourcegitcommit: 1872d2e6f299093c78a6795a486929ffb0bbffff
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207271"
+ms.lasthandoff: 12/11/2018
+ms.locfileid: "53216827"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Migrar da API Web ASP.NET para ASP.NET Core
 
@@ -23,8 +23,7 @@ Uma API da Web do ASP.NET 4. x é um serviço HTTP que atinja uma ampla gama de 
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* [SDK do .NET Core 2.1 ou posteriores](https://www.microsoft.com/net/download/all)
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/) versão 15.7.3 ou posterior com a carga de trabalho do **ASP.NET e desenvolvimento para a Web**
+[!INCLUDE [net-core-prereqs-vs-2.2](../includes/net-core-prereqs-vs-2.2.md)]
 
 ## <a name="review-aspnet-4x-web-api-project"></a>Examine o projeto de API da Web do ASP.NET 4.x
 
@@ -34,15 +33,15 @@ Na *Global.asax.cs*, é feita uma chamada para `WebApiConfig.Register`:
 
 [!code-csharp[](webapi/sample/ProductsApp/Global.asax.cs?highlight=14)]
 
-`WebApiConfig` é definido na *App_Start* pasta. Ele tem apenas um estático `Register` método:
+O `WebApiConfig` classe é encontrada na *App_Start* pasta e tem um estático `Register` método:
 
-[!code-csharp[](webapi/sample/ProductsApp/App_Start/WebApiConfig.cs?highlight=15-20)]
+[!code-csharp[](webapi/sample/ProductsApp/App_Start/WebApiConfig.cs)]
 
 Essa classe configura [roteamento de atributo](/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), embora na verdade não está sendo usado no projeto. Ele também configura a tabela de roteamento, que é usada pela API Web ASP.NET. Nesse caso, a API da Web do ASP.NET 4.x espera que as URLs para corresponder ao formato `/api/{controller}/{id}`, com `{id}` opcionais.
 
-O *ProductsApp* projeto inclui um controlador. O controlador herda de `ApiController` e expõe dois métodos:
+O *ProductsApp* projeto inclui um controlador. O controlador herda de `ApiController` e contém duas ações:
 
-[!code-csharp[](webapi/sample/ProductsApp/Controllers/ProductsController.cs?highlight=19,24)]
+[!code-csharp[](webapi/sample/ProductsApp/Controllers/ProductsController.cs?highlight=28,33)]
 
 O `Product` modelo usado pelo `ProductsController` é uma classe simples:
 
@@ -88,6 +87,12 @@ Corrija os erros da seguinte maneira:
 1. Excluir `using System.Web.Http;`.
 1. Alterar o `GetProduct` tipo de retorno da ação de `IHttpActionResult` para `ActionResult<Product>`.
 
+Simplificar a `GetProduct` da ação `return` instrução para o seguinte:
+
+```csharp
+return product;
+```
+
 ## <a name="configure-routing"></a>Configurar o roteamento
 
 Configure o roteamento da seguinte maneira:
@@ -102,11 +107,19 @@ Configure o roteamento da seguinte maneira:
     Precedente [[Route]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) configura o atributo padrão de roteamento de atributo do controlador. O [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) atributo faz o roteamento de um requisito para todas as ações nesse controlador de atributo.
 
     Roteamento de atributo oferece suporte a tokens, como `[controller]` e `[action]`. Em tempo de execução, cada token é substituído com o nome do controlador ou ação, respectivamente, para o qual o atributo foi aplicado. Os tokens de reduzem o número de cadeias de caracteres mágicas no projeto. Os tokens de também garantem rotas permanecerem sincronizadas com os correspondentes controladores e ações quando automático renomear refatorações são aplicadas.
+1. Defina o modo de compatibilidade do projeto para o ASP.NET Core 2.2:
+
+    [!code-csharp[](webapi/sample/ProductsCore/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
+
+    A alteração anterior:
+
+    * É necessário para usar o `[ApiController]` atributo no nível do controlador.
+    * Aceita o potencialmente significativa comportamentos introduzidos no ASP.NET Core 2.2.
 1. Habilitar as solicitações HTTP Get para o `ProductController` ações:
     * Aplicar a [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) atributo para o `GetAllProducts` ação.
     * Aplicar a `[HttpGet("{id}")]` de atributo para o `GetProduct` ação.
 
-Após essas alterações e a remoção do não utilizado `using` instruções *ProductsController.cs* arquivo tem esta aparência:
+Após as alterações anteriores e a remoção do não utilizado `using` instruções *ProductsController.cs* arquivo tem esta aparência:
 
 [!code-csharp[](webapi/sample/ProductsCore/Controllers/ProductsController.cs)]
 
@@ -147,3 +160,4 @@ Para usar o shim de compatibilidade:
 
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
+* <xref:mvc/compatibility-version>
