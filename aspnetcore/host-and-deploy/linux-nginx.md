@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como configurar o Nginx como um proxy reverso no Ubuntu 16.04 para encaminhar o tráfego HTTP para um aplicativo Web ASP.NET Core em execução no Kestrel.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/23/2018
+ms.date: 11/26/2018
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: d29a9287cbce27a54e779fadfa05e57febec0413
-ms.sourcegitcommit: 4a6bbe84db24c2f3dd2de065de418fde952c8d40
+ms.openlocfilehash: d4bffab80ba20d4cf77a358249c7b349033de5bd
+ms.sourcegitcommit: e9b99854b0a8021dafabee0db5e1338067f250a9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50253111"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52450782"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Host ASP.NET Core no Linux com Nginx
 
@@ -186,7 +186,7 @@ Se o aplicativo for executado no servidor, mas não responder pela Internet, ver
 
 Quando terminar de testar o aplicativo, encerre o aplicativo com `Ctrl+C` no prompt de comando.
 
-## <a name="monitoring-the-app"></a>Monitoramento o aplicativo
+## <a name="monitor-the-app"></a>Monitorar o aplicativo
 
 O servidor agora está configurado para encaminhar solicitações feitas a `http://<serveraddress>:80` ao aplicativo ASP.NET Core em execução no Kestrel em `http://127.0.0.1:5000`. No entanto, o Nginx não está configurado para gerenciar o processo do Kestrel. É possível usar o *systemd* para criar um arquivo de serviço para iniciar e monitorar o aplicativo Web subjacente. *systemd* é um sistema de inicialização que fornece muitos recursos poderosos para iniciar, parar e gerenciar processos. 
 
@@ -268,7 +268,7 @@ Connection: Keep-Alive
 Transfer-Encoding: chunked
 ```
 
-### <a name="viewing-logs"></a>Exibindo logs
+### <a name="view-logs"></a>Exibir logs
 
 Já que o aplicativo Web usando Kestrel é gerenciado usando `systemd`, todos os eventos e os processos são registrados em um diário centralizado. No entanto, esse diário contém todas as entradas para todos os serviços e processos gerenciados pelo `systemd`. Para exibir os itens específicos de `kestrel-helloapp.service`, use o seguinte comando:
 
@@ -297,13 +297,13 @@ Para configurar a proteção de dados de modo que ela mantenha e criptografe o t
 * <xref:security/data-protection/implementation/key-storage-providers>
 * <xref:security/data-protection/implementation/key-encryption-at-rest>
 
-## <a name="securing-the-app"></a>Protegendo o aplicativo
+## <a name="secure-the-app"></a>Proteger o aplicativo
 
 ### <a name="enable-apparmor"></a>Habilitar AppArmor
 
 O LSM (Módulos de Segurança do Linux) é uma estrutura que é parte do kernel do Linux desde o Linux 2.6. O LSM dá suporte a diferentes implementações de módulos de segurança. O [AppArmor](https://wiki.ubuntu.com/AppArmor) é um LSM que implementa um sistema de controle de acesso obrigatório que permite restringir o programa a um conjunto limitado de recursos. Verifique se o AppArmor está habilitado e configurado corretamente.
 
-### <a name="configuring-the-firewall"></a>Configurando o firewall
+### <a name="configure-the-firewall"></a>Configurar o firewall
 
 Feche todas as portas externas que não estão em uso. Firewall descomplicado (ufw) fornece um front-end para `iptables` fornecendo uma interface de linha de comando para configurar o firewall.
 
@@ -322,7 +322,7 @@ sudo ufw allow 443/tcp
 sudo ufw enable
 ```
 
-### <a name="securing-nginx"></a>Protegendo o Nginx
+### <a name="secure-nginx"></a>Proteger o Nginx
 
 #### <a name="change-the-nginx-response-name"></a>Alterar o nome da resposta do Nginx
 
@@ -387,5 +387,6 @@ Adicione a linha `add_header X-Content-Type-Options "nosniff";` e salve o arquiv
 
 * [Pré-requisitos para o .NET Core no Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: versões binárias: pacotes Debian/Ubuntu oficiais](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
-* [Configurar o ASP.NET Core para trabalhar com servidores proxy e balanceadores de carga](xref:host-and-deploy/proxy-load-balancer)
+* <xref:test/troubleshoot>
+* <xref:host-and-deploy/proxy-load-balancer>
 * [NGINX: usando o cabeçalho Encaminhado](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
