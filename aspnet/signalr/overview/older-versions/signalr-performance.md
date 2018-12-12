@@ -8,16 +8,18 @@ ms.date: 07/03/2013
 ms.assetid: 9594d644-66b6-4223-acdd-23e29a6e4c46
 msc.legacyurl: /signalr/overview/older-versions/signalr-performance
 msc.type: authoredcontent
-ms.openlocfilehash: 3ac62639617e1ff83761d0a1d45c27303d0b820d
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: ea2d3908544ac8b3ea17ceceaf1d2905c5c6f322
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48912755"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53287554"
 ---
 <a name="signalr-performance-signalr-1x"></a>Desempenho do SignalR (SignalR 1.x)
 ====================
 por [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > Este tópico descreve como projetar para, medir e melhorar o desempenho em um aplicativo do SignalR.
 
@@ -71,7 +73,7 @@ As definições de configuração a seguir podem ser usadas para ajustar o servi
 
 **Definições de configuração do SignalR**
 
-- **DefaultMessageBufferSize**: por padrão, o SignalR retém 1000 mensagens na memória por hub por conexão. Se estiverem sendo usada mensagens grandes, isso pode criar problemas de memória que podem ser atenuados por reduzir esse valor. Essa configuração pode ser definida `Application_Start` manipulador de eventos em um aplicativo ASP.NET ou no `Configuration` método de uma classe de inicialização OWIN em um aplicativo hospedado internamente. O exemplo a seguir demonstra como reduzir esse valor para reduzir o volume de memória do seu aplicativo para reduzir a quantidade de memória de servidor usada:
+- **DefaultMessageBufferSize**: Por padrão, o SignalR retém 1000 mensagens na memória por hub por conexão. Se estiverem sendo usada mensagens grandes, isso pode criar problemas de memória que podem ser atenuados por reduzir esse valor. Essa configuração pode ser definida `Application_Start` manipulador de eventos em um aplicativo ASP.NET ou no `Configuration` método de uma classe de inicialização OWIN em um aplicativo hospedado internamente. O exemplo a seguir demonstra como reduzir esse valor para reduzir o volume de memória do seu aplicativo para reduzir a quantidade de memória de servidor usada:
 
     **Código de servidor do .NET no global. asax para diminuir o tamanho do buffer de mensagem padrão**
 
@@ -79,7 +81,7 @@ As definições de configuração a seguir podem ser usadas para ajustar o servi
 
 **Definições de configuração do IIS**
 
-- **Máximo de solicitações simultâneas por aplicativo**: aumentar o número de IIS simultâneo solicitações aumentará de recursos disponíveis para atender às solicitações do servidor. O valor padrão é 5000; para aumentar essa configuração, execute os seguintes comandos no prompt de comando elevado:
+- **Máximo de solicitações simultâneas por aplicativo**: Aumentar o número de IIS simultâneo solicitações aumentará disponíveis para atender às solicitações de recursos do servidor. O valor padrão é 5000; para aumentar essa configuração, execute os seguintes comandos no prompt de comando elevado:
 
     [!code-console[Main](signalr-performance/samples/sample4.cmd)]
 
@@ -92,10 +94,10 @@ Esta seção inclui definições de configuração que podem ser definidas no `a
 
 Configurações do ASP.NET que podem melhorar o desempenho do SignalR incluem o seguinte:
 
-- **Máximo de solicitações simultâneas por CPU**: aumentar essa configuração pode aliviar gargalos de desempenho. Para aumentar essa configuração, adicione a seguinte definição de configuração para o `aspnet.config` arquivo:
+- **Máximo de solicitações simultâneas por CPU**: Aumentar essa configuração pode atenuar os gargalos de desempenho. Para aumentar essa configuração, adicione a seguinte definição de configuração para o `aspnet.config` arquivo:
 
     [!code-xml[Main](signalr-performance/samples/sample5.xml?highlight=4)]
-- **Limite de fila de solicitações**: quando excede o número total de conexões a `maxConcurrentRequestsPerCPU` definindo, ASP.NET será iniciado usando uma fila de solicitações de limitação. Para aumentar o tamanho da fila, você pode aumentar o `requestQueueLimit` configuração. Para fazer isso, adicione a seguinte definição de configuração para o `processModel` nó no `config/machine.config` (em vez de `aspnet.config`):
+- **Limite da fila de solicitação**: Quando o número total de conexões excede o `maxConcurrentRequestsPerCPU` definindo, ASP.NET será iniciado usando uma fila de solicitações de limitação. Para aumentar o tamanho da fila, você pode aumentar o `requestQueueLimit` configuração. Para fazer isso, adicione a seguinte definição de configuração para o `processModel` nó no `config/machine.config` (em vez de `aspnet.config`):
 
     [!code-xml[Main](signalr-performance/samples/sample6.xml)]
 
@@ -178,7 +180,7 @@ As seguintes métricas de medem o tráfego por meio do barramento de mensagem de
 As seguintes métricas de medem erros gerados pelo tráfego de mensagens do SignalR. **Resolução de hub** erros ocorrem quando um hub ou um método de hub não pode ser resolvido. **Invocação de hub** erros são as exceções geradas durante a invocação de um método de hub. **Transporte** erros são erros de conexão gerados durante uma solicitação HTTP ou uma resposta.
 
 - **Erros: Total de todos os**
-- **Erros: All/s**
+- **Erros: Todos/s**
 - **Erros: Total de resolução de Hub**
 - **Erros: Resolução de Hub/s**
 - **Erros: Total de invocação de Hub**

@@ -8,16 +8,18 @@ ms.date: 06/10/2014
 ms.assetid: d1983524-e0d5-4ee6-9d87-1f552f7cb964
 msc.legacyurl: /signalr/overview/testing-and-debugging/unit-testing-signalr-applications
 msc.type: authoredcontent
-ms.openlocfilehash: ba8f5d4577403fe9765641d7ee5d88bde045680a
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: d8f3afdc2749173d1e260096ee6bd4bf1ae4c7cb
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48910818"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53287501"
 ---
 <a name="unit-testing-signalr-applications"></a>Aplicativos do SignalR de testes de unidade
 ====================
 por [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > Este artigo descreve como usar os recursos de teste de unidade de mensagens do SignalR 2.
 >
@@ -42,7 +44,7 @@ Você pode usar os recursos de teste de unidade no SignalR 2 para criar testes d
 
 Nesta seção, você adicionará os testes de unidade para o aplicativo criado na [tutorial de Introdução](../getting-started/tutorial-getting-started-with-signalr.md) usando [XUnit.net](https://github.com/xunit/xunit) e [Moq](https://github.com/Moq/moq4).
 
-XUnit.net será usado para controlar o teste; Moq será usado para criar uma [simular](http://en.wikipedia.org/wiki/Mock_object) objeto para teste. Outras estruturas de simulação podem ser usadas se desejado; [NSubstitute](http://nsubstitute.github.io/) também é uma boa opção. Este tutorial demonstra como configurar o objeto fictício de duas maneiras: primeiro, usando um `dynamic` objeto (introduzida no .NET Framework 4) e, segundo, usando uma interface.
+XUnit.net será usado para controlar o teste; Moq será usado para criar uma [simular](http://en.wikipedia.org/wiki/Mock_object) objeto para teste. Outras estruturas de simulação podem ser usadas se desejado; [NSubstitute](http://nsubstitute.github.io/) também é uma boa opção. Este tutorial demonstra como configurar o objeto fictício de duas maneiras: Primeiro, usando um `dynamic` objeto (introduzida no .NET Framework 4) e, segundo, usando uma interface.
 
 ### <a name="contents"></a>Conteúdo
 

@@ -6,12 +6,12 @@ ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 uid: azure/devops/monitor
-ms.openlocfilehash: e005b951aec578b396fc19dec5d2f55cbce4f664
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.openlocfilehash: 00489bd92dfff8fd80bd24c2e60193d32031d7c4
+ms.sourcegitcommit: b34b25da2ab68e6495b2460ff570468f16a9bf0d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121603"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53284364"
 ---
 # <a name="monitor-and-debug"></a>Monitorar e depurar
 
@@ -37,11 +37,11 @@ Com facilidade, aplicativos web do serviço de aplicativo são monitorados em te
 
     ![Painel de visão geral do captura de tela mostrando](./media/monitoring/overview.png)
 
-    * **Http 5xx**: contagem de erros do lado do servidor, geralmente exceções no código do ASP.NET Core.
-    * **Dados em**: entrada de dados que chegam ao seu aplicativo web.
-    * **Saída de dados**: dados de saída do seu aplicativo web aos clientes.
-    * **Solicitações**: contagem de solicitações HTTP.
-    * **Tempo médio de resposta**: o tempo médio para o aplicativo web responder às solicitações HTTP.
+    * **Http 5xx**: Contagem de erros do lado do servidor, geralmente exceções no código do ASP.NET Core.
+    * **Dados em**: Entrada de dados que chegam ao seu aplicativo web.
+    * **Saída de dados**: Saída de dados do seu aplicativo web aos clientes.
+    * **Solicitações**: Contagem de solicitações HTTP.
+    * **Tempo médio de resposta**: Tempo médio para o aplicativo web responder às solicitações HTTP.
 
     Várias ferramentas de autoatendimento para otimização e solução de problemas também são encontradas nesta página.
 
@@ -111,7 +111,7 @@ Os logs também podem ser [transmitido por meio da CLI do Azure ou o Azure Power
 
 O Azure Monitor também fornece [alertas em tempo real](/azure/monitoring-and-diagnostics/insights-alerts-portal) com base em métricas, eventos administrativos e outros critérios.
 
-> *Observação: No momento, alertas em métricas do aplicativo web só está disponível no serviço de alertas (clássico).*
+> *Observação: No momento, alertas em métricas do aplicativo web só está disponível no serviço alertas (clássico).*
 
 O [alertas de serviço (clássico)](/azure/monitoring-and-diagnostics/monitor-quick-resource-metric-alert-portal) pode ser encontrada no Azure Monitor ou sob o **monitoramento** seção das configurações de serviço de aplicativo.
 

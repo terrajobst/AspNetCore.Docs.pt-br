@@ -8,16 +8,18 @@ ms.date: 06/10/2014
 ms.assetid: adcfef99-9bc5-489d-a91b-9b7c2bc35e04
 msc.legacyurl: /signalr/overview/releases/upgrading-signalr-1x-projects-to-20
 msc.type: authoredcontent
-ms.openlocfilehash: 450ddedb520035cc05a0dbcca1a2666dd1ba24c7
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: 23ea23585b15395cf86bdad13885af32d1b64e79
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48910545"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53286838"
 ---
 <a name="upgrading-signalr-1x-projects-to-version-2"></a>Atualizando projetos do SignalR 1.x para a versão 2
 ====================
 por [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > Este tópico descreve como atualizar um projeto existente do SignalR 1.x para o SignalR 2. x e como solucionar problemas que podem surgir durante o processo de atualização.
 >
@@ -50,7 +52,7 @@ SignalR 2 oferece uma experiência de desenvolvimento consistente entre as plata
 
 Enquanto ela é incentivada a atualizar aplicativos para o SignalR 2, o SignalR 1.x ainda ter suporte.
 
-Este tutorial descreve como atualizar um aplicativo hospedado na web para o SignalR 2. Agora há suporte para aplicativos auto-hospedados (aqueles que hospedam um servidor em um aplicativo de console, o serviço do Windows ou outro processo) em SignalR 2. Para obter informações sobre como começar a criar um aplicativo hospedado internamente com SignalR 2, consulte [Tutorial: auto-hospedar SignalR](../deployment/tutorial-signalr-self-host.md).
+Este tutorial descreve como atualizar um aplicativo hospedado na web para o SignalR 2. Agora há suporte para aplicativos auto-hospedados (aqueles que hospedam um servidor em um aplicativo de console, o serviço do Windows ou outro processo) em SignalR 2. Para obter informações sobre como começar a criar um aplicativo hospedado internamente com SignalR 2, consulte [Tutorial: Auto-hospedar SignalR](../deployment/tutorial-signalr-self-host.md).
 
 ## <a name="contents"></a>Conteúdo
 

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 11/11/2018
 uid: security/authentication/facebook-logins
-ms.openlocfilehash: 8bb22dc6df9879e827ff9a5ac11e9e3ad5346dc2
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.openlocfilehash: d4f3e210b0d3c79eaf2233f97a29a6d96cd69b39
+ms.sourcegitcommit: b34b25da2ab68e6495b2460ff570468f16a9bf0d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121499"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53284377"
 ---
 # <a name="facebook-external-login-setup-in-aspnet-core"></a>Configuração de logon externo do Facebook no ASP.NET Core
 
@@ -121,7 +121,7 @@ Consulte as referências de API do [FacebookOptions](/dotnet/api/microsoft.aspne
 
 Executar o aplicativo e clique em **faça logon no**. Você verá uma opção para entrar com o Facebook.
 
-![Aplicativo Web: usuário não autenticado](index/_static/DoneFacebook.png)
+![Aplicativo da Web: Usuário não autenticado](index/_static/DoneFacebook.png)
 
 Quando você clica em **Facebook**, você será redirecionado ao Facebook para autenticação:
 
@@ -135,13 +135,13 @@ Depois que você insira suas credenciais do Facebook, você será redirecionado 
 
 Agora você está conectado usando suas credenciais do Facebook:
 
-![Aplicativo Web: usuário autenticado](index/_static/Done.png)
+![Aplicativo da Web: Usuário autenticado](index/_static/Done.png)
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 ## <a name="troubleshooting"></a>Solução de problemas
 
-* Apenas **ASP.NET Core 2.x:** se a identidade não for configurada chamando `services.AddIdentity` no `ConfigureServices`, a autenticação resultará em *ArgumentException: a opção 'SignInScheme' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso é feito.
+* **ASP.NET Core 2.x somente:** Se a identidade não está configurada por meio da chamada `services.AddIdentity` na `ConfigureServices`, a tentativa de autenticar resultará em *ArgumentException: A opção 'SignInScheme' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso é feito.
 * Se o banco de dados do site não foi criado por meio da aplicação a migração inicial, você obterá *uma operação de banco de dados falhou ao processar a solicitação* erro. Toque **aplicar migrações** para criar o banco de dados e atualizar para continuar após o erro.
 
 ## <a name="next-steps"></a>Próximas etapas

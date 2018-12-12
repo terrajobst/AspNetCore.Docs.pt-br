@@ -8,16 +8,18 @@ ms.date: 04/29/2013
 ms.assetid: 3fd9f11c-799b-4001-bd60-1e70cfc61c19
 msc.legacyurl: /signalr/overview/older-versions/scaleout-in-signalr
 msc.type: authoredcontent
-ms.openlocfilehash: 0cd1e64af031fea8078c8c1ca4c64b1e2e69d7e9
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
+ms.openlocfilehash: fffa424ea4b62a54b9df48aaa409541ab5d1608f
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41824414"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53287574"
 ---
 <a name="introduction-to-scaleout-in-signalr-1x"></a>Introdução à expansão no SignalR 1.x
 ====================
 por [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 Em geral, há duas maneiras para dimensionar um aplicativo web: *escalar verticalmente* e *expandir*.
 
@@ -34,7 +36,7 @@ Uma solução é encaminhar mensagens entre servidores, usando um componente cha
 
 Atualmente, o SignalR fornece três backplanes:
 
-- **O barramento de serviço do Azure**. O barramento de serviço é uma infraestrutura de mensagens que permite que os componentes enviar mensagens de uma maneira menos rígida.
+- **O barramento de serviço do Azure**. O barramento de serviço é uma infraestrutura de mensagens que permite que os componentes enviem mensagens de uma maneira menos rígida.
 - **Redis**. O redis é um repositório de chave-valor na memória. Redis oferece suporte a um padrão de publicação/assinatura ("pub/sub") para enviar mensagens.
 - **SQL Server**. Backplane do SQL Server grava mensagens em tabelas SQL. Backplane usa o Service Broker para o sistema de mensagens eficiente. No entanto, ele também funciona se o Service Broker não está habilitado.
 
@@ -61,8 +63,8 @@ A cursor mecanismo funciona mesmo se um cliente é roteado para um servidor dife
 Usando um backplane, a taxa de transferência máxima de mensagens é menor do que quando os clientes falam diretamente a um nó de servidor único. Isso ocorre porque o backplane encaminha todas as mensagens para todos os nós, para que o backplane pode se tornar um gargalo. Se essa limitação é um problema depende do aplicativo. Por exemplo, aqui estão alguns cenários típicos do SignalR:
 
 - [Servidor de transmissão](tutorial-server-broadcast-with-aspnet-signalr.md) (por exemplo, bolsa): Backplanes funcionam bem para este cenário, porque o servidor controla a taxa na qual as mensagens são enviadas.
-- [Cliente-para-cliente](tutorial-getting-started-with-signalr.md) (por exemplo, bate-papo): nesse cenário, o backplane pode ser um gargalo se o número de mensagens pode ser dimensionado com o número de clientes; ou seja, se a taxa de mensagens aumenta proporcionalmente de mais clientes unir.
-- [Em tempo real de alta frequência](tutorial-high-frequency-realtime-with-signalr.md) (por exemplo, jogos em tempo real): um backplane não é recomendado para este cenário.
+- [Cliente-para-cliente](tutorial-getting-started-with-signalr.md) (por exemplo, bate-papo): Nesse cenário, o backplane pode ser um gargalo se o número de mensagens pode ser dimensionado com o número de clientes. ou seja, se a taxa de mensagens aumenta proporcionalmente de mais clientes unir.
+- [Em tempo real de alta frequência](tutorial-high-frequency-realtime-with-signalr.md) (por exemplo, jogos em tempo real): Um backplane não é recomendado para este cenário.
 
 ## <a name="enabling-tracing-for-signalr-scaleout"></a>Habilitação do rastreamento de expansão do SignalR
 

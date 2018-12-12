@@ -8,16 +8,18 @@ ms.date: 06/05/2013
 ms.assetid: 347210ba-c452-4feb-886f-b51d89f58971
 msc.legacyurl: /signalr/overview/older-versions/troubleshooting
 msc.type: authoredcontent
-ms.openlocfilehash: df949347cecd9ac617a52ad798f37bebdb8524fa
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
+ms.openlocfilehash: 6c2a8e72959c9370ff46084ca135c2b2977f4f42
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41833042"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53287672"
 ---
 <a name="signalr-troubleshooting-signalr-1x"></a>Solução de problemas do SignalR (SignalR 1.x)
 ====================
 por [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > Este documento descreve a solução de problemas comuns com o SignalR.
 
@@ -53,7 +55,7 @@ O SignalR requer um analisador JSON devem estar presentes para serializar as cha
 
 ### <a name="mixing-hub-and-persistentconnection-syntax"></a>Misturar sintaxe Hub e PersistentConnection
 
-O SignalR usa os dois modelos de comunicação: Hubs e PersistentConnections. A sintaxe para chamar esses modelos de dois comunicação é diferente no código do cliente. Se você tiver adicionado um hub no código do servidor, verifique se que todo o código do cliente usa a sintaxe de hub apropriado.
+O SignalR usa os dois modelos de comunicação: Os hubs e PersistentConnections. A sintaxe para chamar esses modelos de dois comunicação é diferente no código do cliente. Se você tiver adicionado um hub no código do servidor, verifique se que todo o código do cliente usa a sintaxe de hub apropriado.
 
 **Código de cliente JavaScript que cria um PersistentConnection em um cliente JavaScript**
 
@@ -157,8 +159,8 @@ Esse erro pode ocorrer em ambientes de domínio cruzado, em que a comunicação 
 
 Há várias causas para esse problema. Verifique se todas as seguintes opções:
 
-- **Referência de endereço de proxy de Hub não está formatada corretamente:** esse erro geralmente é visto se a referência para o endereço de proxy de hub gerado não está formatada corretamente. Verifique se que a referência para o endereço do hub é feita corretamente. Ver [como referenciar o proxy gerado dinamicamente](../guide-to-the-api/hubs-api-guide-javascript-client.md#dynamicproxy) para obter detalhes.
-- **Adicionar rotas ao aplicativo antes de adicionar a rota do hub:** se seu aplicativo usa outras rotas, verifique se a primeira rota adicionada é a chamada para `MapHubs`.
+- **Referência de endereço de proxy de Hub não está formatada corretamente:** Esse erro geralmente é visto se a referência para o endereço de proxy de hub gerado não está formatada corretamente. Verifique se que a referência para o endereço do hub é feita corretamente. Ver [como referenciar o proxy gerado dinamicamente](../guide-to-the-api/hubs-api-guide-javascript-client.md#dynamicproxy) para obter detalhes.
+- **Adicionar rotas ao aplicativo antes de adicionar a rota do hub:** Se seu aplicativo usa outras rotas, verifique se a primeira rota adicionada é a chamada para `MapHubs`.
 
 ### <a name="500-internal-server-error"></a>"Erro de servidor interno 500"
 
@@ -172,7 +174,7 @@ Esse erro ocorrerá se a chamada para `MapHubs` não é feita corretamente. Ver 
 
 Verifique se que os parâmetros que você enviar a seus métodos não incluem os tipos não serializáveis (como identificadores de arquivos ou conexões de banco de dados). Se você precisar usar os membros em um objeto do lado do servidor que você não deseja ser enviada ao cliente (ou para segurança ou por motivos de serialização), use o `JSONIgnore` atributo.
 
-### <a name="protocol-error-unknown-transport-error"></a>"Erro de protocolo: transporte desconhecido" Erro
+### <a name="protocol-error-unknown-transport-error"></a>"Erro de protocolo: Erro de transporte desconhecido"
 
 Esse erro pode ocorrer se o cliente não oferece suporte para os transportes que usa o SignalR. Ver [transportes e Fallbacks](../getting-started/introduction-to-signalr.md#transports) para obter informações no qual os navegadores podem ser usados com o SignalR.
 
@@ -184,11 +186,11 @@ Esse erro ocorrerá se `DisableJavaScriptProxies` está definida enquanto també
 
 Esse erro pode ser visto se a autenticação está sendo usada, e o cliente é desconectado antes que a conexão é interrompida. A solução é interromper a conexão do SignalR antes de sair do cliente.
 
-### <a name="uncaught-error-signalr-jquery-not-found-please-ensure-jquery-is-referenced-before-the-signalrjs-file-error"></a>"Não capturada erro: SignalR: jQuery não encontrado. Verifique se o jQuery é referenciado antes do arquivo SignalR.js"Erro
+### <a name="uncaught-error-signalr-jquery-not-found-please-ensure-jquery-is-referenced-before-the-signalrjs-file-error"></a>"Não capturada erro: SignalR: jQuery não foi encontrado. Verifique se o jQuery é referenciado antes do arquivo SignalR.js"Erro
 
 O cliente SignalR JavaScript exige jQuery para ser executado. Verifique se sua referência para o jQuery está correta, se o caminho usado é válido e que a referência para o jQuery é antes da referência ao SignalR.
 
-### <a name="uncaught-typeerror-cannot-read-property-ltpropertygt-of-undefined-error"></a>"Não capturada TypeError: não é possível ler a propriedade '&lt;propriedade&gt;' indefinido" Erro
+### <a name="uncaught-typeerror-cannot-read-property-ltpropertygt-of-undefined-error"></a>"Não capturada TypeError: Não é possível ler a propriedade '&lt;propriedade&gt;' indefinido "Erro
 
 Esse erro resulta da falta jQuery ou o proxy de hubs referenciado corretamente. Verifique se sua referência para o jQuery e o proxy de hubs está correta, se o caminho usado é válido e que a referência para o jQuery é antes da referência para o proxy de hubs. A referência ao proxy hubs deve ser semelhante ao seguinte:
 

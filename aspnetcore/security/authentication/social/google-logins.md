@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 11/11/2018
 uid: security/authentication/google-logins
-ms.openlocfilehash: e5deda5d521643e3155be00f4630a86c6a82575c
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.openlocfilehash: 372504eb4f6fea412b5b160e0d5e9251dafe0d56
+ms.sourcegitcommit: b34b25da2ab68e6495b2460ff570468f16a9bf0d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121525"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53284469"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>Configuração de logon externo do Google no ASP.NET Core
 
@@ -54,7 +54,7 @@ Este tutorial mostra como permitir que seus usuários entrar com sua conta do Go
 
 * Toque **as credenciais que eu preciso?** que leva você até a segunda etapa da configuração de aplicativo **criar uma ID de cliente OAuth 2.0**:
 
-![Página de credenciais de Gerenciador de API: criar uma ID de cliente OAuth 2.0](index/_static/GoogleConsoleCreateClient.png)
+![Página de credenciais de Gerenciador de API: Criar uma ID de cliente OAuth 2.0](index/_static/GoogleConsoleCreateClient.png)
 
 * Como estamos criando um projeto do Google + com apenas um recurso (entrada), podemos inserir os mesmos **nome** para a ID do cliente OAuth 2.0 é usado para o projeto.
 
@@ -67,13 +67,13 @@ Este tutorial mostra como permitir que seus usuários entrar com sua conta do Go
 
 * Toque **criar ID do cliente**, que leva você até a terceira etapa, **configurar a tela de consentimento do OAuth 2.0**:
 
-![Página de credenciais de Gerenciador de API: configurar a tela de consentimento do OAuth 2.0](index/_static/GoogleConsoleAddCred.png)
+![Página de credenciais de Gerenciador de API: Configurar a tela de consentimento do OAuth 2.0](index/_static/GoogleConsoleAddCred.png)
 
 * Insira seu voltadas ao pública **endereço de Email** e o **nome do produto** mostrado para seu aplicativo ao Google + solicita ao usuário para entrar. Opções adicionais estão disponíveis em **mais opções de personalização**.
 
 * Toque **Continue** para prosseguir para a última etapa, **baixar credenciais**:
 
-![Página de credenciais de Gerenciador de API: baixar credenciais](index/_static/GoogleConsoleFinish.png)
+![Página de credenciais de Gerenciador de API: Baixar credenciais](index/_static/GoogleConsoleFinish.png)
 
 * Toque **Baixe** para salvar um arquivo JSON com segredos do aplicativo, e **feito** para concluir a criação do novo aplicativo.
 
@@ -136,7 +136,7 @@ Consulte a [GoogleOptions](/dotnet/api/microsoft.aspnetcore.builder.googleoption
 
 Executar o aplicativo e clique em **faça logon no**. Será exibida uma opção para entrar com o Google:
 
-![Aplicativo Web em execução no Microsoft Edge: usuário não autenticado](index/_static/DoneGoogle.png)
+![Aplicativo Web em execução no Microsoft Edge: Usuário não autenticado](index/_static/DoneGoogle.png)
 
 Quando você clica no Google, você será redirecionado para o Google para autenticação:
 
@@ -146,14 +146,14 @@ Depois de inserir suas credenciais do Google, em seguida, você será redirecion
 
 Agora você está conectado usando suas credenciais do Google:
 
-![Aplicativo Web em execução no Microsoft Edge: usuário autenticado](index/_static/Done.png)
+![Aplicativo Web em execução no Microsoft Edge: Usuário autenticado](index/_static/Done.png)
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 ## <a name="troubleshooting"></a>Solução de problemas
 
 * Se você receber um `403 (Forbidden)` página de erro de seu próprio aplicativo quando em execução no modo de desenvolvimento (ou interrupção no depurador com o mesmo erro), certifique-se de que **API do Google +** foi habilitada no **debibliotecadoGerenciadordeAPI** seguindo as etapas listadas [anteriormente nesta página](#create-the-app-in-google-api-console). Se a entrada não funciona e você não estiver recebendo erros, alterne para modo de desenvolvimento para que o problema mais fácil de depurar.
-* Apenas **ASP.NET Core 2.x:** se a identidade não for configurada chamando `services.AddIdentity` no `ConfigureServices`, a autenticação resultará em *ArgumentException: a opção 'SignInScheme' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso é feito.
+* **ASP.NET Core 2.x somente:** Se a identidade não está configurada por meio da chamada `services.AddIdentity` na `ConfigureServices`, a tentativa de autenticar resultará em *ArgumentException: A opção 'SignInScheme' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso é feito.
 * Se o banco de dados do site não tiver sido criado aplicando-se a migração inicial, você obterá *uma operação de banco de dados falhou ao processar a solicitação* erro. Toque **aplicar migrações** para criar o banco de dados e atualizar para continuar após o erro.
 
 ## <a name="next-steps"></a>Próximas etapas

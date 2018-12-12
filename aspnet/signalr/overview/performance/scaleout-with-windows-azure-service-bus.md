@@ -8,16 +8,18 @@ ms.date: 06/10/2014
 ms.assetid: ce1305f9-30fd-49e3-bf38-d0a78dfb06c3
 msc.legacyurl: /signalr/overview/performance/scaleout-with-windows-azure-service-bus
 msc.type: authoredcontent
-ms.openlocfilehash: 3adc8768eb7271de32180ba98f67864b22283510
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: 5cdb9b5eb6d3f5ebd5c96e4b0d89926c18bddadd
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48910792"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53287605"
 ---
 <a name="signalr-scaleout-with-azure-service-bus"></a>Expansão do SignalR com o barramento de serviço do Azure
 ====================
 por [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 Neste tutorial, você implantará um aplicativo do SignalR para uma função do Windows Azure Web, usando o backplane do barramento de serviço para distribuir mensagens a cada instância de função. (Você também pode usar o backplane do barramento de serviço com [aplicativos web no serviço de aplicativo do Azure](https://docs.microsoft.com/azure/app-service-web/).)
 
@@ -49,13 +51,13 @@ Antes de passarmos para o tutorial detalhado, aqui está uma visão rápida do q
 
     [!code-csharp[Main](scaleout-with-windows-azure-service-bus/samples/sample1.cs)]
 
-Esse código configura o backplane com os valores padrão para [TopicCount](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.servicebusscaleoutconfiguration.topiccount(v=vs.118).aspx) e [MaxQueueLength](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.messaging.scaleoutconfiguration.maxqueuelength(v=vs.118).aspx). Para obter informações sobre como alterar esses valores, consulte [desempenho do SignalR: métricas de expansão](signalr-performance.md#scaleout_metrics).
+Esse código configura o backplane com os valores padrão para [TopicCount](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.servicebusscaleoutconfiguration.topiccount(v=vs.118).aspx) e [MaxQueueLength](https://msdn.microsoft.com/library/microsoft.aspnet.signalr.messaging.scaleoutconfiguration.maxqueuelength(v=vs.118).aspx). Para obter informações sobre como alterar esses valores, consulte [desempenho do SignalR: Métricas de expansão](signalr-performance.md#scaleout_metrics).
 
 Para cada aplicativo, escolha um valor diferente para "Nomedoseuaplicativo". Não use o mesmo valor em vários aplicativos.
 
 ## <a name="create-the-azure-services"></a>Criar os serviços do Azure
 
-Criar um serviço de nuvem, conforme descrito em [como criar e implantar um serviço de nuvem](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy). Siga as etapas na seção "como: criar um serviço de nuvem usando criação rápida". Para este tutorial, você não precisa carregar um certificado.
+Criar um serviço de nuvem, conforme descrito em [como criar e implantar um serviço de nuvem](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy). Siga as etapas na seção "como: Crie um serviço de nuvem usando a criação rápida". Para este tutorial, você não precisa carregar um certificado.
 
 ![](scaleout-with-windows-azure-service-bus/_static/image2.png)
 
@@ -88,7 +90,7 @@ No **novo projeto ASP.NET** caixa de diálogo, selecione **MVC**e clique em Okey
 O Assistente de projeto cria dois projetos:
 
 - ChatService: Este projeto é o aplicativo do Windows Azure. Ele define as funções do Azure e outras opções de configuração.
-- SignalRChat: Este projeto é o seu projeto ASP.NET MVC 5.
+- SignalRChat: Esse projeto é o seu projeto ASP.NET MVC 5.
 
 ## <a name="create-the-signalr-chat-application"></a>Criar o aplicativo de Chat SignalR
 

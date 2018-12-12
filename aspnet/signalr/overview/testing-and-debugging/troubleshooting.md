@@ -8,16 +8,18 @@ ms.date: 06/10/2014
 ms.assetid: 4b559e6c-4fb0-4a04-9812-45cf08ae5779
 msc.legacyurl: /signalr/overview/testing-and-debugging/troubleshooting
 msc.type: authoredcontent
-ms.openlocfilehash: bdb0562955f3bde56a95ce937c27fdbe4aa94823
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: e41061f0310c021b10dc6667a5c3297788213b0a
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48911672"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53287943"
 ---
 <a name="signalr-troubleshooting"></a>Solução de problemas do SignalR
 ====================
 por [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > Este documento descreve a solução de problemas comuns com o SignalR.
 >
@@ -71,7 +73,7 @@ O SignalR requer um analisador JSON devem estar presentes para serializar as cha
 
 ### <a name="mixing-hub-and-persistentconnection-syntax"></a>Misturar sintaxe Hub e PersistentConnection
 
-O SignalR usa os dois modelos de comunicação: Hubs e PersistentConnections. A sintaxe para chamar esses modelos de dois comunicação é diferente no código do cliente. Se você tiver adicionado um hub no código do servidor, verifique se que todo o código do cliente usa a sintaxe de hub apropriado.
+O SignalR usa os dois modelos de comunicação: Os hubs e PersistentConnections. A sintaxe para chamar esses modelos de dois comunicação é diferente no código do cliente. Se você tiver adicionado um hub no código do servidor, verifique se que todo o código do cliente usa a sintaxe de hub apropriado.
 
 **Código de cliente JavaScript que cria um PersistentConnection em um cliente JavaScript**
 
@@ -187,10 +189,10 @@ Esse erro pode ocorrer em ambientes de domínio cruzado, em que a comunicação 
 
 Há várias causas para esse problema. Verifique se todas as seguintes opções:
 
-- **Referência de endereço de proxy de Hub não está formatada corretamente:** esse erro geralmente é visto se a referência para o endereço de proxy de hub gerado não está formatada corretamente. Verifique se que a referência para o endereço do hub é feita corretamente. Ver [como referenciar o proxy gerado dinamicamente](../guide-to-the-api/hubs-api-guide-javascript-client.md#dynamicproxy) para obter detalhes.
-- **Adicionar rotas ao aplicativo antes de adicionar a rota do hub:** se seu aplicativo usa outras rotas, verifique se a primeira rota adicionada é a chamada para `MapSignalR`.
-- **Usando o IIS 7 ou 7.5 sem a atualização para URLs sem extensão:** usando o IIS 7 ou 7.5 requer uma atualização para URLs sem extensão para que o servidor possa fornecer acesso às definições de hub no `/signalr/hubs`. A atualização pode ser encontrada [aqui](https://support.microsoft.com/kb/980368).
-- **IIS cache desatualizado ou corrompido:** para verificar se o conteúdo de cache não está fora da data, digite o seguinte comando em uma janela do PowerShell para limpar o cache:
+- **Referência de endereço de proxy de Hub não está formatada corretamente:** Esse erro geralmente é visto se a referência para o endereço de proxy de hub gerado não está formatada corretamente. Verifique se que a referência para o endereço do hub é feita corretamente. Ver [como referenciar o proxy gerado dinamicamente](../guide-to-the-api/hubs-api-guide-javascript-client.md#dynamicproxy) para obter detalhes.
+- **Adicionar rotas ao aplicativo antes de adicionar a rota do hub:** Se seu aplicativo usa outras rotas, verifique se a primeira rota adicionada é a chamada para `MapSignalR`.
+- **Usando o IIS 7 ou 7.5 sem a atualização para URLs sem extensão:** Usar o IIS 7 ou 7.5 requer uma atualização para URLs sem extensão para que o servidor possa fornecer acesso às definições de hub no `/signalr/hubs`. A atualização pode ser encontrada [aqui](https://support.microsoft.com/kb/980368).
+- **Cache do IIS desatualizado ou corrompido:** Para verificar se o conteúdo de cache não está desatualizado, digite o seguinte comando em uma janela do PowerShell para limpar o cache:
 
     [!code-powershell[Main](troubleshooting/samples/sample11.ps1)]
 
@@ -212,7 +214,7 @@ Esse erro ocorrerá se a chamada para `MapSignalR` não é feita corretamente. V
 
 Verifique se que os parâmetros que você enviar a seus métodos não incluem os tipos não serializáveis (como identificadores de arquivos ou conexões de banco de dados). Se você precisar usar os membros em um objeto do lado do servidor que você não deseja ser enviada ao cliente (ou para segurança ou por motivos de serialização), use o `JSONIgnore` atributo.
 
-### <a name="protocol-error-unknown-transport-error"></a>"Erro de protocolo: transporte desconhecido" Erro
+### <a name="protocol-error-unknown-transport-error"></a>"Erro de protocolo: Erro de transporte desconhecido"
 
 Esse erro pode ocorrer se o cliente não oferece suporte para os transportes que usa o SignalR. Ver [transportes e Fallbacks](../getting-started/introduction-to-signalr.md#transports) para obter informações no qual os navegadores podem ser usados com o SignalR.
 
@@ -224,11 +226,11 @@ Esse erro ocorrerá se `DisableJavaScriptProxies` está definida enquanto també
 
 Esse erro pode ser visto se a autenticação está sendo usada, e o cliente é desconectado antes que a conexão é interrompida. A solução é interromper a conexão do SignalR antes de sair do cliente.
 
-### <a name="uncaught-error-signalr-jquery-not-found-please-ensure-jquery-is-referenced-before-the-signalrjs-file-error"></a>"Não capturada erro: SignalR: jQuery não encontrado. Verifique se o jQuery é referenciado antes do arquivo SignalR.js"Erro
+### <a name="uncaught-error-signalr-jquery-not-found-please-ensure-jquery-is-referenced-before-the-signalrjs-file-error"></a>"Não capturada erro: SignalR: jQuery não foi encontrado. Verifique se o jQuery é referenciado antes do arquivo SignalR.js"Erro
 
 O cliente SignalR JavaScript exige jQuery para ser executado. Verifique se sua referência para o jQuery está correta, se o caminho usado é válido e que a referência para o jQuery é antes da referência ao SignalR.
 
-### <a name="uncaught-typeerror-cannot-read-property-ltpropertygt-of-undefined-error"></a>"Não capturada TypeError: não é possível ler a propriedade '&lt;propriedade&gt;' indefinido" Erro
+### <a name="uncaught-typeerror-cannot-read-property-ltpropertygt-of-undefined-error"></a>"Não capturada TypeError: Não é possível ler a propriedade '&lt;propriedade&gt;' indefinido "Erro
 
 Esse erro resulta da falta jQuery ou o proxy de hubs referenciado corretamente. Verifique se sua referência para o jQuery e o proxy de hubs está correta, se o caminho usado é válido e que a referência para o jQuery é antes da referência para o proxy de hubs. A referência ao proxy hubs deve ser semelhante ao seguinte:
 
@@ -282,7 +284,7 @@ As mensagens estão atrasadas quando usando servidor enviado eventos em Silverli
 
 Esse é um problema conhecido, descrito [aqui](https://github.com/SignalR/SignalR/issues/1963). Este sintoma pode ser visto usando a biblioteca mais recente de JQuery; a solução alternativa é fazer o downgrade do seu aplicativo para o JQuery 1.8.2.
 
-### <a name="invalidoperationexception-not-a-valid-web-socket-request"></a>"InvalidOperationException: não uma solicitação do soquete da web válido.
+### <a name="invalidoperationexception-not-a-valid-web-socket-request"></a>"InvalidOperationException: Não uma solicitação do soquete da web válido.
 
 Esse erro pode ocorrer se o protocolo WebSocket é usado, mas o proxy de rede está modificando os cabeçalhos de solicitação. A solução é configurar o proxy para permitir que o WebSocket na porta 80.
 

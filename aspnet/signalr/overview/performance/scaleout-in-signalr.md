@@ -8,16 +8,18 @@ ms.date: 06/10/2014
 ms.assetid: 7e781fc1-1c1f-45a8-bc1d-338e96dbe9c9
 msc.legacyurl: /signalr/overview/performance/scaleout-in-signalr
 msc.type: authoredcontent
-ms.openlocfilehash: 78d917ae3a12edb9f117742d1a35d2accb073f01
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: 50f9e5bc2713af7fe41473339e360099a92d4c5d
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48911671"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53286981"
 ---
 <a name="introduction-to-scaleout-in-signalr"></a>Introdução à expansão no SignalR
 ====================
 por [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > ## <a name="software-versions-used-in-this-topic"></a>Versões de software usadas neste tópico
 >
@@ -79,8 +81,8 @@ A cursor mecanismo funciona mesmo se um cliente é roteado para um servidor dife
 Usando um backplane, a taxa de transferência máxima de mensagens é menor do que quando os clientes falam diretamente a um nó de servidor único. Isso ocorre porque o backplane encaminha todas as mensagens para todos os nós, para que o backplane pode se tornar um gargalo. Se essa limitação é um problema depende do aplicativo. Por exemplo, aqui estão alguns cenários típicos do SignalR:
 
 - [Servidor de transmissão](../getting-started/tutorial-server-broadcast-with-signalr.md) (por exemplo, bolsa): Backplanes funcionam bem para este cenário, porque o servidor controla a taxa na qual as mensagens são enviadas.
-- [Cliente-para-cliente](../getting-started/tutorial-getting-started-with-signalr.md) (por exemplo, bate-papo): nesse cenário, o backplane pode ser um gargalo se o número de mensagens pode ser dimensionado com o número de clientes; ou seja, se a taxa de mensagens aumenta proporcionalmente de mais clientes unir.
-- [Em tempo real de alta frequência](../getting-started/tutorial-high-frequency-realtime-with-signalr.md) (por exemplo, jogos em tempo real): um backplane não é recomendado para este cenário.
+- [Cliente-para-cliente](../getting-started/tutorial-getting-started-with-signalr.md) (por exemplo, bate-papo): Nesse cenário, o backplane pode ser um gargalo se o número de mensagens pode ser dimensionado com o número de clientes. ou seja, se a taxa de mensagens aumenta proporcionalmente de mais clientes unir.
+- [Em tempo real de alta frequência](../getting-started/tutorial-high-frequency-realtime-with-signalr.md) (por exemplo, jogos em tempo real): Um backplane não é recomendado para este cenário.
 
 ## <a name="enabling-tracing-for-signalr-scaleout"></a>Habilitação do rastreamento de expansão do SignalR
 

@@ -8,26 +8,26 @@ ms.date: 06/10/2014
 ms.assetid: 0fab5e35-8c1f-43d4-8635-b8aba8766a71
 msc.legacyurl: /signalr/overview/getting-started/introduction-to-signalr
 msc.type: authoredcontent
-ms.openlocfilehash: 0b7e223b6b793d1860797157be6021ffb7f1bc12
-ms.sourcegitcommit: 4d74644f11e0dac52b4510048490ae731c691496
+ms.openlocfilehash: c865078c14b8615faa278819f86a9dd623a42f36
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50090287"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53287553"
 ---
 <a name="introduction-to-signalr"></a>Introdução ao SignalR
 ====================
 
-Ver [Introdução ao SignalR do ASP.NET Core](/aspnet/core/signalr/introduction) para uma versão atualizada deste tutorial que usa a versão mais recente do Visual Studio. Usa o novo tutorial [ASP.NET Core](/aspnet/core/), que fornece muitos aprimoramentos ao longo deste tutorial.
-
 por [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 
 > Este artigo descreve o que é o SignalR e algumas das soluções que ele foi projetado para criar. 
 > 
 > ## <a name="questions-and-comments"></a>Perguntas e comentários
 > 
 > Deixe comentários sobre como você gostou neste tutorial e o que poderíamos melhorar nos comentários na parte inferior da página. Se você tiver perguntas que não estão diretamente relacionadas para o tutorial, você pode postá-los para o [Fórum do ASP.NET SignalR](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) ou [StackOverflow.com](https://stackoverflow.com/questions/tagged/signalr).
-
 
 ## <a name="what-is-signalr"></a>O que é o SignalR?
 
@@ -132,7 +132,7 @@ As constantes de cadeia de caracteres para especificar os transportes são defin
 
 ## <a name="connections-and-hubs"></a>Conexões e Hubs
 
-A API do SignalR contém dois modelos para a comunicação entre clientes e servidores: conexões persistentes e Hubs.
+A API do SignalR contém dois modelos para a comunicação entre clientes e servidores: Conexões persistentes e Hubs.
 
 Uma Conexão representa um ponto de extremidade simple para envio de mensagens de difusão, agrupado ou de único destinatário. O oferece API de Conexão persistente (representado pela classe PersistentConnection no código do .NET) o desenvolvedor acesso direto ao protocolo de comunicação de baixo nível que expõe o SignalR. Usando o modelo de comunicação de conexões será familiar aos desenvolvedores acostumados com APIs com base em conexão, como o Windows Communication Foundation.
 

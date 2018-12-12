@@ -8,16 +8,18 @@ ms.date: 04/17/2013
 ms.assetid: 03e4b9f5-0fea-4d94-959f-014b2762a301
 msc.legacyurl: /signalr/overview/older-versions/signalr-1x-hubs-api-guide-server
 msc.type: authoredcontent
-ms.openlocfilehash: f21f458e790b0103beb5c315bd7c1192e8866da3
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
+ms.openlocfilehash: a51a2077e0b6cde80bc679e3a310c0c804d19d68
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41823481"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53288009"
 ---
 <a name="aspnet-signalr-hubs-api-guide---server-signalr-1x"></a>Guia de API de Hubs do SignalR do ASP.NET – servidor (SignalR 1.x)
 ====================
 por [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 > Este documento fornece uma introdução à programação do lado do servidor da API de Hubs de SignalR do ASP.NET para o SignalR versão 1.1, com exemplos de código que demonstra as opções comuns.
 > 

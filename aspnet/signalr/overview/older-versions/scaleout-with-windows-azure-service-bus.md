@@ -8,16 +8,18 @@ ms.date: 05/01/2013
 ms.assetid: 501db899-e68c-49ff-81b2-1dc561bfe908
 msc.legacyurl: /signalr/overview/older-versions/scaleout-with-windows-azure-service-bus
 msc.type: authoredcontent
-ms.openlocfilehash: d597eebc958815b1b1b9fdffc256c4453efce6b3
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: 687d3d7787baa69410ee35d651a029c69d28c70b
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48910948"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53286994"
 ---
 <a name="signalr-scaleout-with-azure-service-bus-signalr-1x"></a>Expansão do SignalR com o barramento de serviço do Azure (SignalR 1.x)
 ====================
 por [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
+
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
 Neste tutorial, você implantará um aplicativo do SignalR para uma função do Windows Azure Web, usando o backplane do barramento de serviço para distribuir mensagens a cada instância de função.
 
@@ -53,7 +55,7 @@ Para cada aplicativo, escolha um valor diferente para "Nomedoseuaplicativo". Nã
 
 ## <a name="create-the-azure-services"></a>Criar os serviços do Azure
 
-Criar um serviço de nuvem, conforme descrito em [como criar e implantar um serviço de nuvem](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy). Siga as etapas na seção "como: criar um serviço de nuvem usando criação rápida". Para este tutorial, você não precisa carregar um certificado.
+Criar um serviço de nuvem, conforme descrito em [como criar e implantar um serviço de nuvem](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy). Siga as etapas na seção "como: Crie um serviço de nuvem usando a criação rápida". Para este tutorial, você não precisa carregar um certificado.
 
 ![](scaleout-with-windows-azure-service-bus/_static/image2.png)
 
@@ -82,7 +84,7 @@ Passe o mouse sobre a nova função, portanto, visíveis no ícone de lápis. Cl
 No **novo projeto ASP.NET MVC 4** assistente, selecione **aplicativo de Internet**. Clique em **OK**. O Assistente de projeto cria dois projetos:
 
 - ChatService: Este projeto é o aplicativo do Windows Azure. Ele define as funções do Azure e outras opções de configuração.
-- SignalRChat: Este projeto é o seu projeto ASP.NET MVC 4.
+- SignalRChat: Esse projeto é o seu projeto ASP.NET MVC 4.
 
 ## <a name="create-the-signalr-chat-application"></a>Criar o aplicativo de Chat SignalR
 

@@ -8,21 +8,23 @@ ms.date: 02/22/2015
 ms.assetid: 148d9ca7-1af1-44b6-a9fb-91e261b9b463
 msc.legacyurl: /signalr/overview/performance/signalr-connection-density-testing-with-crank
 msc.type: authoredcontent
-ms.openlocfilehash: 556accb1bcc18e9e4d1f813a87fc6f4b67bda088
-ms.sourcegitcommit: 2d3e5422d530203efdaf2014d1d7df31f88d08d0
+ms.openlocfilehash: 308fed51953b085506488c5e0dda1ced9f4d09fb
+ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/05/2018
-ms.locfileid: "51021476"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53287555"
 ---
 <a name="signalr-connection-density-testing-with-crank"></a>Densidade de Conexão do SignalR testes com Crank
 ====================
 por [Tom FitzMacken](https://github.com/tfitzmac)
 
+[!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
+
 > Este artigo descreve como usar a ferramenta manivela para testar um aplicativo com vários clientes simulados.
 
 
-Quando seu aplicativo estiver em execução no seu ambiente de hospedagem (Azure uma função, IIS, web ou auto-hospedados usando Owin), você pode testar a resposta do aplicativo para um alto nível de densidade de conexão usando a ferramenta manivela. O ambiente de hospedagem pode ser um servidor de serviços de informações da Internet (IIS), um host Owin ou uma função web do Azure. (Observação: os contadores de desempenho não estão disponíveis em aplicativos de Web de serviço de aplicativo do Azure, portanto, não será capaz de obter dados de desempenho de um teste de densidade de conexão.)
+Quando seu aplicativo estiver em execução no seu ambiente de hospedagem (Azure uma função, IIS, web ou auto-hospedados usando Owin), você pode testar a resposta do aplicativo para um alto nível de densidade de conexão usando a ferramenta manivela. O ambiente de hospedagem pode ser um servidor de serviços de informações da Internet (IIS), um host Owin ou uma função web do Azure. (Observação: Contadores de desempenho não estão disponíveis em aplicativos de Web de serviço de aplicativo do Azure, portanto, não será capaz de obter dados de desempenho de um teste de densidade de conexão.)
 
 Densidade de Conexão refere-se ao número de conexões TCP simultâneas que podem ser estabelecidas em um servidor. Cada conexão TCP resulta em sua própria sobrecarga e abrindo um grande número de conexões ociosas, eventualmente, criar um afunilamento de memória.
 
@@ -50,8 +52,8 @@ As opções disponíveis para a ferramenta manivela incluem:
 - **/ BatchSize**: O número de clientes adicionados em cada lote. O padrão é 50.
 - **/ ConnectInterval**: O intervalo em milissegundos entre a adição de conexões. O padrão é 500.
 - **/ Conexões**: O número de conexões usado para o aplicativo de teste de carga. O padrão é 100.000.
-- **/ ConnectTimeout**: O tempo limite em segundos antes de cancelar o teste. O padrão é 300.
-- **MinServerMBytes**: os megabytes mínima do servidor para alcançar. O padrão é 500.
+- **/ ConnectTimeout**: O tempo limite em segundos antes de anular o teste. O padrão é 300.
+- **MinServerMBytes**: Os megabytes mínima do servidor para alcançar. O padrão é 500.
 - **SendBytes**: O tamanho da carga enviada para o servidor em bytes. O padrão é 0.
 - **SendInterval**: O atraso em milissegundos entre as mensagens para o servidor. O padrão é 500.
 - **SendTimeout**: O tempo limite em milissegundos para mensagens para o servidor. O padrão é 300.
