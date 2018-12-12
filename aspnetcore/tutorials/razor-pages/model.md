@@ -5,12 +5,12 @@ description: Saiba como adicionar classes de gerenciamento de filmes em um banco
 ms.author: riande
 ms.date: 05/30/2018
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: c4b23f75da298e4ee804f649219c2ce466b6d6ea
-ms.sourcegitcommit: 710fc5fcac258cc8415976dc66bdb355b3e061d5
+ms.openlocfilehash: 0d33901805d6728fb8006f14d41090b874ab28b1
+ms.sourcegitcommit: e8d80ff566bfe505b43389d7bc4551edb1c0c872
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52299437"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52549104"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -213,6 +213,9 @@ O comando `Update-Database` executa o método `Up` no arquivo *Migrations/{time-
 
 * Executar o aplicativo e acrescentar `/Movies` à URL no navegador (`http://localhost:port/movies`).
 * Teste o link **Criar**.
+
+  > [!NOTE]
+  > Talvez você não consiga inserir casas decimais ou vírgulas no campo `Price`. Para dar suporte à [validação do jQuery](https://jqueryvalidation.org/) para localidades de idiomas diferentes do inglês que usam uma vírgula (“,”) para um ponto decimal e formatos de data diferentes do inglês dos EUA, você deve globalizar o aplicativo. Para obter instruções sobre a globalização, consulte [esse problema no GitHub](https://github.com/aspnet/Docs/issues/4076#issuecomment-326590420).
 
   ![Criar página](../../tutorials/razor-pages/model/_static/conan.png)
 

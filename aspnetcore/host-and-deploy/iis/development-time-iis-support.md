@@ -4,14 +4,14 @@ author: shirhatti
 description: Descubra o suporte para depuração de aplicativos do ASP.NET Core quando executado por trás do IIS no Windows Server.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2018
+ms.date: 11/26/2018
 uid: host-and-deploy/iis/development-time-iis-support
-ms.openlocfilehash: eb8b4369d6d5434adbac187f59b18d7a2b80055c
-ms.sourcegitcommit: a1afd04758e663d7062a5bfa8a0d4dca38f42afc
+ms.openlocfilehash: 65dbe690a33d82a4edddf315803dc4c656db27a0
+ms.sourcegitcommit: e8d80ff566bfe505b43389d7bc4551edb1c0c872
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/20/2018
-ms.locfileid: "36277648"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52549082"
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>Suporte ao IIS no tempo de desenvolvimento no Visual Studio para ASP.NET Core
 
@@ -129,13 +129,19 @@ Como alternativa, adicione manualmente um perfil de inicialização para o arqui
 
 ## <a name="run-the-project"></a>Executar o projeto
 
-Na interface do usuário do VS, definido no botão executar o **IIS** perfil e selecione o botão para iniciar o aplicativo:
+No Visual Studio:
 
-![Botão de execução na barra de ferramentas do VS definido para o perfil "IIS".](development-time-iis-support/_static/toolbar.png)
+* Confirme se a lista de lista suspensa de configuração de compilação está definida para **Depurar**.
+* Defina o botão Executar para o perfil do **IIS** e selecione o botão para iniciar o aplicativo.
+
+![O botão Executar, na barra de ferramentas do VS, é definido para o perfil do IIS com a lista suspensa de configuração de compilação definida para Versão.](development-time-iis-support/_static/toolbar.png)
 
 O Visual Studio poderá solicitar uma reinicialização se não estiver executando como administrador. Se solicitado, reinicie o Visual Studio.
 
 Se for usado um certificado de desenvolvimento não confiável, o navegador poderá exigir a criação de uma exceção para o certificado não confiável.
+
+> [!NOTE]
+> A depuração de uma configuração de Compilação de versão com [Apenas Meu Código](/visualstudio/debugger/just-my-code) e otimizações de compilador resulta em uma experiência inadequada. Por exemplo, os pontos de interrupção não são atingidos.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

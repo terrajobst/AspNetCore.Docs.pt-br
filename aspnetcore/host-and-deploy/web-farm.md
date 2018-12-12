@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como hospedar várias instâncias de um aplicativo ASP.NET Core com recursos compartilhados em um ambiente de web farm.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/16/2018
+ms.date: 11/26/2018
 uid: host-and-deploy/web-farm
-ms.openlocfilehash: 2435c24bc205486331c828337ca81c43e6e60448
-ms.sourcegitcommit: 3ca527f27c88cfc9d04688db5499e372fbc2c775
+ms.openlocfilehash: 4873665e6174a6acf885e1ebb41fb005d646bd1f
+ms.sourcegitcommit: e9b99854b0a8021dafabee0db5e1338067f250a9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/17/2018
-ms.locfileid: "39096081"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52450665"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Hospedar o ASP.NET Core em um web farm
 
@@ -67,11 +67,13 @@ Os cenários a seguir não exigem configuração adicional, mas dependem de tecn
 
 ## <a name="troubleshoot"></a>Solução de problemas
 
+### <a name="data-protection-and-caching"></a>Proteção de dados e cache
+
 Quando a proteção de dados ou cache não está configurada para um ambiente de web farm, erros intermitentes ocorrem quando as solicitações são processadas. Isso acontece porque os nós não compartilham os mesmos recursos e as solicitações do usuário não são sempre roteadas para o mesmo nó.
 
 Considere um usuário que entra no aplicativo usando a autenticação de cookie. O usuário entra no aplicativo em um nó do web farm. Se a sua próxima solicitação chegar ao mesmo nó no qual ele se conectou, o aplicativo consegue descriptografar o cookie de autenticação e permite o acesso ao recurso do aplicativo. Se a sua próxima solicitação chegar em um nó diferente, o aplicativo não consegue descriptografar o cookie de autenticação a partir do nó em que o usuário entrou e a autorização do recurso solicitado falhará.
 
-Quando qualquer um dos seguintes sintomas ocorrem **de forma intermitente**, o problema normalmente é rastreado a configuração incorreta de proteção de dados ou cache para um ambiente de web farm:
+Quando qualquer um dos seguintes sintomas ocorrem **de forma intermitente**, o problema normalmente é rastreado, indicando a configuração incorreta de proteção de dados ou cache para um ambiente de web farm:
 
 * Quebras de autenticação &ndash; o cookie de autenticação está configurado incorretamente ou não pode ser descriptografado. Falha de login OpenIdConnect ou OAuth (Facebook, Microsoft, Twitter) com o erro "Falha de correlação".
 * Quebras de autorização &ndash; a identidade foi perdida.
@@ -81,3 +83,7 @@ Quando qualquer um dos seguintes sintomas ocorrem **de forma intermitente**, o p
 * Os POSTs falham &ndash; a verificação antifalsificação falhará.
 
 Para saber mais sobre a configuração de Proteção de dados para implantações de web farm, confira <xref:security/data-protection/configuration/overview>. Para saber mais sobre a configuração de cache para implantações de web farm, confira <xref:performance/caching/distributed>.
+
+## <a name="obtain-data-from-apps"></a>Obter dados de aplicativos
+
+Se os aplicativos do web farm forem capazes de responder às solicitações, obtenha as solicitações, conexão e dados adicionais dos aplicativos que usarem o middleware embutido de terminal. Para saber mais e obter um código de exemplo, consulte <xref:test/troubleshoot#obtain-data-from-an-app>.

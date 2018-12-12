@@ -5,12 +5,12 @@ description: Esta série de tutoriais mostra como usar Razor Pages no ASP.NET Co
 ms.author: riande
 ms.date: 05/30/2018
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 4ee9a014114e2536f7584b2a1ff9d699fb971aa8
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: ca5b134aaa0a9218bc3b0466c3448bd41e8cef8b
+ms.sourcegitcommit: e9b99854b0a8021dafabee0db5e1338067f250a9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50206972"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52450730"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: introdução ao Razor Pages no ASP.NET Core
 
@@ -29,10 +29,13 @@ Este tutorial ensina as noções básicas de criação de um aplicativo Web de P
 Há três versões deste tutorial:
 
 * Windows: este tutorial
-* MacOS: [Introdução a Páginas Razor com o Visual Studio para Mac](xref:tutorials/razor-pages-mac/razor-pages-start)
+* macOS: [Introdução a Razor Pages com o Visual Studio para Mac](xref:tutorials/razor-pages-mac/razor-pages-start)
 * macOS, Linux e Windows: [Introdução a Páginas Razor no ASP.NET Core no Visual Studio Code](xref:tutorials/razor-pages-vsc/razor-pages-start)
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample) ([como baixar](xref:index#how-to-download-a-sample))
+
+> [!NOTE]
+> Estamos testando a usabilidade de uma nova estrutura proposta para o sumário do ASP.NET Core.  Se você tiver alguns minutos para experimentar um exercício de localização de sete tópicos diferentes no sumário atual ou proposto, [clique aqui para participar do estudo](https://dpk4xbh5.optimalworkshop.com/treejack/rps16hd5).
 
 ::: moniker range=">= aspnetcore-2.1"
 

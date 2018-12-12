@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 05/12/2018
 uid: razor-pages/index
-ms.openlocfilehash: 7fc048e427fd49e2142160615a12989fd4f40303
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: cc881ff42d57ab1654f492a70006a995939e4844
+ms.sourcegitcommit: 8a65f6c2cbe290fb2418eed58f60fb74c95392c8
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207609"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52892114"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introdução a Páginas do Razor no ASP.NET Core
 
@@ -25,15 +25,15 @@ Este documento proporciona uma introdução a páginas do Razor. Este não é um
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-[!INCLUDE [](~/includes/net-core-prereqs.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
 
 <a name="rpvs17"></a>
 
-## <a name="creating-a-razor-pages-project"></a>Criando um projeto de Páginas do Razor
+## <a name="create-a-razor-pages-project"></a>Criar um projeto do Razor Pages
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Consulte a [Introdução a Páginas do Razor](xref:tutorials/razor-pages/razor-pages-start) para obter instruções detalhadas sobre como criar um projeto de Páginas do Razor usando o Visual Studio.
+Confira a [Introdução ao Razor Pages](xref:tutorials/razor-pages/razor-pages-start) para obter instruções detalhadas sobre como criar um projeto do Razor Pages.
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
@@ -52,20 +52,6 @@ Da linha de comando, execute `dotnet new razor`.
 Abra o arquivo *.csproj* gerado do Visual Studio para Mac.
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
-
-::: moniker range=">= aspnetcore-2.1"
-
-Da linha de comando, execute `dotnet new webapp`.
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-Da linha de comando, execute `dotnet new razor`.
-
-::: moniker-end
-
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -117,7 +103,7 @@ Notas:
 * O tempo de execução procura arquivos de Páginas do Razor na pasta *Pages* por padrão.
 * `Index` é a página padrão quando uma URL não inclui uma página.
 
-## <a name="writing-a-basic-form"></a>Escrevendo um formulário básico
+## <a name="write-a-basic-form"></a>Escrever um formulário básico
 
 Páginas do Razor foi projetado para facilitar a implementação de padrões comuns usados com navegadores da Web ao criar um aplicativo. [Model binding](xref:mvc/models/model-binding), [auxiliares de marcas](xref:mvc/views/tag-helpers/intro) e auxiliares HTML *funcionam todos apenas* com as propriedades definidas em uma classe de Página do Razor. Considere uma página que implementa um formulário básico "Fale conosco" para o modelo `Contact`:
 
@@ -173,10 +159,7 @@ A propriedade `Customer` usa o atributo `[BindProperty]` para aceitar o model bi
 
 Páginas do Razor, por padrão, associam as propriedades somente com verbos não GET. A associação de propriedades pode reduzir a quantidade de código que você precisa escrever. A associação reduz o código usando a mesma propriedade para renderizar os campos de formulário (`<input asp-for="Customer.Name" />`) e aceitar a entrada.
 
-> [!NOTE]
-> Por motivos de segurança, você deve optar por associar os dados da solicitação GET às propriedades do modelo de página. Verifique a entrada do usuário antes de mapeá-la para as propriedades. Aceitar esse comportamento é útil quando você lida com cenários que contam com a cadeia de caracteres de consulta ou com os valores de rota.
->
-> Para associar uma propriedade às solicitações GET, defina a propriedade `SupportsGet` do atributo `[BindProperty]` como `true`: `[BindProperty(SupportsGet = true)]`
+[!INCLUDE[](~/includes/bind-get.md)]
 
 A home page (*Index.cshtml*):
 
@@ -242,11 +225,11 @@ As propriedades em um `PageModel` podem ser decoradas com o atributo [Required](
 
 [!code-cs[](index/sample/Create.cshtml.cs?highlight=3,15-16)]
 
-Confira [Validação de modelo](xref:mvc/models/validation) para obter mais informações.
+Para obter mais informações, confira [Validação de modelo](xref:mvc/models/validation).
 
 ## <a name="manage-head-requests-with-the-onget-handler"></a>Gerenciar solicitações HEAD com o manipulador OnGet
 
-As solicitações HEAD permitem recuperar os cabeçalhos de um recurso específico. Ao contrário das solicitações GET, as solicitações HEAD não retornam um corpo de resposta. 
+As solicitações HEAD permitem recuperar os cabeçalhos de um recurso específico. Ao contrário das solicitações GET, as solicitações HEAD não retornam um corpo de resposta.
 
 Geralmente, um manipulador HEAD é criado e chamado para solicitações HEAD: 
 
@@ -477,7 +460,7 @@ O modelo de página *Pages/Customers/Index.cshtml.cs* aplica o atributo `[TempDa
 public string Message { get; set; }
 ```
 
-Consulte [TempData](xref:fundamentals/app-state#tempdata) para obter mais informações.
+Para obter mais informações, confira [TempData](xref:fundamentals/app-state#tempdata).
 
 <a name="mhpp"></a>
 ## <a name="multiple-handlers-per-page"></a>Vários manipuladores por página

@@ -4,14 +4,14 @@ description: Saiba como configurar o Apache como um servidor proxy reverso no Ce
 author: spboyer
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 10/23/2018
+ms.date: 11/26/2018
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: 1d303fbde2a398b4628d3390aea80957a59f711b
-ms.sourcegitcommit: 4a6bbe84db24c2f3dd2de065de418fde952c8d40
+ms.openlocfilehash: d0e36d0a73df43a26c03dc4154962240683817b5
+ms.sourcegitcommit: e9b99854b0a8021dafabee0db5e1338067f250a9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50253127"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52450808"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hospedar o ASP.NET Core no Linux com o Apache
 
@@ -180,9 +180,9 @@ sudo systemctl restart httpd
 sudo systemctl enable httpd
 ```
 
-## <a name="monitoring-the-app"></a>Monitoramento o aplicativo
+## <a name="monitor-the-app"></a>Monitorar o aplicativo
 
-O Apache agora está configurado para encaminhar solicitações feitas a `http://localhost:80` para o aplicativo ASP.NET Core em execução no Kestrel em `http://127.0.0.1:5000`.  No entanto, o Apache não está configurado para gerenciar o processo do Kestrel. Use *systemd* e crie um arquivo de serviço para iniciar e monitorar o aplicativo Web subjacente. *systemd* é um sistema de inicialização que fornece muitos recursos poderosos para iniciar, parar e gerenciar processos. 
+O Apache agora está configurado para encaminhar solicitações feitas a `http://localhost:80` para o aplicativo ASP.NET Core em execução no Kestrel em `http://127.0.0.1:5000`. No entanto, o Apache não está configurado para gerenciar o processo do Kestrel. Use *systemd* e crie um arquivo de serviço para iniciar e monitorar o aplicativo Web subjacente. *systemd* é um sistema de inicialização que fornece muitos recursos poderosos para iniciar, parar e gerenciar processos.
 
 ### <a name="create-the-service-file"></a>Criar o arquivo de serviço
 
@@ -259,7 +259,7 @@ Connection: Keep-Alive
 Transfer-Encoding: chunked
 ```
 
-### <a name="viewing-logs"></a>Exibindo logs
+### <a name="view-logs"></a>Exibir logs
 
 Já que o aplicativo Web usando Kestrel é gerenciado usando *systemd*, os eventos e os processos são registrados em um diário centralizado. No entanto, esse diário contém todas as entradas para todos os serviços e processos gerenciados por *systemd*. Para exibir os itens específicos de `kestrel-helloapp.service`, use o seguinte comando:
 
@@ -288,7 +288,7 @@ Para configurar a proteção de dados de modo que ela mantenha e criptografe o t
 * <xref:security/data-protection/implementation/key-storage-providers>
 * <xref:security/data-protection/implementation/key-encryption-at-rest>
 
-## <a name="securing-the-app"></a>Protegendo o aplicativo
+## <a name="secure-the-app"></a>Proteger o aplicativo
 
 ### <a name="configure-firewall"></a>Configurar o firewall
 
@@ -485,4 +485,5 @@ O arquivo de exemplo limita a largura de banda a 600 KB/s no local raiz:
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Pré-requisitos para o .NET Core no Linux](/dotnet/core/linux-prerequisites)
-* [Configurar o ASP.NET Core para trabalhar com servidores proxy e balanceadores de carga](xref:host-and-deploy/proxy-load-balancer)
+* <xref:test/troubleshoot>
+* <xref:host-and-deploy/proxy-load-balancer>

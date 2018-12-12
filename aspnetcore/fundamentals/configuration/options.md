@@ -4,69 +4,80 @@ author: guardrex
 description: Descubra como usar o padrão de opções para representar grupos de configurações relacionadas em aplicativos ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2018
+ms.date: 11/28/2018
 uid: fundamentals/configuration/options
-ms.openlocfilehash: 99aa5028a8704c7e9e3010415137e2560213a2ad
-ms.sourcegitcommit: edb9d2d78c9a4d68b397e74ae2aff088b325a143
+ms.openlocfilehash: 67f74657fb9aa5ba8235be159e2f10cf80ebce3d
+ms.sourcegitcommit: 0fc89b80bb1952852ecbcf3c5c156459b02a6ceb
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51505785"
+ms.lasthandoff: 11/29/2018
+ms.locfileid: "52618097"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Padrão de opções no ASP.NET Core
 
 Por [Luke Latham](https://github.com/guardrex)
 
+::: moniker range="<= aspnetcore-1.1"
+
+Para obter a versão 1.1 deste tópico, baixe o [Padrão de opções no ASP.NET Core (versão 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Options_1.1.pdf).
+
+::: moniker-end
+
 O padrão de opções usa classes para representar grupos de configurações relacionadas. Quando as [definições de configuração](xref:fundamentals/configuration/index) são isoladas por cenário em classes separadas, o aplicativo segue dois princípios importantes de engenharia de software:
 
-* O [ISP (Princípio de Segregação da Interface)](http://deviq.com/interface-segregation-principle/): os cenários (classes) que dependem das definições de configuração dependem apenas das definições de configuração usadas por eles.
-* [Separação de Interesses](http://deviq.com/separation-of-concerns/): as configurações para diferentes partes do aplicativo não são dependentes nem acopladas entre si.
+* O [ISP (Princípio de Segregação da Interface) ou Encapsulamento](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation) &ndash; os cenários (classes) que dependem das definições de configuração dependem apenas das definições de configuração usadas por eles.
+* [Separação de Interesses](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) &ndash; As configurações para diferentes partes do aplicativo não são dependentes nem acopladas entre si.
 
-[Exiba ou baixe o código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample) ([como baixar](xref:index#how-to-download-a-sample)) Este artigo é mais fácil de ser acompanhado com o aplicativo de exemplo.
+As opções também fornecem um mecanismo para validar os dados da configuração. Para obter mais configurações, consulte a seção [Validação de opções](#options-validation).
+
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-::: moniker range=">= aspnetcore-2.1"
-
 Referencie o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) ou adicione uma referência de pacote ao pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).
 
-::: moniker-end
+## <a name="options-interfaces"></a>Interfaces de opções
 
-::: moniker range="= aspnetcore-2.0"
+O <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> é usado para recuperar as opções e gerenciar notificações de opções para instâncias de `TOptions`. O <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> dá suporte aos seguintes cenários:
 
-Referencie o [metapacote Microsoft.AspNetCore.All](xref:fundamentals/metapackage) ou adicione uma referência de pacote ao pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).
+* Notificações de alteração
+* [Opções nomeadas](#named-options-support-with-iconfigurenamedoptions)
+* [Configuração recarregável](#reload-configuration-data-with-ioptionssnapshot)
+* Invalidação seletiva de opções (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1>)
 
-::: moniker-end
+Os cenários de [Pós-configuração](#options-post-configuration) permitem que você defina ou altere as opções depois de todas as configurações do <xref:Microsoft.Extensions.Options.IConfigureOptions`1> serem feitas.
 
-::: moniker range="< aspnetcore-2.0"
+O <xref:Microsoft.Extensions.Options.IOptionsFactory`1> é responsável por criar novas instâncias de opções. Ele tem um único método <xref:Microsoft.Extensions.Options.IOptionsFactory`1.Create*>. A implementação padrão usa todos os <xref:Microsoft.Extensions.Options.IConfigureOptions`1> e <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1> registrados e executa todas as configurações primeiro, seguidas da pós-configuração. Ela faz distinção entre <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> e <xref:Microsoft.Extensions.Options.IConfigureOptions`1> e chama apenas a interface apropriada.
 
-Adicione uma referência de pacote ao pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).
+O <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1> é usado pelo <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> para armazenar em cache as instâncias do `TOptions`. O <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1> invalida as instâncias de opções no monitor, de modo que o valor seja recalculado (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryRemove*>). Os valores podem ser manualmente inseridos com <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryAdd*>. O método <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.Clear*> é usado quando todas as instâncias nomeadas devem ser recriadas sob demanda.
 
-::: moniker-end
+O <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> é útil em cenários em que as opções devam ser novamente computadas em cada solicitação. Para saber mais, consulte a seção [Recarregar dados de configuração com IOptionsSnapshot](#reload-configuration-data-with-ioptionssnapshot).
 
-## <a name="basic-options-configuration"></a>Configuração de opções básicas
+O <xref:Microsoft.Extensions.Options.IOptions`1> pode ser usado para dar suporte a opções. No entanto, o <xref:Microsoft.Extensions.Options.IOptions`1> não dá suporte a cenários anteriores do <xref:Microsoft.Extensions.Options.IOptionsMonitor`1>. Você pode continuar a usar o <xref:Microsoft.Extensions.Options.IOptions`1> em estruturas e bibliotecas existentes que já usam a interface do <xref:Microsoft.Extensions.Options.IOptions`1> e não exigem os cenários fornecidos pelo <xref:Microsoft.Extensions.Options.IOptionsMonitor`1>.
 
-A configuração de opções básicas é demonstrada como o Exemplo &num;1 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).
+## <a name="general-options-configuration"></a>Configuração de opções gerais
 
-Uma classe de opções deve ser não abstrata com um construtor público sem parâmetros. A classe a seguir, `MyOptions`, tem duas propriedades, `Option1` e `Option2`. A configuração de valores padrão é opcional, mas o construtor de classe no exemplo a seguir define o valor padrão de `Option1`. `Option2` tem um valor padrão definido com a inicialização da propriedade diretamente (*Models/MyOptions.cs*):
+A configuração de opções gerais é demonstrada no Exemplo &num;1 no aplicativo de exemplo.
 
-[!code-csharp[](options/sample/Models/MyOptions.cs?name=snippet1)]
+Uma classe de opções deve ser não abstrata e com um construtor público sem parâmetros. A classe a seguir, `MyOptions`, tem duas propriedades, `Option1` e `Option2`. A configuração de valores padrão é opcional, mas o construtor de classe no exemplo a seguir define o valor padrão de `Option1`. `Option2` tem um valor padrão definido com a inicialização da propriedade diretamente (*Models/MyOptions.cs*):
 
-A classe `MyOptions` é adicionada ao contêiner de serviço com [Configure&lt;TOptions&gt;(IServiceCollection, IConfiguration)](/dotnet/api/microsoft.extensions.dependencyinjection.optionsconfigurationservicecollectionextensions.configure#Microsoft_Extensions_DependencyInjection_OptionsConfigurationServiceCollectionExtensions_Configure__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_Microsoft_Extensions_Configuration_IConfiguration_) e é associada à configuração:
+[!code-csharp[](options/samples/2.x/OptionsSample/Models/MyOptions.cs?name=snippet1)]
 
-[!code-csharp[](options/sample/Startup.cs?name=snippet_Example1)]
+A classe `MyOptions` é adicionada ao contêiner de serviço com <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> e associada à configuração:
 
-O seguinte modelo de página usa a [injeção de dependência de construtor](xref:mvc/controllers/dependency-injection) com [IOptions&lt;TOptions&gt;](/dotnet/api/Microsoft.Extensions.Options.IOptions-1) para acessar as configurações (*Pages/Index.cshtml.cs*):
+[!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example1)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=9)]
+O seguinte modelo de página usa a [injeção de dependência de construtor](xref:mvc/controllers/dependency-injection) com <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> para acessar as configurações (*Pages/Index.cshtml.cs*):
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example1)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
+
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example1)]
 
 O arquivo *appsettings.json* de exemplo especifica valores para `option1` e `option2`:
 
-[!code-json[](options/sample/appsettings.json?highlight=2-3)]
+[!code-json[](options/samples/2.x/OptionsSample/appsettings.json?highlight=2-3)]
 
 Quando o aplicativo é executado, o método `OnGet` do modelo de página retorna uma cadeia de caracteres que mostra os valores da classe de opção:
 
@@ -75,7 +86,7 @@ option1 = value1_from_json, option2 = -1
 ```
 
 > [!NOTE]
-> Ao usar um [ConfigurationBuilder](/dotnet/api/system.configuration.configurationbuilder) personalizado para carregar opções de configuração de um arquivo de configuração, confirme se o caminho de base está corretamente configurado:
+> Ao usar um <xref:System.Configuration.ConfigurationBuilder> personalizado para carregar opções de configuração de um arquivo de configurações, confirme se o caminho de base está corretamente configurado:
 >
 > ```csharp
 > var configBuilder = new ConfigurationBuilder()
@@ -86,31 +97,31 @@ option1 = value1_from_json, option2 = -1
 > services.Configure<MyOptions>(config);
 > ```
 >
-> Não é necessário configurar o caminho de base explicitamente ao carregar opções de configuração do arquivo de configuração por meio do [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder).
+> Não é necessário configurar o caminho de base explicitamente ao carregar opções de configuração do arquivo de configurações por meio do <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
 
 ## <a name="configure-simple-options-with-a-delegate"></a>Configurar opções simples com um delegado
 
-A configuração de opções simples com um delegado é demonstrada como o Exemplo &num;2 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).
+A configuração de opções simples com um delegado é demonstrada no Exemplo &num;2 no aplicativo de exemplo.
 
 Use um delegado para definir valores de opções. O aplicativo de exemplo usa a classe `MyOptionsWithDelegateConfig` (*Models/MyOptionsWithDelegateConfig.cs*):
 
-[!code-csharp[](options/sample/Models/MyOptionsWithDelegateConfig.cs?name=snippet1)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Models/MyOptionsWithDelegateConfig.cs?name=snippet1)]
 
-No código a seguir, um segundo serviço `IConfigureOptions<TOptions>` é adicionado ao contêiner de serviço. Ele usa um delegado para configurar a associação com `MyOptionsWithDelegateConfig`:
+No código a seguir, um segundo serviço <xref:Microsoft.Extensions.Options.IConfigureOptions`1> é adicionado ao contêiner de serviço. Ele usa um delegado para configurar a associação com `MyOptionsWithDelegateConfig`:
 
-[!code-csharp[](options/sample/Startup.cs?name=snippet_Example2)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example2)]
 
 *Index.cshtml.cs*:
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=10)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=10)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=3,9)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=3,9)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example2)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example2)]
 
-Adicione vários provedores de configuração. Provedores de configuração estão disponíveis em pacotes NuGet. Eles são aplicados na ordem em que são registrados.
+Adicione vários provedores de configuração. Os provedores de configuração estão disponíveis nos pacotes do NuGet e são aplicados na ordem em que são registrados. Para obter mais informações, consulte <xref:fundamentals/configuration/index>.
 
-Cada chamada à [Configure&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1.configure) adiciona um serviço `IConfigureOptions<TOptions>` ao contêiner de serviço. No exemplo anterior, os valores `Option1` e `Option2` são especificados em *appsettings.json*, mas os valores `Option1` e `Option2` são substituídos pelo delegado configurado.
+Cada chamada à <xref:Microsoft.Extensions.Options.IConfigureOptions`1.Configure*> adiciona um serviço <xref:Microsoft.Extensions.Options.IConfigureOptions`1> ao contêiner de serviço. No exemplo anterior, os valores `Option1` e `Option2` são especificados em *appsettings.json*, mas os valores `Option1` e `Option2` são substituídos pelo delegado configurado.
 
 Quando mais de um serviço de configuração é habilitado, a última fonte de configuração especificada *vence* e define o valor de configuração. Quando o aplicativo é executado, o método `OnGet` do modelo de página retorna uma cadeia de caracteres que mostra os valores da classe de opção:
 
@@ -120,33 +131,33 @@ delegate_option1 = value1_configured_by_delgate, delegate_option2 = 500
 
 ## <a name="suboptions-configuration"></a>Configuração de subopções
 
-A configuração de subopções básicas é demonstrada no Exemplo &num;3 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).
+A configuração de subopções é demonstrada no Exemplo &num;3 no aplicativo de exemplo.
 
 Os aplicativos devem criar classes de opções que pertencem a grupos de cenários específicos (classes) no aplicativo. Partes do aplicativo que exigem valores de configuração devem ter acesso apenas aos valores de configuração usados por elas.
 
 Ao associar opções à configuração, cada propriedade no tipo de opções é associada a uma chave de configuração do formato `property[:sub-property:]`. Por exemplo, a propriedade `MyOptions.Option1` é associada à chave `Option1`, que é lida da propriedade `option1` em *appsettings.json*.
 
-No código a seguir, um terceiro serviço `IConfigureOptions<TOptions>` é adicionado ao contêiner de serviço. Ele associa `MySubOptions` à seção `subsection` do arquivo *appsettings.json*:
+No código a seguir, um terceiro serviço <xref:Microsoft.Extensions.Options.IConfigureOptions`1> é adicionado ao contêiner de serviço. Ele associa `MySubOptions` à seção `subsection` do arquivo *appsettings.json*:
 
-[!code-csharp[](options/sample/Startup.cs?name=snippet_Example3)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
 O método de extensão `GetSection` exige o pacote NuGet [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/). Se o aplicativo usa o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 ou posterior), o pacote é automaticamente incluído.
 
 O arquivo *appsettings.json* de exemplo define um membro `subsection` com chaves para `suboption1` e `suboption2`:
 
-[!code-json[](options/sample/appsettings.json?highlight=4-7)]
+[!code-json[](options/samples/2.x/OptionsSample/appsettings.json?highlight=4-7)]
 
 A classe `MySubOptions` define as propriedades `SubOption1` e `SubOption2`, para armazenar os valores de opções (*Models/MySubOptions.cs*):
 
-[!code-csharp[](options/sample/Models/MySubOptions.cs?name=snippet1)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Models/MySubOptions.cs?name=snippet1)]
 
 O método `OnGet` do modelo da página retorna uma cadeia de caracteres com os valores de opções (*Pages/Index.cshtml.cs*):
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=11)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=11)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=4,10)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=4,10)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example3)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example3)]
 
 Quando o aplicativo é executado, o método `OnGet` retorna uma cadeia de caracteres que mostra os valores da classe de subopção:
 
@@ -156,55 +167,39 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 
 ## <a name="options-provided-by-a-view-model-or-with-direct-view-injection"></a>Opções fornecidas por um modelo de exibição ou com a injeção de exibição direta
 
-As opções fornecidas por um modelo de exibição ou com a injeção de exibição direta são demonstradas como o Exemplo &num;4 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).
+As opções fornecidas por um modelo de exibição ou com a injeção de exibição direta são demonstradas no Exemplo &num;4 no aplicativo de exemplo.
 
-As opções podem ser fornecidas em um modelo de exibição ou pela injeção de `IOptions<TOptions>` diretamente em uma exibição (*Pages/Index.cshtml.cs*):
+As opções podem ser fornecidas em um modelo de exibição ou pela injeção de <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> diretamente em uma exibição (*Pages/Index.cshtml.cs*):
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=9)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example4)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example4)]
 
-Para a injeção direta, injete `IOptions<MyOptions>` com uma diretiva `@inject`:
+O aplicativo de exemplo mostra como injetar `IOptionsMonitor<MyOptions>` com uma diretiva `@inject`:
 
-[!code-cshtml[](options/sample/Pages/Index.cshtml?range=1-10&highlight=5)]
+[!code-cshtml[](options/samples/2.x/OptionsSample/Pages/Index.cshtml?range=1-10&highlight=4)]
 
 Quando o aplicativo é executado, os valores de opções são mostrados na página renderizada:
 
 ![Os valores de opções Option1: value1_from_json e Option2: -1 são carregados do modelo e pela injeção na exibição.](options/_static/view.png)
 
-::: moniker range=">= aspnetcore-1.1"
-
 ## <a name="reload-configuration-data-with-ioptionssnapshot"></a>Recarregar dados de configuração com IOptionsSnapshot
 
-O recarregamento de dados de configuração com `IOptionsSnapshot` é demonstrado no Exemplo &num;5 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).
+O recarregamento de dados de configuração com <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> é demonstrado no Exemplo &num;5 no aplicativo de exemplo.
 
-[IOptionsSnapshot](/dotnet/api/microsoft.extensions.options.ioptionssnapshot-1) dá suporte a opções de recarregamento com sobrecarga mínima de processamento.
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.0"
+O <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> dá suporte a opções de recarregamento com sobrecarga mínima de processamento.
 
 As opções são calculadas uma vez por solicitação, quando acessadas e armazenadas em cache durante o tempo de vida da solicitação.
 
-::: moniker-end
+O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> é criado após a alteração de *appsettings.json* (*Pages/Index.cshtml.cs*). Várias solicitações ao servidor retornam valores de constante fornecidos pelo arquivo *appsettings.json*, até que o arquivo seja alterado e a configuração seja recarregada.
 
-::: moniker range="< aspnetcore-2.0"
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=12)]
 
-`IOptionsSnapshot` é um instantâneo de [IOptionsMonitor&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1) e é atualizado automaticamente sempre que o monitor dispara alterações com base na alteração da fonte de dados.
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=5,11)]
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-1.1"
-
-O exemplo a seguir demonstra como um novo `IOptionsSnapshot` é criado após a alteração de *appsettings.json* (*Pages/Index.cshtml.cs*). Várias solicitações ao servidor retornam valores de constante fornecidos pelo arquivo *appsettings.json*, até que o arquivo seja alterado e a configuração seja recarregada.
-
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=12)]
-
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=5,11)]
-
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example5)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example5)]
 
 A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
 
@@ -218,25 +213,21 @@ Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` 
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 ```
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.0"
-
 ## <a name="named-options-support-with-iconfigurenamedoptions"></a>Suporte de opções nomeadas com IConfigureNamedOptions
 
-O suporte de opções nomeadas com [IConfigureNamedOptions](/dotnet/api/microsoft.extensions.options.iconfigurenamedoptions-1) é demonstrado no Exemplo &num;6 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).
+O suporte de opções nomeadas com <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> é demonstrado como no Exemplo &num;6 no aplicativo de exemplo.
 
-O suporte de *opções nomeadas* permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com a [OptionsServiceCollectionExtensions.Configure&lt;TOptions&gt;(IServiceCollection, String, Action&lt;TOptions&gt;)](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configure), que, por sua vez, chama o método [ConfigureNamedOptions&lt;TOptions&gt;.Configure](/dotnet/api/microsoft.extensions.options.configurenamedoptions-1.configure) do método de extensão:
+O suporte de *opções nomeadas* permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*>. `Configure` chama o método de extensão <xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*>:
 
-[!code-csharp[](options/sample/Startup.cs?name=snippet_Example6)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 
-O aplicativo de exemplo acessa as opções nomeadas com [IOptionsSnapshot&lt;TOptions&gt;.Get](/dotnet/api/microsoft.extensions.options.ioptionssnapshot-1.get) (*Pages/Index.cshtml.cs*):
+O aplicativo de exemplo acessa as opções nomeadas com <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1.Get*> (*Pages/Index.cshtml.cs*):
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=13-14)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=13-14)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=6,12-13)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=6,12-13)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example6)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example6)]
 
 Executando o aplicativo de exemplo, as opções nomeadas são retornadas:
 
@@ -252,7 +243,7 @@ Os valores `named_options_1` são fornecidos pela configuração, que são carre
 
 ## <a name="configure-all-options-with-the-configureall-method"></a>Configurar todas as opções com o método ConfigureAll
 
-Configure todas as instâncias de opções com o método [OptionsServiceCollectionExtensions.ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall). O código a seguir configura `Option1` para todas as instâncias de configuração com um valor comum. Adicione o seguinte código manualmente ao método `ConfigureServices`:
+Configure todas as instâncias de opções com o método <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*>. O código a seguir configura `Option1` para todas as instâncias de configuração com um valor comum. Adicione o seguinte código manualmente ao método `Startup.ConfigureServices`:
 
 ```csharp
 services.ConfigureAll<MyOptions>(myOptions => 
@@ -269,11 +260,7 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 ```
 
 > [!NOTE]
-> Todas as opções são instâncias nomeadas. As instâncias `IConfigureOption` existentes são tratadas como sendo direcionadas à instância `Options.DefaultName`, que é `string.Empty`. `IConfigureNamedOptions` também implementa `IConfigureOptions`. A implementação padrão de [IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) ([fonte de referência](https://github.com/aspnet/Options/blob/release/2.0/src/Microsoft.Extensions.Options/IOptionsFactory.cs) tem uma lógica para usar cada uma de forma adequada. A opção nomeada `null` é usada para direcionar todas as instâncias nomeadas, em vez de uma instância nomeada específica ([ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) e [PostConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) usa essa convenção).
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
+> Todas as opções são instâncias nomeadas. As instâncias <xref:Microsoft.Extensions.Options.IConfigureOptions`1> existentes são tratadas como sendo direcionadas à instância `Options.DefaultName`, que é `string.Empty`. <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> também implementa <xref:Microsoft.Extensions.Options.IConfigureOptions`1>. A implementação padrão de <xref:Microsoft.Extensions.Options.IOptionsFactory`1> tem lógica para usar cada um de forma adequada. A opção nomeada `null` é usada para direcionar todas as instâncias nomeadas, em vez de uma instância nomeada específica (<xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> e <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> usam essa convenção).
 
 ## <a name="optionsbuilder-api"></a>API OptionsBuilder
 
@@ -282,12 +269,12 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 ```csharp
 // Options.DefaultName = "" is used.
 services.AddOptions<MyOptions>().Configure(o => o.Property = "default");
-    
+
 services.AddOptions<MyOptions>("optionalName")
     .Configure(o => o.Property = "named");
 ```
 
-## <a name="configurelttoptions-tdep1--tdep4gt-method"></a>Método Configure&lt;TOptions, TDep1, ... TDep4&gt;
+## <a name="configurelttoptions-tdep1--tdep4gt-method"></a>Configure&lt;TOptions, TDep1, ... TDep4&gt; método
 
 O uso de serviços da DI para configurar opções com a implementação de `IConfigure[Named]Options` de forma padrão é detalhado. Sobrecargas de `ConfigureOptions` em `OptionsBuilder<TOptions>` permitem que você use até cinco serviços para configurar opções:
 
@@ -299,8 +286,6 @@ services.AddOptions<MyOptions>("optionalName")
 ```
 
 A sobrecarga registra um genérico transitório <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, que tem um construtor que aceita os tipos de serviços genéricos especificados. 
-
-::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -314,7 +299,7 @@ services.AddOptions<MyOptions>("optionalOptionsName")
     .Configure(o => { }) // Configure the options
     .Validate(o => YourValidationShouldReturnTrueIfValid(o), 
         "custom error");
-        
+
 // Consumption
 var monitor = services.BuildServiceProvider()
     .GetService<IOptionsMonitor<MyOptions>>();
@@ -322,7 +307,7 @@ var monitor = services.BuildServiceProvider()
 try
 {
     var options = monitor.Get("optionalOptionsName");
-} 
+}
 catch (OptionsValidationException e) 
 {
    // e.OptionsName returns "optionalOptionsName"
@@ -342,7 +327,7 @@ A validação é executada após a criação da instância de opções. A instâ
 O método `Validate` aceita um `Func<TOptions, bool>`. Para personalizar totalmente a validação, implemente `IValidateOptions<TOptions>`, que permite:
 
 * A validação de vários tipos de opções: `class ValidateTwo : IValidateOptions<Option1>, IValidationOptions<Option2>`
-* A validação que depende de outro tipo de opção: `public DependsOnAnotherOptionValidator(IOptions<AnotherOption> options)`
+* A validação que depende de outro tipo de opção: `public DependsOnAnotherOptionValidator(IOptionsMonitor<AnotherOption> options)`
 
 `IValidateOptions` valida:
 
@@ -358,7 +343,7 @@ public interface IValidateOptions<TOptions> where TOptions : class
 }
 ```
 
-A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método `ValidateDataAnnotations` em `OptionsBuilder<TOptions>`:
+A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método `ValidateDataAnnotations` em `OptionsBuilder<TOptions>`. O `Microsoft.Extensions.Options.DataAnnotations` está incluído no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 ou posterior).
 
 ```csharp
 private class AnnotatedOptions
@@ -372,7 +357,7 @@ private class AnnotatedOptions
     [Range(-5, 5, ErrorMessage = "Out of range.")]
     public int IntRange { get; set; }
 }
-    
+
 [Fact]
 public void CanValidateDataAnnotations()
 {
@@ -389,7 +374,7 @@ public void CanValidateDataAnnotations()
     var sp = services.BuildServiceProvider();
 
     var error = Assert.Throws<OptionsValidationException>(() => 
-        sp.GetRequiredService<IOptions<AnnotatedOptions>>().Value);
+        sp.GetRequiredService<IOptionsMonitor<AnnotatedOptions>>().Value);
     ValidateFailure<AnnotatedOptions>(error, Options.DefaultName, 1,
         "DataAnnotation validation failed for members Required " +
             "with the error 'The Required field is required.'.",
@@ -397,18 +382,16 @@ public void CanValidateDataAnnotations()
             "with the error 'Too long.'.",
         "DataAnnotation validation failed for members IntRange " +
             "with the error 'Out of range.'.");
-}    
+}
 ```
 
 A validação adiantada (fail fast na inicialização) está sendo considerada para uma versão futura.
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.0"
+## <a name="options-post-configuration"></a>Pós-configuração de opções
 
-## <a name="ipostconfigureoptions"></a>IPostConfigureOptions
-
-Defina a pós-configuração com [IPostConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1). A pós-configuração é executada depois que ocorre toda a configuração de [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1):
+Defina a pós-configuração com <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1>. A pós-configuração é executada depois que toda o configuração de <xref:Microsoft.Extensions.Options.IConfigureOptions`1> é feita:
 
 ```csharp
 services.PostConfigure<MyOptions>(myOptions =>
@@ -417,7 +400,7 @@ services.PostConfigure<MyOptions>(myOptions =>
 });
 ```
 
-[PostConfigure&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1.postconfigure) está disponível para pós-configurar opções nomeadas:
+O <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1.PostConfigure*> está disponível para pós-configurar opções nomeadas:
 
 ```csharp
 services.PostConfigure<MyOptions>("named_options_1", myOptions =>
@@ -426,7 +409,7 @@ services.PostConfigure<MyOptions>("named_options_1", myOptions =>
 });
 ```
 
-Use [PostConfigureAll&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) para pós-configurar todas as instâncias de configuração:
+Use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> para pós-configurar todas as instâncias de configuração:
 
 ```csharp
 services.PostConfigureAll<MyOptions>(myOptions =>
@@ -435,32 +418,18 @@ services.PostConfigureAll<MyOptions>(myOptions =>
 });
 ```
 
-::: moniker-end
-
-## <a name="options-factory-monitoring-and-cache"></a>Alocador de opções, monitoramento e cache
-
-[IOptionsMonitor](/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1) é usado para notificações quando instâncias `TOptions` são alteradas. `IOptionsMonitor` dá suporte a opções recarregáveis, notificações de alteração e `IPostConfigureOptions`.
-
-::: moniker range=">= aspnetcore-2.0"
-
-[IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) é responsável por criar novas instâncias de opção. Ele tem um único método [Create](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1.create). A implementação padrão usa todos os `IConfigureOptions` e `IPostConfigureOptions` registrados e executa toda a configuração primeiro, seguido da pós-configuração. Ela faz distinção entre `IConfigureNamedOptions` e `IConfigureOptions` e chama apenas a interface apropriada.
-
-[IOptionsMonitorCache&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1) é usado por `IOptionsMonitor` para armazenar instâncias `TOptions` em cache. O `IOptionsMonitorCache` invalida as instâncias de opções no monitor, de modo que o valor seja recalculado ([TryRemove](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.tryremove)). Os valores também podem ser manualmente inseridos com [TryAdd](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.tryadd). O método [Clear](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.clear) é usado quando todas as instâncias nomeadas devem ser recriadas sob demanda.
-
-::: moniker-end
-
 ## <a name="accessing-options-during-startup"></a>Acessando opções durante a inicialização
 
-`IOptions` pode ser usado em `Startup.Configure`, pois os serviços são criados antes da execução do método `Configure`.
+<xref:Microsoft.Extensions.Options.IOptions`1> e <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> podem ser usados em `Startup.Configure`, pois os serviços são criados antes da execução do método `Configure`.
 
 ```csharp
-public void Configure(IApplicationBuilder app, IOptions<MyOptions> optionsAccessor)
+public void Configure(IApplicationBuilder app, IOptionsMonitor<MyOptions> optionsAccessor)
 {
-    var option1 = optionsAccessor.Value.Option1;
+    var option1 = optionsAccessor.CurrentValue.Option1;
 }
 ```
 
-`IOptions` não deve ser usado em `Startup.ConfigureServices`. Pode haver um estado inconsistente de opções devido à ordenação dos registros de serviço.
+Não use <xref:Microsoft.Extensions.Options.IOptions`1> ou <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> em `Startup.ConfigureServices`. Pode haver um estado inconsistente de opções devido à ordenação dos registros de serviço.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

@@ -2,16 +2,17 @@
 title: Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 author: guardrex
 description: Este artigo contém links para o host do Azure e para implantar recursos.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 12/04/2018
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: c55a5202643bb947b3f38f67aec55ee5cf7b1496
-ms.sourcegitcommit: c43a6f1fe72d7c2db4b5815fd532f2b45d964e07
+ms.openlocfilehash: b32dd3cb84a86d12c61e391b88355ab0411c2815
+ms.sourcegitcommit: a3a15d3ad4d6e160a69614a29c03bbd50db110a2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50244743"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52951960"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -41,23 +42,35 @@ Configurar um build de CI para um aplicativo ASP.NET Core e, em seguida, criar u
 [Área restrita de aplicativo Web do Azure](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
 Descubra as limitações de tempo de execução do Serviço de Aplicativo do Azure impostas pela plataforma de Aplicativos do Azure.
 
-::: moniker range=">= aspnetcore-2.0"
-
 ## <a name="application-configuration"></a>Configuração do aplicativo
 
-Os seguintes pacotes NuGet fornecem recursos de registro em log automático para aplicativos implantados no Serviço de Aplicativo do Azure:
+### <a name="platform"></a>Plataforma
+
+::: moniker range=">= aspnetcore-2.2"
+
+Os tempos de execução para aplicativos de 32 bits (x86) e 64 bits (x64) estão presentes no Serviço de Aplicativo do Azure. O [SDK do .NET Core](/dotnet/core/sdk) disponível no Serviço de Aplicativo do Azure é de 32 bits, mas você pode implantar aplicativos de 64 bits usando o console do [Kudu](https://github.com/projectkudu/kudu/wiki) ou o [MSDeploy com um perfil de publicação do Visual Studio ou um comando da CLI](xref:host-and-deploy/visual-studio-publish-profiles).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+Para aplicativos com dependências nativas, os tempos de execução para aplicativos de 32 bits (x86) estão presentes no Serviço de Aplicativo do Azure. O [SDK do .NET Core](/dotnet/core/sdk) disponível no Serviço de Aplicativo é de 32 bits.
+
+::: moniker-end
+
+### <a name="packages"></a>Pacotes
+
+Incluem os seguintes pacotes NuGet para fornecer recursos de registro automático em log para aplicativos implantados no Serviço de Aplicativo do Azure:
 
 * O [Microsoft.AspNetCore.AzureAppServices.HostingStartup](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServices.HostingStartup/) usa [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration) para fornecer integração leve do ASP.NET Core com o Serviço de Aplicativo do Azure. Os recursos de registro em log adicionais são fornecidos pelo pacote `Microsoft.AspNetCore.AzureAppServicesIntegration`.
 * [Microsoft.AspNetCore.AzureAppServicesIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServicesIntegration/) executa [AddAzureWebAppDiagnostics](/dotnet/api/microsoft.extensions.logging.azureappservicesloggerfactoryextensions.addazurewebappdiagnostics) para adicionar provedores de log de diagnósticos do Serviço de Aplicativo do Azure no pacote `Microsoft.Extensions.Logging.AzureAppServices`.
 * [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices/) fornece implementações de agente para dar suporte a recursos de streaming de log e logs de diagnóstico do Serviço de Aplicativo do Azure.
 
-Se você estiver direcionando o .NET Core e estiver referenciando o [metapacote Microsoft.AspNetCore.All](xref:fundamentals/metapackage), os pacotes anteriores estarão incluídos. Os pacotes estão ausentes no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app). Se você estiver direcionando ao .NET Framework ou referenciando ao metapacote `Microsoft.AspNetCore.App`, referencie os pacotes individuais de registro em log.
-
-::: moniker-end
+Os pacotes anteriores não estão disponíveis no [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Os aplicativos que são direcionados ao .NET Framework ou fazem referência a um metapacote `Microsoft.AspNetCore.App` precisam referenciar explicitamente os pacotes individuais no arquivo de projeto do aplicativo.
 
 ## <a name="override-app-configuration-using-the-azure-portal"></a>Substituir a configuração do aplicativo no Portal do Azure
 
-A área **Configurações de aplicativo** da folha **Configurações de aplicativo** permite definir variáveis de ambiente para o aplicativo. As variáveis de ambiente podem ser consumidas pelo [Provedor de configuração de variáveis de ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+As configurações do aplicativo no portal do Azure permitem definir variáveis de ambiente para o aplicativo. As variáveis de ambiente podem ser consumidas pelo [Provedor de configuração de variáveis de ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
 Quando uma configuração de aplicativo é criada ou modificada no Portal do Azure e o botão **Salvar** é selecionado, o Aplicativo Azure é reiniciado. A variável de ambiente estará disponível para o aplicativo após o serviço ser reiniciado.
 
@@ -113,48 +126,36 @@ Use uma das abordagens a seguir:
 
 Se houver problemas ao usar a extensão de site de visualização, abra um problema no [GitHub](https://github.com/aspnet/azureintegration/issues/new).
 
-1. No portal do Azure, navegue até a folha Serviço de Aplicativo.
+1. No portal do Azure, navegue até o Serviço de Aplicativo.
 1. Selecione o aplicativo Web.
-1. Insira "ex" na caixa de pesquisa ou role para baixo na lista de seções de gerenciamento para **FERRAMENTAS DE DESENVOLVIMENTO**.
-1. Selecione **FERRAMENTAS DE DESENVOLVIMENTO** > **Extensões**.
+1. Insira "ex" na caixa de pesquisa para filtrar por "Extensões" ou role para baixo na lista de ferramentas de gerenciamento.
+1. Selecione **Extensões**.
 1. Selecione **Adicionar**.
-1. Selecione a extensão de **Tempo de execução do ASP.NET Core &lt;x.y&gt; (x86)** na lista, em que `<x.y>` é a versão prévia do ASP.NET Core (por exemplo, **Tempo de execução do ASP.NET Core 2.2 (x86)**). O tempo de execução x86 é apropriado para [implantações dependentes de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd) que dependem de hospedagem de fora do processo pelo Módulo do ASP.NET Core.
+1. Selecione a extensão **Tempo de execução do ASP.NET Core {X.Y} ({x64|x86})** na lista, em que `{X.Y}` é a versão prévia do ASP.NET Core e `{x64|x86}` especifica a plataforma.
 1. Selecione **OK** para aceitar os termos legais.
 1. Selecione **OK** para instalar a extensão.
 
 Quando a operação for concluída, a versão prévia mais recente do .NET Core será instalada. Verifique a instalação:
 
-1. Selecione **Ferramentas Avançadas** sob **FERRAMENTAS DE DESENVOLVIMENTO**.
-1. Selecione **Ir** na folha **Ferramentas Avançadas**.
+1. Selecione **Ferramentas Avançadas**.
+1. Selecione **Acessar** em **Ferramentas Avançadas**.
 1. Selecione o item de menu **Console de depuração** > **PowerShell**.
-1. No prompt do PowerShell, execute o seguinte comando. Substitua a versão de tempo de execução do ASP.NET Core por `<x.y>` no comando:
+1. No prompt do PowerShell, execute o seguinte comando. Substitua a versão do tempo de execução do ASP.NET Core por `{X.Y}` e a plataforma por `{PLATFORM}` no comando:
 
    ```powershell
-   Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.<x.y>.x86\
-   ```
-   Se o tempo de execução da versão prévia instalada for ASP.NET Core 2.2, o comando será:
-   ```powershell
-   Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.2.2.x86\
+   Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.{PLATFORM}\
    ```
    O comando retornará `True` quando o tempo de execução da versão prévia x64 estiver instalado.
 
-::: moniker range=">= aspnetcore-2.2"
-
 > [!NOTE]
-> A arquitetura da plataforma (x86/x64) de um aplicativo de Serviços de Aplicativos é definida na folha **Configurações do Aplicativo** em **Configurações Gerais** para aplicativos que são hospedados em uma computação de série A ou em uma melhor camada de hospedagem. Se o aplicativo for executado no modo em processo e a arquitetura da plataforma estiver configurada para 64 bits (x64), o Módulo do ASP.NET Core usará o tempo de execução da versão prévia de 64 bits, se estiver presente. Instalar a extensão **Tempo de execução do ASP.NET Core &lt;x.y&gt; (x64)** (por exemplo, **Tempo de execução do ASP.NET Core 2.2 (x64)**).
+> A arquitetura da plataforma (x86/x64) de um aplicativo dos Serviços de Aplicativos é definida nas configurações do aplicativo no portal do Azure para aplicativos hospedados em um nível de hospedagem de computação da série A ou melhor. Se o aplicativo for executado no modo em processo e a arquitetura da plataforma estiver configurada para 64 bits (x64), o Módulo do ASP.NET Core usará o tempo de execução da versão prévia de 64 bits, se estiver presente. Instale a extensão **Tempo de execução do ASP.NET Core {X.Y} (x64)**.
 >
-> Depois de instalar o tempo de execução da versão prévia x64, execute o seguinte comando na janela de comando do Kudu PowerShell para verificar a instalação. Substitua a versão de tempo de execução do ASP.NET Core por `<x.y>` no comando:
+> Depois de instalar o tempo de execução da versão prévia x64, execute o seguinte comando na janela de comando do Kudu PowerShell para verificar a instalação. Substitua a versão de tempo de execução do ASP.NET Core por `{X.Y}` no comando:
 >
 > ```powershell
-> Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.<x.y>.x64\
-> ```
-> Se o tempo de execução da versão prévia instalada for ASP.NET Core 2.2, o comando será:
-> ```powershell
-> Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.2.2.x64\
+> Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64\
 > ```
 > O comando retornará `True` quando o tempo de execução da versão prévia x64 estiver instalado.
-
-::: moniker-end
 
 > [!NOTE]
 > As **Extensões do ASP.NET Core** habilitam uma funcionalidade adicional para o ASP.NET Core nos Serviços de Aplicativo do Azure, como a habilitação do registro em log do Azure. A extensão é instalada automaticamente durante a implantação do Visual Studio. Se a extensão não estiver instalada, instale-a para o aplicativo.

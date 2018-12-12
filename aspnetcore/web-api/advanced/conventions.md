@@ -7,12 +7,12 @@ ms.author: pranavkm
 ms.custom: mvc
 ms.date: 11/13/2018
 uid: web-api/advanced/conventions
-ms.openlocfilehash: 023b8d09511aa42966e2a7d1c85e407bb6e79b0f
-ms.sourcegitcommit: f202864efca81a72ea7120c0692940c40d9d0630
+ms.openlocfilehash: ede9a46c160cf6a49aa93da710af0bf0b8f59acc
+ms.sourcegitcommit: c4572be5ebb301013a5698caf9b5572b76cb2e34
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51635375"
+ms.lasthandoff: 11/30/2018
+ms.locfileid: "52710069"
 ---
 # <a name="use-web-api-conventions"></a>Usar convenções de API Web
 
@@ -26,7 +26,7 @@ No tempo de execução, <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> reconhece as
 
 ## <a name="apply-web-api-conventions"></a>Aplicar convenções de API Web
 
-Há três maneiras de aplicar uma convenção. Convenções não fazem composição. Cada ação pode ser associada a exatamente uma convenção. Convenções mais específicas (detalhadas abaixo) têm precedência sobre as menos específicas. A seleção é não determinística quando duas ou mais convenções da mesma prioridade se aplicam a uma ação. As seguintes opções existem para aplicar uma convenção a uma ação, da mais específica à menos específica:
+Há três maneiras de aplicar uma convenção. As convenções não fazem composição. Cada ação pode ser associada a exatamente uma convenção. Convenções mais específicas (detalhadas abaixo) têm precedência sobre as menos específicas. A seleção é não determinística quando duas ou mais convenções da mesma prioridade se aplicam a uma ação. As seguintes opções existem para aplicar uma convenção a uma ação, da mais específica à menos específica:
 
 1. `Microsoft.AspNetCore.Mvc.ApiConventionMethodAttribute` &mdash; aplica-se a ações individuais e especifica o tipo de convenção e o método de convenção que se aplica. No exemplo a seguir, o método de convenção `Microsoft.AspNetCore.Mvc.DefaultApiConventions.Put` é aplicado à ação `Update`:
 
