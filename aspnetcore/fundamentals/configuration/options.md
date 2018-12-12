@@ -4,78 +4,89 @@ author: guardrex
 description: Descubra como usar o padrão de opções para representar grupos de configurações relacionadas em aplicativos ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2018
+ms.date: 11/28/2018
 uid: fundamentals/configuration/options
-ms.openlocfilehash: 99aa5028a8704c7e9e3010415137e2560213a2ad
-ms.sourcegitcommit: edb9d2d78c9a4d68b397e74ae2aff088b325a143
+ms.openlocfilehash: 67f74657fb9aa5ba8235be159e2f10cf80ebce3d
+ms.sourcegitcommit: 0fc89b80bb1952852ecbcf3c5c156459b02a6ceb
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51505785"
+ms.lasthandoff: 11/29/2018
+ms.locfileid: "52618097"
 ---
-# <a name="options-pattern-in-aspnet-core"></a><span data-ttu-id="0a5f4-103">Padrão de opções no ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="0a5f4-103">Options pattern in ASP.NET Core</span></span>
+# <a name="options-pattern-in-aspnet-core"></a><span data-ttu-id="0ba7a-103">Padrão de opções no ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="0ba7a-103">Options pattern in ASP.NET Core</span></span>
 
-<span data-ttu-id="0a5f4-104">Por [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="0a5f4-104">By [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="0ba7a-104">Por [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="0ba7a-104">By [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="0a5f4-105">O padrão de opções usa classes para representar grupos de configurações relacionadas.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-105">The options pattern uses classes to represent groups of related settings.</span></span> <span data-ttu-id="0a5f4-106">Quando as [definições de configuração](xref:fundamentals/configuration/index) são isoladas por cenário em classes separadas, o aplicativo segue dois princípios importantes de engenharia de software:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-106">When [configuration settings](xref:fundamentals/configuration/index) are isolated by scenario into separate classes, the app adheres to two important software engineering principles:</span></span>
+::: moniker range="<= aspnetcore-1.1"
 
-* <span data-ttu-id="0a5f4-107">O [ISP (Princípio de Segregação da Interface)](http://deviq.com/interface-segregation-principle/): os cenários (classes) que dependem das definições de configuração dependem apenas das definições de configuração usadas por eles.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-107">The [Interface Segregation Principle (ISP)](http://deviq.com/interface-segregation-principle/): Scenarios (classes) that depend on configuration settings depend only on the configuration settings that they use.</span></span>
-* <span data-ttu-id="0a5f4-108">[Separação de Interesses](http://deviq.com/separation-of-concerns/): as configurações para diferentes partes do aplicativo não são dependentes nem acopladas entre si.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-108">[Separation of Concerns](http://deviq.com/separation-of-concerns/): Settings for different parts of the app aren't dependent or coupled to one another.</span></span>
-
-<span data-ttu-id="0a5f4-109">[Exiba ou baixe o código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample) ([como baixar](xref:index#how-to-download-a-sample)) Este artigo é mais fácil de ser acompanhado com o aplicativo de exemplo.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-109">[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample) ([how to download](xref:index#how-to-download-a-sample)) This article is easier to follow with the sample app.</span></span>
-
-## <a name="prerequisites"></a><span data-ttu-id="0a5f4-110">Pré-requisitos</span><span class="sxs-lookup"><span data-stu-id="0a5f4-110">Prerequisites</span></span>
-
-::: moniker range=">= aspnetcore-2.1"
-
-<span data-ttu-id="0a5f4-111">Referencie o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) ou adicione uma referência de pacote ao pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-111">Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package.</span></span>
+<span data-ttu-id="0ba7a-105">Para obter a versão 1.1 deste tópico, baixe o [Padrão de opções no ASP.NET Core (versão 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Options_1.1.pdf).</span><span class="sxs-lookup"><span data-stu-id="0ba7a-105">For the 1.1 version of this topic, download [Options pattern in ASP.NET Core (version 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Options_1.1.pdf).</span></span>
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.0"
+<span data-ttu-id="0ba7a-106">O padrão de opções usa classes para representar grupos de configurações relacionadas.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-106">The options pattern uses classes to represent groups of related settings.</span></span> <span data-ttu-id="0ba7a-107">Quando as [definições de configuração](xref:fundamentals/configuration/index) são isoladas por cenário em classes separadas, o aplicativo segue dois princípios importantes de engenharia de software:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-107">When [configuration settings](xref:fundamentals/configuration/index) are isolated by scenario into separate classes, the app adheres to two important software engineering principles:</span></span>
 
-<span data-ttu-id="0a5f4-112">Referencie o [metapacote Microsoft.AspNetCore.All](xref:fundamentals/metapackage) ou adicione uma referência de pacote ao pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-112">Reference the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) or add a package reference to the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package.</span></span>
+* <span data-ttu-id="0ba7a-108">O [ISP (Princípio de Segregação da Interface) ou Encapsulamento](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation) &ndash; os cenários (classes) que dependem das definições de configuração dependem apenas das definições de configuração usadas por eles.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-108">The [Interface Segregation Principle (ISP) or Encapsulation](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation) &ndash; Scenarios (classes) that depend on configuration settings depend only on the configuration settings that they use.</span></span>
+* <span data-ttu-id="0ba7a-109">[Separação de Interesses](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) &ndash; As configurações para diferentes partes do aplicativo não são dependentes nem acopladas entre si.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-109">[Separation of Concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) &ndash; Settings for different parts of the app aren't dependent or coupled to one another.</span></span>
 
-::: moniker-end
+<span data-ttu-id="0ba7a-110">As opções também fornecem um mecanismo para validar os dados da configuração.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-110">Options also provide a mechanism to validate configuration data.</span></span> <span data-ttu-id="0ba7a-111">Para obter mais configurações, consulte a seção [Validação de opções](#options-validation).</span><span class="sxs-lookup"><span data-stu-id="0ba7a-111">For more information, see the [Options validation](#options-validation) section.</span></span>
 
-::: moniker range="< aspnetcore-2.0"
+<span data-ttu-id="0ba7a-112">[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([como baixar](xref:index#how-to-download-a-sample))</span><span class="sxs-lookup"><span data-stu-id="0ba7a-112">[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample))</span></span>
 
-<span data-ttu-id="0a5f4-113">Adicione uma referência de pacote ao pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-113">Add a package reference to the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="0ba7a-113">Pré-requisitos</span><span class="sxs-lookup"><span data-stu-id="0ba7a-113">Prerequisites</span></span>
 
-::: moniker-end
+<span data-ttu-id="0ba7a-114">Referencie o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) ou adicione uma referência de pacote ao pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).</span><span class="sxs-lookup"><span data-stu-id="0ba7a-114">Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package.</span></span>
 
-## <a name="basic-options-configuration"></a><span data-ttu-id="0a5f4-114">Configuração de opções básicas</span><span class="sxs-lookup"><span data-stu-id="0a5f4-114">Basic options configuration</span></span>
+## <a name="options-interfaces"></a><span data-ttu-id="0ba7a-115">Interfaces de opções</span><span class="sxs-lookup"><span data-stu-id="0ba7a-115">Options interfaces</span></span>
 
-<span data-ttu-id="0a5f4-115">A configuração de opções básicas é demonstrada como o Exemplo &num;1 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-115">Basic options configuration is demonstrated as Example &num;1 in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span></span>
+<span data-ttu-id="0ba7a-116">O <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> é usado para recuperar as opções e gerenciar notificações de opções para instâncias de `TOptions`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-116"><xref:Microsoft.Extensions.Options.IOptionsMonitor`1> is used to retrieve options and manage options notifications for `TOptions` instances.</span></span> <span data-ttu-id="0ba7a-117">O <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> dá suporte aos seguintes cenários:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-117"><xref:Microsoft.Extensions.Options.IOptionsMonitor`1> supports the following scenarios:</span></span>
 
-<span data-ttu-id="0a5f4-116">Uma classe de opções deve ser não abstrata com um construtor público sem parâmetros.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-116">An options class must be non-abstract with a public parameterless constructor.</span></span> <span data-ttu-id="0a5f4-117">A classe a seguir, `MyOptions`, tem duas propriedades, `Option1` e `Option2`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-117">The following class, `MyOptions`, has two properties, `Option1` and `Option2`.</span></span> <span data-ttu-id="0a5f4-118">A configuração de valores padrão é opcional, mas o construtor de classe no exemplo a seguir define o valor padrão de `Option1`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-118">Setting default values is optional, but the class constructor in the following example sets the default value of `Option1`.</span></span> <span data-ttu-id="0a5f4-119">`Option2` tem um valor padrão definido com a inicialização da propriedade diretamente (*Models/MyOptions.cs*):</span><span class="sxs-lookup"><span data-stu-id="0a5f4-119">`Option2` has a default value set by initializing the property directly (*Models/MyOptions.cs*):</span></span>
+* <span data-ttu-id="0ba7a-118">Notificações de alteração</span><span class="sxs-lookup"><span data-stu-id="0ba7a-118">Change notifications</span></span>
+* [<span data-ttu-id="0ba7a-119">Opções nomeadas</span><span class="sxs-lookup"><span data-stu-id="0ba7a-119">Named options</span></span>](#named-options-support-with-iconfigurenamedoptions)
+* [<span data-ttu-id="0ba7a-120">Configuração recarregável</span><span class="sxs-lookup"><span data-stu-id="0ba7a-120">Reloadable configuration</span></span>](#reload-configuration-data-with-ioptionssnapshot)
+* <span data-ttu-id="0ba7a-121">Invalidação seletiva de opções (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1>)</span><span class="sxs-lookup"><span data-stu-id="0ba7a-121">Selective options invalidation (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1>)</span></span>
 
-[!code-csharp[](options/sample/Models/MyOptions.cs?name=snippet1)]
+<span data-ttu-id="0ba7a-122">Os cenários de [Pós-configuração](#options-post-configuration) permitem que você defina ou altere as opções depois de todas as configurações do <xref:Microsoft.Extensions.Options.IConfigureOptions`1> serem feitas.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-122">[Post-configuration](#options-post-configuration) scenarios allow you to set or change options after all <xref:Microsoft.Extensions.Options.IConfigureOptions`1> configuration occurs.</span></span>
 
-<span data-ttu-id="0a5f4-120">A classe `MyOptions` é adicionada ao contêiner de serviço com [Configure&lt;TOptions&gt;(IServiceCollection, IConfiguration)](/dotnet/api/microsoft.extensions.dependencyinjection.optionsconfigurationservicecollectionextensions.configure#Microsoft_Extensions_DependencyInjection_OptionsConfigurationServiceCollectionExtensions_Configure__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_Microsoft_Extensions_Configuration_IConfiguration_) e é associada à configuração:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-120">The `MyOptions` class is added to the service container with [Configure&lt;TOptions&gt;(IServiceCollection, IConfiguration)](/dotnet/api/microsoft.extensions.dependencyinjection.optionsconfigurationservicecollectionextensions.configure#Microsoft_Extensions_DependencyInjection_OptionsConfigurationServiceCollectionExtensions_Configure__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_Microsoft_Extensions_Configuration_IConfiguration_) and bound to configuration:</span></span>
+<span data-ttu-id="0ba7a-123">O <xref:Microsoft.Extensions.Options.IOptionsFactory`1> é responsável por criar novas instâncias de opções.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-123"><xref:Microsoft.Extensions.Options.IOptionsFactory`1> is responsible for creating new options instances.</span></span> <span data-ttu-id="0ba7a-124">Ele tem um único método <xref:Microsoft.Extensions.Options.IOptionsFactory`1.Create*>.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-124">It has a single <xref:Microsoft.Extensions.Options.IOptionsFactory`1.Create*> method.</span></span> <span data-ttu-id="0ba7a-125">A implementação padrão usa todos os <xref:Microsoft.Extensions.Options.IConfigureOptions`1> e <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1> registrados e executa todas as configurações primeiro, seguidas da pós-configuração.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-125">The default implementation takes all registered <xref:Microsoft.Extensions.Options.IConfigureOptions`1> and <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1> and runs all the configurations first, followed by the post-configuration.</span></span> <span data-ttu-id="0ba7a-126">Ela faz distinção entre <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> e <xref:Microsoft.Extensions.Options.IConfigureOptions`1> e chama apenas a interface apropriada.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-126">It distinguishes between <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> and <xref:Microsoft.Extensions.Options.IConfigureOptions`1> and only calls the appropriate interface.</span></span>
 
-[!code-csharp[](options/sample/Startup.cs?name=snippet_Example1)]
+<span data-ttu-id="0ba7a-127">O <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1> é usado pelo <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> para armazenar em cache as instâncias do `TOptions`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-127"><xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1> is used by <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> to cache `TOptions` instances.</span></span> <span data-ttu-id="0ba7a-128">O <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1> invalida as instâncias de opções no monitor, de modo que o valor seja recalculado (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryRemove*>).</span><span class="sxs-lookup"><span data-stu-id="0ba7a-128">The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1> invalidates options instances in the monitor so that the value is recomputed (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryRemove*>).</span></span> <span data-ttu-id="0ba7a-129">Os valores podem ser manualmente inseridos com <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryAdd*>.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-129">Values can be manually introduced with <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryAdd*>.</span></span> <span data-ttu-id="0ba7a-130">O método <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.Clear*> é usado quando todas as instâncias nomeadas devem ser recriadas sob demanda.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-130">The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.Clear*> method is used when all named instances should be recreated on demand.</span></span>
 
-<span data-ttu-id="0a5f4-121">O seguinte modelo de página usa a [injeção de dependência de construtor](xref:mvc/controllers/dependency-injection) com [IOptions&lt;TOptions&gt;](/dotnet/api/Microsoft.Extensions.Options.IOptions-1) para acessar as configurações (*Pages/Index.cshtml.cs*):</span><span class="sxs-lookup"><span data-stu-id="0a5f4-121">The following page model uses [constructor dependency injection](xref:mvc/controllers/dependency-injection) with [IOptions&lt;TOptions&gt;](/dotnet/api/Microsoft.Extensions.Options.IOptions-1) to access the settings (*Pages/Index.cshtml.cs*):</span></span>
+<span data-ttu-id="0ba7a-131">O <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> é útil em cenários em que as opções devam ser novamente computadas em cada solicitação.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-131"><xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> is useful in scenarios where options should be recomputed on every request.</span></span> <span data-ttu-id="0ba7a-132">Para saber mais, consulte a seção [Recarregar dados de configuração com IOptionsSnapshot](#reload-configuration-data-with-ioptionssnapshot).</span><span class="sxs-lookup"><span data-stu-id="0ba7a-132">For more information, see the [Reload configuration data with IOptionsSnapshot](#reload-configuration-data-with-ioptionssnapshot) section.</span></span>
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=9)]
+<span data-ttu-id="0ba7a-133">O <xref:Microsoft.Extensions.Options.IOptions`1> pode ser usado para dar suporte a opções.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-133"><xref:Microsoft.Extensions.Options.IOptions`1> can be used to support options.</span></span> <span data-ttu-id="0ba7a-134">No entanto, o <xref:Microsoft.Extensions.Options.IOptions`1> não dá suporte a cenários anteriores do <xref:Microsoft.Extensions.Options.IOptionsMonitor`1>.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-134">However, <xref:Microsoft.Extensions.Options.IOptions`1> doesn't support the preceding scenarios of <xref:Microsoft.Extensions.Options.IOptionsMonitor`1>.</span></span> <span data-ttu-id="0ba7a-135">Você pode continuar a usar o <xref:Microsoft.Extensions.Options.IOptions`1> em estruturas e bibliotecas existentes que já usam a interface do <xref:Microsoft.Extensions.Options.IOptions`1> e não exigem os cenários fornecidos pelo <xref:Microsoft.Extensions.Options.IOptionsMonitor`1>.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-135">You may continue to use <xref:Microsoft.Extensions.Options.IOptions`1> in existing frameworks and libraries that already use the <xref:Microsoft.Extensions.Options.IOptions`1> interface and don't require the scenarios provided by <xref:Microsoft.Extensions.Options.IOptionsMonitor`1>.</span></span>
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
+## <a name="general-options-configuration"></a><span data-ttu-id="0ba7a-136">Configuração de opções gerais</span><span class="sxs-lookup"><span data-stu-id="0ba7a-136">General options configuration</span></span>
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example1)]
+<span data-ttu-id="0ba7a-137">A configuração de opções gerais é demonstrada no Exemplo &num;1 no aplicativo de exemplo.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-137">General options configuration is demonstrated as Example &num;1 in the sample app.</span></span>
 
-<span data-ttu-id="0a5f4-122">O arquivo *appsettings.json* de exemplo especifica valores para `option1` e `option2`:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-122">The sample's *appsettings.json* file specifies values for `option1` and `option2`:</span></span>
+<span data-ttu-id="0ba7a-138">Uma classe de opções deve ser não abstrata e com um construtor público sem parâmetros.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-138">An options class must be non-abstract with a public parameterless constructor.</span></span> <span data-ttu-id="0ba7a-139">A classe a seguir, `MyOptions`, tem duas propriedades, `Option1` e `Option2`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-139">The following class, `MyOptions`, has two properties, `Option1` and `Option2`.</span></span> <span data-ttu-id="0ba7a-140">A configuração de valores padrão é opcional, mas o construtor de classe no exemplo a seguir define o valor padrão de `Option1`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-140">Setting default values is optional, but the class constructor in the following example sets the default value of `Option1`.</span></span> <span data-ttu-id="0ba7a-141">`Option2` tem um valor padrão definido com a inicialização da propriedade diretamente (*Models/MyOptions.cs*):</span><span class="sxs-lookup"><span data-stu-id="0ba7a-141">`Option2` has a default value set by initializing the property directly (*Models/MyOptions.cs*):</span></span>
 
-[!code-json[](options/sample/appsettings.json?highlight=2-3)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Models/MyOptions.cs?name=snippet1)]
 
-<span data-ttu-id="0a5f4-123">Quando o aplicativo é executado, o método `OnGet` do modelo de página retorna uma cadeia de caracteres que mostra os valores da classe de opção:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-123">When the app is run, the page model's `OnGet` method returns a string showing the option class values:</span></span>
+<span data-ttu-id="0ba7a-142">A classe `MyOptions` é adicionada ao contêiner de serviço com <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> e associada à configuração:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-142">The `MyOptions` class is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:</span></span>
+
+[!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example1)]
+
+<span data-ttu-id="0ba7a-143">O seguinte modelo de página usa a [injeção de dependência de construtor](xref:mvc/controllers/dependency-injection) com <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> para acessar as configurações (*Pages/Index.cshtml.cs*):</span><span class="sxs-lookup"><span data-stu-id="0ba7a-143">The following page model uses [constructor dependency injection](xref:mvc/controllers/dependency-injection) with <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> to access the settings (*Pages/Index.cshtml.cs*):</span></span>
+
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
+
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
+
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example1)]
+
+<span data-ttu-id="0ba7a-144">O arquivo *appsettings.json* de exemplo especifica valores para `option1` e `option2`:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-144">The sample's *appsettings.json* file specifies values for `option1` and `option2`:</span></span>
+
+[!code-json[](options/samples/2.x/OptionsSample/appsettings.json?highlight=2-3)]
+
+<span data-ttu-id="0ba7a-145">Quando o aplicativo é executado, o método `OnGet` do modelo de página retorna uma cadeia de caracteres que mostra os valores da classe de opção:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-145">When the app is run, the page model's `OnGet` method returns a string showing the option class values:</span></span>
 
 ```html
 option1 = value1_from_json, option2 = -1
 ```
 
 > [!NOTE]
-> <span data-ttu-id="0a5f4-124">Ao usar um [ConfigurationBuilder](/dotnet/api/system.configuration.configurationbuilder) personalizado para carregar opções de configuração de um arquivo de configuração, confirme se o caminho de base está corretamente configurado:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-124">When using a custom [ConfigurationBuilder](/dotnet/api/system.configuration.configurationbuilder) to load options configuration from a settings file, confirm that the base path is set correctly:</span></span>
+> <span data-ttu-id="0ba7a-146">Ao usar um <xref:System.Configuration.ConfigurationBuilder> personalizado para carregar opções de configuração de um arquivo de configurações, confirme se o caminho de base está corretamente configurado:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-146">When using a custom <xref:System.Configuration.ConfigurationBuilder> to load options configuration from a settings file, confirm that the base path is set correctly:</span></span>
 >
 > ```csharp
 > var configBuilder = new ConfigurationBuilder()
@@ -86,173 +97,153 @@ option1 = value1_from_json, option2 = -1
 > services.Configure<MyOptions>(config);
 > ```
 >
-> <span data-ttu-id="0a5f4-125">Não é necessário configurar o caminho de base explicitamente ao carregar opções de configuração do arquivo de configuração por meio do [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-125">Explicitly setting the base path isn't required when loading options configuration from the settings file via [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder).</span></span>
+> <span data-ttu-id="0ba7a-147">Não é necessário configurar o caminho de base explicitamente ao carregar opções de configuração do arquivo de configurações por meio do <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-147">Explicitly setting the base path isn't required when loading options configuration from the settings file via <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.</span></span>
 
-## <a name="configure-simple-options-with-a-delegate"></a><span data-ttu-id="0a5f4-126">Configurar opções simples com um delegado</span><span class="sxs-lookup"><span data-stu-id="0a5f4-126">Configure simple options with a delegate</span></span>
+## <a name="configure-simple-options-with-a-delegate"></a><span data-ttu-id="0ba7a-148">Configurar opções simples com um delegado</span><span class="sxs-lookup"><span data-stu-id="0ba7a-148">Configure simple options with a delegate</span></span>
 
-<span data-ttu-id="0a5f4-127">A configuração de opções simples com um delegado é demonstrada como o Exemplo &num;2 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-127">Configuring simple options with a delegate is demonstrated as Example &num;2 in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span></span>
+<span data-ttu-id="0ba7a-149">A configuração de opções simples com um delegado é demonstrada no Exemplo &num;2 no aplicativo de exemplo.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-149">Configuring simple options with a delegate is demonstrated as Example &num;2 in the sample app.</span></span>
 
-<span data-ttu-id="0a5f4-128">Use um delegado para definir valores de opções.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-128">Use a delegate to set options values.</span></span> <span data-ttu-id="0a5f4-129">O aplicativo de exemplo usa a classe `MyOptionsWithDelegateConfig` (*Models/MyOptionsWithDelegateConfig.cs*):</span><span class="sxs-lookup"><span data-stu-id="0a5f4-129">The sample app uses the `MyOptionsWithDelegateConfig` class (*Models/MyOptionsWithDelegateConfig.cs*):</span></span>
+<span data-ttu-id="0ba7a-150">Use um delegado para definir valores de opções.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-150">Use a delegate to set options values.</span></span> <span data-ttu-id="0ba7a-151">O aplicativo de exemplo usa a classe `MyOptionsWithDelegateConfig` (*Models/MyOptionsWithDelegateConfig.cs*):</span><span class="sxs-lookup"><span data-stu-id="0ba7a-151">The sample app uses the `MyOptionsWithDelegateConfig` class (*Models/MyOptionsWithDelegateConfig.cs*):</span></span>
 
-[!code-csharp[](options/sample/Models/MyOptionsWithDelegateConfig.cs?name=snippet1)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Models/MyOptionsWithDelegateConfig.cs?name=snippet1)]
 
-<span data-ttu-id="0a5f4-130">No código a seguir, um segundo serviço `IConfigureOptions<TOptions>` é adicionado ao contêiner de serviço.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-130">In the following code, a second `IConfigureOptions<TOptions>` service is added to the service container.</span></span> <span data-ttu-id="0a5f4-131">Ele usa um delegado para configurar a associação com `MyOptionsWithDelegateConfig`:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-131">It uses a delegate to configure the binding with `MyOptionsWithDelegateConfig`:</span></span>
+<span data-ttu-id="0ba7a-152">No código a seguir, um segundo serviço <xref:Microsoft.Extensions.Options.IConfigureOptions`1> é adicionado ao contêiner de serviço.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-152">In the following code, a second <xref:Microsoft.Extensions.Options.IConfigureOptions`1> service is added to the service container.</span></span> <span data-ttu-id="0ba7a-153">Ele usa um delegado para configurar a associação com `MyOptionsWithDelegateConfig`:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-153">It uses a delegate to configure the binding with `MyOptionsWithDelegateConfig`:</span></span>
 
-[!code-csharp[](options/sample/Startup.cs?name=snippet_Example2)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example2)]
 
-<span data-ttu-id="0a5f4-132">*Index.cshtml.cs*:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-132">*Index.cshtml.cs*:</span></span>
+<span data-ttu-id="0ba7a-154">*Index.cshtml.cs*:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-154">*Index.cshtml.cs*:</span></span>
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=10)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=10)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=3,9)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=3,9)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example2)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example2)]
 
-<span data-ttu-id="0a5f4-133">Adicione vários provedores de configuração.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-133">You can add multiple configuration providers.</span></span> <span data-ttu-id="0a5f4-134">Provedores de configuração estão disponíveis em pacotes NuGet.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-134">Configuration providers are available in NuGet packages.</span></span> <span data-ttu-id="0a5f4-135">Eles são aplicados na ordem em que são registrados.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-135">They're applied in the order that they're registered.</span></span>
+<span data-ttu-id="0ba7a-155">Adicione vários provedores de configuração.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-155">You can add multiple configuration providers.</span></span> <span data-ttu-id="0ba7a-156">Os provedores de configuração estão disponíveis nos pacotes do NuGet e são aplicados na ordem em que são registrados.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-156">Configuration providers are available from NuGet packages and are applied in the order that they're registered.</span></span> <span data-ttu-id="0ba7a-157">Para obter mais informações, consulte <xref:fundamentals/configuration/index>.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-157">For more information, see <xref:fundamentals/configuration/index>.</span></span>
 
-<span data-ttu-id="0a5f4-136">Cada chamada à [Configure&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1.configure) adiciona um serviço `IConfigureOptions<TOptions>` ao contêiner de serviço.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-136">Each call to [Configure&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1.configure) adds an `IConfigureOptions<TOptions>` service to the service container.</span></span> <span data-ttu-id="0a5f4-137">No exemplo anterior, os valores `Option1` e `Option2` são especificados em *appsettings.json*, mas os valores `Option1` e `Option2` são substituídos pelo delegado configurado.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-137">In the preceding example, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the values of `Option1` and `Option2` are overridden by the configured delegate.</span></span>
+<span data-ttu-id="0ba7a-158">Cada chamada à <xref:Microsoft.Extensions.Options.IConfigureOptions`1.Configure*> adiciona um serviço <xref:Microsoft.Extensions.Options.IConfigureOptions`1> ao contêiner de serviço.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-158">Each call to <xref:Microsoft.Extensions.Options.IConfigureOptions`1.Configure*> adds an <xref:Microsoft.Extensions.Options.IConfigureOptions`1> service to the service container.</span></span> <span data-ttu-id="0ba7a-159">No exemplo anterior, os valores `Option1` e `Option2` são especificados em *appsettings.json*, mas os valores `Option1` e `Option2` são substituídos pelo delegado configurado.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-159">In the preceding example, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the values of `Option1` and `Option2` are overridden by the configured delegate.</span></span>
 
-<span data-ttu-id="0a5f4-138">Quando mais de um serviço de configuração é habilitado, a última fonte de configuração especificada *vence* e define o valor de configuração.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-138">When more than one configuration service is enabled, the last configuration source specified *wins* and sets the configuration value.</span></span> <span data-ttu-id="0a5f4-139">Quando o aplicativo é executado, o método `OnGet` do modelo de página retorna uma cadeia de caracteres que mostra os valores da classe de opção:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-139">When the app is run, the page model's `OnGet` method returns a string showing the option class values:</span></span>
+<span data-ttu-id="0ba7a-160">Quando mais de um serviço de configuração é habilitado, a última fonte de configuração especificada *vence* e define o valor de configuração.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-160">When more than one configuration service is enabled, the last configuration source specified *wins* and sets the configuration value.</span></span> <span data-ttu-id="0ba7a-161">Quando o aplicativo é executado, o método `OnGet` do modelo de página retorna uma cadeia de caracteres que mostra os valores da classe de opção:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-161">When the app is run, the page model's `OnGet` method returns a string showing the option class values:</span></span>
 
 ```html
 delegate_option1 = value1_configured_by_delgate, delegate_option2 = 500
 ```
 
-## <a name="suboptions-configuration"></a><span data-ttu-id="0a5f4-140">Configuração de subopções</span><span class="sxs-lookup"><span data-stu-id="0a5f4-140">Suboptions configuration</span></span>
+## <a name="suboptions-configuration"></a><span data-ttu-id="0ba7a-162">Configuração de subopções</span><span class="sxs-lookup"><span data-stu-id="0ba7a-162">Suboptions configuration</span></span>
 
-<span data-ttu-id="0a5f4-141">A configuração de subopções básicas é demonstrada no Exemplo &num;3 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-141">Suboptions configuration is demonstrated as Example &num;3 in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span></span>
+<span data-ttu-id="0ba7a-163">A configuração de subopções é demonstrada no Exemplo &num;3 no aplicativo de exemplo.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-163">Suboptions configuration is demonstrated as Example &num;3 in the sample app.</span></span>
 
-<span data-ttu-id="0a5f4-142">Os aplicativos devem criar classes de opções que pertencem a grupos de cenários específicos (classes) no aplicativo.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-142">Apps should create options classes that pertain to specific scenario groups (classes) in the app.</span></span> <span data-ttu-id="0a5f4-143">Partes do aplicativo que exigem valores de configuração devem ter acesso apenas aos valores de configuração usados por elas.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-143">Parts of the app that require configuration values should only have access to the configuration values that they use.</span></span>
+<span data-ttu-id="0ba7a-164">Os aplicativos devem criar classes de opções que pertencem a grupos de cenários específicos (classes) no aplicativo.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-164">Apps should create options classes that pertain to specific scenario groups (classes) in the app.</span></span> <span data-ttu-id="0ba7a-165">Partes do aplicativo que exigem valores de configuração devem ter acesso apenas aos valores de configuração usados por elas.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-165">Parts of the app that require configuration values should only have access to the configuration values that they use.</span></span>
 
-<span data-ttu-id="0a5f4-144">Ao associar opções à configuração, cada propriedade no tipo de opções é associada a uma chave de configuração do formato `property[:sub-property:]`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-144">When binding options to configuration, each property in the options type is bound to a configuration key of the form `property[:sub-property:]`.</span></span> <span data-ttu-id="0a5f4-145">Por exemplo, a propriedade `MyOptions.Option1` é associada à chave `Option1`, que é lida da propriedade `option1` em *appsettings.json*.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-145">For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*.</span></span>
+<span data-ttu-id="0ba7a-166">Ao associar opções à configuração, cada propriedade no tipo de opções é associada a uma chave de configuração do formato `property[:sub-property:]`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-166">When binding options to configuration, each property in the options type is bound to a configuration key of the form `property[:sub-property:]`.</span></span> <span data-ttu-id="0ba7a-167">Por exemplo, a propriedade `MyOptions.Option1` é associada à chave `Option1`, que é lida da propriedade `option1` em *appsettings.json*.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-167">For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*.</span></span>
 
-<span data-ttu-id="0a5f4-146">No código a seguir, um terceiro serviço `IConfigureOptions<TOptions>` é adicionado ao contêiner de serviço.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-146">In the following code, a third `IConfigureOptions<TOptions>` service is added to the service container.</span></span> <span data-ttu-id="0a5f4-147">Ele associa `MySubOptions` à seção `subsection` do arquivo *appsettings.json*:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-147">It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file:</span></span>
+<span data-ttu-id="0ba7a-168">No código a seguir, um terceiro serviço <xref:Microsoft.Extensions.Options.IConfigureOptions`1> é adicionado ao contêiner de serviço.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-168">In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOptions`1> service is added to the service container.</span></span> <span data-ttu-id="0ba7a-169">Ele associa `MySubOptions` à seção `subsection` do arquivo *appsettings.json*:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-169">It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file:</span></span>
 
-[!code-csharp[](options/sample/Startup.cs?name=snippet_Example3)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-<span data-ttu-id="0a5f4-148">O método de extensão `GetSection` exige o pacote NuGet [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-148">The `GetSection` extension method requires the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) NuGet package.</span></span> <span data-ttu-id="0a5f4-149">Se o aplicativo usa o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 ou posterior), o pacote é automaticamente incluído.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-149">If the app uses the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later), the package is automatically included.</span></span>
+<span data-ttu-id="0ba7a-170">O método de extensão `GetSection` exige o pacote NuGet [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).</span><span class="sxs-lookup"><span data-stu-id="0ba7a-170">The `GetSection` extension method requires the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) NuGet package.</span></span> <span data-ttu-id="0ba7a-171">Se o aplicativo usa o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 ou posterior), o pacote é automaticamente incluído.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-171">If the app uses the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later), the package is automatically included.</span></span>
 
-<span data-ttu-id="0a5f4-150">O arquivo *appsettings.json* de exemplo define um membro `subsection` com chaves para `suboption1` e `suboption2`:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-150">The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:</span></span>
+<span data-ttu-id="0ba7a-172">O arquivo *appsettings.json* de exemplo define um membro `subsection` com chaves para `suboption1` e `suboption2`:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-172">The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:</span></span>
 
-[!code-json[](options/sample/appsettings.json?highlight=4-7)]
+[!code-json[](options/samples/2.x/OptionsSample/appsettings.json?highlight=4-7)]
 
-<span data-ttu-id="0a5f4-151">A classe `MySubOptions` define as propriedades `SubOption1` e `SubOption2`, para armazenar os valores de opções (*Models/MySubOptions.cs*):</span><span class="sxs-lookup"><span data-stu-id="0a5f4-151">The `MySubOptions` class defines properties, `SubOption1` and `SubOption2`, to hold the options values (*Models/MySubOptions.cs*):</span></span>
+<span data-ttu-id="0ba7a-173">A classe `MySubOptions` define as propriedades `SubOption1` e `SubOption2`, para armazenar os valores de opções (*Models/MySubOptions.cs*):</span><span class="sxs-lookup"><span data-stu-id="0ba7a-173">The `MySubOptions` class defines properties, `SubOption1` and `SubOption2`, to hold the options values (*Models/MySubOptions.cs*):</span></span>
 
-[!code-csharp[](options/sample/Models/MySubOptions.cs?name=snippet1)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Models/MySubOptions.cs?name=snippet1)]
 
-<span data-ttu-id="0a5f4-152">O método `OnGet` do modelo da página retorna uma cadeia de caracteres com os valores de opções (*Pages/Index.cshtml.cs*):</span><span class="sxs-lookup"><span data-stu-id="0a5f4-152">The page model's `OnGet` method returns a string with the options values (*Pages/Index.cshtml.cs*):</span></span>
+<span data-ttu-id="0ba7a-174">O método `OnGet` do modelo da página retorna uma cadeia de caracteres com os valores de opções (*Pages/Index.cshtml.cs*):</span><span class="sxs-lookup"><span data-stu-id="0ba7a-174">The page model's `OnGet` method returns a string with the options values (*Pages/Index.cshtml.cs*):</span></span>
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=11)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=11)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=4,10)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=4,10)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example3)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example3)]
 
-<span data-ttu-id="0a5f4-153">Quando o aplicativo é executado, o método `OnGet` retorna uma cadeia de caracteres que mostra os valores da classe de subopção:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-153">When the app is run, the `OnGet` method returns a string showing the sub-option class values:</span></span>
+<span data-ttu-id="0ba7a-175">Quando o aplicativo é executado, o método `OnGet` retorna uma cadeia de caracteres que mostra os valores da classe de subopção:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-175">When the app is run, the `OnGet` method returns a string showing the suboption class values:</span></span>
 
 ```html
 subOption1 = subvalue1_from_json, subOption2 = 200
 ```
 
-## <a name="options-provided-by-a-view-model-or-with-direct-view-injection"></a><span data-ttu-id="0a5f4-154">Opções fornecidas por um modelo de exibição ou com a injeção de exibição direta</span><span class="sxs-lookup"><span data-stu-id="0a5f4-154">Options provided by a view model or with direct view injection</span></span>
+## <a name="options-provided-by-a-view-model-or-with-direct-view-injection"></a><span data-ttu-id="0ba7a-176">Opções fornecidas por um modelo de exibição ou com a injeção de exibição direta</span><span class="sxs-lookup"><span data-stu-id="0ba7a-176">Options provided by a view model or with direct view injection</span></span>
 
-<span data-ttu-id="0a5f4-155">As opções fornecidas por um modelo de exibição ou com a injeção de exibição direta são demonstradas como o Exemplo &num;4 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-155">Options provided by a view model or with direct view injection is demonstrated as Example &num;4 in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span></span>
+<span data-ttu-id="0ba7a-177">As opções fornecidas por um modelo de exibição ou com a injeção de exibição direta são demonstradas no Exemplo &num;4 no aplicativo de exemplo.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-177">Options provided by a view model or with direct view injection is demonstrated as Example &num;4 in the sample app.</span></span>
 
-<span data-ttu-id="0a5f4-156">As opções podem ser fornecidas em um modelo de exibição ou pela injeção de `IOptions<TOptions>` diretamente em uma exibição (*Pages/Index.cshtml.cs*):</span><span class="sxs-lookup"><span data-stu-id="0a5f4-156">Options can be supplied in a view model or by injecting `IOptions<TOptions>` directly into a view (*Pages/Index.cshtml.cs*):</span></span>
+<span data-ttu-id="0ba7a-178">As opções podem ser fornecidas em um modelo de exibição ou pela injeção de <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> diretamente em uma exibição (*Pages/Index.cshtml.cs*):</span><span class="sxs-lookup"><span data-stu-id="0ba7a-178">Options can be supplied in a view model or by injecting <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> directly into a view (*Pages/Index.cshtml.cs*):</span></span>
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=9)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example4)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example4)]
 
-<span data-ttu-id="0a5f4-157">Para a injeção direta, injete `IOptions<MyOptions>` com uma diretiva `@inject`:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-157">For direct injection, inject `IOptions<MyOptions>` with an `@inject` directive:</span></span>
+<span data-ttu-id="0ba7a-179">O aplicativo de exemplo mostra como injetar `IOptionsMonitor<MyOptions>` com uma diretiva `@inject`:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-179">The sample app shows how to inject `IOptionsMonitor<MyOptions>` with an `@inject` directive:</span></span>
 
-[!code-cshtml[](options/sample/Pages/Index.cshtml?range=1-10&highlight=5)]
+[!code-cshtml[](options/samples/2.x/OptionsSample/Pages/Index.cshtml?range=1-10&highlight=4)]
 
-<span data-ttu-id="0a5f4-158">Quando o aplicativo é executado, os valores de opções são mostrados na página renderizada:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-158">When the app is run, the options values are shown in the rendered page:</span></span>
+<span data-ttu-id="0ba7a-180">Quando o aplicativo é executado, os valores de opções são mostrados na página renderizada:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-180">When the app is run, the options values are shown in the rendered page:</span></span>
 
 ![Os valores de opções Option1: value1_from_json e Option2: -1 são carregados do modelo e pela injeção na exibição.](options/_static/view.png)
 
-::: moniker range=">= aspnetcore-1.1"
+## <a name="reload-configuration-data-with-ioptionssnapshot"></a><span data-ttu-id="0ba7a-182">Recarregar dados de configuração com IOptionsSnapshot</span><span class="sxs-lookup"><span data-stu-id="0ba7a-182">Reload configuration data with IOptionsSnapshot</span></span>
 
-## <a name="reload-configuration-data-with-ioptionssnapshot"></a><span data-ttu-id="0a5f4-160">Recarregar dados de configuração com IOptionsSnapshot</span><span class="sxs-lookup"><span data-stu-id="0a5f4-160">Reload configuration data with IOptionsSnapshot</span></span>
+<span data-ttu-id="0ba7a-183">O recarregamento de dados de configuração com <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> é demonstrado no Exemplo &num;5 no aplicativo de exemplo.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-183">Reloading configuration data with <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> is demonstrated in Example &num;5 in the sample app.</span></span>
 
-<span data-ttu-id="0a5f4-161">O recarregamento de dados de configuração com `IOptionsSnapshot` é demonstrado no Exemplo &num;5 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-161">Reloading configuration data with `IOptionsSnapshot` is demonstrated in Example &num;5 in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span></span>
+<span data-ttu-id="0ba7a-184">O <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> dá suporte a opções de recarregamento com sobrecarga mínima de processamento.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-184"><xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> supports reloading options with minimal processing overhead.</span></span>
 
-<span data-ttu-id="0a5f4-162">[IOptionsSnapshot](/dotnet/api/microsoft.extensions.options.ioptionssnapshot-1) dá suporte a opções de recarregamento com sobrecarga mínima de processamento.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-162">[IOptionsSnapshot](/dotnet/api/microsoft.extensions.options.ioptionssnapshot-1) supports reloading options with minimal processing overhead.</span></span>
+<span data-ttu-id="0ba7a-185">As opções são calculadas uma vez por solicitação, quando acessadas e armazenadas em cache durante o tempo de vida da solicitação.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-185">Options are computed once per request when accessed and cached for the lifetime of the request.</span></span>
 
-::: moniker-end
+<span data-ttu-id="0ba7a-186">O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> é criado após a alteração de *appsettings.json* (*Pages/Index.cshtml.cs*).</span><span class="sxs-lookup"><span data-stu-id="0ba7a-186">The following example demonstrates how a new <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> is created after *appsettings.json* changes (*Pages/Index.cshtml.cs*).</span></span> <span data-ttu-id="0ba7a-187">Várias solicitações ao servidor retornam valores de constante fornecidos pelo arquivo *appsettings.json*, até que o arquivo seja alterado e a configuração seja recarregada.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-187">Multiple requests to the server return constant values provided by the *appsettings.json* file until the file is changed and configuration reloads.</span></span>
 
-::: moniker range=">= aspnetcore-2.0"
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=12)]
 
-<span data-ttu-id="0a5f4-163">As opções são calculadas uma vez por solicitação, quando acessadas e armazenadas em cache durante o tempo de vida da solicitação.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-163">Options are computed once per request when accessed and cached for the lifetime of the request.</span></span>
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=5,11)]
 
-::: moniker-end
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example5)]
 
-::: moniker range="< aspnetcore-2.0"
-
-<span data-ttu-id="0a5f4-164">`IOptionsSnapshot` é um instantâneo de [IOptionsMonitor&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1) e é atualizado automaticamente sempre que o monitor dispara alterações com base na alteração da fonte de dados.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-164">`IOptionsSnapshot` is a snapshot of [IOptionsMonitor&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1) and updates automatically whenever the monitor triggers changes based on the data source changing.</span></span>
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-1.1"
-
-<span data-ttu-id="0a5f4-165">O exemplo a seguir demonstra como um novo `IOptionsSnapshot` é criado após a alteração de *appsettings.json* (*Pages/Index.cshtml.cs*).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-165">The following example demonstrates how a new `IOptionsSnapshot` is created after *appsettings.json* changes (*Pages/Index.cshtml.cs*).</span></span> <span data-ttu-id="0a5f4-166">Várias solicitações ao servidor retornam valores de constante fornecidos pelo arquivo *appsettings.json*, até que o arquivo seja alterado e a configuração seja recarregada.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-166">Multiple requests to the server return constant values provided by the *appsettings.json* file until the file is changed and configuration reloads.</span></span>
-
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=12)]
-
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=5,11)]
-
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example5)]
-
-<span data-ttu-id="0a5f4-167">A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-167">The following image shows the initial `option1` and `option2` values loaded from the *appsettings.json* file:</span></span>
+<span data-ttu-id="0ba7a-188">A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-188">The following image shows the initial `option1` and `option2` values loaded from the *appsettings.json* file:</span></span>
 
 ```html
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-<span data-ttu-id="0a5f4-168">Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-168">Change the values in the *appsettings.json* file to `value1_from_json UPDATED` and `200`.</span></span> <span data-ttu-id="0a5f4-169">Salve o arquivo *appsettings.json*.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-169">Save the *appsettings.json* file.</span></span> <span data-ttu-id="0a5f4-170">Atualize o navegador para ver se os valores de opções foram atualizados:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-170">Refresh the browser to see that the options values are updated:</span></span>
+<span data-ttu-id="0ba7a-189">Altere os valores no arquivo *appsettings.json* para `value1_from_json UPDATED` e `200`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-189">Change the values in the *appsettings.json* file to `value1_from_json UPDATED` and `200`.</span></span> <span data-ttu-id="0ba7a-190">Salve o arquivo *appsettings.json*.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-190">Save the *appsettings.json* file.</span></span> <span data-ttu-id="0ba7a-191">Atualize o navegador para ver se os valores de opções foram atualizados:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-191">Refresh the browser to see that the options values are updated:</span></span>
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 ```
 
-::: moniker-end
+## <a name="named-options-support-with-iconfigurenamedoptions"></a><span data-ttu-id="0ba7a-192">Suporte de opções nomeadas com IConfigureNamedOptions</span><span class="sxs-lookup"><span data-stu-id="0ba7a-192">Named options support with IConfigureNamedOptions</span></span>
 
-::: moniker range=">= aspnetcore-2.0"
+<span data-ttu-id="0ba7a-193">O suporte de opções nomeadas com <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> é demonstrado como no Exemplo &num;6 no aplicativo de exemplo.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-193">Named options support with <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> is demonstrated as Example &num;6 in the sample app.</span></span>
 
-## <a name="named-options-support-with-iconfigurenamedoptions"></a><span data-ttu-id="0a5f4-171">Suporte de opções nomeadas com IConfigureNamedOptions</span><span class="sxs-lookup"><span data-stu-id="0a5f4-171">Named options support with IConfigureNamedOptions</span></span>
+<span data-ttu-id="0ba7a-194">O suporte de *opções nomeadas* permite que o aplicativo faça a distinção entre as configurações de opções nomeadas.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-194">*Named options* support allows the app to distinguish between named options configurations.</span></span> <span data-ttu-id="0ba7a-195">No aplicativo de exemplo, as opções nomeadas são declaradas com <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*>.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-195">In the sample app, named options are declared with <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*>.</span></span> <span data-ttu-id="0ba7a-196">`Configure` chama o método de extensão <xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*>:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-196">`Configure` calls the extension method <xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*> method:</span></span>
 
-<span data-ttu-id="0a5f4-172">O suporte de opções nomeadas com [IConfigureNamedOptions](/dotnet/api/microsoft.extensions.options.iconfigurenamedoptions-1) é demonstrado no Exemplo &num;6 no [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-172">Named options support with [IConfigureNamedOptions](/dotnet/api/microsoft.extensions.options.iconfigurenamedoptions-1) is demonstrated as Example &num;6 in the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/options/sample).</span></span>
+[!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 
-<span data-ttu-id="0a5f4-173">O suporte de *opções nomeadas* permite que o aplicativo faça a distinção entre as configurações de opções nomeadas.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-173">*Named options* support allows the app to distinguish between named options configurations.</span></span> <span data-ttu-id="0a5f4-174">No aplicativo de exemplo, as opções nomeadas são declaradas com a [OptionsServiceCollectionExtensions.Configure&lt;TOptions&gt;(IServiceCollection, String, Action&lt;TOptions&gt;)](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configure), que, por sua vez, chama o método [ConfigureNamedOptions&lt;TOptions&gt;.Configure](/dotnet/api/microsoft.extensions.options.configurenamedoptions-1.configure) do método de extensão:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-174">In the sample app, named options are declared with the [OptionsServiceCollectionExtensions.Configure&lt;TOptions&gt;(IServiceCollection, String, Action&lt;TOptions&gt;)](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configure) which in turn calls the extension method [ConfigureNamedOptions&lt;TOptions&gt;.Configure](/dotnet/api/microsoft.extensions.options.configurenamedoptions-1.configure) method:</span></span>
+<span data-ttu-id="0ba7a-197">O aplicativo de exemplo acessa as opções nomeadas com <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1.Get*> (*Pages/Index.cshtml.cs*):</span><span class="sxs-lookup"><span data-stu-id="0ba7a-197">The sample app accesses the named options with <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1.Get*> (*Pages/Index.cshtml.cs*):</span></span>
 
-[!code-csharp[](options/sample/Startup.cs?name=snippet_Example6)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=13-14)]
 
-<span data-ttu-id="0a5f4-175">O aplicativo de exemplo acessa as opções nomeadas com [IOptionsSnapshot&lt;TOptions&gt;.Get](/dotnet/api/microsoft.extensions.options.ioptionssnapshot-1.get) (*Pages/Index.cshtml.cs*):</span><span class="sxs-lookup"><span data-stu-id="0a5f4-175">The sample app accesses the named options with [IOptionsSnapshot&lt;TOptions&gt;.Get](/dotnet/api/microsoft.extensions.options.ioptionssnapshot-1.get) (*Pages/Index.cshtml.cs*):</span></span>
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=6,12-13)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?range=13-14)]
+[!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example6)]
 
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=6,12-13)]
-
-[!code-csharp[](options/sample/Pages/Index.cshtml.cs?name=snippet_Example6)]
-
-<span data-ttu-id="0a5f4-176">Executando o aplicativo de exemplo, as opções nomeadas são retornadas:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-176">Running the sample app, the named options are returned:</span></span>
+<span data-ttu-id="0ba7a-198">Executando o aplicativo de exemplo, as opções nomeadas são retornadas:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-198">Running the sample app, the named options are returned:</span></span>
 
 ```html
 named_options_1: option1 = value1_from_json, option2 = -1
 named_options_2: option1 = named_options_2_value1_from_action, option2 = 5
 ```
 
-<span data-ttu-id="0a5f4-177">Os valores `named_options_1` são fornecidos pela configuração, que são carregados do arquivo *appsettings.json*.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-177">`named_options_1` values are provided from configuration, which are loaded from the *appsettings.json* file.</span></span> <span data-ttu-id="0a5f4-178">Os valores `named_options_2` são fornecidos pelo:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-178">`named_options_2` values are provided by:</span></span>
+<span data-ttu-id="0ba7a-199">Os valores `named_options_1` são fornecidos pela configuração, que são carregados do arquivo *appsettings.json*.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-199">`named_options_1` values are provided from configuration, which are loaded from the *appsettings.json* file.</span></span> <span data-ttu-id="0ba7a-200">Os valores `named_options_2` são fornecidos pelo:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-200">`named_options_2` values are provided by:</span></span>
 
-* <span data-ttu-id="0a5f4-179">Delegado `named_options_2` em `ConfigureServices` para `Option1`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-179">The `named_options_2` delegate in `ConfigureServices` for `Option1`.</span></span>
-* <span data-ttu-id="0a5f4-180">Valor padrão para `Option2` fornecido pela classe `MyOptions`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-180">The default value for `Option2` provided by the `MyOptions` class.</span></span>
+* <span data-ttu-id="0ba7a-201">Delegado `named_options_2` em `ConfigureServices` para `Option1`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-201">The `named_options_2` delegate in `ConfigureServices` for `Option1`.</span></span>
+* <span data-ttu-id="0ba7a-202">Valor padrão para `Option2` fornecido pela classe `MyOptions`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-202">The default value for `Option2` provided by the `MyOptions` class.</span></span>
 
-## <a name="configure-all-options-with-the-configureall-method"></a><span data-ttu-id="0a5f4-181">Configurar todas as opções com o método ConfigureAll</span><span class="sxs-lookup"><span data-stu-id="0a5f4-181">Configure all options with the ConfigureAll method</span></span>
+## <a name="configure-all-options-with-the-configureall-method"></a><span data-ttu-id="0ba7a-203">Configurar todas as opções com o método ConfigureAll</span><span class="sxs-lookup"><span data-stu-id="0ba7a-203">Configure all options with the ConfigureAll method</span></span>
 
-<span data-ttu-id="0a5f4-182">Configure todas as instâncias de opções com o método [OptionsServiceCollectionExtensions.ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-182">Configure all options instances with the [OptionsServiceCollectionExtensions.ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) method.</span></span> <span data-ttu-id="0a5f4-183">O código a seguir configura `Option1` para todas as instâncias de configuração com um valor comum.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-183">The following code configures `Option1` for all configuration instances with a common value.</span></span> <span data-ttu-id="0a5f4-184">Adicione o seguinte código manualmente ao método `ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-184">Add the following code manually to the `ConfigureServices` method:</span></span>
+<span data-ttu-id="0ba7a-204">Configure todas as instâncias de opções com o método <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*>.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-204">Configure all options instances with the <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> method.</span></span> <span data-ttu-id="0ba7a-205">O código a seguir configura `Option1` para todas as instâncias de configuração com um valor comum.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-205">The following code configures `Option1` for all configuration instances with a common value.</span></span> <span data-ttu-id="0ba7a-206">Adicione o seguinte código manualmente ao método `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-206">Add the following code manually to the `Startup.ConfigureServices` method:</span></span>
 
 ```csharp
 services.ConfigureAll<MyOptions>(myOptions => 
@@ -261,7 +252,7 @@ services.ConfigureAll<MyOptions>(myOptions =>
 });
 ```
 
-<span data-ttu-id="0a5f4-185">A execução do aplicativo de exemplo após a adição do código produz o seguinte resultado:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-185">Running the sample app after adding the code produces the following result:</span></span>
+<span data-ttu-id="0ba7a-207">A execução do aplicativo de exemplo após a adição do código produz o seguinte resultado:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-207">Running the sample app after adding the code produces the following result:</span></span>
 
 ```html
 named_options_1: option1 = ConfigureAll replacement value, option2 = -1
@@ -269,27 +260,23 @@ named_options_2: option1 = ConfigureAll replacement value, option2 = 5
 ```
 
 > [!NOTE]
-> <span data-ttu-id="0a5f4-186">Todas as opções são instâncias nomeadas.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-186">All options are named instances.</span></span> <span data-ttu-id="0a5f4-187">As instâncias `IConfigureOption` existentes são tratadas como sendo direcionadas à instância `Options.DefaultName`, que é `string.Empty`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-187">Existing `IConfigureOption` instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`.</span></span> <span data-ttu-id="0a5f4-188">`IConfigureNamedOptions` também implementa `IConfigureOptions`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-188">`IConfigureNamedOptions` also implements `IConfigureOptions`.</span></span> <span data-ttu-id="0a5f4-189">A implementação padrão de [IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) ([fonte de referência](https://github.com/aspnet/Options/blob/release/2.0/src/Microsoft.Extensions.Options/IOptionsFactory.cs) tem uma lógica para usar cada uma de forma adequada.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-189">The default implementation of the [IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) ([reference source](https://github.com/aspnet/Options/blob/release/2.0/src/Microsoft.Extensions.Options/IOptionsFactory.cs) has logic to use each appropriately.</span></span> <span data-ttu-id="0a5f4-190">A opção nomeada `null` é usada para direcionar todas as instâncias nomeadas, em vez de uma instância nomeada específica ([ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) e [PostConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) usa essa convenção).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-190">The `null` named option is used to target all of the named instances instead of a specific named instance ([ConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.configureall) and [PostConfigureAll](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) use this convention).</span></span>
+> <span data-ttu-id="0ba7a-208">Todas as opções são instâncias nomeadas.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-208">All options are named instances.</span></span> <span data-ttu-id="0ba7a-209">As instâncias <xref:Microsoft.Extensions.Options.IConfigureOptions`1> existentes são tratadas como sendo direcionadas à instância `Options.DefaultName`, que é `string.Empty`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-209">Existing <xref:Microsoft.Extensions.Options.IConfigureOptions`1> instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`.</span></span> <span data-ttu-id="0ba7a-210"><xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> também implementa <xref:Microsoft.Extensions.Options.IConfigureOptions`1>.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-210"><xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> also implements <xref:Microsoft.Extensions.Options.IConfigureOptions`1>.</span></span> <span data-ttu-id="0ba7a-211">A implementação padrão de <xref:Microsoft.Extensions.Options.IOptionsFactory`1> tem lógica para usar cada um de forma adequada.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-211">The default implementation of the <xref:Microsoft.Extensions.Options.IOptionsFactory`1> has logic to use each appropriately.</span></span> <span data-ttu-id="0ba7a-212">A opção nomeada `null` é usada para direcionar todas as instâncias nomeadas, em vez de uma instância nomeada específica (<xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> e <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> usam essa convenção).</span><span class="sxs-lookup"><span data-stu-id="0ba7a-212">The `null` named option is used to target all of the named instances instead of a specific named instance (<xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> and <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> use this convention).</span></span>
 
-::: moniker-end
+## <a name="optionsbuilder-api"></a><span data-ttu-id="0ba7a-213">API OptionsBuilder</span><span class="sxs-lookup"><span data-stu-id="0ba7a-213">OptionsBuilder API</span></span>
 
-::: moniker range=">= aspnetcore-2.1"
-
-## <a name="optionsbuilder-api"></a><span data-ttu-id="0a5f4-191">API OptionsBuilder</span><span class="sxs-lookup"><span data-stu-id="0a5f4-191">OptionsBuilder API</span></span>
-
-<span data-ttu-id="0a5f4-192"><xref:Microsoft.Extensions.Options.OptionsBuilder`1> é usada para configurar instâncias `TOptions`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-192"><xref:Microsoft.Extensions.Options.OptionsBuilder`1> is used to configure `TOptions` instances.</span></span> <span data-ttu-id="0a5f4-193">`OptionsBuilder` simplifica a criação de opções nomeadas, pois é apenas um único parâmetro para a chamada `AddOptions<TOptions>(string optionsName)` inicial, em vez de aparecer em todas as chamadas subsequentes.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-193">`OptionsBuilder` streamlines creating named options as it's only a single parameter to the initial `AddOptions<TOptions>(string optionsName)` call instead of appearing in all of the subsequent calls.</span></span> <span data-ttu-id="0a5f4-194">A validação de opções e as sobrecargas `ConfigureOptions` que aceitam dependências de serviço só estão disponíveis por meio de `OptionsBuilder`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-194">Options validation and the `ConfigureOptions` overloads that accept service dependencies are only available via `OptionsBuilder`.</span></span>
+<span data-ttu-id="0ba7a-214"><xref:Microsoft.Extensions.Options.OptionsBuilder`1> é usada para configurar instâncias `TOptions`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-214"><xref:Microsoft.Extensions.Options.OptionsBuilder`1> is used to configure `TOptions` instances.</span></span> <span data-ttu-id="0ba7a-215">`OptionsBuilder` simplifica a criação de opções nomeadas, pois é apenas um único parâmetro para a chamada `AddOptions<TOptions>(string optionsName)` inicial, em vez de aparecer em todas as chamadas subsequentes.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-215">`OptionsBuilder` streamlines creating named options as it's only a single parameter to the initial `AddOptions<TOptions>(string optionsName)` call instead of appearing in all of the subsequent calls.</span></span> <span data-ttu-id="0ba7a-216">A validação de opções e as sobrecargas `ConfigureOptions` que aceitam dependências de serviço só estão disponíveis por meio de `OptionsBuilder`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-216">Options validation and the `ConfigureOptions` overloads that accept service dependencies are only available via `OptionsBuilder`.</span></span>
 
 ```csharp
 // Options.DefaultName = "" is used.
 services.AddOptions<MyOptions>().Configure(o => o.Property = "default");
-    
+
 services.AddOptions<MyOptions>("optionalName")
     .Configure(o => o.Property = "named");
 ```
 
-## <a name="configurelttoptions-tdep1--tdep4gt-method"></a><span data-ttu-id="0a5f4-195">Método Configure&lt;TOptions, TDep1, ... TDep4&gt;</span><span class="sxs-lookup"><span data-stu-id="0a5f4-195">Configure&lt;TOptions, TDep1, ... TDep4&gt; method</span></span>
+## <a name="configurelttoptions-tdep1--tdep4gt-method"></a><span data-ttu-id="0ba7a-217">Configure&lt;TOptions, TDep1, ... TDep4&gt; método</span><span class="sxs-lookup"><span data-stu-id="0ba7a-217">Configure&lt;TOptions, TDep1, ... TDep4&gt; method</span></span>
 
-<span data-ttu-id="0a5f4-196">O uso de serviços da DI para configurar opções com a implementação de `IConfigure[Named]Options` de forma padrão é detalhado.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-196">Using services from DI to configure options by implementing `IConfigure[Named]Options` in a boilerplate manner is verbose.</span></span> <span data-ttu-id="0a5f4-197">Sobrecargas de `ConfigureOptions` em `OptionsBuilder<TOptions>` permitem que você use até cinco serviços para configurar opções:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-197">Overloads for `ConfigureOptions` on `OptionsBuilder<TOptions>` allow you to use up to five services to configure options:</span></span>
+<span data-ttu-id="0ba7a-218">O uso de serviços da DI para configurar opções com a implementação de `IConfigure[Named]Options` de forma padrão é detalhado.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-218">Using services from DI to configure options by implementing `IConfigure[Named]Options` in a boilerplate manner is verbose.</span></span> <span data-ttu-id="0ba7a-219">Sobrecargas de `ConfigureOptions` em `OptionsBuilder<TOptions>` permitem que você use até cinco serviços para configurar opções:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-219">Overloads for `ConfigureOptions` on `OptionsBuilder<TOptions>` allow you to use up to five services to configure options:</span></span>
 
 ```csharp
 services.AddOptions<MyOptions>("optionalName")
@@ -298,15 +285,13 @@ services.AddOptions<MyOptions>("optionalName")
             o.Property = DoSomethingWith(s, s2, s3, s4, s5));
 ```
 
-<span data-ttu-id="0a5f4-198">A sobrecarga registra um genérico transitório <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, que tem um construtor que aceita os tipos de serviços genéricos especificados.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-198">The overload registers a transient generic <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, which has a constructor that accepts the generic service types specified.</span></span> 
-
-::: moniker-end
+<span data-ttu-id="0ba7a-220">A sobrecarga registra um genérico transitório <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, que tem um construtor que aceita os tipos de serviços genéricos especificados.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-220">The overload registers a transient generic <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, which has a constructor that accepts the generic service types specified.</span></span> 
 
 ::: moniker range=">= aspnetcore-2.2"
 
-## <a name="options-validation"></a><span data-ttu-id="0a5f4-199">Validação de opções</span><span class="sxs-lookup"><span data-stu-id="0a5f4-199">Options validation</span></span>
+## <a name="options-validation"></a><span data-ttu-id="0ba7a-221">Validação de opções</span><span class="sxs-lookup"><span data-stu-id="0ba7a-221">Options validation</span></span>
 
-<span data-ttu-id="0a5f4-200">A validação de opções permite validar as opções depois de configurá-las.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-200">Options validation allows you to validate options when options are configured.</span></span> <span data-ttu-id="0a5f4-201">Chame `Validate` com um método de validação que retorna `true` quando as opções são válidas, e `false` quando não são:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-201">Call `Validate` with a validation method that returns `true` if options are valid and `false` if they aren't valid:</span></span>
+<span data-ttu-id="0ba7a-222">A validação de opções permite validar as opções depois de configurá-las.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-222">Options validation allows you to validate options when options are configured.</span></span> <span data-ttu-id="0ba7a-223">Chame `Validate` com um método de validação que retorna `true` quando as opções são válidas, e `false` quando não são:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-223">Call `Validate` with a validation method that returns `true` if options are valid and `false` if they aren't valid:</span></span>
 
 ```csharp
 // Registration
@@ -314,7 +299,7 @@ services.AddOptions<MyOptions>("optionalOptionsName")
     .Configure(o => { }) // Configure the options
     .Validate(o => YourValidationShouldReturnTrueIfValid(o), 
         "custom error");
-        
+
 // Consumption
 var monitor = services.BuildServiceProvider()
     .GetService<IOptionsMonitor<MyOptions>>();
@@ -322,7 +307,7 @@ var monitor = services.BuildServiceProvider()
 try
 {
     var options = monitor.Get("optionalOptionsName");
-} 
+}
 catch (OptionsValidationException e) 
 {
    // e.OptionsName returns "optionalOptionsName"
@@ -332,24 +317,24 @@ catch (OptionsValidationException e)
 }
 ```
 
-<span data-ttu-id="0a5f4-202">O exemplo anterior define a instância de opções nomeadas como `optionalOptionsName`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-202">The preceding example sets the named options instance to `optionalOptionsName`.</span></span> <span data-ttu-id="0a5f4-203">A instância de opções padrão é `Options.DefaultName`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-203">The default options instance is `Options.DefaultName`.</span></span>
+<span data-ttu-id="0ba7a-224">O exemplo anterior define a instância de opções nomeadas como `optionalOptionsName`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-224">The preceding example sets the named options instance to `optionalOptionsName`.</span></span> <span data-ttu-id="0ba7a-225">A instância de opções padrão é `Options.DefaultName`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-225">The default options instance is `Options.DefaultName`.</span></span>
 
-<span data-ttu-id="0a5f4-204">A validação é executada após a criação da instância de opções.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-204">Validation runs when the options instance is created.</span></span> <span data-ttu-id="0a5f4-205">A instância de opções tem garantia de passar pela validação, na primeira vez em que for acessada.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-205">Your options instance is guaranteed to pass validation the first time it's accessed.</span></span>
+<span data-ttu-id="0ba7a-226">A validação é executada após a criação da instância de opções.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-226">Validation runs when the options instance is created.</span></span> <span data-ttu-id="0ba7a-227">A instância de opções tem garantia de passar pela validação, na primeira vez em que for acessada.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-227">Your options instance is guaranteed to pass validation the first time it's accessed.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="0a5f4-206">A validação não protege contra modificações de opções, depois que as opções são inicialmente configuradas e validadas.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-206">Options validation doesn't guard against options modifications after the options are initially configured and validated.</span></span>
+> <span data-ttu-id="0ba7a-228">A validação não protege contra modificações de opções, depois que as opções são inicialmente configuradas e validadas.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-228">Options validation doesn't guard against options modifications after the options are initially configured and validated.</span></span>
 
-<span data-ttu-id="0a5f4-207">O método `Validate` aceita um `Func<TOptions, bool>`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-207">The `Validate` method accepts a `Func<TOptions, bool>`.</span></span> <span data-ttu-id="0a5f4-208">Para personalizar totalmente a validação, implemente `IValidateOptions<TOptions>`, que permite:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-208">To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:</span></span>
+<span data-ttu-id="0ba7a-229">O método `Validate` aceita um `Func<TOptions, bool>`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-229">The `Validate` method accepts a `Func<TOptions, bool>`.</span></span> <span data-ttu-id="0ba7a-230">Para personalizar totalmente a validação, implemente `IValidateOptions<TOptions>`, que permite:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-230">To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:</span></span>
 
-* <span data-ttu-id="0a5f4-209">A validação de vários tipos de opções: `class ValidateTwo : IValidateOptions<Option1>, IValidationOptions<Option2>`</span><span class="sxs-lookup"><span data-stu-id="0a5f4-209">Validation of multiple options types: `class ValidateTwo : IValidateOptions<Option1>, IValidationOptions<Option2>`</span></span>
-* <span data-ttu-id="0a5f4-210">A validação que depende de outro tipo de opção: `public DependsOnAnotherOptionValidator(IOptions<AnotherOption> options)`</span><span class="sxs-lookup"><span data-stu-id="0a5f4-210">Validation that depends on another option type: `public DependsOnAnotherOptionValidator(IOptions<AnotherOption> options)`</span></span>
+* <span data-ttu-id="0ba7a-231">A validação de vários tipos de opções: `class ValidateTwo : IValidateOptions<Option1>, IValidationOptions<Option2>`</span><span class="sxs-lookup"><span data-stu-id="0ba7a-231">Validation of multiple options types: `class ValidateTwo : IValidateOptions<Option1>, IValidationOptions<Option2>`</span></span>
+* <span data-ttu-id="0ba7a-232">A validação que depende de outro tipo de opção: `public DependsOnAnotherOptionValidator(IOptionsMonitor<AnotherOption> options)`</span><span class="sxs-lookup"><span data-stu-id="0ba7a-232">Validation that depends on another option type: `public DependsOnAnotherOptionValidator(IOptionsMonitor<AnotherOption> options)`</span></span>
 
-<span data-ttu-id="0a5f4-211">`IValidateOptions` valida:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-211">`IValidateOptions` validates:</span></span>
+<span data-ttu-id="0ba7a-233">`IValidateOptions` valida:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-233">`IValidateOptions` validates:</span></span>
 
-* <span data-ttu-id="0a5f4-212">Uma instância específica de opções nomeadas.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-212">A specific named options instance.</span></span>
-* <span data-ttu-id="0a5f4-213">Todas as opções quando `name` for `null`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-213">All options when `name` is `null`.</span></span>
+* <span data-ttu-id="0ba7a-234">Uma instância específica de opções nomeadas.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-234">A specific named options instance.</span></span>
+* <span data-ttu-id="0ba7a-235">Todas as opções quando `name` for `null`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-235">All options when `name` is `null`.</span></span>
 
-<span data-ttu-id="0a5f4-214">Retornar um `ValidateOptionsResult` da implementação da interface:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-214">Return a `ValidateOptionsResult` from your implementation of the interface:</span></span>
+<span data-ttu-id="0ba7a-236">Retornar um `ValidateOptionsResult` da implementação da interface:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-236">Return a `ValidateOptionsResult` from your implementation of the interface:</span></span>
 
 ```csharp
 public interface IValidateOptions<TOptions> where TOptions : class
@@ -358,7 +343,7 @@ public interface IValidateOptions<TOptions> where TOptions : class
 }
 ```
 
-<span data-ttu-id="0a5f4-215">A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método `ValidateDataAnnotations` em `OptionsBuilder<TOptions>`:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-215">Data Annotation-based validation is available from the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) package by calling the `ValidateDataAnnotations` method on `OptionsBuilder<TOptions>`:</span></span>
+<span data-ttu-id="0ba7a-237">A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método `ValidateDataAnnotations` em `OptionsBuilder<TOptions>`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-237">Data Annotation-based validation is available from the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) package by calling the `ValidateDataAnnotations` method on `OptionsBuilder<TOptions>`.</span></span> <span data-ttu-id="0ba7a-238">O `Microsoft.Extensions.Options.DataAnnotations` está incluído no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 ou posterior).</span><span class="sxs-lookup"><span data-stu-id="0ba7a-238">`Microsoft.Extensions.Options.DataAnnotations` is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later).</span></span>
 
 ```csharp
 private class AnnotatedOptions
@@ -372,7 +357,7 @@ private class AnnotatedOptions
     [Range(-5, 5, ErrorMessage = "Out of range.")]
     public int IntRange { get; set; }
 }
-    
+
 [Fact]
 public void CanValidateDataAnnotations()
 {
@@ -389,7 +374,7 @@ public void CanValidateDataAnnotations()
     var sp = services.BuildServiceProvider();
 
     var error = Assert.Throws<OptionsValidationException>(() => 
-        sp.GetRequiredService<IOptions<AnnotatedOptions>>().Value);
+        sp.GetRequiredService<IOptionsMonitor<AnnotatedOptions>>().Value);
     ValidateFailure<AnnotatedOptions>(error, Options.DefaultName, 1,
         "DataAnnotation validation failed for members Required " +
             "with the error 'The Required field is required.'.",
@@ -397,18 +382,16 @@ public void CanValidateDataAnnotations()
             "with the error 'Too long.'.",
         "DataAnnotation validation failed for members IntRange " +
             "with the error 'Out of range.'.");
-}    
+}
 ```
 
-<span data-ttu-id="0a5f4-216">A validação adiantada (fail fast na inicialização) está sendo considerada para uma versão futura.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-216">Eager validation (fail fast at startup) is under consideration for a future release.</span></span>
+<span data-ttu-id="0ba7a-239">A validação adiantada (fail fast na inicialização) está sendo considerada para uma versão futura.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-239">Eager validation (fail fast at startup) is under consideration for a future release.</span></span>
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.0"
+## <a name="options-post-configuration"></a><span data-ttu-id="0ba7a-240">Pós-configuração de opções</span><span class="sxs-lookup"><span data-stu-id="0ba7a-240">Options post-configuration</span></span>
 
-## <a name="ipostconfigureoptions"></a><span data-ttu-id="0a5f4-217">IPostConfigureOptions</span><span class="sxs-lookup"><span data-stu-id="0a5f4-217">IPostConfigureOptions</span></span>
-
-<span data-ttu-id="0a5f4-218">Defina a pós-configuração com [IPostConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-218">Set postconfiguration with [IPostConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1).</span></span> <span data-ttu-id="0a5f4-219">A pós-configuração é executada depois que ocorre toda a configuração de [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1):</span><span class="sxs-lookup"><span data-stu-id="0a5f4-219">Postconfiguration runs after all [IConfigureOptions&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.iconfigureoptions-1) configuration occurs:</span></span>
+<span data-ttu-id="0ba7a-241">Defina a pós-configuração com <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1>.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-241">Set post-configuration with <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1>.</span></span> <span data-ttu-id="0ba7a-242">A pós-configuração é executada depois que toda o configuração de <xref:Microsoft.Extensions.Options.IConfigureOptions`1> é feita:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-242">Post-configuration runs after all <xref:Microsoft.Extensions.Options.IConfigureOptions`1> configuration occurs:</span></span>
 
 ```csharp
 services.PostConfigure<MyOptions>(myOptions =>
@@ -417,7 +400,7 @@ services.PostConfigure<MyOptions>(myOptions =>
 });
 ```
 
-<span data-ttu-id="0a5f4-220">[PostConfigure&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1.postconfigure) está disponível para pós-configurar opções nomeadas:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-220">[PostConfigure&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ipostconfigureoptions-1.postconfigure) is available to post-configure named options:</span></span>
+<span data-ttu-id="0ba7a-243">O <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1.PostConfigure*> está disponível para pós-configurar opções nomeadas:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-243"><xref:Microsoft.Extensions.Options.IPostConfigureOptions`1.PostConfigure*> is available to post-configure named options:</span></span>
 
 ```csharp
 services.PostConfigure<MyOptions>("named_options_1", myOptions =>
@@ -426,7 +409,7 @@ services.PostConfigure<MyOptions>("named_options_1", myOptions =>
 });
 ```
 
-<span data-ttu-id="0a5f4-221">Use [PostConfigureAll&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) para pós-configurar todas as instâncias de configuração:</span><span class="sxs-lookup"><span data-stu-id="0a5f4-221">Use [PostConfigureAll&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.dependencyinjection.optionsservicecollectionextensions.postconfigureall) to post-configure all configuration instances:</span></span>
+<span data-ttu-id="0ba7a-244">Use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> para pós-configurar todas as instâncias de configuração:</span><span class="sxs-lookup"><span data-stu-id="0ba7a-244">Use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> to post-configure all configuration instances:</span></span>
 
 ```csharp
 services.PostConfigureAll<MyOptions>(myOptions =>
@@ -435,33 +418,19 @@ services.PostConfigureAll<MyOptions>(myOptions =>
 });
 ```
 
-::: moniker-end
+## <a name="accessing-options-during-startup"></a><span data-ttu-id="0ba7a-245">Acessando opções durante a inicialização</span><span class="sxs-lookup"><span data-stu-id="0ba7a-245">Accessing options during startup</span></span>
 
-## <a name="options-factory-monitoring-and-cache"></a><span data-ttu-id="0a5f4-222">Alocador de opções, monitoramento e cache</span><span class="sxs-lookup"><span data-stu-id="0a5f4-222">Options factory, monitoring, and cache</span></span>
-
-<span data-ttu-id="0a5f4-223">[IOptionsMonitor](/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1) é usado para notificações quando instâncias `TOptions` são alteradas.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-223">[IOptionsMonitor](/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1) is used for notifications when `TOptions` instances change.</span></span> <span data-ttu-id="0a5f4-224">`IOptionsMonitor` dá suporte a opções recarregáveis, notificações de alteração e `IPostConfigureOptions`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-224">`IOptionsMonitor` supports reloadable options, change notifications, and `IPostConfigureOptions`.</span></span>
-
-::: moniker range=">= aspnetcore-2.0"
-
-<span data-ttu-id="0a5f4-225">[IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) é responsável por criar novas instâncias de opção.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-225">[IOptionsFactory&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1) is responsible for creating new options instances.</span></span> <span data-ttu-id="0a5f4-226">Ele tem um único método [Create](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1.create).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-226">It has a single [Create](/dotnet/api/microsoft.extensions.options.ioptionsfactory-1.create) method.</span></span> <span data-ttu-id="0a5f4-227">A implementação padrão usa todos os `IConfigureOptions` e `IPostConfigureOptions` registrados e executa toda a configuração primeiro, seguido da pós-configuração.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-227">The default implementation takes all registered `IConfigureOptions` and `IPostConfigureOptions` and runs all the configures first, followed by the post-configures.</span></span> <span data-ttu-id="0a5f4-228">Ela faz distinção entre `IConfigureNamedOptions` e `IConfigureOptions` e chama apenas a interface apropriada.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-228">It distinguishes between `IConfigureNamedOptions` and `IConfigureOptions` and only calls the appropriate interface.</span></span>
-
-<span data-ttu-id="0a5f4-229">[IOptionsMonitorCache&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1) é usado por `IOptionsMonitor` para armazenar instâncias `TOptions` em cache.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-229">[IOptionsMonitorCache&lt;TOptions&gt;](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1) is used by `IOptionsMonitor` to cache `TOptions` instances.</span></span> <span data-ttu-id="0a5f4-230">O `IOptionsMonitorCache` invalida as instâncias de opções no monitor, de modo que o valor seja recalculado ([TryRemove](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.tryremove)).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-230">The `IOptionsMonitorCache` invalidates options instances in the monitor so that the value is recomputed ([TryRemove](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.tryremove)).</span></span> <span data-ttu-id="0a5f4-231">Os valores também podem ser manualmente inseridos com [TryAdd](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.tryadd).</span><span class="sxs-lookup"><span data-stu-id="0a5f4-231">Values can be manually introduced as well with [TryAdd](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.tryadd).</span></span> <span data-ttu-id="0a5f4-232">O método [Clear](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.clear) é usado quando todas as instâncias nomeadas devem ser recriadas sob demanda.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-232">The [Clear](/dotnet/api/microsoft.extensions.options.ioptionsmonitorcache-1.clear) method is used when all named instances should be recreated on demand.</span></span>
-
-::: moniker-end
-
-## <a name="accessing-options-during-startup"></a><span data-ttu-id="0a5f4-233">Acessando opções durante a inicialização</span><span class="sxs-lookup"><span data-stu-id="0a5f4-233">Accessing options during startup</span></span>
-
-<span data-ttu-id="0a5f4-234">`IOptions` pode ser usado em `Startup.Configure`, pois os serviços são criados antes da execução do método `Configure`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-234">`IOptions` can be used in `Startup.Configure`, since services are built before the `Configure` method executes.</span></span>
+<span data-ttu-id="0ba7a-246"><xref:Microsoft.Extensions.Options.IOptions`1> e <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> podem ser usados em `Startup.Configure`, pois os serviços são criados antes da execução do método `Configure`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-246"><xref:Microsoft.Extensions.Options.IOptions`1> and <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> can be used in `Startup.Configure`, since services are built before the `Configure` method executes.</span></span>
 
 ```csharp
-public void Configure(IApplicationBuilder app, IOptions<MyOptions> optionsAccessor)
+public void Configure(IApplicationBuilder app, IOptionsMonitor<MyOptions> optionsAccessor)
 {
-    var option1 = optionsAccessor.Value.Option1;
+    var option1 = optionsAccessor.CurrentValue.Option1;
 }
 ```
 
-<span data-ttu-id="0a5f4-235">`IOptions` não deve ser usado em `Startup.ConfigureServices`.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-235">`IOptions` shouldn't be used in `Startup.ConfigureServices`.</span></span> <span data-ttu-id="0a5f4-236">Pode haver um estado inconsistente de opções devido à ordenação dos registros de serviço.</span><span class="sxs-lookup"><span data-stu-id="0a5f4-236">An inconsistent options state may exist due to the ordering of service registrations.</span></span>
+<span data-ttu-id="0ba7a-247">Não use <xref:Microsoft.Extensions.Options.IOptions`1> ou <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> em `Startup.ConfigureServices`.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-247">Don't use <xref:Microsoft.Extensions.Options.IOptions`1> or <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> in `Startup.ConfigureServices`.</span></span> <span data-ttu-id="0ba7a-248">Pode haver um estado inconsistente de opções devido à ordenação dos registros de serviço.</span><span class="sxs-lookup"><span data-stu-id="0ba7a-248">An inconsistent options state may exist due to the ordering of service registrations.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="0a5f4-237">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="0a5f4-237">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="0ba7a-249">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="0ba7a-249">Additional resources</span></span>
 
 * <xref:fundamentals/configuration/index>
