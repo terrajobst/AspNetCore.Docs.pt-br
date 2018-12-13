@@ -1,50 +1,79 @@
 ---
-title: Trabalhar com o LocalDB do SQL Server e o ASP.NET Core
+title: Trabalhar com um banco de dados e o ASP.NET Core
 author: rick-anderson
-description: Explica como trabalhar com o SQL Server LocalDB e o ASP.NET Core.
-monikerRange: '>= aspnetcore-2.0'
+description: Explica como trabalhar com um banco de dados e o ASP.NET Core.
+monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
-ms.date: 08/07/2017
+ms.date: 12/07/2017
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: 20e2353eb2e453235c2fb04c696a7e3d27bed5bf
-ms.sourcegitcommit: b2723654af4969a24545f09ebe32004cb5e84a96
+ms.openlocfilehash: 817102a7b89ef4f078d7d0a0bf03ba7cb2745a5d
+ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46011268"
+ms.lasthandoff: 12/04/2018
+ms.locfileid: "52861271"
 ---
-# <a name="work-with-sql-server-localdb-and-aspnet-core"></a>Trabalhar com o LocalDB do SQL Server e o ASP.NET Core
+# <a name="work-with-a-database-and-aspnet-core"></a>Trabalhar com um banco de dados e o ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Joe Audette](https://twitter.com/joeaudette) 
+Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Joe Audette](https://twitter.com/joeaudette)
 
-O objeto `MovieContext` cuida da tarefa de se conectar ao banco de dados e mapear objetos `Movie` para registros do banco de dados. O contexto de banco de dados é registrado com o contêiner [Injeção de Dependência](xref:fundamentals/dependency-injection) no método `ConfigureServices` no arquivo *Startup.cs*:
+[!INCLUDE[](~/includes/rp/download.md)]
 
-::: moniker range="= aspnetcore-2.0"
+O objeto `RazorPagesMovieContext` cuida da tarefa de se conectar ao banco de dados e mapear objetos `Movie` para registros do banco de dados. O contexto de banco de dados é registrado com o contêiner [Injeção de Dependência](xref:fundamentals/dependency-injection) no método `ConfigureServices` em *Startup.cs*:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices&highlight=7-8)]
+<!-- VS -------------------------->
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-::: moniker-end
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-::: moniker range=">= aspnetcore-2.1"
+<!-- Code -------------------------->
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+
+<!-- Mac -------------------------->
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+
+---  
+<!-- End of VS tabs -->
 
 Para obter mais informações sobre os métodos usados em `ConfigureServices`, veja:
 
 * [Suporte ao RGPD (Regulamento Geral sobre a Proteção de Dados) da UE no ASP.NET Core](xref:security/gdpr) para `CookiePolicyOptions`.
 * [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
-::: moniker-end
+O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET Core lê a `ConnectionString`. Para o desenvolvimento local, ele obtém a cadeia de conexão do arquivo *appsettings.json*.
 
-O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET Core lê a `ConnectionString`. Para o desenvolvimento local, ele obtém a cadeia de conexão do arquivo *appsettings.json*. O valor do nome do banco de dados (`Database={Database name}`) será diferente para o seu código gerado. O valor do nome é arbitrário.
+<!-- VS -------------------------->
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-[!code-json[](razor-pages-start/sample/RazorPagesMovie/appsettings.json?highlight=2&range=8-10)]
+O valor do nome do banco de dados (`Database={Database name}`) será diferente para o seu código gerado. O valor do nome é arbitrário.
 
-Quando você implanta o aplicativo em um servidor de teste ou de produção, você pode usar uma variável de ambiente ou outra abordagem para definir a cadeia de conexão como um SQL Server real. Consulte [Configuração](xref:fundamentals/configuration/index) para obter mais informações.
+[!code-json[](razor-pages-start/sample/RazorPagesMovie22/appsettings.json)]
+
+<!-- Code -------------------------->
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
+
+<!-- Mac -------------------------->
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
+
+---  
+<!-- End of VS tabs -->
+
+Quando o aplicativo é implantado em um servidor de teste ou de produção, uma variável de ambiente pode ser usada para definir a cadeia de conexão como um servidor de banco de dados real. Consulte [Configuração](xref:fundamentals/configuration/index) para obter mais informações.
+
+<!-- VS -------------------------->
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 ## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
-O LocalDB é uma versão leve do Mecanismo de Banco de Dados do SQL Server Express, que é direcionado para o desenvolvimento de programas. O LocalDB é iniciado sob demanda e executado no modo de usuário e, portanto, não há nenhuma configuração complexa. Por padrão, o banco de dados LocalDB cria arquivos “\*.mdf” no diretório *C:/Users/\<user\>*.
+O LocalDB é uma versão leve do mecanismo de banco de dados do SQL Server Express direcionada para o desenvolvimento de programas. O LocalDB é iniciado sob demanda e executado no modo de usuário e, portanto, não há nenhuma configuração complexa. Por padrão, o banco de dados LocalDB cria arquivos `*.mdf` no diretório `C:/Users/<user/>`.
 
 <a name="ssox"></a>
 * No menu **Exibir**, abra **SSOX** (Pesquisador de Objetos do SQL Server).
@@ -61,23 +90,25 @@ Observe o ícone de chave ao lado de `ID`. Por padrão, o EF cria uma propriedad
 
 * Clique com o botão direito do mouse na tabela `Movie` e selecione **Exibir dados**:
 
-  ![Tabela Movie aberta mostrando os dados da tabela](sql/_static/vd22.png)
+  ![Tabela de filmes aberta mostrando os dados da tabela](sql/_static/vd22.png)
+<!-- Code -------------------------->
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/rp/sqlite.md)]
+
+<!-- Mac -------------------------->
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/rp/sqlite.md)]
+
+---  
+<!-- End of VS tabs -->
 
 ## <a name="seed-the-database"></a>Propagar o banco de dados
 
-Crie uma nova classe chamada `SeedData` na pasta *Models*. Substitua o código gerado pelo seguinte:
+Crie uma classe chamada `SeedData` na pasta *Models* com o seguinte código:
 
-::: moniker range="= aspnetcore-2.0"
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/SeedData.cs?name=snippet_1)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Models/SeedData.cs?name=snippet_1)]
-
-::: moniker-end
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
 
 Se houver um filme no BD, o inicializador de semeadura será retornado e nenhum filme será adicionado.
 
@@ -98,17 +129,7 @@ Em *Program.cs*, modifique o método `Main` para fazer o seguinte:
 
 O código a seguir mostra o arquivo *Program.cs* atualizado.
 
-::: moniker range="= aspnetcore-2.0"
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Program.cs)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie21/Program.cs)]
-
-::: moniker-end
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Program.cs)]
 
 Um aplicativo de produção não chamaria `Database.Migrate`. Ele é adicionado ao código anterior para evitar a exceção a seguir quando `Update-Database` não foi executado:
 
@@ -116,6 +137,9 @@ SqlException: não pode abrir o banco de dados "RazorPagesMovieContext-21" solic
 O logon falhou para o usuário 'user name'.
 
 ### <a name="test-the-app"></a>Testar o aplicativo
+
+<!-- VS -------------------------->
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Exclua todos os registros no BD. Faça isso com os links Excluir no navegador ou no [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Force o aplicativo a ser inicializado (chame os métodos na classe `Startup`) para que o método de semeadura seja executado. Para forçar a inicialização, o IIS Express deve ser interrompido e reiniciado. Faça isso com uma das seguintes abordagens:
@@ -128,6 +152,25 @@ O logon falhou para o usuário 'user name'.
 
     * Se você estiver executando o VS no modo sem depuração, pressione F5 para executar no modo de depuração.
     * Se você estiver executando o VS no modo de depuração, pare o depurador e pressione F5.
+
+<!-- Code -------------------------->
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+Exclua todos os registros no BD (para que o método de semeadura seja executado). Interrompa e inicie o aplicativo para propagar o banco de dados.
+
+O aplicativo mostra os dados propagados.
+
+<!-- Mac -------------------------->
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+
+Exclua todos os registros no BD (para que o método de semeadura seja executado). Interrompa e inicie o aplicativo para propagar o banco de dados.
+
+O aplicativo mostra os dados propagados.
+
+---  
+<!-- End of VS tabs -->
+
+
    
 O aplicativo mostra os dados propagados:
 

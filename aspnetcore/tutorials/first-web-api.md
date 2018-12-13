@@ -1,104 +1,484 @@
 ---
-title: Criar uma API Web com o ASP.NET Core e o Visual Studio
+title: 'Tutorial: Criar uma API Web com o ASP.NET Core MVC'
 author: rick-anderson
-description: Criar uma API Web com o ASP.NET Core MVC e o Visual Studio para Windows
+description: Criar uma API Web com o ASP.NET Core MVC
 ms.author: riande
+monikerRange: '> aspnetcore-2.1'
 ms.custom: mvc
-ms.date: 05/17/2018
+ms.date: 11/19/2018
 uid: tutorials/first-web-api
-ms.openlocfilehash: eb23d5376742e04712f714263815582fddc5d18e
-ms.sourcegitcommit: e9b99854b0a8021dafabee0db5e1338067f250a9
+ms.openlocfilehash: 1af14b85cbaefc00fd97db7c721c4f9436a65fb2
+ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52450691"
+ms.lasthandoff: 12/09/2018
+ms.locfileid: "53121460"
 ---
-# <a name="create-a-web-api-with-aspnet-core-and-visual-studio"></a>Criar uma API Web com o ASP.NET Core e o Visual Studio
+# <a name="tutorial-create-a-web-api-with-aspnet-core-mvc"></a>Tutorial: Criar uma API Web com o ASP.NET Core MVC
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Mike Wasson](https://github.com/mikewasson)
 
-Este tutorial compilará uma API Web para gerenciar uma lista de itens de “tarefas pendentes”. Uma interface do usuário (UI) não será criada.
+Este tutorial ensina os conceitos básicos da criação de uma API Web com o ASP.NET Core.
 
-Há três versões deste tutorial:
+Neste tutorial, você aprenderá como:
 
-* Windows: API Web com o Visual Studio para Windows (este tutorial, confira a [versão em vídeo](https://www.youtube.com/watch?v=TTkhEyGBfAk))
-* macOS: [API Web com o Visual Studio para Mac](xref:tutorials/first-web-api-mac)
-* macOS, Linux, Windows: [API Web com o Visual Studio Code](xref:tutorials/web-api-vsc)
+> [!div class="checklist"]
+> * Criar um projeto de aplicativo API Web.
+> * Adicionar uma classe de modelo.
+> * Criar o contexto de banco de dados.
+> * Registrar o contexto de banco de dados.
+> * Adicionar um controlador.
+> * Adicionar métodos CRUD.
+> * Configurar o roteamento e caminhos de URL.
+> * Especificar os valores retornados.
+> * Chamar a API Web com o Postman.
+> * Chamar a API Web com o jQuery.
 
-<!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
+No final, você terá uma API Web que pode gerenciar itens de "tarefas pendentes" armazenados em um banco de dados relacional.
 
-> [!NOTE]
-> Estamos testando a usabilidade de uma nova estrutura proposta para o sumário do ASP.NET Core.  Se você tiver alguns minutos para experimentar um exercício de localização de sete tópicos diferentes no sumário atual ou proposto, [clique aqui para participar do estudo](https://dpk4xbh5.optimalworkshop.com/treejack/rps16hd5).
+## <a name="overview"></a>Visão geral
 
-[!INCLUDE[intro to web API](../includes/webApi/intro.md)]
+Este tutorial cria a seguinte API:
 
-## <a name="prerequisites"></a>Pré-requisitos
+|API | Descrição | Corpo da solicitação | Corpo da resposta |
+|--- | ---- | ---- | ---- |
+|GET /api/todo | Obter todos os itens de tarefas pendentes | Nenhum | Matriz de itens de tarefas pendentes|
+|GET /api/todo/{id} | Obter um item por ID | Nenhum | Item de tarefas pendentes|
+|POST /api/todo | Adicionar um novo item | Item de tarefas pendentes | Item de tarefas pendentes |
+|PUT /api/todo/{id} | Atualizar um item &nbsp; existente | Item de tarefas pendentes | Nenhum |
+|DELETE /api/todo/{id} &nbsp; &nbsp; | Excluir um item &nbsp; &nbsp; | Nenhum | Nenhum|
 
-[!INCLUDE[](~/includes/net-core-prereqs-windows.md)]
+O diagrama a seguir mostra o design do aplicativo.
 
-## <a name="create-the-project"></a>Criar o projeto
+![O cliente é representado por uma caixa à esquerda e envia uma solicitação e recebe uma resposta do aplicativo, uma caixa desenhada à direita. Dentro da caixa do aplicativo, três caixas representam o controlador, o modelo e a camada de acesso a dados. A solicitação é recebida no controlador do aplicativo e as operações de leitura/gravação ocorrem entre o controlador e a camada de acesso a dados. O modelo é serializado e retornado para o cliente na resposta.](first-web-api/_static/architecture.png)
 
-Siga estas etapas no Visual Studio:
+[!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
+
+## <a name="create-a-web-project"></a>Criar um projeto Web
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * No menu **Arquivo**, selecione **Novo** > **Projeto**.
 * Selecione o modelo **Aplicativo Web ASP.NET Core**. Nomeie o projeto como *TodoApi* e clique em **OK**.
 * Na caixa de diálogo **Novo aplicativo Web ASP.NET Core – TodoApi** e escolha a versão do ASP.NET Core. Selecione o modelo **API** e clique em **OK**. **Não** selecione **Habilitar Suporte ao Docker**.
 
-### <a name="launch-the-app"></a>Iniciar o aplicativo
+![Caixa de diálogo Novo projeto do VS](first-web-api/_static/vs.png)
 
-No Visual Studio, pressione CTRL + F5 para iniciar o aplicativo. O Visual Studio inicia um navegador e navega para `http://localhost:<port>/api/values`, em que `<port>` é um número de porta escolhido aleatoriamente. O Chrome, Microsoft Edge e Firefox exibem a seguinte saída:
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+* Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Altere os diretórios (`cd`) para a pasta que conterá a pasta do projeto.
+* Execute os seguintes comandos:
+
+   ```console
+   dotnet new webapi -o TodoApi
+   code -r TodoApi
+   ```
+
+  Esses comandos criam um projeto de API Web e abrem uma nova instância do Visual Studio Code na nova pasta do projeto.
+
+* Quando uma caixa de diálogo perguntar se você deseja adicionar os ativos necessários ao projeto, selecione **Sim**
+
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+
+* Selecione **Arquivo** > **Nova Solução**.
+
+  ![Nova solução do macOS](first-web-api-mac/_static/sln.png)
+
+* Selecione **Aplicativo .NET Core** > **API Web ASP.NET Core** > **Avançar**.
+
+  ![Caixa de diálogo Novo projeto do macOS](first-web-api-mac/_static/1.png)
+  
+* Na caixa de diálogo **Configurar sua nova API Web do ASP.NET Core**, aceite a **Estrutura de Destino** padrão **.NET Core 2.2*.
+
+* Insira *TodoApi* para o **Nome do Projeto** e, em seguida, selecione **Criar**.
+
+  ![caixa de diálogo de configuração](first-web-api-mac/_static/2.png)
+
+---
+
+### <a name="test-the-api"></a>Testar a API
+
+O modelo de projeto cria uma API `values`. Chame o método `Get` em um navegador para testar o aplicativo.
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+Pressione CTRL+F5 para executar o aplicativo. O Visual Studio inicia um navegador e navega para `https://localhost:<port>/api/values`, em que `<port>` é um número de porta escolhido aleatoriamente.
+
+Se você receber uma caixa de diálogo perguntando se você deve confiar no certificado do IIS Express, selecione **Sim**. Na caixa de diálogo **Aviso de Segurança** exibida em seguida, selecione **Sim**.
+
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+Pressione CTRL+F5 para executar o aplicativo. Em um navegador, acesse a seguinte URL: [https://localhost:5001/api/values](https://localhost:5001/api/values).
+
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+
+Selecione **Executar** > **Iniciar com Depuração** para iniciar o aplicativo. O Visual Studio para Mac inicia um navegador e navega para `https://localhost:<port>`, em que `<port>` é um número de porta escolhido aleatoriamente. Um erro HTTP 404 (Não Encontrado) será retornado. Acrescente `/api/values` à URL (altere a URL para `https://localhost:<port>/api/values`).
+
+---
+
+O seguinte JSON é retornado:
 
 ```json
 ["value1","value2"]
 ```
 
-Se usar o Internet Explorer, você deverá salvar um arquivo *values.json*.
+## <a name="add-a-model-class"></a>Adicionar uma classe de modelo
 
-### <a name="add-a-model-class"></a>Adicionar uma classe de modelo
+Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo aplicativo. O modelo para esse aplicativo é uma única classe `TodoItem`.
 
-Um modelo é um objeto que representa os dados no aplicativo. Nesse caso, o único modelo é um item de tarefas pendentes.
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-No Gerenciador de Soluções, clique com o botão direito do mouse no projeto. Selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta *Models*.
+* No **Gerenciador de Soluções**, clique com o botão direito do mouse no projeto. Selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta *Models*.
 
-> [!NOTE]
-> As classes de modelo podem ficar em qualquer lugar no projeto. A pasta *Modelos* é usada por convenção para as classes de modelo.
+* Clique com o botão direito do mouse na pasta *Modelos* e selecione **Adicionar** > **Classe**. Dê à classe o nome *TodoItem* e selecione **Adicionar**.
 
-No Gerenciador de Soluções, clique com o botão direito do mouse na pasta *Modelos* e selecione **Adicionar** > **Classe**. Nomeie a classe como *TodoItem* e clique em **Adicionar**.
+* Substitua o código do modelo pelo seguinte código:
 
-Atualize a classe `TodoItem` com o código a seguir:
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](first-web-api/samples/2.0/TodoApi/Models/TodoItem.cs)]
+* Adicione uma pasta chamada *Models*.
 
-O banco de dados gera o `Id` quando um `TodoItem` é criado.
+* Adicione uma classe `TodoItem` à pasta *Models* com o seguinte código:
 
-### <a name="create-the-database-context"></a>Criar o contexto de banco de dados
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-O *contexto de banco de dados* é a classe principal que coordena a funcionalidade do Entity Framework para um determinado modelo de dados. Essa classe é criada derivando-a da classe `Microsoft.EntityFrameworkCore.DbContext`.
+* Clique com o botão direito do mouse no projeto. Selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
 
-No Gerenciador de Soluções, clique com o botão direito do mouse na pasta *Modelos* e selecione **Adicionar** > **Classe**. Nomeie a classe como *TodoContext* e clique em **Adicionar**.
+  ![nova pasta](first-web-api-mac/_static/folder.png)
 
-Substitua a classe pelo código a seguir:
+* Clique com o botão direito do mouse na pasta *Modelos* e selecione **Adicionar** > **Novo Arquivo** > **Geral** > **Classe Vazia**.
 
-[!code-csharp[](first-web-api/samples/2.0/TodoApi/Models/TodoContext.cs)]
+* Nomeie a classe como *TodoItem* e, em seguida, clique em **Novo**.
 
-[!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
+* Substitua o código do modelo pelo seguinte código:
 
-### <a name="add-a-controller"></a>Adicionar um controlador
+---
 
-No Gerenciador de Soluções, clique com o botão direito do mouse na pasta *Controladores*. Selecione **Adicionar** > **Novo Item**. Na caixa de diálogo **Adicionar Novo Item**, selecione o modelo **Classe do Controlador de API**. Nomeie a classe como *TodoController* e clique em **Adicionar**.
+  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Models/TodoItem.cs)]
 
-![Caixa de diálogo Adicionar Novo Item com o controlador na caixa de pesquisa e o controlador da API Web selecionados](first-web-api/_static/new_controller.png)
+A propriedade `Id` funciona como a chave exclusiva em um banco de dados relacional.
 
-Substitua a classe pelo código a seguir:
+As classes de modelo podem ser colocadas em qualquer lugar no projeto, mas a pasta *Models* é usada por convenção.
 
-[!INCLUDE[code and get todo items](../includes/webApi/getTodoItems.md)]
+## <a name="add-a-database-context"></a>Adicionar um contexto de banco de dados
 
-### <a name="launch-the-app"></a>Iniciar o aplicativo
+O *contexto de banco de dados* é a classe principal que coordena a funcionalidade do Entity Framework para um modelo de dados. Essa classe é criada derivando-a da classe `Microsoft.EntityFrameworkCore.DbContext`.
 
-No Visual Studio, pressione CTRL + F5 para iniciar o aplicativo. O Visual Studio inicia um navegador e navega para `http://localhost:<port>/api/values`, em que `<port>` é um número de porta escolhido aleatoriamente. Navegue até o controlador `Todo` no `http://localhost:<port>/api/todo`.
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[last part of web API](../includes/webApi/end.md)]
+* Clique com o botão direito do mouse na pasta *Modelos* e selecione **Adicionar** > **Classe**. Nomeie a classe como *TodoContext* e clique em **Adicionar**.
 
-[!INCLUDE[jQuery](../includes/webApi/add-jquery.md)]
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[next steps](../includes/webApi/next.md)]
+* Adicione uma classe denominada `TodoContext` à pasta *Modelos*.
+
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+
+* Adicione uma classe `TodoContext` à pasta *Models*:
+
+---
+
+* Substitua o código do modelo pelo seguinte código:
+
+  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Models/TodoContext.cs)]
+
+## <a name="register-the-database-context"></a>Registrar o contexto de banco de dados
+
+No ASP.NET Core, serviços como o contexto de BD precisam ser registrados no contêiner de [DI (injeção de dependência)](xref:fundamentals/dependency-injection). O contêiner fornece o serviço aos controladores.
+
+Atualize *Startup.cs* com o seguinte código realçado:
+
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup1.cs?highlight=5,8,25-26&name=snippet_all)]
+
+O código anterior:
+
+* Remove as declarações `using` não utilizadas.
+* Adiciona o contexto de banco de dados ao contêiner de DI.
+* Especifica que o contexto de banco de dados usará um banco de dados em memória.
+
+## <a name="add-a-controller"></a>Adicionar um controlador
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* Clique com o botão direito do mouse na pasta *Controllers*.
+* Selecione **Adicionar** > **Novo Item**.
+* Na caixa de diálogo **Adicionar Novo Item**, selecione o modelo **Classe do Controlador de API**.
+* Dê à classe o nome *TodoController* e selecione **Adicionar**.
+
+  ![Caixa de diálogo Adicionar Novo Item com o controlador na caixa de pesquisa e o controlador da API Web selecionados](first-web-api/_static/new_controller.png)
+
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+* Na pasta *Controllers*, crie uma classe chamada `TodoController`.
+
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+
+* Na pasta *Controllers*, adicione a classe `TodoController`.
+
+---
+
+* Substitua o código do modelo pelo seguinte código:
+
+  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
+
+O código anterior:
+
+* Define uma classe de controlador de API sem métodos.
+* Decore a classe com o atributo [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute). Esse atributo indica se o controlador responde às solicitações da API Web. Para obter informações sobre comportamentos específicos habilitados pelo atributo, confira [Anotação com o atributo ApiController](xref:web-api/index#annotation-with-apicontroller-attribute).
+* Usa a DI para injetar o contexto de banco de dados (`TodoContext`) no controlador. O contexto de banco de dados é usado em cada um dos métodos [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) no controlador.
+* Adiciona um item chamado `Item1` ao banco de dados se o banco de dados está vazio. Esse código está no construtor, de modo que ele seja executado sempre que há uma nova solicitação HTTP. Se você excluir todos os itens, o construtor criará `Item1` novamente na próxima vez que um método de API for chamado. Portanto, pode parecer que a exclusão não funcionou quando ela realmente funcionou.
+
+## <a name="add-get-methods"></a>Adicionar métodos Get
+
+Para fornecer uma API que recupera itens pendentes, adicione os seguintes métodos à classe `TodoController`:
+
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetAll)]
+
+Esses métodos implementam dois pontos de extremidade GET:
+
+* `GET /api/todo`
+* `GET /api/todo/{id}`
+
+Teste o aplicativo chamando os dois pontos de extremidade em um navegador. Por exemplo:
+
+* `https://localhost:<port>/api/todo`
+* `https://localhost:<port>/api/todo/1`
+
+A seguinte resposta HTTP é produzida pela chamada a `GetTodoItems`:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Item1",
+    "isComplete": false
+  }
+]
+```
+
+## <a name="routing-and-url-paths"></a>Roteamento e caminhos de URL
+
+O atributo [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) indica um método que responde a uma solicitação HTTP GET. O caminho da URL de cada método é construído da seguinte maneira:
+
+* Comece com a cadeia de caracteres de modelo no atributo `Route` do controlador:
+
+  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
+
+* Substitua `[controller]` pelo nome do controlador, que é o nome de classe do controlador menos o sufixo "Controlador" por convenção. Para esta amostra, o nome da classe do controlador é **Todo**Controller e, portanto, o nome do controlador é "todo". O [roteamento](xref:mvc/controllers/routing) do ASP.NET Core não diferencia maiúsculas de minúsculas.
+* Se o atributo `[HttpGet]` tiver um modelo de rota (por exemplo, `[HttpGet("/products")]`), acrescente isso ao caminho. Esta amostra não usa um modelo. Para obter mais informações, confira [Roteamento de atributo com atributos Http[Verb]](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
+
+No método `GetTodoItem` a seguir, `"{id}"` é uma variável de espaço reservado para o identificador exclusivo do item pendente. Quando `GetTodoItem` é invocado, o valor de `"{id}"` na URL é fornecido para o método no parâmetro `id`.
+
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+
+O parâmetro `Name = "GetTodo"` cria uma rota nomeada. Você verá posteriormente como o aplicativo pode usar o nome para criar um link HTTP usando o nome da rota.
+
+## <a name="return-values"></a>Valores de retorno
+
+O tipo de retorno dos métodos `GetTodoItems` e `GetTodoItem` é o [tipo ActionResult\<T>](xref:web-api/action-return-types#actionresultt-type). O ASP.NET Core serializa automaticamente o objeto em [JSON](https://www.json.org/) e grava o JSON no corpo da mensagem de resposta. O código de resposta para esse tipo de retorno é 200, supondo que não haja nenhuma exceção sem tratamento. As exceções sem tratamento são convertidas em erros 5xx.
+
+Os tipos de retorno `ActionResult` podem representar uma ampla variedade de códigos de status HTTP. Por exemplo, `GetTodoItem` pode retornar dois valores de status diferentes:
+
+* Se nenhum item corresponder à ID solicitada, o método retornará um código de erro 404 [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound).
+* Caso contrário, o método retornará 200 com um corpo de resposta JSON. Retornar `item` resulta em uma resposta HTTP 200.
+
+## <a name="test-the-gettodoitems-method"></a>Testar o método GetTodoItems
+
+Este tutorial usa o Postman para testar a API Web.
+
+* Instale o [Postman](https://www.getpostman.com/apps)
+* Inicie o aplicativo Web.
+* Inicie o Postman.
+* Desabilite a **Verificação do certificado SSL**
+  
+  * Em **Arquivo > Configurações** (guia **Geral*), desabilite **Verificação do certificado SSL**.
+    > [!WARNING]
+    > Habilite novamente a verificação do certificado SSL depois de testar o controlador.
+
+* Crie uma solicitação.
+  * Defina o método HTTP como **GET**.
+  * Defina a URL de solicitação como `https://localhost:<port>/api/todo`. Por exemplo, `https://localhost:5001/api/todo`.
+* Defina **Exibição de dois painéis** no Postman.
+* Selecione **Enviar**.
+
+![Postman com solicitação GET](first-web-api/_static/2pv.png)
+
+## <a name="add-a-create-method"></a>Adicionar um método Create
+
+Adicione o seguinte método `PostTodoItem`:
+
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
+
+O código anterior é um método HTTP POST, conforme indicado pelo atributo [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute). O método obtém o valor do item pendente no corpo da solicitação HTTP.
+
+O método `CreatedAtRoute`:
+
+* Retorna uma resposta 201. HTTP 201 é a resposta padrão para um método HTTP POST que cria um novo recurso no servidor.
+* Adiciona um cabeçalho Local à resposta. O cabeçalho Location especifica o URI do item de tarefas pendentes recém-criado. Para obter mais informações, confira [10.2.2 201 Criado](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* Usa a rota chamada "GetTodo" para criar a URL. A rota chamada "GetTodo" é definida em `GetTodoItem`:
+
+  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+
+### <a name="test-the-posttodoitem-method"></a>Testar o método PostTodoItem
+
+* Compile o projeto.
+* No Postman, defina o método HTTP como `POST`.
+* Selecione a guia **Corpo**.
+* Selecione o botão de opção **bruto**.
+* Defina o tipo como **JSON (aplicativo/json)**.
+* No corpo da solicitação, insira JSON para um item pendente:
+
+    ```json
+    {
+      "name":"walk dog",
+      "isComplete":true
+    }
+    ```
+
+* Selecione **Enviar**.
+
+  ![Postman com a solicitação Create](first-web-api/_static/create.png)
+
+  Se você receber um erro 405 Método Não Permitido, esse, provavelmente, será o resultado da não compilação do projeto após a adição do método `PostTodoItem`.
+
+### <a name="test-the-location-header-uri"></a>Testar o URI do cabeçalho de local
+
+* Selecione a guia **Cabeçalhos** no painel **Resposta**.
+* Copie o valor do cabeçalho **Local**:
+
+  ![Guia Cabeçalhos do console do Postman](first-web-api/_static/pmc2.png)
+
+* Defina o método como GET.
+* Cole o URI (por exemplo, `https://localhost:5001/api/Todo/2`)
+* Selecione **Enviar**.
+
+## <a name="add-a-puttodoitem-method"></a>Adicionar um método PutTodoItem
+
+Adicione o seguinte método `PutTodoItem`:
+
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+
+`PutTodoItem` é semelhante a `PostTodoItem`, exceto pelo uso de HTTP PUT. A resposta é [204 (Sem conteúdo)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). De acordo com a especificação de HTTP, uma solicitação PUT exige que o cliente envie a entidade inteira atualizada, não apenas as alterações. Para dar suporte a atualizações parciais, use [HTTP PATCH](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute).
+
+### <a name="test-the-puttodoitem-method"></a>Testar o método PutTodoItem
+
+Atualize o item pendente que tem a ID = 1 e defina seu nome como "feed fish":
+
+```json
+  {
+    "ID":1,
+    "name":"feed fish",
+    "isComplete":true
+  }
+```
+
+A seguinte imagem mostra a atualização do Postman:
+
+![Console do Postman mostrando a resposta 204 (Sem conteúdo)](first-web-api/_static/pmcput.png)
+
+## <a name="add-a-deletetodoitem-method"></a>Adicionar um método DeleteTodoItem
+
+Adicione o seguinte método `DeleteTodoItem`:
+
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Delete)]
+
+A resposta `DeleteTodoItem` é [204 (Sem conteúdo)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
+
+### <a name="test-the-deletetodoitem-method"></a>Testar o método DeleteTodoItem
+
+Use o Postman para excluir um item pendente:
+
+* Defina o método como `DELETE`.
+* Defina o URI do objeto a ser excluído, por exemplo, `https://localhost:5001/api/todo/1`
+* Selecione **Enviar**
+
+O aplicativo de exemplo permite que você exclua todos os itens, mas quando o último item é excluído, um novo é criado pelo construtor de classe de modelo na próxima vez que a API é chamada.
+
+## <a name="call-the-api-with-jquery"></a>Chamar a API com o jQuery
+
+Nesta seção, uma página HTML que usa o jQuery para chamar a API Web é adicionada. O jQuery inicia a solicitação e atualiza a página com os detalhes da resposta da API.
+
+Configure o aplicativo para [fornecer arquivos estáticos](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [habilitar o mapeamento de arquivo padrão](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_):
+
+[!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup.cs?highlight=14-15&name=snippet_configure)]
+
+::: moniker range=">= aspnetcore-2.2"
+Crie uma pasta *wwwroot* no diretório do projeto.
+::: moniker-end
+
+Adicione um arquivo HTML chamado *index.html* ao diretório *wwwroot*. Substitua seu conteúdo pela seguinte marcação:
+
+[!code-html[](first-web-api/samples/2.2/TodoApi/wwwroot/index.html)]
+
+Adicione um arquivo JavaScript chamado *site.js* ao diretório *wwwroot*. Substitua seu conteúdo pelo código a seguir:
+
+[!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_SiteJs)]
+
+Uma alteração nas configurações de inicialização do projeto ASP.NET Core pode ser necessária para testar a página HTML localmente:
+
+* Abra *Properties\launchSettings.json*.
+* Remova a propriedade `launchUrl` para forçar o aplicativo a ser aberto em *index.html*, o arquivo padrão do projeto.
+
+Há várias maneiras de obter o jQuery. No snippet anterior, a biblioteca é carregada de uma CDN.
+
+Esta amostra chama todos os métodos CRUD da API. Veja a seguir explicações das chamadas à API.
+
+### <a name="get-a-list-of-to-do-items"></a>Obter uma lista de itens pendentes
+
+A função [ajax](https://api.jquery.com/jquery.ajax/) do jQuery envia uma solicitação `GET` para a API, que retorna o JSON que representa uma matriz de itens pendentes. A função de retorno de chamada `success` será invocada se a solicitação for bem-sucedida. No retorno de chamada, o DOM é atualizado com as informações do item pendente.
+
+[!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_GetData)]
+
+### <a name="add-a-to-do-item"></a>Adicionar um item pendente
+
+A função [ajax](https://api.jquery.com/jquery.ajax/) envia uma solicitação `POST` com o item pendente no corpo da solicitação. As opções `accepts` e `contentType` são definidas como `application/json` para especificar o tipo de mídia que está sendo recebido e enviado. O item pendente é convertido em JSON usando [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). Quando a API retorna um código de status de êxito, a função `getData` é invocada para atualizar a tabela HTML.
+
+[!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AddItem)]
+
+### <a name="update-a-to-do-item"></a>Atualizar um item pendente
+
+A atualização de um item pendente é semelhante à adição de um. A `url` é alterada para adicionar o identificador exclusivo do item, e o `type` é `PUT`.
+
+[!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AjaxPut)]
+
+### <a name="delete-a-to-do-item"></a>Excluir um item pendente
+
+A exclusão de um item pendente é feita definindo o `type` na chamada do AJAX como `DELETE` e especificando o identificador exclusivo do item na URL.
+
+[!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AjaxDelete)]
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+[Exibir ou baixar o código de exemplo para este tutorial](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). Consulte [como baixar](xref:index#how-to-download-a-sample).
+
+Para obter mais informações, consulte os seguintes recursos:
+
+* <xref:web-api/index>
+* <xref:tutorials/web-api-help-pages-using-swagger>
+* <xref:data/ef-rp/index>
+* <xref:mvc/controllers/routing>
+* <xref:web-api/action-return-types>
+* <xref:host-and-deploy/azure-apps/index>
+* <xref:host-and-deploy/index>
+
+## <a name="next-steps"></a>Próximas etapas
+
+Neste tutorial, você aprendeu como:
+
+> [!div class="checklist"]
+> * Criar um projeto de aplicativo API Web.
+> * Adicionar uma classe de modelo.
+> * Criar o contexto de banco de dados.
+> * Registrar o contexto de banco de dados.
+> * Adicionar um controlador.
+> * Adicionar métodos CRUD.
+> * Configurar o roteamento e caminhos de URL.
+> * Especificar os valores retornados.
+> * Chamar a API Web com o Postman.
+> * Chamar a API Web com o jQuery.
+
+Avance para o próximo tutorial para saber como gerar páginas de ajuda da API:
+
+> [!div class="nextstepaction"]
+> <xref:tutorials/get-started-with-swashbuckle>

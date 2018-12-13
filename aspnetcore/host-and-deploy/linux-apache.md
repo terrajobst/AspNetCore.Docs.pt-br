@@ -4,29 +4,29 @@ description: Saiba como configurar o Apache como um servidor proxy reverso no Ce
 author: spboyer
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 12/01/2018
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: d0e36d0a73df43a26c03dc4154962240683817b5
-ms.sourcegitcommit: e9b99854b0a8021dafabee0db5e1338067f250a9
+ms.openlocfilehash: 46cdb764b872e86f0fd7d19133aae14891bdd452
+ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52450808"
+ms.lasthandoff: 12/04/2018
+ms.locfileid: "52862454"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hospedar o ASP.NET Core no Linux com o Apache
 
 Por [Shayne Boyer](https://github.com/spboyer)
 
-Usando este guia, aprenda como configurar o [Apache](https://httpd.apache.org/) como um servidor proxy reverso no [CentOS 7](https://www.centos.org/) para redirecionar o tráfego HTTP para um aplicativo Web ASP.NET Core em execução no [Kestrel](xref:fundamentals/servers/kestrel). A [extensão mod_proxy](http://httpd.apache.org/docs/2.4/mod/mod_proxy.html) e os módulos relacionados criam o proxy reverso do servidor.
+Usando este guia, saiba como configurar o [Apache](https://httpd.apache.org/) como um servidor proxy reverso no [CentOS 7](https://www.centos.org/) para redirecionar o tráfego HTTP para um aplicativo Web ASP.NET Core em execução no servidor [Kestrel](xref:fundamentals/servers/kestrel). A [extensão mod_proxy](http://httpd.apache.org/docs/2.4/mod/mod_proxy.html) e os módulos relacionados criam o proxy reverso do servidor.
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-1. Servidor que executa o CentOS 7 com uma conta de usuário padrão com privilégio sudo.
-1. Instale o tempo de execução do .NET Core no servidor.
+* Servidor que executa o CentOS 7 com uma conta de usuário padrão com privilégio sudo.
+* Instale o tempo de execução do .NET Core no servidor.
    1. Acesse a [página Todos os Downloads do .NET Core](https://www.microsoft.com/net/download/all).
    1. Selecione o tempo de execução não de versão prévia mais recente da lista em **Tempo de Execução**.
    1. Selecione e siga as instruções para CentOS/Oracle.
-1. Um aplicativo ASP.NET Core existente.
+* Um aplicativo ASP.NET Core existente.
 
 ## <a name="publish-and-copy-over-the-app"></a>Publicar e copiar o aplicativo
 

@@ -2,53 +2,136 @@
 title: Atualizar as páginas geradas em um aplicativo ASP.NET Core
 author: rick-anderson
 description: Saiba como atualizar as páginas geradas em um aplicativo ASP.NET Core.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
-ms.date: 05/30/2018
+ms.date: 12/3/2018
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: f47a68840a6307b69bc92a7b157037d91dce5422
-ms.sourcegitcommit: f5d403004f3550e8c46585fdbb16c49e75f495f3
+ms.openlocfilehash: b88dcd12ee670eb2e0919bdb07b9b7556a5b80e7
+ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/20/2018
-ms.locfileid: "49477209"
+ms.lasthandoff: 12/04/2018
+ms.locfileid: "52862402"
 ---
 # <a name="update-the-generated-pages-in-an-aspnet-core-app"></a>Atualizar as páginas geradas em um aplicativo ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Temos um bom começo para o aplicativo de filme, mas a apresentação não é ideal. Você não deseja ver a hora (12:00:00 AM na imagem abaixo) e **ReleaseDate** deve ser **Release Date** (duas palavras).
+O aplicativo de filme gerado por scaffolding tem um bom começo, mas a apresentação não é ideal. **ReleaseDate** deveria ser **Data de Lançamento** (duas palavras).
 
-![Aplicativo de filme aberto no Chrome mostrando os dados do filme](sql/_static/m55.png)
+![Aplicativo de filme aberto no Chrome](sql/_static/m55.png)
 
 ## <a name="update-the-generated-code"></a>Atualize o código gerado
 
 Abra o arquivo *Models/Movie.cs* e adicione as linhas realçadas mostradas no seguinte código:
 
-::: moniker range="= aspnetcore-2.0"
+[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateFixed.cs?name=snippet_1&highlight=12,17)]
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/MovieDate.cs?name=snippet_1&highlight=10-11)]
+A anotação de dados `[Column(TypeName = "decimal(18, 2)")]` permite que o Entity Framework Core mapeie o `Price` corretamente para a moeda no banco de dados. Para obter mais informações, veja [Tipos de Dados](/ef/core/modeling/relational/data-types).
 
-::: moniker-end
+[DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) é abordado no próximo tutorial. O atributo [Display](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.displaymetadata) especifica o que deve ser exibido no nome de um campo (neste caso, “Release Date” em vez de “ReleaseDate”). O atributo [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) especifica o tipo de dados (Data) e, portanto, as informações de hora armazenadas no campo não são exibidas.
 
-::: moniker range=">= aspnetcore-2.1"
+Procure Pages/Movies e focalize um link **Editar** para ver a URL de destino.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie21/Models/MovieDate.cs?name=snippet_1&highlight=10-11,15)]
+![São mostrados uma janela do navegador com o mouse sobre o link de edição e um link da URL http://localhost:1234/Movies/Edit/5](~/tutorials/razor-pages/da1/edit7.png)
 
-::: moniker-end
+Os links **Editar**, **Detalhes** e **Excluir** são gerados pelo [Auxiliar de Marcação de Âncora](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) no arquivo *Pages/Movies/Index.cshtml*.
 
-Clique com o botão direito do mouse em uma linha vermelha ondulada > **Ações Rápidas e Refatorações**.
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
-  ![Menu contextual mostra **> Ações Rápidas e Refatorações**.](da1/qa.png)
+Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. No código anterior, o `AnchorTagHelper` gera dinamicamente o valor do atributo `href` HTML da página Razor (a rota é relativa), o `asp-page` e a ID da rota (`asp-route-id`). Consulte [Geração de URL para Páginas](xref:razor-pages/index#url-generation-for-pages) para obter mais informações.
 
-Selecione `using System.ComponentModel.DataAnnotations;`
+Use **Exibir Código-fonte** em seu navegador favorito para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
 
-  ![usando System.ComponentModel.DataAnnotations na parte superior da lista](da1/da.png)
+```html
+<td>
+  <a href="/Movies/Edit?id=1">Edit</a> |
+  <a href="/Movies/Details?id=1">Details</a> |
+  <a href="/Movies/Delete?id=1">Delete</a>
+</td>
+```
 
-  O Visual Studio adiciona `using System.ComponentModel.DataAnnotations;`.
+Os links gerados dinamicamente passam a ID de filme com uma cadeia de consulta (por exemplo, o `?id=1` em `https://localhost:5001/Movies/Details?id=1`).
 
-[!INCLUDE [model1](~/includes/RP/da2.md)]
+Atualize as Páginas Editar, Detalhes e Excluir do Razor para que elas usem o modelo de rota “{id:int}”. Altere a diretiva de página de cada uma dessas páginas de `@page` para `@page "{id:int}"`. Execute o aplicativo e, em seguida, exiba o código-fonte. O HTML gerado adiciona a ID à parte do caminho da URL:
+
+```html
+<td>
+  <a href="/Movies/Edit/1">Edit</a> |
+  <a href="/Movies/Details/1">Details</a> |
+  <a href="/Movies/Delete/1">Delete</a>
+</td>
+```
+
+Uma solicitação para a página com o modelo de rota “{id:int}” que **não** inclui o inteiro retornará um erro HTTP 404 (não encontrado). Por exemplo, `http://localhost:5000/Movies/Details` retornará um erro 404. Para tornar a ID opcional, acrescente `?` à restrição de rota:
+
+ ```cshtml
+@page "{id:int?}"
+```
+
+Para testar o comportamento ou `@page "{id:int?}"`:
+
+* Defina a diretiva de página em *Pages/Movies/Details.cshtml* como `@page "{id:int?}"`
+* Defina um ponto de interrupção em `public async Task<IActionResult> OnGetAsync(int? id)` (em *Pages/Movies/Details.cshtml.cs*).
+* Navegue para `https://localhost:5001/Movies/Details/`
+
+Com a diretiva `@page "{id:int}"`, o ponto de interrupção nunca é atingido. O mecanismo de roteamento retorna HTTP 404. Usando `@page "{id:int?}"`, o método `OnGetAsync` retorna `NotFound` (HTTP 404).
+
+Embora não seja recomendado, você pode escrever o método Delete como:
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Delete.cshtml.cs?name=snippet)]
+
+Teste o código anterior:
+
+* Selecione um link de exclusão.
+* Remova a ID da URL. Por exemplo, altere `https://localhost:5001/Movies/Delete/8` para `https://localhost:5001/Movies/Delete`
+* Execute o código em etapas no depurador.
+
+### <a name="review-concurrency-exception-handling"></a>Examinar o tratamento de exceção de simultaneidade
+
+Examine o método `OnPostAsync` no arquivo *Pages/Movies/Edit.cshtml.cs*:
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Edit.cshtml.cs?name=snippet)]
+
+O código anterior detecta exceções de simultaneidade quando um cliente exclui o filme e o outro cliente posta alterações no filme.
+
+Para testar o bloco `catch`:
+
+* Definir um ponto de interrupção em `catch (DbUpdateConcurrencyException)`
+* Selecione **Editar** para um filme, faça alterações, mas não insira **Salvar**.
+* Em outra janela do navegador, selecione o link **Excluir** do mesmo filme e, em seguida, exclua o filme.
+* Na janela do navegador anterior, poste as alterações no filme.
+
+O código de produção talvez deseje detectar conflitos de simultaneidade. Confira [Lidar com conflitos de simultaneidade](xref:data/ef-rp/concurrency) para obter mais informações.
+
+### <a name="posting-and-binding-review"></a>Análise de postagem e associação
+
+Examine o arquivo *Pages/Movies/Edit.cshtml.cs*:
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit21.cshtml.cs?name=snippet2)]
+
+Quando uma solicitação HTTP GET é feita para a página Movies/Edit (por exemplo, `http://localhost:5000/Movies/Edit/2`):
+
+* O método `OnGetAsync` busca o filme do banco de dados e retorna o método `Page`. 
+* O método `Page` renderiza a página Razor *Pages/Movies/Edit.cshtml*. O arquivo *Pages/Movies/Edit.cshtml* contém a diretiva de modelo (`@model RazorPagesMovie.Pages.Movies.EditModel`), que disponibiliza o modelo de filme na página.
+* O formulário Editar é exibido com os valores do filme.
+
+Quando a página Movies/Edit é postada:
+
+* Os valores de formulário na página são associados à propriedade `Movie`. O atributo `[BindProperty]` habilita o [Model binding](xref:mvc/models/model-binding).
+
+  ```csharp
+  [BindProperty]
+  public Movie Movie { get; set; }
+  ```
+
+* Se houver erros no estado do modelo (por exemplo, `ReleaseDate` não pode ser convertida em uma data), o formulário será postado novamente com os valores enviados.
+* Se não houver erros do modelo, o filme será salvo.
+
+Os métodos HTTP GET nas páginas Índice, Criar e Excluir do Razor seguem um padrão semelhante. O método `OnPostAsync` HTTP POST na página Criar do Razor segue um padrão semelhante ao método `OnPostAsync` na página Editar do Razor.
+
+A pesquisa é adicionada no próximo tutorial.
 
 > [!div class="step-by-step"]
-> [Anterior: trabalhando com o LocalDB do SQL Server](xref:tutorials/razor-pages/sql)
-> [Próximo: adicionar pesquisa](xref:tutorials/razor-pages/search)
+> [Anterior: Trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
+> [Próximo: Adicionar uma pesquisa](xref:tutorials/razor-pages/search)

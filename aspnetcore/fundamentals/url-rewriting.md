@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/19/2018
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: 98787891a97e49081d72107484f030d216d82f45
-ms.sourcegitcommit: ad28d1bc6657a743d5c2fa8902f82740689733bb
+ms.openlocfilehash: 84052789717738a48c346d35d1a2642017a9ab93
+ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/20/2018
-ms.locfileid: "52256561"
+ms.lasthandoff: 12/04/2018
+ms.locfileid: "52861908"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>Middleware de Reconfiguração de URL no ASP.NET Core
 
@@ -210,7 +210,7 @@ Após a parte `^rewrite-rule/` da expressão, há dois grupos de captura, `(\d+)
 Não há nenhuma viagem de ida e volta para o servidor para obtenção do recurso. Se o recurso existir, ele será buscado e retornado para o cliente com um código de status *200 – OK*. Como o cliente não é redirecionado, a URL na barra de endereços do navegador não é alterada. Os clientes não conseguem detectar que uma operação de reconfiguração de URL ocorreu no servidor.
 
 > [!NOTE]
-> Use `skipRemainingRules: true` sempre que possível, porque as regras de correspondência são computacionalmente caras e reduzem o tempo de resposta do aplicativo. Para a resposta mais rápida do aplicativo:
+> Use `skipRemainingRules: true` sempre que possível, porque as regras de correspondência são computacionalmente caras e aumentam o tempo de resposta do aplicativo. Para a resposta mais rápida do aplicativo:
 >
 > * Ordene as regras de reconfiguração da regra com correspondência mais frequente para a regra com correspondência menos frequente.
 > * Ignore o processamento das regras restantes quando ocorrer uma correspondência e nenhum processamento de regra adicional for necessário.

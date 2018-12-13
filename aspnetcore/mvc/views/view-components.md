@@ -3,14 +3,14 @@ title: Componentes de exibição no ASP.NET Core
 author: rick-anderson
 description: Saiba como os componentes de exibição são usados no ASP.NET Core e como adicioná-los aos aplicativos.
 ms.author: riande
-ms.date: 02/14/2017
+ms.date: 12/03/2018
 uid: mvc/views/view-components
-ms.openlocfilehash: 91399acafb36f1f8759ed1783e70e59b631e3bf0
-ms.sourcegitcommit: 4a6bbe84db24c2f3dd2de065de418fde952c8d40
+ms.openlocfilehash: 5812abad80cd906d6b9a7175bd7cdefd03a99eb3
+ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50253120"
+ms.lasthandoff: 12/04/2018
+ms.locfileid: "52861323"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componentes de exibição no ASP.NET Core
 
@@ -63,13 +63,13 @@ Uma classe de componente de exibição:
 
 ### <a name="view-component-methods"></a>Métodos de componente de exibição
 
-Um componente de exibição define sua lógica em um método `InvokeAsync` que retorna um `IViewComponentResult`. Os parâmetros são recebidos diretamente da invocação do componente de exibição, não do model binding. Um componente de exibição nunca manipula uma solicitação diretamente. Normalmente, um componente de exibição inicializa um modelo e passa-o para uma exibição chamando o método `View`. Em resumo, os métodos de componente de exibição:
+Um componente de exibição define sua lógica em um método `InvokeAsync` que retorna um `Task<IViewComponentResult>` ou em um método `Invoke` síncrono que retorna um `IViewComponentResult`. Os parâmetros são recebidos diretamente da invocação do componente de exibição, não do model binding. Um componente de exibição nunca manipula uma solicitação diretamente. Normalmente, um componente de exibição inicializa um modelo e passa-o para uma exibição chamando o método `View`. Em resumo, os métodos de componente de exibição:
 
-* Definem um método `InvokeAsync` que retorna um `IViewComponentResult`
-* Normalmente, inicializam um modelo e passam-o para uma exibição chamando o método `ViewComponent` `View`
-* Os parâmetros são recebidos do método de chamada, não do HTTP e não há nenhum model binding
-* Não podem ser acessados diretamente como um ponto de extremidade HTTP e são invocados no código (normalmente em uma exibição). Um componente de exibição nunca manipula uma solicitação
-* São sobrecarregados na assinatura, em vez de nos detalhes da solicitação HTTP atual
+* Definem um método `InvokeAsync` que retorna um `Task<IViewComponentResult>` ou um método `Invoke` síncrono que retorna um `IViewComponentResult`.
+* Normalmente, inicializam um modelo e o passam para uma exibição chamando o método `ViewComponent` `View`.
+* Os parâmetros são recebidos do método de chamada, não do HTTP. Não há nenhum model binding.
+* Não são acessíveis diretamente como um ponto de extremidade HTTP. Eles são invocados no código (normalmente, em uma exibição). Um componente de exibição nunca manipula uma solicitação.
+* São sobrecarregados na assinatura, em vez de nos detalhes da solicitação HTTP atual.
 
 ### <a name="view-search-path"></a>Caminho de pesquisa de exibição
 

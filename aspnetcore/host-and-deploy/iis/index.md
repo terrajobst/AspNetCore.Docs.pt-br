@@ -6,21 +6,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/11/2018
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: b71adcaad710ecfb7f81de0cc302f293d1728bec
-ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
+ms.openlocfilehash: 175df4ab633c1d84de645208cd97e8a675fb169c
+ms.sourcegitcommit: a16352c1c88a71770ab3922200a8cd148fb278a6
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53288112"
+ms.lasthandoff: 12/13/2018
+ms.locfileid: "53335384"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
 Por [Luke Latham](https://github.com/guardrex)
 
 [Instalar o pacote de hospedagem do .NET Core](#install-the-net-core-hosting-bundle)
-
-> [!NOTE]
-> Estamos testando a usabilidade de uma nova estrutura proposta para o sumário do ASP.NET Core.  Se você tiver alguns minutos para experimentar um exercício de localização de sete tópicos diferentes no sumário atual ou proposto, [clique aqui para participar do estudo](https://dpk4xbh5.optimalworkshop.com/treejack/aa11wn82).
 
 ## <a name="supported-operating-systems"></a>Sistemas operacionais com suporte
 

@@ -2,17 +2,17 @@
 title: Usar o SignalR do ASP.NET Core com TypeScript e Webpack
 author: ssougnez
 description: Neste tutorial, você configurará o Webpack para agrupar e criar um aplicativo Web SignalR do ASP.NET Core, cujo cliente é escrito em TypeScript.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-2.2'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/29/2018
+ms.date: 11/30/2018
 uid: tutorials/signalr-typescript-webpack
-ms.openlocfilehash: a7b39bbf657244db83e9d60014a5759000eb5f14
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: b2d59dfc449953cc2d747b507295c00ac0f652dd
+ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50206946"
+ms.lasthandoff: 12/04/2018
+ms.locfileid: "52862246"
 ---
 # <a name="use-aspnet-core-signalr-with-typescript-and-webpack"></a>Usar o SignalR do ASP.NET Core com TypeScript e Webpack
 
@@ -31,22 +31,7 @@ Neste tutorial, você aprenderá como:
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Pré-requisitos
-
-Instale o software a seguir:
-
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
-
-* [SDK do .NET Core 2.1 Core ou posterior](https://www.microsoft.com/net/download/all)
-* [Node.js](https://nodejs.org/) com [npm](https://www.npmjs.com/)
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/) versão 15.7.3 ou posterior com a carga de trabalho do **ASP.NET e desenvolvimento para a Web**
-
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
-
-* [SDK do .NET Core 2.1 Core ou posterior](https://www.microsoft.com/net/download/all)
-* [Node.js](https://nodejs.org/) com [npm](https://www.npmjs.com/)
-
----
+[!INCLUDE [Prerequisites](~/includes/net-core-prereqs-vs-vsc-2.2.md)]
 
 ## <a name="create-the-aspnet-core-web-app"></a>Criar o aplicativo Web do ASP.NET Core
 
@@ -54,18 +39,18 @@ Instale o software a seguir:
 
 Configure o Visual Studio para pesquisar o npm na variável de ambiente *PATH*. Por padrão, o Visual Studio usa a versão do npm encontrada no diretório de instalação. Siga estas instruções no Visual Studio:
 
-1. Navegue até **Ferramentas** > **Opções** > **Projetos e soluções** > **Gerenciamento de Pacotes Web** > **Ferramentas Web Externas**.
-1. Selecione a entrada *$(PATH)* na lista. Clique na seta para cima para mover a entrada para a segunda posição da lista. Como uma reserva, a primeira entrada se refere aos pacotes locais do projeto.
+1. Navegue para **Ferramentas** > **Opções** > **Projetos e Soluções** > **Gerenciamento de Pacotes da Web** > **Ferramentas da Web Externas**.
+1. Selecione a entrada *$(PATH)* na lista. Clique na seta para cima para mover a entrada para a segunda posição da lista.
 
     ![Configuração do Visual Studio](signalr-typescript-webpack/_static/signalr-configure-path-visual-studio.png)
 
 A configuração do Visual Studio foi concluída. É hora de criar o projeto.
 
 1. Use a opção do menu **Arquivo** > **Novo** > **Projeto** e escolha o modelo **Aplicativo Web do ASP.NET Core**.
-1. Nomeie o projeto como *SignalRWebPack* e clique no botão **OK**.
-1. Selecione *.NET Core* no menu suspenso da estrutura de destino e clique em *ASP.NET Core 2.1*. Selecione o modelo **Empty** e clique no botão **OK**.
+1. Dê ao projeto o nome *SignalRWebPack* e selecione **OK**.
+1. Selecione *.NET Core* no menu suspenso da estrutura de destino e selecione *ASP.NET Core 2.2* no menu suspenso do seletor de estrutura. Selecione o modelo **Vazio** e selecione **OK**.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Execute o comando a seguir no **Terminal Integrado**:
 
@@ -228,7 +213,7 @@ Confirme que o aplicativo funciona com as seguintes etapas.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Execute o Webpack no modo de *versão*. Na janela **Console do Gerenciador de Pacotes**, execute o seguinte comando na raiz do projeto:
+1. Execute o Webpack no modo de *versão*. Usando a janela **Console do Gerenciador de Pacotes**, execute o comando a seguir na raiz do projeto. Se você não estiver na raiz do projeto, insira `cd SignalRWebPack` antes de inserir o comando.
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
@@ -238,7 +223,7 @@ Confirme que o aplicativo funciona com as seguintes etapas.
 
 1. Escolha qualquer navegador, digite algo na caixa de texto **Mensagem** e clique no botão **Enviar**. O nome de usuário exclusivo e a mensagem são exibidas em ambas as páginas instantaneamente.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 1. Execute o Webpack no modo de *versão* executando o comando a seguir na raiz do projeto:
 

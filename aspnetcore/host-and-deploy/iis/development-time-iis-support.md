@@ -4,14 +4,14 @@ author: shirhatti
 description: Descubra o suporte para depuração de aplicativos do ASP.NET Core quando executado por trás do IIS no Windows Server.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 11/30/2018
 uid: host-and-deploy/iis/development-time-iis-support
-ms.openlocfilehash: 65dbe690a33d82a4edddf315803dc4c656db27a0
-ms.sourcegitcommit: e8d80ff566bfe505b43389d7bc4551edb1c0c872
+ms.openlocfilehash: 51375e6a6bb25a469d467ca97a151abd305c1ece
+ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52549082"
+ms.lasthandoff: 12/04/2018
+ms.locfileid: "52862376"
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>Suporte ao IIS no tempo de desenvolvimento no Visual Studio para ASP.NET Core
 
@@ -54,7 +54,7 @@ Se a instalação do IIS já tiver um **site da Web padrão** com um nome do hos
 ## <a name="enable-development-time-iis-support-in-visual-studio"></a>Habilitar o suporte ao IIS no tempo de desenvolvimento no Visual Studio
 
 1. Inicie o Instalador do Visual Studio.
-1. Selecione o componente **Suporte ao IIS no tempo de desenvolvimento**. O componente está listado como opcional no painel **Resumo** para a carga de trabalho **Desenvolvimento Web e ASP.NET**. O componente instala o [Módulo do ASP.NET Core](xref:fundamentals/servers/aspnet-core-module), que é um módulo nativo do IIS necessário para executar aplicativos do ASP.NET Core por trás de IIS em uma configuração de proxy reverso.
+1. Selecione o componente **Suporte ao IIS no tempo de desenvolvimento**. O componente está listado como opcional no painel **Resumo** para a carga de trabalho **Desenvolvimento Web e ASP.NET**. O componente instala o [Módulo do ASP.NET Core](xref:fundamentals/servers/aspnet-core-module), que é um módulo nativo do IIS necessário para executar aplicativos ASP.NET Core com o IIS.
 
 ![Modificando os recursos do Visual Studio: a guia Cargas de Trabalho é selecionada. Na seção Web e Nuvem, o painel ASP.NET e desenvolvimento Web é selecionado. À direita, na área Opcional do painel Resumo, há uma caixa de seleção para Suporte ao IIS no tempo de desenvolvimento.](development-time-iis-support/_static/development_time_support.png)
 
