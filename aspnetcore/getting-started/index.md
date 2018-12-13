@@ -4,16 +4,16 @@ author: rick-anderson
 description: Um tutorial rápido que cria e executa um aplicativo simples Olá, Mundo usando o ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 12/11/2018
 uid: getting-started
-ms.openlocfilehash: 29a328b610b0a6e1616cd6ebc70a8fa3e515eb92
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: cf9e731f7638687b3f40b42864ef7ee8f5522b39
+ms.sourcegitcommit: b34b25da2ab68e6495b2460ff570468f16a9bf0d
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52861700"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53284339"
 ---
-# <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: introdução ao ASP.NET Core
+# <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: Introdução ao ASP.NET Core
 
 Este tutorial mostra como usar a interface de linha de comando do .NET Core para criar um aplicativo Web ASP.NET Core.
 
@@ -31,7 +31,7 @@ No final, você terá um aplicativo Web de trabalho em execução no seu computa
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-Instale o [!INCLUDE [](~/includes/2.1-SDK.md)].
+* [SDK do .NET Core 2.2](https://www.microsoft.com/net/download/all)
 
 ## <a name="create-a-web-app-project"></a>Criar um projeto de aplicativo Web
 
@@ -91,11 +91,11 @@ Procure [https://localhost:5001](https://localhost:5001). Clique em **Aceitar** 
 
 ## <a name="edit-a-razor-page"></a>Editar uma página do Razor
 
-Abra *Pages/About.cshtml* e modifique a página com a seguinte marcação realçada:
+Abra *Pages/Index.cshtml* e modifique a página com a seguinte marcação realçada:
 
-[!code-cshtml[](sample/getting-started/about.cshtml?highlight=9)]
+[!code-cshtml[](sample/index.cshtml?highlight=9)]
 
-Navegue até [https://localhost:5001/About](https://localhost:5001/About) e verifique as alterações exibidas.
+Navegue até [https://localhost:5001](https://localhost:5001) e verifique se as alterações são exibidas.
 
 ## <a name="next-steps"></a>Próximas etapas
 

@@ -3,14 +3,14 @@ title: Migrar do ASP.NET para o ASP.NET Core
 author: isaac2004
 description: Receba orientações para migrar os aplicativos existentes do ASP.NET MVC ou da API Web para o ASP.NET Core.web
 ms.author: scaddie
-ms.date: 12/10/2018
+ms.date: 12/11/2018
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 6808fefb890dcdec6abdd0604ab61dfd2573d910
-ms.sourcegitcommit: 1872d2e6f299093c78a6795a486929ffb0bbffff
+ms.openlocfilehash: a9eef832a68afa1a73e3c7c545378da190602ce2
+ms.sourcegitcommit: b34b25da2ab68e6495b2460ff570468f16a9bf0d
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/11/2018
-ms.locfileid: "53216788"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53284390"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Migrar do ASP.NET para o ASP.NET Core
 
@@ -20,7 +20,7 @@ Este artigo serve como um guia de referência para migração de aplicativos ASP
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-[!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
+[SDK 2.2 ou posterior do .NET Core](https://www.microsoft.com/net/download)
 
 ## <a name="target-frameworks"></a>Frameworks de destino
 
@@ -28,15 +28,15 @@ Projetos do ASP.NET Core oferecem aos desenvolvedores a flexibilidade de direcio
 
 Ao usar o .NET Framework como destino, projetos precisam fazer referência a pacotes NuGet individuais.
 
-Usar o .NET Core como destino permite que você elimine várias referências de pacote explícitas, graças ao [metapacote](xref:fundamentals/metapackage) do ASP.NET Core. Instale o metapacote `Microsoft.AspNetCore.All` em seu projeto:
+Usar o .NET Core como destino permite que você elimine várias referências de pacote explícitas, graças ao [metapacote](xref:fundamentals/metapackage-app) do ASP.NET Core. Instale o metapacote `Microsoft.AspNetCore.App` em seu projeto:
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+   <PackageReference Include="Microsoft.AspNetCore.App" />
 </ItemGroup>
 ```
 
-Quando o metapacote é usado, nenhum pacote referenciado no metapacote é implantado com o aplicativo. O repositório de tempo de execução do .NET Core inclui esses ativos e eles são pré-compilados para melhorar o desempenho. Consulte [Metapacote do Microsoft.AspNetCore.All para ASP.NET Core 2.x](xref:fundamentals/metapackage) para obter mais detalhes.
+Quando o metapacote é usado, nenhum pacote referenciado no metapacote é implantado com o aplicativo. O repositório de tempo de execução do .NET Core inclui esses ativos e eles são pré-compilados para melhorar o desempenho. Para saber mais, confira [Metapacote Microsoft.AspNetCore.App para ASP.NET Core](xref:fundamentals/metapackage-app).
 
 ## <a name="project-structure-differences"></a>Diferenças de estrutura do projeto
 
@@ -64,15 +64,14 @@ O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manip
 
 [!code-csharp[](samples/program.cs)]
 
-`Startup` deve incluir um método `Configure`. Em `Configure`, adicione o middleware necessário ao pipeline. No exemplo a seguir (com base no modelo de site da Web padrão), vários métodos de extensão são usados para configurar o pipeline com suporte para:
+`Startup` deve incluir um método `Configure`. Em `Configure`, adicione o middleware necessário ao pipeline. No exemplo a seguir (com base no modelo de site da Web padrão), os métodos de extensão configuram o pipeline com suporte para:
 
-* [Link do navegador](xref:client-side/using-browserlink)
 * Páginas de erro
-* Arquivos estáticos
+* Segurança de Transporte Estrita de HTTP
+* Redirecionamento de HTTP para HTTPS
 * ASP.NET Core MVC
-* Identidade
 
-[!code-csharp[](../../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
+[!code-csharp[](samples/startup.cs)]
 
 O host e o aplicativo foram separados, o que fornece a flexibilidade de mover para uma plataforma diferente no futuro.
 
