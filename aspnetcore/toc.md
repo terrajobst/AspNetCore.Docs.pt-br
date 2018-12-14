@@ -177,6 +177,7 @@
 ## Tutoriais
 ### [SignalR com JavaScript](xref:tutorials/signalr)
 ### [SignalR com TypeScript](xref:tutorials/signalr-typescript-webpack)
+## [Amostras](https://github.com/aspnet/SignalR-samples)
 ## Conceitos de servidor
 ### [Hubs](xref:signalr/hubs)
 ### [HubContext](xref:signalr/hubcontext)
@@ -402,6 +403,7 @@
 ### [Cache distribuído](xref:performance/caching/distributed)
 ### [Middleware de cache de resposta](xref:performance/caching/middleware)
 ## [Compactação de resposta](xref:performance/response-compression)
+## [Ferramentas de Diagnóstico](xref:performance/diagnostic-tools)
 
 # Outros tópicos
 ## [Globalização e localização](xref:fundamentals/localization)
