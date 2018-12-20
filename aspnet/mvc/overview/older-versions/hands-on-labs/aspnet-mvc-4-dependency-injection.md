@@ -41,7 +41,7 @@ O padrão de injeção de dependência é uma implementação específica de inv
 <a id="The_Dependency_Injection_DI_Design_Pattern"></a>
 ### <a name="the-dependency-injection-di-design-pattern"></a>O padrão de Design de DI (injeção) de dependência
 
-Em um alto nível, o objetivo da injeção de dependência é que uma classe de cliente (por exemplo, *o jogador*) precisa de algo que satisfaz uma interface (por exemplo, *IClub*). Não importa o que é o tipo concreto (por exemplo, *WedgeClub WoodClub, IronClub,* ou *PutterClub*), ele quer alguém para lidar com isso (por exemplo, uma boa *caddy*). O resolvedor de dependência no ASP.NET MVC pode permitir que você registre sua lógica de dependência em outro lugar (por exemplo, um contêiner ou um *recipiente de paus*).
+Em um alto nível, o objetivo da injeção de dependência é que uma classe de cliente (por exemplo, *o jogador*) precisa de algo que satisfaz uma interface (por exemplo, *IClub*). Não importa o que é o tipo concreto (por exemplo, *WedgeClub WoodClub, IronClub,* ou *PutterClub*), ele quer alguém para lidar com isso (por exemplo, uma boa *caddy*). O resolvedor de dependência no ASP.NET MVC pode permitir que você registre sua lógica de dependência em outro lugar (por exemplo, um contêiner ou um *recipiente de tacos*).
 
 ![Diagrama de injeção de dependência](aspnet-mvc-4-dependency-injection/_static/image2.png "ilustração de injeção de dependência")
 

@@ -124,7 +124,7 @@ O código faz o seguinte:
 
 - Altera o nome do método para `EditPost` porque a assinatura agora é igual a `HttpGet` método (o `ActionName` atributo especifica que a URL /Edit/ ainda é usada).
 - Obtém a entidade `Instructor` atual do banco de dados usando o carregamento adiantado para a propriedade de navegação `OfficeAssignment`. Isso é o mesmo que você fez `HttpGet` `Edit` método.
-- Atualiza a entidade `Instructor` recuperada com valores do associador de modelos. O [TryUpdateModel](https://msdn.microsoft.com/library/dd470908(v=vs.108).aspx) sobrecarga usada permite que você *lista branca* as propriedades que você deseja incluir. Isso impede o excesso de postagem, conforme explicado em [segundo tutorial](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md).
+- Atualiza a entidade `Instructor` recuperada com valores do associador de modelos. O [TryUpdateModel](https://msdn.microsoft.com/library/dd470908(v=vs.108).aspx) sobrecarga usada permite que você coloque na *lista de permissões* as propriedades que você deseja incluir. Isso impede o excesso de postagem, conforme explicado em [segundo tutorial](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md).
 
     [!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.cs)]
 - Define se o local do escritório estiver em branco, o `Instructor.OfficeAssignment` propriedade como nulo, de modo que a linha relacionada no `OfficeAssignment` tabela será excluída.

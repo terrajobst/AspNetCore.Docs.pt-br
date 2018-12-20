@@ -61,7 +61,7 @@ Normalmente, as exibições são retornadas de ações como um [ViewResult](/dot
 
 Quando essa ação é retornada, a exibição *About.cshtml* mostrada na seção anterior é renderizada como a seguinte página da Web:
 
-![Página About renderizada no navegador Edge](overview/_static/about-page.png)
+![Página About renderizada no navegador Microsoft Edge](overview/_static/about-page.png)
 
 O método auxiliar `View` tem várias sobrecargas. Opcionalmente, você pode especificar:
 

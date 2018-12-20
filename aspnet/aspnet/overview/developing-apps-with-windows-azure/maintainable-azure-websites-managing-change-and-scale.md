@@ -120,7 +120,7 @@ Este exercício mostra como habilitar **migrações** para seu aplicativo e como
 <a id="Ex1Task1"></a>
 #### <a name="task-1--enabling-migrations"></a>Tarefa 1 – habilitar migrações
 
-Nesta tarefa, você passará pelas etapas de habilitação **Entity Framework Code First Migrations** para o **Pau teste** banco de dados, alterando o modelo e Noções básicas sobre como essas alterações são refletidas no banco de dados.
+Nesta tarefa, você passará pelas etapas de habilitação **Entity Framework Code First Migrations** para o banco de dados **Geek Quiz**, alterando o modelo e Noções básicas sobre como essas alterações são refletidas no banco de dados.
 
 1. Abra o Visual Studio e abra o **GeekQuiz.sln** arquivo de solução de **Source\Ex1 UsingEntityFrameworkMigrations\Begin**.
 2. Compile a solução para baixar e instalar o **NuGet** as dependências do pacote. Para fazer isso, a solução com o botão direito e clique em **compilar solução** ou pressione **Ctrl + Shift + B**.
@@ -134,8 +134,8 @@ Nesta tarefa, você passará pelas etapas de habilitação **Entity Framework Co
     *Habilitar migrações*
 
     > [!NOTE]
-    > Este comando adiciona uma **migrações** pasta ao projeto de teste de Pau que contém um arquivo chamado **Configuration.cs**. O **configuração** classe permite que você configurar o comportamento de migrações para o seu contexto.
-5. Com as migrações habilitadas, você precisará atualizar o **Configuration** classe para popular o banco de dados com os dados iniciais que **Pau teste** requer. Sob **migrações**, substitua o **Configuration.cs** arquivo com aquele localizado na **Source\Assets** pasta deste laboratório.
+    > Este comando adiciona uma **migrações** pasta ao projeto de Geek Quiz que contém um arquivo chamado **Configuration.cs**. O **configuração** classe permite que você configurar o comportamento de migrações para o seu contexto.
+5. Com as migrações habilitadas, você precisará atualizar o **Configuration** classe para popular o banco de dados com os dados iniciais que **Geek Quiz** requer. Sob **migrações**, substitua o **Configuration.cs** arquivo com aquele localizado na **Source\Assets** pasta deste laboratório.
 
     > [!NOTE]
     > Uma vez que **migrações** chamará o **semente** método com cada atualização do banco de dados, você precisa ter certeza de que os registros não são duplicados no banco de dados. O **AddOrUpdate** método ajudará a evitar dados duplicados.
@@ -245,7 +245,7 @@ Nesta tarefa, você usará **Entity Framework Code First Migrations** para detec
 
 **Aplicativos Web no serviço de aplicativo do Azure** permite que você execute a publicação em etapas. Publicação em etapas cria um slot de site de preparo para cada site de produção padrão e permite que você troque esses slots, sem nenhum tempo de inatividade. Isso é realmente útil para validar as alterações antes de liberar para o público, incrementalmente integrar o conteúdo do site e reverter em caso de alterações não estão funcionando conforme o esperado.
 
-Neste exercício, você implantará o **Pau teste** aplicativo ao ambiente de preparo do aplicativo web usando o controle do código-fonte Git. Para fazer isso, você irá criar o aplicativo web e provisionar os componentes necessários no portal de gerenciamento, configurar uma **Git** repositório e enviar por push o aplicativo de código-fonte do seu computador local para o slot de preparo. Você também atualizará seu banco de dados de produção com o **migrações do Code First** criado no exercício anterior. Em seguida, você executará o aplicativo nesse ambiente de teste para verificar sua operação. Quando estiver satisfeito que ele está funcionando de acordo com suas expectativas, você promoverá o aplicativo em produção.
+Neste exercício, você implantará o aplicativo **Geek Quiz** ao ambiente de preparo do aplicativo web usando o controle do código-fonte Git. Para fazer isso, você irá criar o aplicativo web e provisionar os componentes necessários no portal de gerenciamento, configurar uma **Git** repositório e enviar por push o aplicativo de código-fonte do seu computador local para o slot de preparo. Você também atualizará seu banco de dados de produção com o **migrações do Code First** criado no exercício anterior. Em seguida, você executará o aplicativo nesse ambiente de teste para verificar sua operação. Quando estiver satisfeito que ele está funcionando de acordo com suas expectativas, você promoverá o aplicativo em produção.
 
 > [!NOTE]
 > Para habilitar a publicação em etapas, o aplicativo web deve estar no **o modo padrão**. Observe que encargos adicionais serão gerados se você alterar o seu aplicativo web para o modo padrão. Para obter mais informações sobre preços, consulte [preços do serviço de aplicativo](https://azure.microsoft.com/pricing/details/app-service/).
@@ -271,7 +271,7 @@ Nesta tarefa, você criará um aplicativo web no **serviço de aplicativo do Azu
     ![Criando um novo aplicativo web usando criação personalizada](maintainable-azure-websites-managing-change-and-scale/_static/image15.png "criando um novo aplicativo web usando criação personalizada")
 
     *Criando um novo aplicativo web usando criação personalizada*
-4. No **New Website - criação personalizada** caixa de diálogo caixa, forneça uma disponível **URL** (por exemplo, *Pau teste*), selecione um local no **região** lista suspensa e selecione **criar um novo banco de dados SQL** na **banco de dados** lista suspensa. Por fim, selecione o **publicar do controle de origem** caixa de seleção e clique em **próxima**.
+4. No **New Website - criação personalizada** caixa de diálogo caixa, forneça uma disponível **URL** (por exemplo, *Geek Quiz*), selecione um local no **região** lista suspensa e selecione **criar um novo banco de dados SQL** na **banco de dados** lista suspensa. Por fim, selecione o **publicar do controle de origem** caixa de seleção e clique em **próxima**.
 
     ![Personalizando o novo aplicativo web](maintainable-azure-websites-managing-change-and-scale/_static/image16.png)
 
@@ -367,7 +367,7 @@ Nesta tarefa, você aprenderá a usar o **Entity Framework Code First Migrations
 <a id="Ex2Task3"></a>
 #### <a name="task-3--deploying-geek-quiz-to-staging-using-git"></a>Tarefa 3 – implantar teste Geek de preparo usando o Git
 
-Nesta tarefa, você habilitará a publicação em etapas em seu aplicativo web. Em seguida, você usará o Git para publicar o aplicativo de teste de Pau diretamente do seu computador local ao ambiente de preparo do aplicativo web.
+Nesta tarefa, você habilitará a publicação em etapas em seu aplicativo web. Em seguida, você usará o Git para publicar o aplicativo Geek Quiz diretamente do seu computador local ao ambiente de preparo do aplicativo web.
 
 1. Volte para o portal e clique no nome do aplicativo web sob o **nome** coluna para exibir as páginas de gerenciamento.
 
@@ -617,7 +617,7 @@ Nesta tarefa, você aprenderá como criar uma nova conta de armazenamento usando
 <a id="Ex4Task2"></a>
 #### <a name="task-2--uploading-an-asset-to-azure-blob-storage"></a>Tarefa 2 – carregar um ativo para o armazenamento de BLOBs do Azure
 
-Nesta tarefa, você usará a janela do Gerenciador de servidores do Visual Studio para se conectar à sua conta de armazenamento. Você, em seguida, crie um contêiner de blob e carregar um arquivo com o logotipo do teste de Pau para o contêiner.
+Nesta tarefa, você usará a janela do Gerenciador de servidores do Visual Studio para se conectar à sua conta de armazenamento. Você, em seguida, crie um contêiner de blob e carregar um arquivo com o logotipo do Geek Quiz para o contêiner.
 
 1. Alterne para a instância do Visual Studio com o **GeekQuiz** solução do exercício anterior.
 2. Na barra de menus, selecione **modo de exibição** e, em seguida, clique em **Gerenciador de servidores**.
@@ -706,7 +706,7 @@ Nesta tarefa, você irá configurar o **GeekQuiz** solução para consumir a ima
 <a id="Ex4Task4"></a>
 #### <a name="task-4--verification"></a>Tarefa 4 – verificação
 
-Essa tarefa, você usará **Internet Explorer** para procurar o **Pau teste** aplicativo e verifique que a reescrita de URL para a regra para funciona de imagens e você serão redirecionados para a imagem hospedada no **BLOBs do Azure Armazenamento**.
+Essa tarefa, você usará **Internet Explorer** para procurar o aplicativo **Geek Quiz** e verifique que a reescrita de URL para a regra para funciona de imagens e você serão redirecionados para a imagem hospedada no **BLOBs do Azure Armazenamento**.
 
 1. Abra o Internet Explorer e navegue até seu aplicativo web (por exemplo, `http://<your-web-site>.azurewebsites.net`). Faça logon usando as credenciais criadas anteriormente.
 
@@ -734,7 +734,7 @@ Essa tarefa, você usará **Internet Explorer** para procurar o **Pau teste** ap
 
 **Aplicativos de Web do serviço de aplicativo do Azure** fornece o recurso de dimensionamento automático para aplicativos web em execução **o modo padrão**. Dimensionamento automático permite que o Azure dimensione automaticamente a contagem de instâncias do aplicativo web, dependendo da carga. Quando o dimensionamento automático está habilitado, o Azure verifica a CPU do seu aplicativo web uma vez a cada cinco minutos e adiciona instâncias conforme necessário nesse ponto no tempo. Se o uso da CPU for baixo, Azure removerá instâncias de uma vez a cada duas horas para garantir que o desempenho do seu aplicativo web não está degradado.
 
-Neste exercício você percorrer as etapas necessárias para configurar o **AutoEscala** de recursos para o **Pau teste** aplicativo web. Você vai verificar esse recurso, executando um teste de carga do Visual Studio para gerar carga suficiente da CPU no aplicativo para disparar uma atualização de instância.
+Neste exercício você percorrer as etapas necessárias para configurar o **AutoEscala** de recursos para o aplicativo web **Geek Quiz**. Você vai verificar esse recurso, executando um teste de carga do Visual Studio para gerar carga suficiente da CPU no aplicativo para disparar uma atualização de instância.
 
 <a id="Ex5Task1"></a>
 #### <a name="task-1--configuring-autoscale-based-on-the-cpu-metric"></a>Tarefa 1 – Configurar dimensionamento automático com base na métrica de CPU

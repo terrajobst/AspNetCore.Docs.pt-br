@@ -26,7 +26,7 @@ por [Jason Lee](https://github.com/jrjlee)
 > Este tópico foi criado para fornecer uma visão geral de alto nível para um [série de tutoriais](deploying-web-applications-in-enterprise-scenarios.md) na implantação da web na empresa. Não se preocupe se você não estiver familiarizado com alguns dos conceitos descritos aqui&#x2014;os tutoriais a seguir fornecem informações detalhadas sobre todas essas tarefas e técnicas.
 > 
 > > [!NOTE]
-> > Deus comentárioscomentáriospesquisandoO de simplicidade, este tópico não aborda Atualizando bancos de dados como parte do processo de implantação. No entanto, fazer atualizações incrementais para os recursos de bancos de dados é um requisito de muitos cenários de implantação empresarial, e você pode encontrar diretrizes sobre como fazer isso mais tarde nessa série de tutoriais. Para obter mais informações, consulte [implantar projetos de banco de dados](../web-deployment-in-the-enterprise/deploying-database-projects.md).
+> > Para não complicar, este tópico não aborda Atualizando bancos de dados como parte do processo de implantação. No entanto, fazer atualizações incrementais para os recursos de bancos de dados é um requisito de muitos cenários de implantação empresarial, e você pode encontrar diretrizes sobre como fazer isso mais tarde nessa série de tutoriais. Para obter mais informações, consulte [implantar projetos de banco de dados](../web-deployment-in-the-enterprise/deploying-database-projects.md).
 
 
 ## <a name="overview"></a>Visão geral

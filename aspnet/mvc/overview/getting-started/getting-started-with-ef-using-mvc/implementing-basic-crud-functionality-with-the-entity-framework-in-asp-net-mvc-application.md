@@ -116,7 +116,7 @@ No código a seguir, `courseID` não corresponde a um parâmetro de rota padrão
 
     Em seguida, o valor "OverPost" é adicionado com êxito à propriedade `Secret` da linha inserida, embora você nunca desejou que a página da Web pudesse definir essa propriedade.
 
-    É melhor usar o `Include` parâmetro com o `Bind` atributo *lista branca* campos. Também é possível usar o `Exclude` parâmetro para *blacklist* campos que deseja excluir. O motivo `Include` é mais seguro é que quando você adiciona uma nova propriedade à entidade, o novo campo não será automaticamente protegido por um `Exclude` lista.
+    É melhor usar o parâmetro `Include` com o atributo `Bind` em campos de *lista de permissão*. Também é possível usar o parâmetro `Exclude` para campos de *lista de bloqueio* que deseja excluir. O motivo `Include` é mais seguro é que quando você adiciona uma nova propriedade à entidade, o novo campo não será automaticamente protegido por um `Exclude` lista.
 
     Você pode impedir o excesso de postagem em cenários de edição é ler a entidade do banco de dados primeiro e, em seguida, chamando `TryUpdateModel`, passando uma lista explícita de propriedades permitidas. Que é o método usado nestes tutoriais.
 

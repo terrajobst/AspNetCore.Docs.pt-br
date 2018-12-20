@@ -93,10 +93,10 @@ Tempo estimado para concluir este laboratório: **60 minutos**
 
 Uma das principais partes de um SPA é a camada de serviço. Ele é responsável por processar chamadas Ajax enviadas pela interface do usuário e os dados retornados em resposta a essa chamada. Os dados recuperados devem ser apresentados em um formato legível para ser analisado e consumido pelo cliente.
 
-A estrutura da API Web é parte da pilha do ASP.NET e é projetada para facilitar a implementar os serviços HTTP, geralmente, enviar e receber dados formatados em XML ou JSON por meio de uma API RESTful. Neste exercício, você criará o site da Web para hospedar o aplicativo de teste de Pau e, em seguida, implementar o serviço de back-end para expor e persistir os dados de teste usando a API Web do ASP.NET.
+A estrutura da API Web é parte da pilha do ASP.NET e é projetada para facilitar a implementar os serviços HTTP, geralmente, enviar e receber dados formatados em XML ou JSON por meio de uma API RESTful. Neste exercício, você criará o site da Web para hospedar o aplicativo Geek Quiz e, em seguida, implementar o serviço de back-end para expor e persistir os dados de teste usando a API Web do ASP.NET.
 
 <a id="Ex1Task1"></a>
-#### <a name="task-1--creating-the-initial-project-for-geek-quiz"></a>Tarefa 1 – criar o projeto inicial para teste de pau
+#### <a name="task-1--creating-the-initial-project-for-geek-quiz"></a>Tarefa 1 – criar o projeto inicial para Geek Quiz
 
 Nesta tarefa você começará criando um novo projeto ASP.NET MVC com suporte para API Web ASP.NET com base nas **One ASP.NET** tipo que vem com o Visual Studio de projeto. **One ASP.NET** unifica todas as tecnologias do ASP.NET e lhe dá a opção de misturar e combiná-los conforme desejado. Em seguida, você irá adicionar classes de modelo do Entity Framework e o initializator de banco de dados para inserir as perguntas de teste.
 
@@ -150,13 +150,13 @@ Nesta tarefa você começará criando um novo projeto ASP.NET MVC com suporte pa
 
     > [!NOTE]
     > O **autorizar** filtrar verifica se o usuário é autenticado. Se o usuário não é autenticado, ele retorna o código de status HTTP 401 (não autorizado) sem invocar a ação. Você pode aplicar o filtro globalmente, no nível do controlador ou no nível de ações individuais.
-9. Agora você irá personalizar o layout de páginas da web e a identidade visual. Para fazer isso, abra o  **\_layout. cshtml** dentro do arquivo a **exibições | Compartilhado** pasta e atualizar o conteúdo do **&lt;título&gt;** elemento, substituindo *meu aplicativo ASP.NET* com *Pau do teste* .
+9. Agora você irá personalizar o layout de páginas da web e a identidade visual. Para fazer isso, abra o  **\_layout. cshtml** dentro do arquivo a **exibições | Compartilhado** pasta e atualizar o conteúdo do **&lt;título&gt;** elemento, substituindo *meu aplicativo ASP.NET* com *Geek Quiz* .
 
     [!code-cshtml[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample4.cshtml)]
-10. No mesmo arquivo, atualizar a barra de navegação, removendo o *sobre* e *entre em contato com* links e renomear o *página inicial* vincular ao *reproduzir*. Além disso, renomeie o *nome do aplicativo* vincular ao *Pau teste*. O HTML para a barra de navegação deve parecer com o código a seguir.
+10. No mesmo arquivo, atualizar a barra de navegação, removendo o *sobre* e *entre em contato com* links e renomear o *página inicial* vincular ao *reproduzir*. Além disso, renomeie o *nome do aplicativo* vincular ao *Geek Quiz*. O HTML para a barra de navegação deve parecer com o código a seguir.
 
     [!code-cshtml[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample5.cshtml)]
-11. Atualize o rodapé da página de layout, substituindo *meu aplicativo ASP.NET* com *Pau teste*. Para fazer isso, substitua o conteúdo a **&lt;rodapé&gt;** elemento com o seguinte código realçado.
+11. Atualize o rodapé da página de layout, substituindo *meu aplicativo ASP.NET* com *Geek Quiz*. Para fazer isso, substitua o conteúdo a **&lt;rodapé&gt;** elemento com o seguinte código realçado.
 
     [!code-html[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample6.html)]
 
@@ -294,7 +294,7 @@ Nesta tarefa, você verificará se o serviço de API da Web que você criou na t
 <a id="Exercise2"></a>
 ### <a name="exercise-2-creating-the-spa-interface"></a>Exercício 2: Criar a Interface do SPA
 
-Neste exercício primeiro você criará a parte de front-end da web de teste de Pau, concentrando-se no aplicativo de página única interação usando **AngularJS**. Em seguida, você será aprimorar a experiência do usuário com o CSS3 para executar animações avançadas e fornecer um efeito visual de alternância quando a transição de uma pergunta para a próxima de contexto.
+Neste exercício primeiro você criará a parte de front-end da web do Geek Quiz, concentrando-se no aplicativo de página única interação usando **AngularJS**. Em seguida, você será aprimorar a experiência do usuário com o CSS3 para executar animações avançadas e fornecer um efeito visual de alternância quando a transição de uma pergunta para a próxima de contexto.
 
 <a id="Ex2Task1"></a>
 #### <a name="task-1--creating-the-spa-interface-using-angularjs"></a>Tarefa 1 – criar a Interface do SPA usando o AngularJS
