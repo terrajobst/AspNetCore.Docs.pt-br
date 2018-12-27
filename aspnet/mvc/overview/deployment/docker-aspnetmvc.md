@@ -5,14 +5,14 @@ description: Saiba como selecionar um aplicativo ASP.NET MVC existente e execut�
 keywords: Windows Containers,Docker,ASP.NET MVC
 author: BillWagner
 ms.author: wiwagn
-ms.date: 02/01/2017
+ms.date: 12/14/2018
 ms.assetid: c9f1d52c-b4bd-4b5d-b7f9-8f9ceaf778c4
-ms.openlocfilehash: 7b34187747d3081998b8b60a72adae78cafe2c3e
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: ef184f4256c20e2a66de8fd2d4f8e67f07d9a086
+ms.sourcegitcommit: 6548c19f345850ee22b50f7ef9fca732895d9e08
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207960"
+ms.lasthandoff: 12/14/2018
+ms.locfileid: "53425153"
 ---
 # <a name="migrating-aspnet-mvc-applications-to-windows-containers"></a>Migrando aplicativos ASP.NET MVC para contêineres do Windows
 
@@ -68,9 +68,9 @@ Clique em **Publicar** e o Visual Studio copiará todos os ativos necessários p
 
 ## <a name="build-the-image"></a>Criar a imagem
 
-Defina a imagem de Docker em um Dockerfile. O Dockerfile contém instruções para a imagem base, componentes adicionais, o aplicativo que você deseja executar e outras imagens de configuração.  O Dockerfile é a entrada para o comando `docker build`, que cria a imagem.
+Criar um novo arquivo chamado *Dockerfile* para definir a imagem do Docker. *Dockerfile* contém instruções para criar a imagem final e inclui quaisquer nomes de imagem base, componentes necessários, o aplicativo que você deseja executar e outras imagens de configuração. *Dockerfile* é a entrada para o `docker build` comando que cria a imagem.
 
-Você criará uma imagem com base na imagem do `microsoft/aspnet` localizada no [Hub do Docker](https://hub.docker.com/r/microsoft/aspnet/).
+Para este exercício, você criará uma imagem baseada na `microsoft/aspnet` imagem localizada em [Hub do Docker](https://hub.docker.com/r/microsoft/aspnet/).
 A imagem base, `microsoft/aspnet`, é uma imagem do Windows Server. Ele contém o Windows Server Core, IIS e ASP.NET 4.7.2. Quando você executar essa imagem em seu contêiner, ela iniciará automaticamente o IIS e sites instalados.
 
 O Dockerfile que cria a imagem tem esta aparência:

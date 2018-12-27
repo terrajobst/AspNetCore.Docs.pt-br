@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/11/2018
 uid: security/authentication/twitter-logins
-ms.openlocfilehash: 43a5ea59d8853d297ae2c1ec3f4b1c0c14ec80c3
-ms.sourcegitcommit: 09bcda59a58019fdf47b2db5259fe87acf19dd38
+ms.openlocfilehash: 49db8b921fde169380ca284f46e535786b2b8a30
+ms.sourcegitcommit: 3e94d192b2ed9409fe72e3735e158b333354964c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51708420"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53735798"
 ---
 # <a name="twitter-external-login-setup-with-aspnet-core"></a>Configuração de logon externo do Twitter com o ASP.NET Core
 
@@ -62,9 +62,9 @@ O modelo de projeto usado neste tutorial garante que [Microsoft.AspNetCore.Authe
 Adicione o serviço do Twitter na `ConfigureServices` método no *Startup.cs* arquivo:
 
 ```csharp
-services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+services.AddDefaultIdentity<IdentityUser>()
+        .AddDefaultUI(UIFramework.Bootstrap4)
+        .AddEntityFrameworkStores<ApplicationDbContext>();
 
 services.AddAuthentication().AddTwitter(twitterOptions =>
 {
@@ -99,7 +99,7 @@ Consulte a [TwitterOptions](/dotnet/api/microsoft.aspnetcore.builder.twitteropti
 
 Executar o aplicativo e clique em **faça logon no**. Será exibida uma opção para entrar com o Twitter:
 
-![Aplicativo Web: usuário não autenticado](index/_static/DoneTwitter.png)
+![Aplicativo da Web: Usuário não autenticado](index/_static/DoneTwitter.png)
 
 Clicar em **Twitter** redireciona para o Twitter para autenticação:
 
@@ -109,13 +109,13 @@ Depois de inserir suas credenciais do Twitter, você será redirecionado para o 
 
 Agora você está conectado usando suas credenciais do Twitter:
 
-![Aplicativo Web: usuário autenticado](index/_static/Done.png)
+![Aplicativo da Web: Usuário autenticado](index/_static/Done.png)
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 ## <a name="troubleshooting"></a>Solução de problemas
 
-* Apenas **ASP.NET Core 2.x:** se a identidade não for configurada chamando `services.AddIdentity` no `ConfigureServices`, a autenticação resultará em *ArgumentException: a opção 'SignInScheme' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso é feito.
+* **ASP.NET Core 2.x somente:** Se a identidade não está configurada por meio da chamada `services.AddIdentity` na `ConfigureServices`, a tentativa de autenticar resultará em *ArgumentException: A opção 'SignInScheme' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso é feito.
 * Se o banco de dados do site não tiver sido criado aplicando-se a migração inicial, você obterá *uma operação de banco de dados falhou ao processar a solicitação* erro. Toque **aplicar migrações** para criar o banco de dados e atualizar para continuar após o erro.
 
 ## <a name="next-steps"></a>Próximas etapas

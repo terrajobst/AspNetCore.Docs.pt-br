@@ -5,14 +5,14 @@ description: Saiba mais sobre a compactação de resposta e como usar o Middlewa
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 12/18/2018
 uid: performance/response-compression
-ms.openlocfilehash: 2516fbb30e55990dc4ad0d92069853bc26874bc9
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: 51ab51652a7b3f9b4ef97b3abbffe2e398c0bfb5
+ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52861882"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53637749"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Compactação de resposta no ASP.NET Core
 
@@ -33,8 +33,8 @@ Use o Middleware de compactação de resposta quando você estiver:
   * [Módulo do Apache mod_deflate](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Nginx compactação e descompactação](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Hospedagem diretamente em:
-  * [O HTTP. sys](xref:fundamentals/servers/httpsys) server (anteriormente chamado [WebListener](xref:fundamentals/servers/weblistener))
-  * [Kestrel](xref:fundamentals/servers/kestrel) server
+  * [Servidor HTTP. sys](xref:fundamentals/servers/httpsys) (anteriormente chamado WebListener)
+  * [Servidor kestrel](xref:fundamentals/servers/kestrel)
 
 ## <a name="response-compression"></a>Compactação de resposta
 
@@ -74,7 +74,7 @@ Para obter mais informações, consulte o [IANA lista oficial de conteúdo de co
 
 O middleware permite que você adicione provedores de compactação adicional para custom `Accept-Encoding` valores de cabeçalho. Para obter mais informações, consulte [provedores personalizados](#custom-providers) abaixo.
 
-O middleware é capaz de reagir a valor de qualidade (qvalue, `q`) quando enviado pelo cliente para priorizar os esquemas de compactação de ponderação. Para obter mais informações, consulte [RFC 7231: codificação aceita](https://tools.ietf.org/html/rfc7231#section-5.3.4).
+O middleware é capaz de reagir a valor de qualidade (qvalue, `q`) quando enviado pelo cliente para priorizar os esquemas de compactação de ponderação. Para obter mais informações, consulte [RFC 7231: Codificação aceita](https://tools.ietf.org/html/rfc7231#section-5.3.4).
 
 Algoritmos de compactação estão sujeitos a uma compensação entre a velocidade de compactação e a eficiência da compactação. *Eficácia* neste contexto refere-se ao tamanho da saída após a compactação. O menor tamanho é obtido com a maioria *ideal* compactação.
 
@@ -432,7 +432,7 @@ Quando a compactação de respostas com base no `Accept-Encoding` cabeçalho, h�
 
 ## <a name="middleware-issue-when-behind-an-nginx-reverse-proxy"></a>Problema de middleware quando atrás de um proxy reverso do Nginx
 
-Quando uma solicitação é transmitida por proxy pelo Nginx, o `Accept-Encoding` cabeçalho é removido. Remoção do `Accept-Encoding` cabeçalho impede que o middleware de compactação de resposta. Para obter mais informações, consulte [NGINX: compactação e descompactação](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). Esse problema é acompanhado pelo [descobrir a compactação de passagem do Nginx (aspnet/BasicMiddleware \#123)](https://github.com/aspnet/BasicMiddleware/issues/123).
+Quando uma solicitação é transmitida por proxy pelo Nginx, o `Accept-Encoding` cabeçalho é removido. Remoção do `Accept-Encoding` cabeçalho impede que o middleware de compactação de resposta. Para obter mais informações, consulte [NGINX: Compactação e descompactação](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). Esse problema é acompanhado pelo [descobrir a compactação de passagem do Nginx (aspnet/BasicMiddleware \#123)](https://github.com/aspnet/BasicMiddleware/issues/123).
 
 ## <a name="working-with-iis-dynamic-compression"></a>Trabalhando com a compactação dinâmica do IIS
 
@@ -465,6 +465,6 @@ Use uma ferramenta como [Fiddler](https://www.telerik.com/fiddler), [Firebug](ht
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
 * [Rede de desenvolvedor do Mozilla: Codificação aceita](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding)
-* [RFC 7231 seção 3.1.2.1: Codings de conteúdo](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
-* [RFC 7230 seção 4.2.3: Codificação de Gzip](https://tools.ietf.org/html/rfc7230#section-4.2.3)
+* [RFC 7231 seção 3.1.2.1: Conteúdo Codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
+* [RFC 7230 seção 4.2.3: A codificação gzip](https://tools.ietf.org/html/rfc7230#section-4.2.3)
 * [Versão de especificação de formato de arquivo GZIP 4.3](http://www.ietf.org/rfc/rfc1952.txt)

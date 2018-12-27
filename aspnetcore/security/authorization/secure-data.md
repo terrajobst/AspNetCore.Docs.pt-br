@@ -3,15 +3,15 @@ title: Criar um aplicativo ASP.NET Core com os dados de usuário protegidos por 
 author: rick-anderson
 description: Saiba como criar um aplicativo páginas Razor com dados protegidos por autorização do usuário. Inclui HTTPS, autenticação, segurança, identidade do ASP.NET Core.
 ms.author: riande
-ms.date: 12/07/2018
+ms.date: 12/18/2018
 ms.custom: seodec18
 uid: security/authorization/secure-data
-ms.openlocfilehash: d49ee7779b425d625b81c8a65694121c616bfba6
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.openlocfilehash: fa82d3d99f4e4b7ad17ed385fb7c029745797e8d
+ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121629"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53637827"
 ---
 # <a name="create-an-aspnet-core-app-with-user-data-protected-by-authorization"></a>Criar um aplicativo ASP.NET Core com os dados de usuário protegidos por autorização
 
@@ -57,15 +57,15 @@ Na imagem a seguir, `admin@contoso.com` está conectado e na função de gerenci
 
 O administrador tem todos os privilégios. Ele pode ler/editar/excluir todos os contatos e alterar os status deles.
 
-O aplicativo foi criado fazendo [scaffolding](xref:tutorials/first-mvc-app-xplat/adding-model#scaffold-the-moviecontroller) do seguinte modelo de `Contact`:
+O aplicativo foi criado fazendo [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-the-movie-model) do seguinte modelo de `Contact`:
 
 [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet)]
 
 O exemplo contém os seguintes manipuladores de autorização:
 
 * `ContactIsOwnerAuthorizationHandler`: Garante que um usuário só pode editar seus dados.
-* `ContactManagerAuthorizationHandler`: Permite que os gerentes aprovem ou rejeitem contatos.
-* `ContactAdministratorsAuthorizationHandler`: Permite aos administradores aprovar, rejeitar e editar/excluir contatos.
+* `ContactManagerAuthorizationHandler`: Permite que os gerentes aprovar ou rejeitar os contatos.
+* `ContactAdministratorsAuthorizationHandler`: Permite aos administradores para aprovar ou rejeitar os contatos e editar/excluir contatos.
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
@@ -284,7 +284,7 @@ Ver [esse problema](https://github.com/aspnet/Docs/issues/8502) para obter infor
 
 Se você ainda não tiver configurado uma senha para contas de usuário propagados, use o [ferramenta Secret Manager](xref:security/app-secrets#secret-manager) para definir uma senha:
 
-* Escolha uma senha forte: Use oito ou mais caracteres e pelo menos um caractere maiusculo, número e símbolo. Por exemplo, `Passw0rd!` atende aos requisitos de senha forte.
+* Escolha uma senha forte: Usar oito ou mais caracteres e pelo menos um caractere maiusculo, número e símbolo. Por exemplo, `Passw0rd!` atende aos requisitos de senha forte.
 * Execute o seguinte comando na pasta do projeto, onde `<PW>` é a senha:
 
   ```console

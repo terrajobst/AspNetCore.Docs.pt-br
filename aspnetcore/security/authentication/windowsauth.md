@@ -1,23 +1,23 @@
 ---
 title: Configurar a autenticação do Windows no ASP.NET Core
 author: scottaddie
-description: Saiba como configurar a autenticação do Windows no ASP.NET Core, usando o IIS Express, o IIS, o HTTP. sys e o WebListener.
+description: Saiba como configurar a autenticação do Windows no ASP.NET Core, usando o IIS Express, o IIS e o HTTP. sys.
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 11/01/2018
+ms.date: 12/18/2018
 uid: security/authentication/windowsauth
-ms.openlocfilehash: 15e388433cc9b01e9db3e2fb56aca1ebb5ba5ba4
-ms.sourcegitcommit: b34b25da2ab68e6495b2460ff570468f16a9bf0d
+ms.openlocfilehash: 94dff2f47b2b076cb15f8d385239179b52786678
+ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53284403"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53637814"
 ---
 # <a name="configure-windows-authentication-in-aspnet-core"></a>Configurar a autenticação do Windows no ASP.NET Core
 
 Por [Steve Smith](https://ardalis.com) e [Scott Addie](https://twitter.com/Scott_Addie)
 
-Autenticação do Windows podem ser configurada para aplicativos ASP.NET Core hospedados com o IIS [HTTP. sys](xref:fundamentals/servers/httpsys), ou [WebListener](xref:fundamentals/servers/weblistener).
+Autenticação do Windows podem ser configurada para aplicativos ASP.NET Core hospedados com o IIS ou [HTTP. sys](xref:fundamentals/servers/httpsys).
 
 ## <a name="windows-authentication"></a>Autenticação do Windows
 
@@ -55,7 +55,7 @@ Como alternativa, essas duas propriedades podem ser configuradas na *launchsetti
 
 ## <a name="enable-windows-authentication-with-iis"></a>Habilitar a autenticação do Windows com o IIS
 
-O IIS usa a [módulo do ASP.NET Core](xref:fundamentals/servers/aspnet-core-module) para hospedar aplicativos ASP.NET Core. Autenticação do Windows está configurada no IIS, não o aplicativo. As seções a seguir mostram como usar o Gerenciador do IIS para configurar um aplicativo ASP.NET Core para usar a autenticação do Windows.
+O IIS usa a [módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) para hospedar aplicativos ASP.NET Core. Autenticação do Windows está configurada no IIS, não o aplicativo. As seções a seguir mostram como usar o Gerenciador do IIS para configurar um aplicativo ASP.NET Core para usar a autenticação do Windows.
 
 ### <a name="iis-configuration"></a>Configuração do IIS
 
@@ -89,8 +89,6 @@ Saiba mais sobre [publicar no IIS](xref:host-and-deploy/iis/index).
 
 Inicie o aplicativo para verificar se a autenticação do Windows está funcionando.
 
-::: moniker range=">= aspnetcore-2.0"
-
 ## <a name="enable-windows-authentication-with-httpsys"></a>Habilitar a autenticação do Windows com o HTTP. sys
 
 Embora o Kestrel não dá suporte a autenticação do Windows, você pode usar [HTTP. sys](xref:fundamentals/servers/httpsys) para dar suporte a cenários são hospedados no Windows. O exemplo a seguir configura o host de web do aplicativo para usar o HTTP. sys com a autenticação do Windows:
@@ -103,28 +101,13 @@ Embora o Kestrel não dá suporte a autenticação do Windows, você pode usar [
 > [!NOTE]
 > Não há suporte para http. sys no Nano Server versão 1709 ou posterior. Para usar a autenticação do Windows e o HTTP. sys com o Nano Server, use uma [contêiner de Server Core (microsoft/windowsservercore)](https://hub.docker.com/r/microsoft/windowsservercore/). Para obter mais informações sobre o Server Core, consulte [qual é a opção de instalação Server Core no Windows Server?](/windows-server/administration/server-core/what-is-server-core).
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-## <a name="enable-windows-authentication-with-weblistener"></a>Habilitar a autenticação do Windows com o WebListener
-
-Embora o Kestrel não dá suporte a autenticação do Windows, você pode usar [WebListener](xref:fundamentals/servers/weblistener) para dar suporte a cenários são hospedados no Windows. O exemplo a seguir configura o host de web do aplicativo para usar WebListener com a autenticação do Windows:
-
-[!code-csharp[](windowsauth/sample/Program1x.cs?highlight=6-11)]
-
-> [!NOTE]
-> O WebListener delega à autenticação de modo kernel com o protocolo de autenticação Kerberos. Não há suporte para autenticação de modo de usuário com o Kerberos e o WebListener. A conta do computador precisa ser usada para descriptografar o token/tíquete do Kerberos que é obtido do Active Directory e encaminhado pelo cliente ao servidor para autenticar o usuário. Registre o SPN (nome da entidade de serviço) do host, não do usuário do aplicativo.
-
-::: moniker-end
-
 ## <a name="work-with-windows-authentication"></a>Trabalhar com a autenticação do Windows
 
 Estado da configuração do acesso anônimo determina o modo no qual o `[Authorize]` e `[AllowAnonymous]` atributos são usados no aplicativo. As seções a seguir explicam como lidar com os estados de configuração não permitidos e têm permissão de acesso anônimo.
 
 ### <a name="disallow-anonymous-access"></a>Não permitir acesso anônimo
 
-Quando a autenticação do Windows está habilitada e o acesso anônimo é desabilitado, o `[Authorize]` e `[AllowAnonymous]` atributos não têm nenhum efeito. Se o site do IIS (ou servidor HTTP. sys ou WebListener) estiver configurado para não permitir acesso anônimo, a solicitação nunca atinge seu aplicativo. Por esse motivo, o `[AllowAnonymous]` atributo não é aplicável.
+Quando a autenticação do Windows está habilitada e o acesso anônimo é desabilitado, o `[Authorize]` e `[AllowAnonymous]` atributos não têm nenhum efeito. Se o site do IIS (ou HTTP. sys) estiver configurado para não permitir acesso anônimo, a solicitação nunca atinge seu aplicativo. Por esse motivo, o `[AllowAnonymous]` atributo não é aplicável.
 
 ### <a name="allow-anonymous-access"></a>Permitir o acesso anônimo
 

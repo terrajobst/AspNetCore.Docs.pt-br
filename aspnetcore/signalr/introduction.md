@@ -7,12 +7,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 04/25/2018
 uid: signalr/introduction
-ms.openlocfilehash: 2fff24609caf7592bad763a077288990a29617aa
-ms.sourcegitcommit: 927e510d68f269d8335b5a7c8592621219a90965
+ms.openlocfilehash: da18837c690d2182589db5f486ae74e537ade931
+ms.sourcegitcommit: 6548c19f345850ee22b50f7ef9fca732895d9e08
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39342543"
+ms.lasthandoff: 12/14/2018
+ms.locfileid: "53425140"
 ---
 # <a name="introduction-to-aspnet-core-signalr"></a>Introdução ao SignalR do ASP.NET Core
 
@@ -36,7 +36,7 @@ Aqui estão alguns recursos do SignalR para ASP.NET Core:
 * Envia mensagens para clientes específicos ou grupos de clientes.
 * É dimensionada para lidar com o aumento de tráfego.
 
-A fonte é hospedada em um [SignalR repositório no GitHub](https://github.com/aspnet/signalr).
+A fonte é hospedada em um [SignalR repositório no GitHub](https://github.com/aspnet/AspNetCore/tree/master/src/SignalR).
 
 ## <a name="transports"></a>Transportes
 

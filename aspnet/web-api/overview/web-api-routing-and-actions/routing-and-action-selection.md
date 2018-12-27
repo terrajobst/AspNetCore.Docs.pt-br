@@ -4,16 +4,16 @@ title: Roteamento e seleção de ação na API Web ASP.NET | Microsoft Docs
 author: MikeWasson
 description: ''
 ms.author: riande
-ms.date: 07/27/2012
+ms.date: 12/14/2018
 ms.assetid: bcf2d223-cb7f-411e-be05-f43e96a14015
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/routing-and-action-selection
 msc.type: authoredcontent
-ms.openlocfilehash: b4912d3ee1e13651f2a63d54d7dbfd92e00f85f8
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
+ms.openlocfilehash: ce54181996376cb5dde3b91c10c16f33b3c6a570
+ms.sourcegitcommit: 6548c19f345850ee22b50f7ef9fca732895d9e08
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41834985"
+ms.lasthandoff: 12/14/2018
+ms.locfileid: "53425166"
 ---
 <a name="routing-and-action-selection-in-aspnet-web-api"></a>Roteamento e seleção de ação na API Web ASP.NET
 ====================
@@ -62,7 +62,7 @@ Se você fornecer padrões, a rota corresponderá a um URI que não tem esses se
 
 [!code-csharp[Main](routing-and-action-selection/samples/sample4.cs)]
 
-O URI "`http://localhost/api/products`" corresponderá a essa rota. O segmento "{category}" é atribuído o valor padrão "tudo".
+Os URIs `http://localhost/api/products/all` e `http://localhost/api/products` correspondem à rota anterior. No último URI, o ausente `{category}` segmento é atribuído o valor padrão `all`.
 
 ### <a name="route-dictionary"></a>Dicionário de rota
 
@@ -83,7 +83,7 @@ Para "api/produtos/toys/123", no entanto, o dicionário de rota conterá:
 
 - controlador: "produtos"
 - categoria: "toys"
-- id: "123"
+- ID: "123"
 
 Os padrões também podem incluir um valor que não aparece em qualquer lugar no modelo de rota. Se a rota corresponde, esse valor é armazenado no dicionário. Por exemplo:
 
@@ -92,7 +92,7 @@ Os padrões também podem incluir um valor que não aparece em qualquer lugar no
 Se o caminho do URI é "api/raiz/8", o dicionário conterá dois valores:
 
 - controlador: "clientes"
-- id: "8"
+- ID: "8"
 
 ## <a name="selecting-a-controller"></a>Selecionar um controlador
 
@@ -122,7 +122,7 @@ Antes de examinar o algoritmo de seleção, precisamos entender algumas coisas s
 
 **Métodos HTTP.** O framework escolhe apenas as ações que corresponde ao método HTTP da solicitação, determinado da seguinte maneira:
 
-1. Você pode especificar o método HTTP com um atributo: **AcceptVerbs**, **HttpDelete**, **HttpGet**, **HttpHead**,  **HttpOptions**, **HttpPatch**, **HttpPost**, ou **HttpPut**.
+1. Você pode especificar o método HTTP com um atributo: **AcceptVerbs**, **HttpDelete**, **HttpGet**, **HttpHead**, **HttpOptions**, **HttpPatch**, **HttpPost**, ou **HttpPut**.
 2. Caso contrário, se o nome do método do controlador começa com "Get", "Post", "Put", "Delete", "Head", "Opções" ou "Patch", em seguida, por convenção, a ação dá suporte a esse método HTTP.
 3. Se nenhuma das opções acima, o método dá suporte à POSTAGEM.
 
@@ -189,7 +189,7 @@ Solicitação HTTP:
 O URI coincida com a rota chamada "DefaultApi". O dicionário de rota contém as seguintes entradas:
 
 - controlador: "produtos"
-- id: "1"
+- ID: "1"
 
 O dicionário de rota não contêm parâmetros de cadeia de caracteres de consulta, "versão" e "Detalhes", mas eles ainda serão considerados durante a seleção de ação.
 

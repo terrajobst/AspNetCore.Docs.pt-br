@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 11/11/2018
 uid: security/authentication/google-logins
-ms.openlocfilehash: 372504eb4f6fea412b5b160e0d5e9251dafe0d56
-ms.sourcegitcommit: b34b25da2ab68e6495b2460ff570468f16a9bf0d
+ms.openlocfilehash: 4bb5a36cf654deb694d60da126fa42baf382f729
+ms.sourcegitcommit: 3e94d192b2ed9409fe72e3735e158b333354964c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53284469"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53735759"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>Configuração de logon externo do Google no ASP.NET Core
 
@@ -92,9 +92,9 @@ Os valores para esses tokens podem ser encontrados no arquivo JSON baixado na et
 Adicione o serviço do Google na `ConfigureServices` método no *Startup.cs* arquivo:
 
 ```csharp
-services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+services.AddDefaultIdentity<IdentityUser>()
+        .AddDefaultUI(UIFramework.Bootstrap4)
+        .AddEntityFrameworkStores<ApplicationDbContext>();
 
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
