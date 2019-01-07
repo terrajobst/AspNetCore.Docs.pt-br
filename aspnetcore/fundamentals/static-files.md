@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como fornecer e proteger arquivos estáticos e configurar comportamentos do middleware de hospedagem de arquivos estáticos em um aplicativo Web ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/18/2018
+ms.date: 12/18/2018
 uid: fundamentals/static-files
-ms.openlocfilehash: fb92141b1864574242b29ecc386024ce72a6be87
-ms.sourcegitcommit: 408921a932448f66cb46fd53c307a864f5323fe5
+ms.openlocfilehash: 4c08d65cc1f658ef08a9b4b362ac7f8a3a243557
+ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2018
-ms.locfileid: "51570120"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53637768"
 ---
 # <a name="static-files-in-aspnet-core"></a>Arquivos estáticos no ASP.NET Core
 
@@ -246,7 +246,7 @@ Com o código anterior, uma solicitação para um arquivo com um tipo de conteú
 
 * As URLs para o conteúdo exposto com `UseDirectoryBrowser` e `UseStaticFiles` estão sujeitas à diferenciação de maiúsculas e minúsculas e a restrições de caracteres do sistema de arquivos subjacente. Por exemplo, o Windows diferencia maiúsculas de minúsculas, o macOS e o Linux não.
 
-* Os aplicativos ASP.NET Core hospedados no IIS usam o [Módulo do ASP.NET Core](xref:fundamentals/servers/aspnet-core-module) para encaminhar todas as solicitações ao aplicativo, inclusive as solicitações de arquivo estático. O manipulador de arquivos estáticos do IIS não é usado. Ele não tem nenhuma possibilidade de manipular as solicitações antes que elas sejam manipuladas pelo módulo.
+* Os aplicativos ASP.NET Core hospedados no IIS usam o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) para encaminhar todas as solicitações ao aplicativo, inclusive as solicitações de arquivo estático. O manipulador de arquivos estáticos do IIS não é usado. Ele não tem nenhuma possibilidade de manipular as solicitações antes que elas sejam manipuladas pelo módulo.
 
 * Conclua as etapas seguinte no Gerenciador do IIS para remover o manipulador de arquivos estáticos no IIS no nível do servidor ou do site:
     1. Navegue para o recurso **Módulos**.
