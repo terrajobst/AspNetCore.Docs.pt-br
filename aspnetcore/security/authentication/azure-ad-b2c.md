@@ -5,12 +5,12 @@ description: Descubra como configurar a autenticação do Azure Active Directory
 ms.date: 01/25/2018
 ms.custom: mvc
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: 73a66cea1533cc835796f673021bfa45c35f5935
-ms.sourcegitcommit: 4cd8dce371d63a66d780e4af1baab2bcf9d61b24
+ms.openlocfilehash: 2c544475ccd3eb76f2737fec1cf269ac86add372
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/06/2018
-ms.locfileid: "43893188"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54098981"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticação de nuvem com o Azure Active Directory B2C no ASP.NET Core
 
@@ -19,7 +19,7 @@ Por [Cam Soper](https://twitter.com/camsoper)
 [Azure Active Directory B2C do diretório](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) é uma solução de gerenciamento de identidade de nuvem para aplicativos web e móveis. O serviço fornece autenticação para aplicativos hospedados na nuvem e locais. Tipos de autenticação incluem contas individuais, contas de rede social e contas corporativas de federado. Além disso, o Azure AD B2C pode fornecer a autenticação multifator com configuração mínima.
 
 > [!TIP]
-> Azure Active Directory (Azure AD) e o Azure AD B2C são ofertas de produtos separados. Um locatário do AD do Azure representa uma organização, enquanto que um locatário do Azure AD B2C representa uma coleção de identidades a serem usados com aplicativos de terceira parte confiável. Para obter mais informações, consulte [do Azure AD B2C: perguntas frequentes (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
+> Azure Active Directory (Azure AD) e o Azure AD B2C são ofertas de produtos separados. Um locatário do AD do Azure representa uma organização, enquanto que um locatário do Azure AD B2C representa uma coleção de identidades a serem usados com aplicativos de terceira parte confiável. Para obter mais informações, consulte [do Azure AD B2C: Perguntas frequentes (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
 
 Neste tutorial, saiba como:
 
@@ -96,7 +96,7 @@ No Visual Studio:
 Retornar à janela do navegador com as propriedades do aplicativo B2C ainda abertas. Alterar temporários **URL de resposta** especificado anteriormente para o valor copiado do Visual Studio. Selecione **salvar** na parte superior da janela.
 
 > [!TIP]
-> Se você não copiar a URL de resposta, use o endereço SSL na guia Debug nas propriedades do projeto da web e acrescente o **CallbackPath** o valor da *appSettings. JSON*.
+> Se você não copiar a URL de resposta, use o endereço HTTPS na guia Debug nas propriedades do projeto da web e acrescente o **CallbackPath** o valor da *appSettings. JSON*.
 
 ## <a name="configure-policies"></a>Configurar políticas
 

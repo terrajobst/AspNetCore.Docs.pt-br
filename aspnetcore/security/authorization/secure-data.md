@@ -6,12 +6,12 @@ ms.author: riande
 ms.date: 12/18/2018
 ms.custom: seodec18
 uid: security/authorization/secure-data
-ms.openlocfilehash: fa82d3d99f4e4b7ad17ed385fb7c029745797e8d
-ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
+ms.openlocfilehash: bdba706c1ef24ebe35129cb8bb2d9949196245a1
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "53637827"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54098916"
 ---
 # <a name="create-an-aspnet-core-app-with-user-data-protected-by-authorization"></a>Criar um aplicativo ASP.NET Core com os dados de usuário protegidos por autorização
 
@@ -59,7 +59,7 @@ O administrador tem todos os privilégios. Ele pode ler/editar/excluir todos os 
 
 O aplicativo foi criado fazendo [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-the-movie-model) do seguinte modelo de `Contact`:
 
-[!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet)]
+[!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
 O exemplo contém os seguintes manipuladores de autorização:
 
@@ -314,33 +314,33 @@ Crie um contato no navegador do administrador. Copie a URL para excluir e editar
 ## <a name="create-the-starter-app"></a>Criar o aplicativo inicial
 
 * Criar um aplicativo páginas Razor denominado "ContactManager"
-   * Criar o aplicativo com **contas de usuário individuais**.
-   * O nome "ContactManager" para o namespace coincida com o namespace usado no exemplo.
-   * `-uld` Especifica o LocalDB em vez do SQLite
+  * Criar o aplicativo com **contas de usuário individuais**.
+  * O nome "ContactManager" para o namespace coincida com o namespace usado no exemplo.
+  * `-uld` Especifica o LocalDB em vez do SQLite
 
   ```console
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Adicione *Models\Contact.cs*:
+* Adicione *Models/Contact.cs*:
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
 * Scaffold o `Contact` modelo.
 * Criar a migração inicial e atualizar o banco de dados:
 
-```console
-dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
-dotnet ef database drop -f
-dotnet ef migrations add initial
-dotnet ef database update
-```
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
+  dotnet ef database drop -f
+  dotnet ef migrations add initial
+  dotnet ef database update
+  ```
 
 * Atualizar o link de **ContactManager** no arquivo *Pages/_Layout.cshtml*:
 
-```cshtml
-<a asp-page="/Contacts/Index" class="navbar-brand">ContactManager</a>
-```
+  ```cshtml
+  <a asp-page="/Contacts/Index" class="navbar-brand">ContactManager</a>
+  ```
 
 * Testar o aplicativo criando, editando e excluindo um contato
 

@@ -8,12 +8,12 @@ ms.date: 03/28/2008
 ms.assetid: 54d9df99-1161-4899-b4e8-2679c85915e7
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-partial-page-updates-with-asp-net-ajax
 msc.type: authoredcontent
-ms.openlocfilehash: 2e0b1e1d4cbb282e7fd4b27e0a93ba1b9702edea
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
+ms.openlocfilehash: 4883046aa16d5e67b7f0c92e15c897ef1a933b67
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41824815"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54098929"
 ---
 <a name="understanding-partial-page-updates-with-aspnet-ajax"></a>Página parcial de Noções básicas sobre atualizações com o ASP.NET AJAX
 ====================
@@ -46,7 +46,7 @@ Talvez o recurso mais visível das extensões do AJAX ASP.NET é a capacidade de
 
 A capacidade de integrar a renderização parcial da página é integrada ao ASP.NET com alterações mínimas em seu projeto.
 
-## <a name="walkthrough-integrating-partial-rendering-into-an-existing-project"></a>Passo a passo: Integrar o processamento parcial em um projeto existente
+## <a name="walkthrough-integrating-partial-rendering-into-an-existing-project"></a>Passo a passo: A integração do processamento parcial em um projeto existente
 
 
 1. No Microsoft Visual Studio 2008, crie um novo projeto de Site da Web ASP.NET acessando <em>arquivo</em>  <em>- &gt; New</em>  <em>- &gt; Web Site</em> e selecionando o Site da Web ASP.NET na caixa de diálogo. Você pode chamá-lo que você quiser, e você pode instalá-lo para o sistema de arquivos ou em serviços de informações da Internet (IIS).
@@ -91,7 +91,7 @@ A capacidade de integrar a renderização parcial da página é integrada ao ASP
 
 1. Abra o arquivo Web. config. Observe que o Visual Studio adicionou uma referência de compilação para Extensions automaticamente.
 
-1. O que há de novo no Visual Studio 2008: O Web. config que vem com os modelos de projeto de Site da Web ASP.NET automaticamente inclui todas as referências necessárias para extensões AJAX do ASP.NET e inclui as seções comentadas das informações de configuração que podem ser não é comentado para habilitar funcionalidades adicionais. Visual Studio 2005 tinha modelos semelhantes ao ASP.NET 2.0 AJAX Extensions foram instalados. No entanto, no Visual Studio 2008, as extensões AJAX são recusá-la por padrão (ou seja, eles são referenciados por padrão, mas pode ser removidos como referências).
+1. O que há de novo no Visual Studio 2008: O Web. config que vem com o Site da Web ASP.NET automaticamente modelos de projeto inclui todas as referências necessárias para extensões AJAX do ASP.NET e inclui comentado seções de informações de configuração que podem ser não comentada para habilitar adicionais funcionalidade. Visual Studio 2005 tinha modelos semelhantes ao ASP.NET 2.0 AJAX Extensions foram instalados. No entanto, no Visual Studio 2008, as extensões AJAX são recusá-la por padrão (ou seja, eles são referenciados por padrão, mas pode ser removidos como referências).
 
 
 [![](understanding-partial-page-updates-with-asp-net-ajax/_static/image8.png)](understanding-partial-page-updates-with-asp-net-ajax/_static/image7.png)
@@ -153,7 +153,7 @@ Descendentes de marcação:
 
 O controle ScriptManager é o núcleo essencial para as extensões do AJAX ASP.NET. Ele fornece acesso à biblioteca de scripts (incluindo o sistema de tipos de script extensivo do lado do cliente), dá suporte à renderização parcial e fornece suporte extensivo para serviços ASP.NET adicionais (como autenticação e criação de perfil, mas também outros serviços da Web). O controle ScriptManager também fornece suportam de globalização e localização para os scripts de cliente.
 
-## <a name="providing-alterative-and-supplemental-scripts"></a>Fornecer Scripts alternativo e complementares
+## <a name="providing-alternative-and-supplemental-scripts"></a>Fornecer Scripts alternativos e complementares
 
 Embora o Microsoft ASP.NET 2.0 AJAX Extensions incluir o código de script inteiro em ambos os depuração e versão edições como recursos incorporados em assemblies referenciados, os desenvolvedores são livres para redirecionar o ScriptManager para os arquivos de script personalizado, bem como registrar scripts de adicionais necessários.
 
@@ -169,7 +169,7 @@ Consumindo o evento AsyncPostBackError, você pode especificar o `AsyncPostBackE
 
 Personalização do lado do cliente também é possível em vez de usar a caixa de alerta padrão; Por exemplo, você talvez queira exibir um personalizado `<div>` elemento, em vez de diálogo modal de navegador padrão. Nesse caso, você pode tratar o erro no script de cliente:
 
-**Listagem 5: O script do lado do cliente para exibir os erros personalizados**
+**Listagem 5: Script do lado do cliente para exibir os erros personalizados**
 
 [!code-html[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample4.html)]
 

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/01/2018
 uid: security/enforcing-ssl
-ms.openlocfilehash: b15c6b5ac77f047c40704c9e164165c55b6ae93b
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: 0c3add9c8860a47932cda3a8b07c83dc774bf1f1
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52861518"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54098968"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Impor HTTPS no ASP.NET Core
 
@@ -69,9 +69,9 @@ Especifique a porta HTTPS usando qualquer uma das seguintes abordagens:
 
   **Chave**: `https_port`  
   **Tipo**: *string*  
-  **Padrão**: um valor padrão não está definido.  
+  **Padrão**: Um valor padrão não está definido.  
   **Definido usando**: `UseSetting`  
-  **Variável de ambiente**: `<PREFIX_>HTTPS_PORT` (é o prefixo `ASPNETCORE_` ao usar os [Host Web](xref:fundamentals/host/web-host).)
+  **Variável de ambiente**: `<PREFIX_>HTTPS_PORT` (É o prefixo `ASPNETCORE_` ao usar o [Host Web](xref:fundamentals/host/web-host).)
 
   Ao configurar uma <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> em `Program`:
 
@@ -98,7 +98,7 @@ Qualquer firewall entre o cliente e o servidor também deve ter as portas de com
 
 Se as solicitações são encaminhadas em uma configuração de proxy reverso, use [Middleware de cabeçalhos encaminhados](xref:host-and-deploy/proxy-load-balancer) antes de chamar Middleware de redirecionamento de HTTPS. Encaminhado atualizações de Middleware de cabeçalhos a `Request.Scheme`, usando o `X-Forwarded-Proto` cabeçalho. O middleware permite redirecionar URIs e outras políticas de segurança para funcionar corretamente. Quando o Middleware de cabeçalhos encaminhados não for usado, o aplicativo de back-end não pode receber o esquema correto e acabar em um loop de redirecionamento. Uma mensagem de erro comuns do usuário final é que muitos redirecionamentos ocorreram.
 
-Ao implantar o serviço de aplicativo do Azure, siga as orientações [Tutorial: associar um certificado SSL personalizado existente a aplicativos Web do Azure](/azure/app-service/app-service-web-tutorial-custom-ssl).
+Ao implantar o serviço de aplicativo do Azure, siga as orientações em [Tutorial: vincular um certificado SSL personalizado ao serviço Aplicativos Web do Azure](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
 ### <a name="options"></a>Opções
 
@@ -192,9 +192,9 @@ O código a seguir:
 
 `UseHsts` Exclui os seguintes hosts de loopback:
 
-* `localhost` : O endereço de loopback do IPv4.
-* `127.0.0.1` : O endereço de loopback do IPv4.
-* `[::1]` : O endereço de loopback do IPv6.
+* `localhost`: O endereço de loopback do IPv4.
+* `127.0.0.1`: O endereço de loopback do IPv4.
+* `[::1]`: O endereço de loopback do IPv6.
 
 ::: moniker-end
 
@@ -260,7 +260,7 @@ Ver [esse problema de GitHub](https://github.com/aspnet/Docs/issues/6199).
 ## <a name="additional-information"></a>Informações adicionais
 
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Hospedar o ASP.NET Core no Linux com o Apache: configuração de SSL](xref:host-and-deploy/linux-apache#ssl-configuration)
-* [Hospedar o ASP.NET Core no Linux com Nginx: configuração de SSL](xref:host-and-deploy/linux-nginx#configure-ssl)
+* [Hospede o ASP.NET Core no Linux com o Apache: Configuração HTTPS](xref:host-and-deploy/linux-apache#https-configuration)
+* [Hospede o ASP.NET Core no Linux com Nginx: Configuração HTTPS](xref:host-and-deploy/linux-nginx#https-configuration)
 * [Como configurar o SSL no IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * [Suporte a navegador HSTS OWASP](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)

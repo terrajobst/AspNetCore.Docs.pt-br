@@ -4,14 +4,14 @@ author: mjrousos
 description: Dicas para aumentar o desempenho em aplicativos ASP.NET Core e evitar problemas comuns de desempenho.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
-ms.date: 11/29/2018
+ms.date: 1/9/2019
 uid: performance/performance-best-practices
-ms.openlocfilehash: 9f3ed97bf4d4eb371ff5ae3874234b44745cc4ca
-ms.sourcegitcommit: 0fc89b80bb1952852ecbcf3c5c156459b02a6ceb
+ms.openlocfilehash: 25aa4c1e22ead7db4775c6e5e81b6fd627c6d7a6
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/29/2018
-ms.locfileid: "52618110"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54099059"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Práticas recomendadas de desempenho do ASP.NET Core
 
@@ -19,8 +19,7 @@ Por [Mike Rousos](https://github.com/mjrousos)
 
 Este tópico fornece diretrizes para desempenho, as práticas recomendadas com o ASP.NET Core.
 
-<a name="hot"></a>
-<!-- TODO review hot code paths is jargon that won't MT (machine translate) and is not well defined for native speakers. --> Neste documento, um caminho de código a quente é definido como um caminho de código que é chamado com frequência e em que grande parte do tempo de execução ocorre. Caminhos de código ativo normalmente limitam a expansão de aplicativo e o desempenho.
+<a name="hot"></a> Neste documento, um caminho de código a quente é definido como um caminho de código que é chamado com frequência e em que grande parte do tempo de execução ocorre. Caminhos de código ativo normalmente limitam a expansão de aplicativo e o desempenho.
 
 ## <a name="cache-aggressively"></a>Armazenar em cache agressivamente
 
@@ -129,6 +128,10 @@ Recomendações:
 
 * **Fazer** usar o ASP.NET Core [suporte interno](xref:client-side/bundling-and-minification) para agrupamento e minificação de ativos de cliente.
 * **Fazer** considerar outras ferramentas de terceiros, como [Gulp](uid:client-side/bundling-and-minification#consume-bundleconfigjson-from-gulp) ou [Webpack](https://webpack.js.org/) para gerenciamento de ativos mais complexo do cliente.
+
+## <a name="compress-responses"></a>Compactar respostas
+
+ Reduzindo o tamanho da resposta geralmente aumenta a capacidade de resposta de um aplicativo, muitas vezes drasticamente. É uma maneira de reduzir os tamanhos do conteúdo compactar respostas do aplicativo. Para obter mais informações, consulte [compactação de resposta](xref:performance/response-compression).
 
 ## <a name="use-the-latest-aspnet-core-release"></a>Use a versão mais recente do ASP.NET Core
 

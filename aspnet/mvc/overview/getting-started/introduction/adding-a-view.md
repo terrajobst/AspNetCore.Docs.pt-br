@@ -5,12 +5,12 @@ description: Adicionando uma exibição a um aplicativo MVC
 ms.author: riande
 ms.date: 09/1721/2017
 uid: mvc/overview/getting-started/introduction/adding-a-view
-ms.openlocfilehash: 56c00d5992a95971f48bb6e1ec30d63706948997
-ms.sourcegitcommit: 7b4e3936feacb1a8fcea7802aab3e2ea9c8af5b4
+ms.openlocfilehash: 47447c82506cc0eb4dafabe272b3204f76a2edd7
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/04/2018
-ms.locfileid: "48578220"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54098656"
 ---
 <a name="adding-a-view"></a>Adicionando uma exibição
 ====================
@@ -22,7 +22,7 @@ Nesta seção você irá modificar o `HelloWorldController` classe para usar a e
 
 Você criará um arquivo de modelo de exibição usando o [mecanismo de exibição Razor](../../../../web-pages/overview/getting-started/introducing-razor-syntax-c.md). Modelos de exibição baseado no Razor têm uma *. cshtml* extensão de arquivo e fornecem uma maneira elegante de criar o HTML de saída usando a linguagem c#. Razor minimiza o número de caracteres e pressionamentos de teclas necessários ao escrever um modelo de exibição e permite um rápido, fluido fluxo de trabalho de codificação.
 
-Atualmente, o método `Index` retorna uma cadeia de caracteres com uma mensagem que é embutida em código na classe do controlador. Alterar o `Index` método para retornar um `View` do objeto, conforme mostrado no código a seguir:
+Atualmente, o método `Index` retorna uma cadeia de caracteres com uma mensagem que é embutida em código na classe do controlador. Alterar o `Index` método para chamar os controladores [exibição](/dotnet/api/microsoft.aspnetcore.mvc.controller.view#Microsoft_AspNetCore_Mvc_Controller_View) método, conforme mostrado no código a seguir:
 
 [!code-csharp[Main](adding-a-view/samples/sample1.cs?highlight=1,3)]
 
@@ -112,7 +112,7 @@ Nosso pouco &quot;dados&quot; (nesse caso, o &quot;Olá de nosso modelo de exibi
 
 Antes de ir para um banco de dados e falar sobre modelos, no entanto, vamos primeiro falar sobre como passar informações do controlador para um modo de exibição. As classes do controlador são invocadas em resposta a uma solicitação de URL de entrada. Uma classe de controlador é onde você escreve o código que manipula o entrada navegador solicita, recupera dados de um banco de dados e, por fim, decide qual tipo de resposta será enviada ao navegador. Modelos de exibição, em seguida, podem ser usados em um controlador para gerar e formatar uma resposta HTML para o navegador.
 
-Os controladores são responsáveis por fornecer quaisquer dados ou objetos são necessários para que um modelo de exibição renderizar uma resposta ao navegador. Uma prática recomendada: **um modelo de exibição nunca deve executar lógica de negócios ou interagir diretamente com um banco de dados**. Em vez disso, um modelo de exibição deve trabalhar somente com os dados que são fornecidos a ela pelo controlador. Manter isso &quot;separação de preocupações&quot; ajuda a manter seu código limpo, testável e mais sustentável.
+Os controladores são responsáveis por fornecer quaisquer dados ou objetos são necessários para que um modelo de exibição renderizar uma resposta ao navegador. Uma prática recomendada: **Um modelo de exibição nunca deve executar lógica de negócios ou interagir diretamente com um banco de dados**. Em vez disso, um modelo de exibição deve trabalhar somente com os dados que são fornecidos a ela pelo controlador. Manter isso &quot;separação de preocupações&quot; ajuda a manter seu código limpo, testável e mais sustentável.
 
 No momento, o `Welcome` método de ação de `HelloWorldController` classe usa um `name` e um `numTimes` parâmetro e, em seguida, gera os valores diretamente para o navegador. Em vez de fazer com que o controlador renderize a resposta como uma cadeia de caracteres, vamos alterar o controlador para usar um modelo de exibição em vez disso. O modelo de exibição gerará uma resposta dinâmica, o que significa que você precisa passar bits de dados apropriados do controlador para a exibição para gerar a resposta. Você pode fazer isso fazendo com que o controlador coloque os dados dinâmicos (parâmetros) que o modelo de exibição precisa em um `ViewBag` objeto que pode acessar o modelo de exibição.
 

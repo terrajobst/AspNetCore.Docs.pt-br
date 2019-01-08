@@ -7,12 +7,12 @@ ms.author: riande
 ms.date: 09/22/2018
 ms.custom: seodec18
 uid: security/authentication/2fa
-ms.openlocfilehash: 6f20928b0dec9b235fa17c1b44c81a48d031e9e0
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.openlocfilehash: 48bfc50378fc0ec212f5b9d4e7ce05bb4fc97b9d
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121655"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54098878"
 ---
 # <a name="two-factor-authentication-with-sms-in-aspnet-core"></a>Autenticação de dois fatores com SMS no ASP.NET Core
 
@@ -27,7 +27,7 @@ Este tutorial mostra como configurar a autenticação de dois fatores (2FA) usan
 
 ## <a name="create-a-new-aspnet-core-project"></a>Criar um projeto ASP.NET Core
 
-Criar um novo aplicativo web de ASP.NET Core chamado `Web2FA` com contas de usuário individuais. Siga as instruções em [impor o SSL em um aplicativo ASP.NET Core](xref:security/enforcing-ssl) para configurar e exigir SSL.
+Criar um novo aplicativo web de ASP.NET Core chamado `Web2FA` com contas de usuário individuais. Siga as instruções em <xref:security/enforcing-ssl> para configurar e exigir HTTPS.
 
 ### <a name="create-an-sms-account"></a>Criar uma conta do SMS
 
@@ -35,17 +35,17 @@ Criar uma conta SMS, por exemplo, no [twilio](https://www.twilio.com/) ou [ASPSM
 
 #### <a name="figuring-out-sms-provider-credentials"></a>Descobrir as credenciais do provedor de SMS
 
-**Twilio:** da guia Painel de sua conta do Twilio, copie o **Account SID** e **token de autenticação**.
+**Twilio:** Na guia Painel de sua conta do Twilio, copie o **SID da conta** e **token de autenticação**.
 
-**ASPSMS:** em suas configurações de conta, navegue até **Userkey** e copie-o junto com seu **senha**.
+**ASPSMS:** Em suas configurações de conta, navegue até **Userkey** e copie-o junto com seus **senha**.
 
 Posteriormente, armazenaremos esses valores com a ferramenta secret manager nas chaves `SMSAccountIdentification` e `SMSAccountPassword`.
 
 #### <a name="specifying-senderid--originator"></a>Especificando SenderID / originador
 
-**Twilio:** na guia números, copie seu Twilio **número de telefone**.
+**Twilio:** Na guia números, copie o Twilio **número de telefone**.
 
-**ASPSMS:** dentro do Menu originadores de desbloqueio, desbloquear originadores de um ou mais ou escolha um originador alfanumérico (não é suportado por todas as redes).
+**ASPSMS:** Dentro do Menu originadores de desbloqueio, desbloquear originadores de um ou mais ou escolha um originador alfanumérico (não é suportado por todas as redes).
 
 Posteriormente, armazenaremos esse valor com a ferramenta secret manager na chave do `SMSAccountFrom`.
 
@@ -136,7 +136,7 @@ Se você não receber uma mensagem de texto, consulte a página de registro do t
 
 ## <a name="account-lockout-for-protecting-against-brute-force-attacks"></a>Bloqueio de conta para proteção contra ataques de força bruta
 
-Bloqueio de conta é recomendado com 2FA. Depois que um usuário faz logon por meio de uma conta local ou social, cada tentativa com falha no 2FA é armazenada. Se as tentativas de acesso com falha máximo for atingido, o usuário está bloqueado (padrão: bloqueio de 5 minutos após 5 falhas em tentativas de acesso). Uma autenticação bem-sucedida redefine a contagem de tentativas de acesso com falha e redefine o relógio. O máximo falhas em tentativas de acesso e tempo de bloqueio pode ser definido com [MaxFailedAccessAttempts](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.maxfailedaccessattempts) e [DefaultLockoutTimeSpan](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan). O exemplo a seguir configura o bloqueio de conta por 10 minutos após 10 tentativas de acesso:
+Bloqueio de conta é recomendado com 2FA. Depois que um usuário faz logon por meio de uma conta local ou social, cada tentativa com falha no 2FA é armazenada. Se as tentativas de acesso com falha máximo for atingido, o usuário está bloqueado (padrão: 5 minutos bloqueio após 5 falhas em tentativas de acesso). Uma autenticação bem-sucedida redefine a contagem de tentativas de acesso com falha e redefine o relógio. O máximo falhas em tentativas de acesso e tempo de bloqueio pode ser definido com [MaxFailedAccessAttempts](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.maxfailedaccessattempts) e [DefaultLockoutTimeSpan](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan). O exemplo a seguir configura o bloqueio de conta por 10 minutos após 10 tentativas de acesso:
 
 [!code-csharp[](2fa/sample/Web2FA/Startup.cs?name=snippet2&highlight=13-17)]
 

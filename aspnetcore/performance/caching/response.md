@@ -3,14 +3,14 @@ title: Cache de resposta no ASP.NET Core
 author: rick-anderson
 description: Saiba como usar o cache de resposta para reduzir os requisitos de largura de banda e elevar o desempenho de aplicativos ASP.NET Core.
 ms.author: riande
-ms.date: 09/20/2017
+ms.date: 01/07/2018
 uid: performance/caching/response
-ms.openlocfilehash: 99093cd281ffa8dddc574dc27254c0175e2651b3
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: 5fbcaddff6e53d01a19ba8a7455c719feb614326
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207362"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54098942"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Cache de resposta no ASP.NET Core
 
@@ -23,7 +23,7 @@ Por [John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.co
 
 O cache das respostas reduz o número de solicitações de que um cliente ou proxy faz a um servidor web. Cache de resposta também reduz a quantidade de trabalho do servidor web executa para gerar uma resposta. Cache de resposta é controlado por cabeçalhos que especificam como deseja cliente, o proxy e middleware para respostas em cache.
 
-O servidor web pode armazenar em cache as respostas quando você adiciona [Middleware de cache de resposta](xref:performance/caching/middleware).
+O [do atributo ResponseCache](#responsecache-attribute) participa na configuração de cabeçalhos, quais clientes podem honrar ao armazenar em cache as respostas do cache de resposta. [Middleware de cache de resposta](xref:performance/caching/middleware) pode ser usada para respostas em cache no servidor. O middleware pode usar `ResponseCache` propriedades para influenciar o comportamento de cache do lado do servidor do atributo.
 
 ## <a name="http-based-response-caching"></a>Cache de resposta baseado em HTTP
 
@@ -36,8 +36,8 @@ Common `Cache-Control` diretivas são mostradas na tabela a seguir.
 | [public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Um cache pode armazenar a resposta. |
 | [private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | A resposta não deve ser armazenada por um cache compartilhado. Um cache privado pode armazenar e reutilizar a resposta. |
 | [max-age](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | O cliente não aceitará uma resposta cuja idade é maior que o número especificado de segundos. Exemplos: `max-age=60` (60 segundos), `max-age=2592000` (1 mês) |
-| [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **Em solicitações**: um cache não deve usar uma resposta armazenada para atender à solicitação. Observação: O servidor de origem gera novamente a resposta para o cliente e o middleware atualiza a resposta armazenada em seu cache.<br><br>**Nas respostas**: A resposta não deve ser usada para uma solicitação subsequente sem validação no servidor de origem. |
-| [no-store](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Em solicitações**: um cache não deve armazenar a solicitação.<br><br>**Nas respostas**: um cache não deve armazenar qualquer parte da resposta. |
+| [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **Em solicitações**: Um cache não deve usar uma resposta armazenada para atender à solicitação. Observação: O servidor de origem gera novamente a resposta para o cliente e o middleware atualiza a resposta armazenada em seu cache.<br><br>**Nas respostas**: A resposta não deve ser usada para uma solicitação subsequente sem validação no servidor de origem. |
+| [no-store](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Em solicitações**: Um cache não deve armazenar a solicitação.<br><br>**Nas respostas**: Um cache não deve armazenar qualquer parte da resposta. |
 
 Outros cabeçalhos de cache que desempenham uma função em cache são mostrados na tabela a seguir.
 
@@ -54,7 +54,7 @@ O [especificação de cache do HTTP 1.1 para o cabeçalho Cache-Control](https:/
 
 Respeitando sempre cliente `Cache-Control` cabeçalhos de solicitação faz sentido se você considerar o objetivo do cache de HTTP. Sob a especificação oficial, cache destina-se para reduzir a sobrecarga de rede e latência de satisfazer as solicitações em uma rede de clientes, proxies e servidores. Ele não é necessariamente uma maneira de controlar a carga em um servidor de origem.
 
-Não há nenhum controle atual do desenvolvedor sobre esse comportamento de cache ao usar o [Middleware de cache de resposta](xref:performance/caching/middleware) porque o middleware adere à especificação de cache oficial. [Aperfeiçoamentos futuros para o middleware](https://github.com/aspnet/ResponseCaching/issues/96) permitirá que a configuração do middleware de para ignorar uma solicitação `Cache-Control` cabeçalho ao decidir servir uma resposta em cache. Isso oferecerá uma oportunidade de controlar melhor a carga no servidor quando você usa o middleware.
+Não é possível controlar de desenvolvedor sobre o comportamento de cache ao usar o [Middleware de cache de resposta](xref:performance/caching/middleware) porque o middleware adere à especificação de cache oficial. [Planejado aprimoramentos para o middleware](https://github.com/aspnet/AspNetCore/issues/2612) são uma oportunidade para configurar o middleware para ignorar uma solicitação `Cache-Control` cabeçalho ao decidir servir uma resposta em cache. Aprimoramentos planejados oferecem uma oportunidade de melhor carga do servidor de controle.
 
 ## <a name="other-caching-technology-in-aspnet-core"></a>Outra tecnologia de armazenamento em cache no ASP.NET Core
 
@@ -91,7 +91,7 @@ O [ResponseCacheAttribute](/dotnet/api/Microsoft.AspNetCore.Mvc.ResponseCacheAtt
 
 [VaryByQueryKeys](/dotnet/api/microsoft.aspnetcore.mvc.responsecacheattribute.varybyquerykeys) a resposta armazenada de varia de acordo com os valores de determinada lista de chaves de consulta. Quando um valor único de `*` é fornecido, o middleware varia as respostas de todos os parâmetros de cadeia de caracteres de consulta de solicitação. `VaryByQueryKeys` exige o ASP.NET Core 1.1 ou posterior.
 
-O Middleware de cache de resposta deve ser habilitado para definir o `VaryByQueryKeys` propriedade; caso contrário, uma exceção de tempo de execução é gerada. Não há um cabeçalho HTTP correspondente para o `VaryByQueryKeys` propriedade. A propriedade é um recurso HTTP tratado pelo Middleware de cache de resposta. Para o middleware servir uma resposta em cache, a cadeia de caracteres de consulta e o valor de cadeia de caracteres de consulta devem corresponder com uma solicitação anterior. Por exemplo, considere a sequência de solicitações e os resultados mostrados na tabela a seguir.
+[Middleware de cache de resposta](xref:performance/caching/middleware) deve ser habilitado para definir o `VaryByQueryKeys` propriedade; caso contrário, uma exceção de tempo de execução é gerada. Não há um cabeçalho HTTP correspondente para o `VaryByQueryKeys` propriedade. A propriedade é um recurso HTTP tratado pelo Middleware de cache de resposta. Para o middleware servir uma resposta em cache, a cadeia de caracteres de consulta e o valor de cadeia de caracteres de consulta devem corresponder com uma solicitação anterior. Por exemplo, considere a sequência de solicitações e os resultados mostrados na tabela a seguir.
 
 | Solicitação                          | Resultado                   |
 | -------------------------------- | ------------------------ |
