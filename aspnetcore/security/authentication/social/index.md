@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/11/2018
 uid: security/authentication/social/index
-ms.openlocfilehash: 47ac1f966ff727957e6ed700c3c68efa16b1b38b
-ms.sourcegitcommit: 3e94d192b2ed9409fe72e3735e158b333354964c
+ms.openlocfilehash: 063d452fb6ab91b712ade7f7b7ed99823dbdc657
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/24/2018
-ms.locfileid: "53735720"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54098812"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 
@@ -46,11 +46,11 @@ Observação: Este tutorial aplica-se à versão do SDK do ASP.NET Core 2.0 que 
 * Insira o email e a senha para a nova conta e, em seguida, selecione **Registrar**.
 * Siga as instruções para aplicar as migrações.
 
-## <a name="require-ssl"></a>Exigir SSL
+## <a name="require-https"></a>Exigir HTTPS
 
-O OAuth 2.0 exige o uso de SSL para autenticação por meio do protocolo HTTPS.
+O OAuth 2.0 exige o uso de SSL/TLS para autenticação por meio do protocolo HTTPS.
 
-Os projetos criados usando os modelos de projeto **Aplicativo Web** ou **API Web** com o ASP.NET Core 2.1 ou posterior são configurados automaticamente para habilitar SSL. O aplicativo será iniciado com um ponto de extremidade padrão seguro se a opção **Contas de Usuário Individuais** estiver selecionada na **caixa de diálogo Alterar Autenticação** do assistente de projeto.
+Os projetos criados usando os modelos de projeto **Aplicativo Web** ou **API Web** com o ASP.NET Core 2.1 ou posterior são configurados automaticamente para habilitar HTTPS. O aplicativo será iniciado com um ponto de extremidade padrão seguro se a opção **Contas de Usuário Individuais** estiver selecionada na **caixa de diálogo Alterar Autenticação** do assistente de projeto.
 
 Para obter mais informações, consulte <xref:security/enforcing-ssl>.
 

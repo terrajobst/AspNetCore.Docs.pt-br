@@ -4,14 +4,14 @@ author: rick-anderson
 description: Descubra os conceitos fundamentais para a criação de aplicativos do ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 01/06/2019
 uid: fundamentals/index
-ms.openlocfilehash: 11dc6336ae7667038983c967f28232bef325f5bb
-ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
+ms.openlocfilehash: a56beebd796448705c7b84f47699e9739f451419
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "53637762"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54099228"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
 
@@ -63,7 +63,7 @@ O método `UseStartup` em `WebHostBuilder` especifica a classe `Startup` para se
 
 ::: moniker-end
 
-É na classe `Startup` que você define o pipeline de tratamento de solicitação e é nela que todos os serviços que o aplicativo precisa estão configurados. A classe `Startup` deve ser pública e conter os seguintes métodos:
+A classe `Startup` é onde os serviços exigidos pelo aplicativo são configurados e o pipeline de tratamento de solicitações é definido. A classe `Startup` deve ser pública e geralmente contém os seguintes métodos. `Startup.ConfigureServices` é opcional.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -184,7 +184,7 @@ O ASP.NET Core usa um modelo de configuração com base nos pares de nome-valor.
 
 Para obter mais informações, consulte <xref:fundamentals/configuration/index>.
 
-## <a name="logging"></a>Registrando em log
+## <a name="logging"></a>Registro em log
 
 O ASP.NET Core dá suporte a uma API de registro em log que funciona com uma variedade de provedores de logs. Os provedores internos dão suporte ao envio de logs para um ou mais destinos. As estruturas de registro em log de terceiros podem ser usadas.
 
