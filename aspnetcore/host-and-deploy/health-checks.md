@@ -5,14 +5,14 @@ description: Saiba como configurar verificações de integridade para a infraest
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/03/2018
+ms.date: 12/12/2018
 uid: host-and-deploy/health-checks
-ms.openlocfilehash: d8fd43d9d689396cf30ca371763cdf7ac9423c77
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: cf2aea91221887dad5646604214f810493d4b175
+ms.sourcegitcommit: 1ea1b4fc58055c62728143388562689f1ef96cb2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52862561"
+ms.lasthandoff: 12/13/2018
+ms.locfileid: "53329140"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Verificações de integridade no ASP.NET Core
 
@@ -36,10 +36,12 @@ As verificações de integridade são normalmente usadas com um orquestrador de 
 
 Referencie o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) ou adicione uma referência de pacote ao pacote [Microsoft.AspNetCore.Diagnostics.HealthChecks](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks).
 
-O aplicativo de exemplo fornece um código de inicialização para demonstrar verificações de integridade para vários cenários. O cenário [investigação de banco de dados](#database-probe) investiga a integridade de uma conexão de banco de dados usando o [BeatPulse](https://github.com/Xabaril/BeatPulse). O cenário [investigação de DbContext](#entity-framework-core-dbcontext-probe) investiga um banco de dados usando um `DbContext` do EF Core. Para explorar os cenários de banco de dados usando o aplicativo de exemplo:
+O aplicativo de exemplo fornece um código de inicialização para demonstrar verificações de integridade para vários cenários. O cenário [investigação de banco de dados](#database-probe) verifica a integridade de uma conexão de banco de dados usando o [BeatPulse](https://github.com/Xabaril/BeatPulse). O cenário [investigação de DbContext](#entity-framework-core-dbcontext-probe) verifica um banco de dados usando um `DbContext` do EF Core. Para explorar os cenários de banco de dados, o aplicativo de exemplo:
 
-* Crie um banco de dados e forneça sua cadeia de conexão no arquivo *appsettings.json* do aplicativo.
-* Adicione uma referência de pacote ao [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/).
+* Cria um banco de dados e fornece sua cadeia de conexão no arquivo *appsettings.json*.
+* Tem as seguintes referências de pacote em seu arquivo de projeto:
+  * [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/)
+  * [Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/)
 
 > [!NOTE]
 > O [BeatPulse](https://github.com/Xabaril/BeatPulse) não é mantido pela Microsoft nem tem o suporte da Microsoft.
@@ -50,7 +52,7 @@ Outro cenário de verificação de integridade demonstra como filtrar verificaç
 
 Para muitos aplicativos, uma configuração básica de investigação de integridade que relata a disponibilidade do aplicativo para processar solicitações (*atividade*) é suficiente para descobrir o status do aplicativo.
 
-A configuração básica registra os serviços de verificação de integridade e chama o Middleware de Verificação de Integridade para responder a um ponto de extremidade de URL com uma resposta de integridade. Por padrão, nenhuma verificação de integridade específica é registrada para testar qualquer dependência ou subsistema específico. O aplicativo é considerado íntegro se consegue responder na URL do ponto de extremidade de integridade. O gravador de resposta padrão grava o status (`HealthCheckStatus`) como uma resposta de texto sem formatação no cliente, indicando um status `HealthCheckResult.Healthy` ou `HealthCheckResult.Unhealthy`.
+A configuração básica registra os serviços de verificação de integridade e chama o Middleware de Verificação de Integridade para responder a um ponto de extremidade de URL com uma resposta de integridade. Por padrão, nenhuma verificação de integridade específica é registrada para testar qualquer dependência ou subsistema específico. O aplicativo é considerado íntegro se consegue responder na URL do ponto de extremidade de integridade. O gravador de resposta padrão grava o status (`HealthStatus`) como uma resposta de texto não criptografado no cliente, indicando um status `HealthStatus.Healthy`, `HealthStatus.Degraded` ou `HealthStatus.Unhealthy`.
 
 Registre os serviços de verificação de integridade com `AddHealthChecks` em `Startup.ConfigureServices`. Adicione o Middleware de Verificação de Integridade com `UseHealthChecks` ao pipeline de processamento de solicitação de `Startup.Configure`.
 
@@ -216,12 +218,12 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     app.UseHealthChecks("/health", new HealthCheckOptions()
     {
         // The following StatusCodes are the default assignments for
-        // the HealthCheckStatus properties.
+        // the HealthStatus properties.
         ResultStatusCodes =
         {
-            [HealthCheckStatus.Healthy] = StatusCodes.Status200OK,
-            [HealthCheckStatus.Degraded] = StatusCodes.Status200OK,
-            [HealthCheckStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+            [HealthStatus.Healthy] = StatusCodes.Status200OK,
+            [HealthStatus.Degraded] = StatusCodes.Status200OK,
+            [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
         }
     });
 }
@@ -314,9 +316,17 @@ dotnet run --scenario db
 
 ## <a name="entity-framework-core-dbcontext-probe"></a>Investigação de DbContext do Entity Framework Core
 
-A verificação `DbContext` é compatível com aplicativos que usam o [EF (Entity Framework) Core](/ef/core/). Essa verificação confirma se o aplicativo pode se comunicar com o banco de dados configurado para um `DbContext` do EF Core. Por padrão, o `DbContextHealthCheck` chama o método `CanConnectAsync` do EF Core. Você pode personalizar qual operação é executada durante a verificação de integridade usando sobrecargas do método `AddDbContextCheck`.
+A verificação `DbContext` confirma se o aplicativo pode se comunicar com o banco de dados configurado para um `DbContext` do EF Core. A verificação `DbContext` é compatível em aplicativos que:
 
-`AddDbContextCheck<TContext>` registra uma verificação de integridade para um `DbContext` (`TContext`). Por padrão, o nome da verificação de integridade é o nome do tipo `TContext`. Uma sobrecarga está disponível para configurar o status de falha, marcas e uma consulta de teste personalizada.
+* Usam o [EF (Entity Framework) Core](/ef/core/).
+* Incluem uma referência de pacote para [Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/).
+
+`AddDbContextCheck<TContext>` registra uma verificação de integridade para um `DbContext`. O `DbContext` é fornecido como o `TContext` para o método. Uma sobrecarga está disponível para configurar o status de falha, marcas e uma consulta de teste personalizada.
+
+Por padrão:
+
+* o `DbContextHealthCheck` chama o método `CanConnectAsync` do EF Core. Você pode personalizar qual operação é executada durante a verificação de integridade usando sobrecargas do método `AddDbContextCheck`.
+* O nome da verificação de integridade é o nome do tipo `TContext`.
 
 No aplicativo de exemplo, `AppDbContext` é fornecido para `AddDbContextCheck` e registrado como um serviço em `Startup.ConfigureServices`.
 

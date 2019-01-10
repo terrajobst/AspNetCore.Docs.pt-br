@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/5/2018
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: e280bc9553113982a1f1a77eabab32575c905237
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: 9b3ad5f6c4b1c9b5f016f5591127c8d1b213948d
+ms.sourcegitcommit: 1ea1b4fc58055c62728143388562689f1ef96cb2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52862285"
+ms.lasthandoff: 12/13/2018
+ms.locfileid: "53329127"
 ---
 # <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Adicionar um novo campo em uma página Razor no ASP.NET Core
 
@@ -96,9 +96,13 @@ O comando `Add-Migration` informa à estrutura:
 
 O nome “Classificação” é arbitrário e é usado para nomear o arquivo de migração. É útil usar um nome significativo para o arquivo de migração.
 
+O comando `Update-Database` informa à estrutura para aplicar as alterações de esquema no banco de dados.
+
 <a name="ssox"></a>
 
-Se você excluir todos os registros no BD, o inicializador propagará o BD e incluirá o campo `Rating`. Faça isso com os links Excluir no navegador ou no [SSOX](xref:tutorials/razor-pages/sql#ssox) (Pesquisador de Objetos do SQL Server). Para excluir o banco de dados do SSOX:
+Se você excluir todos os registros no BD, o inicializador propagará o BD e incluirá o campo `Rating`. Faça isso com os links Excluir no navegador ou no [SSOX](xref:tutorials/razor-pages/sql#ssox) (Pesquisador de Objetos do SQL Server).
+
+Outra opção é excluir o banco de dados e usar as migrações para recriar o banco de dados. Para excluir o banco de dados no SSOX:
 
 * Selecione o banco de dados no SSOX.
 * Clique com o botão direito do mouse no banco de dados e selecione *Excluir*.
@@ -111,12 +115,9 @@ Se você excluir todos os registros no BD, o inicializador propagará o BD e inc
   ```
 
 <!-- Code -------------------------->
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
-<!-- copy/paste this tab to the next. Not worth an include  --> O SQLite não dá suporte a migrações.
-
-* Exclua o banco de dados ou altere o nome do banco de dados no arquivo *appsettings.json*.
-* Exclua a pasta *Migrations* (e todos os arquivos dela).
+<!-- copy/paste this tab to the next. Not worth an include  -->
 
 Execute os seguintes comandos da CLI do .NET Core:
 
@@ -125,20 +126,28 @@ dotnet ef migrations add Rating
 dotnet ef database update
 ```
 
-<!-- Mac -------------------------->
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+O comando `ef migrations add` informa à estrutura:
 
-O SQLite não dá suporte a migrações.
+* Compare o modelo `Movie` com o esquema de BD `Movie`.
+* Crie um código para migrar o esquema de BD para o novo modelo.
 
-* Exclua o banco de dados ou altere o nome do banco de dados no arquivo *appsettings.json*.
-* Exclua a pasta *Migrations* (e todos os arquivos dela).
+O nome “Classificação” é arbitrário e é usado para nomear o arquivo de migração. É útil usar um nome significativo para o arquivo de migração.
 
-Execute os seguintes comandos da CLI do .NET Core:
+O comando `ef database update` informa à estrutura para aplicar as alterações de esquema no banco de dados.
+
+Se você excluir todos os registros no BD, o inicializador propagará o BD e incluirá o campo `Rating`. Faça isso com os links de exclusão no navegador ou usando uma ferramenta SQLite.
+
+Outra opção é excluir o banco de dados e usar as migrações para recriar o banco de dados. Para excluir o banco de dados, exclua o arquivo de banco de dados (*MvcMovie.db*). Depois, execute o comando `ef database update`: 
 
 ```console
-dotnet ef migrations add Rating
 dotnet ef database update
 ```
+
+> [!NOTE]
+> Muitas operações de alteração de esquema não têm suporte do provedor EF Core do SQLite. Por exemplo, há suporte para adicionar uma coluna, mas não há suporte para a remoção de uma coluna. Se você adiciona uma migração para remover uma coluna, o `ef migrations add` comando tem êxito, mas o `ef database update` comando falha. Você pode trabalhar em algumas das limitações escrevendo manualmente o código de migrações para executar uma recriação de tabela. Uma recriação de tabela envolve a renomeação da tabela existente, criando uma nova tabela, copiando dados para a nova tabela e removendo a tabela antiga. Para obter mais informações, consulte os seguintes recursos:
+> * [Limitações do Provedor de Banco de Dados EF Core do SQLite](/ef/core/providers/sqlite/limitations)
+> * [Personalizar o código de migração](/ef/core/managing-schemas/migrations/#customize-migration-code)
+> * [Propagação de dados](/ef/core/modeling/data-seeding)
 
 ---  
 <!-- End of VS tabs -->
@@ -146,5 +155,5 @@ dotnet ef database update
 Execute o aplicativo e verifique se você pode criar/editar/exibir filmes com um campo `Rating`. Se o banco de dados não for propagado, defina um ponto de interrupção no método `SeedData.Initialize`.
 
 > [!div class="step-by-step"]
-> [Anterior: Adicionando uma pesquisa](xref:tutorials/razor-pages/search)
-> [Próximo: Adicionando Validação](xref:tutorials/razor-pages/validation)
+> [Anterior: Adicionar pesquisa](xref:tutorials/razor-pages/search)
+> [Próximo: Adicionar validação](xref:tutorials/razor-pages/validation)

@@ -4,14 +4,14 @@ author: rick-anderson
 description: Aprenda como publicar um aplicativo ASP.NET Core no Serviço de Aplicativo do Azure usando o Visual Studio.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 12/06/2018
 uid: tutorials/publish-to-azure-webapp-using-vs
-ms.openlocfilehash: 7eab773746f76b00e8e796387c4ee1dc042a4c23
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.openlocfilehash: e71cb8badbbc852685c845e6bbb0bbb12ab5499f
+ms.sourcegitcommit: 68a3081dd175d6518d1bfa31b4712bd8a2dd3864
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121265"
+ms.lasthandoff: 12/18/2018
+ms.locfileid: "53577806"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a>Publicar um aplicativo ASP.NET Core no Azure com o Visual Studio
 
@@ -33,7 +33,7 @@ Na página inicial do Visual Studio, selecione **Arquivo > Novo > Projeto...**
 
 ![Menu Arquivo](publish-to-azure-webapp-using-vs/_static/file_new_project.png)
 
-Faça as configurações necessárias na caixa de diálogo **Novo Projeto**:
+Complete a caixa de diálogo **Novo Projeto**:
 
 * No painel esquerdo, selecione **.NET Core**.
 * No painel central, toque em **Aplicativo Web ASP.NET Core**.
@@ -68,10 +68,10 @@ O Visual Studio cria a solução.
 
 * Selecione **Registrar** e registre um novo usuário. Você pode usar um endereço de email fictício. Ao enviar, a página exibirá o seguinte erro:
 
-    *"Erro interno do servidor: uma operação de banco de dados falhou ao processar a solicitação. Exceção SQL: não é possível abrir o banco de dados. A aplicação de migrações existentes ao contexto do BD do Aplicativo pode resolver esse problema."*
+    *"Erro Interno do Servidor: uma operação de banco de dados falhou ao processar a solicitação. Exceção do SQL: não é possível abrir o banco de dados. A aplicação de migrações existentes ao contexto do BD do Aplicativo pode resolver esse problema."*
 * Selecione **Aplicar Migrações** e, depois que a página for atualizada, atualize a página.
 
-![Erro interno do servidor: uma operação de banco de dados falhou ao processar a solicitação. Exceção SQL: não é possível abrir o banco de dados. A aplicação de migrações existentes ao contexto do BD do Aplicativo pode resolver esse problema.](publish-to-azure-webapp-using-vs/_static/mig.png)
+![Erro Interno do Servidor: uma operação de banco de dados falhou ao processar a solicitação. Exceção do SQL: não é possível abrir o banco de dados. A aplicação de migrações existentes ao contexto do BD do Aplicativo pode resolver esse problema.](publish-to-azure-webapp-using-vs/_static/mig.png)
 
 O aplicativo exibe o email usado para registrar o novo usuário e um link **Fazer logout**.
 
@@ -140,7 +140,7 @@ Na página **Configurações** da caixa de diálogo **Publicar**:
 
 * Selecione **Salvar**. O Visual Studio retorna para a caixa de diálogo **Publicar**. 
 
-![Caixa de diálogo Publicar: painel Configurações](publish-to-azure-webapp-using-vs/_static/pubs.png)
+![Caixa de diálogo Publicar: Painel Configurações](publish-to-azure-webapp-using-vs/_static/pubs.png)
 
 Clique em **Publicar**. O Visual Studio publica seu aplicativo no Azure. Quando a implantação for concluída, o aplicativo será aberto em um navegador.
 
@@ -154,7 +154,9 @@ Clique em **Publicar**. O Visual Studio publica seu aplicativo no Azure. Quando 
 
 ### <a name="update-the-app"></a>Atualizar o aplicativo
 
-* Edite a página do Razor *Pages/About.cshtml* e altere seu conteúdo. Por exemplo, você pode modificar o parágrafo para indicar “Olá, ASP.NET Core!”: [!code-html[About](publish-to-azure-webapp-using-vs/sample/about.cshtml?highlight=9&range=1-9)]
+* Edite a página do Razor *Pages/About.cshtml* e altere seu conteúdo. Por exemplo, você pode modificar o parágrafo para dizer "Hello ASP.NET Core!":
+
+    [!code-html[About](publish-to-azure-webapp-using-vs/sample/about.cshtml?highlight=9&range=1-9)]
 
 * Clique com o botão direito do mouse no projeto e selecione **Publicar...** novamente.
 
@@ -187,4 +189,5 @@ Quando você concluir o teste do aplicativo, acesse o [portal do Azure](https://
 * [Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-overview)
 * [Grupo de recursos do Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)
 * [Banco de Dados SQL do Azure](/azure/sql-database/)
+* <xref:host-and-deploy/visual-studio-publish-profiles>
 * <xref:host-and-deploy/azure-apps/troubleshoot>

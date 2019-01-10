@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 9a0d5a8e722487ccf7e08aadb39f838a0963451d
-ms.sourcegitcommit: 4d74644f11e0dac52b4510048490ae731c691496
+ms.openlocfilehash: 930a6f2b860c71b6f499cff53e0d909a130f7948
+ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50090957"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53637892"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Modelo de dados – 5 de 8
 
@@ -444,7 +444,7 @@ Se a tabela `Enrollment` não incluir informações de nota, ela apenas precisar
 
 As entidades `Instructor` e `Course` têm uma relação muitos para muitos usando uma tabela de junção pura.
 
-Observação: o EF 6.x é compatível com tabelas de junção implícita para relações muitos para muitos, ao contrário do EF Core. Para obter mais informações, consulte [Relações muitos para muitos no EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
+Observação: O EF 6.x é compatível com tabelas de junção implícita para relações muitos para muitos, ao contrário do EF Core. Para obter mais informações, consulte [Relações muitos para muitos no EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
 
 ## <a name="the-courseassignment-entity"></a>A entidade CourseAssignment
 
@@ -538,10 +538,7 @@ Atualize o código em *Data/DbInitializer.cs*:
 
 [!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Final)]
 
-O código anterior fornece dados de semente para as novas entidades. A maioria desse código cria novos objetos de entidade e carrega dados de exemplo. Os dados de exemplo são usados para teste. O código anterior cria as seguintes relações muitos para muitos:
-
-* `Enrollments`
-* `CourseAssignment`
+O código anterior fornece dados de semente para as novas entidades. A maioria desse código cria novos objetos de entidade e carrega dados de exemplo. Os dados de exemplo são usados para teste. Consulte `Enrollments` e `CourseAssignments` para obter exemplos de como tabelas de junção muitos para muitos podem ser propagadas.
 
 ## <a name="add-a-migration"></a>Adicionar uma migração
 

@@ -6,12 +6,12 @@ ms.author: riande
 monikerRange: '>= aspnetcore-2.2'
 ms.date: 12/3/2018
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 91fee1db820493be671fecaee3cfb4c1b7df8bd3
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.openlocfilehash: 0915c525d5fb96a3d32f91fbd65a4e1f62ee28b8
+ms.sourcegitcommit: 68a3081dd175d6518d1bfa31b4712bd8a2dd3864
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121357"
+ms.lasthandoff: 12/18/2018
+ms.locfileid: "53577858"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -114,16 +114,16 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* **No Windows**, execute o comando a seguir:
+* **para Windows**: Execute o seguinte comando:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
-* **No macOS e Linux**, execute o comando a seguir:
+* **para macOS e Linux**: Execute o seguinte comando:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
@@ -133,6 +133,11 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Abra uma janela de comando no diretório do projeto (o diretório que contém os arquivos *Program.cs*, *Startup.cs* e *.csproj*).
+* Instale a ferramenta de scaffolding:
+
+  ```console
+   dotnet tool install --global dotnet-aspnet-codegenerator
+   ```
 * Execute o seguinte comando:
 
   ```console
@@ -147,7 +152,7 @@ O processo de scaffold cria e atualiza os arquivos a seguir:
 
 ### <a name="files-created"></a>Arquivos criados
 
-* *Pages/Movies*: Create, Delete, Details, Edit e Index.
+* *Pages/Movies*: Criar, Excluir, Detalhes, Editar e Índice.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="file-updated"></a>Arquivo atualizado
@@ -197,7 +202,7 @@ Update-Database
 ---  
 <!-- End of VS tabs -->
 
-O comando `ef migrations add InitialCreate` gera código para criar o esquema de banco de dados inicial. O esquema se baseia no modelo especificado no `DbContext` (no arquivo *Models/RazorPagesMovieContext.cs*). O argumento `InitialCreate` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado.
+O comando `ef migrations add InitialCreate` gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado no `DbContext` (no arquivo *RazorPagesMovieContext.cs*). O argumento `InitialCreate` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado.
 
 O comando `ef database update` executa o método `Up` no arquivo *Migrations/\<time-stamp>_InitialCreate.cs*. O método `Up` cria o banco de dados.
 
@@ -265,5 +270,5 @@ Você perdeu a [etapa de migrações](#pmc).
 O tutorial a seguir explica os arquivos criados por scaffolding.
 
 > [!div class="step-by-step"]
-> [Anterior: Introdução](xref:tutorials/razor-pages/razor-pages-start)
-> [Próximo: Páginas Razor geradas por scaffolding](xref:tutorials/razor-pages/page)
+> [Anterior: introdução](xref:tutorials/razor-pages/razor-pages-start)
+> [Próximo: Razor Pages geradas por scaffolding](xref:tutorials/razor-pages/page)

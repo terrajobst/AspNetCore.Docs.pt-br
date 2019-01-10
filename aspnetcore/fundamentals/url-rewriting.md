@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba mais sobre a reconfiguração de URL e o redirecionamento com o Middleware de Reconfiguração de URL em aplicativos ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/19/2018
+ms.date: 12/18/2018
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: 84052789717738a48c346d35d1a2642017a9ab93
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: d2dd5e9b7f196bcbd1940f7ef58331dabd2367a1
+ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52861908"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53637801"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>Middleware de Reconfiguração de URL no ASP.NET Core
 
@@ -78,7 +78,7 @@ Use o Middleware de Reconfiguração de URL quando não for possível usar as se
 * [Módulo mod_rewrite do Apache no Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
 * [Reconfiguração de URL no Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/)
 
-Além disso, use o middleware quando o aplicativo estiver hospedado no [servidor HTTP.sys](xref:fundamentals/servers/httpsys) (anteriormente chamado [WebListener](xref:fundamentals/servers/weblistener)).
+Além disso, use o middleware quando o aplicativo estiver hospedado no [servidor HTTP.sys](xref:fundamentals/servers/httpsys) (anteriormente chamado WebListener).
 
 As principais razões para usar as tecnologias de reconfiguração de URL baseada em servidor no IIS, no Apache e no Nginx são:
 

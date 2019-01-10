@@ -4,14 +4,14 @@ description: Saiba como configurar o Apache como um servidor proxy reverso no Ce
 author: spboyer
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 12/20/2018
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: 46cdb764b872e86f0fd7d19133aae14891bdd452
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: 8c590743328885336498ca2446c618b13a7d2ce2
+ms.sourcegitcommit: e1cc4c1ef6c9e07918a609d5ad7fadcb6abe3e12
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52862454"
+ms.lasthandoff: 01/03/2019
+ms.locfileid: "53997221"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hospedar o ASP.NET Core no Linux com o Apache
 
@@ -160,7 +160,7 @@ Crie um arquivo de configuração chamado *helloapp.conf* para o aplicativo:
 </VirtualHost>
 ```
 
-O bloco `VirtualHost` pode aparecer várias vezes, em um ou mais arquivos em um servidor. No arquivo de configuração anterior, o Apache aceita tráfego público na porta 80. O domínio `www.example.com` está sendo atendido e o alias `*.example.com` é resolvido para o mesmo site. Veja [Suporte a host virtual baseado em nome](https://httpd.apache.org/docs/current/vhosts/name-based.html) para obter mais informações. As solicitações passadas por proxy na raiz para a porta 5000 do servidor em 127.0.0.1. Para a comunicação bidirecional, `ProxyPass` e `ProxyPassReverse` são necessários. Para alterar o IP/porta do Kestrel, veja [Kestrel: configuração de ponto de extremidade](xref:fundamentals/servers/kestrel#endpoint-configuration).
+O bloco `VirtualHost` pode aparecer várias vezes, em um ou mais arquivos em um servidor. No arquivo de configuração anterior, o Apache aceita tráfego público na porta 80. O domínio `www.example.com` está sendo atendido e o alias `*.example.com` é resolvido para o mesmo site. Veja [Suporte a host virtual baseado em nome](https://httpd.apache.org/docs/current/vhosts/name-based.html) para obter mais informações. As solicitações passadas por proxy na raiz para a porta 5000 do servidor em 127.0.0.1. Para a comunicação bidirecional, `ProxyPass` e `ProxyPassReverse` são necessários. Para alterar o IP/porta do Kestrel, veja [Kestrel: configuração do ponto de extremidade](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 > [!WARNING]
 > Falha ao especificar uma [diretiva ServerName](https://httpd.apache.org/docs/current/mod/core.html#servername) no bloco **VirtualHost** expõe seu aplicativo para vulnerabilidades de segurança. Associações de curinga de subdomínio (por exemplo, `*.example.com`) não oferecerão esse risco de segurança se você controlar o domínio pai completo (em vez de `*.com`, o qual é vulnerável). Veja [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) para obter mais informações.
@@ -471,6 +471,7 @@ Usando *mod_ratelimit*, que está incluído no módulo *httpd*, a largura de ban
 ```bash
 sudo nano /etc/httpd/conf.d/ratelimit.conf
 ```
+
 O arquivo de exemplo limita a largura de banda a 600 KB/s no local raiz:
 
 ```
@@ -481,6 +482,13 @@ O arquivo de exemplo limita a largura de banda a 600 KB/s no local raiz:
     </Location>
 </IfModule>
 ```
+
+### <a name="long-request-header-fields"></a>Campos de cabeçalho da solicitação muito grandes
+
+Se o aplicativo exigir campos de cabeçalho de solicitação maiores do que o permitido pela configuração padrão do servidor proxy (normalmente 8.190 bytes), ajuste o valor da diretiva [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize). O valor que será aplicada é dependentes de cenário. Para obter mais informações, confira a documentação do servidor.
+
+> [!WARNING]
+> Não aumente o valor padrão de `LimitRequestFieldSize` a menos que necessário. Aumentar esse valor aumenta o risco de estouro de buffer (estouro) e ataques de DoS (negação de serviço) por usuários mal-intencionados.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

@@ -6,12 +6,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: data/ef-mvc/intro
-ms.openlocfilehash: f1682203850f2c5440fe8d0b98830ca8772ff70f
-ms.sourcegitcommit: c4572be5ebb301013a5698caf9b5572b76cb2e34
+ms.openlocfilehash: 1191632555dc9331f815c1bfb1f313459824754a
+ms.sourcegitcommit: 68a3081dd175d6518d1bfa31b4712bd8a2dd3864
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "50244874"
+ms.lasthandoff: 12/18/2018
+ms.locfileid: "53577897"
 ---
 # <a name="aspnet-core-mvc-with-entity-framework-core---tutorial-1-of-10"></a>ASP.NET Core MVC com o Entity Framework Core – tutorial – 1 de 10
 
@@ -75,7 +75,7 @@ Abra o Visual Studio e crie um novo projeto Web ASP.NET Core C# chamado "Contoso
 
 * Selecione **ASP.NET Core 2.0** e o modelo **Aplicativo Web (Model-View-Controller)**.
 
-  **Observação:** este tutorial exige o ASP.NET Core 2.0 e o EF Core 2.0 ou posterior — verifique se **ASP.NET Core 1.1** não está selecionado.
+  **Observação:** este tutorial exige o ASP.NET Core 2.0 e o EF Core 2.0 ou posterior – verifique se o **ASP.NET Core 1.1** não está selecionado.
 
 * Verifique se a opção **Autenticação** está definida como **Sem Autenticação**.
 
@@ -245,7 +245,7 @@ A criação automática de métodos de ação CRUD e exibições é conhecida co
 
 Se a caixa de diálogo **Adicionar Dependências do MVC** for exibida:
 
-* [Atualize o Visual Studio para a última versão](https://www.visualstudio.com/downloads/). Versões do Visual Studio anteriores a 15.5 mostram essa caixa de diálogo.
+* [Atualize o Visual Studio para a última versão](https://www.visualstudio.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017). Versões do Visual Studio anteriores a 15.5 mostram essa caixa de diálogo.
 * Se não puder atualizar, selecione **ADICIONAR** e, em seguida, siga as etapas de adição do controlador novamente.
 
 * Na caixa de diálogo **Adicionar Scaffolding**:

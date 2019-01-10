@@ -3,16 +3,15 @@ title: 'Tutorial: Criar uma API Web com o ASP.NET Core MVC'
 author: rick-anderson
 description: Criar uma API Web com o ASP.NET Core MVC
 ms.author: riande
-monikerRange: '> aspnetcore-2.1'
 ms.custom: mvc
-ms.date: 11/19/2018
+ms.date: 12/10/2018
 uid: tutorials/first-web-api
-ms.openlocfilehash: 1af14b85cbaefc00fd97db7c721c4f9436a65fb2
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.openlocfilehash: c2b4dcddd5332330cd6e6abe7d3a12697cde845e
+ms.sourcegitcommit: 4e87712029de2aceb1cf2c52e9e3dda8195a5b8e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121460"
+ms.lasthandoff: 12/14/2018
+ms.locfileid: "53381998"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core-mvc"></a>Tutorial: Criar uma API Web com o ASP.NET Core MVC
 
@@ -23,7 +22,7 @@ Este tutorial ensina os conceitos básicos da criação de uma API Web com o ASP
 Neste tutorial, você aprenderá como:
 
 > [!div class="checklist"]
-> * Criar um projeto de aplicativo API Web.
+> * Criar um projeto de API Web.
 > * Adicionar uma classe de modelo.
 > * Criar o contexto de banco de dados.
 > * Registrar o contexto de banco de dados.
@@ -75,9 +74,9 @@ O diagrama a seguir mostra o design do aplicativo.
    code -r TodoApi
    ```
 
-  Esses comandos criam um projeto de API Web e abrem uma nova instância do Visual Studio Code na nova pasta do projeto.
+  Esses comandos criam um novo projeto de API Web e abrem uma nova instância do Visual Studio Code na nova pasta do projeto.
 
-* Quando uma caixa de diálogo perguntar se você deseja adicionar os ativos necessários ao projeto, selecione **Sim**
+* Quando uma caixa de diálogo perguntar se você deseja adicionar os ativos necessários ao projeto, selecione **Sim**.
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
@@ -359,7 +358,7 @@ Adicione o seguinte método `PutTodoItem`:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
 
-`PutTodoItem` é semelhante a `PostTodoItem`, exceto pelo uso de HTTP PUT. A resposta é [204 (Sem conteúdo)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). De acordo com a especificação de HTTP, uma solicitação PUT exige que o cliente envie a entidade inteira atualizada, não apenas as alterações. Para dar suporte a atualizações parciais, use [HTTP PATCH](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute).
+`PutTodoItem` é semelhante a `PostTodoItem`, exceto pelo uso de HTTP PUT. A resposta é [204 (Sem conteúdo)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). De acordo com a especificação de HTTP, uma solicitação PUT exige que o cliente envie a entidade inteira atualizada, não apenas as alterações. Para dar suporte a atualizações parciais, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
 ### <a name="test-the-puttodoitem-method"></a>Testar o método PutTodoItem
 

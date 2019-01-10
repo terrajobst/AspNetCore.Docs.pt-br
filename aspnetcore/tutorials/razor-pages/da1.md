@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como atualizar as páginas geradas em um aplicativo ASP.NET Core.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
-ms.date: 12/3/2018
+ms.date: 12/20/2018
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: b88dcd12ee670eb2e0919bdb07b9b7556a5b80e7
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: 396cb9b9eeaab2d3db6108feeba71dbc2bc8981d
+ms.sourcegitcommit: e1cc4c1ef6c9e07918a609d5ad7fadcb6abe3e12
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52862402"
+ms.lasthandoff: 01/03/2019
+ms.locfileid: "53997195"
 ---
 # <a name="update-the-generated-pages-in-an-aspnet-core-app"></a>Atualizar as páginas geradas em um aplicativo ASP.NET Core
 
@@ -69,22 +69,22 @@ Uma solicitação para a página com o modelo de rota “{id:int}” que **não*
 @page "{id:int?}"
 ```
 
-Para testar o comportamento ou `@page "{id:int?}"`:
+Para testar o comportamento de `@page "{id:int?}"`:
 
-* Defina a diretiva de página em *Pages/Movies/Details.cshtml* como `@page "{id:int?}"`
+* defina a diretiva de página em *Pages/Movies/Details.cshtml* como `@page "{id:int?}"`.
 * Defina um ponto de interrupção em `public async Task<IActionResult> OnGetAsync(int? id)` (em *Pages/Movies/Details.cshtml.cs*).
-* Navegue para `https://localhost:5001/Movies/Details/`
+* Navegue para `https://localhost:5001/Movies/Details/`.
 
 Com a diretiva `@page "{id:int}"`, o ponto de interrupção nunca é atingido. O mecanismo de roteamento retorna HTTP 404. Usando `@page "{id:int?}"`, o método `OnGetAsync` retorna `NotFound` (HTTP 404).
 
-Embora não seja recomendado, você pode escrever o método Delete como:
+Embora não seja recomendado, você pode escrever o método `OnGetAsync` (em *Pages/Movies/Delete.cshtml.cs*) como:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Delete.cshtml.cs?name=snippet)]
 
 Teste o código anterior:
 
-* Selecione um link de exclusão.
-* Remova a ID da URL. Por exemplo, altere `https://localhost:5001/Movies/Delete/8` para `https://localhost:5001/Movies/Delete`
+* Selecione um link de **exclusão**.
+* Remova a ID da URL. Por exemplo, altere `https://localhost:5001/Movies/Delete/8` para `https://localhost:5001/Movies/Delete`.
 * Execute o código em etapas no depurador.
 
 ### <a name="review-concurrency-exception-handling"></a>Examinar o tratamento de exceção de simultaneidade
@@ -125,7 +125,7 @@ Quando a página Movies/Edit é postada:
   public Movie Movie { get; set; }
   ```
 
-* Se houver erros no estado do modelo (por exemplo, `ReleaseDate` não pode ser convertida em uma data), o formulário será postado novamente com os valores enviados.
+* Se houver erros no estado do modelo (por exemplo, `ReleaseDate` não pode ser convertido em uma data), o formulário será mostrado com os valores enviados.
 * Se não houver erros do modelo, o filme será salvo.
 
 Os métodos HTTP GET nas páginas Índice, Criar e Excluir do Razor seguem um padrão semelhante. O método `OnPostAsync` HTTP POST na página Criar do Razor segue um padrão semelhante ao método `OnPostAsync` na página Editar do Razor.
@@ -133,5 +133,5 @@ Os métodos HTTP GET nas páginas Índice, Criar e Excluir do Razor seguem um pa
 A pesquisa é adicionada no próximo tutorial.
 
 > [!div class="step-by-step"]
-> [Anterior: Trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
-> [Próximo: Adicionar uma pesquisa](xref:tutorials/razor-pages/search)
+> [Anterior: trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
+> [Próximo: adicionar pesquisa](xref:tutorials/razor-pages/search)

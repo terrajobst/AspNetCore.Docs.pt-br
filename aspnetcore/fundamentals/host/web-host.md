@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba mais sobre o host da Web no ASP.NET Core, que é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 12/18/2018
 uid: fundamentals/host/web-host
-ms.openlocfilehash: bc77413127273aba207e68e7fbcb8ad916267e8e
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: 7215027a083c0ed0bc3b15196e390a31c5dcfc14
+ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52862272"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53637840"
 ---
 # <a name="aspnet-core-web-host"></a>Host da Web do ASP.NET Core
 
@@ -57,7 +57,7 @@ public class Program
   * Variáveis de ambiente.
   * Argumentos de linha de comando.
 * Configura o [registro em log](xref:fundamentals/logging/index) para a saída do console e de depuração. O registro em log inclui regras de [filtragem de log](xref:fundamentals/logging/index#log-filtering) especificadas em uma seção de configuração de registro em log de um arquivo *appsettings.json* ou *appsettings.{Environment}.json*.
-* Quando executado com a proteção do IIS com o [Módulo do ASP.NET Core](xref:fundamentals/servers/aspnet-core-module), `CreateDefaultBuilder` habilita a [Integração do IIS](xref:host-and-deploy/iis/index), que configura a porta e o endereço básico do aplicativo. A Integração do IIS também configura o aplicativo para [capturar erros de inicialização](#capture-startup-errors). Para as opções padrão do IIS, veja <xref:host-and-deploy/iis/index#iis-options>.
+* Quando executado com a proteção do IIS com o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` habilita a [Integração do IIS](xref:host-and-deploy/iis/index), que configura a porta e o endereço básico do aplicativo. A Integração do IIS também configura o aplicativo para [capturar erros de inicialização](#capture-startup-errors). Para as opções padrão do IIS, veja <xref:host-and-deploy/iis/index#iis-options>.
 * Definirá [ServiceProviderOptions.ValidateScopes](/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) como `true` se o ambiente do aplicativo for de desenvolvimento. Para obter mais informações, confira [Validação de escopo](#scope-validation).
 
 A configuração definida por `CreateDefaultBuilder` pode ser substituída e aumentada por [ConfigureAppConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configureappconfiguration), [ConfigureLogging](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configurelogging) e outros métodos, bem como os métodos de extensão de [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder). Veja a seguir alguns exemplos:
@@ -203,7 +203,7 @@ Define o ambiente do aplicativo.
 
 **Chave**: ambiente  
 **Tipo**: *string*  
-**Padrão**: Production  
+**Padrão**: Produção  
 **Definido usando**: `UseEnvironment`  
 **Variável de ambiente**: `ASPNETCORE_ENVIRONMENT`
 
@@ -220,7 +220,7 @@ Define os assemblies de inicialização de hospedagem do aplicativo.
 
 **Chave**: hostingStartupAssemblies  
 **Tipo**: *string*  
-**Padrão**: cadeia de caracteres vazia  
+**Padrão**: Cadeia de caracteres vazia  
 **Definido usando**: `UseSetting`  
 **Variável de ambiente**: `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`
 
@@ -237,9 +237,9 @@ WebHost.CreateDefaultBuilder(args)
 
 Defina a porta de redirecionamento HTTPS. Uso em [aplicação de HTTPS](xref:security/enforcing-ssl).
 
-**Chave**: https_port **Tipo**: *string*
-**Padrão**: Um valor padrão não está definido.
-**Definido usando**: `UseSetting`
+**Chave**: https_port **Tipo**: *cadeia de caracteres*
+**Padrão**: um valor padrão não está definido.
+**Definir usando**: `UseSetting`
 **Variável de ambiente**: `ASPNETCORE_HTTPS_PORT`
 
 ```csharp
@@ -253,7 +253,7 @@ Uma cadeia de caracteres delimitada por ponto e vírgula de assemblies de inicia
 
 **Chave**: hostingStartupExcludeAssemblies  
 **Tipo**: *string*  
-**Padrão**: cadeia de caracteres vazia  
+**Padrão**: Cadeia de caracteres vazia  
 **Definido usando**: `UseSetting`  
 **Variável de ambiente**: `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
 

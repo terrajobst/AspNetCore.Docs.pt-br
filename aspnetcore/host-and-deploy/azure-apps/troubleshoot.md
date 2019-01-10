@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como diagnosticar problemas com implantações do Serviço de Aplicativo do Azure do ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 12/18/2018
 uid: host-and-deploy/azure-apps/troubleshoot
-ms.openlocfilehash: 05bb024f5b0d2b554cc861c250a92fd7ae23437f
-ms.sourcegitcommit: 4d74644f11e0dac52b4510048490ae731c691496
+ms.openlocfilehash: b36c321c6ba6801a32b5187651063337b4533fd1
+ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50090733"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53637645"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service"></a>Solucionar problemas no ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -19,14 +19,14 @@ Por [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE [Azure App Service Preview Notice](../../includes/azure-apps-preview-notice.md)]
 
-Este artigo fornece instruções sobre como diagnosticar um problema de inicialização do aplicativo ASP.NET Core ao usar as ferramentas de diagnóstico do Serviço de Aplicativo do Azure. Para avisos de solução de problemas adicionais, confira [Visão geral de diagnóstico do Serviço de Aplicativo do Azure](/azure/app-service/app-service-diagnostics) e [Como monitorar aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor) na documentação do Azure.
+Este artigo fornece instruções sobre como diagnosticar um problema de inicialização do aplicativo ASP.NET Core ao usar as ferramentas de diagnóstico do Serviço de Aplicativo do Azure. Para obter conselhos sobre solução de problemas adicionais, consulte [Visão geral de diagnóstico do Serviço de Aplicativo do Azure](/azure/app-service/app-service-diagnostics) e [Como: monitorar aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor) na documentação do Azure.
 
 ## <a name="app-startup-errors"></a>Erros de inicialização do aplicativo
 
 **502.5 – Falha de Processo**  
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O [Módulo do ASP.NET Core](xref:fundamentals/servers/aspnet-core-module) tenta iniciar o processo de trabalho, mas falhar ao iniciar. Examinar o Log de Eventos do Aplicativo geralmente ajuda a solucionar esse tipo de problema. O acesso ao log é explicado na seção [Log de Eventos do Aplicativo](#application-event-log).
+O [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o processo de trabalho, mas falhar ao iniciar. Examinar o Log de Eventos do Aplicativo geralmente ajuda a solucionar esse tipo de problema. O acesso ao log é explicado na seção [Log de Eventos do Aplicativo](#application-event-log).
 
 A página do erro *502.5 – Falha no Processo* é retornada quando um erro de configuração do aplicativo faz com que o processo de trabalho falhe:
 
