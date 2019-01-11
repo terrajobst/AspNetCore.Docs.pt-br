@@ -1,3 +1,5 @@
+# [Documentação do ASP.NET Core](/aspnet/#pivot=core)
+
 # Visão geral
 ## [Sobre o ASP.NET Core](xref:index)
 ## [Comparar o ASP.NET Core e o ASP.NET](xref:fundamentals/choose-between-aspnet-and-aspnetcore)
@@ -5,8 +7,14 @@
 
 # [Introdução](xref:getting-started)
 
+# O que há de novo
+## [Novidades no 2.2](xref:aspnetcore-2.2)
+## [Novidades no 2.1](xref:aspnetcore-2.1)
+## [Novidades no 2.0](xref:aspnetcore-2.0)
+## [Novidades no 1.1](xref:aspnetcore-1.1)
+
 # Tutoriais
-## APIs da Web
+## Aplicativos API Web
 ### [Criar uma API Web](xref:tutorials/first-web-api)
 ### [API Web com o MongoDB](xref:tutorials/first-mongo-app)
 ## Aplicativos Web
@@ -121,7 +129,7 @@
 ### [Model binding personalizado](xref:mvc/advanced/custom-model-binding)
 ### [Compatibilidade de versões](xref:mvc/compatibility-version)
 
-# APIs da Web
+# Aplicativos API Web
 ## [Visão geral](xref:web-api/index)
 
 ## Tutoriais
@@ -145,7 +153,7 @@
 ## Tutoriais
 ### [SignalR com JavaScript](xref:tutorials/signalr)
 ### [SignalR com TypeScript](xref:tutorials/signalr-typescript-webpack)
-## [Exemplos](https://github.com/aspnet/SignalR-samples)
+## [Amostras](https://github.com/aspnet/SignalR-samples)
 ## Conceitos de servidor
 ### [Hubs](xref:signalr/hubs)
 ### [HubContext](xref:signalr/hubcontext)
@@ -376,6 +384,7 @@
 ### [Middleware de cache de resposta](xref:performance/caching/middleware)
 ## [Compactação de resposta](xref:performance/response-compression)
 ## [Ferramentas de Diagnóstico](xref:performance/diagnostic-tools)
+## [Testes de estresse e carga](xref:test/loadtests)
 
 # Outros tópicos
 ## [Globalização e localização](xref:fundamentals/localization)
@@ -410,12 +419,6 @@
 ### [Associação de identidade](xref:migration/proper-to-2x/membership-to-core-identity)
 ### [Módulos HTTP para middleware](xref:migration/http-modules)
 ## [Registro em log (não o ASP.NET Core)](xref:migration/logging-nonaspnetcore)
-
-# O que há de novo
-## [Novidades no 2.2](xref:aspnetcore-2.2)
-## [Novidades no 2.1](xref:aspnetcore-2.1)
-## [Novidades no 2.0](xref:aspnetcore-2.0)
-## [Novidades no 1.1](xref:aspnetcore-1.1)
 
 # [Referência de API](/dotnet/api/?view=aspnetcore-2.2)
 
