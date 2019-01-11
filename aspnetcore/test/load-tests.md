@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/04/2019
 uid: test/loadtests
-ms.openlocfilehash: 0a53405cba19435a74b398ba42a05456c50bdc72
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: d989bc841a372bed7ebf2c84c6abe1a57762ad04
+ms.sourcegitcommit: cec77d5ad8a0cedb1ecbec32834111492afd0cd2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54099476"
+ms.lasthandoff: 01/10/2019
+ms.locfileid: "54207350"
 ---
 # <a name="load-and-stress-testing-aspnet-core"></a>ASP.NET Core teste de estresse e carregar
 
@@ -24,7 +24,7 @@ Teste de carga e testes de estresse são importantes para garantir que um aplica
 * Carga de usuário com altos – picos ou aumentando gradualmente.
 * Recursos de computação limitados.  
 
-Sob carga excessiva, pode o aplicativo se recuperar de falha e normalmente retornar ao comportamento esperado? O aplicativo é executado em condições normais.
+Sob carga excessiva, pode o aplicativo se recuperar de falha e normalmente retornar ao comportamento esperado? Sob carga excessiva, o aplicativo está *não* executado sob condições normais.
 
 ## <a name="visual-studio-tools"></a>Ferramentas do Visual Studio
 
