@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba mais sobre o Kestrel, o servidor Web multiplataforma do ASP.NET Core.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 12/18/2018
 uid: fundamentals/servers/kestrel
-ms.openlocfilehash: 2a6a3786aa3a78bb83f497db22acac873512f939
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: af1f330f2afa340ef98a6b4bd5008859f4b0f914
+ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52861921"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "53637905"
 ---
 # <a name="kestrel-web-server-implementation-in-aspnet-core"></a>Implementação do servidor Web Kestrel no ASP.NET Core
 
@@ -25,7 +25,7 @@ Para obter a versão 1.1 deste tópico, baixe [Implementação do servidor Web K
 
 O Kestrel é um [servidor Web multiplataforma para o ASP.NET Core](xref:fundamentals/servers/index). O Kestrel é o servidor Web que está incluído por padrão em modelos de projeto do ASP.NET Core.
 
-O Kestrel dá suporte aos seguintes recursos:
+O Kestrel dá suporte aos seguintes cenários:
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -76,7 +76,11 @@ HTTP/2 está desabilitado por padrão. Para obter mais informações sobre a con
 
 Você pode usar o Kestrel sozinho ou com um *servidor proxy reverso* como [IIS (Serviços de Informações da Internet)](https://www.iis.net/), [Nginx](http://nginx.org) ou [Apache](https://httpd.apache.org/). Um servidor proxy reverso recebe solicitações HTTP da rede e encaminha-as para o Kestrel.
 
+Kestrel usado como um servidor Web de borda (voltado para a Internet):
+
 ![O Kestrel se comunica diretamente com a Internet, sem um servidor proxy reverso](kestrel/_static/kestrel-to-internet2.png)
+
+Kestrel usado em uma configuração de proxy reverso:
 
 ![O Kestrel se comunica indiretamente com a Internet através de um servidor proxy reverso, tal como o IIS, o Nginx ou o Apache](kestrel/_static/kestrel-to-internet.png)
 
@@ -470,7 +474,7 @@ Especificar URLs usando:
 
 Para obter mais informações, confira [URLs de servidor](xref:fundamentals/host/web-host#server-urls) e [Substituir configuração](xref:fundamentals/host/web-host#override-configuration).
 
-O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão). Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000;http://localhost:8001"`).
+O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão). Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000; http://localhost:8001"`).
 
 *Substituir o certificado padrão da configuração*
 
@@ -790,7 +794,7 @@ Esses métodos são úteis para fazer com que o código funcione com servidores 
 
 ### <a name="iis-endpoint-configuration"></a>Configuração de ponto de extremidade do IIS
 
-Ao usar o IIS, as associações de URL para IIS substituem as associações definidas por `Listen` ou `UseUrls`. Para obter mais informações, confira o tópico [Módulo do ASP.NET Core](xref:fundamentals/servers/aspnet-core-module).
+Ao usar o IIS, as associações de URL para IIS substituem as associações definidas por `Listen` ou `UseUrls`. Para obter mais informações, confira o tópico [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module).
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -1033,4 +1037,4 @@ Middleware de Filtragem de Host está desabilitado por padrão. Para habilitar o
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>
 * [Código-fonte do kestrel](https://github.com/aspnet/KestrelHttpServer)
-* [RFC 7230: Sintaxe e roteamento da mensagem (Seção 5.4: Host)](https://tools.ietf.org/html/rfc7230#section-5.4)
+* [RFC 7230: sintaxe e roteamento da mensagem (Seção 5.4: host)](https://tools.ietf.org/html/rfc7230#section-5.4)
