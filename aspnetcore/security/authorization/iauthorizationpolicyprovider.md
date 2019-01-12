@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/02/2018
 uid: security/authorization/iauthorizationpolicyprovider
-ms.openlocfilehash: fdd8f9232c4332aa8307b9dbdfba6af48dfafa72
-ms.sourcegitcommit: 317f9be24db600499e79d25872d743af74bd86c0
+ms.openlocfilehash: ef3e81da6fb9e2e332b553607be35fcd79e9362d
+ms.sourcegitcommit: ec71fd5a988f927ae301813aae5ff764feb3bb6a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/02/2018
-ms.locfileid: "48045491"
+ms.lasthandoff: 01/12/2019
+ms.locfileid: "54249367"
 ---
 # <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>Provedores de política de autorização personalizados usando IAuthorizationPolicyProvider no ASP.NET Core 
 
@@ -25,7 +25,7 @@ Exemplos de cenários onde um personalizado [IAuthorizationPolicyProvider](/dotn
 * Usando uma grande variedade de diretivas (para números de sala de diferentes ou com as idades, por exemplo), portanto, não faz sentido adicionar cada política de autorização individuais com um `AuthorizationOptions.AddPolicy` chamar.
 * Criação de políticas em tempo de execução com base nas informações em uma fonte de dados externa (como um banco de dados) ou determinar os requisitos de autorização dinamicamente por meio de outro mecanismo.
 
-[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AuthSamples/tree/master/samples/CustomPolicyProvider) do [repositório do GitHub aspnet/AuthSamples](https://github.com/aspnet/AuthSamples). Baixe o arquivo ZIP do repositório aspnet/AuthSamples.
+[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore/tree/release/2.2/src/AuthSamples/) do [repositório GitHub de AspNetCore](https://github.com/aspnet/AspNetCore). Baixe o arquivo ZIP do repositório aspnet/AuthSamples.
 Descompacte o *AuthSamples Master* arquivo. Navegue até a *amostras/CustomPolicyProvider* pasta do projeto.
 
 ## <a name="customize-policy-retrieval"></a>Personalizar a recuperação da política

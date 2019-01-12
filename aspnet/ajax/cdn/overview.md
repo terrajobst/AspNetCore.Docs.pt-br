@@ -8,12 +8,12 @@ ms.date: 10/14/2017
 ms.assetid: 8935bf14-ca6d-4a4e-9dbe-b96ce74cef49
 msc.legacyurl: /ajax/cdn
 msc.type: content
-ms.openlocfilehash: 0da6955a6062571d917fb8c9651417fe834ad34f
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: 2445d788df8ae80ccaad2dfeb19d1ccb91954d40
+ms.sourcegitcommit: ec71fd5a988f927ae301813aae5ff764feb3bb6a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48912638"
+ms.lasthandoff: 01/12/2019
+ms.locfileid: "54249575"
 ---
 <a name="microsoft-ajax-content-delivery-network"></a>Rede de distribuição de conteúdo do Microsoft Ajax
 ====================
@@ -603,6 +603,7 @@ As seguintes versões da biblioteca de interface do usuário do jQuery são hosp
 
 As seguintes versões da biblioteca de validação do jQuery são hospedadas em deste CDN. Clique em cada link para ver a lista real de arquivos.
 
+- [jQuery Validate 1.19.0](jquery-validate/cdnjqueryvalidate1190.md "1.19.0 de validação do jQuery")
 - [jQuery Validate 1.17.0](jquery-validate/cdnjqueryvalidate1170.md "1.17.0 de validação do jQuery")
 - [jQuery Validate 1.16.0](jquery-validate/cdnjqueryvalidate1160.md "validação do jQuery 1.16.0")
 - [jQuery Validate 1.15.1](jquery-validate/cdnjqueryvalidate1151.md "validação do jQuery 1.15.1")
