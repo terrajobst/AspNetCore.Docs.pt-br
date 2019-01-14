@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como hospedar aplicativos ASP.NET Core no Windows Server IIS (Serviços de Informações da Internet).
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 01/11/2019
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 4356d986731f915c2e76a4c4863f951572820de0
-ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
+ms.openlocfilehash: 3239b4652d739ed2ac205c9daae7754dbd8e918c
+ms.sourcegitcommit: ec71fd5a988f927ae301813aae5ff764feb3bb6a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "53637866"
+ms.lasthandoff: 01/12/2019
+ms.locfileid: "54249549"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -71,6 +71,8 @@ public static IWebHost BuildWebHost(string[] args) =>
 **Modelo de hospedagem em processo**
 
 `CreateDefaultBuilder` chama o método `UseIIS` para inicializar o [CoreCLR](/dotnet/standard/glossary#coreclr) e hospedar o aplicativo no processo de trabalho do IIS (*w3wp.exe* ou *iisexpress.exe*). Os testes de desempenho indicam que hospedar um aplicativo em processo do .NET Core oferece uma taxa de transferência de solicitação significativamente mais elevada em comparação a hospedar o aplicativo fora do processo e enviar por proxy as solicitações para o servidor [Kestrel](xref:fundamentals/servers/kestrel).
+
+Não há suporte para o modelo de hospedagem em processo para aplicativos ASP.NET Core direcionados ao .NET Framework.
 
 **Modelo de hospedagem de fora do processo**
 

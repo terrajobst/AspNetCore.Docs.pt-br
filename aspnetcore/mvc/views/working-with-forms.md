@@ -4,14 +4,14 @@ author: rick-anderson
 description: Descreve os Auxiliares de marca internos usados com Formulários.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 1/11/2019
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: 7319fbbfe3e78e61526f9042b2b6004a351c2186
-ms.sourcegitcommit: 2ef32676c16f76282f7c23154d13affce8c8bf35
+ms.openlocfilehash: cd15c641fbf702071bd57510a1d51737f6ab8e19
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50234612"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54099007"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Auxiliares de marca em formulários no ASP.NET Core
 
@@ -108,7 +108,7 @@ O Auxiliar de marca `Input` define o atributo HTML `type` com base no tipo .NET.
 |---|---|
 |Bool|type="checkbox"|
 |Cadeia de Caracteres|type="text"|
-|DateTime|type="datetime"|
+|DateTime|type=["datetime-local"](https://developer.mozilla.org/docs/Web/HTML/Element/input/datetime-local)|
 |Byte|type="number"|
 |int|type="number"|
 |Single e Double|type="number"|

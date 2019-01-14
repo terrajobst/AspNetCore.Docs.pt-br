@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/10/2018
 uid: tutorials/first-web-api
-ms.openlocfilehash: c2b4dcddd5332330cd6e6abe7d3a12697cde845e
-ms.sourcegitcommit: 4e87712029de2aceb1cf2c52e9e3dda8195a5b8e
+ms.openlocfilehash: 03936ee74836c7b214cb3dc4023a6e3c252f2a26
+ms.sourcegitcommit: cec77d5ad8a0cedb1ecbec32834111492afd0cd2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53381998"
+ms.lasthandoff: 01/10/2019
+ms.locfileid: "54207441"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core-mvc"></a>Tutorial: Criar uma API Web com o ASP.NET Core MVC
 
@@ -311,7 +311,7 @@ Adicione o seguinte método `PostTodoItem`:
 
 O código anterior é um método HTTP POST, conforme indicado pelo atributo [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute). O método obtém o valor do item pendente no corpo da solicitação HTTP.
 
-O método `CreatedAtRoute`:
+O método `CreatedAtAction`:
 
 * Retorna uma resposta 201. HTTP 201 é a resposta padrão para um método HTTP POST que cria um novo recurso no servidor.
 * Adiciona um cabeçalho Local à resposta. O cabeçalho Location especifica o URI do item de tarefas pendentes recém-criado. Para obter mais informações, confira [10.2.2 201 Criado](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
@@ -398,7 +398,7 @@ O aplicativo de exemplo permite que você exclua todos os itens, mas quando o ú
 
 Nesta seção, uma página HTML que usa o jQuery para chamar a API Web é adicionada. O jQuery inicia a solicitação e atualiza a página com os detalhes da resposta da API.
 
-Configure o aplicativo para [fornecer arquivos estáticos](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [habilitar o mapeamento de arquivo padrão](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_):
+Configure o aplicativo para [fornecer arquivos estáticos](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [habilitar o mapeamento de arquivo padrão](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_):
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup.cs?highlight=14-15&name=snippet_configure)]
 
