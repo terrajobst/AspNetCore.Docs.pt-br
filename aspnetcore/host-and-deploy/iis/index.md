@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/11/2019
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 3239b4652d739ed2ac205c9daae7754dbd8e918c
-ms.sourcegitcommit: ec71fd5a988f927ae301813aae5ff764feb3bb6a
+ms.openlocfilehash: 83c084beb059d803811e9739d34bdbdd6bcff463
+ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/12/2019
-ms.locfileid: "54249549"
+ms.lasthandoff: 01/16/2019
+ms.locfileid: "54341791"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -312,11 +312,6 @@ Ao implantar aplicativos para servidores com [Implantação da Web](/iis/publish
 ## <a name="create-the-iis-site"></a>Criar o site do IIS
 
 1. No sistema de hospedagem, crie uma pasta para conter arquivos e pastas publicados do aplicativo. O layout de implantação do aplicativo é descrito no tópico [Estrutura de Diretórios](xref:host-and-deploy/directory-structure).
-
-1. Na nova pasta, crie uma pasta *logs* para armazenar os logs do stdout do Módulo do ASP.NET Core quando o log do stdout estiver habilitado. Se o aplicativo for implantado com uma pasta *logs* no conteúdo, ignore esta etapa. Para obter instruções sobre como habilitar o MSBuild para criar a pasta *logs* automaticamente quando o projeto for criado localmente, veja o tópico [Estrutura de Diretórios](xref:host-and-deploy/directory-structure).
-
-   > [!IMPORTANT]
-   > Somente use o log do stdout para solucionar problemas de falhas de inicialização de aplicativo. Nunca use o log do stdout para registrar aplicativos de rotina. Não há limites para o tamanho do arquivo de log ou para o número de arquivos de log criados. O pool de aplicativos deve ter acesso de gravação ao local em que os logs foram gravados. Todas as pastas no caminho para a localização do log devem existir. Para saber mais sobre o log do stdout, veja [Criação e redirecionamento de logs](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection). Para saber mais sobre o registro em um aplicativo do ASP.NET Core, veja o tópico [Registrar](xref:fundamentals/logging/index).
 
 1. No **Gerenciador do IIS**, abra o nó do servidor no painel **Conexões**. Clique com botão direito do mouse na pasta **Sites**. Selecione **Adicionar Site** no menu contextual.
 

@@ -5,14 +5,14 @@ description: Saiba como configurar a autenticação do Windows no ASP.NET Core, 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 12/23/2018
+ms.date: 01/15/2019
 uid: security/authentication/windowsauth
-ms.openlocfilehash: 64178c8fce71445fc6a728a236d811484b21e3e0
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: c98bdedcf943a9057c96a8e5d62615e400074899
+ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54099254"
+ms.lasthandoff: 01/16/2019
+ms.locfileid: "54341648"
 ---
 # <a name="configure-windows-authentication-in-aspnet-core"></a>Configurar a autenticação do Windows no ASP.NET Core
 
@@ -62,6 +62,8 @@ dotnet new webapp --auth Windows
 ```
 
 ---
+
+Ao modificar um projeto existente, confirme se o arquivo de projeto inclui uma referência de pacote para o [metapacote do Microsoft](xref:fundamentals/metapackage-app) **ou** o [ Microsoft.AspNetCore.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication/) pacote do NuGet.
 
 ## <a name="enable-windows-authentication-with-iis"></a>Habilitar a autenticação do Windows com o IIS
 

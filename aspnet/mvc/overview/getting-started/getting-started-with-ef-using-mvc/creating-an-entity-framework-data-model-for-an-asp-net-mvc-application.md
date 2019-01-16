@@ -1,28 +1,25 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
-title: Introdução ao Entity Framework 6 Code First usando MVC 5 | Microsoft Docs
+title: 'Tutorial: Introdução ao Entity Framework 6 Code First usando MVC 5 | Microsoft Docs'
+description: Esta série de tutoriais, você aprenderá como criar um aplicativo ASP.NET MVC 5 que usa o Entity Framework 6 para acesso a dados.
 author: tdykstra
 ms.author: riande
-ms.date: 12/04/2018
+ms.date: 01/10/2019
+ms.topic: tutorial
 ms.assetid: 00bc8b51-32ed-4fd3-9745-be4c2a9c1eaf
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: c7ab9458f83e05af84f72d9a2519a8c1c39b84b5
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: 5d524c981af2d9d8f44254c61631937e6f049cdb
+ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52861427"
+ms.lasthandoff: 01/16/2019
+ms.locfileid: "54341700"
 ---
-# <a name="get-started-with-entity-framework-6-code-first-using-mvc-5"></a>Introdução ao Entity Framework 6 Code First usando MVC 5
-
-por [Tom Dykstra](https://github.com/tdykstra)
-
-[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+# <a name="tutorial-get-started-with-entity-framework-6-code-first-using-mvc-5"></a>Tutorial: Introdução ao Entity Framework 6 Code First usando MVC 5
 
 > [!NOTE]
-> Para novos desenvolvimentos, recomendamos [páginas do Razor do ASP.NET Core](/aspnet/core/razor-pages) sobre controladores e exibições MVC do ASP.NET. Uma série de tutoriais semelhante a este está disponível para páginas do Razor, o [tutorial das páginas do Razor](/aspnet/core/tutorials/razor-pages/razor-pages-start):
->
+> Para novos desenvolvimentos, recomendamos [páginas do Razor do ASP.NET Core](/aspnet/core/razor-pages) sobre controladores e exibições MVC do ASP.NET. Para uma série de tutoriais semelhante a esta usando páginas Razor, consulte [Tutorial: Introdução às páginas do Razor no ASP.NET Core](/aspnet/core/tutorials/razor-pages/razor-pages-start). O novo tutorial:
 > * É mais fácil de acompanhar.
 > * Fornece mais práticas recomendadas do EF Core.
 > * Usa consultas mais eficientes.
@@ -30,59 +27,45 @@ por [Tom Dykstra](https://github.com/tdykstra)
 > * Aborda mais recursos.
 > * É a abordagem preferencial para o desenvolvimento de novos aplicativos.
 
-> Este artigo demonstra como criar aplicativos ASP.NET MVC 5 usando o Entity Framework 6 e o Visual Studio. Este tutorial usa o fluxo de trabalho do Code First. Para obter informações sobre como escolher entre o Code First, Model First e Database First, consulte [criar um modelo](/ef/ef6/modeling/).
->
-> O aplicativo de exemplo é um site da web para uma universidade fictícia chamada Contoso University. Ele inclui funcionalidades como admissão de alunos, criação de cursos e atribuições de instrutor. Esta série de tutoriais explica como compilar o aplicativo de exemplo Contoso University. Você pode [Baixe o aplicativo concluído](https://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8).
->
-> Uma versão do Visual Basic traduzida por Mike Brind está disponível: [MVC 5 com o EF 6 no Visual Basic](http://www.mikesdotnetting.com/Article/241/MVC-5-with-EF-6-in-Visual-Basic-Creating-an-Entity-Framework-Data-Model) no site Mikesdotnetting.
->
-> ## <a name="software-versions-used-in-the-tutorial"></a>Versões de software usadas no tutorial
->
-> - [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
-> - [Entity Framework 6](https://www.nuget.org/packages/EntityFramework)
-> - [Windows Azure SDK 2.2](https://go.microsoft.com/fwlink/p/?linkid=323510) (opcional)
->
-> ## <a name="tutorial-versions"></a>Versões de tutoriais
->
-> Para versões anteriores deste tutorial, consulte [o EF 4.1 / MVC 3 livro eletrônico](https://social.technet.microsoft.com/wiki/contents/articles/11608.e-book-gallery-for-microsoft-technologies.aspx#GettingStartedwiththeEntityFramework4.1usingASP.NETMVC) e [Introdução ao EF 5 usando o MVC 4](../../older-versions/getting-started-with-ef-5-using-mvc-4/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
->
-> ## <a name="questions-and-comments"></a>Perguntas e comentários
->
-> Deixe comentários sobre como você gostou neste tutorial e o que poderíamos melhorar usando os comentários na parte inferior da página. Se você tiver perguntas que não estão diretamente relacionadas para o tutorial, você pode postá-los para o [Fórum do Entity Framework do ASP.NET](https://forums.asp.net/1227.aspx) ou [StackOverflow.com](http://stackoverflow.com/).
->
-> Se você tiver um problema que você não conseguir resolver, você geralmente pode encontrar a solução ao problema comparando o código para o projeto concluído que você pode baixar. Para alguns erros comuns e como resolvê-los, consulte [erros comuns e soluções ou soluções alternativas](advanced-entity-framework-scenarios-for-an-mvc-web-application.md#errors).
+Esta série de tutoriais, você aprenderá como criar um aplicativo ASP.NET MVC 5 que usa o Entity Framework 6 para acesso a dados. Este tutorial usa o fluxo de trabalho do Code First. Para obter informações sobre como escolher entre o Code First, Model First e Database First, consulte [criar um modelo](/ef/ef6/modeling/).
 
-## <a name="the-contoso-university-web-app"></a>O aplicativo Web Contoso University
-
-O aplicativo que você criará nestes tutoriais é um site simples Universidade. Os usuários podem exibir e atualizar informações de alunos, cursos e instrutores. Aqui estão algumas das telas, você criará:
+Esta série de tutoriais explica como compilar o aplicativo de exemplo Contoso University. O aplicativo de exemplo é um site simples university. Com ele, você pode exibir e atualizar informações de instrutor, curso e alunos. Eis aqui duas das telas que você cria:
 
 ![Students_Index_page](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image1.png)
 
 ![Editar aluno](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image2.png)
 
-Para que o tutorial possa se concentrar principalmente em como usar o Entity Framework, a interface do usuário do site da web não mudou muito do que é gerado pelos modelos internos.
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Criar um aplicativo web MVC
+> * Configurar o estilo do site
+> * Instalar o Entity Framework 6
+> * Criar o modelo de dados
+> * Criar o contexto de banco de dados
+> * Inicializar o banco de dados com dados de teste
+> * Configurar o EF 6 para usar o LocalDB
+> * Criar o controlador e exibições
+> * Exibir o banco de dados
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-Ver **versões de Software** na parte superior da página. Entity Framework 6 não é um pré-requisito, porque você instalar o pacote NuGet do EF como parte do tutorial.
+* [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017)
 
 ## <a name="create-an-mvc-web-app"></a>Criar um aplicativo web MVC
 
-1. Abra o Visual Studio e crie um novo c# web projeto usando o **aplicativo Web ASP.NET (.NET Framework)** modelo. Nomeie o projeto "ContosoUniversity".
+1. Abra o Visual Studio e crie um C# projeto da web usando o **aplicativo Web ASP.NET (.NET Framework)** modelo. Nomeie o projeto *ContosoUniversity* e selecione **Okey**.
 
    ![Caixa de diálogo Novo projeto no Visual Studio](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/new-project-dialog.png)
 
-2. Na caixa de diálogo Novo projeto ASP.NET, selecione o **MVC** modelo.
+1. Na **novo aplicativo de Web do ASP.NET - ContosoUniversity**, selecione **MVC**.
 
    ![Nova caixa de diálogo de aplicativo web no Visual Studio](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/new-web-app-dialog.png)
 
-3. Se **autenticação** não está definido como **sem autenticação**, altere-o clicando em **alterar autenticação**.
+    > [!NOTE]
+    > Por padrão, o **autenticação** opção for definida como **sem autenticação**. Para este tutorial, o aplicativo web não requer que os usuários entrem. Além disso, ele não restringe o acesso com base em quem estiver conectado.
 
-   No **alterar autenticação** caixa de diálogo, selecione **sem autenticação**e, em seguida, escolha **Okey**. Para este tutorial, o aplicativo web não requer que os usuários entrem nem restringe o acesso com base em quem estiver conectado.
-
-   ![Caixa de diálogo Alterar autenticação no Visual Studio](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/change-authentication.png)
-
-4. Na caixa de diálogo Novo projeto ASP.NET, clique em **Okey** para criar o projeto.
+1. Selecione **OK** para criar o projeto.
 
 ## <a name="set-up-the-site-style"></a>Configurar o estilo do site
 
@@ -101,9 +84,7 @@ Algumas alterações simples configurarão o menu do site, o layout e a home pag
 
    [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample2.cshtml)]
 
-3. Pressione **Ctrl**+**F5** para executar o site da web. Você ver a home page com o menu principal.
-
-   ![Home page da Contoso University](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image6.png)
+3. Pressione Ctrl + F5 para executar o site da web. Você ver a home page com o menu principal.
 
 ## <a name="install-entity-framework-6"></a>Instalar o Entity Framework 6
 
@@ -115,17 +96,18 @@ Algumas alterações simples configurarão o menu do site, o layout e a home pag
    Install-Package EntityFramework
    ```
 
-   ![EF instalado](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image7.png)
-
-   A imagem mostra 6.0.0 sendo instalado, mas o NuGet instalará a versão mais recente do Entity Framework (excluindo as versões de pré-lançamento), que, a partir da atualização mais recente para o tutorial é 6.2.0.
-
 Esta etapa é uma das poucas etapas que este tutorial tem a fazer manualmente, mas que poderia ter sido feito automaticamente pelo recurso de scaffolding do ASP.NET MVC. Você está fazendo-os manualmente para que você possa ver as etapas necessárias para usar o Entity Framework (EF). Você vai usar scaffolding mais tarde para criar o controlador MVC e exibições. Uma alternativa é permitir que o scaffolding automaticamente instala o pacote NuGet do EF, criar a classe de contexto do banco de dados e criar a cadeia de caracteres de conexão. Quando você estiver pronto para fazer isso dessa maneira, tudo o que você precisa fazer é ignorar essas etapas e o scaffolding seu controlador MVC, depois de criar as classes de entidade.
 
 ## <a name="create-the-data-model"></a>Criar o modelo de dados
 
 Em seguida, você criará as classes de entidade para o aplicativo Contoso University. Você começará com as três seguintes entidades:
 
-![Class_diagram](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image8.png)
+**Curso** <-> **registro** <-> **aluno**
+
+| Entidades | Relationship |
+| -------- | ------------ |
+| Curso para registro | um-para-muitos |
+| Aluno para registro | um-para-muitos |
 
 Há uma relação um-para-muitos entre as entidades `Student` e `Enrollment`, e uma relação um-para-muitos entre as entidades `Course` e `Enrollment`. Em outras palavras, um aluno pode ser registrado em qualquer quantidade de cursos e um curso pode ter qualquer quantidade de alunos registrados.
 
@@ -136,9 +118,7 @@ As seções a seguir, você criará uma classe para cada uma dessas entidades.
 
 ### <a name="the-student-entity"></a>A entidade Student
 
-![Student_entity](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image9.png)
-
-- No *modelos* pasta, crie um arquivo de classe chamado *Student.cs* clicando na pasta do **Gerenciador de soluções** e escolhendo **Add**  >  **Classe**. Substitua o código de modelo pelo código a seguir:
+- No *modelos* pasta, crie um arquivo de classe chamado *Student.cs* clicando na pasta do **Gerenciador de soluções** e escolhendo **Add**  >  **Classe**. Substitua o código do modelo pelo seguinte código:
 
    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample3.cs)]
 
@@ -151,8 +131,6 @@ Propriedades de navegação geralmente são definidas como `virtual` para que el
 Se uma propriedade de navegação pode armazenar várias entidades (como em relações muitos para muitos ou um-para-muitos), o tipo precisa ser uma lista na qual entradas podem ser adicionadas, excluídas e atualizadas, como `ICollection`.
 
 ### <a name="the-enrollment-entity"></a>A entidade Enrollment
-
-![Enrollment_entity](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image10.png)
 
 - Na pasta *Models*, crie *Enrollment.cs* e substitua o código existente pelo seguinte código:
 
@@ -169,8 +147,6 @@ A propriedade `CourseID` é uma chave estrangeira e a propriedade de navegação
 Entity Framework interpreta uma propriedade como uma propriedade de chave estrangeira se ela é nomeada *&lt;nome da propriedade de navegação&gt;&lt;nome da propriedade de chave primária&gt;* (por exemplo, `StudentID`para o `Student` propriedade de navegação desde o `Student` chave primária da entidade é `ID`). Propriedades de chave estrangeira também podem ser nomeadas o mesmo simplesmente *&lt;nome da propriedade de chave primária&gt;* (por exemplo, `CourseID` uma vez que o `Course` chave primária da entidade é `CourseID`).
 
 ### <a name="the-course-entity"></a>A entidade Course
-
-![Course_entity](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image11.png)
 
 - No *modelos* pasta, crie *Course.cs*, substituindo o código de modelo pelo código a seguir:
 
@@ -210,7 +186,7 @@ Se você não especificar uma cadeia de caracteres de conexão ou o nome de um e
 
 O `modelBuilder.Conventions.Remove` instrução em de [OnModelCreating](https://msdn.microsoft.com/library/system.data.entity.dbcontext.onmodelcreating(v=vs.103).aspx) método impede que os nomes de tabela que está sendo pluralizados. Se você não fizer isso, as tabelas geradas no banco de dados seriam nomeadas `Students`, `Courses`, e `Enrollments`. Em vez disso, os nomes de tabela serão `Student`, `Course`, e `Enrollment`. Os desenvolvedores não concordam sobre se os nomes de tabela devem ser pluralizados ou não. Este tutorial usa a forma singular, mas o ponto importante é que você pode selecionar qualquer que seja o formulário que você preferir ao incluir ou omitir esta linha de código.
 
-## <a name="set-up-ef-to-initialize-the-database-with-test-data"></a>Configurar o EF para inicializar o banco de dados com dados de teste
+## <a name="initialize-db-with-test-data"></a>Inicializar o banco de dados com dados de teste
 
 Entity Framework pode automaticamente criar (ou descartar e recriar) um banco de dados para você quando o aplicativo é executado. Você pode especificar que isso deve ser feito sempre que seu aplicativo é executado ou apenas quando o modelo está fora de sincronia com o banco de dados existente. Você também pode escrever um `Seed` método que o Entity Framework chama automaticamente depois de criar o banco de dados para preenchê-lo com dados de teste.
 
@@ -235,7 +211,7 @@ O aplicativo agora está configurado para que quando você acessa o banco de dad
 > [!NOTE]
 > Quando você implanta um aplicativo em um servidor web de produção, você deve remover ou desabilitar o código que descarta e recria o banco de dados. Você terá de fazer isso em um tutorial posterior nesta série.
 
-## <a name="set-up-ef-to-use-a-sql-server-express-localdb-database"></a>Configurar o EF para usar um banco de dados do SQL Server Express LocalDB
+## <a name="set-up-ef-6-to-use-localdb"></a>Configurar o EF 6 para usar o LocalDB
 
 [LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb?view=sql-server-2017) é uma versão leve do mecanismo de banco de dados do SQL Server Express. Ele é fácil de instalar e configurar, é iniciado sob demanda e é executado no modo de usuário. LocalDB é executado em um modo de execução especial do SQL Server Express que permite que você trabalhe com bancos de dados como *mdf* arquivos. Você pode colocar arquivos de banco de dados LocalDB na *App\_dados* pasta de um projeto web se você quiser ser capaz de copiar o banco de dados com o projeto. O recurso de instância de usuário do SQL Server Express também permite que você trabalhe com *mdf* arquivos, mas o recurso de instância de usuário é preterido; portanto, o LocalDB é recomendado para trabalhar com *mdf* arquivos. LocalDB é instalado por padrão com o Visual Studio.
 
@@ -249,7 +225,7 @@ A cadeia de caracteres de conexão que você adicionou Especifica que o Entity F
 
 Você não precisa realmente uma cadeia de caracteres de conexão na *Web. config* arquivo. Se você não fornecer uma cadeia de caracteres de conexão, o Entity Framework usa uma cadeia de conexão padrão com base em sua classe de contexto. Para obter mais informações, consulte [Code First para um novo banco de dados](/ef/ef6/modeling/code-first/workflows/new-database).
 
-## <a name="create-a-student-controller-and-views"></a>Criar um controlador de aluno e modos de exibição
+## <a name="create-controller-and-views"></a>Criar o controlador e exibições
 
 Agora, você criará uma página da web para exibir dados. O processo de solicitação de dados automaticamente dispara a criação do banco de dados. Você começará criando um novo controlador. Mas, antes de fazer isso, crie o projeto para disponibilizar as classes de modelo e o contexto para scaffolding do controlador MVC.
 
@@ -260,12 +236,10 @@ Agora, você criará uma página da web para exibir dados. O processo de solicit
 
 3. No **Adicionar controlador** caixa de diálogo, faça as seguintes seleções e, em seguida, escolha **Add**:
 
-   - Classe de modelo: **aluno (ContosoUniversity.Models)**. (Se você não vir essa opção na lista suspensa, compile o projeto e tente novamente.)
+   - Classe de modelo: **Aluno (ContosoUniversity.Models)**. (Se você não vir essa opção na lista suspensa, compile o projeto e tente novamente.)
    - Classe de contexto de dados: **SchoolContext (ContosoUniversity.DAL)**.
    - Nome do controlador: **StudentController** (não StudentsController).
    - Deixe os valores padrão para os outros campos.
-
-     ![Adicionar caixa de diálogo do controlador no Visual Studio](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/add-controller.png)
 
      Quando você clica em **Add**, o scaffolder cria um *StudentController.cs* arquivo e um conjunto de exibições (*. cshtml* arquivos) que funcionam com o controlador. No futuro quando você cria projetos que usam o Entity Framework, você pode também aproveitar algumas funcionalidades adicionais do scaffolder: criar sua primeira classe de modelo, não crie uma cadeia de caracteres de conexão e, em seguida, no **Adicionar controlador** especificar **novo contexto de dados** selecionando o **+** lado **classe de contexto de dados**. O scaffolder criará seu `DbContext` classe e sua conexão de cadeia de caracteres, bem como o controlador e exibições.
 4. O Visual Studio abre o *Controllers\StudentController.cs* arquivo. Você verá que uma variável de classe foi criada que instancia um objeto de contexto do banco de dados:
@@ -279,13 +253,11 @@ Agora, você criará uma página da web para exibir dados. O processo de solicit
      O *Student\Index.cshtml* exibição exibe esta lista em uma tabela:
 
      [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample13.cshtml)]
-5. Pressione **Ctrl**+**F5** para executar o projeto. (Se você receber um erro "Não é possível criar a cópia de sombra", feche o navegador e tente novamente.)
+5. Pressione Ctrl + F5 para executar o projeto. (Se você receber um erro "Não é possível criar a cópia de sombra", feche o navegador e tente novamente.)
 
      Clique o **alunos** guia para ver os dados de teste que o `Seed` método inserido. Dependendo de como restringir a janela do navegador é, você verá o link do guia do aluno na barra de endereços principais ou você terá de clicar o canto superior direito para ver o link.
 
      ![Botão de menu](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image14.png)
-
-     ![Página de índice de alunos](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image15.png)
 
 ## <a name="view-the-database"></a>Exibir o banco de dados
 
@@ -296,11 +268,8 @@ Você pode usar tanto **Gerenciador de servidores** ou **SQL Server Object Explo
 1. Feche o navegador.
 2. Na **Gerenciador de servidores**, expanda **conexões de dados** (talvez seja necessário selecionar o botão atualizar primeiro), expanda **School contexto (ContosoUniversity)** e, em seguida, expanda  **Tabelas** para ver as tabelas no seu novo banco de dados.
 
-    ![Tabelas de banco de dados no Gerenciador de servidores](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image16.png)
-
 3. Clique com botão direito do **aluno** tabela e clique em **Mostrar dados da tabela** para ver as colunas que foram criadas e as linhas que foram inseridas na tabela.
 
-    ![Tabela aluno](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/table-data.png)
 4. Fechar o **Gerenciador de servidores** conexão.
 
 O *ContosoUniversity1.mdf* e *. ldf* arquivos de banco de dados estão no *% USERPROFILE %* pasta.
@@ -316,15 +285,32 @@ A quantidade de código, você precisava escrever em ordem para o Entity Framewo
 - Propriedades da entidade que são nomeadas `ID` ou *classname* `ID` são reconhecidas como propriedades de chave primária.
 - Uma propriedade é interpretada como uma propriedade de chave estrangeira se ela é nomeada *&lt;nome da propriedade de navegação&gt;&lt;nome da propriedade de chave primária&gt;* (por exemplo, `StudentID` para o `Student` propriedade de navegação desde o `Student` chave primária da entidade é `ID`). Propriedades de chave estrangeira também podem ser nomeadas o mesmo simplesmente &lt;nome de propriedade de chave primária&gt; (por exemplo, `EnrollmentID` uma vez que o `Enrollment` chave primária da entidade é `EnrollmentID`).
 
-Você viu que as convenções podem ser substituídas. Por exemplo, você especificou que não devem ser pluralizados nomes de tabela, e você verá posteriormente como marcar explicitamente uma propriedade como uma propriedade de chave estrangeira. Você aprenderá mais sobre as convenções e como substituí-las na [criando um modelo de dados mais complexo](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md) tutorial posteriormente nessa série. Para obter mais informações sobre as convenções, consulte [convenções de Code First](/ef/ef6/modeling/code-first/conventions/built-in).
+Você viu que as convenções podem ser substituídas. Por exemplo, você especificou que não devem ser pluralizados nomes de tabela, e você verá posteriormente como marcar explicitamente uma propriedade como uma propriedade de chave estrangeira.
+## <a name="additional-resources"></a>Recursos adicionais
 
-## <a name="summary"></a>Resumo
+Para obter mais informações sobre o EF 6, consulte estes artigos:
 
-Você criou um aplicativo simples que usa o Entity Framework e o SQL Server Express LocalDB para armazenar e exibir dados. No próximo tutorial, você aprenderá a executar básica criar, ler, atualizar e excluir (CRUD) de operações.
+* [Acesso a Dados do ASP.NET – recursos recomendados](../../../../whitepapers/aspnet-data-access-content-map.md)
 
-Deixe comentários sobre como você gostou neste tutorial e o que poderíamos melhorar.
+* [Convenções de Code First](/ef/ef6/modeling/code-first/conventions/built-in)
 
-Links para outros recursos do Entity Framework pode ser encontrado na [acesso a dados ASP.NET – recursos recomendados](../../../../whitepapers/aspnet-data-access-content-map.md).
+* [Criação de um modelo de dados mais complexo](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
 
-> [!div class="step-by-step"]
-> [Avançar](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
+## <a name="next-steps"></a>Próximas etapas
+
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Criado um aplicativo web MVC
+> * Configurar o estilo do site
+> * Instalado do Entity Framework 6
+> * Criar o modelo de dados
+> * Criado o contexto de banco de dados
+> * Banco de dados inicializado com dados de teste
+> * Configurar o EF 6 para usar o LocalDB
+> * Modos de exibição e o controlador criado
+> * Exibido o banco de dados
+
+Avance para o próximo artigo para saber como examinar e personalizar a criar, ler, atualizar, excluir (CRUD) de código em seus controladores e modos de exibição.
+> [!div class="nextstepaction"]
+> [Implementar a funcionalidade CRUD básica](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
