@@ -4,14 +4,14 @@ author: guardrex
 description: Descubra como usar o padrão de opções para representar grupos de configurações relacionadas em aplicativos ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/28/2018
+ms.date: 12/29/2018
 uid: fundamentals/configuration/options
-ms.openlocfilehash: 0e3784de18be16e3217a015dd94f1b43b6621c1c
-ms.sourcegitcommit: 68a3081dd175d6518d1bfa31b4712bd8a2dd3864
+ms.openlocfilehash: 20365a078327d76693a40fa79a4a594e29e0901c
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "53577884"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54099241"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Padrão de opções no ASP.NET Core
 
@@ -217,7 +217,7 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 O suporte de opções nomeadas com <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> é demonstrado como no Exemplo &num;6 no aplicativo de exemplo.
 
-O suporte de *opções nomeadas* permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*>. `Configure` chama o método de extensão <xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*>:
+O suporte de *opções nomeadas* permite que o aplicativo faça a distinção entre as configurações de opções nomeadas. No aplicativo de exemplo, as opções nomeadas são declaradas com [OptionsServiceCollectionExtensions.Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*) que chama o método de extensão [ConfigureNamedOptions\<TOptions>.Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 

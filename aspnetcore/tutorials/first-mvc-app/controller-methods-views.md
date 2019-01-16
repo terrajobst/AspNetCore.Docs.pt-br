@@ -5,18 +5,18 @@ description: Aprenda a trabalhar com os métodos, as exibições e as DataAnnota
 ms.author: riande
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: e6bdaec6dfe681582a54bd39ce1c76bebe6f5fb2
-ms.sourcegitcommit: e1cc4c1ef6c9e07918a609d5ad7fadcb6abe3e12
+ms.openlocfilehash: cd1b0f2ccffaa660f137b8d739933e56018f2702
+ms.sourcegitcommit: ec71fd5a988f927ae301813aae5ff764feb3bb6a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/03/2019
-ms.locfileid: "53997247"
+ms.lasthandoff: 01/12/2019
+ms.locfileid: "54249406"
 ---
 # <a name="controller-methods-and-views-in-aspnet-core"></a>Os métodos e as exibições do controlador no ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Temos um bom começo para o aplicativo de filme, mas a apresentação não é ideal. Você não deseja ver a hora (12:00:00 AM na imagem abaixo) e **ReleaseDate** deve ser escrito em duas palavras.
+Temos um bom começo para o aplicativo de filme, mas a apresentação não é ideal. Por exemplo, **ReleaseDate** deveria ser separado em duas palavras.
 
 ![Exibição de índice: a Data de Lançamento é uma palavra (sem espaço) e cada data de lançamento do filme mostra o horário 0h](working-with-sql/_static/m55.png)
 

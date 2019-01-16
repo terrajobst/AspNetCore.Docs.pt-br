@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 12/4/2018
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: acfc446732803c67714943fe3e5b7a31055ebcd7
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: 2b68523ac84596bda2914d9c348ddea8c7ea9465
+ms.sourcegitcommit: cec77d5ad8a0cedb1ecbec32834111492afd0cd2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52861999"
+ms.lasthandoff: 01/10/2019
+ms.locfileid: "54207376"
 ---
 # <a name="scaffolded-razor-pages-in-aspnet-core"></a>Páginas do Razor geradas por scaffolding no ASP.NET Core
 
@@ -57,6 +57,12 @@ O auxiliar HTML `DisplayNameFor` inspeciona a propriedade `Title` referenciada n
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
 
 A diretiva `@model` especifica o tipo de modelo passado para a Página do Razor. No exemplo anterior, a linha `@model` torna a classe derivada de `PageModel` disponível para a Página do Razor. O modelo é usado nos [auxiliares HTML](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) `@Html.DisplayNameFor` e `@Html.DisplayFor` na página.
+
+### <a name="the-layout-page"></a>A página de layout
+
+Selecione os links de menu (**RazorPagesMovie**, **Página Inicial** e **Privacidade**). Cada página mostra o mesmo layout de menu. O layout de menu é implementado no arquivo *Pages/Shared/_Layout.cshtml*. Abra o arquivo *Pages/Shared/_Layout.cshtml*.
+
+Os modelos de [layout](xref:mvc/views/layout) permitem especificar o layout de contêiner HTML do site em um lugar e, em seguida, aplicá-lo a várias páginas do site. Localize a linha `@RenderBody()`. `RenderBody` é um espaço reservado em que todas as visualizações específicas da página criadas são mostradas, *encapsuladas* na página de layout. Por exemplo, se você selecionar o link **Privacidade**, a exibição **Pages/Privacy.cshtml** será renderizada dentro do método `RenderBody`.
 
 <a name="vd"></a>
 ### <a name="viewdata-and-layout"></a>ViewData e layout
@@ -168,5 +174,5 @@ O [auxiliar de marcas de rótulo](xref:mvc/views/working-with-forms#the-label-ta
 O [auxiliar de marcas de entrada](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) usa os atributos [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) e produz os atributos HTML necessários para validação jQuery no lado do cliente.
 
 > [!div class="step-by-step"]
-> [Anterior: Adicionando um modelo](xref:tutorials/razor-pages/model)
-> [Próximo: Banco de dados](xref:tutorials/razor-pages/sql)
+> [Anterior: Adicionar um modelo](xref:tutorials/razor-pages/model)
+> [Próximo: Base de Dados](xref:tutorials/razor-pages/sql)

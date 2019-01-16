@@ -5,14 +5,14 @@ description: Conheça o HTTP.sys, um servidor Web para o ASP.NET Core executado 
 monikerRange: '>= aspnetcore-2.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 01/03/2019
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: a779fee53109d4c1cabb2005896e757f23467540
-ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
+ms.openlocfilehash: 46538d256ae2c5f3b7e6c725fa8f29092759f69f
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "53637619"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54098848"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementação do servidor Web HTTP.sys no ASP.NET Core
 
@@ -21,7 +21,7 @@ Por [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/
 O [HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) é um [servidor Web para ASP.NET Core](xref:fundamentals/servers/index) executado apenas no Windows. O HTTP.sys é uma alternativa ao servidor [Kestrel](xref:fundamentals/servers/kestrel) e oferece alguns recursos não disponibilizados pelo Kestrel.
 
 > [!IMPORTANT]
-> Não é possível usar o HTTP.sys com o IIS ou o IIS Express, pois ele é incompatível com o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module).
+> O HTTP.sys não é compatível com o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) e não pode ser usado com IIS ou IIS Express.
 
 O HTTP.sys dá suporte aos seguintes recursos:
 
@@ -134,62 +134,133 @@ O HTTP.sys delega à autenticação de modo kernel com o protocolo de autentica�
 
 ### <a name="configure-windows-server"></a>Configurar o Windows Server
 
+1. Determine as portas que serão abertas para o aplicativo e use o Firewall do Windows ou os [cmdlets do PowerShell](https://technet.microsoft.com/library/jj554906) para abrir as portas de firewall e permitir que o tráfego chegue até o HTTP.sys. Ao implantar em uma VM do Azure, abra as portas no [Grupo de Segurança de Rede](/azure/virtual-network/security-overview). Nos seguintes comandos e configuração de aplicativo, a porta 443 é usada.
+
+1. Obtenha e instale os certificados X.509, se precisar.
+
+   No Windows, crie certificados autoassinados, usando o [cmdlet do PowerShell New-SelfSignedCertificate](/powershell/module/pkiclient/new-selfsignedcertificate). Para ver um exemplo sem suporte, confira [UpdateIISExpressSSLForChrome.ps1](https://github.com/aspnet/Docs/tree/master/aspnetcore/includes/make-x509-cert/UpdateIISExpressSSLForChrome.ps1).
+
+   Instale certificados autoassinados ou assinados pela AC no repositório **Computador Local** > **Pessoal** do servidor.
+
 1. Se o aplicativo for uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd), instale o .NET Core, o .NET Framework ou ambos (caso o aplicativo .NET Core seja direcionado ao .NET Framework).
 
-   * **.NET Core** &ndash; Se o aplicativo requer o .NET Core, obtenha e execute o instalador do .NET Core em [Todos os downloads do .NET](https://www.microsoft.com/net/download/all).
-   * **.NET framework** &ndash; Se o aplicativo requer o .NET Framework, consulte [.NET Framework: guia de instalação](/dotnet/framework/install/) para ver as instruções de instalação. Instale o .NET Framework necessário. O instalador do .NET Framework mais recente pode ser encontrado em [Todos os downloads do .NET](https://www.microsoft.com/net/download/all).
+   * **.NET Core** &ndash; Se o aplicativo exigir o .NET Core, obtenha e execute o instalador do **Tempo de Execução do .NET Core** em [Downloads do .NET Core](https://dotnet.microsoft.com/download). Não instale o SDK completo no servidor.
+   * **.NET framework** &ndash; Se o aplicativo exigir o .NET Framework, confira o [Guia de instalação do .NET Framework](/dotnet/framework/install/). Instale o .NET Framework necessário. O instalador do .NET Framework mais recente está disponível na página [Downloads do .NET Core](https://dotnet.microsoft.com/download).
 
-2. Configurar URLs e portas para o aplicativo.
+   Se o aplicativo for uma [implantação autocontida](/dotnet/core/deploying/#framework-dependent-deployments-scd), ele incluirá o tempo de execução em sua implantação. Nenhuma instalação do framework é necessária no servidor.
 
-   Por padrão, o ASP.NET Core é associado a `http://localhost:5000`. Para configurar portas e prefixos de URL, as opções incluem usar:
+1. Configure URLs e portas no aplicativo.
+
+   Por padrão, o ASP.NET Core é associado a `http://localhost:5000`. Para configurar portas e prefixos de URL, as opções incluem:
 
    * [UseUrls](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useurls)
    * O argumento de linha de comando `urls`
    * A variável de ambiente `ASPNETCORE_URLS`
    * [UrlPrefixes](/dotnet/api/microsoft.aspnetcore.server.httpsys.httpsysoptions.urlprefixes)
 
-   O exemplo de código a seguir mostra como usar [UrlPrefixes](/dotnet/api/microsoft.aspnetcore.server.httpsys.httpsysoptions.urlprefixes):
+   O exemplo de código a seguir mostra como usar [UrlPrefixes](/dotnet/api/microsoft.aspnetcore.server.httpsys.httpsysoptions.urlprefixes) com o endereço IP local do servidor `10.0.0.4` na porta 443:
 
-   [!code-csharp[](httpsys/sample/Program.cs?name=snippet1&highlight=11)]
+   [!code-csharp[](httpsys/sample_snapshot/Program.cs?name=snippet1&highlight=11)]
 
    Uma vantagem de usar `UrlPrefixes` é que uma mensagem de erro é gerada imediatamente no caso de prefixos formatados de forma incorreta.
 
-   As configurações de `UrlPrefixes` substituem as configurações `UseUrls`/`urls`/`ASPNETCORE_URLS`. Portanto, uma vantagem de usar `UseUrls`, `urls` e a variável de ambiente `ASPNETCORE_URLS` é que fica mais fácil alternar entre o Kestrel e o HTTP.sys. Para saber mais sobre `UseUrls`, `urls` e `ASPNETCORE_URLS`, confira o tópico [Host no ASP.NET Core](xref:fundamentals/host/index).
+   As configurações de `UrlPrefixes` substituem as configurações `UseUrls`/`urls`/`ASPNETCORE_URLS`. Portanto, uma vantagem de usar `UseUrls`, `urls` e a variável de ambiente `ASPNETCORE_URLS` é que fica mais fácil alternar entre o Kestrel e o HTTP.sys. Para obter mais informações, consulte <xref:fundamentals/host/web-host>.
 
    O HTTP.sys usa os [formatos de cadeia de caracteres UrlPrefix da API do Servidor HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
 
    > [!WARNING]
-   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior podem abrir o aplicativo para vulnerabilidades de segurança. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não têm esse risco de segurança se você controlar o domínio pai completo (em vez de `*.com`, o qual é vulnerável). Veja [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) para obter mais informações.
+   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior criam vulnerabilidades de segurança no aplicativo. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos ou endereços IP em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não serão um risco à segurança se você controlar todo o domínio pai (ao contrário de `*.com`, o qual é vulnerável). Para saber mais, confira [RFC 7230: Seção 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4).
 
-3. Faça o pré-registro dos prefixos de URL para associá-los ao HTTP.sys e configurar certificados X.509.
+1. Pré-registre os prefixos de URL no servidor.
 
-   Se os prefixos de URL não estiverem pré-registrados no Windows, execute o aplicativo com privilégios de administrador. A única exceção ocorre durante a associação ao localhost usando HTTP (não HTTPS) com um número de porta superior a 1024. Nesse caso, não é necessário usar privilégios de administrador.
+   O *netsh.exe* é a ferramenta interna destinada a configurar o HTTP.sys. Com o *netsh.exe*, é possível reservar prefixos de URL e atribuir certificados X.509. A ferramenta exige privilégios de administrador.
 
-   1. O *netsh.exe* é a ferramenta interna destinada a configurar o HTTP.sys. Com o *netsh.exe*, é possível reservar prefixos de URL e atribuir certificados X.509. A ferramenta exige privilégios de administrador.
+   Use a ferramenta *netsh.exe* para registrar as URLs do aplicativo:
 
-      O exemplo a seguir mostra os comandos necessários para reservar prefixos de URL para as portas 80 e 443:
+   ```console
+   netsh http add urlacl url=<URL> user=<USER>
+   ```
 
-      ```console
-      netsh http add urlacl url=http://+:80/ user=Users
-      netsh http add urlacl url=https://+:443/ user=Users
-      ```
+   * `<URL>` &ndash; A URL (Uniform Resource Locator) totalmente qualificada. Não use uma associação de curinga. Use um nome de host válido ou o endereço IP local. *A URL deve incluir uma barra à direita.*
+   * `<USER>` &ndash; Especifica o nome de usuário ou do grupo de usuários.
 
-      O exemplo a seguir mostra como atribuir um certificado X.509:
+   No exemplo a seguir, o endereço IP local do servidor é `10.0.0.4`:
 
-      ```console
-      netsh http add sslcert ipport=0.0.0.0:443 certhash=MyCertHash_Here appid="{00000000-0000-0000-0000-000000000000}"
-      ```
+   ```console
+   netsh http add urlacl url=https://10.0.0.4:443/ user=Users
+   ```
 
-      Documentação de referência do *netsh.exe*:
+   Quando uma URL é registrada, a ferramenta responde com `URL reservation successfully added`.
 
-      * [Comandos do Netsh para o protocolo HTTP](https://technet.microsoft.com/library/cc725882.aspx)
-      * [Cadeias de caracteres de UrlPrefix](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   Para excluir uma URL registrada, use o comando `delete urlacl`:
 
-   2. Crie certificados X.509 autoassinados, quando necessário.
+   ```console
+   netsh http delete urlacl url=<URL>
+   ```
 
-      [!INCLUDE [How to make an X.509 cert](~/includes/make-x509-cert.md)]
+1. Registre certificados X.509 no servidor.
 
-4. Abra as portas do firewall para permitir que o tráfego chegue ao HTTP.sys. Use o *netsh.exe* ou os [cmdlets do PowerShell](https://technet.microsoft.com/library/jj554906).
+   Use a ferramenta *netsh.exe* para registrar certificados do aplicativo:
+
+   ```console
+   netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
+   ```
+
+   * `<IP>` &ndash; Especifica o endereço IP local para a associação. Não use uma associação de curinga. Use um endereço IP válido.
+   * `<PORT>` &ndash; Especifica a porta da associação.
+   * `<THUMBPRINT>` &ndash; A impressão digital do certificado X.509.
+   * `<GUID>` &ndash; Um GUID gerado pelo desenvolvedor para representar o aplicativo para fins informativos.
+
+   Para fins de referência, armazene o GUID no aplicativo como uma marca de pacote:
+
+   * No Visual Studio:
+     * Abra as propriedades do projeto do aplicativo, clicando com o botão direito do mouse no aplicativo no **Gerenciador de Soluções** e selecionando **Propriedades**.
+     * Selecione a guia **Pacote**.
+     * Insira o GUID que você criou no campo **Marcas**.
+   * Quando não estiver usando o Visual Studio:
+     * Abra o arquivo de projeto do aplicativo.
+     * Adicione uma propriedade `<PackageTags>` a um `<PropertyGroup>` novo ou existente com o GUID que você criou:
+
+       ```xml
+       <PropertyGroup>
+         <PackageTags>9412ee86-c21b-4eb8-bd89-f650fbf44931</PackageTags>
+       </PropertyGroup>
+       ```
+
+   No exemplo a seguir:
+
+   * O endereço IP local do servidor é `10.0.0.4`.
+   * Um gerador GUID aleatório online fornece o valor `appid`.
+
+   ```console
+   netsh http add sslcert 
+       ipport=10.0.0.4:443 
+       certhash=b66ee04419d4ee37464ab8785ff02449980eae10 
+       appid="{9412ee86-c21b-4eb8-bd89-f650fbf44931}"
+   ```
+
+   Quando um certificado é registrado, a ferramenta responde com `SSL Certificate successfully added`.
+
+   Para excluir um registro de certificado, use o comando `delete sslcert`:
+
+   ```console
+   netsh http delete sslcert ipport=<IP>:<PORT>
+   ```
+
+   Documentação de referência do *netsh.exe*:
+
+   * [Comandos do Netsh para o protocolo HTTP](https://technet.microsoft.com/library/cc725882.aspx)
+   * [Cadeias de caracteres de UrlPrefix](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+
+1. Execute o aplicativo.
+
+   Não é necessário ter privilégios de administrador para executar o aplicativo ao associar ao localhost usando HTTP (não HTTPS) com um número de porta maior do que 1024. Para outras configurações (por exemplo, usar um endereço IP local ou associação à porta 443), execute o aplicativo com privilégios de administrador.
+
+   O aplicativo responde no endereço IP público do servidor. Neste exemplo, o servidor é acessado pela Internet como seu endereço IP público de `104.214.79.47`.
+
+   Um certificado de desenvolvimento é usado neste exemplo. A página é carregada com segurança após ignorar o aviso de certificado não confiável do navegador.
+
+   ![Janela do navegador mostrando a página de Índice do aplicativo carregada](httpsys/_static/browser.png)
 
 ## <a name="proxy-server-and-load-balancer-scenarios"></a>Servidor proxy e cenários de balanceador de carga
 
@@ -197,6 +268,7 @@ Para aplicativos hospedados pelo HTTP.sys que interagem com solicitações da In
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
+* [Habilitar a autenticação do Windows com HTTP.sys](xref:security/authentication/windowsauth#enable-windows-authentication-with-httpsys)
 * [API do servidor HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)
 * [Repositório aspnet/HttpSysServer do GitHub (código-fonte)](https://github.com/aspnet/HttpSysServer/)
 * <xref:fundamentals/host/index>

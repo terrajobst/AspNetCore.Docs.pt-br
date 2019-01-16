@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/20/2018
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 534c62c127e685af9c6076932943def25bd3ac06
-ms.sourcegitcommit: e1cc4c1ef6c9e07918a609d5ad7fadcb6abe3e12
+ms.openlocfilehash: 24973e7bedcb219ac411948db8aa27d7219eac31
+ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/03/2019
-ms.locfileid: "53997325"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54099280"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Host ASP.NET Core no Linux com Nginx
 
@@ -68,7 +68,7 @@ Um proxy reverso é uma configuração comum para atender a aplicativos Web din�
 
 ### <a name="use-a-reverse-proxy-server"></a>Usar um servidor proxy reverso
 
-O Kestrel é excelente para servir conteúdo dinâmico do ASP.NET Core. No entanto, as funcionalidades de servidor Web não têm tantos recursos quanto servidores como IIS, Apache ou Nginx. Um servidor proxy reverso pode descarregar trabalho como servir conteúdo estático, armazenar solicitações em cache, compactar solicitações e terminar SSL do servidor HTTP. Um servidor proxy reverso pode residir em um computador dedicado ou pode ser implantado junto com um servidor HTTP.
+O Kestrel é excelente para servir conteúdo dinâmico do ASP.NET Core. No entanto, as funcionalidades de servidor Web não têm tantos recursos quanto servidores como IIS, Apache ou Nginx. Um servidor proxy reverso pode descarregar trabalho como servir conteúdo estático, armazenar solicitações em cache, compactar solicitações e terminar HTTPS do servidor HTTP. Um servidor proxy reverso pode residir em um computador dedicado ou pode ser implantado junto com um servidor HTTP.
 
 Para os fins deste guia, uma única instância de Nginx é usada. Ela é executada no mesmo servidor, junto com o servidor HTTP. Com base nos requisitos, uma configuração diferente pode ser escolhida.
 
@@ -349,7 +349,7 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 
 Configure o servidor com os módulos adicionais necessários. Considere usar um firewall de aplicativo Web como [ModSecurity](https://www.modsecurity.org/) para fortalecer o aplicativo.
 
-#### <a name="configure-ssl"></a>Configurar o SSL
+#### <a name="https-configuration"></a>Configuração de HTTPS
 
 * Configure o servidor para escutar tráfego HTTPS na porta `443` especificando um certificado válido emitido por uma AC (autoridade de certificação) confiável.
 
@@ -357,7 +357,7 @@ Configure o servidor com os módulos adicionais necessários. Considere usar um 
 
 * A adição de um cabeçalho `HTTP Strict-Transport-Security` (HSTS) garante que todas as próximas solicitações feitas pelo cliente sejam por HTTPS.
 
-* Não adicione o cabeçalho HSTS ou escolha um `max-age` apropriado se desejar desabilitar o SSL futuramente.
+* Não adicione o cabeçalho HSTS ou escolha um `max-age` apropriado, se quiser desabilitar o HTTPS futuramente.
 
 Adicione o arquivo de configuração */etc/nginx/proxy.conf*:
 

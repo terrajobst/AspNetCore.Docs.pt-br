@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/13/2018
 uid: web-api/advanced/conventions
-ms.openlocfilehash: 481e3810f1e1aca40e0ee1ce3da6c67dc9d841f4
-ms.sourcegitcommit: 6548c19f345850ee22b50f7ef9fca732895d9e08
+ms.openlocfilehash: 892fb8898c78a1645c766544715a8256462207c6
+ms.sourcegitcommit: ec71fd5a988f927ae301813aae5ff764feb3bb6a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53425101"
+ms.lasthandoff: 01/12/2019
+ms.locfileid: "54249380"
 ---
 # <a name="use-web-api-conventions"></a>Usar convenções de API Web
 
@@ -49,6 +49,8 @@ As convenções não fazem composição. Cada ação pode ser associada a exatam
     [ProducesResponseType(404)]
     [ProducesResponseType(400)]
     ```
+
+Para saber mais sobre `[ProducesDefaultResponseType]`, confira [Resposta padrão](https://swagger.io/docs/specification/describing-responses/#default).
 
 1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` aplicado a um controlador &mdash;. Aplica-se o tipo de convenção especificada a todas as ações no controlador. Um método de convenção é decorado com dicas que determinam as ações às quais o método de convenção se aplica. Para obter mais informações sobre dicas, consulte [Criar convenções da API Web](#create-web-api-conventions)).
 

@@ -5,12 +5,12 @@ description: Adicionando uma exibição a um aplicativo ASP.NET Core MVC simples
 ms.author: riande
 ms.date: 03/04/2017
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: 5267e5a49bb6ecdd4cef671989f111eae7a64ec4
-ms.sourcegitcommit: 4e87712029de2aceb1cf2c52e9e3dda8195a5b8e
+ms.openlocfilehash: 321ffd6b0168d4befc950a58035d19561e879491
+ms.sourcegitcommit: ec71fd5a988f927ae301813aae5ff764feb3bb6a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53381810"
+ms.lasthandoff: 01/12/2019
+ms.locfileid: "54249445"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Adicionar uma exibição a um aplicativo ASP.NET Core MVC
 
@@ -24,7 +24,7 @@ Atualmente, o método `Index` retorna uma cadeia de caracteres com uma mensagem 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_4)]
 
-O código anterior retorna um objeto `View`. Ele usa um modelo de exibição para gerar uma resposta HTML para o navegador. Métodos do controlador (também conhecidos como métodos de ação), como o método `Index` acima, geralmente retornam um [IActionResult](/dotnet/api/microsoft.aspnetcore.mvc.iactionresult) (ou uma classe derivada de `ActionResult`), não um tipo como cadeia de caracteres.
+O código anterior chama o método <xref:Microsoft.AspNetCore.Mvc.Controller.View*> do controlador. Ele usa um modelo de exibição para gerar uma resposta HTML. Métodos do controlador (também conhecidos como *métodos de ação*), como o método `Index` acima, geralmente retornam um <xref:Microsoft.AspNetCore.Mvc.IActionResult> (ou uma classe derivada de <xref:Microsoft.AspNetCore.Mvc.ActionResult>), não um tipo como `string`.
 
 ## <a name="add-a-view"></a>Adicionar uma exibição
 
@@ -86,9 +86,9 @@ Selecione os links de menu (**MvcMovie**, **Página Inicial** e **Privacidade**)
 
 Os modelos de [layout](xref:mvc/views/layout) permitem especificar o layout de contêiner HTML do site em um lugar e, em seguida, aplicá-lo a várias páginas do site. Localize a linha `@RenderBody()`. `RenderBody` é um espaço reservado em que todas as páginas específicas à exibição criadas são mostradas, *encapsuladas* na página de layout. Por exemplo, se você selecionar o link **Privacidade**, a exibição **Views/Home/Privacy.cshtml** será renderizada dentro do método `RenderBody`.
 
-## <a name="change-the-title-and-menu-link-in-the-layout-file"></a>Alterar o título e o link de menu no arquivo de layout
+## <a name="change-the-title-footer-and-menu-link-in-the-layout-file"></a>Alterar o título, o rodapé e o link de menu no arquivo de layout
 
-* No elemento de título, altere `MvcMovie` para `Movie App`.
+* Nos elementos de título e de rodapé, altere `MvcMovie` para `Movie App`.
 * Altere o elemento de âncora `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` para `<a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
 A seguinte marcação mostra as alterações realçadas:
