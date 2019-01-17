@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: a3ac1ac389892681e8c122d569e6325353ed6e88
+ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 01/16/2019
+ms.locfileid: "54341674"
+---
 # [Documentação do ASP.NET Core](/aspnet/#pivot=core)
 
 # Visão geral
@@ -251,7 +259,9 @@
 ### [Publicar com as ferramentas da CLI](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 ### [Publicar com Visual Studio e Git](xref:host-and-deploy/azure-apps/azure-continuous-deployment)
 ### [Implantação contínua com o Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
-### [Solucionar problemas de inicialização](xref:host-and-deploy/azure-apps/troubleshoot)
+### [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module)
+### [Solução de problemas](xref:host-and-deploy/azure-apps/troubleshoot)
+### [Referência de erros](xref:host-and-deploy/azure-iis-errors-reference)
 ## DevOps 
 ### [Visão geral](xref:azure/devops/index)
 ### [Ferramentas e downloads](xref:azure/devops/tools-and-downloads)
@@ -261,10 +271,11 @@
 ### [Próximas etapas](xref:azure/devops/next-steps)
 ## Hospedar no Windows com o IIS
 ### [Visão geral](xref:host-and-deploy/iis/index)
-### [Solução de problemas no IIS](xref:host-and-deploy/iis/troubleshoot)
 ### [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module)
 ### [Suporte ao IIS no Visual Studio](xref:host-and-deploy/iis/development-time-iis-support)
 ### [Módulos do IIS](xref:host-and-deploy/iis/modules)
+### [Solução de problemas](xref:host-and-deploy/iis/troubleshoot)
+### [Referência de erros](xref:host-and-deploy/azure-iis-errors-reference)
 ## [Kestrel](xref:fundamentals/servers/kestrel)
 ## [HTTP.sys](xref:fundamentals/servers/httpsys)
 ## [Hospedar em um serviço Windows](xref:host-and-deploy/windows-service)
@@ -279,7 +290,6 @@
 ## [Hospedar em uma web farm](xref:host-and-deploy/web-farm)
 ## [Perfis de publicação do Visual Studio](xref:host-and-deploy/visual-studio-publish-profiles)
 ## [Estrutura de diretórios](xref:host-and-deploy/directory-structure)
-## [Referência de erros para o Serviço de Aplicativo do Azure e o IIS](xref:host-and-deploy/azure-iis-errors-reference)
 ## [Verificações de integridade](xref:host-and-deploy/health-checks)
 
 # Segurança e identidade
@@ -420,6 +430,6 @@
 ### [Módulos HTTP para middleware](xref:migration/http-modules)
 ## [Registro em log (não o ASP.NET Core)](xref:migration/logging-nonaspnetcore)
 
-# [Referência de API](/dotnet/api/?view=aspnetcore-2.2)
+# [Referência de API](/dotnet/api/?view=aspnetcore-2.1)
 
 # [Contribuir](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)
