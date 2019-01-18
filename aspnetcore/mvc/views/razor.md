@@ -5,12 +5,12 @@ description: Saiba mais sobre a sintaxe de marcação Razor para inserir código
 ms.author: riande
 ms.date: 10/26/2018
 uid: mvc/views/razor
-ms.openlocfilehash: 2ec86c774e0fd26c4455829680a2b1db687b8090
-ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
+ms.openlocfilehash: 8e9ec3c5040e5a24cd5f773b1232897338741c0c
+ms.sourcegitcommit: 184ba5b44d1c393076015510ac842b77bc9d4d93
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "53121577"
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "54396253"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -545,7 +545,7 @@ public class Pet
 
 ```cshtml
 @{
-    Func<dynamic, object> petTemplate = @<p>You have a pet named @item.Name.</p>;
+    Func<dynamic, object> petTemplate = @<p>You have a pet named <strong>@item.Name</strong>.</p>;
 
     var pets = new List<Pet>
     {
@@ -561,7 +561,7 @@ O modelo é renderizado com `pets` fornecido por uma instrução `foreach`:
 ```cshtml
 @foreach (var pet in pets)
 {
-    @petTemplate2(pet)
+    @petTemplate(pet)
 }
 ```
 
