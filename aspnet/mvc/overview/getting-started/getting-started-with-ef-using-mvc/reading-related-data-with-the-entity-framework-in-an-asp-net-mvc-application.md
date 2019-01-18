@@ -1,28 +1,22 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
-title: Lendo dados relacionados com o Entity Framework em um aplicativo ASP.NET MVC | Microsoft Docs
+title: 'Tutorial: Ler dados relacionados com o EF em um aplicativo ASP.NET MVC'
+description: Neste tutorial, você vai ler e exibir dados relacionados – ou seja, os dados que o Entity Framework carrega nas propriedades de navegação.
 author: tdykstra
-description: /ajax/tutorials/using-ajax-control-toolkit-controls-and-control-extenders-vb
 ms.author: riande
-ms.date: 11/07/2014
+ms.date: 01/17/2019
+ms.topic: tutorial
 ms.assetid: 18cdd896-8ed9-4547-b143-114711e3eafb
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: 18d3720f891e2356af42b58389776f2d04eee39d
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: 8660a75655b801364cce7c4b59847c5c00562a27
+ms.sourcegitcommit: 184ba5b44d1c393076015510ac842b77bc9d4d93
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48913197"
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "54396201"
 ---
-<a name="reading-related-data-with-the-entity-framework-in-an-aspnet-mvc-application"></a>Lendo dados relacionados com o Entity Framework em um aplicativo ASP.NET MVC
-====================
-por [Tom Dykstra](https://github.com/tdykstra)
-
-[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
-
-> Aplicativo web de exemplo Contoso University demonstra como criar aplicativos ASP.NET MVC 5 usando o Entity Framework 6 Code First e o Visual Studio. Para obter informações sobre a série de tutoriais, consulte [primeiro tutorial na série](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
+# <a name="tutorial-read-related-data-with-ef-in-an-aspnet-mvc-app"></a>Tutorial: Ler dados relacionados com o EF em um aplicativo ASP.NET MVC
 
 No tutorial anterior, você concluiu o modelo de dados de escola. Neste tutorial, você vai ler e exibir dados relacionados – ou seja, os dados que o Entity Framework carrega nas propriedades de navegação.
 
@@ -32,7 +26,18 @@ As ilustrações a seguir mostram as páginas com as quais você trabalhará.
 
 ![Instructors_index_page_with_instructor_and_course_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image2.png)
 
-## <a name="lazy-eager-and-explicit-loading-of-related-data"></a>Carregamento lento, adiantado e explícito de dados relacionados
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Saiba como carregar dados relacionados
+> * Criar uma página Courses
+> * Criar uma página instrutores
+
+## <a name="prerequisites"></a>Pré-requisitos
+
+* [Criar um modelo de dados mais complexo](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
+
+## <a name="learn-how-to-load-related-data"></a>Saiba como carregar dados relacionados
 
 Há várias maneiras que o Entity Framework pode carregar dados relacionados nas propriedades de navegação de uma entidade:
 
@@ -73,13 +78,19 @@ Aqui estão algumas outras [maneiras de desabilitar o carregamento lento](https:
 
     [!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs)]
 
-## <a name="create-a-courses-page-that-displays-department-name"></a>Criar uma página Courses esse nome de departamento exibe
+## <a name="create-a-courses-page"></a>Criar uma página Courses
 
 O `Course` entidade inclui uma propriedade de navegação que contém o `Department` entidade do departamento ao qual o curso é atribuído. Para exibir o nome do departamento atribuído em uma lista de cursos, você precisa obter o `Name` propriedade do `Department` entidade que está na `Course.Department` propriedade de navegação.
 
-Criar um controlador chamado `CourseController` (não CoursesController) para o `Course` tipo de entidade, usando as mesmas opções para o **controlador MVC 5 com modos de exibição usando o Entity Framework** scaffolder que você fez anteriormente para o `Student` controlador, conforme mostrado na ilustração a seguir:
+Criar um controlador chamado `CourseController` (não CoursesController) para o `Course` tipo de entidade, usando as mesmas opções para o **controlador MVC 5 com modos de exibição usando o Entity Framework** scaffolder que você fez anteriormente para o `Student` controlador:
 
-![Add_Controller_dialog_box_for_Course_controller](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
+| Configuração | Valor |
+| ------- | ----- |
+| Classe de modelo | Selecione **curso (ContosoUniversity.Models)**. |
+| Classe de contexto de dados | Selecione **SchoolContext (ContosoUniversity.DAL)**. |
+| Nome do controlador | Insira *CourseController*. Novamente, não *CoursesController* com um *s*. Quando você selecionou **curso (ContosoUniversity.Models)**, o **nome do controlador** valor foi populado automaticamente. Você precisa alterar o valor. |
+
+Deixe os outros valores padrão e adicionar o controlador.
 
 Abra *Controllers\CourseController.cs* e examine o `Index` método:
 
@@ -103,15 +114,9 @@ Observe que, para a coluna de departamento, o código gerado por scaffolding exi
 
 Execute a página (selecione o **cursos** guia na home page do Contoso University) para ver a lista com nomes de departamento.
 
-![Courses_index_page_with_department_names](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
+## <a name="create-an-instructors-page"></a>Criar uma página instrutores
 
-## <a name="create-an-instructors-page-that-shows-courses-and-enrollments"></a>Criar uma página instrutores que mostra cursos e registros
-
-Nesta seção você criará um controlador e exibir para o `Instructor` entidade para exibir a página instrutores:
-
-![Instructors_index_page_with_instructor_and_course_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
-
-Essa página lê e exibe dados relacionados das seguintes maneiras:
+Nesta seção você criará um controlador e exibir para o `Instructor` entidade para exibir a página instrutores. Essa página lê e exibe dados relacionados das seguintes maneiras:
 
 - A lista de instrutores exibe dados relacionados do `OfficeAssignment` entidade. As entidades `Instructor` e `OfficeAssignment` estão em uma relação um para zero ou um. Você usará o carregamento adiantado para a `OfficeAssignment` entidades. Conforme explicado anteriormente, o carregamento adiantado é geralmente mais eficiente quando você precisa dos dados relacionados para todas as linhas recuperadas da tabela primária. Nesse caso, você deseja exibir atribuições de escritório para todos os instrutores exibidos.
 - Quando o usuário seleciona um instrutor relacionado `Course` as entidades são exibidas. As entidades `Instructor` e `Course` estão em uma relação muitos para muitos. Você usará o carregamento adiantado para a `Course` entidades e suas relacionados `Department` entidades. Nesse caso, o carregamento lento pode ser mais eficiente porque você precisa de cursos somente para o instrutor selecionado. No entanto, este exemplo mostra como usar o carregamento adiantado para propriedades de navegação em entidades que estão nas propriedades de navegação.
@@ -127,9 +132,15 @@ No *ViewModels* pasta, crie *InstructorIndexData.cs* e substitua o código exist
 
 ### <a name="create-the-instructor-controller-and-views"></a>Criar modos de exibição e o controlador instrutor
 
-Criar um `InstructorController` (não InstructorsController) controlador com ações de leitura/gravação do EF conforme mostrado na ilustração a seguir:
+Criar um `InstructorController` (não InstructorsController) controlador com ação de leitura/gravação do EF:
 
-![Add_Controller_dialog_box_for_Instructor_controller](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
+| Configuração | Valor |
+| ------- | ----- |
+| Classe de modelo | Selecione **instrutor (ContosoUniversity.Models)**. |
+| Classe de contexto de dados | Selecione **SchoolContext (ContosoUniversity.DAL)**. |
+| Nome do controlador | Insira *InstructorController*. Novamente, não *InstructorsController* com um *s*. Quando você selecionou **curso (ContosoUniversity.Models)**, o **nome do controlador** valor foi populado automaticamente. Você precisa alterar o valor. |
+
+Deixe os outros valores padrão e adicionar o controlador.
 
 Abra *Controllers\InstructorController.cs* e adicione um `using` instrução para o `ViewModels` namespace:
 
@@ -193,8 +204,6 @@ Você fez as seguintes alterações no código existente:
 
 Execute o aplicativo e selecione o **instrutores** guia. A página exibe a `Location` propriedade relacionados `OfficeAssignment` entidades e uma tabela vazia de célula quando há não relacionada `OfficeAssignment` entidade.
 
-![Instructors_index_page_with_nothing_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image7.png)
-
 No *Views\Instructor\Index.cshtml* arquivo, após o fechamento `table` elemento (no final do arquivo), adicione o seguinte código. Esse código exibe uma lista de cursos relacionados a um instrutor quando um instrutor é selecionado.
 
 [!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.cshtml)]
@@ -203,8 +212,6 @@ Esse código lê a propriedade `Courses` do modelo de exibição para exibir uma
 
 Execute a página e selecione um instrutor. Agora, você verá uma grade que exibe os cursos atribuídos ao instrutor selecionado, e para cada curso, verá o nome do departamento atribuído.
 
-![Instructors_index_page_with_instructor_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
-
 Após o bloco de código que você acabou de adicionar, adicione o código a seguir. Isso exibe uma lista dos alunos que estão registrados em um curso quando esse curso é selecionado.
 
 [!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.cshtml)]
@@ -212,8 +219,6 @@ Após o bloco de código que você acabou de adicionar, adicione o código a seg
 Esse código lê a `Enrollments` propriedade do modelo de exibição para exibir uma lista de alunos registrados no curso.
 
 Execute a página e selecione um instrutor. Em seguida, selecione um curso para ver a lista de alunos registrados e suas notas.
-
-![Instructors_index_page_with_instructor_and_course_selected](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)
 
 ### <a name="adding-explicit-loading"></a>Adicionando o carregamento explícito
 
@@ -239,14 +244,20 @@ Observe que você usar o `Collection` método para carregar uma propriedade de c
 
 Execute a página de índice de instrutor agora e você não verá nenhuma diferença no que é exibido na página, embora você tenha alterado como os dados são recuperados.
 
-## <a name="summary"></a>Resumo
-
-Agora, você usou todos os três maneiras (lentas, adiantadas e explícitas) para carregar dados relacionados nas propriedades de navegação. No próximo tutorial, você aprenderá a atualizar dados relacionados.
-
-Deixe comentários sobre como você gostou neste tutorial e o que poderíamos melhorar.
+## <a name="additional-resources"></a>Recursos adicionais
 
 Links para outros recursos do Entity Framework podem ser encontradas na [acesso a dados ASP.NET – recursos recomendados](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Anterior](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
-> [Próximo](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+## <a name="next-steps"></a>Próximas etapas
+
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Aprendeu a carregar dados relacionados
+> * Criou uma página Courses
+> * Criar uma página instrutores
+
+Avance para o próximo artigo para saber como atualizar dados relacionados.
+
+> [!div class="nextstepaction"]
+> [Atualizar dados relacionados](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
