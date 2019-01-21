@@ -4,14 +4,14 @@ author: guardrex
 description: Descubra os servidores Web Kestrel e HTTP.sys para ASP.NET Core. Saiba como escolher um servidor e quando usar um servidor proxy reverso.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/11/2019
+ms.date: 01/17/2019
 uid: fundamentals/servers/index
-ms.openlocfilehash: 4210d67397c85a1608f79fc4ed9d283521356226
-ms.sourcegitcommit: ec71fd5a988f927ae301813aae5ff764feb3bb6a
+ms.openlocfilehash: a9f40ad7e9a63d6f88b6533578db8dfc55490bc9
+ms.sourcegitcommit: 184ba5b44d1c393076015510ac842b77bc9d4d93
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/12/2019
-ms.locfileid: "54249484"
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "54396240"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Implementações de servidor Web em ASP.NET Core
 
@@ -40,7 +40,7 @@ O [módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) é um módu
 
 ### <a name="in-process-hosting-model"></a>Modelo de hospedagem em processo
 
-Usando uma hospedagem em processo, um aplicativo ASP.NET Core é executado no mesmo processo que seu processo de trabalho do IIS. Isso remove a penalidade de desempenho fora do processo de criar proxies de solicitações pelo adaptador de loopback, um adaptador de rede que retorna o tráfego de rede de saída ao mesmo computador. O IIS manipula o gerenciamento de processos com o [WAS (Serviço de Ativação de Processos do Windows)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+Usando uma hospedagem em processo, um aplicativo ASP.NET Core é executado no mesmo processo que seu processo de trabalho do IIS. A hospedagem em processo oferece desempenho melhor em hospedagem fora do processo porque as solicitações não são transmitidas por proxy pelo adaptador de loopback, um adaptador de rede que retorna o tráfego de rede de saída para o mesmo computador. O IIS manipula o gerenciamento de processos com o [WAS (Serviço de Ativação de Processos do Windows)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
 O Módulo do ASP.NET Core:
 

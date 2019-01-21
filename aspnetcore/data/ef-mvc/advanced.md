@@ -3,14 +3,15 @@ title: ASP.NET Core MVC com EF Core – avançado – 10 de 10
 author: rick-anderson
 description: Este tutorial apresenta tópicos úteis para ir além das noções básicas de desenvolvimento de aplicativos Web ASP.NET Core que usam o Entity Framework Core.
 ms.author: tdykstra
-ms.date: 03/15/2017
+ms.custom: mvc
+ms.date: 10/24/2018
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: 5cdba79c0b8edd9b865bda8328c86356cbe6a0a2
-ms.sourcegitcommit: b2723654af4969a24545f09ebe32004cb5e84a96
+ms.openlocfilehash: ba3834b29e78972bf914a5cba1a2cae3cc19a315
+ms.sourcegitcommit: 184ba5b44d1c393076015510ac842b77bc9d4d93
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46010917"
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "50090771"
 ---
 # <a name="aspnet-core-mvc-with-ef-core---advanced---10-of-10"></a>ASP.NET Core MVC com EF Core – avançado – 10 de 10
 
@@ -100,7 +101,7 @@ Clique em **Voltar para a Lista** para ver a lista de cursos com o número revis
 
 Observe que o código de produção deve garantir que as atualizações sempre resultem em dados válidos. O código simplificado mostrado aqui pode multiplicar o número de créditos o suficiente para resultar em números maiores que 5. (A propriedade `Credits` tem um atributo `[Range(0, 5)]`.) A consulta de atualização funciona, mas os dados inválidos podem causar resultados inesperados em outras partes do sistema que supõem que o número de créditos seja 5 ou inferior.
 
-Para obter mais informações sobre consultas SQL brutas, consulte [Consultas SQL brutas](https://docs.microsoft.com/ef/core/querying/raw-sql).
+Para obter mais informações sobre consultas SQL brutas, consulte [Consultas SQL brutas](/ef/core/querying/raw-sql).
 
 ## <a name="examine-sql-sent-to-the-database"></a>Examinar o SQL enviado ao banco de dados
 
@@ -176,7 +177,7 @@ Embora o código-fonte seja aberto, há suporte completo para o Entity Framework
 
 ## <a name="reverse-engineer-from-existing-database"></a>Fazer engenharia reversa do banco de dados existente
 
-Para fazer engenharia reversa de um modelo de dados, incluindo classes de entidade de um banco de dados existente, use o comando [scaffold-dbcontext](https://docs.microsoft.com/ef/core/miscellaneous/cli/powershell#scaffold-dbcontext). Consulte o [tutorial de introdução](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db).
+Para fazer engenharia reversa de um modelo de dados, incluindo classes de entidade de um banco de dados existente, use o comando [scaffold-dbcontext](/ef/core/miscellaneous/cli/powershell#scaffold-dbcontext). Consulte o [tutorial de introdução](/ef/core/get-started/aspnetcore/existing-db).
 
 <a id="dynamic-linq"></a>
 ## <a name="use-dynamic-linq-to-simplify-sort-selection-code"></a>Usar o LINQ dinâmico para simplificar o código de seleção de classificação
@@ -189,11 +190,11 @@ O [terceiro tutorial desta série](sort-filter-page.md) mostra como escrever um 
 
 Isso conclui esta série de tutoriais sobre como usar o Entity Framework Core em um aplicativo ASP.NET Core MVC.
 
-Para obter mais informações sobre o EF Core, consulte a [documentação do Entity Framework Core](https://docs.microsoft.com/ef/core). Um manual também está disponível: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action) (Entity Framework Core em ação).
+Para obter mais informações sobre o EF Core, consulte a [documentação do Entity Framework Core](/ef/core). Também há um livro disponível: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action) (Entity Framework Core em ação).
 
-Para obter informações sobre como implantar um aplicativo Web, consulte [Hospedar e implantar](xref:host-and-deploy/index).
+Para obter informações sobre como implantar um aplicativo Web, confira <xref:host-and-deploy/index>.
 
-Para obter informações sobre outros tópicos relacionados ao ASP.NET Core MVC, como autenticação e autorização, consulte a [documentação do ASP.NET Core](xref:index).
+Para obter informações sobre outros tópicos relacionados ao ASP.NET Core MVC, como autenticação e autorização, confira <xref:index>.
 
 ## <a name="acknowledgments"></a>Agradecimentos
 
@@ -239,7 +240,7 @@ dotnet ef database drop
 
 Mensagem de erro:
 
-> Ocorreu um erro relacionado à rede ou específico a uma instância ao estabelecer uma conexão com o SQL Server. O servidor não foi encontrado ou não estava acessível. Verifique se o nome da instância está correto e se o SQL Server está configurado para permitir conexões remotas. (provedor: Adaptadores de Rede do SQL, erro: 26 – Erro ao Localizar Servidor/Instância Especificada)
+> Ocorreu um erro relacionado à rede ou específico a uma instância ao estabelecer uma conexão com o SQL Server. O servidor não foi encontrado ou não estava acessível. Verifique se o nome da instância está correto e se o SQL Server está configurado para permitir conexões remotas. (provedor: Adaptadores de Rede do SQL, erro: 26 – Erro ao localizar a instância/o servidor especificado)
 
 Solução:
 

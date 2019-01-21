@@ -5,12 +5,12 @@ description: Adicione um modelo a um aplicativo ASP.NET Core simples.
 ms.author: riande
 ms.date: 12/8/2017
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 630b4b0549a8549d9570d701fb1691310ec442c3
-ms.sourcegitcommit: 4e87712029de2aceb1cf2c52e9e3dda8195a5b8e
+ms.openlocfilehash: 062a248ffdf8e30ed01a72e0a555c1c9a1ab1b6d
+ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53381849"
+ms.lasthandoff: 01/16/2019
+ms.locfileid: "54341596"
 ---
 # <a name="add-a-model-to-an-aspnet-core-mvc-app"></a>Adicione um modelo a um aplicativo ASP.NET Core MVC
 
@@ -171,6 +171,10 @@ O comando `ef migrations add InitialCreate` gera código para criar o esquema de
 
 ---  
 <!-- End of VS tabs -->
+
+Os comandos anteriores geram o seguinte aviso: “Nenhum tipo foi especificado para a coluna decimal "Preço" no tipo de entidade "Filme". Isso fará com que valores sejam truncados silenciosamente se não couberem na precisão e na escala padrão. Especifique explicitamente o tipo de coluna do SQL Server que pode acomodar todos os valores usando 'HasColumnType()'.”
+
+Você pode ignorar esse aviso, ele será corrigido em um tutorial posterior.
 
 O esquema é baseado no modelo especificado no `DbContext` (no arquivo *Models/MvcMovieContext.cs*). O argumento `InitialCreate` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado.
 

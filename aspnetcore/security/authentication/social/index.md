@@ -4,20 +4,20 @@ author: rick-anderson
 description: Este tutorial demonstra como criar um aplicativo do ASP.NET Core 2.x usando o OAuth 2.0 com provedores de autenticação externa.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/11/2018
+ms.date: 1/19/2019
 uid: security/authentication/social/index
-ms.openlocfilehash: 063d452fb6ab91b712ade7f7b7ed99823dbdc657
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: 48dd8b772234ff18158423a36ed1716102bc2f31
+ms.sourcegitcommit: 184ba5b44d1c393076015510ac842b77bc9d4d93
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54098812"
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "54396136"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 
 Por [Valeriy Novytskyy](https://github.com/01binary) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Este tutorial demonstra como criar um aplicativo ASP.NET Core 2.x que permite aos usuários fazer logon usando o OAuth 2.0 com as credenciais de provedores de autenticação externa.
+Este tutorial demonstra como criar um aplicativo ASP.NET Core 2.2, que permite aos usuários fazer logon usando o OAuth 2.0 com as credenciais de provedores de autenticação externa.
 
 Os provedores [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins) e [Microsoft](xref:security/authentication/microsoft-logins) são abordados nas seções a seguir. Outros provedores estão disponíveis em pacotes de terceiros, como [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) e [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
@@ -30,29 +30,13 @@ Permitir que os usuários entrem com suas credenciais existentes é conveniente 
 * No Visual Studio 2017, crie um projeto na Página Inicial ou por meio de **Arquivo** > **Novo** > **Projeto**.
 
 * Selecione o modelo **Aplicativo Web ASP.NET Core**, disponível na categoria **Visual C#** > **.NET Core**:
-
-![Caixa de diálogo Novo Projeto](index/_static/new-project.png)
-
-* Toque em **Aplicativo Web** e verifique se a opção **Autenticação** está definida como **Contas de Usuário Individuais**:
-
-![Caixa de diálogo Novo Aplicativo Web](index/_static/select-project.png)
-
-Observação: Este tutorial aplica-se à versão do SDK do ASP.NET Core 2.0 que pode ser selecionada na parte superior do assistente.
+* Selecione **Alterar Autenticação** e defina a autenticação para **Contas de Usuário Individuais**.
 
 ## <a name="apply-migrations"></a>Aplicar migrações
 
-* Execute o aplicativo e selecione o link **login**.
-* Selecione o link **Registrar como um novo usuário**.
+* Execute o aplicativo e selecione o link **Registrar**.
 * Insira o email e a senha para a nova conta e, em seguida, selecione **Registrar**.
 * Siga as instruções para aplicar as migrações.
-
-## <a name="require-https"></a>Exigir HTTPS
-
-O OAuth 2.0 exige o uso de SSL/TLS para autenticação por meio do protocolo HTTPS.
-
-Os projetos criados usando os modelos de projeto **Aplicativo Web** ou **API Web** com o ASP.NET Core 2.1 ou posterior são configurados automaticamente para habilitar HTTPS. O aplicativo será iniciado com um ponto de extremidade padrão seguro se a opção **Contas de Usuário Individuais** estiver selecionada na **caixa de diálogo Alterar Autenticação** do assistente de projeto.
-
-Para obter mais informações, consulte <xref:security/enforcing-ssl>.
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
@@ -83,11 +67,11 @@ Ao registrar um provedor de logon externo, você não precisa ter uma senha regi
 
 Para criar uma senha e entrar usando seu email definido durante o processo de entrada com provedores externos:
 
-* Toque no link alias de email **Olá &lt; &gt;** na parte superior direita para navegar até a exibição **Gerenciar**.
+* Selecione o link **Olá,&lt; &gt;alias de email** na parte superior direita para navegar até a exibição **Gerenciar**.
 
 ![Exibição Gerenciar do Aplicativo Web](index/_static/pass1a.png)
 
-* Toque em **Criar**
+* Selecione **Criar**
 
 ![Definir a página de senha](index/_static/pass2a.png)
 

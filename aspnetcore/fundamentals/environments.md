@@ -5,12 +5,12 @@ description: Aprenda a controlar o comportamento do aplicativo em vários ambien
 ms.author: riande
 ms.date: 07/03/2018
 uid: fundamentals/environments
-ms.openlocfilehash: 865257d127084671036147dd1f28c9c4843feef6
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: 642af9e8f9e322e3624dad46bb1463f6525f5c9e
+ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50206842"
+ms.lasthandoff: 01/16/2019
+ms.locfileid: "54341661"
 ---
 # <a name="use-multiple-environments-in-aspnet-core"></a>Usar vários ambientes no ASP.NET Core
 
@@ -111,9 +111,9 @@ O seguinte JSON mostra três perfis de um arquivo *launchSettings.json*:
 
 Quando o aplicativo é inicializado com [dotnet run](/dotnet/core/tools/dotnet-run), o primeiro perfil com `"commandName": "Project"` é usado. O valor de `commandName` especifica o servidor Web a ser iniciado. `commandName` pode ser qualquer um dos seguintes:
 
-* IIS Express
-* IIS
-* Projeto (que inicia o Kestrel)
+* `IISExpress`
+* `IIS`
+* `Project` (que inicia o Kestrel)
 
 Quando um aplicativo for iniciado com [dotnet run](/dotnet/core/tools/dotnet-run):
 
@@ -183,7 +183,7 @@ Para definir o ambiente no [Serviço de Aplicativo do Azure](https://azure.micro
 1. No grupo **CONFIGURAÇÕES**, selecione a folha **Configurações do aplicativo**.
 1. Na área **Configurações do aplicativo**, selecione **Adicionar nova configuração**.
 1. Para **Inserir um nome**, forneça `ASPNETCORE_ENVIRONMENT`. Para **Inserir um valor**, fornecer o ambiente (por exemplo, `Staging`).
-1. Marque a caixa de seleção **Configuração do Slot** se desejar que a configuração do ambiente permaneça no slot atual quando os slots de implantação forem trocados. Para obter mais informações, veja [Documentação do Azure: que configurações são trocadas?](/azure/app-service/web-sites-staged-publishing).
+1. Marque a caixa de seleção **Configuração do Slot** se desejar que a configuração do ambiente permaneça no slot atual quando os slots de implantação forem trocados. Para obter mais informações, confira [Documentação do Azure: que configurações são trocadas?](/azure/app-service/web-sites-staged-publishing).
 1. Selecione **Salvar** na parte superior da folha.
 
 O Serviço de Aplicativo do Azure reinicia automaticamente o aplicativo após uma configuração de aplicativo (variável de ambiente) ser adicionada, alterada ou excluída no portal do Azure.
@@ -276,7 +276,7 @@ Para distribuições Linux, use o comando `export` no prompt de comando para as 
 
 Para carregar a configuração por ambiente, recomendamos:
 
-* Arquivos *appsettings* (*appsettings.&lt;<Environment>&gt;.json). Confira [Configuração: provedor de configuração de arquivo](xref:fundamentals/configuration/index#file-configuration-provider).
+* Arquivos *appsettings* (*appsettings.&lt;<Environment>&gt;.json). Confira [Configuração: provedor de configuração do arquivo](xref:fundamentals/configuration/index#file-configuration-provider).
 * Variáveis de ambiente (definidas em cada sistema em que o aplicativo está hospedado). Confira [Configuração: provedor de configuração do arquivo](xref:fundamentals/configuration/index#file-configuration-provider) e [Armazenamento seguro de segredos do aplicativo em desenvolvimento: variáveis de ambiente](xref:security/app-secrets#environment-variables).
 * Gerenciador de Segredo (somente no ambiente de desenvolvimento). Consulte <xref:security/app-secrets>.
 

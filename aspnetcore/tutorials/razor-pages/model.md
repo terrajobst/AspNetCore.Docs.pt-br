@@ -6,12 +6,12 @@ ms.author: riande
 monikerRange: '>= aspnetcore-2.2'
 ms.date: 12/3/2018
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 0915c525d5fb96a3d32f91fbd65a4e1f62ee28b8
-ms.sourcegitcommit: 68a3081dd175d6518d1bfa31b4712bd8a2dd3864
+ms.openlocfilehash: b9e8ece6da2c25a77ef0396eb22a19efde58563e
+ms.sourcegitcommit: 184ba5b44d1c393076015510ac842b77bc9d4d93
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "53577858"
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "54396110"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -23,7 +23,7 @@ Nesta seção, classes são adicionadas para o gerenciamento de filmes em um ban
 
 As classes de modelo são conhecidas como classes POCO (de "objetos CLR básicos") porque não têm nenhuma dependência do EF Core. Elas definem as propriedades dos dados que são armazenados no banco de dados.
 
-[Exiba ou baixe](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages-start/sample/) a amostra.
+[Exiba ou baixe](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start) a amostra.
 
 ## <a name="add-a-data-model"></a>Adicionar um modelo de dados
 
@@ -147,6 +147,10 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
 
 ---
+
+Os comandos anteriores geram o seguinte aviso: “Nenhum tipo foi especificado para a coluna decimal "Preço" no tipo de entidade "Filme". Isso fará com que valores sejam truncados silenciosamente se não couberem na precisão e na escala padrão. Especifique explicitamente o tipo de coluna do SQL Server que pode acomodar todos os valores usando 'HasColumnType()'.”
+
+Você pode ignorar esse aviso, ele será corrigido em um tutorial posterior.
 
 O processo de scaffold cria e atualiza os arquivos a seguir:
 

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/11/2018
 uid: host-and-deploy/directory-structure
-ms.openlocfilehash: ee0bebb8b5c688f8471d6420d1641b87ac271f6c
-ms.sourcegitcommit: b34b25da2ab68e6495b2460ff570468f16a9bf0d
+ms.openlocfilehash: 4bc5ead8e24c4bb7fe6cd2f52fd2aa622187180c
+ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53284559"
+ms.lasthandoff: 01/16/2019
+ms.locfileid: "54341388"
 ---
 # <a name="aspnet-core-directory-structure"></a>Estrutura do diretório do ASP.NET Core
 
@@ -37,7 +37,7 @@ O diretório *publish* representa o *caminho raiz de conteúdo* (também chamado
 
 O diretório *wwwroot*, se presente, contém somente ativos estáticos.
 
-O diretório *Logs* de stdout pode ser criado para a implantação usando uma das duas abordagens a seguir:
+Um diretório *Logs* pode ser criado para a implantação usando uma das duas abordagens a seguir:
 
 * Adicione o seguinte elemento `<Target>` ao arquivo de projeto:
 
@@ -57,6 +57,8 @@ O diretório *Logs* de stdout pode ser criado para a implantação usando uma da
 * Crie fisicamente o diretório *Logs* no servidor na implantação.
 
 O diretório de implantação requer permissões de leitura/execução. O diretório *Logs* requer permissões de leitura/gravação. Diretórios adicionais em que os arquivos são gravados exigem permissões de leitura/gravação.
+
+[Log de stdout do Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) não exige uma pasta *Logs* na implantação. O módulo é capaz de criar pastas no caminho `stdoutLogFile` quando o arquivo de log é criado. Criar uma pasta *Logs* é útil para o [log de depuração aprimorado do Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). As pastas no caminho fornecido para o valor `<handlerSetting>` não são criadas automaticamente pelo módulo e devem existir previamente na implantação para permitir que o módulo grave o log de depuração.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
