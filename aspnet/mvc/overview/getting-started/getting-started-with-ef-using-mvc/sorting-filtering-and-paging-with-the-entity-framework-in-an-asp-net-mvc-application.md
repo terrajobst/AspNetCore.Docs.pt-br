@@ -1,35 +1,42 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
-title: Classificação, filtragem e paginação com o Entity Framework em um aplicativo ASP.NET MVC | Microsoft Docs
+title: 'Tutorial: Adicionar classificação, filtragem e paginação com o Entity Framework em um aplicativo ASP.NET MVC | Microsoft Docs'
 author: tdykstra
-description: Aplicativo web de exemplo Contoso University demonstra como criar aplicativos ASP.NET MVC 5 usando o Entity Framework 6 Code First e o Visual Studio...
+description: Neste tutorial, você adiciona a classificação, filtragem e a funcionalidade de paginação para o **alunos** página de índice. Você também pode criar uma página de agrupamento simples.
 ms.author: riande
-ms.date: 10/08/2018
+ms.date: 01/14/2019
 ms.assetid: d5723e46-41fe-4d09-850a-e03b9e285bfa
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: 9fabb5a90af715d4e96ff79b43bfff5a4600ac08
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.topic: tutorial
+ms.openlocfilehash: 1f18a15d39d58ffb4ac48cfccee6519d33294e85
+ms.sourcegitcommit: 728f4e47be91e1c87bb7c0041734191b5f5c6da3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48912768"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54444189"
 ---
-# <a name="sorting-filtering-and-paging-with-the-entity-framework-in-an-aspnet-mvc-application"></a>Classificação, filtragem e paginação com o Entity Framework em um aplicativo ASP.NET MVC
+# <a name="tutorial-add-sorting-filtering-and-paging-with-the-entity-framework-in-an-aspnet-mvc-application"></a>Tutorial: Adicionar classificação, filtragem e paginação com o Entity Framework em um aplicativo ASP.NET MVC
 
-por [Tom Dykstra](https://github.com/tdykstra)
+No [tutorial anterior](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md), você implementou um conjunto de páginas da web para operações CRUD básicas para `Student` entidades. Neste tutorial, você adiciona a classificação, filtragem e a funcionalidade de paginação para o **alunos** página de índice. Você também pode criar uma página de agrupamento simples.
 
-[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
-
-> Aplicativo web de exemplo Contoso University demonstra como criar aplicativos ASP.NET MVC 5 usando o Entity Framework 6 Code First e o Visual Studio. Para obter informações sobre a série de tutoriais, consulte [primeiro tutorial na série](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
-No tutorial anterior, você implementou um conjunto de páginas da web para operações CRUD básicas para `Student` entidades. Neste tutorial você adicionará classificação, filtragem e a funcionalidade de paginação para o **alunos** página de índice. Você também criará uma página que faz um agrupamento simples.
-
-A ilustração a seguir mostra a aparência da página quando você terminar. Os títulos de coluna são links que o usuário pode clicar para classificar por essa coluna. Clicar em um título de coluna alterna repetidamente entre a ordem de classificação ascendente e descendente.
+A imagem a seguir mostra a aparência de página quando terminar. Os títulos de coluna são links que o usuário pode clicar para classificar por essa coluna. Clicar em um título de coluna alterna repetidamente entre a ordem de classificação ascendente e descendente.
 
 ![Students_Index_page_with_paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image1.png)
 
-## <a name="add-column-sort-links-to-the-students-index-page"></a>Adicionar links de classificação de coluna para a página de índice de alunos
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Adicionar links de classificação de coluna
+> * Adicione uma caixa de pesquisa
+> * Adicionar paginação
+> * Criar uma página sobre
+
+## <a name="prerequisites"></a>Pré-requisitos
+
+* [Implementar a funcionalidade CRUD básica](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
+
+## <a name="add-column-sort-links"></a>Adicionar links de classificação de coluna
 
 Para adicionar uma classificação à página índice de alunos, você alterará a `Index` método da `Student` controlador e adicione código para o `Student` indexa a exibição.
 
@@ -70,13 +77,9 @@ Como uma alternativa para escrever instruções LINQ diferentes para cada ordem 
 
 2. Execute a página e clique no **Sobrenome** e **data de registro** títulos de coluna para verificar se a classificação funciona.
 
-   ![Students_Index_page_with_sort_hyperlinks](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image2.png)
-
    Depois de clicar na **Sobrenome** título, os alunos são exibidos na ordem do último nome decrescente.
 
-   ![Exibição de índice de alunos no navegador da web](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
-
-## <a name="add-a-search-box-to-the-students-index-page"></a>Adicione uma caixa de pesquisa para a página de índice de alunos
+## <a name="add-a-search-box"></a>Adicione uma caixa de pesquisa
 
 Para adicionar filtragem à página de índice de alunos, você adicionará uma caixa de texto e um botão Enviar para o modo de exibição e fará alterações correspondentes no `Index` método. A caixa de texto permite inserir uma cadeia de caracteres a ser pesquisado nos campos de nome e último nome.
 
@@ -103,15 +106,11 @@ O código adiciona uma `searchString` parâmetro para o `Index` método. O valor
 
 2. Execute a página, insira uma cadeia de caracteres de pesquisa e clique em **pesquisa** para verificar se a filtragem está funcionando.
 
-   ![Students_Index_page_with_search_box](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
-
    Observe que a URL não contiver a "uma" cadeia de pesquisa, que significa que se você marcar essa página, você não obterá a lista filtrada quando você usa o indicador. Isso também se aplica os links de classificação de coluna, como eles serão classificar a lista inteira. Você alterará a **pesquisa** botão usar cadeias de caracteres de consulta para os critérios de filtro mais tarde no tutorial.
 
-## <a name="add-paging-to-the-students-index-page"></a>Adicionar paginação à página de índice de alunos
+## <a name="add-paging"></a>Adicionar paginação
 
-Para adicionar paginação à página de índice de alunos, comece instalando o **PagedList.Mvc** pacote do NuGet. Em seguida, você fará alterações adicionais na `Index` método e adicionar links de paginação para o `Index` modo de exibição. **PagedList.Mvc** é um dos muitos paginação boa e classificação pacotes para o ASP.NET MVC e seu uso aqui destina-se apenas como um exemplo, não como uma recomendação para que ele sobre outras opções. A ilustração a seguir mostra os links de paginação.
-
-![Students_index_page_with_paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
+Para adicionar paginação à página de índice de alunos, comece instalando o **PagedList.Mvc** pacote do NuGet. Em seguida, você fará alterações adicionais na `Index` método e adicionar links de paginação para o `Index` modo de exibição. **PagedList.Mvc** é um dos muitos paginação boa e classificação pacotes para o ASP.NET MVC e seu uso aqui destina-se apenas como um exemplo, não como uma recomendação para que ele sobre outras opções.
 
 ### <a name="install-the-pagedlistmvc-nuget-package"></a>Instale o pacote PagedList.MVC NuGet
 
@@ -124,8 +123,6 @@ O NuGet **PagedList.Mvc** pacote instala automaticamente o **PagedList** pacote 
    ```text
    Install-Package PagedList.Mvc
    ```
-
-   ![Instalar PagedList.Mvc](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
 
 3. Compile o projeto.
 
@@ -197,13 +194,9 @@ O NuGet **PagedList.Mvc** pacote instala automaticamente o **PagedList** pacote 
 
 2. Execute a página.
 
-   ![Página de índice de alunos com paginação](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image7.png)
-
    Clique nos links de paginação em ordens de classificação diferentes para verificar se a paginação funciona. Em seguida, insira uma cadeia de caracteres de pesquisa e tente fazer a paginação novamente para verificar se ela também funciona corretamente com a classificação e filtragem.
 
-   ![Página com texto de filtro de pesquisa de índice de alunos](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
-
-## <a name="create-an-about-page-that-shows-student-statistics"></a>Criar uma página Sobre que mostra as estatísticas de Alunos
+## <a name="create-an-about-page"></a>Criar uma página sobre
 
 O Contoso University do site sobre a página, você exibirá quantos alunos se registraram para cada data de registro. Isso exige agrupamento e cálculos simples nos grupos. Para fazer isso, você fará o seguinte:
 
@@ -249,14 +242,24 @@ Criar uma *ViewModels* pasta na pasta do projeto. Nessa pasta, adicione um arqui
 
    ![About_page](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)
 
-## <a name="summary"></a>Resumo
+## <a name="get-the-code"></a>Obter o código
 
-Neste tutorial, você viu como criar um modelo de dados e implementar CRUD básicas, classificação, filtragem, paginação e funcionalidade de agrupamento. No próximo tutorial, você começará examinando tópicos mais avançados com a expansão do modelo de dados.
+[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
-Deixe comentários sobre como você gostou neste tutorial e o que poderíamos melhorar.
+## <a name="additional-resources"></a>Recursos adicionais
 
 Links para outros recursos do Entity Framework pode ser encontrado na [acesso a dados ASP.NET – recursos recomendados](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Anterior](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
-> [Próximo](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+## <a name="next-steps"></a>Próximas etapas
+
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Adicionar links de classificação de coluna
+> * Adicione uma caixa de pesquisa
+> * Adicionar paginação
+> * Criar uma página sobre
+
+Avance para o próximo artigo para saber como usar a interceptação de comando e resiliência de conexão.
+> [!div class="nextstepaction"]
+> [Interceptação de comando e resiliência de Conexão](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application.md)

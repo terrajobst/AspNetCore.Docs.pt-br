@@ -1,30 +1,24 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
-title: Atualizando dados relacionados com o Entity Framework em um aplicativo ASP.NET MVC | Microsoft Docs
+title: 'Tutorial: Atualizar dados relacionados com o EF em um aplicativo ASP.NET MVC'
+description: Neste tutorial, você atualizará dados relacionados. Para a maioria das relações, isso pode ser feito atualizando os campos de chave estrangeira ou propriedades de navegação.
 author: tdykstra
-description: Aplicativo web de exemplo Contoso University demonstra como criar aplicativos ASP.NET MVC 5 usando o Entity Framework 6 Code First e o Visual Studio...
 ms.author: riande
-ms.date: 05/01/2015
+ms.date: 01/17/2019
+ms.topic: tutorial
 ms.assetid: 7ba88418-5d0a-437d-b6dc-7c3816d4ec07
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: 647793a65dec8feaf37de561ad77b4585bb869a8
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: 3f95470fd1832d7d25a331a1b6a9dfede7356f38
+ms.sourcegitcommit: 728f4e47be91e1c87bb7c0041734191b5f5c6da3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48912209"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54444305"
 ---
-<a name="updating-related-data-with-the-entity-framework-in-an-aspnet-mvc-application"></a>Atualizando dados relacionados com o Entity Framework em um aplicativo ASP.NET MVC
-====================
-por [Tom Dykstra](https://github.com/tdykstra)
+# <a name="tutorial-update-related-data-with-ef-in-an-aspnet-mvc-app"></a>Tutorial: Atualizar dados relacionados com o EF em um aplicativo ASP.NET MVC
 
-[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
-
-> Aplicativo web de exemplo Contoso University demonstra como criar aplicativos ASP.NET MVC 5 usando o Entity Framework 6 Code First e o Visual Studio. Para obter informações sobre a série de tutoriais, consulte [primeiro tutorial na série](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
-
-No tutorial anterior, você exibiu dados relacionados; Neste tutorial, você atualizará dados relacionados. Para a maioria das relações, isso pode ser feito atualizando os campos de chave estrangeira ou propriedades de navegação. Para relações muitos-para-muitos, o Entity Framework não expõe a tabela de junção diretamente, para que você adiciona e remove entidades de e para as propriedades de navegação apropriado.
+No tutorial anterior, você exibiu dados relacionados. Neste tutorial, você atualizará dados relacionados. Para a maioria das relações, isso pode ser feito atualizando os campos de chave estrangeira ou propriedades de navegação. Para relações muitos-para-muitos, o Entity Framework não expõe a tabela de junção diretamente, para que você adiciona e remove entidades de e para as propriedades de navegação apropriado.
 
 As ilustrações a seguir mostram algumas das páginas com as quais você trabalhará.
 
@@ -34,7 +28,20 @@ As ilustrações a seguir mostram algumas das páginas com as quais você trabal
 
 ![Editar instrutor com cursos](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
 
-## <a name="customize-the-create-and-edit-pages-for-courses"></a>Personalizar as páginas Criar e Editar dos cursos
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Personalizar as páginas de cursos
+> * Adicionar o office a página instrutores
+> * Adicionar cursos à página instrutores
+> * Atualizar DeleteConfirmed
+> * Adicionar local de escritório e cursos para a página Criar
+
+## <a name="prerequisites"></a>Pré-requisitos
+
+* [Leitura de dados relacionados](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+
+## <a name="customize-courses-pages"></a>Personalizar as páginas de cursos
 
 Quando uma nova entidade de curso é criada, ela precisa ter uma relação com um departamento existente. Para facilitar isso, o código gerado por scaffolding inclui métodos do controlador e exibições Criar e Editar que incluem uma lista suspensa para seleção do departamento. A lista suspensa define a `Course.DepartmentID` propriedade de chave estrangeira, e isso é tudo o que o Entity Framework precisa para carregar o `Department` propriedade de navegação com os devidos `Department` entidade. Você usará o código gerado por scaffolding, mas o alterará ligeiramente para adicionar tratamento de erro e classificação à lista suspensa.
 
@@ -82,19 +89,20 @@ Na *Views\Course\Delete.cshtml* e *Views\Course\Details.cshtml*, altere a legend
 
 Execute o **Create** página (exibir a página de índice do curso e clique em **criar novo**) e insira os dados para um novo curso:
 
-![Course_create_page](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
+| Valor | Configuração |
+| ----- | ------- |
+| Número | Enter *1000*. |
+| Título | Insira *álgebra*. |
+| Créditos | Enter *4*. |
+|Departamento | Selecione **matemática**. |
 
 Clique em **Criar**. A página de índice de cursos é exibida com o novo curso adicionado à lista. O nome do departamento na lista de páginas de Índice é obtido da propriedade de navegação, mostrando que a relação foi estabelecida corretamente.
 
-![Course_Index_page_showing_new_course](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
-
 Execute o **edite** página (exibir a página de índice do curso e clique em **editar** em um curso).
-
-![Course_edit_page](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
 
 Altere dados na página e clique em **Salvar**. A página índice de cursos é exibida com os dados de curso atualizado.
 
-## <a name="adding-an-edit-page-for-instructors"></a>Adicionando uma página Editar para instrutores
+## <a name="add-office-to-instructors-page"></a>Adicionar o office a página instrutores
 
 Quando você edita um registro de instrutor, deseja poder atualizar a atribuição de escritório do instrutor. O `Instructor` entidade tem uma relação um-para-zero-ou-um com o `OfficeAssignment` entidade, o que significa que você deve lidar com as seguintes situações:
 
@@ -116,7 +124,7 @@ Substitua os `HttpPost` `Edit` método com o código a seguir. que trata de atua
 
 [!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.cs)]
 
-A referência ao `RetryLimitExceededException` exige um `using` instrução; para adicioná-lo, clique com botão direito `RetryLimitExceededException`e, em seguida, clique em **resolver** - **usando System.Data.Entity.Infrastructure**.
+A referência ao `RetryLimitExceededException` requer um `using` instrução. Para adicioná-la, passe o mouse sobre `RetryLimitExceededException`. Obter uma explicação do problema é exibida. Selecione **Mostrar possíveis correções** e, em seguida, clique em **usando System.Data.Entity.Infrastructure;**.
 
 ![Resolver as exceções de repetição](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image7.png)
 
@@ -124,7 +132,7 @@ O código faz o seguinte:
 
 - Altera o nome do método para `EditPost` porque a assinatura agora é igual a `HttpGet` método (o `ActionName` atributo especifica que a URL /Edit/ ainda é usada).
 - Obtém a entidade `Instructor` atual do banco de dados usando o carregamento adiantado para a propriedade de navegação `OfficeAssignment`. Isso é o mesmo que você fez `HttpGet` `Edit` método.
-- Atualiza a entidade `Instructor` recuperada com valores do associador de modelos. O [TryUpdateModel](https://msdn.microsoft.com/library/dd470908(v=vs.108).aspx) sobrecarga usada permite que você coloque na *lista de permissões* as propriedades que você deseja incluir. Isso impede o excesso de postagem, conforme explicado em [segundo tutorial](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md).
+- Atualiza a entidade `Instructor` recuperada com valores do associador de modelos. O [TryUpdateModel](https://msdn.microsoft.com/library/dd470908(v=vs.108).aspx) sobrecarga usada permite que você *lista branca* as propriedades que você deseja incluir. Isso impede o excesso de postagem, conforme explicado em [segundo tutorial](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md).
 
     [!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.cs)]
 - Define se o local do escritório estiver em branco, o `Instructor.OfficeAssignment` propriedade como nulo, de modo que a linha relacionada no `OfficeAssignment` tabela será excluída.
@@ -138,13 +146,9 @@ Na *Views\Instructor\Edit.cshtml*após o `div` elementos para o **data de contra
 
 Execute a página (selecione o **instrutores** guia e, em seguida, clique em **editar** em um instrutor). Altere o **Local do Escritório** e clique em **Salvar**.
 
-![Changing_the_office_location](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
+## <a name="add-courses-to-instructors-page"></a>Adicionar cursos à página instrutores
 
-## <a name="adding-course-assignments-to-the-instructor-edit-page"></a>Adicionar atribuições de curso ao instrutor página Editar
-
-Os instrutores podem ministrar a quantidade de cursos que desejarem. Agora, você aprimorará a página Editar Instrutor adicionando a capacidade de alterar as atribuições de curso usando um grupo de caixas de seleção, conforme mostrado na seguinte captura de tela:
-
-![Instructor_edit_page_with_courses](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)
+Os instrutores podem ministrar a quantidade de cursos que desejarem. Agora, você aprimorará a página Editar instrutor adicionando a capacidade de alterar as atribuições de curso usando um grupo de caixas de seleção.
 
 A relação entre o `Course` e `Instructor` entidades é muitos-para-muitos, o que significa que você não tem acesso direto às propriedades de chave estrangeiras que estão na tabela de junção. Em vez disso, você pode adicionar e remover entidades de e para o `Instructor.Courses` propriedade de navegação.
 
@@ -204,20 +208,15 @@ Em seguida, adicione uma nova célula de detalhe imediatamente após a célula d
 
 [!code-cshtml[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample23.cshtml?highlight=7-14)]
 
-Execute o **índice de instrutor** página para ver os cursos atribuídos a cada instrutor:
-
-![Instructor_index_page](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image10.png)
+Execute o **índice de instrutor** página para ver os cursos atribuídos a cada instrutor.
 
 Clique em **editar** em um instrutor para ver a página de edição.
-
-![Instructor_edit_page_with_courses](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image11.png)
 
 Altere algumas atribuições de curso e clique em **salvar**. As alterações feitas são refletidas na página Índice.
 
  Observação: A abordagem usada aqui para editar os dados de curso do instrutor funciona bem quando há uma quantidade limitada de cursos. Para coleções muito maiores, uma interface do usuário e um método de atualização diferentes são necessários.
 
-
-## <a name="update-the-deleteconfirmed-method"></a>Atualize o método DeleteConfirmed
+## <a name="update-deleteconfirmed"></a>Atualizar DeleteConfirmed
 
 Na *InstructorController.cs*, exclua o `DeleteConfirmed` método e insira o seguinte código em seu lugar.
 
@@ -258,21 +257,31 @@ Depois de colar o código, corrigi quebras de linha e recuo como fez anteriormen
 
 Execute a página criar e adicionar um instrutor.
 
-![Criar de instrutor com cursos](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image12.png)
-
 <a id="transactions"></a>
-## <a name="handling-transactions"></a>Manipulando transações
+
+## <a name="handling-transactions"></a>Processamento de transações
 
 Conforme explicado a [tutorial de funcionalidade básica de CRUD](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md), por padrão o Entity Framework implementa implicitamente transações. Para cenários em que você precisa de mais controle – por exemplo, se você quiser incluir operações feitas fora do Entity Framework em uma transação –, consulte [trabalhando com transações](https://msdn.microsoft.com/data/dn456843) no MSDN.
 
-## <a name="summary"></a>Resumo
+## <a name="get-the-code"></a>Obter o código
 
-Agora você concluiu esta introdução ao trabalhar com dados relacionados. Até agora nesses tutoriais você já trabalhou com o código que faz a e/s síncrona. Você pode fazer com que o aplicativo usar recursos de servidor da web com mais eficiência com a implementação de código assíncrono e que é o que você fará o próximo tutorial.
+[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
 
-Deixe comentários sobre como você gostou neste tutorial e o que poderíamos melhorar.
+## <a name="additional-resources"></a>Recursos adicionais
 
 Links para outros recursos do Entity Framework pode ser encontrado na [acesso a dados ASP.NET – recursos recomendados](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Anterior](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-> [Próximo](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+## <a name="next-step"></a>Próximas etapas
+
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Páginas de cursos personalizados
+> * Office adicionado à página instrutores
+> * Cursos adicionados à página instrutores
+> * DeleteConfirmed atualizado
+> * Local do escritório adicionado e cursos para a página criar
+
+Avance para o próximo artigo para saber como implementar um modelo de programação assíncrona.
+> [!div class="nextstepaction"]
+> [Modelo de programação assíncrona](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application.md)

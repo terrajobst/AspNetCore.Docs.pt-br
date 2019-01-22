@@ -1,36 +1,41 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
-title: Tratamento de simultaneidade com o Entity Framework 6 em um aplicativo ASP.NET MVC 5 (10 a 12) | Microsoft Docs
+title: 'Tutorial: Manipular a simultaneidade com o EF em um aplicativo ASP.NET MVC 5'
+description: Este tutorial mostra como usar a simultaneidade otimista para lidar com conflitos quando vários usuários atualizam a mesma entidade ao mesmo tempo.
 author: tdykstra
-description: Aplicativo web de exemplo Contoso University demonstra como criar aplicativos ASP.NET MVC 5 usando o Entity Framework 6 Code First e o Visual Studio...
 ms.author: riande
-ms.date: 12/08/2014
+ms.date: 01/21/2019
+ms.topic: tutorial
 ms.assetid: be0c098a-1fb2-457e-b815-ddca601afc65
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: 22fd6bc92aa0d516e1bfeb5aa6a67d7246d977ac
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: b77b8d6f952472f4d3030f54665f970b8ace2caf
+ms.sourcegitcommit: 728f4e47be91e1c87bb7c0041734191b5f5c6da3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48913249"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54444175"
 ---
-<a name="handling-concurrency-with-the-entity-framework-6-in-an-aspnet-mvc-5-application-10-of-12"></a>Tratamento de simultaneidade com o Entity Framework 6 em um aplicativo ASP.NET MVC 5 (10 a 12)
-====================
-por [Tom Dykstra](https://github.com/tdykstra)
+# <a name="tutorial-handle-concurrency-with-ef-in-an-aspnet-mvc-5-app"></a>Tutorial: Manipular a simultaneidade com o EF em um aplicativo ASP.NET MVC 5
 
-[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+Nos tutoriais anteriores, você aprendeu como atualizar dados. Este tutorial mostra como usar a simultaneidade otimista para lidar com conflitos quando vários usuários atualizam a mesma entidade ao mesmo tempo. Você alterar as páginas da web que funcionam com o `Department` entidade para que eles manipulam os erros de simultaneidade. As ilustrações a seguir mostram as páginas Editar e Excluir, incluindo algumas mensagens exibidas se ocorre um conflito de simultaneidade.
 
-> Aplicativo web de exemplo Contoso University demonstra como criar aplicativos ASP.NET MVC 5 usando o Entity Framework 6 Code First e o Visual Studio. Para obter informações sobre a série de tutoriais, consulte [primeiro tutorial na série](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
+![Department_Edit_page_2_after_clicking_Save](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image10.png)
 
+![Department_Edit_page_2_after_clicking_Save](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image15.png)
 
-Nos tutoriais anteriores, você aprendeu como atualizar dados. Este tutorial mostra como lidar com conflitos quando os mesmos usuários atualizam a mesma entidade simultaneamente.
+Neste tutorial, você:
 
-Você alterará as páginas da web que funcionam com o `Department` entidade para que eles manipulam os erros de simultaneidade. As ilustrações a seguir mostram as páginas de índice e Delete, incluindo algumas mensagens que são exibidas se ocorrer um conflito de simultaneidade.
+> [!div class="checklist"]
+> * Saiba mais sobre conflitos de simultaneidade
+> * Adicionar a simultaneidade otimista
+> * Modificar controlador departamento
+> * Tratamento de simultaneidade de teste
+> * Atualizar a página Excluir
 
-![Department_Index_page_before_edits](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image1.png)
+## <a name="prerequisites"></a>Pré-requisitos
 
-![Department_Edit_page_2_after_clicking_Save](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image2.png)
+* [Assíncrono e procedimentos armazenados](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application.md)
 
 ## <a name="concurrency-conflicts"></a>Conflitos de simultaneidade
 
@@ -46,11 +51,7 @@ O gerenciamento de bloqueios traz desvantagens. Ele pode ser complexo de ser pro
 
 É a alternativa à simultaneidade pessimista *simultaneidade otimista*. Simultaneidade otimista significa permitir que conflitos de simultaneidade ocorram e responder adequadamente se eles ocorrerem. Por exemplo, John executa a página Editar departamentos, as alterações a **orçamento** quantidade no departamento de inglês de US $350.000,00 para US $0,00.
 
-![Changing_English_dept_budget_to_100000](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
-
 Antes de John clica **salvar**, Jane executa a mesma página e as alterações a **Start Date** campo 9/1/2007 para 8/8/2013.
-
-![Changing_English_dept_start_date_to_1999](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
 
 John clica **salve** primeiro e vê sua alteração quando o navegador retorna à página de índice, Jane, em seguida, clica **salvar**. O que acontece em seguida é determinado pela forma como você lida com conflitos de simultaneidade. Algumas das opções incluem o seguinte:
 
@@ -75,7 +76,7 @@ Você pode resolver conflitos manipulando [OptimisticConcurrencyException](https
 
 O restante deste tutorial, você adicionará uma [rowversion](https://msdn.microsoft.com/library/ms182776(v=sql.110).aspx) acompanhamento de propriedade para o `Department` entidade, criar um controlador e exibições e teste para verificar se tudo está funcionando corretamente.
 
-## <a name="add-an-optimistic-concurrency-property-to-the-department-entity"></a>Adicionar uma propriedade de simultaneidade otimista para a entidade Department
+## <a name="add-optimistic-concurrency"></a>Adicionar a simultaneidade otimista
 
 Na *Models\Department.cs*, adicione uma propriedade de controle chamada `RowVersion`:
 
@@ -91,7 +92,7 @@ Adicionando uma propriedade, você alterou o modelo de banco de dados e, portant
 
 [!code-console[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cmd)]
 
-## <a name="modify-the-department-controller"></a>Modificar o controlador de departamento
+## <a name="modify-department-controller"></a>Modificar controlador departamento
 
 Na *Controllers\DepartmentController.cs*, adicione um `using` instrução:
 
@@ -135,37 +136,23 @@ Na *Views\Department\Edit.cshtml*, adicione um campo oculto para salvar as `RowV
 
 [!code-cshtml[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.cshtml?highlight=18)]
 
-## <a name="testing-optimistic-concurrency-handling"></a>Testando o tratamento de simultaneidade otimista
+## <a name="test-concurrency-handling"></a>Tratamento de simultaneidade de teste
 
-Executar o site e clique em **departamentos**:
-
-![Department_Index_page_before_edits](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
+Executar o site e clique em **departamentos**.
 
 Clique com botão direito do **editar** hiperlink para o departamento de inglês e selecione **abrir em uma nova guia,** , em seguida, clique no **editar** hiperlink no departamento de inglês. As duas guias exibem as mesmas informações.
 
-![Department_Edit_page_before_changes](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
-
 Altere um campo na primeira guia do navegador e clique em **Salvar**.
-
-![Department_Edit_page_1_after_change](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image7.png)
 
 O navegador mostra a página Índice com o valor alterado.
 
-![Departments_Index_page_after_first_budget_edit](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
-
-Altere um campo na segunda guia do navegador e clique em **salvar**.
-
-![Department_Edit_page_2_after_change](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)
-
-Clique em **salvar** na segunda guia do navegador. Você verá uma mensagem de erro:
+Altere um campo na segunda guia do navegador e clique em **salvar**. Você verá uma mensagem de erro:
 
 ![Department_Edit_page_2_after_clicking_Save](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image10.png)
 
 Clique em **Salvar** novamente. O valor inserido na segunda guia do navegador é salva com o valor original dos dados alterados no navegador primeiro. Você verá os valores salvos quando a página Índice for exibida.
 
-![Department_Index_page_with_change_from_second_browser](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image11.png)
-
-## <a name="updating-the-delete-page"></a>Atualizando a página Excluir
+## <a name="update-the-delete-page"></a>Atualizar a página Excluir
 
 Para a página Excluir, o Entity Framework detecta conflitos de simultaneidade causados pela edição por outra pessoa do departamento de maneira semelhante. Quando o `HttpGet` `Delete` método exibe o modo de exibição de confirmação, o modo de exibição inclui original `RowVersion` valor em um campo oculto. Que valor, em seguida, está disponível para o `HttpPost` `Delete` método é chamado quando o usuário confirmar a exclusão. Quando o Entity Framework cria o SQL `DELETE` de comando, ele inclui um `WHERE` cláusula com original `RowVersion` valor. Se os resultados do comando em nenhuma linha afetada (o que significa que a linha foi alterada depois que a página de confirmação de exclusão foi exibida), é gerada uma exceção de simultaneidade e o `HttpGet Delete` método é chamado com um sinalizador de erro definido como `true` para exibir novamente a página de confirmação com uma mensagem de erro. Também é possível que o zero linha foi afetada porque a linha foi excluída por outro usuário, portanto, nesse caso, será exibida uma mensagem de erro diferentes.
 
@@ -209,17 +196,11 @@ Por fim, ele adiciona campos ocultos para o `DepartmentID` e `RowVersion` propri
 
 Execute a página de índice de departamentos. Clique com botão direito do **excluir** hiperlink para o departamento de inglês e selecione **abrir em uma nova guia,** , em seguida, na primeira guia, clique no **editar** hiperlink no departamento de inglês.
 
-Na primeira janela, alterar um dos valores e clique em **salvar** :
-
-![Department_Edit_page_after_change_before_delete](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image12.png)
+Na primeira janela, alterar um dos valores e clique em **salvar**.
 
 A página de índice confirma a alteração.
 
-![Departments_Index_page_after_budget_edit_before_delete](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image13.png)
-
 Na segunda guia, clique em **Excluir**.
-
-![Department_Delete_confirmation_page_before_concurrency_error](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image14.png)
 
 Você verá a mensagem de erro de simultaneidade e os valores de Departamento serão atualizados com o que está atualmente no banco de dados.
 
@@ -227,12 +208,27 @@ Você verá a mensagem de erro de simultaneidade e os valores de Departamento se
 
 Se você clicar em **Excluir** novamente, será redirecionado para a página Índice, que mostra que o departamento foi excluído.
 
-## <a name="summary"></a>Resumo
+## <a name="get-the-code"></a>Obter o código
 
-Isso conclui a introdução à manipulação de conflitos de simultaneidade. Para obter informações sobre outras maneiras de lidar com vários cenários de simultaneidade, consulte [padrões de simultaneidade otimista](https://msdn.microsoft.com/data/jj592904) e [trabalhando com valores de propriedade](https://msdn.microsoft.com/data/jj592677) no MSDN. O próximo tutorial mostra como implementar a herança de tabela por hierarquia para o `Instructor` e `Student` entidades.
+[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+
+## <a name="additional-resources"></a>Recursos adicionais
 
 Links para outros recursos do Entity Framework podem ser encontradas na [acesso a dados ASP.NET – recursos recomendados](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Anterior](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-> [Próximo](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+Para obter informações sobre outras maneiras de lidar com vários cenários de simultaneidade, consulte [padrões de simultaneidade otimista](https://msdn.microsoft.com/data/jj592904) e [trabalhando com valores de propriedade](https://msdn.microsoft.com/data/jj592677) no MSDN. O próximo tutorial mostra como implementar a herança de tabela por hierarquia para o `Instructor` e `Student` entidades.
+
+## <a name="next-steps"></a>Próximas etapas
+
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Aprendeu sobre conflitos de simultaneidade
+> * Adicionada a simultaneidade otimista
+> * Controlador de departamento modificado
+> * Tratamento de simultaneidade testado
+> * Atualizada a página Excluir
+
+Avance para o próximo artigo para saber como implementar a herança no modelo de dados.
+> [!div class="nextstepaction"]
+> [Implementar a herança no modelo de dados](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)

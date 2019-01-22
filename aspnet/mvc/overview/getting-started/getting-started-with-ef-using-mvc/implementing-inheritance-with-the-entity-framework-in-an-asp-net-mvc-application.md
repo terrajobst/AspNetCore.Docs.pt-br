@@ -1,34 +1,43 @@
 ---
 uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application
-title: Implementando a herança com o Entity Framework 6 em um aplicativo ASP.NET MVC 5 (11 12) | Microsoft Docs
+title: 'Modelo: Implementar a herança com o EF em um aplicativos ASP.NET MVC 5'
+description: Este tutorial mostrará como implementar a herança no modelo de dados.
 author: tdykstra
-description: Aplicativo web de exemplo Contoso University demonstra como criar aplicativos ASP.NET MVC 5 usando o Entity Framework 6 Code First e o Visual Studio...
 ms.author: riande
-ms.date: 11/07/2014
+ms.date: 01/21/2019
+ms.topic: tutorial
 ms.assetid: 08834147-77ec-454a-bb7a-d931d2a40dab
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: 613494d58d7652f69a52241bcd3a7e896bc5407c
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: df8715e4416ce3ccdf1d9e380addcded553d85f8
+ms.sourcegitcommit: 728f4e47be91e1c87bb7c0041734191b5f5c6da3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48912692"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54444279"
 ---
-<a name="implementing-inheritance-with-the-entity-framework-6-in-an-aspnet-mvc-5-application-11-of-12"></a>Implementando a herança com o Entity Framework 6 em um aplicativo ASP.NET MVC 5 (11 12)
-====================
-por [Tom Dykstra](https://github.com/tdykstra)
-
-[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
-
-> Aplicativo web de exemplo Contoso University demonstra como criar aplicativos ASP.NET MVC 5 usando o Entity Framework 6 Code First e o Visual Studio. Para obter informações sobre a série de tutoriais, consulte [primeiro tutorial na série](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
-
+# <a name="template-implement-inheritance-with-ef-in-an-aspnet-mvc-5-app"></a>Modelo: Implementar a herança com o EF em um aplicativo ASP.NET MVC 5
 
 No tutorial anterior, você tratou exceções de simultaneidade. Este tutorial mostrará como implementar a herança no modelo de dados.
 
 Na programação orientada a objeto, você pode usar [herança](http://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)) para facilitar [reutilização de código](http://en.wikipedia.org/wiki/Code_reuse). Neste tutorial, você alterará as classes `Instructor` e `Student`, de modo que elas derivem de uma classe base `Person` que contém propriedades, como `LastName`, comuns a instrutores e alunos. Você não adicionará nem alterará as páginas da Web, mas alterará uma parte do código, e essas alterações serão refletidas automaticamente no banco de dados.
 
-## <a name="options-for-mapping-inheritance-to-database-tables"></a>Opções para o mapeamento de herança para as tabelas de banco de dados
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Saiba como mapear herança para o banco de dados
+> * Criar a classe Person
+> * Aluno e instrutor de atualização
+> * Adicionar pessoa ao modelo
+> * Criar e atualizar as migrações
+> * Testar a implementação
+> * Implantar no Azure
+
+## <a name="prerequisites"></a>Pré-requisitos
+
+* [Implementação de herança](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+
+## <a name="map-inheritance-to-database"></a>Mapear herança para o banco de dados
 
 O `Instructor` e `Student` as classes no `School` modelo de dados têm várias propriedades que são idênticas:
 
@@ -40,13 +49,13 @@ Suponha que você deseje eliminar o código redundante para as propriedades comp
 
 Há várias maneiras pelas quais essa estrutura de herança pode ser representada no banco de dados. Você poderia ter um `Person` tabela que inclui informações sobre os alunos e instrutores em uma única tabela. Algumas das colunas pode aplicar somente a instrutores (`HireDate`), algumas somente a alunos (`EnrollmentDate`), alguns para ambos (`LastName`, `FirstName`). Normalmente, você teria uma *discriminador* coluna para indicar qual tipo cada linha representa. Por exemplo, a coluna discriminatória pode ter "Instrutor" para instrutores e "Aluno" para alunos.
 
-![Tabela por hierarchy_example](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
+![Table-per-hierarchy_example](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image3.png)
 
 Esse padrão de geração de uma estrutura de herança de entidade de uma tabela de banco de dados individual é chamado *tabela por hierarquia* herança (TPH).
 
 Uma alternativa é fazer com que o banco de dados se pareça mais com a estrutura de herança. Por exemplo, você poderia ter apenas os campos de nome `Person` de tabela e ter separado `Instructor` e `Student` tabelas com os campos de data.
 
-![Tabela por type_inheritance](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
+![Table-per-type_inheritance](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
 
 Esse padrão de criação de uma tabela de banco de dados para cada classe de entidade é chamada *tabela por tipo* herança (TPT).
 
@@ -62,7 +71,9 @@ No *modelos* pasta, crie *Person.cs* e substitua o código de modelo pelo códig
 
 [!code-csharp[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs)]
 
-## <a name="make-student-and-instructor-classes-inherit-from-person"></a>Fazer com que as classes Student e Instructor herdem de Person
+## <a name="update-instructor-and-student"></a>Aluno e instrutor de atualização
+
+Atualize agora o *Instructor.cs* e *Sudent.cs* herdar valores da *Person.sc*.
 
 Na *Instructor.cs*, derivar o `Instructor` classe o `Person` de classe e remova os campos nomes e chaves. O código será semelhante ao seguinte exemplo:
 
@@ -72,7 +83,7 @@ Fazer alterações semelhantes ao *Student.cs*. O `Student` classe se parecerá 
 
 [!code-csharp[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cs)]
 
-## <a name="add-the-person-entity-type-to-the-model"></a>Adicionar o tipo de entidade Person ao modelo
+## <a name="add-person-to-the-model"></a>Adicionar pessoa ao modelo
 
 Na *SchoolContext.cs*, adicione uma `DbSet` propriedade para o `Person` tipo de entidade:
 
@@ -80,7 +91,7 @@ Na *SchoolContext.cs*, adicione uma `DbSet` propriedade para o `Person` tipo de 
 
 Isso é tudo o que o Entity Framework precisa para configurar a herança de tabela por hierarquia. Como você verá, quando o banco de dados é atualizado, ele terá um `Person` de tabela em vez do `Student` e `Instructor` tabelas.
 
-## <a name="create-and-update-a-migrations-file"></a>Criar e atualizar um arquivo de migrações
+## <a name="create-and-update-migrations"></a>Criar e atualizar as migrações
 
 No pacote Manager Console (PMC), digite o seguinte comando:
 
@@ -121,18 +132,13 @@ Execute o `update-database` comando novamente.
 >
 > Com um novo banco de dados, não há nenhum dado para migrar e o `update-database` comando é muito mais provável de ser concluído sem erros. Para obter instruções sobre como excluir o banco de dados, consulte [como descartar um banco de dados do Visual Studio 2012](http://romiller.com/2013/05/17/how-to-drop-a-database-from-visual-studio-2012/). Se você usar essa abordagem para continuar com o tutorial, ignore a etapa de implantação no final deste tutorial ou implantar um novo site e o banco de dados. Se você implantar uma atualização ao mesmo site que já foi implantado já, o EF obterá o mesmo erro existe quando ele é automaticamente executado as migrações. Se você quiser solucionar o erro migrações, o melhor recurso é um dos fóruns do Entity Framework ou StackOverflow.com.
 
-
-## <a name="testing"></a>Testes
+## <a name="test-the-implementation"></a>Testar a implementação
 
 Executar o site e tente várias páginas. Tudo funciona da mesma maneira que antes.
 
 No **Gerenciador de servidores** expanda **dados Connections\SchoolContext** e, em seguida, **tabelas**, e você verá que o **aluno** e **Instrutor** tabelas foram substituídas por um **pessoa** tabela. Expanda o **pessoa** tabela e você ver que ele tem todas as colunas que costumavam estar na **aluno** e **instrutor** tabelas.
 
-![Server_Explorer_showing_Person_table](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
-
 Clique com o botão direito do mouse na tabela Person e, em seguida, clique em **Mostrar Dados da Tabela** para ver a coluna discriminatória.
-
-![](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
 
 O diagrama a seguir ilustra a estrutura do novo banco de dados de escola:
 
@@ -144,22 +150,37 @@ Esta seção requer que você concluiu a opcional **Implantando o aplicativo do 
 
 1. No Visual Studio, clique com botão direito no projeto no **Gerenciador de soluções** e selecione **publicar** no menu de contexto.
 
-    ![Publicar no menu de contexto do projeto](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
 2. Clique em **Publicar**.
 
-    ![publicar](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)
+    O aplicativo Web é aberto no navegador padrão.
 
-   O aplicativo Web será aberto no navegador padrão.
 3. Testar o aplicativo para verificar se ele está funcionando.
 
     Na primeira vez que você executa uma página que acessa o banco de dados, o Entity Framework é executado todas as migrações `Up` métodos necessários para colocar o banco de dados atualizado com o modelo de dados atual.
 
-## <a name="summary"></a>Resumo
+## <a name="get-the-code"></a>Obter o código
 
-Você implementou a herança de tabela por hierarquia para as classes `Person`, `Student` e `Instructor`. Para obter mais informações sobre esta e outras estruturas de herança, consulte [padrão de herança TPT](https://msdn.microsoft.com/data/jj618293) e [padrão de herança TPH](https://msdn.microsoft.com/data/jj618292) no MSDN. No próximo tutorial, você verá como lidar com uma variedade de cenários relativamente avançados do Entity Framework.
+[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+
+## <a name="additional-resources"></a>Recursos adicionais
 
 Links para outros recursos do Entity Framework podem ser encontradas na [acesso a dados ASP.NET – recursos recomendados](../../../../whitepapers/aspnet-data-access-content-map.md).
 
-> [!div class="step-by-step"]
-> [Anterior](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-> [Próximo](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)
+Para obter mais informações sobre esta e outras estruturas de herança, consulte [padrão de herança TPT](https://msdn.microsoft.com/data/jj618293) e [padrão de herança TPH](https://msdn.microsoft.com/data/jj618292) no MSDN. No próximo tutorial, você verá como lidar com uma variedade de cenários relativamente avançados do Entity Framework.
+
+## <a name="next-steps"></a>Próximas etapas
+
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Aprendeu a herança do mapa para o banco de dados
+> * Criei a classe Person
+> * Aluno e instrutor atualizado
+> * Pessoa adicionada ao modelo
+> * Criado e atualize as migrações
+> * Testado a implementação
+> * Implantado no Azure
+
+Avance para o próximo artigo para saber mais sobre tópicos que são úteis a serem consideradas quando você vai além das noções básicas de desenvolvimento de aplicativos web ASP.NET que usam o Entity Framework Code First.
+> [!div class="nextstepaction"]
+> [Cenários de Entity Framework avançados](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)
