@@ -8,12 +8,12 @@ ms.date: 02/16/2008
 ms.assetid: 152ab1e5-aec2-4ea7-b8cc-27a24dd9acb8
 msc.legacyurl: /mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-cs
 msc.type: authoredcontent
-ms.openlocfilehash: ac47caa46d93c6157926f1c9b5112555fae4f8f5
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
+ms.openlocfilehash: a8e64a99549584f150d64d909ac97210257b1147
+ms.sourcegitcommit: 728f4e47be91e1c87bb7c0041734191b5f5c6da3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41833060"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54444123"
 ---
 <a name="aspnet-mvc-views-overview-c"></a>Exibições do ASP.NET MVC visão geral (c#)
 ====================
@@ -28,7 +28,7 @@ O objetivo deste tutorial é fornecer uma breve introdução ao ASP.NET MVC exib
 
 Para o ASP.NET ou páginas ASP, ASP.NET MVC não inclui tudo o que corresponde diretamente a uma página. Em um aplicativo ASP.NET MVC, não há uma página em disco que corresponde ao caminho na URL que você digita na barra de endereços do navegador. A coisa mais próxima a uma página em um aplicativo ASP.NET MVC é algo chamado de um *exibição*.
 
-ASP.NET MVC, as solicitações do navegador do aplicativo de entrada são mapeadas para ações do controlador. Uma ação do controlador pode retornar uma exibição. No entanto, uma ação do controlador pode executar algum outro tipo de ação como redirecionando você para outra ação do controlador.
+Em um aplicativo ASP.NET MVC, as solicitações recebidas do navegador são mapeadas para ações do controlador. Uma ação do controlador pode retornar uma exibição. No entanto, uma ação do controlador pode executar algum outro tipo de ação como redirecionando você para outra ação do controlador.
 
 Listagem 1 contém um controlador simples chamado HomeController. O HomeController expõe duas ações do controlador chamadas Index () e Details().
 
@@ -75,7 +75,7 @@ Um modo de exibição é um padrão de (documento HTML que pode conter scripts X
 
 Por exemplo, o modo de exibição na listagem 2 exibe a data e hora atuais.
 
-**Listagem 2 - \Views\Home\Index.aspx**
+**Listing 2 - \Views\Home\Index.aspx**
 
 [!code-aspx[Main](asp-net-mvc-views-overview-cs/samples/sample2.aspx)]
 
@@ -91,7 +91,7 @@ Uma vez que você chama Response com tanta frequência, Microsoft fornece um ata
 
 [!code-aspx[Main](asp-net-mvc-views-overview-cs/samples/sample3.aspx)]
 
-Você pode usar qualquer linguagem .NET para gerar o conteúdo dinâmico em uma exibição. Normalmente, você usará o Visual Basic .NET ou c# para escrever seus controladores e modos de exibição.
+Você pode usar qualquer linguagem .NET para gerar o conteúdo dinâmico em uma exibição. Normalmente, você usará o Visual Basic .NET ou C# para gravar seus controladores e modos de exibição.
 
 ## <a name="using-html-helpers-to-generate-view-content"></a>Usando os auxiliares HTML para gerar o conteúdo da exibição
 
@@ -99,14 +99,14 @@ Para tornar mais fácil de adicionar conteúdo a um modo de exibição, você po
 
 Por exemplo, a exibição na listagem 4 tira proveito dos três auxiliares de HTML – auxiliares BeginForm(), TextBox() e Password() – para gerar um logon do formam (veja a Figura 1).
 
-**Listagem 4 – \Views\Home\Login.aspx**
+**Listing 4 -- \Views\Home\Login.aspx**
 
 [!code-aspx[Main](asp-net-mvc-views-overview-cs/samples/sample4.aspx)]
 
 
 [![A caixa de diálogo Novo projeto](asp-net-mvc-views-overview-cs/_static/image1.jpg)](asp-net-mvc-views-overview-cs/_static/image1.png)
 
-**Figura 01**: um formulário de logon padrão ([clique para exibir a imagem em tamanho normal](asp-net-mvc-views-overview-cs/_static/image2.png))
+**Figura 01**: Um formulário de logon padrão ([clique para exibir a imagem em tamanho normal](asp-net-mvc-views-overview-cs/_static/image2.png))
 
 
 Todos os métodos auxiliares HTML são chamados na propriedade Html da exibição. Por exemplo, você deve processar uma caixa de texto chamando o método Html.TextBox().
@@ -115,7 +115,7 @@ Observe que você usa os delimitadores de script &lt;% = e %&gt; ao chamar o Htm
 
 Usar métodos auxiliares HTML é opcional. Eles tornam sua vida mais fácil, reduzindo a quantidade de HTML e script que você precisa escrever. O modo de exibição na listagem 5 apresenta o mesmo formato exato que o modo de exibição na listagem 4 sem uso de auxiliares de HTML.
 
-**Listagem 5 – \Views\Home\Login.aspx**
+**Listing 5 -- \Views\Home\Login.aspx**
 
 [!code-aspx[Main](asp-net-mvc-views-overview-cs/samples/sample5.aspx)]
 
@@ -139,7 +139,7 @@ A exibição na listagem 7 recupera a mensagem dos dados da exibição e process
 
 Observe que o modo de exibição aproveita o método auxiliar de HTML Html.Encode() ao renderizar a mensagem. O auxiliar de HTML Html.Encode() codifica caracteres especiais, como &lt; e &gt; em caracteres que são seguros exibir em uma página da web. Sempre que você processar o conteúdo que um usuário envia para um site, você deve codificar o conteúdo para evitar ataques de injeção de JavaScript.
 
-(Como criamos a mensagem sozinhos no ProductController, podemos don t realmente precisa codificar a mensagem. No entanto, é um hábito de sempre chamar o método Html.Encode() ao exibir o conteúdo recuperado de exibir dados em uma exibição.)
+(Porque criamos a mensagem por conta própria no ProductController, não precisamos codificar a mensagem. No entanto, é um hábito de sempre chamar o método Html.Encode() ao exibir o conteúdo recuperado de exibir dados em uma exibição.)
 
 Na listagem 7, tiramos proveito dos dados de exibição para passar uma mensagem de cadeia de caracteres simples de um controlador para um modo de exibição. Você também pode usar dados de exibição para passar outros tipos de dados, como uma coleção de registros de banco de dados, de um controlador para um modo de exibição. Por exemplo, se você quiser exibir o conteúdo da tabela de banco de dados de produtos em uma exibição, em seguida, você passaria a coleção de banco de dados registra no modo de exibição dados.
 
