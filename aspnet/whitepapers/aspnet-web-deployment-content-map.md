@@ -8,18 +8,18 @@ ms.date: 03/14/2014
 ms.assetid: 58b583cd-c4ab-47a3-8527-8c92c298c91f
 msc.legacyurl: /whitepapers/aspnet-web-deployment-content-map
 msc.type: content
-ms.openlocfilehash: c970d929c4e6b581bedd2947982926ac448facfa
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
+ms.openlocfilehash: 6df0c9d2f38ad1d39abd62787c600ef80da8e8e0
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41832889"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836215"
 ---
 <a name="aspnet-web-deployment---recommended-resources"></a>Recursos de implantação da Web do ASP.NET - recomendados
 ====================
 > Este tópico fornece links para documentação de recursos sobre como implantar (publicar) ASP.NET web a aplicativos para o IIS usando o Visual Studio 2010, Visual Web Developer 2010 e versões posteriores.
 > 
-> Se você souber que um blog excelente postagem, [stackoverflow](http://stackoverflow.com) thread ou qualquer outro link que pode ser útil, [envie-em um email](mailto:aspnetue@microsoft.com?subject=Deployment Content Map) com o link.
+> Se você souber que um blog excelente postagem, [stackoverflow](http://stackoverflow.com) thread ou qualquer outro link que pode ser útil, [envie-em um email](mailto:aspnetue@microsoft.com?subject=Deployment%20Content%20Map) com o link.
 > 
 > > [!NOTE] 
 > > 
@@ -75,7 +75,7 @@ Esse tópico contém as seguintes seções:
 
 - [Como implantar um Site da Web do Azure Windows](https://docs.microsoft.com/azure/app-service-web/web-sites-deploy). Explica as opções e fornece links para recursos para a implantação de projetos da web para o Windows Azure Web Sites. Inclui uma seção sobre a implantação do Visual Studio.
 - [Implantação de Web do ASP.NET usando o Visual Studio](../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md). série de tutoriais de 12 partes, mostra como implantar aplicativos web com bancos de dados do SQL Server. Para o banco de dados de implantação usa o provedor dbDacFx e o Entity Framework Code First Migrations. Também inclui informações sobre [transformações do arquivo Web. config](../web-forms/overview/deployment/visual-studio-web-deployment/web-config-transformations.md), [Implantando arquivos individuais](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md#specificfiles), [implantação de linha de comando](../web-forms/overview/deployment/visual-studio-web-deployment/command-line-deployment.md), e [como Personalizar a Visual Studio web publicar pipeline por meio da edição de arquivos. pubxml](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-extra-files.md). Aplica-se a todos os projetos da web ASP.NET, incluindo o Web Forms, MVC e API da Web.)
-- [Como: implantar um projeto Web usando um único clique publicação no Visual Studio](https://msdn.microsoft.com/library/dd465337.aspx) (informações de referência para o Assistente de publicação do Visual Studio Web.)
+- [Como: Implantar um projeto Web usando um único clique publicação no Visual Studio](https://msdn.microsoft.com/library/dd465337.aspx) (informações de referência para o Assistente de publicação do Visual Studio Web.)
 - [Implantando um aplicativo da Web ASP.NET com o SQL Server Compact usando o Visual Studio](../web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12.md). Isso é uma versão anterior do **implantação de Web do ASP.NET usando o Visual Studio** listadas na parte superior desta seção. Agora, principalmente útil para obter informações sobre como implantar bancos de dados do SQL Server Compact e como migrar do SQL Server Compact para uma edição completa do SQL Server.
 - [.NET multicamadas aplicativo usando o armazenamento de tabelas, filas e Blobs](https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36) (site do Microsoft Azure). série de tutoriais de 5 partes, mostra como criar um projeto do MVC e implantá-lo em um serviço de nuvem do Windows Azure.
 
@@ -83,8 +83,8 @@ Esse tópico contém as seguintes seções:
 <a id="package"></a>
 ## <a name="deploying-a-web-application-by-creating-and-installing-a-web-deployment-package"></a>Implantar um aplicativo web criando e instalando um pacote de implantação da web
 
-- [Como: criar um pacote de implantação da Web no Visual Studio](https://msdn.microsoft.com/library/dd465323.aspx) (MSDN).
-- [Como: instalar um pacote de implantação usando o arquivo Deploy. cmd criado pelo Visual Studio](https://msdn.microsoft.com/library/ff356104.aspx) (MSDN).
+- [Como: Criar um pacote de implantação da Web no Visual Studio](https://msdn.microsoft.com/library/dd465323.aspx) (MSDN).
+- [Como: Instalar um pacote de implantação usando o arquivo Deploy. cmd criado pelo Visual Studio](https://msdn.microsoft.com/library/ff356104.aspx) (MSDN).
 - [Usando um pacote de implantação da Web para implantar no IIS na caixa de desenvolvimento e em um host de terceiros](http://sedodream.com/2011/11/08/UsingAWebDeployPackageToDeployToIISOnTheDevBoxAndToAThirdPartyHost.aspx) (blog do Sayed Hashimi). Como usar o Gerenciador do IIS para instalar um pacote de implantação no IIS no computador local e em uma hospedagem da empresa que dá suporte ao Gerenciador do IIS para administração remota.
 - [Criando um Web implantar o pacote do Visual Studio 2010](https://www.iis.net/learn/publish/using-web-deploy/building-a-web-deploy-package-from-visual-studio-2010) (IIS.NET web site). Inclui instruções para instalação e criação de pacote de linha de comando.
 - [Uma vez publicar em qualquer lugar do pacote](http://sedodream.com/2012/03/14/PackageWebUpdatedAndVideoBelow.aspx) (blog do Sayed Hashimi). Apresenta um pacote NuGet que automatiza o processo de transformar o arquivo Web. config para vários ambientes de destino, para que você pode implantar um pacote em vários servidores. Consulte também o [PackageWeb vídeo](https://www.youtube.com/watch?v=-LvUJFI8CzM) por Sayed Hashimi.
@@ -100,7 +100,7 @@ Consulte também a seção a seguir.
 - [Integração contínua e entrega contínua (Criando aplicativos de nuvem do mundo Real com o Windows Azure).](../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md) Capítulo de livro eletrônico que apresenta a integração contínua e entrega contínua.
 - [Como implantar um Site da Web do Azure Windows](https://docs.microsoft.com/azure/app-service-web/web-sites-deploy). Explica as opções e links para recursos de implantação de projetos da web para o Windows Azure Web Sites. Inclui uma seção sobre como automatizar a implantação do controle de origem.
 - [Implantando aplicativos Web em cenários empresariais](../web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios.md). série de tutoriais de partes de 40, mostra como automatizar a implantação em um processo de CI usando o Visual Studio 2010 e o Team Foundation Server 2010.
-- [Dentro do Microsoft Build Engine: usando MSBuild e o Team Foundation Build, Sayed Hashimi e William Bartholomew](http://msbuildbook.com). Este é um livro, não é um recurso da web, mas é um guia essencial para aprender a configurar o MSBuild para cenários de integração contínua.
+- [Dentro do mecanismo de compilação da Microsoft: Usando MSBuild e o Team Foundation Build, Sayed Hashimi e William Bartholomew](http://msbuildbook.com). Este é um livro, não é um recurso da web, mas é um guia essencial para aprender a configurar o MSBuild para cenários de integração contínua.
 - [Pacote de extensão do MSBuild](https://github.com/mikefourie/MSBuildExtensionPack). Inclui tarefas de implantação.
 - [Team Foundation Build Customization Guide](https://aka.ms/vsarsolutions). Documentação por ALM Rangers sobre como configurar o Team Foundation Server abrange a implantação da web e inclui os tutoriais e vídeos.
 - [XML SlowCheetah transforma a partir de um servidor de CI](http://sedodream.com/2011/12/12/SlowCheetahXMLTransformsFromACIServer.aspx) (blog do Sayed Hashimi). Explica como usar SlowCheetah suplemento do Visual Studio de um para transformar o App. config e outros arquivos XML.
@@ -119,7 +119,7 @@ Consulte também [certificando-se de um aplicativo está offline durante a impla
 - [Como desabilitar a transformação do Web. config?](https://msdn.microsoft.com/library/ee942158.aspx#disable_web_config_transformation) (MSDN).
 - [Quando devo usar parâmetros de implantação da Web, em vez de transformações de Web. config?](https://msdn.microsoft.com/library/ee942158.aspx#web_deploy_parameters) (MSDN).
 - [XDT (transformação de documento XML) lançada em codeplex.com](https://blogs.msdn.com/b/webdev/archive/2013/04/23/xdt-xml-document-transform-released-on-codeplex-com.aspx) (blog do .NET Web Development and Tools). Anuncia a disponibilidade do código-fonte para o mecanismo de transformação do arquivo Web. config e lista algumas ferramentas que usá-lo.
-- [Sites do Azure do Windows: Como aplicativo cadeias de caracteres e trabalho de cadeias de caracteres de Conexão](https://blogs.msdn.com/b/windowsazure/archive/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work.aspx) (blog do Microsoft Azure). Uma alternativa ao Web. config transforma se seu ambiente de destino for Windows Azure Web Sites e você deseja transformar `appSettings` ou `connectionStrings`.
+- [Windows Azure Web Sites: Aplicativo como cadeias de caracteres e trabalho de cadeias de caracteres de Conexão](https://blogs.msdn.com/b/windowsazure/archive/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work.aspx) (blog do Microsoft Azure). Uma alternativa ao Web. config transforma se seu ambiente de destino for Windows Azure Web Sites e você deseja transformar `appSettings` ou `connectionStrings`.
 
 
 <a id="webdeployparms"></a>
@@ -127,12 +127,12 @@ Consulte também [certificando-se de um aplicativo está offline durante a impla
 
 ## <a name="using-web-deploy-parameters-to-change-settings-in-the-destination-web-application-during-deployment"></a>Usando parâmetros de implantação da Web para alterar as configurações do aplicativo web de destino durante a implantação
 
-- [Como: implantar o Web usar parâmetros em um pacote de implantação da Web](https://msdn.microsoft.com/library/ff398068.aspx) (MSDN).
+- [Como: Implantar o Web usar parâmetros em um pacote de implantação da Web](https://msdn.microsoft.com/library/ff398068.aspx) (MSDN).
 - [MSDeploy: Como atualizar as configurações de aplicativo em Publicar com base no perfil de publicação](http://sedodream.com/2013/03/02/MSDeployHowToUpdateAppSettingsOnPublishBasedOnThePublishProfile.aspx) (blog do Sayed Hashimi). Mostra como integrar o implantação da Web parâmetros para o Visual Studio perfis de publicação.
 - [Web parametrização implantar](https://www.iis.net/learn/publish/using-web-deploy/web-deploy-parameterization) (IIS.NET web site).
 - [Web parametrização implantar em ação](http://vishaljoshi.blogspot.com/2010/07/web-deploy-parameterization-in-action.html) (blog de Vishal Joshi).
 - [Web vs de parametrização de implantar. Transformação de Web. config](http://vishaljoshi.blogspot.com/2010/06/parameterization-vs-webconfig.html) (blog de Vishal Joshi).
-- [Sites do Azure do Windows: Como aplicativo cadeias de caracteres e trabalho de cadeias de caracteres de Conexão](https://blogs.msdn.com/b/windowsazure/archive/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work.aspx) (blog do Microsoft Azure). Uma alternativa à Web implantar parâmetros se seu ambiente de destino for Windows Azure Web Sites e você deseja parametrizar `appSettings` ou `connectionStrings`.
+- [Windows Azure Web Sites: Aplicativo como cadeias de caracteres e trabalho de cadeias de caracteres de Conexão](https://blogs.msdn.com/b/windowsazure/archive/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work.aspx) (blog do Microsoft Azure). Uma alternativa à Web implantar parâmetros se seu ambiente de destino for Windows Azure Web Sites e você deseja parametrizar `appSettings` ou `connectionStrings`.
 
 
 <a id="appoffline"></a>
@@ -140,7 +140,7 @@ Consulte também [certificando-se de um aplicativo está offline durante a impla
 
 ## <a name="making-sure-an-application-is-off-line-during-deployment"></a>Certificando-se de um aplicativo está offline durante a implantação
 
-- [Implantação de Web do ASP.NET usando o Visual Studio: Implantando uma atualização de código](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Consulte a seção **levar o aplicativo offline durante a implantação.**
+- [Implantação da Web do ASP.NET usando o Visual Studio: Implantando uma atualização de código](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Consulte a seção **levar o aplicativo offline durante a implantação.**
 - [Colocar um aplicativo Offline antes da publicação](https://www.iis.net/learn/publish/deploying-application-packages/taking-an-application-offline-before-publishing) (IIS.net site). Explica a um recurso integrado do Web Deploy 3.0 que automatiza o tratamento de um aplicativo\_offline.htm arquivo. Esse recurso não funciona com o aplicativo personalizado\_offline.htm arquivos.
 - [Como aproveitar seu aplicativo web offline durante a publicação](http://sedodream.com/2012/01/08/HowToTakeYourWebAppOfflineDuringPublishing.aspx) (blog do Sayed Hashimi). Como automatizar o processo de usar um aplicativo personalizado\_offline.htm arquivo.
 - [Web de publicação de atualizações para o aplicativo offline e usechecksum](https://blogs.msdn.com/b/webdev/archive/2013/10/30/web-publishing-updates-for-app-offline-and-usechecksum.aspx) (blog de desenvolvimento da Web da Microsoft). Outra opção para automatizar o uso do aplicativo\_offline.htm arquivo.
@@ -154,7 +154,7 @@ Consulte também [certificando-se de um aplicativo está offline durante a impla
 
 - [Configurando a implantação de banco de dados no Visual Studio](https://msdn.microsoft.com/library/dd394698.aspx#dbdeployment) (MSDN). Visão geral das opções para implantar um banco de dados com um projeto web.
 - [Implantação de Web do ASP.NET usando o Visual Studio](../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md). série de tutoriais de 12 partes, mostra a implantação de banco de dados usando o provedor dbDacFx e Entity Framework Code First Migrations.
-- [Como: implantar uma Web de publicação de projeto usando um único clique no Visual Studio](https://msdn.microsoft.com/library/dd465337.aspx) (MSDN).
+- [Como: Implantar uma Web de publicação de projeto usando um único clique no Visual Studio](https://msdn.microsoft.com/library/dd465337.aspx) (MSDN).
 - [Implantar um aplicativo ASP.NET MVC 5 seguro com associação, OAuth e banco de dados SQL para um Site da Web do Azure Windows](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data). Um tutorial longo que compila e implanta um aplicativo que usa um único SQL Server do banco de dados para dados de aplicativo e de associação.
 - [Implantando um aplicativo da Web ASP.NET com o SQL Server Compact usando o Visual Studio](../web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12.md). série de tutoriais de 12 partes, mostra como implantar bancos de dados do SQL Server Compact e como migrar do SQL Server Compact para uma edição completa do SQL Server.
 
@@ -211,7 +211,7 @@ Consulte também Implantando um aplicativo da web criando e instalando um pacote
 
 ## <a name="automating-common-deployment-tasks-that-are-not-automated-out-of-the-box"></a>Automatizando tarefas comuns de implantação que não são automatizadas fora da caixa
 
-- [Implantação de Web do ASP.NET usando o Visual Studio: Implantando arquivos extras](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-extra-files.md).
+- [Implantação da Web do ASP.NET usando o Visual Studio: Implantando arquivos extras](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-extra-files.md).
 - [Definindo permissões de pasta em Publicar Web](http://sedodream.com/2011/11/08/SettingFolderPermissionsOnWebPublish.aspx) (blog do Sayed Hashimi).
 - [Como estender o arquivo de destino para incluir configurações de registro para um pacote do projeto da web](https://blogs.msdn.com/webdevtools/archive/2010/02/09/how-to-extend-target-file-to-include-registry-settings-for-web-project-package.aspx) (blog de ferramentas de desenvolvimento da Web).
 - [Estendendo a transformação XML (Web. config)](http://sedodream.com/2010/09/09/ExtendingXMLWebconfigConfigTransformation.aspx) (blog do Sayed Hashimi). Mostra como criar transformações personalizadas de XDT.
@@ -244,7 +244,7 @@ Consulte também Implantando um aplicativo da web criando e instalando um pacote
 ## <a name="troubleshooting-deployment-problems"></a>Solucionar problemas de implantação
 
 - [Solução de problemas de Windows Azure Web Sites no Visual Studio](https://docs.microsoft.com/azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio) (site do Microsoft Azure).
-- [Implantação de Web do ASP.NET usando o Visual Studio: solução de problemas](../web-forms/overview/deployment/visual-studio-web-deployment/troubleshooting.md).
+- [Implantação da Web do ASP.NET usando o Visual Studio: Solução de problemas](../web-forms/overview/deployment/visual-studio-web-deployment/troubleshooting.md).
 - [Implantar solução de problemas comuns de problemas com Web](https://www.iis.net/learn/publish/troubleshooting-web-deploy/troubleshooting-common-problems-with-web-deploy).
 - [Implantar códigos de erro de Web](https://www.iis.net/learn/publish/troubleshooting-web-deploy/web-deploy-error-codes) (IIS.net site).
 - [Perguntas Frequentes de implantação para Visual Studio e o ASP.NET Web](https://msdn.microsoft.com/library/ee942158.aspx) (MSDN).

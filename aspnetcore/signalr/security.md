@@ -1,18 +1,18 @@
 ---
 title: Considerações de segurança no SignalR do ASP.NET Core
-author: tdykstra
+author: bradygaster
 description: Saiba como usar a autenticação e autorização no SignalR do ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
 ms.date: 11/06/2018
 uid: signalr/security
-ms.openlocfilehash: f646d319cf3030fd4d769e882514da14b230bbdd
-ms.sourcegitcommit: c3fa5aded0bf76a7414047d50b8a2311d27ee1ef
+ms.openlocfilehash: 52cfac6be8e61572acdf0b19dab574b607314d97
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/08/2018
-ms.locfileid: "51276139"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836058"
 ---
 # <a name="security-considerations-in-aspnet-core-signalr"></a>Considerações de segurança no SignalR do ASP.NET Core
 
@@ -42,7 +42,7 @@ Por exemplo, a seguinte política CORS permite que um cliente de navegador do Si
 > [!NOTE]
 > O SignalR não é compatível com o recurso interno de CORS no serviço de aplicativo do Azure.
 
-## <a name="websocket-origin-restriction"></a>Restrição de origem do WebSocket
+## <a name="websocket-origin-restriction"></a>WebSocket Origin Restriction
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -52,19 +52,19 @@ As proteções fornecidas pelo CORS não se aplicam ao WebSockets. Para a restri
 
 ::: moniker range="< aspnetcore-2.2"
 
-As proteções fornecidas pelo CORS não se aplicam ao WebSockets. Navegadores fazem **não**:
+As proteções fornecidas pelo CORS não se aplicam ao WebSockets. Navegadores **não**:
 
-* Execute solicitações de simulação CORS.
-* Respeitar as restrições especificadas no `Access-Control` cabeçalhos ao fazer solicitações de WebSocket.
+* Executam solicitações de simulação de CORS.
+* Respeitam as restrições especificadas em cabeçalhos `Access-Control` ao fazer solicitações de WebSocket.
 
-No entanto, os navegadores enviam a `Origin` cabeçalho ao emitir solicitações de WebSocket. Aplicativos devem ser configurados para validar esses cabeçalhos para garantir que apenas WebSockets provenientes de origens esperadas são permitidos.
+No entanto, os navegadores enviam o cabeçalho `Origin` ao emitir solicitações de WebSocket. Os aplicativos devem ser configurados para validar esses cabeçalhos e garantir que apenas WebSockets provenientes de origens esperadas sejam permitidos.
 
 No ASP.NET Core 2.1 e posterior, validação de cabeçalho pode ser obtida usando um middleware personalizado colocado **antes de `UseSignalR`e o middleware de autenticação** em `Configure`:
 
 [!code-csharp[Main](security/sample/Startup.cs?name=snippet2)]
 
 > [!NOTE]
-> O `Origin` cabeçalho é controlado pelo cliente e, como o `Referer` cabeçalho, podem ser falsificadas. Esses cabeçalhos devem **não** ser usado como um mecanismo de autenticação.
+> O cabeçalho `Origin` é controlado pelo cliente e, como o cabeçalho `Referer`, pode ser falsificado. Esses cabeçalhos devem **não** ser usado como um mecanismo de autenticação.
 
 ::: moniker-end
 

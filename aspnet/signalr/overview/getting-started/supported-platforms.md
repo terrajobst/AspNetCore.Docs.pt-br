@@ -1,19 +1,19 @@
 ---
 uid: signalr/overview/getting-started/supported-platforms
 title: Plataformas com suporte | Microsoft Docs
-author: pfletcher
+author: bradygaster
 description: Este artigo descreve quais os clientes e servidores têm suporte pelo SignalR.
-ms.author: riande
+ms.author: bradyg
 ms.date: 04/18/2018
 ms.assetid: eac31beb-0f46-4afa-9def-e80904dea4f0
 msc.legacyurl: /signalr/overview/getting-started/supported-platforms
 msc.type: authoredcontent
-ms.openlocfilehash: e270f9a328f36854fdfb3e23b78e0b40cdda6411
-ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
+ms.openlocfilehash: 60fa74b54797efbe14ba525160b2f750a4f5a451
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53287347"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836045"
 ---
 <a name="supported-platforms"></a>Plataformas compatíveis
 ====================
@@ -113,8 +113,8 @@ Além do sistema operacional e os requisitos do .NET framework, os transportes d
 | --- | --- | --- |
 | Soquetes da Web | Windows 8 e posteriores e .NET 4.5 + | N/D |
 | Quadro para sempre | N/D | N/D |
-| Eventos enviados pelo servidor | .NET 4 + | 5+ |
-| Sondagem longa | .NET 4 + | 5+ |
+| Eventos enviados pelo servidor | .NET 4+ | 5+ |
+| Sondagem longa | .NET 4+ | 5+ |
 
 <a id="android"></a>
 
@@ -126,10 +126,10 @@ O SignalR pode ser usado em aplicativos da Windows Store e aplicativos do Window
 
 | Transporte | Windows Store / .NET | Windows Store / JavaScript | Windows Phone / IE | Windows Phone / .NET |
 | --- | --- | --- | --- | --- |
-| WebSockets | N/D | Win8 + | 8+ | N/D |
-| Quadro para sempre | N/D | Win8 + | 7.5+ | N/D |
-| Eventos enviados pelo servidor | Win8 + | N/D | N/D | 8+ |
-| Sondagem longa | Win8 + | Win8 + | 7.5+ | 8+ |
+| WebSockets | N/D | Win8+ | 8+ | N/D |
+| Quadro para sempre | N/D | Win8+ | 7.5+ | N/D |
+| Eventos enviados pelo servidor | Win8+ | N/D | N/D | 8+ |
+| Sondagem longa | Win8+ | Win8+ | 7.5+ | 8+ |
 
 <a id="updates"></a>
 

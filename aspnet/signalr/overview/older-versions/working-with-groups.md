@@ -1,23 +1,23 @@
 ---
 uid: signalr/overview/older-versions/working-with-groups
 title: Trabalhando com grupos no SignalR 1.x | Microsoft Docs
-author: pfletcher
+author: bradygaster
 description: Este tópico descreve como manter as informações de associação de grupo com a API do Hub.
-ms.author: riande
+ms.author: bradyg
 ms.date: 10/21/2013
 ms.assetid: 22929efd-68c9-4609-b76d-f8ba42fda01e
 msc.legacyurl: /signalr/overview/older-versions/working-with-groups
 msc.type: authoredcontent
-ms.openlocfilehash: 5096e7a5eb8704762a21eeb88a128d92e75ede60
-ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
+ms.openlocfilehash: e8ef7b34af4341fb97f54e2aab1d8971cce46af3
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53287479"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836149"
 ---
 <a name="working-with-groups-in-signalr-1x"></a>Trabalhando com grupos no SignalR 1.x
 ====================
-por [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
+by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
