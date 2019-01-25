@@ -1,23 +1,23 @@
 ---
 uid: signalr/overview/older-versions/signalr-1x-hubs-api-guide-javascript-client
 title: Guia de API de Hubs do SignalR 1.x – cliente JavaScript | Microsoft Docs
-author: pfletcher
+author: bradygaster
 description: Este documento fornece uma introdução ao uso da API de Hubs de SignalR versão 1.1 em clientes de JavaScript, como navegadores e a Windows Store (WinJS) applic...
-ms.author: riande
+ms.author: bradyg
 ms.date: 04/17/2013
 ms.assetid: dcd4593b-1118-418a-af71-d12ff33fb36d
 msc.legacyurl: /signalr/overview/older-versions/signalr-1x-hubs-api-guide-javascript-client
 msc.type: authoredcontent
-ms.openlocfilehash: 2d50a92cff96be5c5c60105bba6682d38f9666b6
-ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
+ms.openlocfilehash: eb40648ca06adcceaa613ba86abfcf7459369c7e
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53288086"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836747"
 ---
 <a name="signalr-1x-hubs-api-guide---javascript-client"></a>Guia de API de Hubs do SignalR 1.x – cliente JavaScript
 ====================
-por [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
+by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
