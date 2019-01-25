@@ -1,23 +1,23 @@
 ---
 uid: signalr/overview/older-versions/persistent-connection-authorization
 title: Autenticação e autorização para conexões persistentes do SignalR (SignalR 1.x) | Microsoft Docs
-author: pfletcher
+author: bradygaster
 description: Este tópico descreve como impor autorização em uma conexão persistente. Para obter informações gerais sobre como integrar a segurança em um aplicativo do SignalR,...
-ms.author: riande
+ms.author: bradyg
 ms.date: 10/21/2013
 ms.assetid: c34bc627-41af-4c21-a817-e97a19a7f252
 msc.legacyurl: /signalr/overview/older-versions/persistent-connection-authorization
 msc.type: authoredcontent
-ms.openlocfilehash: 4973cb9bd03088106fe9502e0e706c6c28d2d46d
-ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
+ms.openlocfilehash: c4a2c9b4fa05e43ade98fb521c59f8645b43ffea
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53286851"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837345"
 ---
 <a name="authentication-and-authorization-for-signalr-persistent-connections-signalr-1x"></a>Autenticação e autorização para conexões persistentes do SignalR (SignalR 1.x)
 ====================
-por [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
+by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 

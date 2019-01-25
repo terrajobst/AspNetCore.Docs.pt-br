@@ -1,17 +1,17 @@
 ---
 title: Diferenças entre o SignalR e SignalR do ASP.NET Core
-author: tdykstra
+author: bradygaster
 description: Diferenças entre o SignalR e SignalR do ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: bradyg
 ms.date: 11/14/2018
 uid: signalr/version-differences
-ms.openlocfilehash: fb10d6e62ff28128e6e9e5dcef55e44f25de8ad0
-ms.sourcegitcommit: 6548c19f345850ee22b50f7ef9fca732895d9e08
+ms.openlocfilehash: 091fc44fccf820a394e7c6f775700c85bebc9101
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53425114"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836656"
 ---
 # <a name="differences-between-aspnet-signalr-and-aspnet-core-signalr"></a>Diferenças entre o SignalR do ASP.NET e o SignalR do ASP.NET Core
 
@@ -21,9 +21,9 @@ SignalR do ASP.NET Core não é compatível com clientes ou servidores para ASP.
 
 |                      | ASP.NET SignalR | SignalR do ASP.NET Core |
 | -------------------- | --------------- | -------------------- |
-| Pacote do NuGet Server | [Microsoft.AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | [Microsoft](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) (.NET Core)<br>[Microsoft](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR/) (.NET Framework) |
-| Pacotes NuGet de cliente | [ASPNET](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft.AspNet.SignalR.JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Aspnetcore](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
-| Pacote npm de cliente | [SignalR](https://www.npmjs.com/package/signalr) | [@aspnet/signalr](https://www.npmjs.com/package/@aspnet/signalr) |
+| Pacote do NuGet Server | [Microsoft.AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) (.NET Core)<br>[Microsoft](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR/) (.NET Framework) |
+| Pacotes NuGet de cliente | [Microsoft.AspNet.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft.AspNet.SignalR.JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft.AspNetCore.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
+| Pacote npm de cliente | [signalr](https://www.npmjs.com/package/signalr) | [@aspnet/signalr](https://www.npmjs.com/package/@aspnet/signalr) |
 | Cliente de Java | [Repositório GitHub](https://github.com/SignalR/java-client) (preterido)  | Pacote do Maven [com.microsoft.signalr](https://search.maven.org/artifact/com.microsoft.signalr/signalr) |
 | Tipo de aplicativo de servidor | ASP.NET (System. Web) ou a auto-hospedagem de OWIN | ASP.NET Core |
 | Plataformas de servidor com suporte | .NET framework 4.5 ou posterior | .NET Framework 4.6.1 ou posterior<br>.NET core 2.1 ou posterior |

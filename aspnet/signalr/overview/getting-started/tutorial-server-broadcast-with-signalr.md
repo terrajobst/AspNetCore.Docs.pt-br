@@ -3,18 +3,18 @@ uid: signalr/overview/getting-started/tutorial-server-broadcast-with-signalr
 title: 'Tutorial: Transmissão de servidor com SignalR 2 | Microsoft Docs'
 author: tdykstra
 description: Este tutorial mostra como criar um aplicativo web que usa o ASP.NET SignalR 2 para fornecer funcionalidade de difusão de servidor.
-ms.author: riande
+ms.author: bradyg
 ms.date: 01/02/2019
 ms.topic: tutorial
 ms.assetid: 1568247f-60b5-4eca-96e0-e661fbb2b273
 msc.legacyurl: /signalr/overview/getting-started/tutorial-server-broadcast-with-signalr
 msc.type: authoredcontent
-ms.openlocfilehash: a6014e604613492db91b2dc6f846c3c73d938d99
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: a243c78c7d552f1c82a88c6083871fcd16538618
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54099293"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837423"
 ---
 # <a name="tutorial-server-broadcast-with-signalr-2"></a>Tutorial: Servidor de transmissão com SignalR 2
 
@@ -195,7 +195,7 @@ Nesta seção, você deve definir o código que é executado no cliente.
 
 A página HTML exibirá os dados e o arquivo JavaScript organizará os dados.
 
-#### <a name="create-stocktickerhtml"></a>Criar StockTicker.html
+#### <a name="create-stocktickerhtml"></a>Create StockTicker.html
 
 Primeiro, você adicionará o cliente HTML.
 

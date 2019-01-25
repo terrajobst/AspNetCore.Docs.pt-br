@@ -1,20 +1,20 @@
 ---
 uid: signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc
 title: 'Tutorial: Bate-papo em tempo real com SignalR 2 e MVC 5 | Microsoft Docs'
-author: pfletcher
+author: bradygaster
 description: Este tutorial mostra como usar o ASP.NET SignalR 2 para criar um aplicativo de bate-papo em tempo real. Adicionar o SignalR para um aplicativo MVC 5.
-ms.author: riande
-ms.date: 01/02/2019
+ms.author: bradyg
+ms.date: 01/22/2019
 ms.assetid: 80bfe5fb-bdfc-41fe-ac43-2132e5d69fac
 msc.legacyurl: /signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc
 msc.type: authoredcontent
 ms.topic: tutorial
-ms.openlocfilehash: eb4b7e1403f4070d65702b756bf98c5294c7fb17
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: 1b02aecc68a93dbd6373ca5304530e76c9d0b6b5
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54098598"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836994"
 ---
 # <a name="tutorial-real-time-chat-with-signalr-2-and-mvc-5"></a>Tutorial: Bate-papo em tempo real com SignalR 2 e MVC 5
 
@@ -175,6 +175,10 @@ Esse código abre uma conexão com o hub.
 > Essa abordagem garante que você estabeleça uma conexão antes de ser executado o manipulador de eventos.
 
 O código começa a conexão e, em seguida, passa a ele uma função para manipular o evento de clique no **enviar** botão na página de bate-papo.
+
+## <a name="get-the-code"></a>Obter o código
+
+[Baixe o projeto concluído](http://code.msdn.microsoft.com/Getting-Started-with-c366b2f3)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

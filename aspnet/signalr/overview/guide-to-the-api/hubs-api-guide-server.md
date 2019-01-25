@@ -1,23 +1,23 @@
 ---
 uid: signalr/overview/guide-to-the-api/hubs-api-guide-server
 title: Guia de API de Hubs do SignalR do ASP.NET – servidor (c#) | Microsoft Docs
-author: pfletcher
+author: bradygaster
 description: Este documento fornece uma introdução à programação do lado do servidor da API de Hubs de SignalR do ASP.NET para o SignalR versão 2, com exemplos de código demonstram...
-ms.author: riande
+ms.author: bradyg
 ms.date: 06/10/2014
 ms.assetid: b19913e5-cd8a-4e4b-a872-5ac7a858a934
 msc.legacyurl: /signalr/overview/guide-to-the-api/hubs-api-guide-server
 msc.type: authoredcontent
-ms.openlocfilehash: 4730c4d9f601f561cfc884e0a9c2c2d12785ae0f
-ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
+ms.openlocfilehash: a28663c8d5c679f85e863e7d0b4523a6f4dd4a1f
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53288099"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837449"
 ---
 <a name="aspnet-signalr-hubs-api-guide---server-c"></a>Guia de API de Hubs do SignalR do ASP.NET – servidor (c#)
 ====================
-por [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
+by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
@@ -104,7 +104,7 @@ Para definir a rota que os clientes usarão para se conectar ao seu Hub, chame o
 
 [!code-csharp[Main](hubs-api-guide-server/samples/sample1.cs)]
 
-Se você estiver adicionando funcionalidade SignalR para um aplicativo ASP.NET MVC, certifique-se de que a rota do SignalR é adicionada antes de outras rotas. Para obter mais informações, consulte [Tutorial: Introdução ao SignalR 2 e MVC 5](../getting-started/tutorial-getting-started-with-signalr-and-mvc.md).
+Se você estiver adicionando funcionalidade SignalR para um aplicativo ASP.NET MVC, certifique-se de que a rota do SignalR é adicionada antes de outras rotas. Para obter mais informações, confira [Tutorial: Introdução ao SignalR 2 e MVC 5](../getting-started/tutorial-getting-started-with-signalr-and-mvc.md).
 
 <a id="signalrurl"></a>
 

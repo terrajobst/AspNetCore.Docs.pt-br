@@ -1,23 +1,23 @@
 ---
 uid: signalr/overview/security/introduction-to-security
 title: Introdução à segurança do SignalR | Microsoft Docs
-author: pfletcher
+author: bradygaster
 description: Descreve os problemas de segurança, que você deve considerar ao desenvolver um aplicativo do SignalR.
-ms.author: riande
+ms.author: bradyg
 ms.date: 06/10/2014
 ms.assetid: ed562717-8591-4936-8e10-c7e63dcb570a
 msc.legacyurl: /signalr/overview/security/introduction-to-security
 msc.type: authoredcontent
-ms.openlocfilehash: 4386e08d966d32abb0510be7f0393888d85258ac
-ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
+ms.openlocfilehash: 311bfb4279b1c919fddcef2c0aed657083f9c34f
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53287919"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837319"
 ---
 <a name="introduction-to-signalr-security"></a>Introdução à segurança do SignalR
 ====================
-por [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
+by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 

@@ -1,20 +1,20 @@
 ---
 uid: signalr/overview/getting-started/tutorial-getting-started-with-signalr
 title: 'Tutorial: Bate-papo em tempo real com SignalR 2 | Microsoft Docs'
-author: pfletcher
+author: bradygaster
 description: Este tutorial mostra como usar o SignalR para criar um aplicativo de chat em tempo real. Adicionar o SignalR para um aplicativo de web ASP.NET vazio.
-ms.author: riande
-ms.date: 01/02/2019
+ms.author: bradyg
+ms.date: 01/22/2019
 ms.assetid: a8b3b778-f009-4369-85c7-e90f9878d8b4
 msc.legacyurl: /signalr/overview/getting-started/tutorial-getting-started-with-signalr
 msc.type: authoredcontent
 ms.topic: tutorial
-ms.openlocfilehash: aa015abc47bb2450e04e167c0404aaa1d119ba2c
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: 90f2c03fbda522e3a46200bc0132cc74100ce70f
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54098618"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836786"
 ---
 # <a name="tutorial-real-time-chat-with-signalr-2"></a>Tutorial: Bate-papo em tempo real com SignalR 2
 
@@ -161,6 +161,10 @@ Esse código abre uma conexão com o hub.
 > Essa abordagem garante que o código estabelece uma conexão antes de ser executado o manipulador de eventos.
 
 O código começa a conexão e, em seguida, passa a ele uma função para manipular o evento de clique no **enviar** botão na página HTML.
+
+## <a name="get-the-code"></a>Obter o código
+
+[Baixe o projeto concluído](http://code.msdn.microsoft.com/SignalR-Getting-Started-b9d18aa9)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

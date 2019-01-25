@@ -4,17 +4,17 @@ title: 'Tutorial: Introdução ao Entity Framework 6 Code First usando MVC 5 | M
 description: Esta série de tutoriais, você aprenderá como criar um aplicativo ASP.NET MVC 5 que usa o Entity Framework 6 para acesso a dados.
 author: tdykstra
 ms.author: riande
-ms.date: 01/10/2019
+ms.date: 01/22/2019
 ms.topic: tutorial
 ms.assetid: 00bc8b51-32ed-4fd3-9745-be4c2a9c1eaf
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: 5d524c981af2d9d8f44254c61631937e6f049cdb
-ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
-ms.translationtype: MT
+ms.openlocfilehash: b72a4ae1a89fd47d9c6ff63ccd45b26324508a63
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
+ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2019
-ms.locfileid: "54341700"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836175"
 ---
 # <a name="tutorial-get-started-with-entity-framework-6-code-first-using-mvc-5"></a>Tutorial: Introdução ao Entity Framework 6 Code First usando MVC 5
 
@@ -286,6 +286,11 @@ A quantidade de código, você precisava escrever em ordem para o Entity Framewo
 - Uma propriedade é interpretada como uma propriedade de chave estrangeira se ela é nomeada *&lt;nome da propriedade de navegação&gt;&lt;nome da propriedade de chave primária&gt;* (por exemplo, `StudentID` para o `Student` propriedade de navegação desde o `Student` chave primária da entidade é `ID`). Propriedades de chave estrangeira também podem ser nomeadas o mesmo simplesmente &lt;nome de propriedade de chave primária&gt; (por exemplo, `EnrollmentID` uma vez que o `Enrollment` chave primária da entidade é `EnrollmentID`).
 
 Você viu que as convenções podem ser substituídas. Por exemplo, você especificou que não devem ser pluralizados nomes de tabela, e você verá posteriormente como marcar explicitamente uma propriedade como uma propriedade de chave estrangeira.
+
+## <a name="get-the-code"></a>Obter o código
+
+[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+
 ## <a name="additional-resources"></a>Recursos adicionais
 
 Para obter mais informações sobre o EF 6, consulte estes artigos:

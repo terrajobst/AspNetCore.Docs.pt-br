@@ -3,14 +3,14 @@ title: Adicionando uma exibição a um aplicativo MVC
 author: Rick-Anderson
 description: Adicionando uma exibição a um aplicativo MVC
 ms.author: riande
-ms.date: 09/1721/2017
+ms.date: 01/23/2019
 uid: mvc/overview/getting-started/introduction/adding-a-view
-ms.openlocfilehash: 47447c82506cc0eb4dafabe272b3204f76a2edd7
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: afa7584529566ebe82a0eb3849de89bd0df064bd
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54098656"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837748"
 ---
 <a name="adding-a-view"></a>Adicionando uma exibição
 ====================
@@ -60,7 +60,7 @@ Como alternativa, execute o aplicativo e navegue até a `HelloWorld` controlador
 
 ![](adding-a-view/_static/image6.png)
 
-Parece muito bom. No entanto, observe que a barra de título do navegador mostra &quot;Index - meu aplicativo do ASP.NET "e o link grande na parte superior da página diz:"Nome do aplicativo". Dependendo de como pequenos, você faz a janela do navegador, talvez seja necessário clicar nas três barras no canto superior direito para ver o para o **página inicial**, **sobre**, **contato**, **Registrar** e **fazer logon no** links.
+Parece muito bom. No entanto, observe que a barra de título do navegador mostra "Índice – meu aplicativo ASP.NET," e o link grande na parte superior da página diz "Nome do aplicativo". Dependendo de como pequenos, você faz a janela do navegador, talvez seja necessário clicar nas três barras no canto superior direito para ver o para o **página inicial**, **sobre**, **contato**, **Registrar** e **fazer logon no** links.
 
 ## <a name="changing-views-and-layout-pages"></a>Alterando exibições e páginas de Layout
 
@@ -112,7 +112,7 @@ Nosso pouco &quot;dados&quot; (nesse caso, o &quot;Olá de nosso modelo de exibi
 
 Antes de ir para um banco de dados e falar sobre modelos, no entanto, vamos primeiro falar sobre como passar informações do controlador para um modo de exibição. As classes do controlador são invocadas em resposta a uma solicitação de URL de entrada. Uma classe de controlador é onde você escreve o código que manipula o entrada navegador solicita, recupera dados de um banco de dados e, por fim, decide qual tipo de resposta será enviada ao navegador. Modelos de exibição, em seguida, podem ser usados em um controlador para gerar e formatar uma resposta HTML para o navegador.
 
-Os controladores são responsáveis por fornecer quaisquer dados ou objetos são necessários para que um modelo de exibição renderizar uma resposta ao navegador. Uma prática recomendada: **Um modelo de exibição nunca deve executar lógica de negócios ou interagir diretamente com um banco de dados**. Em vez disso, um modelo de exibição deve trabalhar somente com os dados que são fornecidos a ela pelo controlador. Manter isso &quot;separação de preocupações&quot; ajuda a manter seu código limpo, testável e mais sustentável.
+Os controladores são responsáveis por fornecer quaisquer dados ou objetos são necessários para que um modelo de exibição renderizar uma resposta ao navegador. Uma melhor prática: **Um modelo de exibição nunca deve executar lógica de negócios ou interagir diretamente com um banco de dados**. Em vez disso, um modelo de exibição deve trabalhar somente com os dados que são fornecidos a ela pelo controlador. Manter isso &quot;separação de preocupações&quot; ajuda a manter seu código limpo, testável e mais sustentável.
 
 No momento, o `Welcome` método de ação de `HelloWorldController` classe usa um `name` e um `numTimes` parâmetro e, em seguida, gera os valores diretamente para o navegador. Em vez de fazer com que o controlador renderize a resposta como uma cadeia de caracteres, vamos alterar o controlador para usar um modelo de exibição em vez disso. O modelo de exibição gerará uma resposta dinâmica, o que significa que você precisa passar bits de dados apropriados do controlador para a exibição para gerar a resposta. Você pode fazer isso fazendo com que o controlador coloque os dados dinâmicos (parâmetros) que o modelo de exibição precisa em um `ViewBag` objeto que pode acessar o modelo de exibição.
 

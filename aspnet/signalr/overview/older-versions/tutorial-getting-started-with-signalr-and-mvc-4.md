@@ -1,23 +1,23 @@
 ---
 uid: signalr/overview/older-versions/tutorial-getting-started-with-signalr-and-mvc-4
 title: 'Tutorial: Introdução ao SignalR 1.x e MVC 4 | Microsoft Docs'
-author: pfletcher
+author: bradygaster
 description: Use o SignalR do ASP.NET e ASP.NET MVC 4 para criar um aplicativo de bate-papo em tempo real.
-ms.author: riande
+ms.author: bradyg
 ms.date: 03/29/2013
 ms.assetid: eeef9f73-6de3-49f9-b50b-9af22108f2ce
 msc.legacyurl: /signalr/overview/older-versions/tutorial-getting-started-with-signalr-and-mvc-4
 msc.type: authoredcontent
-ms.openlocfilehash: a67d05288252c17d84b1d7df5f7bcddde3c887f5
-ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
+ms.openlocfilehash: dd55ca22004b7e3899f6a8789494c842b984787f
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53287692"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837787"
 ---
 <a name="tutorial-getting-started-with-signalr-1x-and-mvc-4"></a>Tutorial: Introdução ao SignalR 1.x e MVC 4
 ====================
-por [Patrick Fletcher](https://github.com/pfletcher), [Tim Teebken](https://github.com/timlt)
+by [Patrick Fletcher](https://github.com/pfletcher), [Tim Teebken](https://github.com/timlt)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 

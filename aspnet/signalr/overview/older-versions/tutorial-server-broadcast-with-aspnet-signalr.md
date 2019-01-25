@@ -1,23 +1,23 @@
 ---
 uid: signalr/overview/older-versions/tutorial-server-broadcast-with-aspnet-signalr
 title: 'Tutorial: Transmissão de servidor com SignalR do ASP.NET 1.x | Microsoft Docs'
-author: pfletcher
+author: bradygaster
 description: Este tutorial mostra como criar um aplicativo web que usa o SignalR do ASP.NET para fornecer funcionalidade de difusão de servidor. Significa que communic de transmissão de servidor...
-ms.author: riande
+ms.author: bradyg
 ms.date: 04/10/2013
 ms.assetid: ab7b2554-956a-4f6d-b2a0-4ae0c62e8580
 msc.legacyurl: /signalr/overview/older-versions/tutorial-server-broadcast-with-aspnet-signalr
 msc.type: authoredcontent
-ms.openlocfilehash: d5c09f6493c4dedb4fc2ecbf9055dd014ede71f2
-ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
+ms.openlocfilehash: 258a55bf72c4b3425d001f478620fa9651952b3f
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53288040"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837462"
 ---
 <a name="tutorial-server-broadcast-with-aspnet-signalr-1x"></a>Tutorial: Transmissão de servidor com SignalR do ASP.NET 1.x
 ====================
-por [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
+by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)
 
 [!INCLUDE [Consider ASP.NET Core SignalR](~/includes/signalr/signalr-version-disambiguation.md)]
 
@@ -118,7 +118,7 @@ Você precisará apenas uma instância da classe StockTicker para ser executado 
 3. Nomeie a nova classe *StockTickerHub.cs*e, em seguida, clique em **Add**.
 
     ![Adicionar StockTickerHub.cs](tutorial-server-broadcast-with-aspnet-signalr/_static/image5.png)
-4. Substitua o código de modelo pelo código a seguir:
+4. Substitua o código do modelo pelo seguinte código:
 
     [!code-csharp[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample3.cs)]
 
@@ -208,7 +208,7 @@ Agora você concluiu a configuração de código do servidor. Na próxima seçã
 ## <a name="set-up-the-client-code"></a>Configure o código de cliente
 
 1. Criar um novo arquivo HTML na pasta do projeto e denomine *StockTicker.html*.
-2. Substitua o código de modelo pelo código a seguir:
+2. Substitua o código do modelo pelo seguinte código:
 
     [!code-html[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample13.html)]
 
@@ -219,7 +219,7 @@ Agora você concluiu a configuração de código do servidor. Na próxima seçã
    > Certifique-se de que o arquivo JavaScript faz referência na *StockTicker.html* estão corretos. Ou seja, certifique-se de que a versão do jQuery em sua marca de script (1.8.2 no exemplo) é a mesma versão do jQuery em seu projeto *Scripts* pasta e certifique-se de que a versão do SignalR em sua marca de script é o mesmo que o SignalR versão em seu projeto *Scripts* pasta. Altere os nomes de arquivo nas marcas de script, se necessário.
 4. Na **Gerenciador de soluções**, clique com botão direito *StockTicker.html*e, em seguida, clique em **Set as Start Page**.
 5. Crie um novo arquivo JavaScript na pasta do projeto e denomine *StockTicker.js*...
-6. Substitua o código de modelo pelo código a seguir:
+6. Substitua o código do modelo pelo seguinte código:
 
     [!code-javascript[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample14.js)]
 

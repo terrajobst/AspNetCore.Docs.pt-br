@@ -1,20 +1,20 @@
 ---
 uid: signalr/overview/getting-started/tutorial-high-frequency-realtime-with-signalr
 title: 'Tutorial: Criar o aplicativo em tempo real de alta frequência com SignalR 2 | Microsoft Docs'
-author: pfletcher
+author: bradygaster
 description: Este tutorial mostra como criar um aplicativo web que usa o SignalR do ASP.NET para fornecer funcionalidade de mensagens de alta frequência.
-ms.author: riande
-ms.date: 01/02/2019
+ms.author: bradyg
+ms.date: 01/22/2019
 ms.assetid: 9f969dda-78ea-4329-b1e3-e51c02210a2b
 msc.legacyurl: /signalr/overview/getting-started/tutorial-high-frequency-realtime-with-signalr
 msc.type: authoredcontent
 ms.topic: tutorial
-ms.openlocfilehash: 85503db0b41be6f87136627667d6dd71f0d4f609
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: 44aaa2b0c059de310e963f642fa56c2f00a7e443
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54098584"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836721"
 ---
 # <a name="tutorial-create-high-frequency-real-time-app-with-signalr-2"></a>Tutorial: Criar o aplicativo em tempo real de alta frequência com SignalR 2
 
@@ -223,6 +223,10 @@ O aplicativo está quase terminando, mas poderíamos criar uma melhoria de mais.
 A movimentação da forma em outra janela aparece menos brusco. O aplicativo interpola seu movimento ao longo do tempo em vez de ser definida uma vez por mensagem de entrada.
 
 Esse código move a forma do local antigo para o novo. O servidor fornece a posição da forma ao longo do intervalo de animação. Nesse caso, que é 100 milissegundos. O aplicativo limpa qualquer animação anterior em execução na forma antes de inicia a nova animação.
+
+## <a name="get-the-code"></a>Obter o código
+
+[Baixe o projeto concluído](http://code.msdn.microsoft.com/SignalR-20-MoveShape-Demo-6285b83a)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

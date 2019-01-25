@@ -1,18 +1,18 @@
 ---
 title: Redis backplane de expansão do SignalR do ASP.NET Core
-author: tdykstra
+author: bradygaster
 description: Saiba como configurar um backplane de Redis para habilitar a escala horizontal para um aplicativo do SignalR do ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/28/2018
 uid: signalr/redis-backplane
-ms.openlocfilehash: fde7f08ae2310b0b9bf9b7fe25a1dfc4a568adb6
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: c02d8cd5fb3b6edbb21be4889da2e880099b731b
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54099349"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837436"
 ---
 # <a name="set-up-a-redis-backplane-for-aspnet-core-signalr-scale-out"></a>Configurar um backplane de Redis para expansão do SignalR do ASP.NET Core
 

@@ -1,19 +1,19 @@
 ---
 uid: signalr/overview/getting-started/real-time-web-applications-with-signalr
 title: 'Laboratório prático: Aplicativos Web em tempo real com SignalR | Microsoft Docs'
-author: rick-anderson
+author: bradygaster
 description: A capacidade de conteúdo por push do servidor para os clientes conectados conforme ela ocorre em tempo real de recursos de aplicativos da Web em tempo real. Para desenvolvedores do ASP.NET, ASP...
-ms.author: riande
+ms.author: bradyg
 ms.date: 07/16/2014
 ms.assetid: ba07958c-42e1-4da0-81db-ba6925ed6db0
 msc.legacyurl: /signalr/overview/getting-started/real-time-web-applications-with-signalr
 msc.type: authoredcontent
-ms.openlocfilehash: de2f2349fc284e167bd8227ae55da79b9f1f4549
-ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
+ms.openlocfilehash: d4998c8b739b4b1a06699a17464a7399a87a8595
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53287995"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837501"
 ---
 <a name="hands-on-lab-real-time-web-applications-with-signalr"></a>Laboratório prático: Aplicativos Web em tempo real com SignalR
 ====================
@@ -100,7 +100,7 @@ Embora o bate-papo geralmente é usado como um exemplo, você pode fazer um todo
 
 Dá suporte ao SignalR **por push** ou **difusão** funcionalidade; ele lida com gerenciamento de conexão automaticamente. No clássicas conexões de HTTP para comunicação cliente-servidor, conexão for restabelecida para cada solicitação, mas o SignalR fornece uma conexão persistente entre o cliente e servidor. No SignalR que chama o código do servidor para um código de cliente no navegador usando chamadas de procedimento remoto (RPC), em vez do modelo de solicitação-resposta conhecemos hoje.
 
-Neste exercício, você irá configurar o aplicativo **Geek Quiz** para usar o SignalR para exibir o painel de estatísticas com as métricas atualizadas sem a necessidade de atualizar a página inteira.
+Neste exercício, você irá configurar o **Pau teste** aplicativo para usar o SignalR para exibir o painel de estatísticas com as métricas atualizadas sem a necessidade de atualizar a página inteira.
 
 <a id="Ex1Task1"></a>
 #### <a name="task-1--exploring-the-geek-quiz-statistics-page"></a>Tarefa 1 – Explorando a página de estatísticas de teste Geek
@@ -147,7 +147,7 @@ Nesta tarefa, você percorrer o aplicativo e verificar como a página de estatí
 10. Volte para o Visual Studio e parar a depuração.
 
 <a id="Ex1Task2"></a>
-#### <a name="task-2--adding-signalr-to-geek-quiz-to-show-online-charts"></a>Tarefa 2 – adicionando SignalR para Geek Quiz para mostrar gráficos Online
+#### <a name="task-2--adding-signalr-to-geek-quiz-to-show-online-charts"></a>Tarefa 2 – adicionando SignalR para teste de Pau para mostrar gráficos Online
 
 Nesta tarefa, você adicionar o SignalR para a solução e enviar atualizações para os clientes automaticamente quando uma nova resposta é enviada ao servidor.
 
@@ -277,30 +277,30 @@ Para obter mais informações sobre como funciona o backplane SignalR, leia esta
 > - [Em tempo real de alta frequência](tutorial-high-frequency-realtime-with-signalr.md) (por exemplo, jogos em tempo real): Um backplane não é recomendado para este cenário.
 
 
-Neste exercício, você usará **SQL Server** para distribuir mensagens entre o aplicativo **Geek Quiz**. Você executará essas tarefas em um computador de teste único para aprender a definir a configuração, mas para obter o efeito completo, você precisará implantar o aplicativo do SignalR em dois ou mais servidores. Você também deve instalar o SQL Server em um dos servidores, ou em um servidor dedicado separado.
+Neste exercício, você usará **SQL Server** para distribuir mensagens entre o **Pau teste** aplicativo. Você executará essas tarefas em um computador de teste único para aprender a definir a configuração, mas para obter o efeito completo, você precisará implantar o aplicativo do SignalR em dois ou mais servidores. Você também deve instalar o SQL Server em um dos servidores, ou em um servidor dedicado separado.
 
 ![Escale horizontalmente usando o diagrama de SQL Server](real-time-web-applications-with-signalr/_static/image15.png)
 
 <a id="Ex2Task1"></a>
 #### <a name="task-1---understanding-the-scenario"></a>Tarefa 1: Noções básicas sobre o cenário
 
-Nesta tarefa, você executará 2 instâncias de **Geek Quiz** simular IIS de várias instâncias no seu computador local. Nesse cenário, ao responder às perguntas de desafios em um aplicativo, a atualização não será notificada na página de estatísticas da segunda instância. Essa simulação é semelhante a um ambiente onde o aplicativo é implantado em várias instâncias e usando um balanceador de carga para se comunicar com eles.
+Nesta tarefa, você executará 2 instâncias de **Pau teste** simular IIS de várias instâncias no seu computador local. Nesse cenário, ao responder às perguntas de desafios em um aplicativo, a atualização não será notificada na página de estatísticas da segunda instância. Essa simulação é semelhante a um ambiente onde o aplicativo é implantado em várias instâncias e usando um balanceador de carga para se comunicar com eles.
 
 1. Abra o **Begin.sln** solução localizada na **origem/o Ex2-ScalingOutWithSQLServer/início** pasta. Uma vez carregado, você perceberá na **Gerenciador de servidores** que a solução tem dois projetos com idênticos, mas diferentes nomes de estruturas. Isso será simular que executa duas instâncias do mesmo aplicativo em seu computador local.
 
-    ![Começar a solução de simulação de 2 instâncias de Geek Quiz](real-time-web-applications-with-signalr/_static/image16.png "começar a solução de simulação de 2 instâncias de Geek Quiz")
+    ![Começar a solução de simulação de 2 instâncias de teste de Pau](real-time-web-applications-with-signalr/_static/image16.png "começar a solução de simulação de 2 instâncias de teste de pau")
 
-    *Começar a solução de simulação de 2 instâncias de Geek Quiz*
+    *Começar a solução de simulação de 2 instâncias de teste de pau*
 2. Abra a página de propriedades da solução clicando duas vezes no nó da solução e selecionando **propriedades**. Sob **projeto de inicialização**, selecione **vários projetos de inicialização** e altere a **ação** valor para ambos os projetos para *iniciar*.
 
     ![Iniciando vários projetos](real-time-web-applications-with-signalr/_static/image17.png "iniciando vários projetos")
 
     *Iniciando vários projetos*
-3. Pressione **F5** para executar a solução. O aplicativo será iniciado de duas instâncias de **Geek Quiz** em portas diferentes, simulando várias instâncias do mesmo aplicativo. Fixe um dos navegadores à esquerda e o outro à direita da tela. Faça logon com suas credenciais ou registre um novo usuário. Depois de conectado, mantenha a página de desafio à esquerda e vá para o **estatísticas** página no navegador à direita.
+3. Pressione **F5** para executar a solução. O aplicativo será iniciado de duas instâncias de **Pau teste** em portas diferentes, simulando várias instâncias do mesmo aplicativo. Fixe um dos navegadores à esquerda e o outro à direita da tela. Faça logon com suas credenciais ou registre um novo usuário. Depois de conectado, mantenha a página de desafio à esquerda e vá para o **estatísticas** página no navegador à direita.
 
-    ![Geek Quiz lado a lado](real-time-web-applications-with-signalr/_static/image18.png)
+    ![Teste de Pau lado a lado](real-time-web-applications-with-signalr/_static/image18.png)
 
-    *Geek Quiz lado a lado*
+    *Teste de Pau lado a lado*
 
     ![Teste de Geek em portas diferentes](real-time-web-applications-with-signalr/_static/image19.png)
 
@@ -311,7 +311,7 @@ Nesta tarefa, você executará 2 instâncias de **Geek Quiz** simular IIS de vá
 <a id="Ex2Task2"></a>
 #### <a name="task-2--creating-the-sql-server-backplane"></a>Tarefa 2 – criar o Backplane do SQL Server
 
-Nesta tarefa, você criará um banco de dados que servirá como um backplane para o aplicativo **Geek Quiz**. Você usará **Pesquisador de objetos do SQL Server** procurar seu servidor e inicializar o banco de dados. Além disso, você habilitará o **Service Broker**.
+Nesta tarefa, você criará um banco de dados que servirá como um backplane para o **Pau teste** aplicativo. Você usará **Pesquisador de objetos do SQL Server** procurar seu servidor e inicializar o banco de dados. Além disso, você habilitará o **Service Broker**.
 
 1. Na **Visual Studio**, abra menu **exibição** e selecione **Pesquisador de objetos do SQL Server**.
 2. Conectar-se à instância do LocalDB clicando com o **SQL Server** nó e selecionando **adicionar SQL Server...**  opção.
@@ -363,7 +363,7 @@ Nesta tarefa, você criará um banco de dados que servirá como um backplane par
 <a id="Ex2Task3"></a>
 #### <a name="task-3--configuring-the-signalr-application"></a>Tarefa 3 – configurar o aplicativo de SignalR
 
-Nesta tarefa, você configurará **Geek Quiz** para se conectar ao backplane do SQL Server. Primeiro, você irá adicionar o **SignalR.SqlServer** pacote NuGet e a conexão do conjunto de cadeia de caracteres para seu banco de dados do backplane.
+Nesta tarefa, você configurará **Pau teste** para se conectar ao backplane do SQL Server. Primeiro, você irá adicionar o **SignalR.SqlServer** pacote NuGet e a conexão do conjunto de cadeia de caracteres para seu banco de dados do backplane.
 
 1. Abra o **Package Manager Console** de **ferramentas** > **NuGet Package Manager**. Certifique-se de que **GeekQuiz** projeto for selecionado na **projeto padrão** lista suspensa. Digite o seguinte comando para instalar o **Microsoft.AspNet.SignalR.SqlServer** pacote do NuGet.
 
@@ -375,7 +375,7 @@ Nesta tarefa, você configurará **Geek Quiz** para se conectar ao backplane do 
 
     [!code-csharp[Main](real-time-web-applications-with-signalr/samples/sample14.cs)]
 4. Agora que ambos os projetos são configurados para usar o backplane do SQL Server, pressione **F5** executá-los simultaneamente.
-5. Novamente, **Visual Studio** iniciará duas instâncias do **Geek Quiz** em portas diferentes. Fixar um dos navegadores à esquerda e o outro à direita da tela e faça logon com suas credenciais. Mantenha a página de desafio à esquerda e vá para **estatísticas** pagein navegador à direita.
+5. Novamente, **Visual Studio** iniciará duas instâncias do **Pau teste** em portas diferentes. Fixar um dos navegadores à esquerda e o outro à direita da tela e faça logon com suas credenciais. Mantenha a página de desafio à esquerda e vá para **estatísticas** pagein navegador à direita.
 6. Começar a responder às perguntas no navegador à esquerda. Neste momento, o **estatísticas** página é atualizada, graças ao backplane. Alternar entre aplicativos (**estatísticas** agora está à esquerda, e **Trívia** está à direita) e repita o teste para validar se ele está funcionando para ambas as instâncias. Backplane serve como uma *cache compartilhado do* de mensagens para cada servidor conectado e cada servidor armazena as mensagens em seu próprio cache local para distribuir aos clientes conectados.
 7. Volte para o Visual Studio e parar a depuração.
 8. O componente de backplane do SQL Server gera automaticamente as tabelas necessárias no banco de dados especificado. No **Pesquisador de objetos do SQL Server** painel, abra o banco de dados que você criou para o backplane (por exemplo: SignalR) e expanda suas tabelas. Você deve ver as tabelas a seguir:

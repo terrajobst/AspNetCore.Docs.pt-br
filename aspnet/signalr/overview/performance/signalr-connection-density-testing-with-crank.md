@@ -1,19 +1,19 @@
 ---
 uid: signalr/overview/performance/signalr-connection-density-testing-with-crank
 title: Densidade de Conexão do SignalR testes com Crank | Microsoft Docs
-author: Rick-Anderson
+author: bradygaster
 description: Densidade de Conexão do SignalR testes com Crank
-ms.author: riande
+ms.author: bradyg
 ms.date: 02/22/2015
 ms.assetid: 148d9ca7-1af1-44b6-a9fb-91e261b9b463
 msc.legacyurl: /signalr/overview/performance/signalr-connection-density-testing-with-crank
 msc.type: authoredcontent
-ms.openlocfilehash: 308fed51953b085506488c5e0dda1ced9f4d09fb
-ms.sourcegitcommit: 74e3be25ea37b5fc8b4b433b0b872547b4b99186
+ms.openlocfilehash: 40c9764f0c47b83df8300553b4b290429937345c
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53287555"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836539"
 ---
 <a name="signalr-connection-density-testing-with-crank"></a>Densidade de Conexão do SignalR testes com Crank
 ====================
@@ -46,13 +46,13 @@ Depois que você baixou e criou a base de código e contadores de desempenho ins
 
 As opções disponíveis para a ferramenta manivela incluem:
 
-- **/?** : Mostra a tela de Ajuda. As opções disponíveis são exibidas também se o **Url** parâmetro for omitido.
-- **/ Url**: A URL para conexões do SignalR. Este parâmetro é necessário. Para um aplicativo de SignalR usando o mapeamento padrão, o caminho será encerrada em "/ signalr".
+- **/?**: Mostra a tela de Ajuda. As opções disponíveis são exibidas também se o **Url** parâmetro for omitido.
+- **/Url**: A URL para conexões do SignalR. Este parâmetro é necessário. Para um aplicativo de SignalR usando o mapeamento padrão, o caminho será encerrada em "/ signalr".
 - **/ Transporte**: O nome do transporte usado. O padrão é `auto`, que seleciona o melhor protocolo disponível. As opções incluem `WebSockets`, `ServerSentEvents`, e `LongPolling` (`ForeverFrame` não é uma opção para manivela, desde que o cliente do .NET em vez do Internet Explorer é usado). Para obter mais informações sobre como o SignalR seleciona transportes, consulte [transportes e Fallbacks](../getting-started/introduction-to-signalr.md#transports).
-- **/ BatchSize**: O número de clientes adicionados em cada lote. O padrão é 50.
-- **/ ConnectInterval**: O intervalo em milissegundos entre a adição de conexões. O padrão é 500.
+- **/BatchSize**: O número de clientes adicionados em cada lote. O padrão é 50.
+- **/ConnectInterval**: O intervalo em milissegundos entre a adição de conexões. O padrão é 500.
 - **/ Conexões**: O número de conexões usado para o aplicativo de teste de carga. O padrão é 100.000.
-- **/ ConnectTimeout**: O tempo limite em segundos antes de anular o teste. O padrão é 300.
+- **/ConnectTimeout**: O tempo limite em segundos antes de anular o teste. O padrão é 300.
 - **MinServerMBytes**: Os megabytes mínima do servidor para alcançar. O padrão é 500.
 - **SendBytes**: O tamanho da carga enviada para o servidor em bytes. O padrão é 0.
 - **SendInterval**: O atraso em milissegundos entre as mensagens para o servidor. O padrão é 500.

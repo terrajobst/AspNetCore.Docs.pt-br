@@ -1,18 +1,18 @@
 ---
 title: Configuração do ASP.NET SignalR Core
-author: tdykstra
+author: bradygaster
 description: Saiba como configurar aplicativos do SignalR do ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: bradyg
 ms.custom: mvc
 ms.date: 09/06/2018
 uid: signalr/configuration
-ms.openlocfilehash: 855446003ae9d994854d4d8bb7d0f542a22734e4
-ms.sourcegitcommit: f43f430a166a7ec137fcad12ded0372747227498
+ms.openlocfilehash: bb18ba242584afa7181dcc19a5295f86996aeaa3
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "49391096"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837514"
 ---
 # <a name="aspnet-core-signalr-configuration"></a>Configuração do ASP.NET SignalR Core
 
