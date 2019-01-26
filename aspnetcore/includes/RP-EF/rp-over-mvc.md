@@ -5,6 +5,3 @@ Este tutorial ensina a usar o ASP.NET Core MVC e o Entity Framework Core com con
 * Usa consultas mais eficientes.
 * É mais atual com a API mais recente.
 * Aborda mais recursos.
-* É a abordagem preferencial para o desenvolvimento de novos aplicativos.
-
-Se você escolher este tutorial em vez da versão [Páginas do Razor](xref:data/ef-rp/intro), deixe uma observação explicando o motivo neste [problema do GitHub](https://github.com/aspnet/Docs/issues/6146).
