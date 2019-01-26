@@ -5,12 +5,12 @@ description: Descubra como habilitar a geração de código QR para aplicativos 
 ms.author: riande
 ms.date: 08/14/2018
 uid: security/authentication/identity-enable-qrcodes
-ms.openlocfilehash: 437f354f71128a98bae9abdced291e04efc9f48e
-ms.sourcegitcommit: fc7eb4243188950ae1f1b52669edc007e9d0798d
+ms.openlocfilehash: cf99cc21a7a1bb4d01c7cc092106d23375a1a76f
+ms.sourcegitcommit: ca5f03210bedc61c6639a734ae5674bfe095dee8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51225376"
+ms.lasthandoff: 01/26/2019
+ms.locfileid: "55073121"
 ---
 # <a name="enable-qr-code-generation-for-totp-authenticator-apps-in-aspnet-core"></a>Habilitar a geração de código QR TOTP para aplicativos de autenticador no ASP.NET Core
 
@@ -25,6 +25,8 @@ Códigos QR exige o ASP.NET Core 2.0 ou posterior.
 ASP.NET Core é fornecido com suporte para aplicativos de autenticador para autenticação individual. Dois aplicativos de autenticador 2FA (autenticação) fator, usando uma baseada em tempo avulso senha algoritmo TOTP (), são o setor de abordagem 2fa recomendado. 2FA usar TOTP é preferencial para SMS 2FA. Um aplicativo autenticador fornece um código de 6 a 8 dígitos que os usuários devem inserir depois de confirmar seu nome de usuário e senha. Normalmente, um aplicativo autenticador é instalado em um Smartphone.
 
 Os modelos de aplicativo web ASP.NET Core autenticadores de suporte, mas não fornecem suporte para a geração de QRCode. Geradores de QRCode facilitam a configuração do 2FA. Este documento o orientará durante a adição [código QR](https://wikipedia.org/wiki/QR_code) geração para a página de configuração 2FA.
+
+Autenticação de dois fatores não acontece usando um provedor de autenticação externa, como [Google](xref:security/authentication/google-logins) ou [Facebook](xref:security/authentication/facebook-logins). Logons externos são protegidos por qualquer mecanismo fornece o provedor de logon externo. Considere, por exemplo, o [Microsoft](xref:security/authentication/microsoft-logins) provedor de autenticação requer uma chave de hardware ou outra abordagem 2FA. Se os modelos padrão imposta 2FA "local", em seguida, os usuários seriam necessária para atender às duas abordagens 2FA, que não é um cenário de uso geral.
 
 ## <a name="adding-qr-codes-to-the-2fa-configuration-page"></a>Adicionar códigos QR para a página de configuração 2FA
 

@@ -1,60 +1,63 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/generating-views
-title: 'Banco de dados do EF primeiro com o ASP.NET MVC: gerando exibições | Microsoft Docs'
+title: 'Tutorial: Gerar exibições para Database First do EF com o aplicativo ASP.NET MVC'
+description: Este artigo se concentra no uso de Scaffolding do ASP.NET para gerar os controladores e modos de exibição.
 author: Rick-Anderson
-description: Usando o MVC, Entity Framework e o Scaffolding do ASP.NET, você pode criar um aplicativo web que fornece uma interface para um banco de dados existente. Esta série de tutoriais...
 ms.author: riande
-ms.date: 12/29/2014
+ms.date: 01/23/2019
+ms.topic: tutorial
 ms.assetid: 669367cf-8e30-4eb6-821d-10a7d9bb906c
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/generating-views
 msc.type: authoredcontent
-ms.openlocfilehash: 7d925573dd4cdf5c1a36e51f312e18093bd35043
-ms.sourcegitcommit: 2d3e5422d530203efdaf2014d1d7df31f88d08d0
+ms.openlocfilehash: e1f6646cdf10d293268b92f44b018709e70c0f86
+ms.sourcegitcommit: d5223cf6a2cf80b4f5dc54169b0e376d493d2d3a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/05/2018
-ms.locfileid: "51021073"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54889776"
 ---
-<a name="ef-database-first-with-aspnet-mvc-generating-views"></a>Banco de dados do EF primeiro com o ASP.NET MVC: gerando exibições
-====================
-por [Tom FitzMacken](https://github.com/tfitzmac)
+# <a name="tutorial-generate-views-for-ef-database-first-with-aspnet-mvc-app"></a>Tutorial: Gerar exibições para Database First do EF com o aplicativo ASP.NET MVC
 
-> Usando o MVC, Entity Framework e o Scaffolding do ASP.NET, você pode criar um aplicativo web que fornece uma interface para um banco de dados existente. Esta série de tutoriais mostra como automaticamente gerar um código que permite aos usuários exibir, editar, criar e excluir dados que residem em uma tabela de banco de dados. O código gerado corresponde às colunas na tabela de banco de dados.
-> 
-> Esta parte da série se concentra no uso de Scaffolding do ASP.NET para gerar os controladores e modos de exibição.
+Usando o MVC, Entity Framework e o Scaffolding do ASP.NET, você pode criar um aplicativo web que fornece uma interface para um banco de dados existente. Esta série de tutoriais mostra como automaticamente gerar um código que permite aos usuários exibir, editar, criar e excluir dados que residem em uma tabela de banco de dados. O código gerado corresponde às colunas na tabela de banco de dados.
 
+Este artigo se concentra no uso de Scaffolding do ASP.NET para gerar os controladores e modos de exibição.
+
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Adicionar scaffold
+> * Adicionar links às novas exibições
+> * Mostrar exibições de aluno
+> * Mostrar exibições de registro
+
+## <a name="prerequisite"></a>Pré-requisito
+
+* [Criar a web application e modelos de dados](creating-the-web-application.md)
 
 ## <a name="add-scaffold"></a>Adicionar scaffold
 
 Você está pronto para gerar o código que irá fornecer operações de dados padrão para as classes de modelo. Adicione o código adicionando um item de scaffold. Há muitas opções para o tipo de scaffolding que você pode adicionar; Neste tutorial, o scaffold incluirá um controlador e exibições que correspondem aos modelos de aluno e registro que você criou na seção anterior.
 
-Para manter a consistência em seu projeto, você adicionará o novo controlador ao existente **controladores** pasta. Clique com botão direito do **controladores** pasta e selecione **Add** – **New Scaffolded Item**.
-
-![Adicionar scaffold](generating-views/_static/image1.png)
+Para manter a consistência em seu projeto, você adicionará o novo controlador ao existente **controladores** pasta. Clique com botão direito do **controladores** pasta e selecione **Add** > **New Scaffolded Item**.
 
 Selecione o **controlador MVC 5 com modos de exibição usando o Entity Framework** opção. Esta opção irá gerar o controlador e exibições para atualizar, excluir, criando e exibindo os dados em seu modelo.
 
 ![Adicionar controlador mvc](generating-views/_static/image2.png)
 
-Selecione **aluno** para a classe de modelo e selecione o **ContosoUniversityEntities** para a classe de contexto. Mantenha o nome do controlador como **StudentsController**,
-
-![Especifique o controlador](generating-views/_static/image3.png)
+Selecione **aluno (ContosoSite.Models)** para a classe de modelo e selecione o **ContosoUniversityDataEntities (ContosoSite.Models)** para a classe de contexto. Mantenha o nome do controlador como **StudentsController**.
 
 Clique em **Adicionar**.
 
 Se você receber um erro, pode ser porque você não tiver criado o projeto na seção anterior. Nesse caso, tente compilar o projeto e, em seguida, adicione o item com Scaffold novamente.
 
-Após a conclusão do processo de geração de código, você verá um novo controlador e exibições em seu projeto.
+Após a conclusão do processo de geração de código, você verá um novo controlador e exibições em seu projeto **controladores** e **exibições** > **alunos** pastas .
 
-![Mostrar modos de exibição](generating-views/_static/image4.png)
 
-Execute as mesmas etapas novamente, mas adicionar um scaffold para a classe de registro. Quando terminar, você deve ter uma **EnrollmentsController.cs** arquivo e uma pasta sob **exibições** denominada **registros** com Create, Delete, detalhes, editar e índice Modos de exibição.
-
-![Mostrar modos de exibição](generating-views/_static/image5.png)
+Execute as mesmas etapas novamente, mas adicionar um scaffold para o **registro** classe. Quando terminar, você tem um **EnrollmentsController.cs** arquivo e uma pasta sob **exibições** denominada **registros** com as exibições de criar, excluir, detalhes, editar e índice.
 
 ## <a name="add-links-to-new-views"></a>Adicionar links às novas exibições
 
-Para tornar mais fácil de navegar para seus novos modos de exibição, você pode adicionar alguns dos hiperlinks para as exibições de índice para estudantes e registros. Abra o arquivo no **Views/Home/Index.cshtml**, que é a home page do seu site. Adicione o código a seguir o jumbotron.
+Para tornar mais fácil de navegar para seus novos modos de exibição, você pode adicionar alguns dos hiperlinks para as exibições de índice para estudantes e registros. Abra o arquivo no **modos de exibição** > **Home** > *index. cshtml*, que é a home page do seu site. Adicione o código a seguir o jumbotron.
 
 [!code-cshtml[Main](generating-views/samples/sample1.cshtml)]
 
@@ -64,31 +67,15 @@ Para o método ActionLink, o primeiro parâmetro é o texto a ser exibido no lin
 
 Você verificará que o código adicionado ao seu projeto corretamente exibe uma lista dos alunos e permite aos usuários editar, criar ou excluir os registros de alunos no banco de dados.
 
-Clique com botão direito do **Views/Home/Index.cshtml** do arquivo e selecione **exibir no navegador**. Nessa página, clique no link para obter a lista de alunos.
+Com o botão direito do **modos de exibição** > **Home** > *index. cshtml* arquivo e selecione **exibir no navegador**. Na home page do aplicativo, selecione **lista de alunos**.
 
 ![](generating-views/_static/image6.png)
 
-Nessa página, observe a lista de alunos e links para modificar esses dados.
+Sobre o **índice** página, observe a lista de alunos e links para modificar esses dados. Selecione o **criar novo** vincular e fornecer alguns valores para um novo aluno. Clique em **criar**e observe o novo aluno é adicionado à sua lista.
 
-![lista de alunos](generating-views/_static/image7.png)
-
-Clique o **criar novo** vincular e fornecer alguns valores para um novo aluno.
-
-![Criar novo aluno](generating-views/_static/image8.png)
-
-Clique em **criar**e observe o novo aluno é adicionado à sua lista.
-
-![lista com o novo aluno](generating-views/_static/image9.png)
-
-Selecione o **editar** link e alterar alguns dos valores de um aluno.
-
-![Editar aluno](generating-views/_static/image10.png)
-
-Clique em **salvar**e observe o registro de aluno foi alterado.
+Volta a **índice** página, selecione o **editar** link e alterar alguns dos valores de um aluno. Clique em **salvar**e observe o registro de aluno foi alterado.
 
 Por fim, selecione o **exclua** vincular e confirme que você deseja excluir o registro clicando o **excluir** botão.
-
-![Excluir aluno](generating-views/_static/image11.png)
 
 Sem escrever nenhum código, você adicionou as exibições que executam operações comuns nos dados na tabela aluno.
 
@@ -96,16 +83,24 @@ Você deve ter notado que o rótulo de texto para um campo se baseia na propried
 
 ## <a name="display-enrollment-views"></a>Mostrar exibições de registro
 
-Seu banco de dados inclui uma relação um-para-muitos entre as tabelas Student e registro e uma relação um-para-muitos entre as tabelas de registro e curso. Os modos de exibição para o registro corretamente lidar com essas relações. Navegue até a home page do seu site e selecione o **lista de registros** link e, em seguida, o **criar novo** link. O modo de exibição exibe um formulário para criar um novo registro de registro. Em particular, observe que o formulário contém duas listas suspensas que são preenchidas com valores das tabelas relacionadas.
+Seu banco de dados inclui uma relação um-para-muitos entre as tabelas Student e registro e uma relação um-para-muitos entre as tabelas de registro e curso. Os modos de exibição para o registro corretamente lidar com essas relações. Navegue até a home page do seu site e selecione o **lista de registros** link e, em seguida, o **criar novo** link.
 
-![Criar registro](generating-views/_static/image12.png)
+O modo de exibição exibe um formulário para criar um novo registro de registro. Em particular, observe que o formulário contém um **CourseID** lista suspensa e uma **StudentID** lista suspensa. Ambos são preenchidas com valores das tabelas relacionadas.
 
-Além disso, a validação dos valores fornecidos é aplicada automaticamente com base no tipo de dados do campo. Nível empresarial requer um número, portanto, uma mensagem de erro será exibida se você tentar fornecer um valor incompatível.
-
-![mensagem de validação](generating-views/_static/image13.png)
+Além disso, a validação dos valores fornecidos é aplicada automaticamente com base no tipo de dados do campo. **Nível empresarial** requer um número, portanto, uma mensagem de erro será exibida se você tentar fornecer um valor incompatível: *O campo de nível empresarial deve ser um número.*
 
 Você verificou que os modos de exibição gerados automaticamente permitem que os usuários trabalhar com os dados no banco de dados. No próximo tutorial desta série, você irá atualizar o banco de dados e faça as alterações correspondentes no aplicativo web.
 
-> [!div class="step-by-step"]
-> [Anterior](creating-the-web-application.md)
-> [Próximo](changing-the-database.md)
+## <a name="next-steps"></a>Próximas etapas
+
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Adicionado scaffold
+> * Links adicionados para novos modos de exibição
+> * Modos de exibição do aluno exibido
+> * Modos de exibição do registro exibido
+
+Avance para o próximo artigo para saber como alterar o banco de dados.
+> [!div class="nextstepaction"]
+> [Alterar o banco de dados](changing-the-database.md)

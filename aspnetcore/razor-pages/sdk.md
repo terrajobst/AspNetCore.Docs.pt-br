@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 10/25/2018
 uid: razor-pages/sdk
-ms.openlocfilehash: 2df7dc4234207d3dbac8a4ff47751adc8fc6a192
-ms.sourcegitcommit: b34b25da2ab68e6495b2460ff570468f16a9bf0d
+ms.openlocfilehash: 0e6cfeb1863ed14ffe670cf082e99f28b26718dd
+ms.sourcegitcommit: ca5f03210bedc61c6639a734ae5674bfe095dee8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53284418"
+ms.lasthandoff: 01/26/2019
+ms.locfileid: "55073095"
 ---
 # <a name="aspnet-core-razor-sdk"></a>SDK do Razor do ASP.NET Core
 
@@ -80,7 +80,7 @@ As propriedades e os itens na tabela a seguir são usados para configurar entrad
 | `RazorTargetName` | Nome do arquivo (sem extensão) do assembly produzido pelo Razor. | 
 | `RazorOutputPath` | O diretório de saída do Razor. |
 | `RazorCompileToolset` | Usado para determinar o conjunto de ferramentas usado para criar o assembly do Razor. Os valores válidos são `Implicit`, `RazorSDK` e `PrecompilationTool`. |
-| `EnableDefaultContentItems` | Quando `true`, inclui a determinados tipos de arquivo, como arquivos *.cshtml*, como conteúdo do projeto. Quando referenciado por meio `Microsoft.NET.Sdk.Web`, arquivos sob *wwwroot* e arquivos de configuração também estão incluídos. |
+| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | O padrão é `true`. Quando `true`, inclui *Web. config*, *. JSON*, e *. cshtml* arquivos como o conteúdo do projeto. Quando referenciado por meio `Microsoft.NET.Sdk.Web`, arquivos sob *wwwroot* e arquivos de configuração também estão incluídos. |
 | `EnableDefaultRazorGenerateItems` | Quando `true`, inclui arquivos *.cshtml* de itens de `Content` em itens de `RazorGenerate`. |
 | `GenerateRazorTargetAssemblyInfo` | Quando `true`, gera uma *. CS* arquivo que contém atributos especificados por `RazorAssemblyAttribute` e inclui o arquivo na saída da compilação. |
 | `EnableDefaultRazorTargetAssemblyInfoAttributes` | Quando `true`, adiciona um conjunto padrão de atributos de assembly em `RazorAssemblyAttribute`. |
@@ -89,6 +89,8 @@ As propriedades e os itens na tabela a seguir são usados para configurar entrad
 | `IncludeRazorContentInPack` | Quando `true`, todos os itens de conteúdo do Razor (*. cshtml* arquivos) são marcados para inclusão no pacote do NuGet gerado. Assume o padrão de `false`. |
 | `EmbedRazorGenerateSources` | Quando `true`, adiciona itens de RazorGenerate (*.cshtml*) como arquivos incorporados ao assembly Razor gerado. Assume o padrão de `false`. |
 | `UseRazorBuildServer` | Quando `true`, usa um processo de servidor de build persistente para descarregar o trabalho de geração de código. Seu valor padrão é `UseSharedCompilation`. |
+
+Para saber mais sobre as propriedades, confira [Propriedades do MSBuild](/visualstudio/msbuild/msbuild-properties).
 
 ### <a name="targets"></a>Destinos
 

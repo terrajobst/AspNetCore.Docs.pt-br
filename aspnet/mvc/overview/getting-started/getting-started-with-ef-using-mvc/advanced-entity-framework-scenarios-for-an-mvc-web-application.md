@@ -9,12 +9,12 @@ ms.topic: tutorial
 ms.assetid: f35a9b0c-49ef-4cde-b06d-19d1543feb0b
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
-ms.openlocfilehash: ff480f7e8c2801fcb6a64c37d95e7e15467acde6
-ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
-ms.translationtype: HT
+ms.openlocfilehash: d0208c8890467ec6044d807aeee7c7ae02e18790
+ms.sourcegitcommit: d5223cf6a2cf80b4f5dc54169b0e376d493d2d3a
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 01/24/2019
-ms.locfileid: "54837488"
+ms.locfileid: "54889997"
 ---
 # <a name="tutorial-learn-about-advanced-ef-scenarios-for-an-mvc-5-web-app"></a>Tutorial: Saiba mais sobre cenários avançados do EF para um aplicativo Web do MVC 5
 
@@ -290,7 +290,7 @@ Verifique a cadeia de conexão. Se você excluiu manualmente o banco de dados, a
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Baixe o projeto concluído](http://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8)
+[Baixe o projeto concluído](https://webpifeed.blob.core.windows.net/webpifeed/Partners/ASP.NET%20MVC%20Application%20Using%20Entity%20Framework%20Code%20First.zip)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
