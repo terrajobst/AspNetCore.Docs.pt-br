@@ -8,12 +8,12 @@ ms.date: 08/15/2012
 ms.assetid: c7e4e1ab-4932-4614-9f53-aaf7c706d498
 msc.legacyurl: /mvc/overview/views/using-page-inspector-in-aspnet-mvc
 msc.type: authoredcontent
-ms.openlocfilehash: c465b0bac9af90a892d6e62a327ba36977d08d4a
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
+ms.openlocfilehash: 0dea8b077878139a3f513cb51447b86a93fe55b8
+ms.sourcegitcommit: c47d7c131eebbcd8811e31edda210d64cf4b9d6b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41824194"
+ms.lasthandoff: 01/30/2019
+ms.locfileid: "55236530"
 ---
 <a name="using-page-inspector-in-aspnet-mvc"></a>Usando o Inspetor de Página no ASP.NET MVC
 ====================
@@ -34,7 +34,7 @@ por Tim Ammann
 > - [Use o Inspetor de página para fazer alterações à marcação](#_5_using_page)
 > - [Modo de inspeção e a janela do HTML](#_6_inspection_mode)
 > - [Visualizar alterações de CSS na janela estilos](#_7_previewing_css)
-> - [Sincronização automática CSS](#css_auto_sync)
+> - [CSS Auto Sync](#css_auto_sync)
 > - [Usando o seletor de cor CSS](#css_color_picker)
 > - [Mapeamento de elementos de página dinâmica para JavaScript](#map_dynamic_elements)
 
@@ -81,7 +81,7 @@ Na **Gerenciador de soluções**, expanda o **exibições** pasta e, em seguida,
 
 ![Modo de exibição index. cshtml no Inspetor de página](using-page-inspector-in-aspnet-mvc/_static/image8.png)
 
-Por padrão, o Page Inspector é encaixado como uma janela no lado esquerdo do ambiente do Visual Studio. Se você preferir, você pode encaixá-la em outro lugar ou desencaixar a janela. Ver [como: organizar e encaixar Windows](https://msdn.microsoft.com/library/z4y0hsax.aspx).
+Por padrão, o Page Inspector é encaixado como uma janela no lado esquerdo do ambiente do Visual Studio. Se você preferir, você pode encaixá-la em outro lugar ou desencaixar a janela. Confira [Como Organizar e encaixar janelas](https://msdn.microsoft.com/library/z4y0hsax.aspx).
 
 O painel superior da janela do Inspetor de página mostra a página atual em uma janela do navegador. O painel inferior mostra a página na marcação HTML, juntamente com alguns guias que permitem que você inspecione os diferentes aspectos da página. O painel inferior é semelhante para o [ferramentas de desenvolvedor F12](https://msdn.microsoft.com/ie/aa740478) no Internet Explorer.
 
@@ -174,7 +174,7 @@ Selecione a caixa de seleção novamente, clique duas vezes o valor da proprieda
 O **estilos** torna a janela fácil de testar e visualizar o CSS é alterado antes de confirmar as alterações para o estilo da folha em si.
 
 <a id="css_auto_sync"></a>
-## <a name="css-auto-sync"></a>Sincronização automática CSS
+## <a name="css-auto-sync"></a>CSS Auto Sync
 
 > [!NOTE]
 > Este recurso requer a versão 1.3 do Inspetor de página.

@@ -1,26 +1,26 @@
 ---
 uid: mvc/overview/getting-started/database-first-development/generating-views
 title: 'Tutorial: Gerar exibições para Database First do EF com o aplicativo ASP.NET MVC'
-description: Este artigo se concentra no uso de Scaffolding do ASP.NET para gerar os controladores e modos de exibição.
+description: Este tutorial se concentra no uso de Scaffolding do ASP.NET para gerar os controladores e modos de exibição.
 author: Rick-Anderson
 ms.author: riande
-ms.date: 01/23/2019
+ms.date: 01/28/2019
 ms.topic: tutorial
 ms.assetid: 669367cf-8e30-4eb6-821d-10a7d9bb906c
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/generating-views
 msc.type: authoredcontent
-ms.openlocfilehash: e1f6646cdf10d293268b92f44b018709e70c0f86
-ms.sourcegitcommit: d5223cf6a2cf80b4f5dc54169b0e376d493d2d3a
+ms.openlocfilehash: 7a56c0f9197a99427bcde6103ebc69d245e8ce63
+ms.sourcegitcommit: c47d7c131eebbcd8811e31edda210d64cf4b9d6b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54889776"
+ms.lasthandoff: 01/30/2019
+ms.locfileid: "55236413"
 ---
 # <a name="tutorial-generate-views-for-ef-database-first-with-aspnet-mvc-app"></a>Tutorial: Gerar exibições para Database First do EF com o aplicativo ASP.NET MVC
 
 Usando o MVC, Entity Framework e o Scaffolding do ASP.NET, você pode criar um aplicativo web que fornece uma interface para um banco de dados existente. Esta série de tutoriais mostra como automaticamente gerar um código que permite aos usuários exibir, editar, criar e excluir dados que residem em uma tabela de banco de dados. O código gerado corresponde às colunas na tabela de banco de dados.
 
-Este artigo se concentra no uso de Scaffolding do ASP.NET para gerar os controladores e modos de exibição.
+Este tutorial se concentra no uso de Scaffolding do ASP.NET para gerar os controladores e modos de exibição.
 
 Neste tutorial, você:
 
@@ -101,6 +101,6 @@ Neste tutorial, você:
 > * Modos de exibição do aluno exibido
 > * Modos de exibição do registro exibido
 
-Avance para o próximo artigo para saber como alterar o banco de dados.
+Avance para o próximo tutorial para saber como alterar o banco de dados.
 > [!div class="nextstepaction"]
 > [Alterar o banco de dados](changing-the-database.md)
