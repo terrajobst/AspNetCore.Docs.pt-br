@@ -4,14 +4,14 @@ author: prkhandelwal
 description: Este tutorial demonstra como criar uma API Web do ASP.NET Core usando um banco de dados NoSQL do MongoDB.
 ms.author: scaddie
 ms.custom: mvc, seodec18
-ms.date: 11/29/2018
+ms.date: 01/23/2019
 uid: tutorials/first-mongo-app
-ms.openlocfilehash: bd9a36c5eb06542c820e71e937b8da10f735a0f8
-ms.sourcegitcommit: 68a3081dd175d6518d1bfa31b4712bd8a2dd3864
+ms.openlocfilehash: 6375ae618816671bd9c64f038603747c64cdce56
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "53577832"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54835590"
 ---
 # <a name="create-a-web-api-with-aspnet-core-and-mongodb"></a>Criar uma API Web com o ASP.NET Core e o MongoDB
 
@@ -54,11 +54,11 @@ Neste tutorial, você aprenderá como:
 
 ## <a name="configure-mongodb"></a>Configurar o MongoDB
 
-Se você usar o Windows, o MongoDB será instalado em *C:\Arquivos de Programas\MongoDB* por padrão. Adicione *C:\Arquivos de Programas\MongoDB\Server\<número_de_versão>\bin* à variável de ambiente `Path`. Essa alteração possibilita o acesso ao MongoDB a partir de qualquer lugar em seu computador de desenvolvimento.
+Se usar o Windows, o MongoDB será instalado em *C:\\Arquivos de Programas\\MongoDB* por padrão. Adicione *C:\\Arquivos de Programas\\MongoDB\\Servidor\\\<número_de_versão>\\bin* à variável de ambiente `Path`. Essa alteração possibilita o acesso ao MongoDB a partir de qualquer lugar em seu computador de desenvolvimento.
 
 Use o Shell do mongo nas etapas a seguir para criar um banco de dados, fazer coleções e armazenar documentos. Para saber mais sobre os comandos de Shell do mongo, consulte [Como trabalhar com o Shell do mongo](https://docs.mongodb.com/manual/mongo/#working-with-the-mongo-shell).
 
-1. Escolha um diretório no seu computador de desenvolvimento para armazenar os dados. Por exemplo, *C:\BooksData* no Windows. Crie o diretório se não houver um. O Shell do mongo não cria novos diretórios.
+1. Escolha um diretório no seu computador de desenvolvimento para armazenar os dados. Por exemplo, *C:\\BooksData* no Windows. Crie o diretório se não houver um. O Shell do mongo não cria novos diretórios.
 1. Abra um shell de comando. Execute o comando a seguir para se conectar ao MongoDB na porta padrão 27017. Lembre-se de substituir `<data_directory_path>` pelo diretório escolhido na etapa anterior.
 
     ```console
@@ -188,7 +188,13 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs)]
 
-Na classe anterior, a propriedade `Id` é necessária para mapear o objeto de Common Language Runtime (CLR) para a coleção do MongoDB. Outras propriedades na classe são decoradas com o atributo `[BsonElement]`. O valor do atributo representa o nome da propriedade da coleção do MongoDB.
+Na classe anterior, a propriedade `Id`:
+
+* É necessária para mapear o objeto CLR (Common Language Runtime) para a coleção do MongoDB.
+* É anotada com `[BsonId]` para designar essa propriedade como a chave primária do documento.
+* É anotada com `[BsonRepresentation(BsonType.ObjectId)]` para permitir a passagem do parâmetro como tipo `string`, em vez de `ObjectId`. O Mongo processa a conversão de `string` para `ObjectId`.
+
+Outras propriedades na classe são anotadas com o atributo `[BsonElement]`. O valor do atributo representa o nome da propriedade da coleção do MongoDB.
 
 ## <a name="add-a-crud-operations-class"></a>Adicionar uma classe de operações CRUD
 

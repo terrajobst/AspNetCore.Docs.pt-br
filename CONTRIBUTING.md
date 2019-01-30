@@ -34,7 +34,7 @@ Para cada arquivo de Markdown, podem existir uma pasta para imagens e uma pasta 
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
 ```
 
-Todas as imagens devem ter um [texto alternativo (alt)](https://wikipedia.org/wiki/Alt_attribute). Para orientação sobre a especificação de texto alternativo, confira recursos online, como [WebAIM: Texto Alternativo](https://webaim.org/techniques/alttext/).
+Todas as imagens devem ter um [texto alternativo (alt)](https://wikipedia.org/wiki/Alt_attribute). Para obter orientação sobre como especificar texto alternativo, confira recursos online, como [WebAIM: texto alternativo](https://webaim.org/techniques/alttext/).
 
 Use letras minúsculas para nomes de arquivo de Markdown e nomes de arquivo de imagem.
 
@@ -122,24 +122,22 @@ O DocFX requer:
     
 * Em um navegador, navegue até `http://localhost:8080`.
 
-### <a name="mono-instructions"></a>Instruções do mono
+### <a name="mono-instructions"></a>Instruções do Mono
 
-* Instalar o Mono por meio do Homebrew: `brew install mono`.
+* Instalar o Mono por meio do Homebrew:
+
+  ```
+  brew install mono
+  ```
 * Baixe a [versão mais recente do DocFX](https://github.com/dotnet/docfx/releases).
-* Extrair para `\bin\docfx`.
-* Criar um alias para **docfx**:
+* Extraia o arquivo para *$HOME/bin/docfx*.
+* Crie um par de aliases para **docfx** em um shell de Busca. O primeiro alias é usado para criar a documentação. O segundo alias é usado para criar e fornecer a documentação.
 
   ```
-  function docfx {
-    mono $HOME/bin/docfx/docfx.exe
-  }
-    
-  function docfx-serve {
-    mono $HOME/bin/docfx/docfx.exe serve _site
-  }
+  alias docfx='mono $HOME/bin/docfx/docfx.exe'
+  alias docfx-serve='mono $HOME/bin/docfx/docfx.exe --serve'
   ```
-
-* Execute `docfx` no diretório *Docs\aspnet* ou *Docs\aspnetcore* para compilar o site. Execute `docfx-serve` para exibir o site em `http://localhost:8080`.
+* Execute `docfx` na raiz do repositório para criar o site. Execute `docfx-serve` para exibir o site em `http://localhost:8080`.
 
 ## <a name="voice-and-tone"></a>Voz e tom
 

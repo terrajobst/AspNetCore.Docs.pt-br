@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como configurar o módulo do ASP.NET Core para hospedar aplicativos do ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/11/2019
+ms.date: 01/22/2019
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: 192e4bf8e970083cc05babcd7fb3cf52985e35bf
-ms.sourcegitcommit: 184ba5b44d1c393076015510ac842b77bc9d4d93
+ms.openlocfilehash: 4eea360d08c79b889db00132109cf49492f84de6
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "54396318"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837774"
 ---
 # <a name="aspnet-core-module"></a>Módulo do ASP.NET Core
 
@@ -286,7 +286,20 @@ Para saber mais sobre a configuração de subaplicativos do IIS, confira <xref:h
 
 ### <a name="setting-environment-variables"></a>Definindo variáveis de ambiente
 
-Variáveis de ambiente podem ser especificadas para o processo no atributo `processPath`. Especificar uma variável de ambiente com o elemento filho `environmentVariable` de um elemento de coleção `environmentVariables`. Variáveis de ambiente definidas nesta seção têm precedência sobre variáveis de ambiente do sistema.
+::: moniker range=">= aspnetcore-3.0"
+
+Variáveis de ambiente podem ser especificadas para o processo no atributo `processPath`. Especificar uma variável de ambiente com o elemento filho `<environmentVariable>` de um elemento de coleção `<environmentVariables>`. Variáveis de ambiente definidas nesta seção têm precedência sobre variáveis de ambiente do sistema.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Variáveis de ambiente podem ser especificadas para o processo no atributo `processPath`. Especificar uma variável de ambiente com o elemento filho `<environmentVariable>` de um elemento de coleção `<environmentVariables>`.
+
+> [!WARNING]
+> As variáveis de ambiente definidas nesta seção são conflitantes com as variáveis de ambiente do sistema definidas com o mesmo nome. Quando a variável de ambiente é definida no arquivo *web.config* e no nível do sistema do Windows, o valor do arquivo *web.config* fica anexado ao valor da variável de ambiente do sistema (por exemplo, `ASPNETCORE_ENVIRONMENT: Development;Development`), o que impede a inicialização do aplicativo.
+
+::: moniker-end
 
 O exemplo a seguir define duas variáveis de ambiente. `ASPNETCORE_ENVIRONMENT` configura o ambiente do aplicativo para `Development`. Um desenvolvedor pode definir esse valor temporariamente no arquivo *web.config* para forçar o carregamento da [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) ao depurar uma exceção de aplicativo. `CONFIG_DIR` é um exemplo de uma variável de ambiente definida pelo usuário, em que o desenvolvedor escreveu código que lê o valor de inicialização para formar um caminho no qual carregar o arquivo de configuração do aplicativo.
 
@@ -320,6 +333,19 @@ O exemplo a seguir define duas variáveis de ambiente. `ASPNETCORE_ENVIRONMENT` 
   </environmentVariables>
 </aspNetCore>
 ```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+> [!NOTE]
+> Em vez de configurar o ambiente diretamente no *web.config*, você pode incluir a propriedade `<EnvironmentName>` no perfil de publicação (*.pubxml*) ou no perfil de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
+>
+> ```xml
+> <PropertyGroup>
+>   <EnvironmentName>Development</EnvironmentName>
+> </PropertyGroup>
+> ```
 
 ::: moniker-end
 
@@ -409,7 +435,7 @@ O elemento `aspNetCore` de exemplo a seguir configura o registro em log de stdou
 
 ## <a name="enhanced-diagnostic-logs"></a>Logs de diagnóstico avançados
 
-O Módulo do ASP.NET Core pode ser configurado para fornecer logs de diagnóstico avançados. Adicione o elemento `<handlerSettings>` ao elemento `<aspNetCore>` no *web.config*. A definição de `debugLevel` como `TRACE` expõe uma fidelidade maior de informações de diagnóstico:
+O Módulo do ASP.NET Core é configurável para fornecer logs de diagnóstico avançados. Adicione o elemento `<handlerSettings>` ao elemento `<aspNetCore>` no *web.config*. A definição de `debugLevel` como `TRACE` expõe uma fidelidade maior de informações de diagnóstico:
 
 ```xml
 <aspNetCore processPath="dotnet"

@@ -5,12 +5,12 @@ description: Saiba como os componentes de exibição são usados no ASP.NET Core
 ms.author: riande
 ms.date: 12/03/2018
 uid: mvc/views/view-components
-ms.openlocfilehash: 5812abad80cd906d6b9a7175bd7cdefd03a99eb3
-ms.sourcegitcommit: 9bb58d7c8dad4bbd03419bcc183d027667fefa20
+ms.openlocfilehash: 156db610d99eaf8a8042a4c7c85267d521a20fd4
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2018
-ms.locfileid: "52861323"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836695"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componentes de exibição no ASP.NET Core
 
@@ -20,7 +20,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## <a name="view-components"></a>Componentes da exibição
 
-Os componentes de exibição são semelhantes às exibições parciais, mas são muito mais eficientes. Os componentes de exibição não usam o model binding e dependem apenas dos dados fornecidos durante uma chamada a eles. Este artigo foi escrito com o ASP.NET Core MVC, mas os componentes de exibição também funcionam com Páginas do Razor.
+Os componentes de exibição são semelhantes às exibições parciais, mas são muito mais eficientes. Os componentes de exibição não usam o model binding e dependem apenas dos dados fornecidos durante uma chamada a eles. Este artigo foi elaborado com controladores e modos de exibição, mas os componentes da exibição também funcionam com o Razor Pages.
 
 Um componente de exibição:
 
@@ -140,7 +140,7 @@ Neste exemplo, o componente de exibição é chamado diretamente no controlador:
 
 [!code-csharp[](view-components/sample/ViewCompFinal/Controllers/ToDoController.cs?name=snippet_IndexVC)]
 
-## <a name="walkthrough-creating-a-simple-view-component"></a>Passo a passo: criando um componente de exibição simples
+## <a name="walkthrough-creating-a-simple-view-component"></a>Passo a passo: Como criar um componente de exibição simples
 
 [Baixe](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample), compile e teste o código inicial. É um projeto simples com um controlador `Todo` que exibe uma lista de itens *Todo*.
 

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: 16f3a435af267a5a17a24ee9fbda2b1c7c8818fd
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.openlocfilehash: c21decd39b7855cf2eefb2bb482e5e91b9487863
+ms.sourcegitcommit: d5223cf6a2cf80b4f5dc54169b0e376d493d2d3a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121616"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54889932"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Auxiliares de marca de autor no ASP.NET Core
 
@@ -96,7 +96,7 @@ Atualize a classe `EmailTagHelper` com o seguinte:
 
 [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/EmailTagHelperMailTo.cs?range=6-22)]
 
-* Nomes de classe e de propriedade na formatação Pascal Case para auxiliares de marca são convertidos em seu [kebab case em minúsculas](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). Portanto, para usar o atributo `MailTo`, você usará o equivalente de `<email mail-to="value"/>`.
+* Nomes de classe e de propriedade na formatação Pascal Case para auxiliares de marcações são convertidos em [Kebab Case](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). Portanto, para usar o atributo `MailTo`, você usará o equivalente de `<email mail-to="value"/>`.
 
 * A última linha define o conteúdo concluído para nosso tag helper minimamente funcional.
 
@@ -189,7 +189,7 @@ Também use o `[HtmlTargetElement]` para alterar o nome do elemento de destino. 
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs)]
 
-   * Conforme mencionado anteriormente, os auxiliares de marca convertem nomes de classes e propriedades dos auxiliares de marca do C# na formatação Pascal Case em [kebab case em minúsculas](http://wiki.c2.com/?KebabCase). Portanto, para usar o `WebsiteInformationTagHelper` no Razor, você escreverá `<website-information />`.
+   * Conforme mencionado anteriormente, os auxiliares de marcações convertem nomes de classes e de propriedades dos auxiliares de marcações do C# na formatação Pascal Case em [Kebab Case](http://wiki.c2.com/?KebabCase). Portanto, para usar o `WebsiteInformationTagHelper` no Razor, você escreverá `<website-information />`.
 
    * Você não identifica de forma explícita o elemento de destino com o atributo `[HtmlTargetElement]`. Portanto, o padrão de `website-information` será o destino. Se você aplicou o seguinte atributo (observe que não está em kebab case, mas corresponde ao nome da classe):
 
@@ -197,7 +197,7 @@ Também use o `[HtmlTargetElement]` para alterar o nome do elemento de destino. 
    [HtmlTargetElement("WebsiteInformation")]
    ```
 
-   A marca `<website-information />` em kebab case em minúsculas não terá uma correspondência. Caso deseje usar o atributo `[HtmlTargetElement]`, use o kebab case, conforme mostrado abaixo:
+   A marcação `<website-information />` em Kebab Case não terá uma correspondência. Caso deseje usar o atributo `[HtmlTargetElement]`, use o kebab case, conforme mostrado abaixo:
 
    ```csharp
    [HtmlTargetElement("Website-Information")]

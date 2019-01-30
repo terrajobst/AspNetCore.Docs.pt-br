@@ -5,12 +5,12 @@ description: Adicionando uma exibição a um aplicativo ASP.NET Core MVC simples
 ms.author: riande
 ms.date: 03/04/2017
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: 321ffd6b0168d4befc950a58035d19561e879491
-ms.sourcegitcommit: ec71fd5a988f927ae301813aae5ff764feb3bb6a
+ms.openlocfilehash: f241a19c8821019f327fb160f01fe01eca53c5d0
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/12/2019
-ms.locfileid: "54249445"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836891"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Adicionar uma exibição a um aplicativo ASP.NET Core MVC
 
@@ -104,7 +104,7 @@ Na marcação anterior, o `asp-area` [atributo do Auxiliar de Marca de Âncora](
 
 **Observação**: O controlador `Movies` não foi implementado. Neste ponto, o link `Movie App` não está funcionando.
 
-Salve suas alterações e selecione o link **Privacidade**. Observe como o título na guia do navegador agora exibe **Privacidade – Aplicativo de Filme**, em vez de **Privacidade – Filme Mvc**:
+Salve suas alterações e selecione o link **Privacidade**. Observe como o título na guia do navegador agora exibe **Política de Privacidade – Aplicativo de filme**, em vez de **Política de Privacidade – Filme MVC**:
 
 ![Guia Privacidade](~/tutorials/first-mvc-app/adding-view/_static/about2.png)
 

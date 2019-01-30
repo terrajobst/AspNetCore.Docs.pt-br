@@ -3,14 +3,14 @@ title: Usar vários ambientes no ASP.NET Core
 author: rick-anderson
 description: Aprenda a controlar o comportamento do aplicativo em vários ambientes em aplicativos do ASP.NET Core.
 ms.author: riande
-ms.date: 07/03/2018
+ms.date: 01/22/2019
 uid: fundamentals/environments
-ms.openlocfilehash: 642af9e8f9e322e3624dad46bb1463f6525f5c9e
-ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
+ms.openlocfilehash: 39e1b48481832a6d76de605b37410fe2e16dcd88
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2019
-ms.locfileid: "54341661"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54836734"
 ---
 # <a name="use-multiple-environments-in-aspnet-core"></a>Usar vários ambientes no ASP.NET Core
 
@@ -186,7 +186,7 @@ Para definir o ambiente no [Serviço de Aplicativo do Azure](https://azure.micro
 1. Marque a caixa de seleção **Configuração do Slot** se desejar que a configuração do ambiente permaneça no slot atual quando os slots de implantação forem trocados. Para obter mais informações, confira [Documentação do Azure: que configurações são trocadas?](/azure/app-service/web-sites-staged-publishing).
 1. Selecione **Salvar** na parte superior da folha.
 
-O Serviço de Aplicativo do Azure reinicia automaticamente o aplicativo após uma configuração de aplicativo (variável de ambiente) ser adicionada, alterada ou excluída no portal do Azure.
+O Serviço de Aplicativo do Azure reinicia automaticamente o aplicativo após uma configuração de aplicativo (variável de ambiente) ser adicionada, alterada ou excluída no Portal do Azure.
 
 ### <a name="windows"></a>Windows
 
@@ -237,6 +237,20 @@ Quando a variável de ambiente `ASPNETCORE_ENVIRONMENT` é definida globalmente,
 **web.config**
 
 Para definir a variável de ambiente `ASPNETCORE_ENVIRONMENT` com *web.config*, consulte a seção *Definindo variáveis de ambiente* de <xref:host-and-deploy/aspnet-core-module#setting-environment-variables>. Quando a variável de ambiente `ASPNETCORE_ENVIRONMENT` é definida com *web.config*, seu valor substitui uma configuração no nível do sistema.
+
+::: moniker range=">= aspnetcore-2.2"
+
+**Arquivo de projeto ou perfil de publicação**
+
+**Para implantações do Windows IIS:** Inclua a propriedade `<EnvironmentName>` no perfil de publicação (*.pubxml*) ou no arquivo de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
+
+```xml
+<PropertyGroup>
+  <EnvironmentName>Development</EnvironmentName>
+</PropertyGroup>
+```
+
+::: moniker-end
 
 **Por pool de aplicativos do IIS**
 

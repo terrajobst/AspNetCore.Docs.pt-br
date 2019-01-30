@@ -4,14 +4,14 @@ author: rick-anderson
 description: Criar uma API Web com o ASP.NET Core MVC
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/10/2018
+ms.date: 01/24/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: 03936ee74836c7b214cb3dc4023a6e3c252f2a26
-ms.sourcegitcommit: cec77d5ad8a0cedb1ecbec32834111492afd0cd2
+ms.openlocfilehash: 65af70be2cec68d30dd712b80312ebcd40ea0624
+ms.sourcegitcommit: c6db8b14521814f1f7e528d7aa06e474e4c04a1f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/10/2019
-ms.locfileid: "54207441"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "55065042"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core-mvc"></a>Tutorial: Criar uma API Web com o ASP.NET Core MVC
 
@@ -142,7 +142,7 @@ Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo 
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Clique com o botão direito do mouse no projeto. Selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
+* Clique com o botão direito do mouse no projeto. Selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta *Modelos*.
 
   ![nova pasta](first-web-api-mac/_static/folder.png)
 
@@ -168,13 +168,9 @@ O *contexto de banco de dados* é a classe principal que coordena a funcionalida
 
 * Clique com o botão direito do mouse na pasta *Modelos* e selecione **Adicionar** > **Classe**. Nomeie a classe como *TodoContext* e clique em **Adicionar**.
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Adicione uma classe denominada `TodoContext` à pasta *Modelos*.
-
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
-
-* Adicione uma classe `TodoContext` à pasta *Models*:
 
 ---
 
@@ -207,13 +203,9 @@ O código anterior:
 
   ![Caixa de diálogo Adicionar Novo Item com o controlador na caixa de pesquisa e o controlador da API Web selecionados](first-web-api/_static/new_controller.png)
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Na pasta *Controllers*, crie uma classe chamada `TodoController`.
-
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
-
-* Na pasta *Controllers*, adicione a classe `TodoController`.
 
 ---
 
@@ -265,13 +257,11 @@ O atributo [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) 
   [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
 
 * Substitua `[controller]` pelo nome do controlador, que é o nome de classe do controlador menos o sufixo "Controlador" por convenção. Para esta amostra, o nome da classe do controlador é **Todo**Controller e, portanto, o nome do controlador é "todo". O [roteamento](xref:mvc/controllers/routing) do ASP.NET Core não diferencia maiúsculas de minúsculas.
-* Se o atributo `[HttpGet]` tiver um modelo de rota (por exemplo, `[HttpGet("/products")]`), acrescente isso ao caminho. Esta amostra não usa um modelo. Para obter mais informações, confira [Roteamento de atributo com atributos Http[Verb]](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
+* Se o atributo `[HttpGet]` tiver um modelo de rota (por exemplo, `[HttpGet("products")]`), acrescente isso ao caminho. Esta amostra não usa um modelo. Para obter mais informações, confira [Roteamento de atributo com atributos Http[Verb]](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
 No método `GetTodoItem` a seguir, `"{id}"` é uma variável de espaço reservado para o identificador exclusivo do item pendente. Quando `GetTodoItem` é invocado, o valor de `"{id}"` na URL é fornecido para o método no parâmetro `id`.
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
-
-O parâmetro `Name = "GetTodo"` cria uma rota nomeada. Você verá posteriormente como o aplicativo pode usar o nome para criar um link HTTP usando o nome da rota.
 
 ## <a name="return-values"></a>Valores de retorno
 
@@ -313,9 +303,9 @@ O código anterior é um método HTTP POST, conforme indicado pelo atributo [[Ht
 
 O método `CreatedAtAction`:
 
-* Retorna uma resposta 201. HTTP 201 é a resposta padrão para um método HTTP POST que cria um novo recurso no servidor.
-* Adiciona um cabeçalho Local à resposta. O cabeçalho Location especifica o URI do item de tarefas pendentes recém-criado. Para obter mais informações, confira [10.2.2 201 Criado](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
-* Usa a rota chamada "GetTodo" para criar a URL. A rota chamada "GetTodo" é definida em `GetTodoItem`:
+* retorna um código de status HTTP 201 em caso de êxito. HTTP 201 é a resposta padrão para um método HTTP POST que cria um novo recurso no servidor.
+* Adiciona um cabeçalho `Location` à resposta. O cabeçalho `Location` especifica o URI do item de tarefas pendentes recém-criado. Para obter mais informações, confira [10.2.2 201 Criado](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* Faz referência à ação `GetTodoItem` para criar o URI de `Location` do cabeçalho. A palavra-chave `nameof` do C# é usada para evitar o hard-coding do nome da ação, na chamada `CreatedAtAction`.
 
   [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
 
@@ -339,7 +329,7 @@ O método `CreatedAtAction`:
 
   ![Postman com a solicitação Create](first-web-api/_static/create.png)
 
-  Se você receber um erro 405 Método Não Permitido, esse, provavelmente, será o resultado da não compilação do projeto após a adição do método `PostTodoItem`.
+  Se você receber um erro 405 Método Não Permitido, provavelmente, esse será o resultado da não compilação do projeto após a adição do método `PostTodoItem`.
 
 ### <a name="test-the-location-header-uri"></a>Testar o URI do cabeçalho de local
 
@@ -466,7 +456,7 @@ Para obter mais informações, consulte os seguintes recursos:
 Neste tutorial, você aprendeu como:
 
 > [!div class="checklist"]
-> * Criar um projeto de aplicativo API Web.
+> * Criar um projeto de API Web.
 > * Adicionar uma classe de modelo.
 > * Criar o contexto de banco de dados.
 > * Registrar o contexto de banco de dados.

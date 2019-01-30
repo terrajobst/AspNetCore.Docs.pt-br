@@ -5,14 +5,14 @@ description: Saiba como hospedar um aplicativo ASP.NET Core em um serviço Windo
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 12/01/2018
+ms.date: 01/22/2019
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: bdb29c318c66ac884b9225ba8c2a0dfc1f364255
-ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
+ms.openlocfilehash: eedaf64710506f2a2aac65c178a9888d2ab33d38
+ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "53637697"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54837475"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedar o ASP.NET Core em um serviço Windows
 
@@ -44,7 +44,9 @@ Com base na sua escolha de [tipo de implantação](#deployment-type), atualize o
 
 #### <a name="framework-dependent-deployment-fdd"></a>FDD (Implantação dependente de estrutura)
 
-Adicione um [RID (Identificador do Tempo de Execução)](/dotnet/core/rid-catalog) do Windows ao `<PropertyGroup>` que contém a estrutura de destino. Adicione a propriedade `<SelfContained>` definida como `false`. Desabilite a criação de um arquivo *web.config* adicionando a propriedade `<IsTransformWebConfigDisabled>` definida como `true`.
+Adicione um [RID (Identificador do Tempo de Execução)](/dotnet/core/rid-catalog) do Windows ao `<PropertyGroup>` que contém a estrutura de destino. No exemplo a seguir, o RID é especificado como `win7-x64`. Adicione a propriedade `<SelfContained>` definida como `false`. Essas propriedades instruem o SDK a gerar um arquivo executável (*.exe*) para Windows.
+
+O arquivo *web.config*, que normalmente é gerado durante a publicação de um aplicativo ASP.NET Core, é desnecessário para um aplicativo de serviços do Windows. Para desabilitar a criação de um arquivo *web.config*, adicione a propriedade `<IsTransformWebConfigDisabled>` definida como `true`.
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -60,6 +62,8 @@ Adicione um [RID (Identificador do Tempo de Execução)](/dotnet/core/rid-catalo
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.1"
+
+Adicione a propriedade `<UseAppHost>` definida como `true`. Essa propriedade fornece o serviço com um caminho de ativação (um arquivo executável *.exe*) para FDD.
 
 ```xml
 <PropertyGroup>

@@ -6,12 +6,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 12/18/2018
 uid: aspnetcore-2.2
-ms.openlocfilehash: 13d7dec834a5661b445b4fc0c0be8be9b7b41b9e
-ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
+ms.openlocfilehash: b8279588e674e3ada486f61bac2c216f1359e86d
+ms.sourcegitcommit: 728f4e47be91e1c87bb7c0041734191b5f5c6da3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "53637723"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54444383"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>Novidades do ASP.NET Core 2.2
 
@@ -25,7 +25,7 @@ Para obter mais informações, consulte os seguintes recursos:
 
 * <xref:web-api/advanced/analyzers>
 * <xref:web-api/advanced/conventions>
-* [ASP.NET Core 2.2.0-preview1: analisadores e convenções da API Aberta](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
+* [ASP.NET Core 2.2.0-preview1: analisadores e convenções do Open API](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
 
 ## <a name="problem-details-support"></a>Suporte de detalhes do problema
 
@@ -57,7 +57,7 @@ O ASP.NET Core 2.2 adiciona suporte ao HTTP/2.
 
 O HTTP/2 é uma revisão principal do protocolo HTTP. Alguns dos recursos importantes do HTTP/2 são o suporte à compactação de cabeçalho e fluxos totalmente multiplexados em uma única conexão. Embora o HTTP/2 preserve a semântica do HTTP (cabeçalhos HTTP, métodos etc.), ele é uma alteração da falha do HTTP/1.x com relação a como esses dados são estruturados e enviados pela conexão.
 
-Como consequência dessa alteração no enquadramento, os servidores e os clientes precisam negociar a versão de protocolo usada. O ALPN (Negociação de Protocolo da Camada de Aplicativo) é uma extensão TLS que permite ao servidor e ao cliente negociarem a versão de protocolo usada como parte de seu handshake TLS. Embora seja possível ter um conhecimento prévio entre o servidor e o cliente sobre o protocolo, todos os principais navegadores dão suporte ALPN como a única maneira de estabelecer uma conexão HTTP/2.
+Como consequência dessa alteração no enquadramento, os servidores e os clientes precisam negociar a versão de protocolo usada. O recurso ALPN (Negociação de Protocolo da Camada de Aplicativo) é uma extensão TLS com a qual o servidor e o cliente podem negociar a versão de protocolo usada como parte do handshake TLS. Embora seja possível ter um conhecimento prévio entre o servidor e o cliente sobre o protocolo, todos os principais navegadores dão suporte ALPN como a única maneira de estabelecer uma conexão HTTP/2.
 
 Para obter mais informações, confira [Suporte ao HTTP/2](xref:fundamentals/servers/index?view=aspnetcore-2.2#http2-support).
 
