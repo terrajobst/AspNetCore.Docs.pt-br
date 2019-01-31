@@ -1,2 +1,2 @@
-* [Visual Studio 2017 versão 15.9 ou posterior](* [Visual Studio 2017 version 15.9 or later](https://www.visualstudio.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) with the **ASP.NET and web development** workload) com a carga de trabalho **ASP.NET e desenvolvimento para a Web**
-* [.NET core SDK 3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0)
+* [Visualização do Visual Studio 2019](https://visualstudio.microsoft.com/vs/preview/) com o **ASP.NET e desenvolvimento web** carga de trabalho
+* [.NET core SDK 3.0 versão prévia](https://dotnet.microsoft.com/download/dotnet-core/3.0)

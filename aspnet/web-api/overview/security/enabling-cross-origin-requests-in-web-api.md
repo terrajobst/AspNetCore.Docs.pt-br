@@ -4,16 +4,16 @@ title: Permitindo solicitações entre origens na API Web ASP.NET 2 | Microsoft 
 author: MikeWasson
 description: Mostra como dar suporte a compartilhamento de recursos entre origens (CORS) na API Web ASP.NET.
 ms.author: riande
-ms.date: 10/10/2018
+ms.date: 01/29/2019
 ms.assetid: 9b265a5a-6a70-4a82-adce-2d7c56ae8bdd
 msc.legacyurl: /web-api/overview/security/enabling-cross-origin-requests-in-web-api
 msc.type: authoredcontent
-ms.openlocfilehash: 118b779c89edb874f7f928315d1094738be5f097
-ms.sourcegitcommit: 6e6002de467cd135a69e5518d4ba9422d693132a
+ms.openlocfilehash: 97a0027194b019b09e220493dcb593e682027fe3
+ms.sourcegitcommit: d22b3c23c45a076c4f394a70b1c8df2fbcdf656d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2018
-ms.locfileid: "49348514"
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55428441"
 ---
 <a name="enable-cross-origin-requests-in-aspnet-web-api-2"></a>Habilitar solicitações entre origens na API Web ASP.NET 2
 ====================
@@ -67,7 +67,7 @@ Essas URLs tem diferentes origens que o anterior dois:
 
    [!code-csharp[Main](enabling-cross-origin-requests-in-web-api/samples/sample1.cs)]
 
-4. Você pode executar o aplicativo localmente ou implantar no Azure. (Para as capturas de tela neste tutorial, o aplicativo é implantado para aplicativos de Web do serviço de aplicativo do Azure.) Para verificar se a API da web está funcionando, navegue até `http://hostname/api/test/`, onde *hostname* é o domínio onde você implantou o aplicativo. Você deve ver o texto de resposta &quot;obter: mensagem de teste&quot;.
+4. Você pode executar o aplicativo localmente ou implantar no Azure. (Para as capturas de tela neste tutorial, o aplicativo é implantado para aplicativos de Web do serviço de aplicativo do Azure.) Para verificar se a API da web está funcionando, navegue até `http://hostname/api/test/`, onde *hostname* é o domínio onde você implantou o aplicativo. Você deve ver o texto de resposta, &quot;obter: Mensagem de teste&quot;.
 
    ![Mensagem de teste de mostrando de navegador da Web](enabling-cross-origin-requests-in-web-api/_static/image4.png)
 
@@ -90,7 +90,7 @@ Quando você clica no botão "Experimente", uma solicitação AJAX é enviada pa
 !['Try' erro no navegador](enabling-cross-origin-requests-in-web-api/_static/image7.png)
 
 > [!NOTE]
-> Se você observar o tráfego HTTP em uma ferramenta como [Fiddler](http://www.telerik.com/fiddler), você verá que o navegador envie a solicitação GET e a solicitação for bem-sucedida, mas a chamada do AJAX retorna um erro. É importante entender a política de mesma origem não impede que o navegador do *enviando* a solicitação. Em vez disso, ele impede que o aplicativo vendo os *resposta*.
+> Se você observar o tráfego HTTP em uma ferramenta como [Fiddler](https://www.telerik.com/fiddler), você verá que o navegador envie a solicitação GET e a solicitação for bem-sucedida, mas a chamada do AJAX retorna um erro. É importante entender a política de mesma origem não impede que o navegador do *enviando* a solicitação. Em vez disso, ele impede que o aplicativo vendo os *resposta*.
 
 ![Depurador da web Fiddler mostrando solicitações da web](enabling-cross-origin-requests-in-web-api/_static/image8.png)
 
@@ -164,6 +164,22 @@ Aqui está um exemplo de resposta, supondo que o servidor permite que a solicita
 [!code-console[Main](enabling-cross-origin-requests-in-web-api/samples/sample9.cmd?highlight=6-7)]
 
 A resposta inclui um cabeçalho Access-Control-Allow-Methods que lista os métodos permitidos e, opcionalmente, um cabeçalho Access-Control-Allow-Headers, que lista os cabeçalhos permitidos. Se a solicitação de simulação for bem-sucedida, o navegador envia a solicitação real, conforme descrito anteriormente.
+
+Ferramentas usadas comumente para testar os pontos de extremidade com solicitações de simulação OPTIONS (por exemplo, [Fiddler](https://www.telerik.com/fiddler) e [Postman](https://www.getpostman.com/)) não enviam os cabeçalhos necessários de opções por padrão. Confirme se o `Access-Control-Request-Method` e `Access-Control-Request-Headers` cabeçalhos são enviados com a solicitação e cabeçalhos de opções cheguem ao aplicativo por meio do IIS.
+
+Para configurar o IIS para permitir que um aplicativo ASP.NET receber e lidar com a opção as solicitações, adicione a seguinte configuração para o aplicativo *Web. config* arquivo no `<system.webServer><handlers>` seção:
+
+```xml
+<system.webServer>
+  <handlers>
+    <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+    <remove name="OPTIONSVerbHandler" />
+    <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+  </handlers>
+</system.webServer>
+```
+
+A remoção de `OPTIONSVerbHandler` impede que o IIS tratar as solicitações de opções. A substituição de `ExtensionlessUrlHandler-Integrated-4.0` permite opções solicitações cheguem ao aplicativo, porque o registro do módulo padrão permite somente solicitações GET, HEAD, POST e depuração com URLs sem extensão.
 
 ## <a name="scope-rules-for-enablecors"></a>Regras de escopo para [EnableCors]
 
