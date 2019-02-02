@@ -8,12 +8,12 @@ ms.date: 08/29/2011
 ms.assetid: c23d27f7-b0cf-44f2-8445-fb69e045c674
 msc.legacyurl: /mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-1
 msc.type: authoredcontent
-ms.openlocfilehash: a4cd6e9adfcd85503b9843232903a243bc07c959
-ms.sourcegitcommit: 392a36ed269b88899d6bb652aa7f4dfb72e43e7f
+ms.openlocfilehash: 3e700d2db4f86fe6734e2f08b01c9f8a8a69b6c3
+ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50220655"
+ms.lasthandoff: 02/02/2019
+ms.locfileid: "55667785"
 ---
 <a name="using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc---part-1"></a>Usando HTML5 e calendário jQuery UI Datepicker pop-up com o ASP.NET MVC – parte 1
 ====================
@@ -30,13 +30,13 @@ Antes de começar, verifique se que você instalou os pré-requisitos listados a
 - [Atualização de ferramentas do ASP.NET MVC 3](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=MVC3)
 - [SQL Server Compact 4.0](https://www.microsoft.com/web/gallery/install.aspx?appid=SQLCE;SQLCEVSTools_4_0)(tempo de execução de ferramentas de suporte +)
 
-Se você estiver usando o Visual Studio 2010, em vez do Visual Web Developer, instale os pré-requisitos, clicando no link a seguir: [pré-requisitos do Visual Studio 2010](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=VS2010SP1Pack).
+Se você estiver usando o Visual Studio 2010, em vez do Visual Web Developer, instale os pré-requisitos, clicando no link a seguir: [Pré-requisitos de Visual Studio 2010](https://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=VS2010SP1Pack).
 
 Este tutorial presume que você concluiu a [Introdução ao MVC 3](../getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md) tutorial ou que você esteja familiarizado com o desenvolvimento do ASP.NET MVC. Este tutorial começa com o projeto concluído a [Introdução ao MVC 3](../getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md) tutorial.
 
 Este tutorial mostra o código em c#. No entanto, o [projeto starter](https://archive.msdn.microsoft.com/Project/Download/FileDownload.aspx?ProjectName=aspnetmvcsamples&amp;DownloadId=15800) e projeto concluído também estão disponíveis no Visual Basic.
 
-Um projeto do Visual Studio com o código-fonte c# e Visual Basic está disponível para acompanhar este tópico: [baixar](https://archive.msdn.microsoft.com/Project/Download/FileDownload.aspx?ProjectName=aspnetmvcsamples&amp;DownloadId=15800).
+Um projeto do Visual Studio com o C# e o código-fonte do Visual Basic está disponível para acompanhar este tópico: [Baixe o](https://archive.msdn.microsoft.com/Project/Download/FileDownload.aspx?ProjectName=aspnetmvcsamples&amp;DownloadId=15800).
 
 ### <a name="what-youll-build"></a>O que você vai criar
 
@@ -54,7 +54,11 @@ Aqui está o que você aprenderá:
 
 ### <a name="getting-started"></a>Guia de Introdução
 
-Se você ainda não tiver o aplicativo de listagem de filmes do projeto starter, baixá-lo usando o seguinte link: [baixar](https://code.msdn.microsoft.com/Introduction-to-MVC-3-10d1b098). No Windows Explorer, clique com o *MvcMovie.zip* do arquivo e selecione **propriedades**. No **propriedades MvcMovie.zip** caixa de diálogo, selecione **Unblock**. (Desbloquear impede um aviso de segurança que ocorre quando você tentar usar um *. zip* arquivo que você baixou da web.)
+Se você ainda não tiver o aplicativo de listagem de filmes do projeto starter, baixá-lo: 
+
+* [Baixe o](https://code.msdn.microsoft.com/Introduction-to-MVC-3-10d1b098).
+* No Windows Explorer, clique com botão direito do *MvcMovie.zip* do arquivo e selecione **propriedades**. 
+* No **propriedades MvcMovie.zip** caixa de diálogo, selecione **Unblock**. (Desbloquear impede um aviso de segurança que ocorre quando você tentar usar um *. zip* arquivo que você baixou da web.)
 
 ![](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-1/_static/image2.png)
 

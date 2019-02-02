@@ -4,20 +4,18 @@ title: Servidor de autorização do OAuth 2.0 de OWIN | Microsoft Docs
 author: hongyes
 description: Este tutorial orientará você sobre como implementar um servidor de autorização do OAuth 2.0 usando o middleware OWIN OAuth. Isso é que apenas configurações de um tutorial avançado...
 ms.author: riande
-ms.date: 03/20/2014
+ms.date: 01/28/2019
 ms.assetid: 20acee16-c70c-41e9-b38f-92bfcf9a4c1c
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-oauth-20-authorization-server
 msc.type: authoredcontent
-ms.openlocfilehash: 095dad49a8e9f963d941a84398afe9da0f46ce0b
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: b8451d2d9e346bd5e2f51ba45e48030a5221b549
+ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48912261"
+ms.lasthandoff: 02/02/2019
+ms.locfileid: "55667642"
 ---
-<a name="owin-oauth-20-authorization-server"></a>Servidor de autorização do OAuth 2.0 de OWIN
-====================
-por [Hongye Sun](https://github.com/hongyes), [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson]((https://twitter.com/RickAndMSFT))
+# <a name="owin-oauth-20-authorization-server"></a>Servidor de autorização OAuth 2.0 de OWIN
 
 > Este tutorial orientará você sobre como implementar um servidor de autorização do OAuth 2.0 usando o middleware OWIN OAuth. Este é um tutorial avançado que descreve somente as etapas para criar um servidor de autorização do OWIN OAuth 2.0. Isso não é um tutorial passo a passo. [Baixe o código de exemplo](https://code.msdn.microsoft.com/OWIN-OAuth-20-Authorization-ba2b8783/file/114932/1/AuthorizationServer.zip).
 >
@@ -29,9 +27,9 @@ por [Hongye Sun](https://github.com/hongyes), [Praburaj Thiagarajan](https://git
 >
 > | **Mostrado no tutorial** | **Também funciona com** |
 > | --- | --- |
-> | Windows 8.1 | Windows 8, Windows 7 |
-> | [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013) | [Visual Studio 2013 Express para Desktop](https://my.visualstudio.com/Downloads?q=visual%20studio%202013#d-2013-express). Visual Studio 2012 com a atualização mais recente deve funcionar, mas o tutorial não foi testado com ele, e algumas seleções de menu e caixas de diálogo são diferentes. |
-> | .NET 4.5 |  |
+> | Windows 8.1 | Windows 10, Windows 8, Windows 7 |
+> | [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
+> | .NET 4.7.2 |  |
 >
 > ## <a name="questions-and-comments"></a>Perguntas e comentários
 >
@@ -53,7 +51,7 @@ Este tutorial aborda:
 <a id="prerequisites"></a>
 ## <a name="prerequisites"></a>Pré-requisitos
 
-- [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/downloads#d-2013-editions) ou a versão gratuita [Visual Studio Express 2013](https://www.microsoft.com/visualstudio/eng/downloads#d-2013-express), conforme indicado na **versões de Software** na parte superior da página.
+- [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/) conforme indicado na **versões de Software** na parte superior da página.
 - Familiaridade com o OWIN. Ver [Introdução ao projeto Katana](https://msdn.microsoft.com/magazine/dn451439.aspx) e [o que há de novo no OWIN e Katana](index.md).
 - Familiaridade com [OAuth](http://tools.ietf.org/html/rfc6749) terminologia, incluindo [funções](http://tools.ietf.org/html/rfc6749#section-1.1), [fluxo do protocolo](http://tools.ietf.org/html/rfc6749#section-1.2), e [concessão de autorização](http://tools.ietf.org/html/rfc6749#section-1.3). [Introdução do OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-1) fornece uma boa introdução.
 
@@ -81,17 +79,17 @@ O `UseOAuthAuthorizationServer` método de extensão é configurar o servidor de
 
 - `AuthorizeEndpointPath`: O caminho da solicitação em que os aplicativos clientes redirecionam o agente do usuário para obter os usuários de consentimento para emitir um token ou código. Ele deve começar com uma barra à esquerda, por exemplo, "`/Authorize`".
 - `TokenEndpointPath`: Os aplicativos de cliente do caminho de solicitação se comunicam diretamente para obter o token de acesso. Ele deve começar com uma barra à esquerda, como "/ Token". Se o cliente receberá um [client\_segredo](http://tools.ietf.org/html/rfc6749#appendix-A.2), ele deve ser fornecido para esse ponto de extremidade.
-- `ApplicationCanDisplayErrors`: Defina como `true` caso queira que o aplicativo web gerar uma página de erro personalizada para os erros de validação de cliente em `/Authorize` ponto de extremidade. Isso é necessário apenas para casos em que o navegador não é redirecionado de volta para o aplicativo cliente, por exemplo, quando o `client_id` ou `redirect_uri` estão incorretas. O `/Authorize` ponto de extremidade deve esperar ver "oauth. Erro","oauth. ErrorDescription"e"oauth. Propriedades de ErrorUri"são adicionadas ao ambiente OWIN.
+- `ApplicationCanDisplayErrors`: Definido como `true` caso queira que o aplicativo web gerar uma página de erro personalizada para os erros de validação de cliente em `/Authorize` ponto de extremidade. Isso é necessário apenas para casos em que o navegador não é redirecionado de volta para o aplicativo cliente, por exemplo, quando o `client_id` ou `redirect_uri` estão incorretas. O `/Authorize` ponto de extremidade deve esperar ver "oauth. Erro","oauth. ErrorDescription"e"oauth. Propriedades de ErrorUri"são adicionadas ao ambiente OWIN.
 
     > [!NOTE]
     > Se não for true, o servidor de autorização retornará uma página de erro padrão com os detalhes do erro.
-- `AllowInsecureHttp`: True para permitir autorizar e as solicitações de token para chegar em endereços de URI de HTTP e permitir a entrada `redirect_uri` autorizar os parâmetros de solicitação ter endereços de URI do HTTP.
+- `AllowInsecureHttp`: True para permitir a autorizar e as solicitações de token para chegar em endereços de URI de HTTP e permitir a entrada `redirect_uri` autorizar os parâmetros de solicitação ter endereços de URI do HTTP.
 
     > [!WARNING]
     > Security - isso é apenas para desenvolvimento.
 - `Provider`: O objeto fornecido pelo aplicativo para processar eventos gerados pelo middleware de servidor de autorização. O aplicativo pode implementar a interface completamente ou pode criar uma instância de `OAuthAuthorizationServerProvider` e atribuir representantes necessários para os fluxos de OAuth que dá suporte a esse servidor.
 - `AuthorizationCodeProvider`: Produz um código de autorização de uso único para retornar ao aplicativo cliente. Para o servidor OAuth ser seguro o aplicativo **devem** fornecer uma instância de `AuthorizationCodeProvider` em que o token produzido pelo `OnCreate/OnCreateAsync` evento é considerado válido para apenas uma chamada para `OnReceive/OnReceiveAsync`.
-- `RefreshTokenProvider`: Gera um token de atualização que pode ser usado para produzir um novo token de acesso quando necessário. Se não fornecido o servidor de autorização não retornará tokens de atualização da `/Token` ponto de extremidade.
+- `RefreshTokenProvider`: Produz um token de atualização que pode ser usado para produzir um novo token de acesso quando necessário. Se não fornecido o servidor de autorização não retornará tokens de atualização da `/Token` ponto de extremidade.
 
 ## <a name="account-management"></a>Gerenciamento de conta
 

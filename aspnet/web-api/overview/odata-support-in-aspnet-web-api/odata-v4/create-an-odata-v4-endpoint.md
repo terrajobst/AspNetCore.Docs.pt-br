@@ -4,20 +4,18 @@ title: Criar um ponto de extremidade OData v4 usando a API Web ASP.NET 2.2 | Mic
 author: MikeWasson
 description: O Open Data Protocol (OData) é um protocolo de acesso de dados para a web. O OData fornece uma maneira uniforme para consultar e manipular os conjuntos de dados por meio de operações de CRUD...
 ms.author: riande
-ms.date: 06/24/2014
+ms.date: 01/23/2019
 ms.assetid: 1e1927c0-ded1-4752-80fd-a146628d2f09
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v4/create-an-odata-v4-endpoint
 msc.type: authoredcontent
-ms.openlocfilehash: 48c1a78c96cb0ebfa0b053dfef84e76433112650
-ms.sourcegitcommit: 7890dfb5a8f8c07d813f166d3ab0c263f893d0c6
+ms.openlocfilehash: c6a4aa4eb563fd77d5afd9248175d5f5b7984d19
+ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/04/2018
-ms.locfileid: "48795412"
+ms.lasthandoff: 02/02/2019
+ms.locfileid: "55667564"
 ---
-<a name="create-an-odata-v4-endpoint-using-aspnet-web-api-22"></a>Criar um ponto de extremidade OData v4 usando a API Web ASP.NET 2.2
-====================
-por [Mike Wasson](https://github.com/MikeWasson)
+# <a name="create-an-odata-v4-endpoint-using-aspnet-web-api"></a>Criar um ponto de extremidade OData v4 usando a API Web ASP.NET 
 
 > O Open Data Protocol (OData) é um protocolo de acesso de dados para a web. O OData fornece uma maneira uniforme para consultar e manipular os conjuntos de dados por meio de operações de CRUD (criar, ler, atualizar e excluir).
 >
@@ -27,11 +25,11 @@ por [Mike Wasson](https://github.com/MikeWasson)
 >
 > ## <a name="software-versions-used-in-the-tutorial"></a>Versões de software usadas no tutorial
 >
-> - API Web 2.2
+> - 5.2 da API da Web
 > - OData v4
-> - Visual Studio 2013 (Baixe o Visual Studio 2017 [aqui](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017))
+> - Visual Studio 2017 (Baixe o Visual Studio 2017 [aqui](https://visualstudio.microsoft.com/downloads/))
 > - Entity Framework 6
-> - .NET 4.5
+> - .NET 4.7.2
 >
 > ## <a name="tutorial-versions"></a>Versões de tutoriais
 >
@@ -41,13 +39,17 @@ por [Mike Wasson](https://github.com/MikeWasson)
 
 No Visual Studio, do **arquivo** menu, selecione **New** &gt; **projeto**.
 
-Expandir **Installed** &gt; **modelos** &gt; **Visual c#** &gt; **Web**e selecione o  **Aplicativo Web ASP.NET** modelo. Nomeie o projeto &quot;ProductService&quot;.
+Expandir **Installed** &gt; **Visual C#**  &gt; **Web**e selecione o **aplicativo Web ASP.NET (.NET Framework)**  modelo. Nomeie o projeto &quot;ProductService&quot;.
 
-[![](create-an-odata-v4-endpoint/_static/image2.png)](create-an-odata-v4-endpoint/_static/image1.png)
+[![](create-an-odata-v4-endpoint/_static/image7.png)](create-an-odata-v4-endpoint/_static/image7.png)
 
-No **novo projeto** caixa de diálogo, selecione o **vazia** modelo. Sob &quot;adicionar pastas e os principais referências... &quot;, clique em **API Web**. Clique em **OK**.
+Selecione **OK**.
 
-[![](create-an-odata-v4-endpoint/_static/image4.png)](create-an-odata-v4-endpoint/_static/image3.png)
+
+
+[![](create-an-odata-v4-endpoint/_static/image8.png)](create-an-odata-v4-endpoint/_static/image8.png)
+
+Selecione o **vazio** modelo. Sob **adicionar pastas e os principais referências para:**, selecione **API da Web**. Selecione **OK**.
 
 ## <a name="install-the-odata-packages"></a>Instalar os pacotes de OData
 
@@ -138,7 +140,7 @@ O controlador usa o `ProductsContext` classe para acessar o banco de dados usand
 
 Isso é o ponto de partida para o controlador. Em seguida, adicionaremos métodos para todas as operações CRUD.
 
-## <a name="querying-the-entity-set"></a>Consultando o conjunto de entidades
+## <a name="query-the-entity-set"></a>O conjunto de entidades de consulta
 
 Adicione os seguintes métodos para `ProductsController`.
 
@@ -148,13 +150,13 @@ A versão sem parâmetros do `Get` método retorna toda a coleção de produtos.
 
 O **[EnableQuery]** atributo permite que os clientes modificar a consulta, usando as opções de consulta como $filter, $sort e $page. Para obter mais informações, consulte [que dão suporte a opções de consulta OData](../supporting-odata-query-options.md).
 
-## <a name="adding-an-entity-to-the-entity-set"></a>Adicionando uma entidade para o conjunto de entidades
+## <a name="add-an-entity-to-the-entity-set"></a>Adicionar uma entidade para o conjunto de entidades
 
 Para habilitar clientes para adicionar um novo produto no banco de dados, adicione o seguinte método à `ProductsController`.
 
 [!code-csharp[Main](create-an-odata-v4-endpoint/samples/sample10.cs)]
 
-## <a name="updating-an-entity"></a>Atualizando uma entidade
+## <a name="update-an-entity"></a>Atualizar uma entidade
 
 OData dá suporte a dois semânticas diferentes para atualizar uma entidade, PATCH e PUT.
 
@@ -169,7 +171,7 @@ Em qualquer caso, aqui está o código para métodos PUT e PATCH:
 
 No caso de PATCH, o controlador usa o **Delta&lt;T&gt;**  tipo para controlar as alterações.
 
-## <a name="deleting-an-entity"></a>Excluindo uma entidade
+## <a name="delete-an-entity"></a>Excluir uma entidade
 
 Para habilitar clientes excluir um produto do banco de dados, adicione o seguinte método à `ProductsController`.
 

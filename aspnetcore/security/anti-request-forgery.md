@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/11/2018
 uid: security/anti-request-forgery
-ms.openlocfilehash: 3c1ea8f41eb6ed847bf24141ef0ae0c7e03d8a79
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: 6e140717834b901e12ef7863fd07b983b0c55107
+ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54099215"
+ms.lasthandoff: 02/02/2019
+ms.locfileid: "55667655"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>Ataques de evitar entre solicitação intersite forjada (CSRF/XSRF) no ASP.NET Core
 
@@ -412,15 +412,40 @@ xhttp.send(JSON.stringify({ "newPassword": "ReallySecurePassword999$$$" }));
 
 ### <a name="angularjs"></a>AngularJS
 
-AngularJS usa uma convenção para endereço CSRF. Se o servidor envia um cookie com o nome `XSRF-TOKEN`, o AngularJS `$http` serviço adiciona o valor do cookie a um cabeçalho quando ele envia uma solicitação ao servidor. Esse processo é automático. O cabeçalho não precisa ser definido explicitamente. O nome do cabeçalho é `X-XSRF-TOKEN`. O servidor deve detectar esse cabeçalho e validar seu conteúdo.
+AngularJS usa uma convenção para endereço CSRF. Se o servidor envia um cookie com o nome `XSRF-TOKEN`, o AngularJS `$http` serviço adiciona o valor do cookie a um cabeçalho quando ele envia uma solicitação ao servidor. Esse processo é automático. O cabeçalho não precisa ser definido explicitamente no cliente. O nome do cabeçalho é `X-XSRF-TOKEN`. O servidor deve detectar esse cabeçalho e validar seu conteúdo.
 
-Para a API do ASP.NET Core trabalhe com essa convenção:
+API do ASP.NET Core trabalhar com essa convenção na inicialização do seu aplicativo:
 
 * Configurar seu aplicativo para fornecer um token em um cookie chamado `XSRF-TOKEN`.
 * Configurar o serviço antifalsificação para procurar por um cabeçalho chamado `X-XSRF-TOKEN`.
 
 ```csharp
-services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
+public void Configure(IApplicationBuilder app, IAntiforgery antiforgery)
+{
+    app.Use(next => context =>
+    {
+        string path = context.Request.Path.Value;
+
+        if (
+            string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase))
+        {
+            // The request token can be sent as a JavaScript-readable cookie, 
+            // and Angular uses it by default.
+            var tokens = antiforgery.GetAndStoreTokens(context);
+            context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, 
+                new CookieOptions() { HttpOnly = false });
+        }
+
+        return next(context);
+    });
+}
+
+public void ConfigureServices(IServiceCollection services)
+{
+    // Angular's default header name for sending the XSRF token.
+    services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
+}
 ```
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/anti-request-forgery/sample/AngularSample) ([como baixar](xref:index#how-to-download-a-sample))

@@ -9,12 +9,12 @@ ms.topic: tutorial
 ms.assetid: 0ed5e67a-34c0-4b57-84a6-802b0fb3cd00
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/enhancing-data-validation
 msc.type: authoredcontent
-ms.openlocfilehash: 85299d70c6cba52c1d40a42edfd429c96318134a
-ms.sourcegitcommit: c47d7c131eebbcd8811e31edda210d64cf4b9d6b
+ms.openlocfilehash: 897cd7c6a40445e2a4abede50d81e101372d3233
+ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/30/2019
-ms.locfileid: "55236478"
+ms.lasthandoff: 02/02/2019
+ms.locfileid: "55667616"
 ---
 # <a name="tutorial-enhance-data-validation-for-ef-database-first-with-aspnet-mvc-app"></a>Tutorial: Aprimorar a validação de dados para o Database First do EF com o aplicativo ASP.NET MVC
 
@@ -84,6 +84,14 @@ Salvar a *ContosoModel.edmx* arquivo para aplicar as alterações.
 
 Abra o *Student.cs* arquivo ou o *Enrollment.cs* arquivo e observe que os atributos de validação de dados que você aplicou anteriormente não estão mais no arquivo. No entanto, executar o aplicativo e observe que as regras de validação ainda são aplicadas quando você insere dados.
 
+## <a name="conclusion"></a>Conclusão
+
+Esta série fornecido um exemplo simples de como gerar o código de um banco de dados existente que permite aos usuários editar, atualizar, criar e excluir dados. Ele usado ASP.NET MVC 5, Entity Framework e Scaffolding do ASP.NET para criar o projeto. 
+
+Para obter um exemplo introdutório de desenvolvimento Code First, consulte [Introdução ao ASP.NET MVC 5](../introduction/getting-started.md). 
+
+Para obter um exemplo mais avançado, consulte [criando um modelo de dados do Entity Framework para um aplicativo do ASP.NET MVC 4](../getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md). Observe que a API DbContext que você usa para trabalhar com dados no banco de dados primeiro é o mesmo que a API que você pode usar para trabalhar com dados no Code First. Mesmo se você pretende usar o primeiro banco de dados, você pode aprender como lidar com cenários mais complexos, como ler e atualizar dados relacionados, tratamento de conflitos de simultaneidade, e assim por diante de um tutorial de Code First. A única diferença está em como o banco de dados, classe de contexto e classes de entidade são criadas.
+
 ## <a name="additional-resources"></a>Recursos adicionais
 
 Para obter uma lista completa de anotações de validação de dados, você pode aplicar a classes e propriedades, consulte [DataAnnotations](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx).
@@ -96,6 +104,6 @@ Neste tutorial, você:
 > * Anotações de dados adicionados
 > * Classes de metadados adicionados
 
-Avance para o próximo tutorial para saber como publicar o aplicativo web e o banco de dados no Azure.
+Para saber como implantar um aplicativo web e o banco de dados SQL no serviço de aplicativo do Azure, consulte este tutorial:
 > [!div class="nextstepaction"]
-> [Publicar no Azure](publish-to-azure.md)
+> [Implantar um aplicativo .NET no serviço de aplicativo do Azure](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase/)

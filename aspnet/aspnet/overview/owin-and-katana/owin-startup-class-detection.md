@@ -4,26 +4,25 @@ title: Detecção de classe de inicialização OWIN | Microsoft Docs
 author: Praburaj
 description: Este tutorial mostra como configurar qual classe de inicialização OWIN é carregado. Para obter mais informações sobre o OWIN, consulte uma visão geral do projeto Katana. Este tutorial foi...
 ms.author: riande
-ms.date: 10/17/2013
+ms.date: 01/28/2019
 ms.assetid: 08257f55-36f4-4e39-9c88-2a5602838c79
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-startup-class-detection
 msc.type: authoredcontent
-ms.openlocfilehash: 4e753187f1caae646402712c2abc28856ae71a79
-ms.sourcegitcommit: a4dcca4f1cb81227c5ed3c92dc0e28be6e99447b
+ms.openlocfilehash: 0b34cca8b48383dbb028106651758dff889ed614
+ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48910701"
+ms.lasthandoff: 02/02/2019
+ms.locfileid: "55667291"
 ---
 <a name="owin-startup-class-detection"></a>Detecção de classe de inicialização OWIN
 ====================
-por [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson]((https://twitter.com/RickAndMSFT))
 
 > Este tutorial mostra como configurar qual classe de inicialização OWIN é carregado. Para obter mais informações sobre o OWIN, consulte [uma visão geral do projeto Katana](an-overview-of-project-katana.md). Este tutorial foi escrito por Rick Anderson ( [ @RickAndMSFT ](https://twitter.com/#!/RickAndMSFT) ), Howard Dierking e Praburaj Thiagarajan ( [ @howard \_dierking](https://twitter.com/howard_dierking) ).
 >
 > ## <a name="prerequisites"></a>Pré-requisitos
 >
-> [Visual Studio 2013](https://my.visualstudio.com/Downloads?q=visual%20studio%202013)
+> [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 
 
 ## <a name="owin-startup-class-detection"></a>Detecção de classe de inicialização OWIN
@@ -31,12 +30,12 @@ por [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson]((https:
  Todos os aplicativos OWIN tem uma classe de inicialização na qual você pode especificar componentes para o pipeline do aplicativo. Você pode se conectar a sua classe de inicialização com o tempo de execução de maneiras diferentes, dependendo do modelo de hospedagem escolhida (OwinHost, IIS e IIS Express). A classe de inicialização mostrada neste tutorial pode ser usada em cada aplicativo de hospedagem. Você se conectar a classe de inicialização com o tempo de execução hospedagem usando uma dessas abordagens:
 
 1. **Convenção de nomenclatura**: Katana procura por uma classe chamada `Startup` no namespace, o nome do assembly ou namespace global correspondentes.
-2. **Atributo OwinStartup**: essa é a abordagem levará a maioria dos desenvolvedores para especificar a classe de inicialização. O seguinte atributo definirá a classe de inicialização o `TestStartup` classe o `StartupDemo` namespace.
+2. **Atributo OwinStartup**: Essa é a abordagem que a maioria dos desenvolvedores levará para especificar a classe de inicialização. O seguinte atributo definirá a classe de inicialização o `TestStartup` classe o `StartupDemo` namespace.
 
     [!code-csharp[Main](owin-startup-class-detection/samples/sample1.cs)]
 
    O `OwinStartup` atributo substitui a convenção de nomenclatura. Você também pode especificar um nome amigável com esse atributo, no entanto, usar um nome amigável requer a também usar o `appSetting` elemento no arquivo de configuração.
-3. **O elemento de appSetting no arquivo de configuração**: O `appSetting` elemento substitui o `OwinStartup` atributo e a convenção de nomenclatura. Você pode ter várias classes de inicialização (cada um usando um `OwinStartup` atributo) e configurar qual classe de inicialização será carregado em um arquivo de configuração usando marcação semelhante ao seguinte:
+3. **O elemento de appSetting no arquivo de configuração**: O `appSetting` substitui o `OwinStartup` atributo e a convenção de nomenclatura. Você pode ter várias classes de inicialização (cada um usando um `OwinStartup` atributo) e configurar qual classe de inicialização será carregado em um arquivo de configuração usando marcação semelhante ao seguinte:
 
     [!code-xml[Main](owin-startup-class-detection/samples/sample2.xml)]
 
@@ -60,7 +59,7 @@ por [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson]((https:
 1. Crie um aplicativo de web Asp.Net vazio e denomine **StartupDemo**. -Instalar `Microsoft.Owin.Host.SystemWeb` usando o Gerenciador de pacotes do NuGet. Do **ferramentas** menu, selecione **Gerenciador de pacotes NuGet**e então **Package Manager Console**. Insira o seguinte comando:
 
     [!code-powershell[Main](owin-startup-class-detection/samples/sample7.ps1)]
-2. Adicione uma classe de inicialização do OWIN. No Visual Studio 2013 com o botão direito mouse no projeto e selecione **Add Class**. - na **Adicionar Novo Item** caixa de diálogo, digite *OWIN* no campo de pesquisa e altere o nome para o Startup.cs, e, em seguida, clique em **adicionar**.
+2. Adicione uma classe de inicialização do OWIN. No Visual Studio 2017 com o botão direito no projeto e selecione **Add Class**. - na **Adicionar Novo Item** caixa de diálogo, digite *OWIN* no campo de pesquisa e altere o nome para o Startup.cs, e, em seguida, selecione **adicionar**.
 
      ![](owin-startup-class-detection/_static/image1.png)
 
@@ -68,7 +67,7 @@ por [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson]((https:
 
      ![](owin-startup-class-detection/_static/image2.png)
 
-   Como alternativa, você pode com o botão direito do mouse no projeto e selecione **Add**, em seguida, selecione **Novo Item**e, em seguida, selecione o **classe de inicialização Owin**.
+   Como alternativa, é possível com o botão direito no projeto e selecionar **Add**, em seguida, selecione **Novo Item**e, em seguida, selecione o **classe de inicialização Owin**.
 
      ![](owin-startup-class-detection/_static/image3.png)
 
@@ -158,6 +157,7 @@ Nesta seção vamos adicionar outra classe de inicialização. Você pode adicio
 
    A classe de inicialização de produção é carregada.
     ![](owin-startup-class-detection/_static/image9.png)
+
    Nosso aplicativo tem várias classes de inicialização e, neste exemplo, podemos adiaram qual classe de inicialização para carregar até o tempo de execução.
 8. As seguintes opções de inicialização de tempo de execução de teste:
 

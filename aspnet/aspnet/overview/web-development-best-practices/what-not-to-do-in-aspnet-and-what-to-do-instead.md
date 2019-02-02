@@ -4,20 +4,18 @@ title: O que não fazer no ASP.NET e o que fazer em vez disso | Microsoft Docs
 author: Rick-Anderson
 description: Este tópico descreve vários erros comuns que as pessoas fizer dentro de projetos web ASP.NET. Ele fornece recomendações para que você deve fazer para evitar esses comu...
 ms.author: riande
-ms.date: 05/08/2014
+ms.date: 01/28/2019
 ms.assetid: c39b9965-545c-4b04-8f55-21be7f28a9e5
 msc.legacyurl: /aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead
 msc.type: authoredcontent
-ms.openlocfilehash: 69040ca6a1ddeaf029062da45475dd2171b1afa6
-ms.sourcegitcommit: 2d3e5422d530203efdaf2014d1d7df31f88d08d0
+ms.openlocfilehash: 512d2e2b39467635390fa175546f79d8c9f89f4a
+ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/05/2018
-ms.locfileid: "51021437"
+ms.lasthandoff: 02/02/2019
+ms.locfileid: "55667704"
 ---
-<a name="what-not-to-do-in-aspnet-and-what-to-do-instead"></a>O que não fazer no ASP.NET e o que fazer em vez disso
-====================
-por [Tom FitzMacken](https://github.com/tfitzmac)
+# <a name="what-not-to-do-in-aspnet-and-what-to-do-instead"></a>O que fazer e o que não fazer em ASP.NET
 
 > Este tópico descreve vários erros comuns que as pessoas fizer dentro de projetos web ASP.NET. Ele fornece recomendações para que você deve fazer para evitar esses erros comuns. Ele se baseia em uma [apresentação](http://vimeo.com/68390507) pela **Damian Edwards** na Norwegian Developers Conference.
 
@@ -67,13 +65,13 @@ Recomendação: Parar de usar adaptadores de controle para renderização adapt�
 
 Adaptadores de controles foram introduzidas no .NET 2.0 para processar o código de apresentação que foi personalizado para ambientes e dispositivos diferentes. Agora, essa renderização adaptável pode ser feita com CSS e HTML. Você deve parar de usar adaptadores de controle e converter todos os adaptadores existentes em CSS e HTML.
 
-Para obter mais informações, consulte [consultas de mídia](http://www.w3.org/TR/css3-mediaqueries/) e [How To: adicionar a páginas de móveis para o ASP.NET Web Forms / aplicativo MVC](../../../whitepapers/add-mobile-pages-to-your-aspnet-web-forms-mvc-application.md).
+Para obter mais informações, consulte [consultas de mídia](http://www.w3.org/TR/css3-mediaqueries/) e [How To: Adicionar páginas móveis ao seu Web Forms do ASP.NET / aplicativo MVC](../../../whitepapers/add-mobile-pages-to-your-aspnet-web-forms-mvc-application.md).
 
 <a id="styleprop"></a>
 
 ### <a name="style-properties-on-controls"></a>Propriedades de estilo para controles
 
-Recomendação: Parar definindo valores de estilo na marcação do controle e, em vez disso, defina valores de formatação em folhas de estilo CSS.
+Recomendação: Parar de configurar os valores de estilo na marcação do controle e, em vez disso, defina valores de formatação em folhas de estilo CSS.
 
 Controles de servidor Web com dezenas de propriedades que podem ser usadas para definir propriedades de estilo embutido. Por exemplo, a propriedade ForeColor define a cor do texto para um controle. Você pode fazer o mesmo efeito com mais eficiência por meio de folhas de estilo CSS. Folhas de estilo permitem que você centralize os valores de estilo e evite definir esses valores em todo o aplicativo.
 
@@ -87,9 +85,9 @@ O exemplo a seguir mostra como aplicar dinamicamente a classe CSS.
 
 <a id="callback"></a>
 
-### <a name="page-and-control-callbacks"></a>Página e retornos de chamada de controle
+### <a name="page-and-control-callbacks"></a>Retornos de chamada de página e controle
 
-Recomendação: Parar de usar retornos de chamada de página e controle e, em vez disso, use qualquer um dos seguintes: AJAX, UpdatePanel, métodos de ação de MVC, API da Web ou SignalR.
+Recomendação: Parar de usar retornos de chamada de página e controle e, em vez disso, use qualquer um dos seguintes: AJAX, UpdatePanel, MVC métodos de ação, API da Web ou SignalR.
 
 Em versões anteriores do ASP.NET, métodos de retorno de chamada de página e controle habilitado atualizar parte da página da web sem atualizar uma página inteira. Agora você pode fazer atualizações parciais de página por meio [AJAX](../../../ajax/index.md), [UpdatePanel](https://msdn.microsoft.com/library/bb386454.aspx), [MVC](../../../mvc/index.md), [API da Web](../../../web-api/index.md) ou [SignalR](../../../signalr/index.md). Você deve interromper o roteamento e usar métodos de retorno de chamada porque podem causar problemas com URLs amigáveis. Por padrão, os controles não permitem que os métodos de retorno de chamada, mas se você habilitar esse recurso em um controle, você deve desabilitá-lo.
 
@@ -151,7 +149,7 @@ O exemplo a seguir mostra como especificar no arquivo Web. config que a autentic
 
 ### <a name="enableviewstatemac"></a>EnableViewStateMac
 
-Recomendação: Nunca definido como false.
+Recomendação: Nunca defina como false.
 
 Por padrão, EnbableViewStateMac é definido como true. Mesmo se seu aplicativo não estiver usando o estado de exibição, não defina EnableViewStateMac como false. Definir esse valor como false fará seu aplicativo vulnerável a XSS.
 
@@ -173,7 +171,7 @@ Confiança parcial não proteger adequadamente seu aplicativo e não deve ser us
 
 ### <a name="ltappsettingsgt"></a>&lt;appSettings&gt;
 
-Recomendação: Não desabilitar as configurações de segurança no &lt;appSettings&gt; elemento.
+Recomendação: Não desabilite as configurações de segurança no &lt;appSettings&gt; elemento.
 
 O elemento de appSettings contém muitos valores que são necessários para atualizações de segurança. Você não deve alterar ou desativar esses valores. Se você precisar desabilitar esses valores ao implantar uma atualização, imediatamente habilite novamente depois de concluir a implantação.
 
@@ -207,9 +205,9 @@ Você pode usar o [PreSendRequestHeaders](https://msdn.microsoft.com/library/sys
 
 <a id="asyncevents"></a>
 
-### <a name="asynchronous-page-events-with-web-forms"></a>Eventos de página assíncrona com Web Forms
+### <a name="asynchronous-page-events-with-web-forms"></a>Eventos de página assíncrona com web forms
 
-Recomendação: Nos Web Forms, evite escrever async void métodos para eventos de ciclo de vida da página e, em vez disso, use [RegisterAsyncTask](https://msdn.microsoft.com/library/system.web.ui.page.registerasynctask.aspx) para código assíncrono.
+Recomendação: No Web Forms, evite escrever async void métodos para eventos de ciclo de vida da página e, em vez disso, use [RegisterAsyncTask](https://msdn.microsoft.com/library/system.web.ui.page.registerasynctask.aspx) para código assíncrono.
 
 Quando você marca um evento de página com **async** e **void**, não é possível determinar quando o código assíncrono foi concluído. Em vez disso, use RegisterAsyncTask para executar o código assíncrono de uma maneira que permite que você controle sua conclusão.
 
@@ -217,7 +215,7 @@ A exemplo a seguir mostra um botão Clique manipulador que contém o código ass
 
 [!code-csharp[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample11.cs)]
 
-Se você estiver usando tarefas assíncronas, defina a estrutura de destino do tempo de execução de Http para a versão 4.5 no arquivo Web. config. Definir a estrutura de destino para 4.5 ativa no novo contexto de sincronização que foi adicionado no .NET 4.5. Esse valor é definido por padrão em novos projetos no Visual Studio 2012, mas é a não ser definida se você estiver trabalhando com um projeto existente.
+Se você estiver usando tarefas assíncronas, defina a estrutura de destino do tempo de execução de Http para 4.5 (ou posterior) no arquivo Web. config. Definir a estrutura de destino para 4.5 ativa no novo contexto de sincronização que foi adicionado no .NET 4.5. Esse valor é definido por padrão em novos projetos no Visual Studio, mas é a não ser definida se você estiver trabalhando com um projeto existente.
 
 [!code-xml[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample12.xml)]
 

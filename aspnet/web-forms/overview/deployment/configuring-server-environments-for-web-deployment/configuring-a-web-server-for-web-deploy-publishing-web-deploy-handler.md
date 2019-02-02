@@ -4,20 +4,18 @@ title: Configurando um servidor Web para Web de publicação de implantação (m
 author: jrjlee
 description: Este tópico descreve como configurar um servidor web de serviços de informações da Internet (IIS) para dar suporte à implantação usando Henrique de implantar o IIS da Web e publicação na web...
 ms.author: riande
-ms.date: 05/04/2012
+ms.date: 01/29/2017
 ms.assetid: 90ebf911-1c46-4470-b876-1335bd0f590f
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler
 msc.type: authoredcontent
-ms.openlocfilehash: 13e4fdf77daf26abe837a90db9c11ecbe1957823
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
+ms.openlocfilehash: cf18a8860d34daa23f61e3dde13c2c79c6c0d4a5
+ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41823464"
+ms.lasthandoff: 02/02/2019
+ms.locfileid: "55667317"
 ---
-<a name="configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler"></a>Configurando um servidor Web para Web de publicação de implantação (manipulador de implantação da Web)
-====================
-por [Jason Lee](https://github.com/jrjlee)
+# <a name="configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler"></a>Configuração de um servidor Web para publicação de Implantação da Web (manipulador de Implantação da Web)
 
 [Baixar PDF](https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/63/56/8130.DeployingWebAppsInEnterpriseScenarios.pdf)
 
@@ -57,9 +55,9 @@ Para hospedar a solução de exemplo ContactManager especificamente, você tamb�
 - Instale o .NET Framework 4.0.
 - Instale o ASP.NET MVC 3.
 
-Este tópico mostra como executar cada um desses procedimentos. As tarefas e instruções passo a passo neste tópico pressupõem que você está começando com uma compilação limpa do servidor executando o Windows Server 2008 R2. Antes de continuar, verifique se:
+Este tópico mostra como executar cada um desses procedimentos. As tarefas e instruções passo a passo neste tópico pressupõem que você está começando com uma compilação limpa do servidor executando o Windows Server 2016. Antes de continuar, verifique se:
 
-- Windows Server 2008 R2 Service Pack 1 e todas as atualizações disponíveis serão instaladas.
+- Windows Server 2016
 - O servidor está ingressado no domínio.
 - O servidor tem um endereço IP estático.
 
@@ -81,7 +79,7 @@ Nesse caso, você precisa instalar essas coisas:
 - **ASP.NET MVC 3**. Isso instala os assemblies que você precisa para executar aplicativos MVC 3.
 
 > [!NOTE]
-> Este passo a passo descreve o uso do Web Platform Installer para instalar e configurar vários componentes. Embora você não precisa usar o Web Platform Installer, ele simplifica o processo de instalação automaticamente detectando as dependências e garantindo que você sempre obtenha as versões mais recentes do produto. Para obter mais informações, consulte [Microsoft Web Platform Installer 3.0](https://go.microsoft.com/?linkid=9805118).
+> Este passo a passo descreve o uso do Web Platform Installer para instalar e configurar vários componentes. Embora você não precisa usar o Web Platform Installer, ele simplifica o processo de instalação automaticamente detectando as dependências e garantindo que você sempre obtenha as versões mais recentes do produto. Para obter mais informações, consulte [Microsoft Web Platform Installer](https://go.microsoft.com/?linkid=9805118).
 
 
 **Para instalar os componentes e produtos necessários**
@@ -91,7 +89,7 @@ Nesse caso, você precisa instalar essas coisas:
 
     > [!NOTE]
     > Agora você pode iniciar o Web Platform Installer a qualquer momento do **iniciar** menu. Para fazer isso, nos **inicie** menu, clique em **todos os programas**e, em seguida, clique em **Microsoft Web Platform Installer**.
-3. Na parte superior do **Web Platform Installer 3.0** janela, clique em **produtos**.
+3. Na parte superior do **Web Platform Installer** janela, clique em **produtos**.
 4. No lado esquerdo da janela, no painel de navegação, clique em **estruturas**.
 5. No **Microsoft .NET Framework 4** linha, se o .NET Framework já não estiver instalado, clique em **Add**.
 
@@ -103,13 +101,13 @@ Nesse caso, você precisa instalar essas coisas:
 7. No painel de navegação, clique em **Server**.
 8. No **configuração recomendada do IIS 7** de linhas, clique em **Add**.
 9. No **ferramenta de implantação da Web 2.1** de linhas, clique em **Add**.
-10. No **IIS: autenticação básica** de linhas, clique em **Add**.
-11. No **IIS: serviço de gerenciamento** de linhas, clique em **Add**.
+10. No **IIS: Autenticação básica** de linha, clique em **Add**.
+11. No **IIS: Serviço de gerenciamento** de linha, clique em **Add**.
 12. Clique em **Instalar**. O Web Platform Installer mostrará uma lista de produtos&#x2014;junto com quaisquer dependências associadas&#x2014;a serem instalados e solicitará que você aceite os termos de licença.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image2.png)
 13. Examine os termos de licença e se você concordar com os termos, clique em **aceito**.
-14. Quando a instalação for concluída, clique em **terminar**e, em seguida, feche o **Web Platform Installer 3.0** janela.
+14. Quando a instalação for concluída, clique em **terminar**e, em seguida, feche o **Web Platform Installer** janela.
 
 Se você instalou o .NET Framework 4.0 antes de instalar o IIS, você precisará executar o [ferramenta de registro ASP.NET IIS](https://msdn.microsoft.com/library/k6h9cz8h(v=VS.100).aspx) (aspnet\_regiis.exe) para registrar a versão mais recente do ASP.NET com IIS. Se você não fizer isso, você descobrirá que o IIS servirá conteúdo estático (como arquivos HTML) sem problemas, mas ele retornará **404.0 de erro HTTP – não encontrado** quando você tenta navegar para conteúdo ASP.NET. Você pode usar o procedimento a seguir para garantir que o ASP.NET 4.0 está registrado.
 
@@ -145,7 +143,7 @@ Agora que você instalou tudo o que você precisa, a próxima etapa é configura
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image3.png)
 3. No painel central, sob **IIS**, clique duas vezes em **autenticação**.
 
-    ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image4.png)
+    ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image20.png)
 4. Clique com botão direito **autenticação básica**e, em seguida, clique em **habilitar**.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image5.png)
@@ -207,7 +205,7 @@ Embora não haja nada que impeça você de implantação de conteúdo para o sit
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image11.png)
 
     > [!NOTE]
-    > Em um ambiente de produção, provavelmente você vai querer hospedar seu site da Web na porta 80 e configurar um cabeçalho de host, juntamente com registros DNS correspondentes. Para obter mais informações sobre como configurar cabeçalhos de host no IIS 7, consulte [configurar um cabeçalho de Host para um Site da Web (IIS 7)](https://technet.microsoft.com/library/cc753195(WS.10).aspx). Para obter mais informações sobre a função de servidor DNS no Windows Server 2008 R2, consulte [visão geral do servidor DNS](https://technet.microsoft.com/en-gb/library/cc770392.aspx) e [servidor DNS](https://technet.microsoft.com/windowsserver/dd448607).
+    > Em um ambiente de produção, provavelmente você vai querer hospedar seu site da Web na porta 80 e configurar um cabeçalho de host, juntamente com registros DNS correspondentes. Para obter mais informações sobre como configurar cabeçalhos de host no IIS 7, consulte [configurar um cabeçalho de Host para um Site da Web (IIS 7)](https://technet.microsoft.com/library/cc753195(WS.10).aspx). Para obter mais informações sobre a função de servidor DNS no Windows Server, consulte [visão geral do servidor DNS](https://technet.microsoft.com/en-gb/library/cc770392.aspx) e [servidor DNS](https://technet.microsoft.com/windowsserver/dd448607).
 9. No painel **Ações** , em **Editar Site**, clique em **Ligações**.
 10. No **ligações do Site** caixa de diálogo, clique em **Add**.
 
@@ -222,9 +220,9 @@ Embora não haja nada que impeça você de implantação de conteúdo para o sit
 13. No **ligações do Site** caixa de diálogo, clique em **fechar**.
 14. No **conexões** painel, clique em **Pools de aplicativos**.
 15. No **Pools de aplicativos** painel, clique no nome do seu pool de aplicativos e, em seguida, clique em **configurações básicas**. Por padrão, o nome do seu pool de aplicativos corresponderá ao nome do seu site (por exemplo, **DemoSite**).
-16. No **versão do .NET Framework** lista, selecione **.NET Framework v4.0.30319**e, em seguida, clique em **Okey**.
+16. No **versão do .NET CLR** lista, selecione **v4.0.30319 .NET CLR**e, em seguida, clique em **Okey**.
 
-    ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image14.png)
+    ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image21.png)
 
     > [!NOTE]
     > A solução de exemplo requer o .NET Framework 4.0. Isso não é um requisito para a implantação da Web em geral.

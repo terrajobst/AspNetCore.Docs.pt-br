@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/21/2018
 uid: spa/react
-ms.openlocfilehash: c83b119e81d7d0abfd727cb8c72abb09763d9448
-ms.sourcegitcommit: b2723654af4969a24545f09ebe32004cb5e84a96
+ms.openlocfilehash: d83bff8abcd5b59d8bc4a51a101510755394f0c4
+ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46011411"
+ms.lasthandoff: 02/02/2019
+ms.locfileid: "55667681"
 ---
 # <a name="use-the-react-project-template-with-aspnet-core"></a>Usar o modelo de projeto do React com o ASP.NET Core
 
@@ -97,14 +97,22 @@ O projeto está configurado para iniciar sua própria instância do Development 
 
 Há uma desvantagem nessa configuração padrão. Cada vez que você modificar seu código C# e o aplicativo ASP.NET Core precisar ser reiniciado, o servidor CRA será reiniciado também. São necessários alguns segundos para iniciar um backup. Se você estiver fazendo edições frequentes de código C# e não quiser esperar o servidor CRA reiniciar, execute o servidor CRA externamente, independentemente do processo do ASP.NET Core. Para fazer isso:
 
-1. Em um prompt de comando, vá para o subdiretório *ClientApp* e inicie o Development Server do CRA:
+1. Adicionar um *. env* do arquivo para o *ClientApp* subdiretório com a seguinte configuração:
+
+    ```
+    BROWSER=none
+    ```
+    
+    Isso impedirá o navegador da web seja aberto ao iniciar o servidor CRA externamente.
+
+2. Em um prompt de comando, vá para o subdiretório *ClientApp* e inicie o Development Server do CRA:
 
     ```console
     cd ClientApp
     npm start
     ```
 
-2. Modifique o aplicativo ASP.NET Core para, em vez de iniciar uma instância do servidor CRA própria, usar a externa. Na classe *Startup*, substitua a invocação `spa.UseReactDevelopmentServer` pelo seguinte:
+3. Modifique o aplicativo ASP.NET Core para, em vez de iniciar uma instância do servidor CRA própria, usar a externa. Na classe *Startup*, substitua a invocação `spa.UseReactDevelopmentServer` pelo seguinte:
 
     ```csharp
     spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
