@@ -3,14 +3,14 @@ title: Componentes de exibição no ASP.NET Core
 author: rick-anderson
 description: Saiba como os componentes de exibição são usados no ASP.NET Core e como adicioná-los aos aplicativos.
 ms.author: riande
-ms.date: 12/03/2018
+ms.date: 1/30/2019
 uid: mvc/views/view-components
-ms.openlocfilehash: 156db610d99eaf8a8042a4c7c85267d521a20fd4
-ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
+ms.openlocfilehash: d0e528fcf9e20afee98e74fbc09c67b81e123e95
+ms.sourcegitcommit: d22b3c23c45a076c4f394a70b1c8df2fbcdf656d
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54836695"
+ms.lasthandoff: 01/31/2019
+ms.locfileid: "55428389"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componentes de exibição no ASP.NET Core
 
@@ -75,9 +75,11 @@ Um componente de exibição define sua lógica em um método `InvokeAsync` que r
 
 O tempo de execução pesquisa a exibição nos seguintes caminhos:
 
-* /Pages/Components/{Nome do Componente da Exibição}/{Nome da Exibição}
 * /Views/{Nome do Controlador}/Components/{Nome do Componente da Exibição}/{Nome da Exibição}
 * /Views/Shared/Components/{Nome do Componente da Exibição}/{Nome da Exibição}
+* /Pages/Shared/Components/{Nome do Componente da Exibição}/{Nome da Exibição}
+
+O caminho de pesquisa se aplica a projetos usando controladores + exibições e Razor Pages.
 
 O nome de exibição padrão de um componente de exibição é *Default*, o que significa que o arquivo de exibição geralmente será nomeado *Default.cshtml*. Especifique outro nome de exibição ao criar o resultado do componente de exibição ou ao chamar o método `View`.
 
@@ -91,9 +93,9 @@ Para usar o componente de exibição, chame o seguinte em uma exibição:
 @await Component.InvokeAsync("Name of view component", {Anonymous Type Containing Parameters})
 ```
 
-Os parâmetros serão passados para o método `InvokeAsync`. O componente de exibição `PriorityList` desenvolvido no artigo é invocado por meio do arquivo de exibição *Views/Todo/Index.cshtml*. A seguir, o método `InvokeAsync` é chamado com dois parâmetros:
+Os parâmetros serão passados para o método `InvokeAsync`. O componente de exibição `PriorityList` desenvolvido no artigo é invocado por meio do arquivo de exibição *Views/ToDo/Index.cshtml*. A seguir, o método `InvokeAsync` é chamado com dois parâmetros:
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexFinal.cshtml?range=35)]
 
 ::: moniker range=">= aspnetcore-1.1"
 
@@ -101,9 +103,9 @@ Os parâmetros serão passados para o método `InvokeAsync`. O componente de exi
 
 Para o ASP.NET Core 1.1 e superior, invoque um componente de exibição como um [Auxiliar de Marca](xref:mvc/views/tag-helpers/intro):
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
 
-Os parâmetros de classe e de método na formatação Pascal Case para Auxiliares de Marca são convertidos em seu [kebab case em minúsculas](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). Para invocar um componente de exibição, o Auxiliar de Marca usa o elemento `<vc></vc>`. O componente de exibição é especificado da seguinte maneira:
+Os parâmetros de classe e de método na formatação Pascal Case para Auxiliares de Marcas são convertidos em [kebab case](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). Para invocar um componente de exibição, o Auxiliar de Marca usa o elemento `<vc></vc>`. O componente de exibição é especificado da seguinte maneira:
 
 ```cshtml
 <vc:[view-component-name]
@@ -122,13 +124,13 @@ Para usar um componente de exibição como um Auxiliar de Marca, registre o asse
 
 O método `InvokeAsync` usado neste tutorial:
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexFinal.cshtml?range=35)]
 
 Na marcação do Auxiliar de Marca:
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
 
-Na amostra acima, o componente de exibição `PriorityList` torna-se `priority-list`. Os parâmetros para o componente de exibição são passados como atributos em kebab case em minúsculas.
+Na amostra acima, o componente de exibição `PriorityList` torna-se `priority-list`. Os parâmetros para o componente de exibição são passados como atributos em kebab case.
 
 ::: moniker-end
 
@@ -142,7 +144,7 @@ Neste exemplo, o componente de exibição é chamado diretamente no controlador:
 
 ## <a name="walkthrough-creating-a-simple-view-component"></a>Passo a passo: Como criar um componente de exibição simples
 
-[Baixe](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample), compile e teste o código inicial. É um projeto simples com um controlador `Todo` que exibe uma lista de itens *Todo*.
+[Baixe](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample), compile e teste o código inicial. É um projeto simples com um controlador `ToDo` que exibe uma lista de itens *ToDo*.
 
 ![Lista de ToDos](view-components/_static/2dos.png)
 
@@ -175,14 +177,14 @@ Observações sobre o código:
 * Crie a pasta *Views/Shared/Components/PriorityList*. Esse nome de pasta deve corresponder ao nome da classe do componente de exibição ou ao nome da classe menos o sufixo (se seguimos a convenção e usamos o sufixo *ViewComponent* no nome da classe). Se você usou o atributo `ViewComponent`, o nome da classe precisa corresponder à designação de atributo.
 
 * Crie uma exibição do Razor *Views/Shared/Components/PriorityList/Default.cshtml*: [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
-    
-   A exibição do Razor usa uma lista de `TodoItem` e exibe-os. Se o método `InvokeAsync` do componente de exibição não passar o nome da exibição (como em nossa amostra), *Default* será usado como o nome da exibição, por convenção. Mais adiante no tutorial, mostrarei como passar o nome da exibição. Para substituir o estilo padrão de um controlador específico, adicione uma exibição à pasta de exibição específica ao controlador (por exemplo, *Views/Todo/Components/PriorityList/Default.cshtml)*.
-    
-    Se o componente de exibição é específico ao controlador, adicione-o à pasta específica ao controlador (*Views/Todo/Components/PriorityList/Default.cshtml*).
 
-* Adicione um `div` que contém uma chamada ao componente da lista de prioridades à parte inferior do arquivo *Views/Todo/index.cshtml*:
+   A exibição do Razor usa uma lista de `TodoItem` e exibe-os. Se o método `InvokeAsync` do componente de exibição não passar o nome da exibição (como em nossa amostra), *Default* será usado como o nome da exibição, por convenção. Mais adiante no tutorial, mostrarei como passar o nome da exibição. Para substituir o estilo padrão de um controlador específico, adicione uma exibição à pasta de exibição específica do controlador (por exemplo, *Views/ToDo/Components/PriorityList/Default.cshtml)*.
 
-    [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexFirst.cshtml?range=34-38)]
+    Se o componente de exibição for específico do controlador, adicione-o à pasta específica do controlador (*Views/ToDo/Components/PriorityList/Default.cshtml*).
+
+* Adicione um `div` que contenha uma chamada para o componente da lista de prioridades à parte inferior do arquivo *Views/ToDo/index.cshtml*:
+
+    [!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexFirst.cshtml?range=34-38)]
 
 A marcação `@await Component.InvokeAsync` mostra a sintaxe para chamar componentes de exibição. O primeiro argumento é o nome do componente que queremos invocar ou chamar. Os parâmetros seguintes são passados para o componente. `InvokeAsync` pode usar um número arbitrário de argumentos.
 
@@ -206,11 +208,11 @@ Copie o arquivo *Views/Shared/Components/PriorityList/Default.cshtml* para uma e
 
 [!code-cshtml[](../../mvc/views/view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
-Atualize *Views/TodoList/Index.cshtml*:
+Atualize *Views/ToDo/Index.cshtml*:
 
-<!-- Views/TodoList/Index.cshtml is never imported, so change to test tutorial -->
+<!-- Views/ToDo/Index.cshtml is never imported, so change to test tutorial -->
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexFinal.cshtml?range=35)]
 
 Execute o aplicativo e verifique a exibição PVC.
 
@@ -221,7 +223,7 @@ Se a exibição PVC não é renderizada, verifique se você está chamando o com
 ### <a name="examine-the-view-path"></a>Examinar o caminho de exibição
 
 * Altere o parâmetro de prioridade para três ou menos para que a exibição de prioridade não seja retornada.
-* Renomeie temporariamente o *Views/Todo/Components/PriorityList/Default.cshtml* como *1Default.cshtml*.
+* Renomeie temporariamente *Views/ToDo/Components/PriorityList/Default.cshtml* como *1Default.cshtml*.
 * Teste o aplicativo. Você obterá o seguinte erro:
 
    ```
@@ -232,8 +234,8 @@ Se a exibição PVC não é renderizada, verifique se você está chamando o com
    EnsureSuccessful
    ```
 
-* Copie *Views/Todo/Components/PriorityList/1Default.cshtml* para *Views/Shared/Components/PriorityList/Default.cshtml*.
-* Adicione uma marcação ao componente de exibição Todo *Shared* para indicar que a exibição foi obtida da pasta *Shared*.
+* Copie *Views/ToDo/Components/PriorityList/1Default.cshtml* para *Views/Shared/Components/PriorityList/Default.cshtml*.
+* Adicione uma marcação ao componente de exibição ToDo *Shared* para indicar que a exibição foi obtida da pasta *Shared*.
 * Teste o componente de exibição **Shared**.
 
 ![Saída de ToDo com o componente de exibição Shared](view-components/_static/shared.png)
@@ -246,7 +248,7 @@ Se deseja obter segurança em tempo de compilação, substitua o nome do compone
 
 Adicione uma instrução `using` ao arquivo de exibição do Razor e use o operador `nameof`:
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/Todo/IndexNameof.cshtml?range=1-6,35-)]
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexNameof.cshtml?range=1-6,35-)]
 
 ## <a name="perform-synchronous-work"></a>Executar o trabalho síncrono
 
