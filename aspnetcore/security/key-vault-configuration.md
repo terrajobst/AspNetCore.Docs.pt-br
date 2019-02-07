@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/28/2019
 uid: security/key-vault-configuration
-ms.openlocfilehash: 8e40c8308a692731e71fb8ebebfc64e606874290
-ms.sourcegitcommit: 98e9c7187772d4ddefe6d8e85d0d206749dbd2ef
+ms.openlocfilehash: d255321f6083747ce9b452e1efd4da5bc015bf64
+ms.sourcegitcommit: 3c2ba9a0d833d2a096d9d800ba67a1a7f9491af0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/05/2019
-ms.locfileid: "55737649"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "55854426"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Provedor de configuração do Cofre de chaves do Azure no ASP.NET Core
 
@@ -31,7 +31,7 @@ Esse cenário está disponível para aplicativos que usam o ASP.NET Core 2.1 ou 
 
 Para usar o provedor de configuração do Cofre de chave do Azure, adicione uma referência de pacote para o [Microsoft.Extensions.Configuration.AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) pacote.
 
-Para adotar o cenário de identidade de serviço gerenciado do Azure, adicione uma referência de pacote para o [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/) pacote.
+Para adotar a [identidades para recursos do Azure gerenciadas](/azure/active-directory/managed-identities-azure-resources/overview) cenário, adicione uma referência de pacote para o [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/) pacote.
 
 > [!NOTE]
 > No momento da gravação, a versão estável mais recente do `Microsoft.Azure.Services.AppAuthentication`, versão `1.0.3`, fornece suporte para [atribuído pelo sistema de identidades gerenciadas](/azure/active-directory/managed-identities-azure-resources/overview#how-does-the-managed-identities-for-azure-resources-worka-namehow-does-it-worka). Suporte para *atribuída ao usuário identidades gerenciadas* está disponível no `1.0.2-preview` pacote. Este tópico demonstra o uso de identidades gerenciadas pelo sistema, e o aplicativo de exemplo fornecido usa a versão `1.0.3` do `Microsoft.Azure.Services.AppAuthentication` pacote.
@@ -40,8 +40,8 @@ Para adotar o cenário de identidade de serviço gerenciado do Azure, adicione u
 
 O aplicativo de exemplo é executado em qualquer um dos dois modos, determinados pelo `#define` instrução na parte superior dos *Program.cs* arquivo:
 
-* `Basic` &ndash; Demonstra o uso de uma ID do aplicativo do Azure Key Vault e a senha (segredo do cliente) para acessar os segredos armazenados no cofre de chaves. Implantar o `Basic` versão de exemplo em qualquer host capaz de atender a um aplicativo ASP.NET Core.
-* `Managed` &ndash; Demonstra como usar o do Azure [identidade de serviço gerenciado (MSI)](/azure/active-directory/managed-identities-azure-resources/overview) para autenticar o aplicativo ao Azure Key Vault com autenticação do Azure AD sem credenciais armazenadas no código ou na configuração do aplicativo. Ao usar o MSI para autenticar, uma ID de aplicativo do Azure AD e a senha (segredo do cliente) não é necessário. O `Managed` versão deste exemplo deve ser implantado no Azure.
+* `Basic` &ndash; Demonstra o uso de uma ID do aplicativo do Azure Key Vault e a senha (segredo do cliente) para acessar os segredos armazenados no cofre de chaves. Implantar o `Basic` versão de exemplo em qualquer host capaz de atender a um aplicativo ASP.NET Core. Siga as orientações na [ID do aplicativo de uso e o segredo do cliente para aplicativos do Azure não hospedados](#use-application-id-and-client-secret-for-non-azure-hosted-apps) seção.
+* `Managed` &ndash; Demonstra como usar [identidades para recursos do Azure gerenciadas](/azure/active-directory/managed-identities-azure-resources/overview) para autenticar o aplicativo ao Azure Key Vault com autenticação do Azure AD sem credenciais armazenadas no código ou na configuração do aplicativo. Ao usar identidades gerenciadas para autenticar, uma ID de aplicativo do Azure AD e a senha (segredo do cliente) não é necessário. O `Managed` versão deste exemplo deve ser implantado no Azure. Siga as orientações na [usar as identidades de gerenciado para recursos do Azure](#use-managed-identities-for-azure-resources) seção.
 
 Para obter mais informações sobre como configurar um aplicativo de exemplo usando diretivas de pré-processador (`#define`), consulte <xref:index#preprocessor-directives-in-sample-code>.
 
@@ -111,12 +111,12 @@ As instruções fornecidas pelo [guia de início rápido: Definir e recuperar um
    az keyvault secret set --vault-name "{KEY VAULT NAME}" --name "Section--SecretName" --value "secret_value_2_prod"
    ```
 
-## <a name="use-application-id-and-client-secret"></a>Use a ID do aplicativo e segredo do cliente
+## <a name="use-application-id-and-client-secret-for-non-azure-hosted-apps"></a>Use a ID do aplicativo e segredo do cliente para aplicativos não hospedados do Azure
 
-Configurar o Azure AD, Azure Key Vault e o aplicativo para usar uma ID do aplicativo e a senha (segredo do cliente) para autenticar em um cofre de chaves quando o aplicativo estiver hospedado fora do Azure.
+Configurar o Azure AD, Azure Key Vault e o aplicativo para usar uma ID do aplicativo e a senha (segredo do cliente) para autenticar para um cofre de chaves **quando o aplicativo está hospedado fora do Azure**.
 
 > [!NOTE]
-> Embora usando uma ID do aplicativo e a senha (segredo do cliente) é compatível com aplicativos hospedados no Azure, é recomendável usar o [provedor de identidade de serviço gerenciado (MSI)](#use-the-managed-service-identity-msi-provider) ao hospedar um aplicativo no Azure. MSI não requer armazenamento de credenciais no aplicativo ou sua configuração, portanto, ele é considerado como uma abordagem mais segura em geral.
+> Embora haja suporte para usar uma ID do aplicativo e a senha (segredo do cliente) para aplicativos hospedados no Azure, recomendamos o uso [identidades para recursos do Azure gerenciadas](#use-managed-identities-for-azure-resources) ao hospedar um aplicativo no Azure. Identidades gerenciadas exigem armazenamento de credenciais no aplicativo ou sua configuração, portanto, ele é considerado como uma abordagem mais segura em geral.
 
 O aplicativo de exemplo usa uma ID do aplicativo e a senha (segredo do cliente) quando o `#define` instrução na parte superior dos *Program.cs* arquivo é definido como `Basic`.
 
@@ -155,11 +155,11 @@ Valores de exemplo:
 
 Quando você executa o aplicativo, uma página da Web mostra os valores secretos carregados. No ambiente de desenvolvimento, os valores secretos carregar com o `_dev` sufixo. No ambiente de produção, os valores de carga com o `_prod` sufixo.
 
-## <a name="use-the-managed-service-identity-msi-provider"></a>Usar o provedor de identidade (MSI) de serviço gerenciado
+## <a name="use-managed-identities-for-azure-resources"></a>Usar identidades de gerenciado para recursos do Azure
 
-Um aplicativo implantado no Azure pode tirar proveito do MSI Managed Service Identity (), que permite que o aplicativo autenticar com o Azure Key Vault usando a autenticação do Azure AD sem credenciais (ID do aplicativo e segredo do cliente/senha) armazenados no aplicativo.
+**Um aplicativo implantado no Azure** podem aproveitar [identidades para recursos do Azure gerenciadas](/azure/active-directory/managed-identities-azure-resources/overview), que permite que o aplicativo autenticar com o Azure Key Vault usando a autenticação do Azure AD sem credenciais (ID do aplicativo e Segredo Password/Client) armazenados no aplicativo.
 
-O aplicativo de exemplo usa o MSI quando o `#define` instrução na parte superior dos *Program.cs* arquivo é definido como `Managed`.
+O aplicativo de exemplo usa identidades de gerenciado para recursos do Azure quando o `#define` instrução na parte superior dos *Program.cs* arquivo é definido como `Managed`.
 
 Insira o nome do cofre para o aplicativo *appSettings. JSON* arquivo. O aplicativo de exemplo não exige uma ID do aplicativo e a senha (segredo do cliente) quando definido como o `Managed` versão, portanto, você pode ignorar essas entradas de configuração. O aplicativo é implantado no Azure e o Azure autentica o aplicativo para acessar o Azure Key Vault usando apenas o nome do cofre armazenada em do *appSettings. JSON* arquivo.
 
@@ -177,7 +177,7 @@ az keyvault set-policy --name '{KEY VAULT NAME}' --object-id {OBJECT ID} --secre
 
 O aplicativo de exemplo:
 
-* Cria uma instância do `AzureServiceTokenProvider` classe sem uma cadeia de caracteres de conexão. Quando uma cadeia de caracteres de conexão não for fornecido, o provedor tenta obter um token de acesso de MSI.
+* Cria uma instância do `AzureServiceTokenProvider` classe sem uma cadeia de caracteres de conexão. Quando uma cadeia de caracteres de conexão não for fornecida, o provedor tenta obter um token de acesso de identidades de gerenciado para recursos do Azure.
 * Uma nova `KeyVaultClient` é criado com o `AzureServiceTokenProvider` token retorno de chamada de instância.
 * O `KeyVaultClient` instância é usada com uma implementação padrão de `IKeyVaultSecretManager` que carrega todos os valores do segredo e substitui os dois traços (`--`) com dois-pontos (`:`) em nomes de chave.
 
