@@ -5,14 +5,14 @@ description: Saiba como usar o provedor de configuração do Cofre de chave do A
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/28/2019
+ms.date: 02/08/2019
 uid: security/key-vault-configuration
-ms.openlocfilehash: d255321f6083747ce9b452e1efd4da5bc015bf64
-ms.sourcegitcommit: 3c2ba9a0d833d2a096d9d800ba67a1a7f9491af0
+ms.openlocfilehash: f70389c86420d81e284ecc863ac8386f726ed2cf
+ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55854426"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56103105"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Provedor de configuração do Cofre de chaves do Azure no ASP.NET Core
 
@@ -271,8 +271,8 @@ var cert = store.Certificates
         config["CertificateThumbprint"], false);
 
 config.AddAzureKeyVault(
-    builtConfig["Vault"],
-    builtConfig["ClientId"],
+    builtConfig["KeyVaultName"],
+    builtConfig["AzureADApplicationId"],
     cert.OfType<X509Certificate2>().Single(),
     new EnvironmentSecretManager(context.HostingEnvironment.ApplicationName));
 
@@ -342,8 +342,8 @@ Quando o aplicativo falha ao carregar a configuração usando o provedor, uma me
 * O aplicativo não está autorizado a acessar o Cofre de chaves.
 * A política de acesso não inclui `Get` e `List` permissões.
 * No cofre de chaves, os dados de configuração (par nome-valor) estão nomeados incorretamente, ausente, desabilitado ou expirado.
-* O aplicativo tem o nome do cofre da chave incorreta (`Vault`), Id do aplicativo do Azure AD (`ClientId`), ou a chave do Azure AD (`ClientSecret`).
-* A chave do AD do Azure (`ClientSecret`) expirou.
+* O aplicativo tem o nome do cofre da chave incorreta (`KeyVaultName`), Id de aplicativo do Azure AD (`AzureADApplicationId`), ou a senha (segredo do cliente) do Azure AD (`AzureADPassword`).
+* A senha (segredo do cliente) do Azure AD (`AzureADPassword`) expirou.
 * A chave de configuração (nome) está incorreta no aplicativo para o valor que você está tentando carregar.
 
 ## <a name="additional-resources"></a>Recursos adicionais

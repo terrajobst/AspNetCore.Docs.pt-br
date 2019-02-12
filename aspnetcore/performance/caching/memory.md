@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como armazenar dados em cache na memória no ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/15/2018
+ms.date: 02/11/2019
 uid: performance/caching/memory
-ms.openlocfilehash: 54b4029362c6b26254cb08397ef2e9131f6291d4
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: 9a7727ad41a05f39d74877af3c8f2e3f7a620c7d
+ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207245"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56103066"
 ---
 # <a name="cache-in-memory-in-aspnet-core"></a>Memória de cache no ASP.NET Core
 
@@ -33,7 +33,7 @@ O cache `IMemoryCache` removerá entradas de cache sob pressão de memória, a m
 
 ::: moniker-end
 
-O cache de memória pode armazenar qualquer objeto, enquanto a interface de cache distribuída é limitada a`byte[]`.
+O cache de memória pode armazenar qualquer objeto, enquanto a interface de cache distribuída é limitada a`byte[]`. Os itens de cache de armazenamento de cache na memória e distribuído como pares chave-valor.
 
 ## <a name="systemruntimecachingmemorycache"></a>System.Runtime.Caching/MemoryCache
 
@@ -97,7 +97,7 @@ O valor `DateTime` em cache permanecerá no cache enquanto houver solicitações
 
 ![Exibição de índice com dois horários diferentes exibidos](memory/_static/time.png)
 
-O código a seguir usa [GetOrCreate](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreate__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry___0__) e [GetOrCreateAsync](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreateAsync__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry_System_Threading_Tasks_Task___0___) para fazer o cache dos dados.  
+O código a seguir usa [GetOrCreate](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreate__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry___0__) e [GetOrCreateAsync](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreateAsync__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry_System_Threading_Tasks_Task___0___) para fazer o cache dos dados. 
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet2&highlight=3-7,14-19)]
 
@@ -105,7 +105,7 @@ O código a seguir chama o método [Get](/dotnet/api/microsoft.extensions.cachin
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_gct)]
 
-Ver [métodos IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache) e [CacheExtensions métodos](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions) para obter uma descrição dos métodos de cache.
+<xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate*> , <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync*>, e [Obtenha](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.get#Microsoft_Extensions_Caching_Memory_CacheExtensions_Get__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_) fazem parte de métodos de extensão do [CacheExtensions](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions) classe que estende a capacidade do <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. Ver [métodos IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache) e [CacheExtensions métodos](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions) para obter uma descrição dos outros métodos de cache.
 
 ## <a name="memorycacheentryoptions"></a>MemoryCacheEntryOptions
 
