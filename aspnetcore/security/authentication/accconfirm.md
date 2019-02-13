@@ -3,14 +3,14 @@ title: Confirmação de conta e de recuperação de senha no ASP.NET Core
 author: rick-anderson
 description: Saiba como criar um aplicativo ASP.NET Core com a redefinição de senha e de confirmação de email.
 ms.author: riande
-ms.date: 7/11/2018
+ms.date: 2/11/2019
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 0dc9907f9f54c8a0daf2e05a3769897e5145935f
-ms.sourcegitcommit: e418cb9cddeb3de06fa0cb4fdb5529da03ff6d63
+ms.openlocfilehash: 77d7b209d57f9ee44f158798ff780ce85c87aaf2
+ms.sourcegitcommit: af8a6eb5375ef547a52ffae22465e265837aa82b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "54444136"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "56159402"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Confirmação de conta e de recuperação de senha no ASP.NET Core
 
@@ -76,7 +76,7 @@ Siga as instruções em [habilitar a autenticação](xref:security/authenticatio
 
 ## <a name="test-new-user-registration"></a>Novo registro de usuário de teste
 
-Execute o aplicativo, selecione a **registrar** vincular e registrar um usuário. Neste ponto, a validação apenas no email é com o [[EmailAddress]](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) atributo. Depois de enviar o registro, você está conectado ao aplicativo. Posteriormente no tutorial, o código é atualizado para que novos usuários não podem fazer logon até que o email é validado.
+Execute o aplicativo, selecione a **registrar** vincular e registrar um usuário. Neste ponto, a validação apenas no email é com o [[EmailAddress]](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) atributo. Depois de enviar o registro, você está conectado ao aplicativo. Posteriormente no tutorial, o código é atualizado para que novos usuários poderão entrar depois que o email é validado.
 
 [!INCLUDE[](~/includes/view-identity-db.md)]
 
@@ -166,7 +166,7 @@ Para implementar `IEmailSender`, crie *Services/EmailSender.cs* com um código s
 
 Adicione o seguinte código para o `ConfigureServices` método na *Startup.cs* arquivo:
 
-* Adicionar `EmailSender` como um serviço singleton.
+* Adicionar `EmailSender` como um serviço transitório.
 * Registrar o `AuthMessageSenderOptions` instância de configuração.
 
 [!code-csharp[](accconfirm/sample/WebPWrecover21/Startup.cs?name=snippet2&highlight=12-99)]
@@ -195,8 +195,8 @@ Executar o aplicativo web e testar o fluxo de recuperação de senha e confirma�
 
 * Verifique seu email para o link de confirmação de conta. Ver [depurar email](#debug) se você não receber o email.
 * Clique no link para confirmar seu email.
-* Faça logon com seu email e senha.
-* Faça logoff.
+* Entrar com seu email e senha.
+* Saia do serviço.
 
 ### <a name="view-the-manage-page"></a>Exibir a página Gerenciar
 
@@ -246,7 +246,7 @@ Clique no link para outro serviço de logon e aceitar as solicitações do aplic
 
 ![Gerenciar seu modo de exibição de logons externos lista Facebook](accconfirm/_static/fb.png)
 
-As duas contas foram combinadas. É possível fazer logon com qualquer uma das contas. Convém que os usuários adicionem contas locais no caso de seu serviço de autenticação de logon social está inoperante ou, mais provavelmente eles tiver perdido o acesso à sua conta social.
+As duas contas foram combinadas. É possível entrar com qualquer uma das contas. Convém que os usuários adicionem contas locais no caso de seu serviço de autenticação de logon social está inoperante ou, mais provavelmente eles tiver perdido o acesso à sua conta social.
 
 ## <a name="enable-account-confirmation-after-a-site-has-users"></a>Habilitar confirmação de conta depois que um site tem usuários
 
