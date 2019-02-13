@@ -5,12 +5,12 @@ description: Saiba mais sobre o gerenciamento de chaves de proteção de dados e
 ms.author: riande
 ms.date: 10/14/2016
 uid: security/data-protection/configuration/default-settings
-ms.openlocfilehash: beff17dd81143db02a0cbc79fa7cb3a6a4deeda6
-ms.sourcegitcommit: 3ca527f27c88cfc9d04688db5499e372fbc2c775
+ms.openlocfilehash: 2f022a4c7519485fe629ce47c27d214c8c27d5bc
+ms.sourcegitcommit: af8a6eb5375ef547a52ffae22465e265837aa82b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/17/2018
-ms.locfileid: "39095093"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56159205"
 ---
 # <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>Gerenciamento de chaves de proteção de dados e o tempo de vida no ASP.NET Core
 
@@ -26,6 +26,13 @@ O aplicativo tenta detectar seu ambiente operacional e lidar com a configuraçã
    * Slots de implantação separados, como de preparo e produção, não compartilham um anel de chave. Quando você alternar entre os slots de implantação, por exemplo, trocar o preparo e produção ou usando um teste a / B, qualquer aplicativo usando a proteção de dados não será capaz de descriptografar dados armazenados usando o anel de chave dentro do slot anterior. Isso leva a usuários que estão sendo conectados fora de um aplicativo que usa a autenticação de cookie padrão do ASP.NET Core, pois ele usa a proteção de dados para proteger seus cookies. Se desejar que os anéis de chave independente de slot, use um provedor de anel de chave externo, como o armazenamento de BLOBs Azure, Azure Key Vault, um repositório SQL ou do cache Redis.
 
 1. Se o perfil do usuário estiver disponível, as chaves são persistidas para o *%LOCALAPPDATA%\ASP.NET\DataProtection-Keys* pasta. Se o sistema operacional for Windows, as chaves são criptografadas em repouso usando a DPAPI.
+
+   O pool de aplicativos [setProfileEnvironment atributo](/iis/configuration/system.applicationhost/applicationpools/add/processmodel#configuration) também deve ser habilitado. O valor padrão de `setProfileEnvironment` é `true`. Em alguns cenários (por exemplo, SO Windows), `setProfileEnvironment` é definido como `false`. Se as chaves não são armazenadas no diretório de perfil do usuário, como esperado:
+
+   1. Navegue até a *%windir%/system32/inetsrv/config* pasta.
+   1. Abra o *applicationHost. config* arquivo.
+   1. Localize o elemento `<system.applicationHost><applicationPools><applicationPoolDefaults><processModel>`.
+   1. Confirme se o `setProfileEnvironment` atributo não estiver presente, cujo padrão é o valor para `true`, ou defina explicitamente o valor do atributo `true`.
 
 1. Se o aplicativo estiver hospedado no IIS, as chaves são mantidas no registro HKLM em uma chave de registro especial que tem a ACL acessível apenas para a conta de processo de trabalho. As chaves são criptografadas em repouso usando a DPAPI.
 
