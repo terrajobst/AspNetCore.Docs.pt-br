@@ -4,18 +4,21 @@ title: 'Tutorial: Manipular a simultaneidade com o EF em um aplicativo ASP.NET M
 description: Este tutorial mostra como usar a simultaneidade otimista para lidar com conflitos quando vários usuários atualizam a mesma entidade ao mesmo tempo.
 author: tdykstra
 ms.author: riande
-ms.date: 01/21/2019
 ms.topic: tutorial
+ms.date: 01/15/2019
 ms.assetid: be0c098a-1fb2-457e-b815-ddca601afc65
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: 2b41b51de5fd6d87b9905ba2bb3ddf7cedb47e69
-ms.sourcegitcommit: d5223cf6a2cf80b4f5dc54169b0e376d493d2d3a
+ms.openlocfilehash: b513d7d86d382068bc1a8f1bcc61289ee946d38b
+ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54889828"
+ms.lasthandoff: 02/14/2019
+ms.locfileid: "56248297"
 ---
+<a name="handling-concurrency-with-the-entity-framework-6-in-an-aspnet-mvc-5-application-10-of-12"></a>Tratamento de simultaneidade com o Entity Framework 6 em um aplicativo ASP.NET MVC 5 (10 a 12)
+====================
+
 # <a name="tutorial-handle-concurrency-with-ef-in-an-aspnet-mvc-5-app"></a>Tutorial: Manipular a simultaneidade com o EF em um aplicativo ASP.NET MVC 5
 
 Nos tutoriais anteriores, você aprendeu como atualizar dados. Este tutorial mostra como usar a simultaneidade otimista para lidar com conflitos quando vários usuários atualizam a mesma entidade ao mesmo tempo. Você alterar as páginas da web que funcionam com o `Department` entidade para que eles manipulam os erros de simultaneidade. As ilustrações a seguir mostram as páginas Editar e Excluir, incluindo algumas mensagens exibidas se ocorre um conflito de simultaneidade.
@@ -26,12 +29,14 @@ Nos tutoriais anteriores, você aprendeu como atualizar dados. Este tutorial mos
 
 Neste tutorial, você:
 
+
 > [!div class="checklist"]
 > * Saiba mais sobre conflitos de simultaneidade
 > * Adicionar a simultaneidade otimista
 > * Modificar controlador departamento
 > * Tratamento de simultaneidade de teste
 > * Atualizar a página Excluir
+
 
 ## <a name="prerequisites"></a>Pré-requisitos
 

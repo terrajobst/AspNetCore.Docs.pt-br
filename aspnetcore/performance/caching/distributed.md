@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como usar um cache distribuído do ASP.NET Core para melhorar o desempenho do aplicativo e a escalabilidade, especialmente em um ambiente de farm de servidor ou de nuvem.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/19/2018
+ms.date: 02/13/2019
 uid: performance/caching/distributed
-ms.openlocfilehash: d80cde372535aa04604ce0cd5a731a1448515093
-ms.sourcegitcommit: 4a6bbe84db24c2f3dd2de065de418fde952c8d40
+ms.openlocfilehash: a157eb075874d2118e3e34b51410b539a1ec37df
+ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50253002"
+ms.lasthandoff: 02/14/2019
+ms.locfileid: "56248582"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>O cache no ASP.NET Core distribuído
 
@@ -76,7 +76,7 @@ Registrar uma implementação de <xref:Microsoft.Extensions.Caching.Distributed.
 
 ### <a name="distributed-memory-cache"></a>Cache de memória distribuída
 
-O Cache de memória distribuída (<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache*>) é uma implementação fornecidos pela estrutura de `IDistributedCache` que armazena os itens na memória. O Cache de memória distribuída não é um cache distribuído real. Itens armazenados em cache são armazenados por instância do aplicativo no servidor onde o aplicativo está sendo executado.
+O Cache de memória distribuída (<xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache*>) é uma implementação fornecidos pela estrutura de <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> que armazena os itens na memória. O Cache de memória distribuída não é um cache distribuído real. Itens armazenados em cache são armazenados por instância do aplicativo no servidor onde o aplicativo está sendo executado.
 
 O Cache de memória distribuída é uma implementação úteis:
 
@@ -149,13 +149,13 @@ Para instalar o Redis em seu computador local:
 
 ## <a name="use-the-distributed-cache"></a>Usar o cache distribuído
 
-Para usar o <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface, solicitar uma instância de `IDistributedCache` de qualquer construtor no aplicativo. A instância é fornecida pela [injeção de dependência (DI)](xref:fundamentals/dependency-injection).
+Para usar o <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface, solicitar uma instância de <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> de qualquer construtor no aplicativo. A instância é fornecida pela [injeção de dependência (DI)](xref:fundamentals/dependency-injection).
 
-Quando o aplicativo é iniciado, `IDistributedCache` é injetado no `Startup.Configure`. A hora atual é armazenado em cache usando <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime> (para obter mais informações, consulte [Host da Web: interface IApplicationLifetime](xref:fundamentals/host/web-host#iapplicationlifetime-interface)):
+Quando o aplicativo é iniciado, <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> é injetado no `Startup.Configure`. A hora atual é armazenado em cache usando <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime> (para obter mais informações, consulte [Host da Web: Interface IApplicationLifetime](xref:fundamentals/host/web-host#iapplicationlifetime-interface)):
 
 [!code-csharp[](distributed/samples/2.x/DistCacheSample/Startup.cs?name=snippet_Configure&highlight=10)]
 
-O aplicativo de exemplo injeta `IDistributedCache` para o `IndexModel` para uso pela página de índice.
+O aplicativo de exemplo injeta <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> para o `IndexModel` para uso pela página de índice.
 
 Cada vez que a página de índice é carregada, o cache é verificado para o tempo em cache em `OnGetAsync`. Se ainda não tiver expirado o tempo em cache, a hora é exibida. Se 20 segundos decorridos desde a última vez em que o tempo em cache foi acessado (a última vez que esta página foi carregada), a página exibe *armazenado em cache tempo expirado*.
 
@@ -164,13 +164,13 @@ Atualizar imediatamente o tempo em cache para a hora atual, selecionando o **red
 [!code-csharp[](distributed/samples/2.x/DistCacheSample/Pages/Index.cshtml.cs?name=snippet_IndexModel&highlight=7,14-20,25-29)]
 
 > [!NOTE]
-> Não é necessário usar um tempo de vida Singleton ou com escopo para `IDistributedCache` instâncias (pelo menos para as implementações internas).
+> Não é necessário usar um tempo de vida Singleton ou com escopo para <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> instâncias (pelo menos para as implementações internas).
 >
-> Você também pode criar uma `IDistributedCache` da instância onde você pode precisar de uma em vez de usar a DI, mas a criação de uma instância no código pode tornar seu código mais difícil de testar e viola o [princípio de dependências explícitas](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
+> Você também pode criar uma <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> da instância onde você pode precisar de uma em vez de usar a DI, mas a criação de uma instância no código pode tornar seu código mais difícil de testar e viola o [princípio de dependências explícitas](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
 
 ## <a name="recommendations"></a>Recomendações
 
-Ao decidir qual implementação de `IDistributedCache` é melhor para seu aplicativo, considere o seguinte:
+Ao decidir qual implementação de <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> é melhor para seu aplicativo, considere o seguinte:
 
 * Infraestrutura existente
 * Requisitos de desempenho

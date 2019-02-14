@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/21/2017
 uid: security/authorization/policies
-ms.openlocfilehash: 4e8a9ac6c0594f9bab67214aaa8cab9199cca29d
-ms.sourcegitcommit: cec77d5ad8a0cedb1ecbec32834111492afd0cd2
+ms.openlocfilehash: 937c73c26cd3935c5069d4735e754d1a567f41f4
+ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/10/2019
-ms.locfileid: "54207389"
+ms.lasthandoff: 02/14/2019
+ms.locfileid: "56248102"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Autorização baseada em política no ASP.NET Core
 
@@ -32,6 +32,8 @@ As políticas são aplicadas usando o `[Authorize]` atributo com o nome da polí
 Um requisito de autorização é uma coleção de parâmetros de dados que uma política pode usar para avaliar a entidade de segurança do usuário atual. Em nossa política de "AtLeast21", o requisito é um único parâmetro&mdash;a idade mínima. Implementa um requisito [IAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirement), que é uma interface de marcador vazio. Um requisito de idade mínima parametrizada poderia ser implementado da seguinte maneira:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Requirements/MinimumAgeRequirement.cs?name=snippet_MinimumAgeRequirementClass)]
+
+Se uma política de autorização contém vários requisitos de autorização, devem passar todos os requisitos para que a avaliação da política seja bem-sucedida. Em outras palavras, os vários requisitos de autorização adicionados a uma política de autorização única são tratados em um **AND** base.
 
 > [!NOTE]
 > Um requisito não precisa ter dados ou propriedades.

@@ -4,18 +4,22 @@ title: 'Tutorial: Atualizar dados relacionados com o EF em um aplicativo ASP.NET
 description: Neste tutorial, você atualizará dados relacionados. Para a maioria das relações, isso pode ser feito atualizando os campos de chave estrangeira ou propriedades de navegação.
 author: tdykstra
 ms.author: riande
-ms.date: 01/17/2019
+ms.date: 01/19/2019
 ms.topic: tutorial
 ms.assetid: 7ba88418-5d0a-437d-b6dc-7c3816d4ec07
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: daefbcea39dc341c6fc72eb344b05eb2dbf0c3ba
-ms.sourcegitcommit: d5223cf6a2cf80b4f5dc54169b0e376d493d2d3a
+ms.openlocfilehash: 1ef4242ff3bd1dd86f4d58bd04ba08e8b90fdaa4
+ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54889841"
+ms.lasthandoff: 02/14/2019
+ms.locfileid: "56248271"
 ---
+<a name="updating-related-data-with-the-entity-framework-in-an-aspnet-mvc-application"></a>Atualizando dados relacionados com o Entity Framework em um aplicativo ASP.NET MVC
+====================
+
+
 # <a name="tutorial-update-related-data-with-ef-in-an-aspnet-mvc-app"></a>Tutorial: Atualizar dados relacionados com o EF em um aplicativo ASP.NET MVC
 
 No tutorial anterior, você exibiu dados relacionados. Neste tutorial, você atualizará dados relacionados. Para a maioria das relações, isso pode ser feito atualizando os campos de chave estrangeira ou propriedades de navegação. Para relações muitos-para-muitos, o Entity Framework não expõe a tabela de junção diretamente, para que você adiciona e remove entidades de e para as propriedades de navegação apropriado.
@@ -124,9 +128,12 @@ Substitua os `HttpPost` `Edit` método com o código a seguir. que trata de atua
 
 [!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.cs)]
 
-A referência ao `RetryLimitExceededException` requer um `using` instrução. Para adicioná-la, passe o mouse sobre `RetryLimitExceededException`. Obter uma explicação do problema é exibida. Selecione **Mostrar possíveis correções** e, em seguida, clique em **usando System.Data.Entity.Infrastructure;**.
+A referência ao `RetryLimitExceededException` exige um `using` instrução; para adicioná-lo - passe o mouse sobre `RetryLimitExceededException`. A seguinte mensagem será exibida: ![ Tente novamente a mensagem de exceção](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image13.png)
 
-![Resolver as exceções de repetição](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image7.png)
+
+Selecione **Mostrar correções potentital**, em seguida, **usando System.Data.Entity.Infrastructure**
+
+![Resolver as exceções de repetição](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image14.png)
 
 O código faz o seguinte:
 

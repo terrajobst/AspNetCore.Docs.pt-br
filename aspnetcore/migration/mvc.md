@@ -3,14 +3,14 @@ title: Migrar do ASP.NET MVC para ASP.NET Core MVC
 author: ardalis
 description: Saiba como começar a migrar um projeto ASP.NET MVC para ASP.NET Core MVC.
 ms.author: riande
-ms.date: 03/07/2017
+ms.date: 02/13/2019
 uid: migration/mvc
-ms.openlocfilehash: 7c9d927bbd06f96f130d53e946a2963b5804960b
-ms.sourcegitcommit: edb9d2d78c9a4d68b397e74ae2aff088b325a143
+ms.openlocfilehash: 2ca51a145243444722ad8081fd8cdbb65d72b53a
+ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51505733"
+ms.lasthandoff: 02/14/2019
+ms.locfileid: "56248037"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Migrar do ASP.NET MVC para ASP.NET Core MVC
 
@@ -27,9 +27,9 @@ Para demonstrar a atualização, vamos começar criando um aplicativo ASP.NET MV
 
 ![Caixa de diálogo Novo projeto do Studio Visual](mvc/_static/new-project.png)
 
-![Caixa de diálogo nova aplicativo Web: modelo de projeto do MVC selecionado no painel de modelos do ASP.NET](mvc/_static/new-project-select-mvc-template.png)
+![Nova caixa de diálogo do aplicativo Web: Modelo de projeto do MVC selecionado no painel de modelos do ASP.NET](mvc/_static/new-project-select-mvc-template.png)
 
-*Opcional:* alterar o nome da solução do *WebApp1* à *Mvc5*. O Visual Studio exibe o novo nome da solução (*Mvc5*), que torna mais fácil de informar deste projeto no próximo projeto.
+*Opcional:* Altere o nome da solução do *WebApp1* à *Mvc5*. O Visual Studio exibe o novo nome da solução (*Mvc5*), que torna mais fácil de informar deste projeto no próximo projeto.
 
 ## <a name="create-the-aspnet-core-project"></a>Criar o projeto do ASP.NET Core
 
@@ -37,9 +37,9 @@ Criar um novo *vazio* aplicativo de web do ASP.NET Core com o mesmo nome que o p
 
 ![Caixa de diálogo Novo Projeto](mvc/_static/new_core.png)
 
-![Caixa de diálogo nova aplicativo Web ASP.NET: modelo de projeto vazio selecionado no painel de modelos do ASP.NET Core](mvc/_static/new-project-select-empty-aspnet5-template.png)
+![Nova caixa de diálogo de aplicativo Web ASP.NET: Modelo de projeto vazio selecionado no painel de modelos do ASP.NET Core](mvc/_static/new-project-select-empty-aspnet5-template.png)
 
-* *Opcional:* criar um novo aplicativo de ASP.NET Core usando o *aplicativo Web* modelo de projeto. Nomeie o projeto *WebApp1*e selecione uma opção de autenticação do **contas de usuário individuais**. Renomear este aplicativo seja *FullAspNetCore*. Isso poupa de projeto tempo criando a conversão. Você pode examinar o código gerado pelo modelo para ver o resultado final ou copiar o código para o projeto de conversão. Também é útil quando você ficar preso em uma etapa de conversão a ser comparado com o projeto de modelo gerado.
+* *Opcional:* Criar um novo aplicativo de ASP.NET Core usando o *aplicativo Web* modelo de projeto. Nomeie o projeto *WebApp1*e selecione uma opção de autenticação do **contas de usuário individuais**. Renomear este aplicativo seja *FullAspNetCore*. Isso poupa de projeto tempo criando a conversão. Você pode examinar o código gerado pelo modelo para ver o resultado final ou copiar o código para o projeto de conversão. Também é útil quando você ficar preso em uma etapa de conversão a ser comparado com o projeto de modelo gerado.
 
 ## <a name="configure-the-site-to-use-mvc"></a>Configurar o site para usar o MVC
 
@@ -149,7 +149,7 @@ O ASP.NET MVC antigo projeto usa [Bootstrap](https://getbootstrap.com/) para seu
 
 * Criar uma *Views/Shared* pasta.
 
-* *Opcional:* cópia *viewimports. cshtml* da *FullAspNetCore* do projeto MVC *exibições* pasta para do projeto ASP.NET Core  *Modos de exibição* pasta. Remover qualquer declaração de namespace na *viewimports. cshtml* arquivo. O *viewimports. cshtml* fornece os namespaces para todos os arquivos de exibição de arquivo e traz [auxiliares de marca](xref:mvc/views/tag-helpers/intro). Os auxiliares de marca são usados no novo arquivo de layout. O *viewimports. cshtml* arquivo é novo para o ASP.NET Core.
+* *Opcional:* Cópia *viewimports. cshtml* da *FullAspNetCore* do projeto MVC *modos de exibição* pasta para do projeto ASP.NET Core *exibições* pasta. Remover qualquer declaração de namespace na *viewimports. cshtml* arquivo. O *viewimports. cshtml* fornece os namespaces para todos os arquivos de exibição de arquivo e traz [auxiliares de marca](xref:mvc/views/tag-helpers/intro). Os auxiliares de marca são usados no novo arquivo de layout. O *viewimports. cshtml* arquivo é novo para o ASP.NET Core.
 
 * Cópia de *layout. cshtml* arquivo do antigo do projeto ASP.NET MVC *Views/Shared* pasta para do projeto ASP.NET Core *Views/Shared* pasta.
 
@@ -188,7 +188,7 @@ Atualizada *layout. cshtml* arquivo é mostrado abaixo:
 
 Exiba o site no navegador. Ele agora deve carregar corretamente, com os estilos esperados em vigor.
 
-* *Opcional:* você talvez queira usar o novo arquivo de layout. Para este projeto, você pode copiar o arquivo de layout do *FullAspNetCore* projeto. O novo arquivo de layout utiliza [auxiliares de marca](xref:mvc/views/tag-helpers/intro) e tem outras melhorias.
+* *Opcional:* Você talvez queira tentar usar o novo arquivo de layout. Para este projeto, você pode copiar o arquivo de layout do *FullAspNetCore* projeto. O novo arquivo de layout utiliza [auxiliares de marca](xref:mvc/views/tag-helpers/intro) e tem outras melhorias.
 
 ## <a name="configure-bundling-and-minification"></a>Configurar o agrupamento e minificação
 
@@ -204,5 +204,5 @@ ASP.NET Core converte as exceções sem tratamento em um aplicativo web em respo
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Desenvolvimento do lado do cliente](xref:client-side/index)
-* [Auxiliares de marcação](xref:mvc/views/tag-helpers/intro)
+* <xref:razor-components/index>
+* <xref:mvc/views/tag-helpers/intro>

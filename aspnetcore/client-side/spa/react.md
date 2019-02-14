@@ -2,26 +2,19 @@
 title: Usar o modelo de projeto do React com o ASP.NET Core
 author: SteveSandersonMS
 description: Saiba como começar a trabalhar com o modelo de projeto do SPA (Aplicativo de Página Única) do ASP.NET Core para React e criar-aplicativo-do-React.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/21/2018
+ms.date: 02/13/2019
 uid: spa/react
-ms.openlocfilehash: d83bff8abcd5b59d8bc4a51a101510755394f0c4
-ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
+ms.openlocfilehash: aa08a9d8d06d8b52be564fabf904d4923684d4e4
+ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/02/2019
-ms.locfileid: "55667681"
+ms.lasthandoff: 02/14/2019
+ms.locfileid: "56248024"
 ---
 # <a name="use-the-react-project-template-with-aspnet-core"></a>Usar o modelo de projeto do React com o ASP.NET Core
-
-::: moniker range="= aspnetcore-2.0"
-
-> [!NOTE]
-> Esta documentação não é sobre o modelo de projeto do React incluído no ASP.NET Core 2.0. Ela é sobre o modelo React mais recente, para o qual você pode atualizar manualmente. O modelo está incluído no ASP.NET Core 2.1 por padrão.
-
-::: moniker-end
 
 O modelo de projeto do React atualizado fornece um ponto inicial conveniente para aplicativos do ASP.NET Core usando convenções do React e de CRA [(criar-aplicativo-do-React)](https://github.com/facebookincubator/create-react-app) para implementar uma IU (interface do usuário) avançada do lado do cliente.
 
@@ -29,17 +22,7 @@ O modelo é equivalente à criação de dois projetos: um projeto do ASP.NET Cor
 
 ## <a name="create-a-new-app"></a>Criar um novo aplicativo
 
-::: moniker range="= aspnetcore-2.0"
-
-Se usar o ASP.NET Core 2.0, verifique se você [instalou o modelo de projeto do React atualizado](xref:spa/index#installation).
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
 Se você tiver o ASP.NET Core 2.1 instalado, não será necessário instalar o modelo de projeto React.
-
-::: moniker-end
 
 Crie um novo projeto de um prompt de comando usando o comando `dotnet new react` em um diretório vazio. Por exemplo, os seguintes comandos criam o aplicativo em um diretório *my-new-app* e mudam para esse diretório:
 

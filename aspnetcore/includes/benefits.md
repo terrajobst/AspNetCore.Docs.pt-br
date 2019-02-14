@@ -5,7 +5,7 @@ O ASP.NET Core oferece os seguintes benefícios:
 * O [Razor Pages](xref:razor-pages/index) torna a codificação de cenários focados em página mais fácil e produtiva.
 * Capacidade de desenvolver e executar no Windows, macOS e Linux.
 * De software livre e [voltado para a comunidade](https://live.asp.net/).
-* Integração de [estruturas modernas do lado do cliente](xref:client-side/index) e fluxos de trabalho de desenvolvimento.
+* Integração de [estruturas modernas do lado do cliente](xref:razor-components/index) e fluxos de trabalho de desenvolvimento.
 * Um [sistema de configuração](xref:fundamentals/configuration/index) pronto para a nuvem, baseado no ambiente.
 * [Injeção de dependência](xref:fundamentals/dependency-injection) interna.
 * Um pipeline de solicitação HTTP leve, modular e de [alto desempenho](https://github.com/aspnet/benchmarks).

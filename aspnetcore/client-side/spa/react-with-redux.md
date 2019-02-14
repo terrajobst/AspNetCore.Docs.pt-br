@@ -2,26 +2,19 @@
 title: Usar o modelo de projeto do React com Redux com o ASP.NET Core
 author: SteveSandersonMS
 description: Saiba como começar a trabalhar com o modelo de projeto do SPA (Aplicativo de Página Única) do ASP.NET Core para React com Redux e create-react-app.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/21/2018
+ms.date: 02/13/2019
 uid: spa/react-with-redux
-ms.openlocfilehash: c1aedcf1e14a9e7b339b60dd02c4267cd5945a49
-ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
+ms.openlocfilehash: ed2e9aea449ddb09fef049a391f40f57452786a8
+ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2019
-ms.locfileid: "54341598"
+ms.lasthandoff: 02/14/2019
+ms.locfileid: "56248076"
 ---
 # <a name="use-the-react-with-redux-project-template-with-aspnet-core"></a>Usar o modelo de projeto do React com Redux com o ASP.NET Core
-
-::: moniker range="= aspnetcore-2.0"
-
-> [!NOTE]
-> Esta documentação não pertencem ao modelo de projeto React com Redux incluído no ASP.NET Core 2.0. Ele se refere ao modelo de reagir com Redux mais recente que você pode atualizar manualmente. O modelo está disponível no ASP.NET Core 2.1 ou posterior.
-
-::: moniker-end
 
 O modelo de projeto do React com Redux atualizado fornece um ponto inicial conveniente para aplicativos do ASP.NET Core usando convenções do React, do Redux e de CRA [(create-react-app)](https://github.com/facebookincubator/create-react-app) para implementar uma IU (interface do usuário) avançada do lado do cliente.
 
