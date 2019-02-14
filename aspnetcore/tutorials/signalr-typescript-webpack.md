@@ -4,14 +4,14 @@ author: ssougnez
 description: Neste tutorial, você configurará o Webpack para agrupar e criar um aplicativo Web SignalR do ASP.NET Core, cujo cliente é escrito em TypeScript.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/30/2018
+ms.date: 02/11/2019
 uid: tutorials/signalr-typescript-webpack
-ms.openlocfilehash: 8292ab2e0ad1f5c67ac7f15c280b49700f6717ad
-ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
+ms.openlocfilehash: aaf9aa59928ed6b17bc0586d97dbdefc9e30362c
+ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54836318"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56102946"
 ---
 # <a name="use-aspnet-core-signalr-with-typescript-and-webpack"></a>Usar o SignalR do ASP.NET Core com TypeScript e Webpack
 
@@ -80,13 +80,13 @@ As etapas a seguir configuram a conversão do TypeScript para JavaScript e o agr
 1. Instalar os pacotes de npm exigidos. Execute o seguinte comando na raiz do projeto:
 
     ```console
-    npm install -D -E clean-webpack-plugin@0.1.19 css-loader@0.28.11 html-webpack-plugin@3.2.0 mini-css-extract-plugin@0.4.0 ts-loader@4.4.1 typescript@2.9.2 webpack@4.12.0 webpack-cli@3.0.6
+    npm install -D -E clean-webpack-plugin@1.0.1 css-loader@2.1.0 html-webpack-plugin@4.0.0-beta.5 mini-css-extract-plugin@0.5.0 ts-loader@5.3.3 typescript@3.3.3 webpack@4.29.3 webpack-cli@3.2.3
     ```
 
     Alguns detalhes de comando a se observar:
 
     * Um número de versão segue o sinal `@` para cada nome de pacote. O npm instala essas versões específicas do pacote.
-    * A opção `-E` desabilita o comportamento padrão do npm de escrever os operadores de intervalo de [versão semântica](https://semver.org/) para *package.json*. Por exemplo, `"webpack": "4.12.0"` é usado em vez de `"webpack": "^4.12.0"`. Essa opção evita atualizações não intencionais para versões de pacote mais recentes.
+    * A opção `-E` desabilita o comportamento padrão do npm de escrever os operadores de intervalo de [versão semântica](https://semver.org/) para *package.json*. Por exemplo, `"webpack": "4.29.3"` é usado em vez de `"webpack": "^4.29.3"`. Essa opção evita atualizações não intencionais para versões de pacote mais recentes.
 
     Veja os documentos oficiais de [instalação de npm](https://docs.npmjs.com/cli/install) para saber mais detalhes.
 

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/29/2019
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 9392da14e589736b24790676c1c07c9964882737
-ms.sourcegitcommit: d22b3c23c45a076c4f394a70b1c8df2fbcdf656d
+ms.openlocfilehash: 9f7fc5571f8d1a6e5e2d84779082abb02d2fb292
+ms.sourcegitcommit: af8a6eb5375ef547a52ffae22465e265837aa82b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/31/2019
-ms.locfileid: "55428454"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56159389"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -313,7 +313,7 @@ Ao implantar aplicativos para servidores com [Implantação da Web](/iis/publish
 
 1. No sistema de hospedagem, crie uma pasta para conter arquivos e pastas publicados do aplicativo. O layout de implantação do aplicativo é descrito no tópico [Estrutura de Diretórios](xref:host-and-deploy/directory-structure).
 
-1. No **Gerenciador do IIS**, abra o nó do servidor no painel **Conexões**. Clique com botão direito do mouse na pasta **Sites**. Selecione **Adicionar Site** no menu contextual.
+1. No Gerenciador do IIS, abra o nó do servidor no painel **Conexões**. Clique com botão direito do mouse na pasta **Sites**. Selecione **Adicionar Site** no menu contextual.
 
 1. Forneça um **Nome do site** e defina o **Caminho físico** como a pasta de implantação do aplicativo. Forneça a configuração **Associação** e crie o site ao selecionar **OK**:
 
@@ -334,7 +334,7 @@ Ao implantar aplicativos para servidores com [Implantação da Web](/iis/publish
 
 1. *ASP.NET Core 2.2 ou posterior*: para uma [implantação autocontida](/dotnet/core/deploying/#self-contained-deployments-scd) de 64 bits (x64) que usa o [modelo de hospedagem em processo](xref:fundamentals/servers/index#in-process-hosting-model), desabilite o pool de aplicativos para processos de 32 bits (x86).
 
-   Na barra lateral **Ações** dos **Pools de Aplicativos** do Gerenciador do IIS, selecione **Definir Padrões do Pool de Aplicativos** ou **Configurações Avançadas**. Localize **Habilitar Aplicativos de 32 bits** e defina o valor como `False`. Essa configuração não afeta os aplicativos implantados para a [hospedagem fora do processo](xref:host-and-deploy/aspnet-core-module#out-of-process-hosting-model).
+   Na barra lateral **Ações** do Gerenciador do IIS > **Pools de Aplicativos**, selecione **Definir Padrões do Pool de Aplicativos** ou **Configurações Avançadas**. Localize **Habilitar Aplicativos de 32 bits** e defina o valor como `False`. Essa configuração não afeta os aplicativos implantados para a [hospedagem fora do processo](xref:host-and-deploy/aspnet-core-module#out-of-process-hosting-model).
 
 1. Confirme se a identidade do modelo de processo tem as permissões apropriadas.
 
@@ -410,7 +410,14 @@ Para configurar a proteção de dados no IIS para persistir o token de autentica
 
 * **Configurar o pool de aplicativos do IIS para carregar o perfil do usuário**
 
-  Essa configuração está na seção **Modelo de processo** nas **Configurações avançadas** do pool de aplicativos. Defina Carregar perfil do usuário como `True`. Isso armazena as chaves no diretório do perfil do usuário e as protege usando a DPAPI com uma chave específica à conta de usuário usada pelo pool de aplicativos.
+  Essa configuração está na seção **Modelo de processo** nas **Configurações avançadas** do pool de aplicativos. Defina **Carregar Perfil do Usuário** como `True`. Quando definido como `True`, as chaves são armazenadas no diretório do perfil do usuário e protegidas usando DPAPI com uma chave específica para a conta de usuário. As chaves são persistidas para a pasta *%LOCALAPPDATA%/ASP.NET/DataProtection-Keys*.
+
+  O [atributo setProfileEnvironment](/iis/configuration/system.applicationhost/applicationpools/add/processmodel#configuration) do pool de aplicativos também deve ser habilitado. O valor padrão de `setProfileEnvironment` é `true`. Em alguns cenários (por exemplo, um SO Windows), `setProfileEnvironment` é definido como `false`. Se as chaves não estiverem armazenadas no diretório do perfil do usuário como esperado:
+
+  1. navegue até a pasta *%windir%/system32/inetsrv/config*.
+  1. Abra o arquivo *applicationHost.config*.
+  1. Localize o elemento `<system.applicationHost><applicationPools><applicationPoolDefaults><processModel>`.
+  1. Confirme se o atributo `setProfileEnvironment` não está presente, que tem como padrão o valor `true`, ou defina explicitamente o valor do atributo como `true`.
 
 * **Use o sistema de arquivos como um repositório de tokens de autenticação**
 

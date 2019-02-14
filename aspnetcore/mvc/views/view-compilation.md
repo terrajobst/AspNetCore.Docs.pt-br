@@ -5,14 +5,14 @@ description: Saiba mais sobre os benefícios de pré-compilação arquivos do Ra
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2019
+ms.date: 02/13/2019
 uid: mvc/views/view-compilation
-ms.openlocfilehash: 2720708f8e58fdc55b82bfb56665005170e79934
-ms.sourcegitcommit: d5223cf6a2cf80b4f5dc54169b0e376d493d2d3a
+ms.openlocfilehash: c4e8f722fdf3d3f64807cc35ff9f349af7f32abd
+ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54889750"
+ms.lasthandoff: 02/14/2019
+ms.locfileid: "56248180"
 ---
 # <a name="razor-file-compilation-in-aspnet-core"></a>Compilação de arquivo do Razor no ASP.NET Core
 
@@ -98,7 +98,7 @@ Um arquivo *<nome_do_projeto>.PrecompiledViews.dll*, que contém os arquivos do 
 
 ## <a name="recompile-razor-files-on-change"></a>Recompilar arquivos do Razor em alteração
 
-O <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions> `AllowRecompilingViewsOnFileChange` obtém ou define um valor que determina se os arquivos do Razor (Exibições Razor e Razor Pages) são recompilados e atualizados, quando alterados em disco.
+O <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions> <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> obtém ou define um valor que determina se os arquivos do Razor (Exibições Razor e Razor Pages) são recompilados e atualizados, quando alterados em disco.
 
 Quando definido como `true`, [IFileProvider.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*) busca alterações nos arquivos do Razor, em instâncias configuradas de <xref:Microsoft.Extensions.FileProviders.IFileProvider>.
 
@@ -107,11 +107,11 @@ O valor padrão é `true` para:
 * ASP.NET Core 2.1 ou aplicativos anteriores.
 * ASP.NET Core 2.2 ou aplicativos posteriores no ambiente de desenvolvimento.
 
-`AllowRecompilingViewsOnFileChange` está associado a uma opção de compatibilidade e pode fornecer um comportamento diferente, dependendo da versão de compatibilidade configurada do aplicativo. A configuração do aplicativo definindo `AllowRecompilingViewsOnFileChange` tem precedência sobre o valor indicado pela versão de compatibilidade do aplicativo.
+<xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> está associado a uma opção de compatibilidade e pode fornecer um comportamento diferente, dependendo da versão de compatibilidade configurada do aplicativo. A configuração do aplicativo definindo <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> tem precedência sobre o valor indicado pela versão de compatibilidade do aplicativo.
 
-Se a versão de compatibilidade do aplicativo for definida como <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1> ou anterior, `AllowRecompilingViewsOnFileChange` será definida como `true`, a menos que seja explicitamente configurada.
+Se a versão de compatibilidade do aplicativo for definida como <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1> ou anterior, <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> será definida como `true`, a menos que seja explicitamente configurada.
 
-Se a versão de compatibilidade do aplicativo for definida como `CompatibilityVersion.Version_2_2` ou posterior, `AllowRecompilingViewsOnFileChange` será definida como `false`, a menos que é o ambiente seja de desenvolvimento ou o valor seja explicitamente configurado.
+Se a versão de compatibilidade do aplicativo for definida como <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2> ou posterior, <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> será definida como `false`, a menos que é o ambiente seja de desenvolvimento ou o valor seja explicitamente configurado.
 
 Para ver exemplos e obter orientação sobre como definir a versão de compatibilidade do aplicativo, confira <xref:mvc/compatibility-version>.
 
