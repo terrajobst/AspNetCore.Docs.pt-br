@@ -56,7 +56,7 @@ Adicionar o serviço do Google para `Startup.ConfigureServices`.
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-Consulte a [GoogleOptions](/dotnet/api/microsoft.aspnetcore.builder.googleoptions) referência da API para obter mais informações sobre opções de configuração com suporte pela autenticação do Google. Isso pode ser usado para solicitar informações diferentes sobre o usuário.
+Consulte a [GoogleOptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) referência da API para obter mais informações sobre opções de configuração com suporte pela autenticação do Google. Isso pode ser usado para solicitar informações diferentes sobre o usuário.
 
 ## <a name="change-the-default-callback-uri"></a>Alterar o retorno de chamada padrão URI
 
