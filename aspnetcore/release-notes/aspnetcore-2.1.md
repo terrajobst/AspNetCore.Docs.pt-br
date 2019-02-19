@@ -4,14 +4,14 @@ author: isaac2004
 description: Conheça os novos recursos no ASP.NET Core 2.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/30/2018
+ms.date: 02/13/2019
 uid: aspnetcore-2.1
-ms.openlocfilehash: e16bb874f317b922f3900b540596f6ff38debb2f
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: 8299af819f86d3d2371650ce3d87deb817f0feb8
+ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50206829"
+ms.lasthandoff: 02/14/2019
+ms.locfileid: "56248167"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Novidades do ASP.NET Core 2.1
 
@@ -70,7 +70,7 @@ O uso de HTTPS pode ser imposto ainda mais empregando [HSTS (Protocolo de Segura
 
 Em produção, HTTPS precisa ser configurado explicitamente. Na versão 2.1, foi adicionado o esquema de configuração padrão para configurar HTTPS para Kestrel. Os aplicativos podem ser configurados para usar:
 
-* Vários pontos de extremidade incluindo as URLs. Para obter mais informações, veja [Implementação do servidor Web Kestrel: configuração de ponto de extremidade](xref:fundamentals/servers/kestrel#endpoint-configuration).
+* Vários pontos de extremidade incluindo as URLs. Para saber mais, confira [Implementação do servidor Web Kestrel: configuração do ponto de extremidade](xref:fundamentals/servers/kestrel#endpoint-configuration).
 * O certificado a ser usado para HTTPS de um arquivo no disco ou de um repositório de certificados.
 
 ## <a name="gdpr"></a>RGPD
@@ -131,7 +131,7 @@ Para obter mais informações, veja [Iniciar solicitações de HTTP](xref:fundam
 
 ## <a name="kestrel-transport-configuration"></a>Configuração de transporte do Kestrel
 
-Com a liberação do ASP.NET Core 2.1, o transporte padrão do Kestrel deixa de ser baseado no Libuv, baseando-se agora em soquetes gerenciados. Para obter mais informações, veja [Implementação do servidor Web Kestrel: configuração de transporte](xref:fundamentals/servers/kestrel#transport-configuration).
+Com a liberação do ASP.NET Core 2.1, o transporte padrão do Kestrel deixa de ser baseado no Libuv, baseando-se agora em soquetes gerenciados. Para saber mais, confira [Implementação do servidor Web Kestrel: configuração de transporte](xref:fundamentals/servers/kestrel#transport-configuration).
 
 ## <a name="generic-host-builder"></a>Construtor de host genérico
 
@@ -144,7 +144,12 @@ Para obter mais informações, veja [Host Genérico do .NET](xref:fundamentals/h
 Os modelos de Aplicativo de Página Única para Angular, React e React com Redux são atualizados para usar estruturas de projeto padrão e criar sistemas para cada estrutura.
 
 O modelo Angular se baseia na CLI Angular e os modelos React baseiam-se em create-react-app.
-Para obter mais informações, veja [Usar os modelos de aplicativo de página única com ASP.NET Core](xref:spa/index).
+
+Para obter mais informações, consulte:
+
+* <xref:spa/angular>
+* <xref:spa/react>
+* <xref:spa/react-with-redux>
 
 ## <a name="razor-pages-search-for-razor-assets"></a>Pesquisa de Razor Pages para ativos Razor
 

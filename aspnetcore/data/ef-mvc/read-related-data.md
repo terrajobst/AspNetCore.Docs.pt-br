@@ -1,26 +1,19 @@
 ---
-title: ASP.NET Core MVC com o EF Core – ler dados relacionados – 6 de 10
-author: rick-anderson
+title: 'Tutorial: Ler dados relacionados - ASP.NET MVC com EF Core'
 description: Neste tutorial, você lerá e exibirá dados relacionados – ou seja, os dados que o Entity Framework carrega nas propriedades de navegação.
+author: rick-anderson
 ms.author: tdykstra
-ms.date: 03/15/2017
+ms.date: 02/05/2019
+ms.topic: tutorial
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: a310c9e4b9cec6e2ab2477461f395c9bbd3fa364
-ms.sourcegitcommit: e12f45ddcbe99102a74d4077df27d6c0ebba49c1
+ms.openlocfilehash: 73e225c2cd6d9f88079c54115cccad48f43d7d0c
+ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/15/2018
-ms.locfileid: "39063280"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56103040"
 ---
-# <a name="aspnet-core-mvc-with-ef-core---read-related-data---6-of-10"></a>ASP.NET Core MVC com o EF Core – ler dados relacionados – 6 de 10
-
-[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
-
-::: moniker range="= aspnetcore-2.0"
-
-Por [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-O aplicativo web de exemplo Contoso University demonstra como criar aplicativos web do ASP.NET Core MVC usando o Entity Framework Core e o Visual Studio. Para obter informações sobre a série de tutoriais, consulte [o primeiro tutorial da série](intro.md).
+# <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Ler dados relacionados - ASP.NET MVC com EF Core
 
 No tutorial anterior, você concluiu o modelo de dados Escola. Neste tutorial, você lerá e exibirá dados relacionados – ou seja, os dados que o Entity Framework carrega nas propriedades de navegação.
 
@@ -30,7 +23,19 @@ As ilustrações a seguir mostram as páginas com as quais você trabalhará.
 
 ![Página Índice de Instrutores](read-related-data/_static/instructors-index.png)
 
-## <a name="eager-explicit-and-lazy-loading-of-related-data"></a>Carregamento adiantado, explícito e lento de dados relacionados
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Aprender a carregar entidades relacionadas
+> * Criar uma página Cursos
+> * Criar uma página Instrutores
+> * Aprender sobre o carregamento explícito
+
+## <a name="prerequisites"></a>Pré-requisitos
+
+* [Criar um modelo de dados mais complexo com o EF Core para um aplicativo Web ASP.NET Core MVC](complex-data-model.md)
+
+## <a name="learn-how-to-load-related-data"></a>Aprender a carregar entidades relacionadas
 
 Há várias maneiras pelas quais um software ORM (Object-Relational Mapping), como o Entity Framework, pode carregar dados relacionados nas propriedades de navegação de uma entidade:
 
@@ -54,7 +59,7 @@ Se você sabe que precisa de dados relacionados para cada entidade recuperada, o
 
 Por outro lado, em alguns cenários, consultas separadas são mais eficientes. O carregamento adiantado de todos os dados relacionados em uma consulta pode fazer com que uma junção muito complexa seja gerada, que o SQL Server não consegue processar com eficiência. Ou se precisar acessar as propriedades de navegação de uma entidade somente para um subconjunto de um conjunto de entidades que está sendo processado, consultas separadas poderão ter um melhor desempenho, pois o carregamento adiantado de tudo desde o início recupera mais dados do que você precisa. Se o desempenho for crítico, será melhor testar o desempenho das duas maneiras para fazer a melhor escolha.
 
-## <a name="create-a-courses-page-that-displays-department-name"></a>Criar uma página Courses que exibe o nome do Departamento
+## <a name="create-a-courses-page"></a>Criar uma página Cursos
 
 A entidade Course inclui uma propriedade de navegação que contém a entidade Department do departamento ao qual o curso é atribuído. Para exibir o nome do departamento atribuído em uma lista de cursos, você precisa obter a propriedade Name da entidade Department que está na propriedade de navegação `Course.Department`.
 
@@ -88,7 +93,7 @@ Execute o aplicativo e selecione a guia **Cursos** para ver a lista com nomes de
 
 ![Página Índice de Cursos](read-related-data/_static/courses-index.png)
 
-## <a name="create-an-instructors-page-that-shows-courses-and-enrollments"></a>Criar uma página Instrutores que mostra Cursos e Registros
+## <a name="create-an-instructors-page"></a>Criar uma página Instrutores
 
 Nesta seção, você criará um controlador e uma exibição para a entidade Instructor para exibir a página Instrutores:
 
@@ -226,7 +231,7 @@ Atualize a página novamente e selecione um instrutor. Em seguida, selecione um 
 
 ![Página Índice de Instrutores – instrutor e curso selecionados](read-related-data/_static/instructors-index.png)
 
-## <a name="explicit-loading"></a>Carregamento explícito
+## <a name="about-explicit-loading"></a>Sobre o carregamento explícito
 
 Quando você recuperou a lista de instrutores em *InstructorsController.cs*, você especificou o carregamento adiantado para a propriedade de navegação `CourseAssignments`.
 
@@ -238,12 +243,20 @@ O novo código remove as chamadas do método *ThenInclude* para dados de registr
 
 Execute que o aplicativo, acesse a página Índice de Instrutores agora e você não verá nenhuma diferença no que é exibido na página, embora você tenha alterado a maneira como os dados são recuperados.
 
-## <a name="summary"></a>Resumo
+## <a name="get-the-code"></a>Obter o código
 
-Agora, você usou o carregamento adiantado com uma consulta e com várias consultas para ler dados relacionados nas propriedades de navegação. No próximo tutorial, você aprenderá a atualizar dados relacionados.
+[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-::: moniker-end
+## <a name="next-steps"></a>Próximas etapas
 
->[!div class="step-by-step"]
->[Anterior](complex-data-model.md)
->[Próximo](update-related-data.md)
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Aprendeu a carregar dados relacionados
+> * Criou uma página Cursos
+> * Criou uma página Instrutores
+> * Aprendeu sobre o carregamento explícito
+
+Vá para o próximo artigo para aprender a atualizar dados relacionados.
+> [!div class="nextstepaction"]
+> [Atualizar dados relacionados](update-related-data.md)

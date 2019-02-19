@@ -4,14 +4,14 @@ author: ardalis
 description: Saiba como os filtros funcionam e como usá-los no ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/15/2019
+ms.date: 02/08/2019
 uid: mvc/controllers/filters
-ms.openlocfilehash: fe3082481b51c968fd361dbcc9553c4e35a36f2a
-ms.sourcegitcommit: 728f4e47be91e1c87bb7c0041734191b5f5c6da3
+ms.openlocfilehash: 3cd576b389a2a4384c0ba90b5740ac42140533cc
+ms.sourcegitcommit: af8a6eb5375ef547a52ffae22465e265837aa82b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54444344"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56159308"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtros no ASP.NET Core
 
@@ -71,6 +71,7 @@ Filtros assíncronos definem um único método On*Stage*ExecutionAsync. Esse mé
 > Implemente **ou** a versão assíncrona ou a versão síncrona de uma interface de filtro, não ambas. Primeiro, a estrutura verifica se o filtro implementa a interface assíncrona e, se for esse o caso, a chama. Caso contrário, ela chama os métodos da interface síncrona. Se você implementasse as duas interfaces em uma classe, somente o método assíncrono seria chamado. Ao usar classes abstratas como <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute>, você substituiria apenas os métodos síncronos ou o método assíncrono para cada tipo de filtro.
 
 ### <a name="ifilterfactory"></a>IFilterFactory
+
 [IFilterFactory](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory) implementa <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Portanto, uma instância `IFilterFactory` pode ser usada como uma instância `IFilterMetadata` em qualquer parte do pipeline de filtro. Quando se prepara para invocar o filtro, a estrutura tenta convertê-lo em um `IFilterFactory`. Se essa conversão for bem-sucedida, o método [CreateInstance](/dotnet/api/microsoft.aspnetcore.mvc.filters.ifilterfactory.createinstance) será chamado para criar a instância `IFilterMetadata` que será invocada. Isso fornece um design flexível, porque o pipeline de filtro preciso não precisa ser definido explicitamente quando o aplicativo é iniciado.
 
 Você pode implementar `IFilterFactory` em suas próprias implementações de atributo como outra abordagem à criação de filtros:
@@ -348,8 +349,12 @@ O `ExceptionFilterAttribute` pode tornar-se uma subclasse.
 
 ## <a name="result-filters"></a>Filtros de resultado
 
-* Implementam a interface `IResultFilter` ou `IAsyncResultFilter`.
+* Implemente uma interface:
+  * `IResultFilter` ou `IAsyncResultFilter`.
+  * `IAlwaysRunResultFilter` ou `IAsyncAlwaysRunResultFilter`
 * A execução deles envolve a execução de resultados de ação. 
+
+### <a name="iresultfilter-and-iasyncresultfilter"></a>IResultFilter e IAsyncResultFilter
 
 Veja um exemplo de um filtro de resultado que adiciona um cabeçalho HTTP.
 
@@ -371,6 +376,35 @@ Quando o método `OnResultExecuted` é executado, a resposta provavelmente foi e
 Para um `IAsyncResultFilter`, uma chamada para `await next` no `ResultExecutionDelegate` executa qualquer filtro de resultado posterior e o resultado da ação. Para fazer um curto-circuito, defina `ResultExecutingContext.Cancel` para verdadeiro e não chame `ResultExectionDelegate`.
 
 A estrutura fornece um `ResultFilterAttribute` abstrato que você pode colocar em uma subclasse. A classe [AddHeaderAttribute](#add-header-attribute) mostrada anteriormente é um exemplo de atributo de filtro de resultado.
+
+### <a name="ialwaysrunresultfilter-and-iasyncalwaysrunresultfilter"></a>IAlwaysRunResultFilter e IAsyncAlwaysRunResultFilter
+
+As interfaces <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> e <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAlwaysRunResultFilter> declaram uma implementação <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> que é executada para resultados de ação. O filtro é aplicado ao resultado de uma ação, a menos que <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter> ou <xref:Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter> se aplique e cause curto-circuito da resposta.
+
+Em outras palavras, esses filtros "sempre executar" estão sempre em execução, exceto quando um filtro de exceção ou autorização causar curto-circuito neles. Filtra o que não é `IExceptionFilter`, e `IAuthorizationFilter` não causa curto-circuito.
+
+Por exemplo, o filtro a seguir sempre é executado e define o resultado de uma ação (<xref:Microsoft.AspNetCore.Mvc.ObjectResult>) com um código de status *422 Entidade Não Processável* quando ocorre falha na negociação de conteúdo:
+
+```csharp
+public class UnprocessableResultFilter : Attribute, IAlwaysRunResultFilter
+{
+    public void OnResultExecuting(ResultExecutingContext context)
+    {
+        if (context.Result is StatusCodeResult statusCodeResult &&
+            statusCodeResult.StatusCode == 415)
+        {
+            context.Result = new ObjectResult("Can't process this!")
+            {
+                StatusCode = 422,
+            };
+        }
+    }
+
+    public void OnResultExecuted(ResultExecutedContext context)
+    {
+    }
+}
+```
 
 ## <a name="using-middleware-in-the-filter-pipeline"></a>Usando middleware no pipeline de filtros
 

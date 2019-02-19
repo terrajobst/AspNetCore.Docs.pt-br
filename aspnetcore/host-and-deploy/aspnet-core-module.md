@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como configurar o módulo do ASP.NET Core para hospedar aplicativos do ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/22/2019
+ms.date: 02/08/2019
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: 4eea360d08c79b889db00132109cf49492f84de6
-ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
+ms.openlocfilehash: 9270d7b462bbac1ae0ad896c0937ea6dd909b2cd
+ms.sourcegitcommit: af8a6eb5375ef547a52ffae22465e265837aa82b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54837774"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56159549"
 ---
 # <a name="aspnet-core-module"></a>Módulo do ASP.NET Core
 
@@ -51,7 +51,11 @@ Se a propriedade `<AspNetCoreHostingModel>` não estiver presente no arquivo, o 
 
 As seguintes características se aplicam ao hospedar em processo:
 
-* O Servidor HTTP do IIS (`IISHttpServer`) é usado, em vez do servidor [Kestrel](xref:fundamentals/servers/kestrel).
+* O Servidor HTTP do IIS (`IISHttpServer`) é usado, em vez do servidor [Kestrel](xref:fundamentals/servers/kestrel). Em processo, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host) chama <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> para:
+
+  * Registrar o `IISHttpServer`.
+  * Configurar a porta e o caminho base nos quais o servidor deve escutar ao ser executado por trás do Módulo do ASP.NET Core.
+  * Configurar o host para capturar erros de inicialização.
 
 * O [requestTimeout atributo](#attributes-of-the-aspnetcore-element) não se aplica à hospedagem em processo.
 
@@ -83,6 +87,11 @@ Para configurar um aplicativo para hospedagem fora do processo, use qualquer uma
 ```
 
 O servidor [Kestrel](xref:fundamentals/servers/kestrel) é usado, em vez do servidor HTTP do IIS (`IISHttpServer`).
+
+Fora do processo, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host) chama <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> para:
+
+* Configurar a porta e o caminho base nos quais o servidor deve escutar ao ser executado por trás do Módulo do ASP.NET Core.
+* Configurar o host para capturar erros de inicialização.
 
 ### <a name="hosting-model-changes"></a>Alterações no modelo de hospedagem
 
@@ -497,6 +506,32 @@ O instalador do módulo do ASP.NET Core é executado com os privilégios da cont
 1. Execute o instalador.
 1. Exportar o arquivo *applicationHost.config* atualizado para o compartilhamento.
 1. Reabilite a Configuração Compartilhada do IIS.
+
+::: moniker range=">= aspnetcore-2.2"
+
+## <a name="application-initialization"></a>Inicialização de Aplicativo
+
+[Inicialização de Aplicativo IIS](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization) é um recurso do IIS que envia uma solicitação HTTP para o aplicativo quando o pool de aplicativos é iniciado ou reciclado. A solicitação dispara a inicialização do aplicativo. A Inicialização de Aplicativo pode ser usada pelo [modelo de hospedagem em processo](xref:fundamentals/servers/index#in-process-hosting-model) e pelo [modelo de hospedagem fora do processo](xref:fundamentals/servers/index#out-of-process-hosting-model) com a versão 2 do Módulo do ASP.NET Core.
+
+Para habilitar a Inicialização de Aplicativo:
+
+1. Confirme se o recurso da função Inicialização de Aplicativo do IIS está habilitado:
+   * No Windows 7 ou posterior: Navegue para **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela). Abra **Serviços de Informações da Internet** > **Serviços da World Wide Web** > **Recursos de Desenvolvimento de Aplicativos**. Marque a caixa de seleção **Inicialização de Aplicativo**.
+   * No Windows Server 2008 R2 ou posterior, abra o **Assistente para Adicionar Funções e Recursos**. Ao acessar o painel **Selecionar serviços de função**, abra o nó **Desenvolvimento de Aplicativos** e marque a caixa de seleção **Inicialização de Aplicativo**.
+1. No Gerenciador do IIS, selecione **Pools de Aplicativos** no painel **Conexões**.
+1. Selecione o pool de aplicativos do aplicativo na lista.
+1. Selecione **Configurações Avançadas** em **Editar Pool de Aplicativos** no painel **Ações**.
+1. Defina **Modo de Inicialização** como **AlwaysRunning**.
+1. Abra o nó **Sites** no painel **Conexões**.
+1. Selecione o aplicativo.
+1. Selecione **Configurações Avançadas** em **Gerenciar Site** no painel **Ações**.
+1. Defina **Pré-carregamento Habilitado** como **Verdadeiro**.
+
+Para saber mais, confira [Inicialização de Aplicativo do IIS 8.0](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization).
+
+Aplicativos que usam o [modelo de hospedagem fora do processo](xref:fundamentals/servers/index#out-of-process-hosting-model) devem usar um serviço externo para executar periodicamente o ping no aplicativo a fim de mantê-lo em execução.
+
+::: moniker-end
 
 ## <a name="module-version-and-hosting-bundle-installer-logs"></a>Versão do módulo e logs do instalador do pacote de hospedagem
 

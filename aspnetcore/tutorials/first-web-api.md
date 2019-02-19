@@ -4,14 +4,14 @@ author: rick-anderson
 description: Criar uma API Web com o ASP.NET Core MVC
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/24/2019
+ms.date: 02/4/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: 65af70be2cec68d30dd712b80312ebcd40ea0624
-ms.sourcegitcommit: c6db8b14521814f1f7e528d7aa06e474e4c04a1f
+ms.openlocfilehash: 5d72cb214a3d5565452b3b95f364818a71be44b7
+ms.sourcegitcommit: 98e9c7187772d4ddefe6d8e85d0d206749dbd2ef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "55065042"
+ms.lasthandoff: 02/05/2019
+ms.locfileid: "55737636"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core-mvc"></a>Tutorial: Criar uma API Web com o ASP.NET Core MVC
 
@@ -41,11 +41,11 @@ Este tutorial cria a seguinte API:
 
 |API | Descrição | Corpo da solicitação | Corpo da resposta |
 |--- | ---- | ---- | ---- |
-|GET /api/todo | Obter todos os itens de tarefas pendentes | Nenhum | Matriz de itens de tarefas pendentes|
-|GET /api/todo/{id} | Obter um item por ID | Nenhum | Item de tarefas pendentes|
+|GET /api/todo | Obter todos os itens de tarefas pendentes | Nenhuma | Matriz de itens de tarefas pendentes|
+|GET /api/todo/{id} | Obter um item por ID | Nenhuma | Item de tarefas pendentes|
 |POST /api/todo | Adicionar um novo item | Item de tarefas pendentes | Item de tarefas pendentes |
-|PUT /api/todo/{id} | Atualizar um item &nbsp; existente | Item de tarefas pendentes | Nenhum |
-|DELETE /api/todo/{id} &nbsp; &nbsp; | Excluir um item &nbsp; &nbsp; | Nenhum | Nenhum|
+|PUT /api/todo/{id} | Atualizar um item &nbsp; existente | Item de tarefas pendentes | Nenhuma |
+|DELETE /api/todo/{id} &nbsp; &nbsp; | Excluir um item &nbsp; &nbsp; | Nenhuma | Nenhuma|
 
 O diagrama a seguir mostra o design do aplicativo.
 
@@ -142,7 +142,7 @@ Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo 
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Clique com o botão direito do mouse no projeto. Selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta *Modelos*.
+* Clique com o botão direito do mouse no projeto. Selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
 
   ![nova pasta](first-web-api-mac/_static/folder.png)
 
@@ -352,6 +352,8 @@ Adicione o seguinte método `PutTodoItem`:
 
 ### <a name="test-the-puttodoitem-method"></a>Testar o método PutTodoItem
 
+Este exemplo usa um banco de dados em memória que deverá ser iniciado sempre que o aplicativo for iniciado. Deverá haver um item no banco de dados antes de você fazer uma chamada PUT. Chame GET para garantir a existência de um item no banco de dados antes de fazer uma chamada PUT.
+
 Atualize o item pendente que tem a ID = 1 e defina seu nome como "feed fish":
 
 ```json
@@ -456,7 +458,7 @@ Para obter mais informações, consulte os seguintes recursos:
 Neste tutorial, você aprendeu como:
 
 > [!div class="checklist"]
-> * Criar um projeto de API Web.
+> * Criar um projeto de aplicativo API Web.
 > * Adicionar uma classe de modelo.
 > * Criar o contexto de banco de dados.
 > * Registrar o contexto de banco de dados.

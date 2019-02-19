@@ -1,37 +1,46 @@
 ---
-title: ASP.NET Core MVC com EF Core – migrações – 4 de 10
-author: rick-anderson
+title: 'Tutorial: Usar o recurso de migrações - ASP.NET MVC com EF Core'
 description: Neste tutorial, você começa a usar o recurso de migrações do EF Core para gerenciar alterações do modelo de dados em um aplicativo ASP.NET Core MVC.
+author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 02/04/2019
+ms.topic: tutorial
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: 21ef3a675579d8a6671343d84cbe4f4b62979679
-ms.sourcegitcommit: 4d74644f11e0dac52b4510048490ae731c691496
+ms.openlocfilehash: ac924e7d6bee2f02ab11281a5c27f2c94a7183b3
+ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50090797"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56102988"
 ---
-# <a name="aspnet-core-mvc-with-ef-core---migrations---4-of-10"></a>ASP.NET Core MVC com EF Core – migrações – 4 de 10
-
-[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
-
-::: moniker range="= aspnetcore-2.0"
-
-Por [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-O aplicativo web de exemplo Contoso University demonstra como criar aplicativos web do ASP.NET Core MVC usando o Entity Framework Core e o Visual Studio. Para obter informações sobre a série de tutoriais, consulte [o primeiro tutorial da série](intro.md).
+# <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Tutorial: Usar o recurso de migrações - ASP.NET MVC com EF Core
 
 Neste tutorial, você começa usando o recurso de migrações do EF Core para o gerenciamento de alterações do modelo de dados. Em tutoriais seguintes, você adicionará mais migrações conforme você alterar o modelo de dados.
 
-## <a name="introduction-to-migrations"></a>Introdução às migrações
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Aprenderá sobre migrações
+> * Aprenderá sobre pacotes de migração do NuGet
+> * Alterar a cadeia de conexão
+> * Criar uma migração inicial
+> * Examinará os métodos Up e Down
+> * Aprenderá sobre o instantâneo do modelo de dados
+> * Aplicar a migração
+
+
+## <a name="prerequisites"></a>Pré-requisitos
+
+* [Adicionar classificação, filtragem e paginação com o EF Core em um aplicativo ASP.NET Core MVC](sort-filter-page.md)
+
+## <a name="about-migrations"></a>Sobre migrações
 
 Quando você desenvolve um novo aplicativo, o modelo de dados é alterado com frequência e, sempre que o modelo é alterado, ele fica fora de sincronia com o banco de dados. Você começou estes tutoriais configurando o Entity Framework para criar o banco de dados, caso ele não exista. Em seguida, sempre que você alterar o modelo de dados – adicionar, remover, alterar classes de entidade ou alterar a classe DbContext –, poderá excluir o banco de dados e o EF criará um novo que corresponde ao modelo e o propagará com os dados de teste.
 
 Esse método de manter o banco de dados em sincronia com o modelo de dados funciona bem até que você implante o aplicativo em produção. Quando o aplicativo é executado em produção, ele normalmente armazena os dados que você deseja manter, e você não quer perder tudo sempre que fizer uma alteração, como a adição de uma nova coluna. O recurso Migrações do EF Core resolve esse problema, permitindo que o EF atualize o esquema de banco de dados em vez de criar um novo banco de dados.
 
-## <a name="entity-framework-core-nuget-packages-for-migrations"></a>Pacotes NuGet do Entity Framework Core para migrações
+## <a name="about-nuget-migration-packages"></a>Sobre pacotes de migração do NuGet
 
 Para trabalhar com migrações, use o **PMC** (Console do Gerenciador de Pacotes) ou a CLI (interface de linha de comando).  Esses tutoriais mostram como usar comandos da CLI. Encontre informações sobre o PMC no [final deste tutorial](#pmc).
 
@@ -60,7 +69,7 @@ Essa alteração configura o projeto, de modo que a primeira migração crie um 
 
 Salve as alterações e compile o projeto. Em seguida, abra uma janela Comando e navegue para a pasta do projeto. Esta é uma maneira rápida de fazer isso:
 
-* No **Gerenciador de Soluções**, clique com o botão direito do mouse no projeto e escolha **Abrir no Explorador de Arquivos** no menu de contexto.
+* No **Gerenciador de Soluções**, clique com o botão direito do mouse no projeto e escolha **Abrir Pasta no Explorador de Arquivos** no menu de contexto.
 
   ![Abrir no item de menu do Explorador de Arquivos](migrations/_static/open-in-file-explorer.png)
 
@@ -89,7 +98,7 @@ Done. To undo this action, use 'ef migrations remove'
 
 Se você receber uma mensagem de erro "*Não é possível acessar o arquivo... ContosoUniversity.dll porque ele está sendo usado por outro processo*", localize o ícone do IIS Express na Bandeja do Sistema do Windows, clique com o botão direito do mouse nele e, em seguida, clique em **ContosoUniversity > Parar Site**.
 
-## <a name="examine-the-up-and-down-methods"></a>Examinar os métodos Up e Down
+## <a name="examine-up-and-down-methods"></a>Examinará os métodos Up e Down
 
 Quando você executou o comando `migrations add`, o EF gerou o código que criará o banco de dados do zero. Esse código está localizado na pasta *Migrations*, no arquivo chamado *\<timestamp>_InitialCreate.cs*. O método `Up` da classe `InitialCreate` cria as tabelas de banco de dados que correspondem aos conjuntos de entidades do modelo de dados, e o método `Down` exclui-as, conforme mostrado no exemplo a seguir.
 
@@ -109,7 +118,7 @@ Ao excluir uma migração, use o comando [dotnet ef migrations remove](/ef/core/
 
 Confira [Migrações do EF Core em ambientes de equipe](/ef/core/managing-schemas/migrations/teams) para obter mais informações de como o arquivo de instantâneo é usado.
 
-## <a name="apply-the-migration-to-the-database"></a>Aplicar a migração ao banco de dados
+## <a name="apply-the-migration"></a>Aplicar a migração
 
 Na janela Comando, insira o comando a seguir para criar o banco de dados e tabelas nele.
 
@@ -151,7 +160,8 @@ Execute o aplicativo para verificar se tudo ainda funciona como antes.
 ![Página Índice de Alunos](migrations/_static/students-index.png)
 
 <a id="pmc"></a>
-## <a name="command-line-interface-cli-vs-package-manager-console-pmc"></a>CLI (interface de linha de comando) vs. PMC (Console do Gerenciador de Pacotes)
+
+## <a name="compare-cli-and-pmc"></a>Comparar CLI e PMC
 
 As ferramentas do EF para gerenciamento de migrações estão disponíveis por meio dos comandos da CLI do .NET Core ou de cmdlets do PowerShell na janela **PMC** (Console do Gerenciador de Pacotes) do Visual Studio. Este tutorial mostra como usar a CLI, mas você poderá usar o PMC se preferir.
 
@@ -163,12 +173,23 @@ Para obter mais informações sobre os comandos da CLI, consulte [CLI do .NET Co
 
 Para obter mais informações sobre os comandos do PMC, consulte [Console do Gerenciador de Pacotes (Visual Studio)](/ef/core/miscellaneous/cli/powershell).
 
-## <a name="summary"></a>Resumo
+## <a name="get-the-code"></a>Obter o código
 
-Neste tutorial, você viu como criar e aplicar sua primeira migração. No próximo tutorial, você começará examinando tópicos mais avançados com a expansão do modelo de dados. Ao longo do processo, você criará e aplicará migrações adicionais.
+[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-::: moniker-end
+## <a name="next-step"></a>Próximas etapas
 
-> [!div class="step-by-step"]
-> [Anterior](sort-filter-page.md)
-> [Próximo](complex-data-model.md)
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Aprendeu sobre migrações
+> * Aprendeu sobre pacotes de migração do NuGet
+> * Alterou a cadeia de conexão
+> * Criou uma migração inicial
+> * Examinou os métodos Up e Down
+> * Aprendeu sobre o instantâneo do modelo de dados
+> * Aplicou a migração
+
+Vá para o próximo artigo para começar a examinar tópicos mais avançados sobre a expansão do modelo de dados. Ao longo do processo, você criará e aplicará migrações adicionais.
+> [!div class="nextstepaction"]
+> [Criar e aplicar migrações adicionais](complex-data-model.md)

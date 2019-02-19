@@ -1,42 +1,38 @@
 ---
-title: ASP.NET Core MVC com EF Core – CRUD – 2 de 10
+title: 'Tutorial: Implementar a funcionalidade CRUD - ASP.NET MVC com EF Core'
+description: Neste tutorial, você examinará e personalizará o código CRUD (criar, ler, atualizar e excluir) que o scaffolding do MVC cria automaticamente para você em controladores e exibições.
 author: rick-anderson
-description: ''
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 02/04/2019
+ms.topic: tutorial
 uid: data/ef-mvc/crud
-ms.openlocfilehash: 34927415beadaa3f5c9035a9101e3c99f7cbc395
-ms.sourcegitcommit: 4d74644f11e0dac52b4510048490ae731c691496
+ms.openlocfilehash: 368b1774ba977ec8020a02d48705200fd54c3bbd
+ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50090817"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56102975"
 ---
-# <a name="aspnet-core-mvc-with-ef-core---crud---2-of-10"></a>ASP.NET Core MVC com EF Core – CRUD – 2 de 10
-
-[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
-
-::: moniker range="= aspnetcore-2.0"
-
-Por [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-O aplicativo web de exemplo Contoso University demonstra como criar aplicativos web do ASP.NET Core MVC usando o Entity Framework Core e o Visual Studio. Para obter informações sobre a série de tutoriais, consulte [o primeiro tutorial da série](intro.md).
+# <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: Implementar a funcionalidade CRUD - ASP.NET MVC com EF Core
 
 No tutorial anterior, você criou um aplicativo MVC que armazena e exibe dados usando o Entity Framework e o LocalDB do SQL Server. Neste tutorial, você examinará e personalizará o código CRUD (criar, ler, atualizar e excluir) que o scaffolding do MVC cria automaticamente para você em controladores e exibições.
 
 > [!NOTE]
 > É uma prática comum implementar o padrão de repositório para criar uma camada de abstração entre o controlador e a camada de acesso a dados. Para manter esses tutoriais simples e com foco no ensino de como usar o Entity Framework em si, eles não usam repositórios. Para obter informações sobre repositórios com o EF, consulte [o último tutorial desta série](advanced.md).
 
-Neste tutorial, você trabalhará com as seguintes páginas da Web:
+Neste tutorial, você:
 
-![Página Detalhes do Aluno](crud/_static/student-details.png)
+> [!div class="checklist"]
+> * Personalizar a página Detalhes
+> * Atualizar a página Criar
+> * Atualizar a página Editar
+> * Atualizar a página Excluir
+> * Fechará conexões de banco de dados
 
-![Página Criar Aluno](crud/_static/student-create.png)
+## <a name="prerequisites"></a>Pré-requisitos
 
-![Página Editar Aluno](crud/_static/student-edit.png)
-
-![Página Excluir Estudante](crud/_static/student-delete.png)
+* [Introdução ao EF Core em um aplicativo Web ASP.NET Core MVC](intro.md)
 
 ## <a name="customize-the-details-page"></a>Personalizar a página Detalhes
 
@@ -172,7 +168,7 @@ Altere a data para um valor válido e clique em **Criar** para ver o novo aluno 
 
 Em *StudentController.cs*, o método HttpGet `Edit` (aquele sem o atributo `HttpPost`) usa o método `SingleOrDefaultAsync` para recuperar a entidade Student selecionada, como você viu no método `Details`. Não é necessário alterar esse método.
 
-### <a name="recommended-httppost-edit-code-read-and-update"></a>Código HttpPost Edit recomendado: ler e atualizar
+### <a name="recommended-httppost-edit-code-read-and-update"></a>Código HttpPost Edit recomendado: Ler e atualizar
 
 Substitua o método de ação HttpPost Edit pelo código a seguir.
 
@@ -186,7 +182,7 @@ Como uma melhor prática para evitar o excesso de postagem, os campos que você 
 
 Como resultado dessas alterações, a assinatura do método HttpPost `Edit` é a mesma do método HttpGet `Edit`; portanto, você já renomeou o método `EditPost`.
 
-### <a name="alternative-httppost-edit-code-create-and-attach"></a>Código HttpPost Edit alternativo: criar e anexar
+### <a name="alternative-httppost-edit-code-create-and-attach"></a>Código HttpPost Edit alternativo: Criar e anexar
 
 O código de edição HttpPost recomendado garante que apenas as colunas alteradas sejam atualizadas e preserva os dados nas propriedades que você não deseja incluir para o model binding. No entanto, a abordagem de primeira leitura exige uma leitura de banco de dados extra e pode resultar em um código mais complexo para lidar com conflitos de simultaneidade. Uma alternativa é anexar uma entidade criada pelo associador de modelos ao contexto do EF e marcá-la como modificada. (Não atualize o projeto com esse código; ele é mostrado somente para ilustrar uma abordagem opcional.)
 
@@ -270,13 +266,13 @@ Execute o aplicativo, selecione a guia **Alunos** e, em seguida, clique em um hi
 
 Clique em **Excluir**. A página Índice será exibida sem o aluno excluído. (Você verá um exemplo de código de tratamento de erro em ação no tutorial sobre simultaneidade.)
 
-## <a name="closing-database-connections"></a>Fechando conexões de banco de dados
+## <a name="close-database-connections"></a>Fechará conexões de banco de dados
 
 Para liberar os recursos contidos em uma conexão de banco de dados, a instância de contexto precisa ser descartada assim que possível quando você tiver terminado. A [injeção de dependência](../../fundamentals/dependency-injection.md) interna do ASP.NET Core cuida dessa tarefa para você.
 
 Em *Startup.cs*, chame o [método de extensão AddDbContext](https://github.com/aspnet/EntityFrameworkCore/blob/03bcb5122e3f577a84498545fcf130ba79a3d987/src/Microsoft.EntityFrameworkCore/EntityFrameworkServiceCollectionExtensions.cs) para provisionar a classe `DbContext` no contêiner de DI do ASP.NET Core. Esse método define o tempo de vida do serviço como `Scoped` por padrão. `Scoped` significa que o tempo de vida do objeto de contexto coincide com o tempo de vida da solicitação da Web, e o método `Dispose` será chamado automaticamente ao final da solicitação da Web.
 
-## <a name="handling-transactions"></a>Manipulando transações
+## <a name="handle-transactions"></a>Lidar com transações
 
 Por padrão, o Entity Framework implementa transações de forma implícita. Em cenários em que são feitas alterações em várias linhas ou tabelas e, em seguida, `SaveChanges` é chamado, o Entity Framework verifica automaticamente se todas as alterações tiveram êxito ou se falharam. Se algumas alterações forem feitas pela primeira vez e, em seguida, ocorrer um erro, essas alterações serão revertidas automaticamente. Para cenários em que você precisa de mais controle – por exemplo, se desejar incluir operações feitas fora do Entity Framework em uma transação –, consulte [Transações](/ef/core/saving/transactions).
 
@@ -294,12 +290,21 @@ Desabilite o controle de objetos de entidade em memória chamando o método `AsN
 
 Para obter mais informações, consulte [Controle vs. Sem controle](/ef/core/querying/tracking).
 
-## <a name="summary"></a>Resumo
+## <a name="get-the-code"></a>Obter o código
 
-Agora, você tem um conjunto completo de páginas que executam operações CRUD simples para entidades Student. No próximo tutorial, você expandirá a funcionalidade da página **Índice** adicionando classificação, filtragem e paginação.
+[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-::: moniker-end
+## <a name="next-steps"></a>Próximas etapas
 
-> [!div class="step-by-step"]
-> [Anterior](intro.md)
-> [Próximo](sort-filter-page.md)
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Personalizou a página Detalhes
+> * Atualizou a página Criar
+> * Atualizou a página Editar
+> * Atualizou a página Excluir
+> * Fechou conexões de banco de dados
+
+Vá para o próximo artigo para saber como expandir a funcionalidade da página **Índice** adicionando classificação, filtragem e paginação.
+> [!div class="nextstepaction"]
+> [Classificação, filtragem e paginação](sort-filter-page.md)

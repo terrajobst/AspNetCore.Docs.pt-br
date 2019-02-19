@@ -1,27 +1,20 @@
 ---
-title: ASP.NET Core MVC com o EF Core – atualizar dados relacionados – 7 de 10
-author: rick-anderson
+title: 'Tutorial: Atualizar dados relacionados - ASP.NET MVC com EF Core'
 description: Neste tutorial, você atualizará dados relacionados pela atualização dos campos de chave estrangeira e das propriedades de navegação.
+author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 02/05/2019
+ms.topic: tutorial
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 37985c945f2e4b15cfcefb0c126c3209e0bdeac4
-ms.sourcegitcommit: 4d74644f11e0dac52b4510048490ae731c691496
+ms.openlocfilehash: ac94f2e2876c2d8d571a451e4641787ffe37b3d2
+ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50090726"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56103027"
 ---
-# <a name="aspnet-core-mvc-with-ef-core---update-related-data---7-of-10"></a>ASP.NET Core MVC com o EF Core – atualizar dados relacionados – 7 de 10
-
-[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
-
-::: moniker range="= aspnetcore-2.0"
-
-Por [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-O aplicativo web de exemplo Contoso University demonstra como criar aplicativos web do ASP.NET Core MVC usando o Entity Framework Core e o Visual Studio. Para obter informações sobre a série de tutoriais, consulte [o primeiro tutorial da série](intro.md).
+# <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Atualizar dados relacionados - ASP.NET MVC com EF Core
 
 No tutorial anterior, você exibiu dados relacionados; neste tutorial, você atualizará dados relacionados pela atualização dos campos de chave estrangeira e das propriedades de navegação.
 
@@ -31,7 +24,20 @@ As ilustrações a seguir mostram algumas das páginas com as quais você trabal
 
 ![Página Editar Instrutor](update-related-data/_static/instructor-edit-courses.png)
 
-## <a name="customize-the-create-and-edit-pages-for-courses"></a>Personalizar as páginas Criar e Editar dos cursos
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Personalizar as páginas Cursos
+> * Adicionar a página Editar Instrutores
+> * Adicionar cursos à página Editar
+> * Atualizar a página Excluir
+> * Adicionar o local do escritório e cursos à página Criar
+
+## <a name="prerequisites"></a>Pré-requisitos
+
+* [Ler dados relacionados com o EF Core para um aplicativo Web ASP.NET Core MVC](read-related-data.md)
+
+## <a name="customize-courses-pages"></a>Personalizar as páginas Cursos
 
 Quando uma nova entidade de curso é criada, ela precisa ter uma relação com um departamento existente. Para facilitar isso, o código gerado por scaffolding inclui métodos do controlador e exibições Criar e Editar que incluem uma lista suspensa para seleção do departamento. A lista suspensa define a propriedade de chave estrangeira `Course.DepartmentID`, e isso é tudo o que o Entity Framework precisa para carregar a propriedade de navegação `Department` com a entidade Department apropriada. Você usará o código gerado por scaffolding, mas o alterará ligeiramente para adicionar tratamento de erro e classificação à lista suspensa.
 
@@ -103,7 +109,7 @@ Clique em **Editar** em um curso na página Índice de Cursos.
 
 Altere dados na página e clique em **Salvar**. A página Índice de Cursos é exibida com os dados de cursos atualizados.
 
-## <a name="add-an-edit-page-for-instructors"></a>Adicionar uma página Editar para instrutores
+## <a name="add-instructors-edit-page"></a>Adicionar a página Editar Instrutores
 
 Quando você edita um registro de instrutor, deseja poder atualizar a atribuição de escritório do instrutor. A entidade Instructor tem uma relação um para zero ou um com a entidade OfficeAssignment, o que significa que o código deve manipular as seguintes situações:
 
@@ -163,7 +169,7 @@ Execute o aplicativo, selecione a guia **Instrutores** e, em seguida, clique em 
 
 ![Página Editar Instrutor](update-related-data/_static/instructor-edit-office.png)
 
-## <a name="add-course-assignments-to-the-instructor-edit-page"></a>Adicionar atribuições de Curso à página Editar Instrutor
+## <a name="add-courses-to-edit-page"></a>Adicionar cursos à página Editar
 
 Os instrutores podem ministrar a quantidade de cursos que desejarem. Agora, você aprimorará a página Editar Instrutor adicionando a capacidade de alterar as atribuições de curso usando um grupo de caixas de seleção, conforme mostrado na seguinte captura de tela:
 
@@ -236,7 +242,7 @@ Altere algumas atribuições de curso e clique em Salvar. As alterações feitas
 > [!NOTE]
 > A abordagem usada aqui para editar os dados de curso do instrutor funciona bem quando há uma quantidade limitada de cursos. Para coleções muito maiores, uma interface do usuário e um método de atualização diferentes são necessários.
 
-## <a name="update-the-delete-page"></a>Atualizar a página Excluir
+## <a name="update-delete-page"></a>Atualizar a página Excluir
 
 Em *InstructorsController.cs*, exclua o método `DeleteConfirmed` e insira o código a seguir em seu lugar.
 
@@ -248,7 +254,7 @@ Este código faz as seguintes alterações:
 
 * Se o instrutor a ser excluído é atribuído como administrador de qualquer departamento, remove a atribuição de instrutor desse departamento.
 
-## <a name="add-office-location-and-courses-to-the-create-page"></a>Adicionar local de escritório e cursos para a página Criar
+## <a name="add-office-location-and-courses-to-create-page"></a>Adicionar o local do escritório e cursos à página Criar
 
 Em *InstructorsController.cs*, exclua os métodos HttpGet e HttpPost `Create` e, em seguida, adicione o seguinte código em seu lugar:
 
@@ -293,12 +299,21 @@ Faça o teste executando o aplicativo e criando um instrutor.
 
 Conforme explicado no [tutorial do CRUD](crud.md), o Entity Framework implementa transações de forma implícita. Para cenários em que você precisa de mais controle – por exemplo, se desejar incluir operações feitas fora do Entity Framework em uma transação –, consulte [Transações](/ef/core/saving/transactions).
 
-## <a name="summary"></a>Resumo
+## <a name="get-the-code"></a>Obter o código
 
-Agora você concluiu a introdução ao trabalho com os dados relacionados. No próximo tutorial, você verá como lidar com conflitos de simultaneidade.
+[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-::: moniker-end
+## <a name="next-steps"></a>Próximas etapas
 
-> [!div class="step-by-step"]
-> [Anterior](read-related-data.md)
-> [Próximo](concurrency.md)
+Neste tutorial, você:
+
+> [!div class="checklist"]
+> * Personalizou as páginas Cursos
+> * Adicionou a página Editar Instrutores
+> * Adicionou cursos à página Editar
+> * Atualizou a página Excluir
+> * Adicionou o local do escritório e cursos à página Criar
+
+Vá para o próximo artigo para saber como lidar com conflitos de simultaneidade.
+> [!div class="nextstepaction"]
+> [Tratar conflitos de simultaneidade](concurrency.md)
