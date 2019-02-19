@@ -5,14 +5,14 @@ description: Saiba como configurar e usar o Middleware de cache de resposta no A
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/26/2017
+ms.date: 02/16/2019
 uid: performance/caching/middleware
-ms.openlocfilehash: 4b2c71aad4b5bcfee14a271303df5874ccfedb90
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: bb265d04022ec2f8fdb3f2f3bc42f6b3f0b2b338
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207323"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410317"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>Middleware no ASP.NET Core de cache de resposta
 
@@ -103,7 +103,7 @@ Cache de resposta pelo middleware é configurado usando cabeçalhos HTTP.
 | Cabeçalho | Detalhes |
 | ------ | ------- |
 | Autorização | A resposta não é armazenado em cache se o cabeçalho existe. |
-| Cache-Control | O middleware considera somente o cache de respostas marcadas com o `public` diretiva de cache. Controlar o cache com os seguintes parâmetros:<ul><li>idade máxima</li><li>max-stale&#8224;</li><li>nova min</li><li>deve revalidar</li><li>sem cache</li><li>Nenhum repositório</li><li>somente se-armazenado em cache</li><li>particulares</li><li>públicos</li><li>período máximo s</li><li>proxy-revalidate&#8225;</li></ul>&#8224;Se nenhum limite é especificado para `max-stale`, o middleware não toma nenhuma ação.<br>&#8225;`proxy-revalidate`tem o mesmo efeito que `must-revalidate`.<br><br>Para obter mais informações, consulte [RFC 7231: solicitação de diretivas de Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
+| Cache-Control | O middleware considera somente o cache de respostas marcadas com o `public` diretiva de cache. Controlar o cache com os seguintes parâmetros:<ul><li>max-age</li><li>max-stale&#8224;</li><li>nova min</li><li>must-revalidate</li><li>no-cache</li><li>Nenhum repositório</li><li>somente se-armazenado em cache</li><li>particulares</li><li>públicos</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;Se nenhum limite é especificado para `max-stale`, o middleware não toma nenhuma ação.<br>&#8225;`proxy-revalidate`tem o mesmo efeito que `must-revalidate`.<br><br>Para obter mais informações, consulte [RFC 7231: As diretivas de controle de Cache de solicitação](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
 | Pragma | Um `Pragma: no-cache` cabeçalho na solicitação produz o mesmo efeito que `Cache-Control: no-cache`. Esse cabeçalho é substituído por diretivas relevantes no `Cache-Control` cabeçalho, se presente. Considerado para compatibilidade com versões anteriores com HTTP 1.0. |
 | Set-Cookie | A resposta não é armazenado em cache se o cabeçalho existe. Qualquer middleware no pipeline de processamento de solicitação que define um ou mais cookies impede que o Middleware de cache de resposta de cache a resposta (por exemplo, o [provedor de TempData baseado em cookie](xref:fundamentals/app-state#tempdata)).  |
 | Variar | O `Vary` cabeçalho é usado para variar a resposta em cache por outro cabeçalho. Por exemplo, armazenar em cache respostas de codificação, incluindo o `Vary: Accept-Encoding` cabeçalho, que armazena em cache respostas para solicitações com cabeçalhos `Accept-Encoding: gzip` e `Accept-Encoding: text/plain` separadamente. Uma resposta com um valor de cabeçalho de `*` nunca é armazenada. |
@@ -138,7 +138,7 @@ Ao testar e solucionar problemas de comportamento de cache, um navegador pode de
 
 * A solicitação deve resultar em uma resposta do servidor com um código de status 200 (Okey).
 * O método de solicitação deve ser GET ou HEAD.
-* Middleware de terminal, como [Middleware de arquivo estático](xref:fundamentals/static-files), não deve processar a resposta antes do Middleware de cache de resposta.
+* Middleware de terminal não deve processar a resposta antes do Middleware de cache de resposta.
 * O `Authorization` cabeçalho não deverá estar presente.
 * `Cache-Control` parâmetros do cabeçalho devem ser válidos, e a resposta deve ser marcada `public` e não marcada `private`.
 * O `Pragma: no-cache` cabeçalho não deverá estar presente se o `Cache-Control` cabeçalho não estiver presente, como o `Cache-Control` cabeçalho substitui o `Pragma` cabeçalho quando presentes.
@@ -148,7 +148,7 @@ Ao testar e solucionar problemas de comportamento de cache, um navegador pode de
 * O [IHttpSendFileFeature](/dotnet/api/microsoft.aspnetcore.http.features.ihttpsendfilefeature) não é usado.
 * A resposta não deve ser obsoleta conforme especificado pelo `Expires` cabeçalho e o `max-age` e `s-maxage` diretivas de cache.
 * Buffer de resposta deve ser bem-sucedida e o tamanho da resposta deve ser menor do que o configurado ou padrão `SizeLimit`.
-* A resposta deve ser armazenáveis em cache de acordo com o [RFC 7234](https://tools.ietf.org/html/rfc7234) especificações. Por exemplo, o `no-store` diretiva não deve existir nos campos de cabeçalho de solicitação ou resposta. Ver *seção 3: armazenar respostas em Caches* dos [RFC 7234](https://tools.ietf.org/html/rfc7234) para obter detalhes.
+* A resposta deve ser armazenáveis em cache de acordo com o [RFC 7234](https://tools.ietf.org/html/rfc7234) especificações. Por exemplo, o `no-store` diretiva não deve existir nos campos de cabeçalho de solicitação ou resposta. Consulte *seção 3: Armazena as respostas em Caches* dos [RFC 7234](https://tools.ietf.org/html/rfc7234) para obter detalhes.
 
 > [!NOTE]
 > O sistema Antifalsificação para gerar tokens de seguras para evitar a falsificação de solicitação entre sites (CSRF) attacks conjuntos a `Cache-Control` e `Pragma` cabeçalhos para `no-cache` para que as respostas não são armazenadas em cache. Para obter informações sobre como desabilitar tokens antifalsificação para elementos de formulário HTML, consulte [configuração antifalsificação do ASP.NET Core](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration).

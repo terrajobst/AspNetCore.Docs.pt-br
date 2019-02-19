@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/12/2019
 uid: spa/blazor/get-started
-ms.openlocfilehash: 8c984bab8a13b4fc2d87fd1a7e0b285dfa25ba09
-ms.sourcegitcommit: af8a6eb5375ef547a52ffae22465e265837aa82b
+ms.openlocfilehash: 26336f73f6c8976ed5de819cebc3c5c50274ab03
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56159566"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410002"
 ---
 # <a name="get-started-with-blazor"></a>Introdução ao Blazor
 
@@ -32,7 +32,7 @@ Para criar seu primeiro projeto Blazor no Visual Studio:
 1. Verifique os modelos de Blazor disponíveis para uso com a CLI do .NET Core, executando o seguinte comando em um shell de comando:
 
    ```console
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::0.8.0-preview-19104-04
    ```
 
 1. Selecione **arquivo** > **novo projeto** > **Web** > **aplicativo Web ASP.NET Core**.
@@ -97,7 +97,7 @@ Pré-requisitos:
 1. Adicione os modelos de Blazor, executando o seguinte comando em um shell de comando:
 
    ```console
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::0.8.0-preview-19104-04
    ```
 
 1. Crie seu primeiro projeto Blazor em um shell de comando:
@@ -122,7 +122,7 @@ Quando o aplicativo é executado, várias páginas estão disponíveis nas guias
 * Contador
 * Buscar dados
 
-Na página de contador, selecione a **Click me** botão incrementar o contador sem uma atualização de página. Incrementar um contador em uma página da Web normalmente requer a gravação do JavaScript, mas Blazor fornece uma abordagem melhor usando C#.
+Na página Contador, selecione o botão **Clique aqui** para incrementar o contador sem uma atualização de página. Incrementar um contador em uma página da Web normalmente requer a gravação do JavaScript, mas Blazor fornece uma abordagem melhor usando C#.
 
 *Pages/Counter.cshtml*:
 
@@ -150,13 +150,13 @@ Execute o aplicativo. A home page tem seu próprio contador.
 Para adicionar um parâmetro para o componente de contador, atualize o componente `@functions` bloco:
 
 * Adicionar uma propriedade para `IncrementAmount` decorada com o `[Parameter]` atributo.
-* Alterar o `IncrementCount` método a ser usado o `IncrementAmount` ao aumentar o valor de `currentCount`.
+* Altere o método `IncrementCount` para usar o `IncrementAmount` ao aumentar o valor de `currentCount`.
 
 *Pages/Counter.cshtml*:
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.cshtml?highlight=4,8)]
 
-Especifique um `IncrementAmount` parâmetro no componente de Home `<Counter>` usando um atributo do elemento.
+Especifique um parâmetro `IncrementAmount` no elemento `<Counter>` do componente Home usando um atributo.
 
 *Pages/Index.cshtml*:
 
