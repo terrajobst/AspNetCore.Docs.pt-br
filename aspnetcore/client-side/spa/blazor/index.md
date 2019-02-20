@@ -1,18 +1,12 @@
 ---
 title: Introdução ao Blazor
 author: guardrex
-description: Explore o ASP.NET Core Blazor, uma nova maneira de criar aplicativos interativos do lado do cliente com o .NET que são executados no navegador com WebAssembly.
+description: 'Explore o ASP.NET Core Blazor, uma nova maneira de criar aplicativos interativos do lado do cliente com o .NET que são executados no navegador com WebAssembly.'
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/11/2019
 uid: spa/blazor/index
-ms.openlocfilehash: 0d22365701a4fc1857582c13459280e50d59c858
-ms.sourcegitcommit: af8a6eb5375ef547a52ffae22465e265837aa82b
-ms.translationtype: HT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56159563"
 ---
 # <a name="introduction-to-blazor"></a>Introdução ao Blazor
 
