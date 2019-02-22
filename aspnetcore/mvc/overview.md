@@ -5,12 +5,12 @@ description: Saiba como o ASP.NET Core MVC é uma estrutura avançada para a cri
 ms.author: riande
 ms.date: 01/08/2018
 uid: mvc/overview
-ms.openlocfilehash: d2a50e48c20fe69b1fe691bfc9c91a27d4219922
-ms.sourcegitcommit: 5a2456cbf429069dc48aaa2823cde14100e4c438
+ms.openlocfilehash: 205948cb45709b4eb6014aaf4960bf193a20dc30
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/22/2018
-ms.locfileid: "41902593"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410304"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Visão geral do ASP.NET Core MVC
 
@@ -20,13 +20,13 @@ O ASP.NET Core MVC é uma estrutura avançada para a criação de aplicativos We
 
 ## <a name="what-is-the-mvc-pattern"></a>O que é o padrão MVC?
 
-O padrão de arquitetura MVC (Model-View-Controller) separa um aplicativo em três grupos de componentes principais: Modelos, Exibições e Componentes. Esse padrão ajuda a obter a [separação de interesses](http://deviq.com/separation-of-concerns/). Usando esse padrão, as solicitações de usuário são encaminhadas para um Controlador, que é responsável por trabalhar com o Modelo para executar as ações do usuário e/ou recuperar os resultados de consultas. O Controlador escolhe a Exibição a ser exibida para o usuário e fornece-a com os dados do Modelo solicitados.
+O padrão de arquitetura MVC (Model-View-Controller) separa um aplicativo em três grupos de componentes principais: Modelos, Exibições e Controladores. Esse padrão ajuda a obter a [separação de interesses](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns). Usando esse padrão, as solicitações de usuário são encaminhadas para um Controlador, que é responsável por trabalhar com o Modelo para executar as ações do usuário e/ou recuperar os resultados de consultas. O Controlador escolhe a Exibição a ser exibida para o usuário e fornece-a com os dados do Modelo solicitados.
 
 O seguinte diagrama mostra os três componentes principais e quais deles referenciam os outros:
 
 ![Padrão MVC](overview/_static/mvc.png)
 
-Essa descrição das responsabilidades ajuda você a dimensionar o aplicativo em termos de complexidade, porque é mais fácil de codificar, depurar e testar algo (modelo, exibição ou controlador) que tem um único trabalho (e que segue o [Princípio da Responsabilidade Única](http://deviq.com/single-responsibility-principle/)). É mais difícil atualizar, testar e depurar um código que tem dependências distribuídas em duas ou mais dessas três áreas. Por exemplo, a lógica da interface do usuário tende a ser alterada com mais frequência do que a lógica de negócios. Se o código de apresentação e a lógica de negócios forem combinados em um único objeto, um objeto que contém a lógica de negócios precisa ser modificado sempre que a interface do usuário é alterada. Isso costuma introduzir erros e exige um novo teste da lógica de negócios após cada alteração mínima da interface do usuário.
+Essa descrição das responsabilidades ajuda você a dimensionar o aplicativo em termos de complexidade, porque é mais fácil de codificar, depurar e testar algo (modelo, exibição ou controlador) que tem um único trabalho. É mais difícil atualizar, testar e depurar um código que tem dependências distribuídas em duas ou mais dessas três áreas. Por exemplo, a lógica da interface do usuário tende a ser alterada com mais frequência do que a lógica de negócios. Se o código de apresentação e a lógica de negócios forem combinados em um único objeto, um objeto que contém a lógica de negócios precisa ser modificado sempre que a interface do usuário é alterada. Isso costuma introduzir erros e exige um novo teste da lógica de negócios após cada alteração mínima da interface do usuário.
 
 > [!NOTE]
 > A exibição e o controlador dependem do modelo. No entanto, o modelo não depende da exibição nem do controlador. Esse é um dos principais benefícios da separação. Essa separação permite que o modelo seja criado e testado de forma independente da apresentação visual.
@@ -34,9 +34,6 @@ Essa descrição das responsabilidades ajuda você a dimensionar o aplicativo em
 ### <a name="model-responsibilities"></a>Responsabilidades do Modelo
 
 O Modelo em um aplicativo MVC representa o estado do aplicativo e qualquer lógica de negócios ou operação que deve ser executada por ele. A lógica de negócios deve ser encapsulada no modelo, juntamente com qualquer lógica de implementação, para persistir o estado do aplicativo. As exibições fortemente tipadas normalmente usam tipos ViewModel criados para conter os dados a serem exibidos nessa exibição. O controlador cria e popula essas instâncias de ViewModel com base no modelo.
-
-> [!NOTE]
-> Há várias maneiras de organizar o modelo em um aplicativo que usa o padrão de arquitetura MVC. Saiba mais sobre alguns [tipos diferentes de tipos de modelo](http://deviq.com/kinds-of-models/).
 
 ### <a name="view-responsibilities"></a>Responsabilidades da Exibição
 
@@ -47,10 +44,10 @@ As exibições são responsáveis por apresentar o conteúdo por meio da interfa
 Os controladores são os componentes que cuidam da interação do usuário, trabalham com o modelo e, em última análise, selecionam uma exibição a ser renderizada. Em um aplicativo MVC, a exibição mostra apenas informações; o controlador manipula e responde à entrada e à interação do usuário. No padrão MVC, o controlador é o ponto de entrada inicial e é responsável por selecionar quais tipos de modelo serão usados para o trabalho e qual exibição será renderizada (daí seu nome – ele controla como o aplicativo responde a determinada solicitação).
 
 > [!NOTE]
-> Os controladores não devem ser excessivamente complicados por muitas responsabilidades. Para evitar que a lógica do controlador se torne excessivamente complexa, use o [Princípio da Responsabilidade Única](http://deviq.com/single-responsibility-principle/) para empurrar a lógica de negócios para fora do controlador e inseri-la no modelo de domínio.
+> Os controladores não devem ser excessivamente complicados por muitas responsabilidades. Para evitar que a lógica do controlador se torne excessivamente complexa, efetue push da lógica de negócios para fora do controlador e insira-a no modelo de domínio.
 
 >[!TIP]
-> Se você achar que as ações do controlador executam com frequência os mesmos tipos de ações, siga o [Princípio Don't Repeat Yourself](http://deviq.com/don-t-repeat-yourself/) movendo essas ações comuns para [filtros](#filters).
+> Se você achar que as ações do controlador executam com frequência os mesmos tipos de ações, mova essas ações comuns para [filtros](#filters).
 
 ## <a name="what-is-aspnet-core-mvc"></a>O que é ASP.NET Core MVC
 
@@ -63,7 +60,7 @@ ASP.NET Core MVC fornece uma maneira com base em padrões para criar sites dinâ
 ASP.NET Core MVC inclui o seguinte:
 
 * [Roteamento](#routing)
-* [Associação de modelos](#model-binding)
+* [Model binding](#model-binding)
 * [Validação de modelo](#model-validation)
 * [Injeção de dependência](../fundamentals/dependency-injection.md)
 * [Filtros](#filters)
@@ -99,9 +96,9 @@ public class ProductsController : Controller
 }
 ```
 
-### <a name="model-binding"></a>Associação de modelos
+### <a name="model-binding"></a>Model binding
 
-ASP.NET Core MVC [associação de modelo](models/model-binding.md) converte dados de solicitação de cliente (valores de formulário, os dados de rota, parâmetros de cadeia de caracteres de consulta, os cabeçalhos HTTP) em objetos que o controlador pode manipular. Como resultado, a lógica de controlador não precisa fazer o trabalho de descobrir os dados de solicitação de entrada; ele simplesmente tem os dados como parâmetros para os métodos de ação.
+ASP.NET Core MVC [model binding](models/model-binding.md) converte dados de solicitação de cliente (valores de formulário, os dados de rota, parâmetros de cadeia de caracteres de consulta, os cabeçalhos HTTP) em objetos que o controlador pode manipular. Como resultado, a lógica de controlador não precisa fazer o trabalho de descobrir os dados de solicitação de entrada; ele simplesmente tem os dados como parâmetros para os métodos de ação.
 
 ```csharp
 public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null) { ... }
@@ -146,7 +143,7 @@ A estrutura manipula a validação dos dados de solicitação no cliente e no se
 
 ### <a name="dependency-injection"></a>Injeção de dependência
 
-O ASP.NET Core tem suporte interno para [DI (injeção de dependência)](../fundamentals/dependency-injection.md). No ASP.NET Core MVC, os [controladores](controllers/dependency-injection.md) podem solicitar serviços necessários por meio de seus construtores, possibilitando o acompanhamento do [princípio de dependências explícitas](http://deviq.com/explicit-dependencies-principle/).
+O ASP.NET Core tem suporte interno para [DI (injeção de dependência)](../fundamentals/dependency-injection.md). No ASP.NET Core MVC, os [controladores](controllers/dependency-injection.md) podem solicitar serviços necessários por meio de seus construtores, possibilitando o acompanhamento do [princípio de dependências explícitas](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
 
 O aplicativo também pode usar a [injeção de dependência em arquivos no exibição](views/dependency-injection.md), usando a diretiva `@inject`:
 

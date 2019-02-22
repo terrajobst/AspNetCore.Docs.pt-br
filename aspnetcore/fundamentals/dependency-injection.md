@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 3626ce834b904db64c1976aefc77dc60a7bfdf1c
-ms.sourcegitcommit: 4a6bbe84db24c2f3dd2de065de418fde952c8d40
+ms.openlocfilehash: 5e5b9746da9bbc13a147b807aabfd3d9ab90a0ca
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50253163"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410502"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Injeção de dependência no ASP.NET Core
 
@@ -373,7 +373,7 @@ Observe qual dos valores de `OperationId` varia em uma solicitação, e entre as
 
 * Os objetos *transitórios* sempre são diferentes. Observe que o valor `OperationId` transitório da primeira e da segunda solicitações é diferente para as duas operações `OperationService` e em todas as solicitações. Uma nova instância é fornecida para cada solicitação e serviço.
 * Os objetos *com escopo* são os mesmos em uma solicitação, mas diferentes entre solicitações.
-* Os objetos *singleton* são os mesmos para cada objeto e solicitação, independentemente de uma instância `Operation` ser fornecida em `ConfigureServices`.
+* Os pbjetos *singleton* são os mesmos para cada objeto e solicitação, independentemente de uma instância `Operation` ser fornecida em `ConfigureServices`.
 
 ## <a name="call-services-from-main"></a>Chamar os serviços desde o principal
 
@@ -437,10 +437,9 @@ Em geral, o aplicativo não deve usar essas propriedades diretamente. Em vez dis
 As melhores práticas são:
 
 * Projetar serviços para usar a injeção de dependência a fim de obter suas dependências.
-* Evite chamadas de método estático com estado (uma prática conhecida como [adesão estática](https://deviq.com/static-cling/)).
+* Evite chamadas de método estático com estado.
 * Evite a instanciação direta das classes dependentes em serviços. A instanciação direta acopla o código a uma implementação específica.
-
-Seguindo os [Princípios SOLID de Design Orientado a Objeto](https://deviq.com/solid/), as classes de aplicativo naturalmente tendem a ser pequenas, bem fatoradas e facilmente testadas.
+* Verifique as classes de aplicativo pequenas, bem fatoradas e facilmente testadas.
 
 Se parecer que uma classe tem muitas dependências injetadas, normalmente é um sinal de que a classe tem muitas responsabilidades e está violando o [Princípio da Responsabilidade Única (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Tente refatorar a classe movendo algumas de suas responsabilidades para uma nova classe. Lembre-se de que as classes de modelo de página de Razor Pages e as classes do controlador de MVC devem se concentrar em questões de interface do usuário. Os detalhes de implementação de acesso aos dados e as regras de negócios devem ser mantidos em classes apropriadas a esses [interesses separados](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns).
 
@@ -488,7 +487,7 @@ O contêiner de serviço interno deve atender às necessidades da estrutura e da
 * Gerenciamento de tempo de vida personalizado
 * Suporte de `Func<T>` para inicialização lenta
 
-Confira o [arquivo readme.md de injeção de dependência](https://github.com/aspnet/DependencyInjection#using-other-containers-with-microsoftextensionsdependencyinjection) para obter uma lista de alguns dos contêineres que dão suporte a adaptadores.
+Confira o [arquivo readme.md de injeção de dependência](https://github.com/aspnet/Extensions/tree/master/src/DependencyInjection) para obter uma lista de alguns dos contêineres que dão suporte a adaptadores.
 
 O exemplo a seguir substitui o contêiner interno por [Autofac](https://autofac.org/):
 
@@ -563,5 +562,4 @@ A DI é uma *alternativa* aos padrões de acesso a objeto estático/global. Talv
 * [Design de aplicativo gerenciado por contêiner, prelúdio: a que local o contêiner pertence?](https://blogs.msdn.microsoft.com/nblumhardt/2008/12/26/container-managed-application-design-prelude-where-does-the-container-belong/)
 * [Princípio de Dependências Explícitas](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)
 * [Inversão de Contêineres de Controle e o padrão de Injeção de Dependência (Martin Fowler)](https://www.martinfowler.com/articles/injection.html)
-* [New is Glue ("colando" o código em uma implementação específica)](https://ardalis.com/new-is-glue)
 * [Como registrar um serviço com várias interfaces na DI do ASP.NET Core](https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/)

@@ -5,12 +5,12 @@ description: Saiba como as exibições tratam da apresentação de dados do apli
 ms.author: riande
 ms.date: 12/12/2017
 uid: mvc/views/overview
-ms.openlocfilehash: 276540a5d77b1d65119d1b2104508d77f45d5588
-ms.sourcegitcommit: 8f8924ce4eb9effeaf489f177fb01b66867da16f
+ms.openlocfilehash: 6c5b4d7b89ac07a85b5aad626e37855de98064eb
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39219362"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410423"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Exibições no ASP.NET Core MVC
 
@@ -28,13 +28,13 @@ O controlador *Home* é representado por uma pasta *Home* dentro da pasta *Views
 
 Use [layouts](xref:mvc/views/layout) para fornecer seções de páginas da Web consistentes e reduzir repetições de código. Layouts geralmente contêm o cabeçalho, elementos de navegação e menu e o rodapé. O cabeçalho e o rodapé geralmente contêm marcações repetitivas para muitos elementos de metadados, bem como links para ativos de script e estilo. Layouts ajudam a evitar essa marcação repetitiva em suas exibições.
 
-[Exibições parciais](xref:mvc/views/partial) reduzem a duplicação de código gerenciando as partes reutilizáveis das exibições. Por exemplo, uma exibição parcial é útil para uma biografia do autor que aparece em várias exibições em um site de blog. Uma biografia do autor é um conteúdo de exibição comum e não requer que um código seja executado para produzi-lo para a página da Web. O conteúdo da biografia do autor é disponibilizado para a exibição usando somente a associação de modelos, de modo que usar uma exibição parcial para esse tipo de conteúdo é ideal.
+[Exibições parciais](xref:mvc/views/partial) reduzem a duplicação de código gerenciando as partes reutilizáveis das exibições. Por exemplo, uma exibição parcial é útil para uma biografia do autor que aparece em várias exibições em um site de blog. Uma biografia do autor é um conteúdo de exibição comum e não requer que um código seja executado para produzi-lo para a página da Web. O conteúdo da biografia do autor é disponibilizado para a exibição usando somente o model binding, de modo que usar uma exibição parcial para esse tipo de conteúdo é ideal.
 
-[Componentes de exibição](xref:mvc/views/view-components) são semelhantes a exibições parciais no sentido em que permitem reduzir códigos repetitivos, mas são adequados para conteúdos de exibição que requerem que um código seja executado no servidor para renderizar a página da Web. Componentes de exibição são úteis quando o conteúdo renderizado requer uma interação com o banco de dados, como para o carrinho de compras de um site. Os componentes de exibição não ficam limitados à associação de modelos para produzir a saída da página da Web.
+[Componentes de exibição](xref:mvc/views/view-components) são semelhantes a exibições parciais no sentido em que permitem reduzir códigos repetitivos, mas são adequados para conteúdos de exibição que requerem que um código seja executado no servidor para renderizar a página da Web. Componentes de exibição são úteis quando o conteúdo renderizado requer uma interação com o banco de dados, como para o carrinho de compras de um site. Os componentes de exibição não ficam limitados ao model binding para produzir a saída da página da Web.
 
 ## <a name="benefits-of-using-views"></a>Benefícios do uso de exibições
 
-As exibições ajudam a estabelecer um design [SoC (Separação de Interesses)](http://deviq.com/separation-of-concerns/) dentro de um aplicativo MVC, separando a marcação da interface do usuário de outras partes do aplicativo. Seguir um design de SoC faz com que seu aplicativo seja modular, o que fornece vários benefícios:
+As exibições ajudam a estabelecer uma [separação de Interesses](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) dentro de um aplicativo MVC, separando a marcação da interface do usuário de outras partes do aplicativo. Seguir um design de SoC faz com que seu aplicativo seja modular, o que fornece vários benefícios:
 
 * A manutenção do aplicativo é mais fácil, porque ele é melhor organizado. Geralmente, as exibições são agrupadas segundo os recursos do aplicativo. Isso facilita encontrar exibições relacionadas ao trabalhar em um recurso.
 * As partes do aplicativo ficam acopladas de forma flexível. Você pode compilar e atualizar as exibições do aplicativo separadamente da lógica de negócios e dos componentes de acesso a dados. É possível modificar os modos de exibição do aplicativo sem precisar necessariamente atualizar outras partes do aplicativo.
@@ -184,7 +184,7 @@ namespace WebApplication1.ViewModels
 }
 ```
 
-Nada impede que você use as mesmas classes para seus tipos de viewmodel e seus tipos de modelo de negócios. No entanto, o uso de modelos separados permite que suas exibições variem independentemente das partes de lógica de negócios e de acesso a dados do aplicativo. A separação de modelos e viewmodels também oferece benefícios de segurança quando os modelos usam [associação de modelos](xref:mvc/models/model-binding) e [validação](xref:mvc/models/validation) para dados enviados ao aplicativo pelo usuário.
+Nada impede que você use as mesmas classes para seus tipos de viewmodel e seus tipos de modelo de negócios. No entanto, o uso de modelos separados permite que suas exibições variem independentemente das partes de lógica de negócios e de acesso a dados do aplicativo. A separação de modelos e viewmodels também oferece benefícios de segurança quando os modelos usam [model binding](xref:mvc/models/model-binding) e [validação](xref:mvc/models/validation) para dados enviados ao aplicativo pelo usuário.
 
 <a name="VD_VB"></a>
 

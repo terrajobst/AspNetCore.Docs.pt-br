@@ -5,12 +5,12 @@ description: Saiba como usar layouts comuns, compartilhar diretivas e executar u
 ms.author: riande
 ms.date: 10/18/2018
 uid: mvc/views/layout
-ms.openlocfilehash: b23fd4e0b1d91a4dd5aae548aa2b2081aa37a561
-ms.sourcegitcommit: f43f430a166a7ec137fcad12ded0372747227498
+ms.openlocfilehash: 1bd225c804b333efea834a46b7d9ba46b1bb69d8
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "49391291"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410567"
 ---
 # <a name="layout-in-aspnet-core"></a>Layout no ASP.NET Core
 
@@ -33,7 +33,7 @@ A maioria dos aplicativos Web tem um layout comum que fornece aos usuários uma 
 
 ![Exemplo de layout da página](layout/_static/page-layout.png)
 
-Estruturas HTML comuns, como scripts e folhas de estilo, também são usadas com frequência por muitas páginas em um aplicativo. Todos esses elementos compartilhados podem ser definidos em um arquivo de *layout*, que pode então ser referenciado por qualquer exibição usada no aplicativo. Os layouts reduzem o código duplicado em exibições, ajudando-os a seguir o [princípio DRY (Don't Repeat Yourself)](http://deviq.com/don-t-repeat-yourself/).
+Estruturas HTML comuns, como scripts e folhas de estilo, também são usadas com frequência por muitas páginas em um aplicativo. Todos esses elementos compartilhados podem ser definidos em um arquivo de *layout*, que pode então ser referenciado por qualquer exibição usada no aplicativo. Os layouts reduzem o código duplicado em exibições.
 
 Por convenção, o layout padrão de um aplicativo ASP.NET Core é chamado *_Layout.cshtml*. O arquivo de layout para novos projetos do ASP.NET Core criados com os modelos:
 

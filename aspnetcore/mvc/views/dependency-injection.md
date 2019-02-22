@@ -5,18 +5,18 @@ description: Saiba como o ASP.NET Core permite a injeção de dependência em ex
 ms.author: riande
 ms.date: 10/14/2016
 uid: mvc/views/dependency-injection
-ms.openlocfilehash: 9b437d27a8d391db4533596674d144628a0c10b1
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: dfadafe9ebb5799b45ef68653f20c5fc1a2506b5
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207050"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410554"
 ---
 # <a name="dependency-injection-into-views-in-aspnet-core"></a>Injeção de dependência em exibições no ASP.NET Core
 
 Por [Steve Smith](https://ardalis.com/)
 
-O ASP.NET Core dá suporte à [injeção de dependência](xref:fundamentals/dependency-injection) em exibições. Isso pode ser útil para serviços específicos a uma exibição, como localização ou dados necessários apenas para o preenchimento de elementos de exibição. Você deve tentar manter a [separação de interesses](http://deviq.com/separation-of-concerns/) entre os controladores e as exibições. A maioria dos dados exibida pelas exibições deve ser passada pelo controlador.
+O ASP.NET Core dá suporte à [injeção de dependência](xref:fundamentals/dependency-injection) em exibições. Isso pode ser útil para serviços específicos a uma exibição, como localização ou dados necessários apenas para o preenchimento de elementos de exibição. Você deve tentar manter a [separação de interesses](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) entre os controladores e as exibições. A maioria dos dados exibida pelas exibições deve ser passada pelo controlador.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/dependency-injection/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
@@ -81,4 +81,4 @@ Se deseja estender os serviços existentes, basta usar essa técnica herdando da
 
 ## <a name="see-also"></a>Consulte também
 
-* Blog de Simon Timms: [Getting Lookup Data Into Your View](http://blog.simontimms.com/2015/06/09/getting-lookup-data-into-you-view/) (Inserindo dados de pesquisa na exibição)
+* Blog de Simon Timms: [Inserir dados de pesquisa na exibição](http://blog.simontimms.com/2015/06/09/getting-lookup-data-into-you-view/)

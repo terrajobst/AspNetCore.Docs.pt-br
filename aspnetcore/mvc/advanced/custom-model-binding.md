@@ -5,12 +5,12 @@ description: Saiba como o model binding permite que as ações do controlador tr
 ms.author: riande
 ms.date: 11/13/2018
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: 1da42829270e8ff4a626a45aec4d4e825062bd4f
-ms.sourcegitcommit: f202864efca81a72ea7120c0692940c40d9d0630
+ms.openlocfilehash: 33551c9fc22561b992b4a09a4c7187ade136c09c
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51635284"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410239"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>Model binding personalizado no ASP.NET Core
 
@@ -104,7 +104,7 @@ O atributo `ModelBinder` pode ser usado para aplicar o `AuthorEntityBinder` aos 
 
 [!code-csharp[](custom-model-binding/sample/CustomModelBindingSample/Controllers/BoundAuthorsController.cs?name=demo1&highlight=2)]
 
-Neste exemplo, como o nome do argumento não é o `authorId` padrão, ele é especificado no parâmetro com o atributo `ModelBinder`. Observe que o controlador e o método de ação são simplificados, comparado à pesquisa da entidade no método de ação. A lógica para buscar o autor usando o Entity Framework Core é movida para o associador de modelos. Isso pode ser uma simplificação considerável quando há vários métodos associados ao modelo `Author` e pode ajudá-lo a seguir o [princípio DRY](http://deviq.com/don-t-repeat-yourself/).
+Neste exemplo, como o nome do argumento não é o `authorId` padrão, ele é especificado no parâmetro com o atributo `ModelBinder`. Observe que o controlador e o método de ação são simplificados, comparado à pesquisa da entidade no método de ação. A lógica para buscar o autor usando o Entity Framework Core é movida para o associador de modelos. Isso pode ser uma simplificação considerável quando há vários métodos associados ao modelo `Author`.
 
 Aplique o atributo `ModelBinder` a propriedades de modelo individuais (como em um viewmodel) ou a parâmetros de método de ação para especificar um associador de modelos ou nome de modelo específico para apenas esse tipo ou essa ação.
 

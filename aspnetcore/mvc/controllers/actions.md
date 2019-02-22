@@ -5,12 +5,12 @@ description: ''
 ms.author: riande
 ms.date: 07/03/2017
 uid: mvc/controllers/actions
-ms.openlocfilehash: 3f3f565021d484b69401a3e03a2a966c92764a49
-ms.sourcegitcommit: a1afd04758e663d7062a5bfa8a0d4dca38f42afc
+ms.openlocfilehash: 8289424b3cd3678bea18a25c7850e409795d1577
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/20/2018
-ms.locfileid: "36275652"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410422"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Tratar solicitações com controladores no ASP.NET Core MVC
 
@@ -33,7 +33,7 @@ Um controlador é uma classe que pode ser instanciada, em que, pelo menos, uma d
 
 Uma classe de controlador não deve ter um atributo `[NonController]` associado.
 
-Os controladores devem seguir o [Princípio de Dependências Explícitas](http://deviq.com/explicit-dependencies-principle/). Há duas abordagens para implementar esse princípio. Se várias ações do controlador exigem o mesmo serviço, considere o uso da [injeção de construtor](xref:mvc/controllers/dependency-injection#constructor-injection) para solicitar essas dependências. Se o serviço é necessário para um único método de ação, considere o uso da [Injeção de Ação](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) para solicitar a dependência.
+Os controladores devem seguir o [Princípio de Dependências Explícitas](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies). Há duas abordagens para implementar esse princípio. Se várias ações do controlador exigem o mesmo serviço, considere o uso da [injeção de construtor](xref:mvc/controllers/dependency-injection#constructor-injection) para solicitar essas dependências. Se o serviço é necessário para um único método de ação, considere o uso da [Injeção de Ação](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) para solicitar a dependência.
 
 Dentro do padrão **M**odel-**V**iew-**C**ontroller, um controlador é responsável pelo processamento inicial da solicitação e criação de uma instância do modelo. Em geral, as decisões de negócios devem ser tomadas dentro do modelo.
 
@@ -43,7 +43,7 @@ O controlador é uma abstração no *nível da interface do usuário*. Suas resp
 
 ## <a name="defining-actions"></a>Definindo ações
 
-Métodos públicos em um controlador, exceto aqueles decorados com o atributo `[NonAction]`, são ações. Parâmetros em ações são associados aos dados de solicitação e validados usando a [associação de modelos](xref:mvc/models/model-binding). A validação de modelo ocorre em tudo o que é associado ao modelo. O valor da propriedade `ModelState.IsValid` indica se a associação de modelos e a validação foram bem-sucedidas.
+Métodos públicos em um controlador, exceto aqueles decorados com o atributo `[NonAction]`, são ações. Parâmetros em ações são associados aos dados de solicitação e validados usando o [model binding](xref:mvc/models/model-binding). A validação de modelo ocorre em tudo o que é associado ao modelo. O valor da propriedade `ModelState.IsValid` indica se o model binding e a validação foram bem-sucedidas.
 
 Métodos de ação devem conter uma lógica para mapear uma solicitação para um interesse de negócios. Normalmente, interesses de negócios devem ser representados como serviços acessados pelo controlador por meio da [injeção de dependência](xref:mvc/controllers/dependency-injection). Em seguida, as ações mapeiam o resultado da ação de negócios para um estado do aplicativo.
 
@@ -57,7 +57,7 @@ Os controladores geralmente herdam de [Controller](/dotnet/api/microsoft.aspnetc
 
 Nenhum cabeçalho de resposta HTTP `Content-Type` é incluído, pois o corpo da resposta não tem nenhum conteúdo a ser descrito.
 
-Há dois tipos de resultado nessa categoria: Redirecionamento e Código de Status HTTP.
+Há dois tipos de resultados nessa categoria: Redirecionar e Código de Status HTTP.
 
 * **Código de Status HTTP**
 
@@ -73,7 +73,7 @@ Há dois tipos de resultado nessa categoria: Redirecionamento e Código de Statu
 
 A maioria dos métodos auxiliares desta categoria inclui uma propriedade `ContentType`, permitindo que você defina o cabeçalho de resposta `Content-Type` para descrever o corpo da resposta.
 
-Há dois tipos de resultado nessa categoria: [Exibição](xref:mvc/views/overview) e [Resposta Formatada](xref:web-api/advanced/formatting).
+Há dois tipos de resultados nessa categoria: [Exibições](xref:mvc/views/overview) e [Resposta Formatada](xref:web-api/advanced/formatting).
 
 * **Exibir**
 
@@ -83,7 +83,7 @@ Há dois tipos de resultado nessa categoria: [Exibição](xref:mvc/views/overvie
 
     Esse tipo retorna JSON ou um formato de troca de dados semelhante para representar um objeto de uma maneira específica. Por exemplo, `return Json(customer);` serializa o objeto fornecido no formato JSON.
     
-    Outros métodos comuns desse tipo incluem `File`, `PhysicalFile` e `VirtualFile`. Por exemplo, `return PhysicalFile(customerFilePath, "text/xml");` retorna um arquivo XML descrito por um valor do cabeçalho de resposta `Content-Type` igual a "text/xml".
+    Outros métodos comuns desse tipo incluem `File` e `PhysicalFile`. Por exemplo, `return PhysicalFile(customerFilePath, "text/xml");` retorna [PhysicalFileResult](/dotnet/api/microsoft.aspnetcore.mvc.physicalfileresult).
 
 #### <a name="3-methods-resulting-in-a-non-empty-response-body-formatted-in-a-content-type-negotiated-with-the-client"></a>3. Métodos que resultam em um corpo de resposta não vazio formatado em um tipo de conteúdo negociado com o cliente
 
@@ -93,7 +93,7 @@ Alguns métodos auxiliares desse tipo incluem `BadRequest`, `CreatedAtRoute` e `
 
 ### <a name="cross-cutting-concerns"></a>Interesses paralelos
 
-Normalmente, os aplicativos compartilham partes de seu fluxo de trabalho. Exemplos incluem um aplicativo que exige autenticação para acessar o carrinho de compras ou um aplicativo que armazena dados em cache em algumas páginas. Para executar a lógica antes ou depois de um método de ação, use um *filtro*. O uso de [Filtros](xref:mvc/controllers/filters) em interesses paralelos pode reduzir a duplicação, possibilitando que elas sigam o [princípio DRY (Don't Repeat Yourself)](http://deviq.com/don-t-repeat-yourself/).
+Normalmente, os aplicativos compartilham partes de seu fluxo de trabalho. Exemplos incluem um aplicativo que exige autenticação para acessar o carrinho de compras ou um aplicativo que armazena dados em cache em algumas páginas. Para executar a lógica antes ou depois de um método de ação, use um *filtro*. A utilização de [filtros](xref:mvc/controllers/filters) em interesses paralelos pode reduzir a duplicação.
 
 A maioria dos atributos de filtro, como `[Authorize]`, pode ser aplicada no nível do controlador ou da ação, dependendo do nível desejado de granularidade.
 

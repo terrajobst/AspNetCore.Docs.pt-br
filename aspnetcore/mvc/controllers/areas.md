@@ -5,12 +5,12 @@ description: Saiba por que as áreas são um recurso do ASP.NET MVC usado para o
 ms.author: riande
 ms.date: 02/14/2017
 uid: mvc/controllers/areas
-ms.openlocfilehash: b78bb5146f1ab9039fa9ff015471654510718ed6
-ms.sourcegitcommit: ecf2cd4e0613569025b28e12de3baa21d86d4258
+ms.openlocfilehash: 19e818fa198936ea1bee0da8039e88a3c0abbf6b
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/30/2018
-ms.locfileid: "43312212"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410606"
 ---
 # <a name="areas-in-aspnet-core"></a>Áreas no ASP.NET Core
 
@@ -38,40 +38,24 @@ Recursos de área:
 
 * As áreas dão suporte a vários controladores com o mesmo nome, desde que eles tenham *áreas* diferentes.
 
-Vamos dar uma olhada em um exemplo para ilustrar como as Áreas são criadas e usadas. Digamos que você tenha um aplicativo de loja que tem dois agrupamentos distintos de controladores e exibições: Produtos e Serviços. Uma estrutura de pastas comum para isso usando áreas do MVC tem a aparência mostrada abaixo:
+Vamos dar uma olhada em um exemplo para ilustrar como as Áreas são criadas e usadas. Digamos que você tenha um aplicativo de loja que tenha dois agrupamentos distintos de controladores e exibições: Produtos e Serviços. Uma estrutura de pastas comum para isso usando áreas do MVC tem a aparência mostrada abaixo:
 
 * Nome do projeto
-
   * Áreas
-
     * Produtos
-
       * Controladores
-
         * HomeController.cs
-
         * ManageController.cs
-
       * Exibições
-
         * Home
-
           * Index.cshtml
-
         * Gerenciar
-
           * Index.cshtml
-
     * Serviços
-
       * Controladores
-
         * HomeController.cs
-
       * Exibições
-
         * Home
-
           * Index.cshtml
 
 Quando o MVC tenta renderizar uma exibição em uma Área, por padrão, ele tenta procurar nos seguintes locais:

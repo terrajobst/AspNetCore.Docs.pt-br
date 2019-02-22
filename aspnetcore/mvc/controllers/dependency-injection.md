@@ -5,12 +5,12 @@ description: Saiba como os controladores do ASP.NET Core MVC solicitam suas depe
 ms.author: riande
 ms.date: 10/14/2016
 uid: mvc/controllers/dependency-injection
-ms.openlocfilehash: 12247dbbbb6de3f8feb7bc37caec4ecf4bd21719
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: 9d9d0a68927da62fad8df72c868eaf4b8ada440d
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50206335"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410265"
 ---
 # <a name="dependency-injection-into-controllers-in-aspnet-core"></a>Injeção de dependência em controladores no ASP.NET Core
 
@@ -24,7 +24,7 @@ Controladores do ASP.NET Core MVC devem solicitar suas dependências explicitame
 
 ## <a name="dependency-injection"></a>Injeção de dependência
 
-A injeção de dependência é uma técnica que segue o [Princípio de inversão de dependência](http://deviq.com/dependency-inversion-principle/), permitindo que aplicativos sejam compostos por módulos acoplados de forma flexível. O ASP.NET Core tem suporte interno para a [injeção de dependência](../../fundamentals/dependency-injection.md), o que facilita a manutenção e o teste de aplicativos.
+O ASP.NET Core tem suporte interno para a [injeção de dependência](../../fundamentals/dependency-injection.md), o que facilita a manutenção e o teste de aplicativos.
 
 ## <a name="constructor-injection"></a>Injeção de construtor
 
@@ -63,7 +63,7 @@ Depois que o serviço tiver sido configurado, executar o aplicativo e navegar pa
 ![Saudação do servidor](dependency-injection/_static/server-greeting.png)
 
 >[!TIP]
-> Confira [Testar a lógica do controlador](testing.md) para saber como solicitar dependências explicitamente [http://deviq.com/explicit-dependencies-principle/](http://deviq.com/explicit-dependencies-principle/) em controladores e facilitar o teste do código.
+> Confira [Testar a lógica do controlador](testing.md) para facilitar o teste do código ao solicitar dependências explicitamente em controladores.
 
 A injeção de dependência interna do ASP.NET Core dá suporte a apenas um construtor para classes que solicitam serviços. Se tiver mais de um construtor, você poderá receber uma exceção informando:
 
@@ -101,4 +101,4 @@ Após ter especificado um objeto de configuração fortemente tipado (nesse caso
 
 [!code-csharp[](./dependency-injection/sample/src/ControllerDI/Controllers/SettingsController.cs?highlight=3,5,7&range=7-22)]
 
-Seguir o padrão Opções permite que as definições e configurações sejam dissociadas umas das outras e garante que o controlador esteja seguindo a [separação de preocupações](http://deviq.com/separation-of-concerns/), uma vez que ele não precisa saber como nem onde encontrar as informações de configuração. Isso facilita a realização de teste de unidade no controlador usando a [Lógica do controlador de teste](testing.md), porque não há nenhuma [adesão estática](http://deviq.com/static-cling/) ou criação de instância direta das classes de configuração dentro da classe do controlador.
+Seguir o padrão Opções permite que as definições e configurações sejam dissociadas umas das outras e garante que o controlador esteja seguindo a [separação de preocupações](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns), uma vez que ele não precisa saber como nem onde encontrar as informações de configuração. Isso também facilita a [realização do teste de unidade](testing.md) no controlador porque não há a criação de instância direta das classes de configuração dentro da classe do controlador.

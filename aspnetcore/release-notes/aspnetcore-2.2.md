@@ -6,12 +6,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 12/18/2018
 uid: aspnetcore-2.2
-ms.openlocfilehash: b8279588e674e3ada486f61bac2c216f1359e86d
-ms.sourcegitcommit: 728f4e47be91e1c87bb7c0041734191b5f5c6da3
+ms.openlocfilehash: 6dcdf71ec5271690718dd1fe750a9a74d498a0f8
+ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54444383"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56410330"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>Novidades do ASP.NET Core 2.2
 
@@ -25,11 +25,11 @@ Para obter mais informações, consulte os seguintes recursos:
 
 * <xref:web-api/advanced/analyzers>
 * <xref:web-api/advanced/conventions>
-* [ASP.NET Core 2.2.0-preview1: analisadores e convenções do Open API](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
+* [ASP.NET Core 2.2.0-preview1: analisadores e convenções da API Aberta](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
 
 ## <a name="problem-details-support"></a>Suporte de detalhes do problema
 
-O ASP.NET Core 2.1 introduziu o `ProblemDetails`, com base na especificação RFC 7807 para transmitir os detalhes de um erro com uma Resposta HTTP. No 2.2, `ProblemDetails` é a resposta padrão para códigos de erro do cliente em controladores atribuídos com `ApiControllerAttribute`. Um `IActionResult` que retorna um código de status de erro do cliente (4xx) retorna um corpo `ProblemDetails`. O resultado também inclui uma ID de correlação que pode ser usada para correlacionar o erro usando logs de solicitação. Para erros do cliente, `ProducesResponseType` usa como padrão `ProblemDetails` como o tipo de resposta. Isso é documentado na saída do Open API/Swagger gerada com o NSwag ou o Swashbuckle.AspNetCore.
+O ASP.NET Core 2.1 introduziu o `ProblemDetails`, com base na especificação [RFC 7807](https://tools.ietf.org/html/rfc7807) para transmitir os detalhes de um erro com uma Resposta HTTP. No 2.2, `ProblemDetails` é a resposta padrão para códigos de erro do cliente em controladores atribuídos com `ApiControllerAttribute`. Um `IActionResult` que retorna um código de status de erro do cliente (4xx) retorna um corpo `ProblemDetails`. O resultado também inclui uma ID de correlação que pode ser usada para correlacionar o erro usando logs de solicitação. Para erros do cliente, `ProducesResponseType` usa como padrão `ProblemDetails` como o tipo de resposta. Isso é documentado na saída do Open API/Swagger gerada com o NSwag ou o Swashbuckle.AspNetCore.
 
 ## <a name="endpoint-routing"></a>Roteamento de ponto de extremidade
 
