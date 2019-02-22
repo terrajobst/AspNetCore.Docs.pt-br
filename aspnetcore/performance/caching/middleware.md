@@ -5,14 +5,14 @@ description: Saiba como configurar e usar o Middleware de cache de resposta no A
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/16/2019
+ms.date: 02/20/2019
 uid: performance/caching/middleware
-ms.openlocfilehash: bb265d04022ec2f8fdb3f2f3bc42f6b3f0b2b338
-ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
+ms.openlocfilehash: c7c3dbd0c9cf029fa6921d77450e780768c8aa6e
+ms.sourcegitcommit: 0945078a09c372f17e9b003758ed87e99c2449f4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56410317"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56647909"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>Middleware no ASP.NET Core de cache de resposta
 
@@ -138,7 +138,7 @@ Ao testar e solucionar problemas de comportamento de cache, um navegador pode de
 
 * A solicitação deve resultar em uma resposta do servidor com um código de status 200 (Okey).
 * O método de solicitação deve ser GET ou HEAD.
-* Middleware de terminal não deve processar a resposta antes do Middleware de cache de resposta.
+* No `Startup.Configure`, Middleware de cache de resposta deve ser colocado antes do middleware que exigem compactação. Para obter mais informações, consulte <xref:fundamentals/middleware/index>.
 * O `Authorization` cabeçalho não deverá estar presente.
 * `Cache-Control` parâmetros do cabeçalho devem ser válidos, e a resposta deve ser marcada `public` e não marcada `private`.
 * O `Pragma: no-cache` cabeçalho não deverá estar presente se o `Cache-Control` cabeçalho não estiver presente, como o `Cache-Control` cabeçalho substitui o `Pragma` cabeçalho quando presentes.
