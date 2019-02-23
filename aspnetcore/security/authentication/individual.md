@@ -5,12 +5,12 @@ description: Descubra artigos baseados em projetos do ASP.NET Core criados com c
 ms.author: riande
 ms.date: 11/30/2017
 uid: security/authentication/individual
-ms.openlocfilehash: ac843342ffc73632fbf9f6359c6c1a5878dcef0d
-ms.sourcegitcommit: c12ebdab65853f27fbb418204646baf6ce69515e
+ms.openlocfilehash: c73365eafaf2c38ef02c3c83ccf5ced4264f7dc0
+ms.sourcegitcommit: b3894b65e313570e97a2ab78b8addd22f427cac8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/21/2018
-ms.locfileid: "46523058"
+ms.lasthandoff: 02/23/2019
+ms.locfileid: "56743768"
 ---
 # <a name="articles-based-on-aspnet-core-projects-created-with-individual-user-accounts"></a>Artigos baseados em projetos do ASP.NET Core criados com contas de usuário individuais
 
@@ -22,7 +22,6 @@ Os modelos de autenticação estão disponíveis na CLI do .NET Core com `-au In
 
 ```console
 dotnet new mvc -au Individual
-dotnet new webapi -au Individual
 dotnet new webapp -au Individual
 ```
 
@@ -32,11 +31,12 @@ dotnet new webapp -au Individual
 
 ```console
 dotnet new mvc -au Individual
-dotnet new webapi -au Individual
 dotnet new razor -au Individual
 ```
 
 ::: moniker-end
+
+Ver [esse problema de GitHub](https://github.com/aspnet/AspNetCore/issues/5833) para autenticação de API da web.
 
 <a name="no"></a>
 ## <a name="no-authentication"></a>Sem autenticação

@@ -5,12 +5,12 @@ description: ''
 ms.author: tdykstra
 ms.date: 12/07/2016
 uid: migration/http-modules
-ms.openlocfilehash: 9dd28b86966912cce87166feb37e65adf3dd6dcb
-ms.sourcegitcommit: 5a2456cbf429069dc48aaa2823cde14100e4c438
+ms.openlocfilehash: 601b93fb12ab5b37b7d8ad8fd9825accc6e314cd
+ms.sourcegitcommit: b3894b65e313570e97a2ab78b8addd22f427cac8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/22/2018
-ms.locfileid: "41902665"
+ms.lasthandoff: 02/23/2019
+ms.locfileid: "56743849"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Migrar módulos e manipuladores HTTP para middleware do ASP.NET Core
 
@@ -96,7 +96,7 @@ Conforme mostrado na [Middleware](xref:fundamentals/middleware/index) página, u
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddleware.cs?highlight=9,13,20,24,28,30,32)]
 
-O modelo de middleware anterior foi obtido da seção em [escrever middleware](xref:fundamentals/middleware/index#write-middleware).
+O modelo de middleware anterior foi obtido da seção em [escrever middleware](xref:fundamentals/middleware/write).
 
 O *MyMiddlewareExtensions* classe auxiliar torna mais fácil de configurar seu middleware em seu `Startup` classe. O `UseMyMiddleware` método adiciona sua classe de middleware ao pipeline de solicitação. Serviços necessários para o middleware são injetados no construtor do middleware.
 
@@ -272,7 +272,7 @@ Fornece uma id exclusiva para cada solicitação. Muito útil para incluir em se
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Secure)]
 
-**HttpContext.Request.UserHostAddress** se traduz em:
+**HttpContext.Request.UserHostAddress** translates to:
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
 

@@ -4,16 +4,16 @@ title: Trabalhando com SSL na API Web | Microsoft Docs
 author: MikeWasson
 description: Mostra como usar o SSL com a API da Web do ASP.NET, incluindo o uso de certificados de cliente SSL.
 ms.author: riande
-ms.date: 12/12/2012
+ms.date: 02/22/2019
 ms.assetid: 97f6164f-59cf-45c0-b820-e4aa29b45396
 msc.legacyurl: /web-api/overview/security/working-with-ssl-in-web-api
 msc.type: authoredcontent
-ms.openlocfilehash: b11b35f58a1f033423f5e6ea5f5373df0d1fcb5f
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
+ms.openlocfilehash: 69c0d217f605096d968435c062ee9931f8dff75f
+ms.sourcegitcommit: b3894b65e313570e97a2ab78b8addd22f427cac8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41833036"
+ms.lasthandoff: 02/23/2019
+ms.locfileid: "56744099"
 ---
 <a name="working-with-ssl-in-web-api"></a>Trabalhando com SSL na API Web
 ====================
@@ -59,7 +59,7 @@ Para configurar o IIS para aceitar certificados de cliente, abra o Gerenciador d
 3. Sob **certificados de cliente**, selecione uma destas opções: 
 
     - **Aceitar**: IIS aceitará um certificado do cliente, mas não exigem um.
-    - **Exigir**: exigem um certificado de cliente. (Para habilitar essa opção, você também deve selecionar "Exigir SSL")
+    - **Exigir**: Exigir um certificado de cliente. (Para habilitar essa opção, você também deve selecionar "Exigir SSL")
 
 Você também pode definir essas opções no arquivo applicationHost. config:
 
@@ -69,7 +69,7 @@ O **SslNegotiateCert** sinalizador significa IIS aceitará um certificado do cli
 
 ### <a name="creating-a-client-certificate-for-testing"></a>Criação de um certificado de cliente para testes
 
-Para fins de teste, você pode usar [MakeCert.exe](https://msdn.microsoft.com/library/bfsktky3.aspx) para criar um certificado de cliente. Primeiro, crie uma autoridade raiz de teste:
+Para fins de teste, você pode usar [MakeCert.exe](/windows/desktop/SecCrypto/makecert) para criar um certificado de cliente. Primeiro, crie uma autoridade raiz de teste:
 
 [!code-console[Main](working-with-ssl-in-web-api/samples/sample4.cmd)]
 

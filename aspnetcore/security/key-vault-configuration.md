@@ -5,14 +5,14 @@ description: Saiba como usar o provedor de configuração do Cofre de chave do A
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/08/2019
+ms.date: 02/22/2019
 uid: security/key-vault-configuration
-ms.openlocfilehash: f70389c86420d81e284ecc863ac8386f726ed2cf
-ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
+ms.openlocfilehash: 2188929d6f380327465e8ce0fd8ad659188416d3
+ms.sourcegitcommit: b3894b65e313570e97a2ab78b8addd22f427cac8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56103105"
+ms.lasthandoff: 02/23/2019
+ms.locfileid: "56743979"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Provedor de configuração do Cofre de chaves do Azure no ASP.NET Core
 
@@ -116,7 +116,7 @@ As instruções fornecidas pelo [guia de início rápido: Definir e recuperar um
 Configurar o Azure AD, Azure Key Vault e o aplicativo para usar uma ID do aplicativo e a senha (segredo do cliente) para autenticar para um cofre de chaves **quando o aplicativo está hospedado fora do Azure**.
 
 > [!NOTE]
-> Embora haja suporte para usar uma ID do aplicativo e a senha (segredo do cliente) para aplicativos hospedados no Azure, recomendamos o uso [identidades para recursos do Azure gerenciadas](#use-managed-identities-for-azure-resources) ao hospedar um aplicativo no Azure. Identidades gerenciadas exigem armazenamento de credenciais no aplicativo ou sua configuração, portanto, ele é considerado como uma abordagem mais segura em geral.
+> Embora haja suporte para usar uma ID do aplicativo e a senha (segredo do cliente) para aplicativos hospedados no Azure, recomendamos o uso [identidades para recursos do Azure gerenciadas](#use-managed-identities-for-azure-resources) ao hospedar um aplicativo no Azure. Identidades gerenciadas não requer armazenamento de credenciais no aplicativo ou sua configuração, portanto, ele é considerado como uma abordagem mais segura em geral.
 
 O aplicativo de exemplo usa uma ID do aplicativo e a senha (segredo do cliente) quando o `#define` instrução na parte superior dos *Program.cs* arquivo é definido como `Basic`.
 
