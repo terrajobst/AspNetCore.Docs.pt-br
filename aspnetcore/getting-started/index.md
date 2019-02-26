@@ -1,17 +1,11 @@
 ---
 title: Introdução ao ASP.NET Core
 author: rick-anderson
-description: Um tutorial rápido que cria e executa um aplicativo simples Olá, Mundo usando o ASP.NET Core.
+description: 'Um tutorial rápido que cria e executa um aplicativo simples Olá, Mundo usando o ASP.NET Core.'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/15/2019
 uid: getting-started
-ms.openlocfilehash: eee927f4306fa7757f3f361e6c6f367658512897
-ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
-ms.translationtype: HT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2019
-ms.locfileid: "54341804"
 ---
 # <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: Introdução ao ASP.NET Core
 
@@ -107,7 +101,7 @@ Neste tutorial, você aprendeu como:
 > * Execute o projeto.
 > * Faça uma alteração.
 
-Para saber mais sobre o ASP.NET Core, confira a introdução:
+Para saber mais sobre o ASP.NET Core, veja o caminho de aprendizado recomendados na introdução:
 
 > [!div class="nextstepaction"]
-> <xref:index>
+> <xref:index#recommended-learning-path>
