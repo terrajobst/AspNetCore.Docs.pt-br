@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como usar um cache distribuído do ASP.NET Core para melhorar o desempenho do aplicativo e a escalabilidade, especialmente em um ambiente de farm de servidor ou de nuvem.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 02/26/2019
 uid: performance/caching/distributed
-ms.openlocfilehash: a157eb075874d2118e3e34b51410b539a1ec37df
-ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
+ms.openlocfilehash: 7337ee3b823064c942832d8a44e4d4289bc4fd0e
+ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/14/2019
-ms.locfileid: "56248582"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "56899418"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>O cache no ASP.NET Core distribuído
 
@@ -33,7 +33,15 @@ Configuração de cache distribuído é específico da implementação. Este art
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-::: moniker range=">= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-2.2"
+
+Para usar um SQL Server distributed cache, a referência a [metapacote do Microsoft](xref:fundamentals/metapackage-app) ou adicionar uma referência de pacote para o [Microsoft.Extensions.Caching.SqlServer](https://www.nuget.org/packages/Microsoft.Extensions.Caching.SqlServer) pacote.
+
+Para usar um Redis distributed cache, a referência a [metapacote do Microsoft](xref:fundamentals/metapackage-app) e adicione uma referência de pacote para o [Microsoft.Extensions.Caching.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis) pacote. O pacote do Redis não está incluído no `Microsoft.AspNetCore.App` empacotar, portanto, você deve referenciar o pacote de Redis separadamente no seu arquivo de projeto.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.1"
 
 Para usar um SQL Server distributed cache, a referência a [metapacote do Microsoft](xref:fundamentals/metapackage-app) ou adicionar uma referência de pacote para o [Microsoft.Extensions.Caching.SqlServer](https://www.nuget.org/packages/Microsoft.Extensions.Caching.SqlServer) pacote.
 

@@ -4,14 +4,14 @@ author: Rick-Anderson
 description: Compreenda e solucione problemas de avisos e erros com projetos do ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2018
+ms.date: 02/26/2019
 uid: test/troubleshoot
-ms.openlocfilehash: 7a3361970bde2b8761c76884fc1905957d075c5c
-ms.sourcegitcommit: e9b99854b0a8021dafabee0db5e1338067f250a9
+ms.openlocfilehash: c8b34f51fd329eb9a7c34f7be93bd7f2aa054283
+ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52450769"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "56899275"
 ---
 # <a name="troubleshoot-aspnet-core-projects"></a>Solucionar problemas de projetos do ASP.NET Core
 
@@ -63,9 +63,9 @@ No **novo projeto** caixa de diálogo para o ASP.NET Core, você poderá ver o s
 
 ![Uma captura de tela da caixa de diálogo OneASP.NET mostrando a mensagem de aviso](troubleshoot/_static/NoNetCore.png)
 
-Esse aviso é exibido quando a variável de ambiente `PATH` não apontar para qualquer SDKs do .NET Core no computador. Para resolver esse problema:
+Esse aviso é exibido quando a variável de ambiente `PATH` não apontar para qualquer SDKs do .NET Core no computador (por exemplo, `C:\Program Files\dotnet\` e `C:\Program Files (x86)\dotnet\`). Para resolver esse problema:
 
-* Instale ou verifique se o que SDK do .NET Core é instalado.
+* Instale ou verifique se o que SDK do .NET Core é instalado. Obter o instalador mais recente do [Downloads do .NET](https://dotnet.microsoft.com/download). 
 * Verifique o `PATH` variável de ambiente aponta para o local em que o SDK está instalado. O instalador normalmente define o `PATH`.
 
 ## <a name="obtain-data-from-an-app"></a>Obter dados de um aplicativo

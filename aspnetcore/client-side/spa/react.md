@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/13/2019
 uid: spa/react
-ms.openlocfilehash: aa08a9d8d06d8b52be564fabf904d4923684d4e4
-ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
+ms.openlocfilehash: 3b2b2e67b5d577872bafefef5624a13ca1a22449
+ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/14/2019
-ms.locfileid: "56248024"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "56899171"
 ---
 # <a name="use-the-react-project-template-with-aspnet-core"></a>Usar o modelo de projeto do React com o ASP.NET Core
 
@@ -102,3 +102,6 @@ Há uma desvantagem nessa configuração padrão. Cada vez que você modificar s
     ```
 
 Quando você iniciar seu aplicativo ASP.NET Core, ele não inicializará um servidor CRA. Em vez disso, a instância que você iniciou manualmente é usada. Isso permite a ele iniciar e reiniciar mais rapidamente. Ele não aguarda mais que o aplicativo do React seja recompilado a cada vez.
+
+> [!IMPORTANT]
+> "Renderização do lado do servidor" não é um recurso com suporte deste modelo. Nosso objetivo com este modelo é atender a paridade com "criar-react-app". Assim, cenários e recursos não incluídos em um projeto de "criar-react-app" (como SSR) não têm suporte e são deixados como um exercício para o usuário.
