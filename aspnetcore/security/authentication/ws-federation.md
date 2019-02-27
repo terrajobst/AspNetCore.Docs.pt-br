@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/16/2019
 uid: security/authentication/ws-federation
-ms.openlocfilehash: 6b568928aaf6c958d66279af9fef80ac0c968c8b
-ms.sourcegitcommit: 184ba5b44d1c393076015510ac842b77bc9d4d93
+ms.openlocfilehash: 7967410686da0e59742b721c0154e143bf19ba01
+ms.sourcegitcommit: 2c7ffe349eabdccf2ed748dd303ffd0ba6e1cfe3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "54396149"
+ms.lasthandoff: 02/26/2019
+ms.locfileid: "56833534"
 ---
 # <a name="authenticate-users-with-ws-federation-in-aspnet-core"></a>Autenticar usuários com o WS-Federation no ASP.NET Core
 
@@ -86,7 +86,7 @@ Por padrão, o middleware novo:
 * Adicionar o WS-Federation para `Startup.ConfigureServices`:
 
     ```csharp
-    services.AddIdentity<ApplicationUser, IdentityRole>()
+    services.AddIdentity<IdentityUser, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
 

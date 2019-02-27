@@ -5,14 +5,14 @@ description: Saiba como configurar a autenticação do Windows no ASP.NET Core, 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 01/15/2019
+ms.date: 02/25/2019
 uid: security/authentication/windowsauth
-ms.openlocfilehash: c98bdedcf943a9057c96a8e5d62615e400074899
-ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
+ms.openlocfilehash: 15fc41efba77f88fc8129f875b85836ac1b5f886
+ms.sourcegitcommit: 2c7ffe349eabdccf2ed748dd303ffd0ba6e1cfe3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2019
-ms.locfileid: "54341648"
+ms.lasthandoff: 02/26/2019
+ms.locfileid: "56833690"
 ---
 # <a name="configure-windows-authentication-in-aspnet-core"></a>Configurar a autenticação do Windows no ASP.NET Core
 
@@ -192,3 +192,7 @@ ASP.NET Core não implementar a representação. Aplicativos executados com a id
 [!code-csharp[](windowsauth/sample_snapshot/Startup.cs?highlight=10-19)]
 
 `RunImpersonated` não oferece suporte a operações assíncronas e não deve ser usado para cenários complexos. Por exemplo, solicitações de todas ou cadeias de middleware de encapsulamento não é tem suporte ou recomendado.
+
+### <a name="claims-transformations"></a>Transformações de declarações
+
+Ao hospedar com o modo de em processo do IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> não é chamado internamente para inicializar um usuário. Portanto, um <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementação usada para transformar as declarações após cada autenticação não está ativada por padrão. Para obter mais informações e um exemplo de código que ativa as transformações de declarações quando no processo de hospedagem, consulte <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model>.

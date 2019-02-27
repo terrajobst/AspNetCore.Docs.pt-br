@@ -3,14 +3,14 @@ title: Usar autenticação de cookie sem o ASP.NET Core Identity
 author: rick-anderson
 description: Obter uma explicação de como usar a autenticação de cookie sem o ASP.NET Core Identity
 ms.author: riande
-ms.date: 10/11/2017
+ms.date: 02/25/2019
 uid: security/authentication/cookie
-ms.openlocfilehash: f05e5b83359ec1739115293e092eaed0c811c046
-ms.sourcegitcommit: 3c2ba9a0d833d2a096d9d800ba67a1a7f9491af0
-ms.translationtype: MT
+ms.openlocfilehash: 7e975da3a276ffb6a3de7ee02f7cc5be67cbbebe
+ms.sourcegitcommit: 2c7ffe349eabdccf2ed748dd303ffd0ba6e1cfe3
+ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55854374"
+ms.lasthandoff: 02/26/2019
+ms.locfileid: "56833612"
 ---
 # <a name="use-cookie-authentication-without-aspnet-core-identity"></a>Usar autenticação de cookie sem o ASP.NET Core Identity
 
@@ -39,6 +39,8 @@ No `ConfigureServices` método, crie o serviço de Middleware de autenticação 
 `AuthenticationScheme` passado para `AddAuthentication` define o esquema de autenticação padrão para o aplicativo. `AuthenticationScheme` é útil quando há várias instâncias de autenticação de cookie e você deseja [autorizar com um esquema específico](xref:security/authorization/limitingidentitybyscheme). Definindo o `AuthenticationScheme` para `CookieAuthenticationDefaults.AuthenticationScheme` fornece um valor de "Cookies" para o esquema. Você pode fornecer qualquer valor de cadeia de caracteres que diferencia o esquema.
 
 Esquema de autenticação do aplicativo é diferente do esquema de autenticação de cookie do aplicativo. Quando um esquema de autenticação de cookie não é fornecido para <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>, ele usa [CookieAuthenticationDefaults.AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) ("Cookies").
+
+O cookie de autenticação <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> estiver definida como `true` por padrão. Cookies de autenticação são permitidos quando um visitante do site não tiver consentido para coleta de dados. Para obter mais informações, consulte <xref:security/gdpr#essential-cookies>.
 
 No `Configure` método, use o `UseAuthentication` método para invocar o Middleware de autenticação define o `HttpContext.User` propriedade. Chame o `UseAuthentication` método antes de chamar `UseMvcWithDefaultRoute` ou `UseMvc`:
 

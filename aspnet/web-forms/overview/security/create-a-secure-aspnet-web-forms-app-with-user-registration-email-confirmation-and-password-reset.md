@@ -8,16 +8,16 @@ ms.date: 10/02/2014
 ms.assetid: 0a8d6044-5fab-4213-82d6-5618d5601358
 msc.legacyurl: /web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset
 msc.type: authoredcontent
-ms.openlocfilehash: b964257165f8a50bef5cb5d8cee4fb30a5e91cf0
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
+ms.openlocfilehash: acc13776840408756901e20589b9efacc83ff2a9
+ms.sourcegitcommit: 2c7ffe349eabdccf2ed748dd303ffd0ba6e1cfe3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41831118"
+ms.lasthandoff: 02/26/2019
+ms.locfileid: "56833677"
 ---
-<a name="create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset-c"></a>Criar um aplicativo Web Forms do ASP.NET seguro com o registro de usuário, email de confirmação e redefinição de senha (c#)
+<a name="create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset-c"></a>Criar um aplicativo de Web Forms do ASP.NET seguro com registro de usuário, confirmação por email e redefinição de senha (C#)
 ====================
-por [Erik Reitan](https://github.com/Erikre)
+by [Erik Reitan](https://github.com/Erikre)
 
 > Este tutorial mostra como criar um aplicativo de Web Forms do ASP.NET com o registro do usuário, confirmação por email e redefinição de senha usando o sistema de associação do ASP.NET Identity. Este tutorial se baseia de Rick Anderson [tutorial MVC](../../../mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md).
 
@@ -70,6 +70,8 @@ Você geralmente deseja impedir que usuários novos lançamentos todos os dados 
 
 <a id="SG"></a>
 ## <a name="hook-up-sendgrid"></a>Enganchar SendGrid
+
+SendGrid mudou sua API, pois este tutorial foi escrito. Para instruções de SendGrid atuais, consulte [SendGrid](http://sendgrid.com/) ou [habilitar a recuperação de confirmação e a senha da conta](xref:security/authentication/accconfirm#enable-account-confirmation-and-password-recovery).
 
 Embora este tutorial apenas mostra como adicionar notificação por email por meio [SendGrid](http://sendgrid.com/), você pode enviar emails usando SMTP e outros mecanismos (consulte [recursos adicionais](#addRes)).
 
