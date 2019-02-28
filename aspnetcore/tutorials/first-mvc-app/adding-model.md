@@ -3,14 +3,14 @@ title: Adicione um modelo a um aplicativo ASP.NET Core MVC
 author: rick-anderson
 description: Adicione um modelo a um aplicativo ASP.NET Core simples.
 ms.author: riande
-ms.date: 02/12/2019
+ms.date: 02/25/2019
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: da30c1c97cbf40a89d163b2116c8d5f9ad422b25
-ms.sourcegitcommit: af8a6eb5375ef547a52ffae22465e265837aa82b
+ms.openlocfilehash: ccdb7b920517c94b9154fe73b4ef1633f4ad0157
+ms.sourcegitcommit: 2c7ffe349eabdccf2ed748dd303ffd0ba6e1cfe3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56159234"
+ms.lasthandoff: 02/26/2019
+ms.locfileid: "56833547"
 ---
 # <a name="add-a-model-to-an-aspnet-core-mvc-app"></a>Adicione um modelo a um aplicativo ASP.NET Core MVC
 
@@ -173,15 +173,7 @@ O comando `ef migrations add InitialCreate` gera código para criar o esquema de
 
 O esquema do banco de dados é baseado no modelo especificado na classe `MvcMovieContext` (no arquivo *Data/MvcMovieContext.cs*). O argumento `InitialCreate` é o nome da migração. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado.
 
----  
-
-Os comandos anteriores geram o seguinte aviso:
-
-```text
-No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
-```
-
-Você pode ignorar esse aviso. Isso será corrigido em um tutorial posterior.
+---
 
 ## <a name="examine-the-context-registered-with-dependency-injection"></a>Examinar o contexto registrado com a injeção de dependência
 

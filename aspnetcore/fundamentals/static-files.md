@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2018
 uid: fundamentals/static-files
-ms.openlocfilehash: 4c08d65cc1f658ef08a9b4b362ac7f8a3a243557
-ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
+ms.openlocfilehash: e6bda5dd60c62c7bdbfa81f34c14cfcd07e8d700
+ms.sourcegitcommit: b3894b65e313570e97a2ab78b8addd22f427cac8
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "53637768"
+ms.lasthandoff: 02/23/2019
+ms.locfileid: "56744047"
 ---
 # <a name="static-files-in-aspnet-core"></a>Arquivos estáticos no ASP.NET Core
 
@@ -23,7 +23,7 @@ Arquivos estáticos, como HTML, CSS, imagens e JavaScript, são ativos que um ap
 
 ## <a name="serve-static-files"></a>Fornecer arquivos estáticos
 
-Os arquivos estáticos são armazenados no diretório raiz Web do projeto. O diretório padrão é *\<content_root>/wwwroot*, mas pode ser alterado por meio do método [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_). Consulte [Raiz de conteúdo](xref:fundamentals/index#content-root) e [Diretório base](xref:fundamentals/index#web-root-webroot) para obter mais informações.
+Os arquivos estáticos são armazenados no diretório raiz Web do projeto. O diretório padrão é *\<content_root>/wwwroot*, mas pode ser alterado por meio do método [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_). Consulte [Raiz de conteúdo](xref:fundamentals/index#content-root) e [Diretório base](xref:fundamentals/index#web-root) para obter mais informações.
 
 O host Web do aplicativo deve ser informado do diretório raiz do conteúdo.
 
@@ -82,7 +82,7 @@ A sobrecarga do método `UseStaticFiles` sem parâmetro marca os arquivos no dir
 
 [!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
-No código anterior, o caractere til `~/` aponta para o diretório base. Para obter mais informações, confira [Diretório base](xref:fundamentals/index#web-root-webroot).
+No código anterior, o caractere til `~/` aponta para o diretório base. Para obter mais informações, confira [Diretório base](xref:fundamentals/index#web-root).
 
 ### <a name="serve-files-outside-of-web-root"></a>Fornecer arquivos fora do diretório base
 
