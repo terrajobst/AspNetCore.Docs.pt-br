@@ -47,7 +47,7 @@ dotnet dev-certs https --trust
 
 O comando anterior exibe a caixa de diálogo a seguir:
 
-![Caixa de diálogo de aviso de segurança](_static/cert.png)
+![Caixa de diálogo de aviso de segurança](~/getting-started/_static/cert.png)
 
 Selecione **Sim** se você concordar com confiar no certificado de desenvolvimento.
 
@@ -59,18 +59,17 @@ dotnet dev-certs https --trust
 
 O comando anterior exibe a mensagem a seguir:
 
-*Foi solicitada confiança no certificado de desenvolvimento HTTPS. Se o certificado ainda não for confiável, executaremos o seguinte comando:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`.  
-*Esse comando pode solicitar que você insira sua senha para instalar o certificado no conjunto de chaves do sistema.
-
-Senha:*
-
-Insira sua senha se você concordar em confiar no certificado de desenvolvimento.
+*Foi solicitada confiança no certificado de desenvolvimento HTTPS. Se o certificado ainda não for confiável, executaremos o seguinte comando:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`.
+ 
+Este comando pode solicitar que você insira sua senha para instalar o certificado no conjunto de chaves do sistema. Insira sua senha se você concordar em confiar no certificado de desenvolvimento.
 
 # <a name="linuxtablinux"></a>[Linux](#tab/linux)
 
 Consulte a documentação para sua distribuição do Linux sobre como confiar no certificado de desenvolvimento HTTPS.
 
 ---
+
+Para obter mais informações, confira [Confiar no certificado de desenvolvimento HTTPS do ASP.NET Core](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos)
 
 ## <a name="run-the-app"></a>Executar o aplicativo
 
