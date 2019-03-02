@@ -4,14 +4,14 @@ author: guardrex
 description: Descubra como usar o padrão de opções para representar grupos de configurações relacionadas em aplicativos ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/29/2018
+ms.date: 02/26/2019
 uid: fundamentals/configuration/options
-ms.openlocfilehash: 20365a078327d76693a40fa79a4a594e29e0901c
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: 9566ed75375bdfaa9d6d8bf898b9fb2054356017
+ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54099241"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "56899314"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Padrão de opções no ASP.NET Core
 
@@ -274,18 +274,22 @@ services.AddOptions<MyOptions>("optionalName")
     .Configure(o => o.Property = "named");
 ```
 
-## <a name="configurelttoptions-tdep1--tdep4gt-method"></a>Configure&lt;TOptions, TDep1, ... TDep4&gt; método
+## <a name="use-di-services-to-configure-options"></a>Usar os serviços de injeção de dependência para configurar as opções
 
-O uso de serviços da DI para configurar opções com a implementação de `IConfigure[Named]Options` de forma padrão é detalhado. Sobrecargas de `ConfigureOptions` em `OptionsBuilder<TOptions>` permitem que você use até cinco serviços para configurar opções:
+Você pode acessar outros serviços de injeção de dependência ao configurar as opções de duas maneiras:
 
-```csharp
-services.AddOptions<MyOptions>("optionalName")
-    .Configure<Service1, Service2, Service3, Service4, Service5>(
-        (o, s, s2, s3, s4, s5) => 
-            o.Property = DoSomethingWith(s, s2, s3, s4, s5));
-```
+* Passar um delegado de configuração para [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) em [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1). [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1) fornece sobrecargas de [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) que permitem que você use até cinco serviços para configurar as opções:
 
-A sobrecarga registra um genérico transitório <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, que tem um construtor que aceita os tipos de serviços genéricos especificados. 
+  ```csharp
+  services.AddOptions<MyOptions>("optionalName")
+      .Configure<Service1, Service2, Service3, Service4, Service5>(
+          (o, s, s2, s3, s4, s5) => 
+              o.Property = DoSomethingWith(s, s2, s3, s4, s5));
+  ```
+
+* Criar seu próprio tipo que implementa <xref:Microsoft.Extensions.Options.IConfigureOptions`1> ou <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1> e registrar o tipo como um serviço.
+
+É recomendável transmitir um delegado de configuração para [Configurar](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*), já que a criação de um serviço é algo mais complexo. Criar seu próprio tipo é equivalente ao que a estrutura faz para você quando você usa [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*). Chamar [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) registra um genérico transitório <xref:Microsoft.Extensions.Options.IConfigureNamedOptions`1>, que tem um construtor que aceita os tipos de serviço genérico especificados. 
 
 ::: moniker range=">= aspnetcore-2.2"
 

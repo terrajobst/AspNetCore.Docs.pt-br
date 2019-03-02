@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como o ASP.NET Core implementa a injeção de dependência e como usá-la.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 02/25/2019
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 5e5b9746da9bbc13a147b807aabfd3d9ab90a0ca
-ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
+ms.openlocfilehash: 5e1522e0819d989a7029c2928c1c33624c1774c7
+ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56410502"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "56899353"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Injeção de dependência no ASP.NET Core
 
@@ -179,7 +179,7 @@ No exemplo de aplicativo, a instância `IMyDependency` é solicitada e usada par
 
 ## <a name="framework-provided-services"></a>Serviços fornecidos pela estrutura
 
-O método `Startup.ConfigureServices` é responsável por definir os serviços usados pelo aplicativo, incluindo recursos de plataforma como o Entity Framework Core e o ASP.NET Core MVC. Inicialmente, a `IServiceCollection` fornecida ao `ConfigureServices` tem os seguintes serviços definidos (dependendo de [como o host foi configurado](xref:fundamentals/host/index)):
+O método `Startup.ConfigureServices` é responsável por definir os serviços usados pelo aplicativo, incluindo recursos de plataforma como o Entity Framework Core e o ASP.NET Core MVC. Inicialmente, a `IServiceCollection` fornecida ao `ConfigureServices` tem os seguintes serviços definidos (dependendo de [como o host foi configurado](xref:fundamentals/index#host)):
 
 | Tipo de serviço | Tempo de vida |
 | ------------ | -------- |
@@ -253,7 +253,7 @@ Quando os serviços são resolvidos por `ActivatorUtilities`, a injeção de con
 
 ## <a name="entity-framework-contexts"></a>Contextos de Entity Framework
 
-Os contextos do Entity Framework devem ser adicionados ao contêiner de serviços usando o tempo de vida com escopo. Isso é tratado automaticamente com uma chamada para o método [AddDbContext](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) ao registrar o contexto do banco de dados. Os serviços que usam o contexto de banco de dados também devem usar o tempo de vida com escopo.
+Contextos do Entity Framework geralmente são adicionados ao contêiner de serviço usando o [tempo de vida com escopo](#service-lifetimes), pois o escopo de operações de banco de dados de aplicativo Web normalmente é para a solicitação. O tempo de vida padrão tem escopo se um tempo de vida não é especificado por uma sobrecarga de <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> ao registrar o contexto de banco de dados. Serviços com um determinado tempo de vida não devem usar um contexto de banco de dados com um tempo de vida mais curto que aquele do serviço.
 
 ## <a name="lifetime-and-registration-options"></a>Opções de tempo de vida e de registro
 

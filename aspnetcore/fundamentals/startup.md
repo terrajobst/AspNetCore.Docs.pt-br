@@ -7,12 +7,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 01/17/2019
 uid: fundamentals/startup
-ms.openlocfilehash: 685b496943642b349321a36a7200d6d51ecf4d6e
-ms.sourcegitcommit: 184ba5b44d1c393076015510ac842b77bc9d4d93
+ms.openlocfilehash: cfd0a57d5d0b60862b017a170b6d5cbddf56f15a
+ms.sourcegitcommit: b3894b65e313570e97a2ab78b8addd22f427cac8
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "54396216"
+ms.lasthandoff: 02/23/2019
+ms.locfileid: "56744177"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Inicialização de aplicativo no ASP.NET Core
 
@@ -31,7 +31,7 @@ Os aplicativos do ASP.NET Core usam uma classe `Startup`, que é chamada de `Sta
 
 [!code-csharp[](startup/sample_snapshot/Startup1.cs?highlight=4,10)]
 
-A classe `Startup` é especificada para o aplicativo quando o [host](xref:fundamentals/host/index) do aplicativo é criado. O host do aplicativo é compilado quando `Build` é chamado no construtor do host na classe `Program`. A classe `Startup` geralmente é especificada chamando o método [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) no construtor do host:
+A classe `Startup` é especificada para o aplicativo quando o [host](xref:fundamentals/index#host) do aplicativo é criado. O host do aplicativo é compilado quando `Build` é chamado no construtor do host na classe `Program`. A classe `Startup` geralmente é especificada chamando o método [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) no construtor do host:
 
 [!code-csharp[](startup/sample_snapshot/Program3.cs?name=snippet_Program&highlight=10)]
 
@@ -47,7 +47,7 @@ Um uso comum da [injeção de dependência](xref:fundamentals/dependency-injecti
 
 Uma alternativa a injetar `IHostingEnvironment` é usar uma abordagem baseada em convenções. Quando o aplicativo define classes `Startup` separadas para ambientes diferentes (por exemplo, `StartupDevelopment`), a classe `Startup` apropriada é selecionada no tempo de execução. A classe cujo sufixo do nome corresponde ao ambiente atual é priorizada. Se o aplicativo for executado no ambiente de desenvolvimento e incluir uma classe `Startup` e uma classe `StartupDevelopment`, a classe `StartupDevelopment` será usada. Para obter mais informações, veja [Usar vários ambientes](xref:fundamentals/environments#environment-based-startup-class-and-methods).
 
-Para saber mais sobre o host, confira <xref:fundamentals/host/index>. Para obter informações sobre como tratar erros durante a inicialização, consulte [Tratamento de exceção na inicialização](xref:fundamentals/error-handling#startup-exception-handling).
+Para saber mais sobre o host, confira [O host](xref:fundamentals/index#host). Para obter informações sobre como tratar erros durante a inicialização, consulte [Tratamento de exceção na inicialização](xref:fundamentals/error-handling#startup-exception-handling).
 
 ## <a name="the-configureservices-method"></a>O método ConfigureServices
 
@@ -59,7 +59,7 @@ O método <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> é:
 
 O padrão típico consiste em chamar todos os métodos `Add{Service}` e, em seguida, chamar todos os métodos `services.Configure{Service}`. Por exemplo, veja o tópico [Configurar serviços de identidade](xref:security/authentication/identity#pw).
 
-O host pode configurar alguns serviços antes que métodos `Startup` sejam chamados. Para obter mais informações, consulte <xref:fundamentals/host/index>.
+O host pode configurar alguns serviços antes que métodos `Startup` sejam chamados. Para obter mais informações, confira [O host](xref:fundamentals/index#host).
 
 Para recursos que exigem uma configuração significativa, há métodos de extensão `Add{Service}` em <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. Um aplicativo ASP.NET Core típico registra serviços para o Entity Framework, Identity e MVC:
 
@@ -134,7 +134,7 @@ Uma implementação <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> permite 
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* <xref:fundamentals/host/index>
+* [O host](xref:fundamentals/index#host)
 * <xref:fundamentals/environments>
 * <xref:fundamentals/middleware/index>
 * <xref:fundamentals/logging/index>

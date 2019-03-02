@@ -5,14 +5,14 @@ description: Aprenda a implementar tarefas em segundo plano com serviços hosped
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/28/2018
+ms.date: 02/25/2019
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: de419357d4d96a6e348a77055e67c0fcd190ae42
-ms.sourcegitcommit: 0fc89b80bb1952852ecbcf3c5c156459b02a6ceb
+ms.openlocfilehash: d10a335429752c1a52c1b3619adecc41725a819a
+ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/29/2018
-ms.locfileid: "52618136"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "56899301"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Tarefas em segundo plano com serviços hospedados no ASP.NET Core
 
@@ -21,14 +21,14 @@ Por [Luke Latham](https://github.com/guardrex)
 No ASP.NET Core, as tarefas em segundo plano podem ser implementadas como *serviços hospedados*. Um serviço hospedado é uma classe com lógica de tarefa em segundo plano que implementa a interface <xref:Microsoft.Extensions.Hosting.IHostedService>. Este tópico fornece três exemplos de serviço hospedado:
 
 * Tarefa em segundo plano que é executada com um temporizador.
-* Serviço hospedado que ativa um serviço com escopo. O serviço com escopo pode usar a injeção de dependência.
+* Serviço hospedado que ativa um [serviço com escopo](xref:fundamentals/dependency-injection#service-lifetimes). O serviço com escopo pode usar a injeção de dependência.
 * Tarefas em segundo plano na fila que são executadas sequencialmente.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 Este aplicativo de exemplo é fornecido em duas versões:
 
-* Host da Web &ndash; O Host da Web é útil para hospedar aplicativos web. O código de exemplo mostrado neste tópico é da versão do host da web do exemplo. Para obter mais informações, consulte o tópico [Host da Web](xref:fundamentals/host/web-host).
+* Host da Web &ndash; O Host da Web é útil para hospedar aplicativos Web. O código de exemplo mostrado neste tópico é da versão do host da Web do exemplo. Para obter mais informações, consulte o tópico [Host da Web](xref:fundamentals/host/web-host).
 * Host Genérico &ndash; O Host Genérico é novo no ASP.NET Core 2.1. Para obter mais informações, confira o tópico [Host Genérico](xref:fundamentals/host/generic-host).
 
 ## <a name="package"></a>Pacote
@@ -55,7 +55,7 @@ Os serviços hospedados implementam a interface <xref:Microsoft.Extensions.Hosti
   Para estender o tempo limite de desligamento padrão de cinco segundos, defina:
 
   * <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> ao usar o Host Genérico. Para obter mais informações, consulte <xref:fundamentals/host/generic-host#shutdown-timeout>.
-  * Desabilite a configuração de tempo limite de desligamento do host ao usar o Host da Web. Para obter mais informações, consulte <xref:fundamentals/host/web-host#shutdown-timeout>.
+  * Definição da configuração de host de tempo limite de desligamento ao usar o Host da Web. Para obter mais informações, consulte <xref:fundamentals/host/web-host#shutdown-timeout>.
 
 O serviço hospedado é ativado uma única vez na inicialização do aplicativo e desligado normalmente durante o desligamento do aplicativo. Se um erro for gerado durante a execução da tarefa em segundo plano, `Dispose` deverá ser chamado mesmo se `StopAsync` não for chamado.
 
@@ -71,7 +71,7 @@ O serviço está registrado em `Startup.ConfigureServices` com o método de exte
 
 ## <a name="consuming-a-scoped-service-in-a-background-task"></a>Consumindo um serviço com escopo em uma tarefa em segundo plano
 
-Para usar os serviços com escopo dentro de um `IHostedService`, crie um escopo. Por padrão, nenhum escopo é criado para um serviço hospedado.
+Para usar os [serviços com escopo](xref:fundamentals/dependency-injection#service-lifetimes) dentro de um `IHostedService`, crie um escopo. Por padrão, nenhum escopo é criado para um serviço hospedado.
 
 O serviço da tarefa em segundo plano com escopo contém a lógica da tarefa em segundo plano. No exemplo a seguir, um <xref:Microsoft.Extensions.Logging.ILogger> é injetado no serviço:
 
@@ -99,7 +99,10 @@ Os serviços são registrados em `Startup.ConfigureServices`. A implementação 
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Startup.cs?name=snippet3)]
 
-Na classe de modelo de página de índice, a `IBackgroundTaskQueue` é injetada no construtor e atribuída à `Queue`:
+Na classe de modelo de página de índice:
+
+* O `IBackgroundTaskQueue` é injetado no construtor e atribuído a `Queue`.
+* Um <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory> é injetado e atribuído a `_serviceScopeFactory`. O alocador é usado para criar instâncias de <xref:Microsoft.Extensions.DependencyInjection.IServiceScope>, que é usado para criar serviços dentro de um escopo. Um escopo é criado para usar o aplicativo `AppDbContext` (um [serviço com escopo](xref:fundamentals/dependency-injection#service-lifetimes)) para gravar registros de banco de dados `IBackgroundTaskQueue` (um serviço singleton).
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Pages/Index.cshtml.cs?name=snippet1)]
 
@@ -110,4 +113,4 @@ Quando o botão **Adicionar Tarefa** é selecionado na página de índice, o mé
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Implementar tarefas em segundo plano em microsserviços com IHostedService e a classe BackgroundService](/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/background-tasks-with-ihostedservice)
-* [System.Threading.Timer](xref:System.Threading.Timer)
+* <xref:System.Threading.Timer>

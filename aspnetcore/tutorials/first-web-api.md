@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/4/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: 5d72cb214a3d5565452b3b95f364818a71be44b7
-ms.sourcegitcommit: 98e9c7187772d4ddefe6d8e85d0d206749dbd2ef
+ms.openlocfilehash: 686397cd25248ce7b37e505c7129a3b56d4ada1b
+ms.sourcegitcommit: 2c7ffe349eabdccf2ed748dd303ffd0ba6e1cfe3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/05/2019
-ms.locfileid: "55737636"
+ms.lasthandoff: 02/26/2019
+ms.locfileid: "56833755"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core-mvc"></a>Tutorial: Criar uma API Web com o ASP.NET Core MVC
 
@@ -41,11 +41,11 @@ Este tutorial cria a seguinte API:
 
 |API | Descrição | Corpo da solicitação | Corpo da resposta |
 |--- | ---- | ---- | ---- |
-|GET /api/todo | Obter todos os itens de tarefas pendentes | Nenhuma | Matriz de itens de tarefas pendentes|
-|GET /api/todo/{id} | Obter um item por ID | Nenhuma | Item de tarefas pendentes|
+|GET /api/todo | Obter todos os itens de tarefas pendentes | Nenhum | Matriz de itens de tarefas pendentes|
+|GET /api/todo/{id} | Obter um item por ID | Nenhum | Item de tarefas pendentes|
 |POST /api/todo | Adicionar um novo item | Item de tarefas pendentes | Item de tarefas pendentes |
-|PUT /api/todo/{id} | Atualizar um item &nbsp; existente | Item de tarefas pendentes | Nenhuma |
-|DELETE /api/todo/{id} &nbsp; &nbsp; | Excluir um item &nbsp; &nbsp; | Nenhuma | Nenhuma|
+|PUT /api/todo/{id} | Atualizar um item &nbsp; existente | Item de tarefas pendentes | Nenhum |
+|DELETE /api/todo/{id} &nbsp; &nbsp; | Excluir um item &nbsp; &nbsp; | Nenhum | Nenhum|
 
 O diagrama a seguir mostra o design do aplicativo.
 
@@ -349,6 +349,8 @@ Adicione o seguinte método `PutTodoItem`:
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
 
 `PutTodoItem` é semelhante a `PostTodoItem`, exceto pelo uso de HTTP PUT. A resposta é [204 (Sem conteúdo)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). De acordo com a especificação de HTTP, uma solicitação PUT exige que o cliente envie a entidade inteira atualizada, não apenas as alterações. Para dar suporte a atualizações parciais, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
+
+Se você receber um erro ao chamar `PutTodoItem`, chame `GET` para garantir que exista um item no banco de dados.
 
 ### <a name="test-the-puttodoitem-method"></a>Testar o método PutTodoItem
 

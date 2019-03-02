@@ -6,16 +6,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2018
 uid: fundamentals/host/web-host
-ms.openlocfilehash: 7215027a083c0ed0bc3b15196e390a31c5dcfc14
-ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
+ms.openlocfilehash: 878fbaa1a61946dadf23ba8fefbf22021e547cc2
+ms.sourcegitcommit: b3894b65e313570e97a2ab78b8addd22f427cac8
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "53637840"
+ms.lasthandoff: 02/23/2019
+ms.locfileid: "56744086"
 ---
 # <a name="aspnet-core-web-host"></a>Host da Web do ASP.NET Core
 
 Por [Luke Latham](https://github.com/guardrex)
+
+Aplicativos ASP.NET Core configuram e inicializam um *host*. O host é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo. No mínimo, o host configura um servidor e um pipeline de processamento de solicitações. O host também pode configurar registro em log, a injeção de dependência e a configuração.
 
 ::: moniker range="<= aspnetcore-1.1"
 
@@ -23,7 +25,17 @@ Para obter a versão 1.1 deste tópico, baixe [Host da Web do ASP.NET Core (vers
 
 ::: moniker-end
 
-Aplicativos ASP.NET Core configuram e inicializam um *host*. O host é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo. No mínimo, o host configura um servidor e um pipeline de processamento de solicitações. Este tópico aborda o Host da Web ASP.NET Core ([IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder)), que é útil para hospedagem de aplicativos Web. Para cobertura do Host Genérico .NET ([IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder)), veja <xref:fundamentals/host/generic-host>.
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+
+Este artigo aborda o host da Web do ASP.NET Core (<xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>), que é para hospedar aplicativos Web. Para obter informações sobre o Host Genérico .NET ([IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder)), veja <xref:fundamentals/host/generic-host>.
+
+::: moniker-end
+
+::: moniker range="> aspnetcore-2.2"
+
+Este artigo aborda o Host Web do ASP.NET Core ([IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder)). No ASP.NET Core 3.0, o host genérico substitui o host da Web. Para obter mais informações, confira [O host](xref:fundamentals/index#host).
+
+::: moniker-end
 
 ## <a name="set-up-a-host"></a>Configurar um host
 
@@ -374,7 +386,7 @@ WebHost.CreateDefaultBuilder(args)
 
 ## <a name="override-configuration"></a>Substituir configuração
 
-Use [Configuração](xref:fundamentals/configuration/index) para configurar o host Web. No exemplo a seguir, a configuração do host é especificada, opcionalmente, em um arquivo *hostsettings.json*. Qualquer configuração carregada do arquivo *hostsettings.json* pode ser substituída por argumentos de linha de comando. A configuração de build (no `config`) é usada para configurar o host com [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration). A configuração `IWebHostBuilder` é adicionada à configuração do aplicativo, mas o contrário não é verdade&mdash;`ConfigureAppConfiguration` não afeta a configuração `IWebHostBuilder`.
+Use [Configuração](xref:fundamentals/configuration/index) para configurar o host da Web. No exemplo a seguir, a configuração do host é especificada, opcionalmente, em um arquivo *hostsettings.json*. Qualquer configuração carregada do arquivo *hostsettings.json* pode ser substituída por argumentos de linha de comando. A configuração de build (no `config`) é usada para configurar o host com [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration). A configuração `IWebHostBuilder` é adicionada à configuração do aplicativo, mas o contrário não é verdade&mdash;`ConfigureAppConfiguration` não afeta a configuração `IWebHostBuilder`.
 
 Substituição da configuração fornecida por `UseUrls` pela configuração de *hostsettings.json* primeiro, e pela configuração de argumento da linha de comando depois:
 
@@ -669,7 +681,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-`IHostingEnvironment` pode ser injetado no método `Invoke` ao criar um [middleware](xref:fundamentals/middleware/index#write-middleware) personalizado:
+`IHostingEnvironment` pode ser injetado no método `Invoke` ao criar um [middleware](xref:fundamentals/middleware/write) personalizado:
 
 ```csharp
 public async Task Invoke(HttpContext context, IHostingEnvironment env)

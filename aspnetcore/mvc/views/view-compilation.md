@@ -1,18 +1,18 @@
 ---
-title: Compilação e pré-compilação do arquivo do Razor no ASP.NET Core
+title: Compilação de arquivo do Razor no ASP.NET Core
 author: rick-anderson
-description: Saiba mais sobre os benefícios de pré-compilação arquivos do Razor e como realizar pré-compilação desses arquivos em um aplicativo do ASP.NET Core.
+description: Saiba como a compilação de arquivos do Razor ocorre em um aplicativo ASP.NET Core.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/13/2019
 uid: mvc/views/view-compilation
-ms.openlocfilehash: c4e8f722fdf3d3f64807cc35ff9f349af7f32abd
-ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
+ms.openlocfilehash: 0b6173a7860f5f1d9d11219fbf3f57f76d703031
+ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/14/2019
-ms.locfileid: "56248180"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "56899262"
 ---
 # <a name="razor-file-compilation-in-aspnet-core"></a>Compilação de arquivo do Razor no ASP.NET Core
 
@@ -30,28 +30,31 @@ Um arquivo do Razor é compilado em tempo de execução, quando o modo de exibi�
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
 Um arquivo do Razor é compilado em tempo de execução, quando o modo de exibição do MVC ou da Página do Razor associada é chamado. Os arquivos do Razor são compilados em tempo de build e de publicação usando o [SDK do Razor](xref:razor-pages/sdk).
 
 ::: moniker-end
 
-## <a name="precompilation-considerations"></a>Considerações sobre a pré-compilação
+::: moniker range=">= aspnetcore-3.0"
 
-Estes são os efeitos colaterais da pré-compilação de arquivos do Razor:
+Os arquivos do Razor são compilados em tempo de build e de publicação usando o [SDK do Razor](xref:razor-pages/sdk). A compilação de tempo de execução pode ser opcionalmente habilitada configurando seu aplicativo
 
-* Pacote publicado menor
-* Tempo de inicialização mais rápido
-* Não é possível editar arquivos do Razor&mdash;o conteúdo associado está ausente do pacote publicado.
+::: moniker-end
 
-## <a name="deploy-precompiled-files"></a>Implantar arquivos pré-compilados
+## <a name="razor-compilation"></a>Compilação do Razor
 
-::: moniker range=">= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-3.0"
+A compilação em tempo de build e de publicação de arquivos do Razor está habilitada por padrão pelo SDK do Razor. Quando habilitada, a compilação de tempo de execução complementará a compilação de tempo de build, permitindo que os arquivos do Razor sejam atualizados se eles forem editados.
 
-A compilação em tempo de build e de publicação de arquivos do Razor está habilitada por padrão pelo SDK do Razor. Há suporte para edição de arquivos do Razor depois que eles são atualizados em tempo de build. Por padrão, nenhum arquivo *.cshtml* é implantado com o aplicativo; somente a *Views.dll* compilada.
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+
+A compilação em tempo de build e de publicação de arquivos do Razor está habilitada por padrão pelo SDK do Razor. Há suporte para edição de arquivos do Razor depois que eles são atualizados em tempo de build. Por padrão, somente os arquivos *Views.dll* compilados, mas nenhum arquivo *.cshtml* ou assembly de referência necessário para compilar arquivos do Razor, são implantados com seu aplicativo.
 
 > [!IMPORTANT]
-> A ferramenta de pré-compilação será removida no ASP.NET Core 3.0. É recomendado migrar para o [SDK do Razor](xref:razor-pages/sdk).
+> A ferramenta de pré-compilação foi preterida e será removida no ASP.NET Core 3.0. É recomendado migrar para o [SDK do Razor](xref:razor-pages/sdk).
 >
 > O SDK do Razor é eficaz somente quando não há propriedades específicas de pré-compilação definidas no arquivo de projeto. Por exemplo, definir a propriedade `MvcRazorCompileOnPublish` do arquivo *.csproj* como `true` desabilita o SDK do Razor.
 
@@ -68,7 +71,7 @@ Se o projeto for direcionado ao .NET Core, nenhuma alteração será necessária
 Os modelos de projeto do ASP.NET Core 2.x definem implicitamente a propriedade `MvcRazorCompileOnPublish` como `true` por padrão. Consequentemente, esse elemento pode ser removido com segurança do arquivo *.csproj*.
 
 > [!IMPORTANT]
-> A ferramenta de pré-compilação será removida no ASP.NET Core 3.0. É recomendado migrar para o [SDK do Razor](xref:razor-pages/sdk).
+> A ferramenta de pré-compilação foi preterida e será removida no ASP.NET Core 3.0. É recomendado migrar para o [SDK do Razor](xref:razor-pages/sdk).
 >
 > A pré-compilação do arquivo do Razor não está disponível durante a execução de uma [SCD (implantação autossuficiente)](/dotnet/core/deploying/#self-contained-deployments-scd) no ASP.NET Core 2.0.
 
@@ -96,24 +99,44 @@ Um arquivo *<nome_do_projeto>.PrecompiledViews.dll*, que contém os arquivos do 
 
 ::: moniker-end
 
-## <a name="recompile-razor-files-on-change"></a>Recompilar arquivos do Razor em alteração
+## <a name="runtime-compilation"></a>Compilação de tempo de execução
 
-O <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions> <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> obtém ou define um valor que determina se os arquivos do Razor (Exibições Razor e Razor Pages) são recompilados e atualizados, quando alterados em disco.
+::: moniker range="= aspnetcore-2.1"
 
-Quando definido como `true`, [IFileProvider.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*) busca alterações nos arquivos do Razor, em instâncias configuradas de <xref:Microsoft.Extensions.FileProviders.IFileProvider>.
+A compilação de tempo de build é complementada pela compilação de tempo de execução de arquivos do Razor. O ASP.NET Core MVC recompilará arquivos do Razor quando o conteúdo de um arquivo *.cshtml* for alterado.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
+
+A compilação de tempo de build é complementada pela compilação de tempo de execução de arquivos do Razor. O <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions> <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> obtém ou define um valor que determina se os arquivos do Razor (Exibições Razor e Razor Pages) são recompilados e atualizados, quando alterados em disco.
 
 O valor padrão é `true` para:
 
-* ASP.NET Core 2.1 ou aplicativos anteriores.
-* ASP.NET Core 2.2 ou aplicativos posteriores no ambiente de desenvolvimento.
-
-<xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> está associado a uma opção de compatibilidade e pode fornecer um comportamento diferente, dependendo da versão de compatibilidade configurada do aplicativo. A configuração do aplicativo definindo <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> tem precedência sobre o valor indicado pela versão de compatibilidade do aplicativo.
-
-Se a versão de compatibilidade do aplicativo for definida como <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1> ou anterior, <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> será definida como `true`, a menos que seja explicitamente configurada.
-
-Se a versão de compatibilidade do aplicativo for definida como <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2> ou posterior, <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> será definida como `false`, a menos que é o ambiente seja de desenvolvimento ou o valor seja explicitamente configurado.
+* Se a versão de compatibilidade do aplicativo é definida como <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1> ou anterior
+* Se a versão de compatibilidade do aplicativo é definida para <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2> ou posterior e o aplicativo está no ambiente de desenvolvimento <xref:Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsDevelopment*>. Em outras palavras, arquivos do Razor não serão recompilados no ambiente de não desenvolvimento, a menos que <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> seja definido explicitamente.
 
 Para ver exemplos e obter orientação sobre como definir a versão de compatibilidade do aplicativo, confira <xref:mvc/compatibility-version>.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+A compilação de tempo de execução é habilitada usando o pacote `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. Para habilitar a compilação de tempo de execução, os aplicativos precisam
+
+* instalar o pacote do NuGet [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/).
+* Atualizar o `ConfigureServices` do aplicativo para incluir uma chamada para `AddMvcRazorRuntimeCompilation`:
+
+```csharp
+services
+    .AddMvc()
+    .AddMvcRazorRuntimeCompilation()
+```
+
+Para que a compilação de tempo de execução funcione quando implantada, os aplicativos além disso precisam modificar seus arquivos de projeto para definir o `PreserveCompilationReferences` para `true`.
+[!code-xml[](view-compilation/sample/RuntimeCompilation.csproj?highlight=3)]
+
+::: moniker-end
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
