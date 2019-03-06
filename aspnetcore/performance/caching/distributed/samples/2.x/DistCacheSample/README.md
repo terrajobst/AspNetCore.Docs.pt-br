@@ -2,4 +2,4 @@
 
 Este exemplo ilustra o uso de um cache distribuído. Este exemplo demonstra o cenário descrito o [trabalhar com um cache distribuído no ASP.NET Core](https://docs.microsoft.com/aspnet/core/performance/caching/distributed) tópico.
 
-Execute o aplicativo no ambiente de desenvolvimento. Página de índice do aplicativo explica como o aplicativo funciona e como configurar o aplicativo para usar um Cache distribuído do SQL Server ou o Cache Redis distribuído.
+No ambiente de produção, o aplicativo de exemplo está configurado para usar um cache distribuído do SQL Server. Para reconfigurar o aplicativo para usar um cache Redis distribuído, altere a diretiva de pré-processador na parte superior do *Startup.cs* arquivo para usar o Redis (`#define Redis // SQLServer`). Para obter mais informações, consulte [diretivas de pré-processador no código de exemplo](https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code).

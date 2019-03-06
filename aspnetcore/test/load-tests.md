@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/04/2019
 uid: test/loadtests
-ms.openlocfilehash: d989bc841a372bed7ebf2c84c6abe1a57762ad04
-ms.sourcegitcommit: cec77d5ad8a0cedb1ecbec32834111492afd0cd2
+ms.openlocfilehash: 587df6e216943d3eeec779df4d0554dd0fc2fda0
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/10/2019
-ms.locfileid: "54207350"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57345422"
 ---
 # <a name="load-and-stress-testing-aspnet-core"></a>ASP.NET Core teste de estresse e carregar
 
@@ -26,6 +26,10 @@ Teste de carga e testes de estresse são importantes para garantir que um aplica
 
 Sob carga excessiva, pode o aplicativo se recuperar de falha e normalmente retornar ao comportamento esperado? Sob carga excessiva, o aplicativo está *não* executado sob condições normais.
 
+O Visual Studio 2019 será a última versão do Visual Studio com funcionalidades de teste de carga. Para clientes que exigem ferramentas de teste de carga, é recomendável usar ferramentas de teste de carga alternativas, assim como Apache JMeter, Akamai CloudTest e Blazemeter. Para obter mais informações, consulte o [notas de versão visualização do Visual Studio 2019](/visualstudio/releases/2019/release-notes-preview#test-tools).
+
+A testes de carga service no DevOps do Azure terminará em 2020. Para obter mais informações, consulte [fim de serviço da vida útil de teste de carga baseado em nuvem](https://devblogs.microsoft.com/devops/cloud-based-load-testing-service-eol/).
+
 ## <a name="visual-studio-tools"></a>Ferramentas do Visual Studio
 
 Visual Studio permite aos usuários criar, desenvolver e depurar testes de carga e desempenho na web. Uma opção está disponível para criar testes gravando ações em um navegador da web.
@@ -36,7 +40,7 @@ Consulte [Recursos adicionais](#add) para obter mais informações.
 
 Testes de carga podem ser configurados para executar no local ou executados na nuvem usando o DevOps do Azure.
 
-## <a name="azure-devops"></a>DevOps do Azure
+## <a name="azure-devops"></a>Azure DevOps
 
 Execuções de teste de carga podem ser iniciadas usando o [planos de teste do Azure DevOps](/azure/devops/test/load-test/index?view=vsts) service.
 

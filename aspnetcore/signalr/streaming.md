@@ -1,18 +1,18 @@
 ---
 title: Usar o streaming em SignalR do ASP.NET Core
 author: bradygaster
-description: ''
+description: Saiba como fluxos de valores de retorno de métodos de hub do servidor e consumir os fluxos usando os clientes .NET e JavaScript.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/14/2018
 uid: signalr/streaming
-ms.openlocfilehash: ade2d6fb6e799d53ff3aaa69c641d0088acdee95
-ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
+ms.openlocfilehash: fb7183f7189d62c181f69ffdb170e3da25612919
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54837397"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57345581"
 ---
 # <a name="use-streaming-in-aspnet-core-signalr"></a>Usar o streaming em SignalR do ASP.NET Core
 
@@ -24,10 +24,32 @@ SignalR do ASP.NET Core dá suporte a streaming valores de retorno dos métodos 
 
 ## <a name="set-up-the-hub"></a>Configurar o hub
 
-Um método de hub automaticamente se torna um método de hub streaming quando ele retorna um `ChannelReader<T>` ou um `Task<ChannelReader<T>>`. Abaixo está um exemplo que mostra os conceitos básicos do fluxo de dados para o cliente. Sempre que um objeto é gravado o `ChannelReader` esse objeto é enviado imediatamente para o cliente. No final, o `ChannelReader` estiver concluído para dizer ao cliente o fluxo está fechado.
+::: moniker range=">= aspnetcore-3.0"
+
+Um método de hub automaticamente se torna um método de hub streaming quando ele retorna um `ChannelReader<T>`, `IAsyncEnumerable<T>`, `Task<ChannelReader<T>>`, ou `Task<IAsyncEnumerable<T>>`.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Um método de hub automaticamente se torna um método de hub streaming quando ele retorna um `ChannelReader<T>` ou um `Task<ChannelReader<T>>`.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+No ASP.NET Core 3.0 ou posterior, os métodos de hub de streaming podem retornar `IAsyncEnumerable<T>` além `ChannelReader<T>`. A maneira mais simples de retornar `IAsyncEnumerable<T>` é, tornando o método de hub em um método de iterador assíncrono como o exemplo a seguir demonstra. Métodos de iterador assíncrono hub podem aceitar um `CancellationToken` parâmetro que será acionado quando o cliente cancela a assinatura do fluxo. Métodos de iterador assíncrono evitar problemas comuns com canais com facilidade como não retornar os `ChannelReader` cedo suficiente ou saindo do método sem concluir o `ChannelWriter`.
+
+[!INCLUDE[](~/includes/csharp-8-required.md)]
+
+[!code-csharp[Streaming hub async iterator method](streaming/sample/Hubs/AsyncEnumerableHub.cs?name=snippet_AsyncIterator)]
+
+::: moniker-end
+
+O exemplo a seguir mostra os conceitos básicos do fluxo de dados para o cliente usando canais. Sempre que um objeto é gravado o `ChannelWriter` esse objeto é enviado imediatamente para o cliente. No final, o `ChannelWriter` estiver concluído para dizer ao cliente o fluxo está fechado.
 
 > [!NOTE]
-> * Gravar o `ChannelReader` em um thread em segundo plano e retorne o `ChannelReader` assim que possível. Outras chamadas de hub serão bloqueadas até que um `ChannelReader` é retornado.
+> * Gravar o `ChannelWriter` em um thread em segundo plano e retorne o `ChannelReader` assim que possível. Outras chamadas de hub serão bloqueadas até que um `ChannelReader` é retornado.
 > * Encapsular sua lógica em uma `try ... catch` e conclua o `Channel` em catch e fora de catch para garantir que o hub de invocação de método é concluída corretamente.
 
 ::: moniker range="= aspnetcore-2.1"
@@ -40,7 +62,7 @@ Um método de hub automaticamente se torna um método de hub streaming quando el
 
 [!code-csharp[Streaming hub method](streaming/sample/Hubs/StreamHub.cs?name=snippet1)]
 
-No ASP.NET Core 2.2 ou posterior, os métodos de Hub de streaming podem aceitar um `CancellationToken` parâmetro que será acionado quando o cliente cancela a assinatura do fluxo. Use esse token para interromper a operação do servidor e liberar quaisquer recursos se o cliente se desconecta antes do final do fluxo.
+No ASP.NET Core 2.2 ou posterior, os métodos de hub de streaming podem aceitar um `CancellationToken` parâmetro que será acionado quando o cliente cancela a assinatura do fluxo. Use esse token para interromper a operação do servidor e liberar quaisquer recursos se o cliente se desconecta antes do final do fluxo.
 
 ::: moniker-end
 
@@ -51,8 +73,8 @@ O `StreamAsChannelAsync` método no `HubConnection` é usado para invocar um mé
 ::: moniker range=">= aspnetcore-2.2"
 
 ```csharp
-// Call "Cancel" on this CancellationTokenSource to send a cancellation message to 
-// the server, which will trigger the corresponding token in the Hub method.
+// Call "Cancel" on this CancellationTokenSource to send a cancellation message to
+// the server, which will trigger the corresponding token in the hub method.
 var cancellationTokenSource = new CancellationTokenSource();
 var channel = await hubConnection.StreamAsChannelAsync<int>(
     "Counter", 10, 500, cancellationTokenSource.Token);
@@ -113,6 +135,25 @@ Para terminar o fluxo do cliente, chame o `dispose` método em de `ISubscription
 ::: moniker range=">= aspnetcore-2.2"
 
 Para terminar o fluxo do cliente, chame o `dispose` método em de `ISubscription` que é retornado do `subscribe` método. Chamar esse método fará com que o `CancellationToken` parâmetro do método de Hub (se você tiver fornecido um) a ser cancelada.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+## <a name="java-client"></a>Cliente Java
+O cliente SignalR Java usa o `stream` método para invocar métodos de streaming. Ela aceita três ou mais argumentos:
+
+* O tipo esperado de itens de fluxo 
+* O nome do método de hub.
+* Argumentos definidos no método de hub. 
+
+```java
+hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1")
+    .subscribe(
+        (item) -> {/* Define your onNext handler here. */ },
+        (error) -> {/* Define your onError handler here. */},
+        () -> {/* Define your onCompleted handler here. */});
+```
+O `stream` método no `HubConnection` retorna um observável do tipo de item de fluxo. O tipo observável `subscribe` método é onde você define sua `onNext`, `onError` e `onCompleted` manipuladores.
 
 ::: moniker-end
 

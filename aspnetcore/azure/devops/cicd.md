@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.date: 10/24/2018
 ms.custom: seodec18
 uid: azure/devops/cicd
-ms.openlocfilehash: e5bddde41291c9573f58d749bbf830de9ea9319d
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.openlocfilehash: 906aae3fd4b4abd0becc8847b0f54c372bda300a
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121578"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57346301"
 ---
 # <a name="continuous-integration-and-deployment"></a>Integração contínua e implantação
 
@@ -60,9 +60,9 @@ Remova a implantação Git local com as etapas a seguir. Pipelines do Azure (um 
 
     ![termo de pesquisa do aplicativo Web de preparo](media/cicd/portal-search-box.png)
 
-1. Clique em **opções de implantação**. Um novo painel é exibido. Clique em **desconectar** para remover a configuração de controle de código-fonte Git local que foi adicionada no capítulo anterior. Confirme a operação de remoção clicando o **Sim** botão.
+1. Clique em **Central de implantação**. Um novo painel é exibido. Clique em **desconectar** para remover a configuração de controle de código-fonte Git local que foi adicionada no capítulo anterior. Confirme a operação de remoção clicando o **Sim** botão.
 1. Navegue até a *mywebapp < unique_number >* o serviço de aplicativo. Como lembrete, caixa de pesquisa do portal pode ser usada para localizar rapidamente o serviço de aplicativo.
-1. Clique em **opções de implantação**. Um novo painel é exibido. Clique em **desconectar** para remover a configuração de controle de código-fonte Git local que foi adicionada no capítulo anterior. Confirme a operação de remoção clicando o **Sim** botão.
+1. Clique em **Central de implantação**. Um novo painel é exibido. Clique em **desconectar** para remover a configuração de controle de código-fonte Git local que foi adicionada no capítulo anterior. Confirme a operação de remoção clicando o **Sim** botão.
 
 ## <a name="create-an-azure-devops-organization"></a>Criar uma organização de DevOps do Azure
 
@@ -262,7 +262,7 @@ O **fonte (definição de compilação)** valor representa a definição de comp
 
 ![Captura de tela mostrando tarefas de pipeline de lançamento](media/cicd/release-definition-tasks.png)
 
-O pipeline de lançamento consiste em duas tarefas: *implantar o serviço de aplicativo do Azure ao Slot* e *gerenciar o serviço de aplicativo Azure - Slot de troca*. Clicar a primeira tarefa revela a configuração de tarefa a seguir:
+O pipeline de lançamento consiste em duas tarefas: *Implantar o serviço de aplicativo do Azure ao Slot* e *gerenciar permuta do Slot de serviço de aplicativo do Azure -*. Clicar a primeira tarefa revela a configuração de tarefa a seguir:
 
 ![Tarefa de implantação do pipeline de lançamento captura de tela mostrando](media/cicd/release-definition-task1.png)
 
