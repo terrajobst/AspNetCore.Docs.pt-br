@@ -4,7 +4,7 @@ author: rick-anderson
 description: Aprenda os conceitos fundamentais para a criação de aplicativos do ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/14/2019
+ms.date: 03/02/2019
 uid: fundamentals/index
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
@@ -83,7 +83,7 @@ O código para criar um host está em `Program.Main` e segue o [padrão de const
 
 ::: moniker range="<= aspnetcore-2.2"
 
-O ASP.NET Core 2.x usa o Host da Web (a classe `WebHost`) para aplicativos Web. A estrutura fornece métodos de extensão `CreateDefaultBuilder` que configuram um host com opções comumente usadas, como as seguintes:
+O ASP.NET Core 2.x usa o Host da Web (a classe `WebHost`) para aplicativos Web. A estrutura fornece `CreateDefaultBuilder` para configurar um host com opções comumente usadas, como as seguintes:
 
 * Uso do [Kestrel](#servers) como o servidor Web e habilitação da integração do IIS.
 * Carregamento da configuração de *appsettings.json*, de variáveis de ambiente, de argumentos de linha de comando e de outras fontes.
@@ -105,13 +105,13 @@ Para obter mais informações, confira [Host da Web](xref:fundamentals/host/web-
 
 No ASP.NET Core 3.0, o Host da Web (classe `WebHost`) ou o Host Genérico (classe `Host`) podem ser usados em um aplicativo Web. O Host Genérico é o recomendado, e o Host da Web está disponível para compatibilidade com versões anteriores.
 
-A estrutura fornece os métodos de extensão `CreateDefaultBuilder` e `ConfigureWebHostDefaults` que configuram um host com opções comumente usadas, como as seguintes:
+A estrutura fornece os métodos `CreateDefaultBuilder` e `ConfigureWebHostDefaults` para configurar um host com opções comumente usadas, como as seguintes:
 
 * Uso do [Kestrel](#servers) como o servidor Web e habilitação da integração do IIS.
 * Carregamento da configuração de *appsettings.json*, *appsettings.[EnvironmentName].json*, de variáveis de ambiente e de argumentos de linha de comando.
 * Envio da saída de log para os provedores de console e de depuração.
 
-Aqui está um exemplo de código que cria um host. Os métodos de extensão que configuram o host com as opções mais usadas são realçados.
+Aqui está um exemplo de código que cria um host. Os métodos que configuram o host com as opções mais usadas são realçados.
 
 [!code-csharp[](index/snapshots/3.x/Program1.cs?highlight=9-10)]
 

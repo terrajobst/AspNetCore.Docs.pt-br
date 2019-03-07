@@ -6,18 +6,13 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
 uid: mvc/views/tag-helpers/builtin-th/Index
-ms.openlocfilehash: 58840d6ecd09bd2ae7f96c046a0cb93c018f9645
-ms.sourcegitcommit: 4bdf7703aed86ebd56b9b4bae9ad5700002af32d
-ms.translationtype: HT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2018
-ms.locfileid: "49325478"
 ---
+
 # <a name="aspnet-core-built-in-tag-helpers"></a>Auxiliares de marcação internos do ASP.NET Core
 
 Por [Peter Kellner](http://peterkellner.net)
 
-Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
+Para obter uma visão geral dos Auxiliares de Marca, confira <xref:mvc/views/tag-helpers/intro>.
 
 > [!NOTE]
 > Há Auxiliares de marcação internos, que não são descritos na documentação. Esses Auxiliares de marcação são usados internamente pelo mecanismo de exibição do [Razor](xref:mvc/views/razor). Isso inclui um Auxiliar de marcação para o caractere `~` (til), que se expande para o caminho raiz do site.
@@ -35,6 +30,8 @@ Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/view
 [comment]: **[FormActionTagHelper](xref:mvc/views/tag-helpers/builtin-th/form-action-tag-helper)**
 
 **[Auxiliar de marcação de formulário](xref:mvc/views/working-with-forms#the-form-tag-helper)**
+
+**[Auxiliar de marcação de ação de formulário](xref:mvc/views/working-with-forms#the-form-action-tag-helper)**
 
 **[Auxiliar de marcação de imagem](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper)**
 
