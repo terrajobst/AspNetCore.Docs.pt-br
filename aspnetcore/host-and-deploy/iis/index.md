@@ -286,7 +286,7 @@ Para obter uma versão anterior do instalador:
 1. Baixe o instalador usando o link **Pacote de hospedagem e de tempo de execução**.
 
 > [!WARNING]
-> Alguns instaladores contêm versões de lançamento que atingiram o EOL (fim da vida útil) e não têm mais suporte da Microsoft. Para saber mais, confira a [política de suporte](https://www.microsoft.com/net/download/dotnet-core/2.0).
+> Alguns instaladores contêm versões de lançamento que atingiram o EOL (fim da vida útil) e não têm mais suporte da Microsoft. Para saber mais, confira a [política de suporte](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
 
 ### <a name="install-the-hosting-bundle"></a>Instalar o pacote de hospedagem
 

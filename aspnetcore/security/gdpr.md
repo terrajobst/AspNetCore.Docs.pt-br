@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/29/2018
 uid: security/gdpr
-ms.openlocfilehash: 5f5ed96354b0b71961c122506602e60b95b809fa
-ms.sourcegitcommit: d5223cf6a2cf80b4f5dc54169b0e376d493d2d3a
+ms.openlocfilehash: bbb3b8e091b5a0be8e852d70ba1a5d7100782ba3
+ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54889737"
+ms.lasthandoff: 03/08/2019
+ms.locfileid: "57665370"
 ---
 # <a name="eu-general-data-protection-regulation-gdpr-support-in-aspnet-core"></a>Suporte da UE Data Protection GDPR (regulamento geral) no ASP.NET Core
 
@@ -75,7 +75,9 @@ O [provedor de Tempdata](xref:fundamentals/app-state#tempdata) cookie não essen
 
 [!code-csharp[Main](gdpr/sample/RP/Startup.cs?name=snippet1)]
 
-[Estado de sessão](xref:fundamentals/app-state) cookies não são essenciais. Estado de sessão não está funcionando quando o rastreamento está desabilitado.
+[Estado de sessão](xref:fundamentals/app-state) cookies não são essenciais. Estado de sessão não está funcionando quando o rastreamento está desabilitado. O código a seguir faz com que os cookies de sessão essenciais:
+
+[!code-csharp[](gdpr/sample/RP/Startup.cs?name=snippet2)]
 
 <a name="pd"></a>
 

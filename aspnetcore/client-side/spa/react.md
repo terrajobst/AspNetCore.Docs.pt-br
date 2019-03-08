@@ -5,14 +5,14 @@ description: Saiba como começar a trabalhar com o modelo de projeto do SPA (Apl
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 03/07/2019
 uid: spa/react
-ms.openlocfilehash: 3b2b2e67b5d577872bafefef5624a13ca1a22449
-ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
+ms.openlocfilehash: 7b07f696ae071531c88c9f8cf528fc6f0bf97b46
+ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56899171"
+ms.lasthandoff: 03/08/2019
+ms.locfileid: "57665547"
 ---
 # <a name="use-the-react-project-template-with-aspnet-core"></a>Usar o modelo de projeto do React com o ASP.NET Core
 
@@ -105,3 +105,7 @@ Quando você iniciar seu aplicativo ASP.NET Core, ele não inicializará um serv
 
 > [!IMPORTANT]
 > "Renderização do lado do servidor" não é um recurso com suporte deste modelo. Nosso objetivo com este modelo é atender a paridade com "criar-react-app". Assim, cenários e recursos não incluídos em um projeto de "criar-react-app" (como SSR) não têm suporte e são deixados como um exercício para o usuário.
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+* <xref:security/authentication/identity/spa>

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/21/2017
 uid: security/authorization/policies
-ms.openlocfilehash: be4812487c92a16c44e3983b234bc9e31be65190
-ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
+ms.openlocfilehash: c2bc626b2dd341dda878a151def6b405884357d7
+ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56410383"
+ms.lasthandoff: 03/08/2019
+ms.locfileid: "57665396"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Autorização baseada em política no ASP.NET Core
 
@@ -72,7 +72,7 @@ Manipuladores são registrados na coleção de serviços durante a configuraçã
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=40-41,50-55,63-65,72)]
 
-Cada manipulador é adicionado à coleção de serviços, invocando `services.AddSingleton<IAuthorizationHandler, YourHandlerClass>();`.
+O código precedente registra `MinimumAgeHandler` como um singleton invocando `services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`. Manipuladores podem ser registrados usando qualquer um dos internos [tempos de vida do serviço](xref:fundamentals/dependency-injection#service-lifetimes).
 
 ## <a name="what-should-a-handler-return"></a>O que deve retornar um manipulador?
 

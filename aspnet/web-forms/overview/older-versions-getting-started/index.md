@@ -2,34 +2,28 @@
 uid: web-forms/overview/older-versions-getting-started/index
 title: Versões mais antigas – Web Forms do guia de Introdução | Microsoft Docs
 author: rick-anderson
-description: Documentação sobre o ASP.NET Web Forms 4 e versões anteriores.
+description: Tutorial sobre o ASP.NET Web Forms 4 e versões anteriores.
 ms.author: riande
 ms.date: 10/18/2014
 ms.assetid: e03585c2-80bf-4083-99ba-9fcbc883ccd8
 msc.legacyurl: /web-forms/overview/older-versions-getting-started
 msc.type: chapter
-ms.openlocfilehash: 93eed9c2560b8e5106b224114eb1109d3da95daf
-ms.sourcegitcommit: 45ac74e400f9f2b7dbded66297730f6f14a4eb25
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "48252635"
 ---
 <a name="older-versions---web-forms-getting-started"></a>Versões mais antigas – guia de Introdução do Web Forms
 ====================
-> Documentação sobre o ASP.NET Web Forms 4 e versões anteriores.
+> Tutorial sobre o ASP.NET Web Forms 4 e versões anteriores.
 
 
 - [ASP.NET 4 – Tailspin Spyworks](tailspin-spyworks/index.md)
 
-    - [Parte 1: Arquivo -> Novo Projeto](tailspin-spyworks/tailspin-spyworks-part-1.md)
-    - [Parte 2: Camada de Acesso a Dados](tailspin-spyworks/tailspin-spyworks-part-2.md)
-    - [Parte 3: layout e menu de categoria](tailspin-spyworks/tailspin-spyworks-part-3.md)
-    - [Parte 4: listagem de produtos](tailspin-spyworks/tailspin-spyworks-part-4.md)
-    - [Parte 5: lógica de negócios](tailspin-spyworks/tailspin-spyworks-part-5.md)
-    - [Parte 6: associação do ASP.NET](tailspin-spyworks/tailspin-spyworks-part-6.md)
-    - [Parte 7: adição de recursos](tailspin-spyworks/tailspin-spyworks-part-7.md)
-    - [Parte 8: páginas finais, tratamento de exceção e conclusão](tailspin-spyworks/tailspin-spyworks-part-8.md)
+    - [Parte 1: Arquivo -> Novo projeto](tailspin-spyworks/tailspin-spyworks-part-1.md)
+    - [Parte 2: Camada de acesso a dados](tailspin-spyworks/tailspin-spyworks-part-2.md)
+    - [Parte 3: Layout e Menu de categoria](tailspin-spyworks/tailspin-spyworks-part-3.md)
+    - [Parte 4: Listagem de produtos](tailspin-spyworks/tailspin-spyworks-part-4.md)
+    - [Parte 5: Lógica de negócios](tailspin-spyworks/tailspin-spyworks-part-5.md)
+    - [Parte 6: Associação do ASP.NET](tailspin-spyworks/tailspin-spyworks-part-6.md)
+    - [Parte 7: Adição de recursos](tailspin-spyworks/tailspin-spyworks-part-7.md)
+    - [Parte 8: Páginas finais, tratamento de exceção e conclusão](tailspin-spyworks/tailspin-spyworks-part-8.md)
 - [ASP.NET 4 – Introdução ao Entity Framework 4 e Web Forms](getting-started-with-ef/index.md)
 
     - [Introdução ao Database First do Entity Framework 4.0](getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-1.md)
@@ -42,9 +36,9 @@ ms.locfileid: "48252635"
     - [Introdução ao Database First do Entity Framework 4.0 – parte 8](getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-8.md)
 - [ASP.NET 4 – continuação com o Entity Framework 4 e o Web Forms](continuing-with-ef/index.md)
 
-    - [Entity Framework 4.0 e o controle ObjectDataSource, parte 1: Introdução](continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started.md)
-    - [Entity Framework 4.0 e o controle ObjectDataSource, parte 2: adição de uma camada de lógica de negócios e testes de unidade](continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests.md)
-    - [Entity Framework 4.0 e o controle ObjectDataSource, parte 3: classificação e filtragem](continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.md)
+    - [Entity Framework 4.0 e o controle ObjectDataSource, parte 1: Guia de Introdução](continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started.md)
+    - [Entity Framework 4.0 e o controle ObjectDataSource, parte 2: Adicionando uma camada de lógica de negócios e testes de unidade](continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests.md)
+    - [Entity Framework 4.0 e o controle ObjectDataSource, parte 3: Classificação e filtragem](continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.md)
     - [Tratamento de simultaneidade com o Entity Framework 4.0 no ASP.NET 4](continuing-with-ef/handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application.md)
     - [Maximizar o desempenho com o Entity Framework 4.0 no ASP.NET 4](continuing-with-ef/maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application.md)
     - [Novidades no Entity Framework 4.0](continuing-with-ef/what-s-new-in-the-entity-framework-4.md)
