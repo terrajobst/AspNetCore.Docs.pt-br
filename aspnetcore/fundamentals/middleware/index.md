@@ -50,7 +50,7 @@ Quando um delegado não transmite uma solicitação ao próximo delegado, consid
 >
 > <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted*> é uma dica útil para indicar se os cabeçalhos foram enviados ou o corpo foi gravado.
 
-## <a name="order"></a>Ordenar
+## <a name="order"></a>Pedido
 
 A ordem em que os componentes do middleware são adicionados ao método `Startup.Configure` define a ordem em que os componentes de middleware são invocados nas solicitações e a ordem inversa para a resposta. A ordem é crítica para a segurança, o desempenho e a funcionalidade.
 
@@ -226,12 +226,12 @@ app.Map("/level1", level1App => {
 
 O ASP.NET Core é fornecido com os seguintes componentes de middleware. A coluna *Ordem* fornece observações sobre o posicionamento do middleware no pipeline de processamento da solicitação e sob quais condições o middleware podem encerrar o processamento da solicitação. Quando um middleware causa um curto-circuito na solicitação ao processar o pipeline e impede outros middleware downstream de processar uma solicitação, ele é chamado de *middleware terminal*. Para saber mais sobre curto-circuito, confira a seção [Criar um pipeline de middleware com o IApplicationBuilder](#create-a-middleware-pipeline-with-iapplicationbuilder).
 
-| Middleware | Descrição | Ordenar |
+| Middleware | Descrição | Pedido |
 | ---------- | ----------- | ----- |
 | [Autenticação](xref:security/authentication/identity) | Fornece suporte à autenticação. | Antes de `HttpContext.User` ser necessário. Terminal para retornos de chamada OAuth. |
 | [Política de cookies](xref:security/gdpr) | Acompanha o consentimento dos usuários para o armazenamento de informações pessoais e impõe padrões mínimos para campos de cookie, tais como `secure` e `SameSite`. | Antes do middleware que emite cookies. Exemplos: autenticação, sessão e MVC (TempData). |
 | [CORS](xref:security/cors) | Configura o Compartilhamento de Recursos entre Origens. | Antes de componentes que usam o CORS. |
-| [Diagnóstico](xref:fundamentals/error-handling) | Configura o diagnóstico. | Antes dos componentes que geram erros. |
+| [Tratamento de Exceção](xref:fundamentals/error-handling) | Trata exceções. | Antes dos componentes que geram erros. |
 | [Cabeçalhos encaminhados](/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersextensions) | Encaminha cabeçalhos como proxy para a solicitação atual. | Antes dos componentes que consomem os campos atualizados. Exemplos: esquema, host, IP do cliente e método. |
 | [Verificações de integridade](xref:host-and-deploy/health-checks) | Verifica a integridade de um aplicativo ASP.NET Core e suas dependências, como a verificação da disponibilidade do banco de dados. | Terminal, se uma solicitação corresponde a um ponto de extremidade da verificação de integridade. |
 | [Substituição do Método HTTP](/dotnet/api/microsoft.aspnetcore.builder.httpmethodoverrideextensions) | Permite que uma solicitação de entrada POST substitua o método. | Antes dos componentes que consomem o método atualizado. |

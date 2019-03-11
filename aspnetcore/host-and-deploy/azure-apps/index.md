@@ -120,7 +120,7 @@ Use uma das abordagens a seguir:
 
 ### <a name="install-the-preview-site-extension"></a>Instalar a extensão de site de visualização
 
-Se houver problemas ao usar a extensão de site de visualização, abra um problema no [GitHub](https://github.com/aspnet/azureintegration/issues/new).
+Se houver problemas ao usar a extensão de site de visualização, abra um [aspnet/AspNetCore](https://github.com/aspnet/AspNetCore/issues).
 
 1. No portal do Azure, navegue até o Serviço de Aplicativo.
 1. Selecione o aplicativo Web.
