@@ -5,12 +5,12 @@ description: Esta série de tutoriais mostra como usar Razor Pages no ASP.NET Co
 ms.author: riande
 ms.date: 12/5/2018
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 81a2a76fc1cecc78b69226fe714d7c9272b04bf7
-ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
+ms.openlocfilehash: 29d9369cfa6a4c76f015b5a819a27dfa280d4075
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56899184"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57346405"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Introdução às Páginas do Razor no ASP.NET Core
 
@@ -163,6 +163,10 @@ Contém o ponto de entrada para o programa. Para obter mais informações, consu
 ### <a name="startupcs"></a>Startup.cs
 
 Contém o código que configura o comportamento do aplicativo, como se ele requer o consentimento para cookies. Para obter mais informações, consulte <xref:fundamentals/startup>.
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+* [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
 
 ## <a name="next-steps"></a>Próximas etapas
 

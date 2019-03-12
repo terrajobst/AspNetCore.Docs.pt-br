@@ -4,14 +4,14 @@ author: guardrex
 description: Obtenha conselhos de solução de problemas para erros comuns ao hospedar aplicativos ASP.NET Core no Serviço de Aplicativos do Azure e no IIS.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/21/2019
+ms.date: 02/28/2019
 uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: d1cdac4d27ee1bc3ebb4329c1bbd3bdacb34a58c
-ms.sourcegitcommit: b3894b65e313570e97a2ab78b8addd22f427cac8
+ms.openlocfilehash: 1c8cb31b306b38ec17596af0a84f22ca0e3d911c
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/23/2019
-ms.locfileid: "56743941"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57346220"
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Referência de erros comuns para o Serviço de Aplicativo do Azure e o IIS com o ASP.NET Core
 
@@ -56,6 +56,39 @@ Se o sistema não tiver acesso à Internet durante a [instalação do pacote de 
 Solução de problemas:
 
 Arquivos que não são do sistema operacional no diretório **C:\Windows\SysWOW64\inetsrv** não são preservados durante um upgrade do sistema operacional. Se o Módulo do ASP.NET Core estiver instalado antes de uma atualização do sistema operacional e, em seguida, qualquer pool de aplicativos for executado no modo de 32 bits após uma atualização do sistema operacional, esse problema será encontrado. Após um upgrade do sistema operacional, repare o Módulo do ASP.NET Core. Veja [Instalar o pacote de Hospedagem do .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). Selecione **Reparar** ao executar o instalador.
+
+## <a name="missing-site-extension-32-bit-x86-and-64-bit-x64-site-extensions-installed-or-wrong-process-bitness-set"></a>Extensão de site ausente, extensões de site de 32 bits (x86) e 64 bits (x64) instaladas ou conjunto de bits incorreto do processo
+
+*Aplica-se aos aplicativos hospedados pelos Serviços de Aplicativo do Azure.*
+
+* **Navegador:** Erro HTTP 500.0 – Falha de carregamento de manipulador em processo ANCM 
+
+* **Log do Aplicativo:** A invocação do hostfxr para encontrar o manipulador de solicitação inprocess falha sem encontrar nenhuma dependência nativa. Não foi possível localizar o manipulador de solicitação inprocess. Saída capturada da invocação do hostfxr: Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada. Falha ao iniciar o aplicativo '/LM/W3SVC/1416782824/ROOT', ErrorCode '0x8000ffff'.
+
+* **Log de stdout do Módulo do ASP.NET Core:** Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada.
+
+::: moniker range=">= aspnetcore-2.2"
+
+* **Log de depuração do módulo do ASP.NET Core:** A invocação do hostfxr para encontrar o manipulador de solicitação inprocess falha sem encontrar nenhuma dependência nativa. Isso provavelmente significa que o aplicativo está configurado incorretamente, verifique as versões do Microsoft.NetCore.App e Microsoft.AspNetCore.App que são afetadas pelo aplicativo e estão instaladas no computador. HRESULT com falha retornou: 0x8000ffff. Não foi possível localizar o manipulador de solicitação inprocess. Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada.
+
+::: moniker-end
+
+Solução de problemas:
+
+* Se estiver executando o aplicativo em um tempo de execução de visualização, instale a extensão de site de 32 bits (x86) **ou** de 64 bits (x64) que corresponda ao número de bit do aplicativo e à versão de tempo de execução do aplicativo. **Não instale extensões ou várias versões de tempo de execução da extensão.**
+
+  * Tempo de execução do ASP.NET Core {RUNTIME VERSION} (x86)
+  * Tempo de execução do ASP.NET Core {RUNTIME VERSION} (x64)
+
+  Reinicie o aplicativo. Aguarde vários segundos até que o aplicativo seja reiniciado. 
+
+* Se a execução do aplicativo em um tempo de execução de visualização e as [extensões de site](xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension) de 32 bits (x86) e 64 bits (x64) estiverem instaladas, desinstale a extensão de site que não corresponde ao número de bit do aplicativo. Depois de remover a extensão de site, reinicie o aplicativo. Aguarde vários segundos até que o aplicativo seja reiniciado.
+
+* Se executar o aplicativo em um tempo de execução de visualização e o número de bit da extensão de site corresponder ao do aplicativo, confirme se a *versão do tempo de execução* da extensão de site de visualização corresponde à versão do tempo de execução do aplicativo.
+
+* Confirme se a **Plataforma** do aplicativo em **Configurações do aplicativo** corresponde ao número de bit do aplicativo.
+
+Para obter mais informações, consulte <xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension>.
 
 ## <a name="an-x86-app-is-deployed-but-the-app-pool-isnt-enabled-for-32-bit-apps"></a>Um aplicativo x86 é implantado, mas o pool de aplicativos não está habilitado para aplicativos de 32 bits
 

@@ -5,12 +5,12 @@ description: Saiba por que as áreas são um recurso do ASP.NET MVC usado para o
 ms.author: riande
 ms.date: 02/14/2019
 uid: mvc/controllers/areas
-ms.openlocfilehash: c21eed04ea68512515da262b6b6895dc1a821039
-ms.sourcegitcommit: 2c7ffe349eabdccf2ed748dd303ffd0ba6e1cfe3
+ms.openlocfilehash: 8904d217a18fff65113ae3469efe60258d20d5f0
+ms.sourcegitcommit: 6ddd8a7675c1c1d997c8ab2d4498538e44954cac
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/26/2019
-ms.locfileid: "56833521"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57400639"
 ---
 # <a name="areas-in-aspnet-core"></a>Áreas no ASP.NET Core
 
@@ -27,6 +27,8 @@ Considere o uso de Áreas em um projeto quando:
 
 [Exibir ou baixar um código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([como baixar](xref:index#how-to-download-a-sample)). O exemplo de download fornece um aplicativo básico para áreas de teste.
 
+Se você estiver usando o Razor Pages, confira [Áreas com Razor Pages](#areas-with-razor-pages) neste documento.
+
 ## <a name="areas-for-controllers-with-views"></a>Áreas para os controladores com modos de exibição
 
 Um aplicativo Web do ASP.NET Core típico usando áreas, controladores e exibições contém o seguinte:
@@ -35,7 +37,7 @@ Um aplicativo Web do ASP.NET Core típico usando áreas, controladores e exibiç
 * Controladores decorados com o atributo [&lbrack;Area&rbrack;](#attribute) para associar o controlador com a área: [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
 * A [rota de área adicionada à inicialização](#add-area-route): [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
 
-## <a name="area-folder-structure"></a>Estrutura de pastas da área
+### <a name="area-folder-structure"></a>Estrutura de pastas da área
 Considere um aplicativo que tem dois grupos lógicos, *Produtos* e *Serviços*. Usando áreas, a estrutura de pastas seria semelhante ao seguinte:
 
 * Nome do projeto
@@ -68,11 +70,6 @@ Enquanto o layout anterior é típico ao usar áreas, somente os arquivos de exi
 
 A localização de pastas de não exibição, assim como *Controladores* e *Modelos*, **não** importa. Por exemplo, as pastas *Controladores* e *Modelos* não são necessárias. O conteúdo de *Controladores* e *Modelos* é o código que é compilado em um arquivo .dll. O conteúdo das *Exibições* não é compilado até que seja feita uma solicitação para essa exibição.
 
-<!-- TODO review:
-The content of the *Views* isn't compiled until a request to that view has been made.
-
-What about precompiled views? 
- -->
 <a name="attribute"></a>
 
 ### <a name="associate-the-controller-with-an-area"></a>Associar o controlador a uma área
@@ -99,7 +96,7 @@ Ao usar `MapAreaRoute` com o ASP.NET Core 2.2, veja [este problema do GitHub](ht
 
 Para obter mais informações, veja [Roteamento de área](xref:mvc/controllers/routing#areas).
 
-### <a name="link-generation-with-areas"></a>Geração de links com áreas
+### <a name="link-generation-with-mvc-areas"></a>Geração de links com áreas do MVC
 
 O código a seguir do [download do exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) mostra geração de link com a área especificada:
 
@@ -107,7 +104,7 @@ O código a seguir do [download do exemplo](https://github.com/aspnet/Docs/tree/
 
 Os links gerados com o código anterior são válidos em qualquer lugar no aplicativo.
 
-O download de exemplo inclui uma [exibição parcial](xref:mvc/views/partial) que contém os links anteriores e os mesmos links sem especificar a área. A exibição parcial é referenciada no [arquivo de layout](), portanto, todas as páginas no aplicativo exibem os links gerados. Os links gerados sem especificar a área só são válidos quando referenciados de uma página na mesma área e no mesmo controlador.
+O download de exemplo inclui uma [exibição parcial](xref:mvc/views/partial) que contém os links anteriores e os mesmos links sem especificar a área. A exibição parcial é referenciada no [arquivo de layout](xref:mvc/views/layout), portanto, todas as páginas no aplicativo exibem os links gerados. Os links gerados sem especificar a área só são válidos quando referenciados de uma página na mesma área e no mesmo controlador.
 
 Quando a área ou o controlador não for especificado, o roteamento dependerá dos valores do *ambiente*. Os valores de rota atuais da solicitação atual são considerados valores de ambiente para a geração de link. Em muitos casos, para o aplicativo de exemplo, usar os valores de ambiente gera links incorretos.
 
@@ -117,11 +114,6 @@ Para obter mais informações, veja [Roteamento para ações do controlador](xre
 
 Para compartilhar um layout comum para o aplicativo inteiro, mova o *_ViewStart.cshtml* para a pasta raiz do aplicativo.
 
-<!-- This section will be completed after https://github.com/aspnet/Docs/pull/10978 is merged.
-<a name="arp"></a>
-
-## Areas for Razor Pages
--->
 <a name="rename"></a>
 
 ### <a name="change-default-area-folder-where-views-are-stored"></a>Alterar a pasta de área padrão em que as exibições são armazenadas
@@ -130,7 +122,72 @@ O código a seguir altera a pasta da área padrão de `"Areas"` para `"MyAreas"`
 
 [!code-csharp[](areas/samples/MVCareas/Startup2.cs?name=snippet)]
 
-<!-- TODO review - can we delete this. Areas doesn't change publishing - right? -->
+<a name="arp"></a>
+
+## <a name="areas-with-razor-pages"></a>Áreas com Razor Pages
+
+As Áreas com Razor Pages exigem e a pasta *Areas/&lt;nome da área&gt;/Pages* na raiz do aplicativo. A seguinte estrutura de pasta é usada com o [download de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples)
+
+* Nome do projeto
+  * Áreas
+    * Produtos
+      * Pages (Páginas)
+        * _ViewImports
+        * Sobre o
+        * Índice
+    * Serviços
+      * Pages (Páginas)
+        * Gerenciar
+          * Sobre o
+          * Índice
+
+### <a name="link-generation-with-razor-pages-and-areas"></a>Geração de links com áreas e Razor Pages
+
+O código a seguir do [download do exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) mostra a geração de links com a área especificada (por exemplo, `asp-area="Products"`):
+
+[!code-cshtml[](areas/samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
+
+Os links gerados com o código anterior são válidos em qualquer lugar no aplicativo.
+
+O download de exemplo inclui uma [exibição parcial](xref:mvc/views/partial) que contém os links anteriores e os mesmos links sem especificar a área. A exibição parcial é referenciada no [arquivo de layout](xref:mvc/views/layout), portanto, todas as páginas no aplicativo exibem os links gerados. Os links gerados sem especificar a área só são válidos quando referenciados de uma página na mesma área.
+
+Quando a área não for especificada, o roteamento dependerá dos valores do *ambiente*. Os valores de rota atuais da solicitação atual são considerados valores de ambiente para a geração de link. Em muitos casos, para o aplicativo de exemplo, usar os valores de ambiente gera links incorretos. Por exemplo, considere os links gerados a partir do código a seguir:
+
+[!code-cshtml[](areas/samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet2)]
+
+Para o código anterior:
+
+* O link gerado de `<a asp-page="/Manage/About">` só estará correto quando a última solicitação tiver sido para uma página na área `Services`. Por exemplo, `/Services/Manage/`, `/Services/Manage/Index` ou `/Services/Manage/About`.
+* O link gerado a partir `<a asp-page="/About">` só estará correto quando a última solicitação tiver sido para uma página na área `/Home`.
+* O código vem do [download de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas).
+
+### <a name="import-namespace-and-tag-helpers-with-viewimports-file"></a>Importar o namespace e os Auxiliares de marca com o arquivo _ViewImports
+
+Um arquivo *_ViewImports* pode ser adicionado a cada pasta *Páginas* da área para importar o namespace e os Auxiliares de marcação para cada Página do Razor na pasta.
+
+Considere a área *Serviços* do código de exemplo, que não contém um arquivo *_ViewImports*. A marcação a seguir mostra a Página do Razor */Services/Manage/About*:
+
+[!code-cshtml[](areas/samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
+
+Na marcação anterior:
+
+* O nome de domínio totalmente qualificado deve ser usado para especificar o modelo (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
+* Os [Auxiliares de Marcação]() são habilitados por `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+
+No download de exemplo, a área Produtos contém o seguinte arquivo *_ViewImports*:
+
+[!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
+
+A marcação a seguir mostra a Página do Razor */Products/About*: [!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/About.cshtml)]
+
+No arquivo anterior, o namespace e a diretiva `@addTagHelper` são importados para o arquivo através do arquivo *Areas/Products/Pages/_ViewImports.cshtml*:
+
+Para saber mais, confira [Gerenciar o escopo do Auxiliar de Marcação](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) e [Importar diretivas compartilhadas](xref:mvc/views/layout#importing-shared-directives).
+
+### <a name="shared-layout-for-razor-pages-areas"></a>Layout compartilhado para Áreas do Razor Pages
+
+Para compartilhar um layout comum para o aplicativo inteiro, mova o *_ViewStart.cshtml* para a pasta raiz do aplicativo.
+
 ### <a name="publishing-areas"></a>Publicando áreas
 
-Todos os arquivos `*.cshtml` e `wwwroot/**` são publicados na saída quando `<Project Sdk="Microsoft.NET.Sdk.Web">` é incluído no arquivo *.csproj*.
+Todos os arquivos `*.cshtml` e `wwwroot/**` são publicados na saída quando `<Project Sdk="Microsoft.NET.Sdk.Web">` é incluído no arquivo .csproj*.

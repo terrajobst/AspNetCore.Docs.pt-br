@@ -4,18 +4,18 @@ author: rick-anderson
 description: Descreve os Auxiliares de marca internos usados com Formulários.
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/11/2019
+ms.date: 02/27/2019
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: cd15c641fbf702071bd57510a1d51737f6ab8e19
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: a0fbeac51bd1bfbc50c4d369a479ce5f3091358b
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54099007"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57346249"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Auxiliares de marca em formulários no ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Dave Paquette](https://twitter.com/Dave_Paquette) e [Jerrie Pelser](https://github.com/jerriep)
+De [Rick Anderson](https://twitter.com/RickAndMSFT), [N. Taylor Mullen](https://github.com/NTaylorMullen), [Dave Paquette](https://twitter.com/Dave_Paquette) e [Jerrie Pelser](https://github.com/jerriep)
 
 Este documento demonstra como é o trabalho com Formulários e os elementos HTML usados comumente em um Formulário. O elemento HTML [Formulário](https://www.w3.org/TR/html401/interact/forms.html) fornece o mecanismo primário que os aplicativos Web usam para postar dados para o servidor. A maior parte deste documento descreve os [Auxiliares de marca](tag-helpers/intro.md) e como eles podem ajudar você a criar formulários HTML robustos de forma produtiva. É recomendável que você leia [Introdução ao auxiliares de marca](tag-helpers/intro.md) antes de ler este documento.
 
@@ -66,6 +66,98 @@ Muitas das exibições na pasta *Modos de Exibição/Conta* (gerada quando você
 
 >[!NOTE]
 >Com os modelos internos, `returnUrl` só é preenchido automaticamente quando você tenta acessar um recurso autorizado, mas não está autenticado ou autorizado. Quando você tenta fazer um acesso não autorizado, o middleware de segurança o redireciona para a página de logon com o `returnUrl` definido.
+
+## <a name="the-form-action-tag-helper"></a>Auxiliar de Marcação de Ação de Formulário
+
+O Auxiliar de Marcação de Ação de Formulário gera o atributo `formaction` na marcação `<button ...>` ou `<input type="image" ...>` gerada. O atributo `formaction` controla onde um formulário envia seus dados. Ele se associa à [\<entrada >](https://www.w3.org/wiki/HTML/Elements/input) elementos do tipo `image` e elementos [\<botão >](https://www.w3.org/wiki/HTML/Elements/button). O Auxiliar de Marcação de Ação de Formulário permite o uso de vários atributos [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-` para controlar qual link `formaction` será gerado para o elemento correspondente.
+
+Atributos [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) com suporte para controlar o valor de `formaction`:
+
+|Atributo|Descrição|
+|---|---|
+|[asp-controller](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-controller)|O nome do controlador.|
+|[asp-action](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-action)|O nome do método da ação.|
+|[asp-area](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-area)|O nome da área.|
+|[asp-page](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page)|O nome da Página do Razor.|
+|[asp-page-handler](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page-handler)|O nome do manipulador da Página do Razor.|
+|[asp-route](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-route)|O nome da rota.|
+|[asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-route-value)|Um único valor de rota de URL. Por exemplo, `asp-route-id="1234"`.|
+|[asp-all-route-data](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-all-route-data)|Todos os valores de rota.|
+|[asp-fragment](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-fragment)|O fragmento de URL.|
+
+### <a name="submit-to-controller-example"></a>Exemplo de Enviar ao controlador
+
+A marcação a seguir envia o formulário à ação `Index` de `HomeController` quando a entrada ou botão são escolhidos:
+
+```cshtml
+<form method="post">
+    <button asp-controller="Home" asp-action="Index">Click Me</button>
+    <input type="image" src="..." alt="Or Click Me" asp-controller="Home" 
+                                asp-action="Index" />
+</form>
+```
+
+A marcação anterior gera o seguinte HTML:
+
+```html
+<form method="post">
+    <button formaction="/Home">Click Me</button>
+    <input type="image" src="..." alt="Or Click Me" formaction="/Home" />
+</form>
+```
+
+### <a name="submit-to-page-example"></a>Exemplo de Enviar a uma página
+
+A marcação a seguir envia o formulário à Página do Razor `About`:
+
+```cshtml
+<form method="post">
+    <button asp-page="About">Click Me</button>
+    <input type="image" src="..." alt="Or Click Me" asp-page="About" />
+</form>
+```
+
+A marcação anterior gera o seguinte HTML:
+
+```html
+<form method="post">
+    <button formaction="/About">Click Me</button>
+    <input type="image" src="..." alt="Or Click Me" formaction="/About" />
+</form>
+```
+
+### <a name="submit-to-route-example"></a>Exemplo de Enviar a uma rota
+
+Considere o ponto de extremidade `/Home/Test`:
+
+```csharp
+public class HomeController : Controller
+{
+    [Route("/Home/Test", Name = "Custom")]
+    public string Test()
+    {
+        return "This is the test page";
+    }
+}
+```
+
+A marcação a seguir envia o formulário ao ponto de extremidade `/Home/Test`.
+
+```cshtml
+<form method="post">
+    <button asp-route="Custom">Click Me</button>
+    <input type="image" src="..." alt="Or Click Me" asp-route="Custom" />
+</form>
+```
+
+A marcação anterior gera o seguinte HTML:
+
+```html
+<form method="post">
+    <button formaction="/Home/Test">Click Me</button>
+    <input type="image" src="..." alt="Or Click Me" formaction="/Home/Test" />
+</form>
+```
 
 ## <a name="the-input-tag-helper"></a>O auxiliar de marca de entrada
 

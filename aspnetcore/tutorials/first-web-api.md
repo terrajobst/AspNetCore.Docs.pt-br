@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/4/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: 686397cd25248ce7b37e505c7129a3b56d4ada1b
-ms.sourcegitcommit: 2c7ffe349eabdccf2ed748dd303ffd0ba6e1cfe3
+ms.openlocfilehash: 24c87f2ad0446aef51f9d648fd20c181cbeaed2e
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/26/2019
-ms.locfileid: "56833755"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57346457"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core-mvc"></a>Tutorial: Criar uma API Web com o ASP.NET Core MVC
 
@@ -454,6 +454,7 @@ Para obter mais informações, consulte os seguintes recursos:
 * <xref:web-api/action-return-types>
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
+* [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=TTkhEyGBfAk)
 
 ## <a name="next-steps"></a>Próximas etapas
 

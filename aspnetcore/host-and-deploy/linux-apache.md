@@ -4,14 +4,14 @@ description: Saiba como configurar o Apache como um servidor proxy reverso no Ce
 author: spboyer
 ms.author: spboyer
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 02/27/2019
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: 0dec9c657134bba3224a1fbb69aaefaaba753404
-ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
+ms.openlocfilehash: 69026997b2c269a4fb56ed2a79fa42ae218368e1
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/14/2019
-ms.locfileid: "56248258"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57345931"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hospedar o ASP.NET Core no Linux com o Apache
 
@@ -92,7 +92,7 @@ app.UseFacebookAuthentication(new FacebookOptions()
 
 Se nenhum <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> for especificado para o middleware, os cabeçalhos padrão para encaminhar serão `None`.
 
-Somente os proxies em execução no localhost (127.0.0.1, [::1]) são confiáveis por padrão. Se outros proxies ou redes confiáveis em que a organização trata solicitações entre a Internet e o servidor Web, adicione-os à lista de <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> ou <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> com <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. O exemplo a seguir adiciona um servidor proxy confiável no endereço IP 10.0.0.100 ao Middleware de cabeçalhos encaminhados `KnownProxies` em `Startup.ConfigureServices`:
+Os proxies em execução em endereços de loopback (127.0.0.0/8, [::1]), incluindo o endereço de host local padrão (127.0.0.1), são confiáveis por padrão. Se outros proxies ou redes confiáveis em que a organização trata solicitações entre a Internet e o servidor Web, adicione-os à lista de <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> ou <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> com <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. O exemplo a seguir adiciona um servidor proxy confiável no endereço IP 10.0.0.100 ao Middleware de cabeçalhos encaminhados `KnownProxies` em `Startup.ConfigureServices`:
 
 ```csharp
 services.Configure<ForwardedHeadersOptions>(options =>

@@ -5,12 +5,12 @@ description: Neste tutorial, você atualizará dados relacionados pela atualiza�
 ms.author: riande
 ms.date: 11/15/2017
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: 4306118240c052585a5c2eeb2053ce03534b547c
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: c3dbfe57a832ba63c5da2f89c0d29e443a1277a7
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207537"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57345756"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---update-related-data---7-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Atualizar dados relacionados – 7 de 8
 
@@ -197,7 +197,7 @@ Quando as caixas de seleção são inicialmente renderizadas, os cursos atribuí
 
 Execute o aplicativo e teste a página Editar Instrutor atualizada. Altere algumas atribuições de curso. As alterações são refletidas na página Índice.
 
-Observação: a abordagem usada aqui para editar os dados de curso do instrutor funciona bem quando há uma quantidade limitada de cursos. Para coleções muito maiores, uma interface do usuário e um método de atualização diferentes são mais utilizáveis e eficientes.
+Observação: A abordagem usada aqui para editar os dados de curso do instrutor funciona bem quando há uma quantidade limitada de cursos. Para coleções muito maiores, uma interface do usuário e um método de atualização diferentes são mais utilizáveis e eficientes.
 
 ### <a name="update-the-instructors-create-page"></a>Atualizar a página Criar Instrutor
 
@@ -224,6 +224,11 @@ O código anterior faz as seguintes alterações:
 * Usa o carregamento adiantado para a propriedade de navegação `CourseAssignments`. `CourseAssignments` deve ser incluído ou eles não são excluídos quando o instrutor é excluído. Para evitar a necessidade de lê-las, configure a exclusão em cascata no banco de dados.
 
 * Se o instrutor a ser excluído é atribuído como administrador de qualquer departamento, remove a atribuição de instrutor desse departamento.
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+* [Versão do YouTube deste tutorial (Parte 1)](https://www.youtube.com/watch?v=Csh6gkmwc9E)
+* [Versão do YouTube deste tutorial (Parte 2)](https://www.youtube.com/watch?v=mOAankB_Zgc)
 
 > [!div class="step-by-step"]
 > [Anterior](xref:data/ef-rp/read-related-data)

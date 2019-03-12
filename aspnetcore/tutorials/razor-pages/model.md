@@ -5,12 +5,12 @@ description: Saiba como adicionar classes de gerenciamento de filmes em um banco
 ms.author: riande
 ms.date: 02/12/2019
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: c7341430e8e2ace7eb04faa308020095139d5b94
-ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
+ms.openlocfilehash: 0ba00750dee1ccbef5d91d8c66f2de0db401c5c1
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56410226"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57346353"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -147,10 +147,6 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
 
 ---
 
-Os comandos anteriores geram o seguinte aviso: “Nenhum tipo foi especificado para a coluna decimal "Preço" no tipo de entidade "Filme". Isso fará com que valores sejam truncados silenciosamente se não couberem na precisão e na escala padrão. Especifique explicitamente o tipo de coluna do SQL Server que pode acomodar todos os valores usando 'HasColumnType()'.”
-
-Você pode ignorar esse aviso, ele será corrigido em um tutorial posterior.
-
 O processo de scaffold cria e atualiza os arquivos a seguir:
 
 ### <a name="files-created"></a>Arquivos criados
@@ -204,6 +200,10 @@ Update-Database
 
 ---  
 <!-- End of VS tabs -->
+
+Os comandos anteriores geram o seguinte aviso: “Nenhum tipo foi especificado para a coluna decimal "Preço" no tipo de entidade "Filme". Isso fará com que valores sejam truncados silenciosamente se não couberem na precisão e na escala padrão. Especifique explicitamente o tipo de coluna do SQL Server que pode acomodar todos os valores usando 'HasColumnType()'.”
+
+Você pode ignorar esse aviso, ele será corrigido em um tutorial posterior.
 
 O comando `ef migrations add InitialCreate` gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado no `DbContext` (no arquivo *RazorPagesMovieContext.cs*). O argumento `InitialCreate` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado.
 
@@ -271,6 +271,10 @@ Você perdeu a [etapa de migrações](#pmc).
 * Teste os links **Editar**, **Detalhes** e **Excluir**.
 
 O tutorial a seguir explica os arquivos criados por scaffolding.
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+* [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=sFVIsdR_RcM)
 
 > [!div class="step-by-step"]
 > [Anterior: introdução](xref:tutorials/razor-pages/razor-pages-start)

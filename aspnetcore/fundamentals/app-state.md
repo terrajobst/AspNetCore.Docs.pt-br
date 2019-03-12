@@ -4,14 +4,14 @@ author: rick-anderson
 description: Descubra abordagens para preservar o estado da sessão e do aplicativo entre as solicitações.
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2018
+ms.date: 03/04/2019
 uid: fundamentals/app-state
-ms.openlocfilehash: a510e4f49e158203dd7c5e1e0bd28472541f7925
-ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
+ms.openlocfilehash: 2e3591ac1d6b1670b27b1ed9e42f59ba2b956b37
+ms.sourcegitcommit: 6ddd8a7675c1c1d997c8ab2d4498538e44954cac
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54836331"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57400704"
 ---
 # <a name="session-and-app-state-in-aspnet-core"></a>Estado de sessão e aplicativo no ASP.NET Core
 
@@ -64,7 +64,7 @@ Estado de sessão exibe os seguintes comportamentos:
 * O aplicativo mantém uma sessão por um tempo limitado após a última solicitação. O aplicativo define o tempo limite da sessão ou usa o valor padrão de 20 minutos. Estado de sessão é ideal para armazenar dados de usuário específicos para uma sessão em particular, mas em que os dados não requerem armazenamento permanente entre sessões.
 * Dados da sessão são excluídos quando a implementação [ISession.Clear](/dotnet/api/microsoft.aspnetcore.http.isession.clear) é chamada ou quando a sessão expira.
 * Não há nenhum mecanismo padrão para informar o código do aplicativo de que um navegador cliente foi fechado ou quando o cookie de sessão foi excluído ou expirou no cliente.
-Os modelos de páginas do ASP.NET Core MVC e Razor incluem suporte para [suporte do RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr). [Os cookies de estado de sessão não são essenciais](xref:security/gdpr#tempdata-provider-and-session-state-cookies-are-not-essential), o estado de sessão não funciona quando o acompanhamento está desabilitado.
+Os modelos de páginas do ASP.NET Core MVC e Razor incluem suporte ao RGPD (Regulamento Geral sobre a Proteção de Dados). Os cookies do estado de sessão não são marcados como essenciais por padrão, portanto, o estado de sessão não é funcional, a menos que o rastreamento seja permitido pelo visitante do site. Para obter mais informações, consulte <xref:security/gdpr#tempdata-provider-and-session-state-cookies-are-not-essential>.
 
 > [!WARNING]
 > Não armazene dados confidenciais no estado de sessão. O usuário não pode fechar o navegador e limpar o cookie de sessão. Alguns navegadores mantêm cookies de sessão válidos entre as janelas do navegador. Uma sessão não pode ser restringida a um único usuário&mdash;o próximo usuário pode continuar a procurar o aplicativo com o mesmo cookie de sessão.

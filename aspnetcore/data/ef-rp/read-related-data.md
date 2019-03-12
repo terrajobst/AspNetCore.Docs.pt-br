@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: cf8733e1e806c4be0c4b217fc45c7a338a03a3ce
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: 140f482e136acf4daba1248fecc87e06db6866f3
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207550"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57345880"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---read-related-data---6-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Ler dados relacionados – 6 de 8
 
@@ -184,8 +184,8 @@ Examine a consulta no arquivo *Pages/Instructors/Index.cshtml*:
 
 A consulta tem duas inclusões:
 
-* `OfficeAssignment`: exibido na [exibição de instrutores](#IP).
-* `CourseAssignments`: que exibe os cursos ministrados.
+* `OfficeAssignment`: mostrado na [exibição de instrutores](#IP).
+* `CourseAssignments`: que mostra os cursos ministrados.
 
 
 ### <a name="update-the-instructors-index-page"></a>Atualizar a página Índice de instrutores
@@ -330,6 +330,11 @@ Observe que o código anterior comenta `.AsNoTracking()`. As propriedades de nav
 Teste o aplicativo. De uma perspectiva dos usuários, o aplicativo se comporta de forma idêntica à versão anterior.
 
 O próximo tutorial mostra como atualizar os dados relacionados.
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+* [Versão do YouTube deste tutorial (parte 1)](https://www.youtube.com/watch?v=PzKimUDmrvE)
+* [Versão do YouTube deste tutorial (parte 2)](https://www.youtube.com/watch?v=xvDDrIHv5ko)
 
 >[!div class="step-by-step"]
 >[Anterior](xref:data/ef-rp/complex-data-model)

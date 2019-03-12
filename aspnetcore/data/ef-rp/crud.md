@@ -5,12 +5,12 @@ description: Mostra como criar, ler, atualizar e excluir com o EF Core
 ms.author: riande
 ms.date: 6/31/2017
 uid: data/ef-rp/crud
-ms.openlocfilehash: 4af16bdf3928609214c1255cdd411312c8b7d3f3
-ms.sourcegitcommit: f5d403004f3550e8c46585fdbb16c49e75f495f3
+ms.openlocfilehash: adb281277599456356251c6ee30772a25f14ac58
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/20/2018
-ms.locfileid: "49477430"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57346042"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---crud---2-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – CRUD – 2 de 8
 
@@ -191,9 +191,9 @@ Uma entidade pode estar em um dos [seguintes estados](/dotnet/api/microsoft.enti
 
 * `Unchanged`: nenhuma alteração precisa ser salva com essa entidade. Uma entidade tem esse status quando é lida do BD.
 
-* `Modified`: alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
+* `Modified`: Alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
 
-* `Deleted`: a entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
+* `Deleted`: A entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
 
 * `Detached`: a entidade não está sendo controlada pelo contexto de BD.
 
@@ -247,6 +247,10 @@ Verifique se a Página do Razor contém a diretiva `@page` correta. Por exemplo,
 Cada Página do Razor deve incluir a diretiva `@page`.
 
 ::: moniker-end
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+* [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&list=PLnVvOWNfuhGV45HnNgd0vuIIkoQ1UaVBf)
 
 > [!div class="step-by-step"]
 > [Anterior](xref:data/ef-rp/intro)

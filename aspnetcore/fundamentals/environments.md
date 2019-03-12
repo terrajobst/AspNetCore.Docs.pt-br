@@ -5,12 +5,12 @@ description: Aprenda a controlar o comportamento do aplicativo em vários ambien
 ms.author: riande
 ms.date: 01/22/2019
 uid: fundamentals/environments
-ms.openlocfilehash: 39e1b48481832a6d76de605b37410fe2e16dcd88
-ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
+ms.openlocfilehash: 4120453c36d1fc2a2303c2175df30ef9777bc54f
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54836734"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57345943"
 ---
 # <a name="use-multiple-environments-in-aspnet-core"></a>Usar vários ambientes no ASP.NET Core
 
@@ -43,7 +43,7 @@ No Windows e no macOS, valores e variáveis de ambiente não diferenciam maiúsc
 
 ### <a name="development"></a>Desenvolvimento
 
-O ambiente de desenvolvimento pode habilitar recursos que não devem ser expostos em produção. Por exemplo, os modelos do ASP.NET Core habilitam a [página de exceção do desenvolvedor](xref:fundamentals/error-handling#the-developer-exception-page) no ambiente de desenvolvimento.
+O ambiente de desenvolvimento pode habilitar recursos que não devem ser expostos em produção. Por exemplo, os modelos do ASP.NET Core habilitam a [Página de exceção do desenvolvedor](xref:fundamentals/error-handling#developer-exception-page) no ambiente de desenvolvimento.
 
 O ambiente de desenvolvimento do computador local pode ser definido no arquivo *Properties\launchSettings.json* do projeto. Os valores de ambiente definidos em *launchSettings.json* substituem os valores definidos no ambiente do sistema.
 
@@ -186,7 +186,7 @@ Para definir o ambiente no [Serviço de Aplicativo do Azure](https://azure.micro
 1. Marque a caixa de seleção **Configuração do Slot** se desejar que a configuração do ambiente permaneça no slot atual quando os slots de implantação forem trocados. Para obter mais informações, confira [Documentação do Azure: que configurações são trocadas?](/azure/app-service/web-sites-staged-publishing).
 1. Selecione **Salvar** na parte superior da folha.
 
-O Serviço de Aplicativo do Azure reinicia automaticamente o aplicativo após uma configuração de aplicativo (variável de ambiente) ser adicionada, alterada ou excluída no Portal do Azure.
+O Serviço de Aplicativo do Azure reinicia automaticamente o aplicativo após uma configuração de aplicativo (variável de ambiente) ser adicionada, alterada ou excluída no portal do Azure.
 
 ### <a name="windows"></a>Windows
 

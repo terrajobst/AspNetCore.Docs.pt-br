@@ -7,12 +7,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 01/17/2019
 uid: fundamentals/startup
-ms.openlocfilehash: cfd0a57d5d0b60862b017a170b6d5cbddf56f15a
-ms.sourcegitcommit: b3894b65e313570e97a2ab78b8addd22f427cac8
+ms.openlocfilehash: d629c2f02f9021454d8f8539018f3e2ca4703a00
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/23/2019
-ms.locfileid: "56744177"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57346392"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Inicialização de aplicativo no ASP.NET Core
 
@@ -40,7 +40,7 @@ O host fornece serviços que estão disponíveis para o construtor de classe `St
 Um uso comum da [injeção de dependência](xref:fundamentals/dependency-injection) na classe `Startup` é injetar:
 
 * <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment> para configurar serviços pelo ambiente.
-* <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> para ler a configuração.
+* <xref:Microsoft.Extensions.Configuration.IConfiguration> para ler a configuração.
 * <xref:Microsoft.Extensions.Logging.ILoggerFactory> para criar um agente em `Startup.ConfigureServices`.
 
 [!code-csharp[](startup/sample_snapshot/Startup2.cs?highlight=7-8)]
@@ -73,7 +73,7 @@ O método <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> é usado pa
 
 Os [modelos do ASP.NET Core](/dotnet/core/tools/dotnet-new) configuram o pipeline com suporte para:
 
-* [Página de exceção do desenvolvedor](xref:fundamentals/error-handling#the-developer-exception-page)
+* [Página de exceção do desenvolvedor](xref:fundamentals/error-handling#developer-exception-page)
 * [Manipulador de exceção](xref:fundamentals/error-handling#configure-a-custom-exception-handling-page)
 * [Segurança de Transporte Estrita de HTTP (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [Redirecionamento de HTTPS](xref:security/enforcing-ssl)

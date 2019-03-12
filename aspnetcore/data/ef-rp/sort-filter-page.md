@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 350243fb94b4798293a5a61b580c3b3b4d8c6d4a
-ms.sourcegitcommit: 728f4e47be91e1c87bb7c0041734191b5f5c6da3
+ms.openlocfilehash: 4616e93e0cfc25f3ad66721856a4e48910f2fcf5
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54444292"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57345949"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging---3-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Classificação, filtro, paginação – 3 de 8
 
@@ -282,6 +282,7 @@ Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído p
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Depuração de origem do ASP.NET Core 2.x](https://github.com/aspnet/Docs/issues/4155)
+* [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=MDs7PFpoMqI)
 
 No próximo tutorial, o aplicativo usa migrações para atualizar o modelo de dados.
 

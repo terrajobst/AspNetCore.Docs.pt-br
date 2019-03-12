@@ -5,14 +5,14 @@ description: Saiba como a compilação de arquivos do Razor ocorre em um aplicat
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 03/02/2019
 uid: mvc/views/view-compilation
-ms.openlocfilehash: 0b6173a7860f5f1d9d11219fbf3f57f76d703031
-ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
+ms.openlocfilehash: 0b3aea584de63cb8032e4ca112d2441349bdfbb3
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56899262"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57345477"
 ---
 # <a name="razor-file-compilation-in-aspnet-core"></a>Compilação de arquivo do Razor no ASP.NET Core
 
@@ -38,7 +38,7 @@ Um arquivo do Razor é compilado em tempo de execução, quando o modo de exibi�
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Os arquivos do Razor são compilados em tempo de build e de publicação usando o [SDK do Razor](xref:razor-pages/sdk). A compilação de tempo de execução pode ser opcionalmente habilitada configurando seu aplicativo
+Os arquivos do Razor são compilados em tempo de build e de publicação usando o [SDK do Razor](xref:razor-pages/sdk). A compilação do tempo de execução pode ser opcionalmente habilitada através da configuração do aplicativo.
 
 ::: moniker-end
 
@@ -93,7 +93,7 @@ Prepare o aplicativo para uma [implantação dependente de estrutura](/dotnet/co
 dotnet publish -c Release
 ```
 
-Um arquivo *<nome_do_projeto>.PrecompiledViews.dll*, que contém os arquivos do Razor compilados, é produzido quando a pré-compilação é bem-sucedida. Por exemplo, a captura de tela abaixo mostra o conteúdo de *Index.cshtml* dentro de *WebApplication1.PrecompiledViews.dll*:
+Um arquivo *\<<nome_do_projeto>.PrecompiledViews.dll*, que contém os arquivos do Razor compilados, é produzido quando a pré-compilação é bem-sucedida. Por exemplo, a captura de tela abaixo mostra o conteúdo de *Index.cshtml* dentro de *WebApplication1.PrecompiledViews.dll*:
 
 ![Exibições do Razor dentro da DLL](view-compilation/_static/razor-views-in-dll.png)
 
@@ -122,18 +122,19 @@ Para ver exemplos e obter orientação sobre como definir a versão de compatibi
 
 ::: moniker range=">= aspnetcore-3.0"
 
-A compilação de tempo de execução é habilitada usando o pacote `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. Para habilitar a compilação de tempo de execução, os aplicativos precisam
+A compilação de tempo de execução é habilitada usando o pacote `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. Para habilitar a compilação de tempo de execução, os aplicativos precisam:
 
-* instalar o pacote do NuGet [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/).
+* Instalar o pacote do NuGet [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/).
 * Atualizar o `ConfigureServices` do aplicativo para incluir uma chamada para `AddMvcRazorRuntimeCompilation`:
 
-```csharp
-services
-    .AddMvc()
-    .AddMvcRazorRuntimeCompilation()
-```
+  ```csharp
+  services
+      .AddMvc()
+      .AddMvcRazorRuntimeCompilation()
+  ```
 
 Para que a compilação de tempo de execução funcione quando implantada, os aplicativos além disso precisam modificar seus arquivos de projeto para definir o `PreserveCompilationReferences` para `true`.
+
 [!code-xml[](view-compilation/sample/RuntimeCompilation.csproj?highlight=3)]
 
 ::: moniker-end
