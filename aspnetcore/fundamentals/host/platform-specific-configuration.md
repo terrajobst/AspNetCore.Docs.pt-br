@@ -2,23 +2,23 @@
 title: Usar assemblies de inicialização de hospedagem no ASP.NET Core
 author: guardrex
 description: Descubra como aprimorar um aplicativo ASP.NET Core por meio de um assembly externo usando uma implementação de IHostingStartup.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 02/14/2019
+ms.date: 03/10/2019
 uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: cffad201c84414ee4788877d80d3619a9013ae99
-ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
+ms.openlocfilehash: 6111ae77369608e828eebf6229b5702630bc63f8
+ms.sourcegitcommit: 34bf9fc6ea814c039401fca174642f0acb14be3c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56410489"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "57841456"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Usar assemblies de inicialização de hospedagem no ASP.NET Core
 
 Por [Luke Latham](https://github.com/guardrex) e [Pavel Krymets](https://github.com/pakrym)
 
-Uma implementação [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) (inicialização de hospedagem) adiciona melhorias a um aplicativo durante a inicialização de um assembly externo. Por exemplo, uma biblioteca externa pode usar uma implementação de inicialização de hospedagem para fornecer serviços ou provedores de configuração adicionais a um aplicativo. `IHostingStartup` *está disponível no ASP.NET Core 2.0 ou posterior.*
+Uma implementação [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) (inicialização de hospedagem) adiciona melhorias a um aplicativo durante a inicialização de um assembly externo. Por exemplo, uma biblioteca externa pode usar uma implementação de inicialização de hospedagem para fornecer serviços ou provedores de configuração adicionais a um aplicativo.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
@@ -40,8 +40,6 @@ Para descobrir os assemblies de inicialização de hospedagem carregados, habili
 
 ## <a name="disable-automatic-loading-of-hosting-startup-assemblies"></a>Desabilitar o carregamento automático de assemblies de inicialização de hospedagem
 
-::: moniker range=">= aspnetcore-2.1"
-
 Para desabilitar o carregamento automático de assemblies de inicialização de hospedagem, use uma das seguintes abordagens:
 
 * Para impedir o carregamento de todos os assemblies de inicialização de hospedagem, defina o seguinte para `true` ou `1`:
@@ -50,17 +48,6 @@ Para desabilitar o carregamento automático de assemblies de inicialização de 
 * Para evitar o carregamento de assemblies específicos de inicialização de hospedagem, defina uma das opções a seguir como uma cadeia de caracteres delimitada por ponto e vírgula de assemblies de inicialização de hospedagem para excluir na inicialização:
   * Configuração do host [Assemblies de exclusão de inicialização de hospedagem](xref:fundamentals/host/web-host#hosting-startup-exclude-assemblies).
   * A variável de ambiente `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES`.
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-Para desabilitar o carregamento automático de assemblies de inicialização de hospedagem, defina um dos seguintes como `true` ou `1`:
-
-* Configuração do host [Impedir inicialização de hospedagem](xref:fundamentals/host/web-host#prevent-hosting-startup).
-* A variável de ambiente `ASPNETCORE_PREVENTHOSTINGSTARTUP`.
-
-::: moniker-end
 
 Se a configuração do host e a variável de ambiente estiverem definidas, a configuração do host controlará o comportamento.
 

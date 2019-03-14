@@ -3,14 +3,14 @@ title: Confirmação de conta e de recuperação de senha no ASP.NET Core
 author: rick-anderson
 description: Saiba como criar um aplicativo ASP.NET Core com a redefinição de senha e de confirmação de email.
 ms.author: riande
-ms.date: 2/11/2019
+ms.date: 3/11/2019
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 77d7b209d57f9ee44f158798ff780ce85c87aaf2
-ms.sourcegitcommit: af8a6eb5375ef547a52ffae22465e265837aa82b
+ms.openlocfilehash: 05efb75d26558702c88e87d191a780371034282c
+ms.sourcegitcommit: 34bf9fc6ea814c039401fca174642f0acb14be3c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "56159402"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "57841469"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Confirmação de conta e de recuperação de senha no ASP.NET Core
 
@@ -22,7 +22,7 @@ Ver [esse arquivo PDF](https://webpifeed.blob.core.windows.net/webpifeed/Partner
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Joe Audette](https://twitter.com/joeaudette)
+Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Ponant](https://github.com/Ponant), e [Joe Audette](https://twitter.com/joeaudette)
 
 Este tutorial mostra como criar um aplicativo ASP.NET Core com a redefinição de senha e de confirmação de email. Este tutorial é **não** um tópico de início. Você deve estar familiarizado com:
 
@@ -34,45 +34,23 @@ Este tutorial mostra como criar um aplicativo ASP.NET Core com a redefinição d
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-[!INCLUDE [](~/includes/2.1-SDK.md)]
+[SDK do .NET core 2.2 ou posterior](https://www.microsoft.com/net/download/all)
 
 ## <a name="create-a-web--app-and-scaffold-identity"></a>Criar um aplicativo web e o scaffolding de identidade
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio) 
-
-* No Visual Studio, crie um novo **aplicativo Web** projeto chamado **WebPWrecover**.
-* Selecione **ASP.NET Core 2.1**.
-* Mantenha o padrão **autenticação** definido como **sem autenticação**. Autenticação é adicionada na próxima etapa.
-
-Na próxima etapa:
-
-* Definir a página de layout *~/Pages/Shared/_Layout.cshtml*
-* Selecione *conta/registro*
-* Criar um novo **classe de contexto de dados**
-
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+Execute os seguintes comandos para criar um aplicativo web com autenticação.
 
 ```console
-dotnet new webapp -o WebPWrecover
+dotnet new webapp -au Individual -uld -o WebPWrecover
 cd WebPWrecover
-dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
-dotnet aspnet-codegenerator identity -fi Account.Register -dc WebPWrecover.Models.WebPWrecoverContext
-dotnet ef migrations add CreateIdentitySchema
+dotnet aspnet-codegenerator identity -dc WebPWrecover.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout;Account.ConfirmEmail
 dotnet ef database drop -f
 dotnet ef database update
-dotnet build
+dotnet run
+
 ```
-
-Executar `dotnet aspnet-codegenerator identity --help` para obter ajuda sobre a ferramenta de scaffolding.
-
-------
-
-Siga as instruções em [habilitar a autenticação](xref:security/authentication/scaffold-identity#useauthentication):
-
-* Adicionar `app.UseAuthentication();` para `Startup.Configure`
-* Adicionar `<partial name="_LoginPartial" />` ao arquivo de layout.
 
 ## <a name="test-new-user-registration"></a>Novo registro de usuário de teste
 
@@ -91,9 +69,9 @@ Você talvez queira usar este email novamente na próxima etapa quando o aplicat
 
 Geralmente você deseja impedir que novos usuários incluam dados em seu site até que eles tenham um email confirmado.
 
-Atualização *Areas/Identity/IdentityHostingStartup.cs* para exigir um email confirmado:
+Atualização `Startup.ConfigureServices` para exigir um email confirmado:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Areas/Identity/IdentityHostingStartup.cs?name=snippet1&highlight=10-13)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=8-11)]
 
 `config.SignIn.RequireConfirmedEmail = true;` impede que os usuários registrados entrar até que o email seja confirmado.
 
@@ -103,13 +81,9 @@ Neste tutorial [SendGrid](https://sendgrid.com) é usado para enviar email. Voc�
 
 Crie uma classe para buscar a chave de email seguro. Para este exemplo, crie *Services/AuthMessageSenderOptions.cs*:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Services/AuthMessageSenderOptions.cs?name=snippet1)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
 #### <a name="configure-sendgrid-user-secrets"></a>Configurar segredos de usuário do SendGrid
-
-Adicionar um único `<UserSecretsId>` de valor para o `<PropertyGroup>` elemento do arquivo de projeto:
-
-[!code-xml[](accconfirm/sample/WebPWrecover21/WebPWrecover.csproj?highlight=5)]
 
 Defina as `SendGridUser` e `SendGridKey` com o [ferramenta secret manager](xref:security/app-secrets). Por exemplo:
 
@@ -120,7 +94,7 @@ info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 
 No Windows, o Secret Manager armazena os pares de chaves/valor em uma *Secrets* arquivo no `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directory.
 
-O conteúdo a *Secrets* arquivo não são criptografadas. O *Secrets* arquivo é mostrado abaixo (o `SendGridKey` valor tiver sido removido.)
+O conteúdo a *Secrets* arquivo não são criptografadas. A marcação a seguir mostra a *Secrets* arquivo. O `SendGridKey` valor tiver sido removido.
 
  ```json
   {
@@ -137,7 +111,7 @@ Este tutorial mostra como adicionar notificações de email por meio [SendGrid](
 
 Instalar o `SendGrid` pacote do NuGet:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio) 
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 No Console do Gerenciador de pacotes, digite o seguinte comando:
 
@@ -160,7 +134,7 @@ Ver [inicie gratuitamente com o SendGrid](https://sendgrid.com/free/) para se re
 
 Para implementar `IEmailSender`, crie *Services/EmailSender.cs* com um código semelhante ao seguinte:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Services/EmailSender.cs)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Services/EmailSender.cs)]
 
 ### <a name="configure-startup-to-support-email"></a>Configurar a inicialização para dar suporte a email
 
@@ -169,13 +143,13 @@ Adicione o seguinte código para o `ConfigureServices` método na *Startup.cs* a
 * Adicionar `EmailSender` como um serviço transitório.
 * Registrar o `AuthMessageSenderOptions` instância de configuração.
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Startup.cs?name=snippet2&highlight=12-99)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=15-99)]
 
 ## <a name="enable-account-confirmation-and-password-recovery"></a>Habilitar a recuperação de confirmação e a senha da conta
 
 O modelo tem o código para recuperação de confirmação e a senha da conta. Localizar o `OnPostAsync` método no *Areas/Identity/Pages/Account/Register.cshtml.cs*.
 
-Evitar que usuários recém-registrados seja registrada automaticamente comentando a linha a seguir:
+Impedir que usuários recém-registrados serem conectados automaticamente comentando a linha a seguir:
 
 ```csharp
 await _signInManager.SignInAsync(user, isPersistent: false);
@@ -183,16 +157,13 @@ await _signInManager.SignInAsync(user, isPersistent: false);
 
 O método complete é mostrado com a linha alterada realçada:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover21/Areas/Identity/Pages/Account/Register.cshtml.cs?highlight=22&name=snippet_Register)]
+[!code-csharp[](accconfirm/sample/WebPWrecover22/Areas/Identity/Pages/Account/Register.cshtml.cs?highlight=22&name=snippet_Register)]
 
 ## <a name="register-confirm-email-and-reset-password"></a>Registrar, confirme se o email e redefinição de senha
 
 Executar o aplicativo web e testar o fluxo de recuperação de senha e confirmação de conta.
 
 * Execute o aplicativo e registrar um novo usuário
-
-  ![Registrar conta exibição do aplicativo da Web](accconfirm/_static/loginaccconfirm1.png)
-
 * Verifique seu email para o link de confirmação de conta. Ver [depurar email](#debug) se você não receber o email.
 * Clique no link para confirmar seu email.
 * Entrar com seu email e senha.
@@ -201,10 +172,6 @@ Executar o aplicativo web e testar o fluxo de recuperação de senha e confirma�
 ### <a name="view-the-manage-page"></a>Exibir a página Gerenciar
 
 Selecione seu nome de usuário no navegador: ![janela do navegador com o nome de usuário](accconfirm/_static/un.png)
-
-Talvez seja necessário expandir a barra de navegação para ver o nome de usuário.
-
-![navbar](accconfirm/_static/x.png)
 
 A página Gerenciar é exibida com o **perfil** guia selecionada. O **Email** mostra uma caixa de seleção que indica o email foi confirmada.
 
@@ -215,8 +182,37 @@ A página Gerenciar é exibida com o **perfil** guia selecionada. O **Email** mo
 * Insira o email usado para registrar a conta.
 * Um email com um link para redefinir sua senha é enviado. Verifique seu email e clique no link para redefinir sua senha. Depois que sua senha foi redefinida com êxito, você pode entrar com seu email e a nova senha.
 
-<a name="debug"></a>
+## <a name="change-email-and-activity-timeout"></a>Tempo limite de email e a atividade de alteração
 
+O tempo de limite de inatividade padrão é 14 dias. O código a seguir define o tempo limite de inatividade para cinco dias:
+
+[!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAppCookie.cs?name=snippet1)]
+
+### <a name="change-all-data-protection-token-lifespans"></a>Alterar todos os empreguem de token de proteção de dados
+
+O código a seguir altera todos os dados proteção tokens tempo limite para 3 horas:
+
+[!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAllTokens.cs?name=snippet1&highlight=15-16)]
+
+Internos em tokens de identidade do usuário (consulte [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) ) tem um [tempo limite de um dia](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+
+### <a name="change-the-email-token-lifespan"></a>Alterar o tempo de vida de token de email
+
+O tempo de vida de token no padrão de [os tokens de identidade do usuário](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) é [um dia](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). Esta seção mostra como alterar o tempo de vida de token de email.
+
+Adicionar um personalizado [DataProtectorTokenProvider\<TUser >](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) e <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
+
+[!code-csharp[](accconfirm/sample/WebPWrecover22/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
+
+Adicione o provedor personalizado para o contêiner de serviço:
+
+[!code-csharp[](accconfirm/sample/WebPWrecover22/StartupEmail.cs?name=snippet1&highlight=10-13)]
+
+### <a name="resend-email-confirmation"></a>Reenviar email de confirmação
+
+Ver [esse problema de GitHub](https://github.com/aspnet/AspNetCore/issues/5410).
+
+<a name="debug"></a>
 ### <a name="debug-email"></a>Depurar o email
 
 Se você não é possível obter o trabalho de email:
