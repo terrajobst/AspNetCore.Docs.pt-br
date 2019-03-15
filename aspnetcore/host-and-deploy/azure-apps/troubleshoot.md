@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como diagnosticar problemas com implantações do Serviço de Aplicativo do Azure do ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/11/2019
+ms.date: 03/05/2019
 uid: host-and-deploy/azure-apps/troubleshoot
-ms.openlocfilehash: 65a5e355bc15db6de9060331395c441160c8b62d
-ms.sourcegitcommit: 42a8164b8aba21f322ffefacb92301bdfb4d3c2d
+ms.openlocfilehash: c3732bfab362ec034248eb3912d4b1337c94216e
+ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2019
-ms.locfileid: "54341635"
+ms.lasthandoff: 03/08/2019
+ms.locfileid: "57665422"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service"></a>Solucionar problemas no ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -71,11 +71,56 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
 
 1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
-1. Abra as pastas no caminho **site** > **wwwroot**.
-1. No console, executando o assembly do aplicativo, execute o aplicativo propriamente dito.
-   * Se o aplicativo for uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd), execute o assembly do aplicativo com *dotnet.exe*. No comando a seguir, substitua o nome do assembly do aplicativo para `<assembly_name>`: `dotnet .\<assembly_name>.dll`
-   * Se o aplicativo for uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd), execute o arquivo executável do aplicativo. No comando a seguir, substitua o nome do assembly do aplicativo para `<assembly_name>`: `<assembly_name>.exe`
-1. A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+
+#### <a name="test-a-32-bit-x86-app"></a>Testar um aplicativo de 32 bits (x86)
+
+##### <a name="current-release"></a>Versão atual
+
+1. `cd d:\home\site\wwwroot`
+1. Execute o aplicativo:
+   * Se o aplicativo é uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
+
+     ```console
+     dotnet .\{ASSEMBLY NAME}.dll
+     ```
+   * Se o aplicativo é uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd):
+
+     ```console
+     {ASSEMBLY NAME}.exe
+     ```
+   
+A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+   
+##### <a name="framework-depdendent-deployment-running-on-a-preview-release"></a>Implantação dependente da estrutura em execução em uma versão de visualização
+
+*Requer a instalação da extensão de site de tempo de execução do ASP.NET Core {VERSION} (x86).*
+
+1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` é a versão de tempo de execução)
+1. Execute o aplicativo: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
+
+A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+
+#### <a name="test-a-64-bit-x64-app"></a>Testar um aplicativo de 64 bits (x64)
+
+##### <a name="current-release"></a>Versão atual
+
+* Se o aplicativo for uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd) de 64 bits (x64):
+  1. `cd D:\Program Files\dotnet`
+  1. Execute o aplicativo: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
+* Se o aplicativo é uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd):
+  1. `cd D:\home\site\wwwroot`
+  1. Execute o aplicativo: `{ASSEMBLY NAME}.exe`
+
+A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
+
+##### <a name="framework-depdendent-deployment-running-on-a-preview-release"></a>Implantação dependente da estrutura em execução em uma versão de visualização
+
+*Requer a instalação da extensão de site de tempo de execução do ASP.NET Core {VERSION} (x64).*
+
+1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64` (`{X.Y}` é a versão de tempo de execução)
+1. Execute o aplicativo: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
+
+A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
 
 ### <a name="aspnet-core-module-stdout-log"></a>Log de stdout do Módulo do ASP.NET Core
 

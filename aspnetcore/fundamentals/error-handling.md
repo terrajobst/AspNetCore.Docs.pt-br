@@ -5,14 +5,14 @@ description: Descubra como tratar erros em aplicativos ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/01/2019
+ms.date: 03/05/2019
 uid: fundamentals/error-handling
-ms.openlocfilehash: a2ae2cb25c8cc5048b189b4035abbfc32a29aaff
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: d809c70b3fae6b2d21d5ec0871298d905b873d5d
+ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57345479"
+ms.lasthandoff: 03/08/2019
+ms.locfileid: "57665357"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Tratar erros no ASP.NET Core
 
@@ -24,9 +24,9 @@ Este artigo apresenta abordagens comuns para o tratamento de erros em aplicativo
 
 ## <a name="developer-exception-page"></a>Página de exceção do desenvolvedor
 
-Para configurar um aplicativo para exibir uma página que mostra informações detalhadas sobre exceções, use a *página de exceção do desenvolvedor*. A página é disponibilizada pelo pacote [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/), que está disponível no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app). Adicione uma linha ao método `Startup.Configure`:
+Para configurar um aplicativo para exibir uma página que mostra informações detalhadas sobre exceções de solicitação, use a *página de exceção do desenvolvedor*. A página é disponibilizada pelo pacote [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/), que está disponível no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app). Adicione uma linha ao método `Startup.Configure` quando o aplicativo estiver sendo executado no [ambiente](xref:fundamentals/environments) de desenvolvimento :
 
-[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevExceptionPage&highlight=5)]
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_UseDeveloperExceptionPage)]
 
 Coloque a chamada para <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*> na frente de qualquer middleware no qual você deseja capturar exceções.
 
@@ -50,7 +50,7 @@ Quando o aplicativo não estiver em execução no ambiente de desenvolvimento, c
 
 No exemplo de aplicativo a seguir, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> inclui o Middleware de Manipulação de Exceções em ambientes que não são de desenvolvimento. O método de extensão especifica uma página de erro ou um controlador no ponto de extremidade `/Error` para solicitações reexecutadas depois que as exceções são capturadas e registradas:
 
-[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevExceptionPage&highlight=9)]
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_UseExceptionHandler1)]
 
 O modelo de aplicativo Razor Pages fornece uma Página de erro (*.cshtml*) e uma classe <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> (`ErrorModel`) na pasta Páginas.
 
@@ -66,6 +66,36 @@ public IActionResult Error()
 ```
 
 Não decore o método de ação do manipulador de erro com atributos de método HTTP, como `HttpGet`. Verbos explícitos impedem algumas solicitações de chegar ao método. Permita acesso anônimo ao método para que os usuários não autenticados possam capazes receber a exibição de erro.
+
+## <a name="access-the-exception"></a>Acessar a exceção
+
+Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> para acessar a exceção ou o caminho de solicitação original em um controlador ou uma página:
+
+* O caminho está disponível por meio da propriedade <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature.Path>.
+* Leia <xref:System.Exception?displayProperty=fullName> da propriedade herdada [IExceptionHandlerFeature.Error](xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature.Error).
+
+```csharp
+// using Microsoft.AspNetCore.Diagnostics;
+
+var exceptionHandlerPathFeature = 
+    HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+var path = exceptionHandlerPathFeature?.Path;
+var error = exceptionHandlerPathFeature?.Error;
+```
+
+> [!WARNING]
+> **Não** forneça informações de erro confidenciais de <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> ou <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> para clientes. Fornecer erros é um risco à segurança.
+
+## <a name="configure-custom-exception-handling-code"></a>Configurar código de tratamento de exceção personalizada
+
+Uma alternativa para atender a um ponto de extremidade de erros com uma [página de tratamento de exceção personalizada](#configure-a-custom-exception-handling-page) é fornecer um lambda para <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. Usar um lambda com <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> permite acessar o erro antes de retornar a resposta.
+
+O aplicativo de exemplo demonstra o código de tratamento de exceção personalizado em `Startup.Configure`. Dispare uma exceção com o link **Gerar Exceção** na página de índice. O lambda a seguir executa:
+
+[!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_UseExceptionHandler2)]
+
+> [!WARNING]
+> **Não** forneça informações de erro confidenciais de <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> ou <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> para clientes. Fornecer erros é um risco à segurança.
 
 ## <a name="configure-status-code-pages"></a>Configurar páginas de código de status
 
@@ -265,7 +295,7 @@ Além disso, lembre-se que, depois que os cabeçalhos de resposta são enviados:
 
 ## <a name="server-exception-handling"></a>Tratamento de exceções do servidor
 
-Além da lógica de tratamento de exceção no aplicativo, a [implementação do servidor](xref:fundamentals/servers/index) pode lidar com algumas exceções. Se o servidor capturar uma exceção antes que os cabeçalhos de resposta sejam enviados, o servidor enviará uma resposta *500 Erro Interno do Servidor* sem um corpo de resposta. Se o servidor capturar uma exceção depois que os cabeçalhos de resposta forem enviados, o servidor fechará a conexão. As solicitações que não são manipuladas pelo aplicativo são manipuladas pelo servidor. Qualquer exceção ocorrida é tratada pelo tratamento de exceção do servidor. As páginas de erro personalizadas, o middleware de tratamento de exceção ou os filtros configurados não afetam esse comportamento.
+Além da lógica de tratamento de exceção no aplicativo, a [implementação do servidor](xref:fundamentals/servers/index) pode lidar com algumas exceções. Se o servidor capturar uma exceção antes que os cabeçalhos de resposta sejam enviados, o servidor enviará uma resposta *500 Erro Interno do Servidor* sem um corpo de resposta. Se o servidor capturar uma exceção depois que os cabeçalhos de resposta forem enviados, o servidor fechará a conexão. As solicitações que não são manipuladas pelo aplicativo são manipuladas pelo servidor. Qualquer exceção que ocorrer quando o servidor estiver tratando a solicitação será tratada pelo tratamento de exceção do servidor. As páginas de erro personalizadas do aplicativo, o middleware de tratamento de exceção e os filtros configurados não afetam esse comportamento.
 
 ## <a name="startup-exception-handling"></a>Tratamento de exceção na inicialização
 
@@ -285,10 +315,10 @@ Os aplicativos [MVC](xref:mvc/overview) contêm algumas opções adicionais para
 
 ### <a name="exception-filters"></a>Filtros de exceção
 
-Os filtros de exceção podem ser configurados globalmente ou por controlador ou por ação em um aplicativo MVC. Esses filtros tratam qualquer exceção sem tratamento ocorrida durante a execução de uma ação do controlador ou de outro filtro. Esses filtros não são chamados de outra forma. Para saber mais, confira <xref:mvc/controllers/filters>.
+Os filtros de exceção podem ser configurados globalmente ou por controlador ou por ação em um aplicativo MVC. Esses filtros tratam qualquer exceção sem tratamento ocorrida durante a execução de uma ação do controlador ou de outro filtro. Esses filtros não são chamados de outra forma. Para obter mais informações, consulte <xref:mvc/controllers/filters#exception-filters>.
 
 > [!TIP]
-> Os filtros de exceção são úteis para interceptar exceções que ocorrem em ações do MVC, mas não são tão flexíveis quanto o middleware de tratamento de erro. Recomendamos o uso de middleware. Use filtros somente quando você precisar fazer o tratamento de erro *de forma diferente* com base na ação de MVC escolhida.
+> Os filtros de exceção são úteis para interceptar exceções que ocorrem em ações do MVC, mas não são tão flexíveis quanto o middleware de tratamento de exceção. É recomendável usar o middleware. Use filtros somente quando você precisar fazer o tratamento de erro *de forma diferente* com base na ação de MVC escolhida.
 
 ### <a name="handle-model-state-errors"></a>Lidar com erros de estado do modelo
 

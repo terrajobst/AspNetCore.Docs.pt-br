@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc, seodec18
 ms.date: 01/31/2019
 uid: tutorials/first-mongo-app
-ms.openlocfilehash: 5e146261fdc8354fc9f4295a8af317e5cc36332f
-ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
+ms.openlocfilehash: 91d8be6cd9160eefe56731d23d5dc7ba18eb6a8f
+ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/02/2019
-ms.locfileid: "55667330"
+ms.lasthandoff: 03/08/2019
+ms.locfileid: "57665451"
 ---
 # <a name="create-a-web-api-with-aspnet-core-and-mongodb"></a>Criar uma API Web com o ASP.NET Core e o MongoDB
 
@@ -144,7 +144,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
 1. Acesse **Arquivo** > **Novo** > **Projeto**.
 1. Selecione **Aplicativo Web do ASP.NET Core**, nomeie o projeto como *BooksApi* e clique em **OK**.
-1. Selecione a estrutura de destino **.NET Core** e **ASP.NET Core 2.1**. Selecione o modelo de projeto **API** e clique em **OK**:
+1. Selecione a estrutura de destino **.NET Core** e **ASP.NET Core 2.2**. Selecione o modelo de projeto **API** e clique em **OK**:
 1. Visite a [Galeria do NuGet: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .NET para MongoDB. Na janela **Console do Gerenciador de Pacotes**, navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
 
     ```powershell
