@@ -1,18 +1,12 @@
 ---
 title: Introdução aos Componentes Razor
 author: guardrex
-description: Explore os componentes do ASP.NET Core Razor, uma maneira de criar a IU da Web interativa do lado do cliente com o .NET em um aplicativo ASP.NET Core.
+description: 'Explore os componentes do ASP.NET Core Razor, uma maneira de criar a IU da Web interativa do lado do cliente com o .NET em um aplicativo ASP.NET Core.'
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2019
+ms.date: 03/13/2019
 uid: razor-components/index
-ms.openlocfilehash: 04a73d33cee0deedaf3dc97395836a936b580fbd
-ms.sourcegitcommit: af8a6eb5375ef547a52ffae22465e265837aa82b
-ms.translationtype: HT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56159520"
 ---
 # <a name="introduction-to-razor-components"></a>Introdução aos Componentes Razor
 
@@ -54,11 +48,11 @@ O *Blazor* é o modelo de hospedagem experimental do lado do cliente dos Compone
 
 Um *Componente Razor* é uma parte da interface do usuário, como uma página, uma caixa de diálogo ou um formulário de entrada de dados. Os componentes manuseiam eventos de usuário e definem a lógica flexível de renderização de interface do usuário. Os componentes podem ser aninhados e reutilizados.
 
-Os componentes são classes do .NET compiladas em assemblies do .NET que podem ser compartilhados e distribuídos como pacotes NuGet. A classe pode ser gravada na forma de uma página de marcação do Razor (*.cshtml*) ou como uma classe C# (*.cs*).
+Os componentes são classes do .NET compiladas em assemblies do .NET que podem ser compartilhados e distribuídos como pacotes NuGet. A classe normalmente é gravada na forma de uma página de marcação do Razor com uma extensão de arquivo *.razor*.
 
 O [Razor](xref:mvc/views/razor) é uma sintaxe para a combinação da marcação HTML com o código C#. O Razor foi projetado visando a produtividade do desenvolvedor, permitindo que ele mude entre a marcação e o C# no mesmo arquivo com o suporte do [IntelliSense](/visualstudio/ide/using-intellisense). As Razor Pages e as exibições MVC também usam o Razor. Ao contrário das Razor Pages e das exibições MVC, que são criadas ao redor de um modelo de solicitação/resposta, os componentes são usados especificamente para manusear a composição da interface do usuário. Os Componentes Razor podem ser usados especificamente para composição e lógica de interface do usuário do lado do cliente.
 
-A marcação a seguir é um exemplo de um componente de caixa de diálogo personalizada em um arquivo Razor (*DialogComponent.cshtml*):
+A marcação a seguir é um exemplo de um componente de caixa de diálogo personalizada em um arquivo Razor (*DialogComponent.razor*):
 
 ```cshtml
 <div>

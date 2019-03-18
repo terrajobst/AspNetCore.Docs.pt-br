@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/5/2018
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: f8661a48ddd6fc616c141435edc603117b4925fb
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: 3799b072da04e32948b5fc78032f0575e760aa1d
+ms.sourcegitcommit: 34bf9fc6ea814c039401fca174642f0acb14be3c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57345879"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "57841437"
 ---
 # <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Adicionar um novo campo em uma página Razor no ASP.NET Core
 
@@ -116,37 +116,15 @@ Outra opção é excluir o banco de dados e usar as migrações para recriar o b
 <!-- Code -------------------------->
 # <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
-<!-- copy/paste this tab to the next. Not worth an include  -->
+### <a name="drop-and-re-create-the-database"></a>Remover e recriar o banco de dados
 
-Execute os seguintes comandos da CLI do .NET Core:
+[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-```console
-dotnet ef migrations add Rating
-dotnet ef database update
-```
-
-O comando `ef migrations add` informa à estrutura:
-
-* Compare o modelo `Movie` com o esquema de BD `Movie`.
-* Crie um código para migrar o esquema de BD para o novo modelo.
-
-O nome “Classificação” é arbitrário e é usado para nomear o arquivo de migração. É útil usar um nome significativo para o arquivo de migração.
-
-O comando `ef database update` informa à estrutura para aplicar as alterações de esquema no banco de dados.
-
-Se você excluir todos os registros no BD, o inicializador propagará o BD e incluirá o campo `Rating`. Faça isso com os links de exclusão no navegador ou usando uma ferramenta SQLite.
-
-Outra opção é excluir o banco de dados e usar as migrações para recriar o banco de dados. Para excluir o banco de dados, exclua o arquivo de banco de dados (*MvcMovie.db*). Depois, execute o comando `ef database update`: 
+Excluir o banco de dados e usar as migrações para recriar o banco de dados. Para excluir o banco de dados, exclua o arquivo de banco de dados (*MvcMovie.db*). Depois, execute o comando `ef database update`: 
 
 ```console
 dotnet ef database update
 ```
-
-> [!NOTE]
-> Muitas operações de alteração de esquema não têm suporte do provedor EF Core do SQLite. Por exemplo, há suporte para adicionar uma coluna, mas não há suporte para a remoção de uma coluna. Se você adiciona uma migração para remover uma coluna, o `ef migrations add` comando tem êxito, mas o `ef database update` comando falha. Você pode trabalhar em algumas das limitações escrevendo manualmente o código de migrações para executar uma recriação de tabela. Uma recriação de tabela envolve a renomeação da tabela existente, criando uma nova tabela, copiando dados para a nova tabela e removendo a tabela antiga. Para obter mais informações, consulte os seguintes recursos:
-> * [Limitações do Provedor de Banco de Dados EF Core do SQLite](/ef/core/providers/sqlite/limitations)
-> * [Personalizar o código de migração](/ef/core/managing-schemas/migrations/#customize-migration-code)
-> * [Propagação de dados](/ef/core/modeling/data-seeding)
 
 ---  
 <!-- End of VS tabs -->

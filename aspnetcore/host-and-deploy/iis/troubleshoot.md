@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como diagnosticar problemas com as implantações do IIS (Serviços de Informações da Internet) de aplicativos do ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 03/06/2019
 uid: host-and-deploy/iis/troubleshoot
-ms.openlocfilehash: 68fcd578c051ae9ba6234cad0465a7ef42f1ed14
-ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
+ms.openlocfilehash: 2f36ae2bda8537e91a3bc925505986bdd6a22a47
+ms.sourcegitcommit: 34bf9fc6ea814c039401fca174642f0acb14be3c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "53637684"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "57841547"
 ---
 # <a name="troubleshoot-aspnet-core-on-iis"></a>Solucionar problemas do ASP.NET Core no IIS
 
@@ -236,13 +236,51 @@ Consulte <xref:host-and-deploy/azure-iis-errors-reference>. A maioria dos proble
 
 Se um aplicativo for capaz de responder às solicitações, obtenha as solicitações, conexão e dados adicionais do aplicativo que usar o middleware embutido de terminal. Para saber mais e obter um código de exemplo, consulte <xref:test/troubleshoot#obtain-data-from-an-app>.
 
-## <a name="slow-or-hanging-app"></a>Aplicativo lento ou travando
+## <a name="create-a-dump"></a>Criar um despejo de memória
 
-Quando um aplicativo responde lentamente ou trava em uma solicitação, obtenha e analise um [arquivo de despejo](/visualstudio/debugger/using-dump-files). Arquivos de despejo podem ser obtidos usando qualquer uma das ferramentas a seguir:
+Um *despejo de memória* é um instantâneo da memória do sistema e pode ajudar a determinar a causa de uma falha de aplicativo, falha de inicialização ou lentidão de aplicativo.
 
-* [ProcDump](/sysinternals/downloads/procdump)
-* [DebugDiag](https://www.microsoft.com/download/details.aspx?id=49924)
-* WinDbg: [Baixar as ferramentas de depuração para Windows](https://developer.microsoft.com/windows/hardware/download-windbg), [Depuração usando o WinDbg](/windows-hardware/drivers/debugger/debugging-using-windbg)
+### <a name="app-crashes-or-encounters-an-exception"></a>O aplicativo falha ou encontra uma exceção
+
+Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)](/windows/desktop/wer/windows-error-reporting):
+
+1. Crie uma pasta para armazenar os arquivos de despejo de memória em `c:\dumps`. O pool de aplicativos deve ter acesso para gravação à pasta.
+1. Execute o [script EnableDumps do PowerShell](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/troubleshoot/scripts/EnableDumps.ps1):
+   * Se o aplicativo usa o [modelo de hospedagem em processo](xref:fundamentals/servers/index#in-process-hosting-model), execute o script para *w3wp.exe*:
+
+     ```console
+     .\EnableDumps w3wp.exe c:\dumps
+     ```
+   * Se o aplicativo usa o [modelo de hospedagem fora do processo](xref:fundamentals/servers/index#out-of-process-hosting-model), execute o script para *dotnet.exe*:
+
+     ```console
+     .\EnableDumps dotnet.exe c:\dumps
+     ```
+1. Execute o aplicativo sob as condições que causam a falha.
+1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/troubleshoot/scripts/DisableDumps.ps1):
+   * Se o aplicativo usa o [modelo de hospedagem em processo](xref:fundamentals/servers/index#in-process-hosting-model), execute o script para *w3wp.exe*:
+
+     ```console
+     .\DisableDumps w3wp.exe
+     ```
+   * Se o aplicativo usa o [modelo de hospedagem fora do processo](xref:fundamentals/servers/index#out-of-process-hosting-model), execute o script para *dotnet.exe*:
+
+     ```console
+     .\DisableDumps dotnet.exe
+     ```
+
+Depois que um aplicativo falhar e a coleta de despejo de memória for concluída, o aplicativo terá permissão para encerrar normalmente. O script do PowerShell configura o WER para coletar até cinco despejos de memória por aplicativo.
+
+> [!WARNING]
+> Os despejos de memória podem usar uma grande quantidade de espaço em disco (até vários gigabytes cada).
+
+### <a name="app-hangs-fails-during-startup-or-runs-normally"></a>O aplicativo trava, falha durante a inicialização ou executa normalmente
+
+Quando um aplicativo *travar* (para de responder, mas não falha), falhar durante a inicialização ou executar normalmente, veja [Arquivos de despejo de memória do modo de usuário: escolher a melhor ferramenta](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) para selecionar uma ferramenta adequada para produzir o despejo de memória.
+
+### <a name="analyze-the-dump"></a>Analisar o despejo de memória
+
+Um despejo de memória pode ser analisado usando várias abordagens. Para obter mais informações, confira [Analisando um arquivo de despejo de memória do modo de usuário](/windows-hardware/drivers/debugger/analyzing-a-user-mode-dump-file).
 
 ## <a name="remote-debugging"></a>Depuração remota
 
