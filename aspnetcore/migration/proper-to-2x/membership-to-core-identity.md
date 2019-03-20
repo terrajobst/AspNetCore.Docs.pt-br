@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/10/2019
 uid: migration/proper-to-2x/membership-to-core-identity
-ms.openlocfilehash: 0b7001a311eeaaa78e3d52e2ec66d33ad057c381
-ms.sourcegitcommit: cec77d5ad8a0cedb1ecbec32834111492afd0cd2
+ms.openlocfilehash: 3b708da13ff9f2887eee87ea17844312a4fe1b8d
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/10/2019
-ms.locfileid: "54207402"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58264730"
 ---
 # <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-identity"></a>Migrar de autenticação de associação do ASP.NET para a identidade do ASP.NET Core 2.0
 
@@ -54,6 +54,7 @@ O ASP.NET Core 2.0 segue o [identidade](/aspnet/identity/index) princípio intro
       }
     }
     ```
+
 1. Selecione **modo de exibição** > **SQL Server Object Explorer**. Expanda o nó correspondente ao nome do banco de dados especificado na `ConnectionStrings:DefaultConnection` propriedade de *appSettings. JSON*.
 
     O `Update-Database` comando criou o banco de dados especificado com o esquema e os dados necessários para a inicialização do aplicativo. A imagem a seguir ilustra a estrutura da tabela que é criada com as etapas anteriores.
@@ -66,7 +67,7 @@ Há diferenças sutis nos campos de associação e o ASP.NET Core Identity e est
 
 ### <a name="users"></a>Usuários
 
-|*Identidade<br>(dbo. AspNetUsers)*        ||*Associação<br>(dbo.aspnet_Users / dbo.aspnet_Membership)*||
+|*Identity<br>(dbo.AspNetUsers)*        ||*Associação<br>(dbo.aspnet_Users / dbo.aspnet_Membership)*||
 |----------------------------------------|-----------------------------------------------------------|
 |**Nome do campo**                 |**Tipo**|**Nome do campo**                                    |**Tipo**|
 |`Id`                           |cadeia de caracteres  |`aspnet_Users.UserId`                             |cadeia de caracteres  |
@@ -82,7 +83,7 @@ Há diferenças sutis nos campos de associação e o ASP.NET Core Identity e est
 
 ### <a name="roles"></a>Funções
 
-|*Identidade<br>(dbo. AspNetRoles)*        ||*Associação<br>(dbo.aspnet_Roles)*||
+|*Identity<br>(dbo.AspNetRoles)*        ||*Associação<br>(dbo.aspnet_Roles)*||
 |----------------------------------------|-----------------------------------|
 |**Nome do campo**                 |**Tipo**|**Nome do campo**   |**Tipo**         |
 |`Id`                           |cadeia de caracteres  |`RoleId`         | cadeia de caracteres          |
@@ -91,7 +92,7 @@ Há diferenças sutis nos campos de associação e o ASP.NET Core Identity e est
 
 ### <a name="user-roles"></a>Funções de usuário
 
-|*Identidade<br>(dbo. AspNetUserRoles)*||*Associação<br>(dbo.aspnet_UsersInRoles)*||
+|*Identity<br>(dbo.AspNetUserRoles)*||*Associação<br>(dbo.aspnet_UsersInRoles)*||
 |------------------------------------|------------------------------------------|
 |**Nome do campo**           |**Tipo**  |**Nome do campo**|**Tipo**                   |
 |`RoleId`                 |cadeia de caracteres    |`RoleId`      |cadeia de caracteres                     |
@@ -127,7 +128,7 @@ SELECT aspnet_Users.UserId,
        -- Creates an empty password since passwords don't map between the 2 schemas
        '',
        /*
-        The SecurityStamp token is used to verify the state of an account and 
+        The SecurityStamp token is used to verify the state of an account and
         is subject to change at any time. It should be initialized as a new ID.
        */
        NewID(),

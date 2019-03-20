@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/26/2019
 uid: test/troubleshoot
-ms.openlocfilehash: c8b34f51fd329eb9a7c34f7be93bd7f2aa054283
-ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
+ms.openlocfilehash: 1f53375a6aa504c989920a0bff83b400b7bd83ec
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56899275"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58208837"
 ---
 # <a name="troubleshoot-aspnet-core-projects"></a>Solucionar problemas de projetos do ASP.NET Core
 
@@ -53,7 +53,7 @@ No **novo projeto** caixa de diálogo para o ASP.NET Core, você poderá ver o s
 
 Você verá esta mensagem quando você tem pelo menos uma instalação do SDK do .NET Core em um diretório fora do *c:\\arquivos de programas\\dotnet\\sdk\\*. Geralmente isso acontece quando o SDK do .NET Core foi implantado em um computador usando copiar/colar em vez do instalador MSI.
 
-Desinstale o .NET Core SDK 32 bits para evitar esse aviso. Desinstalar do **painel de controle** > **programas e recursos** > **desinstalar ou alterar um programa**. Se você entender por que o aviso ocorre e suas implicações, você pode ignorar o aviso.
+Desinstale todos os 32 bits SDKs do .NET Core e tempos de execução para evitar esse aviso. Desinstalar do **painel de controle** > **programas e recursos** > **desinstalar ou alterar um programa**. Se você entender por que o aviso ocorre e suas implicações, você pode ignorar o aviso.
 
 ### <a name="no-net-core-sdks-were-detected"></a>Não há SDKs do .NET Core foram detectados
 

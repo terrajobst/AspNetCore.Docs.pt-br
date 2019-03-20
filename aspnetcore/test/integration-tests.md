@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/25/2019
 uid: test/integration-tests
-ms.openlocfilehash: 053713e148df70b0be6bb567b55b2381a78d6c3e
-ms.sourcegitcommit: 2c7ffe349eabdccf2ed748dd303ffd0ba6e1cfe3
+ms.openlocfilehash: 50cb6b26be187c7f36f189e77fd29b4559221f2c
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/26/2019
-ms.locfileid: "56833573"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58209233"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Testes de integração no ASP.NET Core
 
@@ -91,7 +91,7 @@ O `Microsoft.AspNetCore.Mvc.Testing` pacote lida com as seguintes tarefas:
 O [testes de unidade](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) documentação descreve como configurar um projeto e teste de executor de teste, junto com instruções detalhadas sobre como executar testes e recomendações sobre como a testes de nome e classes de teste.
 
 > [!NOTE]
-> Ao criar um projeto de teste para um aplicativo, separe os testes de unidade dos testes de integração em projetos diferentes. Isso ajuda a garantir que o teste componentes da infraestrutura não acidentalmente incluídos nos testes de unidade. Também permite a separação dos testes de unidade e integração de controle sobre qual conjunto de testes são executados.
+> Ao criar um projeto de teste para um aplicativo, separe os testes de unidade dos testes de integração em projetos diferentes. Isso ajuda a garantir que os componentes de teste de infraestrutura acidentalmente não estão incluídos nos testes de unidade. Também permite a separação dos testes de unidade e integração de controle sobre qual conjunto de testes são executados.
 
 Não há praticamente nenhuma diferença entre a configuração para testes de aplicativos de páginas do Razor e aplicativos MVC. A única diferença está em como os testes são nomeados. Em um aplicativo de páginas do Razor, os testes de pontos de extremidade de página geralmente são nomeadas depois a classe de modelo de página (por exemplo, `IndexPageTests` para testar a integração do componente para a página de índice). Em um aplicativo MVC, testes são geralmente organizadas por classes de controlador e os controladores de testam por eles em homenagem (por exemplo, `HomeControllerTests` para testar a integração do componente para o controlador Home).
 

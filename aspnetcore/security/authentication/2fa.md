@@ -7,12 +7,12 @@ ms.author: riande
 ms.date: 09/22/2018
 ms.custom: seodec18
 uid: security/authentication/2fa
-ms.openlocfilehash: 48bfc50378fc0ec212f5b9d4e7ce05bb4fc97b9d
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: 116249a7cd4faebd0c899e383d86f5c5c3c7146a
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54098878"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265247"
 ---
 # <a name="two-factor-authentication-with-sms-in-aspnet-core"></a>Autenticação de dois fatores com SMS no ASP.NET Core
 
@@ -35,9 +35,13 @@ Criar uma conta SMS, por exemplo, no [twilio](https://www.twilio.com/) ou [ASPSM
 
 #### <a name="figuring-out-sms-provider-credentials"></a>Descobrir as credenciais do provedor de SMS
 
-**Twilio:** Na guia Painel de sua conta do Twilio, copie o **SID da conta** e **token de autenticação**.
+**Twilio:**
 
-**ASPSMS:** Em suas configurações de conta, navegue até **Userkey** e copie-o junto com seus **senha**.
+Na guia Painel de sua conta do Twilio, copie o **SID da conta** e **token de autenticação**.
+
+**ASPSMS:**
+
+Em suas configurações de conta, navegue até **Userkey** e copie-o junto com seus **senha**.
 
 Posteriormente, armazenaremos esses valores com a ferramenta secret manager nas chaves `SMSAccountIdentification` e `SMSAccountPassword`.
 
@@ -49,12 +53,11 @@ Posteriormente, armazenaremos esses valores com a ferramenta secret manager nas 
 
 Posteriormente, armazenaremos esse valor com a ferramenta secret manager na chave do `SMSAccountFrom`.
 
-
 ### <a name="provide-credentials-for-the-sms-service"></a>Forneça credenciais para o serviço SMS
 
 Vamos usar o [padrão de opções](xref:fundamentals/configuration/options) para acessar as configurações de conta e chave de usuário.
 
-   * Crie uma classe para buscar a chave segura do SMS. Para este exemplo, o `SMSoptions` classe é criada na *Services/SMSoptions.cs* arquivo.
+* Crie uma classe para buscar a chave segura do SMS. Para este exemplo, o `SMSoptions` classe é criada na *Services/SMSoptions.cs* arquivo.
 
 [!code-csharp[](2fa/sample/Web2FA/Services/SMSoptions.cs)]
 
@@ -64,17 +67,18 @@ Defina as `SMSAccountIdentification`, `SMSAccountPassword` e `SMSAccountFrom` co
 C:/Web2FA/src/WebApp1>dotnet user-secrets set SMSAccountIdentification 12345
 info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 ```
+
 * Adicione o pacote NuGet do provedor de SMS. Do Manager Console (PMC) execute:
 
 **Twilio:**
+
 `Install-Package Twilio`
 
 **ASPSMS:**
+
 `Install-Package ASPSMS`
 
-
 * Adicione código a *Services/MessageServices.cs* arquivo para habilitar o SMS. Use o Twilio ou seção ASPSMS:
-
 
 **Twilio:** [!code-csharp[](2fa/sample/Web2FA/Services/MessageServices_twilio.cs)]
 
@@ -88,7 +92,7 @@ Adicione `SMSoptions` ao contêiner de serviço na `ConfigureServices` método n
 
 ### <a name="enable-two-factor-authentication"></a>Habilitar a autenticação de dois fatores
 
-Abra o *Views/Manage/Index.cshtml* arquivo de exibição do Razor e remova o comentário caracteres (de modo que nenhuma marcação é commnted out).
+Abra o *Views/Manage/Index.cshtml* arquivo de exibição do Razor e remova o comentário caracteres (de modo que nenhuma marcação é comentada).
 
 ## <a name="log-in-with-two-factor-authentication"></a>Faça logon com a autenticação de dois fatores
 

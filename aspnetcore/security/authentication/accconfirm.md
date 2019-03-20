@@ -5,12 +5,12 @@ description: Saiba como criar um aplicativo ASP.NET Core com a redefinição de 
 ms.author: riande
 ms.date: 3/11/2019
 uid: security/authentication/accconfirm
-ms.openlocfilehash: d102ed0a4a75f6273fcda0a8cc7e9d091ff94b50
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: 3bfc2ce46cfbc2ee308940f9e04eb2ffeec09073
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58209906"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265492"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Confirmação de conta e de recuperação de senha no ASP.NET Core
 
@@ -45,6 +45,7 @@ dotnet new webapp -au Individual -uld -o WebPWrecover
 cd WebPWrecover
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
+dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator identity -dc WebPWrecover.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout;Account.ConfirmEmail"
 dotnet ef database drop -f
 dotnet ef database update
@@ -63,6 +64,7 @@ Observe a tabela `EmailConfirmed` campo é `False`.
 Você talvez queira usar este email novamente na próxima etapa quando o aplicativo envia um email de confirmação. Clique com botão direito na linha e selecione **excluir**. Excluir o alias de email torna mais fácil nas etapas a seguir.
 
 <a name="prevent-login-at-registration"></a>
+
 ## <a name="require-email-confirmation"></a>Exigir email de confirmação
 
 É uma prática recomendada para confirmar o email de um novo registro de usuário. Ajuda a confirmação para verificar se eles não estiver representando alguém de email (ou seja, eles ainda não registrados com o email de outra pessoa). Suponha que você tinha um fórum de discussão e quisesse impedir "yli@example.com"de registrar-se como"nolivetto@contoso.com". Sem email de confirmação "nolivetto@contoso.com" pode receber emails indesejados de seu aplicativo. Suponha que o usuário registrado acidentalmente como "ylo@example.com" e ainda não tenha notado o erro de ortografia de "yli". Eles não seria capazes de usar a recuperação de senha porque o aplicativo não tiver seu email correto. Email de confirmação oferece proteção limitada contra bots. Email de confirmação não fornece proteção contra usuários mal-intencionados com muitas contas de email.
@@ -96,13 +98,13 @@ No Windows, o Secret Manager armazena os pares de chaves/valor em uma *Secrets* 
 
 O conteúdo a *Secrets* arquivo não são criptografadas. A marcação a seguir mostra a *Secrets* arquivo. O `SendGridKey` valor tiver sido removido.
 
- ```json
-  {
-    "SendGridUser": "RickAndMSFT",
-    "SendGridKey": "<key removed>"
-  }
-  ```
- 
+```json
+{
+  "SendGridUser": "RickAndMSFT",
+  "SendGridKey": "<key removed>"
+}
+```
+
 Para obter mais informações, consulte o [padrão de opções](xref:fundamentals/configuration/options) e [configuração](xref:fundamentals/configuration/index).
 
 ### <a name="install-sendgrid"></a>Instalar o SendGrid
@@ -130,6 +132,7 @@ dotnet add package SendGrid
 ------
 
 Ver [inicie gratuitamente com o SendGrid](https://sendgrid.com/free/) para se registrar para uma conta gratuita do SendGrid.
+
 ### <a name="implement-iemailsender"></a>Implementar IEmailSender
 
 Para implementar `IEmailSender`, crie *Services/EmailSender.cs* com um código semelhante ao seguinte:
@@ -213,6 +216,7 @@ Adicione o provedor personalizado para o contêiner de serviço:
 Ver [esse problema de GitHub](https://github.com/aspnet/AspNetCore/issues/5410).
 
 <a name="debug"></a>
+
 ### <a name="debug-email"></a>Depurar o email
 
 Se você não é possível obter o trabalho de email:

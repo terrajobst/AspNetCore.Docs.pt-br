@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 03/07/2019
 uid: spa/react
-ms.openlocfilehash: 7b07f696ae071531c88c9f8cf528fc6f0bf97b46
-ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
+ms.openlocfilehash: 91a71498574d6d96c2c06e896283fed801e8adb3
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/08/2019
-ms.locfileid: "57665547"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265236"
 ---
 # <a name="use-the-react-project-template-with-aspnet-core"></a>Usar o modelo de projeto do React com o ASP.NET Core
 
@@ -85,7 +85,7 @@ Há uma desvantagem nessa configuração padrão. Cada vez que você modificar s
     ```
     BROWSER=none
     ```
-    
+
     Isso impedirá o navegador da web seja aberto ao iniciar o servidor CRA externamente.
 
 2. Em um prompt de comando, vá para o subdiretório *ClientApp* e inicie o Development Server do CRA:

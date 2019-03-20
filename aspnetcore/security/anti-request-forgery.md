@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/11/2018
 uid: security/anti-request-forgery
-ms.openlocfilehash: 6e140717834b901e12ef7863fd07b983b0c55107
-ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
+ms.openlocfilehash: 88a2d127407378b9e83df7f48b1938ed081f9bb2
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/02/2019
-ms.locfileid: "55667655"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58208522"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>Ataques de evitar entre solicitação intersite forjada (CSRF/XSRF) no ASP.NET Core
 
@@ -102,12 +102,12 @@ No ASP.NET Core 2.0 ou posterior, o [FormTagHelper](xref:mvc/views/working-with-
 </form>
 ```
 
-Similarily, [IHtmlHelper.BeginForm](/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper.beginform) gera tokens antifalsificação por padrão, se o método do formulário não é GET.
+Da mesma forma, [IHtmlHelper.BeginForm](/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper.beginform) gera tokens antifalsificação por padrão, se o método do formulário não é GET.
 
 A geração automática de tokens antifalsificação para elementos de formulário HTML acontece quando o `<form>` marca contém o `method="post"` atributo e uma das opções a seguir forem verdadeira:
 
-  * O atributo action está vazio (`action=""`).
-  * O atributo de ação não for fornecido (`<form method="post">`).
+* O atributo action está vazio (`action=""`).
+* O atributo de ação não for fornecido (`<form method="post">`).
 
 Geração automática de tokens antifalsificação para elementos de formulário HTML pode ser desabilitada:
 

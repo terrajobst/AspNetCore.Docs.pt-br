@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/21/2017
 uid: security/authorization/policies
-ms.openlocfilehash: c2bc626b2dd341dda878a151def6b405884357d7
-ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
+ms.openlocfilehash: e72f15c28fb7b62c671dd6475cc323cacce42de6
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/08/2019
-ms.locfileid: "57665396"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58208315"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Autorização baseada em política no ASP.NET Core
 
@@ -19,13 +19,25 @@ Nos bastidores, [autorização baseada em funções](xref:security/authorization
 
 Uma política de autorização consiste em um ou mais requisitos. Ele é registrado como parte da configuração do serviço de autorização no `Startup.ConfigureServices` método:
 
-[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=40-41,50-55,63,72)]
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,66)]
 
 No exemplo anterior, uma política de "AtLeast21" é criada. Ele tem um requisito&mdash;da idade mínima, que é fornecida como um parâmetro para o requisito.
 
-As políticas são aplicadas usando o `[Authorize]` atributo com o nome da política. Por exemplo:
+## <a name="applying-policies-to-mvc-controllers"></a>Aplicar políticas a controladores do MVC
+
+Se você estiver usando as páginas do Razor, consulte [aplicação de políticas para as páginas do Razor](#applying-policies-to-razor-pages) neste documento.
+
+As políticas são aplicadas aos controladores por meio de `[Authorize]` atributo com o nome da política. Por exemplo:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
+
+## <a name="applying-policies-to-razor-pages"></a>Aplicar políticas a páginas do Razor
+
+As políticas são aplicadas a páginas do Razor usando o `[Authorize]` atributo com o nome da política. Por exemplo:
+
+[!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
+
+Políticas também podem ser aplicadas a páginas do Razor usando um [convenção autorização](xref:security/authorization/razor-pages-authorization).
 
 ## <a name="requirements"></a>Requisitos
 
@@ -70,7 +82,7 @@ O código anterior percorre [PendingRequirements](/dotnet/api/microsoft.aspnetco
 
 Manipuladores são registrados na coleção de serviços durante a configuração. Por exemplo:
 
-[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=40-41,50-55,63-65,72)]
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,62-63,66)]
 
 O código precedente registra `MinimumAgeHandler` como um singleton invocando `services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`. Manipuladores podem ser registrados usando qualquer um dos internos [tempos de vida do serviço](xref:fundamentals/dependency-injection#service-lifetimes).
 
@@ -112,7 +124,7 @@ Pode haver situações nas quais cumprir uma política é simple de expressar em
 
 Por exemplo, o anterior `BadgeEntryHandler` poderia ser reescrito da seguinte maneira:
 
-[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=52-53,57-63)]
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=50-51,55-61)]
 
 ## <a name="accessing-mvc-request-context-in-handlers"></a>Acessando o contexto de solicitação do MVC nos manipuladores
 

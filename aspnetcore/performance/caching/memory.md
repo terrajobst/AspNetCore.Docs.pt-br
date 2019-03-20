@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/11/2019
 uid: performance/caching/memory
-ms.openlocfilehash: 9a7727ad41a05f39d74877af3c8f2e3f7a620c7d
-ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
+ms.openlocfilehash: c115e43b9dd4f838ab9600c2e105d86732d857ad
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56103066"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58208259"
 ---
 # <a name="cache-in-memory-in-aspnet-core"></a>Memória de cache no ASP.NET Core
 
@@ -111,10 +111,10 @@ O código a seguir chama o método [Get](/dotnet/api/microsoft.extensions.cachin
 
 O exemplo a seguir:
 
-- Define o tempo de expiração absoluta. Isso é o tempo máximo que a entrada pode ser armazenado em cache e impede que o item se torne muito desatualizado quando a expiração deslizante continuamente é renovada.
-- Define um tempo de expiração deslizante. Solicitações que acessam esse item em cache redefinirá o relógio de expiração deslizante.
-- Define a prioridade de cache para `CacheItemPriority.NeverRemove`.
-- Define uma [PostEvictionDelegate](/dotnet/api/microsoft.extensions.caching.memory.postevictiondelegate) que será chamado depois que a entrada é removida do cache. O retorno de chamada é executado em um thread diferente do código que remove o item do cache.
+* Define o tempo de expiração absoluta. Isso é o tempo máximo que a entrada pode ser armazenado em cache e impede que o item se torne muito desatualizado quando a expiração deslizante continuamente é renovada.
+* Define um tempo de expiração deslizante. Solicitações que acessam esse item em cache redefinirá o relógio de expiração deslizante.
+* Define a prioridade de cache para `CacheItemPriority.NeverRemove`.
+* Define uma [PostEvictionDelegate](/dotnet/api/microsoft.extensions.caching.memory.postevictiondelegate) que será chamado depois que a entrada é removida do cache. O retorno de chamada é executado em um thread diferente do código que remove o item do cache.
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_et&highlight=14-21)]
 
@@ -161,14 +161,14 @@ Usando um `CancellationTokenSource` permite que várias entradas de cache a ser 
 
 ## <a name="additional-notes"></a>Observações adicionais
 
-- Ao usar um retorno de chamada para preencher novamente um item de cache:
+* Ao usar um retorno de chamada para preencher novamente um item de cache:
 
-  - Várias solicitações podem localizar o valor da chave em cache vazio porque o retorno de chamada não foi concluído.
-  - Isso pode resultar em vários threads repopulação o item em cache.
+  * Várias solicitações podem localizar o valor da chave em cache vazio porque o retorno de chamada não foi concluído.
+  * Isso pode resultar em vários threads repopulação o item em cache.
 
-- Quando uma entrada de cache é usada para criar outro, o filho copia a entrada de pai tokens de expiração e as configurações de expiração com base no tempo. O filho não está expirada pela remoção manual ou a atualização da entrada pai.
+* Quando uma entrada de cache é usada para criar outro, o filho copia a entrada de pai tokens de expiração e as configurações de expiração com base no tempo. O filho não está expirada pela remoção manual ou a atualização da entrada pai.
 
-- Use [PostEvictionCallbacks](/dotnet/api/microsoft.extensions.caching.memory.icacheentry.postevictioncallbacks#Microsoft_Extensions_Caching_Memory_ICacheEntry_PostEvictionCallbacks) para definir os retornos de chamada que serão acionados depois que a entrada de cache é removida do cache.
+* Use [PostEvictionCallbacks](/dotnet/api/microsoft.extensions.caching.memory.icacheentry.postevictioncallbacks#Microsoft_Extensions_Caching_Memory_ICacheEntry_PostEvictionCallbacks) para definir os retornos de chamada que serão acionados depois que a entrada de cache é removida do cache.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

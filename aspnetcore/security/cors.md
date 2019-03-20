@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/27/2019
 uid: security/cors
-ms.openlocfilehash: 6be8b4da1642a9eff021371c229a17071d6e9bfb
-ms.sourcegitcommit: d913bca90373c07f89b1d1df01af5fc01fc908ef
+ms.openlocfilehash: 2cad26d0f61519f63888a2bc399bb7e8a0f1ee04
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "57978465"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58210126"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Habilitar solicitações entre origens (CORS) no ASP.NET Core
 
@@ -84,7 +84,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         app.UseHsts();
     }
 
-    app.UseCors(); 
+    app.UseCors();
 
     app.UseHttpsRedirection();
     app.UseMvc();
@@ -141,25 +141,25 @@ Esta seção descreve as várias opções que podem ser definidas em uma políti
 * [Credenciais nas solicitações entre origens](#credentials-in-cross-origin-requests)
 * [Definir o tempo de expiração de simulação](#set-the-preflight-expiration-time)
 
- <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.AddPolicy*> é chamado no `Startup.ConfigureServices`. Para algumas opções, pode ser útil ler o [funciona como o CORS](#how-cors) seção pela primeira vez.
+<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.AddPolicy*> é chamado no `Startup.ConfigureServices`. Para algumas opções, pode ser útil ler o [funciona como o CORS](#how-cors) seção pela primeira vez.
 
 ## <a name="set-the-allowed-origins"></a>Defina as origens permitidas
 
 <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin*> &ndash; Permite que as solicitações CORS de todas as origens com qualquer esquema (`http` ou `https`). `AllowAnyOrigin` não é seguro porque *de qualquer site* pode fazer solicitações entre origens para o aplicativo.
 
-  ::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-2.2"
 
-  > [!NOTE]
-  > Especificando `AllowAnyOrigin` e `AllowCredentials` é uma configuração insegura e podem resultar em falsificação de solicitação entre sites. O serviço CORS retorna uma resposta inválida do CORS, quando um aplicativo é configurado com os dois métodos.
+> [!NOTE]
+> Especificando `AllowAnyOrigin` e `AllowCredentials` é uma configuração insegura e podem resultar em falsificação de solicitação entre sites. O serviço CORS retorna uma resposta inválida do CORS, quando um aplicativo é configurado com os dois métodos.
 
-  ::: moniker-end
+::: moniker-end
 
-  ::: moniker range="< aspnetcore-2.2"
+::: moniker range="< aspnetcore-2.2"
 
-  > [!NOTE]
-  > Especificando `AllowAnyOrigin` e `AllowCredentials` é uma configuração insegura e podem resultar em falsificação de solicitação entre sites. Para um aplicativo seguro, especifique uma lista exata de origens, se o cliente deve autorizar a mesmo para acessar recursos do servidor.
+> [!NOTE]
+> Especificando `AllowAnyOrigin` e `AllowCredentials` é uma configuração insegura e podem resultar em falsificação de solicitação entre sites. Para um aplicativo seguro, especifique uma lista exata de origens, se o cliente deve autorizar a mesmo para acessar recursos do servidor.
 
-  ::: moniker-end
+::: moniker-end
 
 <!-- REVIEW required
 I changed from
@@ -167,16 +167,16 @@ Specifying `AllowAnyOrigin` and `AllowCredentials` is an insecure configuration.
 to
 **`AllowAnyOrigin`** affects preflight requests and the
 
-to remove the ambiguous **This**. 
+to remove the ambiguous **This**.
 -->
 
-  `AllowAnyOrigin` solicitações de simulação afeta e o `Access-Control-Allow-Origin` cabeçalho. Para obter mais informações, consulte o [solicitações de simulação](#preflight-requests) seção.
+`AllowAnyOrigin` solicitações de simulação afeta e o `Access-Control-Allow-Origin` cabeçalho. Para obter mais informações, consulte o [solicitações de simulação](#preflight-requests) seção.
 
 ::: moniker range=">= aspnetcore-2.0"
 
 <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.SetIsOriginAllowedToAllowWildcardSubdomains*> &ndash; Conjuntos de <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.IsOriginAllowed*> propriedade da política para ser uma função que permite origens corresponder a um domínio de curinga configurado ao avaliar se a origem é permitida.
 
-  [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=100-104&highlight=4)]
+[!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=100-104&highlight=4)]
 
 ::: moniker-end
 
@@ -381,14 +381,14 @@ Esta seção descreve o que acontece em um [CORS](https://developer.mozilla.org/
   * Por exemplo, um ator mal-intencionado pode usar [impedir Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) em relação a seu site e executar uma solicitação entre sites para o respectivo site CORS habilitado para roubar informações.
 * Sua API não é mais segura, permitindo que o CORS.
   * Cabe ao cliente (navegador) para impor o CORS. O servidor executa a solicitação e retorna a resposta, ele é o cliente que retorna um erro e bloqueia a resposta. Por exemplo, qualquer uma das ferramentas a seguir exibirá a resposta do servidor:
-     * [Fiddler](https://www.telerik.com/fiddler)
-     * [Postman](https://www.getpostman.com/)
-     * [HttpClient do .NET](/dotnet/csharp/tutorials/console-webapiclient)
-     * Um navegador da web inserindo a URL na barra de endereços.
+    * [Fiddler](https://www.telerik.com/fiddler)
+    * [Postman](https://www.getpostman.com/)
+    * [HttpClient do .NET](/dotnet/csharp/tutorials/console-webapiclient)
+    * Um navegador da web inserindo a URL na barra de endereços.
 * É uma maneira para um servidor permitir que os navegadores para executar uma entre origens [XHR](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) ou [API buscar](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) solicitação caso contrário, seria proibida.
   * Navegadores (sem CORS) não podem fazer solicitações entre origens. Antes de CORS [JSONP](https://www.w3schools.com/js/js_json_jsonp.asp) foi usado para evitar essa restrição. JSONP não usa XHR, ele usa o `<script>` marca receba a resposta. Scripts podem ser carregados entre origens.
 
-O [especificação CORS]() introduziu vários novos cabeçalhos HTTP que permitem que solicitações entre origens. Se um navegador oferece suporte a CORS, ele define esses cabeçalhos automaticamente para solicitações entre origens. Código JavaScript personalizado não é necessário para habilitar o CORS.
+O [especificação CORS](https://www.w3.org/TR/cors/) introduziu vários novos cabeçalhos HTTP que permitem que solicitações entre origens. Se um navegador oferece suporte a CORS, ele define esses cabeçalhos automaticamente para solicitações entre origens. Código JavaScript personalizado não é necessário para habilitar o CORS.
 
 O exemplo a seguir é um exemplo de uma solicitação entre origens. O `Origin` cabeçalho fornece o domínio do site que está fazendo a solicitação:
 
@@ -429,7 +429,7 @@ Para testar o CORS:
 1. Habilite CORS usando uma das abordagens neste documento. Por exemplo:
 
   [!code-csharp[](cors/sample/Cors/WebAPI/StartupTest.cs?name=snippet2&highlight=13-18)]
-  
+
   > [!WARNING]
   > `WithOrigins("https://localhost:<port>");` só deve ser usado para testar um aplicativo de exemplo semelhante para o [baixar o código de exemplo](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/cors/sample/Cors).
 
@@ -444,13 +444,13 @@ Para testar o CORS:
 1. Remover a origem do localhost de `WithOrigins` e implantar o aplicativo. Como alternativa, execute o aplicativo cliente com uma porta diferente. Por exemplo, execute do Visual Studio.
 1. Teste com o aplicativo cliente. Falhas CORS retornar um erro, mas a mensagem de erro não está disponível para o JavaScript. Use a guia console nas ferramentas F12 para ver o erro. Dependendo do navegador, você receberá um erro (no console de ferramentas de F12) semelhante ao seguinte:
 
-  * Usando o Microsoft Edge:
+   * Usando o Microsoft Edge:
 
-    **SEC7120: [CORS] a origem `https://localhost:44375` não foi possível localizar `https://localhost:44375` no cabeçalho de resposta Access-Control-Allow-Origin para recursos entre origens em `https://webapi.azurewebsites.net/api/values/1`**
+     **SEC7120: [CORS] a origem `https://localhost:44375` não foi possível localizar `https://localhost:44375` no cabeçalho de resposta Access-Control-Allow-Origin para recursos entre origens em `https://webapi.azurewebsites.net/api/values/1`**
 
-  * Usando o Chrome:
+   * Usando o Chrome:
 
-    **Acesso ao XMLHttpRequest em `https://webapi.azurewebsites.net/api/values/1` de origem `https://localhost:44375` foi bloqueada pela política CORS: Nenhum cabeçalho 'Access-Control-Allow-Origin' está presente no recurso solicitado.**
+     **Acesso ao XMLHttpRequest em `https://webapi.azurewebsites.net/api/values/1` de origem `https://localhost:44375` foi bloqueada pela política CORS: Nenhum cabeçalho 'Access-Control-Allow-Origin' está presente no recurso solicitado.**
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

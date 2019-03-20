@@ -1,36 +1,40 @@
 ---
-title: Detalhes de criptografia autenticada no núcleo do ASP.NET
+title: Detalhes de criptografia autenticada no ASP.NET Core
 author: rick-anderson
-description: Saiba os detalhes de implementação de criptografia de proteção de dados do ASP.NET Core autenticado.
+description: Saiba os detalhes de implementação de criptografia da proteção de dados do ASP.NET Core autenticado.
 ms.author: riande
 ms.date: 10/14/2016
 uid: security/data-protection/implementation/authenticated-encryption-details
-ms.openlocfilehash: ac650e5c32e7eacc4088225e63f56340f95e1913
-ms.sourcegitcommit: a1afd04758e663d7062a5bfa8a0d4dca38f42afc
+ms.openlocfilehash: 9def03e6b27e19fc34a839e923d6152e086889db
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/20/2018
-ms.locfileid: "36275678"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58208574"
 ---
-# <a name="authenticated-encryption-details-in-aspnet-core"></a>Detalhes de criptografia autenticada no núcleo do ASP.NET
+# <a name="authenticated-encryption-details-in-aspnet-core"></a>Detalhes de criptografia autenticada no ASP.NET Core
 
 <a name="data-protection-implementation-authenticated-encryption-details"></a>
 
-Chamadas para IDataProtector.Protect são as operações de criptografia autenticada. O método Protect oferece confidencialidade e a autenticidade e ela é vinculada à cadeia finalidade que foi usada para essa instância específica do IDataProtector derivam da sua raiz IDataProtectionProvider.
+Chamadas para IDataProtector.Protect são operações de criptografia autenticada. O método Protect oferece confidencialidade e a autenticidade e ela é vinculada à cadeia finalidade que foi usada para essa instância específica do IDataProtector derivam da sua raiz IDataProtectionProvider.
 
-IDataProtector.Protect usa um parâmetro de texto sem formatação do byte [] e produz uma byte [] protegido carga, cujo formato é descrito abaixo. (Também há uma sobrecarga de método de extensão que usa um parâmetro de texto sem formatação da cadeia de caracteres e retorna uma carga protegido de cadeia de caracteres. Se essa API é usada ainda terá o formato de carga protegido o abaixo de estrutura, mas será [codificado base64url](https://tools.ietf.org/html/rfc4648#section-5).)
+IDataProtector.Protect assume um parâmetro de texto sem formatação do byte [] e produz um byte [] protegido conteúdo, cujo formato é descrito abaixo. (Também há uma sobrecarga de método de extensão que usa um parâmetro de texto sem formatação da cadeia de caracteres e retorna um conteúdo protegido de cadeia de caracteres. Se essa API é usada ainda terá o formato do conteúdo protegido a abaixo da estrutura, mas ele estará [base64url codificado](https://tools.ietf.org/html/rfc4648#section-5).)
 
-## <a name="protected-payload-format"></a>Formato de conteúdo protegido
+## <a name="protected-payload-format"></a>Formato do conteúdo protegido
 
-O formato de carga protegido consiste em três componentes principais:
+O formato do conteúdo protegido consiste em três componentes principais:
 
 * Um cabeçalho mágico de 32 bits que identifica a versão do sistema de proteção de dados.
 
-* Uma id de 128 bits chave que identifica a chave usada para proteger essa carga específica.
+* Uma id chave de 128 bits que identifica a chave usada para proteger essa carga específica.
 
-* O restante da carga protegido é [específico para o Criptografador encapsulado por esta chave](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation). No exemplo a seguir a chave representa um AES-256-CBC + Criptografador HMACSHA256 e a carga é mais subdividida da seguinte maneira: * modificador chave A 128 bits. * Um vetor de inicialização de 128 bits. * 48 bytes de saída de AES-256-CBC. * Uma marca de autenticação HMACSHA256.
+* É o restante da carga protegida [específicas para o Criptografador encapsulado por essa chave](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation). No exemplo a seguir, a chave representa um AES-256-CBC + Criptografador HMACSHA256, e a carga é subdividida da seguinte maneira:
+  * Um modificador de chave de 128 bits.
+  * Um vetor de inicialização de 128 bits.
+  * 48 bytes de saída do AES-256-CBC.
+  * Uma marca de autenticação HMACSHA256.
 
-Uma carga protegido exemplo ilustrada abaixo.
+Um exemplo de conteúdo protegido é ilustrado abaixo.
 
 ```
 09 F0 C9 F0 80 9C 81 0C 19 66 19 40 95 36 53 F8
@@ -44,11 +48,11 @@ AA FF EE 57 57 2F 40 4C 3F 7F CC 9D CC D9 32 3E
 52 C9 74 A0
 ```
 
-O formato de carga acima os primeiros 32 bits ou 4 bytes são o cabeçalho magic identifica a versão (09 F0 C9 F0)
+Do formato de carga acima os primeiros 32 bits ou 4 bytes são o cabeçalho de mágico que identifica a versão (09 F0 C9 F0)
 
-O próximos 128 bits ou 16 bytes é o identificador de chave (80 9 81 de C 0C 19 66 19 40 95 36 53 F8 AA FF EE 57)
+O próximo 128 bits ou 16 bytes é o identificador de chave (80 9 81 de C 0C 19 66 19 40 95 36 53 F8 AA FF EE 57)
 
 O restante contém a carga e é específico para o formato usado.
 
->[!WARNING]
-> Todas as cargas protegidas para uma determinada chave começa com o mesmo cabeçalho de 20 bytes (valor mágico, id de chave). Os administradores podem usar esse fato para fins de diagnóstico para aproximar quando uma carga foi gerada. Por exemplo, a carga acima corresponde à chave {0c819c80-6619-4019-9536-53f8aaffee57}. Se depois de verificar se o repositório de chave achar que a data de ativação dessa chave específica era 2015-01-01 e data de expiração foi 2015-03-01, é razoável pressupor que a carga (se não violada) foi gerada dentro dessa janela, dê ou levar um pequeno fator em ambos os lados.
+> [!WARNING]
+> Todas as cargas protegidas para uma determinada chave serão iniciado com o mesmo cabeçalho de 20 bytes (valor mágico, id da chave). Os administradores podem usar esse fato para fins de diagnóstico para aproximar quando um conteúdo que foi gerado. Por exemplo, a carga acima corresponde à chave {0c819c80-6619-4019-9536-53f8aaffee57}. Se depois de verificar se o repositório de chaves, você achar que data de ativação dessa chave específica foi 2015-01-01 e sua data de validade era 2015-03-01, então é razoável pressupor que a carga (se não adulterado) foi gerado dentro dessa janela, forneça ou levar a um pequeno fator em ambos os lados.

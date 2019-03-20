@@ -7,12 +7,12 @@ ms.author: riande
 ms.date: 6/16/2018
 ms.custom: seodec18
 uid: security/authentication/add-user-data
-ms.openlocfilehash: 5465117e5db880e8298e6c2075a27699e4081894
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.openlocfilehash: 529aa0bf369f8a635bd8d39948585cf2a530e2d9
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121095"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58208480"
 ---
 # <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>Adicionar, baixar e excluir dados de usuário personalizada à identidade em um projeto ASP.NET Core
 
@@ -91,7 +91,7 @@ Na pasta do projeto, execute o scaffolder de identidade:
 dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account.Manage.Index
 ```
 
--------------
+---
 
 Siga as instruções da [migrações, UseAuthentication e layout](xref:security/authentication/scaffold-identity#efm) para executar as seguintes etapas:
 
@@ -156,7 +156,7 @@ dotnet ef migrations add CustomUserData
 dotnet ef database update
 ```
 
-------
+---
 
 ## <a name="test-create-view-download-delete-custom-user-data"></a>Teste de criar, exibir, baixar, excluir dados de usuário personalizada
 

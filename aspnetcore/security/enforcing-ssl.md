@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/01/2018
 uid: security/enforcing-ssl
-ms.openlocfilehash: 0c3add9c8860a47932cda3a8b07c83dc774bf1f1
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.openlocfilehash: 16cfa672fe4a81d9e8f09fc3dd1e6c036edd4c4e
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54098968"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58208970"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Impor HTTPS no ASP.NET Core
 
@@ -69,7 +69,7 @@ Especifique a porta HTTPS usando qualquer uma das seguintes abordagens:
 
   **Chave**: `https_port`  
   **Tipo**: *string*  
-  **Padrão**: Um valor padrão não está definido.  
+  **Padrão**: um valor padrão não está definido.  
   **Definido usando**: `UseSetting`  
   **Variável de ambiente**: `<PREFIX_>HTTPS_PORT` (É o prefixo `ASPNETCORE_` ao usar o [Host Web](xref:fundamentals/host/web-host).)
 
@@ -212,7 +212,7 @@ Desmarque a **configurar para HTTPS** caixa de seleção.
 
 ![Novo aplicativo Web ASP.NET Core caixa de diálogo mostrando a configurar para HTTPS caixa de seleção desmarcada.](enforcing-ssl/_static/out.png)
 
-#   <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli) 
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli) 
 
 Use a opção `--no-https`. Por exemplo
 
