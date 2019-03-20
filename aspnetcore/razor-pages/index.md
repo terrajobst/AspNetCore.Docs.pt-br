@@ -140,12 +140,12 @@ O fluxo básico de `OnPostAsync`:
 
 Verifique se há erros de validação.
 
-*  Se não houver nenhum erro, salve os dados e redirecione.
-*  Se houver erros, mostre a página novamente com as mensagens de validação. A validação do lado do cliente é idêntica para aplicativos ASP.NET Core MVC tradicionais. Em muitos casos, erros de validação seriam detectados no cliente e nunca enviados ao servidor.
+* Se não houver nenhum erro, salve os dados e redirecione.
+* Se houver erros, mostre a página novamente com as mensagens de validação. A validação do lado do cliente é idêntica para aplicativos ASP.NET Core MVC tradicionais. Em muitos casos, erros de validação seriam detectados no cliente e nunca enviados ao servidor.
 
 Quando os dados são inseridos com êxito, o método de manipulador `OnPostAsync` chama o método auxiliar `RedirectToPage` para retornar uma instância de `RedirectToPageResult`. `RedirectToPage` é um novo resultado de ação, semelhante a `RedirectToAction` ou `RedirectToRoute`, mas personalizado para páginas. Na amostra anterior, ele redireciona para a página de Índice raiz (`/Index`). `RedirectToPage` é descrito em detalhes na seção [Geração de URLs para páginas](#url_gen).
 
-Quando o formulário enviado tem erros de validação (que são passados para o servidor), o método de manipulador `OnPostAsync` chama o método auxiliar `Page`. `Page` retorna uma instância de `PageResult`. Retornar `Page` é semelhante a como as ações em controladores retornam `View`. `PageResult` é o tipo de retorno <!-- Review  --> padrão para um método de manipulador. Um método de manipulador que retorna `void` renderiza a página.
+Quando o formulário enviado tem erros de validação (que são passados para o servidor), o método de manipulador `OnPostAsync` chama o método auxiliar `Page`. `Page` retorna uma instância de `PageResult`. Retornar `Page` é semelhante a como as ações em controladores retornam `View`. `PageResult` é o tipo <!-- Review  --> de retorno padrão para um método de manipulação. Um método de manipulador que retorna `void` renderiza a página.
 
 A propriedade `Customer` usa o atributo `[BindProperty]` para aceitar o model binding.
 

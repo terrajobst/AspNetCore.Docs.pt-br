@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como diagnosticar problemas com implantações do Serviço de Aplicativo do Azure do ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/05/2019
+ms.date: 03/06/2019
 uid: host-and-deploy/azure-apps/troubleshoot
-ms.openlocfilehash: c3732bfab362ec034248eb3912d4b1337c94216e
-ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
+ms.openlocfilehash: 326f66070d51c04298abbf6292d2d350414311de
+ms.sourcegitcommit: 34bf9fc6ea814c039401fca174642f0acb14be3c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/08/2019
-ms.locfileid: "57665422"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "57841391"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service"></a>Solucionar problemas no ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -187,7 +187,10 @@ Consulte <xref:host-and-deploy/azure-iis-errors-reference>. A maioria dos proble
 
 ## <a name="slow-or-hanging-app"></a>Aplicativo lento ou travando
 
-Quando um aplicativo responde lentamente ou trava em uma solicitação, confira [Solucionar problemas de desempenho de aplicativo Web lento no Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-troubleshoot-performance-degradation) para diretrizes de depuração.
+Para saber mais sobre quando um aplicativo responde lentamente ou trava em uma solicitação, confira os seguintes artigos:
+
+* [Solucionar problemas de desempenho lento do aplicativo Web no Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-troubleshoot-performance-degradation)
+* [Use a Extensão de Site do Diagnosticador de Falhas para capturar o despejo para problemas de exceção intermitentes ou problemas de desempenho no aplicativo Web do Azure](https://blogs.msdn.microsoft.com/asiatech/2015/12/28/use-crash-diagnoser-site-extension-to-capture-dump-for-intermittent-exception-issues-or-performance-issues-on-azure-web-app/)
 
 ## <a name="remote-debugging"></a>Depuração remota
 
