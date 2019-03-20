@@ -1,18 +1,12 @@
 ---
 title: Hospedar e implantar Componentes Razor
 author: guardrex
-description: Descubra como hospedar e implantar aplicativos dos Componentes Razor e do Blazor usando o ASP.NET Core, a CDN (Rede de Distribuição de Conteúdo), servidores de arquivos e páginas do GitHub.
+description: 'Descubra como hospedar e implantar aplicativos dos Componentes Razor e do Blazor usando o ASP.NET Core, a CDN (Rede de Distribuição de Conteúdo), servidores de arquivos e páginas do GitHub.'
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/29/2019
 uid: host-and-deploy/razor-components/index
-ms.openlocfilehash: 9debd75128ceecb805fc673a8182a785fc9f7942
-ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
-ms.translationtype: HT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/02/2019
-ms.locfileid: "55667906"
 ---
 # <a name="host-and-deploy-razor-components"></a>Hospedar e implantar Componentes Razor
 
@@ -273,7 +267,7 @@ Para hospedar o Blazor no Docker usando o Nginx, configure o Dockerfile para usa
 
 Adicione uma linha ao Dockerfile, conforme é mostrado no exemplo a seguir:
 
-```
+```Dockerfile
 FROM nginx:alpine
 COPY ./bin/Release/netstandard2.0/publish /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf

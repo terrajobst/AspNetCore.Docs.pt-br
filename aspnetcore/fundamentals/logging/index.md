@@ -193,7 +193,6 @@ Os logs anteriores foram gerados por meio de uma solicitação HTTP Get para o a
 
 Veja um exemplo de como os mesmos logs aparecem na janela Depuração quando você executa o aplicativo de exemplo no Visual Studio:
 
-
 ```console
 Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request starting HTTP/1.1 GET http://localhost:53104/api/todo/0  
 Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker:Information: Executing action method TodoApi.Controllers.TodoController.GetById (TodoApi) with arguments (0) - ModelState is Valid
@@ -214,7 +213,7 @@ As interfaces `ILogger` e `ILoggerFactory` estão em [Microsoft.Extensions.Loggi
 
 ## <a name="log-category"></a>Categoria de log
 
-Quando um objeto `ILogger` é criado, uma *categoria* é especificada para ele. Essa categoria é incluída em cada mensagem de log criada por essa instância de `Ilogger`. A categoria pode ser qualquer cadeia de caracteres, mas a convenção é usar o nome da classe, como "TodoApi.Controllers.TodoController".
+Quando um objeto `ILogger` é criado, uma *categoria* é especificada para ele. Essa categoria é incluída em cada mensagem de log criada por essa instância de `ILogger`. A categoria pode ser qualquer cadeia de caracteres, mas a convenção é usar o nome da classe, como "TodoApi.Controllers.TodoController".
 
 Use `ILogger<T>` para obter uma instância `ILogger` que usa o nome de tipo totalmente qualificado do `T` como a categoria:
 
