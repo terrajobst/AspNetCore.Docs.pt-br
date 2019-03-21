@@ -1,21 +1,29 @@
-# <a name="aspnet-core-built-in-tag-helpers-sample"></a><span data-ttu-id="7c113-101">Exemplo de auxiliares de marca internos do ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="7c113-101">ASP.NET Core Built-in Tag Helpers Sample</span></span>
+---
+ms.openlocfilehash: 3113220696eb3e3cb8c126cd1287e60203d96378
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58208328"
+---
+# <a name="aspnet-core-built-in-tag-helpers-sample"></a><span data-ttu-id="a040d-101">Exemplo de auxiliares de marca internos do ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="a040d-101">ASP.NET Core Built-in Tag Helpers Sample</span></span>
 
-<span data-ttu-id="7c113-102">Este exemplo ilustra as variações dos auxiliares de marca internos com o MVC e Páginas Razor:</span><span class="sxs-lookup"><span data-stu-id="7c113-102">This sample illustrates variations of the built-in Tag Helpers with both MVC and Razor Pages:</span></span>
+<span data-ttu-id="a040d-102">Este exemplo ilustra as variações dos auxiliares de marca internos com o MVC e Páginas Razor:</span><span class="sxs-lookup"><span data-stu-id="a040d-102">This sample illustrates variations of the built-in Tag Helpers with both MVC and Razor Pages:</span></span>
 
-- [<span data-ttu-id="7c113-103">Auxiliar de marcação de âncora</span><span class="sxs-lookup"><span data-stu-id="7c113-103">Anchor Tag Helper</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper)
-    - [<span data-ttu-id="7c113-104">asp-action</span><span class="sxs-lookup"><span data-stu-id="7c113-104">asp-action</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-action)
-    - [<span data-ttu-id="7c113-105">asp-all-route-data</span><span class="sxs-lookup"><span data-stu-id="7c113-105">asp-all-route-data</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-all-route-data)
-    - [<span data-ttu-id="7c113-106">asp-area</span><span class="sxs-lookup"><span data-stu-id="7c113-106">asp-area</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-area)
-    - [<span data-ttu-id="7c113-107">asp-controller</span><span class="sxs-lookup"><span data-stu-id="7c113-107">asp-controller</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-controller)
-    - [<span data-ttu-id="7c113-108">asp-fragment</span><span class="sxs-lookup"><span data-stu-id="7c113-108">asp-fragment</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-fragment)
-    - [<span data-ttu-id="7c113-109">asp-host</span><span class="sxs-lookup"><span data-stu-id="7c113-109">asp-host</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-host)
-    - [<span data-ttu-id="7c113-110">asp-page</span><span class="sxs-lookup"><span data-stu-id="7c113-110">asp-page</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-page)
-    - [<span data-ttu-id="7c113-111">asp-page-handler</span><span class="sxs-lookup"><span data-stu-id="7c113-111">asp-page-handler</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-page-handler)
-    - [<span data-ttu-id="7c113-112">asp-protocol</span><span class="sxs-lookup"><span data-stu-id="7c113-112">asp-protocol</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-protocol)
-    - [<span data-ttu-id="7c113-113">asp-route</span><span class="sxs-lookup"><span data-stu-id="7c113-113">asp-route</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-route)
-    - [<span data-ttu-id="7c113-114">asp-route-{value}</span><span class="sxs-lookup"><span data-stu-id="7c113-114">asp-route-{value}</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-route-value)
-- [<span data-ttu-id="7c113-115">Auxiliar de marcação parcial</span><span class="sxs-lookup"><span data-stu-id="7c113-115">Partial Tag Helper</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper)
-    - [<span data-ttu-id="7c113-116">for</span><span class="sxs-lookup"><span data-stu-id="7c113-116">for</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#for)
-    - [<span data-ttu-id="7c113-117">model</span><span class="sxs-lookup"><span data-stu-id="7c113-117">model</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#model)
-    - [<span data-ttu-id="7c113-118">name</span><span class="sxs-lookup"><span data-stu-id="7c113-118">name</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#name)
-    - [<span data-ttu-id="7c113-119">view-data</span><span class="sxs-lookup"><span data-stu-id="7c113-119">view-data</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#view-data)
+- [<span data-ttu-id="a040d-103">Auxiliar de marcação de âncora</span><span class="sxs-lookup"><span data-stu-id="a040d-103">Anchor Tag Helper</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper)
+  - [<span data-ttu-id="a040d-104">asp-action</span><span class="sxs-lookup"><span data-stu-id="a040d-104">asp-action</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-action)
+  - [<span data-ttu-id="a040d-105">asp-all-route-data</span><span class="sxs-lookup"><span data-stu-id="a040d-105">asp-all-route-data</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-all-route-data)
+  - [<span data-ttu-id="a040d-106">asp-area</span><span class="sxs-lookup"><span data-stu-id="a040d-106">asp-area</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-area)
+  - [<span data-ttu-id="a040d-107">asp-controller</span><span class="sxs-lookup"><span data-stu-id="a040d-107">asp-controller</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-controller)
+  - [<span data-ttu-id="a040d-108">asp-fragment</span><span class="sxs-lookup"><span data-stu-id="a040d-108">asp-fragment</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-fragment)
+  - [<span data-ttu-id="a040d-109">asp-host</span><span class="sxs-lookup"><span data-stu-id="a040d-109">asp-host</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-host)
+  - [<span data-ttu-id="a040d-110">asp-page</span><span class="sxs-lookup"><span data-stu-id="a040d-110">asp-page</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-page)
+  - [<span data-ttu-id="a040d-111">asp-page-handler</span><span class="sxs-lookup"><span data-stu-id="a040d-111">asp-page-handler</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-page-handler)
+  - [<span data-ttu-id="a040d-112">asp-protocol</span><span class="sxs-lookup"><span data-stu-id="a040d-112">asp-protocol</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-protocol)
+  - [<span data-ttu-id="a040d-113">asp-route</span><span class="sxs-lookup"><span data-stu-id="a040d-113">asp-route</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-route)
+  - [<span data-ttu-id="a040d-114">asp-route-{value}</span><span class="sxs-lookup"><span data-stu-id="a040d-114">asp-route-{value}</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-route-value)
+- [<span data-ttu-id="a040d-115">Auxiliar de marcação parcial</span><span class="sxs-lookup"><span data-stu-id="a040d-115">Partial Tag Helper</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper)
+  - [<span data-ttu-id="a040d-116">for</span><span class="sxs-lookup"><span data-stu-id="a040d-116">for</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#for)
+  - [<span data-ttu-id="a040d-117">model</span><span class="sxs-lookup"><span data-stu-id="a040d-117">model</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#model)
+  - [<span data-ttu-id="a040d-118">name</span><span class="sxs-lookup"><span data-stu-id="a040d-118">name</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#name)
+  - [<span data-ttu-id="a040d-119">view-data</span><span class="sxs-lookup"><span data-stu-id="a040d-119">view-data</span></span>](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#view-data)
