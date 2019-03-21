@@ -109,7 +109,7 @@ Com o [modelo de hospedagem do lado do cliente](xref:razor-components/hosting-mo
 * O aplicativo é executado diretamente no thread da interface do usuário do navegador. Há suporte para todas as estratégias a seguir:
   * O aplicativo do Blazor é atendido por um aplicativo ASP.NET Core. Abordado na seção [Implantação hospedada do Blazor do lado do cliente com o ASP.NET Core](#client-side-blazor-hosted-deployment-with-aspnet-core).
   * O aplicativo do Blazor é colocado em um serviço ou um servidor Web de hospedagem estático, em que o .NET não é usado para atender ao aplicativo do Blazor. Abordado na seção [Implantação autônoma do Blazor do lado do cliente](#client-side-blazor-standalone-deployment).
-  
+
 ### <a name="configure-the-linker"></a>Configurar o vinculador
 
 O Blazor executa a vinculação de IL (linguagem intermediária) em cada build para remover a IL desnecessária dos assemblies de saída. Você pode controlar a vinculação de assembly no build. Para obter mais informações, consulte <xref:host-and-deploy/razor-components/configure-linker>.
@@ -191,7 +191,8 @@ Para obter mais informações sobre a implantação e a hospedagem de aplicativo
 
 Para obter informações de como implantar o Serviço de Aplicativo do Azure, confira os tópicos a seguir:
 
-<xref:tutorials/publish-to-azure-webapp-using-vs>  
+<xref:tutorials/publish-to-azure-webapp-using-vs>
+
 Aprenda como publicar um aplicativo ASP.NET Core no Serviço de Aplicativo do Azure usando o Visual Studio.
 
 ### <a name="client-side-blazor-standalone-deployment"></a>Implantação autônoma do Blazor do lado do cliente
@@ -299,5 +300,6 @@ Quando o aplicativo do ASP.NET Core é publicado, o aplicativo dos Componentes R
 
 Para obter informações de como implantar o Serviço de Aplicativo do Azure, confira os tópicos a seguir:
 
-<xref:tutorials/publish-to-azure-webapp-using-vs>  
+<xref:tutorials/publish-to-azure-webapp-using-vs>
+
 Aprenda como publicar um aplicativo ASP.NET Core no Serviço de Aplicativo do Azure usando o Visual Studio.
