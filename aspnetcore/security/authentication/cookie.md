@@ -5,12 +5,12 @@ description: Obter uma explicação de como usar a autenticação de cookie sem 
 ms.author: riande
 ms.date: 02/25/2019
 uid: security/authentication/cookie
-ms.openlocfilehash: 29370a3ff25469b34edc2a71e00601cf6ecc00ca
-ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
+ms.openlocfilehash: c6cba588abb003ee677d8f1753b73a1ced1414b0
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56899276"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58209369"
 ---
 # <a name="use-cookie-authentication-without-aspnet-core-identity"></a>Usar autenticação de cookie sem o ASP.NET Core Identity
 
@@ -119,7 +119,7 @@ O [CookieAuthenticationOptions](/dotnet/api/Microsoft.AspNetCore.Builder.CookieA
 | [CookieSecure](/dotnet/api/microsoft.aspnetcore.builder.cookieauthenticationoptions.cookiesecure?view=aspnetcore-1.1) | Um sinalizador que indica se o cookie criado deve ser limitado a HTTPS (`CookieSecurePolicy.Always`), HTTP ou HTTPS (`CookieSecurePolicy.None`), ou o mesmo protocolo usado na solicitação (`CookieSecurePolicy.SameAsRequest`). O valor padrão é `CookieSecurePolicy.SameAsRequest`. |
 | [Descrição](/dotnet/api/microsoft.aspnetcore.builder.authenticationoptions.description?view=aspnetcore-1.1) | Informações adicionais sobre o tipo de autenticação que será disponibilizado para o aplicativo. |
 | [ExpireTimeSpan](/dotnet/api/microsoft.aspnetcore.builder.cookieauthenticationoptions.expiretimespan?view=aspnetcore-1.1) | O `TimeSpan` depois que o tíquete de autenticação expira. Ele é adicionado à hora atual para criar o tempo de expiração para o tíquete. Para usar `ExpireTimeSpan`, você deve definir `IsPersistent` ao `true` no `AuthenticationProperties` passado para `SignInAsync`. O valor padrão é 14 dias. |
-| [SlidingExpiration](/dotnet/api/microsoft.aspnetcore.builder.cookieauthenticationoptions.slidingexpiration?view=aspnetcore-1.1) | Um sinalizador que indica se a data de expiração do cookie redefine quando houver mais de metade do `ExpireTimeSpan` intervalo tenha decorrido. A nova hora exipiration é movida para frente até ser a data atual mais o `ExpireTimespan`. Uma [tempo de expiração do cookie absoluto](xref:security/authentication/cookie#absolute-cookie-expiration) pode ser definida usando o `AuthenticationProperties` classe ao chamar `SignInAsync`. Um tempo de expiração absoluto pode melhorar a segurança do seu aplicativo, limitando a quantidade de tempo que o cookie de autenticação é válido. O valor padrão é `true`. |
+| [SlidingExpiration](/dotnet/api/microsoft.aspnetcore.builder.cookieauthenticationoptions.slidingexpiration?view=aspnetcore-1.1) | Um sinalizador que indica se a data de expiração do cookie redefine quando houver mais de metade do `ExpireTimeSpan` intervalo tenha decorrido. A nova hora de expiração é movida para frente até ser a data atual mais o `ExpireTimespan`. Uma [tempo de expiração do cookie absoluto](xref:security/authentication/cookie#absolute-cookie-expiration) pode ser definida usando o `AuthenticationProperties` classe ao chamar `SignInAsync`. Um tempo de expiração absoluto pode melhorar a segurança do seu aplicativo, limitando a quantidade de tempo que o cookie de autenticação é válido. O valor padrão é `true`. |
 
 Definir `CookieAuthenticationOptions` para o Middleware de autenticação de Cookie no `Configure` método:
 

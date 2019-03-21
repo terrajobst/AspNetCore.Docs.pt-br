@@ -7,12 +7,12 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/14/2018
 uid: signalr/streaming
-ms.openlocfilehash: fb7183f7189d62c181f69ffdb170e3da25612919
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: 7c176e3f21ffca7b97d9d3c2e8861032f22587b8
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57345581"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58264300"
 ---
 # <a name="use-streaming-in-aspnet-core-signalr"></a>Usar o streaming em SignalR do ASP.NET Core
 
@@ -139,12 +139,14 @@ Para terminar o fluxo do cliente, chame o `dispose` método em de `ISubscription
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
+
 ## <a name="java-client"></a>Cliente Java
+
 O cliente SignalR Java usa o `stream` método para invocar métodos de streaming. Ela aceita três ou mais argumentos:
 
-* O tipo esperado de itens de fluxo 
+* O tipo esperado de itens de fluxo
 * O nome do método de hub.
-* Argumentos definidos no método de hub. 
+* Argumentos definidos no método de hub.
 
 ```java
 hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1")
@@ -153,6 +155,7 @@ hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1")
         (error) -> {/* Define your onError handler here. */},
         () -> {/* Define your onCompleted handler here. */});
 ```
+
 O `stream` método no `HubConnection` retorna um observável do tipo de item de fluxo. O tipo observável `subscribe` método é onde você define sua `onNext`, `onError` e `onCompleted` manipuladores.
 
 ::: moniker-end
