@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 648ed8087c64eaf80fd055fa7dd08041ab9a8752
+ms.sourcegitcommit: 088e6744cd67a62f214f25146313a53949b17d35
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58320269"
+---
 Execute o scaffolder de identidade:
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
@@ -36,4 +44,4 @@ Na pasta do projeto, execute o scaffolder de identidade com as opções desejada
 dotnet aspnet-codegenerator identity --useDefaultUI
 ```
 
--------------
+---

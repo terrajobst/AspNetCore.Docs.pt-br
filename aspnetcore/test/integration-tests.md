@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/25/2019
 uid: test/integration-tests
-ms.openlocfilehash: 50cb6b26be187c7f36f189e77fd29b4559221f2c
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: 11a8f4296e1b0b229c736645f1aa598307b88ec4
+ms.sourcegitcommit: 088e6744cd67a62f214f25146313a53949b17d35
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58209233"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58320180"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Testes de integração no ASP.NET Core
 
@@ -311,7 +311,7 @@ Chame o [UseSolutionRelativeContentRoot](/dotnet/api/microsoft.aspnetcore.testho
 
 ## <a name="disable-shadow-copying"></a>Desabilitar a cópia de sombra
 
-A cópia de sombra faz com que os testes a serem executados em uma pasta diferente que a pasta de saída. Para testes funcione corretamente, a cópia de sombra deve ser desabilitada. O [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests/samples) usa o xUnit e desabilita a cópia de sombra para xUnit, incluindo um *xunit.runner.json* arquivo com a configuração correta. Para obter mais informações, consulte [Configurando o xUnit.net com JSON](https://xunit.github.io/docs/configuring-with-json.html).
+A cópia de sombra faz com que os testes a serem executados em uma pasta diferente que a pasta de saída. Para testes funcione corretamente, a cópia de sombra deve ser desabilitada. O [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/integration-tests/samples) usa o xUnit e desabilita a cópia de sombra para xUnit, incluindo um *xunit.runner.json* arquivo com a configuração correta. Para obter mais informações, consulte [Configurando o xUnit com o JSON](https://xunit.github.io/docs/configuring-with-json.html).
 
 Adicione a *xunit.runner.json* arquivo raiz do projeto de teste com o seguinte conteúdo:
 

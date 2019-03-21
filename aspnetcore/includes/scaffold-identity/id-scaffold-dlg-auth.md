@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 53774177030adf8a61606a696af85cd1f57d6ab9
+ms.sourcegitcommit: 088e6744cd67a62f214f25146313a53949b17d35
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58320270"
+---
 Execute o scaffolder de identidade:
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
@@ -21,35 +29,35 @@ Observação: Se você estiver criando um novo contexto de usuário, você não 
 
 Se você já não tiver instalado o scaffolder de ASP.NET Core, instale-o agora:
 
-```cli
+```console
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
 Adicione uma referência de pacote ao [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) ao projeto (\*. csproj) arquivos. Execute o seguinte comando no diretório do projeto:
 
-```cli
+```console
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 ```
 
 Execute o seguinte comando para listar as opções de scaffolder de identidade:
 
-```cli
+```console
 dotnet aspnet-codegenerator identity -h
 ```
 
 Na pasta do projeto, execute o scaffolder de identidade com as opções desejadas. Por exemplo, para configurar a identidade com a interface do usuário padrão e o número mínimo de arquivos, execute o comando a seguir. Use o nome totalmente qualificado correto para o contexto de banco de dados:
 
-```cli
+```console
 dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files Account.Register
 ```
 
-O PowerShell usa o ponto e vírgula como separador de comando. Ao usar o powershell, a ponto e vírgula na lista de arquivos de escape ou coloque a lista de arquivos entre aspas duplas. Por exemplo:
+O PowerShell usa o ponto e vírgula como separador de comando. Ao usar o PowerShell, a ponto e vírgula na lista de arquivos de escape ou coloque a lista de arquivos entre aspas duplas. Por exemplo:
 
-```cli
+```console
 dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
 ```
 
 Se você executar o scaffolder de identidade sem especificar o `--files` sinalizador ou a `--useDefaultUI` sinalizar, todas as páginas de identidade da interface do usuário disponíveis em seu projeto serão criadas.
 
--------------
+---
