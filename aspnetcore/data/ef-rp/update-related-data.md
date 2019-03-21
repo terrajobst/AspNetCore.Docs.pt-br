@@ -5,12 +5,12 @@ description: Neste tutorial, você atualizará dados relacionados pela atualiza�
 ms.author: riande
 ms.date: 11/15/2017
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: c3dbfe57a832ba63c5da2f89c0d29e443a1277a7
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: e1407048157fccdbfdd854071a6fbf9785356026
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57345756"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58208603"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---update-related-data---7-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Atualizar dados relacionados – 7 de 8
 
@@ -136,9 +136,9 @@ Atualize o modelo de página Editar Instrutores com o seguinte código:
 
 O código anterior:
 
-- Obtém a entidade `Instructor` atual do banco de dados usando o carregamento adiantado para a propriedade de navegação `OfficeAssignment`.
-- Atualiza a entidade `Instructor` recuperada com valores do associador de modelos. `TryUpdateModel` impede o [excesso de postagem](xref:data/ef-rp/crud#overposting).
-- Se o local do escritório estiver em branco, `Instructor.OfficeAssignment` será definido como nulo. Quando `Instructor.OfficeAssignment` é nulo, a linha relacionada na tabela `OfficeAssignment` é excluída.
+* Obtém a entidade `Instructor` atual do banco de dados usando o carregamento adiantado para a propriedade de navegação `OfficeAssignment`.
+* Atualiza a entidade `Instructor` recuperada com valores do associador de modelos. `TryUpdateModel` impede o [excesso de postagem](xref:data/ef-rp/crud#overposting).
+* Se o local do escritório estiver em branco, `Instructor.OfficeAssignment` será definido como nulo. Quando `Instructor.OfficeAssignment` é nulo, a linha relacionada na tabela `OfficeAssignment` é excluída.
 
 ### <a name="update-the-instructor-edit-page"></a>Atualizar a página Editar Instrutor
 

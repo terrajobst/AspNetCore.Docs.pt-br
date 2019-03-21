@@ -7,12 +7,12 @@ ms.custom: mvc
 ms.date: 02/05/2019
 ms.topic: tutorial
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: ac94f2e2876c2d8d571a451e4641787ffe37b3d2
-ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
+ms.openlocfilehash: 1606b872df2df839266ef17efee1948065c4efae
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56103027"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58209408"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Atualizar dados relacionados - ASP.NET MVC com EF Core
 
@@ -131,11 +131,11 @@ Substitua o método HttpPost `Edit` pelo seguinte código para manipular atualiz
 
 O código faz o seguinte:
 
--  Altera o nome do método para `EditPost` porque a assinatura agora é a mesma do método HttpGet `Edit` (o atributo `ActionName` especifica que a URL `/Edit/` ainda é usada).
+* Altera o nome do método para `EditPost` porque a assinatura agora é a mesma do método HttpGet `Edit` (o atributo `ActionName` especifica que a URL `/Edit/` ainda é usada).
 
--  Obtém a entidade Instructor atual do banco de dados usando o carregamento adiantado para a propriedade de navegação `OfficeAssignment`. Isso é o mesmo que você fez no método HttpGet `Edit`.
+* Obtém a entidade Instructor atual do banco de dados usando o carregamento adiantado para a propriedade de navegação `OfficeAssignment`. Isso é o mesmo que você fez no método HttpGet `Edit`.
 
--  Atualiza a entidade Instructor recuperada com valores do associador de modelos. A sobrecarga `TryUpdateModel` permite que você adicione à lista de permissões as propriedades que você deseja incluir. Isso impede o excesso de postagem, conforme explicado no [segundo tutorial](crud.md).
+* Atualiza a entidade Instructor recuperada com valores do associador de modelos. A sobrecarga `TryUpdateModel` permite que você adicione à lista de permissões as propriedades que você deseja incluir. Isso impede o excesso de postagem, conforme explicado no [segundo tutorial](crud.md).
 
     <!-- Snippets don't play well with <ul> [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?range=241-244)] -->
 
@@ -146,7 +146,7 @@ O código faz o seguinte:
         i => i.FirstMidName, i => i.LastName, i => i.HireDate, i => i.OfficeAssignment))
     ```
 
--   Se o local do escritório estiver em branco, a propriedade Instructor.OfficeAssignment será definida como nula para que a linha relacionada na tabela OfficeAssignment seja excluída.
+* Se o local do escritório estiver em branco, a propriedade Instructor.OfficeAssignment será definida como nula para que a linha relacionada na tabela OfficeAssignment seja excluída.
 
     <!-- Snippets don't play well with <ul>  "intro/samples/cu/Controllers/InstructorsController.cs"} -->
 
@@ -157,7 +157,7 @@ O código faz o seguinte:
     }
     ```
 
-- Salva as alterações no banco de dados.
+* Salva as alterações no banco de dados.
 
 ### <a name="update-the-instructor-edit-view"></a>Atualizar a exibição Editar Instrutor
 
@@ -225,7 +225,7 @@ Em *Views/Instructors/Edit.cshtml*, adicione um campo **Cursos** com uma matriz 
 
 <a id="notepad"></a>
 > [!NOTE]
-> Quando você colar o código no Visual Studio, as quebras de linha serão alteradas de uma forma que divide o código.  Pressione Ctrl+Z uma vez para desfazer a formatação automática.  Isso corrigirá as quebras de linha para que elas se pareçam com o que você vê aqui. O recuo não precisa ser perfeito, mas cada uma das linhas `@</tr><tr>`, `@:<td>`, `@:</td>` e `@:</tr>` precisa estar em uma única linha, conforme mostrado, ou você receberá um erro de tempo de execução. Com o bloco de novo código selecionado, pressione Tab três vezes para alinhar o novo código com o código existente. Verifique o status deste problema [aqui](https://developercommunity.visualstudio.com/content/problem/147795/razor-editor-malforms-pasted-markup-and-creates-in.html).
+> Quando você colar o código no Visual Studio, as quebras de linha serão alteradas de uma forma que divide o código. Pressione Ctrl+Z uma vez para desfazer a formatação automática. Isso corrigirá as quebras de linha para que elas se pareçam com o que você vê aqui. O recuo não precisa ser perfeito, mas cada uma das linhas `@</tr><tr>`, `@:<td>`, `@:</td>` e `@:</tr>` precisa estar em uma única linha, conforme mostrado, ou você receberá um erro de tempo de execução. Com o bloco de novo código selecionado, pressione Tab três vezes para alinhar o novo código com o código existente. Verifique o status deste problema [aqui](https://developercommunity.visualstudio.com/content/problem/147795/razor-editor-malforms-pasted-markup-and-creates-in.html).
 
 [!code-html[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
 
@@ -250,7 +250,7 @@ Em *InstructorsController.cs*, exclua o método `DeleteConfirmed` e insira o có
 
 Este código faz as seguintes alterações:
 
-* Executa o carregamento adiantado para a propriedade de navegação `CourseAssignments`.  Você precisa incluir isso ou o EF não reconhecerá as entidades `CourseAssignment` relacionadas e não as excluirá.  Para evitar a necessidade de lê-las aqui, você pode configurar a exclusão em cascata no banco de dados.
+* Executa o carregamento adiantado para a propriedade de navegação `CourseAssignments`. Você precisa incluir isso ou o EF não reconhecerá as entidades `CourseAssignment` relacionadas e não as excluirá. Para evitar a necessidade de lê-las aqui, você pode configurar a exclusão em cascata no banco de dados.
 
 * Se o instrutor a ser excluído é atribuído como administrador de qualquer departamento, remove a atribuição de instrutor desse departamento.
 

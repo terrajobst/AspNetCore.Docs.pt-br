@@ -5,12 +5,12 @@ description: Saiba como os componentes de exibição são usados no ASP.NET Core
 ms.author: riande
 ms.date: 1/30/2019
 uid: mvc/views/view-components
-ms.openlocfilehash: d979c9480f7bffff993f0ea526bdc231b940baa2
-ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
+ms.openlocfilehash: b18473c6a76c4dc9030f0a032db1aff733f5acb7
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56410476"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58264779"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componentes de exibição no ASP.NET Core
 
@@ -316,6 +316,7 @@ Use o componente de exibição Auxiliar de Marca no arquivo de marcação do Raz
 <vc:priority-list max-priority="999" is-done="false">
 </vc:priority-list>
 ```
+
 ::: moniker-end
 
 A assinatura do método de `PriorityList.Invoke` é síncrona, mas o Razor localiza e chama o método com `Component.InvokeAsync` no arquivo de marcação.

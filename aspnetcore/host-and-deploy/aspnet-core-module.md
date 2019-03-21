@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/26/2019
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: 302cfb00127c223aeb5e51e4d0a9ef3cb69b10eb
-ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
+ms.openlocfilehash: ead3732d2c272f0868e823726ffd415a6c74f444
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56899366"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265454"
 ---
 # <a name="aspnet-core-module"></a>Módulo do ASP.NET Core
 
@@ -72,7 +72,7 @@ As seguintes características se aplicam ao hospedar em processo:
 * No ASP.NET Core 2.2.1 ou anterior, <xref:System.IO.Directory.GetCurrentDirectory*> retorna o diretório de trabalho do processo iniciado pelo IIS em vez de o diretório do aplicativo (por exemplo, *C:\Windows\System32\inetsrv* para *w3wp.exe*).
 
   Para obter o código de exemplo que define o diretório atual do aplicativo, confira a [classe CurrentDirectoryHelpers](https://github.com/aspnet/Docs/tree/master/aspnetcore/host-and-deploy/aspnet-core-module/samples_snapshot/2.x/CurrentDirectoryHelpers.cs). Chame o método `SetCurrentDirectory`. As chamadas seguintes a <xref:System.IO.Directory.GetCurrentDirectory*> fornecem o diretório do aplicativo.
-  
+
 * Ao hospedar em processo, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> não é chamado internamente para inicializar um usuário. Portanto, uma implementação <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> usada para transformar as declarações após cada autenticação não é ativada por padrão. Quando a transformação de declarações com uma implementação <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation>, chame <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> para adicionar serviços de autenticação:
 
   ```csharp
@@ -81,7 +81,7 @@ As seguintes características se aplicam ao hospedar em processo:
       services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
       services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
   }
-  
+
   public void Configure(IApplicationBuilder app)
   {
       app.UseAuthentication();
@@ -173,10 +173,10 @@ O seguinte arquivo *web.config* é publicado para uma [implantação dependente 
       <handlers>
         <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
       </handlers>
-      <aspNetCore processPath="dotnet" 
-                  arguments=".\MyApp.dll" 
-                  stdoutLogEnabled="false" 
-                  stdoutLogFile=".\logs\stdout" 
+      <aspNetCore processPath="dotnet"
+                  arguments=".\MyApp.dll"
+                  stdoutLogEnabled="false"
+                  stdoutLogFile=".\logs\stdout"
                   hostingModel="InProcess" />
     </system.webServer>
   </location>
@@ -194,9 +194,9 @@ O seguinte arquivo *web.config* é publicado para uma [implantação dependente 
     <handlers>
       <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
     </handlers>
-    <aspNetCore processPath="dotnet" 
-                arguments=".\MyApp.dll" 
-                stdoutLogEnabled="false" 
+    <aspNetCore processPath="dotnet"
+                arguments=".\MyApp.dll"
+                stdoutLogEnabled="false"
                 stdoutLogFile=".\logs\stdout" />
   </system.webServer>
 </configuration>
@@ -216,9 +216,9 @@ O seguinte *web.config* é publicado para uma [implantação autossuficiente](/d
       <handlers>
         <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
       </handlers>
-      <aspNetCore processPath=".\MyApp.exe" 
-                  stdoutLogEnabled="false" 
-                  stdoutLogFile=".\logs\stdout" 
+      <aspNetCore processPath=".\MyApp.exe"
+                  stdoutLogEnabled="false"
+                  stdoutLogFile=".\logs\stdout"
                   hostingModel="InProcess" />
     </system.webServer>
   </location>
@@ -238,8 +238,8 @@ A propriedade <xref:System.Configuration.SectionInformation.InheritInChildApplic
     <handlers>
       <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
     </handlers>
-    <aspNetCore processPath=".\MyApp.exe" 
-                stdoutLogEnabled="false" 
+    <aspNetCore processPath=".\MyApp.exe"
+                stdoutLogEnabled="false"
                 stdoutLogFile=".\logs\stdout" />
   </system.webServer>
 </configuration>
@@ -588,29 +588,29 @@ Os logs de instalador do pacote de hospedagem para o módulo são encontrados em
 
 **IIS (x86/amd64):**
 
-   * %windir%\System32\inetsrv\aspnetcore.dll
+* %windir%\System32\inetsrv\aspnetcore.dll
 
-   * %windir%\SysWOW64\inetsrv\aspnetcore.dll
+* %windir%\SysWOW64\inetsrv\aspnetcore.dll
 
 ::: moniker range=">= aspnetcore-2.2"
 
-   * %ProgramFiles%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
+* %ProgramFiles%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
 
-   * %ProgramFiles(x86)%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
+* %ProgramFiles(x86)%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
 
 ::: moniker-end
 
 **IIS Express (x86/amd64):**
 
-   * %ProgramFiles%\IIS Express\aspnetcore.dll
+* %ProgramFiles%\IIS Express\aspnetcore.dll
 
-   * %ProgramFiles(x86)%\IIS Express\aspnetcore.dll
+* %ProgramFiles(x86)%\IIS Express\aspnetcore.dll
 
 ::: moniker range=">= aspnetcore-2.2"
 
-   * %ProgramFiles%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
+* %ProgramFiles%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
 
-   * %ProgramFiles(x86)%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
+* %ProgramFiles(x86)%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
 
 ::: moniker-end
 
@@ -618,20 +618,21 @@ Os logs de instalador do pacote de hospedagem para o módulo são encontrados em
 
 **IIS**
 
-   * %windir%\System32\inetsrv\config\schema\aspnetcore_schema.xml
+* %windir%\System32\inetsrv\config\schema\aspnetcore_schema.xml
 
 ::: moniker range=">= aspnetcore-2.2"
 
-   * %windir%\System32\inetsrv\config\schema\aspnetcore_schema_v2.xml
+* %windir%\System32\inetsrv\config\schema\aspnetcore_schema_v2.xml
 
 ::: moniker-end
+
 **IIS Express**
 
-   * %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema.xml
+* %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema.xml
 
 ::: moniker range=">= aspnetcore-2.2"
 
-   * %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema_v2.xml
+* %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema_v2.xml
 
 ::: moniker-end
 
@@ -639,13 +640,13 @@ Os logs de instalador do pacote de hospedagem para o módulo são encontrados em
 
 **IIS**
 
-   * %windir%\System32\inetsrv\config\applicationHost.config
+* %windir%\System32\inetsrv\config\applicationHost.config
 
 **IIS Express**
 
-   * Visual Studio: {APPLICATION ROOT}\\.vs\config\applicationHost.config
-   
-   * *iisexpress.exe* CLI: %USERPROFILE%\Documents\IISExpress\config\applicationhost.config
+* Visual Studio: {APPLICATION ROOT}\\.vs\config\applicationHost.config
+
+* *iisexpress.exe* CLI: %USERPROFILE%\Documents\IISExpress\config\applicationhost.config
 
 Os arquivos podem ser encontrados pesquisando por *aspnetcore* no arquivo *applicationHost.config*.
 

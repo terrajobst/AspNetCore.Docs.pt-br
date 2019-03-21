@@ -7,12 +7,12 @@ ms.author: jkotalik
 ms.custom: mvc
 ms.date: 02/26/2019
 uid: fundamentals/middleware/request-response
-ms.openlocfilehash: f29c0aff95887d639cf3d1a8c8fe9f9228159f7a
-ms.sourcegitcommit: 6ddd8a7675c1c1d997c8ab2d4498538e44954cac
+ms.openlocfilehash: b6e3cd4b79e0c062b271c65cd5ecbdb4ef80c3a1
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57400717"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58208051"
 ---
 # <a name="request-and-response-operations-in-aspnet-core"></a>Operações de solicitação e de resposta no ASP.NET Core
 
@@ -80,5 +80,5 @@ Agora que as propriedades `Body` e `BodyPipe` estão disponíveis para `HttpRequ
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Introdução ao System.IO.Pipelines](https://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/)
-* <xref:fundamentals/middleware/write>
+- [Introdução ao System.IO.Pipelines](https://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/)
+- <xref:fundamentals/middleware/write>

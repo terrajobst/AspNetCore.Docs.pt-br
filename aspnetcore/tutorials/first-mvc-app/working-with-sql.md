@@ -5,12 +5,12 @@ description: Saiba mais sobre como usar o LocalDB ou o SQLite do SQL Server em u
 ms.author: riande
 ms.date: 03/07/2017
 uid: tutorials/first-mvc-app/working-with-sql
-ms.openlocfilehash: a6b2026a43bda94a84a05749e9ea395308dec231
-ms.sourcegitcommit: 34bf9fc6ea814c039401fca174642f0acb14be3c
+ms.openlocfilehash: 983742276f3519b540cd62e4ada6eb5189650aa8
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "57841430"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265212"
 ---
 # <a name="work-with-sql-in-aspnet-core"></a>Trabalhar com o SQL no ASP.NET Core
 
@@ -18,7 +18,6 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 O objeto `MvcMovieContext` cuida da tarefa de se conectar ao banco de dados e mapear objetos `Movie` para registros do banco de dados. O contexto de banco de dados é registrado com o contêiner [Injeção de Dependência](xref:fundamentals/dependency-injection) no método `ConfigureServices` no arquivo *Startup.cs*:
 
-<!-- VS -------------------------->
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=13-99)]
@@ -27,7 +26,6 @@ O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET 
 
 [!code-json[](start-mvc/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
 
-<!-- Code -------------------------->
 # <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
@@ -36,12 +34,10 @@ O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET 
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/appsettingsSQLite.json?highlight=2&range=8-10)]
 
----  
-<!-- End of VS tabs -->
+---
 
 Quando você implanta o aplicativo em um servidor de teste ou de produção, você pode usar uma variável de ambiente ou outra abordagem para definir a cadeia de conexão como um SQL Server real. Consulte [Configuração](xref:fundamentals/configuration/index) para obter mais informações.
 
-<!-- VS -------------------------->
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 ## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
@@ -71,7 +67,7 @@ Observe o ícone de chave ao lado de `ID`. Por padrão, o EF tornará uma propri
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
----  
+---
 <!-- End of VS tabs -->
 
 ## <a name="seed-the-database"></a>Propagar o banco de dados
@@ -90,6 +86,7 @@ if (context.Movie.Any())
 ```
 
 <a name="si"></a>
+
 ### <a name="add-the-seed-initializer"></a>Adicionar o inicializador de semeadura
 
 Substitua o conteúdo de *Program.cs* pelo código a seguir:
@@ -98,7 +95,6 @@ Substitua o conteúdo de *Program.cs* pelo código a seguir:
 
 Testar o aplicativo
 
-<!-- VS -------------------------->
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Exclua todos os registros no BD. Faça isso com os links Excluir no navegador ou no SSOX.
@@ -113,13 +109,11 @@ Testar o aplicativo
     * Se você estiver executando o VS no modo sem depuração, pressione F5 para executar no modo de depuração
     * Se você estiver executando o VS no modo de depuração, pare o depurador e pressione F5
 
-<!-- Code -------------------------->
 # <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Exclua todos os registros no BD (para que o método de semeadura seja executado). Interrompa e inicie o aplicativo para propagar o banco de dados.
 
----  
-<!-- End of VS tabs -->
+---
 
 O aplicativo mostra os dados propagados.
 
@@ -127,4 +121,4 @@ O aplicativo mostra os dados propagados.
 
 > [!div class="step-by-step"]
 > [Anterior](adding-model.md)
-> [Próximo](controller-methods-views.md)  
+> [Próximo](controller-methods-views.md)

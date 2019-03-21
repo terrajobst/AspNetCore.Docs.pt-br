@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/07/2018
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: a6c264e460855c9f1d6f5a363eb7ee2cf69619ee
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: 3fb8ebe415d0619d33302a08e97da78db0ad1d1e
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57346288"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265505"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---concurrency---8-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Simultaneidade – 8 de 8
 
@@ -95,9 +95,9 @@ Para detectar conflitos de simultaneidade, uma coluna de controle de [rowversion
 
 O BD gera um número `rowversion` sequencial que é incrementado sempre que a linha é atualizada. Em um comando `Update` ou `Delete`, a cláusula `Where` inclui o valor buscado de `rowversion`. Se a linha que está sendo atualizada foi alterada:
 
- * `rowversion` não corresponde ao valor buscado.
- * Os comandos `Update` ou `Delete` não encontram uma linha porque a cláusula `Where` inclui a `rowversion` buscada.
- * Uma `DbUpdateConcurrencyException` é gerada.
+* `rowversion` não corresponde ao valor buscado.
+* Os comandos `Update` ou `Delete` não encontram uma linha porque a cláusula `Where` inclui a `rowversion` buscada.
+* Uma `DbUpdateConcurrencyException` é gerada.
 
 No EF Core, quando nenhuma linha é atualizada por um comando `Update` ou `Delete`, uma exceção de simultaneidade é gerada.
 
@@ -152,6 +152,7 @@ Os comandos anteriores:
 * Executam migrações para atualizar o BD.
 
 <a name="scaffold"></a>
+
 ## <a name="scaffold-the-departments-model"></a>Gerar o modelo Departamentos por scaffolding
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio) 
@@ -272,7 +273,6 @@ A página Excluir detectou conflitos de simultaneidade quando a entidade foi alt
 Atualize *Pages/Departments/Delete.cshtml* com o seguinte código:
 
 [!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
-
 
 A marcação anterior faz as seguintes alterações:
 

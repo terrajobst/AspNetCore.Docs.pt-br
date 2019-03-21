@@ -5,12 +5,12 @@ description: ''
 ms.author: riande
 ms.date: 07/03/2017
 uid: mvc/controllers/actions
-ms.openlocfilehash: 8289424b3cd3678bea18a25c7850e409795d1577
-ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
+ms.openlocfilehash: 952e4dbb2c4343ca87ace1535e4a5968faf088cf
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56410422"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58209009"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Tratar solicitações com controladores no ASP.NET Core MVC
 
@@ -98,7 +98,7 @@ Normalmente, os aplicativos compartilham partes de seu fluxo de trabalho. Exempl
 A maioria dos atributos de filtro, como `[Authorize]`, pode ser aplicada no nível do controlador ou da ação, dependendo do nível desejado de granularidade.
 
 O tratamento de erro e o cache de resposta costumam ser interesses paralelos:
-   * [Tratar erros](xref:mvc/controllers/filters#exception-filters)
-   * [Cache de resposta](xref:performance/caching/response)
+* [Tratar erros](xref:mvc/controllers/filters#exception-filters)
+* [Cache de resposta](xref:performance/caching/response)
 
 Muitos interesses paralelos podem ser abordados com filtros ou um [middleware](xref:fundamentals/middleware/index) personalizado.

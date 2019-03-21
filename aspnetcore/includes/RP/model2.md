@@ -1,7 +1,16 @@
+---
+ms.openlocfilehash: 86cf1874677dc8b79e3223fb0819eb1881c69a11
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265608"
+---
 <a name="dc"></a>
-### 
 
-Adicione a seguinte classe `RazorPagesMovieContext` à pasta *Models*:  
+### <a name="add-a-database-context-class"></a>Adicionar uma classe de contexto de banco de dados
+
+Adicione a seguinte classe `RazorPagesMovieContext` à pasta *Models*:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 

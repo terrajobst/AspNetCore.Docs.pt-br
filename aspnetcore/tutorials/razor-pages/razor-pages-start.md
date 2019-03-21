@@ -5,12 +5,12 @@ description: Esta série de tutoriais mostra como usar Razor Pages no ASP.NET Co
 ms.author: riande
 ms.date: 12/5/2018
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 29d9369cfa6a4c76f015b5a819a27dfa280d4075
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: 88449a0064dad42d8d2bf9fbdd67078e4c2ba8de
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57346405"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58210048"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Introdução às Páginas do Razor no ASP.NET Core
 
@@ -146,7 +146,6 @@ Contém as Razor Pages e os arquivos de suporte. Cada Razor Page é um par de ar
 * Um arquivo *.cshtml.cs* que contém o código C# que manipula os eventos de página.
 
 Arquivos de suporte têm nomes que começam com um sublinhado. Por exemplo, o arquivo *_Layout.cshtml* configura os elementos de interface do usuário comuns a todas as páginas. Esse arquivo define o menu de navegação na parte superior da página e a notificação de direitos autorais na parte inferior da página. Para obter mais informações, consulte <xref:mvc/views/layout>.
-
 
 ### <a name="wwwroot-folder"></a>Pasta wwwroot
 

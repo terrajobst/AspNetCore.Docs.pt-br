@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/28/2019
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: e5bb1a86453bb945789cc1f4b56616551e316615
-ms.sourcegitcommit: 6ddd8a7675c1c1d997c8ab2d4498538e44954cac
+ms.openlocfilehash: de740775e124298f7c3d3be0c6f5a7311174116d
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57400678"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265488"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>Módulos do IIS com o ASP.NET Core
 
@@ -123,7 +123,7 @@ Se optar pela remoção de um módulo com uma configuração em *web.config*, de
     </system.webServer>
    </configuration>
    ```
-   
+
 Para adicionar ou remover módulos para IIS Express usando o *web.config*, modifique o *applicationHost.config* para desbloquear a seção `<modules>`:
 
 1. Abra *{APPLICATION ROOT}\\.vs\config\applicationhost.config*.
@@ -131,17 +131,17 @@ Para adicionar ou remover módulos para IIS Express usando o *web.config*, modif
 1. Localize o elemento `<section>` para módulos do IIS e a altere `overrideModeDefault` de `Deny` para `Allow`:
 
    ```xml
-   <section name="modules" 
-            allowDefinition="MachineToApplication" 
+   <section name="modules"
+            allowDefinition="MachineToApplication"
             overrideModeDefault="Allow" />
    ```
-   
+
 1. Localize a seção `<location path="" overrideMode="Allow"><system.webServer><modules>`. Para todos os módulos que você deseja remover, defina `lockItem` de `true` para `false`. No exemplo a seguir, o módulo CGI é desbloqueado:
 
    ```xml
    <add name="CgiModule" lockItem="false" />
    ```
-   
+
 1. Após a seção `<modules>` e módulos individuais serem desbloqueados, você pode adicionar ou remover módulos do IIS usando o arquivo *web.config* do aplicativo para executar o aplicativo no IIS Express.
 
 Um módulo do IIS também pode ser removido com *Appcmd.exe*. Forneça o `MODULE_NAME` e `APPLICATION_NAME` no comando:

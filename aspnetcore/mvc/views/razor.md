@@ -5,12 +5,12 @@ description: Saiba mais sobre a sintaxe de marcação Razor para inserir código
 ms.author: riande
 ms.date: 10/26/2018
 uid: mvc/views/razor
-ms.openlocfilehash: 8e9ec3c5040e5a24cd5f773b1232897338741c0c
-ms.sourcegitcommit: 184ba5b44d1c393076015510ac842b77bc9d4d93
+ms.openlocfilehash: 254c85ee9e74dc72170b19d27fbc5f1ae7ccd3dc
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "54396253"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58264752"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -69,9 +69,9 @@ Expressões implícitas **não podem** conter elementos genéricos de C#, pois c
 
 O código anterior gera um erro de compilador semelhante a um dos seguintes:
 
- * O elemento "int" não foi fechado. Todos os elementos devem ter fechamento automático ou ter uma marca de fim correspondente.
- *  Não é possível converter o grupo de métodos "GenericMethod" em um "object" de tipo não delegado. Você pretendia invocar o método? 
- 
+* O elemento "int" não foi fechado. Todos os elementos devem ter fechamento automático ou ter uma marca de fim correspondente.
+* Não é possível converter o grupo de métodos "GenericMethod" em um "object" de tipo não delegado. Você pretendia invocar o método?
+
 Chamadas de método genérico devem ser encapsuladas em uma [expressão Razor explícita](#explicit-razor-expressions) ou em um [bloco de código Razor](#razor-code-blocks).
 
 ## <a name="explicit-razor-expressions"></a>Expressões Razor explícitas
@@ -199,7 +199,7 @@ Use essa abordagem para renderizar HTML que não está circundado por uma marca 
 
 A marca **\<text>** é útil para controlar o espaço em branco ao renderizar conteúdo:
 
-* Somente o conteúdo entre a marca **\<text>** é renderizado. 
+* Somente o conteúdo entre a marca **\<text>** é renderizado.
 * Não aparece nenhum espaço em branco antes ou depois da marca **\<text>** na saída HTML.
 
 ### <a name="explicit-line-transition-with-"></a>Transição de linha explícita com @:
@@ -337,7 +337,6 @@ Há suporte para as seguintes instruções em loop:
 
 Em C#, uma instrução `using` é usada para garantir que um objeto seja descartado. No Razor, o mesmo mecanismo é usado para criar Auxiliares HTML que têm conteúdo adicional. No código a seguir, os Auxiliares HTML renderizam uma marca de formulário com a instrução `@using`:
 
-
 ```cshtml
 @using (Html.BeginForm())
 {
@@ -425,6 +424,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 Mais adiante neste artigo, a seção [Inspecionar a classe do Razor C# gerada para uma exibição](#inspect-the-razor-c-class-generated-for-a-view) explica como exibir essa classe gerada.
 
 <a name="using"></a>
+
 ### <a name="using"></a>@using
 
 A diretiva `@using` adiciona a diretiva `using` de C# à exibição gerada:
@@ -579,7 +579,7 @@ Você também pode fornecer um modelo Razor embutido como um argumento para um m
 @using Microsoft.AspNetCore.Html
 
 @functions {
-    public static IHtmlContent Repeat(IEnumerable<dynamic> items, int times, 
+    public static IHtmlContent Repeat(IEnumerable<dynamic> items, int times,
         Func<dynamic, IHtmlContent> template)
     {
         var html = new HtmlContentBuilder();
