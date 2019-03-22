@@ -7,40 +7,40 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/12/2019
 uid: spa/blazor/get-started
-ms.openlocfilehash: 667c57d536450fa2f8ae1cabc7c5a76a16d38a55
-ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
+ms.openlocfilehash: f46bd9af0f0762e794349d4e98de5c086a690d72
+ms.sourcegitcommit: a1c43150ed46aa01572399e8aede50d4668745ca
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/08/2019
-ms.locfileid: "57665581"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58327223"
 ---
-# <a name="get-started-with-blazor"></a><span data-ttu-id="cc942-103">Introdução ao Blazor</span><span class="sxs-lookup"><span data-stu-id="cc942-103">Get started with Blazor</span></span>
+# <a name="get-started-with-blazor"></a><span data-ttu-id="00024-103">Introdução ao Blazor</span><span class="sxs-lookup"><span data-stu-id="00024-103">Get started with Blazor</span></span>
 
-<span data-ttu-id="cc942-104">Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="cc942-104">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="00024-104">Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="00024-104">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
 
 [!INCLUDE[](~/includes/razor-components-preview-notice.md)]
 
-# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="cc942-105">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="cc942-105">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="00024-105">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="00024-105">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="cc942-106">Pré-requisitos:</span><span class="sxs-lookup"><span data-stu-id="cc942-106">Prerequisites:</span></span>
+<span data-ttu-id="00024-106">Pré-requisitos:</span><span class="sxs-lookup"><span data-stu-id="00024-106">Prerequisites:</span></span>
 
 [!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
 
-<span data-ttu-id="cc942-107">Para criar seu primeiro projeto Blazor no Visual Studio:</span><span class="sxs-lookup"><span data-stu-id="cc942-107">To create your first Blazor project in Visual Studio:</span></span>
+<span data-ttu-id="00024-107">Para criar seu primeiro projeto Blazor no Visual Studio:</span><span class="sxs-lookup"><span data-stu-id="00024-107">To create your first Blazor project in Visual Studio:</span></span>
 
-1. <span data-ttu-id="cc942-108">Instale o versão mais recente [extensão de serviços de linguagem Blazor](https://go.microsoft.com/fwlink/?linkid=870389) do Visual Studio Marketplace.</span><span class="sxs-lookup"><span data-stu-id="cc942-108">Install the latest [Blazor Language Services extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace.</span></span> <span data-ttu-id="cc942-109">Esta etapa disponibiliza Blazor modelos para o Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="cc942-109">This step makes Blazor templates available to Visual Studio.</span></span>
-1. <span data-ttu-id="cc942-110">Verifique os modelos de Blazor disponíveis para uso com a CLI do .NET Core, executando o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="cc942-110">Make the Blazor templates available for use with the .NET Core CLI by running the following command in a command shell:</span></span>
+1. <span data-ttu-id="00024-108">Instale o versão mais recente [Blazor extensão](https://go.microsoft.com/fwlink/?linkid=870389) do Visual Studio Marketplace.</span><span class="sxs-lookup"><span data-stu-id="00024-108">Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace.</span></span> <span data-ttu-id="00024-109">Esta etapa disponibiliza Blazor modelos para o Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="00024-109">This step makes Blazor templates available to Visual Studio.</span></span>
+1. <span data-ttu-id="00024-110">Verifique os modelos de Blazor disponíveis para uso com a CLI do .NET Core, executando o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="00024-110">Make the Blazor templates available for use with the .NET Core CLI by running the following command in a command shell:</span></span>
 
    ```console
    dotnet new -i Microsoft.AspNetCore.Blazor.Templates::0.9.0-preview3-19154-02
    ```
 
-1. <span data-ttu-id="cc942-111">Selecione **arquivo** > **novo projeto** > **Web** > **aplicativo Web ASP.NET Core**.</span><span class="sxs-lookup"><span data-stu-id="cc942-111">Select **File** > **New Project** > **Web** > **ASP.NET Core Web Application**.</span></span>
-1. <span data-ttu-id="cc942-112">Certifique-se **.NET Core** e **ASP.NET Core 3.0** são selecionados na parte superior.</span><span class="sxs-lookup"><span data-stu-id="cc942-112">Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.</span></span>
-1. <span data-ttu-id="cc942-113">Escolha o modelo **Blazor** e selecione **OK**.</span><span class="sxs-lookup"><span data-stu-id="cc942-113">Choose the **Blazor** template and select **OK**.</span></span>
-1. <span data-ttu-id="cc942-114">Pressione **F5** para executar o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="cc942-114">Press **F5** to run the app.</span></span>
+1. <span data-ttu-id="00024-111">Selecione **arquivo** > **novo projeto** > **Web** > **aplicativo Web ASP.NET Core**.</span><span class="sxs-lookup"><span data-stu-id="00024-111">Select **File** > **New Project** > **Web** > **ASP.NET Core Web Application**.</span></span>
+1. <span data-ttu-id="00024-112">Certifique-se **.NET Core** e **ASP.NET Core 3.0** são selecionados na parte superior.</span><span class="sxs-lookup"><span data-stu-id="00024-112">Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.</span></span>
+1. <span data-ttu-id="00024-113">Escolha o modelo **Blazor** e selecione **OK**.</span><span class="sxs-lookup"><span data-stu-id="00024-113">Choose the **Blazor** template and select **OK**.</span></span>
+1. <span data-ttu-id="00024-114">Pressione **F5** para executar o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="00024-114">Press **F5** to run the app.</span></span>
 
-<span data-ttu-id="cc942-115">Parabéns!</span><span class="sxs-lookup"><span data-stu-id="cc942-115">Congratulations!</span></span> <span data-ttu-id="cc942-116">Você acaba de executar seu primeiro aplicativo Blazor!</span><span class="sxs-lookup"><span data-stu-id="cc942-116">You just ran your first Blazor app!</span></span>
+<span data-ttu-id="00024-115">Parabéns!</span><span class="sxs-lookup"><span data-stu-id="00024-115">Congratulations!</span></span> <span data-ttu-id="00024-116">Você acaba de executar seu primeiro aplicativo Blazor!</span><span class="sxs-lookup"><span data-stu-id="00024-116">You just ran your first Blazor app!</span></span>
 
 <!--
 
@@ -88,19 +88,19 @@ To create your first project Blazor project in Visual Studio for Mac:
 Congratulations! You just ran your first Blazor app!
 -->
 
-# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="cc942-117">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="cc942-117">.NET Core CLI</span></span>](#tab/netcore-cli/)
+# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="00024-117">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="00024-117">.NET Core CLI</span></span>](#tab/netcore-cli/)
 
-<span data-ttu-id="cc942-118">Pré-requisitos:</span><span class="sxs-lookup"><span data-stu-id="cc942-118">Prerequisites:</span></span>
+<span data-ttu-id="00024-118">Pré-requisitos:</span><span class="sxs-lookup"><span data-stu-id="00024-118">Prerequisites:</span></span>
 
-* [<span data-ttu-id="cc942-119">.NET core SDK 3.0 versão prévia</span><span class="sxs-lookup"><span data-stu-id="cc942-119">.NET Core SDK 3.0 Preview</span></span>](https://dotnet.microsoft.com/download/dotnet-core/3.0)
+* [<span data-ttu-id="00024-119">.NET core SDK 3.0 versão prévia</span><span class="sxs-lookup"><span data-stu-id="00024-119">.NET Core SDK 3.0 Preview</span></span>](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
-1. <span data-ttu-id="cc942-120">Adicione os modelos de Blazor, executando o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="cc942-120">Add the Blazor templates by running the following command in a command shell:</span></span>
+1. <span data-ttu-id="00024-120">Adicione os modelos de Blazor, executando o seguinte comando em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="00024-120">Add the Blazor templates by running the following command in a command shell:</span></span>
 
    ```console
    dotnet new -i Microsoft.AspNetCore.Blazor.Templates::0.9.0-preview3-19154-02
    ```
 
-1. <span data-ttu-id="cc942-121">Crie seu primeiro projeto Blazor em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="cc942-121">Create your first Blazor project in a command shell:</span></span>
+1. <span data-ttu-id="00024-121">Crie seu primeiro projeto Blazor em um shell de comando:</span><span class="sxs-lookup"><span data-stu-id="00024-121">Create your first Blazor project in a command shell:</span></span>
 
    ```console
    dotnet new blazor -o WebApplication1
@@ -108,62 +108,62 @@ Congratulations! You just ran your first Blazor app!
    dotnet run
    ```
 
-1. <span data-ttu-id="cc942-122">Em um navegador, navegue até `https://localhost:5001`.</span><span class="sxs-lookup"><span data-stu-id="cc942-122">In a browser, navigate to `https://localhost:5001`.</span></span>
+1. <span data-ttu-id="00024-122">Em um navegador, navegue até `https://localhost:5001`.</span><span class="sxs-lookup"><span data-stu-id="00024-122">In a browser, navigate to `https://localhost:5001`.</span></span>
 
-<span data-ttu-id="cc942-123">Parabéns!</span><span class="sxs-lookup"><span data-stu-id="cc942-123">Congratulations!</span></span> <span data-ttu-id="cc942-124">Você acaba de executar seu primeiro aplicativo Blazor!</span><span class="sxs-lookup"><span data-stu-id="cc942-124">You just ran your first Blazor app!</span></span>
+<span data-ttu-id="00024-123">Parabéns!</span><span class="sxs-lookup"><span data-stu-id="00024-123">Congratulations!</span></span> <span data-ttu-id="00024-124">Você acaba de executar seu primeiro aplicativo Blazor!</span><span class="sxs-lookup"><span data-stu-id="00024-124">You just ran your first Blazor app!</span></span>
 
 ---
 
-## <a name="blazor-project"></a><span data-ttu-id="cc942-125">Projeto Blazor</span><span class="sxs-lookup"><span data-stu-id="cc942-125">Blazor project</span></span>
+## <a name="blazor-project"></a><span data-ttu-id="00024-125">Projeto Blazor</span><span class="sxs-lookup"><span data-stu-id="00024-125">Blazor project</span></span>
 
-<span data-ttu-id="cc942-126">Quando o aplicativo é executado, várias páginas estão disponíveis nas guias na barra lateral:</span><span class="sxs-lookup"><span data-stu-id="cc942-126">When the app is run, multiple pages are available from tabs in the sidebar:</span></span>
+<span data-ttu-id="00024-126">Quando o aplicativo é executado, várias páginas estão disponíveis nas guias na barra lateral:</span><span class="sxs-lookup"><span data-stu-id="00024-126">When the app is run, multiple pages are available from tabs in the sidebar:</span></span>
 
-* <span data-ttu-id="cc942-127">Home</span><span class="sxs-lookup"><span data-stu-id="cc942-127">Home</span></span>
-* <span data-ttu-id="cc942-128">Contador</span><span class="sxs-lookup"><span data-stu-id="cc942-128">Counter</span></span>
-* <span data-ttu-id="cc942-129">Buscar dados</span><span class="sxs-lookup"><span data-stu-id="cc942-129">Fetch data</span></span>
+* <span data-ttu-id="00024-127">Home</span><span class="sxs-lookup"><span data-stu-id="00024-127">Home</span></span>
+* <span data-ttu-id="00024-128">Contador</span><span class="sxs-lookup"><span data-stu-id="00024-128">Counter</span></span>
+* <span data-ttu-id="00024-129">Buscar dados</span><span class="sxs-lookup"><span data-stu-id="00024-129">Fetch data</span></span>
 
-<span data-ttu-id="cc942-130">Na página Contador, selecione o botão **Clique aqui** para incrementar o contador sem uma atualização de página.</span><span class="sxs-lookup"><span data-stu-id="cc942-130">On the Counter page, select the **Click me** button to increment the counter without a page refresh.</span></span> <span data-ttu-id="cc942-131">Incrementar um contador em uma página da Web normalmente requer a gravação do JavaScript, mas Blazor fornece uma abordagem melhor usando C#.</span><span class="sxs-lookup"><span data-stu-id="cc942-131">Incrementing a counter in a webpage normally requires writing JavaScript, but Blazor provides a better approach using C#.</span></span>
+<span data-ttu-id="00024-130">Na página Contador, selecione o botão **Clique aqui** para incrementar o contador sem uma atualização de página.</span><span class="sxs-lookup"><span data-stu-id="00024-130">On the Counter page, select the **Click me** button to increment the counter without a page refresh.</span></span> <span data-ttu-id="00024-131">Incrementar um contador em uma página da Web normalmente requer a gravação do JavaScript, mas Blazor fornece uma abordagem melhor usando C#.</span><span class="sxs-lookup"><span data-stu-id="00024-131">Incrementing a counter in a webpage normally requires writing JavaScript, but Blazor provides a better approach using C#.</span></span>
 
-<span data-ttu-id="cc942-132">*Pages/Counter.cshtml*:</span><span class="sxs-lookup"><span data-stu-id="cc942-132">*Pages/Counter.cshtml*:</span></span>
+<span data-ttu-id="00024-132">*Pages/Counter.cshtml*:</span><span class="sxs-lookup"><span data-stu-id="00024-132">*Pages/Counter.cshtml*:</span></span>
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Counter1.cshtml)]
 
-<span data-ttu-id="cc942-133">Uma solicitação para `/counter` no navegador, conforme especificado pelo `@page` diretiva na parte superior, faz com que o componente de contador processar seu conteúdo.</span><span class="sxs-lookup"><span data-stu-id="cc942-133">A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the Counter component to render its content.</span></span> <span data-ttu-id="cc942-134">Componentes processam em uma representação na memória da árvore de renderização que pode ser usado para atualizar a interface do usuário de uma maneira flexível e eficiente.</span><span class="sxs-lookup"><span data-stu-id="cc942-134">Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.</span></span>
+<span data-ttu-id="00024-133">Uma solicitação para `/counter` no navegador, conforme especificado pelo `@page` diretiva na parte superior, faz com que o componente de contador processar seu conteúdo.</span><span class="sxs-lookup"><span data-stu-id="00024-133">A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the Counter component to render its content.</span></span> <span data-ttu-id="00024-134">Componentes processam em uma representação na memória da árvore de renderização que pode ser usado para atualizar a interface do usuário de uma maneira flexível e eficiente.</span><span class="sxs-lookup"><span data-stu-id="00024-134">Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.</span></span>
 
-<span data-ttu-id="cc942-135">Cada vez que o **Click me** botão é selecionado:</span><span class="sxs-lookup"><span data-stu-id="cc942-135">Each time the **Click me** button is selected:</span></span>
+<span data-ttu-id="00024-135">Cada vez que o **Click me** botão é selecionado:</span><span class="sxs-lookup"><span data-stu-id="00024-135">Each time the **Click me** button is selected:</span></span>
 
-* <span data-ttu-id="cc942-136">O `onclick` evento é disparado.</span><span class="sxs-lookup"><span data-stu-id="cc942-136">The `onclick` event is fired.</span></span>
-* <span data-ttu-id="cc942-137">O método `IncrementCount` é chamado.</span><span class="sxs-lookup"><span data-stu-id="cc942-137">The `IncrementCount` method is called.</span></span>
-* <span data-ttu-id="cc942-138">O `currentCount` é incrementado.</span><span class="sxs-lookup"><span data-stu-id="cc942-138">The `currentCount` is incremented.</span></span>
-* <span data-ttu-id="cc942-139">O componente é renderizado novamente.</span><span class="sxs-lookup"><span data-stu-id="cc942-139">The component is rendered again.</span></span>
+* <span data-ttu-id="00024-136">O `onclick` evento é disparado.</span><span class="sxs-lookup"><span data-stu-id="00024-136">The `onclick` event is fired.</span></span>
+* <span data-ttu-id="00024-137">O método `IncrementCount` é chamado.</span><span class="sxs-lookup"><span data-stu-id="00024-137">The `IncrementCount` method is called.</span></span>
+* <span data-ttu-id="00024-138">O `currentCount` é incrementado.</span><span class="sxs-lookup"><span data-stu-id="00024-138">The `currentCount` is incremented.</span></span>
+* <span data-ttu-id="00024-139">O componente é renderizado novamente.</span><span class="sxs-lookup"><span data-stu-id="00024-139">The component is rendered again.</span></span>
 
-<span data-ttu-id="cc942-140">O tempo de execução compara o novo conteúdo para o conteúdo anterior e só se aplica o conteúdo alterado para modelo de objeto de documento (DOM).</span><span class="sxs-lookup"><span data-stu-id="cc942-140">The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).</span></span>
+<span data-ttu-id="00024-140">O tempo de execução compara o novo conteúdo para o conteúdo anterior e só se aplica o conteúdo alterado para modelo de objeto de documento (DOM).</span><span class="sxs-lookup"><span data-stu-id="00024-140">The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).</span></span>
 
-<span data-ttu-id="cc942-141">Adicione um componente para outro componente usando uma sintaxe semelhante ao HTML.</span><span class="sxs-lookup"><span data-stu-id="cc942-141">Add a component to another component using an HTML-like syntax.</span></span> <span data-ttu-id="cc942-142">Componente são especificados usando atributos ou conteúdo filho.</span><span class="sxs-lookup"><span data-stu-id="cc942-142">Component parameters are specified using attributes or child content.</span></span> <span data-ttu-id="cc942-143">Por exemplo, um componente de contador pode ser adicionado a homepage do aplicativo adicionando um `<Counter />` elemento para o componente do índice.</span><span class="sxs-lookup"><span data-stu-id="cc942-143">For example, a Counter component can be added to the app's homepage by adding a `<Counter />` element to the Index component.</span></span>
+<span data-ttu-id="00024-141">Adicione um componente para outro componente usando uma sintaxe semelhante ao HTML.</span><span class="sxs-lookup"><span data-stu-id="00024-141">Add a component to another component using an HTML-like syntax.</span></span> <span data-ttu-id="00024-142">Componente são especificados usando atributos ou conteúdo filho.</span><span class="sxs-lookup"><span data-stu-id="00024-142">Component parameters are specified using attributes or child content.</span></span> <span data-ttu-id="00024-143">Por exemplo, um componente de contador pode ser adicionado a homepage do aplicativo adicionando um `<Counter />` elemento para o componente do índice.</span><span class="sxs-lookup"><span data-stu-id="00024-143">For example, a Counter component can be added to the app's homepage by adding a `<Counter />` element to the Index component.</span></span>
 
-<span data-ttu-id="cc942-144">Na *Pages*, substitua o componente de solicitação de pesquisa com um componente de contador:</span><span class="sxs-lookup"><span data-stu-id="cc942-144">In *Pages/Index.cshtml*, replace the Survey Prompt component with a Counter component:</span></span>
+<span data-ttu-id="00024-144">Na *Pages*, substitua o componente de solicitação de pesquisa com um componente de contador:</span><span class="sxs-lookup"><span data-stu-id="00024-144">In *Pages/Index.cshtml*, replace the Survey Prompt component with a Counter component:</span></span>
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Index1.cshtml?highlight=7)]
 
-<span data-ttu-id="cc942-145">Execute o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="cc942-145">Run the app.</span></span> <span data-ttu-id="cc942-146">A home page tem seu próprio contador.</span><span class="sxs-lookup"><span data-stu-id="cc942-146">The homepage has its own counter.</span></span>
+<span data-ttu-id="00024-145">Execute o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="00024-145">Run the app.</span></span> <span data-ttu-id="00024-146">A home page tem seu próprio contador.</span><span class="sxs-lookup"><span data-stu-id="00024-146">The homepage has its own counter.</span></span>
 
-<span data-ttu-id="cc942-147">Para adicionar um parâmetro para o componente de contador, atualize o componente `@functions` bloco:</span><span class="sxs-lookup"><span data-stu-id="cc942-147">To add a parameter to the Counter component, update the component's `@functions` block:</span></span>
+<span data-ttu-id="00024-147">Para adicionar um parâmetro para o componente de contador, atualize o componente `@functions` bloco:</span><span class="sxs-lookup"><span data-stu-id="00024-147">To add a parameter to the Counter component, update the component's `@functions` block:</span></span>
 
-* <span data-ttu-id="cc942-148">Adicionar uma propriedade para `IncrementAmount` decorada com o `[Parameter]` atributo.</span><span class="sxs-lookup"><span data-stu-id="cc942-148">Add a property for `IncrementAmount` decorated with the `[Parameter]` attribute.</span></span>
-* <span data-ttu-id="cc942-149">Altere o método `IncrementCount` para usar o `IncrementAmount` ao aumentar o valor de `currentCount`.</span><span class="sxs-lookup"><span data-stu-id="cc942-149">Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.</span></span>
+* <span data-ttu-id="00024-148">Adicionar uma propriedade para `IncrementAmount` decorada com o `[Parameter]` atributo.</span><span class="sxs-lookup"><span data-stu-id="00024-148">Add a property for `IncrementAmount` decorated with the `[Parameter]` attribute.</span></span>
+* <span data-ttu-id="00024-149">Altere o método `IncrementCount` para usar o `IncrementAmount` ao aumentar o valor de `currentCount`.</span><span class="sxs-lookup"><span data-stu-id="00024-149">Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.</span></span>
 
-<span data-ttu-id="cc942-150">*Pages/Counter.cshtml*:</span><span class="sxs-lookup"><span data-stu-id="cc942-150">*Pages/Counter.cshtml*:</span></span>
+<span data-ttu-id="00024-150">*Pages/Counter.cshtml*:</span><span class="sxs-lookup"><span data-stu-id="00024-150">*Pages/Counter.cshtml*:</span></span>
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.cshtml?highlight=4,8)]
 
-<span data-ttu-id="cc942-151">Especifique um parâmetro `IncrementAmount` no elemento `<Counter>` do componente Home usando um atributo.</span><span class="sxs-lookup"><span data-stu-id="cc942-151">Specify an `IncrementAmount` parameter in the Home component's `<Counter>` element using an attribute.</span></span>
+<span data-ttu-id="00024-151">Especifique um parâmetro `IncrementAmount` no elemento `<Counter>` do componente Home usando um atributo.</span><span class="sxs-lookup"><span data-stu-id="00024-151">Specify an `IncrementAmount` parameter in the Home component's `<Counter>` element using an attribute.</span></span>
 
-<span data-ttu-id="cc942-152">*Pages/Index.cshtml*:</span><span class="sxs-lookup"><span data-stu-id="cc942-152">*Pages/Index.cshtml*:</span></span>
+<span data-ttu-id="00024-152">*Pages/Index.cshtml*:</span><span class="sxs-lookup"><span data-stu-id="00024-152">*Pages/Index.cshtml*:</span></span>
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Index2.cshtml)]
 
-<span data-ttu-id="cc942-153">Execute o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="cc942-153">Run the app.</span></span> <span data-ttu-id="cc942-154">A home page tem seu próprio contador que incrementa dez cada vez que o **Click me** botão é selecionado.</span><span class="sxs-lookup"><span data-stu-id="cc942-154">The homepage has its own counter that increments by ten each time the **Click me** button is selected.</span></span>
+<span data-ttu-id="00024-153">Execute o aplicativo.</span><span class="sxs-lookup"><span data-stu-id="00024-153">Run the app.</span></span> <span data-ttu-id="00024-154">A home page tem seu próprio contador que incrementa dez cada vez que o **Click me** botão é selecionado.</span><span class="sxs-lookup"><span data-stu-id="00024-154">The homepage has its own counter that increments by ten each time the **Click me** button is selected.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="cc942-155">Próximas etapas</span><span class="sxs-lookup"><span data-stu-id="cc942-155">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="00024-155">Próximas etapas</span><span class="sxs-lookup"><span data-stu-id="00024-155">Next steps</span></span>
 
 <xref:tutorials/first-razor-components-app>
