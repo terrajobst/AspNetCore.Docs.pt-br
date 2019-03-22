@@ -5,12 +5,12 @@ description: Este artigo descreve como personalizar o modelo de dados subjacente
 ms.author: avickers
 ms.date: 09/24/2018
 uid: security/authentication/customize_identity_model
-ms.openlocfilehash: 55346c571f180fa17a1108a622d991d15f365bae
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: 0aa7448ac37a97a4d09a04caf365f641f22f5997
+ms.sourcegitcommit: a1c43150ed46aa01572399e8aede50d4668745ca
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58209456"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58327295"
 ---
 # <a name="identity-model-customization-in-aspnet-core"></a>Personalização de modelo de identidade no ASP.NET Core
 
@@ -253,7 +253,7 @@ public abstract class IdentityDbContext<
          where TUserToken : IdentityUserToken<TKey>
 ```
 
-Também é possível usar a identidade sem funções (apenas declarações), caso em que um <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserContext`1> classe deve ser usada:
+Também é possível usar a identidade sem funções (apenas declarações), caso em que um <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserContext%601> classe deve ser usada:
 
 ```csharp
 // Uses the built-in non-role Identity types except with a custom User type
@@ -368,7 +368,7 @@ Siga estas etapas para alterar o tipo de PK:
 
 1. Se o banco de dados foi criado antes da alteração de PK, execute `Drop-Database` (PMC) ou `dotnet ef database drop` (CLI do .NET Core) para excluí-lo.
 2. Depois de confirmar a exclusão do banco de dados, remova a migração inicial com `Remove-Migration` (PMC) ou `dotnet ef migrations remove` (CLI do .NET Core).
-3. Atualizar o `ApplicationDbContext` classe para derivar de <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext`3>. Especifique o novo tipo de chave para `TKey`. Por exemplo, para usar um `Guid` tipo de chave:
+3. Atualizar o `ApplicationDbContext` classe para derivar de <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%603>. Especifique o novo tipo de chave para `TKey`. Por exemplo, para usar um `Guid` tipo de chave:
 
     ```csharp
     public class ApplicationDbContext
@@ -383,13 +383,13 @@ Siga estas etapas para alterar o tipo de PK:
 
     ::: moniker range=">= aspnetcore-2.0"
 
-    No código anterior, as classes genéricas <xref:Microsoft.AspNetCore.Identity.IdentityUser`1> e <xref:Microsoft.AspNetCore.Identity.IdentityRole`1> deve ser especificado para usar o novo tipo de chave.
+    No código anterior, as classes genéricas <xref:Microsoft.AspNetCore.Identity.IdentityUser%601> e <xref:Microsoft.AspNetCore.Identity.IdentityRole%601> deve ser especificado para usar o novo tipo de chave.
 
     ::: moniker-end
 
     ::: moniker range="<= aspnetcore-1.1"
 
-    No código anterior, as classes genéricas <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser`1> e <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole`1> deve ser especificado para usar o novo tipo de chave.
+    No código anterior, as classes genéricas <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser%601> e <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole%601> deve ser especificado para usar o novo tipo de chave.
 
     ::: moniker-end
 
