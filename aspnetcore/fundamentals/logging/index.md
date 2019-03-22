@@ -56,7 +56,7 @@ Saiba mais sobre [provedores de log internos](#built-in-logging-providers) e [pr
 
 ## <a name="create-logs"></a>Criar logs
 
-Obtenha um objeto <xref:Microsoft.Extensions.Logging.ILogger`1> da DI.
+Obtenha um objeto <xref:Microsoft.Extensions.Logging.ILogger%601> da DI.
 
 ::: moniker range=">= aspnetcore-2.0"
 
