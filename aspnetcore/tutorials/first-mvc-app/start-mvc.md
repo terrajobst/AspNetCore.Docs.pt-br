@@ -5,12 +5,12 @@ description: Saiba como começar a usar o ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/12/2018
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: c09c06f55c4179e9e2174f0063ab7387b7e4c31b
-ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
+ms.openlocfilehash: dbc07558d7d7672e60e8834dc3e4e9d8aab437e3
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56899223"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265284"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introdução ao ASP.NET Core MVC
 
@@ -36,7 +36,6 @@ No final, você terá um aplicativo que pode gerenciar e exibir dados de filmes.
 
 ## <a name="create-a-web-app"></a>Como criar um aplicativo Web
 
-<!-- VS -------------------------->
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 No Visual Studio, selecione **Arquivo > Novo > Projeto**.
@@ -62,7 +61,6 @@ Faça as configurações necessárias na caixa de diálogo **Novo aplicativo Web
 
 O Visual Studio usou um modelo padrão para o projeto MVC que você acabou de criar. Para que o aplicativo comece a funcionar agora mesmo, digite um nome de projeto e selecione algumas opções. Este é um projeto inicial básico e é um bom ponto de partida.
 
-<!-- Code -------------------------->
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte [Introdução ao VS Code](https://code.visualstudio.com/docs) e [Ajuda do Visual Studio Code](#visual-studio-code-help) para obter mais informações.
@@ -81,7 +79,6 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
   * `dotnet new mvc -o MvcMovie`: cria um novo projeto do ASP.NET Core MVC na pasta *MvcMovie*.
   * `code -r MvcMovie`: carrega o arquivo de projeto *MvcMovie.csproj* no Visual Studio Code.
 
-<!-- Mac -------------------------->
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Selecione **Arquivo** > **Nova Solução**.
@@ -96,12 +93,11 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
 
 * Nomeie o projeto **MvcMovie** e, em seguida, selecione **Criar**.
 
----  
-<!-- End of VS tabs -->
+---
 
 ### <a name="run-the-app"></a>Executar o aplicativo
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio) 
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 Pressione **Ctrl+F5** para executar o aplicativo no modo sem depuração.
 
@@ -117,13 +113,13 @@ Pressione **Ctrl+F5** para executar o aplicativo no modo sem depuração.
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code) 
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Pressione Ctrl + F5 para execução sem o depurador.
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-  O Visual Studio Code inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicia um navegador e navega para `https://localhost:5001`. A barra de endereços mostra `localhost:port:5001` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local.
+  O Visual Studio Code inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicializa um navegador e navega até `https://localhost:5001`. A barra de endereços mostra `localhost:port:5001` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local.
 
   Iniciar o aplicativo com Ctrl+F5 (modo de não depuração) permite que você faça alterações de código, salve o arquivo, atualize o navegador e veja as alterações de código. Muitos desenvolvedores preferem usar o modo sem depuração para atualizar a página e exibir alterações.
 
@@ -136,7 +132,7 @@ Selecione **Executar** > **Iniciar Sem Depuração** para iniciar o aplicativo. 
 * A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web. Quando você executar o aplicativo, verá um número da porta diferente.
 * Você pode iniciar o aplicativo no modo de depuração ou sem depuração no item de menu **Executar**.
 
-------
+---
 
 * Selecione **Aceitar** para dar consentimento de rastreamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
 
@@ -151,4 +147,4 @@ Selecione **Executar** > **Iniciar Sem Depuração** para iniciar o aplicativo. 
 Na próxima parte deste tutorial, você saberá mais sobre o MVC e começará a escrever um pouco de código.
 
 > [!div class="step-by-step"]
-> [Avançar](adding-controller.md)  
+> [Avançar](adding-controller.md)

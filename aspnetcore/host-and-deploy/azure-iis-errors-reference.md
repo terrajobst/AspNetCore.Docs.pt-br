@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/28/2019
 uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: 1c8cb31b306b38ec17596af0a84f22ca0e3d911c
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: 053dcce7f8c59b7afe7e52d2f704c992afce0b67
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57346220"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265167"
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Referência de erros comuns para o Serviço de Aplicativo do Azure e o IIS com o ASP.NET Core
 
@@ -61,7 +61,7 @@ Arquivos que não são do sistema operacional no diretório **C:\Windows\SysWOW6
 
 *Aplica-se aos aplicativos hospedados pelos Serviços de Aplicativo do Azure.*
 
-* **Navegador:** Erro HTTP 500.0 – Falha de carregamento de manipulador em processo ANCM 
+* **Navegador:** Erro HTTP 500.0 – Falha de carregamento de manipulador em processo ANCM
 
 * **Log do Aplicativo:** A invocação do hostfxr para encontrar o manipulador de solicitação inprocess falha sem encontrar nenhuma dependência nativa. Não foi possível localizar o manipulador de solicitação inprocess. Saída capturada da invocação do hostfxr: Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada. Falha ao iniciar o aplicativo '/LM/W3SVC/1416782824/ROOT', ErrorCode '0x8000ffff'.
 
@@ -80,7 +80,7 @@ Solução de problemas:
   * Tempo de execução do ASP.NET Core {RUNTIME VERSION} (x86)
   * Tempo de execução do ASP.NET Core {RUNTIME VERSION} (x64)
 
-  Reinicie o aplicativo. Aguarde vários segundos até que o aplicativo seja reiniciado. 
+  Reinicie o aplicativo. Aguarde vários segundos até que o aplicativo seja reiniciado.
 
 * Se a execução do aplicativo em um tempo de execução de visualização e as [extensões de site](xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension) de 32 bits (x86) e 64 bits (x64) estiverem instaladas, desinstale a extensão de site que não corresponde ao número de bit do aplicativo. Depois de remover a extensão de site, reinicie o aplicativo. Aguarde vários segundos até que o aplicativo seja reiniciado.
 
@@ -201,7 +201,7 @@ Solução de problemas:
   ```xml
   <section name="aspNetCore" overrideModeDefault="Allow" />
   ```
-  
+
   Como alternativa, instale a versão mais recente do Pacote de Hospedagem do ASP.NET Core. A versão mais recente é compatível com versões anteriores dos aplicativos do ASP.NET Core com suporte.
 
 ## <a name="incorrect-processpath-missing-path-variable-hosting-bundle-not-installed-systemiis-not-restarted-vc-redistributable-not-installed-or-dotnetexe-access-violation"></a>processPath incorreto, variável de PATH ausente, pacote de hospedagem não instalado, sistema/IIS não reiniciado, Pacotes Redistribuíveis do VC++ não instalados ou violação de acesso de dotnet.exe

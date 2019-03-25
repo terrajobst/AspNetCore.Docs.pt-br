@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/27/2019
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: a0fbeac51bd1bfbc50c4d369a479ce5f3091358b
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: 2d5168ed4b1e14e507262361de9fa959924b82f6
+ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57346249"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58209551"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Auxiliares de marca em formulários no ASP.NET Core
 
@@ -205,9 +205,7 @@ O Auxiliar de marca `Input` define o atributo HTML `type` com base no tipo .NET.
 |int|type="number"|
 |Single e Double|type="number"|
 
-
 A tabela a seguir mostra alguns atributos de [anotações de dados](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) comuns que o auxiliar de marca de entrada mapeará para tipos de entrada específicos (não são listados todos os atributos de validação):
-
 
 |Atributo|Tipo de entrada|
 |---|---|
@@ -215,10 +213,9 @@ A tabela a seguir mostra alguns atributos de [anotações de dados](/dotnet/api/
 |[Url]|type="url"|
 |[HiddenInput]|type="hidden"|
 |[Phone]|type="tel"|
-|[DataType(DataType.Password)]| type="password"|
-|[DataType(DataType.Date)]| type="date"|
-|[DataType(DataType.Time)]| type="time"|
-
+|[DataType(DataType.Password)]|type="password"|
+|[DataType(DataType.Date)]|type="date"|
+|[DataType(DataType.Time)]|type="time"|
 
 Amostra:
 
@@ -378,7 +375,7 @@ O HTML a seguir é gerado:
 
 ## <a name="the-label-tag-helper"></a>O auxiliar de marca de rótulo
 
-* Gera a legenda do rótulo e o atributo `for` em um elemento [<label>](https://www.w3.org/wiki/HTML/Elements/label) para um nome de expressão
+* Gera a legenda do rótulo e o atributo `for` em um elemento [\<rótulo>](https://www.w3.org/wiki/HTML/Elements/label) para um nome de expressão
 
 * Alternativa de Auxiliar HTML: `Html.LabelFor`.
 

@@ -7,12 +7,12 @@ ms.custom: mvc
 ms.date: 02/05/2019
 ms.topic: tutorial
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: f02aa1d6d8e431e7e2613835b3216786aed4ecd4
-ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
+ms.openlocfilehash: c4804bd6614c7d5a2a30c8f59a645f603929ad52
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56103092"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58264593"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Tutorial: Saiba mais sobre cenários avançados - ASP.NET MVC com EF Core
 
@@ -202,6 +202,7 @@ O [terceiro tutorial desta série](sort-filter-page.md) mostra como escrever um 
 Tom Dykstra e Rick Anderson (twitter @RickAndMSFT) escreveram este tutorial. Rowan Miller, Diego Vega e outros membros da equipe do Entity Framework auxiliaram com revisões de código e ajudaram com problemas de depuração que surgiram durante a codificação para os tutoriais. John Parente e Paul Goldman trabalharam na atualização do tutorial do ASP.NET Core 2.2.
 
 <a id="common-errors"></a>
+
 ## <a name="troubleshoot-common-errors"></a>Solucionar erros comuns
 
 ### <a name="contosouniversitydll-used-by-another-process"></a>ContosoUniversity.dll usada por outro processo

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/06/2019
 uid: host-and-deploy/azure-apps/troubleshoot
-ms.openlocfilehash: 326f66070d51c04298abbf6292d2d350414311de
-ms.sourcegitcommit: 34bf9fc6ea814c039401fca174642f0acb14be3c
+ms.openlocfilehash: 36c2bdfa585a0fd54ca93bf4c0edb4cf6f7d934a
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "57841391"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265441"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service"></a>Solucionar problemas no ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -23,8 +23,7 @@ Este artigo fornece instruções sobre como diagnosticar um problema de iniciali
 
 ## <a name="app-startup-errors"></a>Erros de inicialização do aplicativo
 
-**502.5 – Falha de Processo**  
-O processo de trabalho falha. O aplicativo não foi iniciado.
+**Falha no processo 502.5** O processo de trabalho falha. O aplicativo não foi iniciado.
 
 O [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o processo de trabalho, mas falhar ao iniciar. Examinar o Log de Eventos do Aplicativo geralmente ajuda a solucionar esse tipo de problema. O acesso ao log é explicado na seção [Log de Eventos do Aplicativo](#application-event-log).
 
@@ -32,7 +31,8 @@ A página do erro *502.5 – Falha no Processo* é retornada quando um erro de c
 
 ![Janela do navegador mostrando a página 502.5 – Falha no Processo](troubleshoot/_static/process-failure-page.png)
 
-**500 – Erro Interno do Servidor**  
+**500 – Erro Interno do Servidor**
+
 O aplicativo é iniciado, mas um erro impede o servidor de atender à solicitação.
 
 Esse erro ocorre no código do aplicativo durante a inicialização ou durante a criação de uma resposta. A resposta poderá não conter nenhum conteúdo, ou a resposta poderá ser exibida como um *500 – Erro Interno do Servidor* no navegador. O Log de Eventos do Aplicativo geralmente indica que o aplicativo iniciou normalmente. Da perspectiva do servidor, isso está correto. O aplicativo foi iniciado, mas não é capaz de gerar uma resposta válida. [Execute o aplicativo no console do Kudu](#run-the-app-in-the-kudu-console) ou [habilite o log de stdout do Módulo do ASP.NET Core](#aspnet-core-module-stdout-log) para solucionar o problema.
@@ -83,15 +83,16 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
      ```console
      dotnet .\{ASSEMBLY NAME}.dll
      ```
+
    * Se o aplicativo é uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd):
 
      ```console
      {ASSEMBLY NAME}.exe
      ```
-   
+
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
-   
-##### <a name="framework-depdendent-deployment-running-on-a-preview-release"></a>Implantação dependente da estrutura em execução em uma versão de visualização
+
+##### <a name="framework-dependent-deployment-running-on-a-preview-release"></a>Implantação dependente da estrutura em execução em uma versão de visualização
 
 *Requer a instalação da extensão de site de tempo de execução do ASP.NET Core {VERSION} (x86).*
 
@@ -113,7 +114,7 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
 
-##### <a name="framework-depdendent-deployment-running-on-a-preview-release"></a>Implantação dependente da estrutura em execução em uma versão de visualização
+##### <a name="framework-dependent-deployment-running-on-a-preview-release"></a>Implantação dependente da estrutura em execução em uma versão de visualização
 
 *Requer a instalação da extensão de site de tempo de execução do ASP.NET Core {VERSION} (x64).*
 
@@ -230,7 +231,7 @@ Prossiga para ativar o log de diagnóstico:
 
 1. No portal do Azure, selecione a folha **Logs de diagnóstico**.
 1. Selecione a opção **Ligado** para **Log de Aplicativo (Sistema de arquivos)** e **Mensagens de erro detalhadas**. Selecione o botão **Salvar** na parte superior da folha.
-1. Para incluir o rastreamento de solicitação com falha, também conhecido como FREB (Buffer de Evento de Solicitação com Falha), selecione a opção **Ligado** para o **Rastreamento de solicitação com falha**. 
+1. Para incluir o rastreamento de solicitação com falha, também conhecido como FREB (Buffer de Evento de Solicitação com Falha), selecione a opção **Ligado** para o **Rastreamento de solicitação com falha**.
 1. Selecione a folha **Fluxo de log**, que é listada imediatamente sob a folha **Logs de diagnóstico** no portal.
 1. Faça uma solicitação ao aplicativo.
 1. Dentro dos dados de fluxo de log, a causa do erro é indicada.

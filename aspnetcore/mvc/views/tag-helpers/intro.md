@@ -4,20 +4,20 @@ author: rick-anderson
 description: Saiba o que são Auxiliares de Marca e como usá-los no ASP.NET Core.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 2/14/2018
+ms.date: 03/18/2019
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 4b9bceb3ce0153af2d9a30c402febe09707145b7
-ms.sourcegitcommit: f5d403004f3550e8c46585fdbb16c49e75f495f3
+ms.openlocfilehash: 7768dd45bdbe40c16176d57a76823cbb9dd0b91b
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/20/2018
-ms.locfileid: "49477300"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58264613"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Auxiliares de Marca no ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-## <a name="what-are-tag-helpers"></a>E que são Auxiliares de Marca?
+## <a name="what-are-tag-helpers"></a>O que são Auxiliares de Marca
 
 Os Auxiliares de Marca permitem que o código do lado do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. Por exemplo, o `ImageTagHelper` interno pode acrescentar um número de versão ao nome da imagem. Sempre que a imagem é alterada, o servidor gera uma nova versão exclusiva para a imagem, de modo que os clientes tenham a garantia de obter a imagem atual (em vez de uma imagem obsoleta armazenada em cache). Há muitos Auxiliares de Marca internos para tarefas comuns – como criação de formulários, links, carregamento de ativos e muito mais – e ainda outros disponíveis em repositórios GitHub públicos e como NuGet. Os Auxiliares de Marca são criados no C# e são direcionados a elementos HTML de acordo com o nome do elemento, o nome do atributo ou a marca pai. Por exemplo, o `LabelTagHelper` interno pode ser direcionado ao elemento `<label>` HTML quando os atributos `LabelTagHelper` são aplicados. Se você está familiarizado com [Auxiliares HTML](http://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers), os Auxiliares de Marca reduzem as transições explícitas entre HTML e C# em exibições do Razor. Em muitos casos, os Auxiliares HTML fornecem uma abordagem alternativa a um Auxiliar de Marca específico, mas é importante reconhecer que os Auxiliares de Marca não substituem os Auxiliares HTML e que não há um Auxiliar de Marca para cada Auxiliar HTML. [Comparação entre Auxiliares de Marca e Auxiliares HTML](#tag-helpers-compared-to-html-helpers) explica as diferenças mais detalhadamente.
 
@@ -122,6 +122,7 @@ A diretiva `@tagHelperPrefix` permite que você especifique uma cadeia de caract
 ```cshtml
 @tagHelperPrefix th:
 ```
+
 Na imagem do código abaixo, o prefixo do Auxiliar de Marca é definido como `th:`; portanto, somente esses elementos que usam o prefixo `th:` dão suporte a Auxiliares de Marca (elementos habilitados para Auxiliar de Marca têm uma fonte diferenciada). Os elementos `<label>` e `<input>` têm o prefixo do Auxiliar de Marca e são habilitados para Auxiliar de Marca, ao contrário do elemento `<span>`.
 
 ![imagem](intro/_static/thp.png)
@@ -186,37 +187,21 @@ O símbolo de arroba (`@`) informa o Razor de que este é o início do código. 
 new {@class="caption"}
 ```
 
-É um objeto anônimo usado para representar atributos. Como a <strong>classe</strong> é uma palavra-chave reservada no C#, use o símbolo `@` para forçar o C# a interpretar "@class=" como um símbolo (nome da propriedade). Para um designer de front-end (alguém familiarizado com HTML/CSS/JavaScript e outras tecnologias de cliente, mas não familiarizado com o C# e Razor), a maior parte da linha é estranha. Toda a linha precisa ser criada sem nenhuma ajuda do IntelliSense.
+É um objeto anônimo usado para representar atributos. Como a `class` é uma palavra-chave reservada no C#, use o símbolo `@` para forçar o C# a interpretar `@class=` como um símbolo (nome da propriedade). Para um designer de front-end (alguém familiarizado com HTML/CSS/JavaScript e outras tecnologias de cliente, mas não familiarizado com o C# e Razor), a maior parte da linha é estranha. Toda a linha precisa ser criada sem nenhuma ajuda do IntelliSense.
 
 Usando o `LabelTagHelper`, a mesma marcação pode ser escrita como:
 
-![imagem](intro/_static/label2.png)
+```cshtml
+<label class="caption" asp-for="FirstName"></label>
+```
 
 Com a versão do Auxiliar de Marca, assim que você insere `<l` no editor do Visual Studio, o IntelliSense exibe elementos correspondentes:
 
 ![imagem](intro/_static/label.png)
 
-O IntelliSense ajuda você a escrever a linha inteira. O `LabelTagHelper` também usa como padrão a definição do conteúdo do valor de atributo `asp-for` ("FirstName") como "First Name"; ele converte propriedades concatenadas em uma frase composta do nome da propriedade com um espaço em que ocorre cada nova letra maiúscula. Na seguinte marcação:
+O IntelliSense ajuda você a escrever a linha inteira.
 
-![imagem](intro/_static/label2.png)
-
-gera:
-
-```cshtml
-<label class="caption" for="FirstName">First Name</label>
-```
-
-O conteúdo concatenado para maiúsculas e minúsculas não é usado se você adiciona o conteúdo ao `<label>`. Por exemplo:
-
-![imagem](intro/_static/1stName.png)
-
-gera:
-
-```cshtml
-<label class="caption" for="FirstName">Name First</label>
-```
-
-A imagem de código a seguir mostra a parte do Formulário da exibição do Razor *Views/Account/Register.cshtml* gerada com base no modelo herdado do ASP.NET 4.5 MVC incluído com o Visual Studio 2015.
+A imagem de código a seguir mostra a parte do Formulário da exibição do Razor *Views/Account/Register.cshtml* gerada com base no modelo do ASP.NET 4.5 MVC incluído com o Visual Studio.
 
 ![imagem](intro/_static/regCS.png)
 
@@ -267,5 +252,5 @@ Personalize a fonte e a colorização em **Ferramentas** > **Opções** > **Ambi
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Auxiliares de marca de autor](xref:mvc/views/tag-helpers/authoring)
-* [Trabalhando com formulários ](xref:mvc/views/working-with-forms)
+* [Trabalhando com formulários](xref:mvc/views/working-with-forms)
 * [TagHelperSamples no GitHub](https://github.com/dpaquette/TagHelperSamples) contém amostras de Auxiliar de Marca para trabalhar com o [Bootstrap](http://getbootstrap.com/).

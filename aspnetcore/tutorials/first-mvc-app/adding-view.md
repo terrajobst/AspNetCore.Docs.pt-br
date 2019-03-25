@@ -5,12 +5,12 @@ description: Adicionando uma exibição a um aplicativo ASP.NET Core MVC simples
 ms.author: riande
 ms.date: 03/04/2017
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: 32eddb233a8a6b9b8f480926673d15d568ce6ede
-ms.sourcegitcommit: c47d7c131eebbcd8811e31edda210d64cf4b9d6b
+ms.openlocfilehash: 6ff706012dabbf9500a805708c1f058b59ebc610
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/30/2019
-ms.locfileid: "55236426"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58265545"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Adicionar uma exibição a um aplicativo ASP.NET Core MVC
 
@@ -28,7 +28,6 @@ O código anterior chama o método <xref:Microsoft.AspNetCore.Mvc.Controller.Vie
 
 ## <a name="add-a-view"></a>Adicionar uma exibição
 
-<!-- VS -------------------------->
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Clique com o botão direito do mouse na pasta *Exibições* e, em seguida, **Adicionar > Nova Pasta** e nomeie a pasta *HelloWorld*.
@@ -47,7 +46,6 @@ O código anterior chama o método <xref:Microsoft.AspNetCore.Mvc.Controller.Vie
 
 ![Caixa de diálogo Adicionar Novo Item](adding-view/_static/add_view.png)
 
-<!-- Code -------------------------->
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Adicione uma exibição `Index` ao `HelloWorldController`.
@@ -55,7 +53,6 @@ Adicione uma exibição `Index` ao `HelloWorldController`.
 * Adicione uma nova pasta chamada *Views/HelloWorld*.
 * Adicione um novo arquivo à pasta *Views/HelloWorld* chamada *Index.cshtml*.
 
-<!-- Mac -------------------------->
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Clique com o botão direito do mouse na pasta *Exibições* e, em seguida, **Adicionar > Nova Pasta** e nomeie a pasta *HelloWorld*.
@@ -69,8 +66,7 @@ Adicione uma exibição `Index` ao `HelloWorldController`.
 
 ![Caixa de diálogo Adicionar Novo Item](adding-view/_static/add_view.png)
 
----  
-<!-- End of VS tabs -->
+---
 
 Substitua o conteúdo do arquivo de exibição *Views/HelloWorld/Index.cshtml* do Razor pelo seguinte:
 
@@ -152,7 +148,7 @@ Em *HelloWorldController.cs*, altere o método `Welcome` para adicionar um valor
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_5)]
 
-O objeto de dicionário `ViewData` contém dados que serão passados para a exibição. 
+O objeto de dicionário `ViewData` contém dados que serão passados para a exibição.
 
 Crie um modelo de exibição Boas-vindas chamado *Views/HelloWorld/Welcome.cshtml*.
 
@@ -168,7 +164,7 @@ Os dados são obtidos da URL e passados para o controlador usando o [associador 
 
 ![Exibição de privacidade que mostra um rótulo Boas-vindas e a frase Olá, Ricardo mostrada quatro vezes](~/tutorials/first-mvc-app/adding-view/_static/rick2.png)
 
-No exemplo acima, o dicionário `ViewData` foi usado para passar dados do controlador para uma exibição. Mais adiante no tutorial, um modelo de exibição será usado para passar dados de um controlador para uma exibição. A abordagem de modelo de exibição para passar dados é geralmente a preferida em relação à abordagem do dicionário `ViewData`. Para obter mais informações, confira [Quando usar ViewBag, ViewData ou TempData ](http://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/).
+No exemplo acima, o dicionário `ViewData` foi usado para passar dados do controlador para uma exibição. Mais adiante no tutorial, um modelo de exibição será usado para passar dados de um controlador para uma exibição. A abordagem de modelo de exibição para passar dados é geralmente a preferida em relação à abordagem do dicionário `ViewData`. Confira mais informações em [Quando usar ViewBag, ViewData ou TempData ](http://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/).
 
 No próximo tutorial, será criado um banco de dados de filmes.
 

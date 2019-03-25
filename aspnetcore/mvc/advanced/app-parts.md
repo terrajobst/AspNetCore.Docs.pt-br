@@ -5,12 +5,12 @@ description: Saiba como usar as partes do aplicativo, que são abstrações sobr
 ms.author: riande
 ms.date: 01/04/2017
 uid: mvc/extensibility/app-parts
-ms.openlocfilehash: c0d3ad6bcdf2e56df915b176b28759c59e76faf6
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: 67bd40adef4cdb0bd781f70114d3954cd9a8ed09
+ms.sourcegitcommit: 088e6744cd67a62f214f25146313a53949b17d35
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50206557"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58320089"
 ---
 # <a name="application-parts-in-aspnet-core"></a>Partes do aplicativo no ASP.NET Core
 
@@ -68,7 +68,7 @@ Os Provedores de recursos do aplicativo examinam as partes do aplicativo e forne
 
 Provedores de recursos herdam de `IApplicationFeatureProvider<T>`, em que `T` é o tipo do recurso. Você pode implementar seus próprios provedores de recursos para qualquer um dos tipos de recurso do MVC listados acima. A ordem dos provedores de recursos na coleção `ApplicationPartManager.FeatureProviders` pode ser importante, pois provedores posteriores podem reagir às ações tomadas por provedores anteriores.
 
-### <a name="sample-generic-controller-feature"></a>Exemplo: recurso de controlador genérico
+### <a name="sample-generic-controller-feature"></a>Amostra: Recurso de controlador genérico
 
 Por padrão, o ASP.NET Core MVC ignora controladores genéricos (por exemplo, `SomeController<T>`). Este exemplo usa um provedor de recursos de controlador que é executado depois do provedor padrão e adiciona instâncias de controlador genérico a uma lista de tipos especificados (definidos em `EntityTypes.Types`):
 
@@ -96,9 +96,9 @@ A classe `GenericController`:
 
 O resultado, quando uma rota correspondente é solicitada:
 
-![O exemplo de saída do aplicativo de exemplo lê, "Hello from a generic Sproket controller".](app-parts/_static/generic-controller.png)
+![O exemplo de saída do aplicativo de exemplo lê, 'Olá de um controlador Sprocket genérico.'](app-parts/_static/generic-controller.png)
 
-### <a name="sample-display-available-features"></a>Exemplo: exibir recursos disponíveis
+### <a name="sample-display-available-features"></a>Amostra: Exibir recursos disponíveis
 
 Você pode iterar nos recursos preenchidos disponíveis para seu aplicativo solicitando um `ApplicationPartManager` por meio da [injeção de dependência](../../fundamentals/dependency-injection.md) e usando-o para preencher as instâncias dos recursos apropriados:
 

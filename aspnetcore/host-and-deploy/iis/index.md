@@ -4,7 +4,7 @@ author: guardrex
 description: Saiba como hospedar aplicativos ASP.NET Core no Windows Server IIS (Serviços de Informações da Internet).
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/19/2019
+ms.date: 03/21/2019
 uid: host-and-deploy/iis/index
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
@@ -297,9 +297,7 @@ Para obter uma versão anterior do instalador:
    * `OPT_NO_SHAREDFX=1` &ndash; Ignorar a instalação da Estrutura Compartilhada do ASP.NET (tempo de execução do ASP.NET).
    * `OPT_NO_X86=1` &ndash; Ignorar a instalação dos tempos de execução x86. Use esse parâmetro quando você souber que não hospedará aplicativos de 32 bits. Se houver uma possibilidade de hospedar aplicativos de 32 bits e 64 bits no futuro, não use esse parâmetro e instale ambos os tempos de execução.
    * `OPT_NO_SHARED_CONFIG_CHECK=1` &ndash; Desabilite a verificação para usar uma Configuração Compartilhada do IIS quando a configuração compartilhada (*applicationHost.config*) estiver no mesmo computador do que a instalação do IIS. *Disponível somente para instaladores do ASP.NET Core 2.2 ou Hosting Bundler posterior.* Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
-1. Reinicie o sistema ou execute **net stop was /y** seguido por **net start w3svc** em um shell de comando. A reinicialização do IIS identifica uma alteração no CAMINHO do sistema, que é uma variável de ambiente, realizada pelo instalador.
-
-Se o instalador do Pacote de Hospedagem do Windows detectar que o IIS requer uma reinicialização para concluir a instalação, o instalador reiniciará o IIS. Se o instalador disparar uma reinicialização do IIS, todos os pools de aplicativos do IIS e sites serão reiniciados.
+1. Reinicie o sistema ou execute **net stop was /y**, seguido por **net start w3svc** de um shell de comando. A reinicialização do IIS identifica uma alteração no CAMINHO do sistema, que é uma variável de ambiente, realizada pelo instalador.
 
 > [!NOTE]
 > Para obter informações sobre a Configuração Compartilhada do IIS, consulte [Módulo do ASP.NET Core com a Configuração Compartilhada do IIS](xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).

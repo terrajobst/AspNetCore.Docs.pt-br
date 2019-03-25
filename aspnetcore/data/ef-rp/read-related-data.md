@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: 140f482e136acf4daba1248fecc87e06db6866f3
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: a264cdaf0f577be6ea2043935b485f4fd16e0229
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57345880"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58264951"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---read-related-data---6-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Ler dados relacionados – 6 de 8
 
@@ -68,6 +68,7 @@ Para exibir o nome do departamento atribuído em uma lista de cursos:
 ![Course.Department](read-related-data/_static/dep-crs.png)
 
 <a name="scaffold"></a>
+
 ### <a name="scaffold-the-course-model"></a>Gerar o modelo Curso por scaffolding
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio) 
@@ -115,6 +116,7 @@ Execute o aplicativo e selecione a guia **Cursos** para ver a lista com nomes de
 ![Página Índice de Cursos](read-related-data/_static/courses-index.png)
 
 <a name="select"></a>
+
 ### <a name="loading-related-data-with-select"></a>Carregando dados relacionados com Select
 
 O método `OnGetAsync` carrega dados relacionados com o método `Include`:
@@ -187,7 +189,6 @@ A consulta tem duas inclusões:
 * `OfficeAssignment`: mostrado na [exibição de instrutores](#IP).
 * `CourseAssignments`: que mostra os cursos ministrados.
 
-
 ### <a name="update-the-instructors-index-page"></a>Atualizar a página Índice de instrutores
 
 Atualize *Pages/Instructors/Index.cshtml* com a seguinte marcação:
@@ -198,11 +199,11 @@ A marcação anterior faz as seguintes alterações:
 
 * Atualiza a diretiva `page` de `@page` para `@page "{id:int?}"`. `"{id:int?}"` é um modelo de rota. O modelo de rota altera cadeias de consulta de inteiro na URL para dados de rota. Por exemplo, clicar no link **Selecionar** de um o instrutor apenas com a diretiva `@page` produz uma URL semelhante à seguinte:
 
-    `http://localhost:1234/Instructors?id=2`
+  `http://localhost:1234/Instructors?id=2`
 
-    Quando a diretiva de página é `@page "{id:int?}"`, a URL anterior é:
+  Quando a diretiva de página é `@page "{id:int?}"`, a URL anterior é:
 
-    `http://localhost:1234/Instructors/2`
+  `http://localhost:1234/Instructors/2`
 
 * O título de página é **Instrutores**.
 * Adicionou uma coluna **Office** que exibe `item.OfficeAssignment.Location` somente se `item.OfficeAssignment` não é nulo. Como essa é uma relação um para zero ou um, pode não haver uma entidade OfficeAssignment relacionada.

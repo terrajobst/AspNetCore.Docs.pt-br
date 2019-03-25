@@ -7,12 +7,12 @@ ms.custom: mvc
 ms.date: 02/04/2019
 ms.topic: tutorial
 uid: data/ef-mvc/crud
-ms.openlocfilehash: 368b1774ba977ec8020a02d48705200fd54c3bbd
-ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
+ms.openlocfilehash: 83f5d4bdc3d5872109649818b61a6dbb656fd8be
+ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56102975"
+ms.lasthandoff: 03/20/2019
+ms.locfileid: "58264832"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: Implementar a funcionalidade CRUD - ASP.NET MVC com EF Core
 
@@ -123,6 +123,7 @@ Além do atributo `Bind`, o bloco try-catch é a única alteração que você fe
 O atributo `ValidateAntiForgeryToken` ajuda a impedir ataques CSRF (solicitação intersite forjada). O token é injetado automaticamente na exibição pelo [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) e é incluído quando o formulário é enviado pelo usuário. O token é validado pelo atributo `ValidateAntiForgeryToken`. Para obter mais informações sobre o CSRF, consulte [Falsificação antissolicitação](../../security/anti-request-forgery.md).
 
 <a id="overpost"></a>
+
 ### <a name="security-note-about-overposting"></a>Observação de segurança sobre o excesso de postagem
 
 O atributo `Bind` que o código gerado por scaffolding inclui no método `Create` é uma maneira de proteger contra o excesso de postagem em cenários de criação. Por exemplo, suponha que a entidade Student inclua uma propriedade `Secret` que você não deseja que essa página da Web defina.
