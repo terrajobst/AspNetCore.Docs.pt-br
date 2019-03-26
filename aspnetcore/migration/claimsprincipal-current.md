@@ -4,14 +4,14 @@ author: mjrousos
 description: Saiba como migrar para longe de ClaimsPrincipal. Current para recuperar as declarações no ASP.NET Core e a identidade do usuário autenticado atual.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/04/2018
+ms.date: 03/26/2019
 uid: migration/claimsprincipal-current
-ms.openlocfilehash: 35c3389798041e141c45bf0a76fa9d7285212768
-ms.sourcegitcommit: d53e0cc71542b92de867bcce51575b054886f529
+ms.openlocfilehash: 526cc3cf3a58a656e2a1b162cfaccacc7694dc51
+ms.sourcegitcommit: 687ffb15ebe65379f75c84739ea851d5a0d788b7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41834994"
+ms.lasthandoff: 03/26/2019
+ms.locfileid: "58488636"
 ---
 # <a name="migrate-from-claimsprincipalcurrent"></a>Migrar de ClaimsPrincipal. Current
 
@@ -48,7 +48,7 @@ Obtendo a atual identidade do usuário da coleção de serviço de injeção de 
 Há várias opções para recuperar o atual usuário autenticado `ClaimsPrincipal` no ASP.NET Core no lugar de `ClaimsPrincipal.Current`:
 
 * **ControllerBase.User**. Controladores do MVC podem acessar o usuário atual autenticado com suas [usuário](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.user) propriedade.
-* **HttpContext**. Componentes com acesso ao atual `HttpContext` (por exemplo, middleware) pode obter o usuário atual `ClaimsPrincipal` partir [HttpContext](/dotnet/api/microsoft.aspnetcore.http.httpcontext.user).
+* **HttpContext.User**. Componentes com acesso ao atual `HttpContext` (por exemplo, middleware) pode obter o usuário atual `ClaimsPrincipal` partir [HttpContext](/dotnet/api/microsoft.aspnetcore.http.httpcontext.user).
 * **Passada pelo chamador**. Bibliotecas sem acesso ao atual `HttpContext` muitas vezes são chamados de controladores ou componentes de middleware e pode ter a atual identidade do usuário passada como um argumento.
 * **IHttpContextAccessor**. O projeto que está sendo migrado para o ASP.NET Core pode ser muito grande para passar facilmente a atual identidade do usuário para todos os locais necessários. Nesses casos, [IHttpContextAccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) pode ser usado como uma solução alternativa. `IHttpContextAccessor` é capaz de acessar atual `HttpContext` (se houver). Uma solução de curto prazo para obter a identidade do usuário atual no código que ainda não foi atualizado para trabalhar com a arquitetura de orientado a DI do ASP.NET Core seria:
 
@@ -56,4 +56,4 @@ Há várias opções para recuperar o atual usuário autenticado `ClaimsPrincipa
   * Obtenha uma instância de `IHttpContextAccessor` durante a inicialização e armazená-lo em uma variável estática. A instância é disponibilizada para o código que anteriormente estava recuperando o usuário atual de uma propriedade estática.
   * Recuperar o usuário atual `ClaimsPrincipal` usando `HttpContextAccessor.HttpContext?.User`. Se esse código é usado fora do contexto de uma solicitação HTTP, o `HttpContext` é nulo.
 
-O final de opção, usando `IHttpContextAccessor`, infringir os princípios do ASP.NET Core (preferindo dependências injetadas dependências estáticas). Planeje, eventualmente, remova a dependência estático `IHttpContextAccessor` auxiliar. Pode ser uma ponte útil, no entanto, quando a migração de grandes aplicativos ASP.NET existentes que estavam usando previamente `ClaimsPrincipal.Current`.
+O final de opção, usando um `IHttpContextAccessor` instância armazenada em uma variável estática, é contrary aos princípios do ASP.NET Core (preferindo dependências injetadas dependências estáticas). Planejar recuperar eventualmente `IHttpContextAccessor` instâncias de injeção de dependência em vez disso. Um auxiliar estático pode ser uma ponte útil, no entanto, quando a migração de grandes aplicativos ASP.NET existentes que estavam usando previamente `ClaimsPrincipal.Current`.
