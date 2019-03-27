@@ -5,7 +5,7 @@ description: Este artigo contém links para o host do Azure e para implantar rec
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/26/2019
+ms.date: 03/23/2019
 uid: host-and-deploy/azure-apps/index
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
@@ -78,7 +78,17 @@ O Middleware de integração do IIS, que configura Middleware de cabeçalhos enc
 
 ## <a name="monitoring-and-logging"></a>Monitoramento e registro em log
 
-Os aplicativos ASP.NET Core implantados no Serviço de Aplicativo recebem automaticamente uma extensão do Serviço de Aplicativo, **Extensões de Log do ASP.NET Core**. A extensão habilita o registro em log do Azure.
+::: moniker range=">= aspnetcore-3.0"
+
+Os aplicativos ASP.NET Core implantados no Serviço de Aplicativo recebem automaticamente uma extensão do Serviço de Aplicativo, **Integração de Log do ASP.NET Core**. A extensão habilita a integração de log para aplicativos ASP.NET Core no Serviço de Aplicativo do Azure.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Os aplicativos ASP.NET Core implantados no Serviço de Aplicativo recebem automaticamente uma extensão do Serviço de Aplicativo, **Extensões de Log do ASP.NET Core**. A extensão habilita a integração de log para aplicativos ASP.NET Core no Serviço de Aplicativo do Azure.
+
+::: moniker-end
 
 Para monitoramento, registro em log e informações de solução de problemas, veja os seguintes artigos:
 
