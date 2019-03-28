@@ -5,12 +5,12 @@ description: Saiba mais sobre a sintaxe de marcação Razor para inserir código
 ms.author: riande
 ms.date: 10/26/2018
 uid: mvc/views/razor
-ms.openlocfilehash: 254c85ee9e74dc72170b19d27fbc5f1ae7ccd3dc
-ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
+ms.openlocfilehash: 53d4dc608fbfd45bcc015a3af83f5d87f86c7f15
+ms.sourcegitcommit: a1c43150ed46aa01572399e8aede50d4668745ca
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58264752"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58327359"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -534,7 +534,7 @@ Os modelos Razor permitem que você defina um snippet da interface do usuário c
 @<tag>...</tag>
 ```
 
-O exemplo a seguir ilustra como especificar um delegado do Razor com modelo como um <xref:System.Func`2>. O [tipo dinâmico](/dotnet/csharp/programming-guide/types/using-type-dynamic) é especificado para o parâmetro do método encapsulado pelo delegado. Um [tipo de objeto](/dotnet/csharp/language-reference/keywords/object) é especificado como o valor retornado do delegado. O modelo é usado com uma <xref:System.Collections.Generic.List`1> de `Pet` que tem uma propriedade `Name`.
+O exemplo a seguir ilustra como especificar um delegado do Razor com modelo como um <xref:System.Func%602>. O [tipo dinâmico](/dotnet/csharp/programming-guide/types/using-type-dynamic) é especificado para o parâmetro do método encapsulado pelo delegado. Um [tipo de objeto](/dotnet/csharp/language-reference/keywords/object) é especificado como o valor retornado do delegado. O modelo é usado com uma <xref:System.Collections.Generic.List%601> de `Pet` que tem uma propriedade `Name`.
 
 ```csharp
 public class Pet
@@ -599,7 +599,7 @@ Você também pode fornecer um modelo Razor embutido como um argumento para um m
 
 Usando a lista de animais de estimação do exemplo anterior, o método `Repeat` é chamado com:
 
-* <xref:System.Collections.Generic.List`1> de `Pet`.
+* <xref:System.Collections.Generic.List%601> de `Pet`.
 * Número de vezes que deve ser repetido cada animal de estimação.
 * Modelo embutido a ser usado para os itens da lista de uma lista não ordenada.
 
