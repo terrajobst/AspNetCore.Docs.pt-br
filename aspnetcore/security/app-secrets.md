@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 03/13/2019
 uid: security/app-secrets
-ms.openlocfilehash: 1a10c4d035510c689e3eccadc5986df0cc06b71e
-ms.sourcegitcommit: 34bf9fc6ea814c039401fca174642f0acb14be3c
+ms.openlocfilehash: 18313f8284e81d196cbe786f494a607ee97a299f
+ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "57841508"
+ms.lasthandoff: 03/30/2019
+ms.locfileid: "58750979"
 ---
 # <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Armazenamento seguro dos segredos do aplicativo em desenvolvimento no ASP.NET Core
 
@@ -37,6 +37,8 @@ Considere um aplicativo da web ASP.NET Core no qual **contas de usuário individ
 
 > [!WARNING]
 > Variáveis de ambiente geralmente são armazenadas em texto não criptografado e sem formatação. Se o computador ou processo for comprometido, as variáveis de ambiente podem ser acessadas por pessoas não confiáveis. Medidas adicionais para evitar a divulgação de segredos do usuário podem ser necessárias.
+
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
 
 ## <a name="secret-manager"></a>Secret Manager
 
