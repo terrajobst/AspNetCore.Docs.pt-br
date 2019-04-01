@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/11/2018
 uid: mvc/views/partial
-ms.openlocfilehash: ff4b99580990edbd768128d77214e664a1e29e56
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: b7c1545007086053e879bce6781802959da77901
+ms.sourcegitcommit: a1c43150ed46aa01572399e8aede50d4668745ca
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207219"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58327372"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Exibições parciais no ASP.NET Core
 
@@ -136,7 +136,7 @@ Para obter mais informações, consulte <xref:mvc/views/tag-helpers/builtin-th/p
 
 ### <a name="asynchronous-html-helper"></a>Auxiliar HTML assíncrono
 
-Ao usar um Auxiliar HTML, a melhor prática é usar <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.PartialAsync*>. `PartialAsync` retorna um tipo <xref:Microsoft.AspNetCore.Html.IHtmlContent> encapsulado em um <xref:System.Threading.Tasks.Task`1>. O método é referenciado prefixando a chamada em espera com um caractere `@`:
+Ao usar um Auxiliar HTML, a melhor prática é usar <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.PartialAsync*>. `PartialAsync` retorna um tipo <xref:Microsoft.AspNetCore.Html.IHtmlContent> encapsulado em um <xref:System.Threading.Tasks.Task%601>. O método é referenciado prefixando a chamada em espera com um caractere `@`:
 
 ```cshtml
 @await Html.PartialAsync("_PartialName")
@@ -298,15 +298,15 @@ No tempo de execução, as parciais são renderizadas para a saída renderizada 
 
 A segunda exibição parcial renderiza as seções do artigo:
 
-> Índice da seção um: 0
+> Section One Index: 0
 >
 > Pontuação de quatro e há sete anos...
 >
-> Índice da seção dois: 1
+> Section Two Index: 1
 >
 > Agora estamos envolvidos em uma grande guerra civil, testando...
 >
-> Índice da seção três: 2
+> Section Three Index: 2
 >
 > Mas, em um sentido mais amplo, não podemos dedicar...
 

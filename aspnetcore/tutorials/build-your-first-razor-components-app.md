@@ -5,14 +5,14 @@ description: Compile passo a passo um aplicativo com Razor Components e aprenda 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/14/2019
+ms.date: 03/24/2019
 uid: tutorials/first-razor-components-app
-ms.openlocfilehash: c0f7b27fdfc770f8001625ecb3bf8d50af517b99
-ms.sourcegitcommit: 10e14b85490f064395e9b2f423d21e3c2d39ed8b
+ms.openlocfilehash: 2a987b3f2e687cd9d4dffa2c573c938e68ea3cc8
+ms.sourcegitcommit: 7d6019f762fc5b8cbedcd69801e8310f51a17c18
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "57978417"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419359"
 ---
 # <a name="build-your-first-razor-components-app"></a>Compilar seu primeiro aplicativo com Razor Components
 
@@ -75,7 +75,7 @@ Inclua um componente em outro componente usando uma sintaxe semelhante a HTML.
 
    [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/Index.razor?highlight=7)]
 
-1. Recompile e execute o aplicativo. A home page tem seu próprio contador.
+1. Recompile e execute o aplicativo. A página inicial tem seu próprio contador.
 
 ## <a name="component-parameters"></a>Parâmetros do componente
 
@@ -101,7 +101,7 @@ Componentes também podem ter parâmetros. Os parâmetros do componente são def
 
    [!code-cshtml[](build-your-first-razor-components-app/samples/3.x/RazorComponents/Components/Pages/Index.razor?highlight=7)]
 
-1. Recarregue a página. O contador de página inicial é incrementado em 10 sempre que o botão **Clique aqui** é selecionado. O contador na página *Contador* aumenta em um.
+1. Recarregue a página inicial. O contador é incrementado em dez sempre que o botão **Clique aqui** é selecionado. O contador na página Contador aumenta em um.
 
 ## <a name="route-to-components"></a>Rotear para componentes
 
@@ -111,29 +111,38 @@ A diretiva `@page` no início do arquivo *Counter.razor* especifica que esse com
 
 Os serviços registrados no contêiner do serviço de aplicativo estão disponíveis para componentes por meio da [DI (injeção de dependência)](xref:fundamentals/dependency-injection). Injete os serviços em um componente usando a diretiva `@inject`.
 
-Examine as diretivas do componente FetchData. A diretiva `@inject` é usada para injetar a instância do serviço `WeatherForecastService` no componente:
+Examine as diretivas do componente FetchData no aplicativo de exemplo.
 
-*Components/Pages/FetchData.razor* (*Pages/FetchData.cshtml* no Blazor):
+No aplicativo de exemplo Razor Components, o serviço `WeatherForecastService` é registrado como um [singleton](xref:fundamentals/dependency-injection#service-lifetimes). Dessa maneira, uma instância do serviço ficará disponível em todo o aplicativo. A diretiva `@inject` é usada para injetar a instância do serviço `WeatherForecastService` no componente.
+
+*Components/Pages/FetchData.razor*:
 
 [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData1.razor?highlight=3)]
-
-O serviço `WeatherForecastService` é registrado como um [singleton](xref:fundamentals/dependency-injection#service-lifetimes), portanto, uma instância do serviço está disponível em todo o aplicativo.
 
 O componente FetchData usa o serviço injetado, como `ForecastService`, para recuperar uma matriz de objetos `WeatherForecast`:
 
 [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
 
-Um loop [@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) é usado para renderizar cada instância de previsão como uma linha na tabela de dados meteorológicos:
+Na versão Blazor do aplicativo de exemplo, `HttpClient` é injetado para obter dados de previsão de tempo do arquivo *weather.json* na pasta *wwwroot/sample-data*:
+
+*Pages/FetchData.cshtml*:
+
+[!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData1.cshtml?highlight=7)]
+
+Nos dois aplicativos de exemplo, um loop [@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) é usado para renderizar cada instância de previsão como uma linha na tabela de dados meteorológicos:
 
 [!code-cshtml[](build-your-first-razor-components-app/samples_snapshot/3.x/FetchData3.razor?highlight=11-19)]
 
 ## <a name="build-a-todo-list"></a>Criar uma lista de tarefas pendentes
 
-Adicione uma nova página ao aplicativo que implemente uma lista de tarefas pendentes simples.
+Adicione um novo componente ao aplicativo que implemente uma lista de tarefas pendentes simples.
 
-1. Adicione um arquivo vazio à pasta *Components/Pages* (*Pages* no Blazor) chamada *Todo.razor*.
+1. Adicione um arquivo vazio ao aplicativo de exemplo:
 
-1. Forneça a marcação inicial à página:
+   * Para a experiência do Razor Components, adicione um arquivo *Todo.razor* à pasta *Components/Pages*.
+   * Para a experiência do Blazor, adicione um arquivo *Todo.cshtml* à pasta *Pages*.
+
+1. Forneça a marcação inicial do componente:
 
    ```cshtml
    @page "/todo"
@@ -141,11 +150,11 @@ Adicione uma nova página ao aplicativo que implemente uma lista de tarefas pend
    <h1>Todo</h1>
    ```
 
-1. Adicione a página Tarefas Pendentes à barra de navegação.
+1. Adicione o componente Todo à barra de navegação.
 
    O componente NavMenu (*Components/Shared/NavMenu.razor*  ou *Shared/NavMenu.cshtml* no Blazor) é usado no layout do aplicativo. Layouts são componentes que permitem que você evite a duplicação de conteúdo no aplicativo. Para obter mais informações, consulte <xref:razor-components/layouts>.
 
-   Adicione um `<NavLink>` à página Todo, incluindo a marcação de item de lista a seguir, abaixo dos itens de lista existentes no arquivo *Components/Shared/NavMenu.razor* (*Shared/NavMenu.cshtml* no Blazor):
+   Adicione um `<NavLink>` ao componente Todo incluindo a marcação de item de lista a seguir abaixo dos itens de lista existentes no arquivo *Components/Shared/NavMenu.razor* (*Shared/NavMenu.cshtml* no Blazor):
 
    ```cshtml
    <li class="nav-item px-3">
@@ -155,7 +164,7 @@ Adicione uma nova página ao aplicativo que implemente uma lista de tarefas pend
    </li>
    ```
 
-1. Recompile e execute o aplicativo. Visite a nova página de Tarefas Pendentes para confirmar se o link para a página está funcionando.
+1. Recompile e execute o aplicativo. Visite a nova página de Tarefas Pendentes para confirmar se o link para o componente Todo está funcionando.
 
 1. Adicione um arquivo *TodoItem.cs* à raiz do projeto para manter uma classe que representará um item de tarefa pendente. Use o seguinte código C# para a classe `TodoItem`:
 
