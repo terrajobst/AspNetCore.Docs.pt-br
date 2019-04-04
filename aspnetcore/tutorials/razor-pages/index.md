@@ -1,10 +1,16 @@
 ---
 title: 'Tutorial: Criar um aplicativo Web de Páginas do Razor com o ASP.NET Core'
 author: rick-anderson
-description: 'Crie um aplicativo Web de Páginas do Razor no Windows com o Visual Studio, ASP.NET Core e o EF Core.'
+description: Crie um aplicativo Web de Páginas do Razor no Windows com o Visual Studio, ASP.NET Core e o EF Core.
 ms.author: riande
 ms.date: 09/08/2017
 uid: tutorials/razor-pages/index
+ms.openlocfilehash: c3dcc18844f2a12a2a116b11cb007cb833203dc3
+ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57345594"
 ---
 # <a name="tutorial-create-a-razor-pages-web-app-with-aspnet-core"></a>Tutorial: Criar um aplicativo Web de Páginas do Razor com o ASP.NET Core
 

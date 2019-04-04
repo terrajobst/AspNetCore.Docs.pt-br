@@ -1,12 +1,18 @@
 ---
 title: Hospedar e implantar Componentes Razor
 author: guardrex
-description: 'Descubra como hospedar e implantar aplicativos dos Componentes Razor e do Blazor usando o ASP.NET Core, a CDN (Rede de Distribuição de Conteúdo), servidores de arquivos e páginas do GitHub.'
+description: Descubra como hospedar e implantar aplicativos dos Componentes Razor e do Blazor usando o ASP.NET Core, a CDN (Rede de Distribuição de Conteúdo), servidores de arquivos e páginas do GitHub.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/22/2019
 uid: host-and-deploy/razor-components/index
+ms.openlocfilehash: 236e8da27b80dbdb3e0ea885413b6cfd563dde60
+ms.sourcegitcommit: 7d6019f762fc5b8cbedcd69801e8310f51a17c18
+ms.translationtype: HT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419414"
 ---
 # <a name="host-and-deploy-razor-components"></a>Hospedar e implantar Componentes Razor
 
