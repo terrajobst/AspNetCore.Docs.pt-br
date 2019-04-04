@@ -7,12 +7,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 01/17/2019
 uid: fundamentals/startup
-ms.openlocfilehash: d629c2f02f9021454d8f8539018f3e2ca4703a00
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: 9556ec076fce3500115cf0e934202f11b175ccd3
+ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57346392"
+ms.lasthandoff: 03/30/2019
+ms.locfileid: "58750793"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Inicialização de aplicativo no ASP.NET Core
 
@@ -95,7 +95,7 @@ Para obter mais informações de como usar o `IApplicationBuilder` e a ordem de 
 
 Para configurar serviços e o pipeline de processamento de solicitação sem usar uma classe `Startup`, chame os métodos de conveniência `ConfigureServices` e `Configure` no construtor do host. Diversas chamadas para `ConfigureServices` são acrescentadas umas às outras. Se houver várias chamadas de método `Configure`, a última chamada de `Configure` será usada.
 
-[!code-csharp[](startup/sample_snapshot/Program1.cs?highlight=18,22)]
+[!code-csharp[](startup/sample_snapshot/Program1.cs?highlight=16,20)]
 
 ## <a name="extend-startup-with-startup-filters"></a>Estender a inicialização com filtros de inicialização
 

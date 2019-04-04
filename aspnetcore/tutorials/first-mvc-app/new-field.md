@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: 44487b91c8bbd353157a5f5f1b834187e47e2f3e
-ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
+ms.openlocfilehash: cf8bb67703b564a711105123117498c94ab44e68
+ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58264659"
+ms.lasthandoff: 03/30/2019
+ms.locfileid: "58750515"
 ---
 # <a name="add-a-new-field-to-an-aspnet-core-mvc-app"></a>Adicionar um novo campo a um aplicativo ASP.NET Core MVC
 
@@ -38,7 +38,7 @@ Compile o aplicativo (Ctrl+Shift+B).
 Como adicionou um novo campo à classe `Movie`, você também precisará atualizar a lista de permissões de associação para que essa nova propriedade seja incluída. Em *MoviesController.cs*, atualize o atributo `[Bind]` dos métodos de ação `Create` e `Edit` para incluir a propriedade `Rating`:
 
 ```csharp
-[Bind("ID,Title,ReleaseDate,Genre,Price,Rating")]
+[Bind("Id,Title,ReleaseDate,Genre,Price,Rating")]
    ```
 
 Atualize os modelos de exibição para exibir, criar e editar a nova propriedade `Rating` na exibição do navegador.
