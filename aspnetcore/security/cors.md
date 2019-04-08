@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como CORS como padrão para permitir ou rejeitar solicitações entre origens em um aplicativo ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/27/2019
+ms.date: 04/07/2019
 uid: security/cors
-ms.openlocfilehash: 2cad26d0f61519f63888a2bc399bb7e8a0f1ee04
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: fe5b750c44e5fad9ba80efb2cc8116d0a64b1a17
+ms.sourcegitcommit: 6bde1fdf686326c080a7518a6725e56e56d8886e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58210126"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068291"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>Habilitar solicitações entre origens (CORS) no ASP.NET Core
 
@@ -57,7 +57,7 @@ Middleware CORS manipula solicitações entre origens. O código a seguir habili
 O código anterior:
 
 * Define o nome da política para "\_myAllowSpecificOrigins". O nome da política é arbitrário.
-* Chamadas a <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> o método de extensão, que permite que os núcleos.
+* Chama o <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> método de extensão, que habilita o CORS.
 * Chamadas <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> com um [expressão lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). O lambda utiliza um <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> objeto. [Opções de configuração](#cors-policy-options), tais como `WithOrigins`, são descritos neste artigo.
 
 O <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> chamada de método adiciona serviços do CORS ao contêiner de serviço do aplicativo:
@@ -170,7 +170,7 @@ to
 to remove the ambiguous **This**.
 -->
 
-`AllowAnyOrigin` solicitações de simulação afeta e o `Access-Control-Allow-Origin` cabeçalho. Para obter mais informações, consulte o [solicitações de simulação](#preflight-requests) seção.
+`AllowAnyOrigin` Solicitações de simulação afeta e o `Access-Control-Allow-Origin` cabeçalho. Para obter mais informações, consulte o [solicitações de simulação](#preflight-requests) seção.
 
 ::: moniker range=">= aspnetcore-2.0"
 

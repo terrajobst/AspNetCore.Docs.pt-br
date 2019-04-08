@@ -5,14 +5,14 @@ description: Saiba como configurar a autenticação do Windows no ASP.NET Core, 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 02/25/2019
+ms.date: 04/03/2019
 uid: security/authentication/windowsauth
-ms.openlocfilehash: 15fc41efba77f88fc8129f875b85836ac1b5f886
-ms.sourcegitcommit: 2c7ffe349eabdccf2ed748dd303ffd0ba6e1cfe3
+ms.openlocfilehash: 9b53f523cf579aeb0e7dd37ccf5f161269a54913
+ms.sourcegitcommit: 6bde1fdf686326c080a7518a6725e56e56d8886e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/26/2019
-ms.locfileid: "56833690"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068255"
 ---
 # <a name="configure-windows-authentication-in-aspnet-core"></a>Configurar a autenticação do Windows no ASP.NET Core
 
@@ -26,15 +26,19 @@ Autenticação do Windows se baseia no sistema operacional para autenticar usuá
 
 O **aplicativo Web** modelo disponível por meio do Visual Studio ou a CLI do .NET Core pode ser configurado para dar suporte à autenticação do Windows.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# [<a name="visual-studio"></a>Visual Studio](#tab/visual-studio)
 
 ### <a name="use-the-windows-authentication-app-template-for-a-new-project"></a>Usar o modelo de aplicativo de autenticação do Windows para um novo projeto
 
 No Visual Studio:
 
-1. Criar um novo **aplicativo Web ASP.NET Core**.
-1. Selecione **aplicativo Web** da lista de modelos.
-1. Selecione o **alterar autenticação** botão e selecione **autenticação do Windows**.
+1. Crie um novo projeto.
+1. Selecione **Aplicativo Web ASP.NET Core**. Selecione **Avançar**.
+1. Forneça um nome na **nome do projeto** campo. Confirme se o **local** entrada está correta ou fornecer um local para o projeto. Selecione **Criar**.
+1. Selecione **alteração** sob **autenticação**.
+1. No **alterar autenticação** janela, selecione **autenticação do Windows**. Selecione **OK**.
+1. Selecione **Aplicativo Web**.
+1. Selecione **Criar**.
 
 Execute o aplicativo. O nome de usuário é exibido na interface do usuário do aplicativo renderizado.
 
@@ -51,7 +55,7 @@ Como alternativa, as propriedades podem ser configuradas na `iisSettings` nó do
 
 [!code-json[](windowsauth/sample_snapshot/launchSettings.json?highlight=2-3)]
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# [<a name="net-core-cli"></a>CLI do .NET Core](#tab/netcore-cli)
 
 Use o **autenticação do Windows** modelo de aplicativo.
 
@@ -195,4 +199,4 @@ ASP.NET Core não implementar a representação. Aplicativos executados com a id
 
 ### <a name="claims-transformations"></a>Transformações de declarações
 
-Ao hospedar com o modo de em processo do IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> não é chamado internamente para inicializar um usuário. Portanto, um <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementação usada para transformar as declarações após cada autenticação não está ativada por padrão. Para obter mais informações e um exemplo de código que ativa as transformações de declarações quando no processo de hospedagem, consulte <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model>.
+Ao hospedar com o modo de em processo do IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> não é chamado internamente para inicializar um usuário. Portanto, uma implementação <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> usada para transformar as declarações após cada autenticação não é ativada por padrão. Para obter mais informações e um exemplo de código que ativa as transformações de declarações quando no processo de hospedagem, consulte <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model>.

@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como criar e usar manipuladores de política de autorização para impor requisitos de autorização em um aplicativo ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2017
+ms.date: 04/05/2019
 uid: security/authorization/policies
-ms.openlocfilehash: e72f15c28fb7b62c671dd6475cc323cacce42de6
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: ea9d687d3810c104d5b3fa39033849c21569709b
+ms.sourcegitcommit: 6bde1fdf686326c080a7518a6725e56e56d8886e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58208315"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068164"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Autorização baseada em política no ASP.NET Core
 
@@ -96,7 +96,10 @@ Observe que o `Handle` método na [exemplo de manipulador](#security-authorizati
 
 * Para garantir a falha, mesmo se outros manipuladores de requisito tenha êxito, chame `context.Fail`.
 
-Quando definido como `false`, o [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) propriedade (disponível no ASP.NET Core 1.1 e posterior) causam curto-circuito a execução de manipuladores quando `context.Fail` é chamado. `InvokeHandlersAfterFailure` o padrão é `true`, caso em que todos os manipuladores são chamados. Isso permite que os requisitos produzir efeitos colaterais, como registro em log, que sempre ocorrem, mesmo se `context.Fail` foi chamado no manipulador de outro.
+Se chama um manipulador `context.Succeed` ou `context.Fail`, todos os outros manipuladores ainda são chamados. Isso permite que os requisitos produzir efeitos colaterais, como registro em log, que é executado, mesmo se outro manipulador com êxito foi validado ou falha de um requisito. Quando definido como `false`, o [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) propriedade (disponível no ASP.NET Core 1.1 e posterior) causam curto-circuito a execução de manipuladores quando `context.Fail` é chamado. `InvokeHandlersAfterFailure` o padrão é `true`, caso em que todos os manipuladores são chamados.
+
+> [!NOTE]
+> Manipuladores de autorização são chamados, mesmo se a autenticação falhar.
 
 <a name="security-authorization-policies-based-multiple-handlers"></a>
 
