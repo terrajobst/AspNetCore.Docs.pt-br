@@ -1,24 +1,24 @@
 ---
-title: Introdução aos Componentes Razor
+title: Introdução aos componentes do Razor no ASP.NET Core
 author: guardrex
 description: Explore os componentes do ASP.NET Core Razor, uma maneira de criar a IU da Web interativa do lado do cliente com o .NET em um aplicativo ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
-ms.custom: mvc
+ms.custom: seoapril2019
 ms.date: 03/27/2019
 uid: razor-components/index
-ms.openlocfilehash: 8b2e87fe856598a5ac231e3bc1d413957829b448
-ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
+ms.openlocfilehash: 43d5cf1d752b66a531c8d974deeb5a5fc8e94b43
+ms.sourcegitcommit: 1a7000630e55da90da19b284e1b2f2f13a393d74
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/30/2019
-ms.locfileid: "58751014"
+ms.lasthandoff: 04/04/2019
+ms.locfileid: "59012650"
 ---
 # <a name="introduction-to-razor-components"></a>Introdução aos Componentes Razor
 
 Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
-Os *Componentes Razor* são uma maneira de criar a IU da Web interativa do lado do cliente com o .NET:
+O recurso *Componentes do Razor*, introduzido na versão 3.0 do ASP.NET Core (Versão Prévia), é uma maneira de criar uma interface do usuário da Web interativa do lado do cliente com .NET:
 
 * Crie interfaces do usuário interativas avançadas usando C# em vez de JavaScript.
 * Compartilhe a lógica de aplicativo do lado do cliente e do servidor toda escrita com o .NET.
@@ -86,6 +86,6 @@ Para aplicativos que exigem bibliotecas JavaScript e APIs do navegador de tercei
 
 * <xref:spa/blazor/index>
 * [WebAssembly](http://webassembly.org/)
-* [Guia do C#](/dotnet/csharp/)
+* [Guia de C#](/dotnet/csharp/)
 * <xref:mvc/views/razor>
 * [HTML](https://www.w3.org/html/)

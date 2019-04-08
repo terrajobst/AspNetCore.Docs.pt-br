@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/30/2019
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: f9a74fdd94da4c913ac8822ee7bd58c85a9ce72c
-ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
+ms.openlocfilehash: 009ee97d954a21f5fca1713b2b45218cac235e33
+ms.sourcegitcommit: 1a7000630e55da90da19b284e1b2f2f13a393d74
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/30/2019
-ms.locfileid: "58750920"
+ms.lasthandoff: 04/04/2019
+ms.locfileid: "59012832"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -36,7 +36,7 @@ Aprenda como publicar um aplicativo ASP.NET Core no Serviço de Aplicativo do Az
 <xref:host-and-deploy/azure-apps/azure-continuous-deployment>  
 Saiba como criar um aplicativo Web ASP.NET Core usando o Visual Studio e implantá-lo no Serviço de Aplicativo do Azure, usando o Git para implantação contínua.
 
-[Crie seu primeiro pipeline](/azure/devops/pipelines/get-started-yaml)  
+[Criar seu primeiro pipeline](/azure/devops/pipelines/get-started-yaml)  
 Configurar um build de CI para um aplicativo ASP.NET Core e, em seguida, criar uma versão de implantação contínua para o Serviço de Aplicativo do Azure.
 
 [Área restrita de aplicativo Web do Azure](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
@@ -98,10 +98,10 @@ Os aplicativos ASP.NET Core implantados no Serviço de Aplicativo recebem automa
 
 Para monitoramento, registro em log e informações de solução de problemas, veja os seguintes artigos:
 
-[Monitore aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor)  
+[Monitorar aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor)  
 Saiba como examinar as cotas e métricas para aplicativos e planos do Serviço de Aplicativo.
 
-[Habilite log de diagnósticos para aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-enable-diagnostic-log)  
+[Habilitar log de diagnósticos para aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-enable-diagnostic-log)  
 Descubra como habilitar e acessar o log de diagnósticos para os códigos de status HTTP, solicitações com falha e atividade do servidor Web.
 
 <xref:fundamentals/error-handling>  
@@ -168,12 +168,13 @@ Quando a operação for concluída, a versão prévia mais recente do .NET Core 
 > ```powershell
 > Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64\
 > ```
+>
 > O comando retornará `True` quando o tempo de execução da versão prévia x64 estiver instalado.
 
 > [!NOTE]
 > As **Extensões do ASP.NET Core** habilitam uma funcionalidade adicional para o ASP.NET Core nos Serviços de Aplicativo do Azure, como a habilitação do registro em log do Azure. A extensão é instalada automaticamente durante a implantação do Visual Studio. Se a extensão não estiver instalada, instale-a para o aplicativo.
 
-**Usar a extensão de site de visualização com um modelo do ARM**
+**Usar a extensão de site de versão prévia com um modelo do ARM**
 
 Se um modelo do ARM for usado para criar e implantar aplicativos, o tipo de recurso `siteextensions` poderá ser usado para adicionar a extensão de site a um aplicativo Web. Por exemplo:
 
@@ -235,8 +236,8 @@ Se você precisar transformar o *Web.config* em publicação (por exemplo, defin
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Visão geral do Serviço de Aplicativo](/azure/app-service/app-service-web-overview)
-* [Serviço de Aplicativo do Azure: o melhor lugar para hospedar seus aplicativos .NET (vídeo de visão geral com 55 minutos)](https://channel9.msdn.com/events/dotnetConf/2017/T222)
-* [Azure Friday: experiência de diagnóstico e solução de problemas do Serviço de Aplicativo do Azure (vídeo com 12 minutos)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience)
+* [Serviço de Aplicativo do Azure: O melhor lugar para hospedar seus aplicativos .NET (vídeo de visão geral com 55 minutos)](https://channel9.msdn.com/events/dotnetConf/2017/T222)
+* [Azure Friday: Experiência de diagnóstico e solução de problemas do Serviço de Aplicativo do Azure (vídeo com 12 minutos)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience)
 * [Visão geral de diagnóstico do Serviço de Aplicativo do Azure](/azure/app-service/app-service-diagnostics)
 * <xref:host-and-deploy/web-farm>
 
