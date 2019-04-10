@@ -4,15 +4,15 @@ description: Neste tutorial, você atualizará dados relacionados pela atualiza�
 author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/05/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 1606b872df2df839266ef17efee1948065c4efae
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: 6add725430380f0855fe660a70b90a4546ef0637
+ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58209408"
+ms.lasthandoff: 03/30/2019
+ms.locfileid: "58750904"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Atualizar dados relacionados - ASP.NET MVC com EF Core
 
@@ -35,7 +35,7 @@ Neste tutorial, você:
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* [Ler dados relacionados com o EF Core para um aplicativo Web ASP.NET Core MVC](read-related-data.md)
+* [Ler dados relacionados](read-related-data.md)
 
 ## <a name="customize-courses-pages"></a>Personalizar as páginas Cursos
 
@@ -123,7 +123,7 @@ Quando você edita um registro de instrutor, deseja poder atualizar a atribuiç�
 
 Em *InstructorsController.cs*, altere o código no método HttpGet `Edit` para que ele carregue a propriedade de navegação `OfficeAssignment` da entidade Instructor e chame `AsNoTracking`:
 
-[!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?highlight=9,10&name=snippet_EditGetOA)]
+[!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?highlight=8-11&name=snippet_EditGetOA)]
 
 Substitua o método HttpPost `Edit` pelo seguinte código para manipular atualizações de atribuição de escritório:
 
@@ -225,7 +225,7 @@ Em *Views/Instructors/Edit.cshtml*, adicione um campo **Cursos** com uma matriz 
 
 <a id="notepad"></a>
 > [!NOTE]
-> Quando você colar o código no Visual Studio, as quebras de linha serão alteradas de uma forma que divide o código. Pressione Ctrl+Z uma vez para desfazer a formatação automática. Isso corrigirá as quebras de linha para que elas se pareçam com o que você vê aqui. O recuo não precisa ser perfeito, mas cada uma das linhas `@</tr><tr>`, `@:<td>`, `@:</td>` e `@:</tr>` precisa estar em uma única linha, conforme mostrado, ou você receberá um erro de tempo de execução. Com o bloco de novo código selecionado, pressione Tab três vezes para alinhar o novo código com o código existente. Verifique o status deste problema [aqui](https://developercommunity.visualstudio.com/content/problem/147795/razor-editor-malforms-pasted-markup-and-creates-in.html).
+> Quando você colar o código no Visual Studio, as quebras de linha poderão ser alteradas de uma forma que divide o código. Se o código ficar com aparência diferente depois de colá-lo, pressione Ctrl + Z uma vez para desfazer a formatação automática. Isso corrigirá as quebras de linha para que elas se pareçam com o que você vê aqui. O recuo não precisa ser perfeito, mas cada uma das linhas `@</tr><tr>`, `@:<td>`, `@:</td>` e `@:</tr>` precisa estar em uma única linha, conforme mostrado, ou você receberá um erro de tempo de execução. Com o bloco de novo código selecionado, pressione Tab três vezes para alinhar o novo código com o código existente. Esse problema foi corrigido no Visual Studio 2019.
 
 [!code-html[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
 
@@ -314,6 +314,7 @@ Neste tutorial, você:
 > * Atualizou a página Excluir
 > * Adicionou o local do escritório e cursos à página Criar
 
-Vá para o próximo artigo para saber como lidar com conflitos de simultaneidade.
+Vá para o próximo tutorial para saber como lidar com conflitos de simultaneidade.
+
 > [!div class="nextstepaction"]
 > [Tratar conflitos de simultaneidade](concurrency.md)

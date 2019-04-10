@@ -2,59 +2,52 @@
 title: Ativação de middleware baseada em alocador no ASP.NET Core
 author: guardrex
 description: Saiba como usar um middleware fortemente tipado com uma implementação de ativação baseada em alocador no ASP.NET Core.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/14/2018
+ms.date: 03/31/2019
 uid: fundamentals/middleware/extensibility
-ms.openlocfilehash: 566a5c5f642a3f55e72a8e070c69d2bfddaee3a1
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: 9305616ce3f2ef49cf9dfcab719f673c0fb4b51e
+ms.sourcegitcommit: 5995f44e9e13d7e7aa8d193e2825381c42184e47
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207193"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58809160"
 ---
 # <a name="factory-based-middleware-activation-in-aspnet-core"></a>Ativação de middleware baseada em alocador no ASP.NET Core
 
 Por [Luke Latham](https://github.com/guardrex)
 
-[IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory)/[IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware) é um ponto de extensibilidade para a ativação de [middleware](xref:fundamentals/middleware/index).
+<xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> é um ponto de extensibilidade para a ativação de [middleware](xref:fundamentals/middleware/index).
 
-Os métodos de extensão `UseMiddleware` verificam se o tipo registrado de um middleware implementa `IMiddleware`. Se isso acontecer, a instância `IMiddlewareFactory` registrada no contêiner será usada para resolver a implementação `IMiddleware` em vez de usar a lógica de ativação de middleware baseada em convenção. O middleware é registrado como um serviço com escopo ou transitório no contêiner de serviço do aplicativo.
+Os métodos de extensão <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> verificam se o tipo registrado de um middleware implementa <xref:Microsoft.AspNetCore.Http.IMiddleware>. Se isso acontecer, a instância <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> registrada no contêiner será usada para resolver a implementação <xref:Microsoft.AspNetCore.Http.IMiddleware> em vez de usar a lógica de ativação de middleware baseada em convenção. O middleware é registrado como um [serviço com escopo ou transitório](xref:fundamentals/dependency-injection#service-lifetimes) no contêiner de serviço do aplicativo.
 
 Benefícios:
 
-* Ativação por solicitação (injeção de serviços com escopo)
+* Ativação por solicitação de cliente (injeção de serviços com escopo)
 * Tipagem forte de middleware
 
-`IMiddleware` é ativado por solicitação, de modo que os serviços com escopo possam ser injetados no construtor do middleware.
+<xref:Microsoft.AspNetCore.Http.IMiddleware> é ativado por solicitação de cliente (conexão), de modo que os serviços com escopo possam ser injetados no construtor do middleware.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/extensibility/sample) ([como baixar](xref:index#how-to-download-a-sample))
-
-O aplicativo de exemplo demonstra o middleware ativado por:
-
-* Convenção. Para obter mais informações sobre a ativação de middleware convencional, consulte o tópico [Middleware](xref:fundamentals/middleware/index).
-* Uma implementação de [IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware). A [classe MiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.middlewarefactory) padrão ativa o middleware.
-
-As implementações de middleware funcionam de forma idêntica e registram o valor fornecido por um parâmetro de cadeia de caracteres de consulta (`key`). Os middlewares usam um contexto de banco de dados injetado (um serviço com escopo) para registrar o valor de cadeia de caracteres de consulta em um banco de dados em memória.
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/extensibility/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="imiddleware"></a>IMiddleware
 
-[IMiddleware](/dotnet/api/microsoft.aspnetcore.http.imiddleware) define o middleware para o pipeline de solicitação do aplicativo. O método [InvokeAsync(HttpContext, RequestDelegate)](/dotnet/api/microsoft.aspnetcore.http.imiddleware.invokeasync#Microsoft_AspNetCore_Http_IMiddleware_InvokeAsync_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_) manipula as solicitações e retorna uma `Task` que representa a execução do middleware.
+<xref:Microsoft.AspNetCore.Http.IMiddleware> define o middleware para o pipeline de solicitação do aplicativo. O método [InvokeAsync(HttpContext, RequestDelegate)](xref:Microsoft.AspNetCore.Http.IMiddleware.InvokeAsync*) manipula as solicitações e retorna uma <xref:System.Threading.Tasks.Task> que representa a execução do middleware.
 
 Middleware ativado por convenção:
 
-[!code-csharp[](extensibility/sample/Middleware/ConventionalMiddleware.cs?name=snippet1)]
+[!code-csharp[](extensibility/samples/2.x/MiddlewareExtensibilitySample/Middleware/ConventionalMiddleware.cs?name=snippet1)]
 
-Middleware ativado por `MiddlewareFactory`:
+Middleware ativado por <xref:Microsoft.AspNetCore.Http.MiddlewareFactory>:
 
-[!code-csharp[](extensibility/sample/Middleware/FactoryActivatedMiddleware.cs?name=snippet1)]
+[!code-csharp[](extensibility/samples/2.x/MiddlewareExtensibilitySample/Middleware/FactoryActivatedMiddleware.cs?name=snippet1)]
 
 As extensões são criadas para os middlewares:
 
-[!code-csharp[](extensibility/sample/Middleware/MiddlewareExtensions.cs?name=snippet1)]
+[!code-csharp[](extensibility/samples/2.x/MiddlewareExtensibilitySample/Middleware/MiddlewareExtensions.cs?name=snippet1)]
 
-Não é possível passar objetos para o middleware ativado por alocador com `UseMiddleware`:
+Não é possível passar objetos para o middleware ativado por alocador com <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*>:
 
 ```csharp
 public static IApplicationBuilder UseFactoryActivatedMiddleware(
@@ -65,19 +58,19 @@ public static IApplicationBuilder UseFactoryActivatedMiddleware(
 }
 ```
 
-O middleware ativado por alocador é adicionado ao contêiner interno em *Startup.cs*:
+O middleware ativado por alocador é adicionado ao contêiner interno em `Startup.ConfigureServices`:
 
-[!code-csharp[](extensibility/sample/Startup.cs?name=snippet1&highlight=12)]
+[!code-csharp[](extensibility/samples/2.x/MiddlewareExtensibilitySample/Startup.cs?name=snippet1&highlight=6)]
 
-Ambos os middlewares estão registrados no pipeline de processamento de solicitação em `Configure`:
+Ambos os middlewares estão registrados no pipeline de processamento de solicitação em `Startup.Configure`:
 
-[!code-csharp[](extensibility/sample/Startup.cs?name=snippet2&highlight=14-15)]
+[!code-csharp[](extensibility/samples/2.x/MiddlewareExtensibilitySample/Startup.cs?name=snippet2&highlight=13-14)]
 
 ## <a name="imiddlewarefactory"></a>IMiddlewareFactory
 
-[IMiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.imiddlewarefactory) fornece métodos para a criação do middleware. A implementação de alocador do middleware é registrada no contêiner como um serviço com escopo.
+<xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> fornece métodos para a criação do middleware. A implementação de alocador do middleware é registrada no contêiner como um serviço com escopo.
 
-A implementação `IMiddlewareFactory` padrão, [MiddlewareFactory](/dotnet/api/microsoft.aspnetcore.http.middlewarefactory), foi encontrada no pacote [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/).
+A implementação <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> padrão, <xref:Microsoft.AspNetCore.Http.MiddlewareFactory>, é encontrada no pacote [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/).
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

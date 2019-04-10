@@ -4,15 +4,15 @@ description: Este tutorial mostra como lidar com conflitos quando os mesmos usu�
 author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/05/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/concurrency
-ms.openlocfilehash: 7b18927d5d528ec2951087502e26b2b30214f389
-ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
+ms.openlocfilehash: 668cdafc078091b65035ecad854d2ecc62555721
+ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56103014"
+ms.lasthandoff: 03/30/2019
+ms.locfileid: "58750859"
 ---
 # <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Tutorial: Lidar com a simultaneidade - ASP.NET MVC com EF Core
 
@@ -39,7 +39,7 @@ Neste tutorial, você:
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* [Atualizar dados relacionados com o EF Core em um aplicativo Web ASP.NET Core MVC](update-related-data.md)
+* [Atualizar dados relacionados](update-related-data.md)
 
 ## <a name="concurrency-conflicts"></a>Conflitos de simultaneidade
 
@@ -148,7 +148,7 @@ Isso altera o título "Departamentos", exclui a coluna RowVersion e mostra o nom
 
 Nos métodos HttpGet `Edit` e `Details`, adicione `AsNoTracking`. No método HttpGet `Edit`, adicione o carregamento adiantado ao Administrador.
 
-[!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EagerLoading&highlight=2,3)]
+[!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EagerLoading)]
 
 Substitua o código existente do método HttpPost `Edit` pelo seguinte código:
 
@@ -309,6 +309,7 @@ Neste tutorial, você:
 > * Atualizou a página Excluir
 > * Atualizou as exibições de Detalhes e Criar
 
-Vá para o próximo artigo para aprender a implementar a herança de tabela por hierarquia para as entidades Instructor e Student.
+Vá para o próximo tutorial para aprender a implementar a herança de tabela por hierarquia para as entidades Instructor e Student.
+
 > [!div class="nextstepaction"]
-> [Implementar a herança de tabela por hierarquia](inheritance.md)
+> [Avançar: implementar a herança de tabela por hierarquia](inheritance.md)

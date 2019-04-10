@@ -1,17 +1,18 @@
 ---
 title: Host ASP.NET Core no Linux com Nginx
-author: rick-anderson
+author: guardrex
 description: Saiba como configurar o Nginx como um proxy reverso no Ubuntu 16.04 para encaminhar o tráfego HTTP para um aplicativo Web ASP.NET Core em execução no Kestrel.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/27/2019
+ms.date: 03/31/2019
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 11754279d18a2449451364b4aaba723b7afb06d5
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: 1a299cbd5fb9d971176d7d440efdad68e3780231
+ms.sourcegitcommit: 5995f44e9e13d7e7aa8d193e2825381c42184e47
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57345918"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58809335"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Host ASP.NET Core no Linux com Nginx
 
@@ -43,6 +44,11 @@ Este guia:
 ## <a name="publish-and-copy-over-the-app"></a>Publicar e copiar o aplicativo
 
 Configurar o aplicativo para um [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
+
+Se o aplicativo for executado localmente e não estiver configurado para fazer conexões seguras (HTTPS), adote uma das seguintes abordagens:
+
+* Configure o aplicativo para lidar com conexões seguras locais. Para obter mais informações, veja a seção [Configuração de HTTPS](#https-configuration).
+* Remova `https://localhost:5001` (se houver) da propriedade `applicationUrl` no arquivo *Properties/launchSettings.json*.
 
 Execute [dotnet publish](/dotnet/core/tools/dotnet-publish) do ambiente de desenvolvimento para empacotar um aplicativo em um diretório (por exemplo, *bin/Release/&lt;target_framework_moniker&gt;/publish*) que pode ser executado no servidor:
 
@@ -76,8 +82,6 @@ Uma vez que as solicitações são encaminhadas pelo proxy reverso, use o [Middl
 
 Qualquer componente que dependa do esquema, como autenticação, geração de link, redirecionamentos e localização geográfica, deverá ser colocado depois de invocar o Middleware de Cabeçalhos Encaminhados. Como regra geral, o Middleware de Cabeçalhos Encaminhados deve ser executado antes de outro middleware, exceto middleware de tratamento de erro e de diagnóstico. Essa ordenação garantirá que o middleware conte com informações de cabeçalhos encaminhadas que podem consumir os valores de cabeçalho para processamento.
 
-::: moniker range=">= aspnetcore-2.0"
-
 Invoque o método <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> em `Startup.Configure` antes de chamar <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> ou outro middleware de esquema de autenticação semelhante. Configure o middleware para encaminhar os cabeçalhos `X-Forwarded-For` e `X-Forwarded-Proto`:
 
 ```csharp
@@ -88,28 +92,6 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 
 app.UseAuthentication();
 ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-Invoque o método <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> em `Startup.Configure` antes de chamar <xref:Microsoft.AspNetCore.Builder.BuilderExtensions.UseIdentity*> e <xref:Microsoft.AspNetCore.Builder.FacebookAppBuilderExtensions.UseFacebookAuthentication*> ou outro middleware de esquema de autenticação semelhante. Configure o middleware para encaminhar os cabeçalhos `X-Forwarded-For` e `X-Forwarded-Proto`:
-
-```csharp
-app.UseForwardedHeaders(new ForwardedHeadersOptions
-{
-    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-});
-
-app.UseIdentity();
-app.UseFacebookAuthentication(new FacebookOptions()
-{
-    AppId = Configuration["Authentication:Facebook:AppId"],
-    AppSecret = Configuration["Authentication:Facebook:AppSecret"]
-});
-```
-
-::: moniker-end
 
 Se nenhum <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> for especificado para o middleware, os cabeçalhos padrão para encaminhar serão `None`.
 
@@ -237,6 +219,12 @@ Alguns valores (por exemplo, cadeias de conexão de SQL) devem ser escapadas par
 systemd-escape "<value-to-escape>"
 ```
 
+Separadores do tipo dois-pontos (`:`) não são compatíveis com nomes de variáveis de ambiente. Use um sublinhado duplo (`__`) no lugar de dois-pontos. O [provedor de configuração de Variáveis de Ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider) converte caracteres de sublinhado duplo em dois-pontos quando as variáveis de ambiente são lidas na configuração. No exemplo a seguir, a chave de cadeia de conexão `ConnectionStrings:DefaultConnection` está definida no arquivo de definição de serviço como `ConnectionStrings__DefaultConnection`:
+
+```
+Environment=ConnectionStrings__DefaultConnection={Connection String}
+```
+
 Salve o arquivo e habilite o serviço.
 
 ```bash
@@ -350,6 +338,17 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 Configure o servidor com os módulos adicionais necessários. Considere usar um firewall de aplicativo Web como [ModSecurity](https://www.modsecurity.org/) para fortalecer o aplicativo.
 
 #### <a name="https-configuration"></a>Configuração de HTTPS
+
+**Configurar o aplicativo para conexões seguras (HTTPS) locais**
+
+O comando [dotnet run](/dotnet/core/tools/dotnet-run) usa o arquivo *Properties/launchSettings.json* do aplicativo, que configura o aplicativo para escutar nas URLs fornecidas pela propriedade `applicationUrl` (por exemplo, `https://localhost:5001;http://localhost:5000`).
+
+Configure o aplicativo para usar um certificado no desenvolvimento para o comando `dotnet run` ou no ambiente de desenvolvimento (F5 ou Ctrl + F5 no Visual Studio Code) usando uma das seguintes abordagens:
+
+* [Substituir o certificado padrão da configuração](xref:fundamentals/servers/kestrel#configuration) (*Recomendado*)
+* [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+
+**Configurar o proxy reverso para conexões de cliente seguras (HTTPS)**
 
 * Configure o servidor para escutar tráfego HTTPS na porta `443` especificando um certificado válido emitido por uma AC (autoridade de certificação) confiável.
 

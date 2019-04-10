@@ -5,20 +5,37 @@ description: Saiba mais sobre o Host Genérico no ASP.NET Core, que é responsá
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/28/2018
+ms.date: 03/31/2019
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: 817b7b3b420520992f18f1f207b412bc4555bdfa
-ms.sourcegitcommit: a1c43150ed46aa01572399e8aede50d4668745ca
+ms.openlocfilehash: bb6afe59fcad685d18cdc9c8d90cfcc7b3a6541d
+ms.sourcegitcommit: 5995f44e9e13d7e7aa8d193e2825381c42184e47
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/21/2019
-ms.locfileid: "58327385"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58809183"
 ---
 # <a name="net-generic-host"></a>Host Genérico .NET
 
 Por [Luke Latham](https://github.com/guardrex)
 
-::: moniker range="<= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+Aplicativos ASP.NET Core configuram e iniciam um host. O host é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo.
+
+Este artigo aborda o Host Genérico do .NET Core (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
+
+O Host Genérico é diferente do host da Web, visto que separa o pipeline HTTP da API de host da Web para permitir maior gama de cenários de host. Sistema de mensagens, tarefas em segundo plano e outras cargas de trabalho não HTTP podem usar o Host Genérico e se beneficiar de recursos em paralelo, tais como configuração, DI (injeção de dependência) e registro em log.
+
+Da versão 3.0 do ASP.NET Core em diante, o Host Genérico é recomendável para cargas de trabalho HTTP e não HTTP. Uma implementação do servidor HTTP, se for incluída, será executada como uma implementação de <xref:Microsoft.Extensions.Hosting.IHostedService>. <xref:Microsoft.Extensions.Hosting.IHostedService> é uma interface que também pode ser usada para outras cargas de trabalho.
+
+O host da Web não é mais recomendado para aplicativos Web, mas permanece disponível para compatibilidade com versões anteriores.
+
+> [!NOTE]
+> O restante deste artigo não foi atualizado para a versão 3.0.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 
 Aplicativos ASP.NET Core configuram e iniciam um host. O host é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo.
 
@@ -27,23 +44,6 @@ Este artigo aborda o Host Genérico do ASP.NET Core (<xref:Microsoft.Extensions.
 A finalidade do Host Genérico é separar o pipeline HTTP da API de host da Web para permitir maior gama de cenários de host. Sistema de mensagens, tarefas em segundo plano e outras cargas de trabalho não HTTP com base no benefício do Host Genérico de recursos em paralelo, como configuração, DI (injeção de dependência) e log.
 
 O Host Genérico é novo no ASP.NET Core 2.1 e não é adequado para cenários de hospedagem na Web. Para cenários de hospedagem na Web, use o [host da Web](xref:fundamentals/host/web-host). O Host Genérico substituirá o host da Web em uma versão futura e atuar como API do host principal em cenários HTTP e não HTTP.
-
-::: moniker-end
-
-::: moniker range="> aspnetcore-2.2"
-
-Aplicativos ASP.NET Core configuram e iniciam um host. O host é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo.
-
-Este artigo aborda o Host Genérico do .NET Core (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
-
-O Host Genérico é diferente do host da Web, visto que separa o pipeline HTTP da API de host da Web para permitir maior gama de cenários de host. Sistema de mensagens, tarefas em segundo plano e outras cargas de trabalho não HTTP podem usar o Host Genérico e se beneficiar de recursos em paralelo, tais como configuração, DI (injeção de dependência) e registro em log.
-
-Da versão 3.0 do ASP.NET Core em diante, o Host Genérico é recomendável para cargas de trabalho HTTP e não HTTP. Uma implementação do servidor HTTP, se for incluída, será executada como uma implementação de <xref:Microsoft.Extensions.Hosting.IHostedService>. `IHostedService` é uma interface que também pode ser usada para outras cargas de trabalho.
-
-O host da Web não é mais recomendado para aplicativos Web, mas permanece disponível para compatibilidade com versões anteriores.
-
-> [!NOTE]
-> O restante deste artigo ainda não foi atualizado para a versão 3.0.
 
 ::: moniker-end
 
@@ -60,7 +60,7 @@ Para definir o console no Visual Studio Code:
 
 A biblioteca do Host Genérico está disponível no namespace <xref:Microsoft.Extensions.Hosting> e é fornecida pelo pacote [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting/). O pacote `Microsoft.Extensions.Hosting` está incluído no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 ou posterior).
 
-<xref:Microsoft.Extensions.Hosting.IHostedService> é o ponto de entrada para a execução de código. Cada implementação do `IHostedService` é executada na ordem do [registro de serviço em ConfigureServices](#configureservices). <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*> é chamado em cada `IHostedService` quando o host é iniciado e <xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*> é chamado na ordem inversa de registro quando o host é desligado normalmente.
+<xref:Microsoft.Extensions.Hosting.IHostedService> é o ponto de entrada para a execução de código. Cada implementação do <xref:Microsoft.Extensions.Hosting.IHostedService> é executada na ordem do [registro de serviço em ConfigureServices](#configureservices). <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*> é chamado em cada <xref:Microsoft.Extensions.Hosting.IHostedService> quando o host é iniciado e <xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*> é chamado na ordem inversa de registro quando o host é desligado normalmente.
 
 ## <a name="set-up-a-host"></a>Configurar um host
 
@@ -152,13 +152,13 @@ O ambiente pode ser definido como qualquer valor. Os valores definidos pela estr
 
 ### <a name="configurehostconfiguration"></a>ConfigureHostConfiguration
 
-`ConfigureHostConfiguration` usa um <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> para criar um <xref:Microsoft.Extensions.Configuration.IConfiguration> para o host. A configuração do host é usada para inicializar o <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> para uso no processo de build do aplicativo.
+<xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> usa um <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> para criar um <xref:Microsoft.Extensions.Configuration.IConfiguration> para o host. A configuração do host é usada para inicializar o <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> para uso no processo de build do aplicativo.
 
-`ConfigureHostConfiguration` pode ser chamado várias vezes com resultados aditivos. O host usa a opção que define um valor por último em uma chave determinada.
+<xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> pode ser chamado várias vezes com resultados aditivos. O host usa a opção que define um valor por último em uma chave determinada.
 
 A configuração do host flui automaticamente para a configuração do aplicativo ([ConfigureAppConfiguration](#configureappconfiguration) e o restante do aplicativo).
 
-Não há provedores incluídos por padrão. Você deve especificar explicitamente os provedores de configuração exigidos pelo aplicativo em `ConfigureHostConfiguration`, incluindo:
+Não há provedores incluídos por padrão. Você deve especificar explicitamente os provedores de configuração exigidos pelo aplicativo em <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*>, incluindo:
 
 * Configuração de arquivo (por exemplo, de um arquivo *hostsettings.json*).
 * Configuração de variável de ambiente.
@@ -179,17 +179,17 @@ Durante o desenvolvimento, ao usar o [Visual Studio](https://www.visualstudio.co
 
 Configuração adicional pode ser fornecida com as chaves [applicationName](#application-key-name) e [contentRoot](#content-root).
 
-Exemplo da configuração `HostBuilder` usando `ConfigureHostConfiguration`:
+Exemplo da configuração `HostBuilder` usando <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*>:
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_ConfigureHostConfiguration)]
 
 ## <a name="configureappconfiguration"></a>ConfigureAppConfiguration
 
-A configuração de aplicativo é criada chamando <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> na implementação <xref:Microsoft.Extensions.Hosting.IHostBuilder>. `ConfigureAppConfiguration` usa um <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> para criar um <xref:Microsoft.Extensions.Configuration.IConfiguration> para o aplicativo. `ConfigureAppConfiguration` pode ser chamado várias vezes com resultados aditivos. O aplicativo usa a opção que define um valor por último em uma chave determinada. A configuração criada pelo `ConfigureAppConfiguration` está disponível em [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*) para operações subsequentes e em <xref:Microsoft.Extensions.Hosting.IHost.Services*>.
+A configuração de aplicativo é criada chamando <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> na implementação <xref:Microsoft.Extensions.Hosting.IHostBuilder>. <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> usa um <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> para criar um <xref:Microsoft.Extensions.Configuration.IConfiguration> para o aplicativo. <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> pode ser chamado várias vezes com resultados aditivos. O aplicativo usa a opção que define um valor por último em uma chave determinada. A configuração criada pelo <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> está disponível em [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*) para operações subsequentes e em <xref:Microsoft.Extensions.Hosting.IHost.Services*>.
 
 A configuração do aplicativo recebe automaticamente a configuração de host fornecida por [ConfigureHostConfiguration](#configurehostconfiguration).
 
-Exemplo da configuração de aplicativo usando `ConfigureAppConfiguration`:
+Exemplo da configuração de aplicativo usando <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>:
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_ConfigureAppConfiguration)]
 
@@ -209,13 +209,14 @@ Para mover arquivos de configurações para o diretório de saída, especifique 
 
 ```xml
 <ItemGroup>
-  <Content Include="**\*.json" Exclude="bin\**\*;obj\**\*" CopyToOutputDirectory="PreserveNewest" />
+  <Content Include="**\*.json" Exclude="bin\**\*;obj\**\*" 
+      CopyToOutputDirectory="PreserveNewest" />
 </ItemGroup>
 ```
 
 ## <a name="configureservices"></a>ConfigureServices
 
-<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.ConfigureServices*> adiciona serviços ao contêiner [injeção de dependência](xref:fundamentals/dependency-injection) do aplicativo. `ConfigureServices` pode ser chamado várias vezes com resultados aditivos.
+<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.ConfigureServices*> adiciona serviços ao contêiner [injeção de dependência](xref:fundamentals/dependency-injection) do aplicativo. <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.ConfigureServices*> pode ser chamado várias vezes com resultados aditivos.
 
 Um serviço hospedado é uma classe com lógica de tarefa em segundo plano que implementa a interface <xref:Microsoft.Extensions.Hosting.IHostedService>. Para obter mais informações, consulte <xref:fundamentals/host/hosted-services>.
 
@@ -225,13 +226,13 @@ O [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/
 
 ## <a name="configurelogging"></a>ConfigureLogging
 
-<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.ConfigureLogging*> adiciona um delegado para configurar o <xref:Microsoft.Extensions.Logging.ILoggingBuilder> fornecido. `ConfigureLogging` pode ser chamado várias vezes com resultados aditivos.
+<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.ConfigureLogging*> adiciona um delegado para configurar o <xref:Microsoft.Extensions.Logging.ILoggingBuilder> fornecido. <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.ConfigureLogging*> pode ser chamado várias vezes com resultados aditivos.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_ConfigureLogging)]
 
 ### <a name="useconsolelifetime"></a>UseConsoleLifetime
 
-<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> escuta `Ctrl+C`/SIGINT ou SIGTERM e chama <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> para iniciar o processo de desligamento. `UseConsoleLifetime` desbloqueia extensões como [RunAsync](#runasync) e [WaitForShutdownAsync](#waitforshutdownasync). <xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime> é previamente registrado como a implementação de tempo de vida padrão. O último tempo de vida registrado é usado.
+<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> escuta Ctrl + C/SIGINT ou SIGTERM e chama <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> para iniciar o processo de desligamento. <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> desbloqueia extensões como [RunAsync](#runasync) e [WaitForShutdownAsync](#waitforshutdownasync). <xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime> é previamente registrado como a implementação de tempo de vida padrão. O último tempo de vida registrado é usado.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseConsoleLifetime)]
 
@@ -239,7 +240,7 @@ O [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/
 
 Para dar suporte à conexão de outros contêineres, o host pode aceitar um <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderFactory%601>. O fornecimento de um alocador não faz parte do registro de contêiner de injeção de dependência, mas, em vez disso, um host intrínseco é usado para criar o contêiner de DI concreto. [UseServiceProviderFactory(IServiceProviderFactory&lt;TContainerBuilder&gt;)](xref:Microsoft.Extensions.Hosting.HostBuilder.UseServiceProviderFactory*) substitui o alocador padrão usado para criar o provedor de serviços do aplicativo.
 
-A configuração de contêiner personalizado é gerenciada pelo método <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureContainer*>. `ConfigureContainer` fornece uma experiência fortemente tipada para configurar o contêiner sobre a API do host subjacente. `ConfigureContainer` pode ser chamado várias vezes com resultados aditivos.
+A configuração de contêiner personalizado é gerenciada pelo método <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureContainer*>. <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureContainer*> fornece uma experiência fortemente tipada para configurar o contêiner sobre a API do host subjacente. <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureContainer*> pode ser chamado várias vezes com resultados aditivos.
 
 Crie um contêiner de serviço para o aplicativo:
 
@@ -255,7 +256,7 @@ Use o alocador e configure o contêiner de serviço personalizado para o aplicat
 
 ## <a name="extensibility"></a>Extensibilidade
 
-Extensibilidade de host é executada com métodos de extensão em `IHostBuilder`. O exemplo a seguir mostra como um método de extensão estende uma implementação do `IHostBuilder` com o exemplo do [TimedHostedService](xref:fundamentals/host/hosted-services#timed-background-tasks), demonstrado no <xref:fundamentals/host/hosted-services>.
+Extensibilidade de host é executada com métodos de extensão em <xref:Microsoft.Extensions.Hosting.IHostBuilder>. O exemplo a seguir mostra como um método de extensão estende uma implementação do <xref:Microsoft.Extensions.Hosting.IHostBuilder> com o exemplo do [TimedHostedService](xref:fundamentals/host/hosted-services#timed-background-tasks), demonstrado no <xref:fundamentals/host/hosted-services>.
 
 ```csharp
 var host = new HostBuilder()
@@ -285,7 +286,7 @@ public static class Extensions
 
 ## <a name="manage-the-host"></a>Gerenciar o host
 
-A implementação <xref:Microsoft.Extensions.Hosting.IHost> é responsável por iniciar e parar as implementações `IHostedService` que estão registradas no contêiner de serviço.
+A implementação <xref:Microsoft.Extensions.Hosting.IHost> é responsável por iniciar e parar as implementações <xref:Microsoft.Extensions.Hosting.IHostedService> que estão registradas no contêiner de serviço.
 
 ### <a name="run"></a>Executar
 
@@ -306,7 +307,7 @@ public class Program
 
 ### <a name="runasync"></a>RunAsync
 
-<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync*> executa o aplicativo e retorna um `Task` que é concluído quando o token de cancelamento ou o desligamento é disparado:
+<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync*> executa o aplicativo e retorna um <xref:System.Threading.Tasks.Task> que é concluído quando o token de cancelamento ou o desligamento é disparado:
 
 ```csharp
 public class Program
@@ -323,7 +324,7 @@ public class Program
 
 ### <a name="runconsoleasync"></a>RunConsoleAsync
 
-<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.RunConsoleAsync*> habilita o suporte do console, compila e inicia o host e aguarda `Ctrl+C`/SIGINT ou SIGTERM desligar.
+<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.RunConsoleAsync*> habilita o suporte do console, compila e inicia o host e aguarda Ctrl + C/SIGINT ou SIGTERM desligar.
 
 ```csharp
 public class Program
@@ -387,7 +388,7 @@ public class Program
 
 ### <a name="waitforshutdown"></a>WaitForShutdown
 
-<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> é disparado por meio de <xref:Microsoft.Extensions.Hosting.IHostLifetime>, como <xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime> (escuta `Ctrl+C`/SIGINT ou SIGTERM). `WaitForShutdown` chama <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
+<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> é disparado por meio de <xref:Microsoft.Extensions.Hosting.IHostLifetime>, como <xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime> (escuta Ctrl + C/SIGINT ou SIGTERM). <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> chama <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
 
 ```csharp
 public class Program
@@ -409,7 +410,7 @@ public class Program
 
 ### <a name="waitforshutdownasync"></a>WaitForShutdownAsync
 
-<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdownAsync*> retorna um `Task` que é concluído quando o desligamento é disparado por meio do token fornecido e chama <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
+<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdownAsync*> retorna um <xref:System.Threading.Tasks.Task> que é concluído quando o desligamento é disparado por meio do token fornecido e chama <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
 
 ```csharp
 public class Program
@@ -464,7 +465,7 @@ public class Program
 
 ## <a name="ihostingenvironment-interface"></a>Interface IHostingEnvironment
 
-<xref:Microsoft.Extensions.Hosting.IHostingEnvironment> fornece informações sobre o ambiente de hospedagem do aplicativo. Use a [injeção de construtor](xref:fundamentals/dependency-injection) para obter o `IHostingEnvironment` para usar suas propriedades e métodos de extensão:
+<xref:Microsoft.Extensions.Hosting.IHostingEnvironment> fornece informações sobre o ambiente de hospedagem do aplicativo. Use a [injeção de construtor](xref:fundamentals/dependency-injection) para obter o <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> para usar suas propriedades e métodos de extensão:
 
 ```csharp
 public class MyClass
@@ -487,7 +488,7 @@ Para obter mais informações, consulte <xref:fundamentals/environments>.
 
 ## <a name="iapplicationlifetime-interface"></a>Interface IApplicationLifetime
 
-<xref:Microsoft.Extensions.Hosting.IApplicationLifetime> permite atividades pós-inicialização e desligamento, inclusive solicitações de desligamento normal. Três propriedades na interface são tokens de cancelamento usados para registrar métodos `Action` que definem eventos de inicialização e desligamento.
+<xref:Microsoft.Extensions.Hosting.IApplicationLifetime> permite atividades pós-inicialização e desligamento, inclusive solicitações de desligamento normal. Três propriedades na interface são tokens de cancelamento usados para registrar métodos <xref:System.Action> que definem eventos de inicialização e desligamento.
 
 | Token de cancelamento | Acionado quando&#8230; |
 | ------------------ | --------------------- |
@@ -495,13 +496,13 @@ Para obter mais informações, consulte <xref:fundamentals/environments>.
 | <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.ApplicationStopped*> | O host está concluindo um desligamento normal. Todas as solicitações devem ser processadas. O desligamento é bloqueado até que esse evento seja concluído. |
 | <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.ApplicationStopping*> | O host está executando um desligamento normal. Solicitações ainda podem estar sendo processadas. O desligamento é bloqueado até que esse evento seja concluído. |
 
-O construtor injeta o serviço `IApplicationLifetime` em qualquer classe. O [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) usa injeção de construtor em uma classe `LifetimeEventsHostedService` (uma implementação `IHostedService`) para registrar os eventos.
+O construtor injeta o serviço <xref:Microsoft.Extensions.Hosting.IApplicationLifetime> em qualquer classe. O [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) usa injeção de construtor em uma classe `LifetimeEventsHostedService` (uma implementação <xref:Microsoft.Extensions.Hosting.IHostedService>) para registrar os eventos.
 
 *LifetimeEventsHostedService.cs*:
 
 [!code-csharp[](generic-host/samples/2.x/GenericHostSample/LifetimeEventsHostedService.cs?name=snippet1)]
 
-<xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> solicita o término do aplicativo. A classe a seguir usa `StopApplication` para desligar normalmente um aplicativo quando o método `Shutdown` da classe é chamado:
+<xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> solicita o término do aplicativo. A classe a seguir usa <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> para desligar normalmente um aplicativo quando o método `Shutdown` da classe é chamado:
 
 ```csharp
 public class MyClass
@@ -523,4 +524,3 @@ public class MyClass
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:fundamentals/host/hosted-services>
-* [Hospedagem de exemplos do repositório no GitHub](https://github.com/aspnet/Hosting/tree/release/2.1/samples)

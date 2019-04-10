@@ -7,12 +7,12 @@ ms.custom: mvc
 ms.date: 02/04/2019
 ms.topic: tutorial
 uid: data/ef-mvc/crud
-ms.openlocfilehash: 83f5d4bdc3d5872109649818b61a6dbb656fd8be
-ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
+ms.openlocfilehash: cee521eec3172c04b4d9d93c12076c42c9adff18
+ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58264832"
+ms.lasthandoff: 03/30/2019
+ms.locfileid: "58750611"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: Implementar a funcionalidade CRUD - ASP.NET MVC com EF Core
 
@@ -32,7 +32,7 @@ Neste tutorial, você:
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* [Introdução ao EF Core em um aplicativo Web ASP.NET Core MVC](intro.md)
+* [Introdução ao EF Core e ASP.NET Core MVC](intro.md)
 
 ## <a name="customize-the-details-page"></a>Personalizar a página Detalhes
 
@@ -243,7 +243,7 @@ Este código aceita um parâmetro opcional que indica se o método foi chamado a
 
 Substitua o método de ação HttpPost `Delete` (chamado `DeleteConfirmed`) pelo código a seguir, que executa a operação de exclusão real e captura os erros de atualização de banco de dados.
 
-[!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_DeleteWithReadFirst&highlight=6,8-11,13-14,18-23)]
+[!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_DeleteWithReadFirst&highlight=6-9,11-12,16-21)]
 
 Esse código recupera a entidade selecionada e, em seguida, chama o método `Remove` para definir o status da entidade como `Deleted`. Quando `SaveChanges` é chamado, um comando SQL DELETE é gerado.
 
@@ -306,6 +306,7 @@ Neste tutorial, você:
 > * Atualizou a página Excluir
 > * Fechou conexões de banco de dados
 
-Vá para o próximo artigo para saber como expandir a funcionalidade da página **Índice** adicionando classificação, filtragem e paginação.
+Vá para o próximo tutorial para saber como expandir a funcionalidade da página **Índice** adicionando classificação, filtragem e paginação.
+
 > [!div class="nextstepaction"]
-> [Classificação, filtragem e paginação](sort-filter-page.md)
+> [Avançar: classificação, filtragem e paginação](sort-filter-page.md)

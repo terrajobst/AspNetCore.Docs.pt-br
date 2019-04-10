@@ -3,15 +3,15 @@ title: 'Tutorial: Adicionar classificação, filtragem e paginação - ASP.NET C
 description: Neste tutorial você adicionará as funcionalidades de classificação, filtragem e paginação à página Índice de Alunos. Você também criará uma página que faz um agrupamento simples.
 author: rick-anderson
 ms.author: tdykstra
-ms.date: 02/04/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/sort-filter-page
-ms.openlocfilehash: 51b6b08d2410652f93427371aec299eb4c8789f1
-ms.sourcegitcommit: 5e3797a02ff3c48bb8cb9ad4320bfd169ebe8aba
+ms.openlocfilehash: dff5a5b1ba3c8ed07ccc8d134f8cfeb25b9f6689
+ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56103053"
+ms.lasthandoff: 03/30/2019
+ms.locfileid: "58751045"
 ---
 # <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Tutorial: Adicionar classificação, filtragem e paginação - ASP.NET Core MVC com EF Core
 
@@ -33,7 +33,7 @@ Neste tutorial, você:
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* [Implementar a funcionalidade CRUD com o EF Core em um aplicativo Web ASP.NET Core MVC](crud.md)
+* [Implementar funcionalidade CRUD](crud.md)
 
 ## <a name="add-column-sort-links"></a>Adicionar links de classificação de coluna
 
@@ -144,7 +144,7 @@ public async Task<IActionResult> Index(
     string sortOrder,
     string currentFilter,
     string searchString,
-    int? page)
+    int? pageNumber)
 ```
 
 Na primeira vez que a página for exibida, ou se o usuário ainda não tiver clicado em um link de paginação ou classificação, todos os parâmetros serão nulos.  Se um link de paginação receber um clique, a variável de página conterá o número da página a ser exibido.
@@ -158,7 +158,7 @@ Se a cadeia de caracteres de pesquisa for alterada durante a paginação, a pág
 ```csharp
 if (searchString != null)
 {
-    page = 1;
+    pageNumber = 1;
 }
 else
 {
@@ -169,10 +169,10 @@ else
 Ao final do método `Index`, o método `PaginatedList.CreateAsync` converte a consulta de alunos em uma única página de alunos de um tipo de coleção compatível com paginação. A única página de alunos é então passada para a exibição.
 
 ```csharp
-return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), page ?? 1, pageSize));
+return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
 ```
 
-O método `PaginatedList.CreateAsync` usa um número de página. Os dois pontos de interrogação representam o operador de união de nulo. O operador de união de nulo define um valor padrão para um tipo que permite valor nulo; a expressão `(page ?? 1)` significa retornar o valor de `page` se ele tiver um valor ou retornar 1 se `page` for nulo.
+O método `PaginatedList.CreateAsync` usa um número de página. Os dois pontos de interrogação representam o operador de união de nulo. O operador de união de nulo define um valor padrão para um tipo que permite valor nulo; a expressão `(pageNumber ?? 1)` significa retornar o valor de `pageNumber` se ele tiver um valor ou retornar 1 se `pageNumber` for nulo.
 
 ## <a name="add-paging-links"></a>Adicionar links de paginação
 
@@ -193,7 +193,7 @@ Os botões de paginação são exibidos por auxiliares de marcação:
 ```html
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default @prevDisabled">
    Previous
@@ -234,7 +234,7 @@ Adicione uma variável de classe ao contexto de banco de dados imediatamente ap�
 
 [!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_AddContext&highlight=3,5,7)]
 
-Substitua o método `About` pelo seguinte código:
+Adicione um método `About` com o seguinte código:
 
 [!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_UseDbSet)]
 
@@ -244,7 +244,7 @@ A instrução LINQ agrupa as entidades de alunos por data de registro, calcula o
 
 ### <a name="modify-the-about-view"></a>Modificar a exibição Sobre
 
-Substitua o código no arquivo *Views/Home/About.cshtml* pelo seguinte código:
+Adicione um arquivo *Views/Home/About.cshtml* com o seguinte código:
 
 [!code-html[](intro/samples/cu/Views/Home/About.cshtml)]
 
@@ -266,6 +266,7 @@ Neste tutorial, você:
 > * Adicionou links de paginação
 > * Criou uma página Sobre
 
-Vá para o próximo artigo para aprender a manipular as alterações do modelo de dados usando migrações.
+Vá para o próximo tutorial para aprender a manipular as alterações do modelo de dados usando migrações.
+
 > [!div class="nextstepaction"]
-> [Lidar com mudanças no modelo de dados](migrations.md)
+> [Avançar: Manipular mudanças no modelo de dados](migrations.md)
