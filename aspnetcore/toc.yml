@@ -561,10 +561,14 @@ items:
       name: Visão geral
     - uid: razor-components/get-started
       name: Introdução
+    - uid: razor-components/hosting-models
+      name: Modelos de hospedagem
     - uid: tutorials/first-razor-components-app
       name: Criar seu primeiro aplicativo
     - uid: razor-components/components
       name: Componentes
+    - uid: razor-components/forms-validation
+      name: Formulários e validação
     - uid: razor-components/class-libraries
       name: Bibliotecas de componentes
     - uid: razor-components/layouts
@@ -577,14 +581,12 @@ items:
       name: Interoperabilidade do JavaScript
     - uid: razor-components/debug
       name: Depurar
-    - uid: razor-components/hosting-models
-      name: Modelos de hospedagem
     - name: Hospedar e implantar
       items:
-      - uid: host-and-deploy/razor-components/index
+      - uid: host-and-deploy/razor-components-blazor/index
         name: Visão geral
-      - uid: host-and-deploy/razor-components/configure-linker
-        name: Configurar o vinculador
+      - uid: host-and-deploy/razor-components-blazor/razor-components
+        name: Componentes Razor
   - name: Aplicativos de página única
     items:
     - name: Blazor
@@ -593,10 +595,14 @@ items:
         name: Visão geral
       - uid: spa/blazor/get-started
         name: Introdução
+      - uid: razor-components/hosting-models
+        name: Modelos de hospedagem
       - uid: tutorials/first-razor-components-app
         name: Criar seu primeiro aplicativo
       - uid: razor-components/components
         name: Componentes
+      - uid: razor-components/forms-validation
+        name: Formulários e validação
       - uid: razor-components/class-libraries
         name: Bibliotecas de componentes
       - uid: razor-components/layouts
@@ -609,13 +615,13 @@ items:
         name: Interoperabilidade do JavaScript
       - uid: razor-components/debug
         name: Depurar
-      - uid: razor-components/hosting-models
-        name: Modelos de hospedagem
       - name: Hospedar e implantar
         items:
-        - uid: host-and-deploy/razor-components/index
+        - uid: host-and-deploy/razor-components-blazor/index
           name: Visão geral
-        - uid: host-and-deploy/razor-components/configure-linker
+        - uid: host-and-deploy/razor-components-blazor/blazor
+          name: Blazor
+        - uid: host-and-deploy/razor-components-blazor/configure-linker
           name: Configurar o vinculador
     - uid: spa/angular
       name: Angular
@@ -774,11 +780,15 @@ items:
   - uid: host-and-deploy/health-checks
     name: Verificações de integridade
     displayName: deploy, publish
-  - name: Componentes Razor
+  - name: Componentes Razor/Blazor
     items:
-    - uid: host-and-deploy/razor-components/index
+    - uid: host-and-deploy/razor-components-blazor/index
       name: Visão geral
-    - uid: host-and-deploy/razor-components/configure-linker
+    - uid: host-and-deploy/razor-components-blazor/blazor
+      name: Blazor
+    - uid: host-and-deploy/razor-components-blazor/razor-components
+      name: Componentes Razor
+    - uid: host-and-deploy/razor-components-blazor/configure-linker
       name: Configurar o vinculador
 - name: Segurança e identidade
   displayName: authentication, authorization
@@ -1083,9 +1093,9 @@ items:
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribuir
   href: https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
-ms.openlocfilehash: d9ab9beacab19a0e004878d2645b1106bf5dc0d6
-ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
+ms.openlocfilehash: 0065707eeaf77327e553b3c43b65e11063edd7e0
+ms.sourcegitcommit: 6bde1fdf686326c080a7518a6725e56e56d8886e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/30/2019
-ms.locfileid: "58751102"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068385"
