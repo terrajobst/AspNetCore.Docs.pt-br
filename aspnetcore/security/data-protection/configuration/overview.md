@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como configurar a proteção de dados no ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/08/2019
+ms.date: 04/11/2019
 uid: security/data-protection/configuration/overview
-ms.openlocfilehash: 36a06246513215ec29891df02688d113db11f914
-ms.sourcegitcommit: 32bc00435767189fa3ae5fb8a91a307bf889de9d
+ms.openlocfilehash: ee43427fa1e82a365d49df50567b4ca7afb5a5d3
+ms.sourcegitcommit: 9b7fcb4ce00a3a32e153a080ebfaae4ef417aafa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/11/2019
-ms.locfileid: "57733498"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59516242"
 ---
 # <a name="configure-aspnet-core-data-protection"></a>Configurar a proteção de dados do ASP.NET Core
 
@@ -44,7 +44,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Defina o local de armazenamento do anel de chave (por exemplo, [PersistKeysToAzureBlobStorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage)). O local deve ser definido porque chamando `ProtectKeysWithAzureKeyVault` implementa uma [IXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmlencryptor) que desabilita as configurações de proteção automática de dados, incluindo o local de armazenamento do anel de chave. O exemplo anterior usa o armazenamento de BLOBs do Azure para persistir o anel de chave. Para obter mais informações, consulte [principais provedores de armazenamento: O Azure e Redis](xref:security/data-protection/implementation/key-storage-providers#azure-and-redis). Também é possível persistir o token de autenticação localmente com [PersistKeysToFileSystem](xref:security/data-protection/implementation/key-storage-providers#file-system).
 
-O `keyIdentifier` é o identificador de chave de Cofre de chaves usado para criptografia de chave (por exemplo, `https://contosokeyvault.vault.azure.net/keys/dataprotection/`).
+O `keyIdentifier` é o identificador de chave de Cofre de chaves usado para criptografia de chave. Por exemplo, uma chave criada no cofre de chaves chamado `dataprotection` no `contosokeyvault` tem o identificador de chave `https://contosokeyvault.vault.azure.net/keys/dataprotection/`. Forneça o aplicativo com **Unwrap Key** e **Wrap Key** permissões ao Cofre de chaves.
 
 `ProtectKeysWithAzureKeyVault` sobrecargas:
 
@@ -154,7 +154,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="disableautomatickeygeneration"></a>DisableAutomaticKeyGeneration
 
-Você pode ter um cenário onde você não deseja que um aplicativo para reverter automaticamente chaves (criar novas chaves), como eles abordam a expiração. Um exemplo disso pode ser configurados em uma relação primária/secundária, em que apenas o aplicativo principal é responsável por questões de gerenciamento de chaves e aplicativos secundários simplesmente tem uma exibição somente leitura do anel de chave de aplicativos. Os aplicativos secundários podem ser configurados para tratar o anel de chave como somente leitura ao configurar o sistema com [DisableAutomaticKeyGeneration](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.disableautomatickeygeneration):
+Você pode ter um cenário onde você não deseja que um aplicativo para reverter automaticamente chaves (criar novas chaves), como eles abordam a expiração. Um exemplo disso pode ser configurados em uma relação primária/secundária, em que apenas o aplicativo principal é responsável por questões de gerenciamento de chaves e aplicativos secundários simplesmente tem uma exibição somente leitura do anel de chave de aplicativos. Os aplicativos secundários podem ser configurados para tratar o anel de chave como somente leitura ao configurar o sistema com <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.DisableAutomaticKeyGeneration*>:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -166,15 +166,14 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="per-application-isolation"></a>Isolamento por aplicativo
 
-Quando o sistema de proteção de dados é fornecido por um host do ASP.NET Core, ele automaticamente isola os aplicativos uns dos outros, mesmo que esses aplicativos estão em execução na mesma conta de processo de trabalho e estiver usando o mesmo material de chave mestra. Isso é um pouco semelhante ao modificador IsolateApps partir do System. Web  **\<machineKey >** elemento.
+Quando o sistema de proteção de dados é fornecido por um host do ASP.NET Core, ele automaticamente isola os aplicativos uns dos outros, mesmo que esses aplicativos estão em execução na mesma conta de processo de trabalho e estiver usando o mesmo material de chave mestra. Isso é um pouco semelhante ao modificador IsolateApps partir do System. Web `<machineKey>` elemento.
 
-O mecanismo de isolamento funciona considerando cada aplicativo no computador local como um locatário exclusivo, portanto, o [IDataProtector](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotector) com raiz para qualquer aplicativo em particular automaticamente inclui a ID do aplicativo como um discriminador. A ID do aplicativo exclusivo vem de um dos dois locais:
+O mecanismo de isolamento funciona considerando cada aplicativo no computador local como um locatário exclusivo, assim o <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> com raiz para qualquer aplicativo em particular automaticamente inclui a ID do aplicativo como um discriminador. A ID do aplicativo exclusivo é o caminho físico do aplicativo:
 
-1. Se o aplicativo estiver hospedado no IIS, o identificador exclusivo é o caminho de configuração do aplicativo. Se um aplicativo é implantado em um ambiente de farm da web, esse valor deve ser estável, supondo que os ambientes de IIS são configurados da mesma forma em todas as máquinas no web farm.
+* Para aplicativos hospedados no [IIS](xref:fundamentals/servers/index#iis-http-server), a ID exclusiva é o caminho físico do IIS do aplicativo. Se um aplicativo é implantado em um ambiente de farm da web, esse valor é estável, supondo que os ambientes de IIS são configurados da mesma forma em todas as máquinas no web farm.
+* Para aplicativos de auto-hospedados em execução no [servidor Kestrel](xref:fundamentals/servers/index#kestrel), a ID exclusiva é o caminho físico para o aplicativo no disco.
 
-2. Se o aplicativo não está hospedado no IIS, o identificador exclusivo é o caminho físico do aplicativo.
-
-O identificador exclusivo é projetado para sobreviver a reinicializações &mdash; do aplicativo individual e a própria máquina.
+O identificador exclusivo é projetado para sobreviver a reinicializações&mdash;do aplicativo individual e a própria máquina.
 
 Esse mecanismo de isolamento pressupõe que os aplicativos não são mal-intencionados. Um aplicativo mal-intencionado sempre pode afetar qualquer outro aplicativo em execução sob a mesma conta de processo de trabalho. Em um ambiente de hospedagem compartilhado em que os aplicativos são mutuamente não confiáveis, o provedor de hospedagem deve tomar medidas para garantir o isolamento do nível de sistema operacional entre aplicativos, incluindo a separação de repositórios de chave de base de aplicativos.
 
