@@ -4,33 +4,79 @@ author: rick-anderson
 description: Este tutorial demonstra como criar um aplicativo do ASP.NET Core 2.x usando o OAuth 2.0 com provedores de autenticação externa.
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/19/2019
+ms.date: 4/19/2019
 uid: security/authentication/social/index
-ms.openlocfilehash: 48dd8b772234ff18158423a36ed1716102bc2f31
-ms.sourcegitcommit: 184ba5b44d1c393076015510ac842b77bc9d4d93
+ms.openlocfilehash: 61482481358256dc9ddd1a0a894541040a8a452f
+ms.sourcegitcommit: 9b7fcb4ce00a3a32e153a080ebfaae4ef417aafa
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "54396136"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59516320"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 
 Por [Valeriy Novytskyy](https://github.com/01binary) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Este tutorial demonstra como criar um aplicativo ASP.NET Core 2.2, que permite aos usuários fazer logon usando o OAuth 2.0 com as credenciais de provedores de autenticação externa.
+Este tutorial demonstra como criar um aplicativo ASP.NET Core 2.2, que permite aos usuários se conectarem usando o OAuth 2.0 com as credenciais de provedores de autenticação externa.
 
 Os provedores [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins) e [Microsoft](xref:security/authentication/microsoft-logins) são abordados nas seções a seguir. Outros provedores estão disponíveis em pacotes de terceiros, como [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) e [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
 ![Ícones de mídia social do Facebook, Twitter, Google+ e Windows](index/_static/social.png)
 
-Permitir que os usuários entrem com suas credenciais existentes é conveniente para os usuários e transfere muitas das complexidades de gerenciar o processo de entrada para um terceiro. Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as conversões de clientes, consulte os estudos de caso do [Facebook](https://www.facebook.com/unsupportedbrowser) e do [Twitter](https://dev.twitter.com/resources/case-studies).
+Permitir que os usuários entrem com suas credenciais existentes:
+* É conveniente para os usuários.
+* Remove muitas das complexidades de gerenciar o processo de conexão para um terceiro. 
+
+Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as conversões de clientes, consulte os estudos de caso do [Facebook](https://www.facebook.com/unsupportedbrowser) e do [Twitter](https://dev.twitter.com/resources/case-studies).
 
 ## <a name="create-a-new-aspnet-core-project"></a>Criar um novo projeto ASP.NET Core
 
-* No Visual Studio 2017, crie um projeto na Página Inicial ou por meio de **Arquivo** > **Novo** > **Projeto**.
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Selecione o modelo **Aplicativo Web ASP.NET Core**, disponível na categoria **Visual C#** > **.NET Core**:
+* No menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**.
+* Crie um novo Aplicativo Web ASP.NET Core.
+* Selecione **ASP.NET Core 2.2** na lista suspensa e, em seguida, selecione **Aplicativo Web**.
 * Selecione **Alterar Autenticação** e defina a autenticação para **Contas de Usuário Individuais**.
+
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+* Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
+
+* Altere os diretórios (`cd`) para uma pasta que conterá o projeto.
+
+* Execute os seguintes comandos:
+
+  ```console
+  dotnet new webapp -o WebApp1
+  code -r WebApp1
+  ```
+
+  * O comando `dotnet new` cria um projeto do Razor Pages na pasta *WebApp1*.
+  * O comando `code` abre a pasta *WebApp1* em uma nova instância do Visual Studio Code.
+
+  Uma caixa de diálogo é exibida com a mensagem **Os ativos necessários para build e depuração estão ausentes no 'WebApp1'. Deseja adicioná-los?**
+
+* Selecione **Sim**
+
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+
+Em um terminal, execute o seguinte comando:
+
+<!-- TODO: update these instruction once mac support 2.2 projects -->
+
+```console
+dotnet new webapp -o WebApp1
+```
+
+Os comandos anteriores usam a [CLI do .NET Core](/dotnet/core/tools/dotnet) para criar um projeto do Razor Pages.
+
+## <a name="open-the-project"></a>Abrir o projeto
+
+No Visual Studio, selecione **Arquivo > Abrir** e, em seguida, selecione o arquivo *WebApp1.csproj*.
+
+<!-- End of VS tabs -->
+
+---
 
 ## <a name="apply-migrations"></a>Aplicar migrações
 
@@ -63,11 +109,11 @@ Use os seguintes tópicos para configurar seu aplicativo para usar os respectivo
 
 ## <a name="optionally-set-password"></a>Definir a senha opcionalmente
 
-Ao registrar um provedor de logon externo, você não precisa ter uma senha registrada no aplicativo. Isso o alivia da tarefa de criar e lembrar de uma senha para o site, mas também o torna dependente do provedor de logon externo. Se o provedor de logon externo não estiver disponível, você não poderá fazer logon no site.
+Ao registrar um provedor de logon externo, você não precisa ter uma senha registrada no aplicativo. Isso o alivia da tarefa de criar e lembrar de uma senha para o site, mas também o torna dependente do provedor de logon externo. Se o provedor de logon externo não estiver disponível, você não poderá se conectar ao site.
 
 Para criar uma senha e entrar usando seu email definido durante o processo de entrada com provedores externos:
 
-* Selecione o link **Olá,&lt; &gt;alias de email** na parte superior direita para navegar até a exibição **Gerenciar**.
+* Selecione o link **Olá,&lt; &gt;alias de email** no canto superior direito para navegar até a exibição **Gerenciar**.
 
 ![Exibição Gerenciar do Aplicativo Web](index/_static/pass1a.png)
 
