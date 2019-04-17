@@ -1,19 +1,29 @@
 ---
-ms.openlocfilehash: 33772d3ad8bbb1ffc54792f8c31834849d0f9567
-ms.sourcegitcommit: 34bf9fc6ea814c039401fca174642f0acb14be3c
+ms.openlocfilehash: 2ec079606cb48670dbc3852482fd8d401e7db44b
+ms.sourcegitcommit: 948e533e02c2a7cb6175ada20b2c9cabb7786d0b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "57964056"
+ms.lasthandoff: 04/10/2019
+ms.locfileid: "59472296"
 ---
-<span data-ttu-id="74be6-101">O Visual Studio para Mac exibe uma caixa de diálogo com a seguinte mensagem:</span><span class="sxs-lookup"><span data-stu-id="74be6-101">Visual Studio for Mac displays a dialog with the following message:</span></span>
+* <span data-ttu-id="8f683-101">Confie no certificado de desenvolvimento HTTPS executando o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="8f683-101">Trust the HTTPS development certificate by running the following command:</span></span>
 
-<span data-ttu-id="74be6-102">*Este projeto é configurado para usar SSL. Para evitar avisos de SSL no navegador, você pode optar por confiar no certificado autoassinado. Você deseja confiar no certificado SSL do IIS Express?*</span><span class="sxs-lookup"><span data-stu-id="74be6-102">*This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate. Would you like to trust the IIS Express SSL certificate?*</span></span>
+    ```console
+    dotnet dev-certs https --trust
+    ```
 
-<span data-ttu-id="74be6-103">Selecione **Sim** e a caixa de diálogo a seguir será exibida:</span><span class="sxs-lookup"><span data-stu-id="74be6-103">Select **Yes** and the following dialog is displayed:</span></span>
+* <span data-ttu-id="8f683-102">O comando anterior exibe o resultado a seguir:</span><span class="sxs-lookup"><span data-stu-id="8f683-102">The preceding command displays the following output:</span></span>
 
-![Caixa de diálogo de aviso de segurança](~/getting-started/_static/cert.png)
+    ```console
+    Trusting the HTTPS development certificate was requested. If the certificate 
+    is not already trusted we will run the following command:
+    'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain 
+    <<certificate>>'
+    This command might prompt you for your password to install the certificate on the 
+    system keychain.
+    The HTTPS developer certificate was generated successfully.
+    ```
 
-<span data-ttu-id="74be6-105">Selecione **Sim** se você concordar com confiar no certificado de desenvolvimento.</span><span class="sxs-lookup"><span data-stu-id="74be6-105">Select **Yes** if you agree to trust the development certificate.</span></span>
+* <span data-ttu-id="8f683-103">Insira o nome do usuário administrador e a senha, se solicitado.</span><span class="sxs-lookup"><span data-stu-id="8f683-103">Enter the admin username and password if prompted.</span></span>  <span data-ttu-id="8f683-104">O certificado será instalado e se tornará confiável.</span><span class="sxs-lookup"><span data-stu-id="8f683-104">The certificate will now be installed and trusted.</span></span>
 
-<span data-ttu-id="74be6-106">Para obter mais informações, veja [Confiar no certificado de desenvolvimento HTTPS do ASP.NET Core](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).</span><span class="sxs-lookup"><span data-stu-id="74be6-106">See [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information.</span></span>
+    <span data-ttu-id="8f683-105">Para obter mais informações, veja [Confiar no certificado de desenvolvimento HTTPS do ASP.NET Core](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).</span><span class="sxs-lookup"><span data-stu-id="8f683-105">See [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information.</span></span>
