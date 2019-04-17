@@ -4,14 +4,14 @@ author: scottaddie
 description: Saiba o que são os Componentes do Auxiliar de Marca e como usá-los no ASP.NET Core.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
-ms.date: 09/18/2018
+ms.date: 04/06/2019
 uid: mvc/views/tag-helpers/th-components
-ms.openlocfilehash: 3d21e12650d844f05bdfdf5b3451ab6219e3c3b7
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: fdad4ae367245cd3beabaf90587c1fe5e9162afe
+ms.sourcegitcommit: 948e533e02c2a7cb6175ada20b2c9cabb7786d0b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50206868"
+ms.lasthandoff: 04/10/2019
+ms.locfileid: "59468589"
 ---
 # <a name="tag-helper-components-in-aspnet-core"></a>Componentes do Auxiliar de Marca no ASP.NET Core
 

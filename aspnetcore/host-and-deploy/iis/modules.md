@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/28/2019
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: de740775e124298f7c3d3be0c6f5a7311174116d
-ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
+ms.openlocfilehash: 9770801b527829b131257da7c6e670bd33c23634
+ms.sourcegitcommit: 948e533e02c2a7cb6175ada20b2c9cabb7786d0b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58265488"
+ms.lasthandoff: 04/10/2019
+ms.locfileid: "59468867"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>Módulos do IIS com o ASP.NET Core
 
@@ -25,32 +25,32 @@ A tabela indica os módulos IIS nativos que funcionam com aplicativos ASP.NET Co
 
 | Módulo | Funcional com os aplicativos do ASP.NET Core | Opção do ASP.NET Core |
 | --- | :---: | --- |
-| **Autenticação anônima**<br>`AnonymousAuthenticationModule`                                  | Sim | |
+| **Autenticação Anônima**<br>`AnonymousAuthenticationModule`                                  | Sim | |
 | **Autenticação básica**<br>`BasicAuthenticationModule`                                          | Sim | |
 | **Autenticação de mapeamento de certificação de cliente**<br>`CertificateMappingAuthenticationModule`      | Sim | |
 | **CGI**<br>`CgiModule`                                                                           | Não  | |
 | **Validação da configuração**<br>`ConfigurationValidationModule`                                  | Sim | |
-| **Erros HTTP**<br>`CustomErrorModule`                                                           | Não  | [Middleware de páginas de código de status](xref:fundamentals/error-handling#configure-status-code-pages) |
+| **Erros HTTP**<br>`CustomErrorModule`                                                           | Não  | [Middleware de páginas de código de status](xref:fundamentals/error-handling#usestatuscodepages) |
 | **Registro em log personalizado**<br>`CustomLoggingModule`                                                      | Sim | |
 | **Documento padrão**<br>`DefaultDocumentModule`                                                  | Não  | [Middleware de arquivos padrão](xref:fundamentals/static-files#serve-a-default-document) |
 | **Autenticação Digest**<br>`DigestAuthenticationModule`                                        | Sim | |
 | **Pesquisa no Diretório**<br>`DirectoryListingModule`                                               | Não  | [Middleware de navegação no diretório](xref:fundamentals/static-files#enable-directory-browsing) |
 | **Compactação dinâmica**<br>`DynamicCompressionModule`                                            | Sim | [Middleware de compactação de resposta](xref:performance/response-compression) |
 | **Rastreamento de solicitação com falha**<br>`FailedRequestsTracingModule`                                     | Sim | [Registro em log do ASP.NET Core](xref:fundamentals/logging/index#tracesource-provider) |
-| **Cache de arquivo**<br>`FileCacheModule`                                                            | Não  | [Middleware de Cache de Resposta](xref:performance/caching/middleware) |
-| **Cache HTTP**<br>`HttpCacheModule`                                                            | Não  | [Middleware de Cache de Resposta](xref:performance/caching/middleware) |
+| **Cache de arquivo**<br>`FileCacheModule`                                                            | Não  | [Middleware de cache de resposta](xref:performance/caching/middleware) |
+| **Cache HTTP**<br>`HttpCacheModule`                                                            | Não  | [Middleware de cache de resposta](xref:performance/caching/middleware) |
 | **Log HTTP**<br>`HttpLoggingModule`                                                          | Sim | [Registro em log do ASP.NET Core](xref:fundamentals/logging/index) |
-| **Redirecionamento de HTTP**<br>`HttpRedirectionModule`                                                  | Sim | [Middleware de regravação de URL](xref:fundamentals/url-rewriting) |
+| **Redirecionamento de HTTP**<br>`HttpRedirectionModule`                                                  | Sim | [Middleware de regeneração de URL](xref:fundamentals/url-rewriting) |
 | **Rastreamento HTTP**<br>`TracingModule`                                                              | Sim | |
 | **Autenticação de mapeamento de certificado do cliente IIS**<br>`IISCertificateMappingAuthenticationModule` | Sim | |
 | **Restrições de IP e domínio**<br>`IpRestrictionModule`                                          | Sim | |
 | **Filtros ISAPI**<br>`IsapiFilterModule`                                                         | Sim | [Middleware](xref:fundamentals/middleware/index) |
 | **ISAPI**<br>`IsapiModule`                                                                       | Sim | [Middleware](xref:fundamentals/middleware/index) |
 | **Suporte de protocolo**<br>`ProtocolSupportModule`                                                  | Sim | |
-| **Filtragem de Solicitações**<br>`RequestFilteringModule`                                                | Sim | [Middleware de regravação de URL `IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
+| **Filtragem de Solicitações**<br>`RequestFilteringModule`                                                | Sim | [Middleware de regeneração de URL `IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
 | **Monitor de Solicitações**<br>`RequestMonitorModule`                                                    | Sim | |
-| **Regravação de URL**&#8224;<br>`RewriteModule`                                                      | Sim | [Middleware de regravação de URL](xref:fundamentals/url-rewriting) |
-| **Inclusões do lado do servidor**<br>`ServerSideIncludeModule`                                            | Não  | |
+| **Regravação de URL**&#8224;<br>`RewriteModule`                                                      | Sim | [Middleware de regeneração de URL](xref:fundamentals/url-rewriting) |
+| **Server-Side Includes**<br>`ServerSideIncludeModule`                                            | Não  | |
 | **Compactação estática**<br>`StaticCompressionModule`                                              | Não  | [Middleware de compactação de resposta](xref:performance/response-compression) |
 | **Conteúdo Estático**<br>`StaticFileModule`                                                         | Não  | [Middleware de arquivos estáticos](xref:fundamentals/static-files) |
 | **Cache de token**<br>`TokenCacheModule`                                                          | Sim | |
@@ -70,13 +70,13 @@ Os módulos gerenciados *não* funcionam com aplicativos do ASP.NET Core hospeda
 | DefaultAuthentication   | |
 | FileAuthorization       | |
 | FormsAuthentication     | [Middleware de autenticação de cookie](xref:security/authentication/cookie) |
-| OutputCache             | [Middleware de Cache de Resposta](xref:performance/caching/middleware) |
+| OutputCache             | [Middleware de cache de resposta](xref:performance/caching/middleware) |
 | Perfil                 | |
 | RoleManager             | |
 | ScriptModule-4.0        | |
 | Session                 | [Middleware de sessão](xref:fundamentals/app-state) |
 | UrlAuthorization        | |
-| UrlMappingsModule       | [Middleware de regravação de URL](xref:fundamentals/url-rewriting) |
+| UrlMappingsModule       | [Middleware de regeneração de URL](xref:fundamentals/url-rewriting) |
 | UrlRoutingModule-4.0    | [Identidade do ASP.NET Core](xref:security/authentication/identity) |
 | WindowsAuthentication   | |
 
@@ -167,7 +167,7 @@ O módulo de cache HTTP (`HttpCacheModule`) implementa o cache de saída do IIS 
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:host-and-deploy/iis/index>
-* [Introdução às arquiteturas do IIS: módulos no IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#modules-in-iis)
+* [Introdução às arquiteturas do IIS: Módulos no IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#modules-in-iis)
 * [Visão geral de módulos do IIS](/iis/get-started/introduction-to-iis/iis-modules-overview)
-* [Personalizando funções e módulos do IIS 7.0](https://technet.microsoft.com/library/cc627313.aspx)
+* [Personalização de funções e módulos do IIS 7.0](https://technet.microsoft.com/library/cc627313.aspx)
 * [IIS `<system.webServer>`](/iis/configuration/system.webServer/)

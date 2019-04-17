@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: seodec18
 ms.date: 11/22/2018
 uid: data/ef-rp/intro
-ms.openlocfilehash: 7723f7ca6c5f9a21b2628933c6e7dabde20c3af6
-ms.sourcegitcommit: 088e6744cd67a62f214f25146313a53949b17d35
+ms.openlocfilehash: aff62d760cf0899983cf841f6715f2658b113f82
+ms.sourcegitcommit: 1a7000630e55da90da19b284e1b2f2f13a393d74
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/21/2019
-ms.locfileid: "58320193"
+ms.lasthandoff: 04/04/2019
+ms.locfileid: "59012676"
 ---
 # <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Páginas Razor com o Entity Framework Core no ASP.NET Core – Tutorial 1 de 8
 
@@ -25,15 +25,15 @@ O aplicativo Web de exemplo Contoso University demonstra como criar um aplicativ
 
 O aplicativo de exemplo é um site de uma Contoso University fictícia. Ele inclui funcionalidades como admissão de alunos, criação de cursos e atribuições de instrutor. Esta página é a primeira de uma série de tutoriais que explica como criar o aplicativo de exemplo Contoso University.
 
-[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Instruções de download](xref:index#how-to-download-a-sample).
+[Baixar ou exibir o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Instruções de download](xref:index#how-to-download-a-sample).
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# [<a name="visual-studio"></a>Visual Studio](#tab/visual-studio)
 
 [!INCLUDE [](~/includes/net-core-prereqs-windows.md)]
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# [<a name="net-core-cli"></a>CLI do .NET Core](#tab/netcore-cli)
 
 [!INCLUDE [](~/includes/2.1-SDK.md)]
 
@@ -59,7 +59,7 @@ O estilo de interface do usuário deste site é próximo ao que é gerado pelos 
 
 ## <a name="create-the-contosouniversity-razor-pages-web-app"></a>Criar o aplicativo Web Razor Pages da ContosoUniversity
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# [<a name="visual-studio"></a>Visual Studio](#tab/visual-studio)
 
 * No menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**.
 * Crie um novo Aplicativo Web ASP.NET Core. Nomeie o projeto **ContosoUniversity**. É importante nomear o projeto *ContosoUniversity* para que os namespaces sejam correspondentes quando o código for copiado/colado.
@@ -68,7 +68,7 @@ O estilo de interface do usuário deste site é próximo ao que é gerado pelos 
 Para ver imagens das etapas anteriores, confira [Criar um aplicativo Web do Razor](xref:tutorials/razor-pages/razor-pages-start#create-a-razor-pages-web-app).
 Execute o aplicativo.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# [<a name="net-core-cli"></a>CLI do .NET Core](#tab/netcore-cli)
 
 ```CLI
 dotnet new webapp -o ContosoUniversity
@@ -116,7 +116,7 @@ A propriedade `ID` se torna a coluna de chave primária da tabela de BD (banco d
 
 A propriedade `Enrollments` é uma [propriedade de navegação](/ef/core/modeling/relationships). As propriedades de navegação vinculam-se a outras entidades que estão relacionadas a essa entidade. Nesse caso, a propriedade `Enrollments` de uma `Student entity` armazena todas as entidades `Enrollment` relacionadas a essa `Student`. Por exemplo, se uma linha Aluno no BD tiver duas linhas Registro relacionadas, a propriedade de navegação `Enrollments` conterá duas entidades `Enrollment`. Uma linha `Enrollment` relacionada é uma linha que contém o valor de chave primária do aluno na coluna `StudentID`. Por exemplo, suponha que o aluno com ID=1 tenha duas linhas na tabela `Enrollment`. A tabela `Enrollment` tem duas linhas com `StudentID` = 1. `StudentID` é uma chave estrangeira na tabela `Enrollment` que especifica o aluno na tabela `Student`.
 
-Se uma propriedade de navegação puder armazenar várias entidades, a propriedade de navegação deverá ser um tipo de lista, como `ICollection<T>`. `ICollection<T>` pode ser especificado ou um tipo como `List<T>` ou `HashSet<T>`. Quando `ICollection<T>` é usado, o EF Core cria uma coleção `HashSet<T>` por padrão. As propriedades de navegação que armazenam várias entidades são provenientes de relações muitos para muitos e um-para-muitos.
+Se uma propriedade de navegação puder armazenar várias entidades, a propriedade de navegação deverá ser um tipo de lista, como `ICollection<T>`. `ICollection<T>` pode ser especificado, ou um tipo como `List<T>` ou `HashSet<T>`. Quando `ICollection<T>` é usado, o EF Core cria uma coleção `HashSet<T>` por padrão. As propriedades de navegação que armazenam várias entidades são provenientes de relações muitos para muitos e um-para-muitos.
 
 ### <a name="the-enrollment-entity"></a>A entidade Enrollment
 
@@ -155,7 +155,7 @@ Nesta seção, é feito o scaffold do modelo de aluno. Ou seja, a ferramenta de 
 * Compile o projeto.
 * Crie a pasta *Pages/Students*.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# [<a name="visual-studio"></a>Visual Studio](#tab/visual-studio)
 
 * No **Gerenciador de Soluções**, clique com o botão direito do mouse na pasta *Páginas/Alunos* pasta > **Adicionar** > **Novo item com scaffold**.
 * Na caixa de diálogo **Adicionar Scaffold**, selecione **Razor Pages usando o Entity Framework (CRUD)** > **Adicionar**.
@@ -171,7 +171,7 @@ Conclua a caixa de diálogo **Adicionar Razor Pages usando o Entity Framework (C
 
 Confira [Fazer scaffold do modelo de filme](xref:tutorials/razor-pages/model#scaffold-the-movie-model) se tiver problemas na etapa anterior.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# [<a name="net-core-cli"></a>CLI do .NET Core](#tab/netcore-cli)
 
 Execute os comandos a seguir para fazer scaffold do modelo de aluno.
 
@@ -278,8 +278,9 @@ Exclua todos os registros de alunos e reinicie o aplicativo. Se o BD não for in
 
 ## <a name="view-the-db"></a>Exibir o BD
 
+O nome do banco de dados é gerado usando o nome do contexto fornecido anteriormente, além de um traço e um GUID. Assim, o nome do banco de dados será "SchoolContext-{GUID}". O GUID será diferente para cada usuário.
 Abra o **SSOX** (Pesquisador de Objetos do SQL Server) no menu **Exibir** do Visual Studio.
-No SSOX, clique em **(localdb)\MSSQLLocalDB > Bancos de Dados > ContosoUniversity1**.
+No SSOX, clique em **(localdb)\MSSQLLocalDB > Bancos de Dados > SchoolContext-{GUID}**.
 
 Expanda o nó **Tabelas**.
 
@@ -319,7 +320,7 @@ No próximo tutorial, as operações CRUD (criar, ler, atualizar e excluir) bás
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=P7iTtQnkrNs)
+* [Versão deste tutorial no YouTube](https://www.youtube.com/watch?v=P7iTtQnkrNs)
 
 > [!div class="step-by-step"]
 > [Avançar](xref:data/ef-rp/crud)

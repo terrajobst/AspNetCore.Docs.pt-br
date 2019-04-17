@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como fornecer e proteger arquivos estáticos e configurar comportamentos do middleware de hospedagem de arquivos estáticos em um aplicativo Web ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 04/08/2019
 uid: fundamentals/static-files
-ms.openlocfilehash: 114fee0795977043f3a74a81a15923a8bf5faf6b
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: 12c7b39bee462ff83188a5a0f10b133ca273863b
+ms.sourcegitcommit: 258a97159da206f9009f23fdf6f8fa32f178e50b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58208629"
+ms.lasthandoff: 04/09/2019
+ms.locfileid: "59425056"
 ---
 # <a name="static-files-in-aspnet-core"></a>Arquivos estáticos no ASP.NET Core
 
@@ -154,7 +154,7 @@ Definir uma home page padrão fornece ao visitantes um ponto de partida lógico 
 [!code-csharp[](static-files/samples/1x/StartupEmpty.cs?name=snippet_ConfigureMethod&highlight=3)]
 
 > [!IMPORTANT]
-> `UseDefaultFiles` deve ser chamado antes de `UseStaticFiles` para fornecer o arquivo padrão. `UseDefaultFiles` é um rewriter de URL que, na verdade, não fornece o arquivo. Habilite o middleware de arquivos estáticos por meio de `UseStaticFiles` para fornecer o arquivo.
+> `UseDefaultFiles` deve ser chamado antes de `UseStaticFiles` para fornecer o arquivo padrão. `UseDefaultFiles` é um regenerador de URL que, na verdade, não fornece o arquivo. Habilite o middleware de arquivos estáticos por meio de `UseStaticFiles` para fornecer o arquivo.
 
 Com `UseDefaultFiles`, as solicitações para uma pasta pesquisam:
 
@@ -216,7 +216,7 @@ Se nenhum arquivo nomeado como padrão existir no diretório *MyStaticFiles*, *h
 ![Lista de arquivos estáticos](static-files/_static/db2.png)
 
 > [!NOTE]
-> `UseDefaultFiles` e `UseDirectoryBrowser` usam a URL *http://\<server_address>/StaticFiles* sem a barra "\" à direita para disparar um redirecionamento do lado do cliente para *http://\<server_address>/StaticFiles/*. Observe a adição da barra "\" à direita. URLs relativas dentro dos documentos são consideradas inválidas sem uma barra "\" à direita.
+> <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> e <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> executam um redirecionamento do lado do cliente de `http://{SERVER ADDRESS}/StaticFiles` (sem uma barra à direita) para `http://{SERVER ADDRESS}/StaticFiles/` (com uma barra à direita). As URLs relativas dentro do diretório *StaticFiles* são inválidas sem uma barra "\" à direita.
 
 ## <a name="fileextensioncontenttypeprovider"></a>FileExtensionContentTypeProvider
 

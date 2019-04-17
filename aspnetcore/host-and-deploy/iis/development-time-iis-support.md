@@ -1,37 +1,36 @@
 ---
 title: Suporte ao IIS no tempo de desenvolvimento no Visual Studio para ASP.NET Core
-author: shirhatti
-description: Descubra o suporte para depuração de aplicativos do ASP.NET Core quando executado por trás do IIS no Windows Server.
+author: guardrex
+description: Descubra o suporte para depuração de aplicativos do ASP.NET Core durante a execução com IIS no Windows Server.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 04/08/2019
 uid: host-and-deploy/iis/development-time-iis-support
-ms.openlocfilehash: 44570bb28451ce4c5fde12ec77e3856fb5bd3062
-ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
+ms.openlocfilehash: 6f555858239b4432d252f8b3ac7add5c3e8bfe62
+ms.sourcegitcommit: 258a97159da206f9009f23fdf6f8fa32f178e50b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "53637651"
+ms.lasthandoff: 04/09/2019
+ms.locfileid: "59425095"
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>Suporte ao IIS no tempo de desenvolvimento no Visual Studio para ASP.NET Core
 
 Por [Sourabh Shirhatti](https://twitter.com/sshirhatti) e [Luke Latham](https://github.com/guardrex)
 
-Este artigo descreve o suporte do [Visual Studio](https://www.visualstudio.com/vs/) a depuração de aplicativos do ASP.NET Core em execução por trás do IIS no Windows Server. Este tópico orienta você sobre como habilitar esse recurso e configurar um projeto.
+Este artigo descreve o suporte do [Visual Studio](https://www.visualstudio.com/vs/) para a depuração de aplicativos do ASP.NET Core em execução com o IIS no Windows Server. Este tópico orienta como habilitar esse cenário e configurar um projeto.
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* [Visual Studio para Windows](https://www.microsoft.com/net/download/windows)
+* [Visual Studio para Windows](https://visualstudio.microsoft.com/downloads/)
 * Carga de trabalho **ASP.NET e desenvolvimento para a Web**
 * Carga de trabalho de **desenvolvimento multiplataforma do .NET Core**
-* Certificado de segurança X.509
+* Certificado de segurança X.509 (para o suporte a HTTPS)
 
 ## <a name="enable-iis"></a>Habilitar o IIS
 
-1. Navegue para **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
-1. Selecione a caixa de seleção **Serviços de Informações da Internet**.
-
-![Recursos do Windows mostrando a caixa de seleção Serviços de Informações da Internet marcada como um quadrado preto (não uma marca de seleção), indicando que alguns dos recursos do IIS estão habilitados](development-time-iis-support/_static/enable_iis.png)
+1. No Windows, navegue até **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
+1. Selecione a caixa de seleção **Serviços de Informações da Internet**. Selecione **OK**.
 
 A instalação do IIS pode exigir uma reinicialização do sistema.
 
@@ -39,70 +38,77 @@ A instalação do IIS pode exigir uma reinicialização do sistema.
 
 O IIS deve ter um site configurado com o seguinte:
 
-* Um nome do host que corresponda ao nome do host da URL do perfil de inicialização do aplicativo.
-* Associação para a porta 443, com um certificado atribuído.
-
-Por exemplo, o **Nome do host** para um site adicionado é definido como "localhost" (o perfil de inicialização também usará "localhost" posteriormente neste tópico). A porta é definida para "443" (HTTPS). O **Certificado de Desenvolvimento do IIS Express** é atribuído ao site, mas nenhum certificado válido funciona:
-
-![Adicione a janela Site no IIS, mostrando o conjunto de associação para o localhost na porta 443 com um certificado atribuído.](development-time-iis-support/_static/add-website-window.png)
-
-Se a instalação do IIS já tiver um **site da Web padrão** com um nome do host que corresponde ao nome do host da URL do perfil de inicialização do aplicativo:
-
-* Adicione uma associação de porta para a porta 443 (HTTPS).
-* Atribua um certificado válido para o site.
+* **Nome do host** &ndash; Normalmente, o **Site padrão** é usado com um **nome do Host** de `localhost`. No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
+* **Associação do Site**
+  * Para aplicativos que exijam HTTPS, crie uma associação à porta 443 com um certificado. Tipicamente, o **Certificado de Desenvolvimento do IIS Express** é usado, mas qualquer certificado válido funciona.
+  * Para aplicativos que usam HTTP, confirme a existência de uma associação à porta 80 ou crie uma para um novo site.
+  * Uso de uma associação simples para HTTP ou HTTPS. **Não há suporte para a associação simultânea às portas HTTP e HTTPS.**
 
 ## <a name="enable-development-time-iis-support-in-visual-studio"></a>Habilitar o suporte ao IIS no tempo de desenvolvimento no Visual Studio
 
 1. Inicie o Instalador do Visual Studio.
-1. Selecione o componente **Suporte ao IIS no tempo de desenvolvimento**. O componente está listado como opcional no painel **Resumo** para a carga de trabalho **Desenvolvimento Web e ASP.NET**. O componente instala o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module), que é um módulo nativo do IIS necessário para executar aplicativos ASP.NET Core com o IIS.
+1. Selecione **Modificar** para a instalação do Visual Studio que você planeja usar para o suporte de tempo de desenvolvimento do IIS.
+1. Para a carga de trabalho de **desenvolvimento da web e ASP.NET**, localize e instale o componente de**suporte IIS ao tempo de desenvolvimento**.
 
-![Modificando os recursos do Visual Studio: A guia Cargas de trabalho está selecionada. Na seção Web e Nuvem, o painel ASP.NET e desenvolvimento Web é selecionado. À direita, na área Opcional do painel Resumo, há uma caixa de seleção para Suporte ao IIS no tempo de desenvolvimento.](development-time-iis-support/_static/development_time_support.png)
+   O componente está listado na seção **Opcional**, em **Suporte IIS ao tempo de desenvolvimento** no painel **Detalhes da instalação** à direita das cargas de trabalho. O componente instala o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module), que é um módulo nativo do IIS necessário para executar aplicativos ASP.NET Core com o IIS.
 
 ## <a name="configure-the-project"></a>Configurar o projeto
 
 ### <a name="https-redirection"></a>Redirecionamento para HTTPS
 
-Para um novo projeto, selecione a caixa de seleção para **Configurar para HTTPS** na janela **Novo Aplicativo Web ASP.NET Core**:
+Para um novo projeto que exija HTTPS, selecione a caixa de seleção para **Configurar para HTTPS** na janela **Criar um novo Aplicativo Web ASP.NET Core**. A marcação da caixa de seleção adiciona ao aplicativo um [Redirecionamento de HTTPS e Middleware HSTS](xref:security/enforcing-ssl) quando ele é criado.
 
-![Janela Novo Aplicativo Web ASP.NET Core com a caixa de seleção Configurar para HTTPS selecionada.](development-time-iis-support/_static/new-app.png)
+Para um projeto existente que exija HTTPS, use o Redirecionamento de HTTPS e Middleware HSTS em `Startup.Configure`. Para obter mais informações, consulte <xref:security/enforcing-ssl>.
 
-Em um projeto existente, use o middleware de redirecionamento para HTTPS no `Startup.Configure` chamando o método de extensão [UseHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpspolicybuilderextensions.usehttpsredirection):
-
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-{
-    if (env.IsDevelopment())
-    {
-        app.UseDeveloperExceptionPage();
-    }
-    else
-    {
-        app.UseExceptionHandler("/Error");
-        app.UseHsts();
-    }
-
-    app.UseHttpsRedirection();
-    app.UseStaticFiles();
-    app.UseCookiePolicy();
-
-    app.UseMvc();
-}
-```
+Para um projeto que usa HTTP, o [Redirecionamento de HTTPS e o Middleware HSTS](xref:security/enforcing-ssl) não são adicionados ao aplicativo. Nenhuma configuração de aplicativo é necessária.
 
 ### <a name="iis-launch-profile"></a>Perfil de inicialização do IIS
 
 Crie um novo perfil de inicialização para adicionar suporte ao IIS no tempo de desenvolvimento:
 
+::: moniker range=">= aspnetcore-3.0"
+
+1. Clique com o botão direito do mouse no projeto em **Gerenciador de Soluções**. Selecione **Propriedades**. Abra a guia **Depurar**.
 1. Para **Perfil**, selecione o botão **Novo**. Nomeie o perfil "IIS" na janela pop-up. Selecione **OK** para criar o perfil.
 1. Para a configuração **Iniciar**, selecione **IIS** da lista.
-1. Selecione a caixa de seleção **Iniciar navegador** e forneça a URL de ponto de extremidade. Use o protocolo HTTPS. Este exemplo usa `https://localhost/WebApplication1`.
-1. Na seção **Variáveis de ambiente**, selecione o botão **Adicionar**. Fornecer uma variável de ambiente com uma chave `ASPNETCORE_ENVIRONMENT` e um valor `Development`.
-1. Na área **Configurações do Servidor Web**, defina a **URL do Aplicativo**. Este exemplo usa `https://localhost/WebApplication1`.
+1. Selecione a caixa de seleção **Iniciar navegador** e forneça a URL de ponto de extremidade.
+
+   Quando o aplicativo exigir HTTPS, use um ponto de extremidade HTTPS (`https://`). Para HTTP, use um ponto de extremidade HTTP (`http://`).
+
+   Forneça o mesmo nome de host e porta usados pela [configuração do IIS especificada anteriormente](#configure-iis), normalmente `localhost`.
+
+   Forneça o nome do aplicativo no final da URL.
+
+   Por exemplo, `https://localhost/WebApplication1` (HTTPS) ou `http://localhost/WebApplication1` (HTTP) são URLs de ponto de extremidade válidas.
+1. Na seção **Variáveis de ambiente**, selecione o botão **Adicionar**. Forneça uma variável de ambiente com um **Nome** de `ASPNETCORE_ENVIRONMENT` e um **Valor** de `Development`.
+1. Na área de **Configurações do servidor Web**, defina a **URL do aplicativo** com o mesmo valor usado para a URL de ponto de extremidade **Iniciar navegador**.
+1. Para a configuração de **Modelo de hospedagem** no Visual Studio 2019 ou posterior, selecione **Padrão** para usar o modelo de hospedagem usado pelo projeto. Se o projeto definir a propriedade `<AspNetCoreHostingModel>` no arquivo de projeto, o valor da propriedade (`InProcess` ou `OutOfProcess`) será usado. Se a propriedade não estiver presente, o modelo do aplicativo de hospedagem padrão será usado, que está em processo. Se o aplicativo exigir uma configuração explícita de modelo de hospedagem diferente da do modelo de hospedagem normal do aplicativo, defina o **Modelo de hospedagem** para `In Process` ou `Out Of Process`, conforme necessário.
 1. Salve o perfil.
 
-![Janela de propriedades de projeto com a guia Depurar selecionada. As configurações de Perfil e de Inicialização são definidas para o IIS. O recurso de Inicialização do navegador está habilitado com um endereço de https://localhost/WebApplication1. O mesmo endereço também é fornecido no campo URL do Aplicativo da área Configurações do Servidor Web.](development-time-iis-support/_static/project_properties.png)
+::: moniker-end
 
-Como alternativa, adicione manualmente um perfil de inicialização para o arquivo [launchSettings.json](http://json.schemastore.org/launchsettings) no aplicativo:
+::: moniker range="< aspnetcore-3.0"
+
+1. Clique com o botão direito do mouse no projeto em **Gerenciador de Soluções**. Selecione **Propriedades**. Abra a guia **Depurar**.
+1. Para **Perfil**, selecione o botão **Novo**. Nomeie o perfil "IIS" na janela pop-up. Selecione **OK** para criar o perfil.
+1. Para a configuração **Iniciar**, selecione **IIS** da lista.
+1. Selecione a caixa de seleção **Iniciar navegador** e forneça a URL de ponto de extremidade.
+
+   Quando o aplicativo exigir HTTPS, use um ponto de extremidade HTTPS (`https://`). Para HTTP, use um ponto de extremidade HTTP (`http://`).
+
+   Forneça o mesmo nome de host e porta usados pela [configuração do IIS especificada anteriormente](#configure-iis), normalmente `localhost`.
+
+   Forneça o nome do aplicativo no final da URL.
+
+   Por exemplo, `https://localhost/WebApplication1` (HTTPS) ou `http://localhost/WebApplication1` (HTTP) são URLs de ponto de extremidade válidas.
+1. Na seção **Variáveis de ambiente**, selecione o botão **Adicionar**. Forneça uma variável de ambiente com um **Nome** de `ASPNETCORE_ENVIRONMENT` e um **Valor** de `Development`.
+1. Na área de **Configurações do servidor Web**, defina a **URL do aplicativo** com o mesmo valor usado para a URL de ponto de extremidade **Iniciar navegador**.
+1. Para a configuração de **Modelo de hospedagem** no Visual Studio 2019 ou posterior, selecione **Padrão** para usar o modelo de hospedagem usado pelo projeto. Se o projeto definir a propriedade `<AspNetCoreHostingModel>` no arquivo de projeto, o valor da propriedade (`InProcess` ou `OutOfProcess`) será usado. Se a propriedade não estiver presente, o modelo do aplicativo de hospedagem padrão será usado, que está fora de processo. Se o aplicativo exigir uma configuração explícita de modelo de hospedagem diferente da do modelo de hospedagem normal do aplicativo, defina o **Modelo de hospedagem** para `In Process` ou `Out Of Process`, conforme necessário.
+1. Salve o perfil.
+
+::: moniker-end
+
+Quando não estiver usando o Visual Studio, adicione manualmente um perfil de inicialização ao arquivo [launchSettings.json](http://json.schemastore.org/launchsettings) na pasta *Propriedades*. O exemplo a seguir configura o perfil para usar o protocolo HTTPS:
 
 ```json
 {
@@ -127,14 +133,14 @@ Como alternativa, adicione manualmente um perfil de inicialização para o arqui
 }
 ```
 
+Confirme se os pontos de extremidade `applicationUrl` e `launchUrl` correspondem e usam o mesmo protocolo que a configuração de associação do IIS, seja HTTP ou HTTPS.
+
 ## <a name="run-the-project"></a>Executar o projeto
 
-No Visual Studio:
+Execute o Visual Studio como um administrador:
 
 * Confirme se a lista de lista suspensa de configuração de compilação está definida para **Depurar**.
 * Defina o botão Executar para o perfil do **IIS** e selecione o botão para iniciar o aplicativo.
-
-![O botão Executar, na barra de ferramentas do VS, é definido para o perfil do IIS com a lista suspensa de configuração de compilação definida para Versão.](development-time-iis-support/_static/toolbar.png)
 
 O Visual Studio poderá solicitar uma reinicialização se não estiver executando como administrador. Se solicitado, reinicie o Visual Studio.
 
@@ -145,6 +151,7 @@ Se for usado um certificado de desenvolvimento não confiável, o navegador pode
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
+* [Introdução ao Gerenciador do IIS no IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
 * [Hospedar o ASP.NET Core no Windows com o IIS](xref:host-and-deploy/iis/index)
 * [Introdução ao Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module)
 * [Referência de configuração do Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module)

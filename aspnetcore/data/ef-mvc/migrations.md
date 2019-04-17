@@ -7,12 +7,12 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: 8a14ada241330ca33811b7cce70daf26ff8fc13a
-ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
+ms.openlocfilehash: 3d2ae12bf8eda4f7997008758d4d29434a8371a7
+ms.sourcegitcommit: 1a7000630e55da90da19b284e1b2f2f13a393d74
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/30/2019
-ms.locfileid: "58750640"
+ms.lasthandoff: 04/04/2019
+ms.locfileid: "59012598"
 ---
 # <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Tutorial: Usar o recurso de migrações - ASP.NET MVC com EF Core
 
@@ -54,6 +54,7 @@ Essa alteração configura o projeto, de modo que a primeira migração crie um 
 > ```console
 > dotnet ef database drop
 > ```
+>
 > A seção a seguir explica como executar comandos da CLI.
 
 ## <a name="create-an-initial-migration"></a>Criar uma migração inicial
@@ -168,7 +169,7 @@ Para obter mais informações sobre os comandos do PMC, consulte [Console do Ger
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Baixar ou exibir o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## <a name="next-step"></a>Próximas etapas
 

@@ -4,14 +4,14 @@ author: rick-anderson
 description: Descreve os Auxiliares de marca internos usados com Formulários.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/27/2019
+ms.date: 04/06/2019
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: 2d5168ed4b1e14e507262361de9fa959924b82f6
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: 6eff3bf03e650e154b5c767c9bcdd915e7db8b47
+ms.sourcegitcommit: 948e533e02c2a7cb6175ada20b2c9cabb7786d0b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58209551"
+ms.lasthandoff: 04/10/2019
+ms.locfileid: "59468796"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Auxiliares de marca em formulários no ASP.NET Core
 
@@ -44,7 +44,7 @@ O Auxiliar de marca de formulário acima gera o HTML a seguir:
 ```HTML
 <form method="post" action="/Demo/Register">
     <!-- Input and Submit elements -->
-    <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+    <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
 </form>
 ```
 
@@ -93,7 +93,7 @@ A marcação a seguir envia o formulário à ação `Index` de `HomeController` 
 <form method="post">
     <button asp-controller="Home" asp-action="Index">Click Me</button>
     <input type="image" src="..." alt="Or Click Me" asp-controller="Home" 
-                                asp-action="Index" />
+                                asp-action="Index">
 </form>
 ```
 
@@ -102,7 +102,7 @@ A marcação anterior gera o seguinte HTML:
 ```html
 <form method="post">
     <button formaction="/Home">Click Me</button>
-    <input type="image" src="..." alt="Or Click Me" formaction="/Home" />
+    <input type="image" src="..." alt="Or Click Me" formaction="/Home">
 </form>
 ```
 
@@ -113,7 +113,7 @@ A marcação a seguir envia o formulário à Página do Razor `About`:
 ```cshtml
 <form method="post">
     <button asp-page="About">Click Me</button>
-    <input type="image" src="..." alt="Or Click Me" asp-page="About" />
+    <input type="image" src="..." alt="Or Click Me" asp-page="About">
 </form>
 ```
 
@@ -122,7 +122,7 @@ A marcação anterior gera o seguinte HTML:
 ```html
 <form method="post">
     <button formaction="/About">Click Me</button>
-    <input type="image" src="..." alt="Or Click Me" formaction="/About" />
+    <input type="image" src="..." alt="Or Click Me" formaction="/About">
 </form>
 ```
 
@@ -146,7 +146,7 @@ A marcação a seguir envia o formulário ao ponto de extremidade `/Home/Test`.
 ```cshtml
 <form method="post">
     <button asp-route="Custom">Click Me</button>
-    <input type="image" src="..." alt="Or Click Me" asp-route="Custom" />
+    <input type="image" src="..." alt="Or Click Me" asp-route="Custom">
 </form>
 ```
 
@@ -155,7 +155,7 @@ A marcação anterior gera o seguinte HTML:
 ```html
 <form method="post">
     <button formaction="/Home/Test">Click Me</button>
-    <input type="image" src="..." alt="Or Click Me" formaction="/Home/Test" />
+    <input type="image" src="..." alt="Or Click Me" formaction="/Home/Test">
 </form>
 ```
 
@@ -166,12 +166,12 @@ O Auxiliar de marca de entrada associa um elemento HTML [\<input>](https://www.w
 Sintaxe:
 
 ```HTML
-<input asp-for="<Expression Name>" />
+<input asp-for="<Expression Name>">
 ```
 
 O auxiliar de marca de entrada:
 
-* Gera os atributos HTML `id` e `name` para o nome da expressão especificada no atributo `asp-for`. `asp-for="Property1.Property2"` equivale a `m => m.Property1.Property2`. O nome da expressão é o que é usado para o valor do atributo `asp-for`. Consulte a seção [Nomes de expressão](#expression-names) para obter informações adicionais.
+* Gera os atributos HTML `id` e `name` para o nome da expressão especificada no atributo `asp-for`. `asp-for="Property1.Property2"` é equivalente a `m => m.Property1.Property2`. O nome da expressão é o que é usado para o valor do atributo `asp-for`. Consulte a seção [Nomes de expressão](#expression-names) para obter informações adicionais.
 
 * Define o valor do atributo HTML `type` com base nos atributos de tipo de modelo e [anotação de dados](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) aplicados à propriedade de modelo
 
@@ -227,17 +227,17 @@ O código acima gera o seguinte HTML:
 
 ```HTML
   <form method="post" action="/Demo/RegisterInput">
-       Email:
-       <input type="email" data-val="true"
-              data-val-email="The Email Address field is not a valid email address."
-              data-val-required="The Email Address field is required."
-              id="Email" name="Email" value="" /> <br>
-       Password:
-       <input type="password" data-val="true"
-              data-val-required="The Password field is required."
-              id="Password" name="Password" /><br>
-       <button type="submit">Register</button>
-     <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+      Email:
+      <input type="email" data-val="true"
+             data-val-email="The Email Address field is not a valid email address."
+             data-val-required="The Email Address field is required."
+             id="Email" name="Email" value=""><br>
+      Password:
+      <input type="password" data-val="true"
+             data-val-required="The Password field is required."
+             id="Password" name="Password"><br>
+      <button type="submit">Register</button>
+      <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
    </form>
 ```
 
@@ -245,7 +245,7 @@ As anotações de dados aplicadas às propriedades `Email` e `Password` geram me
 
 ### <a name="html-helper-alternatives-to-input-tag-helper"></a>Alternativas de Auxiliar HTML ao Auxiliar de marca de entrada
 
-`Html.TextBox`, `Html.TextBoxFor`, `Html.Editor` e `Html.EditorFor` têm recursos que se sobrepõem aos di Auxiliar de marca de entrada. O Auxiliar de marca de entrada define automaticamente o atributo `type`; `Html.TextBox` e `Html.TextBoxFor` não o fazem. `Html.Editor` e `Html.EditorFor` manipulam coleções, objetos complexos e modelos; o Auxiliar de marca de entrada não o faz. O Auxiliar de marca de entrada, `Html.EditorFor` e `Html.TextBoxFor` são fortemente tipados (eles usam expressões lambda); `Html.TextBox` e `Html.Editor` não usam (eles usam nomes de expressão).
+`Html.TextBox`, `Html.TextBoxFor`, `Html.Editor` e `Html.EditorFor` têm recursos que se sobrepõem aos do Auxiliar de marca de entrada. O Auxiliar de marca de entrada define automaticamente o atributo `type`; `Html.TextBox` e `Html.TextBoxFor` não o fazem. `Html.Editor` e `Html.EditorFor` manipulam coleções, objetos complexos e modelos; o Auxiliar de marca de entrada não o faz. O Auxiliar de marca de entrada, `Html.EditorFor` e `Html.TextBoxFor` são fortemente tipados (eles usam expressões lambda); `Html.TextBox` e `Html.Editor` não usam (eles usam nomes de expressão).
 
 ### <a name="htmlattributes"></a>HtmlAttributes
 
@@ -264,20 +264,20 @@ O valor do atributo `asp-for` é um `ModelExpression` e o lado direito de uma ex
 @{
        var joe = "Joe";
    }
-   <input asp-for="@joe" />
+   <input asp-for="@joe">
 ```
 
 Gera o seguinte:
 
 ```HTML
-<input type="text" id="joe" name="joe" value="Joe" />
+<input type="text" id="joe" name="joe" value="Joe">
 ```
 
 Com propriedades de coleção, `asp-for="CollectionProperty[23].Member"` gera o mesmo nome que `asp-for="CollectionProperty[i].Member"` quando `i` tem o valor `23`.
 
-Quando o ASP.NET Core MVC calcula o valor de `ModelExpression`, ele inspeciona várias fontes, inclusive o `ModelState`. Considere o `<input type="text" asp-for="@Name" />`. O atributo `value` calculado é o primeiro valor não nulo:
+Quando o ASP.NET Core MVC calcula o valor de `ModelExpression`, ele inspeciona várias fontes, inclusive o `ModelState`. Considere o `<input type="text" asp-for="@Name">`. O atributo `value` calculado é o primeiro valor não nulo:
 
-* Da entrada de `ModelState` com a chave "Name".
+* `ModelState` entrada com a chave "Name".
 * Do resultado da expressão `Model.Name`.
 
 ### <a name="navigating-child-properties"></a>Navegando para propriedades filho
@@ -295,7 +295,7 @@ Na exibição, associamos a `Address.AddressLine1`:
 O HTML a seguir é gerado para `Address.AddressLine1`:
 
 ```HTML
-<input type="text" id="Address_AddressLine1" name="Address.AddressLine1" value="" />
+<input type="text" id="Address_AddressLine1" name="Address.AddressLine1" value="">
 ```
 
 ### <a name="expression-names-and-collections"></a>Nomes de expressão e coleções
@@ -334,7 +334,7 @@ O modelo *Views/Shared/EditorTemplates/ToDoItem.cshtml*:
 
 [!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
 
-`foreach` deve ser usado, se possível, quando o valor está prestes a ser usado em um contexto equivalente `asp-for` ou `Html.DisplayFor`. Em geral, `for` é melhor do que `foreach` (se o cenário permitir) porque não é necessário alocar um enumerador; no entanto, avaliar um indexador em uma expressão LINQ pode ser caro, o que deve ser minimizado.
+`foreach` deve ser usado, se possível, quando o valor estiver prestes a ser usado em um contexto equivalente a `asp-for` ou `Html.DisplayFor`. Em geral, `for` é melhor do que `foreach` (se o cenário permitir) porque não é necessário alocar um enumerador; no entanto, avaliar um indexador em uma expressão LINQ pode ser caro, o que deve ser minimizado.
 
 &nbsp;
 
@@ -369,7 +369,7 @@ O HTML a seguir é gerado:
    id="Description" name="Description">
   </textarea>
   <button type="submit">Test</button>
-  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
 </form>
 ```
 
@@ -472,7 +472,7 @@ O código HTML gerado (quando o modelo é válido):
   Email:  <input name="Email" id="Email" type="email" value=""
    data-val-required="The Email field is required."
    data-val-email="The Email field is not a valid email address."
-   data-val="true"> <br>
+   data-val="true"><br>
   <span class="field-validation-valid" data-valmsg-replace="true"
    data-valmsg-for="Email"></span><br>
   Password: <input name="Password" id="Password" type="password"
@@ -480,7 +480,7 @@ O código HTML gerado (quando o modelo é válido):
   <span class="field-validation-valid" data-valmsg-replace="true"
    data-valmsg-for="Password"></span><br>
   <button type="submit">Register</button>
-  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
 </form>
 ```
 
@@ -520,7 +520,7 @@ Que gera o seguinte HTML (com "CA" selecionado):
        <option value="US">USA</option>
      </select>
        <br /><button type="submit">Register</button>
-     <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+     <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
    </form>
 ```
 
@@ -563,7 +563,7 @@ O HTML a seguir é gerado:
              <option selected="selected" value="5">Spain</option>
          </select>
          <br /><button type="submit">Register</button>
-         <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+         <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
     </form>
 ```
 
@@ -596,7 +596,7 @@ O HTML gerado:
           </optgroup>
       </select>
       <br /><button type="submit">Register</button>
-      <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+      <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
  </form>
 ```
 
@@ -624,7 +624,7 @@ Gera o seguinte HTML:
 <option value="DE">Germany</option>
 </select>
     <br /><button type="submit">Register</button>
-  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+  <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
 </form>
 ```
 
@@ -655,7 +655,7 @@ O elemento `<option>` correto será selecionado (contém o atributo `selected="s
           <option value="US">USA</option>
       </select>
       <br /><button type="submit">Register</button>
-   <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
+   <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
  </form>
  ```
 

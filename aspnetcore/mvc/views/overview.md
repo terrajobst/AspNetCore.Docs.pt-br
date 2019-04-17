@@ -3,14 +3,14 @@ title: Exibições no ASP.NET Core MVC
 author: ardalis
 description: Saiba como as exibições tratam da apresentação de dados do aplicativo e da interação com o usuário no ASP.NET Core MVC.
 ms.author: riande
-ms.date: 12/12/2017
+ms.date: 04/03/2019
 uid: mvc/views/overview
-ms.openlocfilehash: 0ee1fef9e9da15d91427a2eb5b5f530a0b77ce33
-ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
+ms.openlocfilehash: 766996645bc6ef2b6be42d729baf5d57f55b6ddd
+ms.sourcegitcommit: 1a7000630e55da90da19b284e1b2f2f13a393d74
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58265387"
+ms.lasthandoff: 04/04/2019
+ms.locfileid: "59012793"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Exibições no ASP.NET Core MVC
 
@@ -92,7 +92,7 @@ O comportamento padrão do método `View` (`return View();`) é retornar uma exi
 Não importa se você retornar implicitamente o `ViewResult` com `return View();` ou se passar explicitamente o nome de exibição para o método `View` com `return View("<ViewName>");`. Nos dois casos, a descoberta de exibição pesquisa por um arquivo de exibição correspondente nesta ordem:
 
    1. *Views/\[ControllerName]/\[ViewName].cshtml*
-   1. *Views/Shared/\[NomeDaExibição].cshtml*
+   1. *Views/Shared/\[ViewName].cshtml*
 
 Um caminho de arquivo de exibição pode ser fornecido em vez de um nome de exibição. Se um caminho absoluto que começa na raiz do aplicativo (ou é iniciado por "/" ou "~ /") estiver sendo usado, a extensão *.cshtml* deverá ser especificada:
 
@@ -192,7 +192,7 @@ Nada impede que você use as mesmas classes para seus tipos de viewmodel e seus 
 
 ### <a name="weakly-typed-data-viewdata-viewdata-attribute-and-viewbag"></a>Dados fracamente tipados (ViewData, atributo ViewData e ViewBag)
 
-`ViewBag` *não está disponível nas Páginas do Razor.*
+`ViewBag` *não está disponível nas Razor Pages.*
 
 Além de exibições fortemente tipadas, as exibições têm acesso a uma coleção de dados *fracamente tipados* (também chamada de *tipagem flexível*). Diferente dos tipos fortes, ter *tipos fracos* (ou *tipos flexíveis*) significa que você não declara explicitamente o tipo dos dados que está usando. Você pode usar a coleção de dados fracamente tipados para transmitir pequenas quantidades de dados para dentro e para fora dos controladores e das exibições.
 
@@ -202,7 +202,7 @@ Além de exibições fortemente tipadas, as exibições têm acesso a uma coleç
 | Uma exibição e uma [exibição de layout](xref:mvc/views/layout)   | Definir o conteúdo do elemento **\<title>** na exibição de layout de um arquivo de exibição.  |
 | Uma [exibição parcial](xref:mvc/views/partial) e uma exibição | Um widget que exibe dados com base na página da Web que o usuário solicitou.      |
 
-Essa coleção pode ser referenciada por meio das propriedades `ViewData` ou `ViewBag` em controladores e exibições. A propriedade `ViewData` é um dicionário de objetos fracamente tipados. A propriedade `ViewBag` é um wrapper em torno de `ViewData` que fornece propriedades dinâmicas à coleção de `ViewData` subjacente.
+Essa coleção pode ser referenciada por meio das propriedades `ViewData` ou `ViewBag` em controladores e exibições. A propriedade `ViewData` é um dicionário de objetos fracamente tipados. A propriedade `ViewBag` é um wrapper em torno de `ViewData` que fornece propriedades dinâmicas à coleção de `ViewData` subjacente. Observação: as pesquisas de chave diferenciam maiúsculas de minúsculas tanto para `ViewData` quanto para `ViewBag`.
 
 `ViewData` e `ViewBag` são resolvidos dinamicamente em tempo de execução. Uma vez que não oferecem verificação de tipo em tempo de compilação, geralmente ambos são mais propensos a erros do que quando um viewmodel é usado. Por esse motivo, alguns desenvolvedores preferem nunca usar `ViewData` e `ViewBag` ou usá-los o mínimo possível.
 
@@ -292,9 +292,9 @@ No layout, o título é lido a partir do dicionário ViewData:
 
 **ViewBag**
 
-`ViewBag` *não está disponível nas Páginas do Razor.*
+`ViewBag` *não está disponível nas Razor Pages.*
 
-`ViewBag` é um objeto [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) que fornece acesso dinâmico aos objetos armazenados em `ViewData`. Pode ser mais conveniente trabalhar com `ViewBag`, pois ele não requer uma conversão. O exemplo a seguir mostra como usar `ViewBag` com o mesmo resultado que o uso de `ViewData` acima:
+`ViewBag` é um objeto [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) que fornece acesso dinâmico aos objetos armazenados em `ViewData`. `ViewBag` pode ser mais conveniente de se trabalhar, pois não requer uma conversão. O exemplo a seguir mostra como usar `ViewBag` com o mesmo resultado que o uso de `ViewData` acima:
 
 ```csharp
 public IActionResult SomeAction()
@@ -323,9 +323,9 @@ public IActionResult SomeAction()
 </address>
 ```
 
-**Usando ViewData e ViewBag simultaneamente**
+**Uso simultâneo de ViewData e ViewBag**
 
-`ViewBag` *não está disponível nas Páginas do Razor.*
+`ViewBag` *não está disponível nas Razor Pages.*
 
 Como `ViewData` e `ViewBag` fazem referência à mesma coleção `ViewData` subjacente, você pode usar `ViewData` e `ViewBag`, além de misturá-los e combiná-los ao ler e gravar valores.
 
@@ -365,7 +365,7 @@ Usar `ViewData` e `ViewBag` ao mesmo tempo funciona, assim como misturar e combi
 
 **Resumo das diferenças entre ViewData e ViewBag**
 
- `ViewBag` não está disponível em páginas Razor.
+ `ViewBag` não está disponível nas Razor Pages.
 
 * `ViewData`
   * Deriva de [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), de forma que tem propriedades de dicionário que podem ser úteis, como `ContainsKey`, `Add`, `Remove` e `Clear`.

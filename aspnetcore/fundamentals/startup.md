@@ -7,12 +7,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 01/17/2019
 uid: fundamentals/startup
-ms.openlocfilehash: 9556ec076fce3500115cf0e934202f11b175ccd3
-ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
+ms.openlocfilehash: 362186be6feeeefeca3c56688ee6420de5fb9659
+ms.sourcegitcommit: 948e533e02c2a7cb6175ada20b2c9cabb7786d0b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/30/2019
-ms.locfileid: "58750793"
+ms.lasthandoff: 04/10/2019
+ms.locfileid: "59468618"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Inicialização de aplicativo no ASP.NET Core
 
@@ -63,9 +63,11 @@ O host pode configurar alguns serviços antes que métodos `Startup` sejam chama
 
 Para recursos que exigem uma configuração significativa, há métodos de extensão `Add{Service}` em <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. Um aplicativo ASP.NET Core típico registra serviços para o Entity Framework, Identity e MVC:
 
-[!code-csharp[](startup/sample_snapshot/Startup3.cs?highlight=4,7,11)]
+[!code-csharp[](startup/sample_snapshot/Startup3.cs)]
 
 Adicionar serviços ao contêiner de serviços os torna disponíveis dentro do aplicativo e no método `Configure`. Os serviços são resolvidos por meio da [injeção de dependência](xref:fundamentals/dependency-injection) ou de <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
+
+Confira [SetCompatibilityVersion](xref:mvc/compatibility-version) para obter mais informações sobre `SetCompatibilityVersion`.
 
 ## <a name="the-configure-method"></a>O método Configure
 
@@ -74,11 +76,11 @@ O método <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> é usado pa
 Os [modelos do ASP.NET Core](/dotnet/core/tools/dotnet-new) configuram o pipeline com suporte para:
 
 * [Página de exceção do desenvolvedor](xref:fundamentals/error-handling#developer-exception-page)
-* [Manipulador de exceção](xref:fundamentals/error-handling#configure-a-custom-exception-handling-page)
+* [Manipulador de exceção](xref:fundamentals/error-handling#exception-handler-page)
 * [Segurança de Transporte Estrita de HTTP (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
-* [Redirecionamento de HTTPS](xref:security/enforcing-ssl)
+* [Redirecionamento para HTTPS](xref:security/enforcing-ssl)
 * [Arquivos estáticos](xref:fundamentals/static-files)
-* [RGPD (Regulamento Geral sobre a Proteção de Dados) da UE](xref:security/gdpr)
+* [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr)
 * [MVC](xref:mvc/overview) do ASP.NET Core e [Razor Pages](xref:razor-pages/index)
 
 [!code-csharp[](startup/sample_snapshot/Startup4.cs)]

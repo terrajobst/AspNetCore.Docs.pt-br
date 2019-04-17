@@ -4,14 +4,14 @@ author: mjrousos
 description: Saiba como usar um IAuthorizationPolicyProvider personalizado em um aplicativo ASP.NET Core para gerar dinamicamente a políticas de autorização.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/21/2019
+ms.date: 04/15/2019
 uid: security/authorization/iauthorizationpolicyprovider
-ms.openlocfilehash: ca57a9fd8e3c11f15fe14bbe4538bc748c4c84b6
-ms.sourcegitcommit: 728f4e47be91e1c87bb7c0041734191b5f5c6da3
+ms.openlocfilehash: e17372bb0ec9091c385a70b1e907eaa3cff24003
+ms.sourcegitcommit: 017b673b3c700d2976b77201d0ac30172e2abc87
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54444149"
+ms.lasthandoff: 04/16/2019
+ms.locfileid: "59614403"
 ---
 # <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>Provedores de política de autorização personalizados usando IAuthorizationPolicyProvider no ASP.NET Core 
 
@@ -44,7 +44,7 @@ Implementando essas duas APIs, você pode personalizar como as políticas de aut
 
 Um cenário em que `IAuthorizationPolicyProvider` é útil é a habilitação do personalizado `[Authorize]` atributos cujos requisitos dependem de um parâmetro. Por exemplo, na [autorização baseada em política](xref:security/authorization/policies) documentação, uma com base em idade ("AtLeast21") política foi usada como um exemplo. Se as ações de controlador diferente em um aplicativo devem ser disponibilizadas para os usuários do *diferentes* há séculos, pode ser útil ter muitas políticas diferentes com base em idade. Em vez de registrar todas as diferentes com base em idade políticas que o aplicativo será necessário em `AuthorizationOptions`, você pode gerar as políticas dinamicamente com um personalizado `IAuthorizationPolicyProvider`. Para tornar o uso de políticas mais fácil, você pode anotar as ações com o atributo de autorização personalizado, como `[MinimumAgeAuthorize(20)]`.
 
-## <a name="custom-authorization-attributes"></a>Atributos de autorização personalizada
+## <a name="custom-authorization-attributes"></a>Atributos de autorização personalizados
 
 Políticas de autorização são identificadas por seus nomes. Personalizado `MinimumAgeAuthorizeAttribute` descrito anteriormente, precisa mapear argumentos em uma cadeia de caracteres que pode ser usada para recuperar a política de autorização correspondente. Você pode fazer isso, derivando de `AuthorizeAttribute` e fazer a `Age` quebra automática de propriedade a `AuthorizeAttribute.Policy` propriedade.
 
@@ -119,12 +119,32 @@ internal class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
 
 ## <a name="multiple-authorization-policy-providers"></a>Vários provedores de política de autorização
 
-Quando usar custom `IAuthorizationPolicyProvider` implementações, tenha em mente que o ASP.NET Core usa apenas uma instância de `IAuthorizationPolicyProvider`. Se um provedor personalizado não é capaz de fornecer políticas de autorização para todos os nomes de política, ele deve fazer fallback para um provedor de backup. Nomes de política podem incluir aqueles que vêm de uma política padrão para `[Authorize]` atributos sem um nome.
+Quando usar custom `IAuthorizationPolicyProvider` implementações, tenha em mente que o ASP.NET Core usa apenas uma instância de `IAuthorizationPolicyProvider`. Se um provedor personalizado não é capaz de fornecer políticas de autorização para todos os nomes de política que serão usados, ele deve fazer fallback para um provedor de backup. 
 
-Por exemplo, considere que um aplicativo precisar de políticas personalizadas de idade e recuperação de política baseada em função mais tradicional. Esse aplicativo poderia usar um provedor de diretivas de autorização personalizada que:
+Por exemplo, considere um aplicativo que precisa de políticas personalizadas de idade e recuperação de política baseada em função mais tradicional. Esse aplicativo poderia usar um provedor de diretivas de autorização personalizada que:
 
 * Tenta analisar nomes de política. 
 * Chamadas para um provedor de política diferente (como `DefaultAuthorizationPolicyProvider`) se o nome da política não contiver uma idade.
+
+O exemplo `IAuthorizationPolicyProvider` implementação mostrada acima pode ser atualizada para usar o `DefaultAuthorizationPolicyProvider` , criando um provedor de política de fallback em seu construtor (a ser usado no caso do nome da política não corresponde ao seu padrão esperado de 'MinimumAge' + idade).
+
+```csharp
+private DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; }
+
+public MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options)
+{
+    // ASP.NET Core only uses one authorization policy provider, so if the custom implementation
+    // doesn't handle all policies it should fall back to an alternate provider.
+    FallbackPolicyProvider = new DefaultAuthorizationPolicyProvider(options);
+}
+```
+
+Em seguida, o `GetPolicyAsync` método pode ser atualizado para usar o `FallbackPolicyProvider` em vez de retornar null:
+
+```csharp
+...
+return FallbackPolicyProvider.GetPolicyAsync(policyName);
+```
 
 ## <a name="default-policy"></a>Política padrão
 
@@ -137,10 +157,18 @@ public Task<AuthorizationPolicy> GetDefaultPolicyAsync() =>
     Task.FromResult(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
 ```
 
-Assim como acontece com todos os aspectos de um personalizado `IAuthorizationPolicyProvider`, você pode personalizá-lo, conforme necessário. Em alguns casos:
+Assim como acontece com todos os aspectos de um personalizado `IAuthorizationPolicyProvider`, você pode personalizá-lo, conforme necessário. Em alguns casos, ele pode ser desejável para recuperar a política padrão de fallback `IAuthorizationPolicyProvider`.
 
-* Políticas de autorização padrão não podem ser usadas.
-* Recuperando a política padrão pode ser designado como um fallback `IAuthorizationPolicyProvider`.
+## <a name="required-policy"></a>Diretiva necessária
+
+Um personalizado `IAuthorizationPolicyProvider` precisa implementar `GetRequiredPolicyAsync` para, opcionalmente, forneça uma política que é sempre necessária. Se `GetRequiredPolicyAsync` retorna uma política de não-nulo, essa política será combinada com qualquer outro (nomeado ou padrão) política que é solicitada.
+
+Se nenhuma política necessária for necessária, o provedor poderá simplesmente retornar nulo ou adiar para o provedor de fallback:
+
+```csharp
+public Task<AuthorizationPolicy> GetRequiredPolicyAsync() => 
+    Task.FromResult<AuthorizationPolicy>(null);
+```
 
 ## <a name="use-a-custom-iauthorizationpolicyprovider"></a>Use um IAuthorizationPolicyProvider personalizado
 

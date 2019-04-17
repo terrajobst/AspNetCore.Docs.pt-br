@@ -4,14 +4,15 @@ author: tdykstra
 description: Saiba mais sobre a validação de modelo no ASP.NET Core MVC e Razor Pages.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/01/2019
+ms.date: 04/06/2019
+monikerRange: '>= aspnetcore-2.1'
 uid: mvc/models/validation
-ms.openlocfilehash: b766d47f296745ba4be6ea8cb6335db9c3e2d975
-ms.sourcegitcommit: 5995f44e9e13d7e7aa8d193e2825381c42184e47
+ms.openlocfilehash: 1ae3c20478b02d6f654e65fdf34c88e1ffb837f8
+ms.sourcegitcommit: 948e533e02c2a7cb6175ada20b2c9cabb7786d0b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/02/2019
-ms.locfileid: "58809309"
+ms.lasthandoff: 04/10/2019
+ms.locfileid: "59468731"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Validação de modelo no ASP.NET Core MVC e Razor Pages
 
@@ -23,23 +24,11 @@ Este artigo explica como validar a entrada do usuário em um aplicativo em ASP.N
 
 O estado do modelo representa erros que vêm de dois subsistemas: model binding e validação de modelo. Erros que se originam de [model binding](model-binding.md) geralmente são erros de conversão de dados (por exemplo, um "x" é inserido em um campo que espera um inteiro). A validação do modelo ocorre após o model binding e relata os erros em que os dados não estão em conformidade com as regras de negócio (por exemplo, um 0 é inserido em um campo que espera uma classificação entre 1 e 5).
 
-::: moniker range=">= aspnetcore-2.1"
-
-O model binding e a validação ocorrem antes da execução de uma ação do controlador ou de um método de manipulador do Razor Pages. É responsabilidade do aplicativo inspecionar `ModelState.IsValid` e reagir adequadamente. Geralmente, os aplicativos Web reexibem a página com uma mensagem de erro:
-
-[!code-csharp[](validation/sample_snapshot/Create.cshtml.cs?name=snippet&highlight=3-6)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
 O model binding e a validação ocorrem antes da execução de uma ação do controlador ou de um método de manipulador do Razor Pages. Nos aplicativos Web, é responsabilidade do aplicativo inspecionar `ModelState.IsValid` e reagir adequadamente. Geralmente, os aplicativos Web reexibem a página com uma mensagem de erro:
 
 [!code-csharp[](validation/sample_snapshot/Create.cshtml.cs?name=snippet&highlight=3-6)]
 
 Os controladores de API Web não precisarão verificar `ModelState.IsValid` se eles tiverem o atributo `[ApiController]`. Nesse caso, uma resposta automática HTTP 400 contendo detalhes do problema será retornada quando o estado do modelo for inválido. Para obter mais informações, veja [Respostas automáticas HTTP 400](xref:web-api/index#automatic-http-400-responses).
-
-::: moniker-end
 
 ## <a name="rerun-validation"></a>Executar validação novamente
 
@@ -140,7 +129,7 @@ A propriedade `AdditionalFields` do atributo `[Remote]` permite validar combina�
 
 [!code-csharp[](validation/sample/Models/User.cs?name=snippet_UserNameProperties)]
 
-`AdditionalFields` pode ser definido de forma explícita com as cadeias de caracteres `"FirstName"` e `"LastName"`, mas o uso do operador [`nameof`](/dotnet/csharp/language-reference/keywords/nameof), simplifica a refatoração posterior. O método de ação para essa validação deve aceitar os argumentos de primeiro nome e de sobrenome:
+`AdditionalFields` pode ser definido de forma explícita com as cadeias de caracteres `"FirstName"` e `"LastName"`, mas o uso do operador [`nameof`](/dotnet/csharp/language-reference/keywords/nameof) simplifica a refatoração posterior. O método de ação para essa validação deve aceitar os argumentos de primeiro nome e de sobrenome:
 
 [!code-csharp[](validation/sample/Controllers/UsersController.cs?name=snippet_VerifyName)]
 
@@ -162,7 +151,6 @@ Se precisar de validação não fornecida por atributos internos, você poderá:
 * [Criar atributos personalizados](#custom-attributes).
 * [Implementar IValidatableObject](#ivalidatableobject).
 
-
 ## <a name="custom-attributes"></a>Atributos personalizados
 
 Para cenários não compatíveis com os atributos de validação internos, você pode criar atributos de validação personalizados. Crie uma classe que herda de <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> e substitua o método <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*>.
@@ -180,8 +168,6 @@ A variável `movie` no exemplo anterior representa um objeto `Movie` que contém
 O exemplo anterior funciona apenas com tipos `Movie`. Outra opção para validação de nível de classe é implementar `IValidatableObject` na classe de modelo, conforme mostrado no exemplo a seguir:
 
 [!code-csharp[](validation/sample/Models/MovieIValidatable.cs?name=snippet&highlight=1,26-34)]
-
-::: moniker range=">= aspnetcore-2.1"
 
 ## <a name="top-level-node-validation"></a>Validação de nó de nível superior
 
@@ -210,15 +196,11 @@ Ao executar com `CompatibilityVersion.Version_2_1` ou posterior, a validação d
 
 [!code-csharp[](validation/sample_snapshot/Startup.cs?name=snippet_AddMvc&highlight=4)]
 
-::: moniker-end
-
 ## <a name="maximum-errors"></a>Máximo de erros
 
 A validação para quando o número máximo de erros é atingido (200 por padrão). Você pode configurar esse número com o seguinte código no `Startup.ConfigureServices`:
 
 [!code-csharp[](validation/sample/Startup.cs?name=snippet_MaxModelValidationErrors&highlight=3)]
-
-::: moniker range=">= aspnetcore-2.1"
 
 ## <a name="maximum-recursion"></a>Recursão máxima
 
@@ -227,8 +209,6 @@ A validação para quando o número máximo de erros é atingido (200 por padrã
 ## <a name="automatic-short-circuit"></a>Curto-circuito automático
 
 A validação sofrerá curto-circuito (será ignorada) automaticamente se o grafo do modelo não exigir validação. Objetos em que o tempo de execução ignora a validação para inclusão de coleções de primitivos (como `byte[]`, `string[]` e `Dictionary<string, string>`) e grafos de objetos complexos que não têm um validador.
-
-::: moniker-end
 
 ## <a name="disable-validation"></a>Desabilitar validação
 
@@ -270,7 +250,7 @@ Os auxiliares de marca acima renderizam o HTML a seguir.
             <div class="col-md-10">
                 <input class="form-control" type="datetime"
                 data-val="true" data-val-required="The ReleaseDate field is required."
-                id="ReleaseDate" name="ReleaseDate" value="" />
+                id="ReleaseDate" name="ReleaseDate" value="">
                 <span class="text-danger field-validation-valid"
                 data-valmsg-for="ReleaseDate" data-valmsg-replace="true"></span>
             </div>
@@ -281,7 +261,7 @@ Os auxiliares de marca acima renderizam o HTML a seguir.
 
 Observe que os atributos `data-` na saída HTML correspondem aos atributos de validação da propriedade `ReleaseDate`. O atributo `data-val-required` conterá uma mensagem de erro a ser exibida se o usuário não preencher o campo de data de lançamento. O jQuery Unobtrusive Validation passa esse valor para o método [`required()`](https://jqueryvalidation.org/required-method/) do jQuery Validate, que, por sua vez, exibe essa mensagem no elemento **\<span>** complementar.
 
-A validação de tipo de dados é baseada no tipo .NET de uma propriedade, a menos que seja substituída por um atributo `[DataType]`. Os navegadores têm suas próprias mensagens de erro padrão, mas o pacote de validação do jQuery Validation Unobtrusive pode substituir essas mensagens. Os atributos `[DataType]` e as subclasses como `[EmailAddress]` permitem que você especifique a mensagem de erro.
+A validação de tipo de dados é baseada no tipo .NET de uma propriedade, a menos que seja substituída por um atributo `[DataType]`. Os navegadores têm suas próprias mensagens de erro padrão, mas o pacote de validação do jQuery Validation Unobtrusive pode substituir essas mensagens. `[DataType]` atributos e subclasses como `[EmailAddress]` permitem que você especifique a mensagem de erro.
 
 ### <a name="add-validation-to-dynamic-forms"></a>Adicionar validação a formulários dinâmicos
 
@@ -308,7 +288,7 @@ O método `$.validator.unobtrusive.parse()` aceita um seletor do jQuery para um 
 
 ### <a name="add-validation-to-dynamic-controls"></a>Adicionar validação a controles dinâmicos
 
-O método `$.validator.unobtrusive.parse()` funciona em um formulário inteiro, não em controles individuais gerados dinamicamente, como `<input/>` e `<select/>`. Para uma nova análise do formulário, remova os dados de validação que foram adicionados ao formulário mesmo quando foi analisado anteriormente, conforme mostrado no exemplo a seguir:
+O método `$.validator.unobtrusive.parse()` funciona em um formulário inteiro, não em controles individuais gerados dinamicamente, como `<input>` e `<select/>`. Para uma nova análise do formulário, remova os dados de validação que foram adicionados ao formulário mesmo quando foi analisado anteriormente, conforme mostrado no exemplo a seguir:
 
 ```js
 $.get({
@@ -349,7 +329,7 @@ A exemplo a seguir mostra os atributos `data-` para o atributo `ClassicMovie` do
     data-val-classicmovie1="Classic movies must have a release year earlier than 1960."
     data-val-classicmovie1-year="1960"
     data-val-required="The ReleaseDate field is required."
-    id="ReleaseDate" name="ReleaseDate" value="" />
+    id="ReleaseDate" name="ReleaseDate" value="">
 ```
 
 Conforme observado anteriormente, os [Auxiliares de Marca](xref:mvc/views/tag-helpers/intro) e [Auxiliares de HTML](xref:mvc/views/overview) usam informações de atributos de validação para renderizar atributos `data-`. Há duas opções para escrever código que resulte na criação de atributos HTML `data-` personalizados:

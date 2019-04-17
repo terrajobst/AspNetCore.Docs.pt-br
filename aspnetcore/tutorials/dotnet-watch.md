@@ -5,18 +5,18 @@ description: Este tutorial demonstra como instalar e usar a ferramenta observado
 ms.author: riande
 ms.date: 05/31/2018
 uid: tutorials/dotnet-watch
-ms.openlocfilehash: f1e0d91b27df4af7cbfb6f2547c94c0370c65d0d
-ms.sourcegitcommit: cec77d5ad8a0cedb1ecbec32834111492afd0cd2
+ms.openlocfilehash: 40ecca1c6f9d519b24649d0c28946d95b820c07c
+ms.sourcegitcommit: 6bde1fdf686326c080a7518a6725e56e56d8886e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/10/2019
-ms.locfileid: "54207496"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068190"
 ---
 # <a name="develop-aspnet-core-apps-using-a-file-watcher"></a>Desenvolver aplicativos ASP.NET Core usando um observador de arquivo
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Victor Hurdugaci](https://twitter.com/victorhurdugaci)
 
-`dotnet watch` é uma ferramenta que executa um comando do [CLI do .NET Core](/dotnet/core/tools) quando os arquivos de origem são alterados. Por exemplo, uma alteração de arquivo pode disparar uma compilação, execução de teste ou uma implantação.
+`dotnet watch` é uma ferramenta que executa um comando da [CLI do .NET Core](/dotnet/core/tools) quando os arquivos de origem são alterados. Por exemplo, uma alteração de arquivo pode disparar uma compilação, execução de teste ou uma implantação.
 
 Este tutorial usa um aplicativo de API Web existente com dois pontos de extremidade: um que retorna uma soma e outro que retorna um produto. O método de produto tem um bug, que é corrigido neste tutorial.
 
@@ -27,6 +27,9 @@ Em um shell de comando, navegue até a pasta *WebApp*. Execute o seguinte comand
 ```console
 dotnet run
 ```
+
+> [!NOTE]
+> `dotnet run --project <PROJECT>` pode ser usado para especificar um projeto a ser executado. Por exemplo, a execução de `dotnet run --project WebApp` da raiz do aplicativo de exemplo também executará o projeto *WebApp*.
 
 O resultado do console mostra mensagens semelhantes à seguinte (indicando que o aplicativo está em execução e aguarda solicitações):
 
@@ -77,6 +80,9 @@ Qualquer [comando da CLI do .NET Core](/dotnet/core/tools#cli-commands) pode ser
 
 Executar `dotnet watch run` na pasta *WebApp*. O resultado do console indica que `watch` foi iniciado.
 
+> [!NOTE]
+> `dotnet watch --project <PROJECT>` pode ser usado para especificar um projeto a ser observado. Por exemplo, a execução de `dotnet watch --project WebApp run` da raiz do aplicativo de exemplo também executará e observará o projeto *WebApp*.
+
 ## <a name="make-changes-with-dotnet-watch"></a>Fazer alterações com `dotnet watch`
 
 Verifique se `dotnet watch` está em execução.
@@ -86,7 +92,7 @@ Corrija o bug no método `Product` do *MathController.cs* para que ele retorne o
 ```csharp
 public static int Product(int a, int b)
 {
-  return a * b;
+    return a * b;
 }
 ```
 

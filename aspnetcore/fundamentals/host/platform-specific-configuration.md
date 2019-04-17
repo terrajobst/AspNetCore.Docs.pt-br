@@ -5,14 +5,14 @@ description: Descubra como aprimorar um aplicativo ASP.NET Core por meio de um a
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 03/23/2019
+ms.date: 04/06/2019
 uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: c174d658c84ada88eef17528c663735a91347ba7
-ms.sourcegitcommit: 7d6019f762fc5b8cbedcd69801e8310f51a17c18
+ms.openlocfilehash: c2a2e1fbd288ff292c6759d03fae51876cdb5704
+ms.sourcegitcommit: 258a97159da206f9009f23fdf6f8fa32f178e50b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419440"
+ms.lasthandoff: 04/09/2019
+ms.locfileid: "59425069"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Usar assemblies de inicialização de hospedagem no ASP.NET Core
 
@@ -44,10 +44,10 @@ Para desabilitar o carregamento automático de assemblies de inicialização de 
 
 * Para impedir o carregamento de todos os assemblies de inicialização de hospedagem, defina o seguinte para `true` ou `1`:
   * Configuração do host [Impedir inicialização de hospedagem](xref:fundamentals/host/web-host#prevent-hosting-startup).
-  * A variável de ambiente `ASPNETCORE_PREVENTHOSTINGSTARTUP`.
+  * `ASPNETCORE_PREVENTHOSTINGSTARTUP` variável de ambiente.
 * Para evitar o carregamento de assemblies específicos de inicialização de hospedagem, defina uma das opções a seguir como uma cadeia de caracteres delimitada por ponto e vírgula de assemblies de inicialização de hospedagem para excluir na inicialização:
   * Configuração do host [Assemblies de exclusão de inicialização de hospedagem](xref:fundamentals/host/web-host#hosting-startup-exclude-assemblies).
-  * A variável de ambiente `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES`.
+  * `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES` variável de ambiente.
 
 Se a configuração do host e a variável de ambiente estiverem definidas, a configuração do host controlará o comportamento.
 
@@ -83,7 +83,7 @@ A página de índice do aplicativo lê e renderiza os valores de configuração 
 
 O [código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) também inclui um projeto de pacote do NuGet que fornece uma inicialização de hospedagem separada, *HostingStartupPackage*. O pacote tem as mesmas características da biblioteca de classes descrita anteriormente. O pacote:
 
-* Contém uma classe de inicialização de hospedagem, `ServiceKeyInjection`, que implementa `IHostingStartup`. `ServiceKeyInjection` adiciona um par de cadeias de caracteres de serviço para a configuração do aplicativo.
+* Contém uma classe de inicialização de hospedagem, `ServiceKeyInjection`, que implementa `IHostingStartup`. `ServiceKeyInjection` adiciona um par de cadeias de caracteres de serviço à configuração do aplicativo.
 * Inclui um atributo `HostingStartup`.
 
 *HostingStartupPackage/ServiceKeyInjection.cs*:
@@ -98,7 +98,7 @@ A página de índice do aplicativo lê e renderiza os valores de configuração 
 
 ### <a name="console-app-without-an-entry-point"></a>Aplicativo de console sem um ponto de entrada
 
-*Essa abordagem só está disponível para aplicativos .NET Core, não para .NET Framework.*
+*Esta abordagem só está disponível para aplicativos .NET Core, não para .NET Framework.*
 
 Uma melhoria de inicialização de hospedagem dinâmica que não requer uma referência de tempo de compilação para a ativação pode ser fornecida em um aplicativo de console sem um ponto de entrada que contenha um atributo `HostingStartup`. Publicar o aplicativo de console produz um assembly de inicialização de hospedagem que pode ser consumido do repositório de tempo de execução.
 
@@ -194,7 +194,7 @@ As opções para ativação da inicialização de hospedagem são:
 
 * [Repositório de tempo de execução](#runtime-store) &ndash; A ativação não requer uma referência de tempo de compilação para a ativação. O aplicativo de exemplo coloca os arquivos de dependências e o assembly de inicialização de hospedagem em uma pasta, *implantação*, para facilitar a implantação da inicialização de hospedagem em um ambiente multicomputador. A pasta *implantação* também inclui um script do PowerShell que cria ou modifica variáveis de ambiente no sistema de implantação para habilitar a inicialização de hospedagem.
 * Referência de tempo de compilação necessária para a ativação
-  * [Pacote do NuGet](#nuget-package)
+  * [Pacote NuGet](#nuget-package)
   * [Pasta Lixeira do projeto](#project-bin-folder)
 
 ### <a name="runtime-store"></a>Repositório de tempo de execução
@@ -313,9 +313,9 @@ Uma melhoria da inicialização de hospedagem pode ser fornecida em pacote do Nu
 
 Para obter mais informações sobre pacotes do NuGet e o repositório de tempo de execução, consulte os tópicos a seguir:
 
-* [Como criar um pacote do NuGet com ferramentas de plataforma cruzada](/dotnet/core/deploying/creating-nuget-packages)
+* [Como criar um pacote NuGet com várias Ferramentas de Plataforma Cruzada](/dotnet/core/deploying/creating-nuget-packages)
 * [Publicando pacotes](/nuget/create-packages/publish-a-package)
-* [Repositório de pacote de tempo de execução](/dotnet/core/deploying/runtime-store)
+* [Repositório de pacotes de tempo de execução](/dotnet/core/deploying/runtime-store)
 
 ### <a name="project-bin-folder"></a>Pasta Lixeira do projeto
 
@@ -381,7 +381,14 @@ dotnet nuget locals all --clear
 **Ativação de um assembly implantado pelo repositório de tempo de execução**
 
 1. O projeto *StartupDiagnostics* usa o [PowerShell](/powershell/scripting/powershell-scripting) para modificar seu arquivo *StartupDiagnostics.deps.json*. O PowerShell é instalado por padrão em um sistema operacional Windows começando no Windows 7 SP1 e no Windows Server 2008 R2 SP1. Para obter o PowerShell em outras plataformas, confira [Instalando o Windows PowerShell](/powershell/scripting/setup/installing-powershell#powershell-core).
-1. Execute o script *build.ps1* na pasta *RuntimeStore*. O comando `dotnet store` no script usa o `win7-x64` [RID (identificador de tempo de execução)](/dotnet/core/rid-catalog) para uma inicialização de host implantada no Windows. Ao fornecer a inicialização de hospedagem para um tempo de execução diferente, substitua o RID correto.
-1. Execute o script *deploy.ps1* na pasta *deployment*.
+1. Execute o script *build.ps1* na pasta *RuntimeStore*. O script:
+   * Gera o pacote `StartupDiagnostics`.
+   * Gera o repositório de tempo de execução para `StartupDiagnostics` na pasta de *armazenamento*. O comando `dotnet store` no script usa o `win7-x64` [RID (identificador de tempo de execução)](/dotnet/core/rid-catalog) para uma inicialização de host implantada no Windows. Ao fornecer a inicialização de hospedagem para um tempo de execução diferente, substitua pelo RID correto na linha 37 do script.
+   * Gera `additionalDeps` para `StartupDiagnostics` na pasta *additionalDeps/shared/Microsoft.AspNetCore.App/{Versão do Framework compartilhado}/*.
+   * Coloca o arquivo *deploy.ps1* na pasta *deployment*.
+1. Execute o script *deploy.ps1* na pasta *deployment*. O script acrescenta:
+   * `StartupDiagnostics` à variável de ambiente `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`.
+   * O caminho de dependências de inicialização de hospedagem para a variável de ambiente `DOTNET_ADDITIONAL_DEPS`.
+   * O caminho do repositório de tempo de execução para a variável de ambiente `DOTNET_SHARED_STORE`.
 1. Execute o aplicativo de exemplo.
 1. Solicite o ponto de extremidade `/services` para ver os serviços registrados do aplicativo. Solicite o ponto de extremidade `/diag` para ver as informações de diagnóstico.

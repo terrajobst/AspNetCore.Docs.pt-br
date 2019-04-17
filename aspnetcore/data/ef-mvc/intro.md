@@ -7,12 +7,12 @@ ms.custom: mvc
 ms.date: 02/06/2019
 ms.topic: tutorial
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 282af56eb911aea53a6ce945e7c1177c158fc342
-ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
+ms.openlocfilehash: 5a2ec9a8d85925e55840962cc90b3092953e7920
+ms.sourcegitcommit: 1a7000630e55da90da19b284e1b2f2f13a393d74
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/30/2019
-ms.locfileid: "58750589"
+ms.lasthandoff: 04/04/2019
+ms.locfileid: "59012845"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: Introdução ao EF Core em um aplicativo Web ASP.NET MVC
 
@@ -39,8 +39,8 @@ Neste tutorial, você:
 
 * [SDK do .NET Core 2.2](https://www.microsoft.com/net/download)
 * [Visual Studio 2017 ou 2019](https://visualstudio.microsoft.com/downloads/) com as seguintes cargas de trabalho:
-    * Carga de trabalho **ASP.NET e desenvolvimento para a Web**
-    * Carga de trabalho de **desenvolvimento multiplataforma do .NET Core**
+  * Carga de trabalho **ASP.NET e desenvolvimento para a Web**
+  * Carga de trabalho de **desenvolvimento multiplataforma do .NET Core**
 
 ## <a name="troubleshooting"></a>Solução de problemas
 
@@ -355,7 +355,7 @@ Para obter mais informações sobre a programação assíncrona no .NET, consult
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Baixar ou exibir o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## <a name="next-steps"></a>Próximas etapas
 
@@ -377,4 +377,4 @@ No tutorial a seguir, você aprenderá a executar operações CRUD (criar, ler, 
 Vá para o próximo tutorial para aprender a executar operações CRUD (criar, ler, atualizar e excluir) básicas.
 
 > [!div class="nextstepaction"]
-> [Implementar a funcionalidade CRUD básica](crud.md)
+> [Implementação da funcionalidade CRUD básica](crud.md)

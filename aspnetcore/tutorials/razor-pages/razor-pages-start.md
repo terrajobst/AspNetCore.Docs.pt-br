@@ -5,12 +5,12 @@ description: Esta série de tutoriais mostra como usar Razor Pages no ASP.NET Co
 ms.author: riande
 ms.date: 12/5/2018
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 88449a0064dad42d8d2bf9fbdd67078e4c2ba8de
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: 1d264ca4a605d8291e273a8f054c92e7eefa5548
+ms.sourcegitcommit: 948e533e02c2a7cb6175ada20b2c9cabb7786d0b
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58210048"
+ms.lasthandoff: 04/10/2019
+ms.locfileid: "59468841"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Introdução às Páginas do Razor no ASP.NET Core
 
@@ -39,7 +39,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ## <a name="create-a-razor-pages-web-app"></a>Criar um aplicativo Web das Páginas do Razor
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# [<a name="visual-studio"></a>Visual Studio](#tab/visual-studio)
 
 * No menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**.
 
@@ -55,7 +55,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   ![Gerenciador de Soluções](razor-pages-start/_static/se2.2.png)
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# [<a name="visual-studio-code"></a>Visual Studio Code](#tab/visual-studio-code)
 
 * Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
@@ -75,15 +75,14 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 * Selecione **Sim**
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# [<a name="visual-studio-for-mac"></a>Visual Studio para Mac](#tab/visual-studio-mac)
 
-Em um terminal, execute os seguintes comandos:
+Em um terminal, execute o seguinte comando:
 
 <!-- TODO: update these instruction once mac support 2.2 projects -->
 
 ```console
 dotnet new webapp -o RazorPagesMovie
-cd RazorPagesMovie
 ```
 
 Os comandos anteriores usam a [CLI do .NET Core](/dotnet/core/tools/dotnet) para criar um projeto do Razor Pages.
@@ -98,31 +97,13 @@ No Visual Studio, selecione **Arquivo > Abrir** e, em seguida, selecione o arqui
 
 ## <a name="run-the-app"></a>Executar o aplicativo
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# [<a name="visual-studio"></a>Visual Studio](#tab/visual-studio)
 
 * Pressione Ctrl + F5 para execução sem o depurador.
 
   [!INCLUDE[](~/includes/trustCertVS.md)]
 
   O Visual Studio inicia o [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) e executa o aplicativo. A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web.
-  
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
-
-* Pressione **Ctrl-F5** para execução sem o depurador.
-
-  [!INCLUDE[](~/includes/trustCertVSC.md)]
-
-  O Visual Studio Code inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicializa um navegador e navega até `http://localhost:5001`. A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local.
-  
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
-
-Selecione **Executar > Iniciar Sem Depuração** para iniciar o aplicativo. O Visual Studio inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicia um navegador e navega para `http://localhost:5001`.
-
-[!INCLUDE[](~/includes/trustCertMac.md)]
-
-<!-- End of VS tabs -->
-
----
 
 * Na página inicial do aplicativo, selecione **Aceitar** para dar consentimento de acompanhamento.
 
@@ -133,6 +114,46 @@ Selecione **Executar > Iniciar Sem Depuração** para iniciar o aplicativo. O Vi
   A imagem a seguir mostra o aplicativo depois de consentir o acompanhamento:
 
   ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
+  
+# [<a name="visual-studio-code"></a>Visual Studio Code](#tab/visual-studio-code)
+
+  [!INCLUDE[](~/includes/trustCertVSC.md)]
+
+* Pressione **Ctrl-F5** para execução sem o depurador.
+
+  O Visual Studio Code inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicializa um navegador e navega até `http://localhost:5001`. A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local.
+
+* Na página inicial do aplicativo, selecione **Aceitar** para dar consentimento de acompanhamento.
+
+  Este aplicativo não rastreia informações pessoais, mas o modelo de projeto inclui o recurso de consentimento no caso de você precisar estar em conformidade com o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr) da União Europeia.
+
+  ![Página Inicial ou de Índice](razor-pages-start/_static/homeGDPR2.2.png)
+
+  A imagem a seguir mostra o aplicativo depois de consentir o acompanhamento:
+
+  ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
+  
+# [<a name="visual-studio-for-mac"></a>Visual Studio para Mac](#tab/visual-studio-mac)
+
+  [!INCLUDE[](~/includes/trustCertMac.md)]
+
+* Pressione **Cmd-Opt-F5** para execução sem o depurador.
+
+  O Visual Studio inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicia um navegador e navega para `http://localhost:5001`.
+
+* Na página inicial do aplicativo, selecione **Aceitar** para dar consentimento de acompanhamento.
+
+  Este aplicativo não rastreia informações pessoais, mas o modelo de projeto inclui o recurso de consentimento no caso de você precisar estar em conformidade com o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr) da União Europeia.
+
+  ![Página Inicial ou de Índice](razor-pages-start/_static/homeGDPR2.2_safari.png)
+
+  A imagem a seguir mostra o aplicativo depois de consentir o acompanhamento:
+
+  ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2_safari.png)
+
+<!-- End of VS tabs -->
+
+---
 
 ## <a name="examine-the-project-files"></a>Examinar os arquivos de projeto
 
@@ -165,7 +186,7 @@ Contém o código que configura o comportamento do aplicativo, como se ele reque
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
+* [Versão deste tutorial no YouTube](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
 
 ## <a name="next-steps"></a>Próximas etapas
 

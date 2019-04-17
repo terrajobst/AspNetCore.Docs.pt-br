@@ -5,14 +5,14 @@ description: Saiba como o ASP.NET Core implementa a injeção de dependência e 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/28/2019
+ms.date: 04/07/2019
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 8312f3375296a8530ac2db3db46d062b7b9e76b9
-ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
+ms.openlocfilehash: da6ddf1f0efd164a58f017ff55ce216bbefa7cc6
+ms.sourcegitcommit: 6bde1fdf686326c080a7518a6725e56e56d8886e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/30/2019
-ms.locfileid: "58750595"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59068317"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Injeção de dependência no ASP.NET Core
 
@@ -80,9 +80,9 @@ Essa interface é implementada por um tipo concreto, `MyDependency`:
 
 [!code-csharp[](dependency-injection/samples/2.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet1)]
 
-`MyDependency` solicita um [ILogger&lt;TCategoryName&gt; ](/dotnet/api/microsoft.extensions.logging.ilogger-1) em seu construtor. Não é incomum usar a injeção de dependência de uma maneira encadeada. Por sua vez, cada dependência solicitada solicita suas próprias dependências. O contêiner resolve as dependências no grafo e retorna o serviço totalmente resolvido. O conjunto de dependências que precisa ser resolvido normalmente é chamado de *árvore de dependência*, *grafo de dependência* ou *grafo de objeto*.
+`MyDependency` solicita um [ILogger&lt;TCategoryName&gt;](/dotnet/api/microsoft.extensions.logging.ilogger-1) em seu construtor. Não é incomum usar a injeção de dependência de uma maneira encadeada. Por sua vez, cada dependência solicitada solicita suas próprias dependências. O contêiner resolve as dependências no grafo e retorna o serviço totalmente resolvido. O conjunto de dependências que precisa ser resolvido normalmente é chamado de *árvore de dependência*, *grafo de dependência* ou *grafo de objeto*.
 
-`IMyDependency` e `ILogger<TCategoryName>` devem ser registrados no contêiner do serviço. `IMyDependency` está registrado em `Startup.ConfigureServices`. `ILogger<TCategoryName>` é registrado pela infraestrutura de abstrações de registro em log, portanto, é um [serviço fornecido por estrutura](#framework-provided-services) registrado por padrão pela estrutura.
+`IMyDependency` e `ILogger<TCategoryName>` devem ser registrados no contêiner do serviço. `IMyDependency` está registrado em `Startup.ConfigureServices`. `ILogger<TCategoryName>` é registrado pela infraestrutura de abstrações de registro em log; portanto, é um [serviço fornecido por estrutura registrado por padrão](#framework-provided-services) pela estrutura.
 
 O contêiner resolve `ILogger<TCategoryName>` aproveitando os [tipos abertos (genéricos)](/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types), eliminando a necessidade de registrar todo [tipo construído (genérico)](/dotnet/csharp/language-reference/language-specification/types#constructed-types):
 
@@ -364,7 +364,7 @@ O contêiner de serviço interno deve atender às necessidades da estrutura e da
 * Injeção com base no nome
 * Contêineres filho
 * Gerenciamento de tempo de vida personalizado
-* Suporte de `Func<T>` para inicialização lenta
+* `Func<T>` suporte para inicialização lenta
 
 Confira o [arquivo readme.md de injeção de dependência](https://github.com/aspnet/Extensions/tree/master/src/DependencyInjection) para obter uma lista de alguns dos contêineres que dão suporte a adaptadores.
 
@@ -416,13 +416,46 @@ O método de fábrica de um único serviço, como o segundo argumento para [AddS
 
 ## <a name="recommendations"></a>Recomendações
 
-* A resolução de serviço baseada em `async/await` e `Task` não é compatível. O C# não é compatível com os construtores assíncronos. Portanto, o padrão recomendado é usar os métodos assíncronos após a resolução síncrona do serviço.
+* `async/await` e a resolução de serviço baseada em `Task` não é compatível. O C# não é compatível com os construtores assíncronos. Portanto, o padrão recomendado é usar os métodos assíncronos após a resolução síncrona do serviço.
 
 * Evite armazenar dados e a configuração diretamente no contêiner do serviço. Por exemplo, o carrinho de compras de um usuário normalmente não deve ser adicionado ao contêiner do serviço. A configuração deve usar o [padrão de opções](xref:fundamentals/configuration/options). Da mesma forma, evite objetos de "suporte de dados" que existem somente para permitir o acesso a outro objeto. É melhor solicitar o item real por meio da DI.
 
 * Evite o acesso estático aos serviços (por exemplo, digitando estaticamente [IApplicationBuilder.ApplicationServices](/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder.applicationservices) para usar em outro lugar).
 
-* Evite usar o *padrão do localizador de serviço*. Por exemplo, não invoque <xref:System.IServiceProvider.GetService*> para obter uma instância de serviço quando for possível usar a DI. Outra variação de localizador de serviço a ser evitada é injetar um alocador que resolve as dependências em tempo de execução. Essas duas práticas misturam estratégias de [inversão de controle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion).
+* Evite usar o *padrão do localizador de serviço*. Por exemplo, não invoque <xref:System.IServiceProvider.GetService*> para obter uma instância de serviço quando for possível usar a DI:
+
+  **Incorreto:**
+
+  ```csharp
+  public void MyMethod()
+  {
+      var options = 
+          _services.GetService<IOptionsMonitor<MyOptions>>();
+      var option = options.CurrentValue.Option;
+
+      ...
+  }
+  ```
+
+  **Correto**:
+
+  ```csharp
+  private readonly MyOptions _options;
+
+  public MyClass(IOptionsMonitor<MyOptions> options)
+  {
+      _options = options.CurrentValue;
+  }
+
+  public void MyMethod()
+  {
+      var option = _options.Option;
+
+      ...
+  }
+  ```
+
+* Outra variação de localizador de serviço a ser evitada é injetar um alocador que resolve as dependências em tempo de execução. Essas duas práticas misturam estratégias de [inversão de controle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion).
 
 * Evite o acesso estático a `HttpContext` (por exemplo, [IHttpContextAccessor.HttpContext](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor.httpcontext)).
 
@@ -437,7 +470,7 @@ A DI é uma *alternativa* aos padrões de acesso a objeto estático/global. Talv
 * <xref:security/authorization/dependencyinjection>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>
-* [Como escrever um código limpo no ASP.NET Core com injeção de dependência (MSDN)](https://msdn.microsoft.com/magazine/mt703433.aspx)
+* [Como gravar um código limpo no ASP.NET Core com injeção de dependência (MSDN)](https://msdn.microsoft.com/magazine/mt703433.aspx)
 * [Princípio de Dependências Explícitas](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)
-* [Inversão de Contêineres de Controle e o padrão de Injeção de Dependência (Martin Fowler)](https://www.martinfowler.com/articles/injection.html)
+* [Inversão de Contêineres de Controle e o Padrão de Injeção de Dependência (Martin Fowler)](https://www.martinfowler.com/articles/injection.html)
 * [Como registrar um serviço com várias interfaces na DI do ASP.NET Core](https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/)
