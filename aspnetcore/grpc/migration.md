@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 03/31/2019
 uid: grpc/migration
-ms.openlocfilehash: ffe5ccbd99c6920e093eddc00fc60a9f66aab527
-ms.sourcegitcommit: 5995f44e9e13d7e7aa8d193e2825381c42184e47
+ms.openlocfilehash: 4d489b5aecf2e15fbbe3ac472b991a4365cd47c1
+ms.sourcegitcommit: 57a974556acd09363a58f38c26f74dc21e0d4339
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/02/2019
-ms.locfileid: "59515336"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59672613"
 ---
 # <a name="migrating-grpc-services-from-c-core-to-aspnet-core"></a>Migrar Serviços gRPC C-core para o ASP.NET Core
 
@@ -27,7 +27,7 @@ Um tempo de vida com escopo permite que a implementação do serviço resolver o
 
 * Uma nova instância da implementação do serviço é construída para cada solicitação.
 * Não é possível compartilhar o estado entre as solicitações por meio de membros de instância no tipo de implementação.
-* A expectativa é armazenar estados compartilhados em um serviço singleton no contêiner de injeção de dependência. Os estados compartilhados armazenados são resolvidos no construtor da implementação do serviço gRPC. 
+* A expectativa é armazenar estados compartilhados em um serviço singleton no contêiner de injeção de dependência. Os estados compartilhados armazenados são resolvidos no construtor da implementação do serviço gRPC.
 
 Para obter mais informações sobre os tempos de vida do serviço, consulte <xref:fundamentals/dependency-injection#service-lifetimes>.
 
