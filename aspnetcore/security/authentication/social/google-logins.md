@@ -6,18 +6,18 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 1/11/2019
 uid: security/authentication/google-logins
-ms.openlocfilehash: 1328bcbce3e6e4786f9d410d1f28f309dc9d2722
-ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
+ms.openlocfilehash: 44c79b3279db7946b6d89a726bd3f5acfb5f51af
+ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/30/2019
-ms.locfileid: "58750546"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59705585"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>Configuração de logon externo do Google no ASP.NET Core
 
 Por [Valeriy Novytskyy](https://github.com/01binary) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Em janeiro de 2019 Google começou a [desligar](https://developers.google.com/+/api-shutdown) Google + entrar e os desenvolvedores devem mover para um novo logon do Google no sistema, março. O ASP.NET Core 2.1 e 2.2 pacotes para a autenticação do Google serão atualizados em fevereiro para acomodar as alterações. Para obter mais informações e atenuações temporárias para o ASP.NET Core, consulte [esse problema de GitHub](https://github.com/aspnet/AspNetCore/issues/6486). Este tutorial foi atualizado com o novo processo de instalação.
+[As APIs Google + herdadas foram desligadas a partir de 7 de março de 2019](https://developers.google.com/+/api-shutdown). Google + entrar e os desenvolvedores devem mover para um novo logon do Google no sistema. Os pacotes do ASP.NET Core 2.1 e 2.2 para autenticação do Google atualizou para acomodar as alterações. Para obter mais informações e atenuações temporárias para o ASP.NET Core, consulte [esse problema de GitHub](https://github.com/aspnet/AspNetCore/issues/6486). Este tutorial foi atualizado com o novo processo de instalação.
 
 Este tutorial mostra como habilitar usuários entrar com sua conta do Google usando um projeto ASP.NET Core 2.2 criado na [página anterior](xref:security/authentication/social/index).
 

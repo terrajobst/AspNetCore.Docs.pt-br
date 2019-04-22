@@ -7,10 +7,10 @@ ms.custom: mvc
 ms.date: 04/06/2019
 uid: mvc/views/partial
 ms.openlocfilehash: 65da78d6df3f179df9bdfa3a32af8736b71bbac5
-ms.sourcegitcommit: 948e533e02c2a7cb6175ada20b2c9cabb7786d0b
+ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/10/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59468702"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Exibições parciais no ASP.NET Core
@@ -74,8 +74,8 @@ Nomes de arquivos de exibição parcial geralmente começam com um sublinhado (`
 
 Há várias maneiras de referenciar uma exibição parcial em um arquivo de marcação. É recomendável que os aplicativos usem uma das seguintes abordagens de renderização assíncrona:
 
-* [Auxiliar de marca parcial](#partial-tag-helper)
-* [Auxiliar HTML assíncrono](#asynchronous-html-helper)
+* [Auxiliar de marcação parcial](#partial-tag-helper)
+* [Auxiliar de HTML assíncrono](#asynchronous-html-helper)
 
 ::: moniker-end
 
@@ -83,8 +83,8 @@ Há várias maneiras de referenciar uma exibição parcial em um arquivo de marc
 
 Há duas maneiras de referenciar uma exibição parcial em um arquivo de marcação:
 
-* [Auxiliar HTML assíncrono](#asynchronous-html-helper)
-* [Auxiliar de HTML assíncrono](#synchronous-html-helper)
+* [Auxiliar de HTML assíncrono](#asynchronous-html-helper)
+* [Auxiliar de HTML síncrono](#synchronous-html-helper)
 
 É recomendável que os aplicativos usem o [Auxiliar de HTML assíncrono](#asynchronous-html-helper).
 
@@ -243,7 +243,7 @@ As convenções a seguir se aplicam à descoberta de exibição parcial:
 
 ## <a name="access-data-from-partial-views"></a>Acessar dados de exibições parciais
 
-Quando uma exibição parcial é instanciada, ela recebe uma *cópia* do dicionário `ViewData` do pai. As atualizações feitas nos dados dentro da exibição parcial não são persistidas na exibição pai. `ViewData` alterações em uma exibição parcial são perdidas quando a exibição parcial retorna.
+Quando uma exibição parcial é instanciada, ela recebe uma *cópia* do dicionário `ViewData` do pai. As atualizações feitas nos dados dentro da exibição parcial não são persistidas na exibição pai. Alterações a `ViewData` em uma exibição parcial são perdidas quando a exibição parcial retorna.
 
 O exemplo a seguir demonstra como passar uma instância de [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) para uma exibição parcial:
 

@@ -6,10 +6,10 @@ ms.author: riande
 ms.date: 12/5/2018
 uid: tutorials/razor-pages/razor-pages-start
 ms.openlocfilehash: 1d264ca4a605d8291e273a8f054c92e7eefa5548
-ms.sourcegitcommit: 948e533e02c2a7cb6175ada20b2c9cabb7786d0b
+ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/10/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59468841"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Introdução às Páginas do Razor no ASP.NET Core
@@ -39,7 +39,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ## <a name="create-a-razor-pages-web-app"></a>Criar um aplicativo Web das Páginas do Razor
 
-# [<a name="visual-studio"></a>Visual Studio](#tab/visual-studio)
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * No menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**.
 
@@ -55,7 +55,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   ![Gerenciador de Soluções](razor-pages-start/_static/se2.2.png)
 
-# [<a name="visual-studio-code"></a>Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
@@ -75,7 +75,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 * Selecione **Sim**
 
-# [<a name="visual-studio-for-mac"></a>Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 Em um terminal, execute o seguinte comando:
 
@@ -97,7 +97,7 @@ No Visual Studio, selecione **Arquivo > Abrir** e, em seguida, selecione o arqui
 
 ## <a name="run-the-app"></a>Executar o aplicativo
 
-# [<a name="visual-studio"></a>Visual Studio](#tab/visual-studio)
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Pressione Ctrl + F5 para execução sem o depurador.
 
@@ -115,7 +115,7 @@ No Visual Studio, selecione **Arquivo > Abrir** e, em seguida, selecione o arqui
 
   ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
   
-# [<a name="visual-studio-code"></a>Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
   [!INCLUDE[](~/includes/trustCertVSC.md)]
 
@@ -133,7 +133,7 @@ No Visual Studio, selecione **Arquivo > Abrir** e, em seguida, selecione o arqui
 
   ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
   
-# [<a name="visual-studio-for-mac"></a>Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
   [!INCLUDE[](~/includes/trustCertMac.md)]
 
@@ -186,7 +186,7 @@ Contém o código que configura o comportamento do aplicativo, como se ele reque
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Versão deste tutorial no YouTube](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
+* [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
 
 ## <a name="next-steps"></a>Próximas etapas
 

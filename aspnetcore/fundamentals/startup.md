@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 01/17/2019
 uid: fundamentals/startup
 ms.openlocfilehash: 362186be6feeeefeca3c56688ee6420de5fb9659
-ms.sourcegitcommit: 948e533e02c2a7cb6175ada20b2c9cabb7786d0b
+ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/10/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59468618"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Inicialização de aplicativo no ASP.NET Core
@@ -78,9 +78,9 @@ Os [modelos do ASP.NET Core](/dotnet/core/tools/dotnet-new) configuram o pipelin
 * [Página de exceção do desenvolvedor](xref:fundamentals/error-handling#developer-exception-page)
 * [Manipulador de exceção](xref:fundamentals/error-handling#exception-handler-page)
 * [Segurança de Transporte Estrita de HTTP (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
-* [Redirecionamento para HTTPS](xref:security/enforcing-ssl)
+* [Redirecionamento de HTTPS](xref:security/enforcing-ssl)
 * [Arquivos estáticos](xref:fundamentals/static-files)
-* [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr)
+* [RGPD (Regulamento Geral sobre a Proteção de Dados) da UE](xref:security/gdpr)
 * [MVC](xref:mvc/overview) do ASP.NET Core e [Razor Pages](xref:razor-pages/index)
 
 [!code-csharp[](startup/sample_snapshot/Startup4.cs)]

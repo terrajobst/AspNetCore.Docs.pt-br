@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/07/2019
 uid: index
-ms.openlocfilehash: 944c8a93aff53b8d72fda03f5df9c5ba45990cbc
-ms.sourcegitcommit: 6bde1fdf686326c080a7518a6725e56e56d8886e
+ms.openlocfilehash: 9cb598c4068586e4e960ec40743c4f54f09995ad
+ms.sourcegitcommit: 017b673b3c700d2976b77201d0ac30172e2abc87
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/08/2019
-ms.locfileid: "59068268"
+ms.lasthandoff: 04/16/2019
+ms.locfileid: "59614367"
 ---
 # <a name="introduction-to-aspnet-core"></a>Introdução ao ASP.NET Core
 
@@ -44,7 +44,7 @@ O ASP.NET Core MVC fornece recursos que ajudam você a compilar [APIs Web](xref:
 
 ## <a name="client-side-development"></a>Desenvolvimento do lado do cliente
 
-O ASP.NET Core integra-se perfeitamente a estruturas e bibliotecas conhecidas do lado do cliente, incluindo [Componentes Razor](xref:razor-components/index), [Angular](xref:spa/angular), [React](xref:spa/react) e [Bootstrap](https://getbootstrap.com/). Para obter mais informações, consulte [Componentes Razor](xref:razor-components/index) e os tópicos relacionados em *Desenvolvimento do lado do cliente*.
+O ASP.NET Core integra-se perfeitamente com estruturas conhecidas do lado do cliente e bibliotecas, incluindo [Blazor](xref:blazor/index), [Angular](xref:spa/angular), [React](xref:spa/react) e [Bootstrap](https://getbootstrap.com/). Para obter mais informações, confira <xref:blazor/index> e os tópicos relacionados em *Desenvolvimento do lado do cliente*.
 
 <a name="target-framework"></a>
 
@@ -77,7 +77,7 @@ Recomendamos a seguinte sequência de tutoriais e artigos para obter uma introdu
 
    |Tipo de aplicativo  |Cenário  |Tutorial  |
    |----------|----------|----------|
-   |Aplicativo Web       | Para novo desenvolvimento        |[Introdução a Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
+   |Aplicativo Web       | Para novo desenvolvimento        |[Introdução a Páginas do Razor](xref:tutorials/razor-pages/razor-pages-start) |
    |Aplicativo Web       | Para manter um aplicativo MVC |[Introdução ao MVC](xref:tutorials/first-mvc-app/start-mvc)|
    |API Web       |                            |[Criar uma API Web](xref:tutorials/first-web-api)\*  |
    |Aplicativo em tempo real |                            |[Introdução ao SignalR](xref:tutorials/signalr) |
@@ -91,7 +91,7 @@ Recomendamos a seguinte sequência de tutoriais e artigos para obter uma introdu
 
 1. Leia uma visão geral dos recursos do ASP.NET Core que se aplicam a todos os tipos de aplicativo:
 
-   * [Princípios básicos](xref:fundamentals/index)
+   * [Conceitos básicos](xref:fundamentals/index)
 
 1. Pesquise no Sumário outros tópicos de interesse.
 

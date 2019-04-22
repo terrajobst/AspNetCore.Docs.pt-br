@@ -6,12 +6,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/02/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: 065b2016d3a2dcc2243ec6869e027c5fabe4dad8
-ms.sourcegitcommit: 6bde1fdf686326c080a7518a6725e56e56d8886e
+ms.openlocfilehash: f0e4dbb6fda4f676ad8e769c71cc9548a4d61d66
+ms.sourcegitcommit: 017b673b3c700d2976b77201d0ac30172e2abc87
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/08/2019
-ms.locfileid: "59068398"
+ms.lasthandoff: 04/16/2019
+ms.locfileid: "59614429"
 ---
 # <a name="logging-in-aspnet-core"></a>Registro em log no ASP.NET Core
 
@@ -168,7 +168,7 @@ Se os níveis forem especificados em `Logging.{providername}.LogLevel`, eles sub
 }
 ```
 
-`LogLevel` chaves representam nomes de log. A chave `Default` aplica-se a logs não listados de forma explícita. O valor representa o [nível de log](#log-level) aplicado ao log fornecido.
+Chaves `LogLevel` representam nomes de log. A chave `Default` aplica-se a logs não listados de forma explícita. O valor representa o [nível de log](#log-level) aplicado ao log fornecido.
 
 ::: moniker-end
 
@@ -249,7 +249,7 @@ Para especificar explicitamente a categoria, chame `ILoggerFactory.CreateLogger`
 
 ::: moniker-end
 
-`ILogger<T>` equivale a chamar `CreateLogger` com o nome de tipo totalmente qualificado de `T`.
+`ILogger<T>` é equivalente a chamar `CreateLogger` com o nome de tipo totalmente qualificado de `T`.
 
 ## <a name="log-level"></a>Nível de log
 
@@ -293,7 +293,7 @@ O ASP.NET Core define os seguintes níveis de log, ordenados aqui da menor para 
 
 * Error = 4
 
-  Para erros e exceções que não podem ser manipulados. Essas mensagens indicam uma falha na atividade ou na operação atual (como a solicitação HTTP atual) e não uma falha em todo o aplicativo. Mensagem de log de exemplo: `Cannot insert record due to duplicate key violation.`
+  Para erros e exceções que não podem ser manipulados. Essas mensagens indicam uma falha na atividade ou na operação atual (como a solicitação HTTP atual) e não uma falha em todo o aplicativo. Mensagem de log de exemplo:`Cannot insert record due to duplicate key violation.`
 
 * Critical = 5
 
@@ -497,7 +497,8 @@ Cada provedor define um *alias* que pode ser usado na configuração no lugar do
 * Console
 * Depurar
 * EventLog
-* AzureAppServices
+* AzureAppServicesFile
+* AzureAppServicesBlob
 * TraceSource
 * EventSource
 
