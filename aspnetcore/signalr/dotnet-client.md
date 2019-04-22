@@ -5,14 +5,14 @@ description: Informações sobre o cliente do .NET Core ASP.NET SignalR
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 03/14/2019
+ms.date: 04/17/2019
 uid: signalr/dotnet-client
-ms.openlocfilehash: a03abef53aa44f0a1016b8f72d8e3a7af2f9bed1
-ms.sourcegitcommit: d913bca90373c07f89b1d1df01af5fc01fc908ef
+ms.openlocfilehash: 640d75157e42ffa6d78235c5be03e4846e8dcde9
+ms.sourcegitcommit: eb784a68219b4829d8e50c8a334c38d4b94e0cfa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "57978298"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59982940"
 ---
 # <a name="aspnet-core-signalr-net-client"></a>Cliente de .NET do SignalR do ASP.NET Core
 
@@ -63,6 +63,10 @@ Em um `Closed` manipulador que reinicia a conexão, considere aguardar algum atr
 `InvokeAsync` chama métodos no hub. Passe o nome do método de hub e quaisquer argumentos definidos no método de hub para `InvokeAsync`. O SignalR é assíncrono, portanto, use `async` e `await` ao fazer as chamadas.
 
 [!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_InvokeAsync)]
+
+O `InvokeAsync` método retorna um `Task` que conclui quando o método de servidor é retornado. O valor de retorno, se houver, é fornecido como o resultado do `Task`. Todas as exceções geradas pelo método no servidor de produzem uma falha `Task`. Use `await` sintaxe de espera para o método de servidor concluir e `try...catch` sintaxe para lidar com erros.
+
+O `SendAsync` método retorna um `Task` que conclui quando a mensagem foi enviada ao servidor. Nenhum valor de retorno é fornecido uma vez que isso `Task` não espera até que o método de servidor seja concluída. Todas as exceções geradas no cliente ao enviar a mensagem de produzem uma falha `Task`. Use `await` e `try...catch` enviar de sintaxe para lidar com erros.
 
 > [!NOTE]
 > Se você estiver usando o serviço do Azure SignalR no *modo sem servidor*, você não pode chamar métodos de hub de um cliente. Para obter mais informações, consulte o [documentação do SignalR Service](/azure/azure-signalr/signalr-concept-serverless-development-config).
