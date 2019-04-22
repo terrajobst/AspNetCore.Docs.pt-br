@@ -529,8 +529,12 @@ items:
     name: Comparando serviços gRPC com APIs HTTP
   - name: Tutoriais
     items:
-    - uid: tutorials/grpc/grpc-start
+    - uid: tutorials/grpc/index
       name: Introdução ao serviço de gRPC no ASP.NET Core
+    - uid: tutorials/grpc/grpc-start
+      name: Criar um serviço Greeter de gRPC do ASP.NET Core
+    - uid: tutorials/grpc/grpc-client
+      name: Criar um cliente do gRPC no .NET Core
 - name: Testar, depurar e solucionar problemas
   items:
   - name: Teste de unidade
@@ -930,12 +934,12 @@ items:
   - uid: security/app-secrets
     name: Proteger segredos no desenvolvimento
     displayName: password
+  - uid: security/key-vault-configuration
+    name: Provedor de configuração do Azure Key Vault
   - uid: security/enforcing-ssl
     name: Impor o HTTPS
   - uid: security/gdpr
     name: Compatível com o RGPD (Regulamento Geral sobre a Proteção de Dados) da UE
-  - uid: security/key-vault-configuration
-    name: Provedor de configuração do Azure Key Vault
   - uid: security/anti-request-forgery
     name: Falsificação antissolicitação
   - uid: security/preventing-open-redirects
@@ -1058,9 +1062,9 @@ items:
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribuir
   href: https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
-ms.openlocfilehash: 1863125cec772262c41884af343f66ec8fcb53ad
-ms.sourcegitcommit: 017b673b3c700d2976b77201d0ac30172e2abc87
+ms.openlocfilehash: 721fb2d1042307c23e0858a7a1bf71a0b24d57ab
+ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2019
-ms.locfileid: "59614292"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59705556"
