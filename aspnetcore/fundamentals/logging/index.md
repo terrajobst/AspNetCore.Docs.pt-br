@@ -6,12 +6,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/02/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: f0e4dbb6fda4f676ad8e769c71cc9548a4d61d66
-ms.sourcegitcommit: 017b673b3c700d2976b77201d0ac30172e2abc87
+ms.openlocfilehash: 8a2e310b47e32e9015b0c127ed79d8f6bdf2e44d
+ms.sourcegitcommit: eb784a68219b4829d8e50c8a334c38d4b94e0cfa
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2019
-ms.locfileid: "59614429"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59982847"
 ---
 # <a name="logging-in-aspnet-core"></a>Registro em log no ASP.NET Core
 
@@ -803,8 +803,6 @@ Se você estiver direcionando para o .NET Core, observe os seguintes pontos:
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.0"
-
-* Não chame explicitamente <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics*>. Quando o aplicativo for implantado no Serviço de Aplicativo do Azure, o provedor ficará automaticamente disponível para ele.
 
 Se você estiver direcionando para o .NET Framework ou referenciando o metapacote `Microsoft.AspNetCore.App`, adicione o pacote do provedor ao projeto. Chame `AddAzureWebAppDiagnostics`:
 
