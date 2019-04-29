@@ -118,7 +118,7 @@ O Service Fabric não é compatível com a execução de contêineres do Linux n
 
 As Ferramentas do Visual Studio para Docker realizam as seguintes tarefas:
 
-* Adiciona um projeto *&lt;project_name&gt;do***Aplicativo do Service Fabric** à solução.
+* Adiciona um projeto *&lt;project_name&gt;do* **Aplicativo do Service Fabric** à solução.
 * Adiciona um *Dockerfile* e um arquivo *.dockerignore* ao projeto ASP.NET Core. Se um *Dockerfile* já existir no projeto do ASP.NET Core, ele já terá sido renomeado para *Dockerfile.original*. Um novo *Dockerfile*, semelhante ao seguinte, foi criado:
 
     [!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile)]

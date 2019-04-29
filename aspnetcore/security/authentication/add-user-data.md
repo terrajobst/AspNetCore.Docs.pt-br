@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como adicionar dados personalizados do usuário a identidade em um projeto ASP.NET Core. Exclua dados por GDPR.
 ms.author: riande
 ms.date: 6/16/2018
-ms.custom: seodec18
+ms.custom: mvc, seodec18
 uid: security/authentication/add-user-data
-ms.openlocfilehash: 8c0413a16d92b717619387748ee78f0d14d6c852
-ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
-ms.translationtype: MT
+ms.openlocfilehash: 1b7cac9206776e9290326511247b6db33f13cb32
+ms.sourcegitcommit: 8a84ce880b4c40d6694ba6423038f18fc2eb5746
+ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59516203"
+ms.lasthandoff: 04/23/2019
+ms.locfileid: "60165083"
 ---
 # <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>Adicionar, baixar e excluir dados de usuário personalizada à identidade em um projeto ASP.NET Core
 

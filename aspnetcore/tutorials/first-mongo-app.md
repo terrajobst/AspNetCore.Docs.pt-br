@@ -7,10 +7,10 @@ ms.custom: mvc, seodec18
 ms.date: 01/31/2019
 uid: tutorials/first-mongo-app
 ms.openlocfilehash: 95a5f8bdb4b302d6bdae7b5809b54f1b263e6ee4
-ms.sourcegitcommit: 1a7000630e55da90da19b284e1b2f2f13a393d74
+ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/04/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59012858"
 ---
 # <a name="create-a-web-api-with-aspnet-core-and-mongodb"></a>Criar uma API Web com o ASP.NET Core e o MongoDB
@@ -31,22 +31,22 @@ Neste tutorial, você aprenderá como:
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-# [<a name="visual-studio"></a>Visual Studio](#tab/visual-studio)
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* [SDK do .NET Core 2.2 ou posterior](https://www.microsoft.com/net/download/all)
+* [SDK 2.2 ou posterior do .NET Core](https://www.microsoft.com/net/download/all)
 * [Visual Studio 2017 versão 15.9 ou posterior](https://www.visualstudio.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=button+cta&utm_content=download+vs2017) com a carga de trabalho **ASP.NET e desenvolvimento para a Web**
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
-# [<a name="visual-studio-code"></a>Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* [SDK do .NET Core 2.2 ou posterior](https://www.microsoft.com/net/download/all)
+* [SDK 2.2 ou posterior do .NET Core](https://www.microsoft.com/net/download/all)
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [C# para Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
 * [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
 
-# [<a name="visual-studio-for-mac"></a>Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* [SDK do .NET Core 2.2 ou posterior](https://www.microsoft.com/net/download/all)
+* [SDK 2.2 ou posterior do .NET Core](https://www.microsoft.com/net/download/all)
 * [Visual Studio para Mac versão 7.7 ou posterior](https://www.visualstudio.com/downloads/)
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
 
@@ -140,7 +140,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
 ## <a name="create-the-aspnet-core-web-api-project"></a>Criar o projeto da API Web do ASP.NET Core
 
-# [<a name="visual-studio"></a>Visual Studio](#tab/visual-studio)
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Acesse **Arquivo** > **Novo** > **Projeto**.
 1. Selecione **Aplicativo Web do ASP.NET Core**, nomeie o projeto como *BooksApi* e clique em **OK**.
@@ -151,7 +151,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
     Install-Package MongoDB.Driver -Version {VERSION}
     ```
 
-# [<a name="visual-studio-code"></a>Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 1. Execute os seguintes comandos em um shell de comando:
 
@@ -169,7 +169,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
     dotnet add BooksApi.csproj package MongoDB.Driver -v {VERSION}
     ```
 
-# [<a name="visual-studio-for-mac"></a>Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 1. Vá para **Arquivo** > **Nova Solução** > **.NET Core** > **Aplicativo**.
 1. Selecione o modelo de projeto C# **API Web ASP.NET Core** e clique em **Avançar**.
@@ -217,7 +217,7 @@ Outras propriedades na classe são anotadas com o atributo `[BsonElement]`. O va
 
 A classe `BookService` usa os seguintes membros `MongoDB.Driver` para executar operações CRUD em relação ao banco de dados:
 
-* `MongoClient` &ndash; Lê a instância do servidor para execução de operações de banco de dados. O construtor dessa classe é fornecido na cadeia de conexão do MongoDB:
+* `MongoClient` &ndash; Lê a instância do servidor para executar operações de banco de dados. O construtor dessa classe é fornecido na cadeia de conexão do MongoDB:
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
 
@@ -269,6 +269,6 @@ A classe `BookService` usa os seguintes membros `MongoDB.Driver` para executar o
 
 Para saber mais sobre a criação de APIs Web do ASP.NET Core, confira os seguintes recursos:
 
-* [Versão deste tutorial no YouTube](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
+* [Versão deste artigo no YouTube](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>

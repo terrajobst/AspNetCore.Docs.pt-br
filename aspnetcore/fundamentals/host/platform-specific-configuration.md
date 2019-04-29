@@ -8,10 +8,10 @@ ms.custom: mvc, seodec18
 ms.date: 04/06/2019
 uid: fundamentals/configuration/platform-specific-configuration
 ms.openlocfilehash: c2a2e1fbd288ff292c6759d03fae51876cdb5704
-ms.sourcegitcommit: 258a97159da206f9009f23fdf6f8fa32f178e50b
+ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/09/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59425069"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Usar assemblies de inicialização de hospedagem no ASP.NET Core
@@ -44,10 +44,10 @@ Para desabilitar o carregamento automático de assemblies de inicialização de 
 
 * Para impedir o carregamento de todos os assemblies de inicialização de hospedagem, defina o seguinte para `true` ou `1`:
   * Configuração do host [Impedir inicialização de hospedagem](xref:fundamentals/host/web-host#prevent-hosting-startup).
-  * `ASPNETCORE_PREVENTHOSTINGSTARTUP` variável de ambiente.
+  * A variável de ambiente `ASPNETCORE_PREVENTHOSTINGSTARTUP`.
 * Para evitar o carregamento de assemblies específicos de inicialização de hospedagem, defina uma das opções a seguir como uma cadeia de caracteres delimitada por ponto e vírgula de assemblies de inicialização de hospedagem para excluir na inicialização:
   * Configuração do host [Assemblies de exclusão de inicialização de hospedagem](xref:fundamentals/host/web-host#hosting-startup-exclude-assemblies).
-  * `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES` variável de ambiente.
+  * A variável de ambiente `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES`.
 
 Se a configuração do host e a variável de ambiente estiverem definidas, a configuração do host controlará o comportamento.
 
@@ -83,7 +83,7 @@ A página de índice do aplicativo lê e renderiza os valores de configuração 
 
 O [código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) também inclui um projeto de pacote do NuGet que fornece uma inicialização de hospedagem separada, *HostingStartupPackage*. O pacote tem as mesmas características da biblioteca de classes descrita anteriormente. O pacote:
 
-* Contém uma classe de inicialização de hospedagem, `ServiceKeyInjection`, que implementa `IHostingStartup`. `ServiceKeyInjection` adiciona um par de cadeias de caracteres de serviço à configuração do aplicativo.
+* Contém uma classe de inicialização de hospedagem, `ServiceKeyInjection`, que implementa `IHostingStartup`. `ServiceKeyInjection` adiciona um par de cadeias de caracteres de serviço para a configuração do aplicativo.
 * Inclui um atributo `HostingStartup`.
 
 *HostingStartupPackage/ServiceKeyInjection.cs*:
@@ -98,7 +98,7 @@ A página de índice do aplicativo lê e renderiza os valores de configuração 
 
 ### <a name="console-app-without-an-entry-point"></a>Aplicativo de console sem um ponto de entrada
 
-*Esta abordagem só está disponível para aplicativos .NET Core, não para .NET Framework.*
+*Essa abordagem só está disponível para aplicativos .NET Core, não para .NET Framework.*
 
 Uma melhoria de inicialização de hospedagem dinâmica que não requer uma referência de tempo de compilação para a ativação pode ser fornecida em um aplicativo de console sem um ponto de entrada que contenha um atributo `HostingStartup`. Publicar o aplicativo de console produz um assembly de inicialização de hospedagem que pode ser consumido do repositório de tempo de execução.
 
@@ -194,7 +194,7 @@ As opções para ativação da inicialização de hospedagem são:
 
 * [Repositório de tempo de execução](#runtime-store) &ndash; A ativação não requer uma referência de tempo de compilação para a ativação. O aplicativo de exemplo coloca os arquivos de dependências e o assembly de inicialização de hospedagem em uma pasta, *implantação*, para facilitar a implantação da inicialização de hospedagem em um ambiente multicomputador. A pasta *implantação* também inclui um script do PowerShell que cria ou modifica variáveis de ambiente no sistema de implantação para habilitar a inicialização de hospedagem.
 * Referência de tempo de compilação necessária para a ativação
-  * [Pacote NuGet](#nuget-package)
+  * [Pacote do NuGet](#nuget-package)
   * [Pasta Lixeira do projeto](#project-bin-folder)
 
 ### <a name="runtime-store"></a>Repositório de tempo de execução
@@ -313,9 +313,9 @@ Uma melhoria da inicialização de hospedagem pode ser fornecida em pacote do Nu
 
 Para obter mais informações sobre pacotes do NuGet e o repositório de tempo de execução, consulte os tópicos a seguir:
 
-* [Como criar um pacote NuGet com várias Ferramentas de Plataforma Cruzada](/dotnet/core/deploying/creating-nuget-packages)
+* [Como criar um pacote do NuGet com ferramentas de plataforma cruzada](/dotnet/core/deploying/creating-nuget-packages)
 * [Publicando pacotes](/nuget/create-packages/publish-a-package)
-* [Repositório de pacotes de tempo de execução](/dotnet/core/deploying/runtime-store)
+* [Repositório de pacote de tempo de execução](/dotnet/core/deploying/runtime-store)
 
 ### <a name="project-bin-folder"></a>Pasta Lixeira do projeto
 

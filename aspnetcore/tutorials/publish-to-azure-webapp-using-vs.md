@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2018
 uid: tutorials/publish-to-azure-webapp-using-vs
-ms.openlocfilehash: b2b5a155d0dff28e471af449731da787f19d1faf
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: 98dea9cfbafb53de8ba82ef06f4885d9fbf50123
+ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58208350"
+ms.lasthandoff: 04/17/2019
+ms.locfileid: "59705607"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a>Publicar um aplicativo ASP.NET Core no Azure com o Visual Studio
 
@@ -186,6 +186,7 @@ Quando você concluir o teste do aplicativo, acesse o [portal do Azure](https://
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
+* Para o Visual Studio Code, confira [Perfis de publicação](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles).
 * [Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-overview)
 * [Grupo de recursos do Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)
 * [Banco de Dados SQL do Azure](/azure/sql-database/)

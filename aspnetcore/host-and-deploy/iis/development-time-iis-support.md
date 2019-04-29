@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 04/08/2019
 uid: host-and-deploy/iis/development-time-iis-support
 ms.openlocfilehash: 6f555858239b4432d252f8b3ac7add5c3e8bfe62
-ms.sourcegitcommit: 258a97159da206f9009f23fdf6f8fa32f178e50b
+ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/09/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59425095"
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>Suporte ao IIS no tempo de desenvolvimento no Visual Studio para ASP.NET Core
@@ -39,7 +39,7 @@ A instalação do IIS pode exigir uma reinicialização do sistema.
 O IIS deve ter um site configurado com o seguinte:
 
 * **Nome do host** &ndash; Normalmente, o **Site padrão** é usado com um **nome do Host** de `localhost`. No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
-* **Associação do Site**
+* **Associação do site**
   * Para aplicativos que exijam HTTPS, crie uma associação à porta 443 com um certificado. Tipicamente, o **Certificado de Desenvolvimento do IIS Express** é usado, mas qualquer certificado válido funciona.
   * Para aplicativos que usam HTTP, confirme a existência de uma associação à porta 80 ou crie uma para um novo site.
   * Uso de uma associação simples para HTTP ou HTTPS. **Não há suporte para a associação simultânea às portas HTTP e HTTPS.**
