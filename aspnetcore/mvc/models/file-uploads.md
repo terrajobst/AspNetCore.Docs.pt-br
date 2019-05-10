@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2019
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 831f0c84f0ff062e9e24ccbf4ca81b7143c66e66
-ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
+ms.openlocfilehash: 3db2e08acc1552957f28c7015f9a75af4a57fdcd
+ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59468547"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65084861"
 ---
 # <a name="file-uploads-in-aspnet-core"></a>Uploads de arquivos no ASP.NET Core
 
@@ -19,7 +19,7 @@ Por [Steve Smith](https://ardalis.com/)
 
 Ações do ASP.NET MVC dão suporte ao upload de um ou mais arquivos usando model binding simples para arquivos menores ou streaming para arquivos maiores.
 
-[Exibir ou baixar a amostra do GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/file-uploads/sample/FileUploadSample)
+[Exibir ou baixar a amostra do GitHub](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/sample/FileUploadSample)
 
 ## <a name="uploading-small-files-with-model-binding"></a>Upload de arquivos pequenos com o model binding
 

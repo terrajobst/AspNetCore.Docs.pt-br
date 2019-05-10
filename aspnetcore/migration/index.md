@@ -6,11 +6,11 @@ ms.author: riande
 ms.date: 05/04/2018
 uid: migration/index
 ms.openlocfilehash: 709e6434e4b3083d4262bc1f89748ca163474888
-ms.sourcegitcommit: 661d30492d5ef7bbca4f7e709f40d8f3309d2dac
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37938149"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64883021"
 ---
 # <a name="migration-to-aspnet-core"></a>Migração para o ASP.NET Core
 
@@ -18,7 +18,7 @@ ms.locfileid: "37938149"
 
 * [Migrar do ASP.NET para o ASP.NET Core](xref:migration/proper-to-2x/index)
 * [Migrar do ASP.NET MVC para o ASP.NET Core MVC](xref:migration/mvc)
-* [Migrar de da API Web ASP.NET para a API Web do ASP.NET Core](xref:migration/webapi)
+* [Migrar do ASP.NET Web API para a API Web do ASP.NET Core](xref:migration/webapi)
 * [Migrar configuração](xref:migration/configuration)
 * [Migrar autenticação e Identity](xref:migration/identity)
 * [Migrar uso do ClaimsPrincipal.Current](xref:migration/claimsprincipal-current)

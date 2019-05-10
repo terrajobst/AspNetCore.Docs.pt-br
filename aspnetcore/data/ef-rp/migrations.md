@@ -5,12 +5,12 @@ description: Neste tutorial, você começa a usar o recurso de migrações do EF
 ms.author: riande
 ms.date: 6/31/2017
 uid: data/ef-rp/migrations
-ms.openlocfilehash: 1803c6d3956121e4e7091f4f951917425e87c335
-ms.sourcegitcommit: 7d6019f762fc5b8cbedcd69801e8310f51a17c18
+ms.openlocfilehash: 5b8228130378059aebe21c9c3ea1eb72e4c6aad9
+ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419466"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65086163"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---migrations---4-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Migrações – 4 de 8
 
@@ -25,7 +25,7 @@ Por [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.co
 Neste tutorial, o recurso de migrações do EF Core para o gerenciamento de alterações do modelo de dados é usado.
 
 Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído](
-https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
+https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
 Quando um novo aplicativo é desenvolvido, o modelo de dados é alterado com frequência. Sempre que o modelo é alterado, ele fica fora de sincronia com o banco de dados. Este tutorial começa configurando o Entity Framework para criar o banco de dados, caso ele não exista. Sempre que o modelo de dados é alterado:
 
@@ -161,7 +161,7 @@ O EF Core usa a tabela `__MigrationsHistory` para ver se uma migração precisa 
 ## <a name="troubleshooting"></a>Solução de problemas
 
 Baixar o [aplicativo concluído](
-https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part4-migrations).
+https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part4-migrations).
 
 O aplicativo gera a seguinte exceção:
 

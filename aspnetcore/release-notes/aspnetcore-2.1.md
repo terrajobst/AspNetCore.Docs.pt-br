@@ -4,14 +4,14 @@ author: isaac2004
 description: Conheça os novos recursos no ASP.NET Core 2.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 04/30/2019
 uid: aspnetcore-2.1
-ms.openlocfilehash: 8299af819f86d3d2371650ce3d87deb817f0feb8
-ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
+ms.openlocfilehash: 359f961db768b9048427c8ab296ee3e035879408
+ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/14/2019
-ms.locfileid: "56248167"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65086400"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Novidades do ASP.NET Core 2.1
 
@@ -28,7 +28,7 @@ O SignalR foi reescrito para ASP.NET Core 2.1. O SignalR do ASP.NET Core inclui 
 * Um novo modelo de resposta de transmissão.
 * Suporte para clientes com base em WebSockets básicos.
 
-Para obter mais informações, veja [ASP.NET Core SignalR](xref:signalr/index).
+Para obter mais informações, veja [ASP.NET Core SignalR](xref:signalr/introduction).
 
 ## <a name="razor-class-libraries"></a>Biblioteca de classes Razor
 
@@ -75,7 +75,7 @@ Em produção, HTTPS precisa ser configurado explicitamente. Na versão 2.1, foi
 
 ## <a name="gdpr"></a>RGPD
 
-O ASP.NET Core fornece APIs e modelos para ajudar a atender alguns dos requisitos do [RGPD (Regulamento de Proteção de Dados Geral) da UE](https://www.eugdpr.org/). Para obter mais informações, veja [Suporte RGPD no ASP.NET Core](xref:security/gdpr). Um [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr/sample) mostra como usar e permite que você teste a maioria dos pontos de extensão RGPD e APIs adicionados aos modelos do ASP.NET Core 2.1.
+O ASP.NET Core fornece APIs e modelos para ajudar a atender alguns dos requisitos do [RGPD (Regulamento de Proteção de Dados Geral) da UE](https://www.eugdpr.org/). Para obter mais informações, veja [Suporte RGPD no ASP.NET Core](xref:security/gdpr). Um [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) mostra como usar e permite que você teste a maioria dos pontos de extensão RGPD e APIs adicionados aos modelos do ASP.NET Core 2.1.
 
 ## <a name="integration-tests"></a>Testes de integração
 

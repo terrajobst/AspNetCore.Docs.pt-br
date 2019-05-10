@@ -7,12 +7,12 @@ ms.custom: mvc
 ms.date: 02/04/2019
 ms.topic: tutorial
 uid: data/ef-mvc/crud
-ms.openlocfilehash: cee521eec3172c04b4d9d93c12076c42c9adff18
-ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
+ms.openlocfilehash: 61669dca24b552012ee057b89de28b7de1702c2b
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/30/2019
-ms.locfileid: "58750611"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64886161"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: Implementar a funcionalidade CRUD - ASP.NET MVC com EF Core
 
@@ -293,7 +293,7 @@ Para obter mais informações, consulte [Controle vs. Sem controle](/ef/core/que
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## <a name="next-steps"></a>Próximas etapas
 
