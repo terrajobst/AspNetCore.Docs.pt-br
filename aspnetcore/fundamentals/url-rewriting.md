@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2018
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: d2dd5e9b7f196bcbd1940f7ef58331dabd2367a1
-ms.sourcegitcommit: 816f39e852a8f453e8682081871a31bc66db153a
+ms.openlocfilehash: 72d5b2e902a95442ccffb7a149b917c50373775b
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "53637801"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64889921"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>Middleware de Reconfiguração de URL no ASP.NET Core
 
@@ -38,7 +38,7 @@ A reconfiguração de URL é o ato de modificar URLs de solicitação com base e
 > [!NOTE]
 > A reconfiguração de URL pode reduzir o desempenho de um aplicativo. Sempre que possível, limite o número e a complexidade das regras.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="url-redirect-and-url-rewrite"></a>Redirecionamento e reconfiguração de URL
 
@@ -68,7 +68,7 @@ Embora o cliente possa ter a capacidade de recuperar o recurso na URL reconfigur
 
 ## <a name="url-rewriting-sample-app"></a>Aplicativo de exemplo de reconfiguração de URL
 
-Explore as funcionalidades do Middleware de Reconfiguração de URL com o [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/). O aplicativo aplica as regras de redirecionamento e reconfiguração e mostra a URL redirecionada ou reconfigurada para vários cenários.
+Explore as funcionalidades do Middleware de Reconfiguração de URL com o [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/). O aplicativo aplica as regras de redirecionamento e reconfiguração e mostra a URL redirecionada ou reconfigurada para vários cenários.
 
 ## <a name="when-to-use-url-rewriting-middleware"></a>Quando usar o Middleware de Reconfiguração de URL
 

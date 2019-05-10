@@ -7,11 +7,11 @@ ms.custom: H1Hack27Feb2017
 ms.date: 09/22/2017
 uid: client-side/using-browserlink
 ms.openlocfilehash: 452ba5149563c186750466f471c7b950f0017614
-ms.sourcegitcommit: d53e0cc71542b92de867bcce51575b054886f529
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2018
-ms.locfileid: "41830913"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64894703"
 ---
 # <a name="browser-link-in-aspnet-core"></a>Link do navegador no ASP.NET Core
 
@@ -83,7 +83,7 @@ O controle de barra de ferramentas do Link do navegador, você pode:
 
 * Atualizar o aplicativo Web em vários navegadores de uma vez.
 * Abrir o **Painel de link do navegador**.
-* Habilitar ou desabilitar **Link do navegador**. Observação: O Link do navegador está desabilitado por padrão no Visual Studio 2017 (15.3).
+* Habilitar ou desabilitar **Link do navegador**. Observação: Link do navegador está desabilitado por padrão no Visual Studio 2017 (15.3).
 * Habilitar ou desabilitar [sincronização automática de CSS](#enable-or-disable-css-auto-sync).
 
 > [!NOTE]
@@ -109,7 +109,7 @@ Passe o mouse sobre o controle de barra de ferramentas do Link do navegador para
 
 Altere o modo de exibição de índice e todos os navegadores conectados são atualizados quando você clicar no botão de atualização de Link do navegador:
 
-![sincronização de navegadores de alterações](using-browserlink/_static/browsers-sync-to-changes.png)
+![browsers-sync-to-changes](using-browserlink/_static/browsers-sync-to-changes.png)
 
 Link do navegador também funciona com navegadores que você inicie de fora do Visual Studio e navegue até a URL do aplicativo.
 
@@ -117,7 +117,7 @@ Link do navegador também funciona com navegadores que você inicie de fora do V
 
 Abra o painel de Link do navegador de menu para gerenciar a conexão com o navegador abertas suspenso Link do navegador:
 
-![Painel de browserslink aberto](using-browserlink/_static/open-browserlink-dashboard.png)
+![open-browserslink-dashboard](using-browserlink/_static/open-browserlink-dashboard.png)
 
 Se nenhum navegador estiver conectado, você pode iniciar uma sessão de depuração não, selecionando Se nenhum navegador estiver conectado, você poderá iniciar uma sessão de não depuração selecionando o link *exibir no navegador*:
 

@@ -7,12 +7,12 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 06/04/2018
 uid: signalr/groups
-ms.openlocfilehash: 45f2bb44e03a586b7fc186525fdd3a2645c820d5
-ms.sourcegitcommit: ed76cc752966c604a795fbc56d5a71d16ded0b58
+ms.openlocfilehash: 180f8b4551eea39cc340bf1d250f4575cb5f71ed
+ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/02/2019
-ms.locfileid: "55667746"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65087430"
 ---
 # <a name="manage-users-and-groups-in-signalr"></a>Gerenciar usuários e grupos no SignalR
 
@@ -20,7 +20,7 @@ Por [Brennan Conroy](https://github.com/BrennanConroy)
 
 O SignalR permite que mensagens sejam enviadas para todas as conexões associadas a um usuário específico, bem como grupos de conexões nomeados.
 
-[Exibir ou baixar o código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/signalr/groups/sample/) [(como fazer o download)](xref:index#how-to-download-a-sample)
+[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/groups/sample/) [(como fazer o download)](xref:index#how-to-download-a-sample)
 
 ## <a name="users-in-signalr"></a>Usuários no SignalR
 

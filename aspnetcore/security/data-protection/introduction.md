@@ -7,11 +7,11 @@ ms.custom: mvc
 ms.date: 10/24/2018
 uid: security/data-protection/introduction
 ms.openlocfilehash: 37f170a3e8a46ef2215b0999358d46dd402636df
-ms.sourcegitcommit: 4d74644f11e0dac52b4510048490ae731c691496
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50089542"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64897983"
 ---
 # <a name="aspnet-core-data-protection"></a>Proteção de dados do ASP.NET Core
 
@@ -21,7 +21,7 @@ A pilha de proteção de dados do ASP.NET Core foi projetada para servir como a 
 
 ## <a name="problem-statement"></a>Declaração do problema
 
-A declaração do problema geral pode ser declarada em uma única sentença sucintamente: eu preciso manter informações confiáveis para recuperação posterior, mas eu não confio o mecanismo de persistência. Em termos de web, isso pode ser escrito como "Eu preciso de ida e volta estado confiável por meio de um cliente não confiável."
+A declaração do problema geral pode ser declarada sucintamente em uma única sentença: Eu preciso manter informações confiáveis para recuperação posterior, mas eu não confio o mecanismo de persistência. Em termos de web, isso pode ser escrito como "Eu preciso de ida e volta estado confiável por meio de um cliente não confiável."
 
 O exemplo canônico disso é um cookie de autenticação ou portador token. O servidor gera um "Estou Groot e ter permissões de xyz" de token e entrega-o para o cliente. Em uma data futura, o cliente apresentará esse token de volta para o servidor, mas o servidor precisa de algum tipo de garantia de que o cliente não foi forjada o token. Portanto, o primeiro requisito: autenticidade (também conhecido como integridade e à prova de adulteração).
 

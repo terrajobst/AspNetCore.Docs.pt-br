@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/27/2017
 uid: test/razor-pages-tests
-ms.openlocfilehash: 5116ec3c3d6c27f9b0e098f82c82dd7b7337b8f6
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: f1526b8803f43ec8cbe77c1d2c100d9daf6cd316
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50207492"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64893713"
 ---
 # <a name="razor-pages-unit-tests-in-aspnet-core"></a>Testes de unidade de páginas do Razor no ASP.NET Core
 
@@ -30,16 +30,16 @@ Este tópico pressupõe que você tenha uma compreensão básica dos aplicativos
 * [Introdução a Páginas do Razor](xref:tutorials/razor-pages/razor-pages-start)
 * [Teste de unidade em C# no .NET Core usando dotnet test e xUnit](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/test/razor-pages-tests/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/razor-pages-tests/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 O projeto de exemplo é composto de dois aplicativos:
 
 | Aplicativo         | Pasta do projeto                        | Descrição |
 | ----------- | ------------------------------------- | ----------- |
 | Aplicativo de mensagens | *src/RazorPagesTestSample*            | Permite que um usuário adicione, exclua uma, excluir todas as e analisar as mensagens. |
-| Aplicativo de teste    | *tests/RazorPagesTestSample.Tests*    | Usado para o aplicativo de mensagem de teste de unidade: acesso a dados (DAL) de camada e o modelo de página de índice. |
+| Aplicativo de teste    | *tests/RazorPagesTestSample.Tests*    | Usado para o aplicativo de mensagem de teste de unidade: Camada de acesso a dados (DAL) e o modelo de página de índice. |
 
-Os testes podem ser executados usando os recursos de teste interno de um IDE, como [Visual Studio](https://www.visualstudio.com/vs/). Se usando [Visual Studio Code](https://code.visualstudio.com/) ou a linha de comando, execute o seguinte comando em um prompt de comando na *tests/RazorPagesTestSample.Tests* pasta:
+Os testes podem ser executados usando os recursos de teste interno de um IDE, como [Visual Studio](https://visualstudio.microsoft.com). Se usando [Visual Studio Code](https://code.visualstudio.com/) ou a linha de comando, execute o seguinte comando em um prompt de comando na *tests/RazorPagesTestSample.Tests* pasta:
 
 ```console
 dotnet test
@@ -108,8 +108,8 @@ using (var db = new AppDbContext(Utilities.TestingDbContextOptions()))
 
 Cada método de teste na `DataAccessLayerTest` classe (*UnitTests/DataAccessLayerTest.cs*) segue um padrão semelhante Arrange, Act-Assert:
 
-1. Organizar: O banco de dados está configurado para o teste de e/ou o resultado esperado é definido.
-1. O ACT: O teste é executado.
+1. Organize: O banco de dados está configurado para o teste de e/ou o resultado esperado é definido.
+1. ACT: O teste é executado.
 1. Assert: Asserções são feitas para determinar se o resultado do teste é um sucesso.
 
 Por exemplo, o `DeleteMessageAsync` método é responsável por remover uma única mensagem identificada pelo seu `Id` (*src/RazorPagesTestSample/Data/AppDbContext.cs*):

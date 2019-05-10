@@ -6,18 +6,18 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 03/31/2019
 uid: grpc/comparison
-ms.openlocfilehash: 0e9ef0e7ca8fb6d847b45f6dd7bd0aaa35fd149f
-ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
+ms.openlocfilehash: 8f4cefe1dedcf4cfd9650e73e6a1ba30dbbfeffa
+ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59515370"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65087406"
 ---
 # <a name="comparing-grpc-services-with-http-apis"></a>Comparando serviços gRPC com APIs HTTP
 
 Por [James Newton-King](https://twitter.com/jamesnk)
 
-Este artigo explica como [services gRPC](https://grpc.io/docs/guides/) comparado às APIs de HTTP (incluindo o ASP.NET Core [APIs da Web](xref: web-api/index)). A tecnologia usada para fornecer uma API para seu aplicativo é uma opção importante e gRPC oferece benefícios exclusivos em comparação comparados APIs de HTTP. Este artigo discute os pontos fortes e fracos do gRPC e recomenda a cenários de uso gRPC sobre outras tecnologias.
+Este artigo explica como [services gRPC](https://grpc.io/docs/guides/) comparado às APIs de HTTP (incluindo o ASP.NET Core [APIs da Web](xref:web-api/index)). A tecnologia usada para fornecer uma API para seu aplicativo é uma opção importante e gRPC oferece benefícios exclusivos em comparação comparados APIs de HTTP. Este artigo discute os pontos fortes e fracos do gRPC e recomenda a cenários de uso gRPC sobre outras tecnologias.
 
 #### <a name="overview"></a>Visão geral
 

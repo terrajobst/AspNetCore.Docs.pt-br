@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
 uid: client-side/libman/libman-vs
-ms.openlocfilehash: 727bd80b7f37f6ebd9d37b7aab1aa6c33b85678c
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: 41a5a41c8921b04290784d26441ecb46aea753e7
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50206721"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64894963"
 ---
 # <a name="use-libman-with-aspnet-core-in-visual-studio"></a>LibMan de uso com o ASP.NET Core no Visual Studio
 
@@ -24,7 +24,7 @@ O Visual Studio tem suporte interno para [LibMan](xref:client-side/libman/index)
 * Caixa de diálogo de pesquisa para localizar bibliotecas e adicionar os arquivos a um projeto.
 * Suporte de edição para *libman.json*&mdash;o arquivo de manifesto LibMan.
 
-[Exibir ou baixar o código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/libman/samples/) [(como fazer o download)](xref:index#how-to-download-a-sample)
+[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/client-side/libman/samples/) [(como fazer o download)](xref:index#how-to-download-a-sample)
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
@@ -64,9 +64,9 @@ Siga estas etapas para instalar uma biblioteca de cliente:
   
   |Inicie o local                           |Pasta sugerida      |
   |------------------------------------------|----------------------|
-  |raiz do projeto (se *wwwroot* existe)        |*wwwroot/lib/jquery /* |
-  |raiz do projeto (se *wwwroot* não existe) |*jquery/lib /*         |
-  |*Páginas* pasta do projeto                 |*Páginas/jquery /*       |
+  |raiz do projeto (se *wwwroot* existe)        |*wwwroot/lib/jquery/* |
+  |raiz do projeto (se *wwwroot* não existe) |*lib/jquery/*         |
+  |*Páginas* pasta do projeto                 |*Pages/jquery/*       |
 
 * Clique o **instale** botão para baixar os arquivos, de acordo com a configuração no *libman.json*.
 * Examine a **Gerenciador de biblioteca** feed da **saída** janela para obter detalhes de instalação. Por exemplo:

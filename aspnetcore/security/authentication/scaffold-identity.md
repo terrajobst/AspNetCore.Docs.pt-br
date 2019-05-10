@@ -8,11 +8,11 @@ ms.custom: mvc
 ms.date: 10/24/2018
 uid: security/authentication/scaffold-identity
 ms.openlocfilehash: 7445db31e461bf61e8a91af7239187a6ece9d011
-ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59705465"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64897353"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Identidade de Scaffold em projetos ASP.NET Core
 
@@ -81,7 +81,7 @@ No `Configure` método da `Startup` classe, chame [UseAuthentication](/dotnet/ap
 
 ### <a name="layout-changes"></a>Alterações de layout
 
-Opcionais: Adicione o logon parcial (`_LoginPartial`) para o arquivo de layout:
+Opcional: Adicione o logon parcial (`_LoginPartial`) para o arquivo de layout:
 
 [!code-html[Main](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
@@ -120,7 +120,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Opcionais: Adicione o logon parcial (`_LoginPartial`) para o *Views/Shared/_Layout.cshtml* arquivo:
+Opcional: Adicione o logon parcial (`_LoginPartial`) para o *Views/Shared/_Layout.cshtml* arquivo:
 
 [!code-html[](scaffold-identity/sample/_LayoutMvc.cshtml?highlight=37)]
 

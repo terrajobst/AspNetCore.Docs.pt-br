@@ -8,11 +8,11 @@ ms.custom: mvc
 ms.date: 11/28/2018
 uid: signalr/scale
 ms.openlocfilehash: 4ac4509acc89d0091a3757c7cfbc9981614f29ad
-ms.sourcegitcommit: ebf4e5a7ca301af8494edf64f85d4a8deb61d641
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2019
-ms.locfileid: "54836916"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64895073"
 ---
 # <a name="aspnet-core-signalr-hosting-and-scaling"></a>Hospedagem do ASP.NET SignalR Core e dimensionamento
 
@@ -66,7 +66,7 @@ Por esses motivos, recomendamos que o serviço do Azure SignalR para todos os ap
 
 Para obter mais informações, consulte o [documentação do serviço do Azure SignalR](/azure/azure-signalr/signalr-overview).
 
-## <a name="redis-backplane"></a>Backplane de redis
+## <a name="redis-backplane"></a>Backplane de Redis
 
 [Redis](https://redis.io/) é um repositório de chave-valor na memória que dá suporte a um sistema de mensagens com um modelo de publicação/assinatura. O backplane SignalR Redis usa o recurso de publicação/assinatura para encaminhar mensagens para outros servidores. Quando um cliente faz uma conexão, as informações de conexão são passadas ao backplane. Quando um servidor deseja enviar uma mensagem a todos os clientes, ele envia ao backplane. Backplane sabe clientes tudo conectados e quais servidores que eles estão. Ele envia a mensagem a todos os clientes por meio de seus respectivos servidores. Esse processo é ilustrado no diagrama a seguir:
 

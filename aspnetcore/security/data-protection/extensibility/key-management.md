@@ -7,11 +7,11 @@ ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 uid: security/data-protection/extensibility/key-management
 ms.openlocfilehash: 28932cbef1cc797338980f3e0de8b09caee324c0
-ms.sourcegitcommit: b34b25da2ab68e6495b2460ff570468f16a9bf0d
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53284598"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64896903"
 ---
 # <a name="key-management-extensibility-in-aspnet-core"></a>Extensibilidade de gerenciamento de chaves no ASP.NET Core
 
@@ -175,7 +175,7 @@ services.AddSingleton<IXmlRepository>(new MyCustomXmlRepository());
 
 O `IXmlEncryptor` interface representa um tipo que pode criptografar um elemento XML de texto sem formatação. Ela apresenta uma única API:
 
-* Encrypt(XElement plaintextElement): EncryptedXmlInfo
+* Encrypt(XElement plaintextElement) : EncryptedXmlInfo
 
 Se um serializado `IAuthenticatedEncryptorDescriptor` contém quaisquer elementos marcados como "requer criptografia", em seguida, `XmlKeyManager` executará esses elementos por meio do configurado `IXmlEncryptor`do `Encrypt` método e ele serão mantido o elemento adulterem em vez de elemento de texto sem formatação para o `IXmlRepository`. A saída a `Encrypt` método é um `EncryptedXmlInfo` objeto. Esse objeto é um wrapper que contém os dois o resultante adulterem `XElement` e o tipo que representa um `IXmlDecryptor` que pode ser usado para decifrar o elemento correspondente.
 

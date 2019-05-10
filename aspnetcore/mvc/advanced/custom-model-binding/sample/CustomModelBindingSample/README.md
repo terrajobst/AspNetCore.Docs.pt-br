@@ -1,4 +1,4 @@
-# <a name="custom-model-binding-demo"></a>Demonstração de associação de modelos personalizada
+# <a name="custom-model-binding-demo"></a>Demonstração de model binding personalizado
 
 Teste o `ByteArrayModelBinder` executando o aplicativo e postando uma cadeia de caracteres codificada em Base64 no ponto de extremidade `ImageController` (`/api/image/`). Especifique as propriedades de arquivo e de nome de arquivo no corpo da solicitação como dados de formulário (usando o [Postman](https://www.getpostman.com/) ou uma ferramenta semelhante). Use [esta cadeia de caracteres de exemplo](Base64String.txt). O resultado é salvo na pasta *wwwroot/images/upload* com o nome do arquivo especificado.
 

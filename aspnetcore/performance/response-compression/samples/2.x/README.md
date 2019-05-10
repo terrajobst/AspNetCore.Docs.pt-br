@@ -1,6 +1,6 @@
 # <a name="response-compression-sample-application-aspnet-core-2x"></a>Aplicativo de exemplo de compactação de resposta (ASP.NET Core 2.x)
 
-Este exemplo ilustra o uso do ASP.NET Core 2.x Middleware de compactação de resposta para compactar respostas HTTP. O exemplo demonstra como provedores de compactação personalizado para respostas de texto e imagem, Brotli e Gzip e mostra como adicionar um tipo MIME para compactação. Para o exemplo do ASP.NET Core 1.x, consulte [aplicativo de exemplo de compactação de resposta (ASP.NET Core 1.x)](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples/1.x).
+Este exemplo ilustra o uso do ASP.NET Core 2.x Middleware de compactação de resposta para compactar respostas HTTP. O exemplo demonstra como provedores de compactação personalizado para respostas de texto e imagem, Brotli e Gzip e mostra como adicionar um tipo MIME para compactação. Para o exemplo do ASP.NET Core 1.x, consulte [aplicativo de exemplo de compactação de resposta (ASP.NET Core 1.x)](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/response-compression/samples/1.x).
 
 ## <a name="examples-in-this-sample"></a>Exemplos desta amostra
 

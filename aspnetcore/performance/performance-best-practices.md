@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 04/13/2019
 uid: performance/performance-best-practices
-ms.openlocfilehash: 095db38cf3102f6e18930efdbbaeeb90dffad8af
-ms.sourcegitcommit: 017b673b3c700d2976b77201d0ac30172e2abc87
+ms.openlocfilehash: 28dc7fb40c1b60f643108dcb44593a08942a1650
+ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2019
-ms.locfileid: "59614442"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65087493"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Práticas recomendadas de desempenho do ASP.NET Core
 
@@ -44,7 +44,7 @@ Um problema de desempenho comuns em aplicativos ASP.NET Core está bloqueando ch
 * Chame APIs de operações de longa execução e de acesso a dados de forma assíncrona.
 * Tornar o controlador/Razor ações de página assíncrono. A pilha de chamadas inteira é assíncrona para se beneficiar da [async/await](/dotnet/csharp/programming-guide/concepts/async/) padrões.
 
-Um criador de perfil, como [PerfView](https://github.com/Microsoft/perfview), pode ser usado para localizar segmentos adicionados com frequência para o [Pool de threads](/windows/desktop/procthread/thread-pool). O `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` evento indica que um thread adicionado ao pool de threads. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc  -->
+Um criador de perfil, como [PerfView](https://github.com/Microsoft/perfview), pode ser usado para localizar segmentos adicionados com frequência para o [Pool de threads](/windows/desktop/procthread/thread-pools). O `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` evento indica que um thread adicionado ao pool de threads. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc  -->
 
 ## <a name="minimize-large-object-allocations"></a>Minimizar as alocações de objeto grande
 
