@@ -7,11 +7,11 @@ ms.custom: H1Hack27Feb2017
 ms.date: 08/02/2017
 uid: client-side/spa-services
 ms.openlocfilehash: ee772e67ef14608bcc6e3498ade00424ff6090e5
-ms.sourcegitcommit: 49faca2644590fc081d86db46ea5e29edfc28b7b
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121370"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64893943"
 ---
 # <a name="use-javascriptservices-to-create-single-page-applications-in-aspnet-core"></a>Usar JavaScriptServices para criar aplicativos de única página no ASP.NET Core
 
@@ -67,7 +67,7 @@ Para trabalhar com SpaServices, instale o seguinte:
     node -v && npm -v
     ```
 
-Observação: Se você estiver implantando em um site do Azure, você não precisará fazer nada aqui &mdash; Node. js está instalado e disponível em ambientes de servidor.
+Observação: Se você estiver implantando em um site do Azure, você não precisa fazer nada aqui &mdash; Node. js está instalado e disponível em ambientes de servidor.
 
 * [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]
 
@@ -123,7 +123,7 @@ Recebido `UserName` argumento for serializado usando o serializador JSON interno
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,38-52,79-)]
 
-Observação: Os nomes de propriedade passados na auxiliares de marca são representados com **PascalCase** notação. Compare isso com JavaScript, onde os mesmos nomes de propriedade são representados com **camelCase**. A configuração de serialização JSON padrão é responsável por essa diferença.
+Observação: Nomes de propriedade passados na auxiliares de marca são representados com **PascalCase** notação. Compare isso com JavaScript, onde os mesmos nomes de propriedade são representados com **camelCase**. A configuração de serialização JSON padrão é responsável por essa diferença.
 
 Para expandir o exemplo de código anterior, dados podem ser passados do servidor para o modo de exibição por hydrating a `globals` propriedade fornecida para o `resolve` função:
 

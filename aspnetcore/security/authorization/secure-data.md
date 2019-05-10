@@ -6,12 +6,12 @@ ms.author: riande
 ms.date: 12/18/2018
 ms.custom: mvc, seodec18
 uid: security/authorization/secure-data
-ms.openlocfilehash: 9b01aca0cb2b33f5561193ffdce4aa4950485fce
-ms.sourcegitcommit: 8a84ce880b4c40d6694ba6423038f18fc2eb5746
-ms.translationtype: HT
+ms.openlocfilehash: 7013a88aac26426d1f84d1f52e35e319b3764cdb
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/23/2019
-ms.locfileid: "60165232"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64894443"
 ---
 # <a name="create-an-aspnet-core-app-with-user-data-protected-by-authorization"></a>Criar um aplicativo ASP.NET Core com os dados de usuário protegidos por autorização
 
@@ -19,7 +19,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Joe Audette](https://twi
 
 ::: moniker range="<= aspnetcore-1.1"
 
-Ver [esse PDF](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) para a versão do ASP.NET Core MVC. A versão 1.1 do ASP.NET Core deste tutorial está [nesta](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data) pasta. O exemplo do ASP.NET Core 1.1 está em [exemplos](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
+Ver [esse PDF](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) para a versão do ASP.NET Core MVC. A versão 1.1 do ASP.NET Core deste tutorial está [nesta](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data) pasta. O exemplo do ASP.NET Core 1.1 está em [exemplos](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
 
 ::: moniker-end
 
@@ -89,11 +89,11 @@ No ASP.NET Core 2.1, `User.IsInRole` Falha ao usar `AddDefaultIdentity`. Este tu
 
 ## <a name="the-starter-and-completed-app"></a>O aplicativo inicial e o concluído
 
-[Baixe](xref:index#how-to-download-a-sample) as [concluída](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples) aplicativo. [Teste](#test-the-completed-app) o aplicativo concluído para que você se familiarize com seus recursos de segurança.
+[Baixe](xref:index#how-to-download-a-sample) as [concluída](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples) aplicativo. [Teste](#test-the-completed-app) o aplicativo concluído para que você se familiarize com seus recursos de segurança.
 
 ### <a name="the-starter-app"></a>O aplicativo inicial
 
-[Baixe](xref:index#how-to-download-a-sample) o aplicativo [inicial](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2).
+[Baixe](xref:index#how-to-download-a-sample) o aplicativo [inicial](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2).
 
 Execute o aplicativo, clique em **ContactManager** e verifique se você pode criar, editar e excluir um contato.
 
@@ -275,7 +275,7 @@ Atualize o modelo de página de detalhes:
 
 ## <a name="add-or-remove-a-user-to-a-role"></a>Adicionar ou remover um usuário a uma função
 
-Ver [esse problema](https://github.com/aspnet/Docs/issues/8502) para obter informações sobre:
+Ver [esse problema](https://github.com/aspnet/AspNetCore.Docs/issues/8502) para obter informações sobre:
 
 * Remoção de privilégios de um usuário. Por exemplo um silenciament um usuário em um aplicativo de bate-papo.
 * Adicionando privilégios a um usuário.
@@ -346,7 +346,7 @@ Crie um contato no navegador do administrador. Copie a URL para excluir e editar
 
 ### <a name="seed-the-database"></a>Propagar o banco de dados
 
-Adicione a [SeedData](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2.1/Data/SeedData.cs) de classe para o *dados* pasta.
+Adicione a [SeedData](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2.1/Data/SeedData.cs) de classe para o *dados* pasta.
 
 Chame `SeedData.Initialize` de `Main`:
 

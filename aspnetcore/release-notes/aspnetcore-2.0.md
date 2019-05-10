@@ -5,12 +5,12 @@ description: Saiba mais sobre os novos recursos no ASP.NET Core 2.0.
 ms.author: riande
 ms.date: 07/10/2017
 uid: aspnetcore-2.0
-ms.openlocfilehash: 60e44e64bd1cfada0143e374f6f51dec0e4e84f8
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: 07e490fd844f0f9044afce37651ef680ed0c894d
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58209879"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64883091"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Novidades do ASP.NET Core 2.0
 
@@ -47,7 +47,7 @@ O metapacote `Microsoft.AspNetCore.All` aborda apenas o .Net Core 2.0 porque ele
 
 Uma instância de `IConfiguration` é adicionada ao contêiner de serviços por padrão no ASP.NET Core 2.0. `IConfiguration` no contêiner de serviços torna mais fácil para aplicativos recuperarem valores de configuração do contêiner.
 
-Para obter informações sobre o status da documentação planejada, consulte o [problema do GitHub](https://github.com/aspnet/Docs/issues/3387).
+Para obter informações sobre o status da documentação planejada, consulte o [problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/3387).
 
 ## <a name="logging-update"></a>Atualização de registro em log
 
@@ -61,7 +61,7 @@ Um novo modelo de autenticação torna mais fácil configurar a autenticação p
 
 Novos modelos estão disponíveis para configurar a autenticação para aplicativos Web e APIs Web usando o [Azure AD B2C] (https://azure.microsoft.com/services/active-directory-b2c/).
 
-Para obter informações sobre o status da documentação planejada, consulte o [problema do GitHub](https://github.com/aspnet/Docs/issues/3054).
+Para obter informações sobre o status da documentação planejada, consulte o [problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/3054).
 
 ## <a name="identity-update"></a>Atualização de identidade
 
@@ -113,7 +113,7 @@ Ambientes de hospedagem podem injetar dependências de pacote extras e executar 
 
 No ASP.NET Core 2.0, esse recurso é usado para habilitar o diagnóstico do Application Insights automaticamente durante a depuração no Visual Studio e (depois de optar por isto) quando em execução nos Serviços de Aplicativos do Azure. Como resultado, os modelos de projeto não adicionam mais código e pacotes do Application Insights por padrão.
 
-Para obter informações sobre o status da documentação planejada, consulte o [problema do GitHub](https://github.com/aspnet/Docs/issues/3389).
+Para obter informações sobre o status da documentação planejada, consulte o [problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/3389).
 
 ## <a name="automatic-use-of-anti-forgery-tokens"></a>Uso automático de tokens antifalsificação
 

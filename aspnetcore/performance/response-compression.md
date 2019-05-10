@@ -7,18 +7,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/13/2019
 uid: performance/response-compression
-ms.openlocfilehash: e87480ebb81791ed233f3e2308e35e21e081824f
-ms.sourcegitcommit: 6ba5fb1fd0b7f9a6a79085b0ef56206e462094b7
+ms.openlocfilehash: e312d43fb62106f6ecb98367c29daa377bb227c9
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/14/2019
-ms.locfileid: "56248362"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64893343"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Compactação de resposta no ASP.NET Core
 
 Por [Luke Latham](https://github.com/guardrex)
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/response-compression/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 Largura de banda de rede é um recurso limitado. Reduzindo o tamanho da resposta geralmente aumenta a capacidade de resposta de um aplicativo, muitas vezes drasticamente. É uma maneira de reduzir os tamanhos do conteúdo compactar respostas do aplicativo.
 
@@ -89,7 +89,7 @@ Cabeçalhos envolvidas na solicitação, enviar, armazenamento em cache e recebe
 | `Content-Type`     | Especifica o tipo MIME do conteúdo. Cada resposta deve especificar seu `Content-Type`. O middleware verifica esse valor para determinar se a resposta deve ser compactada. O middleware Especifica um conjunto de [padrão de tipos MIME](#mime-types) que ele pode codificar, mas você pode substituir ou adicionar tipos MIME. |
 | `Vary`             | Quando enviadas pelo servidor com um valor de `Accept-Encoding` para clientes e proxies, o `Vary` cabeçalho indica para o cliente ou um proxy que ele deve armazenar em cache (variar) respostas com base no valor da `Accept-Encoding` cabeçalho da solicitação. O resultado de retorno de conteúdo com o `Vary: Accept-Encoding` cabeçalho é que ambos compactados e descompactadas respostas são armazenadas em cache separadamente. |
 
-Explore os recursos do Middleware de compactação de resposta com o [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples). O exemplo ilustra:
+Explore os recursos do Middleware de compactação de resposta com o [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/response-compression/samples). O exemplo ilustra:
 
 * A compactação de respostas do aplicativo usando o Gzip e provedores de compactação personalizado.
 * Como adicionar um tipo de MIME para a lista padrão de tipos MIME para compactação.
@@ -350,7 +350,7 @@ Quando a compactação de respostas com base no `Accept-Encoding` cabeçalho, h�
 
 ## <a name="middleware-issue-when-behind-an-nginx-reverse-proxy"></a>Problema de middleware quando atrás de um proxy reverso do Nginx
 
-Quando uma solicitação é transmitida por proxy pelo Nginx, o `Accept-Encoding` cabeçalho é removido. Remoção do `Accept-Encoding` cabeçalho impede que o middleware de compactação de resposta. Para obter mais informações, consulte [NGINX: Compactação e descompactação](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). Esse problema é acompanhado pelo [descobrir a compactação de passagem do Nginx (aspnet/BasicMiddleware \#123)](https://github.com/aspnet/BasicMiddleware/issues/123).
+Quando uma solicitação é transmitida por proxy pelo Nginx, o `Accept-Encoding` cabeçalho é removido. Remoção do `Accept-Encoding` cabeçalho impede que o middleware de compactação de resposta. Confira mais informações em [NGINX: Compactação e descompactação](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). Esse problema é acompanhado pelo [descobrir a compactação de passagem do Nginx (aspnet/BasicMiddleware \#123)](https://github.com/aspnet/BasicMiddleware/issues/123).
 
 ## <a name="working-with-iis-dynamic-compression"></a>Trabalhando com a compactação dinâmica do IIS
 

@@ -3,15 +3,15 @@ title: Escolher entre o ASP.NET 4.x e o ASP.NET Core
 author: rick-anderson
 description: Explica o ASP.NET Core vs. ASP.NET 4.x e como escolher entre eles.
 ms.author: riande
-ms.custom: seodec18
+ms.custom: mvc, seodec18
 ms.date: 09/11/2018
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
-ms.openlocfilehash: eb216bdac7dd029c3d985f2edd9e70eb91f42883
-ms.sourcegitcommit: a16352c1c88a71770ab3922200a8cd148fb278a6
+ms.openlocfilehash: 454f1021520f8f22eb2b0417a958b78690f89cef
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53335332"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64886961"
 ---
 # <a name="choose-between-aspnet-4x-and-aspnet-core"></a>Escolher entre o ASP.NET 4.x e o ASP.NET Core
 
@@ -36,7 +36,7 @@ A tabela a seguir compara o ASP.NET Core com o ASP.NET 4. x.
 |Build para Windows, macOS ou Linux|Build para Windows|
 |[Páginas Razor](xref:razor-pages/index) é a abordagem recomendada para criar uma interface do usuário da Web começando com o ASP.NET Core 2.x. Confira também [MVC](xref:mvc/overview), [API Web](xref:tutorials/first-web-api) e [SignalR](xref:signalr/introduction).|Use o [Web Forms](/aspnet/web-forms), o [SignalR](/aspnet/signalr), o [MVC](/aspnet/mvc), a [API Web](/aspnet/web-api/), [Webhooks](/aspnet/webhooks/) ou [páginas da Web](/aspnet/web-pages)|
 |Várias versões por computador|Uma versão por computador|
-|Desenvolva com o Visual Studio, [Visual Studio para Mac](https://www.visualstudio.com/vs/visual-studio-mac/) ou [Visual Studio Code](https://code.visualstudio.com/) usando o C# ou o F#|Desenvolva com o Visual Studio usando o C#, VB ou F#|
+|Desenvolva com o Visual Studio, [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/) ou [Visual Studio Code](https://code.visualstudio.com/) usando o C# ou o F#|Desenvolva com o Visual Studio usando o C#, VB ou F#|
 |Desempenho superior ao do ASP.NET 4.x|Bom desempenho|
 |[Escolha o .NET Framework ou o tempo de execução do .NET Core](/dotnet/standard/choosing-core-framework-server)|Use o tempo de execução do .NET Framework|
 

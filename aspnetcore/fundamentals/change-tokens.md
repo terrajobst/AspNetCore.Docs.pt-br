@@ -5,12 +5,12 @@ description: Saiba como usar tokens de alteração para controlar alterações.
 ms.author: riande
 ms.date: 11/10/2017
 uid: fundamentals/change-tokens
-ms.openlocfilehash: 7ad580a7e999a4eae006ce5dd07cca0cbdbe9ab6
-ms.sourcegitcommit: 375e9a67f5e1f7b0faaa056b4b46294cc70f55b7
+ms.openlocfilehash: f7dad52fc19b6dc5c8668ad852e69acd65a72162
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50206413"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64886871"
 ---
 # <a name="detect-changes-with-change-tokens-in-aspnet-core"></a>Detectar alterações com tokens de alteração no ASP.NET Core
 
@@ -18,7 +18,7 @@ Por [Luke Latham](https://github.com/guardrex)
 
 Um *token de alteração* é um bloco de construção de uso geral e de baixo nível, usado para controlar as alterações.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/change-tokens/sample/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/sample/) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="ichangetoken-interface"></a>Interface IChangeToken
 

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 04/06/2019
 uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: c2a2e1fbd288ff292c6759d03fae51876cdb5704
-ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
+ms.openlocfilehash: df078a2a2a50538a070bb0b49ff3853682cb17df
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59425069"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64889051"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Usar assemblies de inicialização de hospedagem no ASP.NET Core
 
@@ -20,7 +20,7 @@ Por [Luke Latham](https://github.com/guardrex) e [Pavel Krymets](https://github.
 
 Uma implementação [IHostingStartup](/dotnet/api/microsoft.aspnetcore.hosting.ihostingstartup) (inicialização de hospedagem) adiciona melhorias a um aplicativo durante a inicialização de um assembly externo. Por exemplo, uma biblioteca externa pode usar uma implementação de inicialização de hospedagem para fornecer serviços ou provedores de configuração adicionais a um aplicativo.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="hostingstartup-attribute"></a>Atributo HostingStartup
 
@@ -64,7 +64,7 @@ Crie uma inicialização de hospedagem com qualquer um dos seguintes tipos de pr
 
 Uma melhoria da inicialização de hospedagem pode ser fornecida em uma biblioteca de classes. A biblioteca contém um atributo `HostingStartup`.
 
-O [código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) inclui um aplicativo Razor Pages, *HostingStartupApp* e uma biblioteca de classes, *HostingStartupLibrary*. A biblioteca de classes:
+O [código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) inclui um aplicativo Razor Pages, *HostingStartupApp* e uma biblioteca de classes, *HostingStartupLibrary*. A biblioteca de classes:
 
 * Contém uma classe de inicialização de hospedagem, `ServiceKeyInjection`, que implementa `IHostingStartup`. `ServiceKeyInjection` adiciona um par de cadeias de caracteres de serviço à configuração do aplicativo usando o provedor de configuração na memória ([AddInMemoryCollection](/dotnet/api/microsoft.extensions.configuration.memoryconfigurationbuilderextensions.addinmemorycollection)).
 * Inclui um atributo `HostingStartup` que identifica o namespace e a classe de inicialização de hospedagem.
@@ -81,7 +81,7 @@ A página de índice do aplicativo lê e renderiza os valores de configuração 
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,11-12)]
 
-O [código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) também inclui um projeto de pacote do NuGet que fornece uma inicialização de hospedagem separada, *HostingStartupPackage*. O pacote tem as mesmas características da biblioteca de classes descrita anteriormente. O pacote:
+O [código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) também inclui um projeto de pacote do NuGet que fornece uma inicialização de hospedagem separada, *HostingStartupPackage*. O pacote tem as mesmas características da biblioteca de classes descrita anteriormente. O pacote:
 
 * Contém uma classe de inicialização de hospedagem, `ServiceKeyInjection`, que implementa `IHostingStartup`. `ServiceKeyInjection` adiciona um par de cadeias de caracteres de serviço para a configuração do aplicativo.
 * Inclui um atributo `HostingStartup`.
@@ -326,7 +326,7 @@ Uma melhoria da inicialização de hospedagem pode ser fornecida por um assemby 
 
 ## <a name="sample-code"></a>Código de exemplo
 
-O [código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([como baixar](xref:index#how-to-download-a-sample)) demonstra cenários de implementação de inicialização de hospedagem:
+O [código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([como baixar](xref:index#how-to-download-a-sample)) demonstra cenários de implementação de inicialização de hospedagem:
 
 * Dois assemblies de inicialização de hospedagem (bibliotecas de classes) definem um par chave-valor de configuração na memória cada:
   * Pacote do NuGet (*HostingStartupPackage*)

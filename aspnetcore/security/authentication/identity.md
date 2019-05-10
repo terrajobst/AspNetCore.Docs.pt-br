@@ -5,12 +5,12 @@ description: Use identidade com um aplicativo ASP.NET Core. Saiba como definir o
 ms.author: riande
 ms.date: 03/26/2019
 uid: security/authentication/identity
-ms.openlocfilehash: efe8119c2d18db50dce3df57fa0e300d0d0df2cd
-ms.sourcegitcommit: 687ffb15ebe65379f75c84739ea851d5a0d788b7
+ms.openlocfilehash: d813fa364bb733185baa7b2cd2d95f8b4ff570e2
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2019
-ms.locfileid: "58488667"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64894323"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>Introdução à identidade do ASP.NET Core
 
@@ -20,7 +20,7 @@ O ASP.NET Core Identity é um sistema de associação que adiciona a funcionalid
 
 Identidade pode ser configurada usando um banco de dados do SQL Server para armazenar nomes de usuário, senhas e dados de perfil. Como alternativa, outro repositório persistente pode ser usado, por exemplo, o armazenamento de tabelas do Azure.
 
-[Exibir ou baixar o código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) ([como baixar)](xref:index#how-to-download-a-sample)).
+[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) ([como baixar)](xref:index#how-to-download-a-sample)).
 
 Neste tópico, saiba como usar a identidade para registrar, faça logon e logoff de um usuário. Para obter instruções mais detalhadas sobre como criar aplicativos que usam a identidade, consulte a seção próximas etapas no final deste artigo.
 

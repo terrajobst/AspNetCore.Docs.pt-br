@@ -7,17 +7,17 @@ ms.custom: mvc
 ms.date: 01/04/2019
 uid: migration/logging-nonaspnetcore
 ms.openlocfilehash: 2519ddc02cee5978483bcaef4341a52aad3ba2a6
-ms.sourcegitcommit: 97d7a00bd39c83a8f6bccb9daa44130a509f75ce
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54099466"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64892453"
 ---
 # <a name="migrate-from-microsoftextensionslogging-21-to-22-or-30"></a>Migrar do Logging 2.1 para 2.2 ou 3.0
 
 Este artigo descreve as etapas comuns para a migração de um aplicativo ASP.NET Core que usa `Microsoft.Extensions.Logging` do 2.1, 2.2 ou 3.0.
 
-## <a name="21-to-22"></a>2.1 para 2.2
+## <a name="21-to-22"></a>2.1 a 2.2
 
 Criar manualmente `ServiceCollection` e chamar `AddLogging`.
 

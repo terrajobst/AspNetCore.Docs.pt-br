@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/07/2019
 uid: razor-pages/razor-pages-conventions
-ms.openlocfilehash: c160d93e22fc5b3511ba4e5539cce8576346898b
-ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
+ms.openlocfilehash: 4e07b5803adbce94982584212fa65afbfd427b64
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/08/2019
-ms.locfileid: "57665530"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64893503"
 ---
 # <a name="razor-pages-route-and-app-conventions-in-aspnet-core"></a>Convenções de rota e aplicativo das Páginas do Razor no ASP.NET Core
 
@@ -26,7 +26,7 @@ Para especificar uma rota de página, adicione segmentos de rota ou adicionar pa
 
 Há palavras reservadas não podem ser usadas como segmentos de rota ou nomes de parâmetro. Para obter mais informações, consulte [roteamento: Roteamentos nomes reservados](xref:fundamentals/routing#reserved-routing-names).
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 | Cenário | A amostra explica... |
 | -------- | --------------------------- |
@@ -94,7 +94,7 @@ A propriedade <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteMod
 
 Sempre que possível, não defina a `Order`, que resulta em `Order = 0`. Dependem de roteamento para selecionar a rota correta.
 
-Opções de páginas do Razor, como a adição <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions>, são adicionados quando o MVC é adicionado à coleção de serviços em `Startup.ConfigureServices`. Para obter um exemplo, confira o [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/).
+Opções de páginas do Razor, como a adição <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions>, são adicionados quando o MVC é adicionado à coleção de serviços em `Startup.ConfigureServices`. Para obter um exemplo, confira o [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/).
 
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet1)]
 

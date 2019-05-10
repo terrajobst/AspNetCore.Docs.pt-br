@@ -5,12 +5,12 @@ description: Saiba como o model binding permite que as ações do controlador tr
 ms.author: riande
 ms.date: 11/13/2018
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: 33551c9fc22561b992b4a09a4c7187ade136c09c
-ms.sourcegitcommit: d75d8eb26c2cce19876c8d5b65ac8a4b21f625ef
+ms.openlocfilehash: 3623a29976a2e2a7b1bdb22d35716b8a3b448958
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56410239"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64891221"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>Model binding personalizado no ASP.NET Core
 
@@ -18,7 +18,7 @@ Por [Steve Smith](https://ardalis.com/)
 
 O model binding permite que as ações do controlador funcionem diretamente com tipos de modelo (passados como argumentos de método), em vez de solicitações HTTP. O mapeamento entre os dados de solicitação de entrada e os modelos de aplicativo é manipulado por associadores de modelos. Os desenvolvedores podem estender a funcionalidade de model binding interna implementando associadores de modelos personalizados (embora, normalmente, você não precise escrever seu próprio provedor).
 
-[Exibir ou baixar a amostra do GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-model-binding/)
+[Exibir ou baixar a amostra do GitHub](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/custom-model-binding/)
 
 ## <a name="default-model-binder-limitations"></a>Limitações dos associadores de modelos padrão
 
@@ -40,7 +40,7 @@ Uma pequena parte da cadeia de caracteres codificada é mostrada na seguinte ima
 
 ![dotnet bot codificado](custom-model-binding/images/encoded-bot.png "dotnet bot encoded")
 
-Siga as instruções do [LEIAME da amostra](https://github.com/aspnet/Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/sample/CustomModelBindingSample/README.md) para converter a cadeia de caracteres codificada em Base64 em um arquivo.
+Siga as instruções do [LEIAME da amostra](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/sample/CustomModelBindingSample/README.md) para converter a cadeia de caracteres codificada em Base64 em um arquivo.
 
 O ASP.NET Core MVC pode usar uma cadeia de caracteres codificada em Base64 e usar um `ByteArrayModelBinder` para convertê-la em uma matriz de bytes. O [ByteArrayModelBinderProvider](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.binders.bytearraymodelbinderprovider) que implementa [IModelBinderProvider](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.imodelbinderprovider) mapeia argumentos `byte[]` para `ByteArrayModelBinder`:
 

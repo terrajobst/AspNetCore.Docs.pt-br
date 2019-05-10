@@ -6,12 +6,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: data/entity-framework-6
-ms.openlocfilehash: b7679afbe4c364386fe8f16d22d7e9797a3e0c27
-ms.sourcegitcommit: 4d74644f11e0dac52b4510048490ae731c691496
+ms.openlocfilehash: 50f51a72341cbad017872df581da214211b9920a
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50090053"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64886931"
 ---
 # <a name="get-started-with-aspnet-core-and-entity-framework-6"></a>Introdução ao ASP.NET Core e ao Entity Framework 6
 
@@ -23,7 +23,7 @@ Este artigo mostra como usar o Entity Framework 6 em um aplicativo ASP.NET Core.
 
 Para usar o Entity Framework 6, o projeto precisa ser compilado no .NET Framework, pois o Entity Framework 6 não dá suporte ao .NET Core. Caso precise de recursos de multiplataforma, faça upgrade para o [Entity Framework Core](/ef/).
 
-A maneira recomendada de usar o Entity Framework 6 em um aplicativo ASP.NET Core é colocar o contexto e as classes de modelo do EF6 em um projeto de biblioteca de classes direcionado à estrutura completa. Adicione uma referência à biblioteca de classes do projeto ASP.NET Core. Consulte a [solução de exemplo do Visual Studio com projetos EF6 e ASP.NET Core](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/entity-framework-6/sample/).
+A maneira recomendada de usar o Entity Framework 6 em um aplicativo ASP.NET Core é colocar o contexto e as classes de modelo do EF6 em um projeto de biblioteca de classes direcionado à estrutura completa. Adicione uma referência à biblioteca de classes do projeto ASP.NET Core. Consulte a [solução de exemplo do Visual Studio com projetos EF6 e ASP.NET Core](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/entity-framework-6/sample/).
 
 Não é possível colocar um contexto do EF6 em um projeto ASP.NET Core, pois projetos .NET Core não dão suporte a todas as funcionalidades exigidas pelo EF6, como *Enable-Migrations*, que é obrigatória.
 
@@ -61,7 +61,7 @@ Em seguida, você pode obter uma instância do contexto nos controladores usando
 
 ## <a name="sample-application"></a>Aplicativo de exemplo
 
-Para obter um aplicativo de exemplo funcional, consulte a [solução de exemplo do Visual Studio](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/entity-framework-6/sample/) que acompanha este artigo.
+Para obter um aplicativo de exemplo funcional, consulte a [solução de exemplo do Visual Studio](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/entity-framework-6/sample/) que acompanha este artigo.
 
 Esta amostra pode ser criada do zero pelas seguintes etapas no Visual Studio:
 

@@ -8,11 +8,11 @@ ms.custom: signalr
 ms.date: 02/27/2019
 uid: signalr/diagnostics
 ms.openlocfilehash: b6bd21314ed183488999bcff3553e53493537a11
-ms.sourcegitcommit: 6ddd8a7675c1c1d997c8ab2d4498538e44954cac
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57400899"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64896883"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registro em log e diagnóstico no SignalR do ASP.NET Core
 
@@ -168,7 +168,7 @@ A maioria das ferramentas de desenvolvedor do navegador tem uma guia de "Rede" q
 
 ### <a name="microsoft-edge-and-internet-explorer"></a>Internet Explorer e Microsoft Edge
 
-(As instruções são as mesmas para o Edge e Internet Explorer)
+(As instruções são as mesmas para o Microsoft Edge e Internet Explorer)
 
 1. Pressione F12 para abrir as ferramentas de desenvolvimento
 2. Clique na guia rede

@@ -6,18 +6,14 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 162586059e3115bc15efaa63a9a0652e09872f1b
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: 06de728096b91b128c6bc3eb7791609d2161cd9b
+ms.sourcegitcommit: 3376f224b47a89acf329b2d2f9260046a372f924
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58209959"
+ms.lasthandoff: 05/10/2019
+ms.locfileid: "65516993"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging---3-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Classificação, filtro, paginação – 3 de 8
-
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
-::: moniker range=">= aspnetcore-2.1"
 
 Por [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT) e [Jon P Smith](https://twitter.com/thereformedprog)
 
@@ -29,7 +25,7 @@ A ilustração a seguir mostra uma página concluída. Os títulos de coluna sã
 
 ![Página Índice de alunos](sort-filter-page/_static/paging.png)
 
-Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
+Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
 ## <a name="add-sorting-to-the-index-page"></a>Adicionar uma classificação à página Índice
 
@@ -275,18 +271,18 @@ Substitua o código no arquivo *Pages/About.cshtml* pelo seguinte código:
 
 Execute o aplicativo e navegue para a página Sobre. A contagem de alunos para cada data de registro é exibida em uma tabela.
 
-Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído para este estágio](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part3-sorting).
+Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído para este estágio](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part3-sorting).
 
 ![Página Sobre](sort-filter-page/_static/about.png)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Depuração de origem do ASP.NET Core 2.x](https://github.com/aspnet/Docs/issues/4155)
+* [Depuração de origem do ASP.NET Core 2.x](https://github.com/aspnet/AspNetCore.Docs/issues/4155)
 * [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=MDs7PFpoMqI)
 
 No próximo tutorial, o aplicativo usa migrações para atualizar o modelo de dados.
 
-::: moniker-end
+
 
 > [!div class="step-by-step"]
 > [Anterior](xref:data/ef-rp/crud)

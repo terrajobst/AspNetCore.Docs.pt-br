@@ -5,12 +5,12 @@ description: Saiba como as exibições tratam da apresentação de dados do apli
 ms.author: riande
 ms.date: 04/03/2019
 uid: mvc/views/overview
-ms.openlocfilehash: 766996645bc6ef2b6be42d729baf5d57f55b6ddd
-ms.sourcegitcommit: 78339e9891c8676db01a6e81e9cb0cdaa280162f
+ms.openlocfilehash: 5e56c6bb18cb5d2389c11eb3e4aa9869228da47d
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59012793"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64891341"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Exibições no ASP.NET Core MVC
 
@@ -135,7 +135,7 @@ A abordagem mais robusta é especificar um tipo de [modelo](xref:mvc/models/mode
 
 Usar um viewmodel para passar dados para uma exibição permite que a exibição tire proveito da verificação de tipo *forte*. *Tipagem forte* (ou *fortemente tipado*) significa que cada variável e constante têm um tipo definido explicitamente (por exemplo, `string`, `int` ou `DateTime`). A validade dos tipos usados em uma exibição é verificada em tempo de compilação.
 
-O [Visual Studio](https://www.visualstudio.com/vs/) e o [Visual Studio Code](https://code.visualstudio.com/) listam membros de classe fortemente tipados usando um recurso chamado [IntelliSense](/visualstudio/ide/using-intellisense). Quando quiser ver as propriedades de um viewmodel, digite o nome da variável para o viewmodel, seguido por um ponto final (`.`). Isso ajuda você a escrever código mais rapidamente e com menos erros.
+O [Visual Studio](https://visualstudio.microsoft.com) e o [Visual Studio Code](https://code.visualstudio.com/) listam membros de classe fortemente tipados usando um recurso chamado [IntelliSense](/visualstudio/ide/using-intellisense). Quando quiser ver as propriedades de um viewmodel, digite o nome da variável para o viewmodel, seguido por um ponto final (`.`). Isso ajuda você a escrever código mais rapidamente e com menos erros.
 
 Especifique um modelo usando a diretiva `@model`. Use o modelo com `@Model`:
 

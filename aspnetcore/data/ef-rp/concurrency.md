@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/07/2018
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: 213794398e1188e38b0bf3522c73207988615f9b
-ms.sourcegitcommit: 088e6744cd67a62f214f25146313a53949b17d35
+ms.openlocfilehash: 17ce0c111daabe2c7bbf4795b658856568c85158
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/21/2019
-ms.locfileid: "58320167"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64886171"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---concurrency---8-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Simultaneidade – 8 de 8
 
@@ -19,7 +19,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://gith
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
-Este tutorial mostra como lidar com conflitos quando os mesmos usuários atualizam uma entidade simultaneamente. Caso tenha problemas que não consiga resolver, [baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Instruções de download](xref:index#how-to-download-a-sample).
+Este tutorial mostra como lidar com conflitos quando os mesmos usuários atualizam uma entidade simultaneamente. Caso tenha problemas que não consiga resolver, [baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Instruções de download](xref:index#how-to-download-a-sample).
 
 ## <a name="concurrency-conflicts"></a>Conflitos de simultaneidade
 

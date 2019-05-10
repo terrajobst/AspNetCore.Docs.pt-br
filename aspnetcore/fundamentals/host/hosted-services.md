@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/25/2019
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: d10a335429752c1a52c1b3619adecc41725a819a
-ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
+ms.openlocfilehash: 613227cdead1d0b62a0dead2fca9fab68fd534cc
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56899301"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64889001"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Tarefas em segundo plano com serviços hospedados no ASP.NET Core
 
@@ -24,7 +24,7 @@ No ASP.NET Core, as tarefas em segundo plano podem ser implementadas como *servi
 * Serviço hospedado que ativa um [serviço com escopo](xref:fundamentals/dependency-injection#service-lifetimes). O serviço com escopo pode usar a injeção de dependência.
 * Tarefas em segundo plano na fila que são executadas sequencialmente.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 Este aplicativo de exemplo é fornecido em duas versões:
 
