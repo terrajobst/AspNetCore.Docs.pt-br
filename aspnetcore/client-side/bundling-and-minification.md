@@ -4,14 +4,14 @@ author: scottaddie
 description: Aprenda a otimizar os recursos estáticos em um aplicativo web ASP.NET Core por meio da aplicação de técnicas de agrupamento e minificação.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/20/2018
+ms.date: 05/10/2019
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: 5d5f0aadb7740c9b2b959d12a585cd8c91758ce8
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: ba01d365a25dfbd13fed89263d7489b2ce2a8771
+ms.sourcegitcommit: ffe3ed7921ec6c7c70abaac1d10703ec9a43374c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64894293"
+ms.lasthandoff: 05/11/2019
+ms.locfileid: "65535926"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Agrupar e minificar ativos estáticos no ASP.NET Core
 
@@ -63,7 +63,7 @@ Navegadores são bastante detalhados em relação a cabeçalhos de solicitação
 
 ## <a name="choose-a-bundling-and-minification-strategy"></a>Escolher uma estratégia de agrupamento e minificação
 
-Os modelos de projeto do MVC e páginas Razor oferecem uma solução de out-of-the-box para agrupamento e minificação consiste em um arquivo de configuração JSON. Ferramentas de terceiros, tais como o [Gulp](xref:client-side/using-gulp) e [Grunt](xref:client-side/using-grunt) executores de tarefas, executar as mesmas tarefas com um pouco mais complexidade. Uma ferramenta de terceiros é uma excelente opção quando o fluxo de trabalho de desenvolvimento requer processamento além do agrupamento e minificação&mdash;como otimização linting e imagem. Usando o agrupamento e minificação tempo de design, os arquivos reduzidos são criados antes da implantação do aplicativo. Empacotando e minimizando antes da implantação tem a vantagem de carga do servidor reduzido. No entanto, é importante reconhecer que esse tempo de design de agrupamento e minificação aumenta a complexidade de build e só funciona com arquivos estáticos.
+Os modelos de projeto do MVC e páginas Razor oferecem uma solução de out-of-the-box para agrupamento e minificação consiste em um arquivo de configuração JSON. Ferramentas de terceiros, tais como o [Grunt](xref:client-side/using-grunt) executor de tarefas, executar as mesmas tarefas com um pouco mais complexidade. Uma ferramenta de terceiros é uma excelente opção quando o fluxo de trabalho de desenvolvimento requer processamento além do agrupamento e minificação&mdash;como otimização linting e imagem. Usando o agrupamento e minificação tempo de design, os arquivos reduzidos são criados antes da implantação do aplicativo. Empacotando e minimizando antes da implantação tem a vantagem de carga do servidor reduzido. No entanto, é importante reconhecer que esse tempo de design de agrupamento e minificação aumenta a complexidade de build e só funciona com arquivos estáticos.
 
 ## <a name="configure-bundling-and-minification"></a>Configurar o agrupamento e minificação
 
@@ -325,11 +325,9 @@ Neste exemplo, as tarefas definidas dentro de `MyPreCompileTarget` execução an
 ========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
 ```
 
-Como alternativa, o Gerenciador de executor de tarefas do Visual Studio pode ser usado para associar as tarefas de Gulp a eventos específicos do Visual Studio. Ver [execução de tarefas padrão](xref:client-side/using-gulp#running-default-tasks) para obter instruções sobre como fazer isso.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Usar o Gulp](xref:client-side/using-gulp)
 * [Usar o Grunt](xref:client-side/using-grunt)
 * [Usar vários ambientes](xref:fundamentals/environments)
 * [Auxiliares de marcação](xref:mvc/views/tag-helpers/intro)

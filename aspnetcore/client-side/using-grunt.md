@@ -3,20 +3,20 @@ title: Usar o Grunt no ASP.NET Core
 author: rick-anderson
 description: ''
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 05/10/2019
 uid: client-side/using-grunt
-ms.openlocfilehash: fc912974fb6ed3c65bb46a7d616d9e531587d946
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 73b7704726db9d93588dddd3f3b05a23fb3425b3
+ms.sourcegitcommit: ffe3ed7921ec6c7c70abaac1d10703ec9a43374c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64894633"
+ms.lasthandoff: 05/11/2019
+ms.locfileid: "65535945"
 ---
 # <a name="use-grunt-in-aspnet-core"></a>Usar o Grunt no ASP.NET Core
 
 Por [Noel arroz](https://blog.falafel.com/falafel-software-recognized-sitefinity-website-year/)
 
-Grunt é um executor de tarefas JavaScript que automatiza a minimização de script, compilação TypeScript, ferramentas de "lint" qualidade do código, processadores de pré-lançamento do CSS e praticamente qualquer tarefa repetitiva que precisa fazer para dar suporte ao desenvolvimento de cliente. Grunt é totalmente suportado no Visual Studio, embora os modelos de projeto do ASP.NET usam o Gulp por padrão (consulte [usar o Gulp](using-gulp.md)).
+Grunt é um executor de tarefas JavaScript que automatiza a minimização de script, compilação TypeScript, ferramentas de "lint" qualidade do código, processadores de pré-lançamento do CSS e praticamente qualquer tarefa repetitiva que precisa fazer para dar suporte ao desenvolvimento de cliente. Grunt tem suporte total no Visual Studio.
 
 Este exemplo usa um projeto vazio do ASP.NET Core como ponto de partida, para mostrar como automatizar o processo de compilação do cliente do zero.
 
@@ -286,7 +286,3 @@ Descarregue e recarregue o projeto. Quando o projeto for carregado novamente, a 
 ## <a name="summary"></a>Resumo
 
 Grunt é um executor de tarefas poderosa que pode ser usado para automatizar a maioria das tarefas de build do cliente. Grunt aproveita o NPM para fornecer seus pacotes, recursos e ferramentas de integração com o Visual Studio. Gerenciador de executor de tarefas do Visual Studio detecta alterações nos arquivos de configuração e fornece uma interface conveniente para executar tarefas, exibir tarefas em execução e vincular tarefas a eventos do Visual Studio.
-
-## <a name="additional-resources"></a>Recursos adicionais
-
-* [Usar o Gulp](using-gulp.md)
