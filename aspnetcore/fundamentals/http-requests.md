@@ -5,14 +5,14 @@ description: Saiba mais sobre como usar a interface IHttpClientFactory para gere
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/30/2019
+ms.date: 05/10/2019
 uid: fundamentals/http-requests
-ms.openlocfilehash: 84cdbca20e7c7aaa1941c78483cc36a9f0b24505
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 540f14ad2b290d276436033a94d4c815888e5a95
+ms.sourcegitcommit: ffe3ed7921ec6c7c70abaac1d10703ec9a43374c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64888941"
+ms.lasthandoff: 05/11/2019
+ms.locfileid: "65536012"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Fazer solicitações HTTP usando IHttpClientFactory no ASP.NET Core
 
@@ -27,9 +27,13 @@ Por [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
+::: moniker range="<= aspnetcore-2.2"
+
 ## <a name="prerequisites"></a>Pré-requisitos
 
 Os projetos direcionados ao .NET Framework exigem a instalação do pacote do NuGet [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/). Os projetos destinados ao .Net Core e a referência ao [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) já incluem o pacote `Microsoft.Extensions.Http`.
+
+::: moniker-end
 
 ## <a name="consumption-patterns"></a>Padrões de consumo
 
@@ -197,11 +201,10 @@ Use uma das seguintes abordagens para compartilhar o estado por solicitação co
 
 O `IHttpClientFactory` integra-se a uma biblioteca de terceiros popular chamada [Polly](https://github.com/App-vNext/Polly). O Polly é uma biblioteca abrangente de tratamento de falha transitória e de resiliência para .NET. Ela permite que os desenvolvedores expressem políticas, como Repetição, Disjuntor, Tempo Limite, Isolamento de Bulkhead e Fallback de maneira fluente e thread-safe.
 
-Os métodos de extensão são fornecidos para habilitar o uso de políticas do Polly com instâncias de `HttpClient` configuradas. As extensões do Polly estão disponíveis no pacote do NuGet [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/). Esse pacote não está incluído no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app). Para usar as extensões, um `<PackageReference />` explícito deve ser incluído no projeto.
+Os métodos de extensão são fornecidos para habilitar o uso de políticas do Polly com instâncias de `HttpClient` configuradas. As extensões do Polly:
 
-[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/HttpClientFactorySample.csproj?highlight=10)]
-
-Depois de restaurar este pacote, os métodos de extensão ficam disponíveis para permitir a adição de manipuladores baseados no Polly aos clientes.
+* Dão suporte à adição de manipuladores baseados no Polly aos clientes.
+* Podem ser usadas depois de instalar o pacote do NuGet [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/). O pacote não está incluído na estrutura ASP.NET Core compartilhada.
 
 ### <a name="handle-transient-faults"></a>Tratar falhas transitórias
 
@@ -219,11 +222,11 @@ Existem métodos de extensão adicionais que podem ser usados para adicionar man
 
 [!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet8)]
 
-No código anterior, se a solicitação de saída é um GET, é aplicado um tempo limite de 10 segundos. Para qualquer outro método HTTP, é usado um tempo limite de 30 segundos.
+No código anterior, se a solicitação de saída é um HTTP GET, um tempo limite de 10 segundos é aplicado. Para qualquer outro método HTTP, é usado um tempo limite de 30 segundos.
 
 ### <a name="add-multiple-polly-handlers"></a>Adicionar vários manipuladores do Polly
 
-É comum aninhar políticas do Polly para fornecer uma funcionalidade avançada:
+É comum aninhar políticas do Polly para fornecer funcionalidade avançada:
 
 [!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet9)]
 

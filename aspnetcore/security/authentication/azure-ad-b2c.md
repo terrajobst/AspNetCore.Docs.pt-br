@@ -5,12 +5,12 @@ description: Descubra como configurar a autenticação do Azure Active Directory
 ms.date: 02/27/2019
 ms.custom: mvc
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: 86be999e02cfe34193bd594dcf89e8872590cca5
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 46654e38c780cfc9c44e7ba479419320ee684b76
+ms.sourcegitcommit: 6afe57fb8d9055f88fedb92b16470398c4b9b24a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64898013"
+ms.lasthandoff: 05/14/2019
+ms.locfileid: "65610691"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticação de nuvem com o Azure Active Directory B2C no ASP.NET Core
 
@@ -34,7 +34,7 @@ Neste tutorial, saiba como:
 A seguir é necessários para este passo a passo:
 
 * [Assinatura do Microsoft Azure](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
-* [Visual Studio 2017](https://aka.ms/vsdownload?utm_source=mscom&utm_campaign=msdocs) (qualquer edição)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
 ## <a name="create-the-azure-active-directory-b2c-tenant"></a>Criar o locatário do Azure Active Directory B2C
 
@@ -62,7 +62,7 @@ Depois que o aplicativo é registrado, é exibida a lista de aplicativos no loca
 
 Nada mais podem ser configurado no locatário do Azure AD B2C neste momento, mas deixe a janela do navegador aberta. Não há mais de configuração depois que o aplicativo ASP.NET Core é criado.
 
-## <a name="create-an-aspnet-core-app-in-visual-studio-2017"></a>Criar um aplicativo ASP.NET Core no Visual Studio 2017
+## <a name="create-an-aspnet-core-app-in-visual-studio"></a>Criar um aplicativo ASP.NET Core no Visual Studio
 
 O modelo de aplicativo Web Visual Studio pode ser configurado para usar o locatário do Azure AD B2C para autenticação.
 

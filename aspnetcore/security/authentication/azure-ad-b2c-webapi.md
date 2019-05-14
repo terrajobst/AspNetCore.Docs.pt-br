@@ -6,12 +6,12 @@ ms.author: casoper
 ms.date: 09/21/2018
 ms.custom: mvc, seodec18
 uid: security/authentication/azure-ad-b2c-webapi
-ms.openlocfilehash: 00e7c9a438260ef8e12e567e521fc44b2ffa9cca
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: 0eb8b533f44a1f72cfc3c4ec5ec060adb37eed6c
+ms.sourcegitcommit: 6afe57fb8d9055f88fedb92b16470398c4b9b24a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65086340"
+ms.lasthandoff: 05/14/2019
+ms.locfileid: "65610360"
 ---
 # <a name="authentication-in-web-apis-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticação em APIs web com o Azure Active Directory B2C no ASP.NET Core
 
@@ -37,7 +37,7 @@ Neste tutorial, saiba como:
 A seguir é necessários para este passo a passo:
 
 * [Assinatura do Microsoft Azure](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
-* [Visual Studio 2017](https://aka.ms/vsdownload?utm_source=mscom&utm_campaign=msdocs) (qualquer edição)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 * [Postman](https://www.getpostman.com/postman)
 
 ## <a name="create-the-azure-active-directory-b2c-tenant"></a>Criar o locatário do Azure Active Directory B2C
@@ -65,7 +65,7 @@ Use os seguintes valores:
 
 Depois que a API é registrada, é exibida a lista de aplicativos e APIs no locatário. Selecione a API que foi registrada anteriormente. Selecione o **cópia** ícone à direita do **ID do aplicativo** campo para copiá-lo na área de transferência. Selecione **escopos publicados** e verifique se o padrão *user_impersonation* escopo está presente.
 
-## <a name="create-an-aspnet-core-app-in-visual-studio-2017"></a>Criar um aplicativo ASP.NET Core no Visual Studio 2017
+## <a name="create-an-aspnet-core-app-in-visual-studio"></a>Criar um aplicativo ASP.NET Core no Visual Studio
 
 O modelo de aplicativo Web Visual Studio pode ser configurado para usar o locatário do Azure AD B2C para autenticação.
 
