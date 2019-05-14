@@ -1,9 +1,0 @@
-<span data-ttu-id="b106c-101">Clique em **uma** das seguintes opções:</span><span class="sxs-lookup"><span data-stu-id="b106c-101">Install **one** of the following:</span></span>
-
-* <span data-ttu-id="b106c-102">Ferramentas da CLI: Windows, Linux ou macOS: [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]</span><span class="sxs-lookup"><span data-stu-id="b106c-102">CLI tooling: Windows, Linux, or macOS: [!INCLUDE [](~/includes/net-core-sdk-download-link.md)]</span></span>
-* <span data-ttu-id="b106c-103">Ferramentas de editor/IDE</span><span class="sxs-lookup"><span data-stu-id="b106c-103">IDE/editor tooling</span></span>
-  * <span data-ttu-id="b106c-104">Windows: [Visual Studio para Windows](https://www.microsoft.com/net/download/windows)</span><span class="sxs-lookup"><span data-stu-id="b106c-104">Windows: [Visual Studio for Windows](https://www.microsoft.com/net/download/windows)</span></span>
-    * <span data-ttu-id="b106c-105">Carga de trabalho **ASP.NET e desenvolvimento para a Web**</span><span class="sxs-lookup"><span data-stu-id="b106c-105">**ASP.NET and web development** workload</span></span>
-    * <span data-ttu-id="b106c-106">Carga de trabalho de **desenvolvimento multiplataforma do .NET Core**</span><span class="sxs-lookup"><span data-stu-id="b106c-106">**.NET Core cross-platform development** workload</span></span>
-  * <span data-ttu-id="b106c-107">Linux: [Visual Studio Code](https://www.microsoft.com/net/download/linux)</span><span class="sxs-lookup"><span data-stu-id="b106c-107">Linux: [Visual Studio Code](https://www.microsoft.com/net/download/linux)</span></span>
-  * <span data-ttu-id="b106c-108">macOS: [Visual Studio para Mac](https://www.microsoft.com/net/download/macos)</span><span class="sxs-lookup"><span data-stu-id="b106c-108">macOS: [Visual Studio for Mac](https://www.microsoft.com/net/download/macos)</span></span>
