@@ -1,27 +1,27 @@
 ---
 title: Introdução ao ASP.NET Core
 author: rick-anderson
-description: Um tutorial rápido que cria e executa um aplicativo simples Olá, Mundo usando o ASP.NET Core.
+description: Um breve tutorial que cria e executa um aplicativo básico Olá, Mundo usando o ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/15/2019
+ms.date: 5/15/2019
 uid: getting-started
-ms.openlocfilehash: 76728c484368a8b63130c259a9663473970846d3
-ms.sourcegitcommit: 5f299daa7c8102d56a63b214b9a34cc4bc87bc42
+ms.openlocfilehash: 9227dcfbc84376d9d73bc6fc0dd76085779acae1
+ms.sourcegitcommit: 6afe57fb8d9055f88fedb92b16470398c4b9b24a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58209470"
+ms.lasthandoff: 05/14/2019
+ms.locfileid: "65610312"
 ---
 # <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: Introdução ao ASP.NET Core
 
-Este tutorial mostra como usar a interface de linha de comando do .NET Core para criar um aplicativo Web ASP.NET Core.
+Este tutorial mostra como usar a interface de linha de comando do .NET Core para criar e executar um aplicativo Web ASP.NET Core.
 
 Você aprenderá como:
 
 > [!div class="checklist"]
 > * Criar um projeto de aplicativo Web.
-> * Habilitar o HTTPS local.
+> * Confiar no certificado de desenvolvimento.
 > * Execute o aplicativo.
 > * Editar uma página do Razor.
 
@@ -41,7 +41,7 @@ Abra um shell de comando e insira o seguinte comando:
 dotnet new webapp -o aspnetcoreapp
 ```
 
-## <a name="enable-local-https"></a>Habilitar o HTTPS local
+### <a name="trust-the-development-certificate"></a>Confiar no certificado de desenvolvimento
 
 Confie no certificado de desenvolvimento HTTPS:
 
@@ -70,6 +70,8 @@ O comando anterior exibe a mensagem a seguir:
 Esse comando pode solicitar que você insira sua senha para instalar o certificado no conjunto de chaves do sistema. Insira sua senha se você concordar em confiar no certificado de desenvolvimento.
 
 # <a name="linuxtablinux"></a>[Linux](#tab/linux)
+
+Para o Subsistema do Windows para Linux, confira [certificado de confiança HTTPS do Subsistema do Windows para Linux](xref:security/enforcing-ssl#wsl).
 
 Consulte a documentação para sua distribuição do Linux sobre como confiar no certificado de desenvolvimento HTTPS.
 
@@ -102,7 +104,7 @@ Neste tutorial, você aprendeu como:
 
 > [!div class="checklist"]
 > * Criar um projeto de aplicativo Web.
-> * Habilitar o HTTPS local.
+> * Confiar no certificado de desenvolvimento.
 > * Execute o projeto.
 > * Faça uma alteração.
 
