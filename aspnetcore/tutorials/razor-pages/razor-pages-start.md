@@ -3,14 +3,14 @@ title: 'Tutorial: Introdução às Páginas do Razor no ASP.NET Core'
 author: rick-anderson
 description: Esta série de tutoriais mostra como usar Razor Pages no ASP.NET Core. Saiba como criar um modelo, gerar código para Razor Pages, usar o Entity Framework Core e o SQL Server para acesso a dados, adicionar funcionalidade de pesquisa, adicionar validação de entrada e usar migrações para atualizar o modelo.
 ms.author: riande
-ms.date: 12/5/2018
+ms.date: 05/09/2019
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 1d264ca4a605d8291e273a8f054c92e7eefa5548
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 9307291756baf1bef714d6dae2f8d25d3aa6f922
+ms.sourcegitcommit: 3376f224b47a89acf329b2d2f9260046a372f924
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64891151"
+ms.lasthandoff: 05/10/2019
+ms.locfileid: "65517098"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Introdução às Páginas do Razor no ASP.NET Core
 
@@ -59,7 +59,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 * Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
-* Altere os diretórios (`cd`) para uma pasta que conterá o projeto.
+* Altere para o diretório (`cd`) que contém o projeto.
 
 * Execute os seguintes comandos:
 
@@ -69,7 +69,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
   ```
 
   * O comando `dotnet new` cria um projeto do Razor Pages na pasta *RazorPagesMovie*.
-  * O comando `code` abre a pasta *RazorPagesMovie* em uma nova instância do Visual Studio Code.
+  * O comando `code` abre a pasta *RazorPagesMovie* na instância atual do Visual Studio Code.
 
   Uma caixa de diálogo é exibida com a mensagem **Os ativos necessários para build e depuração estão ausentes de 'RazorPagesMovie'. Deseja adicioná-los?**
 

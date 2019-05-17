@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba mais sobre a configuração para aplicativos hospedados por trás de servidores proxy e balanceadores de carga, o que muitas vezes oculta informações de solicitação importantes.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/06/2018
+ms.date: 05/08/2019
 uid: host-and-deploy/proxy-load-balancer
-ms.openlocfilehash: 3ac67f0cb0c7b472e7192f684b1a8fc9685794ce
-ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
+ms.openlocfilehash: a5bd33ed787dec83bc1b19fa2ae13991b06ef0c2
+ms.sourcegitcommit: a3926eae3f687013027a2828830c12a89add701f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58264894"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "65450972"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>Configure o ASP.NET Core para trabalhar com servidores proxy e balanceadores de carga
 
@@ -249,9 +249,9 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 ## <a name="troubleshoot"></a>Solução de problemas
 
-Quando os cabeçalhos não são encaminhados conforme o esperado, habilite [registro em log](xref:fundamentals/logging/index). Se os logs não fornecerem informações suficientes para solucionar o problema, enumere os cabeçalhos de solicitação recebidos pelo servidor. Use middleware embutido para gravar cabeçalhos de solicitação para uma resposta do aplicativo ou para log dos cabeçalhos. Coloque um dos exemplos de código a seguir imediatamente após a chamada para <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> em `Startup.Configure`.
+Quando os cabeçalhos não são encaminhados conforme o esperado, habilite [registro em log](xref:fundamentals/logging/index). Se os logs não fornecerem informações suficientes para solucionar o problema, enumere os cabeçalhos de solicitação recebidos pelo servidor. Use middleware embutido para gravar cabeçalhos de solicitação para uma resposta do aplicativo ou para log dos cabeçalhos. 
 
-Para escrever os cabeçalhos na resposta do aplicativo, use o seguinte middleware embutido terminal:
+Para gravar os cabeçalhos de resposta do aplicativo, coloque o seguinte middleware terminal embutido imediatamente após a chamada para <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> em `Startup.Configure`:
 
 ```csharp
 app.Run(async (context) =>
@@ -283,26 +283,29 @@ app.Run(async (context) =>
 });
 ```
 
-Também é possível escrever nos logs em vez do corpo da resposta usando o seguinte middleware embutido. Isso permite que o site funcione normalmente durante a depuração.
+Você pode gravar em logs em vez de no corpo da resposta. A gravação em logs permite que o site funcione normalmente durante a depuração.
+
+Para gravar em logs em vez de no corpo da resposta:
+
+* Injete `ILogger<Startup>` na classe `Startup` conforme descrito em [Criar logs na inicialização](xref:fundamentals/logging/index#create-logs-in-startup).
+* Coloque o seguinte middleware embutido imediatamente após a chamada para <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> em `Startup.Configure`.
 
 ```csharp
-var logger = _loggerFactory.CreateLogger<Startup>();
-
 app.Use(async (context, next) =>
 {
     // Request method, scheme, and path
-    logger.LogDebug("Request Method: {METHOD}", context.Request.Method);
-    logger.LogDebug("Request Scheme: {SCHEME}", context.Request.Scheme);
-    logger.LogDebug("Request Path: {PATH}", context.Request.Path);
+    _logger.LogDebug("Request Method: {METHOD}", context.Request.Method);
+    _logger.LogDebug("Request Scheme: {SCHEME}", context.Request.Scheme);
+    _logger.LogDebug("Request Path: {PATH}", context.Request.Path);
 
     // Headers
     foreach (var header in context.Request.Headers)
     {
-        logger.LogDebug("Header: {KEY}: {VALUE}", header.Key, header.Value);
+        _logger.LogDebug("Header: {KEY}: {VALUE}", header.Key, header.Value);
     }
 
     // Connection: RemoteIp
-    logger.LogDebug("Request RemoteIp: {REMOTE_IP_ADDRESS}", 
+    _logger.LogDebug("Request RemoteIp: {REMOTE_IP_ADDRESS}", 
         context.Connection.RemoteIpAddress);
 
     await next();

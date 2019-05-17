@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/4/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: 24c87f2ad0446aef51f9d648fd20c181cbeaed2e
-ms.sourcegitcommit: 036d4b03fd86ca5bb378198e29ecf2704257f7b2
+ms.openlocfilehash: dce2926e3cb19d6ac8d2af0e9b96c31dee1d92fd
+ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57346457"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65087520"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core-mvc"></a>Tutorial: Criar uma API Web com o ASP.NET Core MVC
 
@@ -216,7 +216,7 @@ O código anterior:
 O código anterior:
 
 * Define uma classe de controlador de API sem métodos.
-* Decore a classe com o atributo [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute). Esse atributo indica se o controlador responde às solicitações da API Web. Para obter informações sobre comportamentos específicos habilitados pelo atributo, confira [Anotação com o atributo ApiController](xref:web-api/index#annotation-with-apicontroller-attribute).
+* Decora a classe com o atributo [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute). Esse atributo indica se o controlador responde às solicitações da API Web. Para saber mais sobre comportamentos específicos habilitados pelo atributo, consulte <xref:web-api/index>.
 * Usa a DI para injetar o contexto de banco de dados (`TodoContext`) no controlador. O contexto de banco de dados é usado em cada um dos métodos [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) no controlador.
 * Adiciona um item chamado `Item1` ao banco de dados se o banco de dados está vazio. Esse código está no construtor, de modo que ele seja executado sempre que há uma nova solicitação HTTP. Se você excluir todos os itens, o construtor criará `Item1` novamente na próxima vez que um método de API for chamado. Portanto, pode parecer que a exclusão não funcionou quando ela realmente funcionou.
 
@@ -350,7 +350,7 @@ Adicione o seguinte método `PutTodoItem`:
 
 `PutTodoItem` é semelhante a `PostTodoItem`, exceto pelo uso de HTTP PUT. A resposta é [204 (Sem conteúdo)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). De acordo com a especificação de HTTP, uma solicitação PUT exige que o cliente envie a entidade inteira atualizada, não apenas as alterações. Para dar suporte a atualizações parciais, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
-Se você receber um erro ao chamar `PutTodoItem`, chame `GET` para garantir que exista um item no banco de dados.
+Se você vir um erro ao chamar `PutTodoItem`, chame `GET` para garantir que existe um item no banco de dados.
 
 ### <a name="test-the-puttodoitem-method"></a>Testar o método PutTodoItem
 
@@ -443,7 +443,7 @@ A exclusão de um item pendente é feita definindo o `type` na chamada do AJAX c
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-[Exibir ou baixar o código de exemplo para este tutorial](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). Consulte [como baixar](xref:index#how-to-download-a-sample).
+[Exibir ou baixar o código de exemplo para este tutorial](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). Consulte [como baixar](xref:index#how-to-download-a-sample).
 
 Para obter mais informações, consulte os seguintes recursos:
 

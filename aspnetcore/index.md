@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/07/2019
 uid: index
-ms.openlocfilehash: 9cb598c4068586e4e960ec40743c4f54f09995ad
-ms.sourcegitcommit: 017b673b3c700d2976b77201d0ac30172e2abc87
+ms.openlocfilehash: 6dd722b3b78d2af81497bde9e0519feb9af84748
+ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2019
-ms.locfileid: "59614367"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65086145"
 ---
 # <a name="introduction-to-aspnet-core"></a>Introdução ao ASP.NET Core
 
@@ -24,7 +24,7 @@ O ASP.NET Core é uma estrutura de [software livre](https://github.com/aspnet/ho
 * Implantar na nuvem ou local.
 * Executar no [.NET Core ou no .NET Framework](/dotnet/articles/standard/choosing-core-framework-server).
 
-## <a name="why-to-use-aspnet-core"></a>Por que usar o ASP.NET Core?
+## <a name="why-choose-aspnet-core"></a>Por que escolher o ASP.NET Core?
 
 Milhões de desenvolvedores usaram (e continuam usando) o [ASP.NET 4.x](/aspnet/overview) para criar aplicativos Web. O ASP.NET Core é uma reformulação do ASP.NET 4.x, com alterações de arquitetura que resultam em uma estrutura mais enxuta e modular.
 
@@ -101,7 +101,7 @@ Recomendamos a seguinte sequência de tutoriais e artigos para obter uma introdu
 
 Muitos dos artigos e tutoriais incluem links para exemplos de código.
 
-1. [Baixe o arquivo zip do repositório ASP.NET](https://codeload.github.com/aspnet/Docs/zip/master).
+1. [Baixe o arquivo zip do repositório ASP.NET](https://codeload.github.com/aspnet/AspNetCore.Docs/zip/master).
 1. Descompacte o arquivo *Docs-master.zip*.
 1. Use a URL no link de exemplo para ajudá-lo a navegar até o diretório de exemplo.
 
@@ -148,7 +148,7 @@ O snippet de código C# precedente é referenciado no arquivo de markdown do tó
 
 Você pode ignorar (ou remover) com segurança as instruções `#region` e `#endregion` que envolvem o código. Não altere o código dentro dessas instruções se você planeja executar os cenários de exemplo descritos no tópico. Fique à vontade para alterar o código ao experimentar com outros cenários.
 
-Para obter mais informações, veja [Contribuir para a documentação do ASP.NET: snippets de código](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md#code-snippets).
+Para obter mais informações, veja [Contribuir para a documentação do ASP.NET: snippets de código](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md#code-snippets).
 
 ## <a name="next-steps"></a>Próximas etapas
 

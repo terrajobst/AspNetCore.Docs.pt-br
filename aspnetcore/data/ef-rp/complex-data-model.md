@@ -6,18 +6,14 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 311f72699b6291996a43d56247bd3d2bfab596e6
-ms.sourcegitcommit: 088e6744cd67a62f214f25146313a53949b17d35
+ms.openlocfilehash: a65543f805b197031bd46ef1974d4d4a5018b2d1
+ms.sourcegitcommit: 3376f224b47a89acf329b2d2f9260046a372f924
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/21/2019
-ms.locfileid: "58320242"
+ms.lasthandoff: 05/10/2019
+ms.locfileid: "65516912"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Modelo de dados – 5 de 8
-
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
-::: moniker range=">= aspnetcore-2.1"
 
 Por [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -33,7 +29,7 @@ As classes de entidade para o modelo de dados concluído são mostradas na segui
 ![Diagrama de entidade](complex-data-model/_static/diagram.png)
 
 Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído](
-https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
+https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
 ## <a name="customize-the-data-model-with-attributes"></a>Personalizar o modelo de dados com atributos
 
@@ -385,19 +381,18 @@ public ICollection<Course> Courses { get; set; }
 
 Observação: por convenção, o EF Core habilita a exclusão em cascata em FKs que não permitem valor nulo e em relações muitos para muitos. A exclusão em cascata pode resultar em regras de exclusão em cascata circular. As regras de exclusão em cascata circular causam uma exceção quando uma migração é adicionada.
 
-Por exemplo, se a propriedade `Department.InstructorID` não foi definida como uma propriedade que permite valor nulo:
+Por exemplo, se a propriedade `Department.InstructorID` tiver sido definida como não anulável:
 
-* O EF Core configura uma regra de exclusão em cascata para excluir o instrutor quando o departamento é excluído.
-* A exclusão do instrutor quando o departamento é excluído não é o comportamento pretendido.
+* O EF Core configura uma regra de exclusão em cascata para excluir o departamento quando o instrutor é excluído.
+* Excluir o departamento quando o instrutor é excluído não é o comportamento desejado.
+* A seguinte API fluente definiria uma regra de restrição em vez de em cascata.
 
-Se as regras de negócio exigirem que a propriedade `InstructorID` não permita valor nulo, use a seguinte instrução da API fluente:
-
- ```csharp
- modelBuilder.Entity<Department>()
-    .HasOne(d => d.Administrator)
-    .WithMany()
-    .OnDelete(DeleteBehavior.Restrict)
- ```
+   ```csharp
+   modelBuilder.Entity<Department>()
+      .HasOne(d => d.Administrator)
+      .WithMany()
+      .OnDelete(DeleteBehavior.Restrict)
+  ```
 
 O código anterior desabilita a exclusão em cascata na relação departamento-instrutor.
 
@@ -671,7 +666,7 @@ O próximo tutorial abrange os dados relacionados.
 * [Versão do YouTube deste tutorial (Parte 1)](https://www.youtube.com/watch?v=0n2f0ObgCoA)
 * [Versão do YouTube deste tutorial (Parte 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)
 
-::: moniker-end
+
 
 > [!div class="step-by-step"]
 > [Anterior](xref:data/ef-rp/migrations)

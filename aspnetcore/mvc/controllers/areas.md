@@ -3,14 +3,14 @@ title: Áreas no ASP.NET Core
 author: rick-anderson
 description: Saiba por que as áreas são um recurso do ASP.NET MVC usado para organizar funcionalidades relacionadas em um grupo como um namespace (para roteamento) e uma estrutura de pasta (para exibições) separados.
 ms.author: riande
-ms.date: 02/14/2019
+ms.date: 05/06/2019
 uid: mvc/controllers/areas
-ms.openlocfilehash: 79bc023a7bd00a9d4de375e3cddaafd148251469
-ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
+ms.openlocfilehash: 35c7682861f7392b0bcda7326e4d7f5ccc356bda
+ms.sourcegitcommit: b508b115107e0f8d7f62b25cfcc8ad45e1373459
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58264765"
+ms.lasthandoff: 05/07/2019
+ms.locfileid: "65212591"
 ---
 # <a name="areas-in-aspnet-core"></a>Áreas no ASP.NET Core
 
@@ -25,7 +25,7 @@ Considere o uso de Áreas em um projeto quando:
 * O aplicativo é composto por vários componentes funcionais de alto nível que podem ser separados logicamente.
 * Você deseja particionar o aplicativo para que cada área funcional possa ser trabalhada de forma independente.
 
-[Exibir ou baixar um código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([como baixar](xref:index#how-to-download-a-sample)). O exemplo de download fornece um aplicativo básico para áreas de teste.
+[Exibir ou baixar um código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([como baixar](xref:index#how-to-download-a-sample)). O exemplo de download fornece um aplicativo básico para áreas de teste.
 
 Se você estiver usando o Razor Pages, confira [Áreas com Razor Pages](#areas-with-razor-pages) neste documento.
 
@@ -34,8 +34,13 @@ Se você estiver usando o Razor Pages, confira [Áreas com Razor Pages](#areas-w
 Um aplicativo Web do ASP.NET Core típico usando áreas, controladores e exibições contém o seguinte:
 
 * Uma [estrutura de pastas da área](#area-folder-structure).
-* Controladores decorados com o atributo [&lbrack;Area&rbrack;](#attribute) para associar o controlador com a área: [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
-* A [rota de área adicionada à inicialização](#add-area-route): [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
+* Controladores decorados com o atributo [&lbrack;Area&rbrack;](#attribute) para associar o controlador à área:
+
+  [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
+
+* A [rota de área adicionada à inicialização](#add-area-route):
+
+  [!code-csharp[](areas/samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
 
 ### <a name="area-folder-structure"></a>Estrutura de pastas da área
 
@@ -99,7 +104,7 @@ Para obter mais informações, veja [Roteamento de área](xref:mvc/controllers/r
 
 ### <a name="link-generation-with-mvc-areas"></a>Geração de links com áreas do MVC
 
-O código a seguir do [download do exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) mostra geração de link com a área especificada:
+O código a seguir do [download do exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) mostra geração de link com a área especificada:
 
 [!code-cshtml[](areas/samples/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
@@ -127,7 +132,7 @@ O código a seguir altera a pasta da área padrão de `"Areas"` para `"MyAreas"`
 
 ## <a name="areas-with-razor-pages"></a>Áreas com Razor Pages
 
-As Áreas com Razor Pages exigem e a pasta *Areas/&lt;nome da área&gt;/Pages* na raiz do aplicativo. A seguinte estrutura de pasta é usada com o [download de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples)
+As Áreas com Razor Pages exigem e a pasta *Areas/&lt;nome da área&gt;/Pages* na raiz do aplicativo. A seguinte estrutura de pasta é usada com o [download de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples)
 
 * Nome do projeto
   * Áreas
@@ -144,7 +149,7 @@ As Áreas com Razor Pages exigem e a pasta *Areas/&lt;nome da área&gt;/Pages* n
 
 ### <a name="link-generation-with-razor-pages-and-areas"></a>Geração de links com áreas e Razor Pages
 
-O código a seguir do [download do exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) mostra a geração de links com a área especificada (por exemplo, `asp-area="Products"`):
+O código a seguir do [download do exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) mostra a geração de links com a área especificada (por exemplo, `asp-area="Products"`):
 
 [!code-cshtml[](areas/samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
 
@@ -160,7 +165,7 @@ Para o código anterior:
 
 * O link gerado de `<a asp-page="/Manage/About">` só estará correto quando a última solicitação tiver sido para uma página na área `Services`. Por exemplo, `/Services/Manage/`, `/Services/Manage/Index` ou `/Services/Manage/About`.
 * O link gerado a partir `<a asp-page="/About">` só estará correto quando a última solicitação tiver sido para uma página na área `/Home`.
-* O código vem do [download de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas).
+* O código vem do [download de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas).
 
 ### <a name="import-namespace-and-tag-helpers-with-viewimports-file"></a>Importar o namespace e os Auxiliares de marca com o arquivo _ViewImports
 
@@ -179,9 +184,11 @@ No download de exemplo, a área Produtos contém o seguinte arquivo *_ViewImport
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
 
-A marcação a seguir mostra a Página do Razor */Products/About*: [!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/About.cshtml)]
+A marcação a seguir mostra a Página do Razor */Products/About*:
 
-No arquivo anterior, o namespace e a diretiva `@addTagHelper` são importados para o arquivo através do arquivo *Areas/Products/Pages/_ViewImports.cshtml*:
+[!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/About.cshtml)]
+
+No arquivo anterior, o namespace e a diretiva `@addTagHelper` são importados para o arquivo por meio do arquivo *Areas/Products/Pages/_ViewImports.cshtml*.
 
 Para saber mais, confira [Gerenciar o escopo do Auxiliar de Marcação](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) e [Importar diretivas compartilhadas](xref:mvc/views/layout#importing-shared-directives).
 

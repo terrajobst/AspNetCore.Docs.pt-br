@@ -4,14 +4,14 @@ author: tdykstra
 description: Saiba mais sobre a estrutura de registros no ASP.NET Core. Descubra os provedores de log internos e saiba mais sobre os provedores de terceiros populares.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/02/2019
+ms.date: 05/01/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: 8a2e310b47e32e9015b0c127ed79d8f6bdf2e44d
-ms.sourcegitcommit: eb784a68219b4829d8e50c8a334c38d4b94e0cfa
+ms.openlocfilehash: ee7d4b2ae04b5f6c262acc5da0f86f90ab50585f
+ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59982847"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65085663"
 ---
 # <a name="logging-in-aspnet-core"></a>Registro em log no ASP.NET Core
 
@@ -19,7 +19,7 @@ Por [Steve Smith](https://ardalis.com/) e [Tom Dykstra](https://github.com/tdyks
 
 O ASP.NET Core oferece suporte a uma API de registro em log que funciona com uma variedade de provedores de logs internos e terceirizados. Este artigo mostra como usar a API de registro em log com provedores internos.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="add-providers"></a>Adicionar provedores
 
@@ -54,7 +54,7 @@ Para usar um provedor, instale o pacote NuGet e chame o método de extensão do 
 A [DI (injeção de dependência)](xref:fundamentals/dependency-injection) do ASP.NET Core fornece a instância de `ILoggerFactory`. Os métodos de extensão `AddConsole` e `AddDebug` são definidos nos pacotes [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/) e [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug/). Cada método de extensão chama o método `ILoggerFactory.AddProvider`, passando uma instância do provedor.
 
 > [!NOTE]
-> O [aplicativo de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/index/samples/1.x) adiciona provedores de log no método `Startup.Configure`. Para obter saída de log do código que é executado anteriormente, adicione provedores de log no construtor de classe `Startup`.
+> O [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples/1.x) adiciona provedores de log no método `Startup.Configure`. Para obter saída de log do código que é executado anteriormente, adicione provedores de log no construtor de classe `Startup`.
 
 ::: moniker-end
 
@@ -496,11 +496,12 @@ Cada provedor define um *alias* que pode ser usado na configuração no lugar do
 
 * Console
 * Depurar
+* EventSource
 * EventLog
+* TraceSource
 * AzureAppServicesFile
 * AzureAppServicesBlob
-* TraceSource
-* EventSource
+* ApplicationInsights
 
 ### <a name="default-minimum-level"></a>Nível mínimo padrão
 
@@ -616,8 +617,9 @@ O ASP.NET Core vem com os seguintes provedores:
 * [EventSource](#eventsource-provider)
 * [EventLog](#windows-eventlog-provider)
 * [TraceSource](#tracesource-provider)
-
-As opções de [Registro em log no Azure](#logging-in-azure) serão abordadas mais adiante, neste artigo.
+* [AzureAppServicesFile](#azure-app-service-provider)
+* [AzureAppServicesBlob](#azure-app-service-provider)
+* [ApplicationInsights](#azure-application-insights-trace-logging)
 
 Para saber mais sobre log de stdout, confira <xref:host-and-deploy/iis/troubleshoot#aspnet-core-module-stdout-log> e <xref:host-and-deploy/azure-apps/troubleshoot#aspnet-core-module-stdout-log>.
 
@@ -767,19 +769,6 @@ O exemplo a seguir configura um provedor `TraceSource` que registra mensagens `W
 
 ::: moniker-end
 
-## <a name="logging-in-azure"></a>Registro em log no Azure
-
-Para saber mais sobre registro em log no Azure, consulte as seguintes seções:
-
-* [Provedor do Serviço de Aplicativo do Azure](#azure-app-service-provider)
-* [Fluxo de log do Azure](#azure-log-streaming)
-
-::: moniker range=">= aspnetcore-1.1"
-
-* [Log de rastreamento do Azure Application Insights](#azure-application-insights-trace-logging)
-
-::: moniker-end
-
 ### <a name="azure-app-service-provider"></a>Provedor do Serviço de Aplicativo do Azure
 
 O pacote de provedor [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) grava logs em arquivos de texto no sistema de arquivos de um aplicativo do Serviço de Aplicativo do Azure e no [armazenamento de blobs](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) em uma conta de Armazenamento do Azure. O pacote de provedor está disponível para aplicativos destinados ao .NET Core 1.1 ou posterior.
@@ -842,7 +831,7 @@ O local padrão para arquivos de log é na pasta *D:\\home\\LogFiles\\Applicatio
 
 O provedor funciona somente quando o projeto é executado no ambiente do Azure. Ele não tem nenhum efeito quando o projeto é executado localmente&mdash;ele não grava em arquivos locais ou no armazenamento de desenvolvimento local para blobs.
 
-### <a name="azure-log-streaming"></a>Fluxo de log do Azure
+#### <a name="azure-log-streaming"></a>Fluxo de log do Azure
 
 O fluxo de log do Azure permite que você exiba a atividade de log em tempo real:
 
@@ -865,14 +854,23 @@ Navegue até a página **Fluxo de Log** para exibir as mensagens de aplicativo. 
 
 ### <a name="azure-application-insights-trace-logging"></a>Log de rastreamento do Azure Application Insights
 
-O SDK do Application Insights pode coletar e relatar logs gerados por meio da infraestrutura de log do ASP.NET Core. Para obter mais informações, consulte os seguintes recursos:
+O pacote de provedor [Microsoft.Extensions.Logging.ApplicationInsights](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights) grava os logs no Azure Application Insights. O Application Insights é um serviço que monitora um aplicativo web e fornece ferramentas para consultar e analisar os dados de telemetria. Se você usar esse provedor, poderá consultar e analisar os logs usando as ferramentas do Application Insights.
+
+O provedor de registro em log está incluído como uma dependência de [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore), que é o pacote que fornece toda a telemetria disponível para o ASP.NET Core. Se você usar esse pacote, não precisará instalar o pacote de provedor.
+
+Não use o pacote [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) &mdash;que é para o ASP.NET 4.x.
+
+Para obter mais informações, consulte os seguintes recursos:
 
 * [Visão geral do Application Insights](/azure/application-insights/app-insights-overview)
-* [Application Insights para ASP.NET Core](/azure/application-insights/app-insights-asp-net-core)
+* [Application Insights para aplicativos ASP.NET Core](/azure/azure-monitor/app/asp-net-core-no-visualstudio) – Comece aqui se você deseja implementar toda a gama de telemetria do Application Insights junto com o registro em log.
+* [ApplicationInsightsLoggerProvider para logs do .NET Core ILogger](/azure/azure-monitor/app/ilogger) – Comece aqui se você quiser implementar o provedor de log sem o restante da telemetria do Application Insights.
 * [Application Insights logging adapters](https://github.com/Microsoft/ApplicationInsights-dotnet-logging/blob/develop/README.md) (Adaptadores de registro em log do Application Insights).
-* [Amostras de implementação de ILogger do Application Insights](/azure/azure-monitor/app/ilogger)
-
+* [Instalar, configurar e inicializar o SDK do Application Insights](/learn/modules/instrument-web-app-code-with-application-insights) – Tutorial interativo no site da Microsoft Learn.
 ::: moniker-end
+
+> [!NOTE]
+> A partir de 1/5/2019, o artigo chamado [Application Insights para ASP.NET Core](/azure/azure-monitor/app/asp-net-core) passa a estar desatualizado e as etapas do tutorial não funcionarão. Em vez disso, confira [Application Insights para aplicativos ASP.NET Core](/azure/azure-monitor/app/asp-net-core-no-visualstudio). Estamos cientes do problema e estamos trabalhando para corrigi-lo.
 
 ## <a name="third-party-logging-providers"></a>Provedores de log de terceiros
 
@@ -885,7 +883,7 @@ Estruturas de log de terceiros que funcionam com o ASP.NET Core:
 * [Loggr](http://loggr.net/) ([repositório GitHub](https://github.com/imobile3/Loggr.Extensions.Logging))
 * [NLog](http://nlog-project.org/) ([repositório GitHub](https://github.com/NLog/NLog.Extensions.Logging))
 * [Sentry](https://sentry.io/welcome/) ([repositório GitHub](https://github.com/getsentry/sentry-dotnet))
-* [Serilog](https://serilog.net/) ([repositório GitHub](https://github.com/serilog/serilog-extensions-logging))
+* [Serilog](https://serilog.net/) ([repositório GitHub](https://github.com/serilog/serilog-aspnetcore))
 * [Stackdriver](https://cloud.google.com/dotnet/docs/stackdriver#logging) ([repositório Github](https://github.com/googleapis/google-cloud-dotnet))
 
 Algumas estruturas de terceiros podem fazer o [log semântico, também conhecido como registro em log estruturado](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).

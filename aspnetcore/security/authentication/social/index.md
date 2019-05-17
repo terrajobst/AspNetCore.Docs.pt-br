@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/19/2019
 uid: security/authentication/social/index
-ms.openlocfilehash: 61482481358256dc9ddd1a0a894541040a8a452f
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: e2d68ac93bdcfa2fc015e8447ea38626787cdb02
+ms.sourcegitcommit: a3926eae3f687013027a2828830c12a89add701f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64882001"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "65451048"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 
@@ -47,11 +47,13 @@ Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as 
 * Execute os seguintes comandos:
 
   ```console
-  dotnet new webapp -o WebApp1
+  dotnet new webapp -o WebApp1 -au Individual -uld
   code -r WebApp1
   ```
 
   * O comando `dotnet new` cria um projeto do Razor Pages na pasta *WebApp1*.
+  * `-uld` usa o LocalDB em vez do SQLite. Omita `-uld` para usar o SQLite.
+  * `-au Individual` cria o código para autenticação individual.
   * O comando `code` abre a pasta *WebApp1* em uma nova instância do Visual Studio Code.
 
   Uma caixa de diálogo é exibida com a mensagem **Os ativos necessários para build e depuração estão ausentes no 'WebApp1'. Deseja adicioná-los?**
@@ -65,7 +67,7 @@ Em um terminal, execute o seguinte comando:
 <!-- TODO: update these instruction once mac support 2.2 projects -->
 
 ```console
-dotnet new webapp -o WebApp1
+dotnet new webapp -o WebApp1 -au Individual
 ```
 
 Os comandos anteriores usam a [CLI do .NET Core](/dotnet/core/tools/dotnet) para criar um projeto do Razor Pages.

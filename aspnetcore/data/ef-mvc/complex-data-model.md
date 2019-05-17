@@ -4,15 +4,15 @@ description: Neste tutorial, você adiciona mais entidades e relações e person
 author: rick-anderson
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/05/2019
+ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: 5ab893dd77ff2cc9a735702eb3a547ed8bcb2197
-ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
+ms.openlocfilehash: 2776e3357941d0e7932882c39af121f85d037d62
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58264855"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64887241"
 ---
 # <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Tutorial: Criar um modelo de dados complexo - ASP.NET MVC com EF Core
 
@@ -40,7 +40,7 @@ Neste tutorial, você:
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* [Usar o recurso de migrações do EF Core para ASP.NET Core em um aplicativo Web MVC](migrations.md)
+* [Usar as migrações do EF Core](migrations.md)
 
 ## <a name="customize-the-data-model"></a>Personalizar o Modelo de dados
 
@@ -320,7 +320,7 @@ public ICollection<Course> Courses { get; set; }
 ```
 
 > [!NOTE]
-> Por convenção, o Entity Framework habilita a exclusão em cascata para chaves estrangeiras que não permitem valor nulo e em relações muitos para muitos. Isso pode resultar em regras de exclusão em cascata circular, que causará uma exceção quando você tentar adicionar uma migração. Por exemplo, se você não definiu a propriedade Department.InstructorID como uma propriedade que permite valor nulo, o EF configura uma regra de exclusão em cascata para excluir o instrutor quando você exclui o departamento, que não é o que você deseja que aconteça. Se as regras de negócio exigissem que a propriedade `InstructorID` não permitisse valor nulo, você precisaria usar a seguinte instrução de API fluente para desabilitar a exclusão em cascata na relação:
+> Por convenção, o Entity Framework habilita a exclusão em cascata para chaves estrangeiras que não permitem valor nulo e em relações muitos para muitos. Isso pode resultar em regras de exclusão em cascata circular, que causará uma exceção quando você tentar adicionar uma migração. Por exemplo, se você não definiu a propriedade Department.InstructorID como uma propriedade que permite valor nulo, o EF configura uma regra de exclusão em cascata para excluir o departamento quando você exclui o instrutor, que não é o que você deseja que aconteça. Se as regras de negócio exigissem que a propriedade `InstructorID` não permitisse valor nulo, você precisaria usar a seguinte instrução de API fluente para desabilitar a exclusão em cascata na relação:
 >
 > ```csharp
 > modelBuilder.Entity<Department>()
@@ -509,7 +509,7 @@ Clique com o botão direito do mouse na tabela **CourseAssignment** e selecione 
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## <a name="next-steps"></a>Próximas etapas
 
@@ -529,6 +529,7 @@ Neste tutorial, você:
 > * Alterou a cadeia de conexão
 > * Atualizou o banco de dados
 
-Vá para o próximo artigo para aprender a acessar dados relacionados.
+Vá para o próximo tutorial para aprender a acessar dados relacionados.
+
 > [!div class="nextstepaction"]
-> [Acessar dados relacionados](read-related-data.md)
+> [Avançar: Acessar dados relacionados](read-related-data.md)

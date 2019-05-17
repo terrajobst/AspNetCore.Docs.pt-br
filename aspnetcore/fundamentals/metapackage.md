@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/25/2018
 uid: fundamentals/metapackage
-ms.openlocfilehash: d95bafd412969bb8db38499bd2ff01af510d872c
-ms.sourcegitcommit: 54655f1e1abf0b64d19506334d94cfdb0caf55f6
+ms.openlocfilehash: 5d49213e6d694f121d8301c94ba71782b2dc45cf
+ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/26/2018
-ms.locfileid: "50148844"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65086930"
 ---
 # <a name="microsoftaspnetcoreall-metapackage-for-aspnet-core-20"></a>Metapacote Microsoft.AspNetCore.All para ASP.NET Core 2.0
 
@@ -21,7 +21,9 @@ ms.locfileid: "50148844"
 
 Este recurso exige o ASP.NET Core 2.x direcionado ao .NET Core 2.x.
 
-O [Metapacote do Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) para ASP.NET Core inclui:
+[Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) é um metapacote que faz referência a uma estrutura compartilhada. Uma *estrutura compartilhada* é um conjunto de assemblies (arquivos *.dll*) que não estão em pastas do aplicativo. A estrutura compartilhada deve ser instalada no computador para executar o aplicativo. Saiba mais em [A estrutura compartilhada](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
+
+A estrutura compartilhada a que `Microsoft.AspNetCore.All` se refere inclui:
 
 * Todos os pacotes com suporte da equipe do ASP.NET Core.
 * Todos os pacotes com suporte pelo Entity Framework Core.
@@ -29,11 +31,7 @@ O [Metapacote do Microsoft.AspNetCore.All](https://www.nuget.org/packages/Micros
 
 Todos os recursos do ASP.NET Core 2.x e do Entity Framework Core 2.x são incluídos no pacote `Microsoft.AspNetCore.All`. Os modelos de projeto padrão direcionados para ASP.NET Core 2.0 usam este pacote.
 
-O número de versão do metapacote `Microsoft.AspNetCore.All` representa a versão do ASP.NET Core e a versão do Entity Framework Core.
-
-Aplicativos que usam o metapacote `Microsoft.AspNetCore.All` aproveitam automaticamente o novo [Repositório de Tempo de Execução do .NET Core](/dotnet/core/deploying/runtime-store). O Repositório de Tempo de Execução contém todos os ativos de tempo de execução necessários para executar aplicativos ASP.NET Core 2.x. Quando você usa o metapacote `Microsoft.AspNetCore.All`, **nenhum** ativo dos pacotes NuGet do ASP.NET Core referenciados é implantado com o aplicativo &mdash;, porque o Repositório de Tempo de Execução do .NET Core contém esse ativos. Os ativos no Repositório de Tempo de Execução são pré-compilados para melhorar o tempo de inicialização do aplicativo.
-
-Use o processo de filtragem de pacote para remover os pacotes não utilizados. Pacotes filtrados são excluídos na saída do aplicativo publicado.
+O número de versão do metapacote `Microsoft.AspNetCore.All` representa a versão mínima do ASP.NET Core e a versão do Entity Framework Core.
 
 O seguinte arquivo *.csproj* referencia os metapacotes `Microsoft.AspNetCore.All` para o ASP.NET Core:
 
@@ -43,7 +41,7 @@ O seguinte arquivo *.csproj* referencia os metapacotes `Microsoft.AspNetCore.All
 
 ## <a name="implicit-versioning"></a>Controle de versão implícita
 
-No ASP.NET Core 2.1 ou posterior, você pode especificar a referência de pacote `Microsoft.AspNetCore.All` sem uma versão. Quando a versão não for especificada, uma versão implícita será especificada pelo SDK (`Microsoft.NET.Sdk.Web`). Recomendamos que você conte com a versão implícita especificada pelo SDK, e não defina explicitamente o número de versão na referência de pacote. Caso tenha dúvidas sobre essa abordagem, deixe um comentário no GitHub na [Discussion for the Microsoft.AspNetCore.App implicit version](https://github.com/aspnet/Docs/issues/6430) (Discussão sobre a versão implícita do Microsoft.AspNetCore.App).
+No ASP.NET Core 2.1 ou posterior, você pode especificar a referência de pacote `Microsoft.AspNetCore.All` sem uma versão. Quando a versão não for especificada, uma versão implícita será especificada pelo SDK (`Microsoft.NET.Sdk.Web`). Recomendamos que você conte com a versão implícita especificada pelo SDK, e não defina explicitamente o número de versão na referência de pacote. Caso tenha dúvidas sobre essa abordagem, deixe um comentário no GitHub na [Discussion for the Microsoft.AspNetCore.App implicit version](https://github.com/aspnet/AspNetCore.Docs/issues/6430) (Discussão sobre a versão implícita do Microsoft.AspNetCore.App).
 
 A versão implícita é definida como `major.minor.0` para aplicativos portátil. O mecanismo de roll forward da estrutura compartilhada executará o aplicativo na versão compatível mais recente entre as estruturas compartilhadas instaladas. Para garantir que a mesma versão seja usada no desenvolvimento, no teste e na produção, certifique-se de que a mesma versão da estrutura compartilhada seja instalada em todos os ambientes. Para aplicativos autossuficientes, o número de versão implícita é definido como o `major.minor.patch` da estrutura compartilhada agrupada no SDK instalado.
 
@@ -51,7 +49,7 @@ A especificação de um número de versão na referência de pacote `Microsoft.A
 
 O SDK do projeto precisa ser definido como `Microsoft.NET.Sdk.Web` no arquivo de projeto para usar a versão implícita do `Microsoft.AspNetCore.All`. Quando o SDK `Microsoft.NET.Sdk` for especificado (`<Project Sdk="Microsoft.NET.Sdk">` na parte superior do arquivo de projeto), o seguinte aviso será gerado:
 
-*Aviso NU1604: a dependência do projeto Microsoft.AspNetCore.All não contém um limite inferior inclusivo. Inclua um limite inferior na versão de dependência para garantir resultados consistentes de restauração.*
+*Aviso NU1604: a dependência de projeto Microsoft.AspNetCore.All não tem um limite inferior inclusivo. Inclua um limite inferior na versão de dependência para garantir resultados consistentes de restauração.*
 
 Esse é um problema conhecido com o SDK do .NET Core 2.1 e será corrigido no SDK do .NET Core 2.2.
 
@@ -90,6 +88,6 @@ Todas as dependências dos pacotes anteriores que, de outra forma, não são dep
 
 É recomendável migrar para o metapacote `Microsoft.AspNetCore.App` para a versão 2.1 e posteriores. Para continuar usando o metapacote `Microsoft.AspNetCore.All` e certificar-se de que a versão de patch mais recente foi implantada:
 
-* Em computadores de desenvolvimento e em servidores de build: instale o [SDK do .NET Core](https://www.microsoft.com/net/download) mais recente.
-* Nos servidores de implantação: instale o [tempo de execução do .NET Core](https://www.microsoft.com/net/download) mais recente.
+* Em computadores de desenvolvimento e servidores de compilação: instale o [SDK do .NET Core](https://www.microsoft.com/net/download) mais recente.
+* Em servidores de implantação: instale o [tempo de execução do .NET Core](https://www.microsoft.com/net/download) mais recente.
  Seu aplicativo efetuará roll forward para a versão instalada mais recente em uma reinicialização do aplicativo.

@@ -7,11 +7,11 @@ ms.author: tdykstra
 ms.date: 11/13/2018
 uid: mvc/models/model-binding
 ms.openlocfilehash: 1dc9b41328ed78440622acc1865b6f088d394403
-ms.sourcegitcommit: 1d6ab43eed9cb3df6211c22b97bb3a9351ec4419
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51597778"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64883141"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Model binding no ASP.NET Core
 
@@ -85,7 +85,7 @@ Após a conclusão do model binding, a [Validação](validation.md) ocorrerá. O
 
 O MVC contém vários atributos que podem ser usados para direcionar seu comportamento de model binding padrão para outra fonte. Por exemplo, você pode especificar se a associação é obrigatória para uma propriedade ou se ela nunca deve ocorrer usando os atributos `[BindRequired]` ou `[BindNever]`. Como alternativa, você pode substituir a fonte de dados padrão e especificar a fonte de dados do associador de modelos. Veja abaixo uma lista dos atributos de model binding:
 
-* `[BindRequired]`: esse atributo adiciona um erro de estado do modelo se a associação não pode ocorrer.
+* `[BindRequired]`: esse atributo adiciona um erro de estado do modelo se a associação não puder ocorrer.
 
 * `[BindNever]`: instrui o associador de modelos a nunca associar a esse parâmetro.
 

@@ -5,14 +5,14 @@ description: Saiba como hospedar e implantar um aplicativo Blazor do servidor us
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 04/26/2019
 uid: host-and-deploy/blazor/server-side
-ms.openlocfilehash: 940020ee44d72d50395aad64bc924413c1bbecfb
-ms.sourcegitcommit: 017b673b3c700d2976b77201d0ac30172e2abc87
+ms.openlocfilehash: 8e44be09a4cceba2509f3e86abf3ce5fd2d077bd
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2019
-ms.locfileid: "59614618"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64887761"
 ---
 # <a name="host-and-deploy-blazor-server-side"></a>Hospedar e implantar o Blazor no servidor
 
@@ -20,13 +20,13 @@ Por [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.tim
 
 ## <a name="host-configuration-values"></a>Valores de configuração do host
 
-Os aplicativos do servidor que usam o [modelo de hospedagem do servidor](xref:blazor/hosting-models#server-side-hosting-model) podem aceitar [valores de configuração do Host Genérico](xref:fundamentals/host/generic-host#host-configuration).
+Os aplicativos do servidor que usam o [modelo de hospedagem do servidor](xref:blazor/hosting-models#server-side) podem aceitar [valores de configuração do Host Genérico](xref:fundamentals/host/generic-host#host-configuration).
 
 ## <a name="deployment"></a>Implantação
 
-Com o [modelo de hospedagem do servidor](xref:blazor/hosting-models#server-side-hosting-model), o Blazor é executado no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário, a manipulação de eventos e as chamadas de JavaScript são realizadas por uma conexão [SignalR](xref:signalr/introduction).
+Com o [modelo de hospedagem do servidor](xref:blazor/hosting-models#server-side), o Blazor é executado no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário, a manipulação de eventos e as chamadas de JavaScript são realizadas por uma conexão [SignalR](xref:signalr/introduction).
 
-O aplicativo é incluído com o aplicativo do ASP.NET Core no resultado publicado e os dois aplicativos são implantados juntos. É necessário um servidor Web capaz de hospedar um aplicativo do ASP.NET Core. Para uma implantação do lado do servidor, o Visual Studio inclui o modelo de projeto **Componentes do Razor** (modelo `razorcomponents` ao usar o comando [dotnet new](/dotnet/core/tools/dotnet-new)).
+É necessário um servidor Web capaz de hospedar um aplicativo ASP.NET Core. O Visual Studio inclui o modelo de projeto **Blazor (lado do servidor)** (modelo `blazorserverside` ao usar o comando [dotnet new](/dotnet/core/tools/dotnet-new)).
 
 <!--
 
@@ -38,6 +38,9 @@ O aplicativo é incluído com o aplicativo do ASP.NET Core no resultado publicad
 
 -->
 
-Para obter mais informações sobre a implantação e a hospedagem de aplicativo do ASP.NET Core, confira <xref:host-and-deploy/index>.
+## <a name="additional-resources"></a>Recursos adicionais
 
-Confira como implantar o Serviço de Aplicativo do Azure em <xref:tutorials/publish-to-azure-webapp-using-vs>.
+* <xref:signalr/introduction>
+* <xref:host-and-deploy/index>
+* <xref:tutorials/publish-to-azure-webapp-using-vs>
+* [Implantar a versão de visualização do ASP.NET Core ao Serviço de Aplicativo do Azure](xref:host-and-deploy/azure-apps/index#deploy-aspnet-core-preview-release-to-azure-app-service)

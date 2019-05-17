@@ -92,7 +92,11 @@
     - name: Aplicativos de chamada de procedimento remoto
       items:
         - name: Introdução ao serviço de gRPC no ASP.NET Core
+          uid: tutorials/grpc/index
+        - name: Criar um Serviço Greeter de gRPC do ASP.NET Core
           uid: tutorials/grpc/grpc-start
+        - name: Criar um cliente gRPC do .NET Core
+          uid: tutorials/grpc/grpc-client
     - name: Acesso aos dados
       items:
         - name: EF Core com Razor Pages
@@ -230,8 +234,9 @@
         - name: Visão geral
           uid: mvc/overview
         - name: Tutorial
-          uid: tutorials/first-mvc-app/index
           items:
+            - name: Visão geral
+              uid: tutorials/first-mvc-app/index
             - name: Introdução
               uid: tutorials/first-mvc-app/start-mvc
             - name: Adicionar um controlador
@@ -324,8 +329,6 @@
               uid: client-side/libman/libman-cli
             - name: Visual Studio
               uid: client-side/libman/libman-vs
-        - name: Gulp
-          uid: client-side/using-gulp
         - name: Grunt
           uid: client-side/using-grunt
         - name: Bower
@@ -338,13 +341,10 @@
       uid: fundamentals/app-state
     - name: Layout
       uid: mvc/views/layout
-    - name: Model binding
-      uid: mvc/models/model-binding
-    - name: Validação de modelo
-      uid: mvc/models/validation
     - name: Sintaxe Razor
       uid: mvc/views/razor
     - name: Auxiliares de Marca
+      uid: mvc/views/tag-helpers/builtin-th/Index
       items:
         - name: Visão geral
           uid: mvc/views/tag-helpers/intro
@@ -396,10 +396,6 @@
           uid: mvc/controllers/areas
         - name: Partes do aplicativo
           uid: mvc/extensibility/app-parts
-        - name: Model binding personalizado
-          uid: mvc/advanced/custom-model-binding
-        - name: Versão de compatibilidade
-          uid: mvc/compatibility-version
 - name: Aplicativos API Web
   items:
     - name: Visão geral
@@ -1000,6 +996,14 @@
       uid: fundamentals/troubleshoot-aspnet-core-localization
 - name: Avançado
   items:
+    - name: Model binding
+      uid: mvc/models/model-binding
+    - name: Model binding personalizado
+      uid: mvc/advanced/custom-model-binding
+    - name: Validação de modelo
+      uid: mvc/models/validation
+    - name: Versão de compatibilidade
+      uid: mvc/compatibility-version
     - name: Gravar middleware
       uid: fundamentals/middleware/write
     - name: Operações de solicitação e de resposta
@@ -1076,4 +1080,4 @@
 - name: Reference API
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribuir
-  href: 'https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md'
+  href: 'https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md'

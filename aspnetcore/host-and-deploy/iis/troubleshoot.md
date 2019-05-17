@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/14/2019
 uid: host-and-deploy/iis/troubleshoot
-ms.openlocfilehash: 1fa90737aadebe3f714c702fbce649629d79dcd4
-ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
+ms.openlocfilehash: f89eac3ae6fc704bc8bf38a9707fc3c6c3568e91
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58264547"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64884341"
 ---
 # <a name="troubleshoot-aspnet-core-on-iis"></a>Solucionar problemas do ASP.NET Core no IIS
 
@@ -49,7 +49,7 @@ O processo de trabalho falha. O aplicativo não foi iniciado.
 
 O Módulo do ASP.NET Core tenta iniciar o processo dotnet de back-end, mas falha ao iniciar. A causa de uma falha de inicialização do processo geralmente pode ser determinada com base em entradas no [Log de Eventos do Aplicativo](#application-event-log) e no [log de stdout do Módulo do ASP.NET Core](#aspnet-core-module-stdout-log).
 
-Uma condição de falha comum é o aplicativo configurado incorretamente, direcionado a uma versão da estrutura compartilhada do ASP.NET Core que não está presente. Verifique quais versões da estrutura compartilhada do ASP.NET Core estão instaladas no computador de destino.
+Uma condição de falha comum é o aplicativo configurado incorretamente, direcionado a uma versão da estrutura compartilhada do ASP.NET Core que não está presente. Verifique quais versões da estrutura compartilhada do ASP.NET Core estão instaladas no computador de destino. A *estrutura compartilhada* é o conjunto de assemblies (arquivos *. dll*) instalado no computador e referenciado por um metapacote como `Microsoft.AspNetCore.App`. A referência do metapacote pode especificar a versão mínima necessária. Saiba mais em [A estrutura compartilhada](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
 A página do erro *502.5 – Falha no Processo* é retornada quando um erro de configuração de hospedagem ou do aplicativo faz com que o processo de trabalho falhe:
 
@@ -241,7 +241,7 @@ Um *despejo de memória* é um instantâneo da memória do sistema e pode ajudar
 Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)](/windows/desktop/wer/windows-error-reporting):
 
 1. Crie uma pasta para armazenar os arquivos de despejo de memória em `c:\dumps`. O pool de aplicativos deve ter acesso para gravação à pasta.
-1. Execute o [script EnableDumps do PowerShell](https://github.com/aspnet/Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/EnableDumps.ps1):
+1. Execute o [script EnableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/EnableDumps.ps1):
    * Se o aplicativo usa o [modelo de hospedagem em processo](xref:fundamentals/servers/index#in-process-hosting-model), execute o script para *w3wp.exe*:
 
      ```console
@@ -255,7 +255,7 @@ Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)
      ```
 
 1. Execute o aplicativo sob as condições que causam a falha.
-1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/aspnet/Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/DisableDumps.ps1):
+1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/DisableDumps.ps1):
    * Se o aplicativo usa o [modelo de hospedagem em processo](xref:fundamentals/servers/index#in-process-hosting-model), execute o script para *w3wp.exe*:
 
      ```console

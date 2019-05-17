@@ -5,18 +5,18 @@ description: Saiba como os componentes de exibição são usados no ASP.NET Core
 ms.author: riande
 ms.date: 1/30/2019
 uid: mvc/views/view-components
-ms.openlocfilehash: b18473c6a76c4dc9030f0a032db1aff733f5acb7
-ms.sourcegitcommit: 57792e5f594db1574742588017c708350958bdf0
+ms.openlocfilehash: 2bcf6411933b884c2f96d926827079dfbc25ca74
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/20/2019
-ms.locfileid: "58264779"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64891271"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componentes de exibição no ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="view-components"></a>Componentes da exibição
 
@@ -144,7 +144,7 @@ Neste exemplo, o componente de exibição é chamado diretamente no controlador:
 
 ## <a name="walkthrough-creating-a-simple-view-component"></a>Passo a passo: Como criar um componente de exibição simples
 
-[Baixe](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample), compile e teste o código inicial. É um projeto simples com um controlador `ToDo` que exibe uma lista de itens *ToDo*.
+[Baixe](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample), compile e teste o código inicial. É um projeto simples com um controlador `ToDo` que exibe uma lista de itens *ToDo*.
 
 ![Lista de ToDos](view-components/_static/2dos.png)
 
@@ -176,7 +176,10 @@ Observações sobre o código:
 
 * Crie a pasta *Views/Shared/Components/PriorityList*. Esse nome de pasta deve corresponder ao nome da classe do componente de exibição ou ao nome da classe menos o sufixo (se seguimos a convenção e usamos o sufixo *ViewComponent* no nome da classe). Se você usou o atributo `ViewComponent`, o nome da classe precisa corresponder à designação de atributo.
 
-* Crie uma exibição do Razor *Views/Shared/Components/PriorityList/Default.cshtml*: [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
+* Crie uma exibição *Views/Shared/Components/PriorityList/Default.cshtml* do Razor:
+
+
+  [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
 
    A exibição do Razor usa uma lista de `TodoItem` e exibe-os. Se o método `InvokeAsync` do componente de exibição não passar o nome da exibição (como em nossa amostra), *Default* será usado como o nome da exibição, por convenção. Mais adiante no tutorial, mostrarei como passar o nome da exibição. Para substituir o estilo padrão de um controlador específico, adicione uma exibição à pasta de exibição específica do controlador (por exemplo, *Views/ToDo/Components/PriorityList/Default.cshtml)*.
 

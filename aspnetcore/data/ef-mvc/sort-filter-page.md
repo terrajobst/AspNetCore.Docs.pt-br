@@ -6,12 +6,12 @@ ms.author: tdykstra
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/sort-filter-page
-ms.openlocfilehash: dff5a5b1ba3c8ed07ccc8d134f8cfeb25b9f6689
-ms.sourcegitcommit: 3e9e1f6d572947e15347e818f769e27dea56b648
+ms.openlocfilehash: 921e27bf56587813f835357c9090c91a155c087b
+ms.sourcegitcommit: b508b115107e0f8d7f62b25cfcc8ad45e1373459
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/30/2019
-ms.locfileid: "58751045"
+ms.lasthandoff: 05/07/2019
+ms.locfileid: "65212554"
 ---
 # <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Tutorial: Adicionar classificação, filtragem e paginação - ASP.NET Core MVC com EF Core
 
@@ -211,10 +211,8 @@ Clique nos links de paginação em ordens de classificação diferentes para ver
 Para a página **Sobre** do site da Contoso University, você exibirá quantos alunos se registraram para cada data de registro. Isso exige agrupamento e cálculos simples nos grupos. Para fazer isso, você fará o seguinte:
 
 * Criar uma classe de modelo de exibição para os dados que você precisa passar para a exibição.
-
-* Modificar o método About no controlador Home.
-
-* Modificar a exibição Sobre.
+* Criar o método Sobre no controlador Início.
+* Criar a exibição Sobre.
 
 ### <a name="create-the-view-model"></a>Criar o modelo de exibição
 
@@ -239,10 +237,8 @@ Adicione um método `About` com o seguinte código:
 [!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_UseDbSet)]
 
 A instrução LINQ agrupa as entidades de alunos por data de registro, calcula o número de entidades em cada grupo e armazena os resultados em uma coleção de objetos de modelo de exibição `EnrollmentDateGroup`.
-> [!NOTE]
-> Na versão 1.0 do Entity Framework Core, todo o conjunto de resultados é retornado para o cliente e o agrupamento é feito no cliente. Em alguns cenários, isso pode criar problemas de desempenho. Teste o desempenho com volumes de dados de produção e, se necessário, use o SQL bruto para fazer o agrupamento no servidor. Para obter informações sobre como usar o SQL bruto, veja [o último tutorial desta série](advanced.md).
 
-### <a name="modify-the-about-view"></a>Modificar a exibição Sobre
+### <a name="create-the-about-view"></a>Criar a exibição Sobre
 
 Adicione um arquivo *Views/Home/About.cshtml* com o seguinte código:
 
@@ -252,7 +248,7 @@ Execute o aplicativo e acesse a página Sobre. A contagem de alunos para cada da
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## <a name="next-steps"></a>Próximas etapas
 

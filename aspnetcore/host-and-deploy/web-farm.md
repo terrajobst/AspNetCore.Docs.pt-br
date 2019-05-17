@@ -7,11 +7,11 @@ ms.custom: mvc
 ms.date: 11/26/2018
 uid: host-and-deploy/web-farm
 ms.openlocfilehash: 4873665e6174a6acf885e1ebb41fb005d646bd1f
-ms.sourcegitcommit: e9b99854b0a8021dafabee0db5e1338067f250a9
+ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52450665"
+ms.lasthandoff: 04/27/2019
+ms.locfileid: "64884151"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Hospedar o ASP.NET Core em um web farm
 
@@ -61,8 +61,8 @@ Os cenários a seguir não exigem configuração adicional, mas dependem de tecn
 | -------- | ------------------- |
 | Autenticação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/authentication/cookie> e <xref:security/cookie-sharing>. |
 | Identidade | Configuração e autenticação do banco de dados.<br><br>Para obter mais informações, consulte <xref:security/authentication/identity>. |
-| Session | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) e cache (confira <xref:performance/caching/distributed>).<br><br>Para saber mais, confira [Estado de sessão e aplicativo: estado de sessão](xref:fundamentals/app-state#session-state). |
-| TempData | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) ou sessão (confira [Estado de sessão e aplicativo: estado de sessão](xref:fundamentals/app-state#session-state)).<br><br>Para saber mais, consulte [Estado de sessão e aplicativo: TempData](xref:fundamentals/app-state#tempdata). |
+| Session | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) e cache (confira <xref:performance/caching/distributed>).<br><br>Saiba mais em [Estado de sessão e de aplicativo: Estado de sessão](xref:fundamentals/app-state#session-state). |
+| TempData | Proteção de Dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) ou Sessão (confira [Estado de sessão e de aplicativo: Estado de sessão](xref:fundamentals/app-state#session-state)).<br><br>Saiba mais em [Estado de sessão e de aplicativo: TempData](xref:fundamentals/app-state#tempdata). |
 | Antifalsificação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/anti-request-forgery>. |
 
 ## <a name="troubleshoot"></a>Solução de problemas

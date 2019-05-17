@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba mais sobre o host da Web no ASP.NET Core, que é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 05/11/2019
 uid: fundamentals/host/web-host
-ms.openlocfilehash: b391b5e514e750f64f30d33cf4eb91e489242eba
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 48f3b664d901bdfb27cdf9e798fa60c0587d1def
+ms.sourcegitcommit: 6afe57fb8d9055f88fedb92b16470398c4b9b24a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64888971"
+ms.lasthandoff: 05/14/2019
+ms.locfileid: "65610280"
 ---
 # <a name="aspnet-core-web-host"></a>Host da Web do ASP.NET Core
 
@@ -39,7 +39,9 @@ Este artigo aborda o Host Web do ASP.NET Core ([IWebHostBuilder](/dotnet/api/mic
 
 ## <a name="set-up-a-host"></a>Configurar um host
 
-Crie um host usando uma instância do [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder). Normalmente, isso é feito no ponto de entrada do aplicativo, o método `Main`. Em modelos de projeto, `Main` está localizado em *Program.cs*. Um *Program.cs* típico chama [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) para começar a configurar um host:
+Crie um host usando uma instância do [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder). Normalmente, isso é feito no ponto de entrada do aplicativo, o método `Main`. O método construtor `CreateWebHostBuilder` tem um nome especial que o identifica para componentes externos, como [Entity Framework](/ef/core/).
+
+Em modelos de projeto, `Main` está localizado em *Program.cs*. Um aplicativo típico chama [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) para começar a configurar um host:
 
 ```csharp
 public class Program
@@ -251,7 +253,7 @@ Defina a porta de redirecionamento HTTPS. Uso em [aplicação de HTTPS](xref:sec
 
 **Chave**: https_port **Tipo**: *cadeia de caracteres*
 **Padrão**: um valor padrão não está definido.
-**Definir usando**: `UseSetting`
+**Definido usando**: `UseSetting`
 **Variável de ambiente**: `ASPNETCORE_HTTPS_PORT`
 
 ```csharp

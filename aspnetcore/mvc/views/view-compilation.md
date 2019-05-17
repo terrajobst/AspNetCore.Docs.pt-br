@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/02/2019
 uid: mvc/views/view-compilation
-ms.openlocfilehash: 11195f00e922f6817a0fa0988fad9d8082dea30a
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: eba9de26e1af8c4df06b846748d8aa9380fc1862
+ms.sourcegitcommit: a3926eae3f687013027a2828830c12a89add701f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64883691"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "65450873"
 ---
 # <a name="razor-file-compilation-in-aspnet-core"></a>Compilação de arquivo do Razor no ASP.NET Core
 
@@ -133,9 +133,9 @@ A compilação de tempo de execução é habilitada usando o pacote `Microsoft.A
       .AddRazorRuntimeCompilation()
   ```
 
-Para que a compilação de tempo de execução funcione quando implantada, os aplicativos além disso precisam modificar seus arquivos de projeto para definir o `PreserveCompilationReferences` para `true`.
+Para que a compilação de tempo de execução funcione quando implantada, os aplicativos devem modificar seus arquivos de projeto para definir o `PreserveCompilationReferences` como `true`:
 
-[!code-xml[](view-compilation/sample/RuntimeCompilation.csproj?highlight=3)]
+[!code-xml[](view-compilation/sample/RuntimeCompilation.csproj?highlight=4)]
 
 ::: moniker-end
 

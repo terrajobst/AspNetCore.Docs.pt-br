@@ -5,12 +5,12 @@ description: Saiba como o ASP.NET Core permite a injeção de dependência em ex
 ms.author: riande
 ms.date: 10/14/2016
 uid: mvc/views/dependency-injection
-ms.openlocfilehash: 940e237fd73a864d9fd59f5447fe486f93648f62
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: b411b164bfea81f82c5c9fc1052e0ecfe65f0bc2
+ms.sourcegitcommit: 3376f224b47a89acf329b2d2f9260046a372f924
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087463"
+ms.lasthandoff: 05/10/2019
+ms.locfileid: "65517045"
 ---
 # <a name="dependency-injection-into-views-in-aspnet-core"></a>Injeção de dependência em exibições no ASP.NET Core
 
@@ -20,13 +20,38 @@ O ASP.NET Core dá suporte à [injeção de dependência](xref:fundamentals/depe
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/dependency-injection/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="a-simple-example"></a>Um exemplo simples
+## <a name="configuration-injection"></a>Injeção de configuração
 
-Injete um serviço em uma exibição usando a diretiva `@inject`. Considere `@inject` como a adição de uma propriedade à exibição e o preenchimento da propriedade usando a DI.
+Os valores *appsettings.json* podem ser injetados diretamente em uma exibição.
+
+Exemplo de um arquivo *appsettings.json*:
+
+```json
+{
+   "root": {
+      "parent": {
+         "child": "myvalue"
+      }
+   }
+}
+```
 
 A sintaxe de `@inject`: `@inject <type> <name>`
 
-Um exemplo de `@inject` em ação:
+Um exemplo do uso de `@inject`:
+
+```csharp
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+   string myValue = Configuration["root:parent:child"];
+   ...
+}
+```
+
+## <a name="service-injection"></a>Injeção de serviço
+
+Um serviço pode ser injetado em uma exibição usando a diretiva `@inject`. Você pode observar que o `@inject` adiciona uma propriedade à exibição e preenche a propriedade usando a DI.
 
 [!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/ToDo/Index.cshtml?highlight=4,5,15,16,17)]
 
