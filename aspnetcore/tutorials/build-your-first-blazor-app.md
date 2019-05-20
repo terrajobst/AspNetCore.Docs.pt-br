@@ -5,14 +5,14 @@ description: Crie um aplicativo Blazor passo a passo.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/18/2019
+ms.date: 05/14/2019
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: d235fec4e128ad8622a06d301eeac15c4862c159
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: c1b142ebdbd85eb10ddf8c8b70edd9782732a4f1
+ms.sourcegitcommit: 3ee6ee0051c3d2c8d47a58cb17eef1a84a4c46a0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087757"
+ms.lasthandoff: 05/14/2019
+ms.locfileid: "65621096"
 ---
 # <a name="build-your-first-blazor-app"></a>Como criar seu primeiro aplicativo Blazor
 
@@ -151,6 +151,14 @@ Adicione um novo componente ao aplicativo que implemente uma lista de tarefas pe
    ```
 
 1. Recompile e execute o aplicativo. Visite a nova página de Tarefas Pendentes para confirmar se o link para o componente Todo está funcionando.
+
+1. Se você estiver compilando um aplicativo Blazor do lado do servidor, adicione o namespace do aplicativo ao arquivo *\_Imports.razor*. A seguinte instrução `@using` supõe que o namespace do aplicativo seja `WebApplication`:
+
+   ```cshtml
+   @using WebApplication
+   ```
+   
+   Os aplicativos Blazor do lado do cliente incluem o namespace do aplicativo por padrão no arquivo *\_Imports.razor*.
 
 1. Adicione um arquivo *TodoItem.cs* à raiz do projeto para manter uma classe que representará um item de tarefa pendente. Use o seguinte código C# para a classe `TodoItem`:
 

@@ -3,14 +3,15 @@ title: Componentes de exibição no ASP.NET Core
 author: rick-anderson
 description: Saiba como os componentes de exibição são usados no ASP.NET Core e como adicioná-los aos aplicativos.
 ms.author: riande
-ms.date: 1/30/2019
+ms.custom: mvc
+ms.date: 5/14/2019
 uid: mvc/views/view-components
-ms.openlocfilehash: 2bcf6411933b884c2f96d926827079dfbc25ca74
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 17fd7aa977868d522df9f27e0c23d07b016bfb7c
+ms.sourcegitcommit: 3ee6ee0051c3d2c8d47a58cb17eef1a84a4c46a0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64891271"
+ms.lasthandoff: 05/14/2019
+ms.locfileid: "65621076"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componentes de exibição no ASP.NET Core
 
@@ -40,6 +41,8 @@ Os componentes de exibição destinam-se a qualquer momento em que há uma lógi
 * Um painel de logon que é renderizado em cada página e mostra os links para logoff ou logon, dependendo do estado de logon do usuário
 
 Um componente de exibição consiste em duas partes: a classe (normalmente derivada de [ViewComponent](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponent)) e o resultado que ele retorna (normalmente, uma exibição). Assim como os controladores, um componente de exibição pode ser um POCO, mas a maioria dos desenvolvedores desejará aproveitar os métodos e as propriedades disponíveis com a derivação de `ViewComponent`.
+
+Ao considerar se os componentes de exibição atendem às especificações do aplicativo, reflita sobre o uso do Razor Components. O Razor Components também combina a marcação com o código C# para produzir unidades de interface do usuário reutilizáveis. O Razor Components foi projetado para a produtividade do desenvolvedor ao fornecer a composição e a lógica da interface do usuário do lado do cliente. Para obter mais informações, consulte <xref:blazor/components>.
 
 ## <a name="creating-a-view-component"></a>Criando um componente de exibição
 

@@ -3,14 +3,14 @@ title: Áreas no ASP.NET Core
 author: rick-anderson
 description: Saiba por que as áreas são um recurso do ASP.NET MVC usado para organizar funcionalidades relacionadas em um grupo como um namespace (para roteamento) e uma estrutura de pasta (para exibições) separados.
 ms.author: riande
-ms.date: 05/06/2019
+ms.date: 05/10/2019
 uid: mvc/controllers/areas
-ms.openlocfilehash: 35c7682861f7392b0bcda7326e4d7f5ccc356bda
-ms.sourcegitcommit: b508b115107e0f8d7f62b25cfcc8ad45e1373459
+ms.openlocfilehash: f3a75bc307a206e43241b421f448b09011868d08
+ms.sourcegitcommit: ffe3ed7921ec6c7c70abaac1d10703ec9a43374c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/07/2019
-ms.locfileid: "65212591"
+ms.lasthandoff: 05/11/2019
+ms.locfileid: "65535966"
 ---
 # <a name="areas-in-aspnet-core"></a>Áreas no ASP.NET Core
 
@@ -169,9 +169,9 @@ Para o código anterior:
 
 ### <a name="import-namespace-and-tag-helpers-with-viewimports-file"></a>Importar o namespace e os Auxiliares de marca com o arquivo _ViewImports
 
-Um arquivo *_ViewImports* pode ser adicionado a cada pasta *Páginas* da área para importar o namespace e os Auxiliares de marcação para cada Página do Razor na pasta.
+Um arquivo *_ViewImports.cshtml* pode ser adicionado a cada pasta *Páginas* da área para importar o namespace e os Auxiliares de Marcação para cada Razor Page na pasta.
 
-Considere a área *Serviços* do código de exemplo, que não contém um arquivo *_ViewImports*. A marcação a seguir mostra a Página do Razor */Services/Manage/About*:
+Considere a área *Serviços* do código de exemplo, que não contém um arquivo *_ViewImports.cshtml*. A marcação a seguir mostra a Página do Razor */Services/Manage/About*:
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
@@ -180,7 +180,7 @@ Na marcação anterior:
 * O nome de domínio totalmente qualificado deve ser usado para especificar o modelo (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
 * Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) são habilitados por `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
-No download de exemplo, a área Produtos contém o seguinte arquivo *_ViewImports*:
+No download de exemplo, a área Produtos contém o seguinte arquivo *_ViewImports.cshtml*:
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
 
@@ -198,4 +198,4 @@ Para compartilhar um layout comum para o aplicativo inteiro, mova o *_ViewStart.
 
 ### <a name="publishing-areas"></a>Publicando áreas
 
-Todos os arquivos `*.cshtml` e `wwwroot/**` são publicados na saída quando `<Project Sdk="Microsoft.NET.Sdk.Web">` é incluído no arquivo .csproj*.
+Todos os arquivos *.cshtml e os arquivos do diretório *wwwroot* são publicados em uma saída quando `<Project Sdk="Microsoft.NET.Sdk.Web">` são incluídos no arquivo *.csproj.
