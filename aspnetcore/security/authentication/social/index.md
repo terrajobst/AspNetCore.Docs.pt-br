@@ -4,14 +4,14 @@ author: rick-anderson
 description: Este tutorial demonstra como criar um aplicativo do ASP.NET Core 2.x usando o OAuth 2.0 com provedores de autenticação externa.
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/19/2019
+ms.date: 05/10/2019
 uid: security/authentication/social/index
-ms.openlocfilehash: e2d68ac93bdcfa2fc015e8447ea38626787cdb02
-ms.sourcegitcommit: a3926eae3f687013027a2828830c12a89add701f
+ms.openlocfilehash: 8dac8a8a2276388414b6bb1211e970617b001637
+ms.sourcegitcommit: ccbb84ae307a5bc527441d3d509c20b5c1edde05
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "65451048"
+ms.lasthandoff: 05/19/2019
+ms.locfileid: "65874817"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 
@@ -33,10 +33,12 @@ Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as 
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**.
-* Crie um novo Aplicativo Web ASP.NET Core.
-* Selecione **ASP.NET Core 2.2** na lista suspensa e, em seguida, selecione **Aplicativo Web**.
-* Selecione **Alterar Autenticação** e defina a autenticação para **Contas de Usuário Individuais**.
+* Crie um novo projeto.
+* Selecione **Aplicativo Web ASP.NET Core** e **Próximo**.
+* Forneça um **Nome do projeto** e confirme ou altere a **localização**. Selecione **Criar**.
+* Selecione **ASP.NET Core 2.2** na lista suspensa. Selecione **aplicativo Web** na lista de modelos.
+* Selecione **Autenticação** selecione **Mudar** e configure a autenticação para **Contas de Usuário Individuais**. Selecione **OK**.
+* Na janela **Criar novo aplicativo Web ASP.NET Core**, selecione **Criar**.
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -56,27 +58,14 @@ Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as 
   * `-au Individual` cria o código para autenticação individual.
   * O comando `code` abre a pasta *WebApp1* em uma nova instância do Visual Studio Code.
 
-  Uma caixa de diálogo é exibida com a mensagem **Os ativos necessários para build e depuração estão ausentes no 'WebApp1'. Deseja adicioná-los?**
-
-* Selecione **Sim**
+* Uma caixa de diálogo é exibida com a mensagem **Os ativos necessários para build e depuração estão ausentes no 'WebApp1'. Deseja adicioná-los?** Selecione **Sim** na barra superior.
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-Em um terminal, execute o seguinte comando:
-
-<!-- TODO: update these instruction once mac support 2.2 projects -->
-
-```console
-dotnet new webapp -o WebApp1 -au Individual
-```
-
-Os comandos anteriores usam a [CLI do .NET Core](/dotnet/core/tools/dotnet) para criar um projeto do Razor Pages.
-
-## <a name="open-the-project"></a>Abrir o projeto
-
-No Visual Studio, selecione **Arquivo > Abrir** e, em seguida, selecione o arquivo *WebApp1.csproj*.
-
-<!-- End of VS tabs -->
+* Selecione **Arquivo** > **Nova Solução**.
+* Selecione o  > **aplicativo** **.NET Core** na barra lateral. Selecione o modelo **Aplicativo Web**. Selecione **Avançar**.
+* Defina a **estrutura de destino**, na lista suspensa busque o **.NET Core 2.2**. Selecione **Avançar**.
+* Forneça um **Nome de Projeto**. Confirme ou altere a **localização**. Selecione **Criar**.
 
 ---
 
