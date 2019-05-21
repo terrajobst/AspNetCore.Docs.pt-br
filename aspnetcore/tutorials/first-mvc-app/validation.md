@@ -5,12 +5,12 @@ description: Como adicionar uma validação a um aplicativo ASP.NET Core.
 ms.author: riande
 ms.date: 04/13/2017
 uid: tutorials/first-mvc-app/validation
-ms.openlocfilehash: 49db8d7c1d3e54f416c66685c19b3a2e3b14251c
-ms.sourcegitcommit: 191d21c1e37b56f0df0187e795d9a56388bbf4c7
+ms.openlocfilehash: 6c59d0188f67872c7dd5599967551d7d390bfdcf
+ms.sourcegitcommit: ccbb84ae307a5bc527441d3d509c20b5c1edde05
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/08/2019
-ms.locfileid: "57665438"
+ms.lasthandoff: 05/19/2019
+ms.locfileid: "65875017"
 ---
 # <a name="add-validation-to-an-aspnet-core-mvc-app"></a>Adicionar a validação a um aplicativo ASP.NET Core MVC
 
@@ -27,25 +27,9 @@ Um dos princípios de design do MVC é o [DRY](https://wikipedia.org/wiki/Don%27
 
 O suporte de validação fornecido pelo MVC e pelo Entity Framework Core Code First é um bom exemplo do princípio DRY em ação. Especifique as regras de validação de forma declarativa em um único lugar (na classe de modelo) e as regras são impostas em qualquer lugar no aplicativo.
 
-## <a name="adding-validation-rules-to-the-movie-model"></a>Adicionando regras de validação ao modelo de filme
+[!INCLUDE[](~/includes/RP-MVC/validation.md)]
 
-Abra o arquivo *Movie.cs*. DataAnnotations fornece um conjunto interno de atributos de validação que são aplicados de forma declarativa a qualquer classe ou propriedade. (Também contém atributos de formatação como `DataType`, que ajudam com a formatação e não fornecem nenhuma validação.)
-
-Atualize a classe `Movie` para aproveitar os atributos de validação `Required`, `StringLength`, `RegularExpression` e `Range` internos.
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie22/Models/MovieDateRatingDA.cs?name=snippet1)]
-
-Os atributos de validação especificam o comportamento que você deseja impor nas propriedades de modelo às quais eles são aplicados:
-
-* Os atributos `Required` e `MinimumLength` indicam que uma propriedade deve ter um valor; porém, nada impede que um usuário insira um espaço em branco para atender a essa validação. 
-* O atributo `RegularExpression` é usado para limitar quais caracteres podem ser inseridos. No código acima, `Genre` e `Rating` devem usar apenas letras (primeira letra maiúscula, espaço em branco, números e caracteres especiais não são permitidos).
-* O atributo `Range` restringe um valor a um intervalo especificado. 
-* O atributo `StringLength` permite definir o tamanho máximo de uma propriedade de cadeia de caracteres e, opcionalmente, seu tamanho mínimo. 
-* Os tipos de valor (como `decimal`, `int`, `float`, `DateTime`) são inerentemente necessários e não precisam do atributo `[Required]`.
-
-Ter as regras de validação automaticamente impostas pelo ASP.NET Core ajuda a tornar seu aplicativo mais robusto. Também garante que você não se esqueça de validar algo e inadvertidamente permita dados incorretos no banco de dados.
-
-## <a name="validation-error-ui-in-mvc"></a>Interface do usuário do erro de validação no MVC
+## <a name="validation-error-ui"></a>Interface do usuário de erro de validação
 
 Execute o aplicativo e navegue para o controlador Movies.
 

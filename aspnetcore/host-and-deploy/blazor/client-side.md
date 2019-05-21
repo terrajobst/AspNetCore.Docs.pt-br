@@ -5,24 +5,22 @@ description: Veja como hospedar e implantar um aplicativo do Blazor usando o ASP
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 05/13/2019
 uid: host-and-deploy/blazor/client-side
-ms.openlocfilehash: 01a612029f415f583908c3bf2adc2e6d35167acb
-ms.sourcegitcommit: 017b673b3c700d2976b77201d0ac30172e2abc87
+ms.openlocfilehash: ea8ece266809913e32ac212bc55cb3c2499c234f
+ms.sourcegitcommit: ccbb84ae307a5bc527441d3d509c20b5c1edde05
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/16/2019
-ms.locfileid: "59614619"
+ms.lasthandoff: 05/19/2019
+ms.locfileid: "65874968"
 ---
 # <a name="host-and-deploy-blazor-client-side"></a>Hospedar e implantar o Blazor no lado do cliente
 
 Por [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com) e [Daniel Roth](https://github.com/danroth27)
 
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
 ## <a name="host-configuration-values"></a>Valores de configuração do host
 
-Os aplicativos do Blazor que usam o [modelo de hospedagem do lado do cliente](xref:blazor/hosting-models#client-side-hosting-model) podem aceitar os seguintes valores de configuração do host como argumentos de linha de comando no tempo de execução no ambiente de desenvolvimento.
+Os aplicativos do Blazor que usam o [modelo de hospedagem do lado do cliente](xref:blazor/hosting-models#client-side) podem aceitar os seguintes valores de configuração do host como argumentos de linha de comando no tempo de execução no ambiente de desenvolvimento.
 
 ### <a name="content-root"></a>Raiz do conteúdo
 
@@ -95,7 +93,7 @@ O argumento `--urls` define os endereços IP ou os endereços de host com portas
 
 ## <a name="deployment"></a>Implantação
 
-Com o [modelo de hospedagem do lado do cliente](xref:blazor/hosting-models#client-side-hosting-model):
+Com o [modelo de hospedagem do lado do cliente](xref:blazor/hosting-models#client-side):
 
 * O aplicativo do Blazor, suas dependências e o tempo de execução do .NET são baixados no navegador.
 * O aplicativo é executado diretamente no thread da interface do usuário do navegador. Há suporte para todas as estratégias a seguir:
@@ -110,15 +108,15 @@ O Blazor executa a vinculação de IL (linguagem intermediária) em cada build p
 
 O roteamento de solicitações para componentes de página em um aplicativo do lado do cliente não é tão simples quanto o roteamento de solicitações para um aplicativo hospedado do lado do servidor. Considere um aplicativo do lado do cliente com duas páginas:
 
-* **_Main.cshtml_** &ndash; É carregado na raiz do aplicativo e contém um link para a página Sobre (`href="About"`).
-* **_About.cshtml_** &ndash; Página Sobre.
+* **_Main.razor** &ndash; É carregado na raiz do aplicativo e contém um link para a página Sobre (`href="About"`).
+* **_About.razor** &ndash; Página Sobre.
 
 Quando o documento padrão do aplicativo é solicitado usando a barra de endereços do navegador (por exemplo, `https://www.contoso.com/`):
 
 1. O navegador faz uma solicitação.
 1. A página padrão é retornada, que é geralmente é *index.html*.
 1. A *index.html* inicia o aplicativo.
-1. O roteador do Blazor é carregado e a página Principal do Razor (*Main.cshtml*) é exibida.
+1. O roteador do Blazor é carregado e a página Principal do Razor (*Main.razor*) é exibida.
 
 Na página Principal, é possível carregar a página Sobre selecionando o link para ela. A seleção do link para a página Sobre funciona no cliente porque o roteador do Blazor impede que o navegador faça uma solicitação na Internet para `www.contoso.com` de `About` e atende à própria página Sobre. Todas as solicitações de páginas internas *no aplicativo do lado do cliente* funcionam da mesma maneira: Não são disparadas solicitações baseadas em navegador para os recursos hospedados no servidor na Internet. O roteador trata das solicitações internamente.
 
@@ -128,13 +126,19 @@ Como os navegadores fazem solicitações aos hosts baseados na Internet de pági
 
 ## <a name="app-base-path"></a>Caminho base do aplicativo
 
-O *caminho base do aplicativo* é o caminho raiz do aplicativo virtual no servidor. Por exemplo, um aplicativo que reside no servidor Contoso em uma pasta virtual em `/CoolApp/` é acessado em `https://www.contoso.com/CoolApp` e tem o caminho base virtual `/CoolApp/`. Quando o caminho base do aplicativo é definido como `CoolApp/`, o aplicativo fica ciente de onde ele reside virtualmente no servidor. O aplicativo pode usar o caminho base para construir URLs relativas à raiz do aplicativo de um componente que não esteja no diretório raiz. Isso permite que os componentes que existem em diferentes níveis da estrutura de diretório criem links para outros recursos em locais em todo o aplicativo. O caminho base do aplicativo também é usado para interceptar cliques em hiperlink em que o destino `href` do link está dentro do espaço do URI do caminho base do aplicativo. O roteador do Blazor manipula a navegação interna.
+O *caminho base do aplicativo* é o caminho raiz do aplicativo virtual no servidor. Por exemplo, um aplicativo que reside no servidor Contoso em uma pasta virtual em `/CoolApp/` é acessado em `https://www.contoso.com/CoolApp` e tem o caminho base virtual `/CoolApp/`. Quando o caminho base do aplicativo é definido para o caminho virtual (`<base href="/CoolApp/">`), o aplicativo fica ciente de onde ele reside virtualmente no servidor. O aplicativo pode usar o caminho base para construir URLs relativas à raiz do aplicativo de um componente que não esteja no diretório raiz. Isso permite que os componentes que existem em diferentes níveis da estrutura de diretório criem links para outros recursos em locais em todo o aplicativo. O caminho base do aplicativo também é usado para interceptar cliques em hiperlink em que o destino `href` do link está dentro do espaço do URI do caminho base do aplicativo. O roteador do Blazor manipula a navegação interna.
 
-Em muitos cenários de hospedagem, o caminho virtual do servidor para o aplicativo é a raiz do aplicativo. Nesses casos, o caminho base do aplicativo é uma barra invertida (`<base href="/" />`), que é a configuração padrão de um aplicativo. Em outros cenários de hospedagem, como Páginas do GitHub e diretórios virtuais ou subaplicativos do IIS, o caminho base do aplicativo precisa ser definido como o caminho virtual do servidor para o aplicativo. Para definir o caminho base do aplicativo, adicione ou atualize a tag `<base>` na *index.html* encontrada nos elementos da tag `<head>`. Defina o valor de atributo `href` como `virtual-path/` (a barra à direita é necessária), em que `virtual-path/` é o caminho raiz do aplicativo virtual completo no servidor do aplicativo. No exemplo anterior, o caminho virtual é definido como `CoolApp/`: `<base href="CoolApp/">`.
+Em muitos cenários de hospedagem, o caminho virtual do servidor para o aplicativo é a raiz do aplicativo. Nesses casos, o caminho base do aplicativo é uma barra invertida (`<base href="/" />`), que é a configuração padrão de um aplicativo. Em outros cenários de hospedagem, como Páginas do GitHub e diretórios virtuais ou subaplicativos do IIS, o caminho base do aplicativo precisa ser definido como o caminho virtual do servidor para o aplicativo. Para definir o caminho base do aplicativo, atualize a marca `<base>` encontrada nos elementos da marca `<head>` do arquivo *wwwroot/index.html*. Defina o valor de atributo `href` como `/virtual-path/` (a barra à direita é necessária), em que `/virtual-path/` é o caminho raiz do aplicativo virtual completo no servidor do aplicativo. No exemplo anterior, o caminho virtual é definido como `/CoolApp/`: `<base href="/CoolApp/">`.
 
-No caso de um aplicativo com um caminho virtual não raiz configurado (por exemplo, `<base href="CoolApp/">`), o aplicativo não consegue localizar seus recursos *quando é executado localmente*. Para superar esse problema durante o desenvolvimento e os testes locais, você pode fornecer um argumento *base de caminho* que corresponde ao valor de `href` da tag `<base>` no tempo de execução.
+No caso de um aplicativo com um caminho virtual não raiz configurado (por exemplo, `<base href="/CoolApp/">`), o aplicativo não consegue localizar seus recursos *quando é executado localmente*. Para superar esse problema durante o desenvolvimento e os testes locais, você pode fornecer um argumento *base de caminho* que corresponde ao valor de `href` da tag `<base>` no tempo de execução.
 
-Para passar o argumento base de caminho com o caminho raiz (`/`) ao executar o aplicativo localmente, execute o seguinte comando no diretório do aplicativo:
+Para passar o argumento base de caminho com o caminho raiz (`/`) ao executar o aplicativo localmente, execute o comando `dotnet run` no diretório do aplicativo com a opção `--pathbase`:
+
+```console
+dotnet run --pathbase=/{Virtual Path (no trailing slash)}
+```
+
+Para um aplicativo com um caminho virtual base equivalente a `/CoolApp/` (`<base href="/CoolApp/">`), o comando é:
 
 ```console
 dotnet run --pathbase=/CoolApp
@@ -144,7 +148,7 @@ O aplicativo responde localmente em `http://localhost:port/CoolApp`.
 
 Confira mais informações na seção sobre [valor de configuração do host base de caminho](#path-base).
 
-Se um aplicativo usa o [modelo de hospedagem do lado do cliente](xref:blazor/hosting-models#client-side-hosting-model) (com base no modelo de projeto **Blazor**) e é hospedado como um subaplicativo do IIS em um aplicativo do ASP.NET Core, é importante desabilitar o manipulador de módulo do ASP.NET Core herdado ou verificar se a seção `<handlers>` do aplicativo raiz (pai) no arquivo *web.config* não é herdada pelo subaplicativo.
+Se um aplicativo usar o [modelo de hospedagem do lado do cliente](xref:blazor/hosting-models#client-side) (com base no modelo de projeto **Blazor**; o modelo `blazor` ao usar o comando [dotnet new](/dotnet/core/tools/dotnet-new)) e for hospedado como um subaplicativo do IIS em um aplicativo do ASP.NET Core, será importante desabilitar o manipulador de módulo do ASP.NET Core herdado ou verificar se a seção `<handlers>` do aplicativo raiz (pai) no arquivo *web.config* não é herdada pelo subaplicativo.
 
 Remova o manipulador do arquivo *web.config* publicado do aplicativo adicionando uma seção `<handlers>` ao arquivo:
 
