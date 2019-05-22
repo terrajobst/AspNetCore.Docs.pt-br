@@ -277,6 +277,8 @@
       items:
         - name: Visão geral
           uid: blazor/index
+        - name: Plataformas com suporte
+          uid: blazor/supported-platforms
         - name: Introdução
           uid: blazor/get-started
         - name: Modelos de hospedagem
