@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2019
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: aff4b857394c554e94dd8929dca809eb1a4387f2
-ms.sourcegitcommit: b4ef2b00f3e1eb287138f8b43c811cb35a100d3e
+ms.openlocfilehash: 6ba4da913ef712ef897a4c8418263e3060ea85ac
+ms.sourcegitcommit: e67356f5e643a5d43f6d567c5c998ce6002bdeb4
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/21/2019
-ms.locfileid: "65970040"
+ms.lasthandoff: 05/22/2019
+ms.locfileid: "66004974"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -33,11 +33,13 @@ Para obter mais informações sobre hospedagem no Azure, consulte <xref:host-and
 
 ## <a name="supported-platforms"></a>Plataformas com suporte
 
-Aplicativos publicados para implantação de 32 bits (x86) e 64 bits (x64) têm suporte. Implemente um aplicativo de 32 bits, a menos que o aplicativo:
+Aplicativos publicados para implantação de 32 bits (x86) ou 64 bits (x64) têm suporte. Implantar um aplicativo de 32 bits com um SDK do .NET Core de 32 bits (x86), a menos que o aplicativo:
 
 * Exija o maior espaço de endereço de memória virtual disponível para um aplicativo de 64 bits.
 * Exija o maior tamanho de pilha do IIS.
 * Tenha dependências nativas de 64 bits.
+
+Use um SDK do .NET Core de 64 bits (x64) para publicar um aplicativo de 64 bits. Um tempo de execução de 64 bits deve estar presente no sistema host.
 
 ## <a name="application-configuration"></a>Configuração do aplicativo
 
