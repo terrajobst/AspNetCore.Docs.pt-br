@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 03/08/2019
 uid: grpc/aspnetcore
-ms.openlocfilehash: c99a499fad824c3ac026f6f390c826c0418fc069
-ms.sourcegitcommit: 57a974556acd09363a58f38c26f74dc21e0d4339
+ms.openlocfilehash: 1f019fac23982a95fa37d43099522f4b3e9d107a
+ms.sourcegitcommit: 5d384db2fa9373a93b5d15e985fb34430e49ad7a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59515327"
+ms.lasthandoff: 05/23/2019
+ms.locfileid: "66039279"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>Serviços do gRPC com o ASP.NET Core
 
@@ -77,32 +77,6 @@ A API gRPC fornece acesso a alguns dados de mensagem HTTP/2, como o método, hos
 `ServerCallContext` não fornece acesso completo ao `HttpContext` em todas as APIs do ASP.NET. O `GetHttpContext` método de extensão fornece acesso completo para o `HttpContext` que representa a mensagem HTTP/2 subjacente nas APIs do ASP.NET:
 
 [!code-cs[](~/tutorials/grpc/grpc-start/samples/GrpcGreeter/Services/GreeterService.cs?name=snippet1)]
-
-### <a name="request-body-data-rate-limit"></a>Limite de taxa de dados de corpo de solicitação
-
-Por padrão, o servidor Kestrel impõe uma [taxa de dados de corpo de solicitação mínimo](
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>). Para o cliente de streaming e duplex, chamadas de streaming, essa taxa não pode ser atendida e a conexão pode ser esgotado. O mínimo limite de taxa de dados deve ser desabilitada quando o serviço gRPC inclui o cliente de streaming e duplex, chamadas de streaming do corpo da solicitação:
-
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-         Host.CreateDefaultBuilder(args)
-    .ConfigureWebHostDefaults(webBuilder =>
-    {
-        webBuilder.UseStartup<Startup>();
-        webBuilder.ConfigureKestrel((context, options) =>
-        {
-            options.Limits.MinRequestBodyDataRate = null;
-        });
-    });
-}
-```
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

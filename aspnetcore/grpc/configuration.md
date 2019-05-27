@@ -7,12 +7,12 @@ ms.author: jamesnk
 ms.custom: mvc
 ms.date: 04/09/2019
 uid: grpc/configuration
-ms.openlocfilehash: 66dfb9ec136616f10c1b7aaad766e18813b87de4
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: 851c9ca1f7d62f6f368df66bb38eb4bbaf64bf32
+ms.sourcegitcommit: 5d384db2fa9373a93b5d15e985fb34430e49ad7a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087339"
+ms.lasthandoff: 05/23/2019
+ms.locfileid: "66041889"
 ---
 # <a name="grpc-for-aspnet-core-configuration"></a>gRPC para configuração do ASP.NET Core
 
@@ -48,36 +48,6 @@ services.AddGrpc().AddServiceOptions<MyService>(options =>
 {
     options.ReceiveMaxMessageSize = 10 * 1024 * 1024; // 10 megabytes
 });
-```
-
-## <a name="configure-kestrel-options"></a>Configurar opções do Kestrel
-
-Servidor kestrel tem opções de configuração que afetam o comportamento do gRPC para ASP.NET.
-
-### <a name="request-body-data-rate-limit"></a>Limite de taxa de dados de corpo de solicitação
-
-Por padrão, o servidor Kestrel impõe uma [taxa de dados de corpo de solicitação mínimo](
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>). Para o cliente de streaming e duplex, chamadas de streaming, essa taxa não pode ser atendida e a conexão pode ser esgotado. O mínimo limite de taxa de dados deve ser desabilitada quando o serviço gRPC inclui o cliente de streaming e duplex, chamadas de streaming do corpo da solicitação:
-
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-         Host.CreateDefaultBuilder(args)
-    .ConfigureWebHostDefaults(webBuilder =>
-    {
-        webBuilder.UseStartup<Startup>();
-        webBuilder.ConfigureKestrel((context, options) =>
-        {
-            options.Limits.MinRequestBodyDataRate = null;
-        });
-    });
-}
 ```
 
 ## <a name="additional-resources"></a>Recursos adicionais

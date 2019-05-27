@@ -2,16 +2,17 @@
 title: Hospedar e implantar o ASP.NET Core
 author: guardrex
 description: Aprenda como configurar ambientes de hospedagem e implantar aplicativos ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/06/2018
+ms.date: 05/12/2019
 uid: host-and-deploy/index
-ms.openlocfilehash: f443a8ee28a859b5075a8bb03016407af9a3ddb1
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 068c5f357b8010d78493a78a10c353e3317f3867
+ms.sourcegitcommit: b4ef2b00f3e1eb287138f8b43c811cb35a100d3e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64882101"
+ms.lasthandoff: 05/21/2019
+ms.locfileid: "65969892"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hospedar e implantar o ASP.NET Core
 
@@ -46,19 +47,9 @@ Um aplicativo ASP.NET Core é um aplicativo de console que deve ser iniciado qua
 
 ## <a name="set-up-a-reverse-proxy"></a>Configurar um proxy reverso
 
-::: moniker range=">= aspnetcore-2.0"
-
 Se o aplicativo usar o servidor Web do servidor [Kestrel](xref:fundamentals/servers/kestrel), você poderá usar [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache) ou [IIS](xref:host-and-deploy/iis/index) como um servidor proxy reverso. Um servidor proxy reverso recebe solicitações HTTP da Internet e encaminha-as para o Kestrel.
 
-Qualquer configuração &mdash;com ou sem um servidor proxy reverso&mdash; é uma configuração de hospedagem compatível com o ASP.NET Core 2.0 ou aplicativos posteriores. Para obter mais informações, consulte [Quando usar Kestrel com um proxy reverso](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-Se o aplicativo usar o servidor [Kestrel](xref:fundamentals/servers/kestrel) e for exposto à Internet, você deverá usar [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache) ou [IIS](xref:host-and-deploy/iis/index) como um servidor proxy reverso. Um servidor proxy reverso recebe solicitações HTTP da Internet e encaminha-as para o Kestrel. O principal motivo para usar um proxy reverso é a segurança. Para obter mais informações, consulte [Quando usar Kestrel com um proxy reverso](xref:fundamentals/servers/kestrel?tabs=aspnetcore1x#when-to-use-kestrel-with-a-reverse-proxy).
-
-::: moniker-end
+Qualquer configuração&mdash;com ou sem um servidor proxy reverso&mdash;é uma configuração de hospedagem compatível. Para obter mais informações, consulte [Quando usar Kestrel com um proxy reverso](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
 
 ## <a name="proxy-server-and-load-balancer-scenarios"></a>Servidor proxy e cenários de balanceador de carga
 
