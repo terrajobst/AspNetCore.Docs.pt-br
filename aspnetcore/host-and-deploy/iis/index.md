@@ -5,14 +5,14 @@ description: Saiba como hospedar aplicativos ASP.NET Core no Windows Server IIS 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2019
+ms.date: 05/24/2019
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 6ba4da913ef712ef897a4c8418263e3060ea85ac
-ms.sourcegitcommit: e67356f5e643a5d43f6d567c5c998ce6002bdeb4
+ms.openlocfilehash: f0efe6c0edc71c5e2c45aeaa175c8a5643ef0fde
+ms.sourcegitcommit: e1623d8279b27ff83d8ad67a1e7ef439259decdf
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/22/2019
-ms.locfileid: "66004974"
+ms.lasthandoff: 05/25/2019
+ms.locfileid: "66223138"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -199,7 +199,7 @@ Se você precisar transformar o *Web.config* em publicação (por exemplo, defin
 
 Habilite a função **Servidor Web (IIS)** e estabeleça serviços de função.
 
-1. Use o assistente **Adicionar Funções e Recursos** por meio do menu **Gerenciar** ou do link no **Gerenciador do Servidor**. Na etapa **Funções de Servidor**, marque a caixa de **Servidor Web (IIS)**.
+1. Use o assistente **Adicionar Funções e Recursos** por meio do menu **Gerenciar** ou do link no **Gerenciador do Servidor**. Na etapa **Funções de Servidor**, marque a caixa de **Servidor Web (IIS)** .
 
    ![A função de Servidor Web IIS é selecionada na etapa Selecionar funções de servidor.](index/_static/server-roles-ws2016.png)
 
@@ -213,7 +213,7 @@ Habilite a função **Servidor Web (IIS)** e estabeleça serviços de função.
    **WebSockets (opcional)**  
    O WebSockets é compatível com o ASP.NET Core 1.1 ou posterior. Para habilitar WebSockets, expanda os nós a seguir: **Servidor Web** > **Desenvolvimento de Aplicativo**. Selecione o recurso **Protocolo WebSocket**. Para obter mais informações, consulte [WebSockets](xref:fundamentals/websockets).
 
-1. Continue para a etapa **Confirmação** para instalar os serviços e a função de servidor Web. Um comando server/IIS restart não será necessário após a instalação da função **Servidor Web (IIS)**.
+1. Continue para a etapa **Confirmação** para instalar os serviços e a função de servidor Web. Um comando server/IIS restart não será necessário após a instalação da função **Servidor Web (IIS)** .
 
 **Sistemas operacionais Windows de área de trabalho**
 
@@ -282,7 +282,7 @@ Para obter uma versão anterior do instalador:
 
 ## <a name="install-web-deploy-when-publishing-with-visual-studio"></a>Instalar a Implantação da Web durante a publicação com o Visual Studio
 
-Ao implantar aplicativos para servidores com [Implantação da Web](/iis/publish/using-web-deploy/introduction-to-web-deploy), instale a versão mais recente da Implantação da Web no servidor. Para instalar a Implantação da Web, use o [WebPI (Web Platform Installer)](https://www.microsoft.com/web/downloads/platform.aspx) ou obtenha um instalador diretamente no [Centro de Download da Microsoft](https://www.microsoft.com/download/details.aspx?id=43717). O método preferencial é usar o WebPI. O WebPI oferece uma instalação autônoma e uma configuração para provedores de hospedagem.
+Ao implantar aplicativos para servidores com [Implantação da Web](/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy-on-iis-80-or-later), instale a versão mais recente da Implantação da Web no servidor. Para instalar a Implantação da Web, use o [WebPI (Web Platform Installer)](https://www.microsoft.com/web/downloads/platform.aspx) ou obtenha um instalador diretamente no [Centro de Download da Microsoft](https://www.microsoft.com/download/details.aspx?id=43717). O método preferencial é usar o WebPI. O WebPI oferece uma instalação autônoma e uma configuração para provedores de hospedagem.
 
 ## <a name="create-the-iis-site"></a>Criar o site do IIS
 
