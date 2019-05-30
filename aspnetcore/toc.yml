@@ -92,10 +92,6 @@
     - name: Aplicativos de chamada de procedimento remoto
       items:
         - name: Introdução ao serviço de gRPC no ASP.NET Core
-          uid: tutorials/grpc/index
-        - name: Criar um Serviço Greeter de gRPC do ASP.NET Core
-          uid: tutorials/grpc/grpc-start
-        - name: Criar um cliente gRPC do .NET Core
           uid: tutorials/grpc/grpc-client
     - name: Acesso aos dados
       items:
@@ -321,7 +317,7 @@
               uid: spa/react
             - name: React com Redux
               uid: spa/react-with-redux
-            - name: JavaScriptServices
+            - name: Serviços do JavaScript
               uid: client-side/spa-services
         - name: LibMan
           items:
@@ -534,14 +530,8 @@
       uid: grpc/migration
     - name: Comparando serviços gRPC com APIs HTTP
       uid: grpc/comparison
-    - name: Tutoriais
-      items:
-        - name: Introdução ao serviço de gRPC no ASP.NET Core
-          uid: tutorials/grpc/index
-        - name: Criar um serviço Greeter de gRPC do ASP.NET Core
-          uid: tutorials/grpc/grpc-start
-        - name: Criar um cliente do gRPC no .NET Core
-          uid: tutorials/grpc/grpc-client
+    - name: Criar um cliente e servidor gRPC
+      uid: tutorials/grpc/grpc-client
 - name: 'Testar, depurar e solucionar problemas'
   items:
     - name: Teste de unidade
