@@ -3,14 +3,15 @@ title: Novidades do ASP.NET Core 2.0
 author: rick-anderson
 description: Saiba mais sobre os novos recursos no ASP.NET Core 2.0.
 ms.author: riande
-ms.date: 07/10/2017
+ms.custom: mvc
+ms.date: 05/28/2019
 uid: aspnetcore-2.0
-ms.openlocfilehash: 07e490fd844f0f9044afce37651ef680ed0c894d
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 5cf7b9aa7ccf86f1a89e6145cfc185c5ef803e66
+ms.sourcegitcommit: 4d05e30567279072f1b070618afe58ae1bcefd5a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64883091"
+ms.lasthandoff: 05/29/2019
+ms.locfileid: "66376405"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Novidades do ASP.NET Core 2.0
 
@@ -75,7 +76,7 @@ Para obter mais informações sobre alterações de autenticação no 2.0, consu
 
 ## <a name="spa-templates"></a>Modelos do SPA
 
-Modelos de projeto de SPA (aplicativo de página único) para Angular, Aurelia, Knockout.js, React.js e React.js com Redux estão disponíveis. O modelo Angular foi atualizado para Angular 4. Os modelos Angular e React estão disponíveis por padrão. Para saber como obter os outros modelos, confira [Criar um novo projeto de SPA](xref:client-side/spa-services#creating-a-new-project). Para obter informações de como criar um SPA no ASP.NET Core, confira [Usar JavaScriptServices para criar aplicativos de página única](xref:client-side/spa-services).
+Modelos de projeto de SPA (aplicativo de página único) para Angular, Aurelia, Knockout.js, React.js e React.js com Redux estão disponíveis. O modelo Angular foi atualizado para Angular 4. Os modelos Angular e React estão disponíveis por padrão. Para saber como obter os outros modelos, confira [Criar um novo projeto de SPA](xref:client-side/spa-services#create-a-new-project). Para obter informações sobre como criar um SPA no ASP.NET Core, confira <xref:client-side/spa-services>.
 
 ## <a name="kestrel-improvements"></a>Melhorias do Kestrel
 
