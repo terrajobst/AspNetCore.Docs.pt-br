@@ -5,14 +5,14 @@ description: Veja como hospedar e implantar um aplicativo do Blazor usando o ASP
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/13/2019
+ms.date: 05/21/2019
 uid: host-and-deploy/blazor/client-side
-ms.openlocfilehash: ea8ece266809913e32ac212bc55cb3c2499c234f
-ms.sourcegitcommit: ccbb84ae307a5bc527441d3d509c20b5c1edde05
+ms.openlocfilehash: b572067e688d7e7f7c654a7a25703009c1a7e855
+ms.sourcegitcommit: e1623d8279b27ff83d8ad67a1e7ef439259decdf
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/19/2019
-ms.locfileid: "65874968"
+ms.lasthandoff: 05/25/2019
+ms.locfileid: "66223195"
 ---
 # <a name="host-and-deploy-blazor-client-side"></a>Hospedar e implantar o Blazor no lado do cliente
 
@@ -210,8 +210,8 @@ Quando um projeto Blazor é publicado, um arquivo *web.config* é criado com a s
   * `application/octet-stream`
   * `application/wasm`
 * As regras do Módulo de Reescrita de URL são estabelecidas:
-  * Atender ao subdiretório em que residem os ativos estáticos do aplicativo (*{ASSEMBLY NAME}/dist/{PATH REQUESTED}*).
-  * Criar o roteamento de fallback do SPA, de modo que as solicitações de ativos, que não sejam arquivos, sejam redirecionadas ao documento padrão do aplicativo na pasta de ativos estáticos dele (*{ASSEMBLY NAME}/dist/index.html*).
+  * Atender ao subdiretório em que residem os ativos estáticos do aplicativo ( *{ASSEMBLY NAME}/dist/{PATH REQUESTED}* ).
+  * Criar o roteamento de fallback do SPA, de modo que as solicitações de ativos, que não sejam arquivos, sejam redirecionadas ao documento padrão do aplicativo na pasta de ativos estáticos dele ( *{ASSEMBLY NAME}/dist/index.html*).
 
 #### <a name="install-the-url-rewrite-module"></a>Instalação do Módulo de Regeneração de URL
 
@@ -232,6 +232,17 @@ Defina o **Caminho físico** do site como a pasta do aplicativo. A pasta contém
 Se um *500 – Erro Interno do Servidor* for recebido e o Gerenciador do IIS gerar erros ao tentar acessar a configuração do site, confirme se o Módulo de Regeneração de URL está instalado. Quando o módulo não estiver instalado, o arquivo *web.config* não poderá ser analisado pelo IIS. Isso impede que o Gerenciador do IIS carregue a configuração do site e que o site atenda aos arquivos estáticos do Blazor.
 
 Para obter mais informações de como solucionar problemas de implantações no IIS, confira <xref:host-and-deploy/iis/troubleshoot>.
+
+### <a name="azure-storage"></a>Armazenamento do Azure
+
+A hospedagem de arquivo estático do Armazenamento do Azure permite a hospedagem de aplicativo Blazor sem servidor. Nomes de domínio personalizados, CDN (Rede de Distribuição de Conteúdo) do Azure e HTTPS são compatíveis.
+
+Quando o serviço de blob está habilitado para hospedagem de site estático em uma conta de armazenamento:
+
+* Defina o **Nome do documento de índice** como `index.html`.
+* Defina o **Caminho do documento de erro** como `index.html`. Os Componentes do Razor e outros pontos de extremidade que não são arquivos não residem em caminhos físicos no conteúdo estático armazenado pelo serviço de blob. Quando uma solicitação para um desses recursos é recebida, a qual deve passar pelo Blazor, o erro *404 - Não Encontrado* gerado pelo serviço de blob encaminha a solicitação para o **Caminho do documento de erro**. O blob *index.html* retorna, e o roteador do Blazor carrega e processa o caminho.
+
+Para saber mais, confira [Hospedagem de site estático no Armazenamento do Azure](/azure/storage/blobs/storage-blob-static-website).
 
 ### <a name="nginx"></a>Nginx
 
