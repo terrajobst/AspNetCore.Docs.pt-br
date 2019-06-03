@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/21/2019
 uid: host-and-deploy/blazor/client-side
-ms.openlocfilehash: b572067e688d7e7f7c654a7a25703009c1a7e855
-ms.sourcegitcommit: e1623d8279b27ff83d8ad67a1e7ef439259decdf
+ms.openlocfilehash: b50516b4dce28a6b105b2ab8b9386060d5392983
+ms.sourcegitcommit: 4d05e30567279072f1b070618afe58ae1bcefd5a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/25/2019
-ms.locfileid: "66223195"
+ms.lasthandoff: 05/29/2019
+ms.locfileid: "66376401"
 ---
 # <a name="host-and-deploy-blazor-client-side"></a>Hospedar e implantar o Blazor no lado do cliente
 
@@ -188,7 +188,9 @@ Confira como implantar o Serviço de Aplicativo do Azure em <xref:tutorials/publ
 
 ## <a name="standalone-deployment"></a>Implantação autônoma
 
-Uma *implantação autônoma* atende ao aplicativo do Blazor do lado do cliente como um conjunto de arquivos estáticos que são solicitados diretamente pelos clientes. Não é usado é um servidor Web para atender ao aplicativo do Blazor.
+Uma *implantação autônoma* atende ao aplicativo do Blazor do lado do cliente como um conjunto de arquivos estáticos que são solicitados diretamente pelos clientes. Qualquer servidor de arquivos estático é capaz de atender ao aplicativo Blazor.
+
+Ativos de implantação autônomos são publicados na pasta */bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist*.
 
 ### <a name="iis"></a>IIS
 
