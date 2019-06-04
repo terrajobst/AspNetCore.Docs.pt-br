@@ -5,14 +5,14 @@ description: Saiba como configurar aplicativos do SignalR do ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 06/03/2019
 uid: signalr/configuration
-ms.openlocfilehash: 703357fd52805e01515e5bac3b1a364ce7fe00f0
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: 6c7bd602e621917c491bfb1e26ff0fcfc3a565b0
+ms.sourcegitcommit: a04eb20e81243930ec829a9db5dd5de49f669450
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087648"
+ms.lasthandoff: 06/03/2019
+ms.locfileid: "66470362"
 ---
 # <a name="aspnet-core-signalr-configuration"></a>Configuração do ASP.NET SignalR Core
 
@@ -61,6 +61,8 @@ MessagePack serialização pode ser configurada fornecendo um delegado para o [A
 
 A tabela a seguir descreve as opções de configuração hubs do SignalR:
 
+::: moniker range=">= aspnetcore-3.0"
+
 | Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `ClientTimeoutInterval` | 30 segundos | O servidor irá considerar o cliente desconectado se ele ainda não recebeu uma mensagem (incluindo keep-alive) nesse intervalo. Ele pode demorar mais que esse intervalo de tempo limite para o cliente, na verdade, ser marcado como desconectado devido a como isso é implementado. O valor recomendado é double o `KeepAliveInterval` valor.|
@@ -68,6 +70,21 @@ A tabela a seguir descreve as opções de configuração hubs do SignalR:
 | `KeepAliveInterval` | 15 segundos | Se o servidor não enviou uma mensagem dentro deste intervalo, uma mensagem de ping é enviada automaticamente para manter a conexão aberta. Ao alterar `KeepAliveInterval`, altere o `ServerTimeout` / `serverTimeoutInMilliseconds` configuração no cliente. Recomendado `ServerTimeout` / `serverTimeoutInMilliseconds` valor é double o `KeepAliveInterval` valor.  |
 | `SupportedProtocols` | Todos os protocolos | Protocolos com suporte por esse hub. Por padrão, todos os protocolos registrados no servidor são permitidos, mas protocolos podem ser removidos dessa lista para desabilitar os protocolos específicos para hubs individuais. |
 | `EnableDetailedErrors` | `false` | Se `true`detalhada mensagens de exceção são retornadas aos clientes quando uma exceção é gerada em um método de Hub. O padrão é `false`, conforme essas mensagens de exceção podem conter informações confidenciais. |
+| `StreamBufferCapacity` | `10` | O número máximo de itens que podem ser armazenados em buffer para o cliente carrega fluxos. Se esse limite for atingido, o processamento de invocações é bloqueado até que o servidor processa itens de fluxo.|
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
+| Opção | Valor padrão | Descrição |
+| ------ | ------------- | ----------- |
+| `ClientTimeoutInterval` | 30 segundos | O servidor irá considerar o cliente desconectado se ele ainda não recebeu uma mensagem (incluindo keep-alive) nesse intervalo. Ele pode demorar mais que esse intervalo de tempo limite para o cliente, na verdade, ser marcado como desconectado devido a como isso é implementado. O valor recomendado é double o `KeepAliveInterval` valor.|
+| `HandshakeTimeout` | 15 segundos | Se o cliente não envia uma mensagem de handshake inicial dentro deste intervalo de tempo, a conexão será fechada. Isso é uma configuração avançada que deve ser modificada apenas se os erros de tempo limite de handshake estiverem ocorrendo devido à latência de rede graves. Para obter mais detalhes sobre o processo de handshake, consulte a [especificação de protocolo de Hub do SignalR](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `KeepAliveInterval` | 15 segundos | Se o servidor não enviou uma mensagem dentro deste intervalo, uma mensagem de ping é enviada automaticamente para manter a conexão aberta. Ao alterar `KeepAliveInterval`, altere o `ServerTimeout` / `serverTimeoutInMilliseconds` configuração no cliente. Recomendado `ServerTimeout` / `serverTimeoutInMilliseconds` valor é double o `KeepAliveInterval` valor.  |
+| `SupportedProtocols` | Todos os protocolos | Protocolos com suporte por esse hub. Por padrão, todos os protocolos registrados no servidor são permitidos, mas protocolos podem ser removidos dessa lista para desabilitar os protocolos específicos para hubs individuais. |
+| `EnableDetailedErrors` | `false` | Se `true`detalhada mensagens de exceção são retornadas aos clientes quando uma exceção é gerada em um método de Hub. O padrão é `false`, conforme essas mensagens de exceção podem conter informações confidenciais. |
+
+::: moniker-end
 
 Opções podem ser configuradas para todos os hubs, fornecendo um delegado de opções para o `AddSignalR` chamar em `Startup.ConfigureServices`.
 
