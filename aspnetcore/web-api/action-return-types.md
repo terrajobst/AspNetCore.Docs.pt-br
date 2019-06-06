@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/04/2019
 uid: web-api/action-return-types
-ms.openlocfilehash: 180d76c2c2e53dbf64b8fcc5cdc6d2b6f4dab6eb
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: b89ead55cd46ef62a3bc28b1cfc9077d3ce9aba2
+ms.sourcegitcommit: a04eb20e81243930ec829a9db5dd5de49f669450
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64887111"
+ms.lasthandoff: 06/03/2019
+ms.locfileid: "66470403"
 ---
 # <a name="controller-action-return-types-in-aspnet-core-web-api"></a>Tipos de retorno de ação do controlador na API Web ASP.NET Core
 
@@ -106,7 +106,7 @@ A maioria das ações tem um tipo de retorno específico. Condições inesperada
 
 Considere uma ação síncrona em que há dois tipos de retorno possíveis:
 
-[!code-csharp[](../web-api/action-return-types/samples/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_GetById&highlight=8,11)]
+[!code-csharp[](../web-api/action-return-types/samples/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_GetById&highlight=7,10)]
 
 No código anterior, um código de status 404 é retornado quando o produto não existe no banco de dados. Se o produto existir, o objeto `Product` correspondente será retornado. Antes do ASP.NET Core 2.1, a linha `return product;` teria sido `return Ok(product);`.
 
