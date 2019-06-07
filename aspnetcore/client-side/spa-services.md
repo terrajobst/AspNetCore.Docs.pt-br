@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: H1Hack27Feb2017
 ms.date: 05/28/2019
 uid: client-side/spa-services
-ms.openlocfilehash: 2ac7a6c7a5499d0525a61c6401f5996f8543fdba
-ms.sourcegitcommit: 4d05e30567279072f1b070618afe58ae1bcefd5a
+ms.openlocfilehash: c7cd35865c5bddf0e5efaa9e616832b6755d9227
+ms.sourcegitcommit: e7e04a45195d4e0527af6f7cf1807defb56dc3c3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/29/2019
-ms.locfileid: "66376218"
+ms.lasthandoff: 06/06/2019
+ms.locfileid: "66750114"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>Usar os serviços de JavaScript para criar aplicativos de página única em ASP.NET Core
 
@@ -24,7 +24,7 @@ Um aplicativo de página única (SPA) é um tipo popular de aplicativo web devid
 
 Serviços do JavaScript é uma coleção de tecnologias do lado do cliente para o ASP.NET Core. Sua meta é posicionar o ASP.NET Core como plataforma de servidor preferencial dos desenvolvedores para a criação de SPAs.
 
-Serviços de JavaScript consiste em três pacotes do NuGet distintos:
+Serviços de JavaScript consiste em dois pacotes do NuGet distintos:
 
 * [Microsoft.AspNetCore.NodeServices](https://www.nuget.org/packages/Microsoft.AspNetCore.NodeServices/) (NodeServices)
 * [Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) (SpaServices)
