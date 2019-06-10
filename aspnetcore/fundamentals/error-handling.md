@@ -7,12 +7,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/03/2019
 uid: fundamentals/error-handling
-ms.openlocfilehash: 36cd9fdac0b9159900e82327705a73d561e7ce6b
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: 6b92cb6b68b1c70d67f42284d548729e598f9a8b
+ms.sourcegitcommit: c5339594101d30b189f61761275b7d310e80d18a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65086981"
+ms.lasthandoff: 06/02/2019
+ms.locfileid: "66458439"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Tratar erros no ASP.NET Core
 
@@ -53,7 +53,7 @@ No exemplo a seguir, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensio
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-O modelo de aplicativo Razor Pages fornece uma Página de erro (*.cshtml*) e uma classe <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> (`ErrorModel`) na pasta *Páginas*. Para um aplicativo MVC, o modelo de projeto inclui um Método de ação de erro e uma Exibição de erro. Este é o método de ação:
+O modelo de aplicativo Razor Pages fornece uma Página de erro ( *.cshtml*) e uma classe <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> (`ErrorModel`) na pasta *Páginas*. Para um aplicativo MVC, o modelo de projeto inclui um Método de ação de erro e uma Exibição de erro. Este é o método de ação:
 
 ```csharp
 [AllowAnonymous]
@@ -166,7 +166,9 @@ O ponto de extremidade que processa o erro pode obter a URL original que gerou o
 
 ## <a name="disable-status-code-pages"></a>Desabilitar páginas de código de status
 
-As páginas de código de status podem ser desabilitadas para solicitações específicas em um método de manipulador de Páginas Razor ou em um controlador do MVC. Para desabilitar as páginas de código de status, use <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>:
+Para desabilitar as páginas de código de status de um método de ação ou controlador MVC, use o atributo [[SkipStatusCodePages]](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute).
+
+Para desabilitar as páginas de código de status de solicitações específicas em um método manipulador Razor Pages ou em um controlador MVC, use <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>:
 
 ```csharp
 var statusCodePagesFeature = HttpContext.Features.Get<IStatusCodePagesFeature>();

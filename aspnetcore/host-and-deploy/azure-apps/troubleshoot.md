@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/06/2019
 uid: host-and-deploy/azure-apps/troubleshoot
-ms.openlocfilehash: 36c2bdfa585a0fd54ca93bf4c0edb4cf6f7d934a
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 7a0bb7df27ebbea0eac79771452295846fad563a
+ms.sourcegitcommit: a04eb20e81243930ec829a9db5dd5de49f669450
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64886901"
+ms.lasthandoff: 06/03/2019
+ms.locfileid: "66470449"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service"></a>Solucionar problemas no ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -37,6 +37,99 @@ O aplicativo é iniciado, mas um erro impede o servidor de atender à solicitaç
 
 Esse erro ocorre no código do aplicativo durante a inicialização ou durante a criação de uma resposta. A resposta poderá não conter nenhum conteúdo, ou a resposta poderá ser exibida como um *500 – Erro Interno do Servidor* no navegador. O Log de Eventos do Aplicativo geralmente indica que o aplicativo iniciou normalmente. Da perspectiva do servidor, isso está correto. O aplicativo foi iniciado, mas não é capaz de gerar uma resposta válida. [Execute o aplicativo no console do Kudu](#run-the-app-in-the-kudu-console) ou [habilite o log de stdout do Módulo do ASP.NET Core](#aspnet-core-module-stdout-log) para solucionar o problema.
 
+::: moniker range="= aspnetcore-2.2"
+
+### <a name="50030-in-process-startup-failure"></a>500.30 Falha de inicialização em processo
+
+O processo de trabalho falha. O aplicativo não foi iniciado.
+
+O Módulo do ASP.NET Core tenta iniciar o CLR do .NET Core em processo, mas falha ao iniciar. A causa de uma falha de inicialização do processo geralmente é determinada com base nas entradas no [Log de Eventos do Aplicativo](#application-event-log) e no [Log de StdOut do Módulo do ASP.NET Core](#aspnet-core-module-stdout-log).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+### <a name="50031-ancm-failed-to-find-native-dependencies"></a>500.31 O ANCM não pôde encontrar dependências nativas
+
+O processo de trabalho falha. O aplicativo não foi iniciado.
+
+O Módulo do ASP.NET Core tenta iniciar o tempo de execução do .NET Core em processo, mas não pode ser iniciado. A causa mais comum dessa falha de inicialização é quando o tempo de execução `Microsoft.NETCore.App` ou `Microsoft.AspNetCore.App` não está instalado. Se o aplicativo for implantado no ASP.NET Core 3.0 de destino e essa versão não existir no computador, esse erro ocorrerá. Segue um exemplo de mensagem de erro:
+
+```
+The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
+  - The following frameworks were found:
+      2.2.1 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview5-27626-15 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview6-27713-13 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview6-27714-15 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+      3.0.0-preview6-27723-08 at [C:\Program Files\dotnet\x64\shared\Microsoft.NETCore.App]
+```
+
+A mensagem de erro lista todas as versões instaladas do .NET Core e a versão solicitada pelo aplicativo. Para corrigir esse erro:
+
+* Instale a versão adequada do .NET Core no computador.
+* Altere o aplicativo para uma versão do .NET Core que está presente no computador de destino.
+* Publique o aplicativo como uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd).
+
+Durante a execução no desenvolvimento (quando a variável de ambiente `ASPNETCORE_ENVIRONMENT` está definida como `Development`), o erro específico é gravado na resposta HTTP. A causa de uma falha de inicialização do processo também é encontrada no [Log de Eventos do Aplicativo](#application-event-log).
+
+### <a name="50032-ancm-failed-to-load-dll"></a>500.32 O ANCM não pôde carregar o dll
+
+O processo de trabalho falha. O aplicativo não foi iniciado.
+
+A causa mais comum para esse erro é que o aplicativo foi publicado para uma arquitetura de processador incompatível. Esse erro ocorrerá se o processo de trabalho estiver em execução como um aplicativo de 32 bits e o aplicativo tiver sido publicado para o destino de 64 bits.
+
+Para corrigir esse erro:
+
+* Republique o aplicativo para a mesma arquitetura de processador que o processo de trabalho.
+* Publique o aplicativo como uma [implantação dependente da estrutura](/dotnet/core/deploying/#framework-dependent-executables-fde).
+
+### <a name="50033-ancm-request-handler-load-failure"></a>500.33 O ANCM não pôde carregar o manipulador de solicitação
+
+O processo de trabalho falha. O aplicativo não foi iniciado.
+
+O aplicativo não referenciou a estrutura `Microsoft.AspNetCore.App`. Somente os aplicativos destinados à estrutura `Microsoft.AspNetCore.App` podem ser hospedados pelo Módulo do ASP.NET Core.
+
+Para corrigir esse erro, confirme se o aplicativo está direcionado para a estrutura `Microsoft.AspNetCore.App`. Confira o `.runtimeconfig.json` para verificar a estrutura de destino do aplicativo.
+
+### <a name="50034-ancm-mixed-hosting-models-not-supported"></a>500.34 Não há suporte para modelos de hospedagem mistos do ANCM
+
+O processo de trabalho não pode executar um aplicativo em processo e um aplicativo fora do processo no mesmo processo.
+
+Para corrigir esse erro, execute aplicativos em pools de aplicativos do IIS separados.
+
+### <a name="50035-ancm-multiple-in-process-applications-in-same-process"></a>500.35 Vários aplicativos do ANCM em processo no mesmo processo
+
+O processo de trabalho não pode executar um aplicativo em processo e um aplicativo fora do processo no mesmo processo.
+
+Para corrigir esse erro, execute aplicativos em pools de aplicativos do IIS separados.
+
+### <a name="50036-ancm-out-of-process-handler-load-failure"></a>500.36 Falha ao carregar o manipulador de fora do processo do ANCM
+
+O manipulador de solicitação de fora do processo *aspnetcorev2_outofprocess.dll* não está próximo do arquivo *aspnetcorev2.dll*. Isso indica uma instalação corrompida do Módulo do ASP.NET Core.
+
+Para corrigir esse erro, repare a instalação do [Pacote de Hospedagem do .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) (para IIS) ou do Visual Studio (para o IIS Express).
+
+### <a name="50037-ancm-failed-to-start-within-startup-time-limit"></a>500.37 O ANCM não pôde ser iniciado dentro do limite de tempo de inicialização
+
+O ANCM não pôde ser iniciado dentro do limite de tempo de inicialização fornecido. Por padrão, o tempo limite é de 120 segundos.
+
+Esse erro pode ocorrer ao iniciar um grande número de aplicativos no mesmo computador. Verifique se há picos de uso de CPU/memória no servidor durante a inicialização. Talvez você precise balancear o processo de inicialização de vários aplicativos.
+
+### <a name="50030-in-process-startup-failure"></a>500.30 Falha de inicialização em processo
+
+O processo de trabalho falha. O aplicativo não foi iniciado.
+
+O Módulo do ASP.NET Core tenta iniciar o tempo de execução do .NET Core em processo, mas não pode ser iniciado. A causa de uma falha de inicialização do processo geralmente é determinada com base nas entradas no [Log de Eventos do Aplicativo](#application-event-log) e no [Log de StdOut do Módulo do ASP.NET Core](#aspnet-core-module-stdout-log).
+
+### <a name="5000-in-process-handler-load-failure"></a>500.0 Falha de carregamento de manipulador em processo
+
+O processo de trabalho falha. O aplicativo não foi iniciado.
+
+A causa de uma falha de inicialização do processo também é encontrada no [Log de Eventos do Aplicativo](#application-event-log).
+
+::: moniker-end
+
 **Redefinição de conexão**
 
 Se um erro ocorrer após os cabeçalhos serem enviados, será tarde demais para o servidor enviar um **500 – Erro Interno do Servidor** no caso de um erro ocorrer. Isso geralmente acontece quando ocorre um erro durante a serialização de objetos complexos para uma resposta. Esse tipo de erro é exibida como um erro de *redefinição de conexão* no cliente. O [Log de aplicativo](xref:fundamentals/logging/index) pode ajudar a solucionar esses tipos de erros.
@@ -59,7 +152,7 @@ Para acessar o Log de Eventos do Aplicativo, use a folha **Diagnosticar e soluci
 
 Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examinar o arquivo de Log de Eventos do Aplicativo diretamente usando o [Kudu](https://github.com/projectkudu/kudu/wiki):
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra a pasta **LogFiles**.
 1. Selecione o ícone de lápis ao lado do arquivo *eventlog.xml*.
@@ -69,7 +162,7 @@ Uma alternativa ao uso da folha **Diagnosticar e resolver problemas** é examina
 
 Muitos erros de inicialização não produzem informações úteis no Log de Eventos do Aplicativo. Você pode executar o aplicativo no Console de Execução Remota do [Kudu](https://github.com/projectkudu/kudu/wiki) para descobrir o erro:
 
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 
 #### <a name="test-a-32-bit-x86-app"></a>Testar um aplicativo de 32 bits (x86)
@@ -135,7 +228,7 @@ O log de stdout do Módulo do ASP.NET Core geralmente registra mensagens de erro
 1. Defina **stdoutLogEnabled** para `true` e altere o caminho **stdoutLogFile** para `\\?\%home%\LogFiles\stdout`.
 1. Selecione **Salvar** para salvar o arquivo *web.config* atualizado.
 1. Faça uma solicitação ao aplicativo.
-1. Retorne para o portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Retorne para o portal do Azure. Selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Selecione a pasta **LogFiles**.
 1. Inspecione a coluna **Modificado em** e selecione o ícone de lápis para editar o log de stdout com a data da última modificação.
@@ -161,10 +254,10 @@ O log de depuração do Módulo do ASP.NET Core fornece registro em log adiciona
 1. Para habilitar o log de diagnóstico avançado, execute um destes procedimentos:
    * Siga as instruções em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para configurar o aplicativo para um log de diagnósticos avançado. Reimplante o aplicativo.
    * Adicione a `<handlerSettings>` mostrada em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) para o arquivo *web.config* do aplicativo ao vivo usando o console do Kudu:
-     1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+     1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
      1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
      1. Abra as pastas no caminho **site** > **wwwroot**. Edite o arquivo *web.config* selecionando o botão de lápis. Adicione a seção `<handlerSettings>` conforme mostrado em [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Selecione o botão **Salvar**.
-1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. Abra **Ferramentas Avançadas** na área **Ferramentas de Desenvolvimento**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra as pastas no caminho **site** > **wwwroot**. Se você não fornecer um caminho para o arquivo *aspnetcore-debug.log*, o arquivo aparecerá na lista. Se você tiver fornecido um caminho, navegue até o local do arquivo de log.
 1. Abra o arquivo de log com o botão de lápis ao lado do nome do arquivo.
@@ -220,7 +313,7 @@ Verifique se as Extensões do ASP.NET Core estão instaladas. Se as extensões n
 
 Se o registro em log de stdout não estiver habilitado, siga estas etapas:
 
-1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;**. O console do Kudu é aberto em uma nova janela ou guia do navegador.
+1. No portal do Azure, selecione a folha **Ferramentas Avançadas** na área **FERRAMENTAS DE DESENVOLVIMENTO**. Selecione o botão **Ir&rarr;** . O console do Kudu é aberto em uma nova janela ou guia do navegador.
 1. Usando a barra de navegação na parte superior da página, abra **Console de depuração** e selecione **CMD**.
 1. Abra as pastas no caminho **site** > **wwwroot** e role para baixo para revelar o arquivo *web.config* na parte inferior da lista.
 1. Clique no ícone de lápis ao lado do arquivo *web.config*.
