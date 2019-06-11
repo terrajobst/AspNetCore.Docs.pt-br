@@ -5,12 +5,12 @@ description: Obter uma explicação de como usar a autenticação de cookie sem 
 ms.author: riande
 ms.date: 02/25/2019
 uid: security/authentication/cookie
-ms.openlocfilehash: 2bc3e16b1b32816b14ad5bb4ca905ae5ed51ab87
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: f3e02b357a83cf5fc4b9fcdc79b2fbe80da98507
+ms.sourcegitcommit: 9691b742134563b662948b0ed63f54ef7186801e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64897743"
+ms.lasthandoff: 06/10/2019
+ms.locfileid: "66824760"
 ---
 # <a name="use-cookie-authentication-without-aspnet-core-identity"></a>Usar autenticação de cookie sem o ASP.NET Core Identity
 
@@ -195,7 +195,7 @@ await HttpContext.Authentication.SignInAsync(
 
 `SignInAsync` cria um cookie criptografado e o adiciona à resposta atual. Se você não especificar um `AuthenticationScheme`, o esquema padrão é usado.
 
-Nos bastidores, a criptografia usada é ASP.NET Core [proteção de dados](xref:security/data-protection/using-data-protection#security-data-protection-getting-started) sistema. Se você estiver hospedando o aplicativo em várias máquinas, balanceamento de carga entre aplicativos ou usar uma web farm, você deve [configurar a proteção de dados](xref:security/data-protection/configuration/overview) para usar o mesmo anel de chave e o identificador do aplicativo.
+Nos bastidores, a criptografia usada é ASP.NET Core [proteção de dados](xref:security/data-protection/using-data-protection) sistema. Se você estiver hospedando o aplicativo em várias máquinas, balanceamento de carga entre aplicativos ou usar uma web farm, você deve [configurar a proteção de dados](xref:security/data-protection/configuration/overview) para usar o mesmo anel de chave e o identificador do aplicativo.
 
 ## <a name="sign-out"></a>Sair
 
