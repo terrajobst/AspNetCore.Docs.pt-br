@@ -6,12 +6,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/01/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: ee7d4b2ae04b5f6c262acc5da0f86f90ab50585f
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: 435f06b85af4a1a5a78a870c2add3e15ff1ffe89
+ms.sourcegitcommit: 1bb3f3f1905b4e7d4ca1b314f2ce6ee5dd8be75f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65085663"
+ms.lasthandoff: 06/11/2019
+ms.locfileid: "66837269"
 ---
 # <a name="logging-in-aspnet-core"></a>Registro em log no ASP.NET Core
 
@@ -823,9 +823,10 @@ Para definir as configurações do provedor, use <xref:Microsoft.Extensions.Logg
 
 ::: moniker-end
 
-Ao implantar um aplicativo do Serviço de Aplicativo, o aplicativo respeita as configurações na seção [Logs de Diagnóstico](/azure/app-service/web-sites-enable-diagnostic-log/#enablediag) da página **Serviço de Aplicativo** do portal do Azure. Quando essas configurações são atualizadas, as alterações entram em vigor imediatamente sem a necessidade de uma reinicialização ou reimplantação do aplicativo.
+Quando você implanta em um aplicativo do Serviço de Aplicativo, o aplicativo respeita as configurações na seção [Logs do Serviço de Aplicativo](/azure/app-service/web-sites-enable-diagnostic-log/#enablediag) da página **Serviço de Aplicativo** do portal do Azure. Quando as configurações a seguir são atualizadas, as alterações entram em vigor imediatamente sem a necessidade de uma reinicialização ou reimplantação do aplicativo.
 
-![Configurações de registro em log do Azure](index/_static/azure-logging-settings.png)
+* **Log de aplicativo (Sistema de Arquivos)**
+* **Log de aplicativo (Blob)**
 
 O local padrão para arquivos de log é na pasta *D:\\home\\LogFiles\\Application* e o nome de arquivo padrão é *diagnostics-aaaammdd.txt*. O limite padrão de tamanho do arquivo é 10 MB e o número padrão máximo de arquivos mantidos é 2. O nome de blob padrão é *{app-name}{timestamp}/aaaa/mm/dd/hh/{guid}-applicationLog.txt*.
 
@@ -841,14 +842,11 @@ O fluxo de log do Azure permite que você exiba a atividade de log em tempo real
 
 Para configurar o fluxo de log do Azure:
 
-* Navegue até a página **Logs de Diagnóstico** da página do portal do seu aplicativo.
+* Navegue até a página **Logs do Serviço de Aplicativo** da página do portal do seu aplicativo.
 * Defina o **Log de aplicativo (Sistema de Arquivos)** como **Ativado**.
-
-![Página de logs de diagnóstico do Portal do Azure](index/_static/azure-diagnostic-logs.png)
+* Escolha o **Nível** de log.
 
 Navegue até a página **Fluxo de Log** para exibir as mensagens de aplicativo. Elas são registradas pelo aplicativo por meio da interface `ILogger`.
-
-![Fluxo de log do aplicativo do Portal do Azure](index/_static/azure-log-streaming.png)
 
 ::: moniker range=">= aspnetcore-1.1"
 

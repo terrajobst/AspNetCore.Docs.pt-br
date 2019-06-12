@@ -3,14 +3,14 @@ title: Visão geral das APIs de consumidor para o ASP.NET Core
 author: rick-anderson
 description: Receba uma breve visão geral do consumidor várias APIs disponíveis dentro da biblioteca de proteção de dados do ASP.NET Core.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 06/11/2019
 uid: security/data-protection/consumer-apis/overview
-ms.openlocfilehash: b0d11d097ee2d448b6781f6fa84445f6400fbc76
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: ff9badb55813cae0aa72d3a95dc53792332f109b
+ms.sourcegitcommit: 1bb3f3f1905b4e7d4ca1b314f2ce6ee5dd8be75f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087547"
+ms.lasthandoff: 06/11/2019
+ms.locfileid: "66837375"
 ---
 # <a name="consumer-apis-overview-for-aspnet-core"></a>Visão geral das APIs de consumidor para o ASP.NET Core
 
@@ -32,7 +32,7 @@ O conceito de mesma versus diferentes `IDataProtector` empates de volta para o c
 
 ## <a name="consuming-these-interfaces"></a>Consumir essas interfaces
 
-Para um componente de reconhecimento de DI, o uso pretendido é que o componente de levar um `IDataProtectionProvider` parâmetro em seu construtor e que o sistema de DI fornece automaticamente esse serviço quando o componente é instanciado.
+Para um componente de reconhecimento de DI, o uso pretendido é que o componente recebe um `IDataProtectionProvider` parâmetro em seu construtor e que o sistema de DI fornece automaticamente esse serviço quando o componente é instanciado.
 
 > [!NOTE]
 > Alguns aplicativos (como aplicativos de console ou aplicativos do ASP.NET 4.x) podem não ser reconhecimento de DI para que não é possível usar o mecanismo descrito aqui. Para esses cenários, confira a [não cenários de reconhecimento de DI](xref:security/data-protection/configuration/non-di-scenarios) documento para obter mais informações sobre como obter uma instância de um `IDataProtection` provedor sem passar por meio da DI.
