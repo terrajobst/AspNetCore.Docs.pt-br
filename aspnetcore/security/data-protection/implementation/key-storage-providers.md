@@ -3,14 +3,14 @@ title: Provedores de armazenamento de chaves no ASP.NET Core
 author: rick-anderson
 description: Saiba mais sobre provedores de armazenamento de chaves no ASP.NET Core e como configurar locais de armazenamento de chaves.
 ms.author: riande
-ms.date: 12/19/2018
+ms.date: 06/11/2019
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: d6dabc9e4581e0891d1dd14f73e086d50b45bba4
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 64c7e6b25d5b4acc72e96747a77826efaeb693fd
+ms.sourcegitcommit: 335a88c1b6e7f0caa8a3a27db57c56664d676d34
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64897443"
+ms.lasthandoff: 06/12/2019
+ms.locfileid: "67034775"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Provedores de armazenamento de chaves no ASP.NET Core
 
@@ -33,21 +33,11 @@ public void ConfigureServices(IServiceCollection services)
 
 O `DirectoryInfo` pode apontar para um diretório no computador local, ou ele pode apontar para uma pasta em um compartilhamento de rede. Se apontando para um diretório no computador local (e o cenário é que apenas os aplicativos no computador local exigem acesso para usar esse repositório), considere o uso de [Windows DPAPI](xref:security/data-protection/implementation/key-encryption-at-rest) (no Windows) para criptografar as chaves em repouso. Caso contrário, considere o uso de um [certificado x. 509](xref:security/data-protection/implementation/key-encryption-at-rest) para criptografar as chaves em repouso.
 
-## <a name="azure-and-redis"></a>O Azure e Redis
+## <a name="azure-storage"></a>Armazenamento do Azure
 
-::: moniker range=">= aspnetcore-2.2"
+O [Microsoft.AspNetCore.DataProtection.AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) pacote permite armazenar chaves de proteção de dados no armazenamento de BLOBs do Azure. As chaves podem ser compartilhadas entre várias instâncias de um aplicativo web. Aplicativos podem compartilhar cookies de autenticação ou proteção CSRF em vários servidores.
 
-O [Microsoft.AspNetCore.DataProtection.AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) e [Microsoft.AspNetCore.DataProtection.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.StackExchangeRedis/) pacotes permitem armazenar chaves de proteção de dados no armazenamento do Azure ou de um Redis cache. As chaves podem ser compartilhadas entre várias instâncias de um aplicativo web. Aplicativos podem compartilhar cookies de autenticação ou proteção CSRF em vários servidores.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.2"
-
-O [Microsoft.AspNetCore.DataProtection.AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) e [Microsoft.AspNetCore.DataProtection.Redis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Redis/) pacotes permitem armazenar chaves de proteção de dados no armazenamento do Azure ou um cache Redis. As chaves podem ser compartilhadas entre várias instâncias de um aplicativo web. Aplicativos podem compartilhar cookies de autenticação ou proteção CSRF em vários servidores.
-
-::: moniker-end
-
-Para configurar o provedor de armazenamento de BLOBs do Azure, chame um dos [PersistKeysToAzureBlobStorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage) sobrecargas:
+Para configurar o provedor de armazenamento de BLOBs do Azure, chame um dos [PersistKeysToAzureBlobStorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage) sobrecargas. 
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -56,6 +46,39 @@ public void ConfigureServices(IServiceCollection services)
         .PersistKeysToAzureBlobStorage(new Uri("<blob URI including SAS token>"));
 }
 ```
+
+Se o aplicativo web é executado como um serviço do Azure, tokens de autenticação podem ser criados automaticamente usando [ Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/). 
+
+```csharp
+var tokenProvider = new AzureServiceTokenProvider();
+var token = await tokenProvider.GetAccessTokenAsync("https://storage.azure.com/");
+var credentials = new StorageCredentials(new TokenCredential(token));
+var storageAccount = new CloudStorageAccount(credentials, "mystorageaccount", "core.windows.net", useHttps: true);
+var client = storageAccount.CreateCloudBlobClient();
+var container = client.GetContainerReference("my-key-container");
+
+// optional - provision the container automatically
+await container.CreateIfNotExistsAsync();
+
+services.AddDataProtection()
+    .PersistKeysToAzureBlobStorage(container, "keys.xml");
+```
+
+Consulte [para obter mais detalhes sobre como configurar a autenticação serviço a serviço.](/azure/key-vault/service-to-service-authentication)
+
+## <a name="redis"></a>Redis
+
+::: moniker range=">= aspnetcore-2.2"
+
+O [Microsoft.AspNetCore.DataProtection.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.StackExchangeRedis/) pacote permite armazenar chaves de proteção de dados em um cache Redis. As chaves podem ser compartilhadas entre várias instâncias de um aplicativo web. Aplicativos podem compartilhar cookies de autenticação ou proteção CSRF em vários servidores.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+O [Microsoft.AspNetCore.DataProtection.Redis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Redis/) pacote permite armazenar chaves de proteção de dados em um cache Redis. As chaves podem ser compartilhadas entre várias instâncias de um aplicativo web. Aplicativos podem compartilhar cookies de autenticação ou proteção CSRF em vários servidores.
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.2"
 

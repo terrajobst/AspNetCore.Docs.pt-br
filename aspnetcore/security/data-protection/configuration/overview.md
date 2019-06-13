@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/11/2019
 uid: security/data-protection/configuration/overview
-ms.openlocfilehash: ee43427fa1e82a365d49df50567b4ca7afb5a5d3
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 65a927b6288ca6cc41ee1bedd1080e52ffe0d3e1
+ms.sourcegitcommit: 335a88c1b6e7f0caa8a3a27db57c56664d676d34
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64897293"
+ms.lasthandoff: 06/12/2019
+ms.locfileid: "67034930"
 ---
 # <a name="configure-aspnet-core-data-protection"></a>Configurar a proteção de dados do ASP.NET Core
 
@@ -23,7 +23,7 @@ Quando o sistema de proteção de dados é inicializado, ele se aplica [as confi
 Para esses cenários, o sistema de proteção de dados oferece uma API de configuração avançada.
 
 > [!WARNING]
-> Semelhante aos arquivos de configuração, o anel de chave de proteção de dados devem ser protegido usando as permissões apropriadas. Você pode optar por criptografar as chaves em repouso, mas isso não impede que os invasores desde a criação de novas chaves. Consequentemente, a segurança desse aplicativo é afetada. O local de armazenamento configurado com proteção de dados deve ter seu acesso limitado ao próprio aplicativo, semelhante à forma como você protegerá os arquivos de configuração. Por exemplo, se você optar por armazenar seu token de autenticação no disco, use as permissões do sistema de arquivos. Certifique-se apenas a identidade sob a qual seu aplicativo web é executado tem ler, gravar e criar acesso a esse diretório. Se você usar o armazenamento de tabelas do Azure, apenas o aplicativo web deve ter a capacidade de ler, gravar ou criar novas entradas no repositório de tabela, etc.
+> Semelhante aos arquivos de configuração, o anel de chave de proteção de dados devem ser protegido usando as permissões apropriadas. Você pode optar por criptografar as chaves em repouso, mas isso não impede que os invasores desde a criação de novas chaves. Consequentemente, a segurança desse aplicativo é afetada. O local de armazenamento configurado com proteção de dados deve ter seu acesso limitado ao próprio aplicativo, semelhante à forma como você protegerá os arquivos de configuração. Por exemplo, se você optar por armazenar seu token de autenticação no disco, use as permissões do sistema de arquivos. Certifique-se apenas a identidade sob a qual seu aplicativo web é executado tem ler, gravar e criar acesso a esse diretório. Se você usar o armazenamento de BLOBs do Azure, apenas o aplicativo web deve ter a capacidade de ler, gravar ou criar novas entradas no repositório de blob, etc.
 >
 > O método de extensão [AddDataProtection](/dotnet/api/microsoft.extensions.dependencyinjection.dataprotectionservicecollectionextensions.adddataprotection) retorna um [IDataProtectionBuilder](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotectionbuilder). `IDataProtectionBuilder` expõe métodos de extensão que você pode encadear configurar a proteção de dados de opções.
 
@@ -42,7 +42,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Defina o local de armazenamento do anel de chave (por exemplo, [PersistKeysToAzureBlobStorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage)). O local deve ser definido porque chamando `ProtectKeysWithAzureKeyVault` implementa uma [IXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmlencryptor) que desabilita as configurações de proteção automática de dados, incluindo o local de armazenamento do anel de chave. O exemplo anterior usa o armazenamento de BLOBs do Azure para persistir o anel de chave. Para obter mais informações, consulte [principais provedores de armazenamento: O Azure e Redis](xref:security/data-protection/implementation/key-storage-providers#azure-and-redis). Também é possível persistir o token de autenticação localmente com [PersistKeysToFileSystem](xref:security/data-protection/implementation/key-storage-providers#file-system).
+Defina o local de armazenamento do anel de chave (por exemplo, [PersistKeysToAzureBlobStorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage)). O local deve ser definido porque chamando `ProtectKeysWithAzureKeyVault` implementa uma [IXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmlencryptor) que desabilita as configurações de proteção automática de dados, incluindo o local de armazenamento do anel de chave. O exemplo anterior usa o armazenamento de BLOBs do Azure para persistir o anel de chave. Para obter mais informações, consulte [principais provedores de armazenamento: Armazenamento do Azure](xref:security/data-protection/implementation/key-storage-providers#azure-storage). Também é possível persistir o token de autenticação localmente com [PersistKeysToFileSystem](xref:security/data-protection/implementation/key-storage-providers#file-system).
 
 O `keyIdentifier` é o identificador de chave de Cofre de chaves usado para criptografia de chave. Por exemplo, uma chave criada no cofre de chaves chamado `dataprotection` no `contosokeyvault` tem o identificador de chave `https://contosokeyvault.vault.azure.net/keys/dataprotection/`. Forneça o aplicativo com **Unwrap Key** e **Wrap Key** permissões ao Cofre de chaves.
 
@@ -170,7 +170,7 @@ Quando o sistema de proteção de dados é fornecido por um host do ASP.NET Core
 
 O mecanismo de isolamento funciona considerando cada aplicativo no computador local como um locatário exclusivo, assim o <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> com raiz para qualquer aplicativo em particular automaticamente inclui a ID do aplicativo como um discriminador. A ID do aplicativo exclusivo é o caminho físico do aplicativo:
 
-* Para aplicativos hospedados no [IIS](xref:fundamentals/servers/index#iis-http-server), a ID exclusiva é o caminho físico do IIS do aplicativo. Se um aplicativo é implantado em um ambiente de farm da web, esse valor é estável, supondo que os ambientes de IIS são configurados da mesma forma em todas as máquinas no web farm.
+* Para aplicativos hospedados no IIS, a ID exclusiva é o caminho físico do IIS do aplicativo. Se um aplicativo é implantado em um ambiente de farm da web, esse valor é estável, supondo que os ambientes de IIS são configurados da mesma forma em todas as máquinas no web farm.
 * Para aplicativos de auto-hospedados em execução no [servidor Kestrel](xref:fundamentals/servers/index#kestrel), a ID exclusiva é o caminho físico para o aplicativo no disco.
 
 O identificador exclusivo é projetado para sobreviver a reinicializações&mdash;do aplicativo individual e a própria máquina.
