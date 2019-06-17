@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/11/2019
 uid: fundamentals/index
-ms.openlocfilehash: 9c7bc25d813ad17825ef03f5176882993cc2dd63
-ms.sourcegitcommit: 6afe57fb8d9055f88fedb92b16470398c4b9b24a
+ms.openlocfilehash: 3cf311f8e6be4ed12c79ceecc15ccc1babfb0117
+ms.sourcegitcommit: 335a88c1b6e7f0caa8a3a27db57c56664d676d34
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/14/2019
-ms.locfileid: "65610320"
+ms.lasthandoff: 06/12/2019
+ms.locfileid: "67034865"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
 
@@ -22,11 +22,12 @@ Este artigo é uma visão geral dos principais tópicos para entender como desen
 
 A classe `Startup` é o local em que:
 
-* Quaisquer serviços exigidos pelo aplicativo são configurados.
+* Os serviços exigidos pelo aplicativo são configurados.
 * O pipeline de tratamento de solicitação é definido.
 
-* Código para configurar (ou *registrar*) serviços é adicionado ao método `Startup.ConfigureServices`. *Serviços* são componentes usados pelo aplicativo. Por exemplo, um objeto de contexto do Entity Framework Core é um serviço.
-* O código para configurar a pipeline de tratamento de solicitação é adicionado ao método `Startup.Configure`. O pipeline é composto como uma série de componentes de *middleware*. Por exemplo, um middleware pode manipular as solicitações para arquivos estáticos ou redirecionar solicitações HTTP para HTTPS. Cada middleware executa operações assíncronas em um `HttpContext` e invoca o próximo middleware no pipeline ou encerra a solicitação.
+*Serviços* são componentes usados pelo aplicativo. Por exemplo, um componente de registro em log é um serviço. Código para configurar (ou *registrar*) serviços é adicionado ao método `Startup.ConfigureServices`.
+
+O pipeline de tratamento de solicitações é composto como uma série de componentes de *middleware*. Por exemplo, um middleware pode manipular as solicitações para arquivos estáticos ou redirecionar solicitações HTTP para HTTPS. Cada middleware executa operações assíncronas em um `HttpContext` e invoca o próximo middleware no pipeline ou encerra a solicitação. O código para configurar a pipeline de tratamento de solicitação é adicionado ao método `Startup.Configure`.
 
 Aqui está um exemplo de classe `Startup`:
 
@@ -60,9 +61,7 @@ O ASP.NET Core inclui um conjunto de middleware interno, e você pode escrever u
 
 Para obter mais informações, consulte <xref:fundamentals/middleware/index>.
 
-<a id="host"/>
-
-## <a name="the-host"></a>O host
+## <a name="host"></a>Host
 
 Um aplicativo ASP.NET Core cria um *host* na inicialização. O host é um objeto que encapsula todos os recursos do aplicativo, como:
 
@@ -74,61 +73,45 @@ Um aplicativo ASP.NET Core cria um *host* na inicialização. O host é um objet
 
 O principal motivo para incluir todos os recursos interdependentes do aplicativo em um objeto é o gerenciamento de tempo de vida: controle sobre a inicialização do aplicativo e desligamento normal.
 
-O código para criar um host está em `Program.Main` e segue o [padrão de construtor](https://wikipedia.org/wiki/Builder_pattern). Métodos são chamados para configurar cada recurso que faz parte do host. Um método construtor é chamado para reunir tudo e instanciar o objeto de host.
-
 ::: moniker range=">= aspnetcore-3.0"
 
-`CreateHostBuilder` é um nome especial que identifica o método construtor para componentes externos, como [Entity Framework](/ef/core/).
+Dois hosts estão disponíveis: o Host Genérico e o Host Web. O Host Genérico é o recomendado, e o Host Web está disponível apenas para compatibilidade com versões anteriores.
 
-No ASP.NET Core 3.0 ou posterior, o Host Genérico (classe `Host`) ou o Host da Web (classe `WebHost`) podem ser usados em um aplicativo Web. O Host Genérico é o recomendado, e o Host da Web está disponível para compatibilidade com versões anteriores.
+O código para criar um host está em `Program.Main`:
 
-A estrutura fornece os métodos `CreateDefaultBuilder` e `ConfigureWebHostDefaults` para configurar um host com opções comumente usadas, como as seguintes:
+[!code-csharp[](index/snapshots/3.x/Program1.cs)]
+
+Os métodos `CreateDefaultBuilder` e `ConfigureWebHostDefaults` configuram um host com as opções usadas com frequência, como as seguintes:
 
 * Uso do [Kestrel](#servers) como o servidor Web e habilitação da integração do IIS.
 * Configuração de carregamento de *appsettings.json*, *appsettings.{EnvironmentName}.json*, de variáveis de ambiente, de argumentos de linha de comando e outras fontes de configuração.
 * Envio da saída de log para os provedores de console e de depuração.
 
-Aqui está um exemplo de código que cria um host. Os métodos que configuram o host com as opções mais usadas são realçados:
-
-[!code-csharp[](index/snapshots/3.x/Program1.cs?highlight=9-10)]
-
-Para obter mais informações, consulte <xref:fundamentals/host/generic-host> e <xref:fundamentals/host/web-host>.
+Para obter mais informações, consulte <xref:fundamentals/host/generic-host>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-`CreateWebHostBuilder` é um nome especial que identifica o método construtor para componentes externos, como [Entity Framework](/ef/core/).
+Dois hosts estão disponíveis: o Host Web e o Host Genérico. No ASP.NET Core 2.x, o Host Genérico é somente para cenários não Web.
 
-O ASP.NET Core 2.x usa o Host da Web (classe `WebHost`) para aplicativos Web. A estrutura fornece `CreateDefaultBuilder` para configurar um host com opções comumente usadas, como as seguintes:
+O código para criar um host está em `Program.Main`:
+
+[!code-csharp[](index/snapshots/2.x/Program1.cs)]
+
+O método `CreateDefaultBuilder` configura um host com as opções usadas com frequência, como as seguintes:
 
 * Uso do [Kestrel](#servers) como o servidor Web e habilitação da integração do IIS.
 * Configuração de carregamento de *appsettings.json*, *appsettings.{EnvironmentName}.json*, de variáveis de ambiente, de argumentos de linha de comando e outras fontes de configuração.
 * Envio da saída de log para os provedores de console e de depuração.
-
-Aqui está um exemplo de código que cria um host:
-
-[!code-csharp[](index/snapshots/2.x/Program1.cs?highlight=9)]
 
 Para obter mais informações, consulte <xref:fundamentals/host/web-host>.
 
 ::: moniker-end
 
-### <a name="advanced-host-scenarios"></a>Cenários avançados de host
+### <a name="non-web-scenarios"></a>Cenários não Web
 
-::: moniker range=">= aspnetcore-3.0"
-
-O Host Genérico está disponível para uso por qualquer aplicativo .NET Core, não apenas para aplicativos ASP.NET Core. O Host Genérico (classe `Host`) permite que outros tipos de aplicativo usem extensões de estruturas abrangentes como registro em log, DI, configuração e gerenciamento de tempo de vida de aplicativo. Para obter mais informações, consulte <xref:fundamentals/host/generic-host>.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-O Host da Web foi desenvolvido para incluir uma implementação de servidor HTTP, que não é exigida para outros tipos de aplicativo .NET. A partir do ASP.NET Core 2.1, o Host Genérico (classe `Host`) está disponível para uso por qualquer aplicativo .NET Core &mdash; não apenas para aplicativos ASP.NET Core. O Host Genérico permite que outros tipos de aplicativo usem extensões de estruturas abrangentes como registro em log, DI, configuração e gerenciamento de tempo de vida de aplicativo. Para obter mais informações, consulte <xref:fundamentals/host/generic-host>.
-
-::: moniker-end
-
-Você também pode usar o host para executar tarefas em segundo plano. Para obter mais informações, consulte <xref:fundamentals/host/hosted-services>.
+O Host Genérico permite que outros tipos de aplicativos usem extensões de estruturas abrangentes como registro em log, DI (Injeção de Dependência), configuração e gerenciamento do tempo de vida dos aplicativos. Para obter mais informações, consulte <xref:fundamentals/host/generic-host> e <xref:fundamentals/host/hosted-services>.
 
 ## <a name="servers"></a>Servidores
 
@@ -287,6 +270,6 @@ Para obter mais informações, veja [Raiz de conteúdo](xref:fundamentals/host/w
 
 A raiz Web (também conhecida como *webroot*) é o caminho base para recursos públicos e estáticos como CSS, JavaScript e arquivos de imagem. O middleware de arquivos estáticos apenas veiculará arquivos do diretório raiz Web (e seus subdiretórios) por padrão. O caminho da raiz Web assume como padrão *{Content Root}/wwwroot*, mas é possível especificar um local diferente ao [criar o host](#host).
 
-Em arquivos (*.cshtml*) do Razor, o til-barra `~/` aponta para a raiz Web. Caminhos que começam com `~/` são denominados caminhos virtuais.
+Em arquivos ( *.cshtml*) do Razor, o til-barra `~/` aponta para a raiz Web. Caminhos que começam com `~/` são denominados caminhos virtuais.
 
 Para obter mais informações, consulte <xref:fundamentals/static-files>.
