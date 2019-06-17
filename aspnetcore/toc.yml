@@ -166,10 +166,10 @@
       uid: fundamentals/middleware/index
     - name: Host
       items:
-        - name: Host da Web
-          uid: fundamentals/host/web-host
         - name: Host Genérico
           uid: fundamentals/host/generic-host
+        - name: Host da Web
+          uid: fundamentals/host/web-host
     - name: Servidores
       uid: fundamentals/servers/index
     - name: Configuração
