@@ -4,14 +4,14 @@ author: scottaddie
 description: Saiba o que são os Componentes do Auxiliar de Marca e como usá-los no ASP.NET Core.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
-ms.date: 04/06/2019
+ms.date: 06/12/2019
 uid: mvc/views/tag-helpers/th-components
-ms.openlocfilehash: 777bbcca3d1c2f03f386fa62df2a2e0b00409318
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: b5b3abea6492cfaa7d6acd0e54073a8db12eb2a5
+ms.sourcegitcommit: 335a88c1b6e7f0caa8a3a27db57c56664d676d34
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64889731"
+ms.lasthandoff: 06/12/2019
+ms.locfileid: "67034756"
 ---
 # <a name="tag-helper-components-in-aspnet-core"></a>Componentes do Auxiliar de Marca no ASP.NET Core
 
@@ -62,9 +62,16 @@ O código anterior associa um [widget de Dica de ferramenta de inicialização](
 
 Um Componente do Auxiliar de Marca precisa ser adicionado à coleção de Componentes do Auxiliar de Marca do aplicativo. Há três maneiras de adicioná-lo à coleção:
 
-1. [Registro por contêiner de serviços](#registration-via-services-container)
-1. [Registro por arquivo Razor](#registration-via-razor-file)
-1. [Registro por Modelo de página ou controlador](#registration-via-page-model-or-controller)
+* [Componentes do Auxiliar de Marca no ASP.NET Core](#tag-helper-components-in-aspnet-core)
+  * [Casos de uso](#use-cases)
+    * [Injetar no elemento HTML head](#inject-into-html-head-element)
+    * [Injetar no elemento HTML body](#inject-into-html-body-element)
+  * [Registrar um componente](#register-a-component)
+    * [Registro por contêiner de serviços](#registration-via-services-container)
+    * [Registro por arquivo Razor](#registration-via-razor-file)
+    * [Registro por Modelo de página ou controlador](#registration-via-page-model-or-controller)
+  * [Criar um componente](#create-a-component)
+  * [Recursos adicionais](#additional-resources)
 
 ### <a name="registration-via-services-container"></a>Registro por contêiner de serviços
 

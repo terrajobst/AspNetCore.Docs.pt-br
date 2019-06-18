@@ -5,12 +5,12 @@ description: Saiba como o ASP.NET Core fornece serviços e middleware para local
 ms.author: riande
 ms.date: 01/14/2017
 uid: fundamentals/localization
-ms.openlocfilehash: 3192ad150b914c00b315f38bd9fe077ebf402b37
-ms.sourcegitcommit: 687ffb15ebe65379f75c84739ea851d5a0d788b7
+ms.openlocfilehash: ec78d35daf6823779fca491aca7b7b309db4b02e
+ms.sourcegitcommit: e7e04a45195d4e0527af6f7cf1807defb56dc3c3
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2019
-ms.locfileid: "58488696"
+ms.lasthandoff: 06/06/2019
+ms.locfileid: "66750031"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalização e localização no ASP.NET Core
 
@@ -30,7 +30,7 @@ A localização de aplicativos envolve o seguinte:
 
 3. Implementar uma estratégia para selecionar o idioma e a cultura para cada solicitação
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="make-the-apps-content-localizable"></a>Tornar o conteúdo do aplicativo localizável
 
@@ -348,3 +348,4 @@ Termos:
 * [Globalizando e localizando aplicativos do .NET](/dotnet/standard/globalization-localization/index)
 * [Recursos em arquivos .resx](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Kit de Ferramentas de Aplicativo Multilíngue da Microsoft](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
+* [Localização e genéricos](https://github.com/hishamco/hishambinateya.com/blob/master/Posts/localization-and-generics.md)

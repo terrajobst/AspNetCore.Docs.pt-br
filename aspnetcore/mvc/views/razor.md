@@ -3,14 +3,14 @@ title: Referência da sintaxe Razor para ASP.NET Core
 author: rick-anderson
 description: Saiba mais sobre a sintaxe de marcação Razor para inserir código baseado em servidor em páginas da Web.
 ms.author: riande
-ms.date: 10/26/2018
+ms.date: 06/12/2019
 uid: mvc/views/razor
-ms.openlocfilehash: 7f97be651c067e94f29eef4956c10d87ec031bed
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 87c5b97a653c139b8b79f4270e0d9d0081815433
+ms.sourcegitcommit: 335a88c1b6e7f0caa8a3a27db57c56664d676d34
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64887901"
+ms.lasthandoff: 06/12/2019
+ms.locfileid: "67034943"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -210,7 +210,7 @@ A linguagem padrão em um bloco de código é C#, mas a página Razor pode fazer
 
 ### <a name="explicit-delimited-transition"></a>Transição delimitada explícita
 
-Para definir uma subseção de um bloco de código que deve renderizar HTML, circunde os caracteres para renderização com as marca Razor **\<text>**:
+Para definir uma subseção de um bloco de código que deve renderizar HTML, circunde os caracteres para renderização com as marca Razor **\<text>** :
 
 ```cshtml
 @for (var i = 0; i < people.Length; i++)
@@ -574,9 +574,39 @@ O código renderiza o HTML a seguir:
 
 ::: moniker-end
 
+### <a name="attribute"></a>@attribute
+
+A diretiva `@attribute` adiciona o atributo fornecido à classe da página ou exibição gerada. O exemplo a seguir adiciona o atributo `[Authorize]`:
+
+```cshtml
+@attribute [Authorize]
+```
+
+> [!WARNING]
+> No ASP.NET Core 3.0 Versão Prévia 6, há um problema conhecido em que diretivas `@attribute` não funcionam nos arquivos *\_Imports.razor* e *\_ViewImports.cshtml*. Isso será abordado na Versão Prévia 7.
+
+### <a name="namespace"></a>@namespace
+
+A diretiva `@namespace` define o namespace da classe da página ou exibição gerada:
+
+```cshtml
+@namespace Your.Namespace.Here
+```
+
+Se uma página ou exibição importar a API com uma diretiva `@namespace`, o namespace do arquivo original será definido em relação àquele namespace. 
+
+Se *MyApp/Pages/\_ViewImports.cshtml* contiver `@namespace Hello.World`, o namespace das páginas ou exibições que importam o namespace `Hello.World` será definido conforme mostra a tabela a seguir.
+
+| Página (ou exibição)                     | Namespace               |
+| ---------------------------------- | ----------------------- |
+| *MyApp/Pages/Index.cshtml*         | `Hello.World`           |
+| *MyApp/Pages/MorePages/Bar.cshtml* | `Hello.World.MorePages` |
+
+Se vários arquivos de importação tiverem a diretiva `@namespace`, o arquivo mais próximo da página ou exibição na cadeia de diretório será usado.
+
 ### <a name="section"></a>@section
 
-A diretiva `@section` é usada em conjunto com o [layout](xref:mvc/views/layout) para permitir que as exibições renderizem conteúdo em partes diferentes da página HTML. Para obter mais informações, consulte [Seções](xref:mvc/views/layout#layout-sections-label).
+A diretiva `@section` é usada em conjunto com o [layout](xref:mvc/views/layout) para permitir que as páginas ou as exibições renderizem conteúdo em partes diferentes da página HTML. Para obter mais informações, consulte [Seções](xref:mvc/views/layout#layout-sections-label).
 
 ## <a name="templated-razor-delegates"></a>Representantes do Razor com modelo
 

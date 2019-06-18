@@ -4,20 +4,20 @@ author: ardalis
 description: Descubra como usar exibições parciais para dividir os arquivos de marcação grandes e reduzir a duplicação de marcações comuns em páginas da Web em aplicativos ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/06/2019
+ms.date: 06/12/2019
 uid: mvc/views/partial
-ms.openlocfilehash: e13b2ea974697bb12c121d1a70fb5079d6aadb2d
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 901fd52f89969141713e443890781a77308bd901
+ms.sourcegitcommit: 335a88c1b6e7f0caa8a3a27db57c56664d676d34
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64887461"
+ms.lasthandoff: 06/12/2019
+ms.locfileid: "67034910"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Exibições parciais no ASP.NET Core
 
 Por [Steve Smith](https://ardalis.com/), [Luke Latham](https://github.com/guardrex), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT) e [Scott Sauber](https://twitter.com/scottsauber)
 
-Uma exibição parcial é um arquivo de marcação [Razor](xref:mvc/views/razor) (*.cshtml*) que renderiza a saída HTML *dentro* da saída processada de outro arquivo de marcação.
+Uma exibição parcial é um arquivo de marcação [Razor](xref:mvc/views/razor) ( *.cshtml*) que renderiza a saída HTML *dentro* da saída processada de outro arquivo de marcação.
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -48,7 +48,7 @@ Não use uma exibição parcial em que a lógica de renderização complexa ou a
 
 Uma exibição parcial é um arquivo de marcação *.cshtml* mantido dentro da pasta *Exibições* (MVC) ou *Páginas* (Razor Pages).
 
-No ASP.NET Core MVC, um <xref:Microsoft.AspNetCore.Mvc.ViewResult> do controlador é capaz de retornar uma exibição ou uma exibição parcial. Uma funcionalidade semelhante está planejada para o Razor Pages no ASP.NET Core 2.2. No Razor Pages, um <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> pode retornar um <xref:Microsoft.AspNetCore.Mvc.PartialViewResult>. A referência e a renderização de exibições parciais são descritas na seção [Referenciar uma exibição parcial](#reference-a-partial-view).
+No ASP.NET Core MVC, um <xref:Microsoft.AspNetCore.Mvc.ViewResult> do controlador é capaz de retornar uma exibição ou uma exibição parcial. No Razor Pages, um <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> pode retornar uma exibição parcial, representada como um objeto <xref:Microsoft.AspNetCore.Mvc.PartialViewResult>. A referência e a renderização de exibições parciais são descritas na seção [Referenciar uma exibição parcial](#reference-a-partial-view).
 
 Ao contrário da exibição do MVC ou renderização de página, uma exibição parcial não executa *_ViewStart.cshtml*. Para obter mais informações sobre *_ViewStart.cshtml*, consulte <xref:mvc/views/layout>.
 
@@ -60,7 +60,7 @@ Nomes de arquivos de exibição parcial geralmente começam com um sublinhado (`
 
 Uma exibição parcial é um arquivo de marcação *.cshtml* mantido dentro da pasta *Exibições*.
 
-Um <xref:Microsoft.AspNetCore.Mvc.ViewResult> do controlador é capaz de retornar uma exibição ou uma exibição parcial.
+Um <xref:Microsoft.AspNetCore.Mvc.ViewResult> do controlador é capaz de retornar uma exibição ou uma exibição parcial. A referência e a renderização de exibições parciais são descritas na seção [Referenciar uma exibição parcial](#reference-a-partial-view).
 
 Ao contrário da renderização de exibição do MVC, uma exibição parcial não executa *_ViewStart.cshtml*. Para obter mais informações sobre *_ViewStart.cshtml*, consulte <xref:mvc/views/layout>.
 
@@ -69,6 +69,33 @@ Nomes de arquivos de exibição parcial geralmente começam com um sublinhado (`
 ::: moniker-end
 
 ## <a name="reference-a-partial-view"></a>Referenciar uma exibição parcial
+
+::: moniker range=">= aspnetcore-2.0"
+
+### <a name="use-a-partial-view-in-a-razor-pages-pagemodel"></a>Usar uma exibição parcial em um PageModel do Razor Pages
+
+No ASP.NET Core 2.0 ou 2.1, o seguinte método de manipulador renderiza a exibição parcial *\_AuthorPartialRP.cshtml* à resposta:
+
+```csharp
+public IActionResult OnGetPartial() =>
+    new PartialViewResult
+    {
+        ViewName = "_AuthorPartialRP",
+        ViewData = ViewData,
+    };
+```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+No ASP.NET Core 2.2 ou posterior, um método de manipulador pode, como alternativa, chamar o método <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Partial*> para produzir um objeto `PartialViewResult`:
+
+[!code-csharp[](partial/sample/PartialViewsSample/Pages/DiscoveryRP.cshtml.cs?name=snippet_OnGetPartial)]
+
+::: moniker-end
+
+### <a name="use-a-partial-view-in-a-markup-file"></a>Usar uma exibição parcial em um arquivo de marcação
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -263,7 +290,7 @@ Você pode passar um modelo para uma exibição parcial. O modelo pode ser um ob
 
 A marcação a seguir no aplicativo de exemplo é da página *Pages/ArticlesRP/ReadRP.cshtml*. A página contém duas exibições parciais. A segunda exibição parcial passa um modelo e `ViewData` para a exibição parcial. A sobrecarga do construtor `ViewDataDictionary` é usada para passar um novo dicionário `ViewData`, retendo ainda o dicionário `ViewData` existente.
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Pages/ArticlesRP/ReadRP.cshtml?name=snippet_ReadPartialViewRP&highlight=5,15-19)]
+[!code-cshtml[](partial/sample/PartialViewsSample/Pages/ArticlesRP/ReadRP.cshtml?name=snippet_ReadPartialViewRP&highlight=5,15-20)]
 
 *Pages/Shared/_AuthorPartialRP.cshtml* é a primeira exibição parcial referenciada pelo arquivo de marcação *ReadRP.cshtml*:
 
@@ -279,7 +306,7 @@ A marcação a seguir no aplicativo de exemplo é da página *Pages/ArticlesRP/R
 
 A marcação a seguir no aplicativo de exemplo mostra a exibição *Views/Articles/Read.cshtml*. A exibição contém duas exibições parciais. A segunda exibição parcial passa um modelo e `ViewData` para a exibição parcial. A sobrecarga do construtor `ViewDataDictionary` é usada para passar um novo dicionário `ViewData`, retendo ainda o dicionário `ViewData` existente.
 
-[!code-cshtml[](partial/sample/PartialViewsSample/Views/Articles/Read.cshtml?name=snippet_ReadPartialView&highlight=5,15-19)]
+[!code-cshtml[](partial/sample/PartialViewsSample/Views/Articles/Read.cshtml?name=snippet_ReadPartialView&highlight=5,15-20)]
 
 *Views/Shared/_AuthorPartial.cshtml* é a primeira exibição parcial referenciada pelo arquivo de marcação *ReadRP.cshtml*:
 
