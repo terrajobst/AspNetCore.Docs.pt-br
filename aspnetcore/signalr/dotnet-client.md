@@ -7,12 +7,12 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/17/2019
 uid: signalr/dotnet-client
-ms.openlocfilehash: b59af0f9c84a008f778709970dba2273abdfcd4f
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: 97c553874cb1e4b678fa0e5cd65074f135193861
+ms.sourcegitcommit: 4ef0362ef8b6e5426fc5af18f22734158fe587e1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087710"
+ms.lasthandoff: 06/17/2019
+ms.locfileid: "67153126"
 ---
 # <a name="aspnet-core-signalr-net-client"></a>Cliente de .NET do SignalR do ASP.NET Core
 
@@ -37,6 +37,162 @@ Para estabelecer uma conexão, cria uma `HubConnectionBuilder` e chamar `Build`.
 [!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=15-17,39)]
 
 ## <a name="handle-lost-connection"></a>Lidar com a conexão perdida
+
+::: moniker range=">= aspnetcore-3.0"
+
+### <a name="automatically-reconnect"></a>Reconectar-se automaticamente
+
+O <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> pode ser configurado para se reconectar automaticamente usando o `WithAutomaticReconnect` método o <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Ele não se reconectar automaticamente por padrão.
+
+```csharp
+HubConnection connection= new HubConnectionBuilder()
+    .WithUrl(new Uri("http://127.0.0.1:5000/chatHub"))
+    .WithAutomaticReconnect()
+    .Build();
+```
+
+Sem parâmetros, `WithAutomaticReconnect()` configura o cliente para aguardar 0, 2, 10 e 30 segundos respectivamente antes de tentar a cada tentativa de reconexão, parando depois de quatro tentativas com falha.
+
+Antes de iniciar qualquer tentativa de reconexão, o `HubConnection` será a transição para o `HubConnectionState.Reconnecting` de estado e acionar o `Reconnecting` eventos.  Isso fornece uma oportunidade para avisar os usuários que a conexão foi perdida e para desativar elementos da interface do usuário. Aplicativos não interativos podem iniciar o enfileiramento de mensagens ou descarte de mensagens.
+
+```csharp
+connection.Reconnecting += error =>
+{
+    Debug.Assert(connection.State == HubConnectionState.Reconnecting);
+
+    // Notify users the connection was lost and the client is reconnecting.
+    // Start queuing or dropping messages.
+
+    return Task.CompletedTask;
+};
+```
+
+Se o cliente se reconecta com êxito dentro de suas primeiras quatro tentativas, o `HubConnection` fará a transição para o `Connected` de estado e acionar o `Reconnected` eventos. Isso fornece uma oportunidade para informar os usuários a conexão ser restabelecida e remover da fila as mensagens na fila.
+
+Como a conexão parece inteiramente nova para o servidor, um novo `ConnectionId` será fornecido para o `Reconnected` manipuladores de eventos.
+
+> [!WARNING]
+> O `Reconnected` manipulador de eventos `connectionId` parâmetro será nulo se o `HubConnection` foi configurado para [ignorar negociação](xref:signalr/configuration#configure-client-options).
+
+```csharp
+connection.Reconnected += connectionId =>
+{
+    Debug.Assert(connection.State == HubConnectionState.Connected);
+
+    // Notify users the connection was reestablished.
+    // Start dequeuing messages queued while reconnecting if any.
+
+    return Task.CompletedTask;
+};
+```
+
+`WithAutomaticReconnect()` não configure o `HubConnection` para repetir as falhas de inicialização inicial, portanto, falhas de inicialização precisam ser feito manualmente:
+
+```csharp
+public static async Task<bool> ConnectWithRetryAsync(HubConnection connection, CancellationToken token)
+{
+    // Keep trying to until we can start or the token is canceled.
+    while (true)
+    {
+        try
+        {
+            await connection.StartAsync(token);
+            Debug.Assert(connection.State == HubConnectionState.Connected);
+            return true;
+        }
+        catch when (token.IsCancellationRequested)
+        {
+            return false;
+        }
+        catch
+        {
+            // Failed to connect, trying again in 5000 ms.
+            Debug.Assert(connection.State == HubConnectionState.Disconnected);
+            await Task.Delay(5000);
+        }
+    }
+}
+```
+
+Se o cliente não reconectar-se com êxito dentro de suas primeiras quatro tentativas, o `HubConnection` será a transição para o `Disconnected` de estado e acionar o <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.Closed> eventos. Isso fornece uma oportunidade para tentar reiniciar a conexão manualmente ou informar aos usuários que a conexão foi perdido permanentemente.
+
+```csharp
+connection.Closed += error =>
+{
+    Debug.Assert(connection.State == HubConnectionState.Disconnected);
+
+    // Notify users the connection has been closed or manually try to restart the connection.
+
+    return Task.CompletedTask;
+};
+```
+
+Para configurar um número personalizado de tentativas de reconexão antes de desconectar ou alterar o tempo de reconexão, `WithAutomaticReconnect` aceita uma matriz de números que representa o atraso em milissegundos para esperar antes de começar a cada tentativa de reconexão.
+
+```csharp
+HubConnection connection= new HubConnectionBuilder()
+    .WithUrl(new Uri("http://127.0.0.1:5000/chatHub"))
+    .WithAutomaticReconnect(new[] { TimeSpan.Zero, TimeSpan.Zero, TimeSpan.FromSeconds(10) })
+    .Build();
+
+    // .WithAutomaticReconnect(new[] { TimeSpan.Zero, TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(30) }) yields the default behavior.
+```
+
+O exemplo anterior configura o `HubConnection` para iniciar a tentativa de reconexão imediatamente depois que a conexão for perdida. Isso também é verdadeiro para a configuração padrão.
+
+Se a primeira tentativa de reconexão falhar, a segunda tentativa de reconexão também será iniciado imediatamente em vez de aguardar de 2 segundos como apareceria na configuração padrão.
+
+Se a segunda tentativa de reconexão falhar, a terceira tentativa de reconexão será iniciado em 10 segundos, que é novamente como a configuração padrão.
+
+O comportamento personalizado, em seguida, diverge novamente do comportamento padrão, interrompendo depois reconectar a terceira tentativa falha. A configuração de padrão seria ser um mais reconecta tentativa em outro 30 segundos.
+
+Se você quiser ainda mais controle sobre o tempo e o número de automático se reconectar, as tentativas `WithAutomaticReconnect` aceita um objeto que implementa o `IRetryPolicy` interface, que tem um único método chamado `NextRetryDelay`.
+
+`NextRetryDelay` usa um único argumento com o tipo `RetryContext`. O `RetryContext` tem três propriedades: `PreviousRetryCount`, `ElapsedTime` e `RetryReason` que são uma `long`, uma `TimeSpan` e um `Exception` , respectivamente. Antes da primeira tentativa de reconexão, ambos `PreviousRetryCount` e `ElapsedTime` será zero e o `RetryReason` será a exceção que causou a conexão serão perdidos. Após cada tentativa de repetição com falha, `PreviousRetryCount` será incrementado em um, `ElapsedTime` será atualizada para refletir a quantidade de tempo gasto se reconectar até agora e o `RetryReason` será a exceção que fez a última tentativa de reconexão falhe.
+
+`NextRetryDelay` deve retornar qualquer um TimeSpan que representa o tempo a aguardar antes da próxima tentativa de reconexão ou `null` se o `HubConnection` deve parar de se reconectar.
+
+```csharp
+public class RandomRetryPolicy : IRetryPolicy
+{
+    private readonly Random _random = new Random();
+
+    public TimeSpan? NextRetryDelay(RetryContext retryContext)
+    {
+        // If we've been reconnecting for less than 60 seconds so far,
+        // wait between 0 and 10 seconds before the next reconnect attempt.
+        if (retryContext.ElapsedTime < TimeSpan.FromSeconds(60))
+        {
+            return TimeSpan.FromSeconds(_random.Next() * 10);
+        }
+        else
+        {
+            // If we've been reconnecting for more than 60 seconds so far, stop reconnecting.
+            return null;
+        }
+    }
+}
+```
+
+```csharp
+HubConnection connection = new HubConnectionBuilder()
+    .WithUrl(new Uri("http://127.0.0.1:5000/chatHub"))
+    .WithAutomaticReconnect(new RandomRetryPolicy())
+    .Build();
+```
+
+Como alternativa, você pode escrever código que será reconectada seu cliente manualmente, conforme demonstrado [reconectar manualmente](#manually-reconnect).
+
+::: moniker-end
+
+### <a name="manually-reconnect"></a>Reconectar manualmente
+
+::: moniker range="< aspnetcore-3.0"
+
+> [!WARNING]
+> Antes do 3.0, o cliente .NET para o SignalR não reconectados automaticamente. Você deve escrever código que será reconectada seu cliente manualmente.
+
+::: moniker-end
 
 Use o <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.Closed> eventos para responder a uma conexão perdida. Por exemplo, você talvez queira automatizar a reconexão.
 

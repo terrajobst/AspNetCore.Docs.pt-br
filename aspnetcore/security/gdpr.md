@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/05/2019
 uid: security/gdpr
-ms.openlocfilehash: 967f3246836c93a1af56f7109edb056220606b58
-ms.sourcegitcommit: c716ea9155a6b404c1f3d3d34e2388454cd276d7
+ms.openlocfilehash: 1580187afef56e8e2f5be7a4bae32912e6305c5a
+ms.sourcegitcommit: 4ef0362ef8b6e5426fc5af18f22734158fe587e1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66716343"
+ms.lasthandoff: 06/17/2019
+ms.locfileid: "67152858"
 ---
 # <a name="eu-general-data-protection-regulation-gdpr-support-in-aspnet-core"></a>Suporte da UE Data Protection GDPR (regulamento geral) no ASP.NET Core
 
@@ -32,7 +32,17 @@ O [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/live/as
 
 ## <a name="aspnet-core-gdpr-support-in-template-generated-code"></a>Suporte de GDPR do ASP.NET Core no código gerado pelo modelo
 
+::: moniker range="< aspnetcore-2.2"
+
+Páginas do Razor e MVC projetos criados com os modelos de projeto não têm suporte para consentimento GDPR ou cookie. Para adicionar o GDPR, copie o código gerado nos modelos do ASP.NET Core 2.2.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
 Páginas do Razor e MVC projetos criados com os modelos de projeto incluem o seguinte suporte GDPR:
+
+::: moniker-end
 
 * [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) e [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) são definidos `Startup` classe.
 * O  *\_CookieConsentPartial.cshtml* [exibição parcial](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). Uma **Accept** botão está incluído nesse arquivo. Quando o usuário clica o **Accept** botão, para armazenar cookies de consentimento é fornecido.
