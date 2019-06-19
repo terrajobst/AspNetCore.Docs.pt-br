@@ -1,20 +1,20 @@
 ---
-title: Hospedar e implantar o Blazor
+title: Hospedar e implantar o ASP.NET Core Blazor
 author: guardrex
 description: Descubra como hospedar e implantar aplicativos Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/23/2019
+ms.date: 06/14/2019
 uid: host-and-deploy/blazor/index
-ms.openlocfilehash: 0fc7643c65b93a63d7a594d35e4013eab76e9db8
-ms.sourcegitcommit: 4d05e30567279072f1b070618afe58ae1bcefd5a
+ms.openlocfilehash: 8a5ac5c58e7ceab07e55da8b61ebb01f7ac984bc
+ms.sourcegitcommit: 4ef0362ef8b6e5426fc5af18f22734158fe587e1
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/29/2019
-ms.locfileid: "66376380"
+ms.lasthandoff: 06/17/2019
+ms.locfileid: "67153204"
 ---
-# <a name="host-and-deploy-blazor"></a>Hospedar e implantar o Blazor
+# <a name="host-and-deploy-aspnet-core-blazor"></a>Hospedar e implantar o ASP.NET Core Blazor
 
 Por [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com) e [Daniel Roth](https://github.com/danroth27)
 
@@ -55,4 +55,4 @@ Confira orientações de implantação nos tópicos a seguir:
 
 Aplicativos do lado do cliente do Blazor podem ser fornecidos do [Armazenamento do Azure](https://azure.microsoft.com/services/storage/) como conteúdo estático diretamente de um contêiner de armazenamento.
 
-Para obter mais informações, consulte [Hospedar e implantar o Blazor no lado do cliente (implantação autônoma): Armazenamento do Azure](xref:host-and-deploy/blazor/client-side#azure-storage).
+Para saber mais, confira [Hospedar e implantar o ASP.NET Core Blazor no lado do cliente (implantação autônoma): Armazenamento do Azure](xref:host-and-deploy/blazor/client-side#azure-storage).
