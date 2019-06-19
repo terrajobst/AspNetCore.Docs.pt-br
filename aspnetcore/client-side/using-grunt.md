@@ -3,18 +3,16 @@ title: Usar o Grunt no ASP.NET Core
 author: rick-anderson
 description: Usar o Grunt no ASP.NET Core
 ms.author: riande
-ms.date: 05/14/2019
+ms.date: 06/18/2019
 uid: client-side/using-grunt
-ms.openlocfilehash: 4d9b6cf6f9a0007e9722bc054f0d9a7608f1473b
-ms.sourcegitcommit: 3ee6ee0051c3d2c8d47a58cb17eef1a84a4c46a0
+ms.openlocfilehash: 851ce3b50e88fee597518aef23276800f4b50f06
+ms.sourcegitcommit: a1283d486ac1dcedfc7ea302e1cc882833e2c515
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/14/2019
-ms.locfileid: "65620991"
+ms.lasthandoff: 06/18/2019
+ms.locfileid: "67207746"
 ---
 # <a name="use-grunt-in-aspnet-core"></a>Usar o Grunt no ASP.NET Core
-
-Por [Noel arroz](https://blog.falafel.com/falafel-software-recognized-sitefinity-website-year/)
 
 Grunt é um executor de tarefas JavaScript que automatiza a minimização de script, compilação TypeScript, ferramentas de "lint" qualidade do código, processadores de pré-lançamento do CSS e praticamente qualquer tarefa repetitiva que precisa fazer para dar suporte ao desenvolvimento de cliente. Grunt tem suporte total no Visual Studio.
 
