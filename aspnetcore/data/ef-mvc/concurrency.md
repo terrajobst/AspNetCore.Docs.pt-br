@@ -7,12 +7,12 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/concurrency
-ms.openlocfilehash: d3954800f4f1358565a627768e34465215dc4f6e
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: bfe417a6153f74cf0ca2d9bcde4db1bba8453b3b
+ms.sourcegitcommit: 4ef0362ef8b6e5426fc5af18f22734158fe587e1
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64886651"
+ms.lasthandoff: 06/17/2019
+ms.locfileid: "67152890"
 ---
 # <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Tutorial: Lidar com a simultaneidade - ASP.NET MVC com EF Core
 
@@ -154,7 +154,7 @@ Substitua o código existente do método HttpPost `Edit` pelo seguinte código:
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EditPost)]
 
-O código começa com a tentativa de ler o departamento a ser atualizado. Se o método `SingleOrDefaultAsync` retornar nulo, isso indicará que o departamento foi excluído por outro usuário. Nesse caso, o código usa os valores de formulário postados para criar uma entidade de departamento, de modo que a página Editar possa ser exibida novamente com uma mensagem de erro. Como alternativa, você não precisará recriar a entidade de departamento se exibir apenas uma mensagem de erro sem exibir novamente os campos de departamento.
+O código começa com a tentativa de ler o departamento a ser atualizado. Se o método `FirstOrDefaultAsync` retornar nulo, isso indicará que o departamento foi excluído por outro usuário. Nesse caso, o código usa os valores de formulário postados para criar uma entidade de departamento, de modo que a página Editar possa ser exibida novamente com uma mensagem de erro. Como alternativa, você não precisará recriar a entidade de departamento se exibir apenas uma mensagem de erro sem exibir novamente os campos de departamento.
 
 A exibição armazena o valor `RowVersion` original em um campo oculto e esse método recebe esse valor no parâmetro `rowVersion`. Antes de chamar `SaveChanges`, você precisa colocar isso no valor da propriedade `RowVersion` original na coleção `OriginalValues` da entidade.
 
