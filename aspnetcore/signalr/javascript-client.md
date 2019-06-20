@@ -7,12 +7,12 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/17/2019
 uid: signalr/javascript-client
-ms.openlocfilehash: 8ac6528b203831f426feabf4cdd3e0ed293b75c5
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 1565aa38a69113781d7c272a1710298cccc1f045
+ms.sourcegitcommit: 3eedd6180fbbdcb81a8e1ebdbeb035bf4f2feb92
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64896523"
+ms.lasthandoff: 06/20/2019
+ms.locfileid: "67284513"
 ---
 # <a name="aspnet-core-signalr-javascript-client"></a>ASP.NET Core SignalR JavaScript cliente
 
@@ -130,13 +130,13 @@ Antes de iniciar qualquer tentativa de reconexão, o `HubConnection` será a tra
 
 ```javascript
 connection.onreconnecting((error) => {
-  console.assert(connection.state === signalR.HubConnectionState.Reconnecting);
+    console.assert(connection.state === signalR.HubConnectionState.Reconnecting);
 
-  document.getElementById("messageInput").disabled = true;
+    document.getElementById("messageInput").disabled = true;
 
-  const li = document.createElement("li");
-  li.textContent = `Connection lost due to error "${error}". Reconnecting.`;
-  document.getElementById("messagesList").appendChild(li);
+    const li = document.createElement("li");
+    li.textContent = `Connection lost due to error "${error}". Reconnecting.`;
+    document.getElementById("messagesList").appendChild(li);
 });
 ```
 
@@ -149,13 +149,13 @@ Como a conexão parece inteiramente nova para o servidor, um novo `connectionId`
 
 ```javascript
 connection.onreconnected((connectionId) => {
-  console.assert(connection.state === signalR.HubConnectionState.Connected);
+    console.assert(connection.state === signalR.HubConnectionState.Connected);
 
-  document.getElementById("messageInput").disabled = false;
+    document.getElementById("messageInput").disabled = false;
 
-  const li = document.createElement("li");
-  li.textContent = `Connection reestablished. Connected with connectionId "${connectionId}".`;
-  document.getElementById("messagesList").appendChild(li);
+    const li = document.createElement("li");
+    li.textContent = `Connection reestablished. Connected with connectionId "${connectionId}".`;
+    document.getElementById("messagesList").appendChild(li);
 });
 ```
 
@@ -179,14 +179,14 @@ Se o cliente não reconectar-se com êxito dentro de suas primeiras quatro tenta
 
 ```javascript
 connection.onclose((error) => {
-  console.assert(connection.state === signalR.HubConnectionState.Disconnected);
+    console.assert(connection.state === signalR.HubConnectionState.Disconnected);
 
-  document.getElementById("messageInput").disabled = true;
+    document.getElementById("messageInput").disabled = true;
 
-  const li = document.createElement("li");
-  li.textContent = `Connection closed due to error "${error}". Try refreshing this page to restart the connection.`;
-  document.getElementById("messagesList").appendChild(li);
-})
+    const li = document.createElement("li");
+    li.textContent = `Connection closed due to error "${error}". Try refreshing this page to restart the connection.`;
+    document.getElementById("messagesList").appendChild(li);
+});
 ```
 
 Para configurar um número personalizado de tentativas de reconexão antes de desconectar ou alterar o tempo de reconexão, `withAutomaticReconnect` aceita uma matriz de números que representa o atraso em milissegundos para esperar antes de começar a cada tentativa de reconexão.
@@ -219,15 +219,16 @@ const connection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub")
     .withAutomaticReconnect({
         nextRetryDelayInMilliseconds: (previousRetryCount, elapsedMilliseconds) => {
-          if (elapsedMilliseconds < 60000) {
-            // If we've been reconnecting for less than 60 seconds so far,
-            // wait between 0 and 10 seconds before the next reconnect attempt.
-            return Math.random() * 10000;
-          } else {
-            // If we've been reconnecting for more than 60 seconds so far, stop reconnecting.
-            return null;
-          }
-        })
+            if (elapsedMilliseconds < 60000) {
+                // If we've been reconnecting for less than 60 seconds so far,
+                // wait between 0 and 10 seconds before the next reconnect attempt.
+                return Math.random() * 10000;
+            } else {
+                // If we've been reconnecting for more than 60 seconds so far, stop reconnecting.
+                return null;
+            }
+        }
+    })
     .build();
 ```
 
@@ -251,7 +252,7 @@ O código a seguir demonstra uma abordagem típica de reconexão manual:
 
 [!code-javascript[Reconnect the JavaScript client](javascript-client/sample/wwwroot/js/chat.js?range=28-40)]
 
-Uma implementação real seria usar uma retirada exponencial ou repetir um número especificado de vezes antes de desistir. 
+Uma implementação real seria usar uma retirada exponencial ou repetir um número especificado de vezes antes de desistir.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
