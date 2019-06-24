@@ -5,14 +5,14 @@ description: Saiba como coletar o diagnóstico do seu aplicativo SignalR do ASP.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: signalr
-ms.date: 02/27/2019
+ms.date: 06/19/2019
 uid: signalr/diagnostics
-ms.openlocfilehash: b6bd21314ed183488999bcff3553e53493537a11
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 69dbd057b3dcadeb3ca5d94ede1234530fb447db
+ms.sourcegitcommit: 9f11685382eb1f4dd0fb694dea797adacedf9e20
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64896883"
+ms.lasthandoff: 06/21/2019
+ms.locfileid: "67313703"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registro em log e diagnóstico no SignalR do ASP.NET Core
 
@@ -29,23 +29,23 @@ Como o SignalR é parte do ASP.NET Core, ele usa o sistema de registro do ASP.NE
 
 O SignalR usa duas categorias de agente:
 
-* `Microsoft.AspNetCore.SignalR` -para logs relacionados aos protocolos de Hub, ativando Hubs, invocar métodos e outras atividades relacionadas ao Hub.
-* `Microsoft.AspNetCore.Http.Connections` -para os logs relacionados a todos os transportes, como WebSockets, sondagem longa e eventos do Server-sent e infraestrutura de baixo nível SignalR.
+* `Microsoft.AspNetCore.SignalR` &ndash; para logs relacionados aos protocolos de Hub, ativando Hubs, invocar os métodos e outras atividades relacionadas ao Hub.
+* `Microsoft.AspNetCore.Http.Connections` &ndash; para os logs relacionados a transportes, como WebSockets, sondagem longa e eventos do Server-sent e infraestrutura de baixo nível SignalR.
 
-Para habilitar logs detalhados do SignalR, configure ambos os prefixos anteriores para o `Debug` nível em seu `appsettings.json` arquivo adicionando itens a seguir para o `LogLevel` na seção `Logging`:
+Para habilitar logs detalhados do SignalR, configure ambos os prefixos anteriores para o `Debug` nível em seu *appSettings. JSON* arquivo adicionando itens a seguir para o `LogLevel` na seção `Logging`:
 
-[!code-json[Configuring logging](diagnostics/logging-config.json?highlight=7-8)]
+[!code-json[](diagnostics/logging-config.json?highlight=7-8)]
 
 Você também pode configurar isso no código em seu `CreateWebHostBuilder` método:
 
-[!code-csharp[Configuring logging in code](diagnostics/logging-config-code.cs?highlight=5-6)]
+[!code-csharp[](diagnostics/logging-config-code.cs?highlight=5-6)]
 
 Se você não estiver usando a configuração baseada em JSON, defina os seguintes valores de configuração no seu sistema de configuração:
 
 * `Logging:LogLevel:Microsoft.AspNetCore.SignalR` = `Debug`
 * `Logging:LogLevel:Microsoft.AspNetCore.Http.Connections` = `Debug`
 
-Verifique a documentação para o seu sistema de configuração determinar como especificar valores de configuração aninhada. Por exemplo, ao usar variáveis de ambiente, duas `_` os caracteres são usados em vez do `:` (como: `Logging__LogLevel__Microsoft.AspNetCore.SignalR`).
+Verifique a documentação para o seu sistema de configuração determinar como especificar valores de configuração aninhada. Por exemplo, ao usar variáveis de ambiente, duas `_` os caracteres são usados em vez do `:` (por exemplo, `Logging__LogLevel__Microsoft.AspNetCore.SignalR`).
 
 É recomendável usar o `Debug` nível ao reunir mais detalhadas de diagnóstico para seu aplicativo. O `Trace` nível produz diagnósticos de nível muito baixo e raramente é necessária para diagnosticar problemas em seu aplicativo.
 
@@ -63,11 +63,11 @@ O Visual Studio exibe a saída de log na **saída** janela. Selecione o **servid
 
 ### <a name="azure-app-service"></a>Serviço de Aplicativo do Azure
 
-Habilitar a opção de "Log de aplicativo (Filesystem)" na seção "Logs de diagnóstico" do portal do serviço de aplicativo do Azure e configurar o nível para `Verbose`. Os logs devem estar disponíveis no "Log" serviço de streaming, bem como em logs no sistema de arquivos do seu serviço de aplicativo. Para obter mais informações, consulte a documentação sobre [streaming de log do Azure](xref:fundamentals/logging/index#azure-log-streaming).
+Habilitar o **log de aplicativo (Filesystem)** opção a **logs de diagnóstico** seção do portal do serviço de aplicativo do Azure e configurar o **nível** para `Verbose`. Logs devem estar disponíveis a partir de **streaming de Log** serviço e nos logs no sistema de arquivos do serviço de aplicativo. Para obter mais informações, consulte [streaming de log do Azure](xref:fundamentals/logging/index#azure-log-streaming).
 
 ### <a name="other-environments"></a>Outros ambientes
 
-Se você estiver executando em outro ambiente (Docker, Kubernetes, serviço do Windows, etc.), consulte a documentação completa sobre [log do ASP.NET Core](xref:fundamentals/logging/index) para obter mais informações sobre como configurar provedores de log adequados ao seu ambiente.
+Se o aplicativo for implantado em outro ambiente (por exemplo, Docker, Kubernetes ou serviço do Windows), consulte <xref:fundamentals/logging/index> para obter mais informações sobre como configurar provedores de log adequados para o ambiente.
 
 ## <a name="javascript-client-logging"></a>Log de cliente JavaScript
 
@@ -76,7 +76,7 @@ Se você estiver executando em outro ambiente (Docker, Kubernetes, serviço do W
 
 Ao usar o cliente JavaScript, você pode configurar opções de registro em log usando o `configureLogging` método no `HubConnectionBuilder`:
 
-[!code-javascript[Configuring logging in the JavaScript client](diagnostics/logging-config-js.js?highlight=3)]
+[!code-javascript[](diagnostics/logging-config-js.js?highlight=3)]
 
 Para desabilitar o registro em log totalmente, especifique `signalR.LogLevel.None` no `configureLogging` método.
 
@@ -96,7 +96,7 @@ Depois de configurar o detalhamento, os logs serão gravados para o Console do n
 
 Se você quiser enviar logs para um sistema de registro em log personalizado, você pode fornecer um objeto JavaScript que implementa o `ILogger` interface. O único método que precisa ser implementado é `log`, que usa o nível do evento e a mensagem associada ao evento. Por exemplo:
 
-[!code-typescript[Creating a custom logger](diagnostics/custom-logger.ts?highlight=3-7,13)]
+[!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
 
 ## <a name="net-client-logging"></a>Log de cliente .NET
 
@@ -109,19 +109,19 @@ Para obter os logs do cliente .NET, você pode usar o `ConfigureLogging` método
 
 Para habilitar o log de Console, adicione a [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) pacote. Em seguida, use o `AddConsole` método para configurar o agente de console:
 
-[!code-csharp[Configuring console logging in .NET client](diagnostics/net-client-console-log.cs?highlight=6)]
+[!code-csharp[](diagnostics/net-client-console-log.cs?highlight=6)]
 
 ### <a name="debug-output-window-logging"></a>O log de janela de saída de depuração
 
 Você também pode configurar logs para ir para o **saída** janela no Visual Studio. Instalar o [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) de pacote e usar o `AddDebug` método:
 
-[!code-csharp[Configuring debug output window logging in .NET client](diagnostics/net-client-debug-log.cs?highlight=6)]
+[!code-csharp[](diagnostics/net-client-debug-log.cs?highlight=6)]
 
 ### <a name="other-logging-providers"></a>Outros provedores de log
 
 O SignalR dá suporte a outros provedores de log como Serilog, Seq, NLog ou qualquer outro sistema de registro em log que se integra ao `Microsoft.Extensions.Logging`. Se o seu sistema de log fornece um `ILoggerProvider`, você pode registrá-lo com `AddProvider`:
 
-[!code-csharp[Configuring a custom logging provider in .NET client](diagnostics/net-client-custom-log.cs?highlight=6)]
+[!code-csharp[](diagnostics/net-client-custom-log.cs?highlight=6)]
 
 ### <a name="control-verbosity"></a>Nível de detalhes de controle
 
@@ -144,7 +144,7 @@ O Fiddler é uma ferramenta muito poderosa para coletar rastreamentos HTTP. Inst
 
 Se você se conectar usando HTTPS, há algumas etapas adicionais para garantir que o Fiddler pode descriptografar o tráfego HTTPS. Para obter mais detalhes, consulte o [documentação do Fiddler](https://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS).
 
-Depois de coletar o rastreamento, você pode exportar o rastreamento, escolhendo **arquivo** > **salvar** > **todas as sessões...**  na barra de menus.
+Depois de coletar o rastreamento, você pode exportar o rastreamento, escolhendo **arquivo** > **salvar** > **todas as sessões** na barra de menus.
 
 ![Exportando todas as sessões do Fiddler](diagnostics/fiddler-export.png)
 
@@ -168,7 +168,7 @@ A maioria das ferramentas de desenvolvedor do navegador tem uma guia de "Rede" q
 
 ### <a name="microsoft-edge-and-internet-explorer"></a>Internet Explorer e Microsoft Edge
 
-(As instruções são as mesmas para o Microsoft Edge e Internet Explorer)
+(As instruções são as mesmas para o Edge e Internet Explorer)
 
 1. Pressione F12 para abrir as ferramentas de desenvolvimento
 2. Clique na guia rede
@@ -200,7 +200,7 @@ A maioria das ferramentas de desenvolvedor do navegador tem uma guia de "Rede" q
 Você pode anexar arquivos de diagnóstico para problemas do GitHub ao renomeá-las para que eles tenham um `.txt` extensão arrastando e soltando-os para o problema.
 
 > [!NOTE]
-> Não cole o conteúdo de arquivos de log ou de rastreamentos de rede no problema do GitHub. Esses logs e rastreamentos podem ser muito grandes e GitHub geralmente truncará-los.
+> Não cole o conteúdo de arquivos de log ou de rastreamentos de rede em um problema do GitHub. Esses logs e rastreamentos podem ser muito grandes e GitHub geralmente trunca-los.
 
 ![Arrastar arquivos de log para um problema do GitHub](diagnostics/attaching-diagnostics-files.png)
 

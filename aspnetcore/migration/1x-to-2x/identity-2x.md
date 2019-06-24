@@ -3,14 +3,14 @@ title: Migrar autenticação e identidade para o ASP.NET Core 2.0
 author: scottaddie
 description: Este artigo descreve as etapas mais comuns para Migrando do ASP.NET Core 1.x autenticação e identidade para o ASP.NET Core 2.0.
 ms.author: scaddie
-ms.date: 06/13/2019
+ms.date: 06/21/2019
 uid: migration/1x-to-2x/identity-2x
-ms.openlocfilehash: 3e8bc75b87a85159c9668b52eea32bb7d700be6c
-ms.sourcegitcommit: 516f166c5f7cec54edf3d9c71e6e2ba53fb3b0e5
+ms.openlocfilehash: c83356e12fa5ae581b369265b9d857b08445ed51
+ms.sourcegitcommit: 9f11685382eb1f4dd0fb694dea797adacedf9e20
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/18/2019
-ms.locfileid: "67196376"
+ms.lasthandoff: 06/21/2019
+ms.locfileid: "67313740"
 ---
 # <a name="migrate-authentication-and-identity-to-aspnet-core-20"></a>Migrar autenticação e identidade para o ASP.NET Core 2.0
 
@@ -304,18 +304,31 @@ Em 2.0 projetos, importe as `Microsoft.AspNetCore.Authentication` namespace e ex
 ## <a name="windows-authentication-httpsys--iisintegration"></a>Autenticação do Windows (http. sys / IISIntegration)
 
 Há duas variações de autenticação do Windows:
-1. O host permite que somente usuários autenticados
-2. O host permite que ambos anônimos e usuários autenticados
 
-A primeira descrita acima não é afetada pelas alterações de 2.0.
+* O host só permite que os usuários autenticados. Essa variação não é afetada pelas alterações de 2.0.
+* O host permite que ambos anônimos e usuários autenticados. Essa variação é afetada pelas alterações de 2.0. Por exemplo, o aplicativo deve permitir que usuários anônimos na [IIS](xref:host-and-deploy/iis/index) ou [HTTP. sys](xref:fundamentals/servers/httpsys) de camada, mas autorizar usuários no nível do controlador. Nesse cenário, defina o esquema padrão `Startup.ConfigureServices` método.
 
-A segunda descrita acima é afetada pelas alterações de 2.0. Por exemplo, você pode ser permitir que usuários anônimos em seu aplicativo no IIS ou [HTTP. sys](xref:fundamentals/servers/httpsys) mas autorizar usuários no nível do controlador de camada. Nesse cenário, defina o esquema padrão `IISDefaults.AuthenticationScheme` no `Startup.ConfigureServices` método:
+  Para [iisintegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/), defina o esquema padrão como `IISDefaults.AuthenticationScheme`:
 
-```csharp
-services.AddAuthentication(IISDefaults.AuthenticationScheme);
-```
+  ```csharp
+  using Microsoft.AspNetCore.Server.IISIntegration;
 
-Falha ao definir o esquema padrão impede que a solicitação de autorização de desafio do trabalho.
+  services.AddAuthentication(IISDefaults.AuthenticationScheme);
+  ```
+
+  Para [httpsys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/), defina o esquema padrão como `HttpSysDefaults.AuthenticationScheme`:
+
+  ```csharp
+  using Microsoft.AspNetCore.Server.HttpSys;
+
+  services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
+  ```
+
+  Falha ao definir o esquema padrão impede que a solicitação de autorização (desafio) funcionem com a seguinte exceção:
+
+  > `System.InvalidOperationException`: Nenhum authenticationScheme foi especificado e não havia nenhum DefaultChallengeScheme encontrado.
+
+Para obter mais informações, consulte <xref:security/authentication/windowsauth>.
 
 <a name="identity-cookie-options"></a>
 
