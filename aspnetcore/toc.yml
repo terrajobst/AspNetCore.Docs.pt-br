@@ -298,6 +298,8 @@
           uid: blazor/javascript-interop
         - name: Depurar
           uid: blazor/debug
+        - name: Chamar uma API da Web
+          uid: blazor/call-web-api
         - name: Hospedar e implantar
           items:
             - name: Visão geral
