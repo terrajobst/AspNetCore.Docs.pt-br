@@ -4,15 +4,15 @@ author: Rick-Anderson
 description: Explica como criar reutilizáveis Razor da interface do usuário usando as exibições parciais em uma biblioteca de classe no ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 06/24/2019
+ms.date: 06/28/2019
 ms.custom: mvc, seodec18
 uid: razor-pages/ui-class
-ms.openlocfilehash: 96ef8fc055a6b92cd0808d02031d917b8446f305
-ms.sourcegitcommit: 763af2cbdab0da62d1f1cfef4bcf787f251dfb5c
+ms.openlocfilehash: d59f643a23b48ccbddf498ef534ee8432b010f40
+ms.sourcegitcommit: 6d9cf728465cdb0de1037633a8b7df9a8989cccb
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67394755"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67463264"
 ---
 # <a name="create-reusable-ui-using-the-razor-class-library-project-in-aspnet-core"></a>Criar a interface do usuário reutilizável usando o projeto de biblioteca de classes Razor no ASP.NET Core
 
@@ -228,6 +228,8 @@ Suponha *RazorUIClassLib/páginas/Shared* contém dois arquivos parciais: *_Head
 </body>
 ```
 
+::: moniker range=">= aspnetcore-3.0"
+
 ## <a name="create-an-rcl-with-static-assets"></a>Criar uma RCL com ativos estáticos
 
 Uma RCL pode exigir ativos estáticos de complementar que podem ser referenciados pelo aplicativo de consumo da RCL. ASP.NET Core permite a criação de RCLs que incluem ativos estáticos que estão disponíveis para um aplicativo de consumo.
@@ -254,3 +256,5 @@ Quando a RCL é compilada, um manifesto é produzido que descreve os locais de a
 ### <a name="publish"></a>Publicar
 
 Quando o aplicativo é publicado, os ativos de todos os projetos e pacotes complementares são copiados para o *wwwroot* pasta do aplicativo publicado em `_content/{LIBRARY NAME}/`.
+
+::: moniker-end
