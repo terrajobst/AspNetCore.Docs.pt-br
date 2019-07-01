@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba mais sobre o host da Web no ASP.NET Core, que é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/11/2019
+ms.date: 06/14/2019
 uid: fundamentals/host/web-host
-ms.openlocfilehash: 48f3b664d901bdfb27cdf9e798fa60c0587d1def
-ms.sourcegitcommit: 6afe57fb8d9055f88fedb92b16470398c4b9b24a
+ms.openlocfilehash: c5d5b723b31a5c211a47e378e50be858fda0b2bd
+ms.sourcegitcommit: 9f11685382eb1f4dd0fb694dea797adacedf9e20
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/14/2019
-ms.locfileid: "65610280"
+ms.lasthandoff: 06/21/2019
+ms.locfileid: "67313793"
 ---
 # <a name="aspnet-core-web-host"></a>Host da Web do ASP.NET Core
 
@@ -19,27 +19,21 @@ Por [Luke Latham](https://github.com/guardrex)
 
 Aplicativos ASP.NET Core configuram e inicializam um *host*. O host é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo. No mínimo, o host configura um servidor e um pipeline de processamento de solicitações. O host também pode configurar registro em log, a injeção de dependência e a configuração.
 
-::: moniker range="<= aspnetcore-1.1"
+::: moniker range=">= aspnetcore-3.0"
 
-Para obter a versão 1.1 deste tópico, baixe [Host da Web do ASP.NET Core (versão 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Web-Host_1.1.pdf).
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
-
-Este artigo aborda o host da Web do ASP.NET Core (<xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>), que é para hospedar aplicativos Web. Para obter informações sobre o Host Genérico .NET ([IHostBuilder](/dotnet/api/microsoft.extensions.hosting.ihostbuilder)), veja <xref:fundamentals/host/generic-host>.
+Este artigo aborda o host da Web, que permanece disponível somente para compatibilidade com versões anteriores. O [Host genérico](xref:fundamentals/host/generic-host) é recomendado para todos os tipos de aplicativo.
 
 ::: moniker-end
 
-::: moniker range="> aspnetcore-2.2"
+::: moniker range="<= aspnetcore-2.2"
 
-Este artigo aborda o Host Web do ASP.NET Core ([IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder)). No ASP.NET Core 3.0, o host genérico substitui o host da Web. Para obter mais informações, confira [O host](xref:fundamentals/index#host).
+Este artigo aborda o host da Web, que serve para hospedar aplicativos Web. Para outros tipos de aplicativos, use o [Host genérico](xref:fundamentals/host/generic-host).
 
 ::: moniker-end
 
 ## <a name="set-up-a-host"></a>Configurar um host
 
-Crie um host usando uma instância do [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder). Normalmente, isso é feito no ponto de entrada do aplicativo, o método `Main`. O método construtor `CreateWebHostBuilder` tem um nome especial que o identifica para componentes externos, como [Entity Framework](/ef/core/).
+Crie um host usando uma instância do [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder). Normalmente, isso é feito no ponto de entrada do aplicativo, o método `Main`.
 
 Em modelos de projeto, `Main` está localizado em *Program.cs*. Um aplicativo típico chama [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) para começar a configurar um host:
 
@@ -56,6 +50,8 @@ public class Program
             .UseStartup<Startup>();
 }
 ```
+
+O código que chama `CreateDefaultBuilder` está em um método chamado `CreateWebHostBuilder`, que o separa do código em `Main`, que chama `Run` no objeto de construtor. Essa separação será necessária se você usar [ferramentas do Entity Framework Core](/ef/core/miscellaneous/cli/). As ferramentas esperam encontrar um método `CreateWebHostBuilder` que elas possam chamar em tempo de design para configurar o host sem executar o aplicativo. Uma alternativa é implementar `IDesignTimeDbContextFactory`. Para obter mais informações, confira [Criação de DbContext no tempo de design](/ef/core/miscellaneous/cli/dbcontext-creation).
 
 `CreateDefaultBuilder` executa as seguintes tarefas:
 
@@ -131,9 +127,9 @@ A *raiz do conteúdo* determina onde o host procura por arquivos de conteúdo, c
 Para obter mais informações sobre a configuração de aplicativo, veja <xref:fundamentals/configuration/index>.
 
 > [!NOTE]
-> Como uma alternativa ao uso do método `CreateDefaultBuilder` estático, criar um host de [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) é uma abordagem compatível com o ASP.NET Core 2. x. Para obter mais informações, consulte a guia do ASP.NET Core 1.x.
+> Como uma alternativa ao uso do método `CreateDefaultBuilder` estático, criar um host de [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) é uma abordagem compatível com o ASP.NET Core 2. x.
 
-Ao configurar um host, os métodos [Configure](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configure?view=aspnetcore-1.1) e [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder.configureservices?view=aspnetcore-1.1) podem ser fornecidos. Se uma classe `Startup` for especificada, ela deverá definir um método `Configure`. Para obter mais informações, consulte <xref:fundamentals/startup>. Diversas chamadas para `ConfigureServices` são acrescentadas umas às outras. Diversas chamadas para `Configure` ou `UseStartup` no `WebHostBuilder` substituem configurações anteriores.
+Ao configurar um host, os métodos [Configure](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configure) e [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder.configureservices) podem ser fornecidos. Se uma classe `Startup` for especificada, ela deverá definir um método `Configure`. Para obter mais informações, consulte <xref:fundamentals/startup>. Diversas chamadas para `ConfigureServices` são acrescentadas umas às outras. Diversas chamadas para `Configure` ou `UseStartup` no `WebHostBuilder` substituem configurações anteriores.
 
 ## <a name="host-configuration-values"></a>Valores de configuração do host
 
@@ -253,7 +249,7 @@ Defina a porta de redirecionamento HTTPS. Uso em [aplicação de HTTPS](xref:sec
 
 **Chave**: https_port **Tipo**: *cadeia de caracteres*
 **Padrão**: um valor padrão não está definido.
-**Definido usando**: `UseSetting`
+**Definir usando**: `UseSetting`
 **Variável de ambiente**: `ASPNETCORE_HTTPS_PORT`
 
 ```csharp

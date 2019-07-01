@@ -4,14 +4,14 @@ author: zuckerthoben
 description: Saiba como adicionar o Swashbuckle ao seu projeto de API Web ASP.NET Core para integrar a interface do usuário do Swagger.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 04/04/2019
+ms.date: 06/21/2019
 uid: tutorials/get-started-with-swashbuckle
-ms.openlocfilehash: ebbdfa4cfeb3013cd961167439dd261f2e058a4b
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: 033f2dda9942f91f23158cf2d986062157a3b69e
+ms.sourcegitcommit: 06a455d63ff7d6b571ca832e8117f4ac9d646baf
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087607"
+ms.lasthandoff: 06/21/2019
+ms.locfileid: "67316604"
 ---
 # <a name="get-started-with-swashbuckle-and-aspnet-core"></a>Introdução ao Swashbuckle e ao ASP.NET Core
 
@@ -39,7 +39,7 @@ O Swashbuckle pode ser adicionado com as seguintes abordagens:
   * Execute o seguinte comando:
 
     ```powershell
-    Install-Package Swashbuckle.AspNetCore
+    Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc2
     ```
 
 * Da caixa de diálogo **Gerenciar Pacotes NuGet**:
@@ -60,7 +60,7 @@ O Swashbuckle pode ser adicionado com as seguintes abordagens:
 Execute o comando a seguir do **Terminal Integrado**:
 
 ```console
-dotnet add TodoApi.csproj package Swashbuckle.AspNetCore
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0-rc2
 ```
 
 ### <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
@@ -68,14 +68,14 @@ dotnet add TodoApi.csproj package Swashbuckle.AspNetCore
 Execute o seguinte comando:
 
 ```console
-dotnet add TodoApi.csproj package Swashbuckle.AspNetCore
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0-rc2
 ```
 
 ---
 
 ## <a name="add-and-configure-swagger-middleware"></a>Adicionar e configurar o middleware do Swagger
 
-Importe o namespace a seguir para usar a classe `Info`:
+Na classe `Startup`, importe o namespace a seguir para usar a classe `OpenApiInfo`:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_InfoClassNamespace)]
 

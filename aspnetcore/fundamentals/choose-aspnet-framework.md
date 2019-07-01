@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 05/02/2019
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
-ms.openlocfilehash: a51d9946c9e65bd1665c610153f724c6087c9f7f
-ms.sourcegitcommit: b8ed594ab9f47fa32510574f3e1b210cff000967
+ms.openlocfilehash: 97d65df8df1e27694d818098958288874e8ab92e
+ms.sourcegitcommit: 47cc13ab90913af9a2887cef0896bb4e9aba4dd5
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/28/2019
-ms.locfileid: "66251376"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67399174"
 ---
 # <a name="choose-between-aspnet-4x-and-aspnet-core"></a>Escolher entre o ASP.NET 4.x e o ASP.NET Core
 
@@ -36,7 +36,7 @@ A tabela a seguir compara o ASP.NET Core com o ASP.NET 4. x.
 |Build para Windows, macOS ou Linux|Build para Windows|
 |[Páginas Razor](xref:razor-pages/index) é a abordagem recomendada para criar uma interface do usuário da Web começando com o ASP.NET Core 2.x. Confira também [MVC](xref:mvc/overview), [API Web](xref:tutorials/first-web-api) e [SignalR](xref:signalr/introduction).|Use o [Web Forms](/aspnet/web-forms), o [SignalR](/aspnet/signalr), o [MVC](/aspnet/mvc), a [API Web](/aspnet/web-api/), [Webhooks](/aspnet/webhooks/) ou [páginas da Web](/aspnet/web-pages)|
 |Várias versões por computador|Uma versão por computador|
-|Desenvolva com o Visual Studio, [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/) ou [Visual Studio Code](https://code.visualstudio.com/) usando o C# ou o F#|Desenvolva com o Visual Studio usando o C#, VB ou F#|
+|Desenvolva com o [Visual Studio](https://visualstudio.microsoft.com/vs/), [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/) ou [Visual Studio Code](https://code.visualstudio.com/) usando C# ou F#|Desenvolva com o [Visual Studio](https://visualstudio.microsoft.com/vs/) usando C#, VB ou F#|
 |Desempenho superior ao do ASP.NET 4.x|Bom desempenho|
 |[Escolha o .NET Framework ou o tempo de execução do .NET Core](/dotnet/standard/choosing-core-framework-server)|Use o tempo de execução do .NET Framework|
 
