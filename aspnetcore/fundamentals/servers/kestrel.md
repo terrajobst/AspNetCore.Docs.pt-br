@@ -5,107 +5,107 @@ description: Saiba mais sobre o Kestrel, o servidor Web multiplataforma do ASP.N
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/18/2019
+ms.date: 06/24/2019
 uid: fundamentals/servers/kestrel
-ms.openlocfilehash: b18e7139970accd504a83e458afb2c7f9035a921
-ms.sourcegitcommit: a1283d486ac1dcedfc7ea302e1cc882833e2c515
+ms.openlocfilehash: 7d66d04ec3b91d0ab1a67cacb2030cf52054454b
+ms.sourcegitcommit: 763af2cbdab0da62d1f1cfef4bcf787f251dfb5c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/18/2019
-ms.locfileid: "67207767"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67394718"
 ---
-# <a name="kestrel-web-server-implementation-in-aspnet-core"></a><span data-ttu-id="b4599-103">Implementação do servidor Web Kestrel no ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="b4599-103">Kestrel web server implementation in ASP.NET Core</span></span>
+# <a name="kestrel-web-server-implementation-in-aspnet-core"></a><span data-ttu-id="2dc96-103">Implementação do servidor Web Kestrel no ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="2dc96-103">Kestrel web server implementation in ASP.NET Core</span></span>
 
-<span data-ttu-id="b4599-104">Por [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher) e [Stephen Halter](https://twitter.com/halter73)</span><span class="sxs-lookup"><span data-stu-id="b4599-104">By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)</span></span>
+<span data-ttu-id="2dc96-104">Por [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher) e [Stephen Halter](https://twitter.com/halter73)</span><span class="sxs-lookup"><span data-stu-id="2dc96-104">By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)</span></span>
 
-<span data-ttu-id="b4599-105">O Kestrel é um [servidor Web multiplataforma para o ASP.NET Core](xref:fundamentals/servers/index).</span><span class="sxs-lookup"><span data-stu-id="b4599-105">Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index).</span></span> <span data-ttu-id="b4599-106">O Kestrel é o servidor Web que está incluído por padrão em modelos de projeto do ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="b4599-106">Kestrel is the web server that's included by default in ASP.NET Core project templates.</span></span>
+<span data-ttu-id="2dc96-105">O Kestrel é um [servidor Web multiplataforma para o ASP.NET Core](xref:fundamentals/servers/index).</span><span class="sxs-lookup"><span data-stu-id="2dc96-105">Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index).</span></span> <span data-ttu-id="2dc96-106">O Kestrel é o servidor Web que está incluído por padrão em modelos de projeto do ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="2dc96-106">Kestrel is the web server that's included by default in ASP.NET Core project templates.</span></span>
 
-<span data-ttu-id="b4599-107">O Kestrel dá suporte aos seguintes cenários:</span><span class="sxs-lookup"><span data-stu-id="b4599-107">Kestrel supports the following scenarios:</span></span>
+<span data-ttu-id="2dc96-107">O Kestrel dá suporte aos seguintes cenários:</span><span class="sxs-lookup"><span data-stu-id="2dc96-107">Kestrel supports the following scenarios:</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
-* <span data-ttu-id="b4599-108">HTTPS</span><span class="sxs-lookup"><span data-stu-id="b4599-108">HTTPS</span></span>
-* <span data-ttu-id="b4599-109">Atualização do Opaque usado para habilitar o [WebSockets](https://github.com/aspnet/websockets)</span><span class="sxs-lookup"><span data-stu-id="b4599-109">Opaque upgrade used to enable [WebSockets](https://github.com/aspnet/websockets)</span></span>
-* <span data-ttu-id="b4599-110">Soquetes do UNIX para alto desempenho protegidos pelo Nginx</span><span class="sxs-lookup"><span data-stu-id="b4599-110">Unix sockets for high performance behind Nginx</span></span>
-* <span data-ttu-id="b4599-111">HTTP/2 (exceto em macOS&dagger;)</span><span class="sxs-lookup"><span data-stu-id="b4599-111">HTTP/2 (except on macOS&dagger;)</span></span>
+* <span data-ttu-id="2dc96-108">HTTPS</span><span class="sxs-lookup"><span data-stu-id="2dc96-108">HTTPS</span></span>
+* <span data-ttu-id="2dc96-109">Atualização do Opaque usado para habilitar o [WebSockets](https://github.com/aspnet/websockets)</span><span class="sxs-lookup"><span data-stu-id="2dc96-109">Opaque upgrade used to enable [WebSockets](https://github.com/aspnet/websockets)</span></span>
+* <span data-ttu-id="2dc96-110">Soquetes do UNIX para alto desempenho protegidos pelo Nginx</span><span class="sxs-lookup"><span data-stu-id="2dc96-110">Unix sockets for high performance behind Nginx</span></span>
+* <span data-ttu-id="2dc96-111">HTTP/2 (exceto em macOS&dagger;)</span><span class="sxs-lookup"><span data-stu-id="2dc96-111">HTTP/2 (except on macOS&dagger;)</span></span>
 
-<span data-ttu-id="b4599-112">&dagger;O HTTP/2 será compatível com macOS em uma versão futura.</span><span class="sxs-lookup"><span data-stu-id="b4599-112">&dagger;HTTP/2 will be supported on macOS in a future release.</span></span>
+<span data-ttu-id="2dc96-112">&dagger;O HTTP/2 será compatível com macOS em uma versão futura.</span><span class="sxs-lookup"><span data-stu-id="2dc96-112">&dagger;HTTP/2 will be supported on macOS in a future release.</span></span>
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-* <span data-ttu-id="b4599-113">HTTPS</span><span class="sxs-lookup"><span data-stu-id="b4599-113">HTTPS</span></span>
-* <span data-ttu-id="b4599-114">Atualização do Opaque usado para habilitar o [WebSockets](https://github.com/aspnet/websockets)</span><span class="sxs-lookup"><span data-stu-id="b4599-114">Opaque upgrade used to enable [WebSockets](https://github.com/aspnet/websockets)</span></span>
-* <span data-ttu-id="b4599-115">Soquetes do UNIX para alto desempenho protegidos pelo Nginx</span><span class="sxs-lookup"><span data-stu-id="b4599-115">Unix sockets for high performance behind Nginx</span></span>
+* <span data-ttu-id="2dc96-113">HTTPS</span><span class="sxs-lookup"><span data-stu-id="2dc96-113">HTTPS</span></span>
+* <span data-ttu-id="2dc96-114">Atualização do Opaque usado para habilitar o [WebSockets](https://github.com/aspnet/websockets)</span><span class="sxs-lookup"><span data-stu-id="2dc96-114">Opaque upgrade used to enable [WebSockets](https://github.com/aspnet/websockets)</span></span>
+* <span data-ttu-id="2dc96-115">Soquetes do UNIX para alto desempenho protegidos pelo Nginx</span><span class="sxs-lookup"><span data-stu-id="2dc96-115">Unix sockets for high performance behind Nginx</span></span>
 
 ::: moniker-end
 
-<span data-ttu-id="b4599-116">Há suporte para o Kestrel em todas as plataformas e versões compatíveis com o .NET Core.</span><span class="sxs-lookup"><span data-stu-id="b4599-116">Kestrel is supported on all platforms and versions that .NET Core supports.</span></span>
+<span data-ttu-id="2dc96-116">Há suporte para o Kestrel em todas as plataformas e versões compatíveis com o .NET Core.</span><span class="sxs-lookup"><span data-stu-id="2dc96-116">Kestrel is supported on all platforms and versions that .NET Core supports.</span></span>
 
-<span data-ttu-id="b4599-117">[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([como baixar](xref:index#how-to-download-a-sample))</span><span class="sxs-lookup"><span data-stu-id="b4599-117">[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))</span></span>
+<span data-ttu-id="2dc96-117">[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([como baixar](xref:index#how-to-download-a-sample))</span><span class="sxs-lookup"><span data-stu-id="2dc96-117">[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
-## <a name="http2-support"></a><span data-ttu-id="b4599-118">Compatibilidade com HTTP/2</span><span class="sxs-lookup"><span data-stu-id="b4599-118">HTTP/2 support</span></span>
+## <a name="http2-support"></a><span data-ttu-id="2dc96-118">Compatibilidade com HTTP/2</span><span class="sxs-lookup"><span data-stu-id="2dc96-118">HTTP/2 support</span></span>
 
-<span data-ttu-id="b4599-119">O [HTTP/2](https://httpwg.org/specs/rfc7540.html) estará disponível para aplicativos ASP.NET Core se os seguintes requisitos básicos forem atendidos:</span><span class="sxs-lookup"><span data-stu-id="b4599-119">[HTTP/2](https://httpwg.org/specs/rfc7540.html) is available for ASP.NET Core apps if the following base requirements are met:</span></span>
+<span data-ttu-id="2dc96-119">O [HTTP/2](https://httpwg.org/specs/rfc7540.html) estará disponível para aplicativos ASP.NET Core se os seguintes requisitos básicos forem atendidos:</span><span class="sxs-lookup"><span data-stu-id="2dc96-119">[HTTP/2](https://httpwg.org/specs/rfc7540.html) is available for ASP.NET Core apps if the following base requirements are met:</span></span>
 
-* <span data-ttu-id="b4599-120">Sistema operacional&dagger;</span><span class="sxs-lookup"><span data-stu-id="b4599-120">Operating system&dagger;</span></span>
-  * <span data-ttu-id="b4599-121">Windows Server 2016/Windows 10 ou posterior&Dagger;</span><span class="sxs-lookup"><span data-stu-id="b4599-121">Windows Server 2016/Windows 10 or later&Dagger;</span></span>
-  * <span data-ttu-id="b4599-122">Linux com OpenSSL 1.0.2 ou posterior (por exemplo, Ubuntu 16.04 ou posterior)</span><span class="sxs-lookup"><span data-stu-id="b4599-122">Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)</span></span>
-* <span data-ttu-id="b4599-123">Estrutura de destino: .NET Core 2.2 ou posterior</span><span class="sxs-lookup"><span data-stu-id="b4599-123">Target framework: .NET Core 2.2 or later</span></span>
-* <span data-ttu-id="b4599-124">Conexão [ALPN (Negociação de protocolo de camada de aplicativo)](https://tools.ietf.org/html/rfc7301#section-3)</span><span class="sxs-lookup"><span data-stu-id="b4599-124">[Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection</span></span>
-* <span data-ttu-id="b4599-125">Conexão TLS 1.2 ou posterior</span><span class="sxs-lookup"><span data-stu-id="b4599-125">TLS 1.2 or later connection</span></span>
+* <span data-ttu-id="2dc96-120">Sistema operacional&dagger;</span><span class="sxs-lookup"><span data-stu-id="2dc96-120">Operating system&dagger;</span></span>
+  * <span data-ttu-id="2dc96-121">Windows Server 2016/Windows 10 ou posterior&Dagger;</span><span class="sxs-lookup"><span data-stu-id="2dc96-121">Windows Server 2016/Windows 10 or later&Dagger;</span></span>
+  * <span data-ttu-id="2dc96-122">Linux com OpenSSL 1.0.2 ou posterior (por exemplo, Ubuntu 16.04 ou posterior)</span><span class="sxs-lookup"><span data-stu-id="2dc96-122">Linux with OpenSSL 1.0.2 or later (for example, Ubuntu 16.04 or later)</span></span>
+* <span data-ttu-id="2dc96-123">Estrutura de destino: .NET Core 2.2 ou posterior</span><span class="sxs-lookup"><span data-stu-id="2dc96-123">Target framework: .NET Core 2.2 or later</span></span>
+* <span data-ttu-id="2dc96-124">Conexão [ALPN (Negociação de protocolo de camada de aplicativo)](https://tools.ietf.org/html/rfc7301#section-3)</span><span class="sxs-lookup"><span data-stu-id="2dc96-124">[Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection</span></span>
+* <span data-ttu-id="2dc96-125">Conexão TLS 1.2 ou posterior</span><span class="sxs-lookup"><span data-stu-id="2dc96-125">TLS 1.2 or later connection</span></span>
 
-<span data-ttu-id="b4599-126">&dagger;O HTTP/2 será compatível com macOS em uma versão futura.</span><span class="sxs-lookup"><span data-stu-id="b4599-126">&dagger;HTTP/2 will be supported on macOS in a future release.</span></span>
-<span data-ttu-id="b4599-127">&Dagger;O Kestrel tem suporte limitado para HTTP/2 no Windows Server 2012 R2 e Windows 8.1.</span><span class="sxs-lookup"><span data-stu-id="b4599-127">&Dagger;Kestrel has limited support for HTTP/2 on Windows Server 2012 R2 and Windows 8.1.</span></span> <span data-ttu-id="b4599-128">O suporte é limitado porque a lista de conjuntos de codificação TLS disponível nesses sistemas operacionais é limitada.</span><span class="sxs-lookup"><span data-stu-id="b4599-128">Support is limited because the list of supported TLS cipher suites available on these operating systems is limited.</span></span> <span data-ttu-id="b4599-129">Um certificado gerado usando um ECDSA (Algoritmo de Assinatura Digital Curva Elíptica) pode ser necessário para proteger conexões TLS.</span><span class="sxs-lookup"><span data-stu-id="b4599-129">A certificate generated using an Elliptic Curve Digital Signature Algorithm (ECDSA) may be required to secure TLS connections.</span></span>
+<span data-ttu-id="2dc96-126">&dagger;O HTTP/2 será compatível com macOS em uma versão futura.</span><span class="sxs-lookup"><span data-stu-id="2dc96-126">&dagger;HTTP/2 will be supported on macOS in a future release.</span></span>
+<span data-ttu-id="2dc96-127">&Dagger;O Kestrel tem suporte limitado para HTTP/2 no Windows Server 2012 R2 e Windows 8.1.</span><span class="sxs-lookup"><span data-stu-id="2dc96-127">&Dagger;Kestrel has limited support for HTTP/2 on Windows Server 2012 R2 and Windows 8.1.</span></span> <span data-ttu-id="2dc96-128">O suporte é limitado porque a lista de conjuntos de codificação TLS disponível nesses sistemas operacionais é limitada.</span><span class="sxs-lookup"><span data-stu-id="2dc96-128">Support is limited because the list of supported TLS cipher suites available on these operating systems is limited.</span></span> <span data-ttu-id="2dc96-129">Um certificado gerado usando um ECDSA (Algoritmo de Assinatura Digital Curva Elíptica) pode ser necessário para proteger conexões TLS.</span><span class="sxs-lookup"><span data-stu-id="2dc96-129">A certificate generated using an Elliptic Curve Digital Signature Algorithm (ECDSA) may be required to secure TLS connections.</span></span>
 
-<span data-ttu-id="b4599-130">Se uma conexão HTTP/2 for estabelecida, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) relatará `HTTP/2`.</span><span class="sxs-lookup"><span data-stu-id="b4599-130">If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.</span></span>
+<span data-ttu-id="2dc96-130">Se uma conexão HTTP/2 for estabelecida, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) relatará `HTTP/2`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-130">If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.</span></span>
 
-<span data-ttu-id="b4599-131">HTTP/2 está desabilitado por padrão.</span><span class="sxs-lookup"><span data-stu-id="b4599-131">HTTP/2 is disabled by default.</span></span> <span data-ttu-id="b4599-132">Para obter mais informações sobre a configuração, consulte as seções [Opções do Kestrel](#kestrel-options) e [ListenOptions.Protocols](#listenoptionsprotocols).</span><span class="sxs-lookup"><span data-stu-id="b4599-132">For more information on configuration, see the [Kestrel options](#kestrel-options) and [ListenOptions.Protocols](#listenoptionsprotocols) sections.</span></span>
+<span data-ttu-id="2dc96-131">HTTP/2 está desabilitado por padrão.</span><span class="sxs-lookup"><span data-stu-id="2dc96-131">HTTP/2 is disabled by default.</span></span> <span data-ttu-id="2dc96-132">Para obter mais informações sobre a configuração, consulte as seções [Opções do Kestrel](#kestrel-options) e [ListenOptions.Protocols](#listenoptionsprotocols).</span><span class="sxs-lookup"><span data-stu-id="2dc96-132">For more information on configuration, see the [Kestrel options](#kestrel-options) and [ListenOptions.Protocols](#listenoptionsprotocols) sections.</span></span>
 
 ::: moniker-end
 
-## <a name="when-to-use-kestrel-with-a-reverse-proxy"></a><span data-ttu-id="b4599-133">Quando usar o Kestrel com um proxy reverso</span><span class="sxs-lookup"><span data-stu-id="b4599-133">When to use Kestrel with a reverse proxy</span></span>
+## <a name="when-to-use-kestrel-with-a-reverse-proxy"></a><span data-ttu-id="2dc96-133">Quando usar o Kestrel com um proxy reverso</span><span class="sxs-lookup"><span data-stu-id="2dc96-133">When to use Kestrel with a reverse proxy</span></span>
 
-<span data-ttu-id="b4599-134">O Kestrel pode ser usado sozinho ou com um *servidor proxy reverso*, como o [IIS (Serviços de Informações da Internet)](https://www.iis.net/), o [Nginx](http://nginx.org) ou o [Apache](https://httpd.apache.org/).</span><span class="sxs-lookup"><span data-stu-id="b4599-134">Kestrel can be used by itself or with a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/).</span></span> <span data-ttu-id="b4599-135">Um servidor proxy reverso recebe solicitações HTTP da rede e encaminha-as para o Kestrel.</span><span class="sxs-lookup"><span data-stu-id="b4599-135">A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel.</span></span>
+<span data-ttu-id="2dc96-134">O Kestrel pode ser usado sozinho ou com um *servidor proxy reverso*, como o [IIS (Serviços de Informações da Internet)](https://www.iis.net/), o [Nginx](http://nginx.org) ou o [Apache](https://httpd.apache.org/).</span><span class="sxs-lookup"><span data-stu-id="2dc96-134">Kestrel can be used by itself or with a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/).</span></span> <span data-ttu-id="2dc96-135">Um servidor proxy reverso recebe solicitações HTTP da rede e encaminha-as para o Kestrel.</span><span class="sxs-lookup"><span data-stu-id="2dc96-135">A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel.</span></span>
 
-<span data-ttu-id="b4599-136">Kestrel usado como um servidor Web de borda (voltado para a Internet):</span><span class="sxs-lookup"><span data-stu-id="b4599-136">Kestrel used as an edge (Internet-facing) web server:</span></span>
+<span data-ttu-id="2dc96-136">Kestrel usado como um servidor Web de borda (voltado para a Internet):</span><span class="sxs-lookup"><span data-stu-id="2dc96-136">Kestrel used as an edge (Internet-facing) web server:</span></span>
 
 ![O Kestrel se comunica diretamente com a Internet, sem um servidor proxy reverso](kestrel/_static/kestrel-to-internet2.png)
 
-<span data-ttu-id="b4599-138">Kestrel usado em uma configuração de proxy reverso:</span><span class="sxs-lookup"><span data-stu-id="b4599-138">Kestrel used in a reverse proxy configuration:</span></span>
+<span data-ttu-id="2dc96-138">Kestrel usado em uma configuração de proxy reverso:</span><span class="sxs-lookup"><span data-stu-id="2dc96-138">Kestrel used in a reverse proxy configuration:</span></span>
 
 ![O Kestrel se comunica indiretamente com a Internet através de um servidor proxy reverso, tal como o IIS, o Nginx ou o Apache](kestrel/_static/kestrel-to-internet.png)
 
-<span data-ttu-id="b4599-140">Qualquer configuração – com ou sem um servidor proxy reverso – é uma configuração de hospedagem compatível com o ASP.NET Core 2.1 ou aplicativos posteriores que recebem solicitações da Internet.</span><span class="sxs-lookup"><span data-stu-id="b4599-140">Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration for ASP.NET Core 2.1 or later apps that receive requests from the Internet.</span></span>
+<span data-ttu-id="2dc96-140">Qualquer configuração – com ou sem um servidor proxy reverso – é uma configuração de hospedagem compatível com o ASP.NET Core 2.1 ou aplicativos posteriores que recebem solicitações da Internet.</span><span class="sxs-lookup"><span data-stu-id="2dc96-140">Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration for ASP.NET Core 2.1 or later apps that receive requests from the Internet.</span></span>
 
-<span data-ttu-id="b4599-141">O Kestrel usado como um servidor de borda sem um servidor proxy reverso não dá suporte ao compartilhamento do mesmo IP e da mesma porta entre vários processos.</span><span class="sxs-lookup"><span data-stu-id="b4599-141">Kestrel used as an edge server without a reverse proxy server doesn't support sharing the same IP and port among multiple processes.</span></span> <span data-ttu-id="b4599-142">Quando o Kestrel é configurado para escutar uma porta, ele manipula todo o tráfego dessa porta, independentemente dos cabeçalhos `Host` das solicitações.</span><span class="sxs-lookup"><span data-stu-id="b4599-142">When Kestrel is configured to listen on a port, Kestrel handles all of the traffic for that port regardless of requests' `Host` headers.</span></span> <span data-ttu-id="b4599-143">Um proxy reverso que pode compartilhar portas tem a capacidade de encaminhar solicitações ao Kestrel em um IP e em uma porta exclusivos.</span><span class="sxs-lookup"><span data-stu-id="b4599-143">A reverse proxy that can share ports has the ability to forward requests to Kestrel on a unique IP and port.</span></span>
+<span data-ttu-id="2dc96-141">O Kestrel usado como um servidor de borda sem um servidor proxy reverso não dá suporte ao compartilhamento do mesmo IP e da mesma porta entre vários processos.</span><span class="sxs-lookup"><span data-stu-id="2dc96-141">Kestrel used as an edge server without a reverse proxy server doesn't support sharing the same IP and port among multiple processes.</span></span> <span data-ttu-id="2dc96-142">Quando o Kestrel é configurado para escutar uma porta, ele manipula todo o tráfego dessa porta, independentemente dos cabeçalhos `Host` das solicitações.</span><span class="sxs-lookup"><span data-stu-id="2dc96-142">When Kestrel is configured to listen on a port, Kestrel handles all of the traffic for that port regardless of requests' `Host` headers.</span></span> <span data-ttu-id="2dc96-143">Um proxy reverso que pode compartilhar portas tem a capacidade de encaminhar solicitações ao Kestrel em um IP e em uma porta exclusivos.</span><span class="sxs-lookup"><span data-stu-id="2dc96-143">A reverse proxy that can share ports has the ability to forward requests to Kestrel on a unique IP and port.</span></span>
 
-<span data-ttu-id="b4599-144">Mesmo se um servidor proxy reverso não for necessário, o uso de um servidor proxy reverso poderá ser uma boa opção.</span><span class="sxs-lookup"><span data-stu-id="b4599-144">Even if a reverse proxy server isn't required, using a reverse proxy server might be a good choice.</span></span>
+<span data-ttu-id="2dc96-144">Mesmo se um servidor proxy reverso não for necessário, o uso de um servidor proxy reverso poderá ser uma boa opção.</span><span class="sxs-lookup"><span data-stu-id="2dc96-144">Even if a reverse proxy server isn't required, using a reverse proxy server might be a good choice.</span></span>
 
-<span data-ttu-id="b4599-145">Um proxy reverso:</span><span class="sxs-lookup"><span data-stu-id="b4599-145">A reverse proxy:</span></span>
+<span data-ttu-id="2dc96-145">Um proxy reverso:</span><span class="sxs-lookup"><span data-stu-id="2dc96-145">A reverse proxy:</span></span>
 
-* <span data-ttu-id="b4599-146">Pode limitar a área da superfície pública exposta dos aplicativos que ele hospeda.</span><span class="sxs-lookup"><span data-stu-id="b4599-146">Can limit the exposed public surface area of the apps that it hosts.</span></span>
-* <span data-ttu-id="b4599-147">Fornece uma camada adicional de configuração e proteção.</span><span class="sxs-lookup"><span data-stu-id="b4599-147">Provide an additional layer of configuration and defense.</span></span>
-* <span data-ttu-id="b4599-148">Pode ser integrado melhor à infraestrutura existente.</span><span class="sxs-lookup"><span data-stu-id="b4599-148">Might integrate better with existing infrastructure.</span></span>
-* <span data-ttu-id="b4599-149">Simplifica o balanceamento de carga e a configuração de comunicação segura (HTTPS).</span><span class="sxs-lookup"><span data-stu-id="b4599-149">Simplify load balancing and secure communication (HTTPS) configuration.</span></span> <span data-ttu-id="b4599-150">Somente o servidor proxy reverso exige um certificado X.509 e esse servidor pode se comunicar com os servidores de aplicativos na rede interna usando HTTP simples.</span><span class="sxs-lookup"><span data-stu-id="b4599-150">Only the reverse proxy server requires an X.509 certificate, and that server can communicate with your app servers on the internal network using plain HTTP.</span></span>
+* <span data-ttu-id="2dc96-146">Pode limitar a área da superfície pública exposta dos aplicativos que ele hospeda.</span><span class="sxs-lookup"><span data-stu-id="2dc96-146">Can limit the exposed public surface area of the apps that it hosts.</span></span>
+* <span data-ttu-id="2dc96-147">Fornece uma camada adicional de configuração e proteção.</span><span class="sxs-lookup"><span data-stu-id="2dc96-147">Provide an additional layer of configuration and defense.</span></span>
+* <span data-ttu-id="2dc96-148">Pode ser integrado melhor à infraestrutura existente.</span><span class="sxs-lookup"><span data-stu-id="2dc96-148">Might integrate better with existing infrastructure.</span></span>
+* <span data-ttu-id="2dc96-149">Simplifica o balanceamento de carga e a configuração de comunicação segura (HTTPS).</span><span class="sxs-lookup"><span data-stu-id="2dc96-149">Simplify load balancing and secure communication (HTTPS) configuration.</span></span> <span data-ttu-id="2dc96-150">Somente o servidor proxy reverso exige um certificado X.509 e esse servidor pode se comunicar com os servidores de aplicativos na rede interna usando HTTP simples.</span><span class="sxs-lookup"><span data-stu-id="2dc96-150">Only the reverse proxy server requires an X.509 certificate, and that server can communicate with your app servers on the internal network using plain HTTP.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="b4599-151">A hospedagem em uma configuração de proxy reverso exige a [filtragem de host](#host-filtering).</span><span class="sxs-lookup"><span data-stu-id="b4599-151">Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).</span></span>
+> <span data-ttu-id="2dc96-151">A hospedagem em uma configuração de proxy reverso exige a [filtragem de host](#host-filtering).</span><span class="sxs-lookup"><span data-stu-id="2dc96-151">Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).</span></span>
 
-## <a name="how-to-use-kestrel-in-aspnet-core-apps"></a><span data-ttu-id="b4599-152">Como usar o Kestrel em aplicativos ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="b4599-152">How to use Kestrel in ASP.NET Core apps</span></span>
+## <a name="how-to-use-kestrel-in-aspnet-core-apps"></a><span data-ttu-id="2dc96-152">Como usar o Kestrel em aplicativos ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="2dc96-152">How to use Kestrel in ASP.NET Core apps</span></span>
 
-<span data-ttu-id="b4599-153">O pacote [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) está incluído no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 ou posterior).</span><span class="sxs-lookup"><span data-stu-id="b4599-153">The [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later).</span></span>
+<span data-ttu-id="2dc96-153">O pacote [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) está incluído no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 ou posterior).</span><span class="sxs-lookup"><span data-stu-id="2dc96-153">The [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later).</span></span>
 
-<span data-ttu-id="b4599-154">Os modelos de projeto do ASP.NET Core usam o Kestrel por padrão.</span><span class="sxs-lookup"><span data-stu-id="b4599-154">ASP.NET Core project templates use Kestrel by default.</span></span> <span data-ttu-id="b4599-155">Em *Program.cs*, o código de modelo chama <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, que chama <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> em segundo plano.</span><span class="sxs-lookup"><span data-stu-id="b4599-155">In *Program.cs*, the template code calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, which calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> behind the scenes.</span></span>
+<span data-ttu-id="2dc96-154">Os modelos de projeto do ASP.NET Core usam o Kestrel por padrão.</span><span class="sxs-lookup"><span data-stu-id="2dc96-154">ASP.NET Core project templates use Kestrel by default.</span></span> <span data-ttu-id="2dc96-155">Em *Program.cs*, o código de modelo chama <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, que chama <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> em segundo plano.</span><span class="sxs-lookup"><span data-stu-id="2dc96-155">In *Program.cs*, the template code calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, which calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> behind the scenes.</span></span>
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_DefaultBuilder&highlight=7)]
 
 ::: moniker range=">= aspnetcore-2.2"
 
-<span data-ttu-id="b4599-156">Para fornecer configuração adicional após chamar `CreateDefaultBuilder`, use `ConfigureKestrel`:</span><span class="sxs-lookup"><span data-stu-id="b4599-156">To provide additional configuration after calling `CreateDefaultBuilder`, use `ConfigureKestrel`:</span></span>
+<span data-ttu-id="2dc96-156">Para fornecer configuração adicional após chamar `CreateDefaultBuilder`, use `ConfigureKestrel`:</span><span class="sxs-lookup"><span data-stu-id="2dc96-156">To provide additional configuration after calling `CreateDefaultBuilder`, use `ConfigureKestrel`:</span></span>
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -117,7 +117,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-<span data-ttu-id="b4599-157">Se o aplicativo não chamar `CreateDefaultBuilder` para configurar o host, chame <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> **antes** de chamar `ConfigureKestrel`:</span><span class="sxs-lookup"><span data-stu-id="b4599-157">If the app doesn't call `CreateDefaultBuilder` to set up the host, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> **before** calling `ConfigureKestrel`:</span></span>
+<span data-ttu-id="2dc96-157">Se o aplicativo não chamar `CreateDefaultBuilder` para configurar o host, chame <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> **antes** de chamar `ConfigureKestrel`:</span><span class="sxs-lookup"><span data-stu-id="2dc96-157">If the app doesn't call `CreateDefaultBuilder` to set up the host, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> **before** calling `ConfigureKestrel`:</span></span>
 
 ```csharp
 public static void Main(string[] args)
@@ -141,7 +141,7 @@ public static void Main(string[] args)
 
 ::: moniker range="< aspnetcore-2.2"
 
-<span data-ttu-id="b4599-158">Para fornecer configuração adicional após chamar `CreateDefaultBuilder`, chame <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>:</span><span class="sxs-lookup"><span data-stu-id="b4599-158">To provide additional configuration after calling `CreateDefaultBuilder`, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>:</span></span>
+<span data-ttu-id="2dc96-158">Para fornecer configuração adicional após chamar `CreateDefaultBuilder`, chame <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>:</span><span class="sxs-lookup"><span data-stu-id="2dc96-158">To provide additional configuration after calling `CreateDefaultBuilder`, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>:</span></span>
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -155,23 +155,23 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-## <a name="kestrel-options"></a><span data-ttu-id="b4599-159">Opções do Kestrel</span><span class="sxs-lookup"><span data-stu-id="b4599-159">Kestrel options</span></span>
+## <a name="kestrel-options"></a><span data-ttu-id="2dc96-159">Opções do Kestrel</span><span class="sxs-lookup"><span data-stu-id="2dc96-159">Kestrel options</span></span>
 
-<span data-ttu-id="b4599-160">O servidor Web do Kestrel tem opções de configuração de restrição especialmente úteis em implantações para a Internet.</span><span class="sxs-lookup"><span data-stu-id="b4599-160">The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.</span></span>
+<span data-ttu-id="2dc96-160">O servidor Web do Kestrel tem opções de configuração de restrição especialmente úteis em implantações para a Internet.</span><span class="sxs-lookup"><span data-stu-id="2dc96-160">The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.</span></span>
 
-<span data-ttu-id="b4599-161">Defina restrições sobre a propriedade <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits> da classe <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions>.</span><span class="sxs-lookup"><span data-stu-id="b4599-161">Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits> property of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> class.</span></span> <span data-ttu-id="b4599-162">A propriedade `Limits` contém uma instância da classe <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits>.</span><span class="sxs-lookup"><span data-stu-id="b4599-162">The `Limits` property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.</span></span>
+<span data-ttu-id="2dc96-161">Defina restrições sobre a propriedade <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits> da classe <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions>.</span><span class="sxs-lookup"><span data-stu-id="2dc96-161">Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits> property of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> class.</span></span> <span data-ttu-id="2dc96-162">A propriedade `Limits` contém uma instância da classe <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits>.</span><span class="sxs-lookup"><span data-stu-id="2dc96-162">The `Limits` property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.</span></span>
 
-<span data-ttu-id="b4599-163">Os exemplos a seguir usam o namespace <xref:Microsoft.AspNetCore.Server.Kestrel.Core>:</span><span class="sxs-lookup"><span data-stu-id="b4599-163">The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> namespace:</span></span>
+<span data-ttu-id="2dc96-163">Os exemplos a seguir usam o namespace <xref:Microsoft.AspNetCore.Server.Kestrel.Core>:</span><span class="sxs-lookup"><span data-stu-id="2dc96-163">The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> namespace:</span></span>
 
 ```csharp
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-### <a name="keep-alive-timeout"></a><span data-ttu-id="b4599-164">Tempo limite de keep-alive</span><span class="sxs-lookup"><span data-stu-id="b4599-164">Keep-alive timeout</span></span>
+### <a name="keep-alive-timeout"></a><span data-ttu-id="2dc96-164">Tempo limite de keep-alive</span><span class="sxs-lookup"><span data-stu-id="2dc96-164">Keep-alive timeout</span></span>
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.KeepAliveTimeout>
 
-<span data-ttu-id="b4599-165">Obtém ou define o [tempo limite de keep-alive](https://tools.ietf.org/html/rfc7230#section-6.5).</span><span class="sxs-lookup"><span data-stu-id="b4599-165">Gets or sets the [keep-alive timeout](https://tools.ietf.org/html/rfc7230#section-6.5).</span></span> <span data-ttu-id="b4599-166">O padrão é de dois minutos.</span><span class="sxs-lookup"><span data-stu-id="b4599-166">Defaults to 2 minutes.</span></span>
+<span data-ttu-id="2dc96-165">Obtém ou define o [tempo limite de keep-alive](https://tools.ietf.org/html/rfc7230#section-6.5).</span><span class="sxs-lookup"><span data-stu-id="2dc96-165">Gets or sets the [keep-alive timeout](https://tools.ietf.org/html/rfc7230#section-6.5).</span></span> <span data-ttu-id="2dc96-166">O padrão é de dois minutos.</span><span class="sxs-lookup"><span data-stu-id="2dc96-166">Defaults to 2 minutes.</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -193,12 +193,12 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-### <a name="maximum-client-connections"></a><span data-ttu-id="b4599-167">Número máximo de conexões de cliente</span><span class="sxs-lookup"><span data-stu-id="b4599-167">Maximum client connections</span></span>
+### <a name="maximum-client-connections"></a><span data-ttu-id="2dc96-167">Número máximo de conexões de cliente</span><span class="sxs-lookup"><span data-stu-id="2dc96-167">Maximum client connections</span></span>
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections>  
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentUpgradedConnections>
 
-<span data-ttu-id="b4599-168">O número máximo de conexões TCP abertas simultâneas pode ser definido para o aplicativo inteiro com o código a seguir:</span><span class="sxs-lookup"><span data-stu-id="b4599-168">The maximum number of concurrent open TCP connections can be set for the entire app with the following code:</span></span>
+<span data-ttu-id="2dc96-168">O número máximo de conexões TCP abertas simultâneas pode ser definido para o aplicativo inteiro com o código a seguir:</span><span class="sxs-lookup"><span data-stu-id="2dc96-168">The maximum number of concurrent open TCP connections can be set for the entire app with the following code:</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -220,7 +220,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-<span data-ttu-id="b4599-169">Há um limite separado para conexões que foram atualizadas do HTTP ou HTTPS para outro protocolo (por exemplo, em uma solicitação do WebSockets).</span><span class="sxs-lookup"><span data-stu-id="b4599-169">There's a separate limit for connections that have been upgraded from HTTP or HTTPS to another protocol (for example, on a WebSockets request).</span></span> <span data-ttu-id="b4599-170">Depois que uma conexão é atualizada, ela não é contada em relação ao limite de `MaxConcurrentConnections`.</span><span class="sxs-lookup"><span data-stu-id="b4599-170">After a connection is upgraded, it isn't counted against the `MaxConcurrentConnections` limit.</span></span>
+<span data-ttu-id="2dc96-169">Há um limite separado para conexões que foram atualizadas do HTTP ou HTTPS para outro protocolo (por exemplo, em uma solicitação do WebSockets).</span><span class="sxs-lookup"><span data-stu-id="2dc96-169">There's a separate limit for connections that have been upgraded from HTTP or HTTPS to another protocol (for example, on a WebSockets request).</span></span> <span data-ttu-id="2dc96-170">Depois que uma conexão é atualizada, ela não é contada em relação ao limite de `MaxConcurrentConnections`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-170">After a connection is upgraded, it isn't counted against the `MaxConcurrentConnections` limit.</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -242,22 +242,22 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-<span data-ttu-id="b4599-171">O número máximo de conexões é ilimitado (nulo) por padrão.</span><span class="sxs-lookup"><span data-stu-id="b4599-171">The maximum number of connections is unlimited (null) by default.</span></span>
+<span data-ttu-id="2dc96-171">O número máximo de conexões é ilimitado (nulo) por padrão.</span><span class="sxs-lookup"><span data-stu-id="2dc96-171">The maximum number of connections is unlimited (null) by default.</span></span>
 
-### <a name="maximum-request-body-size"></a><span data-ttu-id="b4599-172">Tamanho máximo do corpo da solicitação</span><span class="sxs-lookup"><span data-stu-id="b4599-172">Maximum request body size</span></span>
+### <a name="maximum-request-body-size"></a><span data-ttu-id="2dc96-172">Tamanho máximo do corpo da solicitação</span><span class="sxs-lookup"><span data-stu-id="2dc96-172">Maximum request body size</span></span>
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxRequestBodySize>
 
-<span data-ttu-id="b4599-173">O tamanho máximo do corpo da solicitação padrão é de 30.000.000 bytes, que equivale aproximadamente a 28,6 MB.</span><span class="sxs-lookup"><span data-stu-id="b4599-173">The default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB.</span></span>
+<span data-ttu-id="2dc96-173">O tamanho máximo do corpo da solicitação padrão é de 30.000.000 bytes, que equivale aproximadamente a 28,6 MB.</span><span class="sxs-lookup"><span data-stu-id="2dc96-173">The default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB.</span></span>
 
-<span data-ttu-id="b4599-174">A abordagem recomendada para substituir o limite em um aplicativo ASP.NET Core MVC é usar o atributo <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> em um método de ação:</span><span class="sxs-lookup"><span data-stu-id="b4599-174">The recommended approach to override the limit in an ASP.NET Core MVC app is to use the <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> attribute on an action method:</span></span>
+<span data-ttu-id="2dc96-174">A abordagem recomendada para substituir o limite em um aplicativo ASP.NET Core MVC é usar o atributo <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> em um método de ação:</span><span class="sxs-lookup"><span data-stu-id="2dc96-174">The recommended approach to override the limit in an ASP.NET Core MVC app is to use the <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> attribute on an action method:</span></span>
 
 ```csharp
 [RequestSizeLimit(100000000)]
 public IActionResult MyActionMethod()
 ```
 
-<span data-ttu-id="b4599-175">Aqui está um exemplo que mostra como configurar a restrição para o aplicativo em cada solicitação:</span><span class="sxs-lookup"><span data-stu-id="b4599-175">Here's an example that shows how to configure the constraint for the app on every request:</span></span>
+<span data-ttu-id="2dc96-175">Aqui está um exemplo que mostra como configurar a restrição para o aplicativo em cada solicitação:</span><span class="sxs-lookup"><span data-stu-id="2dc96-175">Here's an example that shows how to configure the constraint for the app on every request:</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -277,28 +277,28 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-<span data-ttu-id="b4599-176">Substitua a configuração em uma solicitação específica no middleware:</span><span class="sxs-lookup"><span data-stu-id="b4599-176">You can override the setting on a specific request in middleware:</span></span>
+<span data-ttu-id="2dc96-176">Substitua a configuração em uma solicitação específica no middleware:</span><span class="sxs-lookup"><span data-stu-id="2dc96-176">You can override the setting on a specific request in middleware:</span></span>
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=3-4)]
 
 ::: moniker-end
 
-<span data-ttu-id="b4599-177">Uma exceção será gerada se você tentar configurar o limite em uma solicitação depois que o aplicativo começar a ler a solicitação.</span><span class="sxs-lookup"><span data-stu-id="b4599-177">An exception is thrown if you attempt to configure the limit on a request after the app has started to read the request.</span></span> <span data-ttu-id="b4599-178">Há uma propriedade `IsReadOnly` que indica se a propriedade `MaxRequestBodySize` está no estado somente leitura, o que significa que é tarde demais para configurar o limite.</span><span class="sxs-lookup"><span data-stu-id="b4599-178">There's an `IsReadOnly` property that indicates if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.</span></span>
+<span data-ttu-id="2dc96-177">Uma exceção será gerada se você tentar configurar o limite em uma solicitação depois que o aplicativo começar a ler a solicitação.</span><span class="sxs-lookup"><span data-stu-id="2dc96-177">An exception is thrown if you attempt to configure the limit on a request after the app has started to read the request.</span></span> <span data-ttu-id="2dc96-178">Há uma propriedade `IsReadOnly` que indica se a propriedade `MaxRequestBodySize` está no estado somente leitura, o que significa que é tarde demais para configurar o limite.</span><span class="sxs-lookup"><span data-stu-id="2dc96-178">There's an `IsReadOnly` property that indicates if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.</span></span>
 
-<span data-ttu-id="b4599-179">Quando um aplicativo é executado [fora do processo](xref:host-and-deploy/iis/index#out-of-process-hosting-model) por trás do [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module), o limite de tamanho do corpo da solicitação do Kestrel fica desabilitado, pois o IIS já define o limite.</span><span class="sxs-lookup"><span data-stu-id="b4599-179">When an app is run [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), Kestrel's request body size limit is disabled because IIS already sets the limit.</span></span>
+<span data-ttu-id="2dc96-179">Quando um aplicativo é executado [fora do processo](xref:host-and-deploy/iis/index#out-of-process-hosting-model) por trás do [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module), o limite de tamanho do corpo da solicitação do Kestrel fica desabilitado, pois o IIS já define o limite.</span><span class="sxs-lookup"><span data-stu-id="2dc96-179">When an app is run [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), Kestrel's request body size limit is disabled because IIS already sets the limit.</span></span>
 
-### <a name="minimum-request-body-data-rate"></a><span data-ttu-id="b4599-180">Taxa de dados mínima do corpo da solicitação</span><span class="sxs-lookup"><span data-stu-id="b4599-180">Minimum request body data rate</span></span>
+### <a name="minimum-request-body-data-rate"></a><span data-ttu-id="2dc96-180">Taxa de dados mínima do corpo da solicitação</span><span class="sxs-lookup"><span data-stu-id="2dc96-180">Minimum request body data rate</span></span>
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>  
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinResponseDataRate>
 
-<span data-ttu-id="b4599-181">O Kestrel verifica a cada segundo se os dados estão sendo recebidos na taxa especificada em bytes/segundo.</span><span class="sxs-lookup"><span data-stu-id="b4599-181">Kestrel checks every second if data is arriving at the specified rate in bytes/second.</span></span> <span data-ttu-id="b4599-182">Se a taxa cair abaixo do mínimo, a conexão atingirá o tempo limite. O período de cortesia é o tempo que o Kestrel fornece ao cliente para aumentar sua taxa de envio até o mínimo; a taxa não é verificada durante esse período.</span><span class="sxs-lookup"><span data-stu-id="b4599-182">If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate isn't checked during that time.</span></span> <span data-ttu-id="b4599-183">O período de cortesia ajuda a evitar a remoção de conexões que inicialmente enviam dados em uma taxa baixa devido ao início lento do TCP.</span><span class="sxs-lookup"><span data-stu-id="b4599-183">The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.</span></span>
+<span data-ttu-id="2dc96-181">O Kestrel verifica a cada segundo se os dados estão sendo recebidos na taxa especificada em bytes/segundo.</span><span class="sxs-lookup"><span data-stu-id="2dc96-181">Kestrel checks every second if data is arriving at the specified rate in bytes/second.</span></span> <span data-ttu-id="2dc96-182">Se a taxa cair abaixo do mínimo, a conexão atingirá o tempo limite. O período de cortesia é o tempo que o Kestrel fornece ao cliente para aumentar sua taxa de envio até o mínimo; a taxa não é verificada durante esse período.</span><span class="sxs-lookup"><span data-stu-id="2dc96-182">If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate isn't checked during that time.</span></span> <span data-ttu-id="2dc96-183">O período de cortesia ajuda a evitar a remoção de conexões que inicialmente enviam dados em uma taxa baixa devido ao início lento do TCP.</span><span class="sxs-lookup"><span data-stu-id="2dc96-183">The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.</span></span>
 
-<span data-ttu-id="b4599-184">A taxa mínima de padrão é de 240 bytes/segundo com um período de cortesia de 5 segundos.</span><span class="sxs-lookup"><span data-stu-id="b4599-184">The default minimum rate is 240 bytes/second with a 5 second grace period.</span></span>
+<span data-ttu-id="2dc96-184">A taxa mínima de padrão é de 240 bytes/segundo com um período de cortesia de 5 segundos.</span><span class="sxs-lookup"><span data-stu-id="2dc96-184">The default minimum rate is 240 bytes/second with a 5 second grace period.</span></span>
 
-<span data-ttu-id="b4599-185">Uma taxa mínima também se aplica à resposta.</span><span class="sxs-lookup"><span data-stu-id="b4599-185">A minimum rate also applies to the response.</span></span> <span data-ttu-id="b4599-186">O código para definir o limite de solicitação e o limite de resposta é o mesmo, exceto por ter `RequestBody` ou `Response` nos nomes da propriedade e da interface.</span><span class="sxs-lookup"><span data-stu-id="b4599-186">The code to set the request limit and the response limit is the same except for having `RequestBody` or `Response` in the property and interface names.</span></span>
+<span data-ttu-id="2dc96-185">Uma taxa mínima também se aplica à resposta.</span><span class="sxs-lookup"><span data-stu-id="2dc96-185">A minimum rate also applies to the response.</span></span> <span data-ttu-id="2dc96-186">O código para definir o limite de solicitação e o limite de resposta é o mesmo, exceto por ter `RequestBody` ou `Response` nos nomes da propriedade e da interface.</span><span class="sxs-lookup"><span data-stu-id="2dc96-186">The code to set the request limit and the response limit is the same except for having `RequestBody` or `Response` in the property and interface names.</span></span>
 
-<span data-ttu-id="b4599-187">Este é um exemplo que mostra como configurar as taxas mínima de dados em *Program.cs*:</span><span class="sxs-lookup"><span data-stu-id="b4599-187">Here's an example that shows how to configure the minimum data rates in *Program.cs*:</span></span>
+<span data-ttu-id="2dc96-187">Este é um exemplo que mostra como configurar as taxas mínima de dados em *Program.cs*:</span><span class="sxs-lookup"><span data-stu-id="2dc96-187">Here's an example that shows how to configure the minimum data rates in *Program.cs*:</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -323,21 +323,29 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-<span data-ttu-id="b4599-188">Você pode substituir os limites de taxa mínima por solicitação no middleware:</span><span class="sxs-lookup"><span data-stu-id="b4599-188">You can override the minimum rate limits per request in middleware:</span></span>
+<span data-ttu-id="2dc96-188">Você pode substituir os limites de taxa mínima por solicitação no middleware:</span><span class="sxs-lookup"><span data-stu-id="2dc96-188">You can override the minimum rate limits per request in middleware:</span></span>
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-21)]
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="b4599-189">Nenhum desses recursos de taxa referenciados no exemplo anterior está presente no `HttpContext.Features` para solicitações HTTP/2, porque a modificação dos limites de taxa em cada solicitação não é compatível com HTTP/2 devido ao suporte de multiplexação de solicitação do protocolo.</span><span class="sxs-lookup"><span data-stu-id="b4599-189">Neither rate feature referenced in the prior sample are present in `HttpContext.Features` for HTTP/2 requests because modifying rate limits on a per-request basis isn't supported for HTTP/2 due to the protocol's support for request multiplexing.</span></span> <span data-ttu-id="b4599-190">Os limites de taxa de todo o servidor configurados por meio de `KestrelServerOptions.Limits` ainda se aplicam a conexões HTTP/1.x e HTTP/2.</span><span class="sxs-lookup"><span data-stu-id="b4599-190">Server-wide rate limits configured via `KestrelServerOptions.Limits` still apply to both HTTP/1.x and HTTP/2 connections.</span></span>
+<span data-ttu-id="2dc96-189">O <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature> referenciado no exemplo anterior não está presente no `HttpContext.Features` para solicitações HTTP/2, porque a modificação dos limites de taxa em cada solicitação não é geralmente compatível com HTTP/2 devido ao suporte de multiplexação de solicitação do protocolo.</span><span class="sxs-lookup"><span data-stu-id="2dc96-189">The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature> referenced in the prior sample is not present in `HttpContext.Features` for HTTP/2 requests because modifying rate limits on a per-request basis is generally not supported for HTTP/2 due to the protocol's support for request multiplexing.</span></span> <span data-ttu-id="2dc96-190">No entanto, o <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature> ainda está presente em `HttpContext.Features` para solicitações HTTP/2, pois o limite de taxa de leitura ainda pode ser *desabilitado totalmente* em cada solicitação, definindo `IHttpMinRequestBodyDataRateFeature.MinDataRate` para `null` mesmo em uma solicitação HTTP/2.</span><span class="sxs-lookup"><span data-stu-id="2dc96-190">However, the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature> is still present `HttpContext.Features` for HTTP/2 requests, because the read rate limit can still be *disabled entirely* on a per-request basis by setting `IHttpMinRequestBodyDataRateFeature.MinDataRate` to `null` even for an HTTP/2 request.</span></span> <span data-ttu-id="2dc96-191">Tentar ler `IHttpMinRequestBodyDataRateFeature.MinDataRate` ou tentar defini-lo como um valor diferente de `null` resultará na geração de um `NotSupportedException` devido a uma solicitação HTTP/2.</span><span class="sxs-lookup"><span data-stu-id="2dc96-191">Attempting to read `IHttpMinRequestBodyDataRateFeature.MinDataRate` or attempting to set it to a value other than `null` will result in a `NotSupportedException` being thrown given an HTTP/2 request.</span></span>
+
+<span data-ttu-id="2dc96-192">Os limites de taxa de todo o servidor configurados por meio de `KestrelServerOptions.Limits` ainda se aplicam a conexões HTTP/1.x e HTTP/2.</span><span class="sxs-lookup"><span data-stu-id="2dc96-192">Server-wide rate limits configured via `KestrelServerOptions.Limits` still apply to both HTTP/1.x and HTTP/2 connections.</span></span>
 
 ::: moniker-end
 
-### <a name="request-headers-timeout"></a><span data-ttu-id="b4599-191">Tempo limite dos cabeçalhos de solicitação</span><span class="sxs-lookup"><span data-stu-id="b4599-191">Request headers timeout</span></span>
+::: moniker range="= aspnetcore-2.2"
+
+<span data-ttu-id="2dc96-193">Nenhum desses recursos de taxa referenciados no exemplo anterior está presente no `HttpContext.Features` para solicitações HTTP/2, porque a modificação dos limites de taxa em cada solicitação não é compatível com HTTP/2 devido ao suporte de multiplexação de solicitação do protocolo.</span><span class="sxs-lookup"><span data-stu-id="2dc96-193">Neither rate feature referenced in the prior sample are present in `HttpContext.Features` for HTTP/2 requests because modifying rate limits on a per-request basis isn't supported for HTTP/2 due to the protocol's support for request multiplexing.</span></span> <span data-ttu-id="2dc96-194">Os limites de taxa de todo o servidor configurados por meio de `KestrelServerOptions.Limits` ainda se aplicam a conexões HTTP/1.x e HTTP/2.</span><span class="sxs-lookup"><span data-stu-id="2dc96-194">Server-wide rate limits configured via `KestrelServerOptions.Limits` still apply to both HTTP/1.x and HTTP/2 connections.</span></span>
+
+::: moniker-end
+
+### <a name="request-headers-timeout"></a><span data-ttu-id="2dc96-195">Tempo limite dos cabeçalhos de solicitação</span><span class="sxs-lookup"><span data-stu-id="2dc96-195">Request headers timeout</span></span>
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout>
 
-<span data-ttu-id="b4599-192">Obtém ou define a quantidade máxima de tempo que o servidor gasta recebendo cabeçalhos de solicitação.</span><span class="sxs-lookup"><span data-stu-id="b4599-192">Gets or sets the maximum amount of time the server spends receiving request headers.</span></span> <span data-ttu-id="b4599-193">O padrão é 30 segundos.</span><span class="sxs-lookup"><span data-stu-id="b4599-193">Defaults to 30 seconds.</span></span>
+<span data-ttu-id="2dc96-196">Obtém ou define a quantidade máxima de tempo que o servidor gasta recebendo cabeçalhos de solicitação.</span><span class="sxs-lookup"><span data-stu-id="2dc96-196">Gets or sets the maximum amount of time the server spends receiving request headers.</span></span> <span data-ttu-id="2dc96-197">O padrão é 30 segundos.</span><span class="sxs-lookup"><span data-stu-id="2dc96-197">Defaults to 30 seconds.</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -361,9 +369,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker range=">= aspnetcore-2.2"
 
-### <a name="maximum-streams-per-connection"></a><span data-ttu-id="b4599-194">Fluxos máximos por conexão</span><span class="sxs-lookup"><span data-stu-id="b4599-194">Maximum streams per connection</span></span>
+### <a name="maximum-streams-per-connection"></a><span data-ttu-id="2dc96-198">Fluxos máximos por conexão</span><span class="sxs-lookup"><span data-stu-id="2dc96-198">Maximum streams per connection</span></span>
 
-<span data-ttu-id="b4599-195">O `Http2.MaxStreamsPerConnection` limita o número de fluxos de solicitações simultâneas por conexão HTTP/2.</span><span class="sxs-lookup"><span data-stu-id="b4599-195">`Http2.MaxStreamsPerConnection` limits the number of concurrent request streams per HTTP/2 connection.</span></span> <span data-ttu-id="b4599-196">Os fluxos em excesso são recusados.</span><span class="sxs-lookup"><span data-stu-id="b4599-196">Excess streams are refused.</span></span>
+<span data-ttu-id="2dc96-199">O `Http2.MaxStreamsPerConnection` limita o número de fluxos de solicitações simultâneas por conexão HTTP/2.</span><span class="sxs-lookup"><span data-stu-id="2dc96-199">`Http2.MaxStreamsPerConnection` limits the number of concurrent request streams per HTTP/2 connection.</span></span> <span data-ttu-id="2dc96-200">Os fluxos em excesso são recusados.</span><span class="sxs-lookup"><span data-stu-id="2dc96-200">Excess streams are refused.</span></span>
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -375,11 +383,11 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-<span data-ttu-id="b4599-197">O valor padrão é 100.</span><span class="sxs-lookup"><span data-stu-id="b4599-197">The default value is 100.</span></span>
+<span data-ttu-id="2dc96-201">O valor padrão é 100.</span><span class="sxs-lookup"><span data-stu-id="2dc96-201">The default value is 100.</span></span>
 
-### <a name="header-table-size"></a><span data-ttu-id="b4599-198">Tamanho da tabela de cabeçalho</span><span class="sxs-lookup"><span data-stu-id="b4599-198">Header table size</span></span>
+### <a name="header-table-size"></a><span data-ttu-id="2dc96-202">Tamanho da tabela de cabeçalho</span><span class="sxs-lookup"><span data-stu-id="2dc96-202">Header table size</span></span>
 
-<span data-ttu-id="b4599-199">O decodificador HPACK descompacta os cabeçalhos HTTP para conexões HTTP/2.</span><span class="sxs-lookup"><span data-stu-id="b4599-199">The HPACK decoder decompresses HTTP headers for HTTP/2 connections.</span></span> <span data-ttu-id="b4599-200">O `Http2.HeaderTableSize` limita o tamanho da tabela de compactação de cabeçalho usada pelo decodificador HPACK.</span><span class="sxs-lookup"><span data-stu-id="b4599-200">`Http2.HeaderTableSize` limits the size of the header compression table that the HPACK decoder uses.</span></span> <span data-ttu-id="b4599-201">O valor é fornecido em octetos e deve ser maior do que zero (0).</span><span class="sxs-lookup"><span data-stu-id="b4599-201">The value is provided in octets and must be greater than zero (0).</span></span>
+<span data-ttu-id="2dc96-203">O decodificador HPACK descompacta os cabeçalhos HTTP para conexões HTTP/2.</span><span class="sxs-lookup"><span data-stu-id="2dc96-203">The HPACK decoder decompresses HTTP headers for HTTP/2 connections.</span></span> <span data-ttu-id="2dc96-204">O `Http2.HeaderTableSize` limita o tamanho da tabela de compactação de cabeçalho usada pelo decodificador HPACK.</span><span class="sxs-lookup"><span data-stu-id="2dc96-204">`Http2.HeaderTableSize` limits the size of the header compression table that the HPACK decoder uses.</span></span> <span data-ttu-id="2dc96-205">O valor é fornecido em octetos e deve ser maior do que zero (0).</span><span class="sxs-lookup"><span data-stu-id="2dc96-205">The value is provided in octets and must be greater than zero (0).</span></span>
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -391,11 +399,11 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-<span data-ttu-id="b4599-202">O valor padrão é 4096.</span><span class="sxs-lookup"><span data-stu-id="b4599-202">The default value is 4096.</span></span>
+<span data-ttu-id="2dc96-206">O valor padrão é 4096.</span><span class="sxs-lookup"><span data-stu-id="2dc96-206">The default value is 4096.</span></span>
 
-### <a name="maximum-frame-size"></a><span data-ttu-id="b4599-203">Tamanho máximo do quadro</span><span class="sxs-lookup"><span data-stu-id="b4599-203">Maximum frame size</span></span>
+### <a name="maximum-frame-size"></a><span data-ttu-id="2dc96-207">Tamanho máximo do quadro</span><span class="sxs-lookup"><span data-stu-id="2dc96-207">Maximum frame size</span></span>
 
-<span data-ttu-id="b4599-204">O `Http2.MaxFrameSize` indica o tamanho máximo do payload do quadro da conexão HTTP/2 a ser recebido.</span><span class="sxs-lookup"><span data-stu-id="b4599-204">`Http2.MaxFrameSize` indicates the maximum size of the HTTP/2 connection frame payload to receive.</span></span> <span data-ttu-id="b4599-205">O valor é fornecido em octetos e deve estar entre 2^14 (16.384) e 2^24-1 (16.777.215).</span><span class="sxs-lookup"><span data-stu-id="b4599-205">The value is provided in octets and must be between 2^14 (16,384) and 2^24-1 (16,777,215).</span></span>
+<span data-ttu-id="2dc96-208">O `Http2.MaxFrameSize` indica o tamanho máximo do payload do quadro da conexão HTTP/2 a ser recebido.</span><span class="sxs-lookup"><span data-stu-id="2dc96-208">`Http2.MaxFrameSize` indicates the maximum size of the HTTP/2 connection frame payload to receive.</span></span> <span data-ttu-id="2dc96-209">O valor é fornecido em octetos e deve estar entre 2^14 (16.384) e 2^24-1 (16.777.215).</span><span class="sxs-lookup"><span data-stu-id="2dc96-209">The value is provided in octets and must be between 2^14 (16,384) and 2^24-1 (16,777,215).</span></span>
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -407,11 +415,11 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-<span data-ttu-id="b4599-206">O valor padrão é 2^14 (16.384).</span><span class="sxs-lookup"><span data-stu-id="b4599-206">The default value is 2^14 (16,384).</span></span>
+<span data-ttu-id="2dc96-210">O valor padrão é 2^14 (16.384).</span><span class="sxs-lookup"><span data-stu-id="2dc96-210">The default value is 2^14 (16,384).</span></span>
 
-### <a name="maximum-request-header-size"></a><span data-ttu-id="b4599-207">Tamanho máximo do cabeçalho de solicitação</span><span class="sxs-lookup"><span data-stu-id="b4599-207">Maximum request header size</span></span>
+### <a name="maximum-request-header-size"></a><span data-ttu-id="2dc96-211">Tamanho máximo do cabeçalho de solicitação</span><span class="sxs-lookup"><span data-stu-id="2dc96-211">Maximum request header size</span></span>
 
-<span data-ttu-id="b4599-208">`Http2.MaxRequestHeaderFieldSize` indica o tamanho máximo permitido em octetos de valores de cabeçalho de solicitação.</span><span class="sxs-lookup"><span data-stu-id="b4599-208">`Http2.MaxRequestHeaderFieldSize` indicates the maximum allowed size in octets of request header values.</span></span> <span data-ttu-id="b4599-209">Esse limite se aplica ao nome e ao valor em suas representações compactadas e descompactadas.</span><span class="sxs-lookup"><span data-stu-id="b4599-209">This limit applies to both name and value together in their compressed and uncompressed representations.</span></span> <span data-ttu-id="b4599-210">O valor deve ser maior que zero (0).</span><span class="sxs-lookup"><span data-stu-id="b4599-210">The value must be greater than zero (0).</span></span>
+<span data-ttu-id="2dc96-212">`Http2.MaxRequestHeaderFieldSize` indica o tamanho máximo permitido em octetos de valores de cabeçalho de solicitação.</span><span class="sxs-lookup"><span data-stu-id="2dc96-212">`Http2.MaxRequestHeaderFieldSize` indicates the maximum allowed size in octets of request header values.</span></span> <span data-ttu-id="2dc96-213">Esse limite se aplica ao nome e ao valor em suas representações compactadas e descompactadas.</span><span class="sxs-lookup"><span data-stu-id="2dc96-213">This limit applies to both name and value together in their compressed and uncompressed representations.</span></span> <span data-ttu-id="2dc96-214">O valor deve ser maior que zero (0).</span><span class="sxs-lookup"><span data-stu-id="2dc96-214">The value must be greater than zero (0).</span></span>
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -423,11 +431,11 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-<span data-ttu-id="b4599-211">O valor padrão é 8.192.</span><span class="sxs-lookup"><span data-stu-id="b4599-211">The default value is 8,192.</span></span>
+<span data-ttu-id="2dc96-215">O valor padrão é 8.192.</span><span class="sxs-lookup"><span data-stu-id="2dc96-215">The default value is 8,192.</span></span>
 
-### <a name="initial-connection-window-size"></a><span data-ttu-id="b4599-212">Tamanho inicial da janela de conexão</span><span class="sxs-lookup"><span data-stu-id="b4599-212">Initial connection window size</span></span>
+### <a name="initial-connection-window-size"></a><span data-ttu-id="2dc96-216">Tamanho inicial da janela de conexão</span><span class="sxs-lookup"><span data-stu-id="2dc96-216">Initial connection window size</span></span>
 
-<span data-ttu-id="b4599-213">`Http2.InitialConnectionWindowSize` indica os dados máximos do corpo da solicitação em bytes, que o servidor armazena em buffer ao mesmo tempo, agregados em todas as solicitações (fluxos) por conexão.</span><span class="sxs-lookup"><span data-stu-id="b4599-213">`Http2.InitialConnectionWindowSize` indicates the maximum request body data in bytes the server buffers at one time aggregated across all requests (streams) per connection.</span></span> <span data-ttu-id="b4599-214">As solicitações também são limitadas por `Http2.InitialStreamWindowSize`.</span><span class="sxs-lookup"><span data-stu-id="b4599-214">Requests are also limited by `Http2.InitialStreamWindowSize`.</span></span> <span data-ttu-id="b4599-215">O valor deve ser maior ou igual a 65.535 e menor que 2^31 (2.147.483.648).</span><span class="sxs-lookup"><span data-stu-id="b4599-215">The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).</span></span>
+<span data-ttu-id="2dc96-217">`Http2.InitialConnectionWindowSize` indica os dados máximos do corpo da solicitação em bytes, que o servidor armazena em buffer ao mesmo tempo, agregados em todas as solicitações (fluxos) por conexão.</span><span class="sxs-lookup"><span data-stu-id="2dc96-217">`Http2.InitialConnectionWindowSize` indicates the maximum request body data in bytes the server buffers at one time aggregated across all requests (streams) per connection.</span></span> <span data-ttu-id="2dc96-218">As solicitações também são limitadas por `Http2.InitialStreamWindowSize`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-218">Requests are also limited by `Http2.InitialStreamWindowSize`.</span></span> <span data-ttu-id="2dc96-219">O valor deve ser maior ou igual a 65.535 e menor que 2^31 (2.147.483.648).</span><span class="sxs-lookup"><span data-stu-id="2dc96-219">The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).</span></span>
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -439,11 +447,11 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-<span data-ttu-id="b4599-216">O valor padrão é 128 KB (131.072).</span><span class="sxs-lookup"><span data-stu-id="b4599-216">The default value is 128 KB (131,072).</span></span>
+<span data-ttu-id="2dc96-220">O valor padrão é 128 KB (131.072).</span><span class="sxs-lookup"><span data-stu-id="2dc96-220">The default value is 128 KB (131,072).</span></span>
 
-### <a name="initial-stream-window-size"></a><span data-ttu-id="b4599-217">Tamanho inicial da janela de fluxo</span><span class="sxs-lookup"><span data-stu-id="b4599-217">Initial stream window size</span></span>
+### <a name="initial-stream-window-size"></a><span data-ttu-id="2dc96-221">Tamanho inicial da janela de fluxo</span><span class="sxs-lookup"><span data-stu-id="2dc96-221">Initial stream window size</span></span>
 
-<span data-ttu-id="b4599-218">`Http2.InitialStreamWindowSize` indica o máximo de dados do corpo da solicitação, em bytes, que o servidor armazena em buffer ao mesmo tempo, por solicitação (fluxo).</span><span class="sxs-lookup"><span data-stu-id="b4599-218">`Http2.InitialStreamWindowSize` indicates the maximum request body data in bytes the server buffers at one time per request (stream).</span></span> <span data-ttu-id="b4599-219">As solicitações também são limitadas por `Http2.InitialStreamWindowSize`.</span><span class="sxs-lookup"><span data-stu-id="b4599-219">Requests are also limited by `Http2.InitialStreamWindowSize`.</span></span> <span data-ttu-id="b4599-220">O valor deve ser maior ou igual a 65.535 e menor que 2^31 (2.147.483.648).</span><span class="sxs-lookup"><span data-stu-id="b4599-220">The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).</span></span>
+<span data-ttu-id="2dc96-222">`Http2.InitialStreamWindowSize` indica o máximo de dados do corpo da solicitação, em bytes, que o servidor armazena em buffer ao mesmo tempo, por solicitação (fluxo).</span><span class="sxs-lookup"><span data-stu-id="2dc96-222">`Http2.InitialStreamWindowSize` indicates the maximum request body data in bytes the server buffers at one time per request (stream).</span></span> <span data-ttu-id="2dc96-223">As solicitações também são limitadas por `Http2.InitialStreamWindowSize`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-223">Requests are also limited by `Http2.InitialStreamWindowSize`.</span></span> <span data-ttu-id="2dc96-224">O valor deve ser maior ou igual a 65.535 e menor que 2^31 (2.147.483.648).</span><span class="sxs-lookup"><span data-stu-id="2dc96-224">The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).</span></span>
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -455,52 +463,93 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-<span data-ttu-id="b4599-221">O valor padrão é 96 KB (98.304).</span><span class="sxs-lookup"><span data-stu-id="b4599-221">The default value is 96 KB (98,304).</span></span>
+<span data-ttu-id="2dc96-225">O valor padrão é 96 KB (98.304).</span><span class="sxs-lookup"><span data-stu-id="2dc96-225">The default value is 96 KB (98,304).</span></span>
 
 ::: moniker-end
 
-<span data-ttu-id="b4599-222">Para obter informações sobre outras opções e limites do Kestrel, confira:</span><span class="sxs-lookup"><span data-stu-id="b4599-222">For information about other Kestrel options and limits, see:</span></span>
+### <a name="synchronous-io"></a><span data-ttu-id="2dc96-226">E/S síncrona</span><span class="sxs-lookup"><span data-stu-id="2dc96-226">Synchronous IO</span></span>
+
+::: moniker range=">= aspnetcore-3.0"
+
+<span data-ttu-id="2dc96-227"><xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controla se a E/S síncrona é permitida para a solicitação e resposta.</span><span class="sxs-lookup"><span data-stu-id="2dc96-227"><xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous IO is allowed for the request and response.</span></span> <span data-ttu-id="2dc96-228">O valor padrão é `false`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-228">The default value is `false`.</span></span>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+<span data-ttu-id="2dc96-229"><xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controla se a E/S síncrona é permitida para a solicitação e resposta.</span><span class="sxs-lookup"><span data-stu-id="2dc96-229"><xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous IO is allowed for the request and response.</span></span> <span data-ttu-id="2dc96-230">O valor padrão é `true`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-230">The  default value is `true`.</span></span>
+
+::: moniker-end
+
+> [!WARNING]
+> <span data-ttu-id="2dc96-231">Um grande número de operações de E/S síncronas de bloqueio pode levar à privação de pool de thread, o que faz com que o aplicativo não responda.</span><span class="sxs-lookup"><span data-stu-id="2dc96-231">A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive.</span></span> <span data-ttu-id="2dc96-232">Habilite `AllowSynchronousIO` somente ao usar uma biblioteca em que não há suporte para E/S assíncrona.</span><span class="sxs-lookup"><span data-stu-id="2dc96-232">Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous IO.</span></span>
+
+::: moniker range=">= aspnetcore-2.2"
+
+<span data-ttu-id="2dc96-233">O exemplo a seguir ativa a E/S síncrona:</span><span class="sxs-lookup"><span data-stu-id="2dc96-233">The following example enables synchronous IO:</span></span>
+
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_SyncIO&highlight=3)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+<span data-ttu-id="2dc96-234">O exemplo a seguir desativa a E/S síncrona:</span><span class="sxs-lookup"><span data-stu-id="2dc96-234">The following example disables synchronous IO:</span></span>
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .UseKestrel(options =>
+        {
+            options.AllowSynchronousIO = false;
+        });
+```
+
+::: moniker-end
+
+<span data-ttu-id="2dc96-235">Para obter informações sobre outras opções e limites do Kestrel, confira:</span><span class="sxs-lookup"><span data-stu-id="2dc96-235">For information about other Kestrel options and limits, see:</span></span>
 
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>
 
-## <a name="endpoint-configuration"></a><span data-ttu-id="b4599-223">Configuração do ponto de extremidade</span><span class="sxs-lookup"><span data-stu-id="b4599-223">Endpoint configuration</span></span>
+## <a name="endpoint-configuration"></a><span data-ttu-id="2dc96-236">Configuração do ponto de extremidade</span><span class="sxs-lookup"><span data-stu-id="2dc96-236">Endpoint configuration</span></span>
 
-<span data-ttu-id="b4599-224">Por padrão, o ASP.NET Core associa a:</span><span class="sxs-lookup"><span data-stu-id="b4599-224">By default, ASP.NET Core binds to:</span></span>
+<span data-ttu-id="2dc96-237">Por padrão, o ASP.NET Core associa a:</span><span class="sxs-lookup"><span data-stu-id="2dc96-237">By default, ASP.NET Core binds to:</span></span>
 
 * `http://localhost:5000`
-* <span data-ttu-id="b4599-225">`https://localhost:5001` (quando um certificado de desenvolvimento local está presente)</span><span class="sxs-lookup"><span data-stu-id="b4599-225">`https://localhost:5001` (when a local development certificate is present)</span></span>
+* <span data-ttu-id="2dc96-238">`https://localhost:5001` (quando um certificado de desenvolvimento local está presente)</span><span class="sxs-lookup"><span data-stu-id="2dc96-238">`https://localhost:5001` (when a local development certificate is present)</span></span>
 
-<span data-ttu-id="b4599-226">Especificar URLs usando:</span><span class="sxs-lookup"><span data-stu-id="b4599-226">Specify URLs using the:</span></span>
+<span data-ttu-id="2dc96-239">Especificar URLs usando:</span><span class="sxs-lookup"><span data-stu-id="2dc96-239">Specify URLs using the:</span></span>
 
-* <span data-ttu-id="b4599-227">A variável de ambiente `ASPNETCORE_URLS`.</span><span class="sxs-lookup"><span data-stu-id="b4599-227">`ASPNETCORE_URLS` environment variable.</span></span>
-* <span data-ttu-id="b4599-228">O argumento de linha de comando `--urls`.</span><span class="sxs-lookup"><span data-stu-id="b4599-228">`--urls` command-line argument.</span></span>
-* <span data-ttu-id="b4599-229">A chave de configuração do host `urls`.</span><span class="sxs-lookup"><span data-stu-id="b4599-229">`urls` host configuration key.</span></span>
-* <span data-ttu-id="b4599-230">O método de extensão `UseUrls`.</span><span class="sxs-lookup"><span data-stu-id="b4599-230">`UseUrls` extension method.</span></span>
+* <span data-ttu-id="2dc96-240">A variável de ambiente `ASPNETCORE_URLS`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-240">`ASPNETCORE_URLS` environment variable.</span></span>
+* <span data-ttu-id="2dc96-241">O argumento de linha de comando `--urls`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-241">`--urls` command-line argument.</span></span>
+* <span data-ttu-id="2dc96-242">A chave de configuração do host `urls`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-242">`urls` host configuration key.</span></span>
+* <span data-ttu-id="2dc96-243">O método de extensão `UseUrls`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-243">`UseUrls` extension method.</span></span>
 
-<span data-ttu-id="b4599-231">O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão).</span><span class="sxs-lookup"><span data-stu-id="b4599-231">The value provided using these approaches can be one or more HTTP and HTTPS endpoints (HTTPS if a default cert is available).</span></span> <span data-ttu-id="b4599-232">Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000;http://localhost:8001"` ).</span><span class="sxs-lookup"><span data-stu-id="b4599-232">Configure the value as a semicolon-separated list (for example, `"Urls": "http://localhost:8000;http://localhost:8001"`).</span></span>
+<span data-ttu-id="2dc96-244">O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão).</span><span class="sxs-lookup"><span data-stu-id="2dc96-244">The value provided using these approaches can be one or more HTTP and HTTPS endpoints (HTTPS if a default cert is available).</span></span> <span data-ttu-id="2dc96-245">Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000;http://localhost:8001"` ).</span><span class="sxs-lookup"><span data-stu-id="2dc96-245">Configure the value as a semicolon-separated list (for example, `"Urls": "http://localhost:8000;http://localhost:8001"`).</span></span>
 
-<span data-ttu-id="b4599-233">Veja mais informações sobre essas abordagens em [URLs de servidor](xref:fundamentals/host/web-host#server-urls) e [Substituir configuração](xref:fundamentals/host/web-host#override-configuration).</span><span class="sxs-lookup"><span data-stu-id="b4599-233">For more information on these approaches, see [Server URLs](xref:fundamentals/host/web-host#server-urls) and [Override configuration](xref:fundamentals/host/web-host#override-configuration).</span></span>
+<span data-ttu-id="2dc96-246">Veja mais informações sobre essas abordagens em [URLs de servidor](xref:fundamentals/host/web-host#server-urls) e [Substituir configuração](xref:fundamentals/host/web-host#override-configuration).</span><span class="sxs-lookup"><span data-stu-id="2dc96-246">For more information on these approaches, see [Server URLs](xref:fundamentals/host/web-host#server-urls) and [Override configuration](xref:fundamentals/host/web-host#override-configuration).</span></span>
 
-<span data-ttu-id="b4599-234">Um certificado de desenvolvimento é criado:</span><span class="sxs-lookup"><span data-stu-id="b4599-234">A development certificate is created:</span></span>
+<span data-ttu-id="2dc96-247">Um certificado de desenvolvimento é criado:</span><span class="sxs-lookup"><span data-stu-id="2dc96-247">A development certificate is created:</span></span>
 
-* <span data-ttu-id="b4599-235">Quando o [SDK do .NET Core](/dotnet/core/sdk) está instalado.</span><span class="sxs-lookup"><span data-stu-id="b4599-235">When the [.NET Core SDK](/dotnet/core/sdk) is installed.</span></span>
-* <span data-ttu-id="b4599-236">A [ferramenta dev-certs](xref:aspnetcore-2.1#https) é usada para criar um certificado.</span><span class="sxs-lookup"><span data-stu-id="b4599-236">The [dev-certs tool](xref:aspnetcore-2.1#https) is used to create a certificate.</span></span>
+* <span data-ttu-id="2dc96-248">Quando o [SDK do .NET Core](/dotnet/core/sdk) está instalado.</span><span class="sxs-lookup"><span data-stu-id="2dc96-248">When the [.NET Core SDK](/dotnet/core/sdk) is installed.</span></span>
+* <span data-ttu-id="2dc96-249">A [ferramenta dev-certs](xref:aspnetcore-2.1#https) é usada para criar um certificado.</span><span class="sxs-lookup"><span data-stu-id="2dc96-249">The [dev-certs tool](xref:aspnetcore-2.1#https) is used to create a certificate.</span></span>
 
-<span data-ttu-id="b4599-237">Alguns navegadores exigem que você conceda permissão explícita para o navegador para confiar no certificado de desenvolvimento local.</span><span class="sxs-lookup"><span data-stu-id="b4599-237">Some browsers require that you grant explicit permission to the browser to trust the local development certificate.</span></span>
+<span data-ttu-id="2dc96-250">Alguns navegadores exigem que você conceda permissão explícita para o navegador para confiar no certificado de desenvolvimento local.</span><span class="sxs-lookup"><span data-stu-id="2dc96-250">Some browsers require that you grant explicit permission to the browser to trust the local development certificate.</span></span>
 
-<span data-ttu-id="b4599-238">Os modelos de projeto do ASP.NET Core 2.1 e posteriores configuram os aplicativos para serem executados em HTTPS, por padrão, e incluem o [Redirecionamento de HTTPS e o suporte a HSTS](xref:security/enforcing-ssl).</span><span class="sxs-lookup"><span data-stu-id="b4599-238">ASP.NET Core 2.1 and later project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).</span></span>
+<span data-ttu-id="2dc96-251">Os modelos de projeto do ASP.NET Core 2.1 e posteriores configuram os aplicativos para serem executados em HTTPS, por padrão, e incluem o [Redirecionamento de HTTPS e o suporte a HSTS](xref:security/enforcing-ssl).</span><span class="sxs-lookup"><span data-stu-id="2dc96-251">ASP.NET Core 2.1 and later project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).</span></span>
 
-<span data-ttu-id="b4599-239">Chame os métodos <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> ou <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> em <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> para configurar prefixos de URL e portas para o Kestrel.</span><span class="sxs-lookup"><span data-stu-id="b4599-239">Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> or <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> methods on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> to configure URL prefixes and ports for Kestrel.</span></span>
+<span data-ttu-id="2dc96-252">Chame os métodos <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> ou <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> em <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> para configurar prefixos de URL e portas para o Kestrel.</span><span class="sxs-lookup"><span data-stu-id="2dc96-252">Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> or <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> methods on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> to configure URL prefixes and ports for Kestrel.</span></span>
 
-<span data-ttu-id="b4599-240">`UseUrls`, o argumento de linha de comando `--urls`, a chave de configuração de host `urls` e a variável de ambiente `ASPNETCORE_URLS` também funcionam mas têm limitações que serão indicadas mais adiante nesta seção (um certificado padrão precisa estar disponível para a configuração do ponto de extremidade HTTPS).</span><span class="sxs-lookup"><span data-stu-id="b4599-240">`UseUrls`, the `--urls` command-line argument, `urls` host configuration key, and the `ASPNETCORE_URLS` environment variable also work but have the limitations noted later in this section (a default certificate must be available for HTTPS endpoint configuration).</span></span>
+<span data-ttu-id="2dc96-253">`UseUrls`, o argumento de linha de comando `--urls`, a chave de configuração de host `urls` e a variável de ambiente `ASPNETCORE_URLS` também funcionam mas têm limitações que serão indicadas mais adiante nesta seção (um certificado padrão precisa estar disponível para a configuração do ponto de extremidade HTTPS).</span><span class="sxs-lookup"><span data-stu-id="2dc96-253">`UseUrls`, the `--urls` command-line argument, `urls` host configuration key, and the `ASPNETCORE_URLS` environment variable also work but have the limitations noted later in this section (a default certificate must be available for HTTPS endpoint configuration).</span></span>
 
-<span data-ttu-id="b4599-241">Configuração do ASP.NET Core 2.1 ou `KestrelServerOptions` posterior:</span><span class="sxs-lookup"><span data-stu-id="b4599-241">ASP.NET Core 2.1 or later `KestrelServerOptions` configuration:</span></span>
+<span data-ttu-id="2dc96-254">Configuração do ASP.NET Core 2.1 ou `KestrelServerOptions` posterior:</span><span class="sxs-lookup"><span data-stu-id="2dc96-254">ASP.NET Core 2.1 or later `KestrelServerOptions` configuration:</span></span>
 
-### <a name="configureendpointdefaultsactionltlistenoptionsgt"></a><span data-ttu-id="b4599-242">ConfigureEndpointDefaults(Action&lt;ListenOptions&gt;)</span><span class="sxs-lookup"><span data-stu-id="b4599-242">ConfigureEndpointDefaults(Action&lt;ListenOptions&gt;)</span></span>
+### <a name="configureendpointdefaultsactionltlistenoptionsgt"></a><span data-ttu-id="2dc96-255">ConfigureEndpointDefaults(Action&lt;ListenOptions&gt;)</span><span class="sxs-lookup"><span data-stu-id="2dc96-255">ConfigureEndpointDefaults(Action&lt;ListenOptions&gt;)</span></span>
 
-<span data-ttu-id="b4599-243">Especifica uma `Action` de configuração a ser executada para cada ponto de extremidade especificado.</span><span class="sxs-lookup"><span data-stu-id="b4599-243">Specifies a configuration `Action` to run for each specified endpoint.</span></span> <span data-ttu-id="b4599-244">Chamar `ConfigureEndpointDefaults` várias vezes substitui as `Action`s pela última `Action` especificada.</span><span class="sxs-lookup"><span data-stu-id="b4599-244">Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified.</span></span>
+<span data-ttu-id="2dc96-256">Especifica uma `Action` de configuração a ser executada para cada ponto de extremidade especificado.</span><span class="sxs-lookup"><span data-stu-id="2dc96-256">Specifies a configuration `Action` to run for each specified endpoint.</span></span> <span data-ttu-id="2dc96-257">Chamar `ConfigureEndpointDefaults` várias vezes substitui as `Action`s pela última `Action` especificada.</span><span class="sxs-lookup"><span data-stu-id="2dc96-257">Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified.</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -538,9 +587,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-### <a name="configurehttpsdefaultsactionlthttpsconnectionadapteroptionsgt"></a><span data-ttu-id="b4599-245">ConfigureHttpsDefaults(Action&lt;HttpsConnectionAdapterOptions&gt;)</span><span class="sxs-lookup"><span data-stu-id="b4599-245">ConfigureHttpsDefaults(Action&lt;HttpsConnectionAdapterOptions&gt;)</span></span>
+### <a name="configurehttpsdefaultsactionlthttpsconnectionadapteroptionsgt"></a><span data-ttu-id="2dc96-258">ConfigureHttpsDefaults(Action&lt;HttpsConnectionAdapterOptions&gt;)</span><span class="sxs-lookup"><span data-stu-id="2dc96-258">ConfigureHttpsDefaults(Action&lt;HttpsConnectionAdapterOptions&gt;)</span></span>
 
-<span data-ttu-id="b4599-246">Especifica uma `Action` de configuração a ser executada para cada ponto de extremidade HTTPS.</span><span class="sxs-lookup"><span data-stu-id="b4599-246">Specifies a configuration `Action` to run for each HTTPS endpoint.</span></span> <span data-ttu-id="b4599-247">Chamar `ConfigureHttpsDefaults` várias vezes substitui as `Action`s pela última `Action` especificada.</span><span class="sxs-lookup"><span data-stu-id="b4599-247">Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.</span></span>
+<span data-ttu-id="2dc96-259">Especifica uma `Action` de configuração a ser executada para cada ponto de extremidade HTTPS.</span><span class="sxs-lookup"><span data-stu-id="2dc96-259">Specifies a configuration `Action` to run for each HTTPS endpoint.</span></span> <span data-ttu-id="2dc96-260">Chamar `ConfigureHttpsDefaults` várias vezes substitui as `Action`s pela última `Action` especificada.</span><span class="sxs-lookup"><span data-stu-id="2dc96-260">Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -580,17 +629,17 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-### <a name="configureiconfiguration"></a><span data-ttu-id="b4599-248">Configure(IConfiguration)</span><span class="sxs-lookup"><span data-stu-id="b4599-248">Configure(IConfiguration)</span></span>
+### <a name="configureiconfiguration"></a><span data-ttu-id="2dc96-261">Configure(IConfiguration)</span><span class="sxs-lookup"><span data-stu-id="2dc96-261">Configure(IConfiguration)</span></span>
 
-<span data-ttu-id="b4599-249">Cria um carregador de configuração para configurar o Kestrel que usa uma <xref:Microsoft.Extensions.Configuration.IConfiguration> como entrada.</span><span class="sxs-lookup"><span data-stu-id="b4599-249">Creates a configuration loader for setting up Kestrel that takes an <xref:Microsoft.Extensions.Configuration.IConfiguration> as input.</span></span> <span data-ttu-id="b4599-250">A configuração precisa estar no escopo da seção de configuração do Kestrel.</span><span class="sxs-lookup"><span data-stu-id="b4599-250">The configuration must be scoped to the configuration section for Kestrel.</span></span>
+<span data-ttu-id="2dc96-262">Cria um carregador de configuração para configurar o Kestrel que usa uma <xref:Microsoft.Extensions.Configuration.IConfiguration> como entrada.</span><span class="sxs-lookup"><span data-stu-id="2dc96-262">Creates a configuration loader for setting up Kestrel that takes an <xref:Microsoft.Extensions.Configuration.IConfiguration> as input.</span></span> <span data-ttu-id="2dc96-263">A configuração precisa estar no escopo da seção de configuração do Kestrel.</span><span class="sxs-lookup"><span data-stu-id="2dc96-263">The configuration must be scoped to the configuration section for Kestrel.</span></span>
 
-### <a name="listenoptionsusehttps"></a><span data-ttu-id="b4599-251">ListenOptions.UseHttps</span><span class="sxs-lookup"><span data-stu-id="b4599-251">ListenOptions.UseHttps</span></span>
+### <a name="listenoptionsusehttps"></a><span data-ttu-id="2dc96-264">ListenOptions.UseHttps</span><span class="sxs-lookup"><span data-stu-id="2dc96-264">ListenOptions.UseHttps</span></span>
 
-<span data-ttu-id="b4599-252">Configure o Kestrel para usar HTTPS.</span><span class="sxs-lookup"><span data-stu-id="b4599-252">Configure Kestrel to use HTTPS.</span></span>
+<span data-ttu-id="2dc96-265">Configure o Kestrel para usar HTTPS.</span><span class="sxs-lookup"><span data-stu-id="2dc96-265">Configure Kestrel to use HTTPS.</span></span>
 
-<span data-ttu-id="b4599-253">Extensões `ListenOptions.UseHttps`:</span><span class="sxs-lookup"><span data-stu-id="b4599-253">`ListenOptions.UseHttps` extensions:</span></span>
+<span data-ttu-id="2dc96-266">Extensões `ListenOptions.UseHttps`:</span><span class="sxs-lookup"><span data-stu-id="2dc96-266">`ListenOptions.UseHttps` extensions:</span></span>
 
-* <span data-ttu-id="b4599-254">`UseHttps` &ndash; Configure o Kestrel para usar HTTPS com o certificado padrão.</span><span class="sxs-lookup"><span data-stu-id="b4599-254">`UseHttps` &ndash; Configure Kestrel to use HTTPS with the default certificate.</span></span> <span data-ttu-id="b4599-255">Gera uma exceção quando não há nenhum certificado padrão configurado.</span><span class="sxs-lookup"><span data-stu-id="b4599-255">Throws an exception if no default certificate is configured.</span></span>
+* <span data-ttu-id="2dc96-267">`UseHttps` &ndash; Configure o Kestrel para usar HTTPS com o certificado padrão.</span><span class="sxs-lookup"><span data-stu-id="2dc96-267">`UseHttps` &ndash; Configure Kestrel to use HTTPS with the default certificate.</span></span> <span data-ttu-id="2dc96-268">Gera uma exceção quando não há nenhum certificado padrão configurado.</span><span class="sxs-lookup"><span data-stu-id="2dc96-268">Throws an exception if no default certificate is configured.</span></span>
 * `UseHttps(string fileName)`
 * `UseHttps(string fileName, string password)`
 * `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`
@@ -602,39 +651,39 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 * `UseHttps(X509Certificate2 serverCertificate, Action<HttpsConnectionAdapterOptions> configureOptions)`
 * `UseHttps(Action<HttpsConnectionAdapterOptions> configureOptions)`
 
-<span data-ttu-id="b4599-256">Parâmetros de `ListenOptions.UseHttps`:</span><span class="sxs-lookup"><span data-stu-id="b4599-256">`ListenOptions.UseHttps` parameters:</span></span>
+<span data-ttu-id="2dc96-269">Parâmetros de `ListenOptions.UseHttps`:</span><span class="sxs-lookup"><span data-stu-id="2dc96-269">`ListenOptions.UseHttps` parameters:</span></span>
 
-* <span data-ttu-id="b4599-257">`filename` é o caminho e o nome do arquivo de um arquivo de certificado, relativo ao diretório que contém os arquivos de conteúdo do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="b4599-257">`filename` is the path and file name of a certificate file, relative to the directory that contains the app's content files.</span></span>
-* <span data-ttu-id="b4599-258">`password` é a senha necessária para acessar os dados do certificado X.509 .</span><span class="sxs-lookup"><span data-stu-id="b4599-258">`password` is the password required to access the X.509 certificate data.</span></span>
-* <span data-ttu-id="b4599-259">`configureOptions` é uma `Action` para configurar as `HttpsConnectionAdapterOptions`.</span><span class="sxs-lookup"><span data-stu-id="b4599-259">`configureOptions` is an `Action` to configure the `HttpsConnectionAdapterOptions`.</span></span> <span data-ttu-id="b4599-260">Retorna o `ListenOptions`.</span><span class="sxs-lookup"><span data-stu-id="b4599-260">Returns the `ListenOptions`.</span></span>
-* <span data-ttu-id="b4599-261">`storeName` é o repositório de certificados do qual o certificado deve ser carregado.</span><span class="sxs-lookup"><span data-stu-id="b4599-261">`storeName` is the certificate store from which to load the certificate.</span></span>
-* <span data-ttu-id="b4599-262">`subject` é o nome da entidade do certificado.</span><span class="sxs-lookup"><span data-stu-id="b4599-262">`subject` is the subject name for the certificate.</span></span>
-* <span data-ttu-id="b4599-263">`allowInvalid` indica se certificados inválidos devem ser considerados, como os certificados autoassinados.</span><span class="sxs-lookup"><span data-stu-id="b4599-263">`allowInvalid` indicates if invalid certificates should be considered, such as self-signed certificates.</span></span>
-* <span data-ttu-id="b4599-264">`location` é o local do repositório do qual o certificado deve ser carregado.</span><span class="sxs-lookup"><span data-stu-id="b4599-264">`location` is the store location to load the certificate from.</span></span>
-* <span data-ttu-id="b4599-265">`serverCertificate` é o certificado X.509.</span><span class="sxs-lookup"><span data-stu-id="b4599-265">`serverCertificate` is the X.509 certificate.</span></span>
+* <span data-ttu-id="2dc96-270">`filename` é o caminho e o nome do arquivo de um arquivo de certificado, relativo ao diretório que contém os arquivos de conteúdo do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="2dc96-270">`filename` is the path and file name of a certificate file, relative to the directory that contains the app's content files.</span></span>
+* <span data-ttu-id="2dc96-271">`password` é a senha necessária para acessar os dados do certificado X.509 .</span><span class="sxs-lookup"><span data-stu-id="2dc96-271">`password` is the password required to access the X.509 certificate data.</span></span>
+* <span data-ttu-id="2dc96-272">`configureOptions` é uma `Action` para configurar as `HttpsConnectionAdapterOptions`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-272">`configureOptions` is an `Action` to configure the `HttpsConnectionAdapterOptions`.</span></span> <span data-ttu-id="2dc96-273">Retorna o `ListenOptions`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-273">Returns the `ListenOptions`.</span></span>
+* <span data-ttu-id="2dc96-274">`storeName` é o repositório de certificados do qual o certificado deve ser carregado.</span><span class="sxs-lookup"><span data-stu-id="2dc96-274">`storeName` is the certificate store from which to load the certificate.</span></span>
+* <span data-ttu-id="2dc96-275">`subject` é o nome da entidade do certificado.</span><span class="sxs-lookup"><span data-stu-id="2dc96-275">`subject` is the subject name for the certificate.</span></span>
+* <span data-ttu-id="2dc96-276">`allowInvalid` indica se certificados inválidos devem ser considerados, como os certificados autoassinados.</span><span class="sxs-lookup"><span data-stu-id="2dc96-276">`allowInvalid` indicates if invalid certificates should be considered, such as self-signed certificates.</span></span>
+* <span data-ttu-id="2dc96-277">`location` é o local do repositório do qual o certificado deve ser carregado.</span><span class="sxs-lookup"><span data-stu-id="2dc96-277">`location` is the store location to load the certificate from.</span></span>
+* <span data-ttu-id="2dc96-278">`serverCertificate` é o certificado X.509.</span><span class="sxs-lookup"><span data-stu-id="2dc96-278">`serverCertificate` is the X.509 certificate.</span></span>
 
-<span data-ttu-id="b4599-266">Em produção, HTTPS precisa ser configurado explicitamente.</span><span class="sxs-lookup"><span data-stu-id="b4599-266">In production, HTTPS must be explicitly configured.</span></span> <span data-ttu-id="b4599-267">No mínimo, um certificado padrão precisa ser fornecido.</span><span class="sxs-lookup"><span data-stu-id="b4599-267">At a minimum, a default certificate must be provided.</span></span>
+<span data-ttu-id="2dc96-279">Em produção, HTTPS precisa ser configurado explicitamente.</span><span class="sxs-lookup"><span data-stu-id="2dc96-279">In production, HTTPS must be explicitly configured.</span></span> <span data-ttu-id="2dc96-280">No mínimo, um certificado padrão precisa ser fornecido.</span><span class="sxs-lookup"><span data-stu-id="2dc96-280">At a minimum, a default certificate must be provided.</span></span>
 
-<span data-ttu-id="b4599-268">Configurações com suporte descritas a seguir:</span><span class="sxs-lookup"><span data-stu-id="b4599-268">Supported configurations described next:</span></span>
+<span data-ttu-id="2dc96-281">Configurações com suporte descritas a seguir:</span><span class="sxs-lookup"><span data-stu-id="2dc96-281">Supported configurations described next:</span></span>
 
-* <span data-ttu-id="b4599-269">Nenhuma configuração</span><span class="sxs-lookup"><span data-stu-id="b4599-269">No configuration</span></span>
-* <span data-ttu-id="b4599-270">Substituir o certificado padrão da configuração</span><span class="sxs-lookup"><span data-stu-id="b4599-270">Replace the default certificate from configuration</span></span>
-* <span data-ttu-id="b4599-271">Alterar os padrões no código</span><span class="sxs-lookup"><span data-stu-id="b4599-271">Change the defaults in code</span></span>
+* <span data-ttu-id="2dc96-282">Nenhuma configuração</span><span class="sxs-lookup"><span data-stu-id="2dc96-282">No configuration</span></span>
+* <span data-ttu-id="2dc96-283">Substituir o certificado padrão da configuração</span><span class="sxs-lookup"><span data-stu-id="2dc96-283">Replace the default certificate from configuration</span></span>
+* <span data-ttu-id="2dc96-284">Alterar os padrões no código</span><span class="sxs-lookup"><span data-stu-id="2dc96-284">Change the defaults in code</span></span>
 
-<span data-ttu-id="b4599-272">*Nenhuma configuração*</span><span class="sxs-lookup"><span data-stu-id="b4599-272">*No configuration*</span></span>
+<span data-ttu-id="2dc96-285">*Nenhuma configuração*</span><span class="sxs-lookup"><span data-stu-id="2dc96-285">*No configuration*</span></span>
 
-<span data-ttu-id="b4599-273">O Kestrel escuta em `http://localhost:5000` e em `https://localhost:5001` (se houver um certificado padrão disponível).</span><span class="sxs-lookup"><span data-stu-id="b4599-273">Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a default cert is available).</span></span>
+<span data-ttu-id="2dc96-286">O Kestrel escuta em `http://localhost:5000` e em `https://localhost:5001` (se houver um certificado padrão disponível).</span><span class="sxs-lookup"><span data-stu-id="2dc96-286">Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a default cert is available).</span></span>
 
 <a name="configuration"></a>
 
-<span data-ttu-id="b4599-274">*Substituir o certificado padrão da configuração*</span><span class="sxs-lookup"><span data-stu-id="b4599-274">*Replace the default certificate from configuration*</span></span>
+<span data-ttu-id="2dc96-287">*Substituir o certificado padrão da configuração*</span><span class="sxs-lookup"><span data-stu-id="2dc96-287">*Replace the default certificate from configuration*</span></span>
 
-<span data-ttu-id="b4599-275"><xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> chama `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` por padrão ao carregar a configuração do Kestrel.</span><span class="sxs-lookup"><span data-stu-id="b4599-275"><xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.</span></span> <span data-ttu-id="b4599-276">Há um esquema de definições de configurações de aplicativo HTTPS padrão disponível para o Kestrel.</span><span class="sxs-lookup"><span data-stu-id="b4599-276">A default HTTPS app settings configuration schema is available for Kestrel.</span></span> <span data-ttu-id="b4599-277">Configure vários pontos de extremidade, incluindo URLs e os certificados a serem usados, por meio de um arquivo no disco ou de um repositório de certificados.</span><span class="sxs-lookup"><span data-stu-id="b4599-277">Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.</span></span>
+<span data-ttu-id="2dc96-288"><xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> chama `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` por padrão ao carregar a configuração do Kestrel.</span><span class="sxs-lookup"><span data-stu-id="2dc96-288"><xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.</span></span> <span data-ttu-id="2dc96-289">Há um esquema de definições de configurações de aplicativo HTTPS padrão disponível para o Kestrel.</span><span class="sxs-lookup"><span data-stu-id="2dc96-289">A default HTTPS app settings configuration schema is available for Kestrel.</span></span> <span data-ttu-id="2dc96-290">Configure vários pontos de extremidade, incluindo URLs e os certificados a serem usados, por meio de um arquivo no disco ou de um repositório de certificados.</span><span class="sxs-lookup"><span data-stu-id="2dc96-290">Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.</span></span>
 
-<span data-ttu-id="b4599-278">No exemplo de *appsettings.json* a seguir:</span><span class="sxs-lookup"><span data-stu-id="b4599-278">In the following *appsettings.json* example:</span></span>
+<span data-ttu-id="2dc96-291">No exemplo de *appsettings.json* a seguir:</span><span class="sxs-lookup"><span data-stu-id="2dc96-291">In the following *appsettings.json* example:</span></span>
 
-* <span data-ttu-id="b4599-279">Defina **AllowInvalid** como `true` para permitir o uso de certificados inválidos (por exemplo, os certificados autoassinados).</span><span class="sxs-lookup"><span data-stu-id="b4599-279">Set **AllowInvalid** to `true` to permit the use of invalid certificates (for example, self-signed certificates).</span></span>
-* <span data-ttu-id="b4599-280">Todo ponto de extremidade HTTPS que não especificar um certificado (**HttpsDefaultCert** no exemplo a seguir) será revertido para o certificado definido em **Certificados** > **Padrão** ou para o certificado de desenvolvimento.</span><span class="sxs-lookup"><span data-stu-id="b4599-280">Any HTTPS endpoint that doesn't specify a certificate (**HttpsDefaultCert** in the example that follows) falls back to the cert defined under **Certificates** > **Default** or the development certificate.</span></span>
+* <span data-ttu-id="2dc96-292">Defina **AllowInvalid** como `true` para permitir o uso de certificados inválidos (por exemplo, os certificados autoassinados).</span><span class="sxs-lookup"><span data-stu-id="2dc96-292">Set **AllowInvalid** to `true` to permit the use of invalid certificates (for example, self-signed certificates).</span></span>
+* <span data-ttu-id="2dc96-293">Todo ponto de extremidade HTTPS que não especificar um certificado (**HttpsDefaultCert** no exemplo a seguir) será revertido para o certificado definido em **Certificados** > **Padrão** ou para o certificado de desenvolvimento.</span><span class="sxs-lookup"><span data-stu-id="2dc96-293">Any HTTPS endpoint that doesn't specify a certificate (**HttpsDefaultCert** in the example that follows) falls back to the cert defined under **Certificates** > **Default** or the development certificate.</span></span>
 
 ```json
 {
@@ -684,7 +733,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 }
 ```
 
-<span data-ttu-id="b4599-281">Uma alternativa ao uso de **Caminho** e **Senha** para qualquer nó de certificado é especificar o certificado usando campos de repositório de certificados.</span><span class="sxs-lookup"><span data-stu-id="b4599-281">An alternative to using **Path** and **Password** for any certificate node is to specify the certificate using certificate store fields.</span></span> <span data-ttu-id="b4599-282">Por exemplo, o certificado **Certificados** > **Padrão** pode ser especificado como:</span><span class="sxs-lookup"><span data-stu-id="b4599-282">For example, the **Certificates** > **Default** certificate can be specified as:</span></span>
+<span data-ttu-id="2dc96-294">Uma alternativa ao uso de **Caminho** e **Senha** para qualquer nó de certificado é especificar o certificado usando campos de repositório de certificados.</span><span class="sxs-lookup"><span data-stu-id="2dc96-294">An alternative to using **Path** and **Password** for any certificate node is to specify the certificate using certificate store fields.</span></span> <span data-ttu-id="2dc96-295">Por exemplo, o certificado **Certificados** > **Padrão** pode ser especificado como:</span><span class="sxs-lookup"><span data-stu-id="2dc96-295">For example, the **Certificates** > **Default** certificate can be specified as:</span></span>
 
 ```json
 "Default": {
@@ -695,15 +744,15 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 }
 ```
 
-<span data-ttu-id="b4599-283">Observações do esquema:</span><span class="sxs-lookup"><span data-stu-id="b4599-283">Schema notes:</span></span>
+<span data-ttu-id="2dc96-296">Observações do esquema:</span><span class="sxs-lookup"><span data-stu-id="2dc96-296">Schema notes:</span></span>
 
-* <span data-ttu-id="b4599-284">Os nomes de pontos de extremidade diferenciam maiúsculas de minúsculas.</span><span class="sxs-lookup"><span data-stu-id="b4599-284">Endpoints names are case-insensitive.</span></span> <span data-ttu-id="b4599-285">Por exemplo, `HTTPS` e `Https` são válidos.</span><span class="sxs-lookup"><span data-stu-id="b4599-285">For example, `HTTPS` and `Https` are valid.</span></span>
-* <span data-ttu-id="b4599-286">O parâmetro `Url` é necessário para cada ponto de extremidade.</span><span class="sxs-lookup"><span data-stu-id="b4599-286">The `Url` parameter is required for each endpoint.</span></span> <span data-ttu-id="b4599-287">O formato desse parâmetro é o mesmo que o do parâmetro de configuração de `Urls` de nível superior, exceto que ele é limitado a um único valor.</span><span class="sxs-lookup"><span data-stu-id="b4599-287">The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.</span></span>
-* <span data-ttu-id="b4599-288">Esses pontos de extremidade substituem aqueles definidos na configuração de `Urls` de nível superior em vez de serem adicionados a eles.</span><span class="sxs-lookup"><span data-stu-id="b4599-288">These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them.</span></span> <span data-ttu-id="b4599-289">Os pontos de extremidade definidos no código por meio de `Listen` são acumulados com os pontos de extremidade definidos na seção de configuração.</span><span class="sxs-lookup"><span data-stu-id="b4599-289">Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.</span></span>
-* <span data-ttu-id="b4599-290">A seção `Certificate` é opcional.</span><span class="sxs-lookup"><span data-stu-id="b4599-290">The `Certificate` section is optional.</span></span> <span data-ttu-id="b4599-291">Se a seção `Certificate` não for especificada, os padrões definidos nos cenários anteriores serão usados.</span><span class="sxs-lookup"><span data-stu-id="b4599-291">If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used.</span></span> <span data-ttu-id="b4599-292">Se não houver nenhum padrão disponível, o servidor gerará uma exceção e não poderá ser iniciado.</span><span class="sxs-lookup"><span data-stu-id="b4599-292">If no defaults are available, the server throws an exception and fails to start.</span></span>
-* <span data-ttu-id="b4599-293">A seção `Certificate` é compatível com os certificados de **Caminho**&ndash;**Senha** e **Entidade**&ndash;**Repositório**.</span><span class="sxs-lookup"><span data-stu-id="b4599-293">The `Certificate` section supports both **Path**&ndash;**Password** and **Subject**&ndash;**Store** certificates.</span></span>
-* <span data-ttu-id="b4599-294">Qualquer número de pontos de extremidade pode ser definido dessa forma, contanto que eles não causem conflitos de porta.</span><span class="sxs-lookup"><span data-stu-id="b4599-294">Any number of endpoints may be defined in this way so long as they don't cause port conflicts.</span></span>
-* <span data-ttu-id="b4599-295">`options.Configure(context.Configuration.GetSection("Kestrel"))` retorna um `KestrelConfigurationLoader` com um método `.Endpoint(string name, options => { })` que pode ser usado para complementar as definições de um ponto de extremidade configurado:</span><span class="sxs-lookup"><span data-stu-id="b4599-295">`options.Configure(context.Configuration.GetSection("Kestrel"))` returns a `KestrelConfigurationLoader` with an `.Endpoint(string name, options => { })` method that can be used to supplement a configured endpoint's settings:</span></span>
+* <span data-ttu-id="2dc96-297">Os nomes de pontos de extremidade diferenciam maiúsculas de minúsculas.</span><span class="sxs-lookup"><span data-stu-id="2dc96-297">Endpoints names are case-insensitive.</span></span> <span data-ttu-id="2dc96-298">Por exemplo, `HTTPS` e `Https` são válidos.</span><span class="sxs-lookup"><span data-stu-id="2dc96-298">For example, `HTTPS` and `Https` are valid.</span></span>
+* <span data-ttu-id="2dc96-299">O parâmetro `Url` é necessário para cada ponto de extremidade.</span><span class="sxs-lookup"><span data-stu-id="2dc96-299">The `Url` parameter is required for each endpoint.</span></span> <span data-ttu-id="2dc96-300">O formato desse parâmetro é o mesmo que o do parâmetro de configuração de `Urls` de nível superior, exceto que ele é limitado a um único valor.</span><span class="sxs-lookup"><span data-stu-id="2dc96-300">The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.</span></span>
+* <span data-ttu-id="2dc96-301">Esses pontos de extremidade substituem aqueles definidos na configuração de `Urls` de nível superior em vez de serem adicionados a eles.</span><span class="sxs-lookup"><span data-stu-id="2dc96-301">These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them.</span></span> <span data-ttu-id="2dc96-302">Os pontos de extremidade definidos no código por meio de `Listen` são acumulados com os pontos de extremidade definidos na seção de configuração.</span><span class="sxs-lookup"><span data-stu-id="2dc96-302">Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.</span></span>
+* <span data-ttu-id="2dc96-303">A seção `Certificate` é opcional.</span><span class="sxs-lookup"><span data-stu-id="2dc96-303">The `Certificate` section is optional.</span></span> <span data-ttu-id="2dc96-304">Se a seção `Certificate` não for especificada, os padrões definidos nos cenários anteriores serão usados.</span><span class="sxs-lookup"><span data-stu-id="2dc96-304">If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used.</span></span> <span data-ttu-id="2dc96-305">Se não houver nenhum padrão disponível, o servidor gerará uma exceção e não poderá ser iniciado.</span><span class="sxs-lookup"><span data-stu-id="2dc96-305">If no defaults are available, the server throws an exception and fails to start.</span></span>
+* <span data-ttu-id="2dc96-306">A seção `Certificate` é compatível com os certificados de **Caminho**&ndash;**Senha** e **Entidade**&ndash;**Repositório**.</span><span class="sxs-lookup"><span data-stu-id="2dc96-306">The `Certificate` section supports both **Path**&ndash;**Password** and **Subject**&ndash;**Store** certificates.</span></span>
+* <span data-ttu-id="2dc96-307">Qualquer número de pontos de extremidade pode ser definido dessa forma, contanto que eles não causem conflitos de porta.</span><span class="sxs-lookup"><span data-stu-id="2dc96-307">Any number of endpoints may be defined in this way so long as they don't cause port conflicts.</span></span>
+* <span data-ttu-id="2dc96-308">`options.Configure(context.Configuration.GetSection("Kestrel"))` retorna um `KestrelConfigurationLoader` com um método `.Endpoint(string name, options => { })` que pode ser usado para complementar as definições de um ponto de extremidade configurado:</span><span class="sxs-lookup"><span data-stu-id="2dc96-308">`options.Configure(context.Configuration.GetSection("Kestrel"))` returns a `KestrelConfigurationLoader` with an `.Endpoint(string name, options => { })` method that can be used to supplement a configured endpoint's settings:</span></span>
 
   ```csharp
   options.Configure(context.Configuration.GetSection("Kestrel"))
@@ -713,15 +762,15 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
       });
   ```
 
-  <span data-ttu-id="b4599-296">Você também pode acessar o `KestrelServerOptions.ConfigurationLoader` diretamente para continuar a iteração no carregador existente, como aquela fornecida pelo <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.</span><span class="sxs-lookup"><span data-stu-id="b4599-296">You can also directly access `KestrelServerOptions.ConfigurationLoader` to keep iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.</span></span>
+  <span data-ttu-id="2dc96-309">Você também pode acessar o `KestrelServerOptions.ConfigurationLoader` diretamente para continuar a iteração no carregador existente, como aquela fornecida pelo <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.</span><span class="sxs-lookup"><span data-stu-id="2dc96-309">You can also directly access `KestrelServerOptions.ConfigurationLoader` to keep iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.</span></span>
 
-* <span data-ttu-id="b4599-297">A seção de configuração de cada ponto de extremidade está disponível nas opções no método `Endpoint` para que as configurações personalizadas possam ser lidas.</span><span class="sxs-lookup"><span data-stu-id="b4599-297">The configuration section for each endpoint is a available on the options in the `Endpoint` method so that custom settings may be read.</span></span>
-* <span data-ttu-id="b4599-298">Várias configurações podem ser carregadas chamando `options.Configure(context.Configuration.GetSection("Kestrel"))` novamente com outra seção.</span><span class="sxs-lookup"><span data-stu-id="b4599-298">Multiple configurations may be loaded by calling `options.Configure(context.Configuration.GetSection("Kestrel"))` again with another section.</span></span> <span data-ttu-id="b4599-299">Somente a última configuração será usada, a menos que `Load` seja chamado explicitamente nas instâncias anteriores.</span><span class="sxs-lookup"><span data-stu-id="b4599-299">Only the last configuration is used, unless `Load` is explicitly called on prior instances.</span></span> <span data-ttu-id="b4599-300">O metapacote não chama `Load`, portanto, sua seção de configuração padrão pode ser substituída.</span><span class="sxs-lookup"><span data-stu-id="b4599-300">The metapackage doesn't call `Load` so that its default configuration section may be replaced.</span></span>
-* <span data-ttu-id="b4599-301">O `KestrelConfigurationLoader` espelha a família de APIs `Listen` de `KestrelServerOptions` como sobrecargas de `Endpoint`, portanto, os pontos de extremidade de código e de configuração podem ser configurados no mesmo local.</span><span class="sxs-lookup"><span data-stu-id="b4599-301">`KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place.</span></span> <span data-ttu-id="b4599-302">Essas sobrecargas não usam nomes e consomem somente as definições padrão da configuração.</span><span class="sxs-lookup"><span data-stu-id="b4599-302">These overloads don't use names and only consume default settings from configuration.</span></span>
+* <span data-ttu-id="2dc96-310">A seção de configuração de cada ponto de extremidade está disponível nas opções no método `Endpoint` para que as configurações personalizadas possam ser lidas.</span><span class="sxs-lookup"><span data-stu-id="2dc96-310">The configuration section for each endpoint is a available on the options in the `Endpoint` method so that custom settings may be read.</span></span>
+* <span data-ttu-id="2dc96-311">Várias configurações podem ser carregadas chamando `options.Configure(context.Configuration.GetSection("Kestrel"))` novamente com outra seção.</span><span class="sxs-lookup"><span data-stu-id="2dc96-311">Multiple configurations may be loaded by calling `options.Configure(context.Configuration.GetSection("Kestrel"))` again with another section.</span></span> <span data-ttu-id="2dc96-312">Somente a última configuração será usada, a menos que `Load` seja chamado explicitamente nas instâncias anteriores.</span><span class="sxs-lookup"><span data-stu-id="2dc96-312">Only the last configuration is used, unless `Load` is explicitly called on prior instances.</span></span> <span data-ttu-id="2dc96-313">O metapacote não chama `Load`, portanto, sua seção de configuração padrão pode ser substituída.</span><span class="sxs-lookup"><span data-stu-id="2dc96-313">The metapackage doesn't call `Load` so that its default configuration section may be replaced.</span></span>
+* <span data-ttu-id="2dc96-314">O `KestrelConfigurationLoader` espelha a família de APIs `Listen` de `KestrelServerOptions` como sobrecargas de `Endpoint`, portanto, os pontos de extremidade de código e de configuração podem ser configurados no mesmo local.</span><span class="sxs-lookup"><span data-stu-id="2dc96-314">`KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place.</span></span> <span data-ttu-id="2dc96-315">Essas sobrecargas não usam nomes e consomem somente as definições padrão da configuração.</span><span class="sxs-lookup"><span data-stu-id="2dc96-315">These overloads don't use names and only consume default settings from configuration.</span></span>
 
-<span data-ttu-id="b4599-303">*Alterar os padrões no código*</span><span class="sxs-lookup"><span data-stu-id="b4599-303">*Change the defaults in code*</span></span>
+<span data-ttu-id="2dc96-316">*Alterar os padrões no código*</span><span class="sxs-lookup"><span data-stu-id="2dc96-316">*Change the defaults in code*</span></span>
 
-<span data-ttu-id="b4599-304">`ConfigureEndpointDefaults` e `ConfigureHttpsDefaults` podem ser usados para alterar as configurações padrão de `ListenOptions` e `HttpsConnectionAdapterOptions`, incluindo a substituição do certificado padrão especificado no cenário anterior.</span><span class="sxs-lookup"><span data-stu-id="b4599-304">`ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` can be used to change default settings for `ListenOptions` and `HttpsConnectionAdapterOptions`, including overriding the default certificate specified in the prior scenario.</span></span> <span data-ttu-id="b4599-305">`ConfigureEndpointDefaults` e `ConfigureHttpsDefaults` devem ser chamados antes que qualquer ponto de extremidade seja configurado.</span><span class="sxs-lookup"><span data-stu-id="b4599-305">`ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` should be called before any endpoints are configured.</span></span>
+<span data-ttu-id="2dc96-317">`ConfigureEndpointDefaults` e `ConfigureHttpsDefaults` podem ser usados para alterar as configurações padrão de `ListenOptions` e `HttpsConnectionAdapterOptions`, incluindo a substituição do certificado padrão especificado no cenário anterior.</span><span class="sxs-lookup"><span data-stu-id="2dc96-317">`ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` can be used to change default settings for `ListenOptions` and `HttpsConnectionAdapterOptions`, including overriding the default certificate specified in the prior scenario.</span></span> <span data-ttu-id="2dc96-318">`ConfigureEndpointDefaults` e `ConfigureHttpsDefaults` devem ser chamados antes que qualquer ponto de extremidade seja configurado.</span><span class="sxs-lookup"><span data-stu-id="2dc96-318">`ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` should be called before any endpoints are configured.</span></span>
 
 ```csharp
 options.ConfigureEndpointDefaults(opt =>
@@ -735,16 +784,16 @@ options.ConfigureHttpsDefaults(httpsOptions =>
 });
 ```
 
-<span data-ttu-id="b4599-306">*Suporte do Kestrel para SNI*</span><span class="sxs-lookup"><span data-stu-id="b4599-306">*Kestrel support for SNI*</span></span>
+<span data-ttu-id="2dc96-319">*Suporte do Kestrel para SNI*</span><span class="sxs-lookup"><span data-stu-id="2dc96-319">*Kestrel support for SNI*</span></span>
 
-<span data-ttu-id="b4599-307">A [SNI (Indicação de Nome de Servidor)](https://tools.ietf.org/html/rfc6066#section-3) pode ser usada para hospedar vários domínios no mesmo endereço IP e na mesma porta.</span><span class="sxs-lookup"><span data-stu-id="b4599-307">[Server Name Indication (SNI)](https://tools.ietf.org/html/rfc6066#section-3) can be used to host multiple domains on the same IP address and port.</span></span> <span data-ttu-id="b4599-308">Para que a SNI funcione, o cliente envia o nome do host da sessão segura para o servidor durante o handshake TLS para que o servidor possa fornecer o certificado correto.</span><span class="sxs-lookup"><span data-stu-id="b4599-308">For SNI to function, the client sends the host name for the secure session to the server during the TLS handshake so that the server can provide the correct certificate.</span></span> <span data-ttu-id="b4599-309">O cliente usa o certificado fornecido para a comunicação criptografada com o servidor durante a sessão segura que segue o handshake TLS.</span><span class="sxs-lookup"><span data-stu-id="b4599-309">The client uses the furnished certificate for encrypted communication with the server during the secure session that follows the TLS handshake.</span></span>
+<span data-ttu-id="2dc96-320">A [SNI (Indicação de Nome de Servidor)](https://tools.ietf.org/html/rfc6066#section-3) pode ser usada para hospedar vários domínios no mesmo endereço IP e na mesma porta.</span><span class="sxs-lookup"><span data-stu-id="2dc96-320">[Server Name Indication (SNI)](https://tools.ietf.org/html/rfc6066#section-3) can be used to host multiple domains on the same IP address and port.</span></span> <span data-ttu-id="2dc96-321">Para que a SNI funcione, o cliente envia o nome do host da sessão segura para o servidor durante o handshake TLS para que o servidor possa fornecer o certificado correto.</span><span class="sxs-lookup"><span data-stu-id="2dc96-321">For SNI to function, the client sends the host name for the secure session to the server during the TLS handshake so that the server can provide the correct certificate.</span></span> <span data-ttu-id="2dc96-322">O cliente usa o certificado fornecido para a comunicação criptografada com o servidor durante a sessão segura que segue o handshake TLS.</span><span class="sxs-lookup"><span data-stu-id="2dc96-322">The client uses the furnished certificate for encrypted communication with the server during the secure session that follows the TLS handshake.</span></span>
 
-<span data-ttu-id="b4599-310">O Kestrel permite a SNI por meio do retorno de chamada do `ServerCertificateSelector`.</span><span class="sxs-lookup"><span data-stu-id="b4599-310">Kestrel supports SNI via the `ServerCertificateSelector` callback.</span></span> <span data-ttu-id="b4599-311">O retorno de chamada é invocado uma vez por conexão para permitir que o aplicativo inspecione o nome do host e selecione o certificado apropriado.</span><span class="sxs-lookup"><span data-stu-id="b4599-311">The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate.</span></span>
+<span data-ttu-id="2dc96-323">O Kestrel permite a SNI por meio do retorno de chamada do `ServerCertificateSelector`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-323">Kestrel supports SNI via the `ServerCertificateSelector` callback.</span></span> <span data-ttu-id="2dc96-324">O retorno de chamada é invocado uma vez por conexão para permitir que o aplicativo inspecione o nome do host e selecione o certificado apropriado.</span><span class="sxs-lookup"><span data-stu-id="2dc96-324">The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate.</span></span>
 
-<span data-ttu-id="b4599-312">O suporte para SNI requer:</span><span class="sxs-lookup"><span data-stu-id="b4599-312">SNI support requires:</span></span>
+<span data-ttu-id="2dc96-325">O suporte para SNI requer:</span><span class="sxs-lookup"><span data-stu-id="2dc96-325">SNI support requires:</span></span>
 
-* <span data-ttu-id="b4599-313">Execução na estrutura de destino `netcoreapp2.1`.</span><span class="sxs-lookup"><span data-stu-id="b4599-313">Running on target framework `netcoreapp2.1`.</span></span> <span data-ttu-id="b4599-314">No `netcoreapp2.0` e no `net461`, o retorno de chamada é invocado, mas o `name` é sempre `null`.</span><span class="sxs-lookup"><span data-stu-id="b4599-314">On `netcoreapp2.0` and `net461`, the callback is invoked but the `name` is always `null`.</span></span> <span data-ttu-id="b4599-315">O `name` também será `null` se o cliente não fornecer o parâmetro de nome do host no handshake TLS.</span><span class="sxs-lookup"><span data-stu-id="b4599-315">The `name` is also `null` if the client doesn't provide the host name parameter in the TLS handshake.</span></span>
-* <span data-ttu-id="b4599-316">Todos os sites executados na mesma instância do Kestrel.</span><span class="sxs-lookup"><span data-stu-id="b4599-316">All websites run on the same Kestrel instance.</span></span> <span data-ttu-id="b4599-317">Kestrel não é compatível com o compartilhamento de endereço IP e porta entre várias instâncias sem um proxy reverso.</span><span class="sxs-lookup"><span data-stu-id="b4599-317">Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.</span></span>
+* <span data-ttu-id="2dc96-326">Execução na estrutura de destino `netcoreapp2.1`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-326">Running on target framework `netcoreapp2.1`.</span></span> <span data-ttu-id="2dc96-327">No `netcoreapp2.0` e no `net461`, o retorno de chamada é invocado, mas o `name` é sempre `null`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-327">On `netcoreapp2.0` and `net461`, the callback is invoked but the `name` is always `null`.</span></span> <span data-ttu-id="2dc96-328">O `name` também será `null` se o cliente não fornecer o parâmetro de nome do host no handshake TLS.</span><span class="sxs-lookup"><span data-stu-id="2dc96-328">The `name` is also `null` if the client doesn't provide the host name parameter in the TLS handshake.</span></span>
+* <span data-ttu-id="2dc96-329">Todos os sites executados na mesma instância do Kestrel.</span><span class="sxs-lookup"><span data-stu-id="2dc96-329">All websites run on the same Kestrel instance.</span></span> <span data-ttu-id="2dc96-330">Kestrel não é compatível com o compartilhamento de endereço IP e porta entre várias instâncias sem um proxy reverso.</span><span class="sxs-lookup"><span data-stu-id="2dc96-330">Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -759,13 +808,13 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 listenOptions.UseHttps(httpsOptions =>
                 {
                     var localhostCert = CertificateLoader.LoadFromStoreCert(
-                        "localhost", "My", StoreLocation.CurrentUser, 
+                        "localhost", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var exampleCert = CertificateLoader.LoadFromStoreCert(
-                        "example.com", "My", StoreLocation.CurrentUser, 
+                        "example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var subExampleCert = CertificateLoader.LoadFromStoreCert(
-                        "sub.example.com", "My", StoreLocation.CurrentUser, 
+                        "sub.example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var certs = new Dictionary<string, X509Certificate2>(
                         StringComparer.OrdinalIgnoreCase);
@@ -802,13 +851,13 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 listenOptions.UseHttps(httpsOptions =>
                 {
                     var localhostCert = CertificateLoader.LoadFromStoreCert(
-                        "localhost", "My", StoreLocation.CurrentUser, 
+                        "localhost", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var exampleCert = CertificateLoader.LoadFromStoreCert(
-                        "example.com", "My", StoreLocation.CurrentUser, 
+                        "example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var subExampleCert = CertificateLoader.LoadFromStoreCert(
-                        "sub.example.com", "My", StoreLocation.CurrentUser, 
+                        "sub.example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var certs = new Dictionary<string, X509Certificate2>(
                         StringComparer.OrdinalIgnoreCase);
@@ -833,9 +882,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-### <a name="bind-to-a-tcp-socket"></a><span data-ttu-id="b4599-318">Associar a um soquete TCP</span><span class="sxs-lookup"><span data-stu-id="b4599-318">Bind to a TCP socket</span></span>
+### <a name="bind-to-a-tcp-socket"></a><span data-ttu-id="2dc96-331">Associar a um soquete TCP</span><span class="sxs-lookup"><span data-stu-id="2dc96-331">Bind to a TCP socket</span></span>
 
-<span data-ttu-id="b4599-319">O método <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> é associado a um soquete TCP, e um lambda de opções permite a configuração do certificado X.509:</span><span class="sxs-lookup"><span data-stu-id="b4599-319">The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> method binds to a TCP socket, and an options lambda permits X.509 certificate configuration:</span></span>
+<span data-ttu-id="2dc96-332">O método <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> é associado a um soquete TCP, e um lambda de opções permite a configuração do certificado X.509:</span><span class="sxs-lookup"><span data-stu-id="2dc96-332">The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> method binds to a TCP socket, and an options lambda permits X.509 certificate configuration:</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -885,13 +934,13 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-<span data-ttu-id="b4599-320">O exemplo configura o HTTPS de um ponto de extremidade com <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>.</span><span class="sxs-lookup"><span data-stu-id="b4599-320">The example configures HTTPS for an endpoint with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>.</span></span> <span data-ttu-id="b4599-321">Use a mesma API para definir outras configurações do Kestrel para pontos de extremidade específicos.</span><span class="sxs-lookup"><span data-stu-id="b4599-321">Use the same API to configure other Kestrel settings for specific endpoints.</span></span>
+<span data-ttu-id="2dc96-333">O exemplo configura o HTTPS de um ponto de extremidade com <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>.</span><span class="sxs-lookup"><span data-stu-id="2dc96-333">The example configures HTTPS for an endpoint with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>.</span></span> <span data-ttu-id="2dc96-334">Use a mesma API para definir outras configurações do Kestrel para pontos de extremidade específicos.</span><span class="sxs-lookup"><span data-stu-id="2dc96-334">Use the same API to configure other Kestrel settings for specific endpoints.</span></span>
 
 [!INCLUDE [How to make an X.509 cert](~/includes/make-x509-cert.md)]
 
-### <a name="bind-to-a-unix-socket"></a><span data-ttu-id="b4599-322">Associar a um soquete do UNIX</span><span class="sxs-lookup"><span data-stu-id="b4599-322">Bind to a Unix socket</span></span>
+### <a name="bind-to-a-unix-socket"></a><span data-ttu-id="2dc96-335">Associar a um soquete do UNIX</span><span class="sxs-lookup"><span data-stu-id="2dc96-335">Bind to a Unix socket</span></span>
 
-<span data-ttu-id="b4599-323">Escute em um soquete do UNIX com <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> para um melhor desempenho com o Nginx, conforme mostrado neste exemplo:</span><span class="sxs-lookup"><span data-stu-id="b4599-323">Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> for improved performance with Nginx, as shown in this example:</span></span>
+<span data-ttu-id="2dc96-336">Escute em um soquete do UNIX com <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> para um melhor desempenho com o Nginx, conforme mostrado neste exemplo:</span><span class="sxs-lookup"><span data-stu-id="2dc96-336">Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> for improved performance with Nginx, as shown in this example:</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -917,63 +966,63 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-### <a name="port-0"></a><span data-ttu-id="b4599-324">Porta 0</span><span class="sxs-lookup"><span data-stu-id="b4599-324">Port 0</span></span>
+### <a name="port-0"></a><span data-ttu-id="2dc96-337">Porta 0</span><span class="sxs-lookup"><span data-stu-id="2dc96-337">Port 0</span></span>
 
-<span data-ttu-id="b4599-325">Quando o número da porta `0` for especificado, o Kestrel se associará dinamicamente a uma porta disponível.</span><span class="sxs-lookup"><span data-stu-id="b4599-325">When the port number `0` is specified, Kestrel dynamically binds to an available port.</span></span> <span data-ttu-id="b4599-326">O exemplo a seguir mostra como determinar a qual porta o Kestrel realmente se associou no tempo de execução:</span><span class="sxs-lookup"><span data-stu-id="b4599-326">The following example shows how to determine which port Kestrel actually bound at runtime:</span></span>
+<span data-ttu-id="2dc96-338">Quando o número da porta `0` for especificado, o Kestrel se associará dinamicamente a uma porta disponível.</span><span class="sxs-lookup"><span data-stu-id="2dc96-338">When the port number `0` is specified, Kestrel dynamically binds to an available port.</span></span> <span data-ttu-id="2dc96-339">O exemplo a seguir mostra como determinar a qual porta o Kestrel realmente se associou no tempo de execução:</span><span class="sxs-lookup"><span data-stu-id="2dc96-339">The following example shows how to determine which port Kestrel actually bound at runtime:</span></span>
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Configure&highlight=3-4,15-21)]
 
-<span data-ttu-id="b4599-327">Quando o aplicativo é executado, a saída da janela do console indica a porta dinâmica na qual o aplicativo pode ser acessado:</span><span class="sxs-lookup"><span data-stu-id="b4599-327">When the app is run, the console window output indicates the dynamic port where the app can be reached:</span></span>
+<span data-ttu-id="2dc96-340">Quando o aplicativo é executado, a saída da janela do console indica a porta dinâmica na qual o aplicativo pode ser acessado:</span><span class="sxs-lookup"><span data-stu-id="2dc96-340">When the app is run, the console window output indicates the dynamic port where the app can be reached:</span></span>
 
 ```console
 Listening on the following addresses: http://127.0.0.1:48508
 ```
 
-### <a name="limitations"></a><span data-ttu-id="b4599-328">Limitações</span><span class="sxs-lookup"><span data-stu-id="b4599-328">Limitations</span></span>
+### <a name="limitations"></a><span data-ttu-id="2dc96-341">Limitações</span><span class="sxs-lookup"><span data-stu-id="2dc96-341">Limitations</span></span>
 
-<span data-ttu-id="b4599-329">Configure pontos de extremidade com as seguintes abordagens:</span><span class="sxs-lookup"><span data-stu-id="b4599-329">Configure endpoints with the following approaches:</span></span>
+<span data-ttu-id="2dc96-342">Configure pontos de extremidade com as seguintes abordagens:</span><span class="sxs-lookup"><span data-stu-id="2dc96-342">Configure endpoints with the following approaches:</span></span>
 
 * <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseUrls*>
-* <span data-ttu-id="b4599-330">O argumento de linha de comando `--urls`</span><span class="sxs-lookup"><span data-stu-id="b4599-330">`--urls` command-line argument</span></span>
-* <span data-ttu-id="b4599-331">A chave de configuração do host `urls`</span><span class="sxs-lookup"><span data-stu-id="b4599-331">`urls` host configuration key</span></span>
-* <span data-ttu-id="b4599-332">A variável de ambiente `ASPNETCORE_URLS`</span><span class="sxs-lookup"><span data-stu-id="b4599-332">`ASPNETCORE_URLS` environment variable</span></span>
+* <span data-ttu-id="2dc96-343">O argumento de linha de comando `--urls`</span><span class="sxs-lookup"><span data-stu-id="2dc96-343">`--urls` command-line argument</span></span>
+* <span data-ttu-id="2dc96-344">A chave de configuração do host `urls`</span><span class="sxs-lookup"><span data-stu-id="2dc96-344">`urls` host configuration key</span></span>
+* <span data-ttu-id="2dc96-345">A variável de ambiente `ASPNETCORE_URLS`</span><span class="sxs-lookup"><span data-stu-id="2dc96-345">`ASPNETCORE_URLS` environment variable</span></span>
 
-<span data-ttu-id="b4599-333">Esses métodos são úteis para fazer com que o código funcione com servidores que não sejam o Kestrel.</span><span class="sxs-lookup"><span data-stu-id="b4599-333">These methods are useful for making code work with servers other than Kestrel.</span></span> <span data-ttu-id="b4599-334">No entanto, esteja ciente das seguintes limitações:</span><span class="sxs-lookup"><span data-stu-id="b4599-334">However, be aware of the following limitations:</span></span>
+<span data-ttu-id="2dc96-346">Esses métodos são úteis para fazer com que o código funcione com servidores que não sejam o Kestrel.</span><span class="sxs-lookup"><span data-stu-id="2dc96-346">These methods are useful for making code work with servers other than Kestrel.</span></span> <span data-ttu-id="2dc96-347">No entanto, esteja ciente das seguintes limitações:</span><span class="sxs-lookup"><span data-stu-id="2dc96-347">However, be aware of the following limitations:</span></span>
 
-* <span data-ttu-id="b4599-335">O protocolo HTTPS não pode ser usado com essas abordagens, a menos que um certificado padrão seja fornecido na configuração do ponto de extremidade HTTPS (por exemplo, usando a configuração `KestrelServerOptions` ou um arquivo de configuração, como já foi mostrado neste tópico).</span><span class="sxs-lookup"><span data-stu-id="b4599-335">HTTPS can't be used with these approaches unless a default certificate is provided in the HTTPS endpoint configuration (for example, using `KestrelServerOptions` configuration or a configuration file as shown earlier in this topic).</span></span>
-* <span data-ttu-id="b4599-336">Quando ambas as abordagens, `Listen` e `UseUrls`, são usadas ao mesmo tempo, os pontos de extremidade de `Listen` substituem os pontos de extremidade de `UseUrls`.</span><span class="sxs-lookup"><span data-stu-id="b4599-336">When both the `Listen` and `UseUrls` approaches are used simultaneously, the `Listen` endpoints override the `UseUrls` endpoints.</span></span>
+* <span data-ttu-id="2dc96-348">O protocolo HTTPS não pode ser usado com essas abordagens, a menos que um certificado padrão seja fornecido na configuração do ponto de extremidade HTTPS (por exemplo, usando a configuração `KestrelServerOptions` ou um arquivo de configuração, como já foi mostrado neste tópico).</span><span class="sxs-lookup"><span data-stu-id="2dc96-348">HTTPS can't be used with these approaches unless a default certificate is provided in the HTTPS endpoint configuration (for example, using `KestrelServerOptions` configuration or a configuration file as shown earlier in this topic).</span></span>
+* <span data-ttu-id="2dc96-349">Quando ambas as abordagens, `Listen` e `UseUrls`, são usadas ao mesmo tempo, os pontos de extremidade de `Listen` substituem os pontos de extremidade de `UseUrls`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-349">When both the `Listen` and `UseUrls` approaches are used simultaneously, the `Listen` endpoints override the `UseUrls` endpoints.</span></span>
 
-### <a name="iis-endpoint-configuration"></a><span data-ttu-id="b4599-337">Configuração de ponto de extremidade do IIS</span><span class="sxs-lookup"><span data-stu-id="b4599-337">IIS endpoint configuration</span></span>
+### <a name="iis-endpoint-configuration"></a><span data-ttu-id="2dc96-350">Configuração de ponto de extremidade do IIS</span><span class="sxs-lookup"><span data-stu-id="2dc96-350">IIS endpoint configuration</span></span>
 
-<span data-ttu-id="b4599-338">Ao usar o IIS, as associações de URL para IIS substituem as associações definidas por `Listen` ou `UseUrls`.</span><span class="sxs-lookup"><span data-stu-id="b4599-338">When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`.</span></span> <span data-ttu-id="b4599-339">Para obter mais informações, confira o tópico [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module).</span><span class="sxs-lookup"><span data-stu-id="b4599-339">For more information, see the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) topic.</span></span>
+<span data-ttu-id="2dc96-351">Ao usar o IIS, as associações de URL para IIS substituem as associações definidas por `Listen` ou `UseUrls`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-351">When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`.</span></span> <span data-ttu-id="2dc96-352">Para obter mais informações, confira o tópico [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module).</span><span class="sxs-lookup"><span data-stu-id="2dc96-352">For more information, see the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) topic.</span></span>
 
 ::: moniker range=">= aspnetcore-2.2"
 
-### <a name="listenoptionsprotocols"></a><span data-ttu-id="b4599-340">ListenOptions.Protocols</span><span class="sxs-lookup"><span data-stu-id="b4599-340">ListenOptions.Protocols</span></span>
+### <a name="listenoptionsprotocols"></a><span data-ttu-id="2dc96-353">ListenOptions.Protocols</span><span class="sxs-lookup"><span data-stu-id="2dc96-353">ListenOptions.Protocols</span></span>
 
-<span data-ttu-id="b4599-341">A propriedade `Protocols` estabelece os protocolos HTTP (`HttpProtocols`) habilitados em um ponto de extremidade de conexão ou para o servidor.</span><span class="sxs-lookup"><span data-stu-id="b4599-341">The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enabled on a connection endpoint or for the server.</span></span> <span data-ttu-id="b4599-342">Atribua um valor à propriedade `Protocols` com base na enumeração `HttpProtocols`.</span><span class="sxs-lookup"><span data-stu-id="b4599-342">Assign a value to the `Protocols` property from the `HttpProtocols` enum.</span></span>
+<span data-ttu-id="2dc96-354">A propriedade `Protocols` estabelece os protocolos HTTP (`HttpProtocols`) habilitados em um ponto de extremidade de conexão ou para o servidor.</span><span class="sxs-lookup"><span data-stu-id="2dc96-354">The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enabled on a connection endpoint or for the server.</span></span> <span data-ttu-id="2dc96-355">Atribua um valor à propriedade `Protocols` com base na enumeração `HttpProtocols`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-355">Assign a value to the `Protocols` property from the `HttpProtocols` enum.</span></span>
 
-| <span data-ttu-id="b4599-343">Valor de enumeração `HttpProtocols`</span><span class="sxs-lookup"><span data-stu-id="b4599-343">`HttpProtocols` enum value</span></span> | <span data-ttu-id="b4599-344">Protocolo de conexão permitido</span><span class="sxs-lookup"><span data-stu-id="b4599-344">Connection protocol permitted</span></span> |
+| <span data-ttu-id="2dc96-356">Valor de enumeração `HttpProtocols`</span><span class="sxs-lookup"><span data-stu-id="2dc96-356">`HttpProtocols` enum value</span></span> | <span data-ttu-id="2dc96-357">Protocolo de conexão permitido</span><span class="sxs-lookup"><span data-stu-id="2dc96-357">Connection protocol permitted</span></span> |
 | -------------------------- | ----------------------------- |
-| `Http1`                    | <span data-ttu-id="b4599-345">HTTP/1.1 apenas.</span><span class="sxs-lookup"><span data-stu-id="b4599-345">HTTP/1.1 only.</span></span> <span data-ttu-id="b4599-346">Pode ser usado com ou sem TLS.</span><span class="sxs-lookup"><span data-stu-id="b4599-346">Can be used with or without TLS.</span></span> |
-| `Http2`                    | <span data-ttu-id="b4599-347">HTTP/2 apenas.</span><span class="sxs-lookup"><span data-stu-id="b4599-347">HTTP/2 only.</span></span> <span data-ttu-id="b4599-348">Usado principalmente com TLS.</span><span class="sxs-lookup"><span data-stu-id="b4599-348">Primarily used with TLS.</span></span> <span data-ttu-id="b4599-349">Poderá ser usado sem TLS apenas se o cliente for compatível com um [Modo de conhecimento prévio](https://tools.ietf.org/html/rfc7540#section-3.4).</span><span class="sxs-lookup"><span data-stu-id="b4599-349">May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4).</span></span> |
-| `Http1AndHttp2`            | <span data-ttu-id="b4599-350">HTTP/1.1 e HTTP/2.</span><span class="sxs-lookup"><span data-stu-id="b4599-350">HTTP/1.1 and HTTP/2.</span></span> <span data-ttu-id="b4599-351">Requer uma conexão TLS e [ALPN (Negociação de protocolo de camada de aplicativo)](https://tools.ietf.org/html/rfc7301#section-3) para negociar o HTTP/2; caso contrário, o padrão da conexão será HTTP/1.1.</span><span class="sxs-lookup"><span data-stu-id="b4599-351">Requires a TLS and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection to negotiate HTTP/2; otherwise, the connection defaults to HTTP/1.1.</span></span> |
+| `Http1`                    | <span data-ttu-id="2dc96-358">HTTP/1.1 apenas.</span><span class="sxs-lookup"><span data-stu-id="2dc96-358">HTTP/1.1 only.</span></span> <span data-ttu-id="2dc96-359">Pode ser usado com ou sem TLS.</span><span class="sxs-lookup"><span data-stu-id="2dc96-359">Can be used with or without TLS.</span></span> |
+| `Http2`                    | <span data-ttu-id="2dc96-360">HTTP/2 apenas.</span><span class="sxs-lookup"><span data-stu-id="2dc96-360">HTTP/2 only.</span></span> <span data-ttu-id="2dc96-361">Usado principalmente com TLS.</span><span class="sxs-lookup"><span data-stu-id="2dc96-361">Primarily used with TLS.</span></span> <span data-ttu-id="2dc96-362">Poderá ser usado sem TLS apenas se o cliente for compatível com um [Modo de conhecimento prévio](https://tools.ietf.org/html/rfc7540#section-3.4).</span><span class="sxs-lookup"><span data-stu-id="2dc96-362">May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4).</span></span> |
+| `Http1AndHttp2`            | <span data-ttu-id="2dc96-363">HTTP/1.1 e HTTP/2.</span><span class="sxs-lookup"><span data-stu-id="2dc96-363">HTTP/1.1 and HTTP/2.</span></span> <span data-ttu-id="2dc96-364">Requer uma conexão TLS e [ALPN (Negociação de protocolo de camada de aplicativo)](https://tools.ietf.org/html/rfc7301#section-3) para negociar o HTTP/2; caso contrário, o padrão da conexão será HTTP/1.1.</span><span class="sxs-lookup"><span data-stu-id="2dc96-364">Requires a TLS and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection to negotiate HTTP/2; otherwise, the connection defaults to HTTP/1.1.</span></span> |
 
-<span data-ttu-id="b4599-352">O protocolo padrão é HTTP/1.1.</span><span class="sxs-lookup"><span data-stu-id="b4599-352">The default protocol is HTTP/1.1.</span></span>
+<span data-ttu-id="2dc96-365">O protocolo padrão é HTTP/1.1.</span><span class="sxs-lookup"><span data-stu-id="2dc96-365">The default protocol is HTTP/1.1.</span></span>
 
-<span data-ttu-id="b4599-353">Restrições TLS para HTTP/2:</span><span class="sxs-lookup"><span data-stu-id="b4599-353">TLS restrictions for HTTP/2:</span></span>
+<span data-ttu-id="2dc96-366">Restrições TLS para HTTP/2:</span><span class="sxs-lookup"><span data-stu-id="2dc96-366">TLS restrictions for HTTP/2:</span></span>
 
-* <span data-ttu-id="b4599-354">Versão TLS 1.2 ou posterior</span><span class="sxs-lookup"><span data-stu-id="b4599-354">TLS version 1.2 or later</span></span>
-* <span data-ttu-id="b4599-355">Renegociação desabilitada</span><span class="sxs-lookup"><span data-stu-id="b4599-355">Renegotiation disabled</span></span>
-* <span data-ttu-id="b4599-356">Compactação desabilitada</span><span class="sxs-lookup"><span data-stu-id="b4599-356">Compression disabled</span></span>
-* <span data-ttu-id="b4599-357">Tamanhos mínimos de troca de chaves efêmera:</span><span class="sxs-lookup"><span data-stu-id="b4599-357">Minimum ephemeral key exchange sizes:</span></span>
-  * <span data-ttu-id="b4599-358">ECDHE (Diffie-Hellman de curva elíptica) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; mínimo de 224 bits</span><span class="sxs-lookup"><span data-stu-id="b4599-358">Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; 224 bits minimum</span></span>
-  * <span data-ttu-id="b4599-359">DHE (Diffie-Hellman de campo finito) &lbrack;`TLS12`&rbrack; &ndash; mínimo de 2048 bits</span><span class="sxs-lookup"><span data-stu-id="b4599-359">Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack; &ndash; 2048 bits minimum</span></span>
-* <span data-ttu-id="b4599-360">Pacote de criptografia não autorizado</span><span class="sxs-lookup"><span data-stu-id="b4599-360">Cipher suite not blacklisted</span></span>
+* <span data-ttu-id="2dc96-367">Versão TLS 1.2 ou posterior</span><span class="sxs-lookup"><span data-stu-id="2dc96-367">TLS version 1.2 or later</span></span>
+* <span data-ttu-id="2dc96-368">Renegociação desabilitada</span><span class="sxs-lookup"><span data-stu-id="2dc96-368">Renegotiation disabled</span></span>
+* <span data-ttu-id="2dc96-369">Compactação desabilitada</span><span class="sxs-lookup"><span data-stu-id="2dc96-369">Compression disabled</span></span>
+* <span data-ttu-id="2dc96-370">Tamanhos mínimos de troca de chaves efêmera:</span><span class="sxs-lookup"><span data-stu-id="2dc96-370">Minimum ephemeral key exchange sizes:</span></span>
+  * <span data-ttu-id="2dc96-371">ECDHE (Diffie-Hellman de curva elíptica) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; mínimo de 224 bits</span><span class="sxs-lookup"><span data-stu-id="2dc96-371">Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; 224 bits minimum</span></span>
+  * <span data-ttu-id="2dc96-372">DHE (Diffie-Hellman de campo finito) &lbrack;`TLS12`&rbrack; &ndash; mínimo de 2048 bits</span><span class="sxs-lookup"><span data-stu-id="2dc96-372">Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack; &ndash; 2048 bits minimum</span></span>
+* <span data-ttu-id="2dc96-373">Pacote de criptografia não autorizado</span><span class="sxs-lookup"><span data-stu-id="2dc96-373">Cipher suite not blacklisted</span></span>
 
-<span data-ttu-id="b4599-361">Há suporte para `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; com a curva elíptica P-256 &lbrack;`FIPS186`&rbrack; por padrão.</span><span class="sxs-lookup"><span data-stu-id="b4599-361">`TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; with the P-256 elliptic curve &lbrack;`FIPS186`&rbrack; is supported by default.</span></span>
+<span data-ttu-id="2dc96-374">Há suporte para `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; com a curva elíptica P-256 &lbrack;`FIPS186`&rbrack; por padrão.</span><span class="sxs-lookup"><span data-stu-id="2dc96-374">`TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; with the P-256 elliptic curve &lbrack;`FIPS186`&rbrack; is supported by default.</span></span>
 
-<span data-ttu-id="b4599-362">O exemplo a seguir permite conexões HTTP/1.1 e HTTP/2 na porta 8000.</span><span class="sxs-lookup"><span data-stu-id="b4599-362">The following example permits HTTP/1.1 and HTTP/2 connections on port 8000.</span></span> <span data-ttu-id="b4599-363">As conexões são protegidas pela TLS com um certificado fornecido:</span><span class="sxs-lookup"><span data-stu-id="b4599-363">Connections are secured by TLS with a supplied certificate:</span></span>
+<span data-ttu-id="2dc96-375">O exemplo a seguir permite conexões HTTP/1.1 e HTTP/2 na porta 8000.</span><span class="sxs-lookup"><span data-stu-id="2dc96-375">The following example permits HTTP/1.1 and HTTP/2 connections on port 8000.</span></span> <span data-ttu-id="2dc96-376">As conexões são protegidas pela TLS com um certificado fornecido:</span><span class="sxs-lookup"><span data-stu-id="2dc96-376">Connections are secured by TLS with a supplied certificate:</span></span>
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -989,7 +1038,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-<span data-ttu-id="b4599-364">Crie opcionalmente uma implementação do `IConnectionAdapter` para filtrar os handshakes TLS por conexão para codificações específicas:</span><span class="sxs-lookup"><span data-stu-id="b4599-364">Optionally create an `IConnectionAdapter` implementation to filter TLS handshakes on a per-connection basis for specific ciphers:</span></span>
+<span data-ttu-id="2dc96-377">Crie opcionalmente uma implementação do `IConnectionAdapter` para filtrar os handshakes TLS por conexão para codificações específicas:</span><span class="sxs-lookup"><span data-stu-id="2dc96-377">Optionally create an `IConnectionAdapter` implementation to filter TLS handshakes on a per-connection basis for specific ciphers:</span></span>
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -1015,13 +1064,13 @@ private class TlsFilterAdapter : IConnectionAdapter
     {
         var tlsFeature = context.Features.Get<ITlsHandshakeFeature>();
 
-        // Throw NotSupportedException for any cipher algorithm that you don't 
-        // wish to support. Alternatively, define and compare 
-        // ITlsHandshakeFeature.CipherAlgorithm to a list of acceptable cipher 
+        // Throw NotSupportedException for any cipher algorithm that you don't
+        // wish to support. Alternatively, define and compare
+        // ITlsHandshakeFeature.CipherAlgorithm to a list of acceptable cipher
         // suites.
         //
-        // A ITlsHandshakeFeature.CipherAlgorithm of CipherAlgorithmType.Null 
-        // indicates that no cipher algorithm supported by Kestrel matches the 
+        // A ITlsHandshakeFeature.CipherAlgorithm of CipherAlgorithmType.Null
+        // indicates that no cipher algorithm supported by Kestrel matches the
         // requested algorithm(s).
         if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.Null)
         {
@@ -1047,11 +1096,11 @@ private class TlsFilterAdapter : IConnectionAdapter
 }
 ```
 
-<span data-ttu-id="b4599-365">*Definir o protocolo com base na configuração*</span><span class="sxs-lookup"><span data-stu-id="b4599-365">*Set the protocol from configuration*</span></span>
+<span data-ttu-id="2dc96-378">*Definir o protocolo com base na configuração*</span><span class="sxs-lookup"><span data-stu-id="2dc96-378">*Set the protocol from configuration*</span></span>
 
-<span data-ttu-id="b4599-366"><xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> chama `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` por padrão ao carregar a configuração do Kestrel.</span><span class="sxs-lookup"><span data-stu-id="b4599-366"><xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.</span></span>
+<span data-ttu-id="2dc96-379"><xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> chama `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` por padrão ao carregar a configuração do Kestrel.</span><span class="sxs-lookup"><span data-stu-id="2dc96-379"><xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.</span></span>
 
-<span data-ttu-id="b4599-367">No exemplo *appsettings.json* a seguir, um protocolo de conexão padrão (HTTP/1.1 e HTTP/2) é estabelecido para todos os pontos de extremidade do Kestrel:</span><span class="sxs-lookup"><span data-stu-id="b4599-367">In the following *appsettings.json* example, a default connection protocol (HTTP/1.1 and HTTP/2) is established for all of Kestrel's endpoints:</span></span>
+<span data-ttu-id="2dc96-380">No exemplo *appsettings.json* a seguir, um protocolo de conexão padrão (HTTP/1.1 e HTTP/2) é estabelecido para todos os pontos de extremidade do Kestrel:</span><span class="sxs-lookup"><span data-stu-id="2dc96-380">In the following *appsettings.json* example, a default connection protocol (HTTP/1.1 and HTTP/2) is established for all of Kestrel's endpoints:</span></span>
 
 ```json
 {
@@ -1063,7 +1112,7 @@ private class TlsFilterAdapter : IConnectionAdapter
 }
 ```
 
-<span data-ttu-id="b4599-368">O arquivo de configuração de exemplo a seguir estabelece um protocolo de conexão para um ponto de extremidade específico:</span><span class="sxs-lookup"><span data-stu-id="b4599-368">The following configuration file example establishes a connection protocol for a specific endpoint:</span></span>
+<span data-ttu-id="2dc96-381">O arquivo de configuração de exemplo a seguir estabelece um protocolo de conexão para um ponto de extremidade específico:</span><span class="sxs-lookup"><span data-stu-id="2dc96-381">The following configuration file example establishes a connection protocol for a specific endpoint:</span></span>
 
 ```json
 {
@@ -1078,27 +1127,27 @@ private class TlsFilterAdapter : IConnectionAdapter
 }
 ```
 
-<span data-ttu-id="b4599-369">Os protocolos especificados no código substituem os valores definidos pela configuração.</span><span class="sxs-lookup"><span data-stu-id="b4599-369">Protocols specified in code override values set by configuration.</span></span>
+<span data-ttu-id="2dc96-382">Os protocolos especificados no código substituem os valores definidos pela configuração.</span><span class="sxs-lookup"><span data-stu-id="2dc96-382">Protocols specified in code override values set by configuration.</span></span>
 
 ::: moniker-end
 
-## <a name="transport-configuration"></a><span data-ttu-id="b4599-370">Configuração de transporte</span><span class="sxs-lookup"><span data-stu-id="b4599-370">Transport configuration</span></span>
+## <a name="transport-configuration"></a><span data-ttu-id="2dc96-383">Configuração de transporte</span><span class="sxs-lookup"><span data-stu-id="2dc96-383">Transport configuration</span></span>
 
-<span data-ttu-id="b4599-371">Com a liberação do ASP.NET Core 2.1, o transporte padrão do Kestrel deixa de ser baseado no Libuv, baseando-se agora em soquetes gerenciados.</span><span class="sxs-lookup"><span data-stu-id="b4599-371">With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets.</span></span> <span data-ttu-id="b4599-372">Essa é uma alteração da falha para aplicativos ASP.NET Core 2.0 que atualizam para o 2.1 que chamam <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*> e dependem de um dos seguintes pacotes:</span><span class="sxs-lookup"><span data-stu-id="b4599-372">This is a breaking change for ASP.NET Core 2.0 apps upgrading to 2.1 that call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*> and depend on either of the following packages:</span></span>
+<span data-ttu-id="2dc96-384">Com a liberação do ASP.NET Core 2.1, o transporte padrão do Kestrel deixa de ser baseado no Libuv, baseando-se agora em soquetes gerenciados.</span><span class="sxs-lookup"><span data-stu-id="2dc96-384">With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets.</span></span> <span data-ttu-id="2dc96-385">Essa é uma alteração da falha para aplicativos ASP.NET Core 2.0 que atualizam para o 2.1 que chamam <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*> e dependem de um dos seguintes pacotes:</span><span class="sxs-lookup"><span data-stu-id="2dc96-385">This is a breaking change for ASP.NET Core 2.0 apps upgrading to 2.1 that call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*> and depend on either of the following packages:</span></span>
 
-* <span data-ttu-id="b4599-373">[Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) (referência direta de pacote)</span><span class="sxs-lookup"><span data-stu-id="b4599-373">[Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) (direct package reference)</span></span>
-* [<span data-ttu-id="b4599-374">Microsoft.AspNetCore.App</span><span class="sxs-lookup"><span data-stu-id="b4599-374">Microsoft.AspNetCore.App</span></span>](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
+* <span data-ttu-id="2dc96-386">[Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) (referência direta de pacote)</span><span class="sxs-lookup"><span data-stu-id="2dc96-386">[Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) (direct package reference)</span></span>
+* [<span data-ttu-id="2dc96-387">Microsoft.AspNetCore.App</span><span class="sxs-lookup"><span data-stu-id="2dc96-387">Microsoft.AspNetCore.App</span></span>](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
 
-<span data-ttu-id="b4599-375">Para projetos do ASP.NET Core 2.1 ou posteriores que usam o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) e exigem o uso de Libuv:</span><span class="sxs-lookup"><span data-stu-id="b4599-375">For ASP.NET Core 2.1 or later projects that use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) and require the use of Libuv:</span></span>
+<span data-ttu-id="2dc96-388">Para projetos do ASP.NET Core 2.1 ou posteriores que usam o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) e exigem o uso de Libuv:</span><span class="sxs-lookup"><span data-stu-id="2dc96-388">For ASP.NET Core 2.1 or later projects that use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) and require the use of Libuv:</span></span>
 
-* <span data-ttu-id="b4599-376">Adicione uma dependência para o pacote [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) ao arquivo de projeto do aplicativo:</span><span class="sxs-lookup"><span data-stu-id="b4599-376">Add a dependency for the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package to the app's project file:</span></span>
+* <span data-ttu-id="2dc96-389">Adicione uma dependência para o pacote [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) ao arquivo de projeto do aplicativo:</span><span class="sxs-lookup"><span data-stu-id="2dc96-389">Add a dependency for the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package to the app's project file:</span></span>
 
     ```xml
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv" 
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv"
                       Version="<LATEST_VERSION>" />
     ```
 
-* <span data-ttu-id="b4599-377">Chame <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*>:</span><span class="sxs-lookup"><span data-stu-id="b4599-377">Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*>:</span></span>
+* <span data-ttu-id="2dc96-390">Chame <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*>:</span><span class="sxs-lookup"><span data-stu-id="2dc96-390">Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*>:</span></span>
 
     ```csharp
     public class Program
@@ -1115,41 +1164,41 @@ private class TlsFilterAdapter : IConnectionAdapter
     }
     ```
 
-### <a name="url-prefixes"></a><span data-ttu-id="b4599-378">Prefixos de URL</span><span class="sxs-lookup"><span data-stu-id="b4599-378">URL prefixes</span></span>
+### <a name="url-prefixes"></a><span data-ttu-id="2dc96-391">Prefixos de URL</span><span class="sxs-lookup"><span data-stu-id="2dc96-391">URL prefixes</span></span>
 
-<span data-ttu-id="b4599-379">Ao usar `UseUrls`, o argumento de linha de comando `--urls`, a chave de configuração de host `urls` ou a variável de ambiente `ASPNETCORE_URLS`, os prefixos de URL podem estar em um dos formatos a seguir.</span><span class="sxs-lookup"><span data-stu-id="b4599-379">When using `UseUrls`, `--urls` command-line argument, `urls` host configuration key, or `ASPNETCORE_URLS` environment variable, the URL prefixes can be in any of the following formats.</span></span>
+<span data-ttu-id="2dc96-392">Ao usar `UseUrls`, o argumento de linha de comando `--urls`, a chave de configuração de host `urls` ou a variável de ambiente `ASPNETCORE_URLS`, os prefixos de URL podem estar em um dos formatos a seguir.</span><span class="sxs-lookup"><span data-stu-id="2dc96-392">When using `UseUrls`, `--urls` command-line argument, `urls` host configuration key, or `ASPNETCORE_URLS` environment variable, the URL prefixes can be in any of the following formats.</span></span>
 
-<span data-ttu-id="b4599-380">Somente os prefixos de URL HTTP são válidos.</span><span class="sxs-lookup"><span data-stu-id="b4599-380">Only HTTP URL prefixes are valid.</span></span> <span data-ttu-id="b4599-381">O Kestrel não é compatível com HTTPS ao configurar associações de URL que usam `UseUrls`.</span><span class="sxs-lookup"><span data-stu-id="b4599-381">Kestrel doesn't support HTTPS when configuring URL bindings using `UseUrls`.</span></span>
+<span data-ttu-id="2dc96-393">Somente os prefixos de URL HTTP são válidos.</span><span class="sxs-lookup"><span data-stu-id="2dc96-393">Only HTTP URL prefixes are valid.</span></span> <span data-ttu-id="2dc96-394">O Kestrel não é compatível com HTTPS ao configurar associações de URL que usam `UseUrls`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-394">Kestrel doesn't support HTTPS when configuring URL bindings using `UseUrls`.</span></span>
 
-* <span data-ttu-id="b4599-382">Endereço IPv4 com o número da porta</span><span class="sxs-lookup"><span data-stu-id="b4599-382">IPv4 address with port number</span></span>
+* <span data-ttu-id="2dc96-395">Endereço IPv4 com o número da porta</span><span class="sxs-lookup"><span data-stu-id="2dc96-395">IPv4 address with port number</span></span>
 
   ```
   http://65.55.39.10:80/
   ```
 
-  <span data-ttu-id="b4599-383">`0.0.0.0` é um caso especial que associa a todos os endereços IPv4.</span><span class="sxs-lookup"><span data-stu-id="b4599-383">`0.0.0.0` is a special case that binds to all IPv4 addresses.</span></span>
+  <span data-ttu-id="2dc96-396">`0.0.0.0` é um caso especial que associa a todos os endereços IPv4.</span><span class="sxs-lookup"><span data-stu-id="2dc96-396">`0.0.0.0` is a special case that binds to all IPv4 addresses.</span></span>
 
-* <span data-ttu-id="b4599-384">Endereço IPv6 com número da porta</span><span class="sxs-lookup"><span data-stu-id="b4599-384">IPv6 address with port number</span></span>
+* <span data-ttu-id="2dc96-397">Endereço IPv6 com número da porta</span><span class="sxs-lookup"><span data-stu-id="2dc96-397">IPv6 address with port number</span></span>
 
   ```
   http://[0:0:0:0:0:ffff:4137:270a]:80/
   ```
 
-  <span data-ttu-id="b4599-385">`[::]` é o equivalente do IPv6 ao IPv4 `0.0.0.0`.</span><span class="sxs-lookup"><span data-stu-id="b4599-385">`[::]` is the IPv6 equivalent of IPv4 `0.0.0.0`.</span></span>
+  <span data-ttu-id="2dc96-398">`[::]` é o equivalente do IPv6 ao IPv4 `0.0.0.0`.</span><span class="sxs-lookup"><span data-stu-id="2dc96-398">`[::]` is the IPv6 equivalent of IPv4 `0.0.0.0`.</span></span>
 
-* <span data-ttu-id="b4599-386">Nome do host com o número da porta</span><span class="sxs-lookup"><span data-stu-id="b4599-386">Host name with port number</span></span>
+* <span data-ttu-id="2dc96-399">Nome do host com o número da porta</span><span class="sxs-lookup"><span data-stu-id="2dc96-399">Host name with port number</span></span>
 
   ```
   http://contoso.com:80/
   http://*:80/
   ```
 
-  <span data-ttu-id="b4599-387">Os nomes de host `*` e `+` não são especiais.</span><span class="sxs-lookup"><span data-stu-id="b4599-387">Host names, `*`, and `+`, aren't special.</span></span> <span data-ttu-id="b4599-388">Tudo o que não é reconhecido como um endereço IP ou um `localhost` válido é associado a todos os IPs IPv6 e IPv4.</span><span class="sxs-lookup"><span data-stu-id="b4599-388">Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs.</span></span> <span data-ttu-id="b4599-389">Para associar nomes de host diferentes a diferentes aplicativos ASP.NET Core na mesma porta, use o [HTTP.sys](xref:fundamentals/servers/httpsys) ou um servidor proxy reverso, como o IIS, o Nginx ou o Apache.</span><span class="sxs-lookup"><span data-stu-id="b4599-389">To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server, such as IIS, Nginx, or Apache.</span></span>
+  <span data-ttu-id="2dc96-400">Os nomes de host `*` e `+` não são especiais.</span><span class="sxs-lookup"><span data-stu-id="2dc96-400">Host names, `*`, and `+`, aren't special.</span></span> <span data-ttu-id="2dc96-401">Tudo o que não é reconhecido como um endereço IP ou um `localhost` válido é associado a todos os IPs IPv6 e IPv4.</span><span class="sxs-lookup"><span data-stu-id="2dc96-401">Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs.</span></span> <span data-ttu-id="2dc96-402">Para associar nomes de host diferentes a diferentes aplicativos ASP.NET Core na mesma porta, use o [HTTP.sys](xref:fundamentals/servers/httpsys) ou um servidor proxy reverso, como o IIS, o Nginx ou o Apache.</span><span class="sxs-lookup"><span data-stu-id="2dc96-402">To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server, such as IIS, Nginx, or Apache.</span></span>
 
   > [!WARNING]
-  > <span data-ttu-id="b4599-390">A hospedagem em uma configuração de proxy reverso exige a [filtragem de host](#host-filtering).</span><span class="sxs-lookup"><span data-stu-id="b4599-390">Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).</span></span>
+  > <span data-ttu-id="2dc96-403">A hospedagem em uma configuração de proxy reverso exige a [filtragem de host](#host-filtering).</span><span class="sxs-lookup"><span data-stu-id="2dc96-403">Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).</span></span>
 
-* <span data-ttu-id="b4599-391">Nome do `localhost` do host com o número da porta ou o IP de loopback com o número da porta</span><span class="sxs-lookup"><span data-stu-id="b4599-391">Host `localhost` name with port number or loopback IP with port number</span></span>
+* <span data-ttu-id="2dc96-404">Nome do `localhost` do host com o número da porta ou o IP de loopback com o número da porta</span><span class="sxs-lookup"><span data-stu-id="2dc96-404">Host `localhost` name with port number or loopback IP with port number</span></span>
 
   ```
   http://localhost:5000/
@@ -1157,19 +1206,19 @@ private class TlsFilterAdapter : IConnectionAdapter
   http://[::1]:5000/
   ```
 
-  <span data-ttu-id="b4599-392">Quando o `localhost` for especificado, o Kestrel tentará se associar às interfaces de loopback IPv4 e IPv6.</span><span class="sxs-lookup"><span data-stu-id="b4599-392">When `localhost` is specified, Kestrel attempts to bind to both IPv4 and IPv6 loopback interfaces.</span></span> <span data-ttu-id="b4599-393">Se a porta solicitada está sendo usada por outro serviço em uma das interfaces de loopback, o Kestrel falha ao ser iniciado.</span><span class="sxs-lookup"><span data-stu-id="b4599-393">If the requested port is in use by another service on either loopback interface, Kestrel fails to start.</span></span> <span data-ttu-id="b4599-394">Se uma das interfaces de loopback não estiver disponível por qualquer outro motivo (geralmente porque não há suporte para o IPv6), o Kestrel registra um aviso em log.</span><span class="sxs-lookup"><span data-stu-id="b4599-394">If either loopback interface is unavailable for any other reason (most commonly because IPv6 isn't supported), Kestrel logs a warning.</span></span>
+  <span data-ttu-id="2dc96-405">Quando o `localhost` for especificado, o Kestrel tentará se associar às interfaces de loopback IPv4 e IPv6.</span><span class="sxs-lookup"><span data-stu-id="2dc96-405">When `localhost` is specified, Kestrel attempts to bind to both IPv4 and IPv6 loopback interfaces.</span></span> <span data-ttu-id="2dc96-406">Se a porta solicitada está sendo usada por outro serviço em uma das interfaces de loopback, o Kestrel falha ao ser iniciado.</span><span class="sxs-lookup"><span data-stu-id="2dc96-406">If the requested port is in use by another service on either loopback interface, Kestrel fails to start.</span></span> <span data-ttu-id="2dc96-407">Se uma das interfaces de loopback não estiver disponível por qualquer outro motivo (geralmente porque não há suporte para o IPv6), o Kestrel registra um aviso em log.</span><span class="sxs-lookup"><span data-stu-id="2dc96-407">If either loopback interface is unavailable for any other reason (most commonly because IPv6 isn't supported), Kestrel logs a warning.</span></span>
 
-## <a name="host-filtering"></a><span data-ttu-id="b4599-395">Filtragem de host</span><span class="sxs-lookup"><span data-stu-id="b4599-395">Host filtering</span></span>
+## <a name="host-filtering"></a><span data-ttu-id="2dc96-408">Filtragem de host</span><span class="sxs-lookup"><span data-stu-id="2dc96-408">Host filtering</span></span>
 
-<span data-ttu-id="b4599-396">Embora o Kestrel permita a configuração com base em prefixos como `http://example.com:5000`, ele geralmente ignora o nome do host.</span><span class="sxs-lookup"><span data-stu-id="b4599-396">While Kestrel supports configuration based on prefixes such as `http://example.com:5000`, Kestrel largely ignores the host name.</span></span> <span data-ttu-id="b4599-397">O host `localhost` é um caso especial usado para a associação a endereços de loopback.</span><span class="sxs-lookup"><span data-stu-id="b4599-397">Host `localhost` is a special case used for binding to loopback addresses.</span></span> <span data-ttu-id="b4599-398">Todo host que não for um endereço IP explícito será associado a todos os endereços IP públicos.</span><span class="sxs-lookup"><span data-stu-id="b4599-398">Any host other than an explicit IP address binds to all public IP addresses.</span></span> <span data-ttu-id="b4599-399">Cabeçalhos `Host` não são validados.</span><span class="sxs-lookup"><span data-stu-id="b4599-399">`Host` headers aren't validated.</span></span>
+<span data-ttu-id="2dc96-409">Embora o Kestrel permita a configuração com base em prefixos como `http://example.com:5000`, ele geralmente ignora o nome do host.</span><span class="sxs-lookup"><span data-stu-id="2dc96-409">While Kestrel supports configuration based on prefixes such as `http://example.com:5000`, Kestrel largely ignores the host name.</span></span> <span data-ttu-id="2dc96-410">O host `localhost` é um caso especial usado para a associação a endereços de loopback.</span><span class="sxs-lookup"><span data-stu-id="2dc96-410">Host `localhost` is a special case used for binding to loopback addresses.</span></span> <span data-ttu-id="2dc96-411">Todo host que não for um endereço IP explícito será associado a todos os endereços IP públicos.</span><span class="sxs-lookup"><span data-stu-id="2dc96-411">Any host other than an explicit IP address binds to all public IP addresses.</span></span> <span data-ttu-id="2dc96-412">Cabeçalhos `Host` não são validados.</span><span class="sxs-lookup"><span data-stu-id="2dc96-412">`Host` headers aren't validated.</span></span>
 
-<span data-ttu-id="b4599-400">Como uma solução alternativa, use o Middleware de Filtragem de Host.</span><span class="sxs-lookup"><span data-stu-id="b4599-400">As a workaround, use Host Filtering Middleware.</span></span> <span data-ttu-id="b4599-401">Middleware de Filtragem de Host é fornecido pelo pacote [Microsoft.AspNetCore.HostFiltering](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering), que está incluído no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 ou posterior).</span><span class="sxs-lookup"><span data-stu-id="b4599-401">Host Filtering Middleware is provided by the [Microsoft.AspNetCore.HostFiltering](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering) package, which is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later).</span></span> <span data-ttu-id="b4599-402">O middleware é adicionado pelo <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, que chama <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering*>:</span><span class="sxs-lookup"><span data-stu-id="b4599-402">The middleware is added by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, which calls <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering*>:</span></span>
+<span data-ttu-id="2dc96-413">Como uma solução alternativa, use o Middleware de Filtragem de Host.</span><span class="sxs-lookup"><span data-stu-id="2dc96-413">As a workaround, use Host Filtering Middleware.</span></span> <span data-ttu-id="2dc96-414">Middleware de Filtragem de Host é fornecido pelo pacote [Microsoft.AspNetCore.HostFiltering](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering), que está incluído no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 ou posterior).</span><span class="sxs-lookup"><span data-stu-id="2dc96-414">Host Filtering Middleware is provided by the [Microsoft.AspNetCore.HostFiltering](https://www.nuget.org/packages/Microsoft.AspNetCore.HostFiltering) package, which is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later).</span></span> <span data-ttu-id="2dc96-415">O middleware é adicionado pelo <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, que chama <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering*>:</span><span class="sxs-lookup"><span data-stu-id="2dc96-415">The middleware is added by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, which calls <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering*>:</span></span>
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-<span data-ttu-id="b4599-403">Middleware de Filtragem de Host está desabilitado por padrão.</span><span class="sxs-lookup"><span data-stu-id="b4599-403">Host Filtering Middleware is disabled by default.</span></span> <span data-ttu-id="b4599-404">Para habilitar o middleware, defina uma chave `AllowedHosts` em *appSettings. JSON*/*appsettings.\<EnvironmentName>.json*.</span><span class="sxs-lookup"><span data-stu-id="b4599-404">To enable the middleware, define an `AllowedHosts` key in *appsettings.json*/*appsettings.\<EnvironmentName>.json*.</span></span> <span data-ttu-id="b4599-405">O valor dessa chave é uma lista separada por ponto e vírgula de nomes de host sem números de porta:</span><span class="sxs-lookup"><span data-stu-id="b4599-405">The value is a semicolon-delimited list of host names without port numbers:</span></span>
+<span data-ttu-id="2dc96-416">Middleware de Filtragem de Host está desabilitado por padrão.</span><span class="sxs-lookup"><span data-stu-id="2dc96-416">Host Filtering Middleware is disabled by default.</span></span> <span data-ttu-id="2dc96-417">Para habilitar o middleware, defina uma chave `AllowedHosts` em *appSettings. JSON*/*appsettings.\<EnvironmentName>.json*.</span><span class="sxs-lookup"><span data-stu-id="2dc96-417">To enable the middleware, define an `AllowedHosts` key in *appsettings.json*/*appsettings.\<EnvironmentName>.json*.</span></span> <span data-ttu-id="2dc96-418">O valor dessa chave é uma lista separada por ponto e vírgula de nomes de host sem números de porta:</span><span class="sxs-lookup"><span data-stu-id="2dc96-418">The value is a semicolon-delimited list of host names without port numbers:</span></span>
 
-<span data-ttu-id="b4599-406">*appsettings.json*:</span><span class="sxs-lookup"><span data-stu-id="b4599-406">*appsettings.json*:</span></span>
+<span data-ttu-id="2dc96-419">*appsettings.json*:</span><span class="sxs-lookup"><span data-stu-id="2dc96-419">*appsettings.json*:</span></span>
 
 ```json
 {
@@ -1178,14 +1227,14 @@ private class TlsFilterAdapter : IConnectionAdapter
 ```
 
 > [!NOTE]
-> <span data-ttu-id="b4599-407">[Middleware de Cabeçalhos Encaminhados](xref:host-and-deploy/proxy-load-balancer) também tem uma opção <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts>.</span><span class="sxs-lookup"><span data-stu-id="b4599-407">[Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) also has an <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> option.</span></span> <span data-ttu-id="b4599-408">Middleware de Cabeçalhos Encaminhados e Middleware de filtragem de Host têm funcionalidades semelhantes para cenários diferentes.</span><span class="sxs-lookup"><span data-stu-id="b4599-408">Forwarded Headers Middleware and Host Filtering Middleware have similar functionality for different scenarios.</span></span> <span data-ttu-id="b4599-409">A definição de `AllowedHosts` com Middleware de Cabeçalhos Encaminhados é apropriada quando o cabeçalho `Host` não é preservado ao encaminhar solicitações com um servidor proxy reverso ou um balanceador de carga.</span><span class="sxs-lookup"><span data-stu-id="b4599-409">Setting `AllowedHosts` with Forwarded Headers Middleware is appropriate when the `Host` header isn't preserved while forwarding requests with a reverse proxy server or load balancer.</span></span> <span data-ttu-id="b4599-410">A definição de `AllowedHosts` com Middleware de Filtragem de Host é apropriada quando o Kestrel é usado como um servidor de borda voltado ao público ou quando o cabeçalho `Host` é encaminhado diretamente.</span><span class="sxs-lookup"><span data-stu-id="b4599-410">Setting `AllowedHosts` with Host Filtering Middleware is appropriate when Kestrel is used as a public-facing edge server or when the `Host` header is directly forwarded.</span></span>
+> <span data-ttu-id="2dc96-420">[Middleware de Cabeçalhos Encaminhados](xref:host-and-deploy/proxy-load-balancer) também tem uma opção <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts>.</span><span class="sxs-lookup"><span data-stu-id="2dc96-420">[Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) also has an <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> option.</span></span> <span data-ttu-id="2dc96-421">Middleware de Cabeçalhos Encaminhados e Middleware de filtragem de Host têm funcionalidades semelhantes para cenários diferentes.</span><span class="sxs-lookup"><span data-stu-id="2dc96-421">Forwarded Headers Middleware and Host Filtering Middleware have similar functionality for different scenarios.</span></span> <span data-ttu-id="2dc96-422">A definição de `AllowedHosts` com Middleware de Cabeçalhos Encaminhados é apropriada quando o cabeçalho `Host` não é preservado ao encaminhar solicitações com um servidor proxy reverso ou um balanceador de carga.</span><span class="sxs-lookup"><span data-stu-id="2dc96-422">Setting `AllowedHosts` with Forwarded Headers Middleware is appropriate when the `Host` header isn't preserved while forwarding requests with a reverse proxy server or load balancer.</span></span> <span data-ttu-id="2dc96-423">A definição de `AllowedHosts` com Middleware de Filtragem de Host é apropriada quando o Kestrel é usado como um servidor de borda voltado ao público ou quando o cabeçalho `Host` é encaminhado diretamente.</span><span class="sxs-lookup"><span data-stu-id="2dc96-423">Setting `AllowedHosts` with Host Filtering Middleware is appropriate when Kestrel is used as a public-facing edge server or when the `Host` header is directly forwarded.</span></span>
 >
-> <span data-ttu-id="b4599-411">Para obter mais informações sobre o Middleware de Cabeçalhos Encaminhados, confira <xref:host-and-deploy/proxy-load-balancer>.</span><span class="sxs-lookup"><span data-stu-id="b4599-411">For more information on Forwarded Headers Middleware, see <xref:host-and-deploy/proxy-load-balancer>.</span></span>
+> <span data-ttu-id="2dc96-424">Para obter mais informações sobre o Middleware de Cabeçalhos Encaminhados, confira <xref:host-and-deploy/proxy-load-balancer>.</span><span class="sxs-lookup"><span data-stu-id="2dc96-424">For more information on Forwarded Headers Middleware, see <xref:host-and-deploy/proxy-load-balancer>.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="b4599-412">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="b4599-412">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="2dc96-425">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="2dc96-425">Additional resources</span></span>
 
 * <xref:test/troubleshoot>
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>
-* [<span data-ttu-id="b4599-413">Código-fonte do kestrel</span><span class="sxs-lookup"><span data-stu-id="b4599-413">Kestrel source code</span></span>](https://github.com/aspnet/AspNetCore/tree/master/src/Servers/Kestrel)
-* [<span data-ttu-id="b4599-414">RFC 7230: sintaxe e roteamento da mensagem (Seção 5.4: host)</span><span class="sxs-lookup"><span data-stu-id="b4599-414">RFC 7230: Message Syntax and Routing (Section 5.4: Host)</span></span>](https://tools.ietf.org/html/rfc7230#section-5.4)
+* [<span data-ttu-id="2dc96-426">Código-fonte do kestrel</span><span class="sxs-lookup"><span data-stu-id="2dc96-426">Kestrel source code</span></span>](https://github.com/aspnet/AspNetCore/tree/master/src/Servers/Kestrel)
+* [<span data-ttu-id="2dc96-427">RFC 7230: sintaxe e roteamento da mensagem (Seção 5.4: host)</span><span class="sxs-lookup"><span data-stu-id="2dc96-427">RFC 7230: Message Syntax and Routing (Section 5.4: Host)</span></span>](https://tools.ietf.org/html/rfc7230#section-5.4)
