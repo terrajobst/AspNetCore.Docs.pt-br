@@ -5,14 +5,14 @@ description: Saiba como configurar a autenticação do Windows no ASP.NET Core p
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 06/12/2019
+ms.date: 07/01/2019
 uid: security/authentication/windowsauth
-ms.openlocfilehash: 93f833adff95f25d570947cd1a9035d652f522c2
-ms.sourcegitcommit: 335a88c1b6e7f0caa8a3a27db57c56664d676d34
+ms.openlocfilehash: 30f1f554a29412ed6b84115d457d2da1aba91c17
+ms.sourcegitcommit: eb3e51d58dd713eefc242148f45bd9486be3a78a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/12/2019
-ms.locfileid: "67034958"
+ms.lasthandoff: 07/02/2019
+ms.locfileid: "67500503"
 ---
 # <a name="configure-windows-authentication-in-aspnet-core"></a>Configurar a autenticação do Windows no ASP.NET Core
 
@@ -145,7 +145,10 @@ Use **qualquer** das seguintes abordagens:
  O [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) pacote do NuGet pode ser usado com [Kestrel](xref:fundamentals/servers/kestrel) para dar suporte à autenticação do Windows usando Negotiate, Kerberos e NTLM no Windows, Linux e macOS.
 
 > [!WARNING]
-> As credenciais podem ser persistidas entre as solicitações em uma conexão. *Negociar a autenticação não deve ser usada com proxies, a menos que o proxy mantém uma afinidade de conexão de 1:1 (uma conexão persistente) com o Kestrel.* Isso significa que a autenticação de negociação não deve ser usada com o Kestrel por trás do IIS [fora do processo do ASP.NET Core ANCM (módulo)](xref:host-and-deploy/iis/index#out-of-process-hosting-model).
+> As credenciais podem ser persistidas entre as solicitações em uma conexão. *Negociar a autenticação não deve ser usada com proxies, a menos que o proxy mantém uma afinidade de conexão de 1:1 (uma conexão persistente) com o Kestrel.*
+
+> [!NOTE]
+> O manipulador de Negotiate detecta se o servidor subjacente dá suporte à autenticação do Windows nativamente e se ela estiver habilitada. Se o servidor dá suporte à autenticação do Windows, mas ela é desabilitada, é gerado um erro solicitando que você habilitar a implementação do servidor. Quando a autenticação do Windows está habilitada no servidor, o manipulador de Negotiate enviará de forma transparente a ele.
 
  Adicionar serviços de autenticação, invocando <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> (`Microsoft.AspNetCore.Authentication.Negotiate` namespace) e `AddNegotitate` (`Microsoft.AspNetCore.Authentication.Negotiate` namespace) em `Startup.ConfigureServices`:
 
@@ -255,7 +258,17 @@ Enquanto o [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org
 
 ## <a name="claims-transformations"></a>Transformações de declarações
 
+::: moniker range=">= aspnetcore-3.0"
+
+Ao hospedar com o IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> não é chamado internamente para inicializar um usuário. Portanto, uma implementação <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> usada para transformar as declarações após cada autenticação não é ativada por padrão. Para obter mais informações e um exemplo de código que ativa as transformações de declarações, consulte <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 Ao hospedar com o modo de em processo do IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> não é chamado internamente para inicializar um usuário. Portanto, uma implementação <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> usada para transformar as declarações após cada autenticação não é ativada por padrão. Para obter mais informações e um exemplo de código que ativa as transformações de declarações quando no processo de hospedagem, consulte <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model>.
+
+::: moniker-end
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

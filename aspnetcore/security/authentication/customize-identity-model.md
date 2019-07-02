@@ -3,14 +3,14 @@ title: Personalização de modelo de identidade no ASP.NET Core
 author: ajcvickers
 description: Este artigo descreve como personalizar o modelo de dados subjacente do Entity Framework Core para ASP.NET Core Identity.
 ms.author: avickers
-ms.date: 04/24/2019
+ms.date: 07/01/2019
 uid: security/authentication/customize_identity_model
-ms.openlocfilehash: 53ce77e20722f3ba3282ff4455a0b70d30e635b0
-ms.sourcegitcommit: ffe3ed7921ec6c7c70abaac1d10703ec9a43374c
+ms.openlocfilehash: f549fdff4a416b5fadcb2b1078b051bbab8e402e
+ms.sourcegitcommit: eb3e51d58dd713eefc242148f45bd9486be3a78a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/11/2019
-ms.locfileid: "65536017"
+ms.lasthandoff: 07/02/2019
+ms.locfileid: "67500479"
 ---
 # <a name="identity-model-customization-in-aspnet-core"></a>Personalização de modelo de identidade no ASP.NET Core
 
@@ -72,7 +72,7 @@ O [tipos de entidade](#entity-types) estão relacionados uns aos outros das segu
 
 ### <a name="default-model-configuration"></a>Configuração de modelo padrão
 
-Identidade define muitos *classes de contexto* que herdam de <xref:Microsoft.EntityFrameworkCore.DbContext> para configurar e usar o modelo. Essa configuração é feita usando o [EF Core Fluent API do Code First](/ef/core/modeling/) no <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating*> método da classe de contexto. A configuração padrão é:
+Identidade define muitos *classes de contexto* que herdam [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) para configurar e usar o modelo. Essa configuração é feita usando o [EF Core Fluent API do Code First](/ef/core/modeling/) na [OnModelCreating](/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating) método da classe de contexto. A configuração padrão é:
 
 ```csharp
 builder.Entity<TUser>(b =>
@@ -463,7 +463,7 @@ Siga estas etapas para alterar o tipo de PK:
             .AddDefaultTokenProviders();
     ```
 
-    Tipo de dados da chave primária é inferido, analisando o <xref:Microsoft.EntityFrameworkCore.DbContext> objeto.
+    Tipo de dados da chave primária é inferido, analisando as [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) objeto.
 
     No ASP.NET Core 2.1 ou posterior, a identidade é fornecida como uma biblioteca de classes Razor. Para obter mais informações, consulte <xref:security/authentication/scaffold-identity>. Consequentemente, o código anterior requer uma chamada para <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. Se o scaffolder de identidade foi usado para adicionar arquivos de identidade para o projeto, remova a chamada para `AddDefaultUI`.
 
@@ -477,7 +477,7 @@ Siga estas etapas para alterar o tipo de PK:
             .AddDefaultTokenProviders();
     ```
 
-    Tipo de dados da chave primária é inferido, analisando o <xref:Microsoft.EntityFrameworkCore.DbContext> objeto.
+    Tipo de dados da chave primária é inferido, analisando as [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) objeto.
 
     ::: moniker-end
 
@@ -507,7 +507,7 @@ Siga estas etapas para alterar o tipo de PK:
 
     [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Startup.cs?name=snippet_ConfigureServices&highlight=13-16)]
 
-    Tipo de dados da chave primária é inferido, analisando o <xref:Microsoft.EntityFrameworkCore.DbContext> objeto.
+    Tipo de dados da chave primária é inferido, analisando as [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) objeto.
 
     No ASP.NET Core 2.1 ou posterior, a identidade é fornecida como uma biblioteca de classes Razor. Para obter mais informações, consulte <xref:security/authentication/scaffold-identity>. Consequentemente, o código anterior requer uma chamada para <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. Se o scaffolder de identidade foi usado para adicionar arquivos de identidade para o projeto, remova a chamada para `AddDefaultUI`.
 
@@ -521,7 +521,7 @@ Siga estas etapas para alterar o tipo de PK:
 
     [!code-csharp[](customize-identity-model/samples/2.0/RazorPagesSampleApp/Startup.cs?name=snippet_ConfigureServices&highlight=7-9)]
 
-    Tipo de dados da chave primária é inferido, analisando o <xref:Microsoft.EntityFrameworkCore.DbContext> objeto.
+    Tipo de dados da chave primária é inferido, analisando as [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) objeto.
 
     ::: moniker-end
 
@@ -962,7 +962,7 @@ Nesta seção, o suporte para proxies de carregamento lento no modelo de identid
 Tipos de entidade podem ser feitos adequados para carregamento lento de diversas maneiras, conforme descrito na [documentação do EF Core](/ef/core/querying/related-data#lazy-loading). Para simplificar, use proxies de carregamento lento, que requer:
 
 * Instalação dos [entityframeworkcore](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) pacote.
-* Uma chamada para <xref:Microsoft.EntityFrameworkCore.ProxiesExtensions.UseLazyLoadingProxies*> dentro de <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*>.
+* Uma chamada para <xref:Microsoft.EntityFrameworkCore.ProxiesExtensions.UseLazyLoadingProxies*> dentro de [AddDbContext\<TContext >](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext).
 * Tipos de entidade pública com `public virtual` propriedades de navegação.
 
 O exemplo a seguir demonstra a chamada `UseLazyLoadingProxies` em `Startup.ConfigureServices`:
