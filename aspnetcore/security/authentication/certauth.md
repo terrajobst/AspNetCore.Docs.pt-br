@@ -3,15 +3,15 @@ title: Configurar a autenticação de certificado no ASP.NET Core
 author: blowdart
 description: Saiba como configurar a autenticação de certificado no ASP.NET Core para IIS e o HTTP. sys.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: barry.dorrans
+ms.author: bdorrans
 ms.date: 06/11/2019
 uid: security/authentication/certauth
-ms.openlocfilehash: 37567128531187bfe7dd6c9f5aa990226e70f35f
-ms.sourcegitcommit: 1bb3f3f1905b4e7d4ca1b314f2ce6ee5dd8be75f
+ms.openlocfilehash: 8609c58265340da1d618135795915d6c49e750a3
+ms.sourcegitcommit: 0b9e767a09beaaaa4301915cdda9ef69daaf3ff2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/11/2019
-ms.locfileid: "66837533"
+ms.lasthandoff: 07/03/2019
+ms.locfileid: "67538714"
 ---
 # <a name="overview"></a>Visão geral
 
@@ -89,7 +89,7 @@ O manipulador tem dois eventos:
 * `OnAuthenticationFailed` &ndash; Chamado se uma exceção ocorre durante a autenticação e permite reagir.
 * `OnCertificateValidated` &ndash; Chamado depois que o certificado tiver sido validado, passou na validação e uma entidade de segurança padrão foi criada. Esse evento permite que você execute sua própria validação e incrementar ou substituir a entidade de segurança. Para obter exemplos incluem:
   * Determinando se o certificado é conhecido por seus serviços.
-  * Construindo sua própria entidade. Considere o exemplo a seguir no `Startup.ConfigureServices`:
+  * Construindo sua própria entidade. Considere o exemplo a seguir em `Startup.ConfigureServices`:
 
 ```csharp
 services.AddAuthentication(
@@ -125,7 +125,7 @@ services.AddAuthentication(
 
 Se você encontrar o certificado de entrada não atende à sua validação extra, chamada `context.Fail("failure reason")` com um motivo da falha.
 
-Funcionalidade de verdade, você provavelmente desejará chamar um serviço registrado na injeção de dependência que se conecta a um banco de dados ou outro tipo de repositório do usuário. Acesse seu serviço usando o contexto passado para o seu representante. Considere o exemplo a seguir no `Startup.ConfigureServices`:
+Funcionalidade de verdade, você provavelmente desejará chamar um serviço registrado na injeção de dependência que se conecta a um banco de dados ou outro tipo de repositório do usuário. Acesse seu serviço usando o contexto passado para o seu representante. Considere o exemplo a seguir em `Startup.ConfigureServices`:
 
 ```csharp
 services.AddAuthentication(
