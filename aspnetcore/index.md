@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/07/2019
 uid: index
-ms.openlocfilehash: 6dd722b3b78d2af81497bde9e0519feb9af84748
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: ec2b5b72eeff21d183397284b0d538681282d45b
+ms.sourcegitcommit: 47cc13ab90913af9a2887cef0896bb4e9aba4dd5
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65086145"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67399156"
 ---
 # <a name="introduction-to-aspnet-core"></a>Introdução ao ASP.NET Core
 
@@ -50,11 +50,11 @@ O ASP.NET Core integra-se perfeitamente com estruturas conhecidas do lado do cli
 
 ## <a name="aspnet-core-targeting-net-framework"></a>ASP.NET Core direcionado para o .NET Framework
 
-O ASP.NET Core 2.x pode ser direcionado para o .NET Core ou ao .NET Framework. Os aplicativos do ASP.NET Core direcionados ao .NET Framework não são multiplataforma,&mdash; são executados somente no Windows. Em geral, o ASP.NET Core 2.x é composto de bibliotecas do [.NET Standard](/dotnet/standard/net-standard). As bibliotecas gravadas com .NET Standard 2.0 são executadas em [qualquer plataforma .NET que implementa o .NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support).
+O ASP.NET Core 2.x pode ser direcionado para o .NET Core ou ao .NET Framework. Os aplicativos do ASP.NET Core direcionados ao .NET Framework não são multiplataforma,&mdash; são executados somente no Windows. Em geral, o ASP.NET Core 2.x é composto de bibliotecas do [.NET Standard](/dotnet/standard/net-standard). As bibliotecas gravadas com .NET Standard 2.0 podem ser executadas em qualquer [plataforma .NET que implemente o .NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support).
 
 O ASP.NET Core 2.x dá suporte para as versões do .NET Framework que implementam o .NET Standard 2.0:
 
-* O .NET Framework 4.7.1 e versões posteriores são fortemente recomendados.
+* É altamente recomendável usar a versão mais recente do .NET framework.
 * .NET Framework 4.6.1 e versões posteriores.
 
 O ASP.NET Core 3.0 e posterior somente executará no .NET Core. Para obter mais detalhes sobre essa alteração, confira [A first look at changes coming in ASP.NET Core 3.0](https://blogs.msdn.microsoft.com/webdev/2018/10/29/a-first-look-at-changes-coming-in-asp-net-core-3-0/) (Uma primeira análise das alterações no ASP.NET Core 3.0).
