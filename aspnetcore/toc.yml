@@ -192,6 +192,8 @@
       uid: fundamentals/http-requests
     - name: Arquivos estáticos
       uid: fundamentals/static-files
+    - name: Gerador de código
+      uid: fundamentals/tools/dotnet-aspnet-codegenerator
 - name: Aplicativos Web
   items:
     - name: Páginas do Razor
@@ -816,6 +818,8 @@
           uid: security/authentication/2fa
         - name: Usar a autenticação de cookie sem o Identity
           uid: security/authentication/cookie
+        - name: Usar a autenticação por redes sociais sem o Identity
+          uid: security/authentication/social/social-without-identity
         - name: Azure Active Directory
           items:
             - name: Visão geral
