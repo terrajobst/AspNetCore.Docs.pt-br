@@ -1,20 +1,20 @@
 ---
-title: Configurar o Vinculador para o Blazor
+title: Configurar o vinculador para o Blazor do ASP.NET Core
 author: guardrex
 description: Saiba como controlar o Vinculador de IL (Linguagem Intermediária) ao criar um aplicativo Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2019
+ms.date: 07/02/2019
 uid: host-and-deploy/blazor/configure-linker
-ms.openlocfilehash: 00676d4311f8955c3c1ef38d31219d62ea9f4a25
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 03be18e7ee6ca8103e1a666da9e693ff67267d83
+ms.sourcegitcommit: 0b9e767a09beaaaa4301915cdda9ef69daaf3ff2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64887771"
+ms.lasthandoff: 07/03/2019
+ms.locfileid: "67538623"
 ---
-# <a name="configure-the-linker-for-blazor"></a>Configurar o Vinculador para o Blazor
+# <a name="configure-the-linker-for-aspnet-core-blazor"></a>Configurar o vinculador para o Blazor do ASP.NET Core
 
 Por [Luke Latham](https://github.com/guardrex)
 
@@ -27,7 +27,7 @@ Controle a vinculação do assembly com uma das seguintes abordagens:
 
 ## <a name="disable-linking-with-a-msbuild-property"></a>Desabilitar a vinculação com uma propriedade MSBuild
 
-A vinculação é habilitada por padrão no Modo de Versão quando um aplicativo é criado, o que inclui publicação. Para desabilitar a vinculação para todos os assemblies, defina a propriedade `<BlazorLinkOnBuild>` MSBuild como `false` no arquivo de projeto:
+A vinculação é habilitada por padrão no Modo de Versão quando um aplicativo é criado, o que inclui publicação. Para desabilitar a vinculação para todos os assemblies, defina a propriedade `BlazorLinkOnBuild` MSBuild como `false` no arquivo de projeto:
 
 ```xml
 <PropertyGroup>

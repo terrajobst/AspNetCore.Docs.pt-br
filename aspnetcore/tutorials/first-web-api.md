@@ -1,19 +1,19 @@
 ---
-title: 'Tutorial: Criar uma API Web com o ASP.NET Core MVC'
+title: 'Tutorial: Criar uma API Web com o ASP.NET Core'
 author: rick-anderson
-description: Criar uma API Web com o ASP.NET Core MVC
+description: Saiba como criar uma API Web com o ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/4/2019
+ms.date: 06/18/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: dce2926e3cb19d6ac8d2af0e9b96c31dee1d92fd
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: 17e8ee08fca775b8fccc3f2e6cd6067caca9c79f
+ms.sourcegitcommit: a1283d486ac1dcedfc7ea302e1cc882833e2c515
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087520"
+ms.lasthandoff: 06/18/2019
+ms.locfileid: "67207775"
 ---
-# <a name="tutorial-create-a-web-api-with-aspnet-core-mvc"></a>Tutorial: Criar uma API Web com o ASP.NET Core MVC
+# <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Criar uma API Web com o ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Mike Wasson](https://github.com/mikewasson)
 
@@ -39,7 +39,7 @@ No final, você terá uma API Web que pode gerenciar itens de "tarefas pendentes
 
 Este tutorial cria a seguinte API:
 
-|API | Descrição | Corpo da solicitação | Corpo da resposta |
+|API | DESCRIÇÃO | Corpo da solicitação | Corpo da resposta |
 |--- | ---- | ---- | ---- |
 |GET /api/todo | Obter todos os itens de tarefas pendentes | Nenhum | Matriz de itens de tarefas pendentes|
 |GET /api/todo/{id} | Obter um item por ID | Nenhum | Item de tarefas pendentes|
@@ -88,7 +88,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
   ![Caixa de diálogo Novo projeto do macOS](first-web-api-mac/_static/1.png)
   
-* Na caixa de diálogo **Configurar sua nova API Web do ASP.NET Core**, aceite a **Estrutura de Destino** padrão **.NET Core 2.2*.
+* Na caixa de diálogo **Configurar sua nova API Web do ASP.NET Core**, aceite a **Estrutura de Destino** padrão * *.NET Core 2.2*.
 
 * Insira *TodoApi* para o **Nome do Projeto** e, em seguida, selecione **Criar**.
 
@@ -276,7 +276,7 @@ Os tipos de retorno `ActionResult` podem representar uma ampla variedade de cód
 
 Este tutorial usa o Postman para testar a API Web.
 
-* Instale o [Postman](https://www.getpostman.com/apps)
+* Instale o [Postman](https://www.getpostman.com/downloads/)
 * Inicie o aplicativo Web.
 * Inicie o Postman.
 * Desabilite a **Verificação do certificado SSL**
@@ -315,7 +315,7 @@ O método `CreatedAtAction`:
 * No Postman, defina o método HTTP como `POST`.
 * Selecione a guia **Corpo**.
 * Selecione o botão de opção **bruto**.
-* Defina o tipo como **JSON (aplicativo/json)**.
+* Defina o tipo como **JSON (aplicativo/json)** .
 * No corpo da solicitação, insira JSON para um item pendente:
 
     ```json

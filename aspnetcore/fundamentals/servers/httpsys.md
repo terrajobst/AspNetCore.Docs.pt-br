@@ -7,12 +7,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/27/2019
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: d91a0f7b83fb073147978319edfbed0bda9a1c44
-ms.sourcegitcommit: 06c4f2910dd54ded25e1b8750e09c66578748bc9
+ms.openlocfilehash: 1b5e26171e5f807fdb918ccf8ae1ff1231ad5356
+ms.sourcegitcommit: f5762967df3be8b8c868229e679301f2f7954679
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/30/2019
-ms.locfileid: "66395948"
+ms.lasthandoff: 06/13/2019
+ms.locfileid: "67048187"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementação do servidor Web HTTP.sys no ASP.NET Core
 
@@ -86,7 +86,7 @@ O HTTP.sys delega à autenticação de modo kernel com o protocolo de autentica�
 
 1. Não é necessário usar uma referência do pacote no arquivo de projeto ao usar o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) ([nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)) (ASP.NET Core 2.1 ou posterior). Se não estiver usando o metapacote `Microsoft.AspNetCore.App`, adicione uma referência do pacote a [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/).
 
-2. Chame o método de extensão <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> ao compilar o host da Web, especificando qualquer <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions> necessário:
+2. Chame o método de extensão <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> ao compilar o host, especificando qualquer <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions> necessária:
 
    [!code-csharp[](httpsys/sample/Program.cs?name=snippet1&highlight=4-12)]
 
@@ -94,7 +94,7 @@ O HTTP.sys delega à autenticação de modo kernel com o protocolo de autentica�
 
    **Opções do HTTP.sys**
 
-   | Propriedade | Descrição | Padrão |
+   | Propriedade | DESCRIÇÃO | Padrão |
    | -------- | ----------- | :-----: |
    | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `true` |
    | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
@@ -167,7 +167,7 @@ O HTTP.sys delega à autenticação de modo kernel com o protocolo de autentica�
 
    Uma vantagem de usar `UrlPrefixes` é que uma mensagem de erro é gerada imediatamente no caso de prefixos formatados de forma incorreta.
 
-   As configurações de `UrlPrefixes` substituem as configurações `UseUrls`/`urls`/`ASPNETCORE_URLS`. Portanto, uma vantagem de usar `UseUrls`, `urls` e a variável de ambiente `ASPNETCORE_URLS` é que fica mais fácil alternar entre o Kestrel e o HTTP.sys. Para obter mais informações, consulte <xref:fundamentals/host/web-host>.
+   As configurações de `UrlPrefixes` substituem as configurações `UseUrls`/`urls`/`ASPNETCORE_URLS`. Portanto, uma vantagem de usar `UseUrls`, `urls` e a variável de ambiente `ASPNETCORE_URLS` é que fica mais fácil alternar entre o Kestrel e o HTTP.sys.
 
    O HTTP.sys usa os [formatos de cadeia de caracteres UrlPrefix da API do Servidor HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
 

@@ -5,14 +5,14 @@ description: Saiba como criar perfis de publicação no Visual Studio e usá-los
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2019
+ms.date: 06/18/2019
 uid: host-and-deploy/visual-studio-publish-profiles
-ms.openlocfilehash: be5d1a79b7f4437d04586ae4ce24df94547d8a3c
-ms.sourcegitcommit: b4ef2b00f3e1eb287138f8b43c811cb35a100d3e
+ms.openlocfilehash: ac243a3898553b2e14a6c15d311afaf62f112a24
+ms.sourcegitcommit: a1283d486ac1dcedfc7ea302e1cc882833e2c515
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/21/2019
-ms.locfileid: "65969983"
+ms.lasthandoff: 06/18/2019
+ms.locfileid: "67207822"
 ---
 # <a name="visual-studio-publish-profiles-for-aspnet-core-app-deployment"></a>Perfis de publicação do Visual Studio para a implantação do aplicativo ASP.NET Core
 
@@ -20,64 +20,17 @@ Por [Sayed Hashimi de Ibrahim](https://github.com/sayedihashimi) e [Rick Anderso
 
 Este documento se concentra no uso do Visual Studio 2017 (ou posterior) para criar e usar perfis de publicação. Os perfis de publicação criados com o Visual Studio podem ser executados do MSBuild e do Visual Studio. Consulte [Publicar um aplicativo Web ASP.NET Core no Serviço de Aplicativo do Azure usando o Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) para obter instruções sobre a publicação no Azure.
 
-O arquivo de projeto a seguir foi criado com o comando `dotnet new mvc`:
-
-::: moniker range=">= aspnetcore-2.2"
+O comando `dotnet new mvc` produz um arquivo de projeto contendo o seguinte elemento `<Project>` de nível superior:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
+    <!-- omitted for brevity -->
 </Project>
 ```
 
-::: moniker-end
+O atributo `Sdk` do elemento `<Project>` anterior importa as [propriedades](/visualstudio/msbuild/msbuild-properties) e os [destinos](/visualstudio/msbuild/msbuild-targets) do MSBuild de *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.props* e *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets*, respectivamente. O local padrão para `$(MSBuildSDKsPath)` (com o Visual Studio 2019 Enterprise) é a pasta *%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Sdks*.
 
-::: moniker range="< aspnetcore-2.2"
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-</Project>
-```
-
-::: moniker-end
-
-O atributo `<Project>` do elemento `Sdk` realiza as seguintes tarefas:
-
-* Importa o arquivo de propriedades de *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.Props* no início.
-* Importa o arquivo de destino de *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets* no fim.
-
-O local padrão para `MSBuildSDKsPath` (com o Visual Studio Enterprise 2017) é a pasta *%programfiles(x86)%\Microsoft Visual Studio\2017\Enterprise\MSBuild\Sdks*.
-
-O SDK de `Microsoft.NET.Sdk.Web` depende de:
-
-* *Microsoft.NET.Sdk.Web.ProjectSystem*
-* *Microsoft.NET.Sdk.Publish*
-
-O que faz com que as propriedades e os destinos a seguir a sejam importados:
-
-* *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web.ProjectSystem\Sdk\Sdk.Props*
-* *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web.ProjectSystem\Sdk\Sdk.targets*
-* *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Publish\Sdk\Sdk.Props*
-* *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Publish\Sdk\Sdk.targets*
-
-Destinos de publicação importam o conjunto certo de destinos com base no método de publicação usado.
+`Microsoft.NET.Sdk.Web` (SDK da Web) depende de outros SDKs, incluindo `Microsoft.NET.Sdk` (SDK do .NET Core) e `Microsoft.NET.Sdk.Razor` ([SDK do Razor](xref:razor-pages/sdk)). As propriedades e os destinos do MSBuild associados a cada SDK dependente são importados. Os destinos de publicação importam o conjunto apropriado de destinos com base no método de publicação usado.
 
 Quando o MSBuild ou o Visual Studio carrega um projeto, as seguintes ações de nível alto ocorrem:
 
@@ -87,9 +40,23 @@ Quando o MSBuild ou o Visual Studio carrega um projeto, as seguintes ações de 
 
 ## <a name="compute-project-items"></a>Itens de projeto de computação
 
-Quando o projeto é carregado, os itens de projeto (arquivos) são computados. O atributo `item type` determina como o arquivo é processado. Por padrão, os arquivos *.cs* são incluídos na lista de itens `Compile`. Os arquivos na lista de itens `Compile` são compilados.
+Quando o projeto é carregado, os [itens de projeto do MSBuild](/visualstudio/msbuild/common-msbuild-project-items) (arquivos) são computados. O tipo de item determina como o arquivo é processado. Por padrão, os arquivos *.cs* são incluídos na lista de itens `Compile`. Os arquivos na lista de itens `Compile` são compilados.
 
-A lista de itens `Content` contém arquivos que são publicados juntamente com as saídas de build. Por padrão, os arquivos correspondendo ao padrão `wwwroot/**` são incluídos no item `Content`. O [padrão glob](https://gruntjs.com/configuring-tasks#globbing-patterns) `wwwroot/\*\*` corresponde a todos os arquivos na pasta *wwwroot* **e** subpastas. Para adicionar explicitamente um arquivo à lista de publicação, adicione o arquivo diretamente no arquivo *.csproj* conforme mostrado em [Arquivos de Inclusão](#include-files).
+A lista de itens `Content` contém arquivos que são publicados juntamente com as saídas de build. Por padrão, os arquivos que correspondem aos padrões `wwwroot\**`, `**\*.config` e `**\*.json` são incluídos na lista de itens `Content`. Por exemplo, o [padrão de recurso de curinga](https://gruntjs.com/configuring-tasks#globbing-patterns) `wwwroot\**` corresponde a todos os arquivos na pasta *wwwroot* **e** suas subpastas.
+
+::: moniker range=">= aspnetcore-3.0"
+
+O SDK da Web importa o [SDK do Razor](xref:razor-pages/sdk). Como resultado, os arquivos que correspondem aos padrões `**\*.cshtml` e `**\*.razor` também são incluídos na lista de itens `Content`.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+
+O SDK da Web importa o [SDK do Razor](xref:razor-pages/sdk). Como resultado, os arquivos que correspondem ao padrão `**\*.cshtml` também são incluídos na lista de itens `Content`.
+
+::: moniker-end
+
+Para adicionar explicitamente um arquivo à lista de publicação, adicione o arquivo diretamente no arquivo *.csproj*, conforme mostrado na seção [Incluir Arquivos](#include-files).
 
 Ao selecionar o botão **Publicar** no Visual Studio ou ao publicar da linha de comando:
 
@@ -103,7 +70,7 @@ Quando um projeto do ASP.NET Core faz referência a `Microsoft.NET.Sdk.Web` no a
 
 ## <a name="basic-command-line-publishing"></a>Publicação de linha de comando básica
 
-A publicação de linha de comando funciona em todas as plataformas compatíveis com o .NET Core e não requer o Visual Studio. Nas amostras abaixo, o comando [dotnet publish](/dotnet/core/tools/dotnet-publish) é executado no diretório do projeto (que contém o arquivo *.csproj*). Se você não estiver na pasta do projeto, passe explicitamente no caminho do arquivo de projeto. Por exemplo:
+A publicação de linha de comando funciona em todas as plataformas compatíveis com o .NET Core e não requer o Visual Studio. Nas amostras a seguir, o comando [dotnet publish](/dotnet/core/tools/dotnet-publish) é executado no diretório do projeto (que contém o arquivo *.csproj*). Se você não estiver na pasta do projeto, passe explicitamente no caminho do arquivo de projeto. Por exemplo:
 
 ```console
 dotnet publish C:\Webs\Web1
@@ -120,10 +87,12 @@ O comando [dotnet publish](/dotnet/core/tools/dotnet-publish) gera uma saída se
 
 ```console
 C:\Webs\Web1>dotnet publish
-Microsoft (R) Build Engine version 15.3.409.57025 for .NET Core
+Microsoft (R) Build Engine version {version} for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
+  Restore completed in 36.81 ms for C:\Webs\Web1\Web1.csproj.
   Web1 -> C:\Webs\Web1\bin\Debug\netcoreapp{X.Y}\Web1.dll
+  Web1 -> C:\Webs\Web1\bin\Debug\netcoreapp{X.Y}\Web1.Views.dll
   Web1 -> C:\Webs\Web1\bin\Debug\netcoreapp{X.Y}\publish\
 ```
 
@@ -148,7 +117,7 @@ O comando a seguir publica um build de `Release` para um compartilhamento de red
 
 `dotnet publish -c Release /p:PublishDir=//r8/release/AdminWeb`
 
-O compartilhamento de rede é especificado com barras "/" (*//r8/*) e funciona em todas as plataformas com suporte do .NET Core.
+O compartilhamento de rede é especificado com barras "/" ( *//r8/* ) e funciona em todas as plataformas com suporte do .NET Core.
 
 Confirme que o aplicativo publicado para implantação não está em execução. Os arquivos da pasta *publish* são bloqueados quando o aplicativo está em execução. A implantação não pode ocorrer porque arquivos bloqueados não podem ser copiados.
 
@@ -158,7 +127,7 @@ Esta seção usa o Visual Studio 2017 (ou posterior) para criar um perfil de pub
 
 Perfis de publicação podem simplificar o processo de publicação e podem existir em qualquer número. Crie um perfil de publicação no Visual Studio escolhendo um dos seguintes caminhos:
 
-* Clique com o botão direito do mouse no projeto no Gerenciador de Soluções e selecione **Publicar**.
+* No Visual Studio, clique com o botão direito do mouse no nome do projeto no **Gerenciador de Soluções** e selecione **Publicar**.
 * Selecione **Publicar {NOME DO PROJETO}** no menu **Build**.
 
 A guia **Publicar** da página de capacidades do aplicativo é exibida. Se o projeto não tem um perfil de publicação, a página a seguir é exibida:
@@ -187,7 +156,7 @@ Ao publicar em um destino do Azure, o arquivo *.pubxml* contém o identificador 
 
 Informações confidenciais (como a senha de publicação) são criptografadas em um nível por usuário/computador. Elas são armazenadas no arquivo *Properties/PublishProfiles/{NOME DO PERFIL}.pubxml.user*. Já que esse arquivo pode armazenar informações confidenciais, o check-in dele não deve ser realizado no controle do código-fonte.
 
-Para obter uma visão geral de como publicar um aplicativo Web do ASP.NET Core, veja [Hospedar e implantar](xref:host-and-deploy/index). As tarefas e os destinos de MSBuild necessários para publicar um aplicativo ASP.NET Core são de software livre no https://github.com/aspnet/websdk.
+Para obter uma visão geral de como publicar um aplicativo Web do ASP.NET Core, veja [Hospedar e implantar](xref:host-and-deploy/index). As tarefas e os destinos de MSBuild necessários para publicar um aplicativo ASP.NET Core são open-source no [repositório aspnet/websdk](https://github.com/aspnet/websdk).
 
 O `dotnet publish` pode usar os perfis de publicação de pasta, MSDeploy e [Kudu](https://github.com/projectkudu/kudu/wiki):
 
@@ -209,7 +178,7 @@ Pacote MSDeploy (atualmente só funciona no Windows, uma vez que o MSDeploy não
 dotnet publish WebApplication.csproj /p:PublishProfile=<MsDeployPackageProfileName>
 ```
 
-Nos exemplos anteriores, **não** passe o `deployonbuild` para `dotnet publish`.
+Nos exemplos anteriores, não passe `deployonbuild` para `dotnet publish`.
 
 Para obter mais informações, confira [Microsoft.NET.Sdk.Publish](https://github.com/aspnet/websdk#microsoftnetsdkpublish).
 
@@ -272,7 +241,7 @@ MSBuild file.
 </Project>
 ```
 
-Observe que `<LastUsedBuildConfiguration>` é definido como `Release`. Ao publicar no Visual Studio, o valor da propriedade de configuração `<LastUsedBuildConfiguration>` é definido usando o valor quando o processo de publicação é iniciado. A propriedade de configuração `<LastUsedBuildConfiguration>` é especial e não deve ser substituída em um arquivo do MSBuild importado. Essa propriedade pode ser substituída da linha de comando.
+Nos exemplos anteriores, `<LastUsedBuildConfiguration>` é definido como `Release`. Ao publicar no Visual Studio, o valor da propriedade de configuração `<LastUsedBuildConfiguration>` é definido usando o valor quando o processo de publicação é iniciado. A propriedade de configuração `<LastUsedBuildConfiguration>` é especial e não deve ser substituída em um arquivo do MSBuild importado. Essa propriedade pode ser substituída da linha de comando.
 
 Usando a CLI do .NET Core:
 
@@ -334,7 +303,7 @@ dotnet msbuild "AzureWebApp.csproj"
 
 ## <a name="set-the-environment"></a>Definir o ambiente
 
-Inclua a propriedade `<EnvironmentName>` no perfil de publicação (*.pubxml*) ou no arquivo de projeto para definir o [ambiente](xref:fundamentals/environments) do aplicativo:
+Inclua a propriedade `<EnvironmentName>` no perfil de publicação ( *.pubxml*) ou no arquivo de projeto para definir o [ambiente](xref:fundamentals/environments) do aplicativo:
 
 ```xml
 <PropertyGroup>
@@ -346,7 +315,15 @@ Se você precisar de transformações do *web.config* (por exemplo, definir vari
 
 ## <a name="exclude-files"></a>Excluir arquivos
 
-Ao publicar aplicativos Web do ASP.NET Core, os artefatos de build e o conteúdo da pasta *wwwroot* são incluídos. `msbuild` dá suporte a [padrões de caractere curinga](https://gruntjs.com/configuring-tasks#globbing-patterns). Por exemplo, o elemento `<Content>` a seguir exclui todos os arquivos de texto (*.txt*) da pasta *wwwroot/content* e de todas as suas subpastas.
+Ao publicar aplicativos Web ASP.NET Core, os seguintes ativos são incluídos:
+
+* Artefatos de compilação
+* As pastas e os arquivos que correspondem aos seguintes padrões de recurso de curinga:
+  * `**\*.config` (por exemplo, *web.config*)
+  * `**\*.json` (por exemplo, *appsettings.json*)
+  * `wwwroot\**`
+
+O MSBuild dá suporte aos [padrões de recurso de curinga](https://gruntjs.com/configuring-tasks#globbing-patterns). Por exemplo, o elemento `<Content>` a seguir suprime a cópia dos arquivos de texto ( *.txt*) na pasta *wwwroot\content* e suas subpastas:
 
 ```xml
 <ItemGroup>
@@ -356,7 +333,7 @@ Ao publicar aplicativos Web do ASP.NET Core, os artefatos de build e o conteúdo
 
 A marcação anterior pode ser adicionada a um perfil de publicação ou ao arquivo *.csproj*. Quando adicionada ao arquivo *.csproj*, a regra será adicionada a todos os perfis de publicação no projeto.
 
-O elemento `<MsDeploySkipRules>` a seguir exclui todos os arquivos da pasta *wwwroot/content*:
+O elemento `<MsDeploySkipRules>` a seguir exclui todos os arquivos da pasta *wwwroot\content*:
 
 ```xml
 <ItemGroup>
@@ -425,7 +402,10 @@ Done Building Project "C:\Webs\Web1\Web1.csproj" (default targets).
 
 ## <a name="include-files"></a>Incluir arquivos
 
-A marcação a seguir inclui uma pasta *images* fora do diretório do projeto para a pasta *wwwroot/images* do site de publicação:
+A seguinte marcação:
+
+* Inclui uma pasta *images* fora do diretório do projeto na pasta *wwwroot/images* do site de publicação.
+* Pode ser adicionada ao arquivo *.csproj* ou ao perfil de publicação. Se ela for adicionada ao arquivo *.csproj*, ela será incluída em cada perfil de publicação no projeto.
 
 ```xml
 <ItemGroup>
@@ -435,8 +415,6 @@ A marcação a seguir inclui uma pasta *images* fora do diretório do projeto pa
   </DotnetPublishFiles>
 </ItemGroup>
 ```
-
-A marcação pode ser adicionada ao arquivo *.csproj* ou ao perfil de publicação. Se ela for adicionada ao arquivo *.csproj*, ela será incluída em cada perfil de publicação no projeto.
 
 A marcação realçada a seguir mostra como:
 
@@ -477,7 +455,7 @@ MSBuild file.
 </Project>
 ```
 
-Consulte o [Leiame do WebSDK](https://github.com/aspnet/websdk) para obter mais amostras de implantação.
+Confira o [Leiame do repositório do SDK da Web](https://github.com/aspnet/websdk) para obter mais amostras de implantação.
 
 ## <a name="run-a-target-before-or-after-publishing"></a>Executar um destino antes ou depois da publicação
 
@@ -516,6 +494,6 @@ Selecione o item de menu [Console de Depuração](https://github.com/projectkudu
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * A [Implantação da Web](https://www.iis.net/downloads/microsoft/web-deploy) (MSDeploy) simplifica a implantação de aplicativos Web e sites da Web em servidores IIS.
-* [https://github.com/aspnet/websdk](https://github.com/aspnet/websdk/issues): problemas de arquivos e recursos de solicitação para implantação.
+* [Repositório do GitHub do SDK da Web](https://github.com/aspnet/websdk/issues): problemas de arquivos e recursos de solicitação para implantação.
 * [Publicar um aplicativo Web ASP.NET em uma VM do Azure usando o Visual Studio](/azure/virtual-machines/windows/publish-web-app-from-visual-studio)
 * <xref:host-and-deploy/iis/transform-webconfig>

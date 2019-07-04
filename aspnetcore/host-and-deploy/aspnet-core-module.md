@@ -5,14 +5,14 @@ description: Saiba como configurar o módulo do ASP.NET Core para hospedar aplic
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/05/2019
+ms.date: 06/17/2019
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: f287a9bad623c5ff5c41868c7c4408b572b39000
-ms.sourcegitcommit: c716ea9155a6b404c1f3d3d34e2388454cd276d7
+ms.openlocfilehash: d5392ff6b15eeb3a4502df578665538b936aae6f
+ms.sourcegitcommit: 28a2874765cefe9eaa068dceb989a978ba2096aa
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66716360"
+ms.lasthandoff: 06/17/2019
+ms.locfileid: "67167064"
 ---
 # <a name="aspnet-core-module"></a>Módulo do ASP.NET Core
 
@@ -256,7 +256,7 @@ Para saber mais sobre a configuração de subaplicativos do IIS, confira <xref:h
 
 ::: moniker range=">= aspnetcore-2.2"
 
-| Atributo | Descrição | Padrão |
+| Atributo | DESCRIÇÃO | Padrão |
 | --------- | ----------- | :-----: |
 | `arguments` | <p>Atributo de cadeia de caracteres opcional.</p><p>Argumentos para o executável especificado em **processPath**.</p> | |
 | `disableStartUpErrorPage` | <p>Atributo booliano opcional.</p><p>Se for true, a página **502.5 – Falha do Processo** será suprimida e a página de código de status 502, configurada no *web.config*, terá precedência.</p> | `false` |
@@ -275,7 +275,7 @@ Para saber mais sobre a configuração de subaplicativos do IIS, confira <xref:h
 
 ::: moniker range="< aspnetcore-2.2"
 
-| Atributo | Descrição | Padrão |
+| Atributo | DESCRIÇÃO | Padrão |
 | --------- | ----------- | :-----: |
 | `arguments` | <p>Atributo de cadeia de caracteres opcional.</p><p>Argumentos para o executável especificado em **processPath**.</p>| |
 | `disableStartUpErrorPage` | <p>Atributo booliano opcional.</p><p>Se for true, a página **502.5 – Falha do Processo** será suprimida e a página de código de status 502, configurada no *web.config*, terá precedência.</p> | `false` |
@@ -451,11 +451,27 @@ O Módulo do ASP.NET Core é configurável para fornecer logs de diagnóstico av
     stdoutLogFile="\\?\%home%\LogFiles\stdout"
     hostingModel="InProcess">
   <handlerSettings>
-    <handlerSetting name="debugFile" value="aspnetcore-debug.log" />
+    <handlerSetting name="debugFile" value=".\logs\aspnetcore-debug.log" />
     <handlerSetting name="debugLevel" value="FILE,TRACE" />
   </handlerSettings>
 </aspNetCore>
 ```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+Todas as pastas no caminho (*logs* no exemplo anterior) são criadas pelo módulo quando o arquivo de log é criado. O pool de aplicativos deve ter acesso de gravação ao local em que os logs foram gravados (use `IIS AppPool\<app_pool_name>` para fornecer permissão de gravação).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+As pastas no caminho fornecido para o valor `<handlerSetting>` (*logs* no exemplo anterior) não são criadas automaticamente pelo módulo e devem existir previamente na implantação. O pool de aplicativos deve ter acesso de gravação ao local em que os logs foram gravados (use `IIS AppPool\<app_pool_name>` para fornecer permissão de gravação).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
 
 Os valores do nível de depuração (`debugLevel`) podem incluir o nível e a localização.
 

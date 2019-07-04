@@ -4,14 +4,14 @@ author: rick-anderson
 description: Descubra como o roteamento do ASP.NET Core é responsável por mapear URIs de solicitação para seletores de ponto de extremidade e expedir solicitações de entrada para pontos de extremidade.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2019
+ms.date: 06/17/2019
 uid: fundamentals/routing
-ms.openlocfilehash: 2a7a942f43de94326e84977f09dc9a2e24dd00f0
-ms.sourcegitcommit: 5dd2ce9709c9e41142771e652d1a4bd0b5248cec
+ms.openlocfilehash: 71cb7215651a263e588531c9be644326c0b6eda6
+ms.sourcegitcommit: 28a2874765cefe9eaa068dceb989a978ba2096aa
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66692582"
+ms.lasthandoff: 06/17/2019
+ms.locfileid: "67167088"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -141,6 +141,21 @@ O roteamento está conectado ao pipeline do [middleware](xref:fundamentals/middl
 
 A correspondência de URL é o processo pelo qual o roteamento expede uma solicitação de entrada para um *ponto de extremidade*. Esse processo se baseia nos dados do caminho da URL, mas pode ser estendido para considerar qualquer dado na solicitação. A capacidade de expedir solicitações para manipuladores separados é fundamental para dimensionar o tamanho e a complexidade de um aplicativo.
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+Quando um Middleware de Roteamento é executado, ele define um ponto de extremidade (`Endpoint`) e valores de rota para um recurso no <xref:Microsoft.AspNetCore.Http.HttpContext>. Para a solicitação atual:
+
+* Chamar `HttpContext.GetEndpoint` obtém o ponto de extremidade.
+* `HttpRequest.RouteValues` obtém a coleção de valores de rota.
+
+O Middleware que é executado após o Middleware de Roteamento pode ver o ponto de extremidade e executar uma ação. Por exemplo, um Middleware de Autorização pode interrogar a coleção de metadados do ponto de extremidade para uma política de autorização. Depois que todos os middlewares no pipeline de processamento da solicitação forem executados, o representante do ponto de extremidade selecionado será invocado.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
 O sistema de roteamento no roteamento de ponto de extremidade é responsável por todas as decisões de expedição. Como o middleware aplica políticas com base no ponto de extremidade selecionado, é importante que qualquer decisão que possa afetar a expedição ou a aplicação de políticas de segurança seja feita dentro do sistema de roteamento.
 
 Quando o delegado do ponto de extremidade é executado, as propriedades de [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData) são definidas com valores apropriados com base no processamento da solicitação executado até o momento.
@@ -195,7 +210,7 @@ Os métodos `GetPath*` são mais semelhantes a `Url.Action` e `Url.Page`, pois g
 
 Os métodos fornecidos pelo <xref:Microsoft.AspNetCore.Routing.LinkGenerator> dão suporte a funcionalidades de geração de link padrão para qualquer tipo de endereço. A maneira mais conveniente usar o gerador de link é por meio de métodos de extensão que executam operações para um tipo de endereço específico.
 
-| Método de extensão   | Descrição                                                         |
+| Método de extensão   | DESCRIÇÃO                                                         |
 | ------------------ | ------------------------------------------------------------------- |
 | <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*> | Gera um URI com um caminho absoluto com base nos valores fornecidos. |
 | <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetUriByAddress*> | Gera um URI absoluto com base nos valores fornecidos.             |

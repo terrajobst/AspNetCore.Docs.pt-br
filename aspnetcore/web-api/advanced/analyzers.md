@@ -3,16 +3,16 @@ title: Usar os analisadores da API Web
 author: pranavkm
 description: Saiba mais sobre os analisadores da API Web em Microsoft.AspNetCore.Mvc.Api.Analyzers.
 monikerRange: '>= aspnetcore-2.2'
-ms.author: pranavkm
+ms.author: prkrishn
 ms.custom: mvc
 ms.date: 12/14/2018
 uid: web-api/advanced/analyzers
-ms.openlocfilehash: bcc89f856e0aeef80c46a44f76f86b4c09ac6746
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 2aaef738ab2a64f85cb85708f63d2375c04cacb5
+ms.sourcegitcommit: 0b9e767a09beaaaa4301915cdda9ef69daaf3ff2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64890821"
+ms.lasthandoff: 07/03/2019
+ms.locfileid: "67538562"
 ---
 # <a name="use-web-api-analyzers"></a>Usar os analisadores da API Web
 
@@ -41,7 +41,7 @@ O ASP.NET Core 2.2 (e posterior) inclui o pacote NuGet [Microsoft.AspNetCore.Mvc
 
 ### <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Clique com o botão direito do mouse na pasta *Pacotes* em **Painel de Soluções** > **Adicionar Pacotes...**.
+* Clique com o botão direito do mouse na pasta *Pacotes* em **Painel de Soluções** > **Adicionar Pacotes...** .
 * Defina a lista suspensa **Origem** da janela **Adicionar Pacotes** como "nuget.org".
 * Insira "Microsoft.AspNetCore.Mvc.Api.Analyzers" na caixa de pesquisa.
 * Selecione o pacote "Microsoft.AspNetCore.Mvc.Api.Analyzers" do painel de resultados e clique em **Adicionar Pacote**.
