@@ -6,12 +6,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/01/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: f028a94a9b2014129a96cff2c06ba00f99ea5d15
-ms.sourcegitcommit: eb3e51d58dd713eefc242148f45bd9486be3a78a
+ms.openlocfilehash: 41135f04c9587f77dd417f63df2c2a70c2d545cd
+ms.sourcegitcommit: f6e6730872a7d6f039f97d1df762f0d0bd5e34cf
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/02/2019
-ms.locfileid: "67500400"
+ms.lasthandoff: 07/04/2019
+ms.locfileid: "67561671"
 ---
 # <a name="logging-in-aspnet-core"></a>Registro em log no ASP.NET Core
 
@@ -30,6 +30,8 @@ Um provedor de log exibe ou armazena logs. Por exemplo, o provedor de Console ex
 Para adicionar um provedor, chame o método de extensão `Add{provider name}` do provedor no *Program.cs*:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=18-20)]
+
+O código anterior requer referências a `Microsoft.Extensions.Logging` e `Microsoft.Extensions.Configuration`.
 
 O modelo de projeto padrão chama o <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, que adiciona os seguintes provedores de log:
 
