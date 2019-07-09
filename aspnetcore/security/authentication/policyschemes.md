@@ -5,12 +5,12 @@ description: Esquemas de política de autenticação torná-lo mais fácil ter u
 ms.author: riande
 ms.date: 2/28/2019
 uid: security/authentication/policyschemes
-ms.openlocfilehash: c310b61e14df2b7846e32a602bb75914a5850aff
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 1a2d92e6fa54189b8154fc501b31c8a99d1f9081
+ms.sourcegitcommit: 357a7120632b20465801c093e4e5bd4a315496a8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64895193"
+ms.lasthandoff: 07/08/2019
+ms.locfileid: "67649173"
 ---
 # <a name="policy-schemes-in-aspnet-core"></a>Esquemas de política no ASP.NET Core
 
@@ -32,7 +32,7 @@ O exemplo a seguir mostra um esquema de nível superior que combina os esquemas 
 
 [!code-csharp[sample](policyschemes/samples/Startup.cs?name=snippet1)]
 
-O exemplo a seguir habilita a seleção dinâmica de esquemas em uma base por solicitação. Ou seja, como a combinação de cookies e autenticação de API.
+O exemplo a seguir habilita a seleção dinâmica de esquemas em uma base por solicitação. Ou seja, como a combinação de cookies e autenticação de API:
 
  <!-- REVIEW, missing If set in public Func<HttpContext, string> ForwardDefaultSelector -->
 
