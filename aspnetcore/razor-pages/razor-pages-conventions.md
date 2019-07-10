@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/07/2019
 uid: razor-pages/razor-pages-conventions
-ms.openlocfilehash: 4e07b5803adbce94982584212fa65afbfd427b64
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 59c8af648b50deb51f3762c14348d08acd48886e
+ms.sourcegitcommit: bee530454ae2b3c25dc7ffebf93536f479a14460
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64893503"
+ms.lasthandoff: 07/10/2019
+ms.locfileid: "67724454"
 ---
 # <a name="razor-pages-route-and-app-conventions-in-aspnet-core"></a>Convenções de rota e aplicativo das Páginas do Razor no ASP.NET Core
 
@@ -270,7 +270,7 @@ Solicite a página About da amostra em `localhost:5000/About` e inspecione os ca
 
 O modelo de aplicativo de página é usado para verificar o caminho relativo para segmentos que levam à página Page2 na pasta *OtherPages*. Se a condição é aprovada, um cabeçalho é adicionado. Caso contrário, o `EmptyFilter` é aplicado.
 
-`EmptyFilter` é um [filtro de Ação](xref:mvc/controllers/filters#action-filters). Como os filtros de Ação são ignorados pelas Páginas do Razor, o `EmptyFilter` não funciona conforme esperado se o caminho não contém `OtherPages/Page2`.
+`EmptyFilter` é um [filtro de Ação](xref:mvc/controllers/filters#action-filters). Uma vez que os filtros de ação são ignorados pelas páginas do Razor, o `EmptyFilter` não tem nenhum efeito conforme o esperado se o caminho não contém `OtherPages/Page2`.
 
 Solicite a página Page2 da amostra em `localhost:5000/OtherPages/Page2` e inspecione os cabeçalhos para exibir o resultado:
 
