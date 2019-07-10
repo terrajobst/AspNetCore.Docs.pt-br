@@ -5,14 +5,14 @@ description: Veja como hospedar e implantar um aplicativo do Blazor usando o ASP
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2019
+ms.date: 07/02/2019
 uid: host-and-deploy/blazor/client-side
-ms.openlocfilehash: 7567473ae8acd9e1072954907f0fe9c7beea29ad
-ms.sourcegitcommit: 4ef0362ef8b6e5426fc5af18f22734158fe587e1
+ms.openlocfilehash: 46c99364098557557bff0c38cab5a91ee2d3979b
+ms.sourcegitcommit: 0b9e767a09beaaaa4301915cdda9ef69daaf3ff2
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/17/2019
-ms.locfileid: "67153183"
+ms.lasthandoff: 07/03/2019
+ms.locfileid: "67538640"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-client-side"></a>Hospedar e implantar o ASP.NET Core Blazor no lado do cliente
 
@@ -106,19 +106,19 @@ O Blazor executa a vinculação de IL (linguagem intermediária) em cada build p
 
 ## <a name="rewrite-urls-for-correct-routing"></a>Reescrever as URLs para obter o roteamento correto
 
-O roteamento de solicitações para componentes de página em um aplicativo do lado do cliente não é tão simples quanto o roteamento de solicitações para um aplicativo hospedado do lado do servidor. Considere um aplicativo do lado do cliente com duas páginas:
+O roteamento de solicitações para componentes de página em um aplicativo do lado do cliente não é tão simples quanto o roteamento de solicitações para um aplicativo hospedado do lado do servidor. Considere um aplicativo do lado do cliente com dois componentes:
 
-* **_Main.razor** &ndash; É carregado na raiz do aplicativo e contém um link para a página Sobre (`href="About"`).
-* **_About.razor** &ndash; Página Sobre.
+* *Main.razor* &ndash; É carregado na raiz do aplicativo e contém um link para o componente `About` (`href="About"`).
+* *About.Razor* &ndash; componente `About`.
 
 Quando o documento padrão do aplicativo é solicitado usando a barra de endereços do navegador (por exemplo, `https://www.contoso.com/`):
 
 1. O navegador faz uma solicitação.
 1. A página padrão é retornada, que é geralmente é *index.html*.
 1. A *index.html* inicia o aplicativo.
-1. O roteador do Blazor é carregado e a página Principal do Razor (*Main.razor*) é exibida.
+1. O roteador do Blazor é carregado e o componente `Main` Razor é renderizado.
 
-Na página Principal, é possível carregar a página Sobre selecionando o link para ela. A seleção do link para a página Sobre funciona no cliente porque o roteador do Blazor impede que o navegador faça uma solicitação na Internet para `www.contoso.com` de `About` e atende à própria página Sobre. Todas as solicitações de páginas internas *no aplicativo do lado do cliente* funcionam da mesma maneira: Não são disparadas solicitações baseadas em navegador para os recursos hospedados no servidor na Internet. O roteador trata das solicitações internamente.
+Na página principal, a seleção do link para o componente `About` funciona no cliente porque o roteador do Blazor impede que o navegador faça uma solicitação na Internet para `www.contoso.com` de `About` e atende ao componente `About` renderizado. Todas as solicitações de pontos de extremidades internos *no aplicativo do lado do cliente* funcionam da mesma maneira: Não são disparadas solicitações baseadas em navegador para os recursos hospedados no servidor na Internet. O roteador trata das solicitações internamente.
 
 Se uma solicitação for feita usando a barra de endereços do navegador para `www.contoso.com/About`, a solicitação falhará. Este recurso não existe no host do aplicativo na Internet; portanto, uma resposta *404 – Não Encontrado* é retornada.
 
@@ -148,7 +148,7 @@ O aplicativo responde localmente em `http://localhost:port/CoolApp`.
 
 Confira mais informações na seção sobre [valor de configuração do host base de caminho](#path-base).
 
-Se um aplicativo usar o [modelo de hospedagem do lado do cliente](xref:blazor/hosting-models#client-side) (com base no modelo de projeto **Blazor**; o modelo `blazor` ao usar o comando [dotnet new](/dotnet/core/tools/dotnet-new)) e for hospedado como um subaplicativo do IIS em um aplicativo do ASP.NET Core, será importante desabilitar o manipulador de módulo do ASP.NET Core herdado ou verificar se a seção `<handlers>` do aplicativo raiz (pai) no arquivo *web.config* não é herdada pelo subaplicativo.
+Se um aplicativo usar o [modelo de hospedagem do lado do cliente](xref:blazor/hosting-models#client-side) (com base no modelo de projeto **Blazor [lado do cliente]** , o modelo `blazor` ao usar o comando [dotnet new](/dotnet/core/tools/dotnet-new)) e for hospedado como um subaplicativo do IIS em um aplicativo do ASP.NET Core, será importante desabilitar o manipulador de módulo do ASP.NET Core herdado ou verificar se a seção `<handlers>` do aplicativo raiz (pai) no arquivo *web.config* não é herdada pelo subaplicativo.
 
 Remova o manipulador do arquivo *web.config* publicado do aplicativo adicionando uma seção `<handlers>` ao arquivo:
 
@@ -178,7 +178,7 @@ A ação de remover o manipulador ou desabilitar a herança é realizada além d
 
 ## <a name="hosted-deployment-with-aspnet-core"></a>Implantação hospedada com o ASP.NET Core
 
-Uma *implantação hospedada* atende ao aplicativo do Blazor do lado do cliente para navegadores de um [aplicativo do ASP.NET Core](xref:index) que é executado em um servidor.
+Uma *implantação hospedada* atende ao aplicativo do lado do cliente do Blazor para navegadores de um [aplicativo do ASP.NET Core](xref:index) que é executado em um servidor da web.
 
 O aplicativo do Blazor é incluído com o aplicativo do ASP.NET Core na saída publicada para que ambos sejam implantados juntos. É necessário um servidor Web capaz de hospedar um aplicativo do ASP.NET Core. Para uma implantação hospedada, o Visual Studio inclui o modelo de projeto **Blazor (hospedado no ASP.NET Core)** (modelo `blazorhosted` ao usar o comando [dotnet new](/dotnet/core/tools/dotnet-new)).
 
@@ -188,7 +188,7 @@ Confira como implantar o Serviço de Aplicativo do Azure em <xref:tutorials/publ
 
 ## <a name="standalone-deployment"></a>Implantação autônoma
 
-Uma *implantação autônoma* atende ao aplicativo do Blazor do lado do cliente como um conjunto de arquivos estáticos que são solicitados diretamente pelos clientes. Qualquer servidor de arquivos estático é capaz de atender ao aplicativo Blazor.
+Uma *implantação autônoma* atende ao aplicativo do lado do cliente do Blazor como um conjunto de arquivos estáticos que são solicitados diretamente pelos clientes. Qualquer servidor de arquivos estático é capaz de atender ao aplicativo Blazor.
 
 Ativos de implantação autônomos são publicados na pasta */bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist*.
 
@@ -242,7 +242,7 @@ A hospedagem de arquivo estático do Armazenamento do Azure permite a hospedagem
 Quando o serviço de blob está habilitado para hospedagem de site estático em uma conta de armazenamento:
 
 * Defina o **Nome do documento de índice** como `index.html`.
-* Defina o **Caminho do documento de erro** como `index.html`. Os Componentes do Razor e outros pontos de extremidade que não são arquivos não residem em caminhos físicos no conteúdo estático armazenado pelo serviço de blob. Quando uma solicitação para um desses recursos é recebida, a qual deve passar pelo Blazor, o erro *404 - Não Encontrado* gerado pelo serviço de blob encaminha a solicitação para o **Caminho do documento de erro**. O blob *index.html* retorna, e o roteador do Blazor carrega e processa o caminho.
+* Defina o **Caminho do documento de erro** como `index.html`. Os componentes do Razor e outros pontos de extremidade que não são arquivos não residem em caminhos físicos no conteúdo estático armazenado pelo serviço de blob. Quando uma solicitação para um desses recursos é recebida, a qual deve passar pelo Blazor, o erro *404 - Não Encontrado* gerado pelo serviço de blob encaminha a solicitação para o **Caminho do documento de erro**. O blob *index.html* retorna, e o roteador do Blazor carrega e processa o caminho.
 
 Para saber mais, confira [Hospedagem de site estático no Armazenamento do Azure](/azure/storage/blobs/storage-blob-static-website).
 

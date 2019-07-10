@@ -5,14 +5,14 @@ description: Saiba como configurar o módulo do ASP.NET Core para hospedar aplic
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/17/2019
+ms.date: 07/01/2019
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: d5392ff6b15eeb3a4502df578665538b936aae6f
-ms.sourcegitcommit: 28a2874765cefe9eaa068dceb989a978ba2096aa
+ms.openlocfilehash: 4a360023cc7fab2f066d490f7f368fc35815703a
+ms.sourcegitcommit: eb3e51d58dd713eefc242148f45bd9486be3a78a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/17/2019
-ms.locfileid: "67167064"
+ms.lasthandoff: 07/02/2019
+ms.locfileid: "67500445"
 ---
 # <a name="aspnet-core-module"></a>Módulo do ASP.NET Core
 
@@ -108,6 +108,29 @@ Fora do processo, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-
 
 * Configurar a porta e o caminho base nos quais o servidor deve escutar ao ser executado por trás do Módulo do ASP.NET Core.
 * Configurar o host para capturar erros de inicialização.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+Ao hospedar fora do processo, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> não é chamado internamente para inicializar um usuário. Portanto, uma implementação <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> usada para transformar as declarações após cada autenticação não é ativada por padrão. Quando a transformação de declarações com uma implementação <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation>, chame <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> para adicionar serviços de autenticação:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
+    services.AddAuthentication(IISDefaults.AuthenticationScheme);
+}
+
+public void Configure(IApplicationBuilder app)
+{
+    app.UseAuthentication();
+}
+```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
 
 ### <a name="hosting-model-changes"></a>Alterações no modelo de hospedagem
 
