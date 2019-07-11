@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 08/09/2018
 uid: client-side/bower
-ms.openlocfilehash: 08e6daa537c6c6f92a1cf80d70745e8ef606f580
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 1292b75bdfe1cea56d9c8bc282b0dd90fc945a33
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64892993"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67813525"
 ---
 # <a name="manage-client-side-packages-with-bower-in-aspnet-core"></a>Gerenciar pacotes do lado do cliente com Bower no ASP.NET Core
 
@@ -22,9 +22,9 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel arroz](https://twitt
 >
 > Yarn com Webpack é uma alternativa popular para a qual [instruções de migração](https://bower.io/blog/2017/how-to-migrate-away-from-bower/) estão disponíveis.
 
-[Bower](https://bower.io/) chama a próprio "Um Gerenciador de pacotes para a web". Dentro do ecossistema do .NET, ele preenche essa lacuna deixado pela incapacidade do NuGet para entregar os arquivos de conteúdo estático. Para projetos do ASP.NET Core, esses arquivos estáticos são inerentes às bibliotecas do lado do cliente, como [jQuery](http://jquery.com/) e [Bootstrap](http://getbootstrap.com/). Para bibliotecas do .NET, você usar [NuGet](https://www.nuget.org/) Gerenciador de pacotes.
+[Bower](https://bower.io/) chama a próprio "Um Gerenciador de pacotes para a web". Dentro do ecossistema do .NET, ele preenche essa lacuna deixado pela incapacidade do NuGet para entregar os arquivos de conteúdo estático. Para projetos do ASP.NET Core, esses arquivos estáticos são inerentes às bibliotecas do lado do cliente, como [jQuery](https://jquery.com/) e [Bootstrap](https://getbootstrap.com/). Para bibliotecas do .NET, você usar [NuGet](https://www.nuget.org/) Gerenciador de pacotes.
 
-Processo de compilação de novos projetos criados com os modelos de projeto do ASP.NET Core configurar lado do cliente. [jQuery](http://jquery.com/) e [Bootstrap](http://getbootstrap.com/) estiverem instalados, e Bower é suportado.
+Processo de compilação de novos projetos criados com os modelos de projeto do ASP.NET Core configurar lado do cliente. [jQuery](https://jquery.com/) e [Bootstrap](https://getbootstrap.com/) estiverem instalados, e Bower é suportado.
 
 Pacotes do lado do cliente são listados na *bower. JSON* arquivo. Os modelos de projeto do ASP.NET Core configura *bower. JSON* com o jQuery, validação do jQuery e Bootstrap.
 
@@ -50,7 +50,7 @@ Abra o *bower. JSON* arquivo e adicione "font-incrível" para as dependências. 
 
 ![versão bower IntelliSense](bower/_static/version-intelliSense.png)
 
-Usos para bower [controle de versão semântico](http://semver.org/) para organizar as dependências. Controle de versão semântico, também conhecido como SemVer, identifica os pacotes com o esquema de numeração \<principal >.\< secundária >. \<patch >. IntelliSense simplifica o controle de versão semântico, mostrando apenas algumas opções comuns. O item superior na lista do IntelliSense (4.6.3 no exemplo acima) é considerado a versão estável mais recente do pacote. O símbolo de acento circunflexo (^) corresponde à versão principal mais recente e o til (~) corresponde a versão secundária mais recente.
+Usos para bower [controle de versão semântico](https://semver.org/) para organizar as dependências. Controle de versão semântico, também conhecido como SemVer, identifica os pacotes com o esquema de numeração \<principal >.\< secundária >. \<patch >. IntelliSense simplifica o controle de versão semântico, mostrando apenas algumas opções comuns. O item superior na lista do IntelliSense (4.6.3 no exemplo acima) é considerado a versão estável mais recente do pacote. O símbolo de acento circunflexo (^) corresponde à versão principal mais recente e o til (~) corresponde a versão secundária mais recente.
 
 Salvar a *bower. JSON* arquivo. Visual Studio inspeciona as *bower. JSON* arquivo para que as alterações. Ao salvar, o *bower install* comando é executado. Consulte a janela de saída **npm/Bower** modo de exibição para o comando executado.
 

@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
 uid: client-side/libman/libman-vs
-ms.openlocfilehash: d0494b96447ad2b256acbde7748209ff430ae7c1
-ms.sourcegitcommit: 6afe57fb8d9055f88fedb92b16470398c4b9b24a
+ms.openlocfilehash: ebfb405516d968bf5d5b8cff956a9892457027f2
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/14/2019
-ms.locfileid: "65610179"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67813466"
 ---
 # <a name="use-libman-with-aspnet-core-in-visual-studio"></a>LibMan de uso com o ASP.NET Core no Visual Studio
 
@@ -28,7 +28,7 @@ O Visual Studio tem suporte interno para [LibMan](xref:client-side/libman/index)
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* [Visual Studio de 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com o **ASP.NET e desenvolvimento web** carga de trabalho
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com carga de trabalho **ASP.NET e desenvolvimento Web**
 
 ## <a name="add-library-files"></a>Adicione arquivos de biblioteca
 
@@ -94,13 +94,13 @@ Para abrir *libman.json* para edição, existem as seguintes opções:
 
 **&#8224;** Se o *libman.json* arquivo ainda não existir na raiz do projeto, ele será criado com o conteúdo do modelo de item padrão.
 
-Visual Studio oferece um rico JSON, suporte, como colorização de edição, formatação, IntelliSense e validação de esquema. Esquema JSON do manifesto LibMan é encontrada em [ http://json.schemastore.org/libman ](http://json.schemastore.org/libman).
+Visual Studio oferece um rico JSON, suporte, como colorização de edição, formatação, IntelliSense e validação de esquema. Esquema JSON do manifesto LibMan é encontrada em [ https://json.schemastore.org/libman ](https://json.schemastore.org/libman).
 
 Com o seguinte arquivo de manifesto, LibMan recupera arquivos de acordo com a configuração definida no `libraries` propriedade. Obter uma explicação dos literais de objeto definidos dentro `libraries` segue:
 
 * Um subconjunto de [jQuery](https://jquery.com/) versão 3.3.1 é recuperado do provedor CDNJS. O subconjunto é definido na `files` propriedade&mdash;*jQuery*, *obtive*, e *jquery.min.map*. Os arquivos são colocados no projeto do *wwwroot/lib/jquery* pasta.
 * Na íntegra [Bootstrap](https://getbootstrap.com/) versão 4.1.3 é recuperado e colocado em um *wwwroot/lib/bootstrap* pasta. O literal de objeto `provider` substituições de propriedades de `defaultProvider` valor da propriedade. LibMan recupera os arquivos de inicialização do provedor de unpkg.
-* Um subconjunto de [Lodash](https://lodash.com/) foi aprovada por um corpo regulador dentro da organização. O *lodash.js* e *lodash.min.js* arquivos são recuperados do sistema de arquivos local no *c:\\temp\\lodash\\*. Os arquivos são copiados para o projeto *wwwroot/lib/lodash* pasta.
+* Um subconjunto de [Lodash](https://lodash.com/) foi aprovada por um corpo regulador dentro da organização. O *lodash.js* e *lodash.min.js* arquivos são recuperados do sistema de arquivos local no *c:\\temp\\lodash\\* . Os arquivos são copiados para o projeto *wwwroot/lib/lodash* pasta.
 
 [!code-json[](samples/LibManSample/libman.json)]
 
@@ -201,7 +201,7 @@ Para desinstalar os arquivos de biblioteca:
 
 * Abra *libman.json*.
 * Posicione o cursor dentro correspondente `libraries` literal de objeto.
-* Clique no ícone de lâmpada que aparece na margem esquerda e selecione **Uninstall \<nome_da_biblioteca > @\<library_version >**:
+* Clique no ícone de lâmpada que aparece na margem esquerda e selecione **Uninstall \<nome_da_biblioteca > @\<library_version >** :
 
   ![Desinstalar a opção de menu de contexto de biblioteca](_static/uninstall-menu-option.png)
 

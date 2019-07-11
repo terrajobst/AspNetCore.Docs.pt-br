@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 06/17/2019
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: c3ec67d9f5c2b8eb44b5ced911ccfd0fa40a52a7
-ms.sourcegitcommit: 4ef0362ef8b6e5426fc5af18f22734158fe587e1
+ms.openlocfilehash: 6254a74fd0a11669706a2a89b156a3223e300d1c
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/17/2019
-ms.locfileid: "67152770"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67813508"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Agrupar e minificar ativos estáticos no ASP.NET Core
 
@@ -86,7 +86,7 @@ O *bundleconfig.json* arquivo define as opções para cada pacote. No exemplo an
 Opções de configuração incluem:
 
 * `outputFileName`: O nome do arquivo de pacote de saída. Pode conter um caminho relativo do *bundleconfig.json* arquivo. **required**
-* `inputFiles`: Uma matriz de arquivos para agrupar. Esses são os caminhos relativos para o arquivo de configuração. **opcional**, * um valor vazio resulta em um arquivo de saída vazia. [recurso de curinga](http://www.tldp.org/LDP/abs/html/globbingref.html) padrões são suportados.
+* `inputFiles`: Uma matriz de arquivos para agrupar. Esses são os caminhos relativos para o arquivo de configuração. **opcional**, * um valor vazio resulta em um arquivo de saída vazia. [recurso de curinga](https://www.tldp.org/LDP/abs/html/globbingref.html) padrões são suportados.
 * `minify`: As opções de minimização para o tipo de saída. **optional**, *default - `minify: { enabled: true }`*
   * Opções de configuração estão disponíveis por tipo de arquivo de saída.
     * [Minificador CSS](https://github.com/madskristensen/BundlerMinifier/wiki/cssminifier)

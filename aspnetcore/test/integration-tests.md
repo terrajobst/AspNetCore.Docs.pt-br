@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/05/2019
 uid: test/integration-tests
-ms.openlocfilehash: 3af2a1f7c6a65d7ff42597972ee151a50fc95fb6
-ms.sourcegitcommit: c716ea9155a6b404c1f3d3d34e2388454cd276d7
+ms.openlocfilehash: a4e22e53b4658a7c6da3c9e15671a355b212f559
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66716372"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67815363"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Testes de integração no ASP.NET Core
 
@@ -184,7 +184,7 @@ O `SendAsync` métodos de extensão auxiliar (*Helpers/HttpClientExtensions.cs*)
   * Botão enviar (`IHtmlElement`) e valores de formulário (`IEnumerable<KeyValuePair<string, string>>`)
 
 > [!NOTE]
-> [AngleSharp](https://anglesharp.github.io/) é um terceiro biblioteca usada para fins de demonstração neste tópico e o aplicativo de exemplo de análise. AngleSharp não é suportado ou necessários para os testes de integração de aplicativos ASP.NET Core. Outros analisadores podem usados, como o [Pack de agilidade de Html (HAP)](http://html-agility-pack.net/). Outra abordagem é escrever código para lidar com o token de verificação de solicitação e o cookie antifalsificação o sistema antifalsificação diretamente.
+> [AngleSharp](https://anglesharp.github.io/) é um terceiro biblioteca usada para fins de demonstração neste tópico e o aplicativo de exemplo de análise. AngleSharp não é suportado ou necessários para os testes de integração de aplicativos ASP.NET Core. Outros analisadores podem usados, como o [Pack de agilidade de Html (HAP)](https://html-agility-pack.net/). Outra abordagem é escrever código para lidar com o token de verificação de solicitação e o cookie antifalsificação o sistema antifalsificação diretamente.
 
 ## <a name="customize-the-client-with-withwebhostbuilder"></a>Personalizar o cliente com WithWebHostBuilder
 

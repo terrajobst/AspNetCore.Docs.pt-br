@@ -5,12 +5,12 @@ description: Saiba mais sobre a criação de scripts entre sites (XSS) e técnic
 ms.author: riande
 ms.date: 10/02/2018
 uid: security/cross-site-scripting
-ms.openlocfilehash: 50f0211a2c64708d9b788dd10ce9064e66014d55
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 1e9e988be68313cfd493832519c1be89335d6e48
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64895343"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67815203"
 ---
 # <a name="prevent-cross-site-scripting-xss-in-aspnet-core"></a>Evitar Cross-Site Scripting (XSS) no ASP.NET Core
 
@@ -214,7 +214,7 @@ Este exemplo amplia a lista segura para incluir o CjkUnifiedIdeographs de interv
 <p>This link text is in Chinese: <a href="/">汉语/漢語</a></p>
    ```
 
-Intervalos de lista segura são especificados como gráficos de código Unicode, não os idiomas. O [padrão Unicode](http://unicode.org/) tem uma lista de [gráficos de código](http://www.unicode.org/charts/index.html) você pode usar para localizar o gráfico que contém os caracteres. Cada codificador, Html, JavaScript e a Url, deve ser configurado separadamente.
+Intervalos de lista segura são especificados como gráficos de código Unicode, não os idiomas. O [padrão Unicode](https://unicode.org/) tem uma lista de [gráficos de código](https://www.unicode.org/charts/index.html) você pode usar para localizar o gráfico que contém os caracteres. Cada codificador, Html, JavaScript e a Url, deve ser configurado separadamente.
 
 > [!NOTE]
 > Personalização da lista de confiáveis afeta apenas os codificadores originados por meio da DI. Se você acessar diretamente um codificador via `System.Text.Encodings.Web.*Encoder.Default` , em seguida, o padrão, Latim básico somente lista segura será usada.

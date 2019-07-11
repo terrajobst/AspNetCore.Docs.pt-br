@@ -6,12 +6,12 @@ ms.author: casoper
 ms.custom: mvc
 ms.date: 02/27/2019
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: 3cb878aff7bf0c6c8efe7f3f0c0f06c74acef477
-ms.sourcegitcommit: 0b9e767a09beaaaa4301915cdda9ef69daaf3ff2
+ms.openlocfilehash: 54117bf0dd45305d060eef5fecfb98ed45f8ecdb
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/03/2019
-ms.locfileid: "67538736"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67815300"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticação de nuvem com o Azure Active Directory B2C no ASP.NET Core
 
@@ -43,7 +43,7 @@ Criar um locatário do Azure Active Directory B2C [conforme descrito na document
 
 ## <a name="register-the-app-in-azure-ad-b2c"></a>Registrar o aplicativo no Azure B2C do AD
 
-No locatário do Azure AD B2C recém-criado, registre seu aplicativo usando [as etapas na documentação do](/azure/active-directory-b2c/active-directory-b2c-app-registration#register-a-web-app) sob o **registrar um aplicativo web** seção. Parar na **criar um segredo do cliente de aplicativo web** seção. Um segredo do cliente não é necessário para este tutorial. 
+No locatário do Azure AD B2C recém-criado, registre seu aplicativo usando [as etapas na documentação do](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application) sob o **registrar um aplicativo web** seção. Parar na **criar um segredo do cliente de aplicativo web** seção. Um segredo do cliente não é necessário para este tutorial. 
 
 Use os seguintes valores:
 
@@ -57,7 +57,7 @@ Use os seguintes valores:
 | **Incluir cliente nativo**     | Não                        |                                                                                                                                                                                                    |
 
 > [!WARNING]
-> Se estar ciente de como configurar uma URL de resposta não sejam localhost, o [restrições sobre o que é permitido na lista de URL de resposta](/azure/active-directory-b2c/active-directory-b2c-app-registration#choosing-a-web-app-or-api-reply-url). 
+> Se estar ciente de como configurar uma URL de resposta não sejam localhost, o [restrições sobre o que é permitido na lista de URL de resposta](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application). 
 
 Depois que o aplicativo é registrado, é exibida a lista de aplicativos no locatário. Selecione o aplicativo que acabou de registrar. Selecione o **cópia** ícone à direita do **ID do aplicativo** campo para copiá-lo na área de transferência.
 
@@ -101,7 +101,7 @@ Retornar à janela do navegador com as propriedades do aplicativo B2C ainda aber
 
 ## <a name="configure-policies"></a>Configurar políticas
 
-Use as etapas na documentação do Azure AD B2C para [criar uma política de inscrição ou entrada](/azure/active-directory-b2c/active-directory-b2c-reference-policies#create-a-sign-up-or-sign-in-policy)e então [criar uma política de redefinição de senha](/azure/active-directory-b2c/active-directory-b2c-reference-policies#create-a-password-reset-policy). Use os valores de exemplo fornecidos na documentação do **provedores de identidade**, **atributos de inscrição**, e **declarações do aplicativo**. Usando o **executar agora** botão para testar as políticas, conforme descrito na documentação é opcional.
+Use as etapas na documentação do Azure AD B2C para [criar uma política de inscrição ou entrada](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions)e então [criar uma política de redefinição de senha](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Use os valores de exemplo fornecidos na documentação do **provedores de identidade**, **atributos de inscrição**, e **declarações do aplicativo**. Usando o **executar agora** botão para testar as políticas, conforme descrito na documentação é opcional.
 
 > [!WARNING]
 > Verifique se os nomes de política são exatamente como descrito na documentação, como essas políticas foram usadas na **alterar autenticação** caixa de diálogo no Visual Studio. Os nomes de política podem ser verificados no *appSettings. JSON*.

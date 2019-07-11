@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/13/2019
 uid: security/key-vault-configuration
-ms.openlocfilehash: 78c63cf135ca92f0b5f6c6828b2ae34a44a7b36c
-ms.sourcegitcommit: 3ee6ee0051c3d2c8d47a58cb17eef1a84a4c46a0
+ms.openlocfilehash: be176ed612be0773c4a5b52607c023da3856ac14
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/14/2019
-ms.locfileid: "65621023"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67815323"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Provedor de configuração do Cofre de chaves do Azure no ASP.NET Core
 
@@ -34,7 +34,7 @@ Para usar o provedor de configuração do Cofre de chave do Azure, adicione uma 
 Para adotar a [identidades para recursos do Azure gerenciadas](/azure/active-directory/managed-identities-azure-resources/overview) cenário, adicione uma referência de pacote para o [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/) pacote.
 
 > [!NOTE]
-> No momento da gravação, a versão estável mais recente do `Microsoft.Azure.Services.AppAuthentication`, versão `1.0.3`, fornece suporte para [atribuído pelo sistema de identidades gerenciadas](/azure/active-directory/managed-identities-azure-resources/overview#how-does-the-managed-identities-for-azure-resources-worka-namehow-does-it-worka). Suporte para *atribuída ao usuário identidades gerenciadas* está disponível no `1.2.0-preview2` pacote. Este tópico demonstra o uso de identidades gerenciadas pelo sistema, e o aplicativo de exemplo fornecido usa a versão `1.0.3` do `Microsoft.Azure.Services.AppAuthentication` pacote.
+> No momento da gravação, a versão estável mais recente do `Microsoft.Azure.Services.AppAuthentication`, versão `1.0.3`, fornece suporte para [atribuído pelo sistema de identidades gerenciadas](/azure/active-directory/managed-identities-azure-resources/overview#how-does-the-managed-identities-for-azure-resources-work). Suporte para *atribuída ao usuário identidades gerenciadas* está disponível no `1.2.0-preview2` pacote. Este tópico demonstra o uso de identidades gerenciadas pelo sistema, e o aplicativo de exemplo fornecido usa a versão `1.0.3` do `Microsoft.Azure.Services.AppAuthentication` pacote.
 
 ## <a name="sample-app"></a>Aplicativo de exemplo
 
@@ -120,11 +120,11 @@ Configurar o Azure AD, para autenticar para um cofre de chaves de certificado do
 
 O aplicativo de exemplo usa uma ID do aplicativo e os x. 509 certificado quando o `#define` instrução na parte superior dos *Program.cs* arquivo é definido como `Certificate`.
 
-1. Criar um arquivo PKCS #12 (*. pfx*) certificado. As opções de criação de certificados incluem [MakeCert no Windows](/windows/desktop/seccrypto/makecert) e [OpenSSL](https://www.openssl.org/).
+1. Criar um arquivo PKCS #12 ( *. pfx*) certificado. As opções de criação de certificados incluem [MakeCert no Windows](/windows/desktop/seccrypto/makecert) e [OpenSSL](https://www.openssl.org/).
 1. Instale o certificado no repositório de certificados pessoais do usuário atual. Marcação da chave como exportável é opcional. Observe a impressão digital do certificado, o que é usado posteriormente nesse processo.
-1. Exportar o arquivo PKCS #12 (*. pfx*) o certificado como um certificado codificado por DER (*. cer*).
+1. Exportar o arquivo PKCS #12 ( *. pfx*) o certificado como um certificado codificado por DER ( *. cer*).
 1. Registrar o aplicativo com o Azure AD (**registros de aplicativo**).
-1. Carregue o certificado codificado por DER (*. cer*) para o Azure AD:
+1. Carregue o certificado codificado por DER ( *. cer*) para o Azure AD:
    1. Selecione o aplicativo no Azure AD.
    1. Navegue até **certificados e segredos**.
    1. Selecione **carregar um certificado** para carregar o certificado, que contém a chave pública. Um *. cer*, *PEM*, ou *. crt* certificado é aceitável.

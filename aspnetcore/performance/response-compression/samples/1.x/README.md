@@ -17,6 +17,6 @@ Quando a solicitação inclui o `Accept-Encoding` cabeçalho, o exemplo adiciona
 
 ## <a name="using-the-sample"></a>Usando o exemplo
 
-1. Fazer uma solicitação usando [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), ou [Postman](https://www.getpostman.com/) para o aplicativo sem um `Accept-Encoding` cabeçalho e observe a carga de resposta, o tamanho da resposta, e cabeçalhos de resposta.
+1. Fazer uma solicitação usando [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/), ou [Postman](https://www.getpostman.com/) para o aplicativo sem um `Accept-Encoding` cabeçalho e observe a carga de resposta, o tamanho da resposta, e cabeçalhos de resposta.
 1. Adicionar um `Accept-Encoding: gzip` cabeçalho e observe o tamanho da resposta compactada e cabeçalhos de resposta. Você verá que o tamanho da resposta drop e o `Content-Encoding: gzip` cabeçalho de resposta é incluído pelo aplicativo de exemplo. Quando você examinar o corpo da resposta para o Lorem Ipsum ou **testfile1kb.txt** resposta, você verá que o texto é compactada e não pode ser lido.
 1. Adicionar um `Accept-Encoding: mycustomcompression` cabeçalho e observe os cabeçalhos de resposta. O `CustomCompressionProvider` é uma implementação vazia que realmente não compactar a resposta, mas você pode criar um wrapper de fluxo de compactação personalizado para o `CreateStream()` método.
