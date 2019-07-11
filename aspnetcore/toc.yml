@@ -981,6 +981,8 @@
           uid: performance/caching/distributed
         - name: Middleware de cache de resposta
           uid: performance/caching/middleware
+        - name: Reutilização do objeto com ObjectPool
+          uid: performance/ObjectPool
     - name: Compactação de resposta
       uid: performance/response-compression
     - name: Ferramentas de diagnóstico
