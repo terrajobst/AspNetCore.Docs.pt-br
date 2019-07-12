@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/11/2019
 uid: fundamentals/index
-ms.openlocfilehash: 3cf311f8e6be4ed12c79ceecc15ccc1babfb0117
-ms.sourcegitcommit: 335a88c1b6e7f0caa8a3a27db57c56664d676d34
+ms.openlocfilehash: a6c848987c97103864fd5410922346e85a68c353
+ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/12/2019
-ms.locfileid: "67034865"
+ms.lasthandoff: 07/12/2019
+ms.locfileid: "67856231"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
 
@@ -154,7 +154,7 @@ O ASP.NET Core fornece a implementação de servidor multiplataforma do *Kestrel
 
 # <a name="linuxtablinux"></a>[Linux](#tab/linux)
 
-O ASP.NET Core fornece a implementação de servidor multiplataforma do *Kestrel*. No ASP.NET Core 2.0 ou posterior, o Kestrel também pode ser executado como um servidor de borda voltado para o público exposto diretamente à Internet. O Kestrel normalmente é executado em uma configuração de proxy reverso com [Nginx](http://nginx.org) ou [Apache](https://httpd.apache.org/).
+O ASP.NET Core fornece a implementação de servidor multiplataforma do *Kestrel*. No ASP.NET Core 2.0 ou posterior, o Kestrel também pode ser executado como um servidor de borda voltado para o público exposto diretamente à Internet. O Kestrel normalmente é executado em uma configuração de proxy reverso com [Nginx](https://nginx.org) ou [Apache](https://httpd.apache.org/).
 
 ---
 
