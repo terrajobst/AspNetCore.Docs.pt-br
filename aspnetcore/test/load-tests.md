@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/05/2019
 uid: test/loadtests
-ms.openlocfilehash: 3c21da6c799bc3080a1a16cb62ae4535b8890a1b
-ms.sourcegitcommit: bee530454ae2b3c25dc7ffebf93536f479a14460
+ms.openlocfilehash: 4b07dd1af7e0c1d3ce9baa167b69fd8f80df204a
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/10/2019
-ms.locfileid: "67724496"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67815166"
 ---
 # <a name="aspnet-core-loadstress-testing"></a>Testes de carga/estresse do ASP.NET Core
 
@@ -23,7 +23,7 @@ Teste de carga e testes de estresse são importantes para garantir que um aplica
 
 Testes de estresse determinar se um aplicativo sob carga excessiva pode se recuperar de falha e normalmente retornar ao comportamento esperado. Sob carga excessiva, o aplicativo não é executado em condições normais.
 
-2019 do Visual Studio é a última versão do Visual Studio com recursos de teste de carga. Para clientes que exigem ferramentas de teste no futuro de carga, é recomendável ferramentas alternativas, como o Apache JMeter, Akamai CloudTest e BlazeMeter. Para obter mais informações, consulte o [notas de versão do Visual Studio 2019](/visualstudio/releases/2019/release-notes#test-tools).
+2019 do Visual Studio é a última versão do Visual Studio com recursos de teste de carga. Para clientes que exigem ferramentas de teste no futuro de carga, é recomendável ferramentas alternativas, como o Apache JMeter, Akamai CloudTest e BlazeMeter. Para obter mais informações, consulte o [notas de versão do Visual Studio 2019](/visualstudio/releases/2019/release-notes-v16.0#test-tools).
 
 A testes de carga service no DevOps do Azure terminará em 2020. Para obter mais informações, consulte [fim de serviço da vida útil de teste de carga baseado em nuvem](https://devblogs.microsoft.com/devops/cloud-based-load-testing-service-eol/).
 
@@ -72,7 +72,7 @@ A lista a seguir contém as ferramentas de desempenho da web de terceiros com v�
 * [ApacheBench (ab)](https://httpd.apache.org/docs/2.4/programs/ab.html)
 * [Gatling](https://gatling.io/)
 * [Locust](https://locust.io/)
-* [West Wind WebSurge](http://websurge.west-wind.com/)
+* [West Wind WebSurge](https://websurge.west-wind.com/)
 * [Netling](https://github.com/hallatore/Netling)
 * [Vegeta](https://github.com/tsenart/vegeta)
 
