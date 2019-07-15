@@ -1,16 +1,17 @@
 ---
 title: comando dotnet aspnet-codegenerator
 author: rick-anderson
+description: O comando dotnet aspnet-codegenerator aplica scaffold em projetos do ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-description: O comando dotnet aspnet-codegenerator aplica scaffold em projetos do ASP.NET Core
 ms.date: 07/04/2019
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: 55b592d9d203970777c84438e210519957abb35d
-ms.sourcegitcommit: f6e6730872a7d6f039f97d1df762f0d0bd5e34cf
+ms.openlocfilehash: c96362f320efd84c35dc07294a2968a2c687ee94
+ms.sourcegitcommit: b9e914ef274b5ec359582f299724af6234dce135
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/04/2019
-ms.locfileid: "67561679"
+ms.lasthandoff: 07/05/2019
+ms.locfileid: "67596134"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -18,20 +19,20 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 `dotnet aspnet-codegenerator` – executa o mecanismo de scaffolding do ASP.NET Core. `dotnet aspnet-codegenerator` é necessário somente para realizar o scaffolding da linha de comando, não é preciso usar o scaffolding com o Visual Studio.
 
-Este artigo se aplica ao [SDK do .NET Core 2.2](https://dotnet.microsoft.com/download/dotnet-core/2.2) e posteriores.
+Este artigo se aplica ao [SDK do .NET Core 2.1](https://dotnet.microsoft.com/download/dotnet-core/2.1) e posteriores.
 
 ## <a name="installing-aspnet-codegenerator"></a>Instalação do aspnet-codegenerator
 
-`aspnet-codegenerator` é uma [ferramenta global](/dotnet/core/tools/global-tools) que deve ser instalada. O comando a seguir instala a versão estável mais recente da ferramenta `aspnet-codegenerator`:
+`dotnet-aspnet-codegenerator` é uma [ferramenta global](/dotnet/core/tools/global-tools) que deve ser instalada. O comando a seguir instala a versão estável mais recente da ferramenta `dotnet-aspnet-codegenerator`:
 
 ```console
-dotnet tool install -g aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
-O comando a seguir atualiza `aspnet-codegenerator` para a versão estável mais recente disponível dos SDKs do .NET Core instalado:
+O comando a seguir atualiza `dotnet-aspnet-codegenerator` para a versão estável mais recente disponível dos SDKs do .NET Core instalado:
 
 ```console
-dotnet tool update -g aspnet-codegenerator
+dotnet tool update -g dotnet-aspnet-codegenerator
 ```
 
 ## <a name="synopsis"></a>Sinopse
@@ -43,7 +44,7 @@ dotnet aspnet-codegenerator [-h|--help]
 
 ## <a name="description"></a>DESCRIÇÃO
 
-O comando global `dotnet aspnet-codegenerator ` executa o mecanismo de scaffolding e o gerador de código do ASP.NET Core.
+O comando global `dotnet aspnet-codegenerator` executa o mecanismo de scaffolding e o gerador de código do ASP.NET Core.
 
 ## <a name="arguments"></a>Arguments
 
