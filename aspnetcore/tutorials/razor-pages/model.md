@@ -5,12 +5,12 @@ description: Saiba como adicionar classes de gerenciamento de filmes em um banco
 ms.author: riande
 ms.date: 02/12/2019
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 44e6f53d517b0470c5e6fa785a4061e59cda9ce6
-ms.sourcegitcommit: 20ca93d72cb0b3998637724b44523e57b089c8fd
+ms.openlocfilehash: be9f515178d0169a69487f917c7d39c6f11f1292
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/09/2019
-ms.locfileid: "65473607"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67815057"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -76,13 +76,17 @@ Clique com o botão direito do mouse na pasta *Pages/Movies* > **Adicionar** > *
 
 ![Imagem das instruções anteriores.](model/_static/sca.png)
 
-Na caixa de diálogo **Adicionar Scaffold**, selecione **Razor Pages usando o Entity Framework (CRUD)** > **Adicionar**.
+Na caixa de diálogo **Adicionar Scaffold**, selecione **Razor Pages usando o Entity Framework (CRUD)**  > **Adicionar**.
 
 ![Imagem das instruções anteriores.](model/_static/add_scaffold.png)
 
-Conclua a caixa de diálogo **Adicionar Razor Pages usando o Entity Framework (CRUD)**:
+Conclua a caixa de diálogo **Adicionar Razor Pages usando o Entity Framework (CRUD)** :
+<!-- In the next section, change 
+(plus) sign and accept the generated name 
+to use Data, it should not use models. That will make the namespace the same for the VS version and the CLI version
+-->
 
-* Na lista suspensa **Classe de modelo**, selecione **Filme (RazorPagesMovie.Models)**.
+* Na lista suspensa **Classe de modelo**, selecione **Filme (RazorPagesMovie.Models)** .
 * Na linha **Classe de contexto de dados**, selecione o sinal **+** (+) e aceite o nome gerado **RazorPagesMovie.Models.RazorPagesMovieContext**.
 * Selecione **Adicionar**.
 

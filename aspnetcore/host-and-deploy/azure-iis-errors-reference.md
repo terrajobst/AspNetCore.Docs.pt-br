@@ -5,14 +5,14 @@ description: Obtenha conselhos de solução de problemas para erros comuns ao ho
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2019
+ms.date: 07/10/2019
 uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: 0191460f8c3dab98e6f977a29eacf0396b6789d8
-ms.sourcegitcommit: b4ef2b00f3e1eb287138f8b43c811cb35a100d3e
+ms.openlocfilehash: 3030bc57be113d9034123c96403742442b9240bb
+ms.sourcegitcommit: b40613c603d6f0cc71f3232c16df61550907f550
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/21/2019
-ms.locfileid: "65970068"
+ms.lasthandoff: 07/18/2019
+ms.locfileid: "68308100"
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Referência de erros comuns para o Serviço de Aplicativo do Azure e o IIS com o ASP.NET Core
 
@@ -24,12 +24,12 @@ Colete as seguintes informações:
 
 * Comportamento do navegador (código de status e mensagem de erro)
 * Entradas do Log de Eventos do Aplicativo
-  * Serviço de Aplicativo do Azure &ndash; Confira <xref:host-and-deploy/azure-apps/troubleshoot>.
+  * Serviço de Aplicativo do Azure &ndash; Confira <xref:test/troubleshoot-azure-iis>.
   * IIS
     1. Selecione **Iniciar** no menu **Windows**, digite *Visualizador de Eventos* e pressione **Enter**.
     1. Após o **Visualizador de Eventos** ser aberto, expanda **Logs do Windows** > **Aplicativo** na barra lateral.
 * Entradas do log de depuração e stdout do Módulo do ASP.NET Core
-  * Serviço de Aplicativo do Azure &ndash; Confira <xref:host-and-deploy/azure-apps/troubleshoot>.
+  * Serviço de Aplicativo do Azure &ndash; Confira <xref:test/troubleshoot-azure-iis>.
   * IIS &ndash; Siga as instruções nas seções [Criação de log e redirecionamento](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) e [Logs de diagnóstico avançados](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) do tópico Módulo do ASP.NET Core.
 
 Compare as informações do erro para os erros comuns a seguir. Se uma correspondência for encontrada, siga o aviso de solução de problemas.
@@ -121,7 +121,7 @@ Para uma implantação dependente da estrutura x86 (`<PlatformTarget>x86</Platfo
 
 Solução de problemas:
 
-* Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, confira [Solução de problemas (IIS)](xref:host-and-deploy/iis/troubleshoot) ou [Solução de problemas (Serviço de Aplicativo do Azure)](xref:host-and-deploy/azure-apps/troubleshoot).
+* Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, consulte <xref:test/troubleshoot-azure-iis>.
 
 * Se essa exceção ocorrer para uma implantação dos Aplicativos do Azure ao fazer upgrade de um aplicativo e implantar assemblies mais recentes, exclua manualmente todos os arquivos da implantação anterior. Assemblies incompatíveis remanescentes podem resultar em uma exceção `System.BadImageFormatException` durante a implantação de um aplicativo atualizado.
 
@@ -231,7 +231,7 @@ Solução de problemas:
 
 Solução de problemas:
 
-* Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, confira [Solução de problemas (IIS)](xref:host-and-deploy/iis/troubleshoot) ou [Solução de problemas (Serviço de Aplicativo do Azure)](xref:host-and-deploy/azure-apps/troubleshoot).
+* Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, consulte <xref:test/troubleshoot-azure-iis>.
 
 * Verifique o atributo *processPath* no elemento `<aspNetCore>` em *web.config* para confirmar se ele é `dotnet` para uma FDD (implantação dependente de estrutura) ou `.\{ASSEMBLY}.exe` para uma [SCD (implantação autossuficiente)](/dotnet/core/deploying/#self-contained-deployments-scd).
 
@@ -277,7 +277,7 @@ Solução de problemas:
 
 Solução de problemas:
 
-* Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, confira [Solução de problemas (IIS)](xref:host-and-deploy/iis/troubleshoot) ou [Solução de problemas (Serviço de Aplicativo do Azure)](xref:host-and-deploy/azure-apps/troubleshoot).
+* Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, consulte <xref:test/troubleshoot-azure-iis>.
 
 * Examine o atributo *arguments* no elemento `<aspNetCore>` no *web.config* para confirmar se ele: (a) é `.\{ASSEMBLY}.dll` de uma FDD (implantação dependente de estrutura); ou (b) não está presente, é uma cadeia de caracteres vazia (`arguments=""`) ou uma lista de argumentos do aplicativo (`arguments="{ARGUMENT_1}, {ARGUMENT_2}, ... {ARGUMENT_X}"`) para uma SCD (implantação autossuficiente).
 
@@ -407,6 +407,5 @@ O processo não pôde ser iniciado, provavelmente, devido a um problema de progr
 
 Para mais informações, consulte os seguintes tópicos:
 
-* <xref:host-and-deploy/iis/troubleshoot>
-* <xref:host-and-deploy/azure-apps/troubleshoot>
+* <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>

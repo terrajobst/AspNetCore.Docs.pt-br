@@ -5,12 +5,12 @@ description: Como adicionar uma validação a um aplicativo ASP.NET Core.
 ms.author: riande
 ms.date: 04/13/2017
 uid: tutorials/first-mvc-app/validation
-ms.openlocfilehash: 6c59d0188f67872c7dd5599967551d7d390bfdcf
-ms.sourcegitcommit: e7e04a45195d4e0527af6f7cf1807defb56dc3c3
+ms.openlocfilehash: f94d1003732b8ff04ec8aba3005f8c95a876cd67
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/07/2019
-ms.locfileid: "65875017"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67815114"
 ---
 # <a name="add-validation-to-an-aspnet-core-mvc-app"></a>Adicionar a validação a um aplicativo ASP.NET Core MVC
 
@@ -43,7 +43,7 @@ Observe como o formulário renderizou automaticamente uma mensagem de erro de va
 
 Uma vantagem significativa é que você não precisa alterar uma única linha de código na classe `MoviesController` ou na exibição *Create.cshtml* para habilitar essa interface do usuário de validação. O controlador e as exibições criados anteriormente neste tutorial selecionaram automaticamente as regras de validação especificadas com atributos de validação nas propriedades da classe de modelo `Movie`. Teste a validação usando o método de ação `Edit` e a mesma validação é aplicada.
 
-Os dados de formulário não serão enviados para o servidor enquanto houver erros de validação do lado do cliente. Verifique isso colocando um ponto de interrupção no método `HTTP Post` usando a [ferramenta Fiddler](http://www.telerik.com/fiddler) ou as [ferramentas do Desenvolvedor F12](/microsoft-edge/devtools-guide).
+Os dados de formulário não serão enviados para o servidor enquanto houver erros de validação do lado do cliente. Verifique isso colocando um ponto de interrupção no método `HTTP Post` usando a [ferramenta Fiddler](https://www.telerik.com/fiddler) ou as [ferramentas do Desenvolvedor F12](/microsoft-edge/devtools-guide).
 
 ## <a name="how-validation-works"></a>Como funciona a validação
 

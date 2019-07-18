@@ -5,12 +5,12 @@ description: Saiba como o ASP.NET Core MVC é uma estrutura avançada para a cri
 ms.author: riande
 ms.date: 01/08/2018
 uid: mvc/overview
-ms.openlocfilehash: eb636616ab952f506993ae5f4692e5e966bb20f4
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: 819bc93a7580626bf586b984b0ce169306df56d9
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087314"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67815349"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Visão geral do ASP.NET Core MVC
 
@@ -179,7 +179,7 @@ Além de ser uma ótima plataforma para a criação de sites, o ASP.NET Core MVC
 
 A estrutura inclui suporte para a negociação de conteúdo HTTP com suporte interno para [formatar dados](xref:web-api/advanced/formatting) como JSON ou XML. Escreva [formatadores personalizados](xref:web-api/advanced/custom-formatters) para adicionar suporte para seus próprios formatos.
 
-Use a geração de links para habilitar o suporte para hipermídia. Habilite o suporte para o [CORS (Compartilhamento de Recursos Entre Origens)](http://www.w3.org/TR/cors/) com facilidade, de modo que as APIs Web possam ser compartilhadas entre vários aplicativos Web.
+Use a geração de links para habilitar o suporte para hipermídia. Habilite o suporte para o [CORS (Compartilhamento de Recursos Entre Origens)](https://www.w3.org/TR/cors/) com facilidade, de modo que as APIs Web possam ser compartilhadas entre vários aplicativos Web.
 
 ### <a name="testability"></a>Capacidade de teste
 

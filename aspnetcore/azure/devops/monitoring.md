@@ -4,14 +4,14 @@ author: CamSoper
 description: Monitorar e depurar seu código como parte de uma solução de DevOps com o ASP.NET Core e o Azure
 ms.author: casoper
 ms.custom: mvc, seodec18
-ms.date: 10/24/2018
+ms.date: 07/10/2019
 uid: azure/devops/monitor
-ms.openlocfilehash: 00489bd92dfff8fd80bd24c2e60193d32031d7c4
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 1d8ed99f4387dbc99929164c558cc2ce14bd9ea0
+ms.sourcegitcommit: b40613c603d6f0cc71f3232c16df61550907f550
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64893063"
+ms.lasthandoff: 07/18/2019
+ms.locfileid: "68307952"
 ---
 # <a name="monitor-and-debug"></a>Monitorar e depurar
 
@@ -37,11 +37,11 @@ Com facilidade, aplicativos web do serviço de aplicativo são monitorados em te
 
     ![Painel de visão geral do captura de tela mostrando](./media/monitoring/overview.png)
 
-    * **Http 5xx**: Contagem de erros do lado do servidor, geralmente exceções no código do ASP.NET Core.
-    * **Dados em**: Entrada de dados que chegam ao seu aplicativo web.
-    * **Saída de dados**: Saída de dados do seu aplicativo web aos clientes.
+    * **Http 5xx**: Contagem de erros do lado do servidor, geralmente exceções no código ASP.NET Core.
+    * **Dados em**: Entrada de dados que entra em seu aplicativo Web.
+    * **Saída de dados**: Saída de dados de seu aplicativo Web para clientes.
     * **Solicitações**: Contagem de solicitações HTTP.
-    * **Tempo médio de resposta**: Tempo médio para o aplicativo web responder às solicitações HTTP.
+    * **Tempo médio de resposta**: Tempo médio para o aplicativo Web responder às solicitações HTTP.
 
     Várias ferramentas de autoatendimento para otimização e solução de problemas também são encontradas nesta página.
 
@@ -89,7 +89,7 @@ Logs de servidor e aplicativo da Web estão desabilitados por padrão no serviç
 
     ![Link de logs de diagnóstico](./media/monitoring/logging.png)
 
-1. Ative **log de aplicativo (Filesystem)**. Se solicitado, clique na caixa para instalar as extensões para habilitar o registro em log no aplicativo web do aplicativo.
+1. Ative **log de aplicativo (Filesystem)** . Se solicitado, clique na caixa para instalar as extensões para habilitar o registro em log no aplicativo web do aplicativo.
 1. Definir **log do servidor Web** à **sistema de arquivos**.
 1. Insira o **período de retenção** em dias. Por exemplo, 30.
 1. Clique em **Salvar**.
@@ -111,7 +111,7 @@ Os logs também podem ser [transmitido por meio da CLI do Azure ou o Azure Power
 
 O Azure Monitor também fornece [alertas em tempo real](/azure/monitoring-and-diagnostics/insights-alerts-portal) com base em métricas, eventos administrativos e outros critérios.
 
-> *Observação: No momento, alertas em métricas do aplicativo web só está disponível no serviço alertas (clássico).*
+> *Observação: Atualmente, os alertas em métricas de aplicativo Web só estão disponíveis no serviço alertas (clássico).*
 
 O [alertas de serviço (clássico)](/azure/monitoring-and-diagnostics/monitor-quick-resource-metric-alert-portal) pode ser encontrada no Azure Monitor ou sob o **monitoramento** seção das configurações de serviço de aplicativo.
 
@@ -135,7 +135,7 @@ Nesta seção, você concluiu as seguintes tarefas:
 
 ## <a name="additional-reading"></a>Leitura adicional
 
-* <xref:host-and-deploy/azure-apps/troubleshoot>
+* <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
 * [Monitorar o desempenho do aplicativo web do Azure com o Application Insights](/azure/application-insights/app-insights-azure-web-apps)
 * [Habilitar log de diagnósticos para aplicativos Web no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-enable-diagnostic-log)

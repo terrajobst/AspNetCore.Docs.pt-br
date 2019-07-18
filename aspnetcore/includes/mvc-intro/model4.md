@@ -1,6 +1,6 @@
 A tabela a seguir detalha os parâmetros do gerador de código do ASP.NET Core:
 
-| Parâmetro               | Descrição|
+| Parâmetro               | DESCRIÇÃO|
 | ----------------- | ------------ |
 | -m  | O nome do modelo. |
 | -dc  | O contexto de dados. |

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: a65543f805b197031bd46ef1974d4d4a5018b2d1
-ms.sourcegitcommit: 3376f224b47a89acf329b2d2f9260046a372f924
+ms.openlocfilehash: f995f3f74da4910de518af875eb89349a8457573
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/10/2019
-ms.locfileid: "65516912"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67813708"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Modelo de dados – 5 de 8
 
@@ -486,7 +486,7 @@ O código anterior adiciona novas entidades e configura a PK composta da entidad
 
 ## <a name="fluent-api-alternative-to-attributes"></a>Alternativa de API fluente para atributos
 
-O método `OnModelCreating` no código anterior usa a *API fluente* para configurar o comportamento do EF Core. A API é chamada "fluente" porque geralmente é usada pelo encadeamento de uma série de chamadas de método em uma única instrução. O [seguinte código](/ef/core/modeling/#methods-of-configuration) é um exemplo da API fluente:
+O método `OnModelCreating` no código anterior usa a *API fluente* para configurar o comportamento do EF Core. A API é chamada "fluente" porque geralmente é usada pelo encadeamento de uma série de chamadas de método em uma única instrução. O [seguinte código](/ef/core/modeling/#use-fluent-api-to-configure-a-model) é um exemplo da API fluente:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -512,7 +512,7 @@ Alguns dos atributos usados neste tutorial são usados para:
 * Apenas configuração do EF Core (por exemplo, `HasKey`).
 * Validação e configuração do EF Core (por exemplo, `[StringLength(50)]`).
 
-Para obter mais informações sobre atributos vs. API fluente, consulte [Métodos de configuração](/ef/core/modeling/#methods-of-configuration).
+Para obter mais informações sobre atributos vs. API fluente, consulte [Métodos de configuração](/ef/core/modeling/).
 
 ## <a name="entity-diagram-showing-relationships"></a>Diagrama de entidade mostrando relações
 

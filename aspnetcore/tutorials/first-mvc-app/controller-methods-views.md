@@ -5,12 +5,12 @@ description: Aprenda a trabalhar com os métodos, as exibições e as DataAnnota
 ms.author: riande
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: 36c8141ba5827366572dabcfd0fdf9600c745706
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 6d960da5acecbb95893bd339b4391560bedffb3d
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64889761"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67815410"
 ---
 # <a name="controller-methods-and-views-in-aspnet-core"></a>Os métodos e as exibições do controlador no ASP.NET Core
 
@@ -76,7 +76,7 @@ O código a seguir mostra o método `HTTP POST Edit`, que processa os valores de
 
 ::: moniker-end
 
-O atributo `[Bind]` é uma maneira de proteger contra o [excesso de postagem](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application#overpost). Você somente deve incluir as propriedades do atributo `[Bind]` que deseja alterar. Para obter mais informações, consulte [Proteger o controlador contra o excesso de postagem](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application). [ViewModels](http://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/) fornece uma abordagem alternativa para prevenir o excesso de postagem.
+O atributo `[Bind]` é uma maneira de proteger contra o [excesso de postagem](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application#overpost). Você somente deve incluir as propriedades do atributo `[Bind]` que deseja alterar. Para obter mais informações, consulte [Proteger o controlador contra o excesso de postagem](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application). [ViewModels](https://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/) fornece uma abordagem alternativa para prevenir o excesso de postagem.
 
 Observe se o segundo método de ação `Edit` é precedido pelo atributo `[HttpPost]`.
 
@@ -151,7 +151,7 @@ Todos os métodos `HttpGet` no controlador de filme seguem um padrão semelhante
 * [Auxiliares de marca de autor](xref:mvc/views/tag-helpers/authoring)
 * [Falsificação anti-solicitação](xref:security/anti-request-forgery)
 * Proteger o controlador contra o [excesso de postagem](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application)
-* [ViewModels](http://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/)
+* [ViewModels](https://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/)
 * [Auxiliar de marcação de formulário](xref:mvc/views/working-with-forms)
 * [Auxiliar de marcação de entrada](xref:mvc/views/working-with-forms)
 * [Auxiliar de marcação de rótulo](xref:mvc/views/working-with-forms)

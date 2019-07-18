@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como adicionar validação a uma Página Razor no ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/5/2018
+ms.date: 12/05/2018
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 38e1fff9c7a212af992951dbf57e124cae69d36f
-ms.sourcegitcommit: ccbb84ae307a5bc527441d3d509c20b5c1edde05
+ms.openlocfilehash: 8495849c89ca3d6fd2b2006b61ce2ec75ff504a5
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/19/2019
-ms.locfileid: "65874983"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67815645"
 ---
 # <a name="add-validation-to-an-aspnet-core-razor-page"></a>Adicionar validação a uma Página Razor do ASP.NET Core
 
@@ -47,7 +47,7 @@ Uma vantagem significativa é que **nenhuma** alteração de código foi necess�
 Os dados de formulário não serão postados no servidor enquanto houver erros de validação do lado do cliente. Verifique se os dados de formulário não são postados por uma ou mais das seguintes abordagens:
 
 * Coloque um ponto de interrupção no método `OnPostAsync`. Envie o formulário (selecione **Criar** ou **Salvar**). O ponto de interrupção nunca é atingido.
-* Use a [ferramenta Fiddler](http://www.telerik.com/fiddler).
+* Use a [ferramenta Fiddler](https://www.telerik.com/fiddler).
 * Use as ferramentas do desenvolvedor do navegador para monitorar o tráfego de rede.
 
 ### <a name="server-side-validation"></a>Validação do servidor

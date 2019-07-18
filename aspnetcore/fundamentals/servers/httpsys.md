@@ -7,12 +7,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 06/20/2019
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: eefe507efadb5ef0a03854d931402f9eaa23a266
-ms.sourcegitcommit: 763af2cbdab0da62d1f1cfef4bcf787f251dfb5c
+ms.openlocfilehash: 3f48cda8f89d3f3dcce220cad4e405472b510df4
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67394767"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67814887"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementação do servidor Web HTTP.sys no ASP.NET Core
 
@@ -195,7 +195,7 @@ O HTTP.sys delega à autenticação de modo kernel com o protocolo de autentica�
    * **.NET Core** &ndash; Se o aplicativo exigir o .NET Core, obtenha e execute o instalador do **Tempo de Execução do .NET Core** em [Downloads do .NET Core](https://dotnet.microsoft.com/download). Não instale o SDK completo no servidor.
    * **.NET framework** &ndash; Se o aplicativo exigir o .NET Framework, confira o [Guia de instalação do .NET Framework](/dotnet/framework/install/). Instale o .NET Framework necessário. O instalador do .NET Framework mais recente está disponível na página [Downloads do .NET Core](https://dotnet.microsoft.com/download).
 
-   Se o aplicativo for uma [implantação autocontida](/dotnet/core/deploying/#framework-dependent-deployments-scd), ele incluirá o tempo de execução em sua implantação. Nenhuma instalação do framework é necessária no servidor.
+   Se o aplicativo for uma [implantação autocontida](/dotnet/core/deploying/#self-contained-deployments-scd), ele incluirá o tempo de execução em sua implantação. Nenhuma instalação do framework é necessária no servidor.
 
 1. Configure URLs e portas no aplicativo.
 

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 12/18/2018
 uid: fundamentals/owin
-ms.openlocfilehash: 9d6ce79c15fe768c260c6361ac3babecab5f3f9b
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: 7edb4db026f1b778d43ac72883690a0b2a18ee31
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087296"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67814890"
 ---
 # <a name="open-web-interface-for-net-owin-with-aspnet-core"></a>OWIN (Open Web Interface para .NET) com o ASP.NET Core
 
@@ -35,7 +35,7 @@ Isso permite que o ASP.NET Core seja hospedado em um servidor/host compatível c
 
 O suporte ao OWIN do ASP.NET Core é implantado como parte do pacote `Microsoft.AspNetCore.Owin`. Importe o suporte ao OWIN para seu projeto instalando esse pacote.
 
-O middleware do OWIN está em conformidade com a [especificação do OWIN](http://owin.org/spec/spec/owin-1.0.0.html), que exige uma interface `Func<IDictionary<string, object>, Task>` e a definição de chaves específicas (como `owin.ResponseBody`). O seguinte middleware simples do OWIN exibe “Olá, Mundo”:
+O middleware do OWIN está em conformidade com a [especificação do OWIN](https://owin.org/spec/spec/owin-1.0.0.html), que exige uma interface `Func<IDictionary<string, object>, Task>` e a definição de chaves específicas (como `owin.ResponseBody`). O seguinte middleware simples do OWIN exibe “Olá, Mundo”:
 
 ```csharp
 public Task OwinHello(IDictionary<string, object> environment)
@@ -43,7 +43,7 @@ public Task OwinHello(IDictionary<string, object> environment)
     string responseText = "Hello World via OWIN";
     byte[] responseBytes = Encoding.UTF8.GetBytes(responseText);
 
-    // OWIN Environment Keys: http://owin.org/spec/spec/owin-1.0.0.html
+    // OWIN Environment Keys: https://owin.org/spec/spec/owin-1.0.0.html
     var responseStream = (Stream)environment["owin.ResponseBody"];
     var responseHeaders = (IDictionary<string, string[]>)environment["owin.ResponseHeaders"];
 
@@ -230,11 +230,11 @@ Você pode construir um ambiente do OWIN usando o `HttpContext`.
 
 ## <a name="owin-keys"></a>Chaves do OWIN
 
-O OWIN depende de um objeto `IDictionary<string,object>` para transmitir informações em uma troca de Solicitação/Resposta HTTP. O ASP.NET Core implementa as chaves listadas abaixo. Consulte a [especificação primária, extensões](http://owin.org/#spec) e as [Diretrizes de chaves do OWIN e chaves comuns](http://owin.org/spec/spec/CommonKeys.html).
+O OWIN depende de um objeto `IDictionary<string,object>` para transmitir informações em uma troca de Solicitação/Resposta HTTP. O ASP.NET Core implementa as chaves listadas abaixo. Consulte a [especificação primária, extensões](https://owin.org/#spec) e as [Diretrizes de chaves do OWIN e chaves comuns](https://owin.org/spec/spec/CommonKeys.html).
 
 ### <a name="request-data-owin-v100"></a>Dados de solicitação (OWIN v1.0.0)
 
-| Chave               | Valor (tipo) | Descrição |
+| Chave               | Valor (tipo) | DESCRIÇÃO |
 | ----------------- | ------------ | ----------- |
 | owin.RequestScheme | `String` |  |
 | owin.RequestMethod  | `String` | |    
@@ -247,13 +247,13 @@ O OWIN depende de um objeto `IDictionary<string,object>` para transmitir informa
 
 ### <a name="request-data-owin-v110"></a>Dados de solicitação (OWIN v1.1.0)
 
-| Chave               | Valor (tipo) | Descrição |
+| Chave               | Valor (tipo) | DESCRIÇÃO |
 | ----------------- | ------------ | ----------- |
 | owin.RequestId | `String` | Opcional |
 
 ### <a name="response-data-owin-v100"></a>Dados de resposta (OWIN v1.0.0)
 
-| Chave               | Valor (tipo) | Descrição |
+| Chave               | Valor (tipo) | DESCRIÇÃO |
 | ----------------- | ------------ | ----------- |
 | owin.ResponseStatusCode | `int` | Opcional |
 | owin.ResponseReasonPhrase | `String` | Opcional |
@@ -262,14 +262,14 @@ O OWIN depende de um objeto `IDictionary<string,object>` para transmitir informa
 
 ### <a name="other-data-owin-v100"></a>Outros dados (OWIN v1.0.0)
 
-| Chave               | Valor (tipo) | Descrição |
+| Chave               | Valor (tipo) | DESCRIÇÃO |
 | ----------------- | ------------ | ----------- |
 | owin.CallCancelled | `CancellationToken` |  |
 | owin.Version  | `String` | |   
 
 ### <a name="common-keys"></a>Chaves comuns
 
-| Chave               | Valor (tipo) | Descrição |
+| Chave               | Valor (tipo) | DESCRIÇÃO |
 | ----------------- | ------------ | ----------- |
 | ssl.ClientCertificate | `X509Certificate` |  |
 | ssl.LoadClientCertAsync  | `Func<Task>` | |    
@@ -282,30 +282,30 @@ O OWIN depende de um objeto `IDictionary<string,object>` para transmitir informa
 
 ### <a name="sendfiles-v030"></a>SendFiles v0.3.0
 
-| Chave               | Valor (tipo) | Descrição |
+| Chave               | Valor (tipo) | DESCRIÇÃO |
 | ----------------- | ------------ | ----------- |
-| sendfile.SendAsync | Consulte [Assinatura do delegado](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) | Por solicitação |
+| sendfile.SendAsync | Consulte [Assinatura do delegado](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) | Por solicitação |
 
 ### <a name="opaque-v030"></a>Opaque v0.3.0
 
-| Chave               | Valor (tipo) | Descrição |
+| Chave               | Valor (tipo) | DESCRIÇÃO |
 | ----------------- | ------------ | ----------- |
 | opaque.Version | `String` |  |
-| opaque.Upgrade | `OpaqueUpgrade` | Consulte [Assinatura do delegado](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
+| opaque.Upgrade | `OpaqueUpgrade` | Consulte [Assinatura do delegado](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
 | opaque.Stream | `Stream` |  |
 | opaque.CallCancelled | `CancellationToken` |  |
 
 ### <a name="websocket-v030"></a>WebSocket v0.3.0
 
-| Chave               | Valor (tipo) | Descrição |
+| Chave               | Valor (tipo) | DESCRIÇÃO |
 | ----------------- | ------------ | ----------- |
 | websocket.Version | `String` |  |
-| websocket.Accept | `WebSocketAccept` | Consulte [Assinatura do delegado](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
+| websocket.Accept | `WebSocketAccept` | Consulte [Assinatura do delegado](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
 | websocket.AcceptAlt |  | Sem especificação |
 | websocket.SubProtocol | `String` | Consulte a etapa 5.5 [RFC6455 Seção 4.2.2](https://tools.ietf.org/html/rfc6455#section-4.2.2) |
-| websocket.SendAsync | `WebSocketSendAsync` | Consulte [Assinatura do delegado](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
-| websocket.ReceiveAsync | `WebSocketReceiveAsync` | Consulte [Assinatura do delegado](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
-| websocket.CloseAsync | `WebSocketCloseAsync` | Consulte [Assinatura do delegado](http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
+| websocket.SendAsync | `WebSocketSendAsync` | Consulte [Assinatura do delegado](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
+| websocket.ReceiveAsync | `WebSocketReceiveAsync` | Consulte [Assinatura do delegado](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
+| websocket.CloseAsync | `WebSocketCloseAsync` | Consulte [Assinatura do delegado](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm)  |
 | websocket.CallCancelled | `CancellationToken` |  |
 | websocket.ClientCloseStatus | `int` | Opcional |
 | websocket.ClientCloseDescription | `String` | Opcional |

@@ -1,4 +1,4 @@
-[Visual Studio 2017 versão 15.7.3 ou posterior](https://visualstudio.microsoft.com/downloads/) com as cargas de trabalho a seguir:
+[Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com as cargas de trabalho a seguir:
 
 * **ASP.NET e desenvolvimento para a Web**
 * **Desenvolvimento entre plataformas do .NET Core**

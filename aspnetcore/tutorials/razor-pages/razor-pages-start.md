@@ -3,14 +3,14 @@ title: 'Tutorial: Introdução às Páginas do Razor no ASP.NET Core'
 author: rick-anderson
 description: Esta série de tutoriais mostra como usar Razor Pages no ASP.NET Core. Saiba como criar um modelo, gerar código para Razor Pages, usar o Entity Framework Core e o SQL Server para acesso a dados, adicionar funcionalidade de pesquisa, adicionar validação de entrada e usar migrações para atualizar o modelo.
 ms.author: riande
-ms.date: 6/3/2019
+ms.date: 06/03/2019
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 207f5a5ab5e21d8cd8f6cf2f63641b94d8077ae5
-ms.sourcegitcommit: d6e51c60439f03a8992bda70cc982ddb15d3f100
+ms.openlocfilehash: 7e228c99b4d55c14cea9c915cf06a7fbbbd5af44
+ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/03/2019
-ms.locfileid: "67555796"
+ms.lasthandoff: 07/12/2019
+ms.locfileid: "67855733"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Introdução às Páginas do Razor no ASP.NET Core
 

@@ -6,16 +6,16 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2019
 uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
-ms.openlocfilehash: 916a68c187cbf516a59d3c5d7578cdb6ada01b86
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 964072ad276f7e3e411ee41cb03a2efb9d05c585
+ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64887661"
+ms.lasthandoff: 07/12/2019
+ms.locfileid: "67856121"
 ---
 # <a name="image-tag-helper-in-aspnet-core"></a>Auxiliar de Marca de Imagem no ASP.NET Core
 
-Por [Peter Kellner](http://peterkellner.net)
+Por [Peter Kellner](https://peterkellner.net)
 
 O Auxiliar de Marca de Imagem aprimora a marca `<img>` para fornecer comportamento de extrapolação de cache para arquivos de imagem estática.
 
@@ -46,7 +46,7 @@ O exemplo a seguir usa um Auxiliar de Marca de Imagem:
 <img src="~/images/asplogo.png" asp-append-version="true">
 ```
 
-Se o arquivo estático existe no diretório */wwwroot/images/*, o HTML gerado é semelhante ao seguinte (o hash será diferente):
+Se o arquivo estático existe no diretório */wwwroot/images/* , o HTML gerado é semelhante ao seguinte (o hash será diferente):
 
 ```html
 <img src="/images/asplogo.png?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM">

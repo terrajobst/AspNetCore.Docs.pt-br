@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 03/18/2019
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 11d2914b5797735fb6a262a31bdb49f58391579f
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 870ce2eb28f384b380cc1178842325dc28199f09
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64884051"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67814984"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Auxiliares de Marca no ASP.NET Core
 
@@ -19,7 +19,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## <a name="what-are-tag-helpers"></a>O que são Auxiliares de Marca
 
-Os Auxiliares de Marca permitem que o código do lado do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. Por exemplo, o `ImageTagHelper` interno pode acrescentar um número de versão ao nome da imagem. Sempre que a imagem é alterada, o servidor gera uma nova versão exclusiva para a imagem, de modo que os clientes tenham a garantia de obter a imagem atual (em vez de uma imagem obsoleta armazenada em cache). Há muitos Auxiliares de Marca internos para tarefas comuns – como criação de formulários, links, carregamento de ativos e muito mais – e ainda outros disponíveis em repositórios GitHub públicos e como NuGet. Os Auxiliares de Marca são criados no C# e são direcionados a elementos HTML de acordo com o nome do elemento, o nome do atributo ou a marca pai. Por exemplo, o `LabelTagHelper` interno pode ser direcionado ao elemento `<label>` HTML quando os atributos `LabelTagHelper` são aplicados. Se você está familiarizado com [Auxiliares HTML](http://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers), os Auxiliares de Marca reduzem as transições explícitas entre HTML e C# em exibições do Razor. Em muitos casos, os Auxiliares HTML fornecem uma abordagem alternativa a um Auxiliar de Marca específico, mas é importante reconhecer que os Auxiliares de Marca não substituem os Auxiliares HTML e que não há um Auxiliar de Marca para cada Auxiliar HTML. [Comparação entre Auxiliares de Marca e Auxiliares HTML](#tag-helpers-compared-to-html-helpers) explica as diferenças mais detalhadamente.
+Os Auxiliares de Marca permitem que o código do lado do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. Por exemplo, o `ImageTagHelper` interno pode acrescentar um número de versão ao nome da imagem. Sempre que a imagem é alterada, o servidor gera uma nova versão exclusiva para a imagem, de modo que os clientes tenham a garantia de obter a imagem atual (em vez de uma imagem obsoleta armazenada em cache). Há muitos Auxiliares de Marca internos para tarefas comuns – como criação de formulários, links, carregamento de ativos e muito mais – e ainda outros disponíveis em repositórios GitHub públicos e como NuGet. Os Auxiliares de Marca são criados no C# e são direcionados a elementos HTML de acordo com o nome do elemento, o nome do atributo ou a marca pai. Por exemplo, o `LabelTagHelper` interno pode ser direcionado ao elemento `<label>` HTML quando os atributos `LabelTagHelper` são aplicados. Se você está familiarizado com [Auxiliares HTML](https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers), os Auxiliares de Marca reduzem as transições explícitas entre HTML e C# em exibições do Razor. Em muitos casos, os Auxiliares HTML fornecem uma abordagem alternativa a um Auxiliar de Marca específico, mas é importante reconhecer que os Auxiliares de Marca não substituem os Auxiliares HTML e que não há um Auxiliar de Marca para cada Auxiliar HTML. [Comparação entre Auxiliares de Marca e Auxiliares HTML](#tag-helpers-compared-to-html-helpers) explica as diferenças mais detalhadamente.
 
 ## <a name="what-tag-helpers-provide"></a>O que os Auxiliares de Marca fornecem
 
@@ -175,7 +175,7 @@ O IntelliSense lista as propriedades e os métodos disponíveis para o modelo na
 
 ## <a name="tag-helpers-compared-to-html-helpers"></a>Comparação entre Auxiliares de Marca e Auxiliares HTML
 
-Os Auxiliares de Marca são anexados a elementos HTML em exibições do Razor, enquanto os [Auxiliares HTML](http://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers) são invocados como métodos intercalados com HTML nas exibições do Razor. Considere a seguinte marcação do Razor, que cria um rótulo HTML com a classe CSS "caption":
+Os Auxiliares de Marca são anexados a elementos HTML em exibições do Razor, enquanto os [Auxiliares HTML](https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers) são invocados como métodos intercalados com HTML nas exibições do Razor. Considere a seguinte marcação do Razor, que cria um rótulo HTML com a classe CSS "caption":
 
 ```cshtml
 @Html.Label("FirstName", "First Name:", new {@class="caption"})
@@ -255,4 +255,4 @@ Personalize a fonte e a colorização em **Ferramentas** > **Opções** > **Ambi
 
 * [Auxiliares de marca de autor](xref:mvc/views/tag-helpers/authoring)
 * [Trabalhando com formulários](xref:mvc/views/working-with-forms)
-* [TagHelperSamples no GitHub](https://github.com/dpaquette/TagHelperSamples) contém amostras de Auxiliar de Marca para trabalhar com o [Bootstrap](http://getbootstrap.com/).
+* [TagHelperSamples no GitHub](https://github.com/dpaquette/TagHelperSamples) contém amostras de Auxiliar de Marca para trabalhar com o [Bootstrap](https://getbootstrap.com/).

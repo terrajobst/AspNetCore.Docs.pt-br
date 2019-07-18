@@ -3,14 +3,14 @@ title: Páginas Razor com o EF Core no ASP.NET Core – CRUD – 2 de 8
 author: rick-anderson
 description: Mostra como criar, ler, atualizar e excluir com o EF Core
 ms.author: riande
-ms.date: 6/31/2017
+ms.date: 06/30/2017
 uid: data/ef-rp/crud
-ms.openlocfilehash: ec22c82b3b70399017b5b9aa61896440db647062
-ms.sourcegitcommit: e7e04a45195d4e0527af6f7cf1807defb56dc3c3
+ms.openlocfilehash: 2e2aaa3c84759bde39ec3f46ff5ba8699f6c219b
+ms.sourcegitcommit: 1bf80f4acd62151ff8cce517f03f6fa891136409
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/06/2019
-ms.locfileid: "66750024"
+ms.lasthandoff: 07/15/2019
+ms.locfileid: "68223834"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---crud---2-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – CRUD – 2 de 8
 

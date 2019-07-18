@@ -7,12 +7,12 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: 2776e3357941d0e7932882c39af121f85d037d62
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 8ef458108e60850d0d54e7b1e6472c5b92984ccc
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64887241"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67813537"
 ---
 # <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Tutorial: Criar um modelo de dados complexo - ASP.NET MVC com EF Core
 
@@ -397,7 +397,7 @@ Esse código adiciona novas entidades e configura a chave primária composta da 
 
 ## <a name="about-a-fluent-api-alternative"></a>Sobre a alternativa de API fluente
 
-O código no método `OnModelCreating` da classe `DbContext` usa a *API fluente* para configurar o comportamento do EF. A API é chamada "fluente" porque costuma ser usada pelo encadeamento de uma série de chamadas de método em uma única instrução, como neste exemplo da [documentação do EF Core](/ef/core/modeling/#methods-of-configuration):
+O código no método `OnModelCreating` da classe `DbContext` usa a *API fluente* para configurar o comportamento do EF. A API é chamada "fluente" porque costuma ser usada pelo encadeamento de uma série de chamadas de método em uma única instrução, como neste exemplo da [documentação do EF Core](/ef/core/modeling/#use-fluent-api-to-configure-a-model):
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -412,7 +412,7 @@ Neste tutorial, você usa a API fluente somente para o mapeamento de banco de da
 
 Alguns desenvolvedores preferem usar a API fluente exclusivamente para que possam manter suas classes de entidade "limpas". Combine atributos e a API fluente se desejar. Além disso, há algumas personalizações que podem ser feitas apenas com a API fluente, mas em geral, a prática recomendada é escolher uma dessas duas abordagens e usar isso com o máximo de consistência possível. Se usar as duas, observe que sempre que houver um conflito, a API fluente substituirá atributos.
 
-Para obter mais informações sobre atributos vs. API fluente, consulte [Métodos de configuração](/ef/core/modeling/#methods-of-configuration).
+Para obter mais informações sobre atributos vs. API fluente, consulte [Métodos de configuração](/ef/core/modeling/).
 
 ## <a name="entity-diagram-showing-relationships"></a>Diagrama de entidade mostrando relações
 

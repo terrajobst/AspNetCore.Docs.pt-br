@@ -5,12 +5,12 @@ description: Saiba como adicionar um controlador a um aplicativo ASP.NET Core MV
 ms.author: riande
 ms.date: 02/28/2017
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: 9dbfb52109260dbfe0c6c094a7ac4edae47d24e7
-ms.sourcegitcommit: 1bb3f3f1905b4e7d4ca1b314f2ce6ee5dd8be75f
+ms.openlocfilehash: f28dc96b66fce736242d26a2584fea0a23375e23
+ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/11/2019
-ms.locfileid: "66837334"
+ms.lasthandoff: 07/11/2019
+ms.locfileid: "67815201"
 ---
 # <a name="add-a-controller-to-an-aspnet-core-mvc-app"></a>Adicionar um controlador a um aplicativo ASP.NET Core MVC
 
@@ -68,7 +68,7 @@ Cada método `public` em um controlador pode ser chamado como um ponto de extrem
 
 Um ponto de extremidade HTTP é uma URL direcionável no aplicativo Web, como `https://localhost:5001/HelloWorld`, e combina o protocolo usado `HTTPS`, o local de rede do servidor Web (incluindo a porta TCP) `localhost:5001` e o URI de destino `HelloWorld`.
 
-O primeiro comentário indica que este é um método [HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp) invocado por meio do acréscimo de `/HelloWorld/` à URL base. O primeiro comentário especifica um método [HTTP GET](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) invocado por meio do acréscimo de `/HelloWorld/Welcome/` à URL base. Mais adiante no tutorial, o mecanismo de scaffolding será usado para gerar métodos `HTTP POST` que atualizam dados.
+O primeiro comentário indica que este é um método [HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp) invocado por meio do acréscimo de `/HelloWorld/` à URL base. O primeiro comentário especifica um método [HTTP GET](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) invocado por meio do acréscimo de `/HelloWorld/Welcome/` à URL base. Mais adiante no tutorial, o mecanismo de scaffolding será usado para gerar métodos `HTTP POST` que atualizam dados.
 
 Execute o aplicativo no modo sem depuração e acrescente “HelloWorld” ao caminho na barra de endereços. O método `Index` retorna uma cadeia de caracteres.
 
