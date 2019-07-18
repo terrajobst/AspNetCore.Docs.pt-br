@@ -5,14 +5,14 @@ description: Saiba como hospedar aplicativos ASP.NET Core no Windows Server IIS 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2019
+ms.date: 07/16/2019
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 2dab8b4839d6778d5dc6a3daf96c1719eecfe0fb
-ms.sourcegitcommit: 763af2cbdab0da62d1f1cfef4bcf787f251dfb5c
+ms.openlocfilehash: 644d84f9adba650b3ef10ba69cc75c22845be211
+ms.sourcegitcommit: 7e00e8236ca4eabf058f07020a5a3882daf7564f
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67394635"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68239225"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -338,7 +338,7 @@ Ao implantar aplicativos para servidores com [Implantação da Web](/iis/install
 
 ## <a name="create-the-iis-site"></a>Criar o site do IIS
 
-1. No sistema de hospedagem, crie uma pasta para conter arquivos e pastas publicados do aplicativo. O layout de implantação do aplicativo é descrito no tópico [Estrutura de Diretórios](xref:host-and-deploy/directory-structure).
+1. No sistema de hospedagem, crie uma pasta para conter arquivos e pastas publicados do aplicativo. Em uma etapa a seguir, o caminho da pasta é fornecido ao IIS como o caminho físico para o aplicativo. Para obter mais informações sobre o layout de arquivo e a pasta de implantação de um aplicativo, confira <xref:host-and-deploy/directory-structure>.
 
 1. No Gerenciador do IIS, abra o nó do servidor no painel **Conexões**. Clique com botão direito do mouse na pasta **Sites**. Selecione **Adicionar Site** no menu contextual.
 
@@ -372,11 +372,11 @@ Para saber mais, veja [Configurar a Autenticação do Windows](xref:security/aut
 
 ## <a name="deploy-the-app"></a>Implantar o aplicativo
 
-Implante o aplicativo na pasta criada no sistema de hospedagem. A [Implantação da Web](/iis/publish/using-web-deploy/introduction-to-web-deploy) é o mecanismo recomendado para implantação.
+Implante o aplicativo na pasta **caminho físico** do IIS que foi estabelecida na seção [Criar o site do IIS](#create-the-iis-site). [Implantação da Web](/iis/publish/using-web-deploy/introduction-to-web-deploy) é o mecanismo recomendado para implantação, mas existem várias opções para mover o aplicativo da pasta *publicar* do projeto para a pasta de implantação do sistema de hospedagem.
 
 ### <a name="web-deploy-with-visual-studio"></a>Implantação da Web com o Visual Studio
 
-Consulte o tópico [Perfis de publicação do Visual Studio para implantação de aplicativos ASP.NET Core](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) para saber como criar um perfil de publicação para uso com a Implantação da Web. Se o provedor de hospedagem fornecer um Perfil de Publicação ou o suporte para a criação de um, baixe o perfil e importe-o usando a caixa de diálogo **Publicar** do Visual Studio.
+Consulte o tópico [Perfis de publicação do Visual Studio para implantação de aplicativos ASP.NET Core](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) para saber como criar um perfil de publicação para uso com a Implantação da Web. Se o provedor de hospedagem fornecer um Perfil de Publicação ou o suporte para a criação de um, baixe o perfil e importe-o usando a caixa de diálogo **Publicar** do Visual Studio:
 
 ![Página de caixa de diálogo Publicar](index/_static/pub-dialog.png)
 
@@ -386,11 +386,15 @@ Também é possível usar a [Implantação da Web](/iis/publish/using-web-deploy
 
 ### <a name="alternatives-to-web-deploy"></a>Alternativas à Implantação da Web
 
-Use qualquer um dos vários métodos para mover o aplicativo para o sistema host, como cópia manual, Xcopy, Robocopy ou PowerShell.
+Use qualquer um dos vários métodos para mover o aplicativo para o sistema host, como cópia manual, [Xcopy](/windows-server/administration/windows-commands/xcopy), [Robocopy](/windows-server/administration/windows-commands/robocopy) ou [PowerShell](/powershell/).
 
 Para obter mais informações sobre a implantação do ASP.NET Core no IIS, consulte a seção [Recursos de implantação para administradores do IIS](#deployment-resources-for-iis-administrators).
 
 ## <a name="browse-the-website"></a>Navegar no site
+
+Depois de implantar o aplicativo no sistema de hospedagem, faça uma solicitação para um dos pontos de extremidade públicos do aplicativo.
+
+No exemplo a seguir, o site está associado a um **Nome do Host** IIS de `www.mysite.com` na **Porta** `80`. É feita uma solicitação para `http://www.mysite.com`:
 
 ![O navegador Microsoft Edge carregou a página de inicialização do IIS.](index/_static/browsewebsite.png)
 
