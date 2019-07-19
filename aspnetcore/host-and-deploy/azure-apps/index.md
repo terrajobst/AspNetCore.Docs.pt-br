@@ -5,14 +5,14 @@ description: Este artigo contém links para o host do Azure e para implantar rec
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2019
+ms.date: 07/16/2019
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: 5daefde13310ebeb232ef4c8886b12ad78182e50
-ms.sourcegitcommit: f5762967df3be8b8c868229e679301f2f7954679
+ms.openlocfilehash: bbdb3e92b6b8afb44d9c0c95c240002c7b7c17db
+ms.sourcegitcommit: b40613c603d6f0cc71f3232c16df61550907f550
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/13/2019
-ms.locfileid: "67048246"
+ms.lasthandoff: 07/18/2019
+ms.locfileid: "68308149"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -48,7 +48,7 @@ Descubra as limitações de tempo de execução do Serviço de Aplicativo do Azu
 
 ::: moniker range=">= aspnetcore-2.2"
 
-Os tempos de execução para aplicativos de 32 bits (x86) e 64 bits (x64) estão presentes no Serviço de Aplicativo do Azure. O [SDK do .NET Core](/dotnet/core/sdk) disponível no Serviço de Aplicativo do Azure é de 32 bits, mas você pode implantar aplicativos de 64 bits usando o console do [Kudu](https://github.com/projectkudu/kudu/wiki) ou o [MSDeploy com um perfil de publicação do Visual Studio ou um comando da CLI](xref:host-and-deploy/visual-studio-publish-profiles).
+Os tempos de execução para aplicativos de 32 bits (x86) e 64 bits (x64) estão presentes no Serviço de Aplicativo do Azure. O [SDK do .NET Core](/dotnet/core/sdk) disponível no Serviço de Aplicativo é de 32 bits, mas é possível implantar aplicativos de 64 bits compilados localmente usando o console do [Kudu](https://github.com/projectkudu/kudu/wiki) ou o processo de publicação do Visual Studio. Para obter mais informações, consulte a seção [Publicar e implantar o aplicativo](#publish-and-deploy-the-app).
 
 ::: moniker-end
 
@@ -57,6 +57,8 @@ Os tempos de execução para aplicativos de 32 bits (x86) e 64 bits (x64) estão
 Para aplicativos com dependências nativas, os tempos de execução para aplicativos de 32 bits (x86) estão presentes no Serviço de Aplicativo do Azure. O [SDK do .NET Core](/dotnet/core/sdk) disponível no Serviço de Aplicativo é de 32 bits.
 
 ::: moniker-end
+
+Para obter mais informações sobre os componentes e os métodos de distribuição da estrutura do .NET Core (por exemplo, informações sobre o tempo de execução e sobre o SDK do .NET Core), consulte [Sobre o .NET Core: Composição](/dotnet/core/about#composition).
 
 ### <a name="packages"></a>Pacotes
 
@@ -80,7 +82,7 @@ Quando o aplicativo usa o [host genérico](xref:fundamentals/host/generic-host),
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.0 <= aspnetcore-2.2"
+::: moniker range="< aspnetcore-3.0"
 
 Quando um aplicativo cria o host usando o [WebHost.CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder), as variáveis de ambiente que configuram o host usam o prefixo `ASPNETCORE_`. Para saber mais, confira <xref:fundamentals/host/web-host> e o [Provedor de configuração de variáveis de ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
@@ -115,7 +117,7 @@ Descubra como habilitar e acessar o log de diagnósticos para os códigos de sta
 <xref:fundamentals/error-handling>  
 Entenda as abordagens comuns para o tratamento de erros em aplicativos ASP.NET Core.
 
-<xref:host-and-deploy/azure-apps/troubleshoot>  
+<xref:test/troubleshoot-azure-iis>  
 Saiba como diagnosticar problemas com implantações do Serviço de Aplicativo do Azure com aplicativos ASP.NET Core.
 
 <xref:host-and-deploy/azure-iis-errors-reference>  
@@ -136,10 +138,10 @@ Para obter mais informações, consulte <xref:security/data-protection/implement
 
 ## <a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>Implantar a versão de visualização do ASP.NET Core para o Serviço de Aplicativo do Azure
 
-Use uma das abordagens a seguir:
+Use uma das seguintes abordagens se o aplicativo depender de uma versão prévia do .NET Core:
 
 * [Instalar a extensão de site da versão prévia](#install-the-preview-site-extension).
-* [Implantar o aplicativo autocontido](#deploy-the-app-self-contained).
+* [Implantar um aplicativo autossuficiente em versão prévia](#deploy-a-self-contained-preview-app).
 * [Usar o Docker com aplicativos Web para contêineres](#use-docker-with-web-apps-for-containers).
 
 ### <a name="install-the-preview-site-extension"></a>Instalar a extensão de site de visualização
@@ -188,7 +190,7 @@ Se um modelo do ARM for usado para criar e implantar aplicativos, o tipo de recu
 
 [!code-json[](index/sample/arm.json?highlight=2)]
 
-### <a name="deploy-the-app-self-contained"></a>Implantar o aplicativo autocontido
+### <a name="deploy-a-self-contained-preview-app"></a>Implantar um aplicativo autossuficiente em versão prévia
 
 Uma [SCD (implantação autocontida)](/dotnet/core/deploying/#self-contained-deployments-scd) voltada para um tempo de execução de versão prévia transporta o tempo de execução da versão prévia na implantação.
 
@@ -197,9 +199,59 @@ Ao implantar um aplicativo autocontido:
 * O site no Serviço de Aplicativo do Azure não exige a [extensão de site da versão prévia](#install-the-preview-site-extension).
 * O aplicativo precisa ser publicado após uma abordagem diferente da publicação em uma [FDD (implantação dependente de estrutura)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
 
-#### <a name="publish-from-visual-studio"></a>Publicar no Visual Studio
+Siga as orientações fornecidas na seção [Implantar o aplicativo autossuficiente](#deploy-the-app-self-contained).
 
-1. Selecione **Build** > **Publicar {Nome do Aplicativo}** na barra de ferramentas do Visual Studio.
+### <a name="use-docker-with-web-apps-for-containers"></a>Usar o Docker com aplicativos Web para contêineres
+
+O [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contém as imagens de versão prévia do Docker mais recentes. As imagens podem ser usadas como uma imagem de base. Use a imagem e implante aplicativos Web para contêineres normalmente.
+
+## <a name="publish-and-deploy-the-app"></a>Publicar e implantar o aplicativo
+
+### <a name="deploy-the-app-framework-dependent"></a>Implantar o aplicativo dependente de estrutura de aplicativos
+
+::: moniker range=">= aspnetcore-2.2"
+
+Para uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd) de 64 bits:
+
+* Use um SDK do .NET Core de 64 bits para compilar um aplicativo de 64 bits.
+* Configure a **Plataforma** como **64 bits** na seção **Configuração** > **Configurações gerais** do Serviço de Aplicativo. O aplicativo deve usar um plano de serviço Básico ou superior para possibilitar a escolha do número de bits da plataforma.
+
+::: moniker-end
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+1. Selecione **Compilar** > **Publicar {Application Name}** na barra de ferramentas do Visual Studio ou clique com o botão direito do mouse no projeto no **Gerenciador de Soluções** e selecione **Publicar**.
+1. Na caixa de diálogo **Escolher um destino de publicação**, confirme se o **Serviço de Aplicativo** está selecionado.
+1. Selecione **Avançado**. A caixa de diálogo **Publicar** será aberta.
+1. Na caixa de diálogo **Publicar**:
+   * Confirme se a configuração **Versão** está selecionada.
+   * Abra a lista suspensa **Modo de Implantação** e selecione **Dependente de Estrutura**.
+   * Selecione **Portátil** como o **Tempo de Execução de Destino**.
+   * Se você precisar remover arquivos adicionais após a implantação, abra as **Opções de Publicação do Arquivo** e marque a caixa de seleção para remover arquivos adicionais no destino.
+   * Selecione **Salvar**.
+1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
+
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+
+1. No arquivo de projeto, não especifique um [RID (Identificador de Tempo de Execução)](/dotnet/core/rid-catalog).
+
+1. Em um shell de comando, publique o aplicativo na Configuração de versão usando o comando [dotnet publish](/dotnet/core/tools/dotnet-publish). No exemplo a seguir, o aplicativo é publicado como dependente de estrutura:
+
+   ```console
+   dotnet publish --configuration Release
+   ```
+
+1. Mova o conteúdo do diretório *bin/Release/{TARGET FRAMEWORK}/publish* para o site no Serviço de Aplicativo. Se for arrastar o conteúdo da pasta *publish* de seu disco rígido local ou do compartilhamento de rede diretamente para o Serviço de Aplicativo no console do [Kudu](https://github.com/projectkudu/kudu/wiki), arraste os arquivos para a pasta `D:\home\site\wwwroot` no console do Kudu.
+
+---
+
+### <a name="deploy-the-app-self-contained"></a>Implantar o aplicativo autocontido
+
+Use o Visual Studio ou as ferramentas da CLI (interface de linha de comando) para uma [SCD (implantação autossuficiente)](/dotnet/core/deploying/#self-contained-deployments-scd).
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+1. Selecione **Compilar** > **Publicar {Application Name}** na barra de ferramentas do Visual Studio ou clique com o botão direito do mouse no projeto no **Gerenciador de Soluções** e selecione **Publicar**.
 1. Na caixa de diálogo **Escolher um destino de publicação**, confirme se o **Serviço de Aplicativo** está selecionado.
 1. Selecione **Avançado**. A caixa de diálogo **Publicar** será aberta.
 1. Na caixa de diálogo **Publicar**:
@@ -210,13 +262,13 @@ Ao implantar um aplicativo autocontido:
    * Selecione **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
-#### <a name="publish-using-command-line-interface-cli-tools"></a>Publicar usando as ferramentas de CLI (interface de linha de comando)
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
 1. No arquivo de projeto, especifique um ou mais [RIDs (identificadores de tempo de execução)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` (singular) para um único RID ou use `<RuntimeIdentifiers>` (plural) para fornecer uma lista de RIDs delimitada por ponto e vírgula. No exemplo a seguir, o RID `win-x86` é especificado:
 
    ```xml
    <PropertyGroup>
-     <TargetFramework>netcoreapp2.1</TargetFramework>
+     <TargetFramework>{TARGET FRAMEWORK}</TargetFramework>
      <RuntimeIdentifier>win-x86</RuntimeIdentifier>
    </PropertyGroup>
    ```
@@ -227,11 +279,9 @@ Ao implantar um aplicativo autocontido:
    dotnet publish --configuration Release --runtime win-x86
    ```
 
-1. Mova o conteúdo do diretório *bin/Release/{TARGET FRAMEWORK}/{RUNTIME IDENTIFIER}/publish* para o site no Serviço de Aplicativo.
+1. Mova o conteúdo do diretório *bin/Release/{TARGET FRAMEWORK}/{RUNTIME IDENTIFIER}/publish* para o site no Serviço de Aplicativo. Se for arrastar o conteúdo da pasta *publish* de seu disco rígido local ou do compartilhamento de rede diretamente para o Serviço de Aplicativo no console do Kudu, arraste os arquivos para a pasta `D:\home\site\wwwroot` no console do Kudu.
 
-### <a name="use-docker-with-web-apps-for-containers"></a>Usar o Docker com aplicativos Web para contêineres
-
-O [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contém as imagens de versão prévia do Docker mais recentes. As imagens podem ser usadas como uma imagem de base. Use a imagem e implante aplicativos Web para contêineres normalmente.
+---
 
 ## <a name="protocol-settings-https"></a>Configurações de protocolo (HTTPS)
 
