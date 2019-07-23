@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como criar uma API Web com o ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/23/2019
+ms.date: 07/11/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: a53f7019c1079296f073e743ddbf9d90fc5abad3
-ms.sourcegitcommit: d6e51c60439f03a8992bda70cc982ddb15d3f100
+ms.openlocfilehash: 95410cef9753fbb0eda6136320b59682e0553ea7
+ms.sourcegitcommit: 040aedca220ed24ee1726e6886daf6906f95a028
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/03/2019
-ms.locfileid: "67555877"
+ms.lasthandoff: 07/15/2019
+ms.locfileid: "67893170"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Criar uma API Web com o ASP.NET Core
 
@@ -99,7 +99,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
   ![Nova solução do macOS](first-web-api-mac/_static/sln.png)
 
-* Selecione **Aplicativo .NET Core** > **API Web ASP.NET Core** > **Avançar**.
+* Selecione **.NET Core** > **Aplicativo** > **API** > **Próximo**.
 
   ![Caixa de diálogo Novo projeto do macOS](first-web-api-mac/_static/1.png)
   
@@ -143,7 +143,7 @@ Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo 
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No **Gerenciador de Soluções**, clique com o botão direito do mouse no projeto. Selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Models*.
+* No **Gerenciador de Soluções**, clique com o botão direito do mouse no projeto. Selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta *Models*.
 
 * Clique com o botão direito do mouse na pasta *Modelos* e selecione **Adicionar** > **Classe**. Dê à classe o nome *TodoItem* e selecione **Adicionar**.
 
@@ -245,6 +245,8 @@ Esses métodos implementam dois pontos de extremidade GET:
 
 * `GET /api/todo`
 * `GET /api/todo/{id}`
+
+Interrompa o aplicativo se ele ainda estiver em execução. Em seguida, execute-o novamente para incluir as alterações mais recentes.
 
 Teste o aplicativo chamando os dois pontos de extremidade em um navegador. Por exemplo:
 

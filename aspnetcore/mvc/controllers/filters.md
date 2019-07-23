@@ -4,14 +4,14 @@ author: ardalis
 description: Saiba como os filtros funcionam e como usá-los no ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/08/2019
+ms.date: 05/08/2019
 uid: mvc/controllers/filters
-ms.openlocfilehash: cdf121b97396cb23103d49cd141b9ef19b8c0cc6
-ms.sourcegitcommit: e1623d8279b27ff83d8ad67a1e7ef439259decdf
+ms.openlocfilehash: 50b199744f32ad19335080da406db69665ec1ae9
+ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/25/2019
-ms.locfileid: "66223030"
+ms.lasthandoff: 07/12/2019
+ms.locfileid: "67856155"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtros no ASP.NET Core
 
@@ -259,7 +259,7 @@ No código a seguir, o atributo `ServiceFilter` recupera uma instância do filtr
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/HomeController.cs?name=snippet_ServiceFilter&highlight=1)]
 
-[ServiceFilterAttribute.IsReusable](xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.IsReusable):
+Ao usar `ServiceFilterAttribute`, configurar [ServiceFilterAttribute.IsReusable](xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.IsReusable):
 
 * Fornece uma dica de que a instância de filtro *pode* ser reutilizada fora do escopo de solicitação em que foi criada. O tempo de execução do ASP.NET Core não garante:
 
@@ -279,7 +279,10 @@ Como os tipos `TypeFilterAttribute` não são resolvidos diretamente do contêin
 * Os tipos referenciados usando o `TypeFilterAttribute` não precisam ser registrados no contêiner de DI.  Eles têm suas dependências atendidas pelo contêiner de DI.
 * Opcionalmente, o `TypeFilterAttribute` pode aceitar argumentos de construtor para o tipo.
 
-Ao usar `TypeFilterAttribute`, configurar `IsReusable` é uma dica de que a instância de filtro *pode* ser reutilizada fora do escopo de solicitação em que ele foi criada. O tempo de execução do ASP.NET Core não fornece garantias de que uma única instância do filtro será criada. `IsReusable` não deve ser usado com um filtro que dependa dos serviços com um tempo de vida diferente de singleton.
+Ao usar `TypeFilterAttribute`, configurar [TypeFilterAttribute.IsReusable](xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute.IsReusable):
+* Fornece uma dica de que a instância de filtro *pode* ser reutilizada fora do escopo de solicitação em que foi criada. O tempo de execução do ASP.NET Core não fornece garantias de que uma única instância do filtro será criada.
+
+* Não deve ser usado com um filtro que dependa dos serviços com um tempo de vida diferente de singleton.
 
 O exemplo a seguir mostra como passar argumentos para um tipo usando `TypeFilterAttribute`:
 
