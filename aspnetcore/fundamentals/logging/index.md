@@ -6,12 +6,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 07/11/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: cdb5cad2302cc8ec02107021005b8590efce7533
-ms.sourcegitcommit: b40613c603d6f0cc71f3232c16df61550907f550
+ms.openlocfilehash: 4fe677e69478284db2ccab655c35b5744b6f63f9
+ms.sourcegitcommit: 059ab380744fa3be3b69aa90d431b563c57092cf
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68308215"
+ms.lasthandoff: 07/23/2019
+ms.locfileid: "68410915"
 ---
 # <a name="logging-in-aspnet-core"></a>Registro em log no ASP.NET Core
 
@@ -865,14 +865,11 @@ Não use o pacote [Microsoft.ApplicationInsights.Web](https://www.nuget.org/pack
 Para obter mais informações, consulte os seguintes recursos:
 
 * [Visão geral do Application Insights](/azure/application-insights/app-insights-overview)
-* [Application Insights para aplicativos ASP.NET Core](/azure/azure-monitor/app/asp-net-core-no-visualstudio) – Comece aqui se você deseja implementar toda a gama de telemetria do Application Insights junto com o registro em log.
+* [Application Insights para aplicativos ASP.NET Core](/azure/azure-monitor/app/asp-net-core) – Comece aqui se você deseja implementar toda a gama de telemetria do Application Insights junto com o registro em log.
 * [ApplicationInsightsLoggerProvider para logs do .NET Core ILogger](/azure/azure-monitor/app/ilogger) – Comece aqui se você quiser implementar o provedor de log sem o restante da telemetria do Application Insights.
-* [Application Insights logging adapters](https://github.com/Microsoft/ApplicationInsights-dotnet-logging/blob/develop/README.md) (Adaptadores de registro em log do Application Insights).
+* [Application Insights logging adapters](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-trace-logs) (Adaptadores de registro em log do Application Insights).
 * [Instalar, configurar e inicializar o SDK do Application Insights](/learn/modules/instrument-web-app-code-with-application-insights) – Tutorial interativo no site da Microsoft Learn.
 ::: moniker-end
-
-> [!NOTE]
-> A partir de 1/5/2019, o artigo chamado [Application Insights para ASP.NET Core](/azure/azure-monitor/app/asp-net-core) passa a estar desatualizado e as etapas do tutorial não funcionarão. Em vez disso, confira [Application Insights para aplicativos ASP.NET Core](/azure/azure-monitor/app/asp-net-core-no-visualstudio). Estamos cientes do problema e estamos trabalhando para corrigi-lo.
 
 ## <a name="third-party-logging-providers"></a>Provedores de log de terceiros
 
