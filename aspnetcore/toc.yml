@@ -192,8 +192,6 @@
       uid: fundamentals/http-requests
     - name: Arquivos estáticos
       uid: fundamentals/static-files
-    - name: aspnet-codegenerator
-      uid: fundamentals/tools/dotnet-aspnet-codegenerator
 - name: Aplicativos Web
   items:
     - name: Páginas do Razor
@@ -403,6 +401,8 @@
           uid: mvc/controllers/areas
         - name: Partes do aplicativo
           uid: mvc/extensibility/app-parts
+        - name: aspnet-codegenerator
+          uid: fundamentals/tools/dotnet-aspnet-codegenerator
 - name: Aplicativos API Web
   items:
     - name: Visão geral
