@@ -7,12 +7,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 06/24/2019
 uid: fundamentals/servers/kestrel
-ms.openlocfilehash: 7d66d04ec3b91d0ab1a67cacb2030cf52054454b
-ms.sourcegitcommit: 763af2cbdab0da62d1f1cfef4bcf787f251dfb5c
+ms.openlocfilehash: 0a2072c3c97faaf51c36df63a5751246d344a971
+ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67394718"
+ms.lasthandoff: 07/12/2019
+ms.locfileid: "67856189"
 ---
 # <a name="kestrel-web-server-implementation-in-aspnet-core"></a>Implementação do servidor Web Kestrel no ASP.NET Core
 
@@ -69,7 +69,7 @@ HTTP/2 está desabilitado por padrão. Para obter mais informações sobre a con
 
 ## <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>Quando usar o Kestrel com um proxy reverso
 
-O Kestrel pode ser usado sozinho ou com um *servidor proxy reverso*, como o [IIS (Serviços de Informações da Internet)](https://www.iis.net/), o [Nginx](http://nginx.org) ou o [Apache](https://httpd.apache.org/). Um servidor proxy reverso recebe solicitações HTTP da rede e encaminha-as para o Kestrel.
+O Kestrel pode ser usado sozinho ou com um *servidor proxy reverso*, como o [IIS (Serviços de Informações da Internet)](https://www.iis.net/), o [Nginx](https://nginx.org) ou o [Apache](https://httpd.apache.org/). Um servidor proxy reverso recebe solicitações HTTP da rede e encaminha-as para o Kestrel.
 
 Kestrel usado como um servidor Web de borda (voltado para a Internet):
 
@@ -528,7 +528,7 @@ Especificar URLs usando:
 * A chave de configuração do host `urls`.
 * O método de extensão `UseUrls`.
 
-O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão). Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000;http://localhost:8001"` ).
+O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão). Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000; http://localhost:8001"` ).
 
 Veja mais informações sobre essas abordagens em [URLs de servidor](xref:fundamentals/host/web-host#server-urls) e [Substituir configuração](xref:fundamentals/host/web-host#override-configuration).
 
