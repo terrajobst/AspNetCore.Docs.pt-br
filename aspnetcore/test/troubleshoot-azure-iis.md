@@ -5,14 +5,14 @@ description: Saiba como diagnosticar problemas com implantações de serviço Az
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/17/2019
+ms.date: 07/18/2019
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 46d4a11c594844e059fa8555255d7321f7b48631
-ms.sourcegitcommit: b40613c603d6f0cc71f3232c16df61550907f550
+ms.openlocfilehash: deae568a6ba88c9a8365b9d7f2df629899bc64a1
+ms.sourcegitcommit: 16502797ea749e2690feaa5e652a65b89c007c89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68308789"
+ms.lasthandoff: 07/25/2019
+ms.locfileid: "68483316"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
 
@@ -48,6 +48,31 @@ No Visual Studio, um projeto do ASP.NET Core usa por padrão a hospedagem do [II
 No Visual Studio, um projeto do ASP.NET Core usa por padrão a hospedagem do [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) durante a depuração. Uma *falha de processo 502,5* que ocorre ao depurar localmente pode ser diagnosticada usando o Conselho neste tópico.
 
 ::: moniker-end
+
+### <a name="40314-forbidden"></a>403,14 proibido
+
+Falha ao iniciar o aplicativo. O seguinte erro é registrado em log:
+
+```
+The Web server is configured to not list the contents of this directory.
+```
+
+O erro geralmente é causado por uma implantação quebrada no sistema de hospedagem, que inclui qualquer um dos seguintes cenários:
+
+* O aplicativo é implantado na pasta incorreta no sistema de hospedagem.
+* O processo de implantação não moveu todos os arquivos e pastas do aplicativo para a pasta de implantação no sistema de hospedagem.
+* O arquivo *Web. config* está ausente na implantação ou o conteúdo do arquivo *Web. config* está malformado.
+
+Execute as seguintes etapas:
+
+1. Exclua todos os arquivos e pastas da pasta de implantação no sistema de hospedagem.
+1. Reimplante o conteúdo da pasta de *publicação* do aplicativo no sistema de hospedagem usando o método normal de implantação, como o Visual Studio, o PowerShell ou a implantação manual:
+   * Confirme se o arquivo *Web. config* está presente na implantação e se seu conteúdo está correto.
+   * Ao hospedar no serviço Azure app, confirme se o aplicativo está implantado `D:\home\site\wwwroot` na pasta.
+   * Quando o aplicativo é hospedado pelo IIS, confirme se o aplicativo está implantado no **caminho físico** do IIS mostrado nas **configurações básicas**do **Gerenciador do IIS**.
+1. Confirme se todos os arquivos e pastas do aplicativo estão implantados comparando a implantação no sistema de hospedagem ao conteúdo da pasta de *publicação* do projeto.
+
+Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, <xref:host-and-deploy/directory-structure>consulte. Para obter mais informações sobre o arquivo *Web. config* , <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>consulte.
 
 ### <a name="500-internal-server-error"></a>500 Erro Interno do Servidor
 
@@ -192,6 +217,8 @@ Confirme se a configuração de 32 bits do pool de aplicativos está correta:
 1. Defina **Habilitar Aplicativos de 32 bits**:
    * Se estiver implantando um aplicativo de 32 bits (x86), defina o valor como `True`.
    * Se estiver implantando um aplicativo de 64 bits (x64), defina o valor como `False`.
+
+Confirme se não há um conflito entre uma `<Platform>` Propriedade do MSBuild no arquivo de projeto e o bit de bits publicado do aplicativo.
 
 ### <a name="connection-reset"></a>Redefinição de conexão
 
