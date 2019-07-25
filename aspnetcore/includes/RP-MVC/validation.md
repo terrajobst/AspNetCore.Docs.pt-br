@@ -1,11 +1,12 @@
+<!-- USED in RP and MVC tutorial -->
 
 ## <a name="add-validation-rules-to-the-movie-model"></a>Adicionar regras de validação ao modelo de filme
 
-Abra o arquivo *Movie.cs*. O namespace DataAnnotations fornece um conjunto de atributos de validação internos aplicados de forma declarativa a uma classe ou propriedade. DataAnnotations também contém atributos de formatação como `DataType`, que ajudam com a formatação e não fornecem validação.
+O namespace DataAnnotations fornece um conjunto de atributos de validação internos aplicados de forma declarativa a uma classe ou propriedade. DataAnnotations também contém atributos de formatação como `DataType`, que ajudam com a formatação e não fornecem validação.
 
 Atualize a classe `Movie` para aproveitar os atributos de validação `Required`, `StringLength`, `RegularExpression` e `Range` internos.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie22/Models/MovieDateRatingDA.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 Os atributos de validação especificam o comportamento que você deseja impor nas propriedades de modelo às quais eles são aplicados:
 

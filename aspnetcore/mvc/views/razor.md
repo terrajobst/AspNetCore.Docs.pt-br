@@ -5,12 +5,12 @@ description: Saiba mais sobre a sintaxe de marcação Razor para inserir código
 ms.author: riande
 ms.date: 06/12/2019
 uid: mvc/views/razor
-ms.openlocfilehash: 87c5b97a653c139b8b79f4270e0d9d0081815433
-ms.sourcegitcommit: 335a88c1b6e7f0caa8a3a27db57c56664d676d34
+ms.openlocfilehash: 634623aa6df860a2ff728da4e65d277326db37e2
+ms.sourcegitcommit: 051f068c78931432e030b60094c38376d64d013e
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/12/2019
-ms.locfileid: "67034943"
+ms.lasthandoff: 07/24/2019
+ms.locfileid: "68440364"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -581,9 +581,6 @@ A diretiva `@attribute` adiciona o atributo fornecido à classe da página ou ex
 ```cshtml
 @attribute [Authorize]
 ```
-
-> [!WARNING]
-> No ASP.NET Core 3.0 Versão Prévia 6, há um problema conhecido em que diretivas `@attribute` não funcionam nos arquivos *\_Imports.razor* e *\_ViewImports.cshtml*. Isso será abordado na Versão Prévia 7.
 
 ### <a name="namespace"></a>@namespace
 
