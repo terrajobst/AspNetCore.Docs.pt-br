@@ -4,14 +4,14 @@ author: jamesnk
 description: Saiba como usar a autenticação e a autorização no gRPC para ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 06/07/2019
+ms.date: 07/26/2019
 uid: grpc/authn-and-authz
-ms.openlocfilehash: 49024295e4db7976924397bb24567d92d6298562
-ms.sourcegitcommit: b40613c603d6f0cc71f3232c16df61550907f550
+ms.openlocfilehash: 34f7f8a5a22159329b3d6c4524943434c460c7fb
+ms.sourcegitcommit: 0efb9e219fef481dee35f7b763165e488aa6cf9c
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68308769"
+ms.lasthandoff: 07/29/2019
+ms.locfileid: "68602429"
 ---
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>Autenticação e autorização no gRPC para ASP.NET Core
 
@@ -106,12 +106,25 @@ public Ticketer.TicketerClient CreateClientWithCert(
 
 ### <a name="other-authentication-mechanisms"></a>Outros mecanismos de autenticação
 
-Além do token de portador e da autenticação de certificado do cliente, todos os ASP.NET Core mecanismos de autenticação com suporte, como OAuth, OpenID e Negotiate devem funcionar com gRPC. Visite [ASP.NET Core autenticação](xref:security/authentication/identity) para obter mais informações sobre como configurar a autenticação no lado do servidor.
+Muitos ASP.NET Core mecanismos de autenticação com suporte funcionam com o gRPC:
 
-A configuração do lado do cliente dependerá do mecanismo de autenticação que você está usando. Os exemplos anteriores de token de portador e autenticação de certificado de cliente mostram duas maneiras que o cliente gRPC pode ser configurado para enviar metadados de autenticação com chamadas gRPC:
+* Azure Active Directory
+* Certificado do cliente
+* IdentityServer
+* Token JWT
+* OAuth 2,0
+* OpenID Connect
+* WS-Federation
+
+Para obter mais informações sobre como configurar a autenticação no servidor, consulte [ASP.NET Core autenticação](xref:security/authentication/identity).
+
+Configurar o cliente gRPC para usar a autenticação dependerá do mecanismo de autenticação que você está usando. Os exemplos anteriores de token de portador e certificado de cliente mostram duas maneiras que o cliente gRPC pode ser configurado para enviar metadados de autenticação com chamadas gRPC:
 
 * Clientes gRPC fortemente tipados `HttpClient` usam internamente. A autenticação pode ser configurada em [`HttpClientHandler`](/dotnet/api/system.net.http.httpclienthandler)ou adicionando instâncias personalizadas [`HttpMessageHandler`](/dotnet/api/system.net.http.httpmessagehandler) ao `HttpClient`.
 * Cada chamada gRPC tem um argumento `CallOptions` opcional. Cabeçalhos personalizados podem ser enviados usando a coleção de cabeçalhos da opção.
+
+> [!NOTE]
+> A autenticação do Windows (NTLM/Kerberos/Negotiate) não pode ser usada com gRPC. gRPC requer HTTP/2, e HTTP/2 não dá suporte à autenticação do Windows.
 
 ## <a name="authorize-users-to-access-services-and-service-methods"></a>Autorizar usuários a acessar os serviços e métodos de serviço
 
