@@ -5,14 +5,14 @@ description: Saiba como hospedar aplicativos ASP.NET Core no Windows Server IIS 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/16/2019
+ms.date: 07/28/2019
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: a3d8c87fdb1cbc3b8b11b15f797190d626edad59
-ms.sourcegitcommit: b40613c603d6f0cc71f3232c16df61550907f550
+ms.openlocfilehash: 7677173493e68f5a5656c18533e0ae13a7c5bece
+ms.sourcegitcommit: 0efb9e219fef481dee35f7b763165e488aa6cf9c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68308058"
+ms.lasthandoff: 07/29/2019
+ms.locfileid: "68602462"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -30,6 +30,8 @@ Há suporte para os seguintes sistemas operacionais:
 O [servidor HTTP.sys](xref:fundamentals/servers/httpsys) (anteriormente chamado de WebListener) não funciona em uma configuração de proxy reverso com o IIS. Use o [servidor Kestrel](xref:fundamentals/servers/kestrel).
 
 Para obter mais informações sobre hospedagem no Azure, consulte <xref:host-and-deploy/azure-apps/index>.
+
+Para obter as diretrizes de solução de problemas, consulte <xref:test/troubleshoot>.
 
 ## <a name="supported-platforms"></a>Plataformas com suporte
 

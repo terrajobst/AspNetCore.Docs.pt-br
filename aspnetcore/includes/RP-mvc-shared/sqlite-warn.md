@@ -4,13 +4,14 @@
 >
 >A solução alternativa para as limitações do SQLite é escrever manualmente o código das migrações para executar uma recompilação de tabela quando algo na tabela for alterado. Uma recompilação de tabela envolve:
 >
->* Renomear a tabela existente.
 >* Criar uma nova tabela.
 >* Copiar dados da tabela antiga para a nova tabela.
 >* Remover a tabela antiga.
+>* Renomear a nova tabela.
 >
 >Para obter mais informações, consulte os seguintes recursos:
 >
 > * [Limitações do Provedor de Banco de Dados EF Core do SQLite](/ef/core/providers/sqlite/limitations)
 > * [Personalizar o código de migração](/ef/core/managing-schemas/migrations/#customize-migration-code)
 > * [Propagação de dados](/ef/core/modeling/data-seeding)
+  * [Instrução SQLite ALTER TABLE](https://sqlite.org/lang_altertable.html)

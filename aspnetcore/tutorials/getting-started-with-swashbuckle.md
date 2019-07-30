@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 06/21/2019
 uid: tutorials/get-started-with-swashbuckle
-ms.openlocfilehash: 033f2dda9942f91f23158cf2d986062157a3b69e
-ms.sourcegitcommit: 06a455d63ff7d6b571ca832e8117f4ac9d646baf
+ms.openlocfilehash: 0ffd437bbb48ef1c7a9159fbf3ac41441613f434
+ms.sourcegitcommit: 849af69ee3c94cdb9fd8fa1f1bb8f5a5dda7b9eb
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/21/2019
-ms.locfileid: "67316604"
+ms.lasthandoff: 07/22/2019
+ms.locfileid: "68372065"
 ---
 # <a name="get-started-with-swashbuckle-and-aspnet-core"></a>Introdução ao Swashbuckle e ao ASP.NET Core
 
@@ -45,15 +45,17 @@ O Swashbuckle pode ser adicionado com as seguintes abordagens:
 * Da caixa de diálogo **Gerenciar Pacotes NuGet**:
   * Clique com o botão direito do mouse no projeto em **Gerenciador de Soluções** > **Gerenciar Pacotes NuGet**
   * Defina a **Origem do pacote** para "nuget.org"
+  * Verifique se a opção "Incluir pré-lançamento" está habilitada
   * Insira "Swashbuckle.AspNetCore" na caixa de pesquisa
-  * Selecione o pacote "Swashbuckle.AspNetCore" na guia **Procurar** e clique em **Instalar**
+  * Selecione o pacote "Swashbuckle.AspNetCore" mais recente na guia **Procurar** e clique em **Instalar**
 
 ### <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Clique com o botão direito do mouse na pasta *Pacotes* em **Painel de Soluções** > **Adicionar Pacotes...**
 * Defina a lista suspensa **Origem** da janela **Adicionar Pacotes** para "nuget.org"
+* Verifique se a opção "Mostrar pacotes de pré-lançamento" está habilitada
 * Insira "Swashbuckle.AspNetCore" na caixa de pesquisa
-* Selecione o pacote "Swashbuckle.AspNetCore" no painel de resultados e clique em **Adicionar Pacote**
+* Selecione o pacote "Swashbuckle.AspNetCore" mais recente no painel de resultados e clique em **Adicionar Pacote**
 
 ### <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
