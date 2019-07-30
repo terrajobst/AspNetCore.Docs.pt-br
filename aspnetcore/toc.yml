@@ -81,6 +81,9 @@
         - name: API Web com o MongoDB
           displayName: tutorial
           uid: tutorials/first-mongo-app
+        - name: API Web com o jQuery
+          displayName: tutorial
+          uid: tutorials/web-api-jquery
         - name: Back-end para aplicativos móveis
           displayName: tutorial
           uid: mobile/native-mobile-backend
