@@ -1,39 +1,39 @@
 ---
-title: Autorização baseada em política no ASP.NET Core
+title: Autorização baseada em políticas no ASP.NET Core
 author: rick-anderson
 description: Saiba como criar e usar manipuladores de política de autorização para impor requisitos de autorização em um aplicativo ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/05/2019
 uid: security/authorization/policies
-ms.openlocfilehash: 67337c847ba71df3fe61250996ec944632ad5d57
-ms.sourcegitcommit: 1bb3f3f1905b4e7d4ca1b314f2ce6ee5dd8be75f
+ms.openlocfilehash: 60625944d4ba31da6b98bdf947991088dc75ed87
+ms.sourcegitcommit: 7001657c00358b082734ba4273693b9b3ed35d2a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/11/2019
-ms.locfileid: "66837350"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68669965"
 ---
-# <a name="policy-based-authorization-in-aspnet-core"></a>Autorização baseada em política no ASP.NET Core
+# <a name="policy-based-authorization-in-aspnet-core"></a>Autorização baseada em políticas no ASP.NET Core
 
-Nos bastidores, [autorização baseada em funções](xref:security/authorization/roles) e [autorização baseada em declarações](xref:security/authorization/claims) usam um requisito, um manipulador de requisito e uma política previamente configurada. Esses blocos de construção dão suporte a expressão de avaliações de autorização no código. O resultado é uma estrutura de autorização mais sofisticados, reutilizáveis e testáveis.
+Sob os bastidores, a autorização [baseada em função](xref:security/authorization/roles) e a [autorização baseada em declarações](xref:security/authorization/claims) usam um requisito, um manipulador de requisitos e uma política pré-configurada. Esses blocos de construção dão suporte à expressão de avaliações de autorização no código. O resultado é uma estrutura de autorização mais rica, reutilizável e que pode ser testada.
 
-Uma política de autorização consiste em um ou mais requisitos. Ele é registrado como parte da configuração do serviço de autorização no `Startup.ConfigureServices` método:
+Uma política de autorização consiste em um ou mais requisitos. Ele é registrado como parte da configuração do serviço de autorização, no `Startup.ConfigureServices` método:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,66)]
 
-No exemplo anterior, uma política de "AtLeast21" é criada. Ele tem um requisito&mdash;da idade mínima, que é fornecida como um parâmetro para o requisito.
+No exemplo anterior, uma política "AtLeast21" é criada. Ele tem um requisito&mdash;único de uma idade mínima, que é fornecida como um parâmetro para o requisito.
 
 ## <a name="iauthorizationservice"></a>IAuthorizationService 
 
-O serviço primário que determina se a autorização for bem-sucedida é <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>:
+O serviço primário que determina se a autorização é bem-sucedida <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>é:
 
 [!code-csharp[](policies/samples/stubs/copy_of_IAuthorizationService.cs?highlight=24-25,48-49&name=snippet)]
 
-O código anterior destaca os dois métodos do [IAuthorizationService](https://github.com/aspnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
+O código anterior realça os dois métodos do [IAuthorizationService](https://github.com/aspnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> é um serviço de marcador com nenhum método e o mecanismo para controlar se a autorização for bem-sucedida.
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>é um serviço de marcador sem métodos e o mecanismo para controlar se a autorização é bem-sucedida.
 
-Cada <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> é responsável por verificar se os requisitos sejam atendidos:
+Cada <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler> uma é responsável por verificar se os requisitos são atendidos:
 <!--The following code is a copy/paste from 
 https://github.com/aspnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationHandler.cs -->
 
@@ -52,13 +52,13 @@ public interface IAuthorizationHandler
 }
 ```
 
-O <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> classe é o que o manipulador usa para marcar se os requisitos foram atendidos:
+A <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext> classe é o que o manipulador usa para marcar se os requisitos foram atendidos:
 
 ```csharp
  context.Succeed(requirement)
 ```
 
-O código a seguir mostra o simplificado (e anotado com comentários) a implementação padrão de serviço de autorização:
+O código a seguir mostra a implementação padrão simplificada (e anotada com comentários) do serviço de autorização:
 
 ```csharp
 public async Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user, 
@@ -81,7 +81,7 @@ public async Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
 }
 ```
 
-O código a seguir mostra um típico `ConfigureServices`:
+O código a seguir mostra um `ConfigureServices`típico:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -102,31 +102,31 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> ou `[Authorize(Policy = "Something"]` para autorização.
+Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> ou`[Authorize(Policy = "Something")]` para autorização.
 
-## <a name="applying-policies-to-mvc-controllers"></a>Aplicar políticas a controladores do MVC
+## <a name="applying-policies-to-mvc-controllers"></a>Aplicando políticas a controladores MVC
 
-Se você estiver usando as páginas do Razor, consulte [aplicação de políticas para as páginas do Razor](#applying-policies-to-razor-pages) neste documento.
+Se você estiver usando Razor Pages, consulte [aplicando políticas a Razor Pages](#applying-policies-to-razor-pages) neste documento.
 
-As políticas são aplicadas aos controladores por meio de `[Authorize]` atributo com o nome da política. Por exemplo:
+As políticas são aplicadas aos controladores usando o `[Authorize]` atributo com o nome da política. Por exemplo:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
-## <a name="applying-policies-to-razor-pages"></a>Aplicar políticas a páginas do Razor
+## <a name="applying-policies-to-razor-pages"></a>Aplicando políticas a Razor Pages
 
-As políticas são aplicadas a páginas do Razor usando o `[Authorize]` atributo com o nome da política. Por exemplo:
+As políticas são aplicadas a Razor Pages usando o `[Authorize]` atributo com o nome da política. Por exemplo:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-Políticas também podem ser aplicadas a páginas do Razor usando um [convenção autorização](xref:security/authorization/razor-pages-authorization).
+As políticas também podem ser aplicadas a Razor Pages usando uma [Convenção de autorização](xref:security/authorization/razor-pages-authorization).
 
 ## <a name="requirements"></a>Requisitos
 
-Um requisito de autorização é uma coleção de parâmetros de dados que uma política pode usar para avaliar a entidade de segurança do usuário atual. Em nossa política de "AtLeast21", o requisito é um único parâmetro&mdash;a idade mínima. Implementa um requisito [IAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirement), que é uma interface de marcador vazio. Um requisito de idade mínima parametrizada poderia ser implementado da seguinte maneira:
+Um requisito de autorização é uma coleção de parâmetros de dados que uma política pode usar para avaliar a entidade de usuário atual. Em nossa política de "AtLeast21", o requisito é um único&mdash;parâmetro de idade mínima. Um requisito implementa [IAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirement), que é uma interface de marcador vazia. Um requisito de idade mínima parametrizada poderia ser implementado da seguinte maneira:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Requirements/MinimumAgeRequirement.cs?name=snippet_MinimumAgeRequirementClass)]
 
-Se uma política de autorização contém vários requisitos de autorização, devem passar todos os requisitos para que a avaliação da política seja bem-sucedida. Em outras palavras, os vários requisitos de autorização adicionados a uma política de autorização única são tratados em um **AND** base.
+Se uma política de autorização contiver vários requisitos de autorização, todos os requisitos deverão ser aprovados para que a avaliação da política seja realizada com êxito. Em outras palavras, vários requisitos de autorização adicionados a uma única política de autorização são tratados em uma base **e** .
 
 > [!NOTE]
 > Um requisito não precisa ter dados ou propriedades.
@@ -135,58 +135,58 @@ Se uma política de autorização contém vários requisitos de autorização, d
 
 ## <a name="authorization-handlers"></a>Manipuladores de autorização
 
-Um manipulador de autorização é responsável para a avaliação das propriedades de um requisito. O manipulador de autorização avalia os requisitos em relação a um fornecido [AuthorizationHandlerContext](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext) para determinar se o acesso é permitido.
+Um manipulador de autorização é responsável pela avaliação das propriedades de um requisito. O manipulador de autorização avalia os requisitos em relação a um [AuthorizationHandlerContext](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext) fornecido para determinar se o acesso é permitido.
 
-Um requisito pode ter [vários manipuladores](#security-authorization-policies-based-multiple-handlers). Um manipulador pode herdar [AuthorizationHandler\<TRequirement >](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandler-1), onde `TRequirement` é o requisito para ser tratada. Como alternativa, um manipulador pode implementar [IAuthorizationHandler](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationhandler) para lidar com mais de um tipo de requisito.
+Um requisito pode ter [vários manipuladores](#security-authorization-policies-based-multiple-handlers). Um manipulador pode herdar [\<AuthorizationHandler TRequirement >](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandler-1), `TRequirement` em que é o requisito a ser tratado. Como alternativa, um manipulador pode implementar [IAuthorizationHandler](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationhandler) para lidar com mais de um tipo de requisito.
 
 ### <a name="use-a-handler-for-one-requirement"></a>Usar um manipulador para um requisito
 
 <a name="security-authorization-handler-example"></a>
 
-Este é um exemplo de uma relação um para um em que um manipulador de idade mínima utiliza um requisito:
+Veja a seguir um exemplo de uma relação um-para-um na qual um manipulador de idade mínima utiliza um único requisito:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/MinimumAgeHandler.cs?name=snippet_MinimumAgeHandlerClass)]
 
-O código anterior determina se a entidade de usuário atual tem uma data de nascimento de declaração que foi emitido por um emissor conhecido e confiável. A autorização não pode ocorrer quando a declaração está ausente, caso em que uma tarefa concluída será retornada. Quando uma declaração estiver presente, a idade do usuário é calculada. Se o usuário atender a idade mínima definida pelo requisito, a autorização seja considerada bem-sucedida. Quando a autorização for bem-sucedida, `context.Succeed` é invocado com o requisito satisfeito como seu único parâmetro.
+O código anterior determina se a entidade de usuário atual tem uma declaração de data de nascimento que foi emitida por um emissor conhecido e confiável. A autorização não pode ocorrer quando a declaração está ausente, caso em que uma tarefa concluída é retornada. Quando uma declaração está presente, a idade do usuário é calculada. Se o usuário atender à idade mínima definida pelo requisito, a autorização será considerada bem-sucedida. Quando a autorização é bem-sucedida `context.Succeed` , é invocada com o requisito atendido como seu único parâmetro.
 
-### <a name="use-a-handler-for-multiple-requirements"></a>Usar um manipulador para várias necessidades
+### <a name="use-a-handler-for-multiple-requirements"></a>Usar um manipulador para vários requisitos
 
-Este é um exemplo de uma relação um-para-muitos em que um manipulador de permissão pode lidar com três tipos diferentes de requisitos:
+Veja a seguir um exemplo de uma relação um-para-muitos na qual um manipulador de permissão pode lidar com três tipos diferentes de requisitos:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/PermissionHandler.cs?name=snippet_PermissionHandlerClass)]
 
-O código anterior percorre [PendingRequirements](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.pendingrequirements#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_PendingRequirements)&mdash;uma propriedade que contém requisitos não marcada como bem-sucedido. Para um `ReadPermission` requisito, o usuário deve ser um proprietário ou um responsável para acessar o recurso solicitado. No caso de um `EditPermission` ou `DeletePermission` requisito, ele ou ela deve ser um proprietário para acessar o recurso solicitado.
+O código anterior percorre [PendingRequirements](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.pendingrequirements#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_PendingRequirements)&mdash;uma propriedade que contém os requisitos não marcados como bem-sucedidos. Para um `ReadPermission` requisito, o usuário deve ser um proprietário ou um patrocinador para acessar o recurso solicitado. No caso de um `EditPermission` requisito ou `DeletePermission` , ele deve ser um proprietário para acessar o recurso solicitado.
 
 <a name="security-authorization-policies-based-handler-registration"></a>
 
-### <a name="handler-registration"></a>Registro do manipulador
+### <a name="handler-registration"></a>Registro de manipulador
 
-Manipuladores são registrados na coleção de serviços durante a configuração. Por exemplo:
+Os manipuladores são registrados na coleção de serviços durante a configuração. Por exemplo:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,62-63,66)]
 
-O código precedente registra `MinimumAgeHandler` como um singleton invocando `services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`. Manipuladores podem ser registrados usando qualquer um dos internos [tempos de vida do serviço](xref:fundamentals/dependency-injection#service-lifetimes).
+O código anterior é `MinimumAgeHandler` registrado como um singleton `services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`invocando. Os manipuladores podem ser registrados usando qualquer tempo de vida de [serviço](xref:fundamentals/dependency-injection#service-lifetimes)interno.
 
-## <a name="what-should-a-handler-return"></a>O que deve retornar um manipulador?
+## <a name="what-should-a-handler-return"></a>O que um manipulador deve retornar?
 
-Observe que o `Handle` método na [exemplo de manipulador](#security-authorization-handler-example) não retorna nenhum valor. Como é um status de êxito ou falha indicado?
+Observe que o `Handle` método no [exemplo do manipulador](#security-authorization-handler-example) não retorna nenhum valor. Como é indicado um status de êxito ou falha?
 
-* Um manipulador indica êxito chamando `context.Succeed(IAuthorizationRequirement requirement)`, passando o requisito de que foi validada com êxito.
+* Um manipulador indica êxito chamando `context.Succeed(IAuthorizationRequirement requirement)`, passando o requisito que foi validado com êxito.
 
-* Um manipulador não precisa lidar com falhas em geral, como outros manipuladores para o mesmo requisito podem ter êxito.
+* Um manipulador não precisa lidar com falhas geralmente, já que outros manipuladores para o mesmo requisito podem ser bem-sucedidos.
 
-* Para garantir a falha, mesmo se outros manipuladores de requisito tenha êxito, chame `context.Fail`.
+* Para garantir a falha, mesmo que outros manipuladores de requisitos tenham `context.Fail`êxito, chame.
 
-Se chama um manipulador `context.Succeed` ou `context.Fail`, todos os outros manipuladores ainda são chamados. Isso permite que os requisitos produzir efeitos colaterais, como registro em log, que é executado, mesmo se outro manipulador com êxito foi validado ou falha de um requisito. Quando definido como `false`, o [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) propriedade (disponível no ASP.NET Core 1.1 e posterior) causam curto-circuito a execução de manipuladores quando `context.Fail` é chamado. `InvokeHandlersAfterFailure` o padrão é `true`, caso em que todos os manipuladores são chamados.
+Se um manipulador chamar `context.Succeed` ou `context.Fail`, todos os outros manipuladores ainda serão chamados. Isso permite que os requisitos produzam efeitos colaterais, como registro em log, que ocorre mesmo se outro manipulador tiver validado ou reprovado com êxito um requisito. Quando definido como `false`, a propriedade [InvokeHandlersAfterFailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) (disponível em ASP.NET Core 1,1 e posterior) circuitos curtos a execução de manipuladores quando `context.Fail` é chamada. `InvokeHandlersAfterFailure`o padrão é, nesse caso, todos os manipuladores são chamados. `true`
 
 > [!NOTE]
-> Manipuladores de autorização são chamados, mesmo se a autenticação falhar.
+> Os manipuladores de autorização são chamados mesmo se a autenticação falhar.
 
 <a name="security-authorization-policies-based-multiple-handlers"></a>
 
-## <a name="why-would-i-want-multiple-handlers-for-a-requirement"></a>Por que eu desejaria vários manipuladores para um requisito?
+## <a name="why-would-i-want-multiple-handlers-for-a-requirement"></a>Por que desejo vários manipuladores para um requisito?
 
-Em casos onde você deseja avaliação esteja em um **ou** base, implementar vários manipuladores para um requisito. Por exemplo, a Microsoft tem portas que apenas abrir com cartões de chave. Se você deixar o seu cartão de chave em casa, o recepcionista imprime um adesivo temporário e abre as portas para você. Nesse cenário, você teria um requisito *BuildingEntry*, mas vários manipuladores, cada um deles examinando um requisito.
+Nos casos em que você deseja que a avaliação seja em um **ou** base, implemente vários manipuladores para um único requisito. Por exemplo, a Microsoft tem portas que só são abertas com cartões-chave. Se você deixar o cartão-chave em casa, o recepcionista imprime um adesivo temporário e abre a porta para você. Nesse cenário, você teria um único requisito, *BuildingEntry*, mas vários manipuladores, cada um examinando um único requisito.
 
 *BuildingEntryRequirement.cs*
 
@@ -200,23 +200,23 @@ Em casos onde você deseja avaliação esteja em um **ou** base, implementar vá
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Handlers/TemporaryStickerHandler.cs?name=snippet_TemporaryStickerHandlerClass)]
 
-Certifique-se de que ambos os manipuladores são [registrado](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). Se o manipulador é bem-sucedida quando uma política avalia o `BuildingEntryRequirement`, a avaliação da política é bem-sucedida.
+Verifique se ambos os manipuladores estão [registrados](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). Se um dos manipuladores for executado com sucesso quando uma `BuildingEntryRequirement`política avaliar o, a avaliação da política será realizada com sucesso.
 
-## <a name="using-a-func-to-fulfill-a-policy"></a>Usando um func para atender a uma política
+## <a name="using-a-func-to-fulfill-a-policy"></a>Usando um Func para atender a uma política
 
-Pode haver situações nas quais cumprir uma política é simple de expressar em código. É possível fornecer um `Func<AuthorizationHandlerContext, bool>` ao configurar a política com o `RequireAssertion` criador de políticas.
+Pode haver situações em que o cumprimento de uma política é simples de expressar no código. É possível fornecer um `Func<AuthorizationHandlerContext, bool>` ao configurar sua política com o `RequireAssertion` Policy Builder.
 
 Por exemplo, o anterior `BadgeEntryHandler` poderia ser reescrito da seguinte maneira:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=50-51,55-61)]
 
-## <a name="accessing-mvc-request-context-in-handlers"></a>Acessando o contexto de solicitação do MVC nos manipuladores
+## <a name="accessing-mvc-request-context-in-handlers"></a>Acessando o contexto de solicitação MVC em manipuladores
 
-O `HandleRequirementAsync` implementar em um manipulador de autorização de método tem dois parâmetros: uma `AuthorizationHandlerContext` e o `TRequirement` manipulada. Estruturas como MVC ou Jabbr serão livres para adicionar qualquer objeto para o `Resource` propriedade no `AuthorizationHandlerContext` para passar informações adicionais.
+O `HandleRequirementAsync` método que você implementa em um manipulador de autorização tem dois parâmetros `AuthorizationHandlerContext` : um `TRequirement` e o que você está lidando. Estruturas como MVC ou Jabbr são livres para adicionar qualquer objeto à `Resource` propriedade `AuthorizationHandlerContext` no para passar informações extras.
 
-Por exemplo, o MVC passa uma instância do [AuthorizationFilterContext](/dotnet/api/?term=AuthorizationFilterContext) no `Resource` propriedade. Esta propriedade fornece acesso aos `HttpContext`, `RouteData`e tudo o que outro fornecidos pelo MVC e páginas do Razor.
+Por exemplo, o MVC passa uma instância de [AuthorizationFilterContext](/dotnet/api/?term=AuthorizationFilterContext) na `Resource` propriedade. Essa propriedade fornece acesso a `HttpContext`, `RouteData`e a todos os outros fornecidos pelo MVC e Razor Pages.
 
-O uso do `Resource` é de propriedade específica do framework. Usando as informações no `Resource` propriedade limita suas políticas de autorização para determinadas estruturas. Você deve converter o `Resource` propriedade usando o `is` palavra-chave e, em seguida, confirme se a conversão foi bem-sucedida para garantir que seu código não falha com um `InvalidCastException` quando executado em outras estruturas:
+O uso da `Resource` propriedade é específico da estrutura. O `Resource` uso de informações na propriedade limita suas políticas de autorização a estruturas específicas. Você deve converter a `Resource` propriedade usando a `is` palavra-chave e, em seguida, confirmar se a conversão foi bem-sucedida para garantir que `InvalidCastException` seu código não falhe com um quando executado em outras estruturas:
 
 ```csharp
 // Requires the following import:
