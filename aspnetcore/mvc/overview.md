@@ -3,14 +3,14 @@ title: Visão geral do ASP.NET Core MVC
 author: ardalis
 description: Saiba como o ASP.NET Core MVC é uma estrutura avançada para a criação de aplicativos Web e APIs usando o padrão de design Model-View-Controller.
 ms.author: riande
-ms.date: 01/08/2018
+ms.date: 08/01/2019
 uid: mvc/overview
-ms.openlocfilehash: 819bc93a7580626bf586b984b0ce169306df56d9
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.openlocfilehash: 7f09751850cbfa7bb3dc79656d4530445a9767b1
+ms.sourcegitcommit: 3204bc89ae6354b61ee0a9b2770ebe5214b7790c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815349"
+ms.lasthandoff: 08/01/2019
+ms.locfileid: "68707814"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Visão geral do ASP.NET Core MVC
 
@@ -88,11 +88,11 @@ O *roteamento de atributo* permite que você especifique as informações de rot
 [Route("api/[controller]")]
 public class ProductsController : Controller
 {
-  [HttpGet("{id}")]
-  public IActionResult GetProduct(int id)
-  {
-    ...
-  }
+    [HttpGet("{id}")]
+    public IActionResult GetProduct(int id)
+    {
+      ...
+    }
 }
 ```
 
@@ -102,7 +102,7 @@ ASP.NET Core MVC [model binding](models/model-binding.md) converte dados de soli
 
 ```csharp
 public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null) { ... }
-   ```
+```
 
 ### <a name="model-validation"></a>Validação de modelo
 
@@ -149,6 +149,7 @@ O aplicativo também pode usar a [injeção de dependência em arquivos no exibi
 
 ```cshtml
 @inject SomeService ServiceName
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -189,11 +190,11 @@ O uso pela estrutura da injeção de dependência e de interfaces a torna adequa
 
 As [exibições do ASP.NET Core MVC](views/overview.md) usam o [mecanismo de exibição do Razor](views/razor.md) para renderizar exibições. Razor é uma linguagem de marcação de modelo compacta, expressiva e fluida para definir exibições usando um código C# inserido. O Razor é usado para gerar o conteúdo da Web no servidor de forma dinâmica. Você pode combinar o código do servidor com o código e o conteúdo do lado cliente de maneira limpa.
 
-```text
+```cshtml
 <ul>
-  @for (int i = 0; i < 5; i++) {
-    <li>List item @i</li>
-  }
+    @for (int i = 0; i < 5; i++) {
+        <li>List item @i</li>
+    }
 </ul>
 ```
 
