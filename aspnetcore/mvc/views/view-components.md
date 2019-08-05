@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/14/2019
 uid: mvc/views/view-components
-ms.openlocfilehash: ff84abf9e0c682d22196a0a0f5f377990c80a6ae
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.openlocfilehash: e6990368519857a27b291d7d565c09072f23f1b0
+ms.sourcegitcommit: 7001657c00358b082734ba4273693b9b3ed35d2a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815270"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68670079"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componentes de exibição no ASP.NET Core
 
@@ -326,6 +326,14 @@ Use o componente de exibição Auxiliar de Marca no arquivo de marcação do Raz
 ::: moniker-end
 
 A assinatura do método de `PriorityList.Invoke` é síncrona, mas o Razor localiza e chama o método com `Component.InvokeAsync` no arquivo de marcação.
+
+## <a name="all-view-component-parameters-are-required"></a>Todos os parâmetros do componente de exibição são obrigatórios
+
+Todo parâmetro de um componente de exibição é um atributo obrigatório. Consulte [este problema do GitHub](https://github.com/aspnet/AspNetCore/issues/5011). Se algum parâmetro for omitido:
+
+* A assinatura do método `InvokeAsync` não corresponderá, portanto, o método não será executado.
+* O ViewComponent não renderizará nenhuma marcação.
+* Nenhum erro será gerado.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

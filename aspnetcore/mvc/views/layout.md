@@ -3,14 +3,14 @@ title: Layout no ASP.NET Core
 author: ardalis
 description: Saiba como usar layouts comuns, compartilhar diretivas e executar um código comum antes de renderizar exibições em um aplicativo ASP.NET Core.
 ms.author: riande
-ms.date: 02/26/2019
+ms.date: 07/30/2019
 uid: mvc/views/layout
-ms.openlocfilehash: 7a60ee15e688d6f0e531302457604fa759213758
-ms.sourcegitcommit: 24b1f6decbb17bb22a45166e5fdb0845c65af498
+ms.openlocfilehash: 6bd9dfc65c026ee524277aaaa21333d299c8981e
+ms.sourcegitcommit: 7001657c00358b082734ba4273693b9b3ed35d2a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56899236"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68670001"
 ---
 # <a name="layout-in-aspnet-core"></a>Layout no ASP.NET Core
 
@@ -35,15 +35,15 @@ A maioria dos aplicativos Web tem um layout comum que fornece aos usuários uma 
 
 Estruturas HTML comuns, como scripts e folhas de estilo, também são usadas com frequência por muitas páginas em um aplicativo. Todos esses elementos compartilhados podem ser definidos em um arquivo de *layout*, que pode então ser referenciado por qualquer exibição usada no aplicativo. Os layouts reduzem o código duplicado em exibições.
 
-Por convenção, o layout padrão de um aplicativo ASP.NET Core é chamado *_Layout.cshtml*. O arquivo de layout para novos projetos do ASP.NET Core criados com os modelos:
+Por convenção, o layout padrão de um aplicativo ASP.NET Core é chamado *_Layout.cshtml*. Os arquivos de layout para novos projetos do ASP.NET Core criados com os modelos são:
 
 * Razor Pages: *Pages/Shared/_Layout.cshtml*
 
-  ![pasta de páginas no gerenciador de soluções](layout/_static/rp-web-project-views.png)
+  ![Pasta das páginas no Gerenciador de Soluções](layout/_static/rp-web-project-views.png)
 
 * Controlador com exibições: *Views/Shared/_Layout.cshtml*
 
- ![pasta de exibições no gerenciador de soluções](layout/_static/mvc-web-project-views.png)
+  ![Pasta das exibições no Gerenciador de Soluções](layout/_static/mvc-web-project-views.png)
 
 O layout define um modelo de nível superior para exibições no aplicativo. Os aplicativos não exigem um layout. Os aplicativos podem definir mais de um layout, com diferentes exibições especificando diferentes layouts.
 

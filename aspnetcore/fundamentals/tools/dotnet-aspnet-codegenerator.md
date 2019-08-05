@@ -6,18 +6,18 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 07/04/2019
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: c96362f320efd84c35dc07294a2968a2c687ee94
-ms.sourcegitcommit: b9e914ef274b5ec359582f299724af6234dce135
+ms.openlocfilehash: c2c815735ad1b4dcec761b26ea3992a4effebe62
+ms.sourcegitcommit: 979dbfc5e9ce09b9470789989cddfcfb57079d94
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/05/2019
-ms.locfileid: "67596134"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68682698"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-`dotnet aspnet-codegenerator` – executa o mecanismo de scaffolding do ASP.NET Core. `dotnet aspnet-codegenerator` é necessário somente para realizar o scaffolding da linha de comando, não é preciso usar o scaffolding com o Visual Studio.
+`dotnet aspnet-codegenerator` – executa o mecanismo de scaffolding do ASP.NET Core. `dotnet aspnet-codegenerator` é necessário somente para fazer scaffold da linha de comando, não é preciso usar o scaffolding com o Visual Studio.
 
 Este artigo se aplica ao [SDK do .NET Core 2.1](https://dotnet.microsoft.com/download/dotnet-core/2.1) e posteriores.
 

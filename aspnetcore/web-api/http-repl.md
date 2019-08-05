@@ -5,14 +5,14 @@ description: Saiba como usar a ferramenta global HTTP REPL do .NET Core para nav
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/23/2019
+ms.date: 07/25/2019
 uid: web-api/http-repl
-ms.openlocfilehash: 1ceda6182c62bb1be06cd95f14e6a46a1809253e
-ms.sourcegitcommit: 059ab380744fa3be3b69aa90d431b563c57092cf
+ms.openlocfilehash: e719d599545810d723840b0800cd6a2b4f96b123
+ms.sourcegitcommit: fbc66827e319d28bebed678ea5fd42f582fe3c34
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/23/2019
-ms.locfileid: "68410892"
+ms.lasthandoff: 07/25/2019
+ms.locfileid: "68493581"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testar APIs Web com o HTTP REPL
 
@@ -21,7 +21,8 @@ Por [Scott Addie](https://twitter.com/Scott_Addie)
 O HTTP REPL (Read-Eval-Print Loop) é:
 
 * Uma ferramenta de linha de comando leve e multiplataforma compatível com todos os recursos compatíveis com o .NET Core.
-* Usado para fazer solicitações HTTP para testar as APIs Web do ASP.NET Core e exibir os resultados.
+* Usado para fazer solicitações HTTP a fim de testar as APIs Web do ASP.NET Core (e as APIs Web não pertencentes ao ASP.NET Core) e exibir os resultados.
+* Capaz de testar APIs Web hospedadas em qualquer ambiente, inclusive no localhost e no Serviço de Aplicativo do Azure.
 
 Os [verbos HTTP](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods) a seguir são compatíveis:
 
@@ -44,7 +45,7 @@ Para acompanhar, [exiba ou baixe a API Web de exemplo do ASP.NET Core](https://g
 Para instalar o HTTP REPL, execute o seguinte comando:
 
 ```console
-dotnet tool install -g Microsoft.dotnet-httprepl --version 3.0.0-*
+dotnet tool install -g Microsoft.dotnet-httprepl --version "3.0.0-*"
 ```
 
 Uma [ferramenta global do .NET Core](/dotnet/core/tools/global-tools#install-a-global-tool) é instalada pelo pacote do NuGet [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl).

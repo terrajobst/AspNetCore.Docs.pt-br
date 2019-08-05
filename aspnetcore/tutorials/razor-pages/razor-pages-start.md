@@ -5,12 +5,12 @@ description: Esta série de tutoriais mostra como usar Razor Pages no ASP.NET Co
 ms.author: riande
 ms.date: 07/25/2019
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 1605197188d97f27a884739a72400da2d5818b1a
-ms.sourcegitcommit: 849af69ee3c94cdb9fd8fa1f1bb8f5a5dda7b9eb
+ms.openlocfilehash: 57a10895c718c539ece280afcb27cb4033c7fb45
+ms.sourcegitcommit: 979dbfc5e9ce09b9470789989cddfcfb57079d94
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/22/2019
-ms.locfileid: "68371970"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68682800"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Introdução às Páginas do Razor no ASP.NET Core
 
@@ -133,7 +133,7 @@ No Visual Studio, selecione **Arquivo > Abrir** e, em seguida, selecione o arqui
 
   [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* Pressione **Cmd-Opt-F5** para execução sem o depurador.
+* Pressione **Alt-Cmd-Enter** para executar sem o depurador. Como alternativa, navegue até a barra de menus e acesse Executar > Iniciar sem depuração.
 
   O Visual Studio inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicia um navegador e navega para `http://localhost:5001`.
 
