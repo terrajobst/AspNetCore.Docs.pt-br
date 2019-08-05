@@ -6,12 +6,12 @@ ms.author: riande
 ms.date: 12/18/2018
 ms.custom: mvc, seodec18
 uid: security/authorization/secure-data
-ms.openlocfilehash: 222ae1d6212b838e5c70f831960fa23a9924a0ae
-ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
+ms.openlocfilehash: 4b94cc53777308deb26521a079d8a1c2742744db
+ms.sourcegitcommit: 4fe3ae892f54dc540859bff78741a28c2daa9a38
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/12/2019
-ms.locfileid: "67856150"
+ms.lasthandoff: 08/04/2019
+ms.locfileid: "68776741"
 ---
 # <a name="create-an-aspnet-core-app-with-user-data-protected-by-authorization"></a>Criar um aplicativo ASP.NET Core com os dados de usuário protegidos por autorização
 
@@ -37,13 +37,13 @@ Este tutorial mostra como criar um aplicativo web do ASP.NET Core com dados de u
 * **Gerenciadores de** podem aprovar ou rejeitar dados de um contato. Apenas os contatos aprovados são visíveis aos usuários.
 * **Os administradores** podem rejeitar/aprovar e editar/excluir todos os dados.
 
-As imagens neste documento não correspondem exatamente os modelos mais recentes.
+As imagens neste documento não correspondem exatamente aos modelos mais recentes.
 
 Na imagem a seguir, o usuário Rick (`rick@example.com`) está conectado. Rick só pode ver os contatos aprovados e os links **editar**/**excluir**/**criar novo** de seus contatos. Somente o último registro criado por Rick exibe os links **editar** e **excluir**. Outros usuários não verão o último registro até que um gerente ou administrador altere o status para "Aprovado".
 
 ![Captura de tela mostrando Rick conectado](secure-data/_static/rick.png)
 
-Na imagem a seguir, `manager@contoso.com` se conectar e na função de gerente:
+Na imagem a seguir, `manager@contoso.com` está conectado e na função do gerente:
 
 ![Captura de tela mostrando manager@contoso.com conectado](secure-data/_static/manager1.png)
 
@@ -53,7 +53,7 @@ A imagem a seguir mostra a tela de exibição de detalhes de um contato dos gere
 
 O botões **aprovar** e **rejeitar** são exibidos somente para administradores e gerentes.
 
-Na imagem a seguir, `admin@contoso.com` se conectar e na função do administrador:
+Na imagem a seguir, `admin@contoso.com` está conectado e na função do administrador:
 
 ![Captura de tela mostrando admin@contoso.com conectado](secure-data/_static/admin.png)
 
@@ -65,9 +65,9 @@ O aplicativo foi criado fazendo [scaffolding](xref:tutorials/first-mvc-app/addin
 
 O exemplo contém os seguintes manipuladores de autorização:
 
-* `ContactIsOwnerAuthorizationHandler`: Garante que um usuário só pode editar seus dados.
-* `ContactManagerAuthorizationHandler`: Permite que os gerentes aprovar ou rejeitar os contatos.
-* `ContactAdministratorsAuthorizationHandler`: Permite aos administradores para aprovar ou rejeitar os contatos e editar/excluir contatos.
+* `ContactIsOwnerAuthorizationHandler`: Garante que um usuário só possa editar seus dados.
+* `ContactManagerAuthorizationHandler`: Permite que os gerentes aprovem ou rejeitem contatos.
+* `ContactAdministratorsAuthorizationHandler`: Permite que os administradores aprovem ou rejeitem contatos e editem/excluam contatos.
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
@@ -122,7 +122,7 @@ Defina a política de autenticação padrão para exigir que os usuários sejam 
 
  Você pode recusar a autenticação em nível de método de ação, controlador ou página Razor com o `[AllowAnonymous]` atributo. Configurar a política de autenticação padrão para exigir que os usuários sejam autenticados protege recém-adicionado páginas do Razor e controladores. Autenticação necessária por padrão é mais segura do que contar com novos controladores e páginas do Razor para incluir o `[Authorize]` atributo.
 
-Adicione [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) para as páginas de índice e privacidade para que os usuários anônimos podem obter informações sobre o site antes de se registrarem.
+Adicione [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) às páginas de índice e privacidade para que os usuários anônimos possam obter informações sobre o site antes de se registrarem.
 
 [!code-csharp[](secure-data/samples/final3/Pages/Index.cshtml.cs?highlight=1,7)]
 
@@ -159,7 +159,7 @@ Criar uma classe `ContactIsOwnerAuthorizationHandler` na pasta *autorização*. 
 O `ContactIsOwnerAuthorizationHandler` chamadas [contexto. Êxito](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) se o usuário autenticado atual for o proprietário do contato. Manipuladores de autorização geralmente:
 
 * Retornar `context.Succeed` quando os requisitos sejam atendidos.
-* Retornar `Task.CompletedTask` quando os requisitos não forem atendidos. `Task.CompletedTask` não é êxito ou falha&mdash;permite que outros manipuladores de autorização executar.
+* Retornar `Task.CompletedTask` quando os requisitos não forem atendidos. `Task.CompletedTask`Não é êxito ou falha&mdash;permite que outros manipuladores de autorização sejam executados.
 
 Se você precisar fazer explicitamente, retornar [contexto. Falha](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
@@ -242,7 +242,7 @@ Atualize o modelo de página de exclusão para usar o manipulador de autorizaç�
 
 Atualmente, mostra a interface do usuário a edita e excluir links para os contatos, que o usuário não é possível modificar.
 
-Injetar o serviço de autorização na *Pages/_ViewImports.cshtml* arquivo para que ele está disponível para todos os modos de exibição:
+Insira o serviço de autorização no arquivo *pages/_ViewImports. cshtml* para que ele esteja disponível para todas as exibições:
 
 [!code-cshtml[](secure-data/samples/final3/Pages/_ViewImports.cshtml?highlight=6-99)]
 
@@ -269,14 +269,14 @@ Atualize o modelo de página de detalhes:
 
 Ver [esse problema](https://github.com/aspnet/AspNetCore.Docs/issues/8502) para obter informações sobre:
 
-* Remoção de privilégios de um usuário. Por exemplo, um silenciament um usuário em um aplicativo de bate-papo.
+* Remoção de privilégios de um usuário. Por exemplo, ativar mudo de um usuário em um aplicativo de chat.
 * Adicionando privilégios a um usuário.
 
 ## <a name="test-the-completed-app"></a>Testar o aplicativo concluído
 
 Se você ainda não tiver configurado uma senha para contas de usuário propagados, use o [ferramenta Secret Manager](xref:security/app-secrets#secret-manager) para definir uma senha:
 
-* Escolha uma senha forte: Usar oito ou mais caracteres e pelo menos um caractere maiusculo, número e símbolo. Por exemplo, `Passw0rd!` atende aos requisitos de senha forte.
+* Escolha uma senha forte: Use oito ou mais caracteres e pelo menos um caractere, número e símbolo em letras maiúsculas. Por exemplo, `Passw0rd!` atende aos requisitos de senha forte.
 * Execute o seguinte comando na pasta do projeto, onde `<PW>` é a senha:
 
   ```console
@@ -314,7 +314,7 @@ Crie um contato no navegador do administrador. Copie a URL para excluir e editar
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Adicione *Models/Contact.cs*:
+* Adicionar *modelos/Contact. cs*:
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
@@ -330,9 +330,9 @@ dotnet ef migrations add initial
 dotnet ef database update
   ```
 
-Se você tiver um bug com o `dotnet aspnet-codegenerator razorpage` de comando, consulte [esse problema de GitHub](https://github.com/aspnet/Scaffolding/issues/984).
+Se você tiver um bug com o `dotnet aspnet-codegenerator razorpage` comando, consulte [este problema do GitHub](https://github.com/aspnet/Scaffolding/issues/984).
 
-* Atualizar o **ContactManager** Fixar na *Pages/Shared/_Layout.cshtml* arquivo:
+* Atualize a âncora ContactManager no arquivo *pages/Shared/_ layout. cshtml* :
 
  ```cshtml
 <a class="navbar-brand" asp-area="" asp-page="/Contacts/Index">ContactManager</a>
@@ -342,7 +342,7 @@ Se você tiver um bug com o `dotnet aspnet-codegenerator razorpage` de comando, 
 
 ### <a name="seed-the-database"></a>Propagar o banco de dados
 
-Adicione a [SeedData](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter3/Data/SeedData.cs) de classe para o *dados* pasta:
+Adicione a classe [SeedData](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter3/Data/SeedData.cs) à pasta de *dados* :
 
 [!code-csharp[](secure-data/samples/starter3/Data/SeedData.cs)]
 
@@ -366,7 +366,7 @@ Na imagem a seguir, o usuário Rick (`rick@example.com`) está conectado. Rick s
 
 ![Captura de tela mostrando Rick conectado](secure-data/_static/rick.png)
 
-Na imagem a seguir, `manager@contoso.com` se conectar e na função de gerente:
+Na imagem a seguir, `manager@contoso.com` está conectado e na função do gerente:
 
 ![Captura de tela mostrando manager@contoso.com conectado](secure-data/_static/manager1.png)
 
@@ -376,7 +376,7 @@ A imagem a seguir mostra a tela de exibição de detalhes de um contato dos gere
 
 O botões **aprovar** e **rejeitar** são exibidos somente para administradores e gerentes.
 
-Na imagem a seguir, `admin@contoso.com` se conectar e na função do administrador:
+Na imagem a seguir, `admin@contoso.com` está conectado e na função do administrador:
 
 ![Captura de tela mostrando admin@contoso.com conectado](secure-data/_static/admin.png)
 
@@ -388,9 +388,9 @@ O aplicativo foi criado fazendo [scaffolding](xref:tutorials/first-mvc-app/addin
 
 O exemplo contém os seguintes manipuladores de autorização:
 
-* `ContactIsOwnerAuthorizationHandler`: Garante que um usuário só pode editar seus dados.
-* `ContactManagerAuthorizationHandler`: Permite que os gerentes aprovar ou rejeitar os contatos.
-* `ContactAdministratorsAuthorizationHandler`: Permite aos administradores para aprovar ou rejeitar os contatos e editar/excluir contatos.
+* `ContactIsOwnerAuthorizationHandler`: Garante que um usuário só possa editar seus dados.
+* `ContactManagerAuthorizationHandler`: Permite que os gerentes aprovem ou rejeitem contatos.
+* `ContactAdministratorsAuthorizationHandler`: Permite que os administradores aprovem ou rejeitem contatos e editem/excluam contatos.
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
@@ -482,7 +482,7 @@ Criar uma classe `ContactIsOwnerAuthorizationHandler` na pasta *autorização*. 
 O `ContactIsOwnerAuthorizationHandler` chamadas [contexto. Êxito](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) se o usuário autenticado atual for o proprietário do contato. Manipuladores de autorização geralmente:
 
 * Retornar `context.Succeed` quando os requisitos sejam atendidos.
-* Retornar `Task.CompletedTask` quando os requisitos não forem atendidos. `Task.CompletedTask` não é êxito ou falha&mdash;permite que outros manipuladores de autorização executar.
+* Retornar `Task.CompletedTask` quando os requisitos não forem atendidos. `Task.CompletedTask`Não é êxito ou falha&mdash;permite que outros manipuladores de autorização sejam executados.
 
 Se você precisar fazer explicitamente, retornar [contexto. Falha](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
@@ -592,14 +592,14 @@ Atualize o modelo de página de detalhes:
 
 Ver [esse problema](https://github.com/aspnet/AspNetCore.Docs/issues/8502) para obter informações sobre:
 
-* Remoção de privilégios de um usuário. Por exemplo, um silenciament um usuário em um aplicativo de bate-papo.
+* Remoção de privilégios de um usuário. Por exemplo, ativar mudo de um usuário em um aplicativo de chat.
 * Adicionando privilégios a um usuário.
 
 ## <a name="test-the-completed-app"></a>Testar o aplicativo concluído
 
 Se você ainda não tiver configurado uma senha para contas de usuário propagados, use o [ferramenta Secret Manager](xref:security/app-secrets#secret-manager) para definir uma senha:
 
-* Escolha uma senha forte: Usar oito ou mais caracteres e pelo menos um caractere maiusculo, número e símbolo. Por exemplo, `Passw0rd!` atende aos requisitos de senha forte.
+* Escolha uma senha forte: Use oito ou mais caracteres e pelo menos um caractere, número e símbolo em letras maiúsculas. Por exemplo, `Passw0rd!` atende aos requisitos de senha forte.
 * Execute o seguinte comando na pasta do projeto, onde `<PW>` é a senha:
 
   ```console
@@ -607,10 +607,11 @@ Se você ainda não tiver configurado uma senha para contas de usuário propagad
   ```
 
 * Remover e atualizar o banco de dados
+
     ```console
      dotnet ef database drop -f
      dotnet ef database update  
-```
+     ```
 
 * Reinicie o aplicativo para propagar o banco de dados.
 
@@ -640,7 +641,7 @@ Crie um contato no navegador do administrador. Copie a URL para excluir e editar
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Adicione *Models/Contact.cs*:
+* Adicionar *modelos/Contact. cs*:
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
