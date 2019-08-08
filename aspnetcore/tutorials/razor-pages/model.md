@@ -5,12 +5,12 @@ description: Saiba como adicionar classes de gerenciamento de filmes em um banco
 ms.author: riande
 ms.date: 07/22/2019
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: b7f77cfa51f8d86504939e31eade0dfda8a6b1c9
-ms.sourcegitcommit: 849af69ee3c94cdb9fd8fa1f1bb8f5a5dda7b9eb
+ms.openlocfilehash: 6132f7b907014b4f57bb9ae0300e00b6ecb23f1a
+ms.sourcegitcommit: 2eb605f4f20ac4dd9de6c3b3e3453e108a357a21
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/22/2019
-ms.locfileid: "68371929"
+ms.lasthandoff: 08/06/2019
+ms.locfileid: "68820075"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -99,7 +99,7 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
 * Instale a ferramenta de scaffolding:
 
   ```console
-   dotnet tool install --global dotnet-aspnet-codegenerator
+   dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
    ```
 
 * **para Windows**: Execute o seguinte comando:
@@ -122,7 +122,7 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
 * Instale a ferramenta de scaffolding:
 
   ```console
-   dotnet tool install --global dotnet-aspnet-codegenerator
+   dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
    ```
 
 * Execute o seguinte comando:
@@ -166,7 +166,7 @@ No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet** > **Console 
 No PMC, insira os seguintes comandos:
 
 ```PMC
-Add-Migration Initial
+Add-Migration InitialCreate
 Update-Database
 ```
 

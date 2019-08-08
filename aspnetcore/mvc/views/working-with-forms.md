@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2019
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: a07bb4f539c8bd38b08402c598924e14c748921d
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.openlocfilehash: 43a1c408ff1a03468989e5bb0839ca2cd245082b
+ms.sourcegitcommit: b5e63714afc26e94be49a92619586df5189ed93a
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815233"
+ms.lasthandoff: 08/02/2019
+ms.locfileid: "68739489"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Auxiliares de marca em formulários no ASP.NET Core
 
@@ -640,11 +640,13 @@ O modelo *Views/Shared/EditorTemplates/CountryViewModel.cshtml*:
 
 O acréscimo de elementos HTML [\<option>](https://www.w3.org/wiki/HTML/Elements/option) não está limitado ao caso de *Nenhuma seleção*. Por exemplo, o seguinte método de ação e exibição gerarão HTML semelhante ao código acima:
 
-[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
+[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?name=snippetNone)]
 
 [!code-HTML[](working-with-forms/sample/final/Views/Home/IndexOption.cshtml)]
 
 O elemento `<option>` correto será selecionado (contém o atributo `selected="selected"`) dependendo do valor atual de `Country`.
+
+[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
 
 ```HTML
  <form method="post" action="/Home/IndexEmpty">

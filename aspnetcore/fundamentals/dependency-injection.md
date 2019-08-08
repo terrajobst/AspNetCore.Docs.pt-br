@@ -5,14 +5,14 @@ description: Saiba como o ASP.NET Core implementa a injeção de dependência e 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/24/2019
+ms.date: 08/06/2019
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 100eab0bdee12a6e61ac26538c83aa997f8eaee3
-ms.sourcegitcommit: 16502797ea749e2690feaa5e652a65b89c007c89
+ms.openlocfilehash: 27ae8ac979c267c666d6d63f4d1dd862ff20edba
+ms.sourcegitcommit: 2eb605f4f20ac4dd9de6c3b3e3453e108a357a21
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/25/2019
-ms.locfileid: "68483197"
+ms.lasthandoff: 08/06/2019
+ms.locfileid: "68819866"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Injeção de dependência no ASP.NET Core
 
@@ -175,7 +175,7 @@ Os serviços com tempo de vida (<xref:Microsoft.Extensions.DependencyInjection.S
 
 ### <a name="singleton"></a>Singleton
 
-Serviços de tempo de vida singleton (<xref:Microsoft.AspNet.OData.Builder.ODataModelBuilder.AddSingleton*>) são criados na primeira solicitação (ou quando `Startup.ConfigureServices` é executado e uma instância é especificada com o registro do serviço). Cada solicitação subsequente usa a mesma instância. Se o aplicativo exigir um comportamento de singleton, recomendamos permitir que o contêiner do serviço gerencie o tempo de vida do serviço. Não implemente o padrão de design singleton e forneça o código de usuário para gerenciar o tempo de vida do objeto na classe.
+Serviços de tempo de vida singleton (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) são criados na primeira solicitação (ou quando `Startup.ConfigureServices` é executado e uma instância é especificada com o registro do serviço). Cada solicitação subsequente usa a mesma instância. Se o aplicativo exigir um comportamento de singleton, recomendamos permitir que o contêiner do serviço gerencie o tempo de vida do serviço. Não implemente o padrão de design singleton e forneça o código de usuário para gerenciar o tempo de vida do objeto na classe.
 
 > [!WARNING]
 > É perigoso resolver um serviço com escopo de um singleton. Pode fazer com que o serviço tenha um estado incorreto durante o processamento das solicitações seguintes.

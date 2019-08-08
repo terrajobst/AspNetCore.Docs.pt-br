@@ -3,14 +3,14 @@ title: Adicionar uma exibição a um aplicativo ASP.NET Core MVC
 author: rick-anderson
 description: Adicionando uma exibição a um aplicativo ASP.NET Core MVC simples
 ms.author: riande
-ms.date: 03/04/2017
+ms.date: 8/04/2019
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: b6a3b1e673b8b67530b82c7d850e810a6c11e555
-ms.sourcegitcommit: 3204bc89ae6354b61ee0a9b2770ebe5214b7790c
+ms.openlocfilehash: 1c29b59f9306774316ff37eeb57cc441fe5c7370
+ms.sourcegitcommit: 2eb605f4f20ac4dd9de6c3b3e3453e108a357a21
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/01/2019
-ms.locfileid: "68707886"
+ms.lasthandoff: 08/06/2019
+ms.locfileid: "68820087"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Adicionar uma exibição a um aplicativo ASP.NET Core MVC
 
@@ -66,7 +66,7 @@ Adicione uma exibição `Index` ao `HelloWorldController`.
   * Digite *Index.cshtml* na caixa **Nome**.
   * Selecione **Novo**.
 
-![Caixa de diálogo Adicionar Novo Item](adding-view/_static/add_view.png)
+![Caixa de diálogo Adicionar Novo Item](adding-view/_static/add_view_mac.png)
 
 ---
 
@@ -74,7 +74,7 @@ Substitua o conteúdo do arquivo de exibição *Views/HelloWorld/Index.cshtml* d
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Navegue para `https://localhost:xxxx/HelloWorld`. O método `Index` no `HelloWorldController` não fez muita coisa: ele executou a instrução `return View();`, que especificou que o método deve usar um arquivo de modelo de exibição para renderizar uma resposta para o navegador. Como um nome de arquivo de modo de exibição não foi especificado, o MVC é padronizado para usar o arquivo de exibição padrão. O arquivo de exibição padrão tem o mesmo nome que o método (`Index`), portanto, é usado */Views/HelloWorld/Index.cshtml*. A imagem abaixo mostra a cadeia de caracteres “Olá de nosso modelo de exibição!” embutida em código na exibição.
+Navegue para `https://localhost:{PORT}/HelloWorld`. O método `Index` no `HelloWorldController` não fez muita coisa: ele executou a instrução `return View();`, que especificou que o método deve usar um arquivo de modelo de exibição para renderizar uma resposta para o navegador. Como um nome de arquivo de modo de exibição não foi especificado, o MVC é padronizado para usar o arquivo de exibição padrão. O arquivo de exibição padrão tem o mesmo nome que o método (`Index`), portanto, é usado */Views/HelloWorld/Index.cshtml*. A imagem abaixo mostra a cadeia de caracteres “Olá de nosso modelo de exibição!” embutida em código na exibição.
 
 ![Janela do navegador](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -127,7 +127,7 @@ O título e o elemento `<h2>` são ligeiramente diferentes para que possa ver qu
 <title>@ViewData["Title"] - Movie App</title>
    ```
 
-Salve as alterações e navegue para `https://localhost:xxxx/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione Ctrl+F5 no navegador para forçar a resposta do servidor a ser carregada.) O título do navegador é criado com `ViewData["Title"]` que definimos no modelo de exibição *Index.cshtml* e o “– Aplicativo de Filme” adicional adicionado no arquivo de layout.
+Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione Ctrl+F5 no navegador para forçar a resposta do servidor a ser carregada.) O título do navegador é criado com `ViewData["Title"]` que definimos no modelo de exibição *Index.cshtml* e o “– Aplicativo de Filme” adicional adicionado no arquivo de layout.
 
 O conteúdo do modelo de exibição *Index.cshtml* é mesclado com o modelo de exibição *Views/Shared/_Layout.cshtml*. Uma única resposta HTML é enviada ao navegador. Os modelos de layout facilitam a realização de alterações que se aplicam a todas as páginas de um aplicativo. Para saber mais, consulte [Layout](xref:mvc/views/layout).
 
@@ -157,7 +157,7 @@ Você criará um loop no modelo de exibição *Welcome.cshtml* que exibe “Olá
 
 Salve as alterações e navegue para a seguinte URL:
 
-`https://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4`
+`https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
 Os dados são obtidos da URL e passados para o controlador usando o [associador de modelo MVC](xref:mvc/models/model-binding). O controlador empacota os dados em um dicionário `ViewData` e passa esse objeto para a exibição. Em seguida, a exibição renderiza os dados como HTML para o navegador.
 
@@ -231,7 +231,7 @@ Substitua o conteúdo do arquivo de exibição *Views/HelloWorld/Index.cshtml* d
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Navegue para `https://localhost:xxxx/HelloWorld`. O método `Index` no `HelloWorldController` não fez muita coisa: ele executou a instrução `return View();`, que especificou que o método deve usar um arquivo de modelo de exibição para renderizar uma resposta para o navegador. Como um nome de arquivo de modo de exibição não foi especificado, o MVC é padronizado para usar o arquivo de exibição padrão. O arquivo de exibição padrão tem o mesmo nome que o método (`Index`), portanto, é usado */Views/HelloWorld/Index.cshtml*. A imagem abaixo mostra a cadeia de caracteres “Olá de nosso modelo de exibição!” embutida em código na exibição.
+Navegue para `https://localhost:{PORT}/HelloWorld`. O método `Index` no `HelloWorldController` não fez muita coisa: ele executou a instrução `return View();`, que especificou que o método deve usar um arquivo de modelo de exibição para renderizar uma resposta para o navegador. Como um nome de arquivo de modo de exibição não foi especificado, o MVC é padronizado para usar o arquivo de exibição padrão. O arquivo de exibição padrão tem o mesmo nome que o método (`Index`), portanto, é usado */Views/HelloWorld/Index.cshtml*. A imagem abaixo mostra a cadeia de caracteres “Olá de nosso modelo de exibição!” embutida em código na exibição.
 
 ![Janela do navegador](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -287,7 +287,7 @@ O título e o elemento `<h2>` são ligeiramente diferentes para que possa ver qu
 <title>@ViewData["Title"] - Movie App</title>
    ```
 
-Salve as alterações e navegue para `https://localhost:xxxx/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione Ctrl+F5 no navegador para forçar a resposta do servidor a ser carregada.) O título do navegador é criado com `ViewData["Title"]` que definimos no modelo de exibição *Index.cshtml* e o “– Aplicativo de Filme” adicional adicionado no arquivo de layout.
+Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione Ctrl+F5 no navegador para forçar a resposta do servidor a ser carregada.) O título do navegador é criado com `ViewData["Title"]` que definimos no modelo de exibição *Index.cshtml* e o “– Aplicativo de Filme” adicional adicionado no arquivo de layout.
 
 Observe também como o conteúdo no modelo de exibição *Index.cshtml* foi mesclado com o modelo de exibição *Views/Shared/_Layout.cshtml* e uma única resposta HTML foi enviada para o navegador. Os modelos de layout facilitam realmente a realização de alterações que se aplicam a todas as páginas do aplicativo. Para saber mais, consulte [Layout](xref:mvc/views/layout).
 
@@ -317,7 +317,7 @@ Você criará um loop no modelo de exibição *Welcome.cshtml* que exibe “Olá
 
 Salve as alterações e navegue para a seguinte URL:
 
-`https://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4`
+`https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
 Os dados são obtidos da URL e passados para o controlador usando o [associador de modelo MVC](xref:mvc/models/model-binding). O controlador empacota os dados em um dicionário `ViewData` e passa esse objeto para a exibição. Em seguida, a exibição renderiza os dados como HTML para o navegador.
 
