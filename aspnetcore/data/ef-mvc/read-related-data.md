@@ -6,12 +6,12 @@ ms.author: tdykstra
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: 5b45ced4fe6ed220c9a63bc6480c8c8520b36ed4
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 20f801e23f3e75d7915bcb7c095060b68d9cb03f
+ms.sourcegitcommit: 2eb605f4f20ac4dd9de6c3b3e3453e108a357a21
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64886361"
+ms.lasthandoff: 08/06/2019
+ms.locfileid: "68819778"
 ---
 # <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Ler dados relacionados - ASP.NET MVC com EF Core
 
@@ -188,7 +188,7 @@ Você fez as seguintes alterações no código existente:
   }
   ```
 
-* Adicionou uma coluna **Courses** que exibe os cursos ministrados por cada instrutor. Consulte [Transição de linha explícita com `@:`](xref:mvc/views/razor#explicit-line-transition-with-) para obter mais informações sobre essa sintaxe Razor.
+* Adicionou uma coluna **Courses** que exibe os cursos ministrados por cada instrutor. Para obter mais informações, consulte a seção [Transição de linha explícita com @:](xref:mvc/views/razor#explicit-line-transition-with-) no artigo sobre Sintaxe Razor.
 
 * Adicionou um código que adiciona `class="success"` dinamicamente ao elemento `tr` do instrutor selecionado. Isso define uma cor da tela de fundo para a linha selecionada usando uma classe Bootstrap.
 
