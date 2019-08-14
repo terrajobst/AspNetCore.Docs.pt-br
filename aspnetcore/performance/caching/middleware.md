@@ -5,14 +5,14 @@ description: Saiba como configurar e usar o Middleware de cache de resposta no A
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/08/2019
+ms.date: 08/09/2019
 uid: performance/caching/middleware
-ms.openlocfilehash: 6371f42b100f70c6042064a6372c7b9e41fd5c73
-ms.sourcegitcommit: 776367717e990bdd600cb3c9148ffb905d56862d
+ms.openlocfilehash: 838a08c12316d218501f26d5905f9e31ab93dfc9
+ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68914986"
+ms.lasthandoff: 08/13/2019
+ms.locfileid: "68994224"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>Middleware de cache de resposta em ASP.NET Core
 
@@ -24,57 +24,57 @@ Este artigo explica como configurar o middleware de cache de resposta em um apli
 
 ## <a name="configuration"></a>Configuração
 
-Use o [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) ou adicione uma referência de pacote ao pacote [Microsoft. AspNetCore. ResponseCaching](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) .
+::: moniker range=">= aspnetcore-3.0"
+
+O middleware de cache de resposta é tornado disponível pelo pacote [Microsoft. AspNetCore. ResponseCaching](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) , que é adicionado implicitamente a aplicativos ASP.NET Core.
 
 No `Startup.ConfigureServices`, adicione o middleware de cache de resposta à coleção de serviços:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet1&highlight=3)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](middleware/samples/2.x/ResponseCachingMiddleware/Startup.cs?name=snippet1&highlight=3)]
-
-::: moniker-end
 
 Configure o aplicativo para usar o middleware com o método <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> de extensão, que adiciona o middleware ao pipeline de processamento de solicitação no `Startup.Configure`:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=16)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](middleware/samples/2.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=14)]
-
-::: moniker-end
 
 O aplicativo de exemplo adiciona cabeçalhos ao cache de controle em solicitações subsequentes:
 
 * [Controle de cache](https://tools.ietf.org/html/rfc7234#section-5.2) &ndash; Armazena em cache as respostas armazenáveis em cache por até 10 segundos.
 * [Variar](https://tools.ietf.org/html/rfc7231#section-7.1.4) Configura o middleware para servir uma resposta armazenada em cache somente se o [`Accept-Encoding`](https://tools.ietf.org/html/rfc7231#section-5.3.4) cabeçalho das solicitações subsequentes corresponder à da solicitação original. &ndash;
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](middleware/samples_snippets/3.x/AddHeaders.cs)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](middleware/samples_snippets/2.x/AddHeaders.cs)]
-
-::: moniker-end
 
 O middleware de cache de resposta só armazena em cache as respostas do servidor que resultam em um código de status 200 (OK). Quaisquer outras respostas, incluindo [páginas de erro](xref:fundamentals/error-handling), são ignoradas pelo middleware.
 
 > [!WARNING]
 > As respostas que contêm o conteúdo para clientes autenticados devem ser marcadas como não armazenáveis em cache para impedir que o middleware armazene e atenda a essas respostas. Consulte [condições para o cache](#conditions-for-caching) para obter detalhes sobre como o middleware determina se uma resposta é armazenável em cache.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Use o [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) ou adicione uma referência de pacote ao pacote [Microsoft. AspNetCore. ResponseCaching](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) .
+
+No `Startup.ConfigureServices`, adicione o middleware de cache de resposta à coleção de serviços:
+
+[!code-csharp[](middleware/samples/2.x/ResponseCachingMiddleware/Startup.cs?name=snippet1&highlight=3)]
+
+Configure o aplicativo para usar o middleware com o método <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> de extensão, que adiciona o middleware ao pipeline de processamento de solicitação no `Startup.Configure`:
+
+[!code-csharp[](middleware/samples/2.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=14)]
+
+O aplicativo de exemplo adiciona cabeçalhos ao cache de controle em solicitações subsequentes:
+
+* [Controle de cache](https://tools.ietf.org/html/rfc7234#section-5.2) &ndash; Armazena em cache as respostas armazenáveis em cache por até 10 segundos.
+* [Variar](https://tools.ietf.org/html/rfc7231#section-7.1.4) Configura o middleware para servir uma resposta armazenada em cache somente se o [`Accept-Encoding`](https://tools.ietf.org/html/rfc7231#section-5.3.4) cabeçalho das solicitações subsequentes corresponder à da solicitação original. &ndash;
+
+[!code-csharp[](middleware/samples_snippets/2.x/AddHeaders.cs)]
+
+O middleware de cache de resposta só armazena em cache as respostas do servidor que resultam em um código de status 200 (OK). Quaisquer outras respostas, incluindo [páginas de erro](xref:fundamentals/error-handling), são ignoradas pelo middleware.
+
+> [!WARNING]
+> As respostas que contêm o conteúdo para clientes autenticados devem ser marcadas como não armazenáveis em cache para impedir que o middleware armazene e atenda a essas respostas. Consulte [condições para o cache](#conditions-for-caching) para obter detalhes sobre como o middleware determina se uma resposta é armazenável em cache.
+
+::: moniker-end
 
 ## <a name="options"></a>Opções
 

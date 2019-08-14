@@ -5,14 +5,14 @@ description: Saiba como criar e usar componentes do Razor, incluindo como associ
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/02/2019
+ms.date: 08/13/2019
 uid: blazor/components
-ms.openlocfilehash: 43457bffd748ebba68cc86d33fdeb98dc419704b
-ms.sourcegitcommit: 776367717e990bdd600cb3c9148ffb905d56862d
+ms.openlocfilehash: a95c186d30eaf342f10ecbe6f7add242d4679a0f
+ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68948426"
+ms.lasthandoff: 08/13/2019
+ms.locfileid: "68993410"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -26,7 +26,9 @@ Os aplicativos mais elaborados são criados usando *componentes*. Um componente 
 
 Os componentes são implementados em arquivos de componente do [Razor](xref:mvc/views/razor) ( *. Razor*) C# usando uma combinação de marcação HTML e. Um componente no mais alto é conhecido formalmente como um *componente do Razor*.
 
-Os componentes podem ser criados usando a extensão de arquivo *. cshtml* . Use a `_RazorComponentInclude` Propriedade MSBuild no arquivo de projeto para identificar os arquivos Component *. cshtml* . Por exemplo, um aplicativo que especifica que todos os arquivos *. cshtml* na pasta *páginas* devem ser tratados como arquivos de componentes do Razor:
+O nome de um componente deve começar com um caractere maiúsculo. Por exemplo, *MyCoolComponent. Razor* é válido e *MyCoolComponent. Razor* é inválido.
+
+Os componentes podem ser criados usando a extensão de arquivo *. cshtml* , desde que os arquivos sejam identificados como arquivos de componente do `_RazorComponentInclude` Razor usando a Propriedade MSBuild. Por exemplo, um aplicativo que especifica que todos os arquivos *. cshtml* na pasta *páginas* devem ser tratados como arquivos de componentes do Razor:
 
 ```xml
 <PropertyGroup>
@@ -36,7 +38,7 @@ Os componentes podem ser criados usando a extensão de arquivo *. cshtml* . Use 
 
 A interface do usuário para um componente é definida usando HTML. A lógica de renderização dinâmica (por exemplo, loops, condicionais, expressões) é adicionada usando uma sintaxe de C# inserida chamada [Razor](xref:mvc/views/razor). Quando um aplicativo é compilado, a marcação HTML e C# a lógica de renderização são convertidas em uma classe de componente. O nome da classe gerada corresponde ao nome do arquivo.
 
-Os membros da classe de componente são definidos em um bloco `@code`. `@code` No bloco, estado do componente (Propriedades, campos) é especificado com métodos para manipulação de eventos ou para definir outra lógica de componente. Mais de um `@code` bloco é permitido.
+Os membros da classe de componente são definidos em um bloco `@code`. `@code` No bloco, estado do componente (Propriedades, campos) é especificado com métodos para manipulação de eventos ou para definir outra lógica de componente. Mais de um bloco de `@code` é permitido.
 
 > [!NOTE]
 > Nas visualizações anteriores do ASP.NET Core 3,0, `@functions` os blocos foram usados para a mesma finalidade que `@code` os blocos nos componentes do Razor. `@functions`os blocos continuam a funcionar em componentes do Razor, mas é recomendável usar o `@code` bloco no ASP.NET Core 3,0 Preview 6 ou posterior.
@@ -79,9 +81,11 @@ Embora as páginas e exibições possam usar componentes, o inverso não é verd
 
 Para obter mais informações sobre como os componentes são renderizados e o estado do componente é gerenciado no mais alto aplicativo do <xref:blazor/hosting-models> lado do servidor, consulte o artigo.
 
-## <a name="using-components"></a>Usando componentes
+## <a name="use-components"></a>Usar componentes
 
 Os componentes podem incluir outros componentes, declarando-os usando a sintaxe do elemento HTML. A marcação para uso de um componente é semelhante a uma marca HTML, em que o nome da marca é o tipo de componente.
+
+A associação de atributo diferencia maiúsculas de minúsculas. Por exemplo, `@bind` é válido e `@Bind` é inválido.
 
 A marcação a seguir no *index. Razor* renderiza uma `HeadingComponent` instância:
 
@@ -91,9 +95,11 @@ A marcação a seguir no *index. Razor* renderiza uma `HeadingComponent` instân
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/HeadingComponent.razor)]
 
+Se um componente contiver um elemento HTML com uma letra maiúscula ou minúscula que não corresponda a um nome de componente, um aviso será emitido indicando que o elemento tem um nome inesperado. A adição `@using` de uma instrução para o namespace do componente torna o componente disponível, o que remove o aviso.
+
 ## <a name="component-parameters"></a>Parâmetros do componente
 
-Os componentes podem ter *parâmetros de componente*, que são definidos usando Propriedades (geralmente *não públicas*) na classe de componente com `[Parameter]` o atributo. Use atributos para especificar argumentos para um componente na marcação.
+Os componentes podem ter *parâmetros de componente*, que são definidos usando propriedades públicas na classe de componente `[Parameter]` com o atributo. Use atributos para especificar argumentos para um componente na marcação.
 
 *Componentes/ChildComponent. Razor*:
 
@@ -142,19 +148,19 @@ No exemplo a seguir, o primeiro `<input>` elemento (`id="useIndividualParams"`) 
 
 @code {
     [Parameter]
-    private string Maxlength { get; set; } = "10";
+    public string Maxlength { get; set; } = "10";
 
     [Parameter]
-    private string Placeholder { get; set; } = "Input placeholder text";
+    public string Placeholder { get; set; } = "Input placeholder text";
 
     [Parameter]
-    private string Required { get; set; } = "required";
+    public string Required { get; set; } = "required";
 
     [Parameter]
-    private string Size { get; set; } = "50";
+    public string Size { get; set; } = "50";
 
     [Parameter]
-    private Dictionary<string, object> InputAttributes { get; set; } =
+    public Dictionary<string, object> InputAttributes { get; set; } =
         new Dictionary<string, object>()
         {
             { "maxlength", "10" },
@@ -187,8 +193,8 @@ Para aceitar atributos arbitrários, defina um parâmetro de componente `[Parame
 
 ```cshtml
 @code {
-    [Parameter(CaptureUnmatchedValues = true)]
-    private Dictionary<string, object> InputAttributes { get; set; }
+    [Parameter(CaptureUnmatchedAttributes = true)]
+    public Dictionary<string, object> InputAttributes { get; set; }
 }
 ```
 
@@ -224,6 +230,33 @@ Além de `onchange` manipular eventos com [@bind-value](xref:mvc/views/razor#bin
 
 Ao `onchange`contrário de, que é acionado quando o `oninput` elemento perde o foco, é acionado quando o valor da caixa de texto é alterado.
 
+**Globalização**
+
+`@bind`os valores são formatados para exibição e analisados usando as regras da cultura atual.
+
+A cultura atual pode ser acessada <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=fullName> a partir da propriedade.
+
+[CultureInfo. InvariantCulture](xref:System.Globalization.CultureInfo.InvariantCulture) é usado para os seguintes tipos de campo`<input type="{TYPE}" />`():
+
+* `date`
+* `number`
+
+Os tipos de campo anteriores:
+
+* São exibidos usando suas regras de formatação baseadas em navegador apropriadas.
+* Não pode conter texto de forma livre.
+* Fornecer características de interação do usuário com base na implementação do navegador.
+
+Os seguintes tipos de campo têm requisitos de formatação específicos e atualmente não são compatíveis com o mais grande, pois não têm suporte de todos os principais navegadores:
+
+* `datetime-local`
+* `month`
+* `week`
+
+`@bind`dá suporte ao <xref:System.Globalization.CultureInfo?displayProperty=fullName> `@bind:culture` parâmetro para fornecer um para análise e formatação de um valor. Não é recomendável especificar uma cultura ao `date` usar `number` os tipos de campo e. `date`e `number` têm suporte interno de mais alto que fornece a cultura necessária.
+
+Para obter informações sobre como definir a cultura do usuário, consulte a seção [localização](#localization) .
+
 **Formatar cadeias de caracteres**
 
 A vinculação de dados <xref:System.DateTime> funciona com cadeias de caracteres de formato usando. [@bind:format](xref:mvc/views/razor#bind) Outras expressões de formato, como formatos de moeda ou número, não estão disponíveis no momento.
@@ -233,11 +266,20 @@ A vinculação de dados <xref:System.DateTime> funciona com cadeias de caractere
 
 @code {
     [Parameter]
-    private DateTime StartDate { get; set; } = new DateTime(2020, 1, 1);
+    public DateTime StartDate { get; set; } = new DateTime(2020, 1, 1);
 }
 ```
 
+No código anterior, o `<input>` tipo de campo do elemento (`type`) usa como `text`padrão. `@bind:format`tem suporte para ligar os seguintes tipos .NET:
+
+* <xref:System.DateTime?displayProperty=fullName>
+* <xref:System.DateTime?displayProperty=fullName>?
+* <xref:System.DateTimeOffset?displayProperty=fullName>
+* <xref:System.DateTimeOffset?displayProperty=fullName>?
+
 O `@bind:format` atributo especifica o formato de data a ser aplicado `value` ao do `<input>` elemento. O formato também é usado para analisar o valor quando ocorre `onchange` um evento.
+
+Não é recomendável especificar `date` um formato para o tipo de campo porque o mais alto tem suporte interno para formatar datas.
 
 **Parâmetros do componente**
 
@@ -252,10 +294,10 @@ O componente filho a seguir`ChildComponent`() tem `Year` um parâmetro de `YearC
 
 @code {
     [Parameter]
-    private int Year { get; set; }
+    public int Year { get; set; }
 
     [Parameter]
-    private EventCallback<int> YearChanged { get; set; }
+    public EventCallback<int> YearChanged { get; set; }
 }
 ```
 
@@ -278,7 +320,7 @@ O componente pai a seguir `ChildComponent` usa e associa o `ParentYear` parâmet
 
 @code {
     [Parameter]
-    private int ParentYear { get; set; } = 1978;
+    public int ParentYear { get; set; } = 1978;
 
     private void ChangeTheYear()
     {
@@ -516,7 +558,7 @@ Considere o exemplo a seguir:
 
 @code {
     [Parameter]
-    private IEnumerable<Person> People { get; set; }
+    public IEnumerable<Person> People { get; set; }
 }
 ```
 
@@ -532,7 +574,7 @@ O processo de mapeamento pode ser controlado com `@key` o atributo de diretiva. 
 
 @code {
     [Parameter]
-    private IEnumerable<Person> People { get; set; }
+    public IEnumerable<Person> People { get; set; }
 }
 ```
 
@@ -574,7 +616,7 @@ Geralmente, faz sentido fornecer um dos seguintes tipos de valor para `@key`:
 * Instâncias de objeto de modelo (por exemplo `Person` , uma instância como no exemplo anterior). Isso garante a preservação com base na igualdade de referência de objeto.
 * Identificadores exclusivos (por exemplo, valores de chave primária do `int`tipo `string`, ou `Guid`).
 
-Evite fornecer um valor que possa conflitar inesperadamente. Se `@key="@someObject.GetHashCode()"` for fornecido, poderão ocorrer conflitos inesperados porque os códigos de hash de objetos não relacionados podem ser iguais. Se `@key` valores conflitantes forem solicitados dentro do mesmo pai, `@key` os valores não serão respeitados.
+Verifique se os valores usados `@key` para não conflitam. Se os valores conflitantes forem detectados no mesmo elemento pai, o mais velho lançará uma exceção porque não pode mapear determinísticamente elementos ou componentes antigos para novos elementos ou componentes. Use apenas valores distintos, como instâncias de objeto ou valores de chave primária.
 
 ## <a name="lifecycle-methods"></a>Métodos de ciclo de vida
 
@@ -765,7 +807,7 @@ No exemplo a seguir, `IsCompleted` determina se `checked` é renderizado na marc
 
 @code {
     [Parameter]
-    private bool IsCompleted { get; set; }
+    public bool IsCompleted { get; set; }
 }
 ```
 
@@ -1063,7 +1105,7 @@ Considere o seguinte `PetDetails` componente, que pode ser compilado manualmente
 @code
 {
     [Parameter]
-    private string PetDetailsQuote { get; set; }
+    public string PetDetailsQuote { get; set; }
 }
 ```
 
@@ -1191,3 +1233,123 @@ Esse é um exemplo trivial. Em casos mais realistas com estruturas complexas e p
 * Não grave blocos longos de lógica implementada `RenderTreeBuilder` manualmente. Prefira `.razor` arquivos e permita que o compilador lide com os números de sequência.
 * Se os números de sequência forem codificados, o algoritmo diff só exigirá que os números de sequência aumentem de valor. O valor inicial e as lacunas são irrelevantes. Uma opção legítima é usar o número de linha de código como o número de sequência, ou começar de zero e aumentar por um ou centenas (ou qualquer intervalo preferencial). 
 * O mais alto número de seqüências usa números de sequência, enquanto outras estruturas de interface do usuário de diferenciação de árvore não as usam. A comparação é muito mais rápida quando os números de sequência são usados, e o mais vantajoso tem a vantagem de uma etapa de compilação que lida com números de `.razor` sequência automaticamente para desenvolvedores que criam arquivos.
+
+## <a name="localization"></a>Localização
+
+Os aplicativos mais no lado do servidor são localizados usando o [middleware de localização](xref:fundamentals/localization#localization-middleware). O middleware seleciona a cultura apropriada para os usuários que solicitam recursos do aplicativo.
+
+A cultura pode ser definida usando uma das seguintes abordagens:
+
+* [Cookies](#cookies)
+* [Fornecer interface do usuário para escolher a cultura](#provide-ui-to-choose-the-culture)
+
+Para obter mais informações e exemplos, consulte <xref:fundamentals/localization>.
+
+### <a name="cookies"></a>Cookies
+
+Um cookie de cultura de localização pode persistir a cultura do usuário. O cookie é criado pelo `OnGet` método da página host do aplicativo (*pages/host. cshtml. cs*). O middleware de localização lê o cookie em solicitações subsequentes para definir a cultura do usuário. 
+
+O uso de um cookie garante que a conexão WebSocket possa propagar corretamente a cultura. Se os esquemas de localização forem baseados no caminho da URL ou na cadeia de caracteres de consulta, o esquema pode não ser capaz de trabalhar com WebSockets, portanto, falha ao persistir a cultura. Portanto, o uso de um cookie de cultura de localização é a abordagem recomendada.
+
+Qualquer técnica pode ser usada para atribuir uma cultura se a cultura persistir em um cookie de localização. Se o aplicativo já tiver um esquema de localização estabelecido para ASP.NET Core do lado do servidor, continue a usar a infraestrutura de localização existente do aplicativo e defina o cookie de cultura de localização no esquema do aplicativo.
+
+O exemplo a seguir mostra como definir a cultura atual em um cookie que pode ser lido pelo middleware de localização. Crie um arquivo *pages/host. cshtml. cs* com o seguinte conteúdo no aplicativo mais novo do servidor:
+
+```csharp
+public class HostModel : PageModel
+{
+    public void OnGet()
+    {
+        HttpContext.Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(
+                new RequestCulture(
+                    CultureInfo.CurrentCulture,
+                    CultureInfo.CurrentUICulture)));
+    }
+}
+```
+
+A localização é manipulada no aplicativo:
+
+1. O navegador envia uma solicitação HTTP inicial para o aplicativo.
+1. A cultura é atribuída pelo middleware de localização.
+1. O `OnGet` método em *_Host. cshtml. cs* persiste a cultura em um cookie como parte da resposta.
+1. O navegador abre uma conexão WebSocket para criar uma sessão do lado do servidor mais incrivelmente interativa.
+1. O middleware de localização lê o cookie e atribui a cultura.
+1. A sessão mais incrivelmente no lado do servidor começa com a cultura correta.
+
+## <a name="provide-ui-to-choose-the-culture"></a>Fornecer interface do usuário para escolher a cultura
+
+Para fornecer à interface do usuário a fim de permitir a seleção de uma cultura, é recomendável uma *abordagem baseada em* redirecionamento. O processo é semelhante ao que acontece em um aplicativo Web quando um usuário tenta acessar um recurso&mdash;seguro que o usuário é redirecionado para uma página de entrada e, em seguida, Redirecionado de volta para o recurso original. 
+
+O aplicativo persiste a cultura selecionada do usuário por meio de um redirecionamento para um controlador. O controlador define a cultura selecionada do usuário em um cookie e redireciona o usuário de volta para o URI original.
+
+Estabeleça um ponto de extremidade HTTP no servidor para definir a cultura selecionada do usuário em um cookie e execute o redirecionamento de volta para o URI original:
+
+```csharp
+[Route("[controller]/[action]")]
+public class CultureController : Controller
+{
+    public IActionResult SetCulture(string culture, string redirectUri)
+    {
+        if (culture != null)
+        {
+            HttpContext.Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(
+                    new RequestCulture(culture)));
+        }
+
+        return LocalRedirect(redirectUri);
+    }
+}
+```
+
+> [!WARNING]
+> Use o `LocalRedirect` resultado da ação para evitar ataques de redirecionamento abertos. Para obter mais informações, consulte <xref:security/preventing-open-redirects>.
+
+O componente a seguir mostra um exemplo de como executar o redirecionamento inicial quando o usuário seleciona uma cultura:
+
+```cshtml
+@inject IUriHelper UriHelper
+
+<h3>Select your language</h3>
+
+<select @onchange="OnSelected">
+    <option>Select...</option>
+    <option value="en-US">English</option>
+    <option value="fr-FR">Français</option>
+</select>
+
+@code {
+    private double textNumber;
+
+    private void OnSelected(UIChangeEventArgs e)
+    {
+        var culture = (string)e.Value;
+        var uri = new Uri(UriHelper.GetAbsoluteUri())
+            .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+        var query = $"?culture={Uri.EscapeDataString(culture)}&" +
+            $"redirectUri={Uri.EscapeDataString(uri)}";
+
+        UriHelper.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+    }
+}
+```
+
+### <a name="use-net-localization-scenarios-in-blazor-apps"></a>Usar cenários de localização do .NET em aplicativos mais Incrivelmenteos
+
+Nos aplicativos mais poseriais, os seguintes cenários de localização e globalização do .NET estão disponíveis:
+
+* . Sistema de recursos da rede
+* Formatação de número e data específicos da cultura
+
+A funcionalidade de `@bind` mais de uma das mais recentes realiza a globalização com base na cultura atual do usuário. Para obter mais informações, consulte a seção [ligação de dados](#data-binding) .
+
+No momento, há suporte para um conjunto limitado de cenários de localização de ASP.NET Core:
+
+* `IStringLocalizer<>`tem *suporte* em aplicativos mais incrivelmenteos.
+* `IHtmlLocalizer<>`, `IViewLocalizer<>`, e a localização de anotações de dados são ASP.NET Core cenários MVC e **não têm suporte** em aplicativos mais incrivelmenteos.
+
+Para obter mais informações, consulte <xref:fundamentals/localization>.

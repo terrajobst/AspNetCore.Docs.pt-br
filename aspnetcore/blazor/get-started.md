@@ -5,14 +5,14 @@ description: Comece com o mais elaborado criando um aplicativo mais incrivelment
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/23/2019
+ms.date: 08/13/2019
 uid: blazor/get-started
-ms.openlocfilehash: b4609858be43acf9d1b2d8be5eff4879fd56f49f
-ms.sourcegitcommit: 051f068c78931432e030b60094c38376d64d013e
+ms.openlocfilehash: 1358a2e92af9d9104e565718692b1ca1940b9d9e
+ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/24/2019
-ms.locfileid: "68948326"
+ms.lasthandoff: 08/13/2019
+ms.locfileid: "68993399"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introdução ao ASP.NET Core mais incrivelmente
 
@@ -25,7 +25,7 @@ Introdução ao mais incrivelmente:
 1. Instale os modelos mais poficados executando o seguinte comando em um shell de comando:
 
    ```console
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview7.19365.7
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview8.19405.7
    ```
 
 1. Siga as orientações para sua escolha de ferramentas:
@@ -40,12 +40,12 @@ Introdução ao mais incrivelmente:
 
    4 \. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Confirme se a entrada de **local** está correta ou forneça um local para o projeto. Selecione **Criar**.
 
-   5 \. Para uma experiência mais experiente no lado do cliente, escolha o modelo mais alto **(lado do cliente)** . Para uma experiência mais experiente no lado do servidor, escolha o modelo de **aplicativo de servidor mais incrivelmente** . Selecione **Criar**. Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, no lado do servidor e no lado <xref:blazor/hosting-models>do cliente, consulte.
+   5 \. Para uma experiência mais experiente no lado do cliente, escolha o modelo de **aplicativo Webassembly** mais experiente. Para uma experiência mais experiente no lado do servidor, escolha o modelo de **aplicativo de servidor mais incrivelmente** . Selecione **Criar**. Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, no lado do servidor e no lado <xref:blazor/hosting-models>do cliente, consulte.
 
    6 \. Pressione **F5** para executar o aplicativo.
 
    > [!NOTE]
-   > Se você instalou a extensão do Visual Studio para uma versão prévia anterior do ASP.NET Core mais recente (visualização 6 ou anterior), você pode desinstalar a extensão na visualização 7. Instalar os modelos mais bem em um shell de comando agora é suficiente para trazer os modelos no Visual Studio.
+   > Se você instalou a extensão do Visual Studio para uma versão prévia anterior do ASP.NET Core mais recente (visualização 6 ou anterior), você pode desinstalar a extensão. Instalar os modelos mais bem em um shell de comando agora é suficiente para trazer os modelos no Visual Studio.
 
    # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -56,13 +56,13 @@ Introdução ao mais incrivelmente:
    3 \. Para uma experiência mais experiente no lado do cliente, execute o seguinte comando em um shell de comando:
 
       ```console
-      dotnet new blazor -o WebApplication1
+      dotnet new blazorwasm -o WebApplication1
       ```
 
       Para uma experiência mais experiente no lado do servidor, execute o seguinte comando em um shell de comando:
 
       ```console
-      dotnet new blazorserverside -o WebApplication1
+      dotnet new blazorserver -o WebApplication1
       ```
 
       Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, no lado do servidor e no lado <xref:blazor/hosting-models>do cliente, consulte.
@@ -85,7 +85,7 @@ Introdução ao mais incrivelmente:
 
    3\. In the sidebar, select **.NET Core** > **App**.
 
-   4\. For a Blazor server-side experience, select the **ASP.NET Core Blazor Server App** template. For a Blazor client-side experience, select the **ASP.NET Core Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+   4\. For a Blazor server-side experience, select the **Blazor Server App** template. For a Blazor client-side experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
    5\. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
 
@@ -100,7 +100,7 @@ Introdução ao mais incrivelmente:
    Para uma experiência mais experiente no lado do cliente, execute os seguintes comandos em um shell de comando:
 
    ```console
-   dotnet new blazor -o WebApplication1
+   dotnet new blazorwasm -o WebApplication1
    cd WebApplication1
    dotnet run
    ```
@@ -108,7 +108,7 @@ Introdução ao mais incrivelmente:
    Para uma experiência mais experiente no lado do servidor, execute os seguintes comandos em um shell de comando:
 
    ```console
-   dotnet new blazorserverside -o WebApplication1
+   dotnet new blazorserver -o WebApplication1
    cd WebApplication1
    dotnet run
    ```
@@ -152,7 +152,7 @@ Execute o aplicativo. A Home Page tem seu próprio contador fornecido pelo `Coun
 
 Os parâmetros de componente são especificados usando atributos ou [conteúdo filho](xref:blazor/components#child-content), que permitem definir propriedades no componente filho. Para adicionar um parâmetro ao `Counter` componente, atualize o bloco do `@code` componente:
 
-* Adicione uma propriedade para `IncrementAmount` com um `[Parameter]` atributo.
+* Adicione uma propriedade pública para `IncrementAmount` com um `[Parameter]` atributo.
 * Altere o método `IncrementCount` para usar o `IncrementAmount` ao aumentar o valor de `currentCount`.
 
 *Pages/Counter.razor*:

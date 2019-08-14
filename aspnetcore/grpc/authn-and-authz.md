@@ -4,14 +4,14 @@ author: jamesnk
 description: Saiba como usar a autenticação e a autorização no gRPC para ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 07/26/2019
+ms.date: 08/13/2019
 uid: grpc/authn-and-authz
-ms.openlocfilehash: 34f7f8a5a22159329b3d6c4524943434c460c7fb
-ms.sourcegitcommit: 0efb9e219fef481dee35f7b763165e488aa6cf9c
+ms.openlocfilehash: 19018c4ffae1228055a4858b496f135d015625b4
+ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/29/2019
-ms.locfileid: "68602429"
+ms.lasthandoff: 08/13/2019
+ms.locfileid: "68993281"
 ---
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>Autenticação e autorização no gRPC para ASP.NET Core
 
@@ -42,6 +42,8 @@ public void Configure(IApplicationBuilder app)
 
 > [!NOTE]
 > A ordem na qual você registra o ASP.NET Core de middleware de autenticação é importante. Sempre chamar `UseAuthentication` e `UseAuthorization` depois `UseRouting` de e `UseEndpoints`antes.
+
+O mecanismo de autenticação que seu aplicativo usa durante uma chamada precisa ser configurado. A configuração de autenticação é `Startup.ConfigureServices` adicionada no e será diferente dependendo do mecanismo de autenticação usado pelo seu aplicativo. Para obter exemplos de como proteger aplicativos ASP.NET Core, consulte [exemplos de autenticação](xref:security/authentication/samples).
 
 Depois que a autenticação tiver sido configurada, o usuário poderá ser acessado em `ServerCallContext`um método de serviço gRPC por meio do.
 
@@ -146,7 +148,7 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
-Os métodos de serviço individuais também `[Authorize]` podem ter o atributo aplicado. Se o usuário atual não corresponder às políticas **aplicadas ao método** e à classe, um erro será retornado para o chamador:
+Os métodos de serviço individuais também `[Authorize]` podem ter o atributo aplicado. Se o usuário atual não corresponder às políticas aplicadas ao método e à classe, um erro será retornado para o chamador:
 
 ```csharp
 [Authorize]
