@@ -5,14 +5,14 @@ description: Saiba como persistir o estado em aplicativos mais no lado do servid
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/06/2019
+ms.date: 08/13/2019
 uid: blazor/state-management
-ms.openlocfilehash: b9dd2bb8f070a9a17e15e947f76de78cc517e22e
-ms.sourcegitcommit: 2719c70cd15a430479ab4007ff3e197fbf5dfee0
+ms.openlocfilehash: af040635302fbf2dae8192dcf37d55bfcfedfcec
+ms.sourcegitcommit: f5f0ff65d4e2a961939762fb00e654491a2c772a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68948406"
+ms.lasthandoff: 08/15/2019
+ms.locfileid: "69030370"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>ASP.NET Core o gerenciamento de estado mais incrivelmente
 
@@ -255,7 +255,7 @@ O pré-processamento pode ser útil para outras páginas que não usam `localSto
     private int? currentCount;
     private bool isWaitingForConnection;
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         if (ComponentContext.IsConnected)
         {
@@ -326,7 +326,7 @@ else
 
     public int CurrentCount { get; set; }
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         CurrentCount = await ProtectedSessionStore.GetAsync<int>("count");
         hasLoaded = true;

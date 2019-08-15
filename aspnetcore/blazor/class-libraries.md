@@ -5,14 +5,14 @@ description: Descubra como os componentes podem ser incluídos em aplicativos ma
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2019
+ms.date: 08/13/2019
 uid: blazor/class-libraries
-ms.openlocfilehash: 402b7b072554f63f85e7cf5e55336104d235a071
-ms.sourcegitcommit: 776367717e990bdd600cb3c9148ffb905d56862d
+ms.openlocfilehash: 6e93d48bbc684845952c3db8935ccc8b190044b7
+ms.sourcegitcommit: f5f0ff65d4e2a961939762fb00e654491a2c772a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68948436"
+ms.lasthandoff: 08/15/2019
+ms.locfileid: "69030349"
 ---
 # <a name="aspnet-core-razor-components-class-libraries"></a>ASP.NET Core bibliotecas de classes de componentes Razor
 
@@ -33,10 +33,9 @@ Siga as orientações no <xref:blazor/get-started> artigo para configurar seu am
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Crie um novo projeto.
-1. Selecione **Aplicativo Web ASP.NET Core**. Selecione **Avançar**.
+1. Selecione **biblioteca de classes Razor**. Selecione **Avançar**.
+1. Na caixa de diálogo **criar uma nova biblioteca de classes Razor** , selecione **criar**.
 1. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Os exemplos neste tópico usam o nome `MyComponentLib1`do projeto. Selecione **Criar**.
-1. Na caixa de diálogo **Criar um aplicativo Web ASP.NET Core**, confirme se **.NET Core** e **ASP.NET Core 3.0** estão selecionados.
-1. Selecione o modelo de **biblioteca de classes Razor** . Selecione **Criar**.
 1. Adicione o RCL a uma solução:
    1. Clique com o botão direito do mouse na solução. Selecione **Adicionar** > **projeto existente**.
    1. Navegue até o arquivo de projeto do RCL.

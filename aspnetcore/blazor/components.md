@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/13/2019
 uid: blazor/components
-ms.openlocfilehash: a95c186d30eaf342f10ecbe6f7add242d4679a0f
-ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
+ms.openlocfilehash: 8cb2dc4c3cd22fe71fe15c22762948f9dcd3c08f
+ms.sourcegitcommit: f5f0ff65d4e2a961939762fb00e654491a2c772a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/13/2019
-ms.locfileid: "68993410"
+ms.lasthandoff: 08/15/2019
+ms.locfileid: "69030359"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -519,7 +519,10 @@ Prefira o tipo fortemente `EventCallback<T>` tipado `EventCallback`. `EventCallb
 
 ## <a name="capture-references-to-components"></a>Capturar referências a componentes
 
-As `Show` referências de componente fornecem uma maneira de fazer referência a uma instância de componente para que você possa emitir comandos para essa `Reset`instância, como ou. Para capturar uma referência de componente, adicione [@ref](xref:mvc/views/razor#ref) um atributo ao componente filho e, em seguida, defina um campo com o mesmo nome e o mesmo tipo que o componente filho.
+As `Show` referências de componente fornecem uma maneira de fazer referência a uma instância de componente para que você possa emitir comandos para essa `Reset`instância, como ou. Para capturar uma referência de componente:
+
+* Adicione um [@ref](xref:mvc/views/razor#ref) atributo ao componente filho.
+* Defina um campo com o mesmo tipo do componente filho.
 
 ```cshtml
 <MyLoginDialog @ref="loginDialog" ... />
@@ -538,6 +541,30 @@ Quando o componente é renderizado, `loginDialog` o campo é populado com a inst
 
 > [!IMPORTANT]
 > A `loginDialog` variável é populada apenas depois que o componente é renderizado e `MyLoginDialog` sua saída inclui o elemento. Até esse ponto, não há nada a fazer referência. Para manipular referências de componentes após a conclusão da renderização do componente, `OnAfterRenderAsync` use `OnAfterRender` os métodos ou.
+
+<!-- HOLD https://github.com/aspnet/AspNetCore.Docs/pull/13818
+Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`.
+
+The Razor compiler automatically generates a backing field for element and component references when using [@ref](xref:mvc/views/razor#ref). In the following example, there's no need to create a `myLoginDialog` field for the `LoginDialog` component:
+
+```cshtml
+<LoginDialog @ref="myLoginDialog" ... />
+
+@code {
+    private void OnSomething()
+    {
+        myLoginDialog.Show();
+    }
+}
+```
+
+When the component is rendered, the generated `myLoginDialog` field is populated with the `LoginDialog` component instance. You can then invoke .NET methods on the component instance.
+
+In some cases, a backing field is required. For example, declare a backing field when referencing generic components. To suppress backing field generation, specify the `@ref:suppressField` parameter.
+
+> [!IMPORTANT]
+> The generated `myLoginDialog` variable is only populated after the component is rendered and its output includes the `LoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the `OnAfterRenderAsync` or `OnAfterRender` methods.
+-->
 
 Embora a captura de referências de componente use uma sintaxe semelhante à [captura de referências de elemento](xref:blazor/javascript-interop#capture-references-to-elements), ela não é um recurso de interoperabilidade do [JavaScript](xref:blazor/javascript-interop) . As referências de componente não são passadas para o código&mdash;JavaScript que são usadas apenas no código .net.
 
@@ -620,19 +647,19 @@ Verifique se os valores usados `@key` para não conflitam. Se os valores conflit
 
 ## <a name="lifecycle-methods"></a>Métodos de ciclo de vida
 
-`OnInitAsync`e `OnInit` execute o código para inicializar o componente. Para executar uma operação assíncrona, `OnInitAsync` use e `await` a palavra-chave na operação:
+`OnInitializedAsync`e `OnInitialized` execute o código para inicializar o componente. Para executar uma operação assíncrona, `OnInitializedAsync` use e `await` a palavra-chave na operação:
 
 ```csharp
-protected override async Task OnInitAsync()
+protected override async Task OnInitializedAsync()
 {
     await ...
 }
 ```
 
-Para uma operação síncrona, use `OnInit`:
+Para uma operação síncrona, use `OnInitialized`:
 
 ```csharp
-protected override void OnInit()
+protected override void OnInitialized()
 {
     ...
 }
@@ -674,7 +701,7 @@ protected override void OnAfterRender()
 
 Ações assíncronas executadas em eventos de ciclo de vida podem não ter sido concluídas antes que o componente seja renderizado. Os objetos podem `null` ser ou preenchidos incompletamente com dados enquanto o método de ciclo de vida está em execução. Forneça a lógica de renderização para confirmar que os objetos são inicializados. Renderizar elementos de interface do usuário de espaço reservado (por exemplo, uma `null`mensagem de carregamento) enquanto objetos são.
 
-No componente dos modelos mais claros, `OnInitAsync` é substituído para Asychronously receber dados de previsão (`forecasts`). `FetchData` Quando `forecasts` é`null`, uma mensagem de carregamento é exibida para o usuário. Depois que `Task` o retornado `OnInitAsync` por for concluído, o componente será rerenderizado com o estado atualizado.
+No componente dos modelos mais claros, `OnInitializedAsync` é substituído para Asychronously receber dados de previsão (`forecasts`). `FetchData` Quando `forecasts` é`null`, uma mensagem de carregamento é exibida para o usuário. Depois que `Task` o retornado `OnInitializedAsync` por for concluído, o componente será rerenderizado com o estado atualizado.
 
 *Pages/FetchData.razor*:
 
@@ -685,7 +712,7 @@ No componente dos modelos mais claros, `OnInitAsync` é substituído para Asychr
 `SetParameters`pode ser substituído para executar o código antes de os parâmetros serem definidos:
 
 ```csharp
-public override void SetParameters(ParameterCollection parameters)
+public override void SetParameters(ParameterView parameters)
 {
     ...
 

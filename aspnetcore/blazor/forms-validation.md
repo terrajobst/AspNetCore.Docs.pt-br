@@ -5,14 +5,14 @@ description: Saiba como usar os formulários e cenários de validação de campo
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2019
+ms.date: 08/13/2019
 uid: blazor/forms-validation
-ms.openlocfilehash: e1b7de6e31adae8102bbefba5d08418c4daac687
-ms.sourcegitcommit: 849af69ee3c94cdb9fd8fa1f1bb8f5a5dda7b9eb
+ms.openlocfilehash: 0b2e38cdbd974a28960b917fb6b5ce370f8c4659
+ms.sourcegitcommit: f5f0ff65d4e2a961939762fb00e654491a2c772a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/22/2019
-ms.locfileid: "68948236"
+ms.lasthandoff: 08/15/2019
+ms.locfileid: "69030334"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>Formulários e validação de mais e ASP.NET Core
 
@@ -129,7 +129,7 @@ O formulário a seguir valida a entrada do usuário usando a validação definid
     </p>
     <p>
         <label for="description">Description (optional): </label>
-        <InputTextArea Id="description" @bind-Value="starship.Description" />
+        <InputTextArea id="description" @bind-Value="starship.Description" />
     </p>
     <p>
         <label for="classification">Primary Classification: </label>
@@ -151,7 +151,7 @@ O formulário a seguir valida a entrada do usuário usando a validação definid
     </p>
     <p>
         <label for="productionDate">Production Date: </label>
-        <InputDate Id="productionDate" @bind-Value="starship.ProductionDate" />
+        <InputDate id="productionDate" @bind-Value="starship.ProductionDate" />
     </p>
 
     <button type="submit">Submit</button>
