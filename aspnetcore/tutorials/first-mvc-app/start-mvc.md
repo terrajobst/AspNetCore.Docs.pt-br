@@ -5,12 +5,12 @@ description: Saiba como começar a usar o ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2019
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: f6a92423546ebd9d4c8e1a92fb81b6b72f847f61
-ms.sourcegitcommit: 2eb605f4f20ac4dd9de6c3b3e3453e108a357a21
+ms.openlocfilehash: 36f4811f876a6e35440445103a1f86ae06b31b6a
+ms.sourcegitcommit: 476ea5ad86a680b7b017c6f32098acd3414c0f6c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/06/2019
-ms.locfileid: "68820091"
+ms.lasthandoff: 08/14/2019
+ms.locfileid: "69022517"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introdução ao ASP.NET Core MVC
 
@@ -126,7 +126,6 @@ Pressione **Ctrl+F5** para executar o aplicativo no modo sem depuração.
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
-
   A imagem a seguir mostra o aplicativo:
 
   ![Página Inicial ou de Índice](start-mvc/_static/home2.2.png)
@@ -140,12 +139,6 @@ Pressione Ctrl + F5 para execução sem o depurador.
   O Visual Studio Code inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicializa um navegador e navega até `https://localhost:5001`. A barra de endereços mostra `localhost:port:5001` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local.
 
   Iniciar o aplicativo com Ctrl+F5 (modo de não depuração) permite que você faça alterações de código, salve o arquivo, atualize o navegador e veja as alterações de código. Muitos desenvolvedores preferem usar o modo sem depuração para atualizar a página e exibir alterações.
-
-* Selecione **Aceitar** para dar consentimento de rastreamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
-
-  ![Página Inicial ou de Índice](start-mvc/_static/privacy.png)
-
-  A imagem a seguir mostra o aplicativo depois de aceitar o rastreamento:
 
   ![Página Inicial ou de Índice](start-mvc/_static/home2.2.png)
 

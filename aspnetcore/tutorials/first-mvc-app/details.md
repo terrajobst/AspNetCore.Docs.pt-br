@@ -5,12 +5,12 @@ description: Saiba mais sobre o método e a exibição Details do controlador em
 ms.author: riande
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/details
-ms.openlocfilehash: 056017ea4f4073fa0b1cd747d06775b2a33616cf
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: d19e8cdb63da2bb9c66db1943dfcec183d432401
+ms.sourcegitcommit: 2719c70cd15a430479ab4007ff3e197fbf5dfee0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64889571"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68862977"
 ---
 # <a name="examine-the-details-and-delete-methods-of-an-aspnet-core-app"></a>Examine os métodos Details e Delete de um aplicativo ASP.NET Core
 
@@ -24,7 +24,7 @@ O mecanismo de scaffolding MVC que criou este método de ação adiciona um come
 
 [!code-csharp[](start-mvc/sample/MvcMovie/Startup.cs?highlight=5&name=snippet_1)]
 
-O EF facilita a pesquisa de dados usando o método `FirstOrDefaultAsync`. Um recurso de segurança importante interno do método é que o código verifica se o método de pesquisa encontrou um filme antes de tentar fazer algo com ele. Por exemplo, um hacker pode introduzir erros no site alterando a URL criada pelos links de `http://localhost:xxxx/Movies/Details/1` para algo como `http://localhost:xxxx/Movies/Details/12345` (ou algum outro valor que não representa um filme real). Se você não marcou um filme nulo, o aplicativo gerará uma exceção.
+O EF facilita a pesquisa de dados usando o método `FirstOrDefaultAsync`. Um recurso de segurança importante interno do método é que o código verifica se o método de pesquisa encontrou um filme antes de tentar fazer algo com ele. Por exemplo, um hacker pode introduzir erros no site alterando a URL criada pelos links de `http://localhost:{PORT}/Movies/Details/1` para algo como `http://localhost:{PORT}/Movies/Details/12345` (ou algum outro valor que não representa um filme real). Se você não marcou um filme nulo, o aplicativo gerará uma exceção.
 
 Examine os métodos `Delete` e `DeleteConfirmed`.
 

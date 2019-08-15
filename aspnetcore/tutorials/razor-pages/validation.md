@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: d6d45dc7154bf415c3b098299d066b6fb37cf64d
-ms.sourcegitcommit: 16502797ea749e2690feaa5e652a65b89c007c89
+ms.openlocfilehash: 5c5419eb6ccfbd9ddd8d6fadb24d688966d76c10
+ms.sourcegitcommit: 476ea5ad86a680b7b017c6f32098acd3414c0f6c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/25/2019
-ms.locfileid: "68483261"
+ms.lasthandoff: 08/14/2019
+ms.locfileid: "69022399"
 ---
 # <a name="add-validation-to-an-aspnet-core-razor-page"></a>Adicionar validação a uma Página Razor do ASP.NET Core
 
@@ -28,7 +28,32 @@ Um princípio-chave do desenvolvimento de software é chamado [DRY](https://wiki
 
 O suporte de validação fornecido pelas Páginas Razor e pelo Entity Framework é um bom exemplo do princípio DRY. As regras de validação são especificadas de forma declarativa em um único lugar (na classe de modelo) e as regras são impostas em qualquer lugar no aplicativo.
 
-[!INCLUDE[](~/includes/RP-MVC/validation.md)]
+## <a name="add-validation-rules-to-the-movie-model"></a>Adicionar regras de validação ao modelo de filme
+
+O namespace DataAnnotations fornece um conjunto de atributos de validação internos aplicados de forma declarativa a uma classe ou propriedade. DataAnnotations também contém atributos de formatação como `DataType`, que ajudam com a formatação e não fornecem validação.
+
+Atualize a classe `Movie` para aproveitar os atributos de validação `Required`, `StringLength`, `RegularExpression` e `Range` internos.
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
+
+Os atributos de validação especificam o comportamento que você deseja impor nas propriedades de modelo às quais eles são aplicados:
+
+* Os atributos `Required` e `MinimumLength` indicam que uma propriedade deve ter um valor; porém, nada impede que um usuário insira um espaço em branco para atender a essa validação.
+* O atributo `RegularExpression` é usado para limitar quais caracteres podem ser inseridos. No código anterior, "Gênero":
+
+  * Deve usar apenas letras.
+  * A primeira letra deve ser maiúscula. Espaços em branco, números e caracteres especiais não são permitidos.
+
+* A "Classificação" `RegularExpression`:
+
+  * Exige que o primeiro caractere seja uma letra maiúscula.
+  * Permite caracteres especiais e números nos espaços subsequentes. "PG-13" é válido para uma classificação, mas é um erro em "Gênero".
+
+* O atributo `Range` restringe um valor a um intervalo especificado.
+* O atributo `StringLength` permite definir o tamanho máximo de uma propriedade de cadeia de caracteres e, opcionalmente, seu tamanho mínimo.
+* Os tipos de valor (como `decimal`, `int`, `float`, `DateTime`) são inerentemente necessários e não precisam do atributo `[Required]`.
+
+Ter as regras de validação automaticamente impostas pelo ASP.NET Core ajuda a tornar seu aplicativo mais robusto. Também garante que você não se esqueça de validar algo e inadvertidamente permita dados incorretos no banco de dados.
 
 ### <a name="validation-error-ui-in-razor-pages"></a>Interface do usuário do erro de validação nas Páginas Razor
 

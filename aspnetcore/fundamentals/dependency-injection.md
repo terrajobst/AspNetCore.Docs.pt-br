@@ -5,14 +5,14 @@ description: Saiba como o ASP.NET Core implementa a injeção de dependência e 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/06/2019
+ms.date: 08/14/2019
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 27ae8ac979c267c666d6d63f4d1dd862ff20edba
-ms.sourcegitcommit: 2eb605f4f20ac4dd9de6c3b3e3453e108a357a21
+ms.openlocfilehash: a984bb766e6876db4f8ed4c850a1984ba87d627d
+ms.sourcegitcommit: 476ea5ad86a680b7b017c6f32098acd3414c0f6c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/06/2019
-ms.locfileid: "68819866"
+ms.lasthandoff: 08/14/2019
+ms.locfileid: "69022285"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Injeção de dependência no ASP.NET Core
 
@@ -171,7 +171,7 @@ Serviços temporários de tempo de vida (<xref:Microsoft.Extensions.DependencyIn
 Os serviços com tempo de vida (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) com escopo são criados uma vez por solicitação de cliente (conexão).
 
 > [!WARNING]
-> Ao usar um serviço com escopo em um middleware, injete o serviço no método `Invoke` ou `InvokeAsync`. Não injete por meio de injeção de construtor porque isso força o serviço a se comportar como um singleton. Para obter mais informações, consulte <xref:fundamentals/middleware/index>.
+> Ao usar um serviço com escopo em um middleware, injete o serviço no método `Invoke` ou `InvokeAsync`. Não injete por meio de injeção de construtor porque isso força o serviço a se comportar como um singleton. Para obter mais informações, consulte <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
 
 ### <a name="singleton"></a>Singleton
 

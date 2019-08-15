@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/03/2019
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: 2dbb1a84a380ab06a4be7ecf628799a070afc9e3
-ms.sourcegitcommit: 5dd2ce9709c9e41142771e652d1a4bd0b5248cec
+ms.openlocfilehash: 3d4279a291182da60c0cb2fbb93a3922ed673cde
+ms.sourcegitcommit: 776367717e990bdd600cb3c9148ffb905d56862d
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66692521"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68914017"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Tarefas em segundo plano com serviços hospedados no ASP.NET Core
 
@@ -45,7 +45,7 @@ O modelo de Serviço de Trabalho do ASP.NET Core fornece um ponto inicial para e
 1. Na caixa de diálogo **Criar um aplicativo Web ASP.NET Core**, confirme se **.NET Core** e **ASP.NET Core 3.0** estão selecionados.
 1. Selecione o modelo **Serviço de Trabalho**. Selecione **Criar**.
 
-# <a name="visual-studio-code--net-core-clitabvisual-studio-codenetcore-cli"></a>[Visual Studio Code/CLI do .NET Core](#tab/visual-studio-code+netcore-cli)
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 Use o modelo de Serviço de Trabalho (`worker`) com o comando [dotnet novo](/dotnet/core/tools/dotnet-new) em um shell de comando. No exemplo a seguir, um aplicativo de Serviço de Trabalho é criado com o nome `ContosoWorkerService`. Uma pasta para o aplicativo `ContosoWorkerService` é criada automaticamente quando o comando é executado.
 

@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 06/21/2019
 uid: tutorials/get-started-with-nswag
-ms.openlocfilehash: c5b2dc47328d6d3c271a87579fa8c300109bd734
-ms.sourcegitcommit: 06a455d63ff7d6b571ca832e8117f4ac9d646baf
+ms.openlocfilehash: af8e2a266e54364857f0b49cc78a54683dff9de4
+ms.sourcegitcommit: 776367717e990bdd600cb3c9148ffb905d56862d
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/21/2019
-ms.locfileid: "67316552"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68915090"
 ---
 # <a name="get-started-with-nswag-and-aspnet-core"></a>Introdução ao NSwag e ao ASP.NET Core
 
@@ -70,14 +70,6 @@ Use uma das seguintes abordagens para instalar o pacote do NuGet do NSwag:
 * Defina a lista suspensa **Origem** da janela **Adicionar Pacotes** para "nuget.org"
 * Insira "NSwag.AspNetCore" na caixa de pesquisa
 * Selecione o pacote "NSwag.AspNetCore" no painel de resultados e clique em **Adicionar Pacote**
-
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
-
-Execute o comando a seguir do **Terminal Integrado**:
-
-```console
-dotnet add TodoApi.csproj package NSwag.AspNetCore
-```
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
@@ -237,7 +229,7 @@ Para habilitar os comentários XML, execute as seguintes etapas:
 
 ::: moniker-end
 
-# <a name="visual-studio-code--net-core-clitabvisual-studio-codenetcore-cli"></a>[Visual Studio Code/CLI do .NET Core](#tab/visual-studio-code+netcore-cli)
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 Manualmente, adicione as linhas destacadas ao arquivo *.csproj*:
 

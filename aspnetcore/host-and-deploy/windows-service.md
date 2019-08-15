@@ -7,12 +7,12 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 06/03/2019
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 3a254af4d56cb4abc7004a67b0d0b42de2b878b1
-ms.sourcegitcommit: 47cc13ab90913af9a2887cef0896bb4e9aba4dd5
+ms.openlocfilehash: 703edff19d82d10415bedb9b92d83709c275100f
+ms.sourcegitcommit: 776367717e990bdd600cb3c9148ffb905d56862d
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67399108"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68913911"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedar o ASP.NET Core em um serviço Windows
 
@@ -44,7 +44,7 @@ O modelo de Serviço de Trabalho do ASP.NET Core fornece um ponto inicial para e
 1. Na caixa de diálogo **Criar um aplicativo Web ASP.NET Core**, confirme se **.NET Core** e **ASP.NET Core 3.0** estão selecionados.
 1. Selecione o modelo **Serviço de Trabalho**. Selecione **Criar**.
 
-# <a name="visual-studio-code--net-core-clitabvisual-studio-codenetcore-cli"></a>[Visual Studio Code/CLI do .NET Core](#tab/visual-studio-code+netcore-cli)
+# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 Use o modelo de Serviço de Trabalho (`worker`) com o comando [dotnet novo](/dotnet/core/tools/dotnet-new) em um shell de comando. No exemplo a seguir, um aplicativo de Serviço de Trabalho é criado com o nome `ContosoWorkerService`. Uma pasta para o aplicativo `ContosoWorkerService` é criada automaticamente quando o comando é executado.
 
@@ -97,7 +97,7 @@ Para saber mais e obter conselhos sobre cenários de implantação, consulte [Im
 
 ### <a name="framework-dependent-deployment-fdd"></a>FDD (Implantação dependente de estrutura)
 
-A FDD (Implantação Dependente de Estrutura) se baseia na presença de uma versão compartilhada em todo o sistema do .NET Core no sistema de destino. Quando o cenário FDD é adotado após a orientação deste artigo, o SDK produz um executável (*.exe*), chamado de *executável dependente de estrutura*.
+A FDD (Implantação Dependente de Estrutura) se baseia na presença de uma versão compartilhada em todo o sistema do .NET Core no sistema de destino. Quando o cenário FDD é adotado após a orientação deste artigo, o SDK produz um executável ( *.exe*), chamado de *executável dependente de estrutura*.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -121,7 +121,7 @@ O arquivo *web.config*, que normalmente é gerado durante a publicação de um a
 
 ::: moniker range="= aspnetcore-2.2"
 
-O [RID (Identificador do Tempo de Execução)](/dotnet/core/rid-catalog) do Windows ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contém a estrutura de destino. No exemplo a seguir, o RID é especificado como `win7-x64`. A propriedade `<SelfContained>` é definida como `false`. Essas propriedades instruem o SDK a gerar um arquivo executável (*.exe*) para Windows e um aplicativo que depende da estrutura compartilhada do .NET Core.
+O [RID (Identificador do Tempo de Execução)](/dotnet/core/rid-catalog) do Windows ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contém a estrutura de destino. No exemplo a seguir, o RID é especificado como `win7-x64`. A propriedade `<SelfContained>` é definida como `false`. Essas propriedades instruem o SDK a gerar um arquivo executável ( *.exe*) para Windows e um aplicativo que depende da estrutura compartilhada do .NET Core.
 
 O arquivo *web.config*, que normalmente é gerado durante a publicação de um aplicativo ASP.NET Core, é desnecessário para um aplicativo de serviços do Windows. Para desabilitar a criação de um arquivo *web.config*, adicione a propriedade `<IsTransformWebConfigDisabled>` definida como `true`.
 
@@ -138,7 +138,7 @@ O arquivo *web.config*, que normalmente é gerado durante a publicação de um a
 
 ::: moniker range="= aspnetcore-2.1"
 
-O [RID (Identificador do Tempo de Execução)](/dotnet/core/rid-catalog) do Windows ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contém a estrutura de destino. No exemplo a seguir, o RID é especificado como `win7-x64`. A propriedade `<SelfContained>` é definida como `false`. Essas propriedades instruem o SDK a gerar um arquivo executável (*.exe*) para Windows e um aplicativo que depende da estrutura compartilhada do .NET Core.
+O [RID (Identificador do Tempo de Execução)](/dotnet/core/rid-catalog) do Windows ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) contém a estrutura de destino. No exemplo a seguir, o RID é especificado como `win7-x64`. A propriedade `<SelfContained>` é definida como `false`. Essas propriedades instruem o SDK a gerar um arquivo executável ( *.exe*) para Windows e um aplicativo que depende da estrutura compartilhada do .NET Core.
 
 A propriedade `<UseAppHost>` é definida como `true`. Essa propriedade fornece o serviço com um caminho de ativação (um arquivo executável *.exe*) para FDD.
 
