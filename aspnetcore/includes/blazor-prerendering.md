@@ -6,10 +6,10 @@ Para atrasar as chamadas de interoperabilidade do JavaScript até que a conexão
 @using Microsoft.JSInterop
 @inject IJSRuntime JSRuntime
 
-<input @ref="myInput" value="Value set during render" />
+<input @ref="myInput" @ref:suppressField value="Value set during render" />
 
 @code {
-    private ElementRef myInput;
+    private ElementReference myInput;
 
     protected override void OnAfterRender()
     {
@@ -39,12 +39,12 @@ Em `JSRuntime.InvokeAsync` que é chamado `ElementRef` , é usado apenas `OnAfte
 
 <p>
     Set value via JS interop call:
-    <input id="val-set-by-interop" @ref="myElem" />
+    <input id="val-set-by-interop" @ref="myElem" @ref:suppressField />
 </p>
 
 @code {
     private string infoFromJs;
-    private ElementRef myElem;
+    private ElementReference myElem;
 
     protected override async Task OnAfterRenderAsync()
     {

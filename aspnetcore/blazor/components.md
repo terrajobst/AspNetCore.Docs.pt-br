@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/13/2019
 uid: blazor/components
-ms.openlocfilehash: 8cb2dc4c3cd22fe71fe15c22762948f9dcd3c08f
-ms.sourcegitcommit: f5f0ff65d4e2a961939762fb00e654491a2c772a
+ms.openlocfilehash: 752f49f020acf26efcb304ed5e28e27c478dac83
+ms.sourcegitcommit: 7a46973998623aead757ad386fe33602b1658793
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 08/15/2019
-ms.locfileid: "69030359"
+ms.locfileid: "69487590"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -523,9 +523,10 @@ As `Show` referências de componente fornecem uma maneira de fazer referência a
 
 * Adicione um [@ref](xref:mvc/views/razor#ref) atributo ao componente filho.
 * Defina um campo com o mesmo tipo do componente filho.
+* Forneça o `@ref:suppressField` parâmetro, que suprime a geração de campos de backup. Para obter mais informações, consulte Removendo o [suporte de campo @ref de apoio automático para no 3.0.0-preview9](https://github.com/aspnet/Announcements/issues/381).
 
 ```cshtml
-<MyLoginDialog @ref="loginDialog" ... />
+<MyLoginDialog @ref="loginDialog" @ref:suppressField ... />
 
 @code {
     private MyLoginDialog loginDialog;
@@ -877,7 +878,7 @@ Componentes modelo são componentes que aceitam um ou mais modelos de interface 
 * Um componente de tabela que permite que um usuário especifique modelos para o cabeçalho, as linhas e o rodapé da tabela.
 * Um componente de lista que permite que um usuário especifique um modelo para renderizar itens em uma lista.
 
-### <a name="template-parameters"></a>Parâmetros de modelo
+### <a name="template-parameters"></a>Parâmetros do modelo
 
 Um componente modelo é definido especificando um ou mais parâmetros de componente do tipo `RenderFragment` ou. `RenderFragment<T>` Um fragmento de renderização representa um segmento de interface do usuário a ser renderizado. `RenderFragment<T>`usa um parâmetro de tipo que pode ser especificado quando o fragmento de renderização é invocado.
 
