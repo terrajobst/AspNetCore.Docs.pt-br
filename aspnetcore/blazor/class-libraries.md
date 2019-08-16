@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/13/2019
 uid: blazor/class-libraries
-ms.openlocfilehash: 6e93d48bbc684845952c3db8935ccc8b190044b7
-ms.sourcegitcommit: f5f0ff65d4e2a961939762fb00e654491a2c772a
+ms.openlocfilehash: b5857f2cf22bde801deeeaf227817fdf99862f4a
+ms.sourcegitcommit: 4cb0c7e74355f2e87c60e2a196f842b937247a99
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/15/2019
-ms.locfileid: "69030349"
+ms.lasthandoff: 08/16/2019
+ms.locfileid: "69545776"
 ---
 # <a name="aspnet-core-razor-components-class-libraries"></a>ASP.NET Core bibliotecas de classes de componentes Razor
 
@@ -60,16 +60,6 @@ Siga as orientações no <xref:blazor/get-started> artigo para configurar seu am
 
 ---
 
-## <a name="rcls-not-supported-for-client-side-apps"></a>RCLs não tem suporte para aplicativos do lado do cliente
-
-Na versão prévia atual do ASP.NET Core 3,0, as bibliotecas de classes do Razor não são compatíveis com aplicativos de alto nível do cliente. Para aplicativos do lado do cliente mais incrivelmente, use uma biblioteca de componentes mais incrivelmente criada `blazorlib` pelo modelo em um shell de comando:
-
-```console
-dotnet new blazorlib -o MyComponentLib1
-```
-
-As bibliotecas de componentes `blazorlib` que usam o modelo podem incluir arquivos estáticos, como imagens, JavaScript e folhas de estilo. No momento da compilação, os arquivos estáticos são inseridos no arquivo de assembly compilado ( *. dll*), que permite o consumo dos componentes sem precisar se preocupar com a inclusão de seus recursos. Todos os arquivos incluídos no `content` diretório são marcados como um recurso incorporado.
-
 ## <a name="consume-a-library-component"></a>Consumir um componente de biblioteca
 
 Para consumir os componentes definidos em uma biblioteca em outro projeto, use uma das seguintes abordagens:
@@ -116,8 +106,6 @@ Carregue o pacote no NuGet usando o comando [dotnet NuGet Publish](/dotnet/core/
 ```console
 dotnet nuget publish
 ```
-
-Ao usar o `blazorlib` modelo, os recursos estáticos são incluídos no pacote NuGet. Os consumidores de biblioteca recebem scripts e folhas de estilo automaticamente, para que os consumidores não sejam solicitados a instalar os recursos manualmente.
 
 ## <a name="create-a-razor-components-class-library-with-static-assets"></a>Criar uma biblioteca de classes de componentes Razor com ativos estáticos
 
