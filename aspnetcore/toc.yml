@@ -966,6 +966,8 @@
           uid: security/key-vault-configuration
     - name: Impor o HTTPS
       uid: security/enforcing-ssl
+    - name: Hospedar o Docker com HTTPS
+      uid: security/docker-https
     - name: Compatível com o RGPD (Regulamento Geral sobre a Proteção de Dados) da UE
       uid: security/gdpr
     - name: Falsificação antissolicitação
