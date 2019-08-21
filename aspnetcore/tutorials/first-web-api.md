@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como criar uma API Web com o ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/05/2019
+ms.date: 08/14/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: 855d05fa2b9c1a7572212c40adbe61bb396f4bac
-ms.sourcegitcommit: 2eb605f4f20ac4dd9de6c3b3e3453e108a357a21
+ms.openlocfilehash: 99985e9fb1134c2ba808434f8d24c4a768773268
+ms.sourcegitcommit: 476ea5ad86a680b7b017c6f32098acd3414c0f6c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/06/2019
-ms.locfileid: "68819839"
+ms.lasthandoff: 08/14/2019
+ms.locfileid: "69022600"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Criar uma API Web com o ASP.NET Core
 
@@ -111,6 +111,15 @@ O diagrama a seguir mostra o design do aplicativo.
 * Insira *TodoApi* para o **Nome do Projeto** e, em seguida, selecione **Criar**.
 
   ![caixa de diálogo de configuração](first-web-api-mac/_static/2.png)
+
+[!INCLUDE[](~/includes/mac-terminal-access.md)]
+
+Abra um terminal de comando na pasta do projeto e execute os seguintes comandos:
+
+   ```console
+   dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
+   ```
 
 ---
 
@@ -915,7 +924,7 @@ Para obter mais informações, consulte os seguintes recursos:
 
 * <xref:web-api/index>
 * <xref:tutorials/web-api-help-pages-using-swagger>
-* <xref:data/ef-rp/index>
+* <xref:data/ef-rp/intro>
 * <xref:mvc/controllers/routing>
 * <xref:web-api/action-return-types>
 * <xref:host-and-deploy/azure-apps/index>

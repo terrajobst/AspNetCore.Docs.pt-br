@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
 uid: host-and-deploy/blazor/client-side
-ms.openlocfilehash: be6b6c245440cb085a1a6b115f4f087306f7cc83
-ms.sourcegitcommit: b40613c603d6f0cc71f3232c16df61550907f550
+ms.openlocfilehash: e9a42bd4e8511d426761746047fed2d4f7dfc6dd
+ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68308080"
+ms.lasthandoff: 08/13/2019
+ms.locfileid: "68994083"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-client-side"></a>Hospedar e implantar o ASP.NET Core Blazor no lado do cliente
 
@@ -148,7 +148,7 @@ O aplicativo responde localmente em `http://localhost:port/CoolApp`.
 
 Confira mais informações na seção sobre [valor de configuração do host base de caminho](#path-base).
 
-Se um aplicativo usar o [modelo de hospedagem do lado do cliente](xref:blazor/hosting-models#client-side) (com base no modelo de projeto **Blazor [lado do cliente]** , o modelo `blazor` ao usar o comando [dotnet new](/dotnet/core/tools/dotnet-new)) e for hospedado como um subaplicativo do IIS em um aplicativo do ASP.NET Core, será importante desabilitar o manipulador de módulo do ASP.NET Core herdado ou verificar se a seção `<handlers>` do aplicativo raiz (pai) no arquivo *web.config* não é herdada pelo subaplicativo.
+Se um aplicativo usa o [modelo de hospedagem do lado do cliente](xref:blazor/hosting-models#client-side) (com base no modelo de projeto **Blazor WebAssembly App**, o modelo `blazorwasm` ao usar o comando [dotnet new](/dotnet/core/tools/dotnet-new)) e é hospedado como um subaplicativo do IIS em um aplicativo do ASP.NET Core, é importante desabilitar o manipulador de módulo do ASP.NET Core herdado ou verificar se a seção `<handlers>` do aplicativo raiz (pai) no arquivo *web.config* não é herdada pelo subaplicativo.
 
 Remova o manipulador do arquivo *web.config* publicado do aplicativo adicionando uma seção `<handlers>` ao arquivo:
 
@@ -180,7 +180,7 @@ A ação de remover o manipulador ou desabilitar a herança é realizada além d
 
 Uma *implantação hospedada* atende ao aplicativo do lado do cliente do Blazor para navegadores de um [aplicativo do ASP.NET Core](xref:index) que é executado em um servidor da web.
 
-O aplicativo do Blazor é incluído com o aplicativo do ASP.NET Core na saída publicada para que ambos sejam implantados juntos. É necessário um servidor Web capaz de hospedar um aplicativo do ASP.NET Core. Para uma implantação hospedada, o Visual Studio inclui o modelo de projeto **Blazor (hospedado no ASP.NET Core)** (modelo `blazorhosted` ao usar o comando [dotnet new](/dotnet/core/tools/dotnet-new)).
+O aplicativo do Blazor é incluído com o aplicativo do ASP.NET Core na saída publicada para que ambos sejam implantados juntos. É necessário um servidor Web capaz de hospedar um aplicativo do ASP.NET Core. Para uma implantação hospedada, o Visual Studio inclui o modelo de projeto **Blazor WebAssembly App** (modelo `blazorwasm` ao usar o comando [dotnet new](/dotnet/core/tools/dotnet-new)) com a opção **Hospedado** selecionada.
 
 Para obter mais informações sobre a implantação e a hospedagem de aplicativo do ASP.NET Core, confira <xref:host-and-deploy/index>.
 

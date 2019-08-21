@@ -5,14 +5,14 @@ description: Crie um aplicativo Blazor passo a passo.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2019
+ms.date: 07/26/2019
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: d592c5bac1eb9822843a1ad1513a15fdfd6b1032
-ms.sourcegitcommit: eb3e51d58dd713eefc242148f45bd9486be3a78a
+ms.openlocfilehash: 88999350b9c7631e15ba9d0242da5880c8ae71ff
+ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/02/2019
-ms.locfileid: "67500319"
+ms.lasthandoff: 08/13/2019
+ms.locfileid: "68994218"
 ---
 # <a name="build-your-first-blazor-app"></a>Como criar seu primeiro aplicativo Blazor
 
@@ -67,7 +67,7 @@ Inclua um componente em outro componente usando uma sintaxe HTML.
 
 ## <a name="component-parameters"></a>Parâmetros do componente
 
-Componentes também podem ter parâmetros. Os parâmetros do componente são definidos usando propriedades não públicas na classe de componente decorada com `[Parameter]`. Use atributos para especificar argumentos para um componente na marcação.
+Componentes também podem ter parâmetros. Os parâmetros do componente são definidos usando propriedades públicas na classe de componente decorada com `[Parameter]`. Use atributos para especificar argumentos para um componente na marcação.
 
 1. Atualizar o código C# do componente `@code`:
 

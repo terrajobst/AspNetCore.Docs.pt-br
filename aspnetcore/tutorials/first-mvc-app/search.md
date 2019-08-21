@@ -5,12 +5,12 @@ description: Mostra como adicionar uma pesquisa a um aplicativo ASP.NET Core MVC
 ms.author: riande
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/search
-ms.openlocfilehash: ed6c7a095143670b7d06e43db3a428dec9bf97ad
-ms.sourcegitcommit: 3204bc89ae6354b61ee0a9b2770ebe5214b7790c
+ms.openlocfilehash: 97ee5f66c142780d54d28013c109da61241d967b
+ms.sourcegitcommit: 2719c70cd15a430479ab4007ff3e197fbf5dfee0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/01/2019
-ms.locfileid: "68707838"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68862953"
 ---
 # <a name="add-search-to-an-aspnet-core-mvc-app"></a>Adicionar a pesquisa a um aplicativo ASP.NET Core MVC
 
@@ -85,7 +85,7 @@ Se você adicionar esse método, o chamador de ação fará uma correspondência
 
 ![Janela do navegador com a resposta do aplicativo Do Índice HttpPost: filtrar ghost](~/tutorials/first-mvc-app/search/_static/fo.png)
 
-No entanto, mesmo se você adicionar esta versão `[HttpPost]` do método `Index`, haverá uma limitação na forma de como isso tudo foi implementado. Imagine que você deseja adicionar uma pesquisa específica como Favoritos ou enviar um link para seus amigos para que eles possam clicar para ver a mesma lista filtrada de filmes. Observe que a URL da solicitação HTTP POST é a mesma que a URL da solicitação GET (localhost:xxxxx/Movies/Index) – não há nenhuma informação de pesquisa na URL. As informações de cadeia de caracteres de pesquisa são enviadas ao servidor como um [valor de campo de formulário](https://developer.mozilla.org/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data). Verifique isso com as ferramentas do Desenvolvedor do navegador ou a excelente [ferramenta Fiddler](https://www.telerik.com/fiddler). A imagem abaixo mostra as ferramentas do Desenvolvedor do navegador Chrome:
+No entanto, mesmo se você adicionar esta versão `[HttpPost]` do método `Index`, haverá uma limitação na forma de como isso tudo foi implementado. Imagine que você deseja adicionar uma pesquisa específica como Favoritos ou enviar um link para seus amigos para que eles possam clicar para ver a mesma lista filtrada de filmes. Observe que a URL da solicitação HTTP POST é a mesma que a URL da solicitação GET (localhost:{PORT}/Movies/Index) – não há nenhuma informação de pesquisa na URL. As informações de cadeia de caracteres de pesquisa são enviadas ao servidor como um [valor de campo de formulário](https://developer.mozilla.org/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data). Verifique isso com as ferramentas do Desenvolvedor do navegador ou a excelente [ferramenta Fiddler](https://www.telerik.com/fiddler). A imagem abaixo mostra as ferramentas do Desenvolvedor do navegador Chrome:
 
 ![Guia Rede das Ferramentas do Desenvolvedor no Microsoft Edge mostrando o corpo de uma solicitação com o valor de searchString “ghost”](~/tutorials/first-mvc-app/search/_static/f12_rb.png)
 
