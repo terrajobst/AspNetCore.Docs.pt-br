@@ -1,18 +1,18 @@
 ---
 title: 'Tutorial: Criar um modelo de dados complexo - ASP.NET MVC com EF Core'
 description: Neste tutorial, você adiciona mais entidades e relações e personaliza o modelo de dados especificando formatação, validação e regras de mapeamento.
-author: rick-anderson
+author: tdykstra
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: 8ef458108e60850d0d54e7b1e6472c5b92984ccc
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.openlocfilehash: 3563bf279f2ed9c9d79b5a9da2709e18511620d2
+ms.sourcegitcommit: 257cc3fe8c1d61341aa3b07e5bc0fa3d1c1c1d1c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67813537"
+ms.lasthandoff: 08/19/2019
+ms.locfileid: "69583277"
 ---
 # <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Tutorial: Criar um modelo de dados complexo - ASP.NET MVC com EF Core
 

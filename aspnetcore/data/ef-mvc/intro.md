@@ -1,18 +1,18 @@
 ---
 title: 'Tutorial: Introdução ao EF Core em um aplicativo Web ASP.NET MVC'
 description: Este é o primeiro de uma série de tutoriais que explica como criar o aplicativo de exemplo Contoso University do zero.
-author: rick-anderson
+author: tdykstra
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 02/06/2019
 ms.topic: tutorial
 uid: data/ef-mvc/intro
-ms.openlocfilehash: a93d5af314f1ff679a8df636297a0d5849ebdb8d
-ms.sourcegitcommit: 6afe57fb8d9055f88fedb92b16470398c4b9b24a
+ms.openlocfilehash: 1b68c20ba206a5afe36f307525879f91d03d95d1
+ms.sourcegitcommit: 257cc3fe8c1d61341aa3b07e5bc0fa3d1c1c1d1c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/14/2019
-ms.locfileid: "65610203"
+ms.lasthandoff: 08/19/2019
+ms.locfileid: "69583335"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: Introdução ao EF Core em um aplicativo Web ASP.NET MVC
 
@@ -75,7 +75,7 @@ Os usuários podem exibir e atualizar informações de alunos, cursos e instruto
 
 * Aguarde a caixa de diálogo **Novo Aplicativo Web ASP.NET Core** aparecer.
 
-* Selecione **.NET Core**, **ASP.NET Core 2.2** e o modelo **Aplicativo Web (Model-View-Controller)**.
+* Selecione **.NET Core**, **ASP.NET Core 2.2** e o modelo **Aplicativo Web (Model-View-Controller)** .
 
 * Verifique se a opção **Autenticação** está definida como **Sem Autenticação**.
 
@@ -305,7 +305,7 @@ Clique com o botão direito do mouse na tabela **Aluno** e clique em **Exibir Da
 
 ![Tabela Aluno no SSOX](intro/_static/ssox-student-table.png)
 
-Os arquivos de banco de dados *.mdf* e *.ldf* estão na pasta *C:\Usuários\\\<yourusername>*.
+Os arquivos de banco de dados *.mdf* e *.ldf* estão na pasta *C:\Usuários\\\<yourusername>* .
 
 Como você está chamando `EnsureCreated` no método inicializador executado na inicialização do aplicativo, agora você pode fazer uma alteração na classe `Student`, excluir o banco de dados, executar novamente o aplicativo e o banco de dados será recriado automaticamente para que ele corresponda à alteração. Por exemplo, se você adicionar uma propriedade `EmailAddress` à classe `Student`, verá uma nova coluna `EmailAddress` na tabela recriada.
 

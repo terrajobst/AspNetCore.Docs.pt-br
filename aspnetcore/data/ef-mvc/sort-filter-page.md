@@ -1,17 +1,17 @@
 ---
 title: 'Tutorial: Adicionar classificação, filtragem e paginação - ASP.NET Core MVC com EF Core'
 description: Neste tutorial você adicionará as funcionalidades de classificação, filtragem e paginação à página Índice de Alunos. Você também criará uma página que faz um agrupamento simples.
-author: rick-anderson
+author: tdykstra
 ms.author: tdykstra
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/sort-filter-page
-ms.openlocfilehash: 921e27bf56587813f835357c9090c91a155c087b
-ms.sourcegitcommit: b508b115107e0f8d7f62b25cfcc8ad45e1373459
+ms.openlocfilehash: 4e52a3d3f56c4cf6f396ee9ff1c18061a2364c77
+ms.sourcegitcommit: 257cc3fe8c1d61341aa3b07e5bc0fa3d1c1c1d1c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/07/2019
-ms.locfileid: "65212554"
+ms.lasthandoff: 08/19/2019
+ms.locfileid: "69583397"
 ---
 # <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Tutorial: Adicionar classificação, filtragem e paginação - ASP.NET Core MVC com EF Core
 
@@ -93,7 +93,7 @@ Você adicionou um parâmetro `searchString` ao método `Index`. O valor de cade
 > [!NOTE]
 > Aqui você está chamando o método `Where` em um objeto `IQueryable`, e o filtro será processado no servidor. Em alguns cenários, você pode chamar o método `Where` como um método de extensão em uma coleção em memória. (Por exemplo, suponha que você altere a referência a `_context.Students`, de modo que em vez de um `DbSet` do EF, ela referencie um método de repositório que retorna uma coleção `IEnumerable`.) O resultado normalmente é o mesmo, mas em alguns casos pode ser diferente.
 >
->Por exemplo, a implementação do .NET Framework do método `Contains` executa uma comparação que diferencia maiúsculas de minúsculas por padrão, mas no SQL Server, isso é determinado pela configuração de ordenação da instância do SQL Server. Por padrão, essa configuração diferencia maiúsculas de minúsculas. Você poderia chamar o método `ToUpper` para fazer com que o teste diferencie maiúsculas de minúsculas de forma explícita:  *Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())*. Isso garantirá que os resultados permaneçam os mesmos se você alterar o código mais tarde para usar um repositório que retorna uma coleção `IEnumerable` em vez de um objeto `IQueryable`. (Quando você chama o método `Contains` em uma coleção `IEnumerable`, obtém a implementação do .NET Framework; quando chama-o em um objeto `IQueryable`, obtém a implementação do provedor de banco de dados.) No entanto, há uma penalidade de desempenho para essa solução. O código `ToUpper` colocará uma função na cláusula WHERE da instrução TSQL SELECT. Isso pode impedir que o otimizador use um índice. Considerando que o SQL geralmente é instalado como não diferenciando maiúsculas e minúsculas, é melhor evitar o código `ToUpper` até você migrar para um armazenamento de dados que diferencia maiúsculas de minúsculas.
+>Por exemplo, a implementação do .NET Framework do método `Contains` executa uma comparação que diferencia maiúsculas de minúsculas por padrão, mas no SQL Server, isso é determinado pela configuração de ordenação da instância do SQL Server. Por padrão, essa configuração diferencia maiúsculas de minúsculas. Você poderia chamar o método `ToUpper` para fazer com que o teste diferencie maiúsculas de minúsculas de forma explícita:  *Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())* . Isso garantirá que os resultados permaneçam os mesmos se você alterar o código mais tarde para usar um repositório que retorna uma coleção `IEnumerable` em vez de um objeto `IQueryable`. (Quando você chama o método `Contains` em uma coleção `IEnumerable`, obtém a implementação do .NET Framework; quando chama-o em um objeto `IQueryable`, obtém a implementação do provedor de banco de dados.) No entanto, há uma penalidade de desempenho para essa solução. O código `ToUpper` colocará uma função na cláusula WHERE da instrução TSQL SELECT. Isso pode impedir que o otimizador use um índice. Considerando que o SQL geralmente é instalado como não diferenciando maiúsculas e minúsculas, é melhor evitar o código `ToUpper` até você migrar para um armazenamento de dados que diferencia maiúsculas de minúsculas.
 
 ### <a name="add-a-search-box-to-the-student-index-view"></a>Adicionar uma Caixa de Pesquisa à exibição Índice de Alunos
 

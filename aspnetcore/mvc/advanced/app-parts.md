@@ -5,13 +5,15 @@ description: Saiba como usar as partes do aplicativo, que são abstrações sobr
 ms.author: riande
 ms.date: 01/04/2017
 uid: mvc/extensibility/app-parts
-ms.openlocfilehash: 9d0b4b5fadcc287172f23fa36c421f04ca2ade4a
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.openlocfilehash: 4900ccf5589500db076f8cecd9da198c6a7ceea4
+ms.sourcegitcommit: 41f2c1a6b316e6e368a4fd27a8b18d157cef91e1
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815477"
+ms.lasthandoff: 08/21/2019
+ms.locfileid: "69886458"
 ---
+<!-- DO NOT MAKE CHANGES BEFORE https://github.com/aspnet/AspNetCore.Docs/pull/12376 Merges -->
+
 # <a name="application-parts-in-aspnet-core"></a>Partes do aplicativo no ASP.NET Core
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts/sample) ([como baixar](xref:index#how-to-download-a-sample))

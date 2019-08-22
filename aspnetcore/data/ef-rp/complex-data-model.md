@@ -1,17 +1,17 @@
 ---
 title: Páginas Razor com o EF Core no ASP.NET Core – Modelo de dados – 5 de 8
-author: rick-anderson
+author: tdykstra
 description: Neste tutorial, você adiciona mais entidades e relações e personaliza o modelo de dados especificando formatação, validação e regras de mapeamento.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 96e4acf0d6c9c079ebee32fc2f9951fdd668931b
-ms.sourcegitcommit: 776367717e990bdd600cb3c9148ffb905d56862d
+ms.openlocfilehash: 8a1c0759453b02f4ce1c45471a8f93da626f8261
+ms.sourcegitcommit: 257cc3fe8c1d61341aa3b07e5bc0fa3d1c1c1d1c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68914969"
+ms.lasthandoff: 08/19/2019
+ms.locfileid: "69583292"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Modelo de dados – 5 de 8
 

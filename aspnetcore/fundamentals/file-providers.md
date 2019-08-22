@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/30/2019
 uid: fundamentals/file-providers
-ms.openlocfilehash: 93eb48d81a853061a874641e84b4875849690a93
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: b93b2df7fad7c173f43ad69aec865f09de6c9c34
+ms.sourcegitcommit: 7a46973998623aead757ad386fe33602b1658793
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64886611"
+ms.lasthandoff: 08/15/2019
+ms.locfileid: "69487584"
 ---
 # <a name="file-providers-in-aspnet-core"></a>Provedores de arquivos no ASP.NET Core
 
@@ -51,7 +51,7 @@ O aplicativo de amostra demonstra como configurar um provedor de arquivos em `St
 
 Três implementações de `IFileProvider` estão disponíveis.
 
-| Implementação | Descrição |
+| Implementação | DESCRIÇÃO |
 | -------------- | ----------- |
 | [PhysicalFileProvider](#physicalfileprovider) | O provedor físico é usado para acessar os arquivos físicos do sistema. |
 | [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | O provedor inserido de manifesto é usado para acessar arquivos incorporados em assemblies. |
@@ -107,7 +107,7 @@ O [ManifestEmbeddedFileProvider](/dotnet/api/microsoft.extensions.fileproviders.
 
 Para gerar um manifesto dos arquivos inseridos, defina a propriedade `<GenerateEmbeddedFilesManifest>` como `true`. Especifique os arquivos para inserir com [&lt;EmbeddedResource&gt;](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
 
-[!code-csharp[](file-providers/samples/2.x/FileProviderSample/FileProviderSample.csproj?highlight=5,13)]
+[!code-csharp[](file-providers/samples/2.x/FileProviderSample/FileProviderSample.csproj?highlight=6,14)]
 
 Use [padrões glob](#glob-patterns) para especificar um ou mais arquivos a serem inseridos no assembly.
 
@@ -126,7 +126,7 @@ Sobrecargas adicionais permitem:
 * Delimitar os arquivos segundo a data da última modificação.
 * Nomear o recurso inserido que contém o manifesto do arquivo inserido.
 
-| Sobrecarga | Descrição |
+| Sobrecarga | DESCRIÇÃO |
 | -------- | ----------- |
 | [ManifestEmbeddedFileProvider(Assembly, String)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_) | Aceita um parâmetro de caminho relativo `root` opcional. Especifique o `root` para delimitar as chamadas para [GetDirectoryContents](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider.getdirectorycontents) para os recursos no caminho fornecido. |
 | [ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)](/dotnet/api/microsoft.extensions.fileproviders.manifestembeddedfileprovider.-ctor#Microsoft_Extensions_FileProviders_ManifestEmbeddedFileProvider__ctor_System_Reflection_Assembly_System_String_System_DateTimeOffset_) | Aceita um parâmetro de caminho relativo `root` opcional e um parâmetro de data `lastModified` ([DateTimeOffset](/dotnet/api/system.datetimeoffset)). A data de `lastModified` tem como escopo a data da última modificação para as instâncias de [IFileInfo](/dotnet/api/microsoft.extensions.fileproviders.ifileinfo) retornadas pelo [IFileProvider](/dotnet/api/microsoft.extensions.fileproviders.ifileprovider). |
@@ -155,7 +155,7 @@ Alguns sistemas de arquivos, como contêineres do Docker e compartilhamentos de 
 
 ## <a name="glob-patterns"></a>Padrões glob
 
-Os caminhos do sistema de arquivos usam padrões curinga chamados *padrões glob (ou globbing)*. Especifique grupos de arquivos com esses padrões. Os dois caracteres curinga são `*` e `**`:
+Os caminhos do sistema de arquivos usam padrões curinga chamados *padrões glob (ou globbing)* . Especifique grupos de arquivos com esses padrões. Os dois caracteres curinga são `*` e `**`:
 
 **`*`**  
 Corresponde a qualquer coisa no nível da pasta atual, qualquer nome de arquivo ou qualquer extensão de arquivo. As correspondências são terminadas pelos caracteres `/` e `.` no caminho do arquivo.
