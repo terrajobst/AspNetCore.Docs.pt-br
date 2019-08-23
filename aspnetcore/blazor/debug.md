@@ -5,14 +5,14 @@ description: Saiba como depurar aplicativos mais Incrivelmenteos.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/31/2019
+ms.date: 08/22/2019
 uid: blazor/debug
-ms.openlocfilehash: 37c6009727a4f62b61793adca0d83cdd53be4b9a
-ms.sourcegitcommit: 3204bc89ae6354b61ee0a9b2770ebe5214b7790c
+ms.openlocfilehash: c3188a1fe1b699b787f7a95630f3918d295d0f68
+ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/01/2019
-ms.locfileid: "68948366"
+ms.lasthandoff: 08/22/2019
+ms.locfileid: "69974906"
 ---
 # <a name="debug-aspnet-core-blazor"></a>Depurar ASP.NET Core mais incrivelmente
 
@@ -51,6 +51,10 @@ A depuração requer um dos seguintes navegadores:
 1. Acesse o aplicativo no navegador.
 1. Coloque o foco do teclado no aplicativo, não no painel Ferramentas do desenvolvedor. O painel Ferramentas do desenvolvedor pode ser fechado quando a depuração é iniciada.
 1. Selecione o seguinte atalho de teclado específico do mais alto:
+   * `Shift+Alt+D`no Windows/Linux
+   * `Shift+Cmd+D`no macOS
+1. Siga as etapas listadas na tela para reiniciar o navegador com a depuração remota habilitada.
+1. Selecione o seguinte atalho de teclado específico para o mais novo para iniciar a sessão de depuração:
    * `Shift+Alt+D`no Windows/Linux
    * `Shift+Cmd+D`no macOS
 
