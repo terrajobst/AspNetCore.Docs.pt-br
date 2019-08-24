@@ -5,14 +5,14 @@ description: Saiba como testes de integração garantem que os componentes do ap
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/05/2019
+ms.date: 08/23/2019
 uid: test/integration-tests
-ms.openlocfilehash: a86bf2b183a81f0b903a12f9d1660fb32faa6c03
-ms.sourcegitcommit: 2eb605f4f20ac4dd9de6c3b3e3453e108a357a21
+ms.openlocfilehash: 195acd3e03f3de63ebd61767f2c86d1c0f38fca5
+ms.sourcegitcommit: 983b31449fe398e6e922eb13e9eb6f4287ec91e8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/06/2019
-ms.locfileid: "68819936"
+ms.lasthandoff: 08/24/2019
+ms.locfileid: "70017443"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Testes de integração no ASP.NET Core
 
@@ -284,6 +284,16 @@ Adicione o arquivo *xUnit. Runner. JSON* à raiz do projeto de teste com o segui
 {
   "shadowCopy": false
 }
+```
+
+Se estiver usando o Visual Studio, defina a propriedade **copiar para diretório de saída** do arquivo como **copiar sempre**. Se não estiver usando o Visual Studio, `Content` adicione um destino ao arquivo de projeto do aplicativo de teste:
+
+```xml
+<ItemGroup>
+  <Content Update="xunit.runner.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </Content>
+</ItemGroup>
 ```
 
 ## <a name="disposal-of-objects"></a>Alienação de objetos
