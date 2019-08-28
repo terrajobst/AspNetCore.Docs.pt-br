@@ -45,7 +45,7 @@ Cada tipo de filtro é executado em um estágio diferente no pipeline de filtros
 * [Filtros de recurso](#resource-filters):
 
   * Execute após a autorização.  
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuting*> pode executar o código antes do restante do pipeline de filtros. Por exemplo, `OnResourceExecuting` pode executar o código antes da associação de modelo.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuting*> pode executar o código antes do restante do pipeline de filtros. Por exemplo, `OnResourceExecuting` pode executar o código antes do model binding.
   * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuted*> pode executar o código após a conclusão do restante do pipeline.
 
 * [Filtros de ação](#action-filters) podem executar código imediatamente antes e depois de um método de ação individual ser chamado. Eles podem ser usados para manipular os argumentos passados para uma ação, bem como o resultado da ação. Os filtros de ação **não** são compatíveis com o Razor Pages.
