@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/13/2019
 uid: blazor/components
-ms.openlocfilehash: e1afae730d61463d31c8a1698fc31904a3fc8f0e
-ms.sourcegitcommit: 257cc3fe8c1d61341aa3b07e5bc0fa3d1c1c1d1c
+ms.openlocfilehash: 07e9153ccfdc78d1da57b815d33220f7fa597cc7
+ms.sourcegitcommit: 4b00e77f9984ce76356e829cfe7f75f0f61a7a8f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/19/2019
-ms.locfileid: "69583097"
+ms.lasthandoff: 08/29/2019
+ms.locfileid: "70145734"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -436,7 +436,7 @@ Os [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/release/3.0-preview8/
 | Progresso | `UIProgressEventArgs` |
 | Toque | `UITouchEventArgs`&ndash; representaumúnicopontodecontatoemum`UITouchPoint` dispositivo sensível ao toque. |
 
-Para obter informações sobre as propriedades e o comportamento de manipulação de eventos dos eventos na tabela anterior, consulte [classes EventArgs na origem de referência](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview8/src/Components/Web/src).
+Para obter informações sobre as propriedades e o comportamento de manipulação de eventos dos eventos na tabela anterior, consulte [classes EventArgs na fonte de referência (ASPNET/AspNetCore Release/3.0-preview9 Branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src).
 
 ### <a name="lambda-expressions"></a>Expressões lambda
 
