@@ -5,12 +5,12 @@ description: Saiba por que as áreas são um recurso do ASP.NET MVC usado para o
 ms.author: riande
 ms.date: 08/16/2019
 uid: mvc/controllers/areas
-ms.openlocfilehash: d0af3092776ee09469c879fffd3047c50b1a59b4
-ms.sourcegitcommit: 4cb0c7e74355f2e87c60e2a196f842b937247a99
+ms.openlocfilehash: 9065aa23a537add5a9376472e4f4478e9d4149bd
+ms.sourcegitcommit: 776598f71da0d1e4c9e923b3b395d3c3b5825796
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2019
-ms.locfileid: "69545799"
+ms.lasthandoff: 08/26/2019
+ms.locfileid: "70024738"
 ---
 # <a name="areas-in-aspnet-core"></a>Áreas no ASP.NET Core
 
@@ -72,9 +72,7 @@ Enquanto o layout anterior é típico ao usar áreas, somente os arquivos de exi
 /Areas/<Area-Name>/Views/Shared/<Action-Name>.cshtml
 /Views/Shared/<Action-Name>.cshtml
 /Pages/Shared/<Action-Name>.cshtml
-   ```
-
-A localização de pastas de não exibição, assim como *Controladores* e *Modelos*, **não** importa. Por exemplo, as pastas *Controladores* e *Modelos* não são necessárias. O conteúdo de *Controladores* e *Modelos* é o código que é compilado em um arquivo .dll. O conteúdo das *Exibições* não é compilado até que seja feita uma solicitação para essa exibição.
+```
 
 <a name="attribute"></a>
 

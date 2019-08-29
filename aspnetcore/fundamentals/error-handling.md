@@ -1,18 +1,18 @@
 ---
 title: Tratar erros no ASP.NET Core
-author: tdykstra
+author: rick-anderson
 description: Descubra como tratar erros em aplicativos ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
 uid: fundamentals/error-handling
-ms.openlocfilehash: f9f91455b273b99608ca6f1524df6cb748a26669
-ms.sourcegitcommit: b40613c603d6f0cc71f3232c16df61550907f550
+ms.openlocfilehash: 652a97a6b7fbe4c8cc678b86a92eea59937e809c
+ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68308201"
+ms.lasthandoff: 08/22/2019
+ms.locfileid: "69975577"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Tratar erros no ASP.NET Core
 
