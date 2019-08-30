@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como criar uma API Web com o ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/14/2019
+ms.date: 08/27/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: 99985e9fb1134c2ba808434f8d24c4a768773268
-ms.sourcegitcommit: 476ea5ad86a680b7b017c6f32098acd3414c0f6c
+ms.openlocfilehash: 25bfccb136d875b454034bd011828c9f3b6cd3d8
+ms.sourcegitcommit: de17150e5ec7507d7114dde0e5dbc2e45a66ef53
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/14/2019
-ms.locfileid: "69022600"
+ms.lasthandoff: 08/28/2019
+ms.locfileid: "70113295"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Criar uma API Web com o ASP.NET Core
 
@@ -462,9 +462,9 @@ Use o Postman para excluir um item pendente:
 * Defina o URI do objeto a ser excluído, por exemplo, `https://localhost:5001/api/TodoItems/1`
 * Selecione **Enviar**
 
-## <a name="call-the-api-from-jquery"></a>Chame a API por meio do jQuery
+## <a name="call-the-web-api-with-javascript"></a>Chamar a API Web com o JavaScript
 
-Consulte [Tutorial: Chamar uma API Web do ASP.NET Core com o jQuery](xref:tutorials/web-api-jquery).
+Consulte [Tutorial: Chamar uma API Web do ASP.NET Core com o JavaScript](xref:tutorials/web-api-javascript).
 
 ::: moniker-end
 
@@ -480,9 +480,10 @@ Neste tutorial, você aprenderá como:
 > * Configurar o roteamento e caminhos de URL.
 > * Especificar os valores retornados.
 > * Chamar a API Web com o Postman.
-> * Chamar a API Web com o jQuery.
+> * Chamar a API Web com o JavaScript.
 
 No final, você terá uma API Web que pode gerenciar itens de "tarefas pendentes" armazenados em um banco de dados relacional.
+
 ## <a name="overview"></a>Visão geral
 
 Este tutorial cria a seguinte API:
@@ -737,7 +738,6 @@ Os tipos de retorno `ActionResult` podem representar uma ampla variedade de cód
 * Se nenhum item corresponder à ID solicitada, o método retornará um código de erro 404 [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound).
 * Caso contrário, o método retornará 200 com um corpo de resposta JSON. Retornar `item` resulta em uma resposta HTTP 200.
 
-
 ## <a name="test-the-gettodoitems-method"></a>Testar o método GetTodoItems
 
 Este tutorial usa o Postman para testar a API Web.
@@ -863,9 +863,9 @@ Use o Postman para excluir um item pendente:
 
 O aplicativo de exemplo permite que você exclua todos os itens. No entanto, quando o último item é excluído, um novo é criado pelo construtor de classe de modelo na próxima vez que a API for chamada.
 
-## <a name="call-the-api-with-jquery"></a>Chamar a API com o jQuery
+## <a name="call-the-web-api-with-javascript"></a>Chamar a API Web com o JavaScript
 
-Nesta seção, uma página HTML que usa o jQuery para chamar a API Web é adicionada. O jQuery inicia a solicitação e atualiza a página com os detalhes da resposta da API.
+Nesta seção, é adicionada uma página HTML que usa o JavaScript para chamar a API Web. A API Fetch inicia a solicitação. O JavaScript atualiza a página com os detalhes da resposta da API Web.
 
 Configurar o aplicativo para [servir arquivos estáticos](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [habilitar o mapeamento de arquivo padrão](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) atualizando *Startup.cs* com o código realçado a seguir:
 
@@ -886,19 +886,17 @@ Uma alteração nas configurações de inicialização do projeto ASP.NET Core p
 * Abra *Properties\launchSettings.json*.
 * Remova a propriedade `launchUrl` para forçar o aplicativo a ser aberto em *index.html*, o arquivo padrão do projeto.
 
-Há várias maneiras de obter o jQuery. No snippet anterior, a biblioteca é carregada de uma CDN.
-
-Esta amostra chama todos os métodos CRUD da API. Veja a seguir explicações das chamadas à API.
+Esta amostra chama todos os métodos CRUD da API Web. Veja a seguir explicações das chamadas à API.
 
 ### <a name="get-a-list-of-to-do-items"></a>Obter uma lista de itens pendentes
 
-A função [ajax](https://api.jquery.com/jquery.ajax/) do jQuery envia uma solicitação `GET` para a API, que retorna o JSON que representa uma matriz de itens pendentes. A função de retorno de chamada `success` será invocada se a solicitação for bem-sucedida. No retorno de chamada, o DOM é atualizado com as informações do item pendente.
+Fetch envia uma solicitação HTTP GET para a API Web, que retorna JSON representando uma matriz de itens de tarefas pendentes. A função de retorno de chamada `success` será invocada se a solicitação for bem-sucedida. No retorno de chamada, o DOM é atualizado com as informações do item pendente.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_GetData)]
 
 ### <a name="add-a-to-do-item"></a>Adicionar um item pendente
 
-A função [ajax](https://api.jquery.com/jquery.ajax/) envia uma solicitação `POST` com o item pendente no corpo da solicitação. As opções `accepts` e `contentType` são definidas como `application/json` para especificar o tipo de mídia que está sendo recebido e enviado. O item pendente é convertido em JSON usando [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). Quando a API retorna um código de status de êxito, a função `getData` é invocada para atualizar a tabela HTML.
+Fetch envia uma solicitação HTTP POST com o item de tarefas pendentes no corpo da solicitação. As opções `accepts` e `contentType` são definidas como `application/json` para especificar o tipo de mídia que está sendo recebido e enviado. O item pendente é convertido em JSON usando [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). Quando a API retorna um código de status de êxito, a função `getData` é invocada para atualizar a tabela HTML.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AddItem)]
 
