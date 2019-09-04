@@ -8,10 +8,10 @@ ms.custom: mvc
 ms.date: 07/01/2019
 uid: host-and-deploy/aspnet-core-module
 ms.openlocfilehash: 4a360023cc7fab2f066d490f7f368fc35815703a
-ms.sourcegitcommit: eb3e51d58dd713eefc242148f45bd9486be3a78a
-ms.translationtype: HT
+ms.sourcegitcommit: 4b00e77f9984ce76356e829cfe7f75f0f61a7a8f
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/02/2019
+ms.lasthandoff: 09/02/2019
 ms.locfileid: "67500445"
 ---
 # <a name="aspnet-core-module"></a>Módulo do ASP.NET Core
@@ -279,7 +279,7 @@ Para saber mais sobre a configuração de subaplicativos do IIS, confira <xref:h
 
 ::: moniker range=">= aspnetcore-2.2"
 
-| Atributo | DESCRIÇÃO | Padrão |
+| Atributo | Descrição | Padrão |
 | --------- | ----------- | :-----: |
 | `arguments` | <p>Atributo de cadeia de caracteres opcional.</p><p>Argumentos para o executável especificado em **processPath**.</p> | |
 | `disableStartUpErrorPage` | <p>Atributo booliano opcional.</p><p>Se for true, a página **502.5 – Falha do Processo** será suprimida e a página de código de status 502, configurada no *web.config*, terá precedência.</p> | `false` |
@@ -298,7 +298,7 @@ Para saber mais sobre a configuração de subaplicativos do IIS, confira <xref:h
 
 ::: moniker range="< aspnetcore-2.2"
 
-| Atributo | DESCRIÇÃO | Padrão |
+| Atributo | Descrição | Padrão |
 | --------- | ----------- | :-----: |
 | `arguments` | <p>Atributo de cadeia de caracteres opcional.</p><p>Argumentos para o executável especificado em **processPath**.</p>| |
 | `disableStartUpErrorPage` | <p>Atributo booliano opcional.</p><p>Se for true, a página **502.5 – Falha do Processo** será suprimida e a página de código de status 502, configurada no *web.config*, terá precedência.</p> | `false` |
@@ -382,7 +382,7 @@ O exemplo a seguir define duas variáveis de ambiente. `ASPNETCORE_ENVIRONMENT` 
 > [!WARNING]
 > Defina a variável de ambiente apenas `ASPNETCORE_ENVIRONMENT` para `Development` em servidores de preparo e de teste que não estão acessíveis a redes não confiáveis, tais como a Internet.
 
-## <a name="appofflinehtm"></a>app_offline.htm
+## <a name="app_offlinehtm"></a>app_offline.htm
 
 Se um arquivo com o nome *app_offline.htm* é detectado no diretório raiz de um aplicativo, o Módulo do ASP.NET Core tenta desligar normalmente o aplicativo e parar o processamento de solicitações de entrada. Se o aplicativo ainda está em execução após o número de segundos definido em `shutdownTimeLimit`, o Módulo do ASP.NET Core encerra o processo em execução.
 
@@ -591,7 +591,7 @@ Ao usar uma configuração compartilhada de IIS, siga estas etapas:
 
 Para determinar a versão do Módulo do ASP.NET Core instalado:
 
-1. No sistema de hospedagem, navegue até *%windir%\System32\inetsrv*.
+1. No sistema de hospedagem, navegue até *%windir%\system32\inetsrv*.
 1. Localize o arquivo *aspnetcore.dll*.
 1. Clique com o botão direito do mouse no arquivo e selecione **Propriedades** no menu contextual.
 1. Selecione a guia **Detalhes**. A **Versão do arquivo** e a **Versão do produto** representam a versão instalada do módulo.
