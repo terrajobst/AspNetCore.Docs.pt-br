@@ -5,14 +5,14 @@ description: Saiba como rotear solicitações em aplicativos e sobre o component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 08/23/2019
 uid: blazor/routing
-ms.openlocfilehash: 197b1a91b3540d21639c3ee775b2c490da7b23fe
-ms.sourcegitcommit: f5f0ff65d4e2a961939762fb00e654491a2c772a
+ms.openlocfilehash: 067dad657c1e89a31fac45fdfa095cce4b10798d
+ms.sourcegitcommit: e6bd2bbe5683e9a7dbbc2f2eab644986e6dc8a87
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/15/2019
-ms.locfileid: "69030398"
+ms.lasthandoff: 09/03/2019
+ms.locfileid: "70238057"
 ---
 # <a name="aspnet-core-blazor-routing"></a>Roteamento de ASP.NET Core mais
 
@@ -103,6 +103,21 @@ As restrições de rota mostradas na tabela a seguir estão disponíveis. Para a
 > [!WARNING]
 > As restrições de rota que verificam a URL e são convertidas em um tipo CLR (como `int` ou `DateTime`) sempre usam a cultura invariável. Essas restrições consideram que a URL não é localizável.
 
+### <a name="routing-with-urls-that-contain-dots"></a>Roteamento com URLs que contêm pontos
+
+No mais alto aplicativo do lado do servidor, a rota padrão em *_Host. cshtml* `/` é`@page "/"`(). Uma URL de solicitação que contém um ponto`.`() não é correspondida pela rota padrão porque a URL parece solicitar um arquivo. Um aplicativo mais alto retorna uma resposta *404-não encontrada* para um arquivo estático que não existe. Para usar rotas que contenham um ponto, configure *_Host. cshtml* com o seguinte modelo de rota:
+
+```cshtml
+@page "/{**path}"
+```
+
+O `"/{**path}"` modelo inclui:
+
+* Sintaxe *catch-all* de asterisco duplo (`**`) para capturar o caminho entre vários limites de pasta sem barras invertidas`/`de codificação ().
+* Um `path` nome de parâmetro de rota.
+
+Para obter mais informações, consulte <xref:fundamentals/routing>.
+
 ## <a name="navlink-component"></a>Componente NavLink
 
 Use um `NavLink` componente no lugar de elementos de hiperlink HTML`<a>`() ao criar links de navegação. Um `NavLink` componente se comporta como um `<a>` elemento, exceto que alterna uma `active` classe CSS com base no fato de sua `href` correspondência com a URL atual. A `active` classe ajuda um usuário a entender qual página é a página ativa entre os links de navegação exibidos.
@@ -163,3 +178,4 @@ O componente a seguir navega para o componente do `Counter` aplicativo quando o 
     }
 }
 ```
+
