@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 34b977f70f3e7e58e4ab6fcf3d8f69800896a65d
-ms.sourcegitcommit: 0774a61a3a6c1412a7da0e7d932dc60c506441fc
-ms.translationtype: HT
+ms.openlocfilehash: ab29cf687c80551d275cae69f28b7576016bfff6
+ms.sourcegitcommit: e6bd2bbe5683e9a7dbbc2f2eab644986e6dc8a87
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70059124"
+ms.lasthandoff: 09/03/2019
+ms.locfileid: "70238127"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Modelo de dados – 5 de 8
 
@@ -390,7 +390,7 @@ public ICollection<Course> Courses { get; set; }
 
 por convenção, o EF Core habilita a exclusão em cascata em FKs que não permitem valor nulo e em relações muitos para muitos. Esse comportamento padrão pode resultar em regras circulares de exclusão em cascata. As regras de exclusão em cascata circular causam uma exceção quando uma migração é adicionada.
 
-Por exemplo, se a propriedade `Department.InstructorID` tiver sido definida como não anulável, o EF Core configurará uma regra de exclusão em cascata. Nesse caso, o departamento seria excluído quando o instrutor atribuído como seu administrador fosse excluído. Nesse cenário, uma regra restrita fará mais sentido. A API fluente a seguir definiria uma regra restrita e desabilitaria a exclusão em cascata.
+Por exemplo, se a propriedade `Department.InstructorID` tiver sido definida como não anulável, o EF Core configurará uma regra de exclusão em cascata. Nesse caso, o departamento seria excluído quando o instrutor atribuído como seu administrador fosse excluído. Nesse cenário, uma regra restrita fará mais sentido. A [API fluente](#fluent-api-alternative-to-attributes) a seguir definiria uma regra restrita e desabilitará a exclusão em cascata.
 
   ```csharp
   modelBuilder.Entity<Department>()
@@ -1091,7 +1091,7 @@ Por exemplo, se a propriedade `Department.InstructorID` tiver sido definida como
 
 * O EF Core configura uma regra de exclusão em cascata para excluir o departamento quando o instrutor é excluído.
 * Excluir o departamento quando o instrutor é excluído não é o comportamento desejado.
-* A seguinte API fluente definiria uma regra de restrição em vez de em cascata.
+* A [API fluente](#fluent-api-alternative-to-attributes) a seguir definiria uma regra restrita em vez de Cascade.
 
    ```csharp
    modelBuilder.Entity<Department>()
