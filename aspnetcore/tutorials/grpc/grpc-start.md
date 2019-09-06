@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 8/26/2019
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: ffe0034f1d33fb9282b39c030421b9b307413cdb
-ms.sourcegitcommit: de17150e5ec7507d7114dde0e5dbc2e45a66ef53
-ms.translationtype: HT
+ms.openlocfilehash: 7f80ead06f00037ae51b35d40dff9bc7f99bc5d8
+ms.sourcegitcommit: 8b36f75b8931ae3f656e2a8e63572080adc78513
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/28/2019
-ms.locfileid: "70113273"
+ms.lasthandoff: 09/05/2019
+ms.locfileid: "70310575"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Tutorial: Criar um cliente e um servidor gRPC no ASP.NET Core
 
@@ -256,13 +256,13 @@ Atualize o arquivo *Program.cs* do cliente gRPC com o seguinte código:
 O cliente Greeter é criado da seguinte forma:
 
 * Criando uma instância de `HttpClient` que contém as informações para criar a conexão com o serviço gRPC.
-* Como usar o `HttpClient` para construir o cliente Greeter:
+* Usando o `HttpClient` para construir um canal do gRPC e o cliente do Greeter:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-6)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-5)]
 
 O cliente Greeter chama o método `SayHello` assíncrono. O resultado da chamada `SayHello` é exibido:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=7-9)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=6-8)]
 
 ## <a name="test-the-grpc-client-with-the-grpc-greeter-service"></a>Testar o cliente gRPC com o serviço de Boas-vindas do gRPC
 

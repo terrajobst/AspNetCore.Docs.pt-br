@@ -5,14 +5,14 @@ description: Saiba mais sobre os cenários de autenticação e autorização no 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/26/2019
+ms.date: 08/29/2019
 uid: security/blazor/index
-ms.openlocfilehash: 87d61a7ccda209243a62bc54467b8f02dad92c24
-ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
-ms.translationtype: HT
+ms.openlocfilehash: 8714acbeb6e8a00992a601030811b24f53426b82
+ms.sourcegitcommit: 8b36f75b8931ae3f656e2a8e63572080adc78513
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/13/2019
-ms.locfileid: "68994195"
+ms.lasthandoff: 09/05/2019
+ms.locfileid: "70310522"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Autorização e autenticação no Blazor em ASP.NET Core
 
@@ -64,7 +64,7 @@ Os valores de autenticação permitidos (`{AUTHENTICATION}`) são mostrados na t
 
 | Mecanismo de autenticação                                                                 | Valor `{AUTHENTICATION}` |
 | ---------------------------------------------------------------------------------------- | :----------------------: |
-| Sem Autenticação                                                                        | `None`                   |
+| Sem autenticação                                                                        | `None`                   |
 | Individual<br>Usuários armazenados no aplicativo com o ASP.NET Core Identity.                        | `Individual`             |
 | Individual<br>Usuários armazenados no [Azure AD B2C](xref:security/authentication/azure-ad-b2c). | `IndividualB2C`          |
 | Contas corporativas ou de estudante<br>Autenticação organizacional para um único locatário.            | `SingleOrg`              |
@@ -219,17 +219,21 @@ Se os dados do estado de autenticação forem necessários para a lógica do pro
 
 Se `user.Identity.IsAuthenticated` for `true`, será possível enumerar as declarações e avaliar a associação nas funções.
 
-Configure o parâmetro em cascata `Task<AuthenticationState>` usando o componente `CascadingAuthenticationState`:
+Configure o `Task<AuthenticationState>` parâmetro em cascata usando os `AuthorizeRouteView` componentes e `CascadingAuthenticationState` :
 
 ```cshtml
-<CascadingAuthenticationState>
-    <Router AppAssembly="typeof(Startup).Assembly">
-        <NotFoundContent>
-            <h1>Sorry</h1>
-            <p>Sorry, there's nothing at this address.</p>
-        </NotFoundContent>
-    </Router>
-</CascadingAuthenticationState>
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+    </Found>
+    <NotFound>
+        <CascadingAuthenticationState>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </CascadingAuthenticationState>
+    </NotFound>
+</Router>
 ```
 
 ## <a name="authorization"></a>Autorização
@@ -372,7 +376,7 @@ Se `Roles` e `Policy` não forem especificados, `[Authorize]` usará a política
 
 ## <a name="customize-unauthorized-content-with-the-router-component"></a>Personalizar conteúdo não autorizado com o componente Router
 
-O componente `Router` permitirá que o aplicativo especifique o conteúdo personalizado se:
+O `Router` componente, em conjunto com o `AuthorizeRouteView` componente, permite que o aplicativo especifique o conteúdo personalizado se:
 
 * O conteúdo não for encontrado.
 * O usuário não atender à condição `[Authorize]` aplicada ao componente. O atributo `[Authorize]` é abordado na seção [Atributo [Authorize]](#authorize-attribute).
@@ -381,28 +385,34 @@ O componente `Router` permitirá que o aplicativo especifique o conteúdo person
 No modelo de projeto Blazor padrão do lado do servidor, o arquivo *App.razor* demonstra como definir o conteúdo personalizado:
 
 ```cshtml
-<CascadingAuthenticationState>
-    <Router AppAssembly="typeof(Startup).Assembly">
-        <NotFoundContent>
-            <h1>Sorry</h1>
-            <p>Sorry, there's nothing at this address.</p>
-        </NotFoundContent>
-        <NotAuthorizedContent>
-            <h1>Sorry</h1>
-            <p>You're not authorized to reach this page.</p>
-            <p>You may need to log in as a different user.</p>
-        </NotAuthorizedContent>
-        <AuthorizingContent>
-            <h1>Authentication in progress</h1>
-            <p>Only visible while authentication is in progress.</p>
-        </AuthorizingContent>
-    </Router>
-</CascadingAuthenticationState>
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+            <NotAuthorized>
+                <h1>Sorry</h1>
+                <p>You're not authorized to reach this page.</p>
+                <p>You may need to log in as a different user.</p>
+            </NotAuthorized>
+            <Authorizing>
+                <h1>Authentication in progress</h1>
+                <p>Only visible while authentication is in progress.</p>
+            </Authorizing>
+        </AuthorizeRouteView>
+    </Found>
+    <NotFound>
+        <CascadingAuthenticationState>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <h1>Sorry</h1>
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </CascadingAuthenticationState>
+    </NotFound>
+</Router>
 ```
 
-O conteúdo de `<NotFoundContent>`, `<NotAuthorizedContent>` e `<AuthorizingContent>` pode incluir itens arbitrários, como outros componentes interativos.
+O conteúdo de `<NotFound>`, `<NotAuthorized>` e `<Authorizing>` pode incluir itens arbitrários, como outros componentes interativos.
 
-Se `<NotAuthorizedContent>` não for especificado, o roteador usará a seguinte mensagem de fallback:
+Se `<NotAuthorized>` não for especificado, `<AuthorizeRouteView>` o usará a seguinte mensagem de fallback:
 
 ```html
 Not authorized.
@@ -455,7 +465,7 @@ Em aplicativos Blazor do lado do cliente, as verificações de autorização pod
 
 **Sempre execute as verificações de autorização no servidor em qualquer ponto de extremidade da API acessada pelo aplicativo do lado do cliente.**
 
-## <a name="troubleshoot-errors"></a>Solucionar problemas de erros
+## <a name="troubleshoot-errors"></a>Solucionar erros
 
 Erros comuns:
 
@@ -478,4 +488,5 @@ O `CascadingAuthenticationState` fornece o parâmetro em cascata `Task<Authentic
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:security/index>
+* <xref:security/blazor/server-side>
 * <xref:security/authentication/windowsauth>
