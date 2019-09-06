@@ -5,14 +5,14 @@ description: Saiba como usar os formulários e cenários de validação de campo
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 09/04/2019
 uid: blazor/forms-validation
-ms.openlocfilehash: 0b2e38cdbd974a28960b917fb6b5ce370f8c4659
-ms.sourcegitcommit: f5f0ff65d4e2a961939762fb00e654491a2c772a
+ms.openlocfilehash: 4531ef44a7df3951f3bebdf88e597165fa75f06e
+ms.sourcegitcommit: 8b36f75b8931ae3f656e2a8e63572080adc78513
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/15/2019
-ms.locfileid: "69030334"
+ms.lasthandoff: 09/05/2019
+ms.locfileid: "70310323"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>Formulários e validação de mais e ASP.NET Core
 
@@ -175,6 +175,25 @@ O formulário a seguir valida a entrada do usuário usando a validação definid
 
 O `EditForm` cria um `EditContext` como um [valor em cascata](xref:blazor/components#cascading-values-and-parameters) que controla os metadados sobre o processo de edição, incluindo quais campos foram modificados e as mensagens de validação atuais. O `EditForm` também fornece eventos convenientes para envios válidos e inválidos (`OnValidSubmit`, `OnInvalidSubmit`). Como alternativa, use `OnSubmit` para disparar a validação e verificar os valores do campo com o código de validação personalizado.
 
+## <a name="inputtext-based-on-the-input-event"></a>InputText com base no evento de entrada
+
+Use o `InputText` componente para criar um componente personalizado que usa o `input` evento em vez do `change` evento.
+
+Crie um componente com a marcação a seguir e use o componente da mesma `InputText` forma que é usado:
+
+```cshtml
+@inherits InputText
+
+<input 
+    @attributes="AdditionalAttributes" 
+    class="@CssClass" 
+    value="@CurrentValue" 
+    @oninput="EventCallback.Factory.CreateBinder<string>(
+        this, __value => CurrentValueAsString = __value, CurrentValueAsString)" />
+```
+
+## <a name="validation-support"></a>Suporte à validação
+
 O `DataAnnotationsValidator` componente anexa o suporte à validação usando anotações de dados para o `EditContext`em cascata. Habilitar o suporte para validação usando anotações de dados atualmente requer esse gesto explícito, mas estamos considerando tornar esse comportamento padrão que você pode então substituir. Para usar um sistema de validação diferente de anotações de dados, substitua `DataAnnotationsValidator` -o por uma implementação personalizada. A implementação de ASP.NET Core está disponível para inspeção na fonte de referência: [DataAnnotationsValidator](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/Forms/DataAnnotationsValidator.cs)/[AddDataAnnotationsValidation](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/Forms/EditContextDataAnnotationsExtensions.cs). *A implementação de ASP.NET Core está sujeita a atualizações rápidas durante o período de versão de visualização.*
 
 O `ValidationSummary` componente resume todas as mensagens de validação, que é semelhante ao [auxiliar de marca de Resumo de validação](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper).
@@ -186,3 +205,7 @@ O `ValidationMessage` componente exibe mensagens de validação para um campo es
 ```
 
 Os `ValidationMessage` componentes `ValidationSummary` e oferecem suporte a atributos arbitrários. Qualquer atributo que não corresponda a um parâmetro de componente é adicionado ao `<div>` elemento `<ul>` gerado ou.
+
+### <a name="validation-of-complex-or-collection-type-properties"></a>Validação de propriedades de tipo de coleção ou complexas
+
+Os atributos de validação aplicados às propriedades de um modelo são validados quando o formulário é enviado. No entanto, as propriedades de coleções ou tipos de dados complexos de um modelo não são validadas no envio de formulários. Para honrar os atributos de validação aninhados nesse cenário, use um componente de validação personalizado. Para obter um exemplo, consulte o [exemplo de validação mais simples no repositório do GitHub ASPNET/Samples](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).

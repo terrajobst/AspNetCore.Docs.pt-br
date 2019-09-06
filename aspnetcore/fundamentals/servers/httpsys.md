@@ -5,14 +5,14 @@ description: Conheça o HTTP.sys, um servidor Web para o ASP.NET Core executado 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/20/2019
+ms.date: 08/27/2019
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: 5ee866c862f16c2c22539bf880b5a93415504fb1
-ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
-ms.translationtype: HT
+ms.openlocfilehash: b9adbdd83b3c4e1eeaadcf99fa3ee6cb41f67f8e
+ms.sourcegitcommit: 8b36f75b8931ae3f656e2a8e63572080adc78513
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/22/2019
-ms.locfileid: "69975511"
+ms.lasthandoff: 09/05/2019
+ms.locfileid: "70310515"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementação do servidor Web HTTP.sys no ASP.NET Core
 
@@ -38,7 +38,7 @@ Versões do Windows compatíveis:
 * Windows 7 ou posterior
 * Windows Server 2008 R2 ou posterior
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="when-to-use-httpsys"></a>Quando usar o HTTP.sys
 
@@ -84,99 +84,100 @@ O HTTP.sys delega à autenticação de modo kernel com o protocolo de autentica�
 
 ### <a name="configure-the-aspnet-core-app-to-use-httpsys"></a>Configurar o aplicativo ASP.NET Core para usar o HTTP.sys
 
-1. Não é necessário usar uma referência do pacote no arquivo de projeto ao usar o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) ([nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)) (ASP.NET Core 2.1 ou posterior). Se não estiver usando o metapacote `Microsoft.AspNetCore.App`, adicione uma referência do pacote a [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/).
+::: moniker range="< aspnetcore-3.0"
 
-2. Chame o método de extensão <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> ao compilar o host, especificando qualquer <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions> necessária. O exemplo a seguir define as opções para seus valores padrão:
+Uma referência de pacote no arquivo de projeto não é necessária ao usar o [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) ([NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)). Se não estiver usando o metapacote `Microsoft.AspNetCore.App`, adicione uma referência do pacote a [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/).
+
+::: moniker-end
+
+Chame o método de extensão <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> ao compilar o host, especificando qualquer <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions> necessária. O exemplo a seguir define as opções para seus valores padrão:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-   ```csharp
-   public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-      WebHost.CreateDefaultBuilder(args)
-          .UseStartup<Startup>()
-          .UseHttpSys(options =>
-          {
-              options.AllowSynchronousIO = false;
-              options.Authentication.Schemes = AuthenticationSchemes.None;
-              options.Authentication.AllowAnonymous = true;
-              options.MaxConnections = null;
-              options.MaxRequestBodySize = 30000000;
-              options.UrlPrefixes.Add("http://localhost:5000");
-          });
-   ```
+[!code-csharp[](httpsys/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=5-13)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-   [!code-csharp[](httpsys/sample/Program.cs?name=snippet1&highlight=4-12)]
+[!code-csharp[](httpsys/samples/2.x/SampleApp/Program.cs?name=snippet1&highlight=4-12)]
 
 ::: moniker-end
 
-   A configuração adicional do HTTP.sys é tratada por meio das [configurações do registro](https://support.microsoft.com/help/820129/http-sys-registry-settings-for-windows).
+A configuração adicional do HTTP.sys é tratada por meio das [configurações do registro](https://support.microsoft.com/help/820129/http-sys-registry-settings-for-windows).
 
    **Opções do HTTP.sys**
 
 ::: moniker range=">= aspnetcore-3.0"
 
-   | Propriedade | DESCRIÇÃO | Padrão |
-   | -------- | ----------- | :-----: |
-   | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `false` |
-   | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
-   | [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pela [enumeração AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate`, `None` e `NTLM`. | `None` |
-   | [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Tentativa de cache do [modo kernel](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) para obtenção de respostas com cabeçalhos qualificados. A resposta pode não incluir `Set-Cookie`, `Vary` ou cabeçalhos `Pragma`. Ela deve incluir um cabeçalho `Cache-Control` que seja `public` e um valor `shared-max-age` ou `max-age`, ou um cabeçalho `Expires`. | `true` |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | O número máximo de aceitações simultâneas. | 5 &times; [Ambiente.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(ilimitado) |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Confira a seção <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 de bytes<br>(28,6 MB) |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | O número máximo de solicitações que podem ser colocadas na fila. | 1000 |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se as gravações do corpo da resposta que falham quando o cliente se desconecta devem gerar exceções ou serem concluídas normalmente. | `false`<br>(concluir normalmente) |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Expor a configuração <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> do HTTP.sys, que também pode ser configurado no Registro. Siga os links de API para saber mais sobre cada configuração, inclusive os valores padrão:<ul><li>[TimeoutManager.DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody) &ndash; O tempo permitido para que a API do servidor HTTP esvazie o corpo da entidade em uma conexão Keep-Alive.</li><li>[TimeoutManager.EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody) &ndash; O tempo permitido para a chegada do corpo da entidade de solicitação.</li><li>[TimeoutManager.HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait) &ndash; O tempo permitido para que a API do servidor HTTP analise o cabeçalho da solicitação.</li><li>[TimeoutManager.IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection) &ndash; O tempo permitido para uma conexão ociosa.</li><li>[TimeoutManager.MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond) &ndash; A taxa de envio mínima para a resposta.</li><li>[TimeoutManager.RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue) &ndash; O tempo permitido para que a solicitação permaneça na fila de solicitações até o aplicativo coletá-la.</li></ul> |  |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Especifique o <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> para registrar com o HTTP.sys. A mais útil é [UrlPrefixCollection.Add](xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add*), que é usada para adicionar um prefixo à coleção. É possível modificá-las a qualquer momento antes de descartar o ouvinte. |  |
+| Propriedade | Descrição | Padrão |
+| -------- | ----------- | :-----: |
+| [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `false` |
+| [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
+| [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pela [enumeração AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate`, `None` e `NTLM`. | `None` |
+| [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Tentativa de cache do [modo kernel](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) para obtenção de respostas com cabeçalhos qualificados. A resposta pode não incluir `Set-Cookie`, `Vary` ou cabeçalhos `Pragma`. Ela deve incluir um cabeçalho `Cache-Control` que seja `public` e um valor `shared-max-age` ou `max-age`, ou um cabeçalho `Expires`. | `true` |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | O número máximo de aceitações simultâneas. | 5 &times; [Ambiente.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(ilimitado) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Confira a seção <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 de bytes<br>(28,6 MB) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | O número máximo de solicitações que podem ser colocadas na fila. | 1000 |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se as gravações do corpo da resposta que falham quando o cliente se desconecta devem gerar exceções ou serem concluídas normalmente. | `false`<br>(concluir normalmente) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Expor a configuração <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> do HTTP.sys, que também pode ser configurado no Registro. Siga os links de API para saber mais sobre cada configuração, inclusive os valores padrão:<ul><li>[TimeoutManager.DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody) &ndash; O tempo permitido para que a API do servidor HTTP esvazie o corpo da entidade em uma conexão Keep-Alive.</li><li>[TimeoutManager.EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody) &ndash; O tempo permitido para a chegada do corpo da entidade de solicitação.</li><li>[TimeoutManager.HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait) &ndash; O tempo permitido para que a API do servidor HTTP analise o cabeçalho da solicitação.</li><li>[TimeoutManager.IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection) &ndash; O tempo permitido para uma conexão ociosa.</li><li>[TimeoutManager.MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond) &ndash; A taxa de envio mínima para a resposta.</li><li>[TimeoutManager.RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue) &ndash; O tempo permitido para que a solicitação permaneça na fila de solicitações até o aplicativo coletá-la.</li></ul> |  |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Especifique o <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> para registrar com o HTTP.sys. A mais útil é [UrlPrefixCollection.Add](xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add*), que é usada para adicionar um prefixo à coleção. É possível modificá-las a qualquer momento antes de descartar o ouvinte. |  |
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-   | Propriedade | DESCRIÇÃO | Padrão |
-   | -------- | ----------- | :-----: |
-   | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `true` |
-   | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
-   | [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pela [enumeração AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate`, `None` e `NTLM`. | `None` |
-   | [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Tentativa de cache do [modo kernel](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) para obtenção de respostas com cabeçalhos qualificados. A resposta pode não incluir `Set-Cookie`, `Vary` ou cabeçalhos `Pragma`. Ela deve incluir um cabeçalho `Cache-Control` que seja `public` e um valor `shared-max-age` ou `max-age`, ou um cabeçalho `Expires`. | `true` |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | O número máximo de aceitações simultâneas. | 5 &times; [Ambiente.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(ilimitado) |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Confira a seção <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 de bytes<br>(28,6 MB) |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | O número máximo de solicitações que podem ser colocadas na fila. | 1000 |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se as gravações do corpo da resposta que falham quando o cliente se desconecta devem gerar exceções ou serem concluídas normalmente. | `false`<br>(concluir normalmente) |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Expor a configuração <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> do HTTP.sys, que também pode ser configurado no Registro. Siga os links de API para saber mais sobre cada configuração, inclusive os valores padrão:<ul><li>[TimeoutManager.DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody) &ndash; O tempo permitido para que a API do servidor HTTP esvazie o corpo da entidade em uma conexão Keep-Alive.</li><li>[TimeoutManager.EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody) &ndash; O tempo permitido para a chegada do corpo da entidade de solicitação.</li><li>[TimeoutManager.HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait) &ndash; O tempo permitido para que a API do servidor HTTP analise o cabeçalho da solicitação.</li><li>[TimeoutManager.IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection) &ndash; O tempo permitido para uma conexão ociosa.</li><li>[TimeoutManager.MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond) &ndash; A taxa de envio mínima para a resposta.</li><li>[TimeoutManager.RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue) &ndash; O tempo permitido para que a solicitação permaneça na fila de solicitações até o aplicativo coletá-la.</li></ul> |  |
-   | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Especifique o <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> para registrar com o HTTP.sys. A mais útil é [UrlPrefixCollection.Add](xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add*), que é usada para adicionar um prefixo à coleção. É possível modificá-las a qualquer momento antes de descartar o ouvinte. |  |
+| Propriedade | Descrição | Padrão |
+| -------- | ----------- | :-----: |
+| [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `true` |
+| [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
+| [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pela [enumeração AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate`, `None` e `NTLM`. | `None` |
+| [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Tentativa de cache do [modo kernel](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) para obtenção de respostas com cabeçalhos qualificados. A resposta pode não incluir `Set-Cookie`, `Vary` ou cabeçalhos `Pragma`. Ela deve incluir um cabeçalho `Cache-Control` que seja `public` e um valor `shared-max-age` ou `max-age`, ou um cabeçalho `Expires`. | `true` |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | O número máximo de aceitações simultâneas. | 5 &times; [Ambiente.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(ilimitado) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Confira a seção <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 de bytes<br>(28,6 MB) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | O número máximo de solicitações que podem ser colocadas na fila. | 1000 |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se as gravações do corpo da resposta que falham quando o cliente se desconecta devem gerar exceções ou serem concluídas normalmente. | `false`<br>(concluir normalmente) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Expor a configuração <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> do HTTP.sys, que também pode ser configurado no Registro. Siga os links de API para saber mais sobre cada configuração, inclusive os valores padrão:<ul><li>[TimeoutManager.DrainEntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody) &ndash; O tempo permitido para que a API do servidor HTTP esvazie o corpo da entidade em uma conexão Keep-Alive.</li><li>[TimeoutManager.EntityBody](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody) &ndash; O tempo permitido para a chegada do corpo da entidade de solicitação.</li><li>[TimeoutManager.HeaderWait](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait) &ndash; O tempo permitido para que a API do servidor HTTP analise o cabeçalho da solicitação.</li><li>[TimeoutManager.IdleConnection](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection) &ndash; O tempo permitido para uma conexão ociosa.</li><li>[TimeoutManager.MinSendBytesPerSecond](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond) &ndash; A taxa de envio mínima para a resposta.</li><li>[TimeoutManager.RequestQueue](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue) &ndash; O tempo permitido para que a solicitação permaneça na fila de solicitações até o aplicativo coletá-la.</li></ul> |  |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Especifique o <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> para registrar com o HTTP.sys. A mais útil é [UrlPrefixCollection.Add](xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add*), que é usada para adicionar um prefixo à coleção. É possível modificá-las a qualquer momento antes de descartar o ouvinte. |  |
 
 ::: moniker-end
 
-   <a name="maxrequestbodysize"></a>
+<a name="maxrequestbodysize"></a>
 
-   **MaxRequestBodySize**
+**MaxRequestBodySize**
 
-   O tamanho máximo permitido em bytes para todos os corpos de solicitação. Quando é definido como `null`, o tamanho máximo do corpo da solicitação é ilimitado. Esse limite não afeta as conexões atualizadas que são sempre ilimitadas.
+O tamanho máximo permitido em bytes para todos os corpos de solicitação. Quando é definido como `null`, o tamanho máximo do corpo da solicitação é ilimitado. Esse limite não afeta as conexões atualizadas que são sempre ilimitadas.
 
-   O método recomendado para substituir o limite em um aplicativo ASP.NET Core MVC para um único `IActionResult` é usar o atributo <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> em um método de ação:
+O método recomendado para substituir o limite em um aplicativo ASP.NET Core MVC para um único `IActionResult` é usar o atributo <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> em um método de ação:
 
-   ```csharp
-   [RequestSizeLimit(100000000)]
-   public IActionResult MyActionMethod()
-   ```
+```csharp
+[RequestSizeLimit(100000000)]
+public IActionResult MyActionMethod()
+```
 
-   Uma exceção é gerada quando o aplicativo tenta configurar o limite de uma solicitação, depois que o aplicativo inicia a leitura da solicitação. É possível usar uma propriedade `IsReadOnly` para indicar se a propriedade `MaxRequestBodySize` está no estado somente leitura, o que significa que é tarde demais para configurar o limite.
+Uma exceção é gerada quando o aplicativo tenta configurar o limite de uma solicitação, depois que o aplicativo inicia a leitura da solicitação. É possível usar uma propriedade `IsReadOnly` para indicar se a propriedade `MaxRequestBodySize` está no estado somente leitura, o que significa que é tarde demais para configurar o limite.
 
-   Se o aplicativo precisar substituir <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> mediante solicitação, use o <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>:
+Se o aplicativo precisar substituir <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> mediante solicitação, use o <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>:
 
-   [!code-csharp[](httpsys/sample/Startup.cs?name=snippet1&highlight=6-7)]
+::: moniker range=">= aspnetcore-3.0"
 
-3. Quando usar o Visual Studio, verifique se que o aplicativo está configurado para executar o IIS ou IIS Express.
+[!code-csharp[](httpsys/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=6-7)]
 
-   No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express. Para executar o projeto como um aplicativo de console, altere manualmente o perfil selecionado, conforme mostrado na captura de tela a seguir:
+::: moniker-end
 
-   ![Selecionar o perfil do aplicativo de console](httpsys/_static/vs-choose-profile.png)
+::: moniker range="< aspnetcore-3.0"
+
+[!code-csharp[](httpsys/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=6-7)]
+
+::: moniker-end
+
+Quando usar o Visual Studio, verifique se que o aplicativo está configurado para executar o IIS ou IIS Express.
+
+No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express. Para executar o projeto como um aplicativo de console, altere manualmente o perfil selecionado, conforme mostrado na captura de tela a seguir:
+
+![Selecionar o perfil do aplicativo de console](httpsys/_static/vs-choose-profile.png)
 
 ### <a name="configure-windows-server"></a>Configurar o Windows Server
 
@@ -208,7 +209,17 @@ O HTTP.sys delega à autenticação de modo kernel com o protocolo de autentica�
 
    O exemplo de código a seguir mostra como usar <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> com o endereço IP local do servidor `10.0.0.4` na porta 443:
 
-   [!code-csharp[](httpsys/sample_snapshot/Program.cs?name=snippet1&highlight=6)]
+::: moniker range=">= aspnetcore-3.0"
+
+   [!code-csharp[](httpsys/samples_snapshot/3.x/Program.cs?highlight=7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+   [!code-csharp[](httpsys/samples_snapshot/2.x/Program.cs?highlight=6)]
+
+::: moniker-end
 
    Uma vantagem de usar `UrlPrefixes` é que uma mensagem de erro é gerada imediatamente no caso de prefixos formatados de forma incorreta.
 

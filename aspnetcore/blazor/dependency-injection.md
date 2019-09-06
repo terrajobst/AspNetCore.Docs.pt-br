@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/02/2019
 uid: blazor/dependency-injection
-ms.openlocfilehash: a9330caa81eec0910206312283b3424c70cd1289
-ms.sourcegitcommit: 2eb605f4f20ac4dd9de6c3b3e3453e108a357a21
+ms.openlocfilehash: a2bfa0cbe951e817ed6264f1a151d5a716cd795c
+ms.sourcegitcommit: 8b36f75b8931ae3f656e2a8e63572080adc78513
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/06/2019
-ms.locfileid: "68948386"
+ms.lasthandoff: 09/05/2019
+ms.locfileid: "70310336"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>ASP.NET Core injeção de dependência mais incrivelmente
 
@@ -33,7 +33,7 @@ Os serviços padrão são adicionados automaticamente à coleção de serviços 
 | ------- | -------- | ----------- |
 | <xref:System.Net.Http.HttpClient> | Singleton | Fornece métodos para enviar solicitações HTTP e receber respostas HTTP de um recurso identificado por um URI. Observe que essa instância do `HttpClient` usa o navegador para manipular o tráfego HTTP em segundo plano. [HttpClient. BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress) é definido automaticamente como o prefixo de URI de base do aplicativo. Para obter mais informações, consulte <xref:blazor/call-web-api>. |
 | `IJSRuntime` | Singleton | Representa uma instância de um tempo de execução JavaScript em que as chamadas JavaScript são expedidas. Para obter mais informações, consulte <xref:blazor/javascript-interop>. |
-| `IUriHelper` | Singleton | Contém auxiliares para trabalhar com URIs e estado de navegação. Para obter mais informações, consulte [URI e auxiliares de estado de navegação](xref:blazor/routing#uri-and-navigation-state-helpers). |
+| `NavigationManager` | Singleton | Contém auxiliares para trabalhar com URIs e estado de navegação. Para obter mais informações, consulte [URI e auxiliares de estado de navegação](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
 Um provedor de serviços personalizado não fornece automaticamente os serviços padrão listados na tabela. Se você usar um provedor de serviços personalizado e precisar de qualquer um dos serviços mostrados na tabela, adicione os serviços necessários ao novo provedor de serviços.
 
@@ -69,7 +69,7 @@ O sistema de DI é baseado no sistema de injeção de ASP.NET Core. Para obter m
 
 ## <a name="request-a-service-in-a-component"></a>Solicitar um serviço em um componente
 
-Depois que os serviços forem adicionados à coleção de serviços, insira os serviços nos componentes usando [ \@](xref:mvc/views/razor#inject) a diretiva injetar Razor. `@inject`tem dois parâmetros:
+Depois que os serviços forem adicionados à coleção de serviços, insira os serviços nos componentes usando a [ \@diretiva injetar](xref:mvc/views/razor#inject) Razor. `@inject`tem dois parâmetros:
 
 * Digite &ndash; o tipo do serviço a injetar.
 * Propriedade &ndash; o nome da propriedade que recebe o serviço de aplicativo injetado. A propriedade não requer criação manual. O compilador cria a propriedade.

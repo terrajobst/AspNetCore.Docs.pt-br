@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/13/2019
 uid: blazor/state-management
-ms.openlocfilehash: af040635302fbf2dae8192dcf37d55bfcfedfcec
-ms.sourcegitcommit: f5f0ff65d4e2a961939762fb00e654491a2c772a
+ms.openlocfilehash: 01f32130e43b7235cb438ad71321256882f53573
+ms.sourcegitcommit: 8b36f75b8931ae3f656e2a8e63572080adc78513
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/15/2019
-ms.locfileid: "69030370"
+ms.lasthandoff: 09/05/2019
+ms.locfileid: "70310296"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>ASP.NET Core o gerenciamento de estado mais incrivelmente
 
@@ -209,7 +209,7 @@ Uma abordagem é controlar se os dados estão `null` (ainda carregando) ou não.
 private int? currentCount;
 ```
 
-Em vez de exibir incondicionalmente o botão contagem e incremento, escolha exibir esses elementos somente se os dados forem carregados:
+Em vez de exibir incondicionalmente o botão contagem e **incremento** , escolha exibir esses elementos somente se os dados forem carregados:
 
 ```cshtml
 @if (currentCount.HasValue)
@@ -237,10 +237,7 @@ Durante o pré-processamento:
 
 Uma maneira de resolver o erro é desabilitar o pré-processamento. Normalmente, essa é a melhor opção se o aplicativo fizer uso intensivo de armazenamento baseado em navegador. O pré-processamento adiciona complexidade e não beneficia o aplicativo porque o aplicativo não pode colocar nenhum conteúdo útil até `localStorage` ou `sessionStorage` estar disponível.
 
-Para desabilitar o pré-processamento:
-
-1. Abra o arquivo *pages/_Host. cshtml* e remova a chamada para `Html.RenderComponentAsync`.
-1. Abra o `Startup.cs` arquivo e substitua a chamada para `endpoints.MapBlazorHub()` por `endpoints.MapBlazorHub<App>("app")`. `App`é o tipo do componente raiz. `"app"`é um seletor de CSS que especifica o local para o componente raiz.
+Para desabilitar o pré-processamento, abra o arquivo *pages/_Host. cshtml* e altere a chamada para `Html.RenderComponentAsync<App>(RenderMode.Server)`.
 
 O pré-processamento pode ser útil para outras páginas que não usam `localStorage` o ou `sessionStorage`o. Para manter o pré-processamento habilitado, adie a operação de carregamento até que o navegador esteja conectado ao circuito. Veja a seguir um exemplo de como armazenar um valor de contador:
 

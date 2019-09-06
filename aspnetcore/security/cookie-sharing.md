@@ -5,14 +5,14 @@ description: Saiba como compartilhar cookies de autenticação entre os aplicati
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/14/2019
+ms.date: 09/05/2019
 uid: security/cookie-sharing
-ms.openlocfilehash: 1650afce5c371d0830bb207618b9c1495f0ce587
-ms.sourcegitcommit: 476ea5ad86a680b7b017c6f32098acd3414c0f6c
+ms.openlocfilehash: 9b5bee9fb588ef04efd50aa4a5afc3e53da1b123
+ms.sourcegitcommit: 116bfaeab72122fa7d586cdb2e5b8f456a2dc92a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/14/2019
-ms.locfileid: "69022384"
+ms.lasthandoff: 09/05/2019
+ms.locfileid: "70384767"
 ---
 # <a name="share-authentication-cookies-among-aspnet-apps"></a>Compartilhar cookies de autenticação entre aplicativos ASP.NET
 
@@ -34,7 +34,7 @@ Nos exemplos a seguir:
   * Em .NET Framework aplicativos, adicione uma referência de pacote a [Microsoft. AspNetCore. dataprotection. Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/).
 * <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*>define o nome comum do aplicativo.
 
-## <a name="share-authentication-cookies-among-aspnet-core-apps"></a>Compartilhar cookies de autenticação entre ASP.NET Core aplicativos
+## <a name="share-authentication-cookies-with-aspnet-core-identity"></a>Compartilhar cookies de autenticação com identidade ASP.NET Core
 
 Ao usar a identidade de ASP.NET Core:
 
@@ -46,7 +46,7 @@ No `Startup.ConfigureServices`:
 
 ```csharp
 services.AddDataProtection()
-    .PersistKeysToFileSystem({PATH TO COMMON KEY RING FOLDER})
+    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
     .SetApplicationName("SharedCookieApp");
 
 services.ConfigureApplicationCookie(options => {
@@ -54,11 +54,13 @@ services.ConfigureApplicationCookie(options => {
 });
 ```
 
+## <a name="share-authentication-cookies-without-aspnet-core-identity"></a>Compartilhar cookies de autenticação sem ASP.NET Core identidade
+
 Ao usar cookies diretamente sem ASP.NET Core identidade, configure a proteção de dados e `Startup.ConfigureServices`a autenticação no. No exemplo a seguir, o tipo de autenticação é definido `Identity.Application`como:
 
 ```csharp
 services.AddDataProtection()
-    .PersistKeysToFileSystem({PATH TO COMMON KEY RING FOLDER})
+    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
     .SetApplicationName("SharedCookieApp");
 
 services.AddAuthentication("Identity.Application")
@@ -67,6 +69,23 @@ services.AddAuthentication("Identity.Application")
         options.Cookie.Name = ".AspNet.SharedCookie";
     });
 ```
+
+## <a name="share-cookies-across-different-base-paths"></a>Compartilhar cookies entre caminhos base diferentes
+
+Um cookie de autenticação usa [HttpRequest. PathBase](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase) como seu [Cookie. Path](xref:Microsoft.AspNetCore.Http.CookieBuilder.Path)padrão. Se o cookie do aplicativo precisar ser compartilhado entre caminhos base diferentes, `Path` o deverá ser substituído:
+
+```csharp
+services.AddDataProtection()
+    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
+    .SetApplicationName("SharedCookieApp");
+
+services.ConfigureApplicationCookie(options => {
+    options.Cookie.Name = ".AspNet.SharedCookie";
+    options.Cookie.Path = "/";
+});
+```
+
+## <a name="share-cookies-across-subdomains"></a>Compartilhar cookies entre subdomínios
 
 Ao hospedar aplicativos que compartilham cookies entre subdomínios, especifique um domínio comum na propriedade [Cookie. Domain](xref:Microsoft.AspNetCore.Http.CookieBuilder.Domain) . Para compartilhar cookies entre aplicativos em `contoso.com`, `first_subdomain.contoso.com` como e `second_subdomain.contoso.com`, especifique o `Cookie.Domain` como `.contoso.com`:
 
@@ -91,7 +110,7 @@ Quando um aplicativo usa o middleware de autenticação de cookie Katana, `UseCo
 
 Um aplicativo ASP.NET 4. x deve ter como destino .NET Framework 4.5.1 ou posterior. Caso contrário, os pacotes NuGet necessários falharão na instalação.
 
-Para compartilhar cookies de autenticação entre um aplicativo ASP.NET 4. x e um aplicativo ASP.NET Core, configure o aplicativo ASP.NET Core conforme indicado na seção [compartilhar cookies de autenticação entre ASP.NET Core aplicativos](#share-authentication-cookies-among-aspnet-core-apps) e, em seguida, configure o aplicativo ASP.NET 4. x da seguinte maneira.
+Para compartilhar cookies de autenticação entre um aplicativo ASP.NET 4. x e um aplicativo ASP.NET Core, configure o aplicativo ASP.NET Core conforme indicado na seção [compartilhar cookies de autenticação entre ASP.NET Core aplicativos](#share-authentication-cookies-with-aspnet-core-identity) e, em seguida, configure o aplicativo ASP.NET 4. x da seguinte maneira.
 
 Confirme se os pacotes do aplicativo foram atualizados para as versões mais recentes. Instale o pacote [Microsoft. Owin. Security. Interop](https://www.nuget.org/packages/Microsoft.Owin.Security.Interop/) em cada aplicativo ASP.NET 4. x.
 
@@ -123,7 +142,7 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
     },
     TicketDataFormat = new AspNetTicketDataFormat(
         new DataProtectorShim(
-            DataProtectionProvider.Create({PATH TO COMMON KEY RING FOLDER},
+            DataProtectionProvider.Create("{PATH TO COMMON KEY RING FOLDER}",
                 (builder) => { builder.SetApplicationName("SharedCookieApp"); })
             .CreateProtector(
                 "Microsoft.AspNetCore.Authentication.Cookies." +

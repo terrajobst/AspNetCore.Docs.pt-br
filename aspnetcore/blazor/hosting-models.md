@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/01/2019
 uid: blazor/hosting-models
-ms.openlocfilehash: 64393e826cb17550085f468f5916fca55973908f
-ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
+ms.openlocfilehash: bf2bce4f89e8bfe6e5aeeb4860c85a60c5eb4b7c
+ms.sourcegitcommit: 8b36f75b8931ae3f656e2a8e63572080adc78513
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/13/2019
-ms.locfileid: "68993383"
+ms.lasthandoff: 09/05/2019
+ms.locfileid: "70310410"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Modelos de hospedagem mais amASP.NET Core
 
@@ -99,35 +99,67 @@ Aplicativos de mais alto do lado do servidor são configurados por padrão para 
  
 ```cshtml
 <body>
-    <app>@(await Html.RenderComponentAsync<App>())</app>
+    <app>@(await Html.RenderComponentAsync<App>(RenderMode.ServerPrerendered))</app>
  
     <script src="_framework/blazor.server.js"></script>
 </body>
 ```
+
+`RenderMode`configura se o componente:
+
+* É renderizado na página.
+* É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um aplicativo mais incrivelmente do agente do usuário.
+
+| `RenderMode`        | Descrição |
+| ------------------- | ----------- |
+| `ServerPrerendered` | Renderiza o componente em HTML estático e inclui um marcador para um aplicativo do lado do servidor mais incrivelmente. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo mais incrivelmente. Não há suporte para parâmetros. |
+| `Server`            | Renderiza um marcador para um aplicativo do lado do servidor mais incrivelmente. A saída do componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo mais incrivelmente. Não há suporte para parâmetros. |
+| `Static`            | Renderiza o componente em HTML estático. Há suporte para os parâmetros. |
+
+Não há suporte para a renderização de componentes de servidor de uma página HTML estática.
  
 O cliente se reconecta ao servidor com o mesmo estado que foi usado para PreRender o aplicativo. Se o estado do aplicativo ainda estiver na memória, o estado do componente não será reprocessado depois que a conexão do Signalr for estabelecida.
 
 ### <a name="render-stateful-interactive-components-from-razor-pages-and-views"></a>Renderizar componentes interativos com estado de páginas e exibições do Razor
  
-Os componentes interativos com estado podem ser adicionados a uma página ou exibição Razor. Quando a página ou a exibição é renderizada, o componente é renderizado com ele. O aplicativo se reconecta ao estado do componente depois que a conexão do cliente é estabelecida, desde que o estado ainda esteja na memória.
+Os componentes interativos com estado podem ser adicionados a uma página ou exibição Razor.
+
+Quando a página ou a exibição renderiza:
+
+* O componente é renderizado com a página ou exibição.
+* O estado inicial do componente usado para o pré-processamento é perdido.
+* O novo estado do componente é criado quando a conexão do Signalr é estabelecida.
  
-Por exemplo, a seguinte página Razor renderiza um `Counter` componente com uma contagem inicial que é especificada usando um formulário:
+A seguinte página do Razor renderiza um `Counter` componente:
+
+```cshtml
+<h1>My Razor Page</h1>
+ 
+@(await Html.RenderComponentAsync<Counter>(RenderMode.ServerPrerendered))
+```
+
+### <a name="render-noninteractive-components-from-razor-pages-and-views"></a>Renderizar componentes não interativos de páginas e exibições do Razor
+
+Na página Razor a seguir, o `MyComponent` componente é processado estaticamente com um valor inicial que é especificado usando um formulário:
  
 ```cshtml
 <h1>My Razor Page</h1>
 
 <form>
-    <input type="number" asp-for="InitialCount" />
-    <button type="submit">Set initial count</button>
+    <input type="number" asp-for="InitialValue" />
+    <button type="submit">Set initial value</button>
 </form>
  
-@(await Html.RenderComponentAsync<Counter>(new { InitialCount = InitialCount }))
+@(await Html.RenderComponentAsync<MyComponent>(RenderMode.Static, 
+    new { InitialValue = InitialValue }))
  
 @code {
     [BindProperty(SupportsGet=true)]
-    public int InitialCount { get; set; }
+    public int InitialValue { get; set; }
 }
 ```
+
+Como `MyComponent` é processado estaticamente, o componente não pode ser interativo.
 
 ### <a name="detect-when-the-app-is-prerendering"></a>Detectar quando o aplicativo está sendo renderizado
  
