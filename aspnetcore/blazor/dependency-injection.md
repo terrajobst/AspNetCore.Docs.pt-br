@@ -5,14 +5,14 @@ description: Veja como os aplicativos mais incrivelmente podem injetar serviços
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2019
+ms.date: 09/06/2019
 uid: blazor/dependency-injection
-ms.openlocfilehash: a2bfa0cbe951e817ed6264f1a151d5a716cd795c
-ms.sourcegitcommit: 8b36f75b8931ae3f656e2a8e63572080adc78513
+ms.openlocfilehash: 0b48cd0cbe14d2b07627f56ab78611bbd3209fa1
+ms.sourcegitcommit: 43c6335b5859282f64d66a7696c5935a2bcdf966
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/05/2019
-ms.locfileid: "70310336"
+ms.lasthandoff: 09/07/2019
+ms.locfileid: "70800387"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>ASP.NET Core injeção de dependência mais incrivelmente
 
@@ -61,7 +61,7 @@ Os serviços podem ser configurados com os tempos de vida mostrados na tabela a 
 
 | Tempo de vida | Descrição |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | No momento, o lado do cliente não tem um conceito de escopos de DI. `Scoped`-serviços registrados se comportam como `Singleton` serviços. No entanto, o modelo de hospedagem do lado `Scoped` do servidor dá suporte ao tempo de vida. Em um componente Razor, um registro de serviço com escopo é definido para a conexão. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Os aplicativos Webassembly mais claros não têm um conceito de escopos de DI. `Scoped`-serviços registrados se comportam como `Singleton` serviços. No entanto, o modelo de hospedagem do lado `Scoped` do servidor dá suporte ao tempo de vida. Em aplicativos de servidor mais incrivelmente, um registro de serviço com escopo é definido para a *conexão*. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI cria uma *única instância* do serviço. Todos os componentes que exigem `Singleton` um serviço recebem uma instância do mesmo serviço. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Sempre que um componente Obtém uma instância de um `Transient` serviço do contêiner de serviço, ele recebe uma *nova instância* do serviço. |
 
@@ -124,6 +124,29 @@ Pré-requisitos para injeção de construtor:
 * Um construtor deve existir cujos argumentos podem ser todos atendidos por DI. Parâmetros adicionais não cobertos por DI serão permitidos se eles especificarem valores padrão.
 * O Construtor aplicável deve ser *público*.
 * Um Construtor aplicável deve existir. No caso de uma ambiguidade, DI gera uma exceção.
+
+## <a name="utility-base-component-classes-to-manage-a-di-scope"></a>Classes de componente base do utilitário para gerenciar um escopo de DI
+
+Em aplicativos ASP.NET Core, os serviços com escopo normalmente são incluídos no escopo da solicitação atual. Depois que a solicitação for concluída, todos os serviços com escopo ou transitórios serão descartados pelo sistema de DI. Em aplicativos de servidor mais incrivelmente, o escopo da solicitação dura a duração da conexão do cliente, o que pode resultar em serviços transitórios e no escopo que vivem muito mais do que o esperado.
+
+Para os serviços de escopo até o tempo de vida de um componente `OwningComponentBase` , `OwningComponentBase<TService>` o pode usar as classes base e. Essas classes base expõem `ScopedServices` uma propriedade do `IServiceProvider` tipo que resolve serviços que estão no escopo do tempo de vida do componente. Para criar um componente que herda de uma classe base no Razor, use a `@inherits` diretiva.
+
+```cshtml
+@page "/users"
+@attribute [Authorize]
+@inherits OwningComponentBase<Data.ApplicationDbContext>
+
+<h1>Users (@Service.Users.Count())</h1>
+<ul>
+    @foreach (var user in Service.Users)
+    {
+        <li>@user.UserName</li>
+    }
+</ul>
+```
+
+> [!NOTE]
+> Os serviços injetados no componente usando `@inject` o ou `InjectAttribute` os não são criados no escopo do componente e estão vinculados ao escopo da solicitação.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

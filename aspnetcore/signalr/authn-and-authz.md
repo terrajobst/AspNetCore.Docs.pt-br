@@ -7,12 +7,12 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 07/15/2019
 uid: signalr/authn-and-authz
-ms.openlocfilehash: e7e7a9fd537ba89b64c15594652a290357a00038
-ms.sourcegitcommit: f30b18442ed12831c7e86b0db249183ccd749f59
+ms.openlocfilehash: da226f4e192be8e34a0b2cec1493a1353c995279
+ms.sourcegitcommit: 387cf29f5d5addef2cbc70670a11d612806b36b2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/23/2019
-ms.locfileid: "68412538"
+ms.lasthandoff: 09/06/2019
+ms.locfileid: "70746525"
 ---
 # <a name="authentication-and-authorization-in-aspnet-core-signalr"></a>Autenticação e autorização no Signalr ASP.NET Core
 
@@ -26,13 +26,39 @@ O signalr pode ser usado com [ASP.NET Core autenticação](xref:security/authent
 
 Veja a seguir um exemplo de `Startup.Configure` que usa a autenticação de sinalização e ASP.NET Core:
 
+::: moniker range=">= aspnetcore-3.0"
+
 ```csharp
 public void Configure(IApplicationBuilder app)
 {
     ...
 
     app.UseStaticFiles();
-    
+
+    app.UseRouting();
+
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapHub<ChatHub>("/chat");
+        endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+    });
+}
+```
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    ...
+
+    app.UseStaticFiles();
+
     app.UseAuthentication();
 
     app.UseSignalR(hubs =>
@@ -49,6 +75,8 @@ public void Configure(IApplicationBuilder app)
 
 > [!NOTE]
 > A ordem na qual você registra o Signalr e o middleware de autenticação ASP.NET Core é importante. Sempre chame `UseAuthentication` antes `UseSignalR` para que o `HttpContext`signalr tenha um usuário no.
+
+::: moniker-end
 
 ### <a name="cookie-authentication"></a>Autenticação de cookie
 

@@ -5,14 +5,14 @@ description: Saiba como rotear solicitações em aplicativos e sobre o component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/23/2019
+ms.date: 09/06/2019
 uid: blazor/routing
-ms.openlocfilehash: ae3d7ab01185dd6f2e8e0f59b78c2e693fe464b0
-ms.sourcegitcommit: 8b36f75b8931ae3f656e2a8e63572080adc78513
+ms.openlocfilehash: d348908261c51b477aa698a407266d05c0df5a33
+ms.sourcegitcommit: 43c6335b5859282f64d66a7696c5935a2bcdf966
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/05/2019
-ms.locfileid: "70310339"
+ms.lasthandoff: 09/07/2019
+ms.locfileid: "70800335"
 ---
 # <a name="aspnet-core-blazor-routing"></a>Roteamento de ASP.NET Core mais
 
@@ -28,9 +28,7 @@ O lado do servidor mais incrivelmente é integrado ao [Roteamento de ponto de ex
 
 ## <a name="route-templates"></a>Modelos de rota
 
-O `Router` componente habilita o roteamento e um modelo de rota é fornecido para cada componente acessível. O `Router` componente aparece no arquivo *app. Razor* :
-
-Em um aplicativo mais alto do lado do servidor ou do lado do cliente:
+O `Router` componente permite o roteamento para cada componente com uma rota especificada. O `Router` componente aparece no arquivo *app. Razor* :
 
 ```cshtml
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -43,20 +41,27 @@ Em um aplicativo mais alto do lado do servidor ou do lado do cliente:
 </Router>
 ```
 
-Quando um arquivo *. Razor* com uma `@page` diretiva é compilado, a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> classe gerada é fornecida especificando o modelo de rota. Em tempo de execução, o roteador procura classes de componentes `RouteAttribute` com um e renderiza o componente com um modelo de rota que corresponde à URL solicitada.
+Quando um arquivo *. Razor* com uma `@page` diretiva é compilado, a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> classe gerada é fornecida especificando o modelo de rota.
+
+Em tempo de execução `RouteView` , o componente:
+
+* Recebe o `RouteData` `Router` do junto com os parâmetros desejados.
+* Renderiza o componente especificado com seu layout (ou um layout padrão opcional) usando os parâmetros especificados.
+
+Opcionalmente, você pode especificar `DefaultLayout` um parâmetro com uma classe de layout a ser usada para componentes que não especificam um layout. Os modelos de mais de um padrão `MainLayout` especificam o componente. *MainLayout. Razor* está na pasta *compartilhada* do projeto de modelo. Para obter mais informações sobre layouts, <xref:blazor/layouts>consulte.
 
 Vários modelos de rota podem ser aplicados a um componente. O componente a seguir responde a solicitações `/BlazorRoute` para `/DifferentBlazorRoute`o e o:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
 > [!IMPORTANT]
-> Para que as URLs sejam resolvidas corretamente, o aplicativo `<base>` deve incluir uma marca em seu arquivo *wwwroot/index.html* (mais de lado do cliente) ou no arquivo *pages/_Host. cshtml* (no lado do servidor) com o caminho base do `href` aplicativo especificado no atributo ( `<base href="/">`). Para obter mais informações, consulte <xref:host-and-deploy/blazor/client-side#app-base-path>.
+> Para que as URLs sejam resolvidas corretamente, o aplicativo `<base>` deve incluir uma marca em seu arquivo *wwwroot/index.html* (mais de lado do cliente) ou no arquivo *pages/_Host. cshtml* (no lado do servidor) com o caminho base do `href` aplicativo especificado no atributo ( `<base href="/">`). Para obter mais informações, consulte <xref:host-and-deploy/blazor/index#app-base-path>.
 
 ## <a name="provide-custom-content-when-content-isnt-found"></a>Fornecer conteúdo personalizado quando o conteúdo não for encontrado
 
 O `Router` componente permite que o aplicativo especifique conteúdo personalizado se o conteúdo não for encontrado para a rota solicitada.
 
-No arquivo *app. Razor* , defina conteúdo personalizado no `<NotFound>` parâmetro de `Router` modelo do componente:
+No arquivo *app. Razor* , defina conteúdo personalizado no `NotFound` parâmetro de `Router` modelo do componente:
 
 ```cshtml
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -70,7 +75,13 @@ No arquivo *app. Razor* , defina conteúdo personalizado no `<NotFound>` parâme
 </Router>
 ```
 
-O conteúdo de `<NotFound>` pode incluir itens arbitrários, como outros componentes interativos.
+O conteúdo das `<NotFound>` marcas pode incluir itens arbitrários, como outros componentes interativos. Para aplicar um layout padrão ao `NotFound` conteúdo, consulte <xref:blazor/layouts>.
+
+## <a name="route-to-components-from-multiple-assemblies"></a>Rotear para componentes de vários assemblies
+
+Use o `AdditionalAssemblies` parâmetro para especificar assemblies adicionais para o `Router` componente a ser considerado ao procurar componentes roteáveis. Os assemblies especificados são considerados além do `AppAssembly`assembly especificado. No exemplo a seguir, `Component1` é um componente roteável definido em uma biblioteca de classes referenciada. O exemplo `AdditionalAssemblies` a seguir resulta no suporte de `Component1`roteamento para:
+
+< roteador AppAssembly = "typeof (programa). Assembly "AdditionalAssemblies =" New [] {typeof (Component1). Assembly} >...</Router>
 
 ## <a name="route-parameters"></a>Parâmetros de rota
 
@@ -181,4 +192,3 @@ O componente a seguir navega para o componente do `Counter` aplicativo quando o 
     }
 }
 ```
-

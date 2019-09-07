@@ -5,14 +5,14 @@ description: Saiba mais sobre o middleware do ASP.NET Core e o pipeline de solic
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/09/2019
+ms.date: 08/22/2019
 uid: fundamentals/middleware/index
-ms.openlocfilehash: 89cd505810eefeeeb8f708ab82244bbd2e341f38
-ms.sourcegitcommit: b40613c603d6f0cc71f3232c16df61550907f550
-ms.translationtype: HT
+ms.openlocfilehash: 674e89cd22ce113474dfbba44b57d9255446fc3e
+ms.sourcegitcommit: f65d8765e4b7c894481db9b37aa6969abc625a48
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68308183"
+ms.lasthandoff: 09/06/2019
+ms.locfileid: "70773775"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware do ASP.NET Core
 
@@ -39,13 +39,13 @@ Cada delegado pode executar operações antes e depois do próximo delegado. Os 
 
 O aplicativo ASP.NET Core mais simples possível define um delegado de solicitação única que controla todas as solicitações. Este caso não inclui um pipeline de solicitação real. Em vez disso, uma única função anônima é chamada em resposta a cada solicitação HTTP.
 
-[!code-csharp[](index/snapshot/Middleware/Startup.cs?name=snippet1)]
+[!code-csharp[](index/snapshot/Middleware/Startup.cs)]
 
 O primeiro delegado <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run*> encerra o pipeline.
 
 Encadeie vários delegados de solicitação junto com o <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*>. O parâmetro `next` representa o próximo delegado no pipeline. Lembre-se de que você pode causar um curto-circuito no pipeline ao *não* chamar o parâmetro *next*. Normalmente, você pode executar ações antes e depois do próximo delegado, conforme o exemplo a seguir demonstra:
 
-[!code-csharp[](index/snapshot/Chain/Startup.cs?name=snippet1)]
+[!code-csharp[](index/snapshot/Chain/Startup.cs)]
 
 Quando um delegado não transmite uma solicitação ao próximo delegado, considera-se que ele esteja *causando um curto-circuito do pipeline de solicitação*. O curto-circuito geralmente é desejável porque ele evita trabalho desnecessário. Por exemplo, o [Middleware de Arquivo Estático](xref:fundamentals/static-files) pode agir com um *middleware terminal*, processando uma solicitação para um arquivo estático e causar curto-circuito no restante do pipeline. O middleware adicionado ao pipeline antes do middleware que finaliza o processamento adicional ainda processa o código após as instruções `next.Invoke`. No entanto, confira o seguinte aviso sobre a tentativa de gravar em uma resposta que já foi enviada.
 
@@ -57,11 +57,87 @@ Quando um delegado não transmite uma solicitação ao próximo delegado, consid
 >
 > <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted*> é uma dica útil para indicar se os cabeçalhos foram enviados ou o corpo foi gravado.
 
-## <a name="order"></a>Pedido
+## <a name="order"></a>Ordem
 
 A ordem em que os componentes do middleware são adicionados ao método `Startup.Configure` define a ordem em que os componentes de middleware são invocados nas solicitações e a ordem inversa para a resposta. A ordem é crítica para a segurança, o desempenho e a funcionalidade.
 
 O método `Startup.Configure` a seguir adiciona componentes de middleware para cenários de aplicativo comuns:
+
+::: moniker range=">= aspnetcore-3.0"
+
+1. Exceção/tratamento de erro
+   * Quando o aplicativo é executado no ambiente de desenvolvimento:
+     * O middleware da página de exceção do desenvolvedor (<xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*>) relata erros de tempo de execução do aplicativo.
+     * O middleware da página de erro do banco de dados (<xref:Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage*>) relata erros de tempo de execução do banco de dados.
+   * Quando o aplicativo é executado no ambiente de produção:
+     * O middleware do manipulador de exceção (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>) captura exceções geradas nos middlewares a seguir.
+     * O middleware do protocolo HTTP Strict Transport Security (HSTS) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>) adiciona o cabeçalho `Strict-Transport-Security`.
+1. O middleware de redirecionamento para HTTPS (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>) redireciona as solicitações HTTP para HTTPS.
+1. O middleware de arquivo estático (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>) retorna arquivos estáticos e impede o processamento de novas solicitações.
+1. O middleware da política de cookies (<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*>) adapta o aplicativo às normas do RGPD (Regulamento Geral sobre a Proteção de Dados).
+1. Middleware de roteamento (`UseRouting`) para rotear solicitações.
+1. O middleware de autenticação (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>) tenta autenticar o usuário antes de ele ter acesso aos recursos seguros.
+1. O middleware de autorização`UseAuthorization`() autoriza um usuário a acessar recursos seguros.
+1. O middleware de sessão (<xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*>) estabelece e mantém o estado de sessão. Se o aplicativo usa o estado de sessão, chame o middleware de sessão após o middleware de política de cookies, e antes do middleware do MVC.
+1. Middleware de roteamento de ponto`UseEndpoints` de `MapRazorPages`extremidade (com) para adicionar Razor Pages pontos de extremidades ao pipeline de solicitação.
+
+```csharp
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+        app.UseDatabaseErrorPage();
+    }
+    else
+    {
+        app.UseExceptionHandler("/Error");
+        app.UseHsts();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseStaticFiles();
+    app.UseCookiePolicy();
+    app.UseRouting();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.UseSession();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapRazorPages();
+    });
+}
+```
+
+No código de exemplo anterior, cada método de extensão de middleware é exposto em <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> por meio do namespace <xref:Microsoft.AspNetCore.Builder?displayProperty=fullName>.
+
+<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> é o primeiro componente de middleware adicionado ao pipeline. Portanto, o middleware de manipulador de exceção captura todas as exceções que ocorrem em chamadas posteriores.
+
+O Middleware de Arquivo Estático é chamado no início do pipeline para que possa controlar as solicitações e causar o curto-circuito sem passar pelos componentes restantes. O Middleware de Arquivo Estático não fornece **nenhuma** verificação de autorização. Todos os arquivos servidos pelo middleware de arquivo estático, incluindo aqueles em *wwwroot*, estão disponíveis publicamente. Para conhecer uma abordagem para proteger arquivos estáticos, veja <xref:fundamentals/static-files>.
+
+Se a solicitação não for controlada pelo Middleware de Arquivo Estático, ela será transmitida para o Middleware de Autenticação (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>), que executa a autenticação. A autenticação causa curto-circuito em solicitações não autenticadas. Embora o middleware de autenticação autentique as solicitações, a autorização (e a rejeição) ocorre somente depois que o MVC seleciona uma Página Razor específica ou um controlador MVC e uma ação.
+
+O exemplo a seguir demonstra uma solicitação de middleware cujas solicitações de arquivos estáticos são manipuladas pelo Middleware de Arquivo Estático antes do Middleware de Compactação de Resposta. Arquivos estáticos não são compactados com este pedido de middleware. As respostas Razor Pages podem ser compactadas.
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    // Static files aren't compressed by Static File Middleware.
+    app.UseStaticFiles();
+
+    app.UseResponseCompression();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapRazorPages();
+    });
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 
 1. Exceção/tratamento de erro
    * Quando o aplicativo é executado no ambiente de desenvolvimento:
@@ -104,7 +180,7 @@ No código de exemplo anterior, cada método de extensão de middleware é expos
 
 <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> é o primeiro componente de middleware adicionado ao pipeline. Portanto, o middleware de manipulador de exceção captura todas as exceções que ocorrem em chamadas posteriores.
 
-O Middleware de Arquivo Estático é chamado no início do pipeline para que possa controlar as solicitações e causar o curto-circuito sem passar pelos componentes restantes. O Middleware de Arquivo Estático não fornece **nenhuma** verificação de autorização. Todos os arquivos atendidos, incluindo aqueles em *wwwroot*, estão disponíveis publicamente. Para conhecer uma abordagem para proteger arquivos estáticos, veja <xref:fundamentals/static-files>.
+O Middleware de Arquivo Estático é chamado no início do pipeline para que possa controlar as solicitações e causar o curto-circuito sem passar pelos componentes restantes. O Middleware de Arquivo Estático não fornece **nenhuma** verificação de autorização. Todos os arquivos servidos pelo middleware de arquivo estático, incluindo aqueles em *wwwroot*, estão disponíveis publicamente. Para conhecer uma abordagem para proteger arquivos estáticos, veja <xref:fundamentals/static-files>.
 
 Se a solicitação não for controlada pelo Middleware de Arquivo Estático, ela será transmitida para o Middleware de Autenticação (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>), que executa a autenticação. A autenticação causa curto-circuito em solicitações não autenticadas. Embora o middleware de autenticação autentique as solicitações, a autorização (e a rejeição) ocorre somente depois que o MVC seleciona uma Página Razor específica ou um controlador MVC e uma ação.
 
@@ -113,12 +189,16 @@ O exemplo a seguir demonstra uma solicitação de middleware cujas solicitaçõe
 ```csharp
 public void Configure(IApplicationBuilder app)
 {
-    // Static files not compressed by Static File Middleware.
+    // Static files aren't compressed by Static File Middleware.
     app.UseStaticFiles();
+
     app.UseResponseCompression();
+
     app.UseMvcWithDefaultRoute();
 }
 ```
+
+::: moniker-end
 
 ## <a name="use-run-and-map"></a>Use, Run e Map
 
@@ -126,7 +206,7 @@ Configure o pipeline de HTTP usando <xref:Microsoft.AspNetCore.Builder.UseExtens
 
 As extensões <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map*> são usadas como uma convenção de ramificação do pipeline. `Map` ramifica o pipeline de solicitação com base na correspondência do caminho da solicitação em questão. Se o caminho da solicitação iniciar com o caminho especificado, o branch será executado.
 
-[!code-csharp[](index/snapshot/Chain/StartupMap.cs?name=snippet1)]
+[!code-csharp[](index/snapshot/Chain/StartupMap.cs)]
 
 A tabela a seguir mostra as solicitações e as respostas de `http://localhost:1234` usando o código anterior.
 
@@ -141,7 +221,7 @@ Ao usar `Map`, os segmentos de caminho correspondentes são removidos de `HttpRe
 
 <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> ramifica o pipeline de solicitação com base no resultado do predicado fornecido. Qualquer predicado do tipo `Func<HttpContext, bool>` pode ser usado para mapear as solicitações para um novo branch do pipeline. No exemplo a seguir, um predicado é usado para detectar a presença de uma variável de cadeia de caracteres de consulta `branch`:
 
-[!code-csharp[](index/snapshot/Chain/StartupMapWhen.cs?name=snippet1)]
+[!code-csharp[](index/snapshot/Chain/StartupMapWhen.cs)]
 
 A tabela a seguir mostra as solicitações e as respostas de `http://localhost:1234` usando o código anterior.
 
@@ -161,22 +241,22 @@ app.Map("/level1", level1App => {
         // "/level1/level2b" processing
     });
 });
-   ```
+```
 
 `Map` também pode ser correspondido com vários segmentos de uma vez:
 
-[!code-csharp[](index/snapshot/Chain/StartupMultiSeg.cs?name=snippet1&highlight=13)]
+[!code-csharp[](index/snapshot/Chain/StartupMultiSeg.cs?highlight=13)]
 
 ## <a name="built-in-middleware"></a>Middleware interno
 
 O ASP.NET Core é fornecido com os seguintes componentes de middleware. A coluna *Ordem* fornece observações sobre o posicionamento do middleware no pipeline de processamento da solicitação e sob quais condições o middleware podem encerrar o processamento da solicitação. Quando um middleware causa um curto-circuito na solicitação ao processar o pipeline e impede outros middleware downstream de processar uma solicitação, ele é chamado de *middleware terminal*. Para saber mais sobre curto-circuito, confira a seção [Criar um pipeline de middleware com o IApplicationBuilder](#create-a-middleware-pipeline-with-iapplicationbuilder).
 
-| Middleware | DESCRIÇÃO | Pedido |
+| Middleware | Descrição | Ordem |
 | ---------- | ----------- | ----- |
 | [Autenticação](xref:security/authentication/identity) | Fornece suporte à autenticação. | Antes de `HttpContext.User` ser necessário. Terminal para retornos de chamada OAuth. |
 | [Política de cookies](xref:security/gdpr) | Acompanha o consentimento dos usuários para o armazenamento de informações pessoais e impõe padrões mínimos para campos de cookie, tais como `secure` e `SameSite`. | Antes do middleware que emite cookies. Exemplos: autenticação, sessão e MVC (TempData). |
 | [CORS](xref:security/cors) | Configura o Compartilhamento de Recursos entre Origens. | Antes de componentes que usam o CORS. |
-| [Tratamento de Exceção](xref:fundamentals/error-handling) | Trata exceções. | Antes dos componentes que geram erros. |
+| [Diagnóstico](xref:fundamentals/error-handling) | Vários middleware separados que fornecem uma página de exceção do desenvolvedor, tratamento de exceção, páginas de código de status e a página da Web padrão para novos aplicativos. | Antes dos componentes que geram erros. Terminal para exceções ou para servir a página da Web padrão para novos aplicativos. |
 | [Cabeçalhos encaminhados](xref:host-and-deploy/proxy-load-balancer) | Encaminha cabeçalhos como proxy para a solicitação atual. | Antes dos componentes que consomem os campos atualizados. Exemplos: esquema, host, IP do cliente e método. |
 | [Verificações de integridade](xref:host-and-deploy/health-checks) | Verifica a integridade de um aplicativo ASP.NET Core e suas dependências, como a verificação da disponibilidade do banco de dados. | Terminal, se uma solicitação corresponde a um ponto de extremidade da verificação de integridade. |
 | [Substituição do Método HTTP](xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions) | Permite que uma solicitação de entrada POST substitua o método. | Antes dos componentes que consomem o método atualizado. |
@@ -187,7 +267,7 @@ O ASP.NET Core é fornecido com os seguintes componentes de middleware. A coluna
 | [Cache de resposta](xref:performance/caching/middleware) | Fornece suporte para as respostas em cache. | Antes dos componentes que exigem armazenamento em cache. |
 | [Compactação de resposta](xref:performance/response-compression) | Fornece suporte para a compactação de respostas. | Antes dos componentes que exigem compactação. |
 | [Localização de Solicitação](xref:fundamentals/localization) | Fornece suporte à localização. | Antes dos componentes de localização importantes. |
-| [Roteamento](xref:fundamentals/routing) | Define e restringe as rotas de solicitação. | Terminal de rotas correspondentes. |
+| [Roteamento de ponto de extremidade](xref:fundamentals/routing) | Define e restringe as rotas de solicitação. | Terminal de rotas correspondentes. |
 | [Sessão](xref:fundamentals/app-state) | Fornece suporte para gerenciar sessões de usuário. | Antes de componentes que exigem a sessão. |
 | [Arquivos estáticos](xref:fundamentals/static-files) | Fornece suporte para servir arquivos estáticos e pesquisa no diretório. | Terminal, se uma solicitação corresponde a um arquivo. |
 | [Regravação de URL](xref:fundamentals/url-rewriting) | Fornece suporte para regravar URLs e redirecionar solicitações. | Antes dos componentes que consomem a URL. |

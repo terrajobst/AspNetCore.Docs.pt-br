@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/01/2019
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: 9f5ecc7840fc7ffd9432a3bb67d0418efb7e8fd6
-ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
-ms.translationtype: HT
+ms.openlocfilehash: 261abae499a0d5f807a14aebd224949881067bc7
+ms.sourcegitcommit: f65d8765e4b7c894481db9b37aa6969abc625a48
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/22/2019
-ms.locfileid: "69975626"
+ms.lasthandoff: 09/06/2019
+ms.locfileid: "70773811"
 ---
 # <a name="net-generic-host"></a>Host Genérico .NET
 
@@ -170,6 +170,8 @@ Para obter mais informações, consulte [Configuração no ASP.NET Core](xref:fu
 
 Esta seção lista as configurações de host que se aplicam a cargas de trabalho HTTP e àquelas não HTTP. Por padrão, variáveis de ambiente usadas para definir essas configurações podem ter um prefixo `DOTNET_` ou `ASPNETCORE_`.
 
+<!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
+
 ### <a name="applicationname"></a>ApplicationName
 
 A propriedade [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName*) é definida na configuração do host durante a construção do host.
@@ -312,8 +314,9 @@ webBuilder.UseSetting(WebHostDefaults.HostingStartupExcludeAssembliesKey, "assem
 
 A porta de redirecionamento HTTPS. Uso em [aplicação de HTTPS](xref:security/enforcing-ssl).
 
-**Chave**: https_port **Tipo**: *cadeia de caracteres*
-**Padrão**: um valor padrão não está definido.
+**Chave**: https_port  
+**Tipo**: *string*  
+**Padrão**: um valor padrão não está definido.  
 **Variável de ambiente**: `<PREFIX_>HTTPS_PORT`
 
 Para definir esse valor, use a configuração ou a chamada `UseSetting`:
@@ -356,7 +359,8 @@ webBuilder.UseSetting(WebHostDefaults.PreventHostingStartupKey, "true");
 
 O assembly no qual pesquisar pela classe `Startup`.
 
-**Chave**: startupAssembly **Tipo**: *string*  
+**Chave**: startupAssembly  
+**Tipo**: *string*  
 **Padrão**: o assembly do aplicativo  
 **Variável de ambiente**: `<PREFIX_>STARTUPASSEMBLY`
 
@@ -376,8 +380,8 @@ Uma lista delimitada por ponto-e-vírgula de endereços IP ou endereços de host
 
 **Chave**: urls  
 **Tipo**: *string*  
-**Padrão**: `http://localhost:5000` e `https://localhost:5001`
-**variável de ambiente**: `<PREFIX_>URLS`
+**Padrão**: `http://localhost:5000` e`https://localhost:5001`  
+**Variável de ambiente**: `<PREFIX_>URLS`
 
 Para definir esse valor, use a variável de ambiente ou a chamada `UseUrls`:
 

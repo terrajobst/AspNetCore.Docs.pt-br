@@ -5,14 +5,14 @@ description: Descubra como hospedar e implantar aplicativos Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2019
+ms.date: 09/05/2019
 uid: host-and-deploy/blazor/index
-ms.openlocfilehash: d18abbf33c71dca5130bfc6b503b46c1d5bce537
-ms.sourcegitcommit: 776367717e990bdd600cb3c9148ffb905d56862d
-ms.translationtype: HT
+ms.openlocfilehash: 5a56bbda5bb7727c7dbeaed7f2a91d0dcb6e7e71
+ms.sourcegitcommit: f65d8765e4b7c894481db9b37aa6969abc625a48
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68913934"
+ms.lasthandoff: 09/06/2019
+ms.locfileid: "70773597"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor"></a>Hospedar e implantar o ASP.NET Core Blazor
 
@@ -44,15 +44,48 @@ Um aplicativo Blazor do lado do cliente é publicado na pasta */bin/Release/{TAR
 
 Os ativos na pasta são implantados no servidor Web. A implantação pode ser um processo manual ou automatizado, dependendo das ferramentas de desenvolvimento em uso.
 
+## <a name="app-base-path"></a>Caminho base do aplicativo
+
+O *caminho base do aplicativo* é o caminho da URL raiz do aplicativo. Considere o seguinte aplicativo principal e o aplicativo mais rápido:
+
+* O aplicativo principal é chamado `MyApp`:
+  * O aplicativo reside fisicamente em *\\d: MyApp*.
+  * As solicitações são recebidas em `https://www.contoso.com/{MYAPP RESOURCE}`.
+* Um aplicativo mais incrivelmente chamado `CoolApp` é um subaplicativo do: `MyApp`
+  * O subaplicativo reside fisicamente em *d:\\MyApp\\CoolApp*.
+  * As solicitações são recebidas em `https://www.contoso.com/CoolApp/{COOLAPP RESOURCE}`.
+
+Sem especificar a configuração adicional `CoolApp`para o, o subaplicativo nesse cenário não tem conhecimento de onde ele reside no servidor. Por exemplo, o aplicativo não pode construir URLs relativas corretas para seus recursos sem saber que ela reside no caminho `/CoolApp/`de URL relativo.
+
+Para fornecer a configuração para o `https://www.contoso.com/CoolApp/`caminho base do aplicativo mais incrivelmente, o `<base>` atributo da `href` marca é definido como o caminho raiz relativo no arquivo *wwwroot/index.html* :
+
+```html
+<base href="/CoolApp/">
+```
+
+Ao fornecer o caminho de URL relativo, um componente que não está no diretório raiz pode construir URLs relativas ao caminho raiz do aplicativo. Os componentes em diferentes níveis da estrutura de diretório podem criar links para outros recursos em locais em todo o aplicativo. O caminho base do aplicativo também é usado para interceptar cliques em hiperlink em que o destino `href` do link está dentro do espaço do URI do caminho base do aplicativo. O roteador do Blazor manipula a navegação interna.
+
+Em muitos cenários de hospedagem, o caminho de URL relativo para o aplicativo é a raiz do aplicativo. Nesses casos, o caminho base da URL relativa do aplicativo é uma barra (`<base href="/" />`), que é a configuração padrão para um aplicativo mais incrivelmente. Em outros cenários de hospedagem, como páginas do GitHub e subaplicativos do IIS, o caminho base do aplicativo deve ser definido como o caminho da URL relativa do servidor para o aplicativo.
+
+Para definir o caminho base do aplicativo, atualize a marca `<base>` encontrada nos elementos da marca `<head>` do arquivo *wwwroot/index.html*. Defina o `href` valor do atributo `/{RELATIVE URL PATH}/` como (a barra à direita é necessária), `{RELATIVE URL PATH}` em que é o caminho de URL relativo completo do aplicativo.
+
+Para um aplicativo com um caminho de URL não raiz relativo (por exemplo, `<base href="/CoolApp/">`), o aplicativo não consegue localizar seus recursos *quando executado localmente*. Para superar esse problema durante o desenvolvimento e os testes locais, você pode fornecer um argumento *base de caminho* que corresponde ao valor de `href` da tag `<base>` no tempo de execução. Para passar o argumento de base Path ao executar o aplicativo localmente, execute `dotnet run` o comando no diretório do aplicativo com a `--pathbase` opção:
+
+```console
+dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
+```
+
+Para um aplicativo com um caminho de URL relativo `/CoolApp/` de`<base href="/CoolApp/">`(), o comando é:
+
+```console
+dotnet run --pathbase=/CoolApp
+```
+
+O aplicativo responde localmente em `http://localhost:port/CoolApp`.
+
 ## <a name="deployment"></a>Implantação
 
 Confira orientações de implantação nos tópicos a seguir:
 
 * <xref:host-and-deploy/blazor/client-side>
 * <xref:host-and-deploy/blazor/server-side>
-
-## <a name="blazor-serverless-hosting-with-azure-storage"></a>Hospedagem sem servidor do Blazor com o Armazenamento do Azure
-
-Aplicativos do lado do cliente do Blazor podem ser fornecidos do [Armazenamento do Azure](https://azure.microsoft.com/services/storage/) como conteúdo estático diretamente de um contêiner de armazenamento.
-
-Para saber mais, confira [Hospedar e implantar o ASP.NET Core Blazor no lado do cliente (implantação autônoma): Armazenamento do Azure](xref:host-and-deploy/blazor/client-side#azure-storage).

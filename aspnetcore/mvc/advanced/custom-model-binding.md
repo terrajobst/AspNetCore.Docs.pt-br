@@ -5,12 +5,12 @@ description: Saiba como o model binding permite que as ações do controlador tr
 ms.author: riande
 ms.date: 11/13/2018
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: 3623a29976a2e2a7b1bdb22d35716b8a3b448958
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
-ms.translationtype: HT
+ms.openlocfilehash: 27e19012b6f878f5e3d08846593a7513bd584a4c
+ms.sourcegitcommit: f65d8765e4b7c894481db9b37aa6969abc625a48
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64891221"
+ms.lasthandoff: 09/06/2019
+ms.locfileid: "70773495"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>Model binding personalizado no ASP.NET Core
 
@@ -104,7 +104,7 @@ O atributo `ModelBinder` pode ser usado para aplicar o `AuthorEntityBinder` aos 
 
 [!code-csharp[](custom-model-binding/sample/CustomModelBindingSample/Controllers/BoundAuthorsController.cs?name=demo1&highlight=2)]
 
-Neste exemplo, como o nome do argumento não é o `authorId` padrão, ele é especificado no parâmetro com o atributo `ModelBinder`. Observe que o controlador e o método de ação são simplificados, comparado à pesquisa da entidade no método de ação. A lógica para buscar o autor usando o Entity Framework Core é movida para o associador de modelos. Isso pode ser uma simplificação considerável quando há vários métodos associados ao modelo `Author`.
+Neste exemplo, como o nome do argumento não é o `authorId` padrão, ele é especificado no parâmetro com o atributo `ModelBinder`. O controlador e o método de ação são simplificados em comparação com a pesquisa da entidade no método de ação. A lógica para buscar o autor usando o Entity Framework Core é movida para o associador de modelos. Isso pode ser uma simplificação considerável quando há vários métodos associados ao modelo `Author`.
 
 Aplique o atributo `ModelBinder` a propriedades de modelo individuais (como em um viewmodel) ou a parâmetros de método de ação para especificar um associador de modelos ou nome de modelo específico para apenas esse tipo ou essa ação.
 
@@ -129,6 +129,12 @@ A imagem a seguir mostra os associadores de modelos padrão do depurador.
 A adição do provedor ao final da coleção pode resultar na chamada a um associador de modelos interno antes que o associador personalizado tenha uma oportunidade. Neste exemplo, o provedor personalizado é adicionado ao início da coleção para garantir que ele é usado para argumentos de ação `Author`.
 
 [!code-csharp[](custom-model-binding/sample/CustomModelBindingSample/Startup.cs?name=callout&highlight=5-9)]
+
+### <a name="polymorphic-model-binding"></a>Associação de modelo polimórfico
+
+A associação a diferentes modelos de tipos derivados é conhecida como associação de modelo polimórfico. A associação de modelo personalizado é necessária quando o valor da solicitação deve ser associado ao tipo de modelo derivado específico. A menos que essa abordagem seja necessária, é recomendável evitar a associação de modelo polimórfico. A associação de modelo polimórfico dificulta o raciocínio sobre os modelos associados. No entanto, se um aplicativo exigir Associação de modelo polimórfico, uma implementação poderá ser semelhante ao código a seguir:
+
+[!code-csharp[](custom-model-binding/3.0sample/PolymorphicModelBinding/ModelBinders/PolymorphicModelBinder.cs?name=snippet)]
 
 ## <a name="recommendations-and-best-practices"></a>Recomendações e melhores práticas
 

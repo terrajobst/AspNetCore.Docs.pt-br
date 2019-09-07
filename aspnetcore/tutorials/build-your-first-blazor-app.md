@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/23/2019
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: 2f0410eb75a6ef3f3d361c75bce7e79ae6d42a61
-ms.sourcegitcommit: 983b31449fe398e6e922eb13e9eb6f4287ec91e8
-ms.translationtype: HT
+ms.openlocfilehash: ea1111f43b6b8b4f47061056e8ad8d505f92dba6
+ms.sourcegitcommit: 43c6335b5859282f64d66a7696c5935a2bcdf966
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/24/2019
-ms.locfileid: "70017498"
+ms.lasthandoff: 09/07/2019
+ms.locfileid: "70800484"
 ---
 # <a name="build-your-first-blazor-app"></a>Como criar seu primeiro aplicativo Blazor
 
@@ -67,11 +67,11 @@ Inclua um componente em outro componente usando uma sintaxe HTML.
 
 ## <a name="component-parameters"></a>Parâmetros do componente
 
-Componentes também podem ter parâmetros. Os parâmetros do componente são definidos usando propriedades públicas na classe de componente decorada com `[Parameter]`. Use atributos para especificar argumentos para um componente na marcação.
+Componentes também podem ter parâmetros. Os parâmetros de componente são definidos usando propriedades públicas na classe de componente `[Parameter]` com o atributo. Use atributos para especificar argumentos para um componente na marcação.
 
 1. Atualizar o código C# do componente `@code`:
 
-   * Adicione uma propriedade `IncrementAmount` decorada com o atributo `[Parameter]`.
+   * Adicione uma propriedade `IncrementAmount` pública com o `[Parameter]` atributo.
    * Altere o método `IncrementCount` para usar o `IncrementAmount` ao aumentar o valor de `currentCount`.
 
    *Pages/Counter.razor*:

@@ -5,14 +5,14 @@ description: Aprenda os conceitos fundamentais para a criação de aplicativos d
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/11/2019
+ms.date: 09/02/2019
 uid: fundamentals/index
-ms.openlocfilehash: a6c848987c97103864fd5410922346e85a68c353
-ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
-ms.translationtype: HT
+ms.openlocfilehash: 7e2901919c8b0165d0f169abf74fe5bc0edd8be4
+ms.sourcegitcommit: f65d8765e4b7c894481db9b37aa6969abc625a48
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/12/2019
-ms.locfileid: "67856231"
+ms.lasthandoff: 09/06/2019
+ms.locfileid: "70773752"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
 
@@ -269,6 +269,18 @@ Para obter mais informações, veja [Raiz de conteúdo](xref:fundamentals/host/w
 ## <a name="web-root"></a>Raiz da Web
 
 A raiz Web (também conhecida como *webroot*) é o caminho base para recursos públicos e estáticos como CSS, JavaScript e arquivos de imagem. O middleware de arquivos estáticos apenas veiculará arquivos do diretório raiz Web (e seus subdiretórios) por padrão. O caminho da raiz Web assume como padrão *{Content Root}/wwwroot*, mas é possível especificar um local diferente ao [criar o host](#host).
+
+::: moniker range=">= aspnetcore-3.0"
+
+Para obter mais informações, consulte [ContentRootPath](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#contentrootpath)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Para obter mais informações, confira [Diretório base](/aspnet/core/fundamentals/host/web-host#webroot).
+
+::: moniker-end
 
 Em arquivos ( *.cshtml*) do Razor, o til-barra `~/` aponta para a raiz Web. Caminhos que começam com `~/` são denominados caminhos virtuais.
 

@@ -5,14 +5,14 @@ description: Saiba como configurar o gRPC para aplicativos ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 08/21/2019
+ms.date: 09/05/2019
 uid: grpc/configuration
-ms.openlocfilehash: 34eb598211c87fbb2c68ae5e041da50d02f543f7
-ms.sourcegitcommit: 8b36f75b8931ae3f656e2a8e63572080adc78513
+ms.openlocfilehash: d6f095820271a3bb07e05e29299fbb82b042983b
+ms.sourcegitcommit: f65d8765e4b7c894481db9b37aa6969abc625a48
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/05/2019
-ms.locfileid: "70310312"
+ms.lasthandoff: 09/06/2019
+ms.locfileid: "70773676"
 ---
 # <a name="grpc-for-aspnet-core-configuration"></a>gRPC para configuração de ASP.NET Core
 
@@ -25,7 +25,7 @@ A tabela a seguir descreve as opções para configurar os serviços gRPCs:
 | `MaxSendMessageSize` | `null` | O tamanho máximo da mensagem em bytes que pode ser enviado do servidor. A tentativa de enviar uma mensagem que exceda o tamanho máximo da mensagem configurada resultará em uma exceção. |
 | `MaxReceiveMessageSize` | 4 MB | O tamanho máximo da mensagem em bytes que pode ser recebido pelo servidor. Se o servidor receber uma mensagem que exceda esse limite, ele lançará uma exceção. Aumentar esse valor permite que o servidor receba mensagens maiores, mas pode afetar negativamente o consumo de memória. |
 | `EnableDetailedErrors` | `false` | Se `true`, as mensagens de exceção detalhadas serão retornadas aos clientes quando uma exceção for lançada em um método de serviço. O padrão é `false`. A `EnableDetailedErrors` configuração `true` para pode vazar informações confidenciais. |
-| `CompressionProviders` | gzip, deflate | Uma coleção de provedores de compactação usados para compactar e descompactar mensagens. Os provedores de compactação personalizados podem ser criados e adicionados à coleção. Os provedores configurados padrão dão suporte à compactação **gzip** e **deflate** . |
+| `CompressionProviders` | gzip | Uma coleção de provedores de compactação usados para compactar e descompactar mensagens. Os provedores de compactação personalizados podem ser criados e adicionados à coleção. Os provedores configurados padrão dão suporte à compactação **gzip** . |
 | `ResponseCompressionAlgorithm` | `null` | O algoritmo de compactação usado para compactar mensagens enviadas do servidor. O algoritmo deve corresponder a um provedor de `CompressionProviders`compactação no. Para que o algoritmo compacte uma resposta, o cliente deve indicar que ele dá suporte ao algoritmo enviando-o no cabeçalho **grpc-Accept-Encoding** . |
 | `ResponseCompressionLevel` | `null` | O nível de compactação usado para compactar mensagens enviadas do servidor. |
 
@@ -43,12 +43,13 @@ A tabela a seguir descreve as opções para configurar os canais gRPC:
 
 | Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
-| `HttpClient` | Nova instância | O `HttpClient` usado para fazer chamadas gRPC. Um cliente pode ser definido para configurar um personalizado `HttpClientHandler`ou adicionar manipuladores adicionais ao pipeline http para chamadas gRPC. Por padrão, uma `HttpClient` nova instância é criada. |
+| `HttpClient` | Nova instância | O `HttpClient` usado para fazer chamadas gRPC. Um cliente pode ser definido para configurar um personalizado `HttpClientHandler`ou adicionar manipuladores adicionais ao pipeline http para chamadas gRPC. Se não `HttpClient` for especificado, uma nova `HttpClient` instância será criada para o canal. Ele será descartado automaticamente. |
+| `DisposeHttpClient` | `false` | Se `true`e um `HttpClient` for especificado, a `HttpClient` instância será descartada quando o `GrpcChannel` for descartado. |
+| `LoggerFactory` | `null` | O `LoggerFactory` usado pelo cliente para registrar informações sobre chamadas gRPC. Uma `LoggerFactory` instância pode ser resolvida da injeção de dependência ou `LoggerFactory.Create`criada usando. Para obter exemplos de configuração de registro <xref:fundamentals/logging/index>em log, consulte. |
 | `MaxSendMessageSize` | `null` | O tamanho máximo da mensagem em bytes que pode ser enviado do cliente. A tentativa de enviar uma mensagem que exceda o tamanho máximo da mensagem configurada resultará em uma exceção. |
-| `MaxReceiveMessageSize` | 4 MB | O tamanho máximo da mensagem em bytes que pode ser recebido pelo cliente. Se o servidor receber uma mensagem que exceda esse limite, ele lançará uma exceção. Aumentar esse valor permite que o servidor receba mensagens maiores, mas pode afetar negativamente o consumo de memória. |
-| `TransportOptions` | `null` | As opções de transporte configuram como o canal chama o serviço gRPC. Atualmente, a única implementação `HttpClientTransport` é que as opções permitem `HttpClient` especificar o usado pelo gRPC. |
+| `MaxReceiveMessageSize` | 4 MB | O tamanho máximo da mensagem em bytes que pode ser recebido pelo cliente. Se o cliente receber uma mensagem que exceda esse limite, ele lançará uma exceção. Aumentar esse valor permite que o cliente receba mensagens maiores, mas pode afetar negativamente o consumo de memória. |
 | `Credentials` | `null` | Uma instância de `ChannelCredentials`. As credenciais são usadas para adicionar metadados de autenticação a chamadas gRPC. |
-| `CompressionProviders` | gzip, deflate | Uma coleção de provedores de compactação usados para compactar e descompactar mensagens. Os provedores de compactação personalizados podem ser criados e adicionados à coleção. Os provedores configurados padrão dão suporte à compactação **gzip** e **deflate** . |
+| `CompressionProviders` | gzip | Uma coleção de provedores de compactação usados para compactar e descompactar mensagens. Os provedores de compactação personalizados podem ser criados e adicionados à coleção. Os provedores configurados padrão dão suporte à compactação **gzip** . |
 
 O código a seguir:
 
