@@ -5,14 +5,14 @@ description: Este artigo contém links para o host do Azure e para implantar rec
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/28/2019
+ms.date: 09/07/2019
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: 5035a31526e0290964e0fdee05753aeaf6cb3790
-ms.sourcegitcommit: 0efb9e219fef481dee35f7b763165e488aa6cf9c
-ms.translationtype: HT
+ms.openlocfilehash: 5da32b5fd1026263f721db442b2676d45b239b8d
+ms.sourcegitcommit: 2d4c1732c4866ed26b83da35f7bc2ad021a9c701
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/29/2019
-ms.locfileid: "68602447"
+ms.lasthandoff: 09/09/2019
+ms.locfileid: "70815595"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -97,17 +97,7 @@ O [Middleware de integração do IIS](xref:host-and-deploy/iis/index#enable-the-
 
 ## <a name="monitoring-and-logging"></a>Monitoramento e registro em log
 
-::: moniker range=">= aspnetcore-3.0"
-
-Os aplicativos ASP.NET Core implantados no Serviço de Aplicativo recebem automaticamente uma extensão do Serviço de Aplicativo, **Integração de Log do ASP.NET Core**. A extensão habilita a integração de log para aplicativos ASP.NET Core no Serviço de Aplicativo do Azure.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-Os aplicativos ASP.NET Core implantados no Serviço de Aplicativo recebem automaticamente uma extensão do Serviço de Aplicativo, **Extensões de Log do ASP.NET Core**. A extensão habilita a integração de log para aplicativos ASP.NET Core no Serviço de Aplicativo do Azure.
-
-::: moniker-end
+Azure App serviço oferece as **extensões de log de ASP.NET Core**, que habilitam a integração de log para aplicativos ASP.NET Core. Para adicionar automaticamente a extensão a um serviço de aplicativo, use o processo de **publicação** do Visual Studio com um perfil de publicação do **serviço de aplicativo** . Quando não estiver usando o Visual Studio para implantar um aplicativo, instale manualmente a extensão no portal do Azure por meio da caixa de diálogo**extensões** de **ferramentas** > de desenvolvimento do serviço de aplicativo.
 
 Para monitoramento, registro em log e informações de solução de problemas, veja os seguintes artigos:
 
@@ -231,7 +221,7 @@ Para uma [implantação dependente de estrutura](/dotnet/core/deploying/#framewo
    * Abra a lista suspensa **Modo de Implantação** e selecione **Dependente de Estrutura**.
    * Selecione **Portátil** como o **Tempo de Execução de Destino**.
    * Se você precisar remover arquivos adicionais após a implantação, abra as **Opções de Publicação do Arquivo** e marque a caixa de seleção para remover arquivos adicionais no destino.
-   * Selecione **Salvar**.
+   * Clique em **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
@@ -262,7 +252,7 @@ Use o Visual Studio ou as ferramentas da CLI (interface de linha de comando) par
    * Abra a lista suspensa **Modo de Implantação** e selecione **Autocontido**.
    * Selecione o tempo de execução de destino na lista suspensa **Tempo de Execução de Destino**. O padrão é `win-x86`.
    * Se você precisar remover arquivos adicionais após a implantação, abra as **Opções de Publicação do Arquivo** e marque a caixa de seleção para remover arquivos adicionais no destino.
-   * Selecione **Salvar**.
+   * Clique em **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)

@@ -5,14 +5,14 @@ description: Saiba como hospedar um aplicativo ASP.NET Core em um serviço Windo
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/03/2019
+ms.date: 09/09/2019
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 308a8bd10371cc70c431b8858ef7d82c1bb624da
-ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
-ms.translationtype: HT
+ms.openlocfilehash: c2a2941f2a4e27218c90cf47453c69149da8e766
+ms.sourcegitcommit: 2d4c1732c4866ed26b83da35f7bc2ad021a9c701
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/22/2019
-ms.locfileid: "69975410"
+ms.lasthandoff: 09/09/2019
+ms.locfileid: "70815704"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedar o ASP.NET Core em um serviço Windows
 
@@ -312,15 +312,17 @@ Para tratar dos eventos <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHo
 
 Serviços que interagem com solicitações da Internet ou de uma rede corporativa e estão atrás de um proxy ou de um balanceador de carga podem exigir configuração adicional. Para obter mais informações, consulte <xref:host-and-deploy/proxy-load-balancer>.
 
-## <a name="configure-https"></a>Configurar o HTTPS
+## <a name="configure-endpoints"></a>Configurar pontos de extremidade
 
-Para configurar um serviço com um ponto de extremidade seguro:
+Por padrão, o ASP.NET Core é associado a `http://localhost:5000`. Configure a URL e a porta definindo a `ASPNETCORE_URLS` variável de ambiente.
 
-1. Crie um certificado X.509 para o sistema de hospedagem usando os mecanismos de implantação e aquisição do certificado da sua plataforma.
+Para obter mais abordagens de configuração de URL e porta, incluindo suporte para pontos de extremidade HTTPS, consulte os seguintes tópicos:
 
-1. Especifique uma [Configuração do ponto de extremidade HTTPS do servidor Kestrel](xref:fundamentals/servers/kestrel#endpoint-configuration) para usar o certificado.
+* <xref:fundamentals/servers/kestrel#endpoint-configuration>Kestrel
+* <xref:fundamentals/servers/httpsys#configure-windows-server>(HTTP. sys)
 
-Não há suporte para uso do certificado de desenvolvimento HTTPS do ASP.NET Core para proteger um ponto de extremidade de serviço.
+> [!NOTE]
+> Não há suporte para uso do certificado de desenvolvimento HTTPS do ASP.NET Core para proteger um ponto de extremidade de serviço.
 
 ## <a name="current-directory-and-content-root"></a>Diretório atual e a raiz do conteúdo
 

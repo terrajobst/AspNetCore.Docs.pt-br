@@ -5,12 +5,12 @@ description: Saiba como o model binding permite que as ações do controlador tr
 ms.author: riande
 ms.date: 11/13/2018
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: 27e19012b6f878f5e3d08846593a7513bd584a4c
-ms.sourcegitcommit: f65d8765e4b7c894481db9b37aa6969abc625a48
+ms.openlocfilehash: 64429d3d9a64219216f3432924dbd0977dd6e1bb
+ms.sourcegitcommit: 2d4c1732c4866ed26b83da35f7bc2ad021a9c701
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/06/2019
-ms.locfileid: "70773495"
+ms.lasthandoff: 09/09/2019
+ms.locfileid: "70815628"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>Model binding personalizado no ASP.NET Core
 
@@ -132,7 +132,7 @@ A adição do provedor ao final da coleção pode resultar na chamada a um assoc
 
 ### <a name="polymorphic-model-binding"></a>Associação de modelo polimórfico
 
-A associação a diferentes modelos de tipos derivados é conhecida como associação de modelo polimórfico. A associação de modelo personalizado é necessária quando o valor da solicitação deve ser associado ao tipo de modelo derivado específico. A menos que essa abordagem seja necessária, é recomendável evitar a associação de modelo polimórfico. A associação de modelo polimórfico dificulta o raciocínio sobre os modelos associados. No entanto, se um aplicativo exigir Associação de modelo polimórfico, uma implementação poderá ser semelhante ao código a seguir:
+A associação a diferentes modelos de tipos derivados é conhecida como associação de modelo polimórfico. A associação de modelo personalizado é necessária quando o valor da solicitação deve ser associado ao tipo de modelo derivado específico. A menos que essa abordagem seja necessária, é recomendável evitar a associação de modelo polimórfico. A associação de modelo polimórfico dificulta o raciocínio sobre os modelos associados. No entanto, se um aplicativo exigir Associação de modelo polimórfico, uma implementação poderá ser semelhante ao seguinte código:
 
 [!code-csharp[](custom-model-binding/3.0sample/PolymorphicModelBinding/ModelBinders/PolymorphicModelBinder.cs?name=snippet)]
 

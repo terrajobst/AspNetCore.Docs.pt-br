@@ -1,10 +1,11 @@
-# <a name="aspnet-core-web-api-sample"></a>Exemplo de núcleo API Web ASP.NET Core
+# <a name="aspnet-core-web-api-samples"></a>Exemplos de API Web do ASP.NET Core
 
-A tabela a seguir apresenta uma descrição das várias pastas que compõem a solução de exemplo:
+A tabela a seguir fornece uma descrição dos vários diretórios que abrangem a solução de exemplo:
 
-|              Pasta              |                                        Finalidade                                        |
-|----------------------------------|---------------------------------------------------------------------------------------|
-|   *WebApiSample.Api.21*   |                         Um projeto de API Web ASP.NET Core 2.1.                          |
-| *WebApiSample.Api.Pre21*  |                         Um projeto de API Web ASP.NET Core 2.0.                          |
-| *WebApiSample.DataAccess* | Um projeto de camada de acesso a dados do .NET Standard 2.0 usado por ambos os projetos da API Web. |
-
+| Diretório                   | Finalidade |
+|-----------------------------|------------------------------------------------------------|
+| *3x/WebApiSample. API. 30*    | Um projeto de API Web ASP.NET Core 3,0.                       |
+| *3x/WebApiSample. DataAccess*| Um .NET Standard projeto de camada de acesso a dados 2,1 que é usado pelo projeto de API da Web do ASP.NET Core 3. x.|
+| *2x/WebApiSample. API. 21*    | Um projeto de API Web ASP.NET Core 2,1.                         |
+| *2x/WebApiSample. API. Pre21* | Um projeto de API Web ASP.NET Core 2,0.                         |
+| *2x/WebApiSample. DataAccess*| Um .NET Standard projeto de camada de acesso a dados 2,0 que é usado pelos projetos de API da Web do ASP.NET Core 2. x.|
