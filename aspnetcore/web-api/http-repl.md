@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/29/2019
 uid: web-api/http-repl
-ms.openlocfilehash: 7121670856da4b123b1c3e780a7952da0fb696a1
-ms.sourcegitcommit: e6bd2bbe5683e9a7dbbc2f2eab644986e6dc8a87
+ms.openlocfilehash: b93641c96ad093b40aaa887f19409d4c2e1490df
+ms.sourcegitcommit: efb9c16321b34f8ede802822b26eb983de16479b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/03/2019
-ms.locfileid: "70238050"
+ms.lasthandoff: 09/09/2019
+ms.locfileid: "70842269"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testar APIs Web com o HTTP REPL
 
@@ -55,24 +55,24 @@ Uma [ferramenta global do .NET Core](/dotnet/core/tools/global-tools#install-a-g
 Após a instalação da ferramenta, execute o seguinte comando para iniciar o HTTP REPL:
 
 ```console
-dotnet httprepl
+httprepl
 ```
 
 Para exibir os comandos HTTP REPL disponíveis, execute um dos seguintes comandos:
 
 ```console
-dotnet httprepl -h
+httprepl -h
 ```
 
 ```console
-dotnet httprepl --help
+httprepl --help
 ```
 
 É exibida a saída a seguir:
 
 ```console
 Usage:
-  dotnet httprepl [<BASE_ADDRESS>] [options]
+  httprepl [<BASE_ADDRESS>] [options]
 
 Arguments:
   <BASE_ADDRESS> - The initial base address for the REPL.
@@ -131,13 +131,13 @@ O HTTP REPL oferece conclusão de comando. Pressionar a tecla <kbd>Tab</kbd> ite
 Conecte-se à uma API Web executando o seguinte comando:
 
 ```console
-dotnet httprepl <ROOT URI>
+httprepl <ROOT URI>
 ```
 
 `<ROOT URI>` é o URI de base para a API Web. Por exemplo:
 
 ```console
-dotnet httprepl https://localhost:5001
+httprepl https://localhost:5001
 ```
 
 Outra opção é executar o seguinte comando a qualquer momento quando o HTTP REPL estiver em execução:
@@ -928,7 +928,7 @@ Se você executar com frequência o mesmo conjunto de comandos HTTP REPL, consid
 Para remover toda a saída gravada no shell de comando pela ferramenta HTTP REPL, execute os comandos `clear` ou `cls`. Para ilustrar, imagine que o shell de comando contém a seguinte saída:
 
 ```console
-dotnet httprepl https://localhost:5001
+httprepl https://localhost:5001
 (Disconnected)~ set base "https://localhost:5001"
 Using swagger metadata from https://localhost:5001/swagger/v1/swagger.json
 
