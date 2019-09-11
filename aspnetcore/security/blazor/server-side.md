@@ -5,14 +5,14 @@ description: Saiba como mitigar as ameaças de segurança para aplicativos mais 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 09/07/2019
 uid: security/blazor/server-side
-ms.openlocfilehash: 13bb4475b4beac78cf489d83fb59a3e0d6d8f2d9
-ms.sourcegitcommit: 43c6335b5859282f64d66a7696c5935a2bcdf966
+ms.openlocfilehash: d30f19bfbbcdb6c142f03a6e0cc6e1fc154c2091
+ms.sourcegitcommit: e7c56e8da5419bbc20b437c2dd531dedf9b0dc6b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/07/2019
-ms.locfileid: "70800500"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70878532"
 ---
 # <a name="secure-aspnet-core-blazor-server-side-apps"></a>Proteger ASP.NET Core aplicativos mais fáceis no servidor
 
@@ -115,7 +115,7 @@ Um cliente interage com o servidor por meio de expedição de evento de interope
 Para chamadas de métodos .NET para JavaScript:
 
 * Todas as invocações têm um tempo limite configurável após o qual falham, <xref:System.OperationCanceledException> retornando um para o chamador.
-  * Há um tempo limite padrão para as chamadas (`CircuitOptions.JSInteropDefaultCallTimeout`) de um minuto.
+  * Há um tempo limite padrão para as chamadas (`CircuitOptions.JSInteropDefaultCallTimeout`) de um minuto. Para configurar esse limite, consulte <xref:blazor/javascript-interop#harden-js-interop-calls>.
   * Um token de cancelamento pode ser fornecido para controlar o cancelamento em uma base por chamada. Conte com o tempo limite de chamada padrão quando possível e Associação de tempo qualquer chamada ao cliente se um token de cancelamento for fornecido.
 * O resultado de uma chamada JavaScript não pode ser confiável. O cliente de aplicativo mais incrivelmente executado no navegador pesquisa a função JavaScript a ser invocada. A função é invocada e o resultado ou um erro é produzido. Um cliente mal-intencionado pode tentar:
   * Causar um problema no aplicativo retornando um erro da função JavaScript.
@@ -200,6 +200,72 @@ Um cliente pode enviar um ou mais eventos de incremento antes que a estrutura pr
 ```
 
 Ao adicionar a `if (count < 3) { ... }` verificação dentro do manipulador, a decisão de incrementar `count` é baseada no estado atual do aplicativo. A decisão não se baseia no estado da interface do usuário como estava no exemplo anterior, que pode estar temporariamente obsoleta.
+
+### <a name="guard-against-multiple-dispatches"></a>Proteção contra vários despachos
+
+Se um retorno de chamada de evento invocar uma operação de execução demorada, como buscar dados de um serviço ou banco de dado externo, considere usar uma proteção. A proteção pode impedir que o usuário enfileirar várias operações enquanto a operação está em andamento com comentários visuais. O código de componente a `isLoading` seguir `true` define `GetForecastAsync` enquanto obtém dados do servidor. Enquanto `isLoading` estiver`true`, o botão será desabilitado na interface do usuário:
+
+```cshtml
+@page "/fetchdata"
+@using BlazorServerSample.Data
+@inject WeatherForecastService ForecastService
+
+<button disabled="@isLoading" @onclick="UpdateForecasts">Update</button>
+
+@code {
+    private bool isLoading;
+    private WeatherForecast[] forecasts;
+
+    private async Task UpdateForecasts()
+    {
+        if (!isLoading)
+        {
+            isLoading = true;
+            forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+            isLoading = false;
+        }
+    }
+}
+```
+
+### <a name="cancel-early-and-avoid-use-after-dispose"></a>Cancelar antes e evitar usar-After-Dispose
+
+Além de usar uma proteção conforme descrito na seção [proteção contra vários despachos](#guard-against-multiple-dispatches) , considere usar um <xref:System.Threading.CancellationToken> para cancelar operações de longa execução quando o componente for descartado. Essa abordagem tem o benefício adicional de evitar o *uso-After-Dispose* nos componentes:
+
+```cshtml
+@implements IDisposable
+
+...
+
+@code {
+    private readonly CancellationTokenSource TokenSource = 
+        new CancellationTokenSource();
+
+    private async Task UpdateForecasts()
+    {
+        ...
+
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now, 
+            TokenSource.Token);
+
+        if (TokenSource.Token.IsCancellationRequested)
+        {
+           return;
+        }
+
+        ...
+    }
+
+    public void Dispose()
+    {
+        CancellationTokenSource.Cancel();
+    }
+}
+```
+
+### <a name="avoid-events-that-produce-large-amounts-of-data"></a>Evitar eventos que produzem grandes quantidades de dados
+
+Alguns eventos dom, `oninput` como ou `onscroll`, podem produzir uma grande quantidade de dados. Evite usar esses eventos em aplicativos de servidor mais incrivelmente.
 
 ## <a name="additional-security-guidance"></a>Diretrizes de segurança adicionais
 
@@ -330,6 +396,9 @@ A seguinte lista de considerações de segurança não é abrangente:
 * Impedir que o cliente aloque uma quantidade desassociada de memória.
   * Dados dentro do componente.
   * `DotNetObject`referências retornadas ao cliente.
+* Proteção contra vários despachos.
+* Cancelar operações de execução longa quando o componente for descartado.
+* Evite eventos que produzem grandes quantidades de dados.
 * Evite usar a entrada do usuário como parte das `NavigationManager.Navigate` chamadas para e validar a entrada do usuário para URLs em um conjunto de origens permitidas primeiro se for inevitável.
 * Não tome decisões de autorização com base no estado da interface do usuário, mas somente no estado do componente.
 * Considere o uso da [CSP (política de segurança de conteúdo)](https://developer.mozilla.org/docs/Web/HTTP/CSP) para proteger contra ataques de XSS.

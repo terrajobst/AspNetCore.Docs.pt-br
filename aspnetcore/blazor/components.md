@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/06/2019
 uid: blazor/components
-ms.openlocfilehash: e877abfb568f71046c3603cac5e888e99ffc8d15
-ms.sourcegitcommit: 43c6335b5859282f64d66a7696c5935a2bcdf966
+ms.openlocfilehash: dbd0879d200061151e8307346adef784967bf123
+ms.sourcegitcommit: e7c56e8da5419bbc20b437c2dd531dedf9b0dc6b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/07/2019
-ms.locfileid: "70800413"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70878400"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -1466,3 +1466,7 @@ Da mesma forma, as imagens SVG têm suporte nas regras de CSS de um arquivo de f
 ```
 
 No entanto, a marcação SVG embutida não tem suporte em todos os cenários. Se você posicionar `<svg>` uma marca diretamente em um arquivo de componente ( *. Razor*), a renderização de imagem básica terá suporte, mas muitos cenários avançados ainda não têm suporte. Por exemplo, `<use>` as marcas não são respeitadas `@bind` atualmente e não podem ser usadas com algumas marcas SVG. Esperamos abordar essas limitações em uma versão futura.
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+* <xref:security/blazor/server-side>&ndash; Inclui orientações sobre a criação de aplicativos de servidor mais elaborados que devem combater o esgotamento de recursos.
