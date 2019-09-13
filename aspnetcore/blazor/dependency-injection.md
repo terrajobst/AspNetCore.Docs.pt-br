@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/06/2019
 uid: blazor/dependency-injection
-ms.openlocfilehash: 0b48cd0cbe14d2b07627f56ab78611bbd3209fa1
-ms.sourcegitcommit: 43c6335b5859282f64d66a7696c5935a2bcdf966
+ms.openlocfilehash: 6c01fdc390cc9150cf81673c717b73c4b10c31f1
+ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/07/2019
-ms.locfileid: "70800387"
+ms.lasthandoff: 09/13/2019
+ms.locfileid: "70963974"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>ASP.NET Core injeção de dependência mais incrivelmente
 
@@ -61,7 +61,7 @@ Os serviços podem ser configurados com os tempos de vida mostrados na tabela a 
 
 | Tempo de vida | Descrição |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Os aplicativos Webassembly mais claros não têm um conceito de escopos de DI. `Scoped`-serviços registrados se comportam como `Singleton` serviços. No entanto, o modelo de hospedagem do lado `Scoped` do servidor dá suporte ao tempo de vida. Em aplicativos de servidor mais incrivelmente, um registro de serviço com escopo é definido para a *conexão*. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Os aplicativos Webassembly mais claros não têm um conceito de escopos de DI. `Scoped`-serviços registrados se comportam como `Singleton` serviços. No entanto, o modelo de Hospedagem de servidor `Scoped` mais incrivelmente dá suporte ao tempo de vida. Em aplicativos de servidor mais incrivelmente, um registro de serviço com escopo é definido para a *conexão*. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI cria uma *única instância* do serviço. Todos os componentes que exigem `Singleton` um serviço recebem uma instância do mesmo serviço. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Sempre que um componente Obtém uma instância de um `Transient` serviço do contêiner de serviço, ele recebe uma *nova instância* do serviço. |
 

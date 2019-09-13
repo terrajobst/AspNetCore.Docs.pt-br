@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/06/2019
 uid: blazor/routing
-ms.openlocfilehash: d348908261c51b477aa698a407266d05c0df5a33
-ms.sourcegitcommit: 43c6335b5859282f64d66a7696c5935a2bcdf966
+ms.openlocfilehash: 1c61eedf7dbf0bbc8796eaa11360783b9d7aba6c
+ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/07/2019
-ms.locfileid: "70800335"
+ms.lasthandoff: 09/13/2019
+ms.locfileid: "70963869"
 ---
 # <a name="aspnet-core-blazor-routing"></a>Roteamento de ASP.NET Core mais
 
@@ -22,7 +22,7 @@ Saiba como rotear solicitações e como usar o `NavLink` componente para criar l
 
 ## <a name="aspnet-core-endpoint-routing-integration"></a>Integração de roteamento de ponto de extremidade ASP.NET Core
 
-O lado do servidor mais incrivelmente é integrado ao [Roteamento de ponto de extremidade ASP.NET Core](xref:fundamentals/routing). Um aplicativo ASP.NET Core está configurado para aceitar conexões de entrada para componentes interativos com `MapBlazorHub` o no: `Startup.Configure`
+O servidor mais incrivelmente é integrado ao [Roteamento de ponto de extremidade ASP.NET Core](xref:fundamentals/routing). Um aplicativo ASP.NET Core está configurado para aceitar conexões de entrada para componentes interativos com `MapBlazorHub` o no: `Startup.Configure`
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
@@ -55,7 +55,7 @@ Vários modelos de rota podem ser aplicados a um componente. O componente a segu
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
 > [!IMPORTANT]
-> Para que as URLs sejam resolvidas corretamente, o aplicativo `<base>` deve incluir uma marca em seu arquivo *wwwroot/index.html* (mais de lado do cliente) ou no arquivo *pages/_Host. cshtml* (no lado do servidor) com o caminho base do `href` aplicativo especificado no atributo ( `<base href="/">`). Para obter mais informações, consulte <xref:host-and-deploy/blazor/index#app-base-path>.
+> Para que as URLs sejam resolvidas corretamente, o aplicativo `<base>` deve incluir uma marca em seu arquivo *wwwroot/index.html* (Webassembly do mais de um ou mais de-App) ou arquivo *pages/_Host. cshtml* (servidor mais `href` incrivelmente) com o caminho base do aplicativo especificado no atributo (`<base href="/">`). Para obter mais informações, consulte <xref:host-and-deploy/blazor/index#app-base-path>.
 
 ## <a name="provide-custom-content-when-content-isnt-found"></a>Fornecer conteúdo personalizado quando o conteúdo não for encontrado
 
@@ -120,7 +120,7 @@ As restrições de rota mostradas na tabela a seguir estão disponíveis. Para a
 
 ### <a name="routing-with-urls-that-contain-dots"></a>Roteamento com URLs que contêm pontos
 
-No mais alto aplicativo do lado do servidor, a rota padrão em *_Host. cshtml* `/` é`@page "/"`(). Uma URL de solicitação que contém um ponto`.`() não é correspondida pela rota padrão porque a URL parece solicitar um arquivo. Um aplicativo mais alto retorna uma resposta *404-não encontrada* para um arquivo estático que não existe. Para usar rotas que contenham um ponto, configure *_Host. cshtml* com o seguinte modelo de rota:
+Em aplicativos de servidor mais incrivelmente, a rota padrão em *_Host. cshtml* `/` é`@page "/"`(). Uma URL de solicitação que contém um ponto`.`() não é correspondida pela rota padrão porque a URL parece solicitar um arquivo. Um aplicativo mais alto retorna uma resposta *404-não encontrada* para um arquivo estático que não existe. Para usar rotas que contenham um ponto, configure *_Host. cshtml* com o seguinte modelo de rota:
 
 ```cshtml
 @page "/{**path}"
@@ -167,7 +167,7 @@ Use `Microsoft.AspNetCore.Components.NavigationManager` para trabalhar com URIs 
 | Membro | Descrição |
 | ------ | ----------- |
 | `Uri` | Obtém o URI absoluto atual. |
-| `BaseUri` | Obtém o URI de base (com uma barra à direita) que pode ser anexado a caminhos de URI relativos para produzir um URI absoluto. Normalmente, `BaseUri` corresponde `href` ao atributo no elemento `<base>` do documento em *wwwroot/index.html* (mais de um lado do cliente) ou *pages/_Host. cshtml* (no lado do servidor). |
+| `BaseUri` | Obtém o URI de base (com uma barra à direita) que pode ser anexado a caminhos de URI relativos para produzir um URI absoluto. Normalmente, `BaseUri` corresponde `href` ao atributo no elemento `<base>` do documento em *wwwroot/index.html* (Webassembly de mais ou-de- *_Host. cshtml* ). |
 | `NavigateTo` | Navega para o URI especificado. Se `forceLoad` for `true`:<ul><li>O roteamento do lado do cliente é ignorado.</li><li>O navegador é forçado a carregar a nova página do servidor, seja ou não o URI normalmente manipulado pelo roteador do lado do cliente.</li></ul> |
 | `LocationChanged` | Um evento que é acionado quando o local de navegação é alterado. |
 | `ToAbsoluteUri` | Converte um URI relativo em um URI absoluto. |

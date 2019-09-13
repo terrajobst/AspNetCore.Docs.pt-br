@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/06/2019
 uid: blazor/handle-errors
-ms.openlocfilehash: 52f55af99881b09c84d9cf88f5845efcb1ea76a1
-ms.sourcegitcommit: 776367717e990bdd600cb3c9148ffb905d56862d
+ms.openlocfilehash: d3e261e83f375574339a8ce3428e8bfb73df4307
+ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68948446"
+ms.lasthandoff: 09/13/2019
+ms.locfileid: "70963984"
 ---
 # <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Tratar erros em aplicativos ASP.NET Core mais
 
@@ -22,7 +22,7 @@ Este artigo descreve como o mais incrivelmente gerencia exceções sem tratament
 
 ## <a name="how-the-blazor-framework-reacts-to-unhandled-exceptions"></a>Como a estrutura mais incrivelmente reage a exceções sem tratamento
 
-O lado do servidor mais incrivelmente é uma estrutura com estado. Enquanto os usuários interagem com um aplicativo, eles mantêm uma conexão com o servidor conhecido como um *circuito*. O circuito contém instâncias de componentes ativos, além de muitos outros aspectos do estado, como:
+O servidor mais incrivelmente é uma estrutura com estado. Enquanto os usuários interagem com um aplicativo, eles mantêm uma conexão com o servidor conhecido como um *circuito*. O circuito contém instâncias de componentes ativos, além de muitos outros aspectos do estado, como:
 
 * A saída renderizada mais recente dos componentes.
 * O conjunto atual de delegados de manipulação de eventos que poderia ser disparado por eventos do lado do cliente.

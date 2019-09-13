@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 uid: blazor/get-started
-ms.openlocfilehash: 7bff1d38de77adfa1835ee37f4e5f8912ba629cc
-ms.sourcegitcommit: 43c6335b5859282f64d66a7696c5935a2bcdf966
+ms.openlocfilehash: e33ca421676caa20c823faf635442eda2a40ba65
+ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/07/2019
-ms.locfileid: "70800316"
+ms.lasthandoff: 09/13/2019
+ms.locfileid: "70964007"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introdução ao ASP.NET Core mais incrivelmente
 
@@ -40,7 +40,7 @@ Introdução ao mais incrivelmente:
 
    4 \. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Confirme se a entrada de **local** está correta ou forneça um local para o projeto. Selecione **Criar**.
 
-   5 \. Para uma experiência mais experiente no lado do cliente, escolha o modelo de **aplicativo Webassembly** mais experiente. Para uma experiência mais experiente no lado do servidor, escolha o modelo de **aplicativo de servidor mais incrivelmente** . Selecione **Criar**. Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, no lado do servidor e no lado <xref:blazor/hosting-models>do cliente, consulte.
+   5 \. Para obter uma experiência de Webassembly mais experiente, escolha o modelo de **aplicativo Webassembly mais incrivelmente** . Para uma experiência de servidor mais incrivelmente, escolha o modelo de **aplicativo de servidor** mais experiente. Selecione **Criar**. Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>.
 
    6 \. Pressione **F5** para executar o aplicativo.
 
@@ -53,25 +53,25 @@ Introdução ao mais incrivelmente:
 
    2 \. Instale o mais recente [ C# para a extensão de Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
-   3 \. Para uma experiência mais experiente no lado do cliente, execute o seguinte comando em um shell de comando:
+   3 \. Para uma experiência de Webassembly mais experiente, execute o seguinte comando em um shell de comando:
 
       ```console
       dotnet new blazorwasm -o WebApplication1
       ```
 
-      Para uma experiência mais experiente no lado do servidor, execute o seguinte comando em um shell de comando:
+      Para uma experiência de servidor mais incrivelmente, execute o seguinte comando em um shell de comando:
 
       ```console
       dotnet new blazorserver -o WebApplication1
       ```
 
-      Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, no lado do servidor e no lado <xref:blazor/hosting-models>do cliente, consulte.
+      Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>.
 
    4 \. Abra a pasta *WebApplication1* em Visual Studio Code.
 
-   5 \. Para um projeto do lado do servidor mais valioso, o IDE solicita que você adicione ativos para compilar e depurar o projeto. Selecione **Sim** na barra superior.
+   5 \. Para um projeto de servidor mais incrivelmente, o IDE solicita que você adicione ativos para compilar e depurar o projeto. Selecione **Sim** na barra superior.
 
-   6 \. Se estiver usando um aplicativo do lado do servidor mais alto, execute o aplicativo usando o depurador de Visual Studio Code. Se estiver usando um aplicativo do lado do cliente mais alto `dotnet run` , execute na pasta do projeto do aplicativo.
+   6 \. Se estiver usando um aplicativo de servidor mais incrivelmente, execute o aplicativo usando o depurador de Visual Studio Code. Se estiver usando um aplicativo Webassembly mais incrivelmente, `dotnet run` execute na pasta do projeto do aplicativo.
 
    7 \. Em um navegador, navegue até `https://localhost:5001`.
 
@@ -85,7 +85,7 @@ Introdução ao mais incrivelmente:
 
    3\. In the sidebar, select **.NET Core** > **App**.
 
-   4\. For a Blazor server-side experience, select the **Blazor Server App** template. For a Blazor client-side experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+   4\. For a Blazor Server experience, select the **Blazor Server App** template. For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
    5\. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
 
@@ -97,7 +97,7 @@ Introdução ao mais incrivelmente:
 
    # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
-   Para uma experiência mais experiente no lado do cliente, execute os seguintes comandos em um shell de comando:
+   Para uma experiência de Webassembly mais experiente, execute os seguintes comandos em um shell de comando:
 
    ```console
    dotnet new blazorwasm -o WebApplication1
@@ -105,7 +105,7 @@ Introdução ao mais incrivelmente:
    dotnet run
    ```
 
-   Para uma experiência mais experiente no lado do servidor, execute os seguintes comandos em um shell de comando:
+   Para uma experiência de servidor mais incrivelmente, execute os seguintes comandos em um shell de comando:
 
    ```console
    dotnet new blazorserver -o WebApplication1
@@ -113,7 +113,7 @@ Introdução ao mais incrivelmente:
    dotnet run
    ```
 
-   Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, no lado do servidor e no lado <xref:blazor/hosting-models>do cliente, consulte.
+   Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>.
 
    Em um navegador, navegue até `https://localhost:5001`.
 

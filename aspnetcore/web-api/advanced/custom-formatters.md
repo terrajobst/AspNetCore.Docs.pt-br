@@ -5,24 +5,28 @@ description: Saiba como criar e usar formatadores personalizados para APIs Web n
 ms.author: riande
 ms.date: 02/08/2017
 uid: web-api/advanced/custom-formatters
-ms.openlocfilehash: 6fb7e192bf3e943eb9018b08fb87a833d3643208
-ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
-ms.translationtype: HT
+ms.openlocfilehash: 122edfd4ccd06ed62e071691f421d2aeef8002b4
+ms.sourcegitcommit: 488cc779fc71377d9371e7a14356113e9c7eff17
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/22/2019
-ms.locfileid: "69975677"
+ms.lasthandoff: 09/11/2019
+ms.locfileid: "70913507"
 ---
 # <a name="custom-formatters-in-aspnet-core-web-api"></a>Formatadores personalizados na API Web ASP.NET Core
 
 Por [Tom Dykstra](https://github.com/tdykstra)
 
-O ASP.NET Core MVC tem suporte interno para troca de dados em APIs Web usando XML ou JSON. Este artigo mostra como adicionar suporte para formatos adicionais criando formatadores personalizados.
+ASP.NET Core MVC dá suporte à troca de dados em APIs Web usando formatadores de entrada e saída. Os formatadores de entrada são usados pela [Associação de modelo](xref:mvc/models/model-binding). Os formatadores de saída são usados para [Formatar respostas](xref:web-api/advanced/formatting).
+
+A estrutura fornece formatadores de entrada e saída internos para JSON e XML. Ele fornece um formatador de saída interno para texto sem formatação, mas não fornece um formatador de entrada para texto sem formatação.
+
+Este artigo mostra como adicionar suporte para formatos adicionais criando formatadores personalizados. Para obter um exemplo de um formatador de entrada personalizado para texto sem formatação, consulte [TextPlainInputFormatter](https://github.com/aspnet/Entropy/blob/master/samples/Mvc.Formatters/TextPlainInputFormatter.cs) no github.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="when-to-use-custom-formatters"></a>Quando usar formatadores personalizados
 
-Use um formatador personalizado quando quiser que o processo de [negociação de conteúdo](xref:web-api/advanced/formatting#content-negotiation) dê suporte a um tipo de conteúdo que não tem suporte dos formatadores internos (JSON e XML).
+Use um formatador personalizado quando desejar que o processo de [negociação de conteúdo](xref:web-api/advanced/formatting#content-negotiation) dê suporte a um tipo de conteúdo que não seja suportado pelos formatadores internos.
 
 Por exemplo, se alguns dos clientes de sua API Web puderem usar o formato [Protobuf](https://github.com/google/protobuf), talvez você queira usar Protobuf com esses clientes porque é mais eficiente. Ou talvez você queira que sua API Web envie endereços e nomes de contato no formato [vCard](https://wikipedia.org/wiki/VCard), um formato usado normalmente para troca de dados de contato. O aplicativo de exemplo fornecido com este artigo implementa um formatador vCard simples.
 
@@ -104,7 +108,6 @@ Formatadores são avaliados na ordem em que você os insere. O primeiro deles te
 
 ## <a name="next-steps"></a>Próximas etapas
 
-* [Código de exemplo do formatador de texto sem formatação no GitHub.](https://github.com/aspnet/Entropy/tree/master/samples/Mvc.Formatters)
 * [Aplicativo de exemplo para este documento](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), que implementa formatadores de entrada e saída simples de vCard. O aplicativo lê e grava vCards parecidos com o exemplo a seguir:
 
 ```

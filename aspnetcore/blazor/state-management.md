@@ -1,24 +1,24 @@
 ---
 title: ASP.NET Core o gerenciamento de estado mais incrivelmente
 author: guardrex
-description: Saiba como persistir o estado em aplicativos mais no lado do servidor.
+description: Saiba como persistir o estado em aplicativos de servidor mais incrivelmente.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 uid: blazor/state-management
-ms.openlocfilehash: 000736dde53670d1df76f41cc7cf4f95ef48800a
-ms.sourcegitcommit: 43c6335b5859282f64d66a7696c5935a2bcdf966
+ms.openlocfilehash: e1c3b030f466a820d49c36839d7ee26bb7cea4d3
+ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/07/2019
-ms.locfileid: "70800358"
+ms.lasthandoff: 09/13/2019
+ms.locfileid: "70963860"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>ASP.NET Core o gerenciamento de estado mais incrivelmente
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-O lado do servidor mais incrivelmente é uma estrutura de aplicativo com estado. Na maioria das vezes, o aplicativo mantém uma conexão contínua com o servidor. O estado do usuário é mantido na memória do servidor em um *circuito*. 
+O servidor mais incrivelmente é uma estrutura de aplicativo com estado. Na maioria das vezes, o aplicativo mantém uma conexão contínua com o servidor. O estado do usuário é mantido na memória do servidor em um *circuito*. 
 
 Exemplos de estado mantido para o circuito de um usuário incluem:
 
@@ -27,7 +27,7 @@ Exemplos de estado mantido para o circuito de um usuário incluem:
 * Dados mantidos em instâncias de serviço de [injeção de dependência (di)](xref:fundamentals/dependency-injection) que estão no escopo do circuito.
 
 > [!NOTE]
-> Este artigo aborda a persistência de estado no mais alto aplicativo do lado do servidor. Os aplicativos mais recentes do lado do cliente podem aproveitar [a persistência de estado do lado do cliente no navegador](#client-side-in-the-browser) , mas exigem soluções personalizadas ou pacotes de terceiros além do escopo deste artigo.
+> Este artigo aborda a persistência de estado em aplicativos de servidor mais incrivelmente. Os aplicativos Webassembly mais recentes podem aproveitar a [persistência de estado do lado do cliente no navegador](#client-side-in-the-browser) , mas exigem soluções personalizadas ou pacotes de terceiros além do escopo deste artigo.
 
 ## <a name="blazor-circuits"></a>Circuitos mais incrivelmente
 
@@ -62,7 +62,7 @@ Normalmente, não é necessário preservar o estado de recriação fácil, como 
 
 ## <a name="where-to-persist-state"></a>Onde persistir o estado
 
-Existem três localizações comuns para o estado persistente em um aplicativo mais alto do servidor. Cada abordagem é mais adequada para cenários diferentes e tem diferentes limitações:
+Existem três localizações comuns para o estado persistente em um aplicativo de servidor mais incrivelmente. Cada abordagem é mais adequada para cenários diferentes e tem diferentes limitações:
 
 * [Lado do servidor em um banco de dados](#server-side-in-a-database)
 * [URL](#url)
@@ -100,7 +100,7 @@ Para obter informações sobre como definir padrões de `@page` URL com a <xref:
 Para dados transitórios que o usuário está criando ativamente, um repositório de backup comum é o navegador `localStorage` e `sessionStorage` as coleções. O aplicativo não é necessário para gerenciar ou limpar o estado armazenado se o circuito for abandonado, o que é uma vantagem sobre o armazenamento do lado do servidor.
 
 > [!NOTE]
-> "Lado do cliente" nesta seção refere-se aos cenários do lado do cliente no navegador, não no mais alto [modelo de hospedagem do lado do cliente](xref:blazor/hosting-models#client-side). `localStorage`e `sessionStorage` podem ser usados em aplicativos do lado do cliente mais fáceis, mas apenas escrevendo código personalizado ou usando um pacote de terceiros.
+> "Lado do cliente" nesta seção refere-se aos cenários do lado do cliente no navegador, não no [modelo de hospedagem Webassembly](xref:blazor/hosting-models#blazor-webassembly)mais alto. `localStorage`e `sessionStorage` podem ser usados em aplicativos Webassembly mais elaborados, mas apenas escrevendo código personalizado ou usando um pacote de terceiros.
 
 `localStorage`e `sessionStorage` diferem da seguinte maneira:
 
@@ -118,7 +118,7 @@ Advertências para usar o armazenamento de navegador:
 
 * Assim como o uso de um banco de dados do lado do servidor, o carregamento e o salvamento do data são assíncronos.
 * Ao contrário de um banco de dados do lado do servidor, o armazenamento não está disponível durante o pré-processamento porque a página solicitada não existe no navegador durante o estágio de pré-processamento.
-* O armazenamento de alguns kilobytes de dados é razoável para persistir para aplicativos mais polados no servidor. Além de alguns quilobytes, você deve considerar as implicações de desempenho porque os dados são carregados e salvos na rede.
+* O armazenamento de alguns kilobytes de dados é razoável para persistir em aplicativos de servidor de mais incrivelmente. Além de alguns quilobytes, você deve considerar as implicações de desempenho porque os dados são carregados e salvos na rede.
 * Os usuários podem exibir ou adulterar os dados. ASP.NET Core [proteção de dados](xref:security/data-protection/introduction) pode reduzir o risco.
 
 ## <a name="third-party-browser-storage-solutions"></a>Soluções de armazenamento de navegadores de terceiros
@@ -138,7 +138,7 @@ Um exemplo de um pacote NuGet que fornece [proteção](xref:security/data-protec
 
 Para instalar o `Microsoft.AspNetCore.ProtectedBrowserStorage` pacote:
 
-1. No projeto de aplicativo mais alto do servidor, adicione uma referência de pacote a [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
+1. No projeto de aplicativo de servidor mais incrivelmente, adicione uma referência de pacote a [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
 1. No HTML de nível superior (por exemplo, no arquivo *pages/_Host. cshtml* no modelo de projeto padrão), adicione a seguinte `<script>` marca:
 
    ```html

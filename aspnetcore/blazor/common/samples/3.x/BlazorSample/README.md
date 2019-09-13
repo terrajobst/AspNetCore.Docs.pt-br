@@ -1,4 +1,4 @@
-# <a name="blazor-client-side-sample-app"></a>Aplicativo de exemplo mais alto (lado do cliente)
+# <a name="blazor-webassembly-sample-app"></a>Aplicativo de exemplo Webassembly mais incrivelmente
 
 Este exemplo ilustra o uso de cenários de mais claros descritos na documentação mais simples.
 

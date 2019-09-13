@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 uid: host-and-deploy/blazor/index
-ms.openlocfilehash: 5a56bbda5bb7727c7dbeaed7f2a91d0dcb6e7e71
-ms.sourcegitcommit: f65d8765e4b7c894481db9b37aa6969abc625a48
+ms.openlocfilehash: 26c8fcf56ab8ca68aeca93560785fc6c1144ab86
+ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/06/2019
-ms.locfileid: "70773597"
+ms.lasthandoff: 09/13/2019
+ms.locfileid: "70963687"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor"></a>Hospedar e implantar o ASP.NET Core Blazor
 
@@ -40,7 +40,7 @@ dotnet publish -c Release
 
 Publicar o aplicativo dispara uma [restauração](/dotnet/core/tools/dotnet-restore) das dependências do projeto e [compila](/dotnet/core/tools/dotnet-build) o projeto antes de criar os ativos para implantação. Como parte do processo de build, os assemblies e métodos não usados são removidos para reduzir o tamanho de download do aplicativo e os tempos de carregamento.
 
-Um aplicativo Blazor do lado do cliente é publicado na pasta */bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist*. Um aplicativo Blazor do lado do servidor é publicado na pasta */bin/Release/{ESTRUTURA DE DESTINO}/publish*.
+Um aplicativo Webassembly mais incrivelmente é publicado na pasta */bin/Release/{Target Framework}/Publish/{Assembly Name}/dist* . Um aplicativo de servidor mais incrivelmente é publicado na pasta */bin/Release/{Target Framework}/Publish* .
 
 Os ativos na pasta são implantados no servidor Web. A implantação pode ser um processo manual ou automatizado, dependendo das ferramentas de desenvolvimento em uso.
 
@@ -87,5 +87,5 @@ O aplicativo responde localmente em `http://localhost:port/CoolApp`.
 
 Confira orientações de implantação nos tópicos a seguir:
 
-* <xref:host-and-deploy/blazor/client-side>
-* <xref:host-and-deploy/blazor/server-side>
+* <xref:host-and-deploy/blazor/webassembly>
+* <xref:host-and-deploy/blazor/server>
