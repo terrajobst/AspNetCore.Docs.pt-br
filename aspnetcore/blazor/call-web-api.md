@@ -7,31 +7,31 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/13/2019
 uid: blazor/call-web-api
-ms.openlocfilehash: 60ebd01bc07da22cd1dcd0b16297ee54c97867fc
-ms.sourcegitcommit: f5f0ff65d4e2a961939762fb00e654491a2c772a
-ms.translationtype: HT
+ms.openlocfilehash: 152a2d5ac9a4325592ca414e9ea5e70c947d079f
+ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/15/2019
-ms.locfileid: "69030389"
+ms.lasthandoff: 09/13/2019
+ms.locfileid: "70963702"
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>Chamar uma API Web do ASP.NET Core mais
 
 De [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
 
-Os aplicativos mais polado do cliente chamam APIs da Web usando um `HttpClient` serviço pré-configurado. Redação de solicitações, que podem incluir opções de API de busca de JavaScript, usando auxiliares de <xref:System.Net.Http.HttpRequestMessage>JSON mais [populadores](https://developer.mozilla.org/docs/Web/API/Fetch_API) ou com o.
+Aplicativos Webassembly mais incrivelmente chamam APIs da Web usando um `HttpClient` serviço pré-configurado. Redação de solicitações, que podem incluir opções de API de busca de JavaScript, usando auxiliares de <xref:System.Net.Http.HttpRequestMessage>JSON mais [populadores](https://developer.mozilla.org/docs/Web/API/Fetch_API) ou com o.
 
-Os aplicativos mais polado no servidor chamam APIs da <xref:System.Net.Http.HttpClient> Web usando instâncias normalmente <xref:System.Net.Http.IHttpClientFactory>criadas usando o. Para obter mais informações, consulte <xref:fundamentals/http-requests>.
+Aplicativos de servidor mais incrivelmente chamam APIs da <xref:System.Net.Http.HttpClient> Web usando instâncias normalmente <xref:System.Net.Http.IHttpClientFactory>criadas usando o. Para obter mais informações, consulte <xref:fundamentals/http-requests>.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
-Para obter exemplos do lado do cliente mais incrivelmente, consulte os seguintes componentes no aplicativo de exemplo:
+Para obter exemplos de Webassembly mais incrivelmente, consulte os seguintes componentes no aplicativo de exemplo:
 
 * Chamar a API Web (*pages/CallWebAPI. Razor*)
 * Testador de solicitação HTTP (*componentes/HTTPRequestTester. Razor*)
 
 ## <a name="httpclient-and-json-helpers"></a>Auxiliares HttpClient e JSON
 
-Em aplicativos do lado do cliente mais incrivelmente, o [HttpClient](xref:fundamentals/http-requests) está disponível como um serviço pré-configurado para fazer solicitações de volta ao servidor de origem. Para usar `HttpClient` auxiliares JSON, adicione uma referência de pacote `Microsoft.AspNetCore.Blazor.HttpClient`a. `HttpClient`e auxiliares JSON também são usados para chamar pontos de extremidade de API Web de terceiros. `HttpClient`é implementado usando a [API de busca](https://developer.mozilla.org/docs/Web/API/Fetch_API) de navegador e está sujeito a suas limitações, incluindo a imposição da mesma política de origem.
+Em aplicativos Webassembly mais podestas, o [HttpClient](xref:fundamentals/http-requests) está disponível como um serviço pré-configurado para fazer solicitações de volta ao servidor de origem. Para usar `HttpClient` auxiliares JSON, adicione uma referência de pacote `Microsoft.AspNetCore.Blazor.HttpClient`a. `HttpClient`e auxiliares JSON também são usados para chamar pontos de extremidade de API Web de terceiros. `HttpClient`é implementado usando a [API de busca](https://developer.mozilla.org/docs/Web/API/Fetch_API) de navegador e está sujeito a suas limitações, incluindo a imposição da mesma política de origem.
 
 O endereço base do cliente é definido como o endereço do servidor de origem. Injetar `HttpClient` uma instância usando `@inject` a diretiva:
 
@@ -151,7 +151,7 @@ Para permitir que outros sites façam solicitações de compartilhamento de recu
 
 ## <a name="httpclient-and-httprequestmessage-with-fetch-api-request-options"></a>HttpClient e HttpRequestMessage com opções de solicitação de API de busca
 
-Ao executar em Webassembly em um aplicativo do lado do cliente de mais alto, use [HttpClient](xref:fundamentals/http-requests) e <xref:System.Net.Http.HttpRequestMessage> para personalizar solicitações. Por exemplo, você pode especificar o URI de solicitação, o método HTTP e todos os cabeçalhos de solicitação desejados.
+Ao executar em Webassembly em um aplicativo Webassembly mais incrivelmente, use [HttpClient](xref:fundamentals/http-requests) e <xref:System.Net.Http.HttpRequestMessage> para personalizar solicitações. Por exemplo, você pode especificar o URI de solicitação, o método HTTP e todos os cabeçalhos de solicitação desejados.
 
 Forneça opções de solicitação para a [API de busca](https://developer.mozilla.org/docs/Web/API/Fetch_API) de JavaScript `WebAssemblyHttpMessageHandler.FetchArgs` subjacente usando a propriedade na solicitação. Conforme mostrado no exemplo a seguir, a `credentials` propriedade é definida como qualquer um dos seguintes valores:
 
