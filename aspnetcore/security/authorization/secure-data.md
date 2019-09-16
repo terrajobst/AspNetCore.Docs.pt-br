@@ -6,12 +6,12 @@ ms.author: riande
 ms.date: 12/18/2018
 ms.custom: mvc, seodec18
 uid: security/authorization/secure-data
-ms.openlocfilehash: 225d0e3aa51745253d03e614b1c8568b3a6ba731
-ms.sourcegitcommit: 983b31449fe398e6e922eb13e9eb6f4287ec91e8
+ms.openlocfilehash: d95f44394d6ecc3c3896b45c5bebc73fa2d92445
+ms.sourcegitcommit: dc5b293e08336dc236de66ed1834f7ef78359531
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/24/2019
-ms.locfileid: "70017493"
+ms.lasthandoff: 09/16/2019
+ms.locfileid: "71011198"
 ---
 # <a name="create-an-aspnet-core-app-with-user-data-protected-by-authorization"></a>Criar um aplicativo ASP.NET Core com os dados de usuário protegidos por autorização
 
@@ -332,7 +332,7 @@ dotnet ef database update
 
 Se você tiver um bug com o `dotnet aspnet-codegenerator razorpage` comando, consulte [este problema do GitHub](https://github.com/aspnet/Scaffolding/issues/984).
 
-* Atualize a âncora ContactManager no arquivo *pages/Shared/_ layout. cshtml* :
+* Atualize a âncora **ContactManager** no arquivo *pages/Shared/_ layout. cshtml* :
 
  ```cshtml
 <a class="navbar-brand" asp-area="" asp-page="/Contacts/Index">ContactManager</a>
@@ -475,7 +475,7 @@ Adicione a ID de usuário de administrador e `ContactStatus` aos contatos. Torne
 
 ## <a name="create-owner-manager-and-administrator-authorization-handlers"></a>Criar o proprietário, manager e manipuladores de autorização do administrador
 
-Criar uma classe `ContactIsOwnerAuthorizationHandler` na pasta *autorização*. O `ContactIsOwnerAuthorizationHandler` verifica que o usuário que atua em um recurso possui o recurso.
+Crie uma pasta de *autorização* e crie `ContactIsOwnerAuthorizationHandler` uma classe nela. O `ContactIsOwnerAuthorizationHandler` verifica que o usuário que atua em um recurso possui o recurso.
 
 [!code-csharp[](secure-data/samples/final2.1/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
