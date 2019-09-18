@@ -1,7 +1,7 @@
 
 Execute os seguintes comandos da CLI do .NET Core:
 
-```console
+```dotnetcli
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```

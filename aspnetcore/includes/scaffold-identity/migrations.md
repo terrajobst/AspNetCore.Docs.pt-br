@@ -1,21 +1,21 @@
-Exige que o código de banco de dados de identidade gerado [migrações do Entity Framework Core](/ef/core/managing-schemas/migrations/). Criar uma migração e atualizar o banco de dados. Por exemplo, execute os seguintes comandos:
+O código do banco de dados de identidade gerado requer [migrações Entity Framework Core](/ef/core/managing-schemas/migrations/). Criar uma migração e atualizar o banco de dados. Por exemplo, execute os seguintes comandos:
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 No Visual Studio **Package Manager Console**:
 
-```PMC
+```powershell
 Add-Migration CreateIdentitySchema
 Update-Database
 ```
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
-```cli
+```dotnetcli
 dotnet ef migrations add CreateIdentitySchema
 dotnet ef database update
 ```
 
 ---
 
-O parâmetro de nome "CreateIdentitySchema" para o `Add-Migration` comando é arbitrário. `"CreateIdentitySchema"` Descreve a migração.
+O parâmetro de nome "CreateIdentitySchema" para `Add-Migration` o comando é arbitrário. `"CreateIdentitySchema"`Descreve a migração.

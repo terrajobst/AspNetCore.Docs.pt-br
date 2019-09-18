@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/03/2019
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: 3d4279a291182da60c0cb2fbb93a3922ed673cde
-ms.sourcegitcommit: 776367717e990bdd600cb3c9148ffb905d56862d
-ms.translationtype: HT
+ms.openlocfilehash: 1db3ee1a9bcc0d41edf24df55bcd8d54fb0e9724
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68914017"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71081774"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Tarefas em segundo plano com serviços hospedados no ASP.NET Core
 
@@ -49,7 +49,7 @@ O modelo de Serviço de Trabalho do ASP.NET Core fornece um ponto inicial para e
 
 Use o modelo de Serviço de Trabalho (`worker`) com o comando [dotnet novo](/dotnet/core/tools/dotnet-new) em um shell de comando. No exemplo a seguir, um aplicativo de Serviço de Trabalho é criado com o nome `ContosoWorkerService`. Uma pasta para o aplicativo `ContosoWorkerService` é criada automaticamente quando o comando é executado.
 
-```console
+```dotnetcli
 dotnet new worker -o ContosoWorkerService
 ```
 

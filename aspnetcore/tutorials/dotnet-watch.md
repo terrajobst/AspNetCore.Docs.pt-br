@@ -5,12 +5,12 @@ description: Este tutorial demonstra como instalar e usar a ferramenta observado
 ms.author: riande
 ms.date: 05/31/2018
 uid: tutorials/dotnet-watch
-ms.openlocfilehash: 03b4f7f4ade5268915482a659890c7edc2d9a852
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
-ms.translationtype: HT
+ms.openlocfilehash: 5462f89a3b5a257ed0a6a8439efb077653fb14f6
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64889871"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082244"
 ---
 # <a name="develop-aspnet-core-apps-using-a-file-watcher"></a>Desenvolver aplicativos ASP.NET Core usando um observador de arquivo
 
@@ -24,7 +24,7 @@ Baixe o [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/m
 
 Em um shell de comando, navegue até a pasta *WebApp*. Execute o seguinte comando:
 
-```console
+```dotnetcli
 dotnet run
 ```
 
@@ -61,7 +61,7 @@ A ferramenta de observador de arquivo `dotnet watch` está incluída com a vers�
 
 1. Instale o pacote `Microsoft.DotNet.Watcher.Tools` executando o seguinte comando:
 
-    ```console
+    ```dotnetcli
     dotnet restore
     ```
 
@@ -177,7 +177,7 @@ Se a meta é observar ambos os projetos, crie um arquivo de projeto personalizad
 
 Para iniciar a observação de arquivo em ambos os projetos, mude para a pasta de *teste*. Execute o seguinte comando:
 
-```console
+```dotnetcli
 dotnet watch msbuild /t:Test
 ```
 

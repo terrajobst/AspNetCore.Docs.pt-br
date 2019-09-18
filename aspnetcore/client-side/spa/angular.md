@@ -7,12 +7,12 @@ ms.author: stevesa
 ms.custom: mvc
 ms.date: 03/07/2019
 uid: spa/angular
-ms.openlocfilehash: 6d0107ef52d63a0f6f5713c518ddc54ac4230d53
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 62654ca040be99de8063a63c7e4ac09cbb8564eb
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64893663"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71080397"
 ---
 # <a name="use-the-angular-project-template-with-aspnet-core"></a>Usar o modelo de projeto Angular com o ASP.NET Core
 
@@ -26,7 +26,7 @@ Se você tiver o ASP.NET Core 2.1 instalado, não será necessário instalar o m
 
 Crie um novo projeto de um prompt de comando usando o comando `dotnet new angular` em um diretório vazio. Por exemplo, os seguintes comandos criam o aplicativo em um diretório *my-new-app* e mudam para esse diretório:
 
-```console
+```dotnetcli
 dotnet new angular -o my-new-app
 cd my-new-app
 ```
@@ -53,7 +53,7 @@ Now listening on: http://localhost:<port>
 
 Navegue até essa URL em um navegador.
 
-O aplicativo inicia uma instância do servidor da CLI do Angular em segundo plano. Uma mensagem semelhante ao seguinte é registrada em log: *NG Live Development Server está escutando em localhost:&lt;otherport&gt;, abra o navegador na http://localhost:&lt; otherport&gt;/*. Ignore essa mensagem&mdash; **não** se trata da URL para o aplicativo combinado do ASP.NET Core e da CLI do Angular.
+O aplicativo inicia uma instância do servidor da CLI do Angular em segundo plano. Uma mensagem semelhante ao seguinte é registrada em log: *Ng Live Development Server está escutando no localhost&lt;:&gt;otherport, abra o navegador http://localhost:&lt em;&gt; otherport/* . Ignore essa mensagem&mdash; **não** se trata da URL para o aplicativo combinado do ASP.NET Core e da CLI do Angular.
 
 ---
 
@@ -90,7 +90,7 @@ npm install --save <package_name>
 
 No desenvolvimento, o aplicativo é executado de um modo otimizado para conveniência do desenvolvedor. Por exemplo, pacotes JavaScript incluem mapas de origem (de modo que durante a depuração, você pode ver o código TypeScript original). O aplicativo observa alterações em arquivos TypeScript, HTML e CSS no disco e recompila e recarrega automaticamente quando as detecta.
 
-Em produção, atende a uma versão de seu aplicativo que é otimizada para desempenho. Isso é configurado para ocorrer automaticamente. Quando você publica, a configuração de build emite um build minificado em compilação AoT (Ahead Of Time) do código do lado do cliente. Diferentemente da compilação de desenvolvimento, o build de produção não exige o Node. js para ser instalado no servidor (a menos que você habilitou a renderização do lado do servidor (SSR)).
+Em produção, atende a uma versão de seu aplicativo que é otimizada para desempenho. Isso é configurado para ocorrer automaticamente. Quando você publica, a configuração de build emite um build minificado em compilação AoT (Ahead Of Time) do código do lado do cliente. Ao contrário da compilação de desenvolvimento, a compilação de produção não exige que o Node. js seja instalado no servidor (a menos que você tenha habilitado a renderização do lado do servidor (SSR)).
 
 Você pode usar os [métodos padrão de implantação e hospedagem do ASP.NET Core](xref:host-and-deploy/index).
 

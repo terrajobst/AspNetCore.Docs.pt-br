@@ -1,6 +1,6 @@
 A tabela a seguir detalha os parâmetros do gerador de código do ASP.NET Core:
 
-| Parâmetro               | DESCRIÇÃO|
+| Parâmetro               | Descrição|
 | ----------------- | ------------ |
 | -m  | O nome do modelo. |
 | -dc  | O contexto de dados. |
@@ -11,7 +11,7 @@ A tabela a seguir detalha os parâmetros do gerador de código do ASP.NET Core:
 
 Use a opção `h` para obter ajuda sobre o comando `aspnet-codegenerator controller`:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator controller -h
 ```
 

@@ -5,14 +5,14 @@ description: Crie um aplicativo Blazor passo a passo.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/23/2019
+ms.date: 09/15/2019
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: ffbdf6991830d554fc508d1d2fe8e4b9586210df
-ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
+ms.openlocfilehash: b433d793ae615bc4ece7c63bebd72d349adf43ee
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2019
-ms.locfileid: "70964184"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71081259"
 ---
 # <a name="build-your-first-blazor-app"></a>Como criar seu primeiro aplicativo Blazor
 
@@ -97,11 +97,11 @@ A diretiva `@page` no início do arquivo *Counter.razor* especifica que esse com
 
 ## <a name="dependency-injection"></a>Injeção de dependência
 
-Os serviços registrados no contêiner do serviço de aplicativo estão disponíveis para componentes por meio da [DI (injeção de dependência)](xref:fundamentals/dependency-injection). Injete os serviços em um componente usando a diretiva `@inject`.
+Se estiver trabalhando com um aplicativo de servidor mais incrivelmente `WeatherForecastService` , o serviço será registrado como um `Startup.ConfigureServices` [singleton](xref:fundamentals/dependency-injection#service-lifetimes) no. Uma instância do serviço está disponível em todo o aplicativo por meio de [injeção de dependência (di)](xref:fundamentals/dependency-injection):
 
-Examine as diretivas do componente `FetchData`.
+[!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-Se estiver trabalhando com um aplicativo de servidor mais incrivelmente `WeatherForecastService` , o serviço será registrado como um [singleton](xref:fundamentals/dependency-injection#service-lifetimes), portanto, uma instância do serviço estará disponível em todo o aplicativo. A diretiva `@inject` é usada para injetar a instância do serviço `WeatherForecastService` no componente.
+A `@inject` diretiva é usada para injetar a instância `WeatherForecastService` do serviço no `FetchData` componente.
 
 *Pages/FetchData.razor*:
 
@@ -111,7 +111,7 @@ O componente `FetchData` usa o serviço injetado, como `ForecastService`, para r
 
 [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
 
-Se estiver trabalhando com um aplicativo Webassembly de mais `HttpClient` alto, o é injetado para obter dados de previsão do tempo do arquivo *Weather. JSON* na pasta *wwwroot/Sample-data* :
+Se estiver trabalhando com um aplicativo Webassembly de mais `HttpClient` alto, o é injetado para obter dados de previsão do tempo do arquivo *Weather. JSON* na pasta *wwwroot/Sample-data* .
 
 *Pages/FetchData.razor*:
 
@@ -120,7 +120,6 @@ Se estiver trabalhando com um aplicativo Webassembly de mais `HttpClient` alto, 
 Um loop [\@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) é usado para renderizar cada uma das instâncias de previsão do tempo como uma linha na tabela de dados do tempo:
 
 [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData3.razor?highlight=11-19)]
-
 
 ## <a name="build-a-todo-list"></a>Criar uma lista de tarefas pendentes
 

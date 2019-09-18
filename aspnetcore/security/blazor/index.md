@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 uid: security/blazor/index
-ms.openlocfilehash: ab8cc547463ef647316b5a4e377c15021debc4b1
-ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
+ms.openlocfilehash: c9b57e2a987ae4a49f0965386ad080c98803d8b0
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2019
-ms.locfileid: "70963959"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71080646"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Autorização e autenticação no Blazor em ASP.NET Core
 
@@ -56,7 +56,7 @@ Uma caixa de diálogo é aberta para oferecer o mesmo conjunto de mecanismos de 
 
 Siga as diretrizes de Visual Studio Code no <xref:blazor/get-started> artigo para criar um novo projeto de servidor com um mecanismo de autenticação:
 
-```console
+```dotnetcli
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 ```
 
@@ -90,7 +90,7 @@ O comando cria uma pasta com nome do valor fornecido para o espaço reservado `{
 
 Follow the .NET Core CLI guidance in the <xref:blazor/get-started> article to create a new Blazor Server project with an authentication mechanism:
 
-```console
+```dotnetcli
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 ```
 

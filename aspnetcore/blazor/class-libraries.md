@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/13/2019
 uid: blazor/class-libraries
-ms.openlocfilehash: b5857f2cf22bde801deeeaf227817fdf99862f4a
-ms.sourcegitcommit: 4cb0c7e74355f2e87c60e2a196f842b937247a99
+ms.openlocfilehash: 91c4ffb29649c162fc15e5cb70dc60144b53afea
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/16/2019
-ms.locfileid: "69545776"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71080660"
 ---
 # <a name="aspnet-core-razor-components-class-libraries"></a>ASP.NET Core bibliotecas de classes de componentes Razor
 
@@ -48,13 +48,13 @@ Siga as orientações no <xref:blazor/get-started> artigo para configurar seu am
 
 1. Use o modelo de **biblioteca de classes Razor** (`razorclasslib`) com o comando [dotnet New](/dotnet/core/tools/dotnet-new) em um shell de comando. No exemplo a seguir, um RCL é criado com `MyComponentLib1`o nome. A pasta que contém `MyComponentLib1` é criada automaticamente quando o comando é executado:
 
-   ```console
+   ```dotnetcli
    dotnet new razorclasslib -o MyComponentLib1
    ```
 
 1. Para adicionar a biblioteca a um projeto existente, use o comando [dotnet Add Reference](/dotnet/core/tools/dotnet-add-reference) em um shell de comando. No exemplo a seguir, o RCL é adicionado ao aplicativo. Execute o seguinte comando na pasta do projeto do aplicativo com o caminho para a biblioteca:
 
-   ```console
+   ```dotnetcli
    dotnet add reference {PATH TO LIBRARY}
    ```
 
@@ -97,13 +97,13 @@ Inclua a `@using MyComponentLib1` diretiva no arquivo *_Import. Razor* de nível
 
 Como as bibliotecas de componentes são bibliotecas padrão do .NET, o empacotamento e o envio deles para o NuGet não é diferente do empacotamento e do envio de nenhuma biblioteca para o NuGet. O empacotamento é executado usando o comando [dotnet Pack](/dotnet/core/tools/dotnet-pack) em um shell de comando:
 
-```console
+```dotnetcli
 dotnet pack
 ```
 
 Carregue o pacote no NuGet usando o comando [dotnet NuGet Publish](/dotnet/core/tools/dotnet-nuget-push) em um shell de comando:
 
-```console
+```dotnetcli
 dotnet nuget publish
 ```
 

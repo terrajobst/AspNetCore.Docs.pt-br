@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 03/07/2019
 uid: spa/react
-ms.openlocfilehash: 91a71498574d6d96c2c06e896283fed801e8adb3
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 0e61c5b3e31a0b050d356b8f8e16306dc1e2a7f3
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64893693"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71080410"
 ---
 # <a name="use-the-react-project-template-with-aspnet-core"></a>Usar o modelo de projeto do React com o ASP.NET Core
 
@@ -26,7 +26,7 @@ Se você tiver o ASP.NET Core 2.1 instalado, não será necessário instalar o m
 
 Crie um novo projeto de um prompt de comando usando o comando `dotnet new react` em um diretório vazio. Por exemplo, os seguintes comandos criam o aplicativo em um diretório *my-new-app* e mudam para esse diretório:
 
-```console
+```dotnetcli
 dotnet new react -o my-new-app
 cd my-new-app
 ```
@@ -80,13 +80,13 @@ O projeto está configurado para iniciar sua própria instância do Development 
 
 Há uma desvantagem nessa configuração padrão. Cada vez que você modificar seu código C# e o aplicativo ASP.NET Core precisar ser reiniciado, o servidor CRA será reiniciado também. São necessários alguns segundos para iniciar um backup. Se você estiver fazendo edições frequentes de código C# e não quiser esperar o servidor CRA reiniciar, execute o servidor CRA externamente, independentemente do processo do ASP.NET Core. Para fazer isso:
 
-1. Adicionar um *. env* do arquivo para o *ClientApp* subdiretório com a seguinte configuração:
+1. Adicione um arquivo *. env* ao subdiretório *ClientApp* com a seguinte configuração:
 
     ```
     BROWSER=none
     ```
 
-    Isso impedirá o navegador da web seja aberto ao iniciar o servidor CRA externamente.
+    Isso impedirá que o navegador da Web seja aberto ao iniciar o servidor CRA externamente.
 
 2. Em um prompt de comando, vá para o subdiretório *ClientApp* e inicie o Development Server do CRA:
 
@@ -104,7 +104,7 @@ Há uma desvantagem nessa configuração padrão. Cada vez que você modificar s
 Quando você iniciar seu aplicativo ASP.NET Core, ele não inicializará um servidor CRA. Em vez disso, a instância que você iniciou manualmente é usada. Isso permite a ele iniciar e reiniciar mais rapidamente. Ele não aguarda mais que o aplicativo do React seja recompilado a cada vez.
 
 > [!IMPORTANT]
-> "Renderização do lado do servidor" não é um recurso com suporte deste modelo. Nosso objetivo com este modelo é atender a paridade com "criar-react-app". Assim, cenários e recursos não incluídos em um projeto de "criar-react-app" (como SSR) não têm suporte e são deixados como um exercício para o usuário.
+> O "processamento no lado do servidor" não é um recurso com suporte deste modelo. Nosso objetivo com esse modelo é atender à paridade com "Create-reajam-app". Como tal, não há suporte para cenários e recursos não incluídos em um projeto "Create-reajam-app" (como SSR) e eles são deixados como um exercício para o usuário.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

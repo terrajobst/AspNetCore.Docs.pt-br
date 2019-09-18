@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/11/2019
 uid: security/authentication/twitter-logins
-ms.openlocfilehash: 6b6fa3e50f602a92fec9112ac3ba43583de33a70
-ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
+ms.openlocfilehash: 5182f1647acb664bf35f086fcddbe909559a62f7
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/13/2019
-ms.locfileid: "68994274"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082300"
 ---
 # <a name="twitter-external-sign-in-setup-with-aspnet-core"></a>Configuração de entrada externa do Twitter com o ASP.NET Core
 
@@ -36,7 +36,7 @@ Este exemplo mostra como permitir que os usuários [entrem com sua conta do Twit
 
 Execute os seguintes comandos para armazenar `ClientId` e `ClientSecret` usar o Gerenciador de [segredo](xref:security/app-secrets)com segurança:
 
-```console
+```dotnetcli
 dotnet user-secrets set Authentication:Twitter:ConsumerAPIKey <Key>
 dotnet user-secrets set Authentication:Twitter:ConsumerSecret <Secret>
 ```

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/14/2019
 uid: test/razor-pages-tests
-ms.openlocfilehash: 35feb5dd95fa79ceca7ff03523cef30d29ccbdd3
-ms.sourcegitcommit: 476ea5ad86a680b7b017c6f32098acd3414c0f6c
+ms.openlocfilehash: afac97d686ef190ebb92d20a55a15dd774b0d1de
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/14/2019
-ms.locfileid: "69022571"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71081434"
 ---
 # <a name="razor-pages-unit-tests-in-aspnet-core"></a>Razor Pages testes de unidade no ASP.NET Core
 
@@ -44,7 +44,7 @@ O projeto de exemplo é composto por dois aplicativos:
 
 Os testes podem ser executados usando os recursos de teste internos de um IDE, como o [Visual Studio](/visualstudio/test/unit-test-your-code) ou o [Visual Studio para Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). Se estiver usando [Visual Studio Code](https://code.visualstudio.com/) ou a linha de comando, execute o seguinte comando em um prompt de comando na pasta *tests/RazorPagesTestSample. Tests* :
 
-```console
+```dotnetcli
 dotnet test
 ```
 
@@ -56,7 +56,7 @@ O aplicativo de mensagens é um sistema de mensagens Razor Pages com as seguinte
 * Uma mensagem `Message` é descrita pela classe (*Data/mensagem. cs*) com duas propriedades: `Id` (chave) e `Text` (mensagem). A `Text` propriedade é necessária e limitada a 200 caracteres.
 * As mensagens são armazenadas usando o banco de&#8224; [dados na memória do Entity Framework](/ef/core/providers/in-memory/).
 * O aplicativo contém uma Dal em sua classe de contexto de `AppDbContext` banco de dados, (*Data/AppDbContext. cs*). Os métodos Dal são marcados `virtual`, o que permite simular os métodos para uso nos testes.
-* Se o banco de dados estiver vazio na inicialização do aplicativo, o repositório de mensagens será inicializado com três mensagens. Essas *mensagens* propagadas também são usadas em testes.
+* Se o banco de dados estiver vazio na inicialização do aplicativo, o repositório de mensagens será inicializado com três mensagens. Essas *mensagens propagadas* também são usadas em testes.
 
 &#8224;O tópico do EF, [teste com inmemory](/ef/core/miscellaneous/testing/in-memory), explica como usar um banco de dados na memória para testes com MSTest. Este tópico usa a estrutura de teste do [xUnit](https://xunit.github.io/) . Conceitos de teste e implementações de teste em diferentes estruturas de teste são semelhantes, mas não idênticos.
 
@@ -228,7 +228,7 @@ O projeto de exemplo é composto por dois aplicativos:
 
 Os testes podem ser executados usando os recursos de teste internos de um IDE, como o [Visual Studio](/visualstudio/test/unit-test-your-code) ou o [Visual Studio para Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). Se estiver usando [Visual Studio Code](https://code.visualstudio.com/) ou a linha de comando, execute o seguinte comando em um prompt de comando na pasta *tests/RazorPagesTestSample. Tests* :
 
-```console
+```dotnetcli
 dotnet test
 ```
 
@@ -240,7 +240,7 @@ O aplicativo de mensagens é um sistema de mensagens Razor Pages com as seguinte
 * Uma mensagem `Message` é descrita pela classe (*Data/mensagem. cs*) com duas propriedades: `Id` (chave) e `Text` (mensagem). A `Text` propriedade é necessária e limitada a 200 caracteres.
 * As mensagens são armazenadas usando o banco de&#8224; [dados na memória do Entity Framework](/ef/core/providers/in-memory/).
 * O aplicativo contém uma Dal em sua classe de contexto de `AppDbContext` banco de dados, (*Data/AppDbContext. cs*). Os métodos Dal são marcados `virtual`, o que permite simular os métodos para uso nos testes.
-* Se o banco de dados estiver vazio na inicialização do aplicativo, o repositório de mensagens será inicializado com três mensagens. Essas *mensagens* propagadas também são usadas em testes.
+* Se o banco de dados estiver vazio na inicialização do aplicativo, o repositório de mensagens será inicializado com três mensagens. Essas *mensagens propagadas* também são usadas em testes.
 
 &#8224;O tópico do EF, [teste com inmemory](/ef/core/miscellaneous/testing/in-memory), explica como usar um banco de dados na memória para testes com MSTest. Este tópico usa a estrutura de teste do [xUnit](https://xunit.github.io/) . Conceitos de teste e implementações de teste em diferentes estruturas de teste são semelhantes, mas não idênticos.
 

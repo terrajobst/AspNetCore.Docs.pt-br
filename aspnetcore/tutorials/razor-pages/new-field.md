@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: 4af41422288847c5e77057215390b901d1074c88
-ms.sourcegitcommit: 7001657c00358b082734ba4273693b9b3ed35d2a
-ms.translationtype: HT
+ms.openlocfilehash: 0629605f4d5597a9694cb20ce00b91ff4a768468
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "68670096"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082464"
 ---
 # <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Adicionar um novo campo em uma página Razor no ASP.NET Core
 
@@ -122,7 +122,7 @@ Outra opção é excluir o banco de dados e usar as migrações para recriar o b
 
 Exclua a pasta de migração.  Use os comandos a seguir para recriar o banco de dados.
 
-```console
+```dotnetcli
 dotnet ef database drop
 dotnet ef migrations add InitialCreate
 dotnet ef database update
@@ -247,7 +247,7 @@ Outra opção é excluir o banco de dados e usar as migrações para recriar o b
 
 Excluir o banco de dados e usar as migrações para recriar o banco de dados. Para excluir o banco de dados, exclua o arquivo de banco de dados (*MvcMovie.db*). Depois, execute o comando `ef database update`:
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 

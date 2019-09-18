@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: 21e7ee144bdf0355cac8bd8a7706f100c15342da
-ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
-ms.translationtype: HT
+ms.openlocfilehash: 03734addcc0e063c2c216b26b59762d27d35d47c
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/22/2019
-ms.locfileid: "69975503"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71081153"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Como fazer registro em log no .NET Core e no ASP.NET Core
 
@@ -619,7 +619,7 @@ O segundo `AddFilter` especifica o provedor Depuração usando seu nome de tipo.
 
 Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anteriores, criam as regras mostradas na tabela a seguir. As primeiras seis vêm do exemplo de configuração e as últimas duas vêm do exemplo de código.
 
-| Número | Provider      | Categorias que começam com...          | Nível de log mínimo |
+| Number | Provider      | Categorias que começam com...          | Nível de log mínimo |
 | :----: | ------------- | --------------------------------------- | ----------------- |
 | 1      | Depurar         | Todas as categorias                          | Informações       |
 | 2      | Console       | Microsoft.AspNetCore.Mvc.Razor.Internal | Aviso           |
@@ -628,7 +628,7 @@ Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anter
 | 5      | Console       | Todas as categorias                          | Informações       |
 | 6      | Todos os provedores | Todas as categorias                          | Depurar             |
 | 7      | Todos os provedores | Sistema                                  | Depurar             |
-| 8      | Depurar         | Microsoft                               | Rastrear             |
+| 8      | Depurar         | Microsoft                               | Rastreamento             |
 
 Quando um objeto `ILogger` é criado, o objeto `ILoggerFactory` seleciona uma única regra por provedor para aplicar a esse agente. Todas as mensagens gravadas pela instância `ILogger` são filtradas com base nas regras selecionadas. A regra mais específica possível para cada par de categoria e provedor é selecionada dentre as regras disponíveis.
 
@@ -784,7 +784,7 @@ logging.AddConsole();
 
 Para ver a saída de registro em log de console, abra um prompt de comando na pasta do projeto e execute o seguinte comando:
 
-```console
+```dotnetcli
 dotnet run
 ```
 

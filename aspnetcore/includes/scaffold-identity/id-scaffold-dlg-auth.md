@@ -21,32 +21,32 @@ Observação: Se você estiver criando um novo contexto de usuário, não precis
 
 Se você já não tiver instalado o scaffolder de ASP.NET Core, instale-o agora:
 
-```console
+```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
 Adicione uma referência de pacote a [Microsoft. VisualStudio. Web. CodeGeneration. Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) ao arquivo de\*projeto (. csproj). Execute o seguinte comando no diretório do projeto:
 
-```console
+```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 ```
 
 Execute o seguinte comando para listar as opções de scaffolder de identidade:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator identity -h
 ```
 
 Na pasta do projeto, execute o scaffolder de identidade com as opções desejadas. Por exemplo, para configurar a identidade com a interface do usuário padrão e o número mínimo de arquivos, execute o comando a seguir. Use o nome totalmente qualificado correto para seu contexto de BD:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files Account.Register
 ```
 
 O PowerShell usa ponto e vírgula como um separador de comando. Ao usar o PowerShell, escape os ponto-e-vírgulas na lista de arquivos ou coloque a lista de arquivos entre aspas duplas. Por exemplo:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
 ```
 

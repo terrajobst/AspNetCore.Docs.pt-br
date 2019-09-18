@@ -1,6 +1,6 @@
 * Confie no certificado de desenvolvimento HTTPS executando o seguinte comando:
 
-  ```console
+  ```dotnetcli
   dotnet dev-certs https --trust
   ```
   

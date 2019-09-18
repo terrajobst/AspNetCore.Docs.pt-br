@@ -5,12 +5,12 @@ description: Saiba mais sobre provedores de armazenamento de chaves no ASP.NET C
 ms.author: riande
 ms.date: 06/11/2019
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: 19d51399e24d085f7c34f70098ca02cbba7a888f
-ms.sourcegitcommit: 28a2874765cefe9eaa068dceb989a978ba2096aa
+ms.openlocfilehash: d5d15779d89a2d746ca2165abab2840232ae0128
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/17/2019
-ms.locfileid: "67167039"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082035"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Provedores de armazenamento de chaves no ASP.NET Core
 
@@ -35,9 +35,9 @@ O `DirectoryInfo` pode apontar para um diretório no computador local, ou ele po
 
 ## <a name="azure-storage"></a>Armazenamento do Azure
 
-O [Microsoft.AspNetCore.DataProtection.AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) pacote permite armazenar chaves de proteção de dados no armazenamento de BLOBs do Azure. As chaves podem ser compartilhadas entre várias instâncias de um aplicativo web. Aplicativos podem compartilhar cookies de autenticação ou proteção CSRF em vários servidores.
+O pacote [Microsoft. AspNetCore. dataprotection. AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) permite armazenar chaves de proteção de dados no armazenamento de BLOBs do Azure. As chaves podem ser compartilhadas entre várias instâncias de um aplicativo web. Aplicativos podem compartilhar cookies de autenticação ou proteção CSRF em vários servidores.
 
-Para configurar o provedor de armazenamento de BLOBs do Azure, chame um dos [PersistKeysToAzureBlobStorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage) sobrecargas.
+Para configurar o provedor de armazenamento de BLOBs do Azure, chame uma das sobrecargas de [PersistKeysToAzureBlobStorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage) .
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -47,7 +47,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Se o aplicativo web é executado como um serviço do Azure, tokens de autenticação podem ser criados automaticamente usando [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/).
+Se o aplicativo Web estiver sendo executado como um serviço do Azure, os tokens de autenticação poderão ser criados automaticamente usando [Microsoft. Azure. Services. AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/).
 
 ```csharp
 var tokenProvider = new AzureServiceTokenProvider();
@@ -64,19 +64,19 @@ services.AddDataProtection()
     .PersistKeysToAzureBlobStorage(container, "keys.xml");
 ```
 
-Consulte [para obter mais detalhes sobre como configurar a autenticação serviço a serviço.](/azure/key-vault/service-to-service-authentication)
+Veja [mais detalhes sobre como configurar a autenticação de serviço a serviço.](/azure/key-vault/service-to-service-authentication)
 
 ## <a name="redis"></a>Redis
 
 ::: moniker range=">= aspnetcore-2.2"
 
-O [Microsoft.AspNetCore.DataProtection.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.StackExchangeRedis/) pacote permite armazenar chaves de proteção de dados em um cache Redis. As chaves podem ser compartilhadas entre várias instâncias de um aplicativo web. Aplicativos podem compartilhar cookies de autenticação ou proteção CSRF em vários servidores.
+O pacote [Microsoft. AspNetCore. dataprotection. StackExchangeRedis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.StackExchangeRedis/) permite armazenar chaves de proteção de dados em um cache Redis. As chaves podem ser compartilhadas entre várias instâncias de um aplicativo web. Aplicativos podem compartilhar cookies de autenticação ou proteção CSRF em vários servidores.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-O [Microsoft.AspNetCore.DataProtection.Redis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Redis/) pacote permite armazenar chaves de proteção de dados em um cache Redis. As chaves podem ser compartilhadas entre várias instâncias de um aplicativo web. Aplicativos podem compartilhar cookies de autenticação ou proteção CSRF em vários servidores.
+O pacote [Microsoft. AspNetCore. dataprotection. Redis](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Redis/) permite armazenar chaves de proteção de dados em um cache Redis. As chaves podem ser compartilhadas entre várias instâncias de um aplicativo web. Aplicativos podem compartilhar cookies de autenticação ou proteção CSRF em vários servidores.
 
 ::: moniker-end
 
@@ -149,11 +149,11 @@ O parâmetro genérico, `TContext`, deve herdar de [DbContext](/dotnet/api/micro
 
 [!code-csharp[Main](key-storage-providers/sample/MyKeysContext.cs)]
 
-Criar o `DataProtectionKeys` tabela.
+Crie a `DataProtectionKeys` tabela.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Execute os seguintes comandos na **Package Manager Console** janela (PMC):
+Execute os seguintes comandos na janela do **console do Gerenciador de pacotes** (PMC):
 
 ```PowerShell
 Add-Migration AddDataProtectionKeys -Context MyKeysContext
@@ -164,20 +164,20 @@ Update-Database -Context MyKeysContext
 
 Execute os seguintes comandos em um shell de comando:
 
-```console
+```dotnetcli
 dotnet ef migrations add AddDataProtectionKeys --context MyKeysContext
 dotnet ef database update --context MyKeysContext
 ```
 
 ---
 
-`MyKeysContext` é o `DbContext` definido no exemplo de código anterior. Se você estiver usando um `DbContext` com um nome diferente, substitua seu `DbContext` nome do `MyKeysContext`.
+`MyKeysContext`é o `DbContext` definido no exemplo de código anterior. Se você estiver usando um `DbContext` com um nome diferente, substitua seu `DbContext` nome por `MyKeysContext`.
 
-O `DataProtectionKeys` classe/entidade adota a estrutura mostrada na tabela a seguir.
+A `DataProtectionKeys` classe/entidade adota a estrutura mostrada na tabela a seguir.
 
-| Campo/propriedade | Tipo CLR | Tipo SQL              |
+| Propriedade/campo | Tipo CLR | Tipo SQL              |
 | -------------- | -------- | --------------------- |
-| `Id`           | `int`    | `int`, PK, não nulo   |
+| `Id`           | `int`    | `int`, CP, não nulo   |
 | `FriendlyName` | `string` | `nvarchar(MAX)`, nulo |
 | `Xml`          | `string` | `nvarchar(MAX)`, nulo |
 

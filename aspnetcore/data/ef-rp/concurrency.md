@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: da57633c345ec087b1a4f24ddc7771e7a2d04720
-ms.sourcegitcommit: 0774a61a3a6c1412a7da0e7d932dc60c506441fc
-ms.translationtype: HT
+ms.openlocfilehash: c9cbf8fd3ed85f32b3c166bf2df702fd26df4fc3
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70059085"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71080984"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---concurrency---8-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Simultaneidade – 8 de 8
 
@@ -156,13 +156,13 @@ Compile o projeto.
 
 * Em um terminal, execute o seguinte comando:
 
-  ```console
+  ```dotnetcli
   dotnet ef migrations add RowVersion
   ```
 
 ---
 
-Esse comando:
+Este comando:
 
 * Cria o arquivo de migração *Migrations/{time stamp}_RowVersion.cs*.
 * Atualizam o arquivo *Migrations/SchoolContextModelSnapshot.cs*. A atualização adiciona o seguinte código realçado ao método `BuildModel`:
@@ -190,7 +190,7 @@ Esse comando:
 
 * Em um terminal, execute o seguinte comando:
 
-  ```console
+  ```dotnetcli
   dotnet ef database update
   ```
 
@@ -216,13 +216,13 @@ Esse comando:
 
   **No Windows:**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
 
   **No Linux ou macOS:**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages/Departments --referenceScriptLibraries
   ```
 
@@ -494,7 +494,7 @@ A adição da propriedade `RowVersion` altera o modelo de BD, o que exige uma mi
 
 Compile o projeto. Insira o seguinte em uma janela Comando:
 
-```console
+```dotnetcli
 dotnet ef migrations add RowVersion
 dotnet ef database update
 ```
@@ -520,7 +520,7 @@ Siga as instruções em [Gere um modelo de aluno por scaffold](xref:data/ef-rp/i
 
  Execute o seguinte comando:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
 

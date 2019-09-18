@@ -5,12 +5,12 @@ description: Esta série de tutoriais mostra como usar Razor Pages no ASP.NET Co
 ms.author: riande
 ms.date: 07/25/2019
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 67a5fcee0a37861fd39a018443edbc0b9e513213
-ms.sourcegitcommit: 7a46973998623aead757ad386fe33602b1658793
-ms.translationtype: HT
+ms.openlocfilehash: 0cc00cb85b6054752417b82c783cfd4c306aeda5
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/15/2019
-ms.locfileid: "69487642"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082570"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Introdução às Páginas do Razor no ASP.NET Core
 
@@ -78,7 +78,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 * Execute os seguintes comandos:
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o RazorPagesMovie
   code -r RazorPagesMovie
   ```
@@ -255,7 +255,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 * Execute os seguintes comandos:
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o RazorPagesMovie
   code -r RazorPagesMovie
   ```
@@ -273,7 +273,7 @@ Em um terminal, execute o seguinte comando:
 
 <!-- TODO: update these instruction once mac support 2.2 projects -->
 
-```console
+```dotnetcli
 dotnet new webapp -o RazorPagesMovie
 ```
 

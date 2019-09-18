@@ -6,12 +6,12 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 07/08/2019
 uid: tutorials/signalr
-ms.openlocfilehash: 53d3763a93cc72b6bcf85b64a706500299b3597f
-ms.sourcegitcommit: 040aedca220ed24ee1726e6886daf6906f95a028
-ms.translationtype: HT
+ms.openlocfilehash: 2dfa994b9763a0139cb70cbf9847ac3b02b568e4
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/15/2019
-ms.locfileid: "67893724"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71081960"
 ---
 # <a name="tutorial-get-started-with-aspnet-core-signalr"></a>Tutorial: Introdução ao SignalR para ASP.NET Core
 
@@ -68,7 +68,7 @@ No final, você terá um aplicativo de chat funcionando:
 
 * Execute os seguintes comandos:
 
-   ```console
+   ```dotnetcli
    dotnet new webapp -o SignalRChat
    code -r SignalRChat
    ```
@@ -110,7 +110,7 @@ A biblioteca do servidor SignalR está incluída na estrutura compartilhada do A
 
 * No terminal integrado, execute o seguinte comando para instalar o LibMan.
 
-  ```console
+  ```dotnetcli
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
@@ -137,7 +137,7 @@ A biblioteca do servidor SignalR está incluída na estrutura compartilhada do A
 
 * No **Terminal**, execute o comando a seguir para instalar o LibMan.
 
-  ```console
+  ```dotnetcli
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
@@ -220,7 +220,7 @@ O servidor do SignalR precisa ser configurado para passar solicitações do Sign
 
 * No terminal integrado, execute o seguinte comando:
 
-  ```console
+  ```dotnetcli
   dotnet run -p SignalRChat.csproj
   ```
 
@@ -242,7 +242,8 @@ O servidor do SignalR precisa ser configurado para passar solicitações do Sign
 > * Se o aplicativo não funcionar, abra as ferramentas para desenvolvedores do navegador (F12) e acesse o console. Você pode encontrar erros relacionados ao código HTML e JavaScript. Por exemplo, suponha que você coloque *signalr.js* em uma pasta diferente daquela direcionada. Nesse caso, a referência a esse arquivo não funcionará e ocorrerá um erro 404 no console.
 >   ![Erro de signalr.js não encontrado](signalr/_static/3.x/f12-console.png)
 > * Se você receber o erro ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY no Chrome ou NS_ERROR_NET_INADEQUATE_SECURITY no Firefox, execute estes comandos para atualizar o certificado de desenvolvimento:
->   ```
+>
+>   ```dotnetcli
 >   dotnet dev-certs https --clean
 >   dotnet dev-certs https --trust
 >   ```
@@ -309,7 +310,7 @@ No final, você terá um aplicativo de chat funcionando:
 
 * Execute os seguintes comandos:
 
-   ```console
+   ```dotnetcli
    dotnet new webapp -o SignalRChat
    code -r SignalRChat
    ```
@@ -352,7 +353,7 @@ A biblioteca do servidor SignalR está incluída no metapacote `Microsoft.AspNet
 
 * No terminal integrado, execute o seguinte comando para instalar o LibMan.
 
-  ```console
+  ```dotnetcli
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
@@ -379,7 +380,7 @@ A biblioteca do servidor SignalR está incluída no metapacote `Microsoft.AspNet
 
 * No **Terminal**, execute o comando a seguir para instalar o LibMan.
 
-  ```console
+  ```dotnetcli
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
@@ -462,7 +463,7 @@ O servidor do SignalR precisa ser configurado para passar solicitações do Sign
 
 * No terminal integrado, execute o seguinte comando:
 
-  ```console
+  ```dotnetcli
   dotnet run -p SignalRChat.csproj
   ```
 

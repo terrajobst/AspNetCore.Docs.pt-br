@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/18/2019
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: deae568a6ba88c9a8365b9d7f2df629899bc64a1
-ms.sourcegitcommit: 16502797ea749e2690feaa5e652a65b89c007c89
+ms.openlocfilehash: 384ae6645ce083fba76a430dfc3bec3a59d3870e
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/25/2019
-ms.locfileid: "68483316"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71081530"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
 
@@ -265,7 +265,7 @@ Muitos erros de inicialização não produzem informações úteis no Log de Eve
 1. Execute o aplicativo:
    * Se o aplicativo é uma [implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
-     ```console
+     ```dotnetcli
      dotnet .\{ASSEMBLY NAME}.dll
      ```
 

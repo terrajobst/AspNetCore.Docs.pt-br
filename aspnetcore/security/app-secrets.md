@@ -1,55 +1,55 @@
 ---
-title: Armazenamento seguro dos segredos do aplicativo em desenvolvimento no ASP.NET Core
+title: Armazenamento seguro de segredos do aplicativo em desenvolvimento no ASP.NET Core
 author: rick-anderson
 description: Saiba como armazenar e recuperar informações confidenciais como segredos do aplicativo durante o desenvolvimento de um aplicativo ASP.NET Core.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 03/13/2019
 uid: security/app-secrets
-ms.openlocfilehash: 195901e466262020fd1217bd9dfb6162910bb861
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 0203a5737caf1af809b739d9e266a6971cd1523b
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64893213"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71080713"
 ---
-# <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Armazenamento seguro dos segredos do aplicativo em desenvolvimento no ASP.NET Core
+# <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Armazenamento seguro de segredos do aplicativo em desenvolvimento no ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27), e [Scott Addie](https://github.com/scottaddie)
+Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27)e [Scott Addie](https://github.com/scottaddie)
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/app-secrets/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-Este documento explica as técnicas para armazenar e recuperar dados confidenciais durante o desenvolvimento de um aplicativo ASP.NET Core. Nunca armazene senhas ou outros dados confidenciais no código-fonte. Segredos de produção não devem ser usados para desenvolvimento ou teste. Você pode armazenar e proteger os segredos de teste e produção do Azure com o [provedor de configuração do Azure Key Vault](xref:security/key-vault-configuration).
+Este documento explica técnicas para armazenar e recuperar dados confidenciais durante o desenvolvimento de um aplicativo ASP.NET Core. Nunca armazene senhas ou outros dados confidenciais no código-fonte. Os segredos de produção não devem ser usados para desenvolvimento ou teste. Você pode armazenar e proteger os segredos de teste e produção do Azure com o [provedor de configuração do Azure Key Vault](xref:security/key-vault-configuration).
 
 ## <a name="environment-variables"></a>Variáveis de ambiente
 
-Variáveis de ambiente são usadas para evitar o armazenamento de segredos do aplicativo no código ou em arquivos de configuração local. Variáveis de ambiente substituem os valores de configuração para todas as fontes de configuração especificado anteriormente.
+As variáveis de ambiente são usadas para evitar o armazenamento de segredos do aplicativo no código ou nos arquivos de configuração locais. Variáveis de ambiente substituem valores de configuração para todas as fontes de configuração especificadas anteriormente.
 
 ::: moniker range="<= aspnetcore-1.1"
 
-Configure a leitura dos valores de variáveis de ambiente chamando <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> no `Startup` construtor:
+Configure a leitura de valores de variáveis de ambiente <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> chamando `Startup` no construtor:
 
 [!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=8)]
 
 ::: moniker-end
 
-Considere um aplicativo da web ASP.NET Core no qual **contas de usuário individuais** segurança está habilitada. Uma cadeia de caracteres de conexão de banco de dados padrão está incluída no projeto do *appSettings. JSON* arquivo com a chave `DefaultConnection`. É a cadeia de caracteres de conexão padrão para o LocalDB, que é executado no modo de usuário e não requer uma senha. Durante a implantação de aplicativo, o `DefaultConnection` valor de chave pode ser substituído com o valor da variável de ambiente. A variável de ambiente pode armazenar a cadeia de caracteres de conexão completa com credenciais confidenciais.
+Considere um aplicativo Web ASP.NET Core no qual a segurança **das contas de usuário individuais** está habilitada. Uma cadeia de conexão de banco de dados padrão é incluída no arquivo *appSettings. JSON* do projeto `DefaultConnection`com a chave. A cadeia de conexão padrão é para o LocalDB, que é executado no modo de usuário e não requer uma senha. Durante a implantação do aplicativo `DefaultConnection` , o valor da chave pode ser substituído por um valor de variável de ambiente. A variável de ambiente pode armazenar a cadeia de conexão completa com credenciais confidenciais.
 
 > [!WARNING]
-> Variáveis de ambiente geralmente são armazenadas em texto não criptografado e sem formatação. Se o computador ou processo for comprometido, as variáveis de ambiente podem ser acessadas por pessoas não confiáveis. Medidas adicionais para evitar a divulgação de segredos do usuário podem ser necessárias.
+> Variáveis de ambiente geralmente são armazenadas em texto simples e não criptografado. Se o computador ou o processo estiver comprometido, as variáveis de ambiente poderão ser acessadas por partes não confiáveis. Outras medidas para evitar a divulgação de segredos do usuário podem ser necessárias.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-## <a name="secret-manager"></a>Secret Manager
+## <a name="secret-manager"></a>Gerenciador de segredo
 
-A ferramenta Secret Manager armazena dados confidenciais durante o desenvolvimento de um projeto ASP.NET Core. Nesse contexto, uma parte dos dados confidenciais é um segredo do aplicativo. Segredos do aplicativo são armazenados em um local separado da árvore do projeto. Os segredos do aplicativo são compartilhados em vários projetos ou associados a um projeto específico. Os segredos do aplicativo não são verificados no controle de origem.
+A ferramenta Gerenciador de segredo armazena dados confidenciais durante o desenvolvimento de um projeto ASP.NET Core. Nesse contexto, um elemento de dados confidenciais é um segredo do aplicativo. Os segredos do aplicativo são armazenados em um local separado da árvore do projeto. Os segredos do aplicativo são associados a um projeto específico ou compartilhados entre vários projetos. Os segredos do aplicativo não são verificados no controle do código-fonte.
 
 > [!WARNING]
-> A ferramenta Secret Manager não criptografa os segredos armazenados e não deve ser tratada como um repositório confiável. Ele é apenas a fins de desenvolvimento. As chaves e valores são armazenados em um arquivo de configuração JSON no diretório de perfil do usuário.
+> A ferramenta Gerenciador de segredo não criptografa os segredos armazenados e não deve ser tratada como um repositório confiável. É apenas para fins de desenvolvimento. As chaves e os valores são armazenados em um arquivo de configuração JSON no diretório de perfil do usuário.
 
-## <a name="how-the-secret-manager-tool-works"></a>Como funciona a ferramenta Secret Manager
+## <a name="how-the-secret-manager-tool-works"></a>Como funciona a ferramenta Gerenciador de segredo
 
-A ferramenta Secret Manager abstrai os detalhes de implementação, como onde e como os valores são armazenados. Você pode usar a ferramenta sem conhecer esses detalhes de implementação. Os valores são armazenados em um arquivo de configuração do JSON em uma pasta de perfil do usuário do sistema protegido no computador local:
+A ferramenta Gerenciador de segredo abstrai os detalhes da implementação, como onde e como os valores são armazenados. Você pode usar a ferramenta sem conhecer esses detalhes de implementação. Os valores são armazenados em um arquivo de configuração JSON em uma pasta de perfil de usuário protegida pelo sistema no computador local:
 
 # <a name="windowstabwindows"></a>[Windows](#tab/windows)
 
@@ -57,7 +57,7 @@ Caminho do sistema de arquivos:
 
 `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json`
 
-# <a name="linux--macostablinuxmacos"></a>[Linux / macOS](#tab/linux+macos)
+# <a name="linux--macostablinuxmacos"></a>[Linux/macOS](#tab/linux+macos)
 
 Caminho do sistema de arquivos:
 
@@ -65,36 +65,36 @@ Caminho do sistema de arquivos:
 
 ---
 
-Na anterior caminhos de arquivo, substitua `<user_secrets_id>` com o `UserSecretsId` valor especificado na *. csproj* arquivo.
+Nos caminhos de arquivo anteriores, substitua `<user_secrets_id>` `UserSecretsId` pelo valor especificado no arquivo *. csproj* .
 
-Não escreva código que depende do local ou o formato dos dados salvos com a ferramenta Secret Manager. Esses detalhes de implementação pode ser alterado. Por exemplo, os valores secretos não são criptografados, mas pode ser no futuro.
+Não escreva o código que depende do local ou do formato dos dados salvos com a ferramenta Gerenciador de segredo. Esses detalhes de implementação podem ser alterados. Por exemplo, os valores secretos não são criptografados, mas podem estar no futuro.
 
 ::: moniker range="<= aspnetcore-2.0"
 
-## <a name="install-the-secret-manager-tool"></a>Instalar a ferramenta Secret Manager
+## <a name="install-the-secret-manager-tool"></a>Instalar a ferramenta Gerenciador de segredo
 
-A ferramenta Secret Manager é fornecido com a CLI do .NET Core no SDK do .NET Core 2.1.300 ou posterior. Para versões do SDK do .NET Core anteriores 2.1.300, a instalação da ferramenta é necessária.
+A ferramenta Gerenciador de segredo é agrupada com o CLI do .NET Core no SDK do .NET Core 2.1.300 ou posterior. Para SDK do .NET Core versões anteriores ao 2.1.300, a instalação da ferramenta é necessária.
 
 > [!TIP]
-> Executar `dotnet --version` em um shell de comando para ver o número de versão do SDK do .NET Core instalado.
+> Execute `dotnet --version` de um shell de comando para ver o número da versão do SDK do .NET Core instalado.
 
-Um aviso será exibido se a ferramenta inclui o SDK do .NET Core que está sendo usada:
+Um aviso será exibido se o SDK do .NET Core que está sendo usado incluir a ferramenta:
 
 ```console
 The tool 'Microsoft.Extensions.SecretManager.Tools' is now included in the .NET Core SDK. Information on resolving this warning is available at (https://aka.ms/dotnetclitools-in-box).
 ```
 
-Instalar o [secretmanager](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) pacote do NuGet em seu projeto ASP.NET Core. Por exemplo:
+Instale o pacote NuGet [Microsoft. Extensions. secretomanager. Tools](https://www.nuget.org/packages/Microsoft.Extensions.SecretManager.Tools/) em seu projeto ASP.NET Core. Por exemplo:
 
 [!code-xml[](app-secrets/samples/1.x/UserSecrets/UserSecrets.csproj?name=snippet_CsprojFile&highlight=15-16)]
 
 Execute o seguinte comando em um shell de comando para validar a instalação da ferramenta:
 
-```console
+```dotnetcli
 dotnet user-secrets -h
 ```
 
-A ferramenta Secret Manager exibe um exemplo de uso e opções de ajuda de comando:
+A ferramenta Gerenciador de segredo exibe o uso de exemplo, as opções e a ajuda de comando:
 
 ```console
 Usage: dotnet user-secrets [options] [command]
@@ -117,29 +117,29 @@ Use "dotnet user-secrets [command] --help" for more information about a command.
 ```
 
 > [!NOTE]
-> Você deve estar no mesmo diretório que o *. csproj* arquivo para executar as ferramentas definidas na *. csproj* do arquivo `DotNetCliToolReference` elementos.
+> Você deve estar no mesmo diretório que o arquivo *. csproj* para executar ferramentas definidas nos elementos do `DotNetCliToolReference` arquivo *. csproj* .
 
 ::: moniker-end
 
 ## <a name="enable-secret-storage"></a>Habilitar o armazenamento secreto
 
-A ferramenta Secret Manager opera em definições de configuração de específicos do projeto armazenadas no perfil do usuário.
+A ferramenta Gerenciador de segredo opera em definições de configuração específicas do projeto armazenadas no seu perfil de usuário.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-A ferramenta Secret Manager inclui um `init` comando no SDK do .NET Core 3.0.100 ou posterior. Para usar os segredos do usuário, execute o seguinte comando no diretório do projeto:
+A ferramenta Gerenciador de segredo inclui `init` um comando no SDK do .NET Core 3.0.100 ou posterior. Para usar os segredos do usuário, execute o seguinte comando no diretório do projeto:
 
-```console
+```dotnetcli
 dotnet user-secrets init
 ```
 
-O comando anterior adiciona uma `UserSecretsId` elemento dentro de uma `PropertyGroup` da *. csproj* arquivo. Por padrão, o texto interno do `UserSecretsId` é um GUID. O texto interno é arbitrário, mas é exclusivo para o projeto.
+O comando anterior adiciona um `UserSecretsId` elemento dentro de `PropertyGroup` um do arquivo *. csproj* . Por padrão, o texto interno de `UserSecretsId` é um GUID. O texto interno é arbitrário, mas é exclusivo para o projeto.
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.2"
 
-Para usar os segredos do usuário, defina uma `UserSecretsId` elemento dentro de uma `PropertyGroup` da *. csproj* arquivo. O texto interno do `UserSecretsId` é arbitrária, mas é exclusiva para o projeto. Os desenvolvedores geralmente geram um GUID para o `UserSecretsId`.
+Para usar os segredos do usuário, `UserSecretsId` defina um elemento `PropertyGroup` dentro de um do arquivo *. csproj* . O texto interno de `UserSecretsId` é arbitrário, mas é exclusivo para o projeto. Os desenvolvedores normalmente geram um GUID `UserSecretsId`para o.
 
 ::: moniker-end
 
@@ -156,27 +156,27 @@ Para usar os segredos do usuário, defina uma `UserSecretsId` elemento dentro de
 ::: moniker-end
 
 > [!TIP]
-> No Visual Studio, clique com botão direito no projeto no Gerenciador de soluções e selecione **gerenciar segredos do usuário** no menu de contexto. Esse gesto adiciona uma `UserSecretsId` elemento, preenchido com um GUID para o *. csproj* arquivo.
+> No Visual Studio, clique com o botão direito do mouse no projeto em Gerenciador de Soluções e selecione **gerenciar segredos do usuário** no menu de contexto. Esse gesto adiciona um `UserSecretsId` elemento, populado com um GUID, ao arquivo *. csproj* .
 
-## <a name="set-a-secret"></a>Defina um segredo
+## <a name="set-a-secret"></a>Definir um segredo
 
-Defina um segredo do aplicativo consiste em uma chave e seu valor. O segredo está associado com o projeto `UserSecretsId` valor. Por exemplo, execute o seguinte comando do diretório no qual o *. csproj* arquivo existe:
+Defina um segredo de aplicativo que consiste em uma chave e seu valor. O segredo é associado ao valor do `UserSecretsId` projeto. Por exemplo, execute o seguinte comando do diretório no qual o arquivo *. csproj* existe:
 
-```console
+```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345"
 ```
 
-No exemplo anterior, os dois-pontos indica que `Movies` é um objeto literal com um `ServiceApiKey` propriedade.
+No exemplo anterior, os dois pontos indica que `Movies` é um literal de objeto com uma `ServiceApiKey` propriedade.
 
-A ferramenta Secret Manager pode ser usada de outros diretórios muito. Use o `--project` opção de fornecer o caminho do sistema de arquivos no qual o *. csproj* arquivo existe. Por exemplo:
+A ferramenta Gerenciador de segredo também pode ser usada em outros diretórios. Use a `--project` opção para fornecer o caminho do sistema de arquivos no qual o arquivo *. csproj* existe. Por exemplo:
 
-```console
+```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
 ```
 
-### <a name="json-structure-flattening-in-visual-studio"></a>Estrutura JSON nivelamento no Visual Studio
+### <a name="json-structure-flattening-in-visual-studio"></a>Nivelamento de estrutura JSON no Visual Studio
 
-Visual Studio **gerenciar segredos do usuário** gesto abre uma *Secrets* arquivo no editor de texto. Substitua o conteúdo do *Secrets* com os pares chave-valor a ser armazenado. Por exemplo:
+O gesto **gerenciar segredos do usuário** do Visual Studio abre um arquivo *segredos. JSON* no editor de texto. Substitua o conteúdo de *Secrets. JSON* pelos pares de chave-valor a serem armazenados. Por exemplo:
 
 ```json
 {
@@ -187,7 +187,7 @@ Visual Studio **gerenciar segredos do usuário** gesto abre uma *Secrets* arquiv
 }
 ```
 
-A estrutura JSON é mesclada após modificações via `dotnet user-secrets remove` ou `dotnet user-secrets set`. Por exemplo, executando `dotnet user-secrets remove "Movies:ConnectionString"` recolhe o `Movies` literal de objeto. O arquivo modificado é semelhante a:
+A estrutura JSON é achatada após modificações via `dotnet user-secrets remove` ou `dotnet user-secrets set`. Por exemplo, a `dotnet user-secrets remove "Movies:ConnectionString"` execução recolhe o `Movies` literal do objeto. O arquivo modificado é semelhante ao seguinte:
 
 ```json
 {
@@ -195,45 +195,45 @@ A estrutura JSON é mesclada após modificações via `dotnet user-secrets remov
 }
 ```
 
-## <a name="set-multiple-secrets"></a>Defina vários segredos
+## <a name="set-multiple-secrets"></a>Definir vários segredos
 
-Um lote de segredos pode ser definido ao canalizar o JSON para o `set` comando. No exemplo a seguir, o *Input* conteúdo do arquivo será canalizado para o `set` comando.
+Um lote de segredos pode ser definido por meio de tubulação JSON `set` para o comando. No exemplo a seguir, o conteúdo do arquivo *Input. JSON* é canalizado para o `set` comando.
 
 # <a name="windowstabwindows"></a>[Windows](#tab/windows)
 
 Abra um shell de comando e execute o seguinte comando:
 
-  ```console
+  ```dotnetcli
   type .\input.json | dotnet user-secrets set
   ```
 
-# <a name="linux--macostablinuxmacos"></a>[Linux / macOS](#tab/linux+macos)
+# <a name="linux--macostablinuxmacos"></a>[Linux/macOS](#tab/linux+macos)
 
 Abra um shell de comando e execute o seguinte comando:
 
-  ```console
+  ```dotnetcli
   cat ./input.json | dotnet user-secrets set
   ```
 
 ---
 
-## <a name="access-a-secret"></a>Acesse um segredo
+## <a name="access-a-secret"></a>Acessar um segredo
 
-O [API de configuração do ASP.NET Core](xref:fundamentals/configuration/index) fornece acesso aos segredos Secret Manager.
+A [API de configuração do ASP.NET Core](xref:fundamentals/configuration/index) fornece acesso aos segredos do Gerenciador de segredo.
 
 ::: moniker range=">= aspnetcore-2.0 <= aspnetcore-2.2"
 
-Se seu projeto for destinado ao .NET Framework, instale o [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) pacote do NuGet.
+Se seu projeto tiver como destino .NET Framework, instale o pacote NuGet [Microsoft. Extensions. Configuration. Usersecretos](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) .
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.0"
 
-No ASP.NET Core 2.0 ou posterior, a fonte de configuração de segredos do usuário é adicionada automaticamente no modo de desenvolvimento quando o projeto chama <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> para inicializar uma nova instância do host com os padrões pré-configurados. `CreateDefaultBuilder` chamadas <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> quando o <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> é <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development>:
+No ASP.NET Core 2,0 ou posterior, a fonte de configuração de segredos do usuário é adicionada automaticamente no modo de desenvolvimento <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> quando o projeto chama para inicializar uma nova instância do host com padrões pré-configurados. `CreateDefaultBuilder`chama <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> quando o <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> é <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development>:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Program.cs?name=snippet_CreateWebHostBuilder&highlight=2)]
 
-Quando `CreateDefaultBuilder` não é chamado, adicione a fonte de configuração de segredos do usuário explicitamente chamando <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> no `Startup` construtor. Chamar `AddUserSecrets` apenas quando o aplicativo é executado no ambiente de desenvolvimento, conforme mostrado no exemplo a seguir:
+Quando `CreateDefaultBuilder` não for chamado, adicione a fonte de configuração de segredos do <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> usuário explicitamente `Startup` chamando no construtor. Chame `AddUserSecrets` somente quando o aplicativo for executado no ambiente de desenvolvimento, conforme mostrado no exemplo a seguir:
 
 [!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=12)]
 
@@ -241,15 +241,15 @@ Quando `CreateDefaultBuilder` não é chamado, adicione a fonte de configuraçã
 
 ::: moniker range="<= aspnetcore-1.1"
 
-Instalar o [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) pacote do NuGet.
+Instale o pacote NuGet [Microsoft. Extensions. Configuration. Usersecretos](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) .
 
-Adicionar a fonte de configuração de segredos do usuário com uma chamada para <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> no `Startup` construtor:
+Adicione a fonte de configuração de segredos do usuário com <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> uma chamada `Startup` para no construtor:
 
 [!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=12)]
 
 ::: moniker-end
 
-Segredos do usuário podem ser recuperados por meio de `Configuration` API:
+Os segredos do usuário podem ser recuperados por meio da `Configuration` API:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -263,13 +263,13 @@ Segredos do usuário podem ser recuperados por meio de `Configuration` API:
 
 ::: moniker-end
 
-## <a name="map-secrets-to-a-poco"></a>Segredos do mapa para um POCO
+## <a name="map-secrets-to-a-poco"></a>Mapear segredos para um POCO
 
-Mapeando um literal de objeto inteiro para um POCO (uma classe .NET simple com propriedades) é útil para agregar as propriedades relacionadas.
+O mapeamento de um literal de objeto inteiro para um POCO (uma classe .NET simples com propriedades) é útil para agregar propriedades relacionadas.
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Para mapear os segredos anteriores para um POCO, use o `Configuration` da API [de associação do grafo de objeto](xref:fundamentals/configuration/index#bind-to-an-object-graph) recurso. O código a seguir associa a um personalizado `MovieSettings` POCO e acessa o `ServiceApiKey` valor da propriedade:
+Para mapear os segredos anteriores para um poco, use `Configuration` o recurso de [Associação de grafo de objeto](xref:fundamentals/configuration/index#bind-to-an-object-graph) da API. O código a seguir é associado a um `MovieSettings` poco personalizado e acessa o `ServiceApiKey` valor da propriedade:
 
 ::: moniker range=">= aspnetcore-1.1"
 
@@ -283,27 +283,27 @@ Para mapear os segredos anteriores para um POCO, use o `Configuration` da API [d
 
 ::: moniker-end
 
-O `Movies:ConnectionString` e `Movies:ServiceApiKey` segredos são mapeados para as respectivas propriedades no `MovieSettings`:
+Os `Movies:ConnectionString` segredos `Movies:ServiceApiKey` e são mapeados para as respectivas propriedades `MovieSettings`no:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
 
-## <a name="string-replacement-with-secrets"></a>Cadeia de caracteres de substituição com segredos
+## <a name="string-replacement-with-secrets"></a>Substituição de cadeia de caracteres com segredos
 
-Armazenar senhas em texto sem formatação é inseguro. Por exemplo, uma cadeia de caracteres de conexão de banco de dados armazenados em *appSettings. JSON* pode incluir uma senha para o usuário especificado:
+O armazenamento de senhas em texto sem formatação não é seguro. Por exemplo, uma cadeia de conexão de banco de dados armazenada em *appSettings. JSON* pode incluir uma senha para o usuário especificado:
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
 Uma abordagem mais segura é armazenar a senha como um segredo. Por exemplo:
 
-```console
+```dotnetcli
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Remover o `Password` par chave-valor da cadeia de conexão na *appSettings. JSON*. Por exemplo:
+Remova o `Password` par chave-valor da cadeia de conexão em *appSettings. JSON*. Por exemplo:
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings.json?highlight=3)]
 
-Valor do segredo pode ser definida em um <xref:System.Data.SqlClient.SqlConnectionStringBuilder> do objeto <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password*> propriedade para concluir a cadeia de caracteres de conexão:
+O valor do segredo pode ser definido na <xref:System.Data.SqlClient.SqlConnectionStringBuilder> <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password*> propriedade de um objeto para concluir a cadeia de conexão:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -317,13 +317,13 @@ Valor do segredo pode ser definida em um <xref:System.Data.SqlClient.SqlConnecti
 
 ::: moniker-end
 
-## <a name="list-the-secrets"></a>Lista os segredos
+## <a name="list-the-secrets"></a>Listar os segredos
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Execute o seguinte comando no diretório no qual o *. csproj* arquivo existe:
+Execute o seguinte comando do diretório no qual o arquivo *. csproj* existe:
 
-```console
+```dotnetcli
 dotnet user-secrets list
 ```
 
@@ -334,19 +334,19 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-No exemplo anterior, dois-pontos em nomes de chave denota a hierarquia de objetos dentro *Secrets*.
+No exemplo anterior, dois-pontos nos nomes de chave denota a hierarquia de objeto dentro de *segredos. JSON*.
 
-## <a name="remove-a-single-secret"></a>Remover um segredo único
+## <a name="remove-a-single-secret"></a>Remover um único segredo
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Execute o seguinte comando no diretório no qual o *. csproj* arquivo existe:
+Execute o seguinte comando do diretório no qual o arquivo *. csproj* existe:
 
-```console
+```dotnetcli
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
-O aplicativo *Secrets* arquivo foi modificado para remover o par chave-valor associado a `MoviesConnectionString` chave:
+O arquivo *segredos. JSON* do aplicativo foi modificado para remover o par chave-valor associado `MoviesConnectionString` à chave:
 
 ```json
 {
@@ -356,7 +356,7 @@ O aplicativo *Secrets* arquivo foi modificado para remover o par chave-valor ass
 }
 ```
 
-Executando `dotnet user-secrets list` exibe a seguinte mensagem:
+A `dotnet user-secrets list` execução exibe a seguinte mensagem:
 
 ```console
 Movies:ServiceApiKey = 12345
@@ -366,19 +366,19 @@ Movies:ServiceApiKey = 12345
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Execute o seguinte comando no diretório no qual o *. csproj* arquivo existe:
+Execute o seguinte comando do diretório no qual o arquivo *. csproj* existe:
 
-```console
+```dotnetcli
 dotnet user-secrets clear
 ```
 
-Todos os segredos do usuário para o aplicativo tem sido excluídos do *Secrets* arquivo:
+Todos os segredos do usuário para o aplicativo foram excluídos do arquivo *segredos. JSON* :
 
 ```json
 {}
 ```
 
-Executando `dotnet user-secrets list` exibe a seguinte mensagem:
+A `dotnet user-secrets list` execução exibe a seguinte mensagem:
 
 ```console
 No secrets configured for this application.

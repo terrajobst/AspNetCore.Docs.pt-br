@@ -6,12 +6,12 @@ ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: e09d03f1d30f128b1db1588aa92b28ec3e4ae626
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: df41f296e9c4e1eff6e31d45b29ec30ee1e20cf4
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64892633"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71080445"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Implantar um aplicativo de serviço de aplicativo
 
@@ -35,7 +35,7 @@ Fique à vontade examinar o código, mas é importante entender que não há nad
 
 Em um shell de comando, baixe o código, compile o projeto e executá-lo da seguinte maneira.
 
-> *Observação: Os usuários do Linux/macOS devem fazer as alterações apropriadas para caminhos, por exemplo, usando a barra invertida (`/`) em vez de barra invertida (`\`).*
+> *Observação: Os usuários do linux/MacOS devem fazer as alterações apropriadas para caminhos, por exemplo, usando`/`a barra () em vez`\`da barra invertida ().*
 
 1. Clone o código para uma pasta no seu computador local.
 
@@ -51,13 +51,13 @@ Em um shell de comando, baixe o código, compile o projeto e executá-lo da segu
 
 3. Restaure os pacotes e compile a solução.
 
-    ```console
+    ```dotnetcli
     dotnet build
     ```
 
 4. Execute o aplicativo.
 
-    ```console
+    ```dotnetcli
     dotnet run
     ```
 
@@ -73,7 +73,7 @@ Em um shell de comando, baixe o código, compile o projeto e executá-lo da segu
 
 Para implantar o aplicativo, você precisará criar um serviço de aplicativo [aplicativo Web](/azure/app-service/app-service-web-overview). Após a criação do aplicativo Web, você implantará a ele em seu computador local usando o Git.
 
-1. Entrar para o [Azure Cloud Shell](https://shell.azure.com/bash). Observação: Quando você entra pela primeira vez, o Cloud Shell solicita a criar uma conta de armazenamento para arquivos de configuração. Aceite os padrões ou forneça um nome exclusivo.
+1. Entrar para o [Azure Cloud Shell](https://shell.azure.com/bash). Observação: Quando você entra pela primeira vez, o Cloud Shell solicita a criação de uma conta de armazenamento para os arquivos de configuração. Aceite os padrões ou forneça um nome exclusivo.
 
 2. Use o Cloud Shell para as etapas a seguir.
 
@@ -141,7 +141,7 @@ Para implantar o aplicativo, você precisará criar um serviço de aplicativo [a
 
 ## <a name="deployment-with-visual-studio"></a>Implantação com o Visual Studio
 
-> *Observação: Esta seção se aplica somente ao Windows. Os usuários do Linux e macOS devem fazer a alteração descrita na etapa 2 abaixo. Salve o arquivo e confirmar a alteração no repositório local com `git commit`. Por fim, envie por push a alteração com `git push`, como na primeira seção.*
+> *Observação: Esta seção aplica-se somente ao Windows. Os usuários do Linux e macOS devem fazer a alteração descrita na etapa 2 abaixo. Salve o arquivo e confirmar a alteração no repositório local com `git commit`. Por fim, envie por push a alteração com `git push`, como na primeira seção.*
 
 O aplicativo já foi implantado no shell de comando. Vamos usar ferramentas integradas do Visual Studio para implantar uma atualização para o aplicativo. Nos bastidores, o Visual Studio realiza a mesma coisa, como a ferramentas de linha de comando, mas dentro da interface de usuário familiar do Visual Studio.
 

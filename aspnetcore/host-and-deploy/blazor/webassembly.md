@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: 06316cacb02d9d7619ff7a210bd596696f86021b
-ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
+ms.openlocfilehash: f6c143cc17d08e0cada67ec831e090661c4fed56
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2019
-ms.locfileid: "70964250"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71081440"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Hospedar e implantar ASP.NET Core Webassembly de mais incrivelmente
 
@@ -200,7 +200,7 @@ O argumento `--contentroot` define o caminho absoluto para o diretório que cont
 
 * Passe o argumento ao executar o aplicativo localmente em um prompt de comando. No diretório do aplicativo, execute:
 
-  ```console
+  ```dotnetcli
   dotnet run --contentroot=/content-root-path
   ```
 
@@ -225,7 +225,7 @@ O `--pathbase` argumento define o caminho base do aplicativo para um aplicativo 
 
 * Passe o argumento ao executar o aplicativo localmente em um prompt de comando. No diretório do aplicativo, execute:
 
-  ```console
+  ```dotnetcli
   dotnet run --pathbase=/relative-URL-path
   ```
 
@@ -247,7 +247,7 @@ O argumento `--urls` define os endereços IP ou os endereços de host com portas
 
 * Passe o argumento ao executar o aplicativo localmente em um prompt de comando. No diretório do aplicativo, execute:
 
-  ```console
+  ```dotnetcli
   dotnet run --urls=http://127.0.0.1:0
   ```
 

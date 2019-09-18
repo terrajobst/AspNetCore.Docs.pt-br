@@ -7,12 +7,12 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: fcb238c132a774200e9f54f1141f5ba79fa2f802
-ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
-ms.translationtype: HT
+ms.openlocfilehash: 3ee95d9b648a90c90d06e33a30b568626a1eb0aa
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/22/2019
-ms.locfileid: "69975162"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71080829"
 ---
 # <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Tutorial: Usar o recurso de migrações - ASP.NET MVC com EF Core
 
@@ -51,7 +51,7 @@ Essa alteração configura o projeto, de modo que a primeira migração crie um 
 > [!NOTE]
 > Como alternativa à alteração do nome do banco de dados, você pode excluir o banco de dados. Use o **SSOX** (Pesquisador de Objetos do SQL Server) ou o comando `database drop` da CLI:
 >
-> ```console
+> ```dotnetcli
 > dotnet ef database drop
 > ```
 >
@@ -71,7 +71,7 @@ Salve as alterações e compile o projeto. Em seguida, abra uma janela Comando e
 
 Insira o seguinte comando na janela de comando:
 
-```console
+```dotnetcli
 dotnet ef migrations add InitialCreate
 ```
 
@@ -112,7 +112,7 @@ Confira [Migrações do EF Core em ambientes de equipe](/ef/core/managing-schema
 
 Na janela Comando, insira o comando a seguir para criar o banco de dados e tabelas nele.
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 

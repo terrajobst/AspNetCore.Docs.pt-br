@@ -6,12 +6,12 @@ ms.author: riande
 ms.date: 06/18/2019
 ms.custom: mvc, seodec18
 uid: security/authentication/add-user-data
-ms.openlocfilehash: c219500b7595fd8d200e4e5e742b1e1fda836ba3
-ms.sourcegitcommit: a1283d486ac1dcedfc7ea302e1cc882833e2c515
+ms.openlocfilehash: f5a47ffd2e068414268ed9037d4376bfd21ba1bb
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/18/2019
-ms.locfileid: "67207733"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71080804"
 ---
 # <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>Adicionar, baixar e excluir dados de usuário personalizada à identidade em um projeto ASP.NET Core
 
@@ -20,7 +20,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 Este artigo mostra como:
 
 * Adicione dados de usuário personalizada para um aplicativo web ASP.NET Core.
-* Decore o modelo de dados de usuário personalizada com o <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> para que ele fica automaticamente disponível para download e exclusão de atributo. Tornando os dados capazes de ser baixado e excluído ajuda a cumprir [GDPR](xref:security/gdpr) requisitos.
+* Decorar o modelo de dados de usuário personalizado <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> com o atributo para que ele seja automaticamente disponibilizado para download e exclusão. Tornando os dados capazes de ser baixado e excluído ajuda a cumprir [GDPR](xref:security/gdpr) requisitos.
 
 O exemplo de projeto é criado a partir de um aplicativo web páginas Razor, mas as instruções são semelhantes para um aplicativo web ASP.NET Core MVC.
 
@@ -36,13 +36,13 @@ O exemplo de projeto é criado a partir de um aplicativo web páginas Razor, mas
 
 * No menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**. Nomeie o projeto **WebApp1** se você deseja corresponder ao namespace da [baixar exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) código.
 * Selecione **aplicativo Web ASP.NET Core** > **Okey**
-* Selecione **ASP.NET Core 2.2** na lista suspensa
+* Selecione **ASP.NET Core 2,2** na lista suspensa
 * Selecione **aplicativo Web**  > **Okey**
 * Compile e execute o projeto.
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
-```cli
+```dotnetcli
 dotnet new webapp -o WebApp1
 ```
 
@@ -67,26 +67,26 @@ dotnet new webapp -o WebApp1
 
 Se você já não tiver instalado o scaffolder de ASP.NET Core, instale-o agora:
 
-```cli
+```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
 Adicione uma referência de pacote ao [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) ao arquivo de projeto (. csproj). Execute o seguinte comando no diretório do projeto:
 
-```cli
+```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 ```
 
 Execute o seguinte comando para listar as opções de scaffolder de identidade:
 
-```cli
+```dotnetcli
 dotnet aspnet-codegenerator identity -h
 ```
 
 Na pasta do projeto, execute o scaffolder de identidade:
 
-```cli
+```dotnetcli
 dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account.Manage.Index
 ```
 
@@ -143,14 +143,14 @@ Compile o projeto.
 
 No Visual Studio **Package Manager Console**:
 
-```PMC
+```powershell
 Add-Migration CustomUserData
 Update-Database
 ```
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
-```cli
+```dotnetcli
 dotnet ef migrations add CustomUserData
 dotnet ef database update
 ```

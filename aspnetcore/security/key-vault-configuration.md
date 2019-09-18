@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/01/2019
 uid: security/key-vault-configuration
-ms.openlocfilehash: 0d0b6e20a1901d4a2630ce263b5fd0cd7bcca8fe
-ms.sourcegitcommit: 4fe3ae892f54dc540859bff78741a28c2daa9a38
+ms.openlocfilehash: fe6cdca1f7180f9da26fe2838e529becb26ccd45
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/04/2019
-ms.locfileid: "68776647"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71081109"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Azure Key Vault provedor de configuração no ASP.NET Core
 
@@ -34,7 +34,7 @@ Para usar o provedor de configuração Azure Key Vault, adicione uma referência
 Para adotar as [identidades gerenciadas para o cenário de recursos do Azure](/azure/active-directory/managed-identities-azure-resources/overview) , adicione uma referência de pacote ao pacote [Microsoft. Azure. Services. AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/) .
 
 > [!NOTE]
-> No momento da elaboração do artigo, a versão `Microsoft.Azure.Services.AppAuthentication` `1.0.3`estável mais recente do, do, oferece suporte para identidades gerenciadas atribuídas pelo [sistema](/azure/active-directory/managed-identities-azure-resources/overview#how-does-the-managed-identities-for-azure-resources-work). O`1.2.0-preview2` suporte para identidades gerenciadas atribuídas pelo *usuário* está disponível no pacote. Este tópico demonstra o uso de identidades gerenciadas pelo sistema e o aplicativo de exemplo fornecido `1.0.3` usa a `Microsoft.Azure.Services.AppAuthentication` versão do pacote.
+> No momento da elaboração do artigo, a versão `Microsoft.Azure.Services.AppAuthentication` `1.0.3`estável mais recente do, do, oferece suporte para [identidades gerenciadas atribuídas pelo sistema](/azure/active-directory/managed-identities-azure-resources/overview#how-does-the-managed-identities-for-azure-resources-work). O`1.2.0-preview2` suporte para *identidades gerenciadas atribuídas pelo usuário* está disponível no pacote. Este tópico demonstra o uso de identidades gerenciadas pelo sistema e o aplicativo de exemplo fornecido `1.0.3` usa a `Microsoft.Azure.Services.AppAuthentication` versão do pacote.
 
 ## <a name="sample-app"></a>Aplicativo de exemplo
 
@@ -61,13 +61,13 @@ Os segredos são criados como pares de nome-valor. Valores hierárquicos (seçõ
 
 O Gerenciador de segredo é usado em um shell de comando aberto na raiz do conteúdo do projeto `{SECRET NAME}` , em que é `{SECRET VALUE}` o nome e é o valor:
 
-```console
+```dotnetcli
 dotnet user-secrets set "{SECRET NAME}" "{SECRET VALUE}"
 ```
 
 Execute os seguintes comandos em um shell de comando da raiz de conteúdo do projeto para definir os segredos para o aplicativo de exemplo:
 
-```console
+```dotnetcli
 dotnet user-secrets set "SecretName" "secret_value_1_dev"
 dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 ```
@@ -136,7 +136,7 @@ O aplicativo de exemplo usa uma ID de aplicativo e um certificado X. `#define` 5
 1. Selecione **selecionar entidade de segurança** e selecione o aplicativo registrado por nome. Selecione o botão **selecionar** .
 1. Abra **permissões de segredo** e forneça ao aplicativo as permissões **Get** e **list** .
 1. Selecione **OK**.
-1. Selecione **Salvar**.
+1. Clique em **Salvar**.
 1. Implante o aplicativo.
 
 O `Certificate` aplicativo de exemplo obtém seus valores de configuração `IConfigurationRoot` de com o mesmo nome que o nome do segredo:
@@ -233,7 +233,7 @@ Quando essa abordagem é implementada:
 
    Salve os seguintes segredos localmente com a [ferramenta Gerenciador de segredo](xref:security/app-secrets):
 
-   ```console
+   ```dotnetcli
    dotnet user-secrets set "5000-AppSecret" "5.0.0.0_secret_value_dev"
    dotnet user-secrets set "5100-AppSecret" "5.1.0.0_secret_value_dev"
    ```

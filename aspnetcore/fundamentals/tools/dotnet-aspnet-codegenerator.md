@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 07/04/2019
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: c2c815735ad1b4dcec761b26ea3992a4effebe62
-ms.sourcegitcommit: 979dbfc5e9ce09b9470789989cddfcfb57079d94
-ms.translationtype: HT
+ms.openlocfilehash: 1043a578f66d5bb57f4a81e9fe21afa5e3c37cb8
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "68682698"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71081503"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -25,13 +25,13 @@ Este artigo se aplica ao [SDK do .NET Core 2.1](https://dotnet.microsoft.com/dow
 
 `dotnet-aspnet-codegenerator` é uma [ferramenta global](/dotnet/core/tools/global-tools) que deve ser instalada. O comando a seguir instala a versão estável mais recente da ferramenta `dotnet-aspnet-codegenerator`:
 
-```console
+```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
 O comando a seguir atualiza `dotnet-aspnet-codegenerator` para a versão estável mais recente disponível dos SDKs do .NET Core instalado:
 
-```console
+```dotnetcli
 dotnet tool update -g dotnet-aspnet-codegenerator
 ```
 
@@ -42,7 +42,7 @@ dotnet aspnet-codegenerator [arguments] [-p|--project] [-n|--nuget-package-dir] 
 dotnet aspnet-codegenerator [-h|--help]
 ```
 
-## <a name="description"></a>DESCRIÇÃO
+## <a name="description"></a>Descrição
 
 O comando global `dotnet aspnet-codegenerator` executa o mecanismo de scaffolding e o gerador de código do ASP.NET Core.
 
@@ -54,11 +54,11 @@ O gerador de código para ser executado. Os geradores a seguir estão disponíve
 
 | Gerador | Operação |
 | ----------------- | ------------ | 
-| área      | [Faz scaffold de uma área](/aspnet/core/mvc/controllers/areas) |
+| Rede      | [Faz scaffold de uma área](/aspnet/core/mvc/controllers/areas) |
   controlador| [Faz scaffold de um controlador](/aspnet/core/tutorials/first-mvc-app/adding-model) |
   identidade  | [Faz scaffold de uma identidade](/aspnet/core/security/authentication/scaffold-identity) |
   razorpage | [Faz scaffold de Razor Pages](/aspnet/core/tutorials/razor-pages/model) |
-  view      | [Faz scaffolds de um modo de exibição](/aspnet/core/mvc/views/overview) |
+  Exibição      | [Faz scaffolds de um modo de exibição](/aspnet/core/mvc/views/overview) |
 
 ## <a name="options"></a>Opções
 
@@ -72,7 +72,7 @@ Define a configuração da compilação. O valor padrão é `Debug`.
 
 `-tfm|--target-framework`
 
-O [Framework](/dotnet/standard/frameworks) destino para usar. Por exemplo, `net46`.
+O [Framework](/dotnet/standard/frameworks) destino para usar. Por exemplo: `net46`.
 
 `-b|--build-base-path`
 
@@ -127,7 +127,7 @@ A tabela a seguir lista as opções para `aspnet-codegenerator` `controller` e `
 
 A tabela a seguir lista as opções exclusivas para `aspnet-codegenerator controller`:
 
-| Opção               | DESCRIÇÃO|
+| Opção               | Descrição|
 | ----------------- | ------------ |
 | --controllerName ou -name | O nome do controlador. |
 | --useAsyncActions ou -async | Gera ações do controlador assíncrono. |
@@ -137,7 +137,7 @@ A tabela a seguir lista as opções exclusivas para `aspnet-codegenerator contro
 
 Use o switch `-h` para obter ajuda sobre o comando `aspnet-codegenerator controller`:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator controller -h
 ```
 
@@ -158,7 +158,7 @@ As Razor Pages podem ser geradas por scaffolding individualmente, especificando 
 
 Por exemplo, o comando a seguir usa o modelo Editar para gerar *MyEdit.cshtml* e *MyEdit.cshtml.cs*:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator razorpage MyEdit Edit -m Movie -dc RazorPagesMovieContext -outDir Pages/Movies
 ```
 
@@ -176,7 +176,7 @@ A tabela a seguir lista as opções para `aspnet-codegenerator` `razorpage` e `c
 
 A tabela a seguir lista as opções exclusivas para `aspnet-codegenerator razorpage`:
 
-| Opção               | DESCRIÇÃO|
+| Opção               | Descrição|
 | ----------------- | ------------ |
 |   --namespaceName ou -namespace | O nome do namespace a ser usado no PageModel gerado |
 | --partialView ou -partial | Gere uma exibição parcial. As opções de layout -l e - udl são ignoradas, se isso for especificado. |
@@ -184,7 +184,7 @@ A tabela a seguir lista as opções exclusivas para `aspnet-codegenerator razorp
 
 Use o switch `-h` para obter ajuda sobre o comando `aspnet-codegenerator razorpage`:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator razorpage -h
 ```
 

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2019
 uid: host-and-deploy/iis/transform-webconfig
-ms.openlocfilehash: 58dee024f5b032d1ef13df02648727b6a07eac1f
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
-ms.translationtype: HT
+ms.openlocfilehash: 32e66007d527f7f7b7cfd88d3bebc9b808251941
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67813357"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71081456"
 ---
 # <a name="transform-webconfig"></a>Transformação do web.config
 
@@ -58,7 +58,7 @@ No exemplo a seguir, uma variável de ambiente específica à configuração est
 
 A transformação é aplicada quando a configuração é definida como *Release*:
 
-```console
+```dotnetcli
 dotnet publish --configuration Release
 ```
 
@@ -92,7 +92,7 @@ No exemplo a seguir, uma variável de ambiente específica ao perfil está defin
 
 A transformação é aplicada quando o perfil for *FolderProfile*:
 
-```console
+```dotnetcli
 dotnet publish --configuration Release /p:PublishProfile=FolderProfile
 ```
 
@@ -128,7 +128,7 @@ No exemplo a seguir, uma variável de ambiente específica ao ambiente é defini
 
 A transformação será aplicada quando o ambiente for *Produção*:
 
-```console
+```dotnetcli
 dotnet publish --configuration Release /p:EnvironmentName=Production
 ```
 
@@ -166,7 +166,7 @@ No exemplo a seguir, uma variável de ambiente de transformação personalizada 
 
 A transformação é aplicada quando a propriedade `CustomTransformFileName` é passada para o comando [dotnet publish](/dotnet/core/tools/dotnet-publish):
 
-```console
+```dotnetcli
 dotnet publish --configuration Release /p:CustomTransformFileName=custom.transform
 ```
 
@@ -176,7 +176,7 @@ A propriedade de MSBuild para o nome do perfil é `$(CustomTransformFileName)`.
 
 Para impedir transformações do arquivo *web.config*, defina a propriedade de MSBuild `$(IsWebConfigTransformDisabled)`:
 
-```console
+```dotnetcli
 dotnet publish /p:IsWebConfigTransformDisabled=true
 ```
 

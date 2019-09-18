@@ -7,18 +7,18 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/05/2019
 uid: security/authentication/identity/spa
-ms.openlocfilehash: cb51df0267a5eabd4a2694727e9c896d0554265e
-ms.sourcegitcommit: 257cc3fe8c1d61341aa3b07e5bc0fa3d1c1c1d1c
+ms.openlocfilehash: 4f6e3a4922c0a8a74b0e13edf1f00fe5f7bb76ba
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/19/2019
-ms.locfileid: "69583603"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082325"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Autenticação e autorização para SPAs
 
 O ASP.NET Core 3,0 ou posterior oferece autenticação em aplicativos de página única (SPAs) usando o suporte para autorização de API. ASP.NET Core identidade para autenticação e armazenamento de usuários é combinada com o [IdentityServer](https://identityserver.io/) para implementar o Open ID Connect.
 
-Um parâmetro de autenticação foi adicionado aos modelos de projeto **angular** e reajam que é semelhante ao parâmetro de autenticação no **aplicativo Web (Model-View-Controller)** (MVC) e **aplicativo Web** (Razor Pages) modelos de projeto. Os valores de parâmetro permitidos são **None** e **individual**. O modelo de projeto **reajam. js e Redux** não dá suporte ao parâmetro de autenticação no momento.
+Um parâmetro de autenticação foi adicionado aos modelos de projeto **angular** e **reajam** que é semelhante ao parâmetro de autenticação no **aplicativo Web (Model-View-Controller)** (MVC) e **aplicativo Web** (Razor Pages) modelos de projeto. Os valores de parâmetro permitidos são **None** e **individual**. O modelo de projeto **reajam. js e Redux** não dá suporte ao parâmetro de autenticação no momento.
 
 ## <a name="create-an-app-with-api-authorization-support"></a>Criar um aplicativo com suporte à autorização de API
 
@@ -26,13 +26,13 @@ A autenticação e a autorização do usuário podem ser usadas com SPAs angular
 
 **Angular**:
 
-```console
+```dotnetcli
 dotnet new angular -o <output_directory_name> -au Individual
 ```
 
 **Reagir**:
 
-```console
+```dotnetcli
 dotnet new react -o <output_directory_name> -au Individual
 ```
 
@@ -232,7 +232,7 @@ Para implantar o aplicativo na produção, os seguintes recursos precisam ser pr
 
 ### <a name="example-deploy-to-azure-websites"></a>Exemplo: Implantar nos sites do Azure
 
-Esta seção descreve a implantação do aplicativo nos sites do Azure usando um certificado armazenado no repositório de certificados. Para modificar o aplicativo para carregar um certificado do repositório de certificados, o plano do serviço de aplicativo precisa estar em pelo menos a camada Standard quando você configura o em uma etapa posterior. No arquivo appSettings *. JSON* do aplicativo, modifique a `IdentityServer` seção para incluir os detalhes da chave:
+Esta seção descreve a implantação do aplicativo nos sites do Azure usando um certificado armazenado no repositório de certificados. Para modificar o aplicativo para carregar um certificado do repositório de certificados, o plano do serviço de aplicativo precisa estar em pelo menos a camada Standard quando você configura o em uma etapa posterior. No arquivo *appSettings. JSON* do aplicativo, modifique a `IdentityServer` seção para incluir os detalhes da chave:
 
 ```json
 "IdentityServer": {

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: 538af8469cf28b145d466a869ca3ca689d637ac6
-ms.sourcegitcommit: f65d8765e4b7c894481db9b37aa6969abc625a48
+ms.openlocfilehash: 6a2a2ca45f793ab95d45281ebb23180ac64761ec
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/06/2019
-ms.locfileid: "70773913"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082308"
 ---
 # <a name="add-a-new-field-to-an-aspnet-core-mvc-app"></a>Adicionar um novo campo a um aplicativo ASP.NET Core MVC
 
@@ -41,7 +41,9 @@ Compilar o aplicativo
 
 ### <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-`dotnet build`
+```dotnetcli
+dotnet build
+```
 
 ### <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
@@ -122,7 +124,7 @@ Se você excluir todos os registros do BD, o método de inicialização propagar
 
 Excluir o banco de dados e usar as migrações para recriar o banco de dados. Para excluir o banco de dados, exclua o arquivo de banco de dados (*MvcMovie.db*). Depois, execute o comando `ef database update`:
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 

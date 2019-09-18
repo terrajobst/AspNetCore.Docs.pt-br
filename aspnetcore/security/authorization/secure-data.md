@@ -6,12 +6,12 @@ ms.author: riande
 ms.date: 12/18/2018
 ms.custom: mvc, seodec18
 uid: security/authorization/secure-data
-ms.openlocfilehash: d95f44394d6ecc3c3896b45c5bebc73fa2d92445
-ms.sourcegitcommit: dc5b293e08336dc236de66ed1834f7ef78359531
+ms.openlocfilehash: d827f6f839c9e42e6d3d7b04fe8b24a1c9732aee
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/16/2019
-ms.locfileid: "71011198"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082447"
 ---
 # <a name="create-an-aspnet-core-app-with-user-data-protected-by-authorization"></a>Criar um aplicativo ASP.NET Core com os dados de usuário protegidos por autorização
 
@@ -103,7 +103,7 @@ Usar o ASP.NET [identidade](xref:security/authentication/identity) ID de usuári
 
 Criar uma nova migração e atualizar o banco de dados:
 
-```console
+```dotnetcli
 dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
@@ -130,7 +130,7 @@ Adicione [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowan
 
 A classe `SeedData` cria duas contas: administrador e gerenciador. Use a [ferramenta Gerenciador de segredo](xref:security/app-secrets) para definir uma senha para essas contas. Defina a senha do diretório do projeto (o diretório que contém *Program.cs*):
 
-```console
+```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
 ```
 
@@ -279,7 +279,7 @@ Se você ainda não tiver configurado uma senha para contas de usuário propagad
 * Escolha uma senha forte: Use oito ou mais caracteres e pelo menos um caractere, número e símbolo em letras maiúsculas. Por exemplo, `Passw0rd!` atende aos requisitos de senha forte.
 * Execute o seguinte comando na pasta do projeto, onde `<PW>` é a senha:
 
-  ```console
+  ```dotnetcli
   dotnet user-secrets set SeedUserPW <PW>
   ```
 
@@ -310,7 +310,7 @@ Crie um contato no navegador do administrador. Copie a URL para excluir e editar
   * O nome "ContactManager" para o namespace coincida com o namespace usado no exemplo.
   * `-uld` Especifica o LocalDB em vez do SQLite
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
@@ -321,14 +321,14 @@ Crie um contato no navegador do administrador. Copie a URL para excluir e editar
 * Scaffold o `Contact` modelo.
 * Criar a migração inicial e atualizar o banco de dados:
 
-```console
+```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
 dotnet ef database drop -f
 dotnet ef migrations add initial
 dotnet ef database update
-  ```
+```
 
 Se você tiver um bug com o `dotnet aspnet-codegenerator razorpage` comando, consulte [este problema do GitHub](https://github.com/aspnet/Scaffolding/issues/984).
 
@@ -426,7 +426,7 @@ Usar o ASP.NET [identidade](xref:security/authentication/identity) ID de usuári
 
 Criar uma nova migração e atualizar o banco de dados:
 
-```console
+```dotnetcli
 dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
@@ -453,7 +453,7 @@ Adicionar [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowa
 
 A classe `SeedData` cria duas contas: administrador e gerenciador. Use a [ferramenta Gerenciador de segredo](xref:security/app-secrets) para definir uma senha para essas contas. Defina a senha do diretório do projeto (o diretório que contém *Program.cs*):
 
-```console
+```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
 ```
 
@@ -602,16 +602,16 @@ Se você ainda não tiver configurado uma senha para contas de usuário propagad
 * Escolha uma senha forte: Use oito ou mais caracteres e pelo menos um caractere, número e símbolo em letras maiúsculas. Por exemplo, `Passw0rd!` atende aos requisitos de senha forte.
 * Execute o seguinte comando na pasta do projeto, onde `<PW>` é a senha:
 
-  ```console
+  ```dotnetcli
   dotnet user-secrets set SeedUserPW <PW>
   ```
 
 * Remover e atualizar o banco de dados
 
-    ```console
-     dotnet ef database drop -f
-     dotnet ef database update  
-     ```
+  ```dotnetcli
+  dotnet ef database drop -f
+  dotnet ef database update  
+  ```
 
 * Reinicie o aplicativo para propagar o banco de dados.
 
@@ -637,7 +637,7 @@ Crie um contato no navegador do administrador. Copie a URL para excluir e editar
   * O nome "ContactManager" para o namespace coincida com o namespace usado no exemplo.
   * `-uld` Especifica o LocalDB em vez do SQLite
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
@@ -648,7 +648,7 @@ Crie um contato no navegador do administrador. Copie a URL para excluir e editar
 * Scaffold o `Contact` modelo.
 * Criar a migração inicial e atualizar o banco de dados:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
   dotnet ef database drop -f
   dotnet ef migrations add initial

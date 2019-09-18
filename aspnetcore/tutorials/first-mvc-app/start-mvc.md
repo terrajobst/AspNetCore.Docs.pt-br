@@ -5,12 +5,12 @@ description: Saiba como começar a usar o ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2019
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 36f4811f876a6e35440445103a1f86ae06b31b6a
-ms.sourcegitcommit: 476ea5ad86a680b7b017c6f32098acd3414c0f6c
-ms.translationtype: HT
+ms.openlocfilehash: 52d8fc631075408991d3a2e62cdaccf681c5927f
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/14/2019
-ms.locfileid: "69022517"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082155"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introdução ao ASP.NET Core MVC
 
@@ -78,7 +78,7 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
 * Altere os diretórios (`cd`) para uma pasta que conterá o projeto.
 * Execute o seguinte comando:
 
-   ```console
+   ```dotnetcli
    dotnet new mvc -o MvcMovie
    code -r MvcMovie
    ```
@@ -228,7 +228,7 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
 * Altere os diretórios (`cd`) para uma pasta que conterá o projeto.
 * Execute o seguinte comando:
 
-   ```console
+   ```dotnetcli
    dotnet new mvc -o MvcMovie
    code -r MvcMovie
    ```

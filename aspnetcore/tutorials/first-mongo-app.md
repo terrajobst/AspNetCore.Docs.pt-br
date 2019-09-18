@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc, seodec18
 ms.date: 08/17/2019
 uid: tutorials/first-mongo-app
-ms.openlocfilehash: 2f7202945b3de03709b5f2e192a03549e55a04f7
-ms.sourcegitcommit: 257cc3fe8c1d61341aa3b07e5bc0fa3d1c1c1d1c
-ms.translationtype: HT
+ms.openlocfilehash: acf2ded8b92a8f77678af7b772ac2a69264a642c
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/19/2019
-ms.locfileid: "69583620"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082365"
 ---
 # <a name="create-a-web-api-with-aspnet-core-and-mongodb"></a>Criar uma API Web com o ASP.NET Core e o MongoDB
 
@@ -163,7 +163,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
 1. Execute os seguintes comandos em um shell de comando:
 
-   ```console
+   ```dotnetcli
    dotnet new webapi -o BooksApi
    code BooksApi
    ```
@@ -173,7 +173,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 1. Depois que o ícone de chama do OmniSharp na barra de status ficar verde, uma caixa de diálogo perguntará **Os ativos necessários para criar e depurar estão ausentes do 'BooksApi'. Deseja adicioná-los?** . Selecione **Sim** na barra superior.
 1. Visite a [Galeria do NuGet: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .NET para MongoDB. Abra **Terminal Integrado** e navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
 
-   ```console
+   ```dotnetcli
    dotnet add BooksApi.csproj package MongoDB.Driver -v {VERSION}
    ```
 
@@ -513,7 +513,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
 1. Execute os seguintes comandos em um shell de comando:
 
-   ```console
+   ```dotnetcli
    dotnet new webapi -o BooksApi
    code BooksApi
    ```
@@ -523,7 +523,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 1. Depois que o ícone de chama do OmniSharp na barra de status ficar verde, uma caixa de diálogo perguntará **Os ativos necessários para criar e depurar estão ausentes do 'BooksApi'. Deseja adicioná-los?** . Selecione **Sim** na barra superior.
 1. Visite a [Galeria do NuGet: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .NET para MongoDB. Abra **Terminal Integrado** e navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
 
-   ```console
+   ```dotnetcli
    dotnet add BooksApi.csproj package MongoDB.Driver -v {VERSION}
    ```
 

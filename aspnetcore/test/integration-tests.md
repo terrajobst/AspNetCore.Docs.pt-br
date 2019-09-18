@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/23/2019
 uid: test/integration-tests
-ms.openlocfilehash: 195acd3e03f3de63ebd61767f2c86d1c0f38fca5
-ms.sourcegitcommit: 983b31449fe398e6e922eb13e9eb6f4287ec91e8
+ms.openlocfilehash: 272f0f2140647dd31319f8feada0ec04c7ab4e44
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/24/2019
-ms.locfileid: "70017443"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082495"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Testes de integração no ASP.NET Core
 
@@ -44,7 +44,7 @@ Esses testes mais amplos são usados para testar a infraestrutura e a estrutura 
 * Dispositivos de rede
 * Pipeline de solicitação-resposta
 
-Os testes de unidade usam componentes criei, conhecidos como falsificações ou *objetos fictícios*, em vez de componentes de infraestrutura.
+Os testes de unidade usam componentes criei, conhecidos como *falsificações* ou *objetos fictícios*, em vez de componentes de infraestrutura.
 
 Ao contrário dos testes de unidade, testes de integração:
 
@@ -102,7 +102,7 @@ O projeto de teste deve:
 * Faça referência aos seguintes pacotes:
   * [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
   * [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/)
-* Especifique o SDK da Web no arquivo de projeto`<Project Sdk="Microsoft.NET.Sdk.Web">`(). O SDK da Web é necessário ao fazer referência ao metapacote do [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
+* Especifique o SDK da Web no arquivo de projeto`<Project Sdk="Microsoft.NET.Sdk.Web">`(). O SDK da Web é necessário ao fazer referência ao [metapacote do Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
 
 Esses pré-requisitos podem ser vistos no aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/). Inspecione o arquivo *tests/RazorPagesProject. Tests/RazorPagesProject. Tests. csproj* . O aplicativo de exemplo usa a estrutura de teste do [xUnit](https://xunit.github.io/) e a biblioteca do analisador [AngleSharp](https://anglesharp.github.io/) , portanto, o aplicativo de exemplo também faz referência a:
 
@@ -169,13 +169,13 @@ A configuração do host Web pode ser criada independentemente das classes de te
 
    [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet2)]
 
-Qualquer solicitação POST para o SUT deve satisfazer a verificação antifalsificação feita automaticamente pelo sistema antifalsificação de [proteção de dados](xref:security/data-protection/introduction)do aplicativo. Para organizar a solicitação POST de um teste, o aplicativo de teste deve:
+Qualquer solicitação POST para o SUT deve satisfazer a verificação antifalsificação feita automaticamente pelo [sistema antifalsificação de proteção de dados](xref:security/data-protection/introduction)do aplicativo. Para organizar a solicitação POST de um teste, o aplicativo de teste deve:
 
 1. Faça uma solicitação para a página.
 1. Analise o cookie antifalsificação e solicite o token de validação da resposta.
 1. Faça a solicitação POST com o cookie antifalsificação e solicite o token de validação em vigor.
 
-Os `SendAsync` métodos de extensão auxiliar *(Helpers/HttpClientExtensions. cs*) e `GetDocumentAsync` o método auxiliar (*Helpers/HtmlHelpers. cs*) no [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) usam o analisador [AngleSharp](https://anglesharp.github.io/) para lidar com o antifalsificação Verifique com os seguintes métodos:
+Os `SendAsync` métodos de extensão auxiliar (*Helpers/HttpClientExtensions. cs*) e `GetDocumentAsync` o método auxiliar (*Helpers/HtmlHelpers. cs*) no [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) usam o analisador [AngleSharp](https://anglesharp.github.io/) para lidar com o antifalsificação Verifique com os seguintes métodos:
 
 * `GetDocumentAsync`Recebe o [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) e retorna um `IHtmlDocument`. &ndash; `GetDocumentAsync`usa uma fábrica que prepara uma *resposta virtual* com base no original `HttpResponseMessage`. Para obter mais informações, consulte a [documentação do AngleSharp](https://github.com/AngleSharp/AngleSharp#documentation).
 * `SendAsync`métodos de extensão para `HttpClient` compor um [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) e chamar [SendAsync (HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) para enviar solicitações para o SUT. Sobrecargas para `SendAsync` aceitar o formulário HTML (`IHtmlFormElement`) e o seguinte:
@@ -311,7 +311,7 @@ O [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/
 
 Os testes podem ser executados usando os recursos de teste internos de um IDE, como o [Visual Studio](https://visualstudio.microsoft.com). Se estiver usando [Visual Studio Code](https://code.visualstudio.com/) ou a linha de comando, execute o seguinte comando em um prompt de comando no diretório *tests/RazorPagesProject. Tests* :
 
-```console
+```dotnetcli
 dotnet test
 ```
 

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/12/2019
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 5723295c70f8d893f758ca5dc87180c6b707f493
-ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
-ms.translationtype: HT
+ms.openlocfilehash: 0de2222e8072523ff0e5d261a9fe5ef8eb9a7606
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/13/2019
-ms.locfileid: "68994148"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71081817"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configuração no ASP.NET Core
 
@@ -21,7 +21,7 @@ Por [Luke Latham](https://github.com/guardrex)
 A configuração de aplicativos no ASP.NET Core se baseia em pares chave-valor estabelecidos por *provedores de configuração*. Os provedores de configuração leem os dados de configuração em pares chave-valor de várias fontes de configuração:
 
 * Azure Key Vault
-* Configuração de Aplicativo do Azure
+* Configuração de Azure App
 * Argumentos de linha de comando
 * Provedores personalizados (instalados ou criados)
 * Arquivos de diretório
@@ -168,7 +168,7 @@ public class IndexModel : PageModel
 
 Os provedores de configuração não podem utilizar a DI, pois ela não é disponibilizada quando eles são configurados pelo host.
 
-### <a name="keys"></a>simétricas
+### <a name="keys"></a>Novas
 
 As chaves de configuração adotam as convenções a seguir:
 
@@ -194,7 +194,7 @@ A tabela a seguir mostra os provedores de configuração disponíveis para aplic
 | Provider | Fornece a configuração de &hellip; |
 | -------- | ----------------------------------- |
 | [Provedor de Configuração do Azure Key Vault](xref:security/key-vault-configuration) (tópicos de *Segurança*) | Azure Key Vault |
-| [Provedor da Configuração de Aplicativos do Azure](/azure/azure-app-configuration/quickstart-aspnet-core-app) (documentação do Azure) | Configuração de Aplicativo do Azure |
+| [Provedor da Configuração de Aplicativos do Azure](/azure/azure-app-configuration/quickstart-aspnet-core-app) (documentação do Azure) | Configuração de Azure App |
 | [Provedor de Configuração de Linha de Comando](#command-line-configuration-provider) | Parâmetros de linha de comando |
 | [Provedor de Configuração personalizado](#custom-configuration-provider) | Fonte personalizada |
 | [Provedor de Configuração de Variáveis de Ambiente](#environment-variables-configuration-provider) | Variáveis de ambiente |
@@ -354,7 +354,7 @@ No mesmo comando, não combine pares chave-valor do argumento de linha de comand
 
 Exemplo de comandos:
 
-```console
+```dotnetcli
 dotnet run CommandLineKey1=value1 --CommandLineKey2=value2 /CommandLineKey3=value3
 dotnet run --CommandLineKey1 value1 /CommandLineKey2 value2
 dotnet run CommandLineKey1= CommandLineKey2=value2
@@ -402,7 +402,7 @@ Depois que o dicionário de mapeamentos de comutador for criado, ele conterá os
 
 Se as chaves mapeadas para opção forem usadas ao iniciar o aplicativo, a configuração receberá o valor de configuração na chave fornecida pelo dicionário:
 
-```console
+```dotnetcli
 dotnet run -CLKey1=value1 -CLKey2=value2
 ```
 

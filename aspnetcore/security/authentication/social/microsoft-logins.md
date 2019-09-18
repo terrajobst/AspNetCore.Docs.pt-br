@@ -1,65 +1,65 @@
 ---
-title: Configuração de logon externo Account da Microsoft com o ASP.NET Core
+title: Configuração de logon externo da conta da Microsoft com o ASP.NET Core
 author: rick-anderson
-description: Este exemplo demonstra a integração da autenticação de usuário de conta da Microsoft em um aplicativo ASP.NET Core existente.
+description: Este exemplo demonstra a integração do conta Microsoft autenticação de usuário em um aplicativo ASP.NET Core existente.
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/11/2019
 uid: security/authentication/microsoft-logins
-ms.openlocfilehash: 2c690e5bd8465806d42091616917cfdd747ef8f0
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.openlocfilehash: 91ace293fd16cd180b3d5c183c637af6db1d08c3
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815569"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082337"
 ---
-# <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>Configuração de logon externo Account da Microsoft com o ASP.NET Core
+# <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>Configuração de logon externo da conta da Microsoft com o ASP.NET Core
 
 Por [Valeriy Novytskyy](https://github.com/01binary) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Este exemplo mostra como habilitar usuários entrar com sua conta da Microsoft usando o projeto do ASP.NET Core 2.2 criado na [página anterior](xref:security/authentication/social/index).
+Este exemplo mostra como permitir que os usuários entrem com seus conta Microsoft usando o projeto ASP.NET Core 2,2 criado na [página anterior](xref:security/authentication/social/index).
 
-## <a name="create-the-app-in-microsoft-developer-portal"></a>Criar o aplicativo no Portal do desenvolvedor da Microsoft
+## <a name="create-the-app-in-microsoft-developer-portal"></a>Criar o aplicativo no portal do desenvolvedor da Microsoft
 
-* Navegue até a [portal do Azure - registros de aplicativo](https://go.microsoft.com/fwlink/?linkid=2083908) página e criar ou entrar em uma conta da Microsoft:
+* Navegue até a página de [portal do Azure registros de aplicativo](https://go.microsoft.com/fwlink/?linkid=2083908) e crie ou entre em uma conta Microsoft:
 
-Se você não tiver uma conta da Microsoft, selecione **criar um**. Depois de entrar, você será redirecionado para o **registros de aplicativo** página:
+Se você não tiver um conta Microsoft, selecione **criar um**. Depois de entrar, você será redirecionado para a página de **registros de aplicativo** :
 
-* Selecione **novo registro**
+* Selecionar **novo registro**
 * Insira um **nome**.
-* Selecione uma opção para **suporte para tipos de conta**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts -->
-* Sob **URI de redirecionamento**, insira a URL do desenvolvimento com `/signin-microsoft` acrescentado. Por exemplo, `https://localhost:44389/signin-microsoft`. O esquema de autenticação da Microsoft configurado mais tarde neste exemplo automaticamente manipulará as solicitações em `/signin-microsoft` rota para implementar o fluxo de OAuth.
-* Selecione **registrar**
+* Selecione uma opção para **tipos de conta com suporte**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts -->
+* Em **URI de redirecionamento**, insira a `/signin-microsoft` URL de desenvolvimento com anexado. Por exemplo: `https://localhost:44389/signin-microsoft`. O esquema de autenticação da Microsoft configurado mais adiante neste exemplo tratará automaticamente `/signin-microsoft` as solicitações na rota para implementar o fluxo OAuth.
+* Selecionar **registro**
 
-### <a name="create-client-secret"></a>Criar o segredo do cliente
+### <a name="create-client-secret"></a>Criar segredo do cliente
 
-* No painel esquerdo, selecione **certificados e segredos**.
-* Sob **segredos de cliente**, selecione **novo segredo do cliente**
+* No painel esquerdo, selecione **certificados & segredos**.
+* Em **segredos do cliente**, selecione **novo segredo do cliente**
 
   * Adicione uma descrição para o segredo do cliente.
-  * Selecione o **adicionar** botão.
+  * Selecione o botão **Adicionar** .
 
-* Sob **segredos de cliente**, copie o valor do segredo do cliente.
+* Em **segredos do cliente**, copie o valor do segredo do cliente.
 
 > [!NOTE]
-> O segmento URI `/signin-microsoft` é definido como o retorno de chamada padrão do provedor de autenticação do Microsoft. Você pode alterar o retorno de chamada padrão URI ao configurar o middleware de autenticação da Microsoft por meio de herdadas [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) propriedade do [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) classe.
+> O segmento `/signin-microsoft` URI é definido como o retorno de chamada padrão do provedor de autenticação da Microsoft. Você pode alterar o URI de retorno de chamada padrão ao configurar o middleware de autenticação da Microsoft por meio da propriedade herdada [RemoteAuthenticationOptions. CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) da classe [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) .
 
-## <a name="store-the-microsoft-client-id-and-client-secret"></a>Store o segredo de cliente e a ID de cliente do Microsoft
+## <a name="store-the-microsoft-client-id-and-client-secret"></a>Armazenar a ID do cliente da Microsoft e o segredo do cliente
 
-Execute os seguintes comandos para armazenar com segurança `ClientId` e `ClientSecret` usando [Secret Manager](xref:security/app-secrets):
+Execute os seguintes comandos para armazenar `ClientId` e `ClientSecret` usar o Gerenciador de [segredo](xref:security/app-secrets)com segurança:
 
-```console
+```dotnetcli
 dotnet user-secrets set Authentication:Microsoft:ClientId <Client-Id>
 dotnet user-secrets set Authentication:Microsoft:ClientSecret <Client-Secret>
 ```
 
-Vincular as configurações confidenciais, como a Microsoft `ClientId` e `ClientSecret` para sua configuração de aplicativo usando o [Secret Manager](xref:security/app-secrets). Para os fins deste exemplo, nomeie os tokens `Authentication:Microsoft:ClientId` e `Authentication:Microsoft:ClientSecret`.
+Vincule configurações confidenciais como a `ClientId` Microsoft `ClientSecret` e à sua configuração de aplicativo usando o [Gerenciador de segredo](xref:security/app-secrets). Para os fins deste exemplo, nomeie os tokens `Authentication:Microsoft:ClientId` e `Authentication:Microsoft:ClientSecret`.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-## <a name="configure-microsoft-account-authentication"></a>Configurar a autenticação de conta da Microsoft
+## <a name="configure-microsoft-account-authentication"></a>Configurar a autenticação da conta da Microsoft
 
-Adicionar o serviço da Microsoft Account `Startup.ConfigureServices`:
+Adicione o serviço de conta da `Startup.ConfigureServices`Microsoft a:
 
 [!code-csharp[](~/security/authentication/social/social-code/StartupMS.cs?name=snippet&highlight=10-14)]
 
@@ -67,13 +67,13 @@ Adicionar o serviço da Microsoft Account `Startup.ConfigureServices`:
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-Consulte a [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.builder.microsoftaccountoptions) referência da API para obter mais informações sobre opções de configuração com suporte pela autenticação Account da Microsoft. Isso pode ser usado para solicitar informações diferentes sobre o usuário.
+Consulte a referência da API do [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.builder.microsoftaccountoptions) para obter mais informações sobre as opções de configuração com suporte pela autenticação da conta da Microsoft. Isso pode ser usado para solicitar informações diferentes sobre o usuário.
 
-## <a name="sign-in-with-microsoft-account"></a>Entrar com conta da Microsoft
+## <a name="sign-in-with-microsoft-account"></a>Conta de Entrar com a conta da Microsoft
 
-Execute o e clique em **faça logon no**. Uma opção para entrar com a Microsoft é exibida. Quando você clica na Microsoft, você será redirecionado para a Microsoft para autenticação. Após entrar com sua Account da Microsoft (se ainda não estiver conectado), você será solicitado para permitir que o aplicativo acessar suas informações:
+Execute o e clique em **fazer logon**. É exibida uma opção para entrar com a Microsoft. Ao clicar em Microsoft, você será redirecionado para a Microsoft para autenticação. Depois de entrar com sua conta da Microsoft (se ainda não tiver entrado), você será solicitado a permitir que o aplicativo acesse suas informações:
 
-Toque **Sim** e você será redirecionado para o site da web onde você pode definir seu email.
+Toque em **Sim** e você será Redirecionado de volta para o site da Web onde você pode definir seu email.
 
 Agora você está conectado usando suas credenciais da Microsoft:
 
@@ -81,16 +81,16 @@ Agora você está conectado usando suas credenciais da Microsoft:
 
 ## <a name="troubleshooting"></a>Solução de problemas
 
-* Se o provedor Microsoft Account redireciona você para uma página de erro de entrada, observe os erro título e descrição de cadeia de caracteres parâmetros de consulta diretamente após o `#` (hashtag) no Uri.
+* Se o provedor de conta da Microsoft o redireciona para uma página de erro de entrada, observe os parâmetros título e descrição da cadeia de caracteres de `#` consulta diretamente seguindo o (hashtag) no URI.
 
-  Embora pareça a mensagem de erro indicar um problema com a autenticação da Microsoft, a causa mais comum é seu Uri não corresponda a um aplicativo de **URIs de redirecionamento** especificado para o **Web** plataforma .
-* Se a identidade não está configurada por meio da chamada `services.AddIdentity` na `ConfigureServices`, a tentativa de autenticar resultará em *ArgumentException: A opção 'SignInScheme' deve ser fornecida*. O modelo de projeto usado neste exemplo garante que isso é feito.
+  Embora a mensagem de erro pareça indicar um problema com a autenticação da Microsoft, a causa mais comum é o URI do aplicativo não corresponder a nenhum dos **URIs de redirecionamento** especificados para a plataforma **da Web** .
+* Se a identidade não estiver configurada chamando `services.AddIdentity` em `ConfigureServices`, a tentativa de autenticar resultará em *ArgumentException: A opção ' SignInScheme ' deve ser fornecida*. O modelo de projeto usado neste exemplo garante que isso seja feito.
 * Se o banco de dados do site não tiver sido criado aplicando-se a migração inicial, você obterá *uma operação de banco de dados falhou ao processar a solicitação* erro. Toque **aplicar migrações** para criar o banco de dados e atualizar para continuar após o erro.
 
 ## <a name="next-steps"></a>Próximas etapas
 
 * Este artigo mostrou como você pode autenticar com a Microsoft. Você pode seguir uma abordagem semelhante para autenticar com outros provedores listados na [página anterior](xref:security/authentication/social/index).
 
-* Depois de publicar seu site da web para aplicativo web do Azure, crie um novo cliente segredos no Portal do desenvolvedor Microsoft.
+* Depois de publicar seu site no aplicativo Web do Azure, crie novos segredos de cliente no portal do desenvolvedor da Microsoft.
 
 * Defina as `Authentication:Microsoft:ClientId` e `Authentication:Microsoft:ClientSecret` como configurações de aplicativo no portal do Azure. Configurar o sistema de configuração para ler as chaves de variáveis de ambiente.

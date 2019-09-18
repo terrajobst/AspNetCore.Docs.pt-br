@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/27/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: 25bfccb136d875b454034bd011828c9f3b6cd3d8
-ms.sourcegitcommit: de17150e5ec7507d7114dde0e5dbc2e45a66ef53
-ms.translationtype: HT
+ms.openlocfilehash: 1cc4fffc50978a3a958a96e1eb250cb85a8d2879
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/28/2019
-ms.locfileid: "70113295"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71082061"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Criar uma API Web com o ASP.NET Core
 
@@ -36,7 +36,7 @@ No final, você terá uma API Web que pode gerenciar itens de "tarefas pendentes
 
 Este tutorial cria a seguinte API:
 
-|API | DESCRIÇÃO | Corpo da solicitação | Corpo da resposta |
+|API | Descrição | Corpo da solicitação | Corpo da resposta |
 |--- | ---- | ---- | ---- |
 |GET /api/TodoItems | Obter todos os itens de tarefas pendentes | Nenhum | Matriz de itens de tarefas pendentes|
 |GET /api/TodoItems/{id} | Obter um item por ID | Nenhum | Item de tarefas pendentes|
@@ -81,7 +81,7 @@ O diagrama a seguir mostra o design do aplicativo.
 * Altere os diretórios (`cd`) para a pasta que conterá a pasta do projeto.
 * Execute os seguintes comandos:
 
-   ```console
+   ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoAPI
    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
@@ -116,7 +116,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
 Abra um terminal de comando na pasta do projeto e execute os seguintes comandos:
 
-   ```console
+   ```dotnetcli
    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
    dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
    ```
@@ -280,7 +280,7 @@ O código anterior:
 
 Execute os seguintes comandos:
 
-```console
+```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
 dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
 dotnet tool install --global dotnet-aspnet-codegenerator
@@ -388,7 +388,7 @@ Uma resposta semelhante à seguinte é produzida pela chamada a `GetTodoItems`:
 
 * Crie uma solicitação.
 * Defina o método HTTP como **GET**.
-* Defina a URL de solicitação como `https://localhost:<port>/api/TodoItems`. Por exemplo, `https://localhost:5001/api/TodoItems`.
+* Defina a URL de solicitação como `https://localhost:<port>/api/TodoItems`. Por exemplo: `https://localhost:5001/api/TodoItems`.
 * Defina **Exibição de dois painéis** no Postman.
 * Selecione **Enviar**.
 
@@ -464,7 +464,7 @@ Use o Postman para excluir um item pendente:
 
 ## <a name="call-the-web-api-with-javascript"></a>Chamar a API Web com o JavaScript
 
-Consulte [Tutorial: Chamar uma API Web do ASP.NET Core com o JavaScript](xref:tutorials/web-api-javascript).
+Consulte [o tutorial: Chamar uma API Web do ASP.NET Core com o JavaScript](xref:tutorials/web-api-javascript).
 
 ::: moniker-end
 
@@ -488,7 +488,7 @@ No final, você terá uma API Web que pode gerenciar itens de "tarefas pendentes
 
 Este tutorial cria a seguinte API:
 
-|API | DESCRIÇÃO | Corpo da solicitação | Corpo da resposta |
+|API | Descrição | Corpo da solicitação | Corpo da resposta |
 |--- | ---- | ---- | ---- |
 |GET /api/TodoItems | Obter todos os itens de tarefas pendentes | Nenhum | Matriz de itens de tarefas pendentes|
 |GET /api/TodoItems/{id} | Obter um item por ID | Nenhum | Item de tarefas pendentes|
@@ -533,7 +533,7 @@ O diagrama a seguir mostra o design do aplicativo.
 * Altere os diretórios (`cd`) para a pasta que conterá a pasta do projeto.
 * Execute os seguintes comandos:
 
-   ```console
+   ```dotnetcli
    dotnet new webapi -o TodoApi
    code -r TodoApi
    ```
@@ -762,7 +762,7 @@ Este tutorial usa o Postman para testar a API Web.
 
 * Crie uma solicitação.
   * Defina o método HTTP como **GET**.
-  * Defina a URL de solicitação como `https://localhost:<port>/api/todo`. Por exemplo, `https://localhost:5001/api/todo`.
+  * Defina a URL de solicitação como `https://localhost:<port>/api/todo`. Por exemplo: `https://localhost:5001/api/todo`.
 * Defina **Exibição de dois painéis** no Postman.
 * Selecione **Enviar**.
 

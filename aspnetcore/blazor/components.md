@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/06/2019
 uid: blazor/components
-ms.openlocfilehash: e51f6745f6e0c748e51d7f8a49193f3d81fd2a06
-ms.sourcegitcommit: 07cd66e367d080acb201c7296809541599c947d1
+ms.openlocfilehash: 521421ac413218c1f04dd9feade2a49dc1f7b918
+ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/17/2019
-ms.locfileid: "71039177"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "71080526"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -1473,7 +1473,7 @@ Esse é um exemplo trivial. Em casos mais realistas com estruturas complexas e p
 
 * O desempenho do aplicativo será afetado se os números de sequência forem gerados dinamicamente.
 * A estrutura não pode criar seus próprios números de sequência automaticamente em tempo de execução porque as informações necessárias não existem, a menos que sejam capturadas no momento da compilação.
-* Não grave blocos longos de lógica implementada `RenderTreeBuilder` manualmente. Prefira `.razor` arquivos e permita que o compilador lide com os números de sequência.
+* Não grave blocos longos de lógica implementada `RenderTreeBuilder` manualmente. Prefira `.razor` arquivos e permita que o compilador lide com os números de sequência. Se não for possível evitar lógica manual `RenderTreeBuilder` , divida blocos longos de código em partes menores encapsuladas em `OpenRegion` / `CloseRegion` chamadas. Cada região tem seu próprio espaço separado de números de sequência, para que você possa reiniciar de zero (ou qualquer outro número arbitrário) dentro de cada região.
 * Se os números de sequência forem codificados, o algoritmo diff só exigirá que os números de sequência aumentem de valor. O valor inicial e as lacunas são irrelevantes. Uma opção legítima é usar o número de linha de código como o número de sequência, ou começar de zero e aumentar por um ou centenas (ou qualquer intervalo preferencial). 
 * O mais alto número de seqüências usa números de sequência, enquanto outras estruturas de interface do usuário de diferenciação de árvore não as usam. A comparação é muito mais rápida quando os números de sequência são usados, e o mais vantajoso tem a vantagem de uma etapa de compilação que lida com números de `.razor` sequência automaticamente para desenvolvedores que criam arquivos.
 
