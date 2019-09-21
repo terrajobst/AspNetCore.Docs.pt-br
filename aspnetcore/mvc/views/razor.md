@@ -3,14 +3,14 @@ title: Referência da sintaxe Razor para ASP.NET Core
 author: rick-anderson
 description: Saiba mais sobre a sintaxe de marcação Razor para inserir código baseado em servidor em páginas da Web.
 ms.author: riande
-ms.date: 08/05/2019
+ms.date: 09/19/2019
 uid: mvc/views/razor
-ms.openlocfilehash: 75bf0e792ff7975f03e0f7c2fa6a71ed74d813e1
-ms.sourcegitcommit: 2eb605f4f20ac4dd9de6c3b3e3453e108a357a21
-ms.translationtype: HT
+ms.openlocfilehash: 9a319f7efb6d879559afd9faca6955aba719fa2f
+ms.sourcegitcommit: e5a74f882c14eaa0e5639ff082355e130559ba83
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/06/2019
-ms.locfileid: "68819803"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71168297"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -455,7 +455,7 @@ A diretiva `@attribute` adiciona o atributo fornecido à classe da página ou ex
 
 ::: moniker range=">= aspnetcore-3.0"
 
-### <a name="code"></a>\@code
+### <a name="code"></a>\@auto-completar
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
@@ -738,6 +738,12 @@ O atributo da diretiva `@key` faz com que os componentes comparem o algoritmo pa
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
 Referências de componente (`@ref`) proporcionam uma maneira de fazer referência a uma instância de componente para que você possa emitir comandos para essa instância. Para obter mais informações, consulte <xref:blazor/components#capture-references-to-components>.
+
+### <a name="typeparam"></a>\@typeparam
+
+*Este cenário aplica-se somente a componentes do Razor (.razor).*
+
+A `@typeparam` diretiva declara um parâmetro de tipo genérico para a classe de componente gerada. Para obter mais informações, consulte <xref:blazor/components#generic-typed-components>.
 
 ::: moniker-end
 

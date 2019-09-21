@@ -7,16 +7,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/22/2019
 uid: blazor/debug
-ms.openlocfilehash: e9477e504d32fd1dd5d6c87392386d1131f46e9f
-ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
+ms.openlocfilehash: ebdd015a8d1138d98d8fcd1b1f18b8053248e2bd
+ms.sourcegitcommit: e5a74f882c14eaa0e5639ff082355e130559ba83
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2019
-ms.locfileid: "70964005"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71168109"
 ---
 # <a name="debug-aspnet-core-blazor"></a>Depurar ASP.NET Core mais incrivelmente
 
 [Daniel Roth](https://github.com/danroth27)
+
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Há suporte *antecipado* para depuração de aplicativos Webassembly mais recentes em execução no Webassembly no Chrome.
 

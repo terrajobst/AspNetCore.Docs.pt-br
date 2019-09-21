@@ -7,16 +7,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 uid: blazor/state-management
-ms.openlocfilehash: e1c3b030f466a820d49c36839d7ee26bb7cea4d3
-ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
+ms.openlocfilehash: 2acb91785e8c5fc34070d5428b89119667945753
+ms.sourcegitcommit: e5a74f882c14eaa0e5639ff082355e130559ba83
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2019
-ms.locfileid: "70963860"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71168209"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>ASP.NET Core o gerenciamento de estado mais incrivelmente
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
+
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 O servidor mais incrivelmente é uma estrutura de aplicativo com estado. Na maioria das vezes, o aplicativo mantém uma conexão contínua com o servidor. O estado do usuário é mantido na memória do servidor em um *circuito*. 
 

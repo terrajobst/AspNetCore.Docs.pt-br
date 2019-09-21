@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc, seoapril2019
 ms.date: 09/05/2019
 uid: blazor/index
-ms.openlocfilehash: 767ec8f106bebb92cf13a10eb63fab4905715d3d
-ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
+ms.openlocfilehash: 378892efafa6b979d7f92a5e559b2dc8bb12295d
+ms.sourcegitcommit: e5a74f882c14eaa0e5639ff082355e130559ba83
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2019
-ms.locfileid: "70964132"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71168258"
 ---
 # <a name="introduction-to-blazor"></a>Introdução ao Blazor
 
@@ -101,7 +101,9 @@ Quando esse componente é usado no aplicativo, o IntelliSense no [Visual Studio]
 
 Os componentes são renderizados em uma representação na memória do Modelo de Objeto do Documento (DOM) do navegador chamada *árvore de renderização*, que é usada para atualizar a interface do usuário de maneira flexível e eficiente.
 
-## <a name="blazor-webassembly"></a>Webassembly mais incrivelmente
+## <a name="blazor-webassembly"></a>WebAssembly Blazor
+
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Webassembly mais simples é uma estrutura de aplicativo de página única para criar aplicativos Web do lado do cliente interativos com o .NET. Webassembly mais versátil usa padrões abertos da Web sem plug-ins ou código transpilação e trabalha em todos os navegadores modernos da Web, incluindo navegadores móveis.
 
@@ -123,7 +125,7 @@ O tamanho do aplicativo publicado, seu *tamanho de payload*, é um fator de dese
 * As respostas HTTP são compactadas.
 * O tempo de execução do .NET e os assemblies são armazenados em cache no navegador.
 
-## <a name="blazor-server"></a>Servidor mais incrivelmente
+## <a name="blazor-server"></a>Servidor Blazor
 
 Os componentes Blazor desvinculam a lógica de renderização do componente da forma como as atualizações da interface do usuário são aplicadas. O servidor mais incrivelmente dá suporte para hospedar componentes do Razor no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário são tratadas por uma conexão [SignalR](xref:signalr/introduction).
 

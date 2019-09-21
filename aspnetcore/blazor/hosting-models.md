@@ -7,22 +7,24 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/07/2019
 uid: blazor/hosting-models
-ms.openlocfilehash: 6e225e490e54e44877fa27573ff9b513c8dcd9a3
-ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
+ms.openlocfilehash: 47c546a086588919e4458d6aeeb39453cbc754e0
+ms.sourcegitcommit: e5a74f882c14eaa0e5639ff082355e130559ba83
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2019
-ms.locfileid: "70964059"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71168147"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Modelos de hospedagem mais amASP.NET Core
 
 Por [Daniel Roth](https://github.com/danroth27)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 É uma estrutura da Web criada para executar o lado do cliente no navegador em um tempo de execução .NET baseado em [Webassembly](https://webassembly.org/)(mais alto*Webassembly*) ou no lado do servidor no ASP.NET Core (*servidor*de mais Altova). Independentemente do modelo de hospedagem, os modelos de aplicativo e componente *são os mesmos*.
 
 Para criar um projeto para os modelos de hospedagem descritos neste artigo, consulte <xref:blazor/get-started>.
 
-## <a name="blazor-webassembly"></a>Webassembly mais incrivelmente
+## <a name="blazor-webassembly"></a>WebAssembly Blazor
 
 O modelo de hospedagem principal para o mais alto é executar o lado do cliente no navegador no Webassembly. O aplicativo do Blazor, suas dependências e o tempo de execução do .NET são baixados no navegador. O aplicativo é executado diretamente no thread da interface do usuário do navegador. As atualizações da interface do usuário e o tratamento de eventos ocorrem no mesmo processo. Os ativos do aplicativo são implantados como arquivos estáticos em um servidor Web ou serviço capaz de fornecer conteúdo estático aos clientes.
 
@@ -51,7 +53,7 @@ Há desvantagens na Hospedagem de Webassembly mais incrivelmente:
 * O tamanho do download é maior e os aplicativos demoram mais para serem carregados.
 * O suporte ao tempo de execução e às ferramentas do .NET é menos maduro. Por exemplo, existem limitações em [.net Standard](/dotnet/standard/net-standard) suporte e depuração.
 
-## <a name="blazor-server"></a>Servidor mais incrivelmente
+## <a name="blazor-server"></a>Servidor Blazor
 
 Com o modelo de Hospedagem de servidor mais incrivelmente, o aplicativo é executado no servidor de dentro de um aplicativo ASP.NET Core. As atualizações da interface do usuário, a manipulação de eventos e as chamadas de JavaScript são realizadas por uma conexão [SignalR](xref:signalr/introduction).
 

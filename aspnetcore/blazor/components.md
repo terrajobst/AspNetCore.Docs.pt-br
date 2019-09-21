@@ -5,14 +5,14 @@ description: Saiba como criar e usar componentes do Razor, incluindo como associ
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/06/2019
+ms.date: 09/19/2019
 uid: blazor/components
-ms.openlocfilehash: 521421ac413218c1f04dd9feade2a49dc1f7b918
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: 55b40bc640715bf4052fa99ed68f63250b67e8d1
+ms.sourcegitcommit: e5a74f882c14eaa0e5639ff082355e130559ba83
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71080526"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71168214"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -1071,7 +1071,7 @@ Componentes modelo são componentes que aceitam um ou mais modelos de interface 
 * Um componente de tabela que permite que um usuário especifique modelos para o cabeçalho, as linhas e o rodapé da tabela.
 * Um componente de lista que permite que um usuário especifique um modelo para renderizar itens em uma lista.
 
-### <a name="template-parameters"></a>Parâmetros do modelo
+### <a name="template-parameters"></a>Parâmetros de modelo
 
 Um componente modelo é definido especificando um ou mais parâmetros de componente do tipo `RenderFragment` ou. `RenderFragment<T>` Um fragmento de renderização representa um segmento de interface do usuário a ser renderizado. `RenderFragment<T>`usa um parâmetro de tipo que pode ser especificado quando o fragmento de renderização é invocado.
 
@@ -1128,7 +1128,7 @@ Como alternativa, você pode especificar o `Context` atributo no elemento Compon
 
 ### <a name="generic-typed-components"></a>Componentes de tipo genérico
 
-Os componentes modelo são geralmente digitados genericamente. Por exemplo, um componente `ListViewTemplate` genérico pode ser usado para renderizar `IEnumerable<T>` valores. Para definir um componente genérico, use a `@typeparam` diretiva para especificar parâmetros de tipo:
+Os componentes modelo são geralmente digitados genericamente. Por exemplo, um componente `ListViewTemplate` genérico pode ser usado para renderizar `IEnumerable<T>` valores. Para definir um componente genérico, use a [@typeparam](xref:mvc/views/razor#typeparam) diretiva para especificar parâmetros de tipo:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.razor)]
 
@@ -1419,7 +1419,7 @@ Quando o código é executado pela primeira vez, se `someFlag` for `true`, o Con
 
 | Sequência | Tipo      | Dados   |
 | :------: | --------- | :----: |
-| 0        | Nó de texto | First  |
+| 0        | Nó de texto | Primeiro  |
 | 1        | Nó de texto | Segundo |
 
 Imagine que `someFlag` se `false`torna e a marcação é renderizada novamente. Desta vez, o Construtor recebe:
@@ -1451,7 +1451,7 @@ Agora, a primeira saída é:
 
 | Sequência | Tipo      | Dados   |
 | :------: | --------- | :----: |
-| 0        | Nó de texto | First  |
+| 0        | Nó de texto | Primeiro  |
 | 1        | Nó de texto | Segundo |
 
 Esse resultado é idêntico ao caso anterior, portanto, não existem problemas negativos. `someFlag`está `false` no segundo processamento e a saída é:
