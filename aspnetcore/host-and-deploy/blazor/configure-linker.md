@@ -7,27 +7,29 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/02/2019
 uid: host-and-deploy/blazor/configure-linker
-ms.openlocfilehash: 03be18e7ee6ca8103e1a666da9e693ff67267d83
-ms.sourcegitcommit: 0b9e767a09beaaaa4301915cdda9ef69daaf3ff2
-ms.translationtype: HT
+ms.openlocfilehash: cf017ec6d6de3c5848b866b0c29781f283c5de44
+ms.sourcegitcommit: e5a74f882c14eaa0e5639ff082355e130559ba83
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/03/2019
-ms.locfileid: "67538623"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71167995"
 ---
-# <a name="configure-the-linker-for-aspnet-core-blazor"></a><span data-ttu-id="ec0c7-103">Configurar o vinculador para o Blazor do ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="ec0c7-103">Configure the Linker for ASP.NET Core Blazor</span></span>
+# <a name="configure-the-linker-for-aspnet-core-blazor"></a><span data-ttu-id="c8ea3-103">Configurar o vinculador para o Blazor do ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="c8ea3-103">Configure the Linker for ASP.NET Core Blazor</span></span>
 
-<span data-ttu-id="ec0c7-104">Por [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="ec0c7-104">By [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="c8ea3-104">Por [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="c8ea3-104">By [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="ec0c7-105">O Blazor executa a vinculação de [IL (linguagem intermediária)](/dotnet/standard/managed-code#intermediate-language--execution) durante um build de Versão para remover a IL desnecessária dos assemblies de saída do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="ec0c7-105">Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a Release build to remove unnecessary IL from the app's output assemblies.</span></span>
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-<span data-ttu-id="ec0c7-106">Controle a vinculação do assembly com uma das seguintes abordagens:</span><span class="sxs-lookup"><span data-stu-id="ec0c7-106">Control assembly linking using either of the following approaches:</span></span>
+<span data-ttu-id="c8ea3-105">O Blazor executa a vinculação de [IL (linguagem intermediária)](/dotnet/standard/managed-code#intermediate-language--execution) durante um build de Versão para remover a IL desnecessária dos assemblies de saída do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="c8ea3-105">Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a Release build to remove unnecessary IL from the app's output assemblies.</span></span>
 
-* <span data-ttu-id="ec0c7-107">Desabilite a vinculação globalmente com uma [propriedade MSBuild](#disable-linking-with-a-msbuild-property).</span><span class="sxs-lookup"><span data-stu-id="ec0c7-107">Disable linking globally with a [MSBuild property](#disable-linking-with-a-msbuild-property).</span></span>
-* <span data-ttu-id="ec0c7-108">Controle a vinculação por assembly usando um [arquivo de configuração](#control-linking-with-a-configuration-file).</span><span class="sxs-lookup"><span data-stu-id="ec0c7-108">Control linking on a per-assembly basis with a [configuration file](#control-linking-with-a-configuration-file).</span></span>
+<span data-ttu-id="c8ea3-106">Controle a vinculação do assembly com uma das seguintes abordagens:</span><span class="sxs-lookup"><span data-stu-id="c8ea3-106">Control assembly linking using either of the following approaches:</span></span>
 
-## <a name="disable-linking-with-a-msbuild-property"></a><span data-ttu-id="ec0c7-109">Desabilitar a vinculação com uma propriedade MSBuild</span><span class="sxs-lookup"><span data-stu-id="ec0c7-109">Disable linking with a MSBuild property</span></span>
+* <span data-ttu-id="c8ea3-107">Desabilite a vinculação globalmente com uma [propriedade MSBuild](#disable-linking-with-a-msbuild-property).</span><span class="sxs-lookup"><span data-stu-id="c8ea3-107">Disable linking globally with a [MSBuild property](#disable-linking-with-a-msbuild-property).</span></span>
+* <span data-ttu-id="c8ea3-108">Controle a vinculação por assembly usando um [arquivo de configuração](#control-linking-with-a-configuration-file).</span><span class="sxs-lookup"><span data-stu-id="c8ea3-108">Control linking on a per-assembly basis with a [configuration file](#control-linking-with-a-configuration-file).</span></span>
 
-<span data-ttu-id="ec0c7-110">A vinculação é habilitada por padrão no Modo de Versão quando um aplicativo é criado, o que inclui publicação.</span><span class="sxs-lookup"><span data-stu-id="ec0c7-110">Linking is enabled by default in Release mode when an app is built, which includes publishing.</span></span> <span data-ttu-id="ec0c7-111">Para desabilitar a vinculação para todos os assemblies, defina a propriedade `BlazorLinkOnBuild` MSBuild como `false` no arquivo de projeto:</span><span class="sxs-lookup"><span data-stu-id="ec0c7-111">To disable linking for all assemblies, set the `BlazorLinkOnBuild` MSBuild property to `false` in the project file:</span></span>
+## <a name="disable-linking-with-a-msbuild-property"></a><span data-ttu-id="c8ea3-109">Desabilitar a vinculação com uma propriedade MSBuild</span><span class="sxs-lookup"><span data-stu-id="c8ea3-109">Disable linking with a MSBuild property</span></span>
+
+<span data-ttu-id="c8ea3-110">A vinculação é habilitada por padrão no Modo de Versão quando um aplicativo é criado, o que inclui publicação.</span><span class="sxs-lookup"><span data-stu-id="c8ea3-110">Linking is enabled by default in Release mode when an app is built, which includes publishing.</span></span> <span data-ttu-id="c8ea3-111">Para desabilitar a vinculação para todos os assemblies, defina a propriedade `BlazorLinkOnBuild` MSBuild como `false` no arquivo de projeto:</span><span class="sxs-lookup"><span data-stu-id="c8ea3-111">To disable linking for all assemblies, set the `BlazorLinkOnBuild` MSBuild property to `false` in the project file:</span></span>
 
 ```xml
 <PropertyGroup>
@@ -35,9 +37,9 @@ ms.locfileid: "67538623"
 </PropertyGroup>
 ```
 
-## <a name="control-linking-with-a-configuration-file"></a><span data-ttu-id="ec0c7-112">Controlar a vinculação com um arquivo de configuração</span><span class="sxs-lookup"><span data-stu-id="ec0c7-112">Control linking with a configuration file</span></span>
+## <a name="control-linking-with-a-configuration-file"></a><span data-ttu-id="c8ea3-112">Controlar a vinculação com um arquivo de configuração</span><span class="sxs-lookup"><span data-stu-id="c8ea3-112">Control linking with a configuration file</span></span>
 
-<span data-ttu-id="ec0c7-113">Controle a vinculação por assembly fornecendo um arquivo de configuração XML e especificando o arquivo como um item MSBuild no arquivo de projeto:</span><span class="sxs-lookup"><span data-stu-id="ec0c7-113">Control linking on a per-assembly basis by providing an XML configuration file and specifying the file as a MSBuild item in the project file:</span></span>
+<span data-ttu-id="c8ea3-113">Controle a vinculação por assembly fornecendo um arquivo de configuração XML e especificando o arquivo como um item MSBuild no arquivo de projeto:</span><span class="sxs-lookup"><span data-stu-id="c8ea3-113">Control linking on a per-assembly basis by providing an XML configuration file and specifying the file as a MSBuild item in the project file:</span></span>
 
 ```xml
 <ItemGroup>
@@ -45,7 +47,7 @@ ms.locfileid: "67538623"
 </ItemGroup>
 ```
 
-<span data-ttu-id="ec0c7-114">*Linker.xml*:</span><span class="sxs-lookup"><span data-stu-id="ec0c7-114">*Linker.xml*:</span></span>
+<span data-ttu-id="c8ea3-114">*Linker.xml*:</span><span class="sxs-lookup"><span data-stu-id="c8ea3-114">*Linker.xml*:</span></span>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -77,4 +79,4 @@ ms.locfileid: "67538623"
 </linker>
 ```
 
-<span data-ttu-id="ec0c7-115">Confira mais informações em [Vinculador de IL: sintaxe do descritor de xml](https://github.com/mono/linker/blob/master/src/linker/README.md#syntax-of-xml-descriptor).</span><span class="sxs-lookup"><span data-stu-id="ec0c7-115">For more information, see [IL Linker: Syntax of xml descriptor](https://github.com/mono/linker/blob/master/src/linker/README.md#syntax-of-xml-descriptor).</span></span>
+<span data-ttu-id="c8ea3-115">Confira mais informações em [Vinculador de IL: sintaxe do descritor de xml](https://github.com/mono/linker/blob/master/src/linker/README.md#syntax-of-xml-descriptor).</span><span class="sxs-lookup"><span data-stu-id="c8ea3-115">For more information, see [IL Linker: Syntax of xml descriptor](https://github.com/mono/linker/blob/master/src/linker/README.md#syntax-of-xml-descriptor).</span></span>
