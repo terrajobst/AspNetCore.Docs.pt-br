@@ -5,14 +5,14 @@ description: Saiba como criar componentes de layout reutilizáveis para aplicati
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/06/2019
+ms.date: 09/21/2019
 uid: blazor/layouts
-ms.openlocfilehash: 05a38c10e18407d50422192ab1ddf3ff4b0f3a5b
-ms.sourcegitcommit: 43c6335b5859282f64d66a7696c5935a2bcdf966
+ms.openlocfilehash: 6ae795f720cd2cc1010ebec46bcee877b31d20c6
+ms.sourcegitcommit: 04ce94b3c1b01d167f30eed60c1c95446dfe759d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/07/2019
-ms.locfileid: "70800366"
+ms.lasthandoff: 09/21/2019
+ms.locfileid: "71176429"
 ---
 # <a name="aspnet-core-blazor-layouts"></a>ASP.NET Core layouts mais incrivelmente
 
@@ -45,6 +45,8 @@ Para fornecer um layout padrão para `NotFound` conteúdo, especifique um `Layou
 
 Para obter mais informações sobre `Router` o componente, <xref:blazor/routing>consulte.
 
+A especificação do layout como um layout padrão no roteador é uma prática útil, pois pode ser substituída por componente ou por pasta. Prefira usar o roteador para definir o layout padrão do aplicativo porque ele é a técnica mais geral.
+
 ## <a name="specify-a-layout-in-a-component"></a>Especificar um layout em um componente
 
 Use a diretiva `@layout` Razor para aplicar um layout a um componente. O compilador converte `@layout` em um `LayoutAttribute`, que é aplicado à classe de componente.
@@ -52,6 +54,8 @@ Use a diretiva `@layout` Razor para aplicar um layout a um componente. O compila
 O conteúdo do componente a `MasterList` seguir é inserido `MasterLayout` no na posição de `@Body`:
 
 [!code-cshtml[](layouts/sample_snapshot/3.x/MasterList.razor?highlight=1)]
+
+Especificar o layout diretamente em um componente substitui um *Layout padrão* definido no roteador ou uma `@layout` diretiva importada de *_Imports. Razor*.
 
 ## <a name="centralized-layout-selection"></a>Seleção de layout centralizado
 
@@ -66,6 +70,8 @@ As seguintes importações de arquivo *_Imports. Razor* :
 [!code-cshtml[](layouts/sample_snapshot/3.x/_Imports.razor)]
 
 O arquivo *_Imports. Razor* é semelhante ao [arquivo _ViewImports. cshtml para exibições e páginas do Razor](xref:mvc/views/layout#importing-shared-directives) , mas aplicado especificamente aos arquivos de componente do Razor.
+
+A especificação de um layout em *_Imports. Razor* substitui um layout especificado como o *Layout padrão*do roteador.
 
 ## <a name="nested-layouts"></a>Layouts aninhados
 

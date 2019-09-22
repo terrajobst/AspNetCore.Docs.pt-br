@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/07/2019
 uid: blazor/javascript-interop
-ms.openlocfilehash: aee9b981349e62dcc7ccf352dd5bab520969ed3b
-ms.sourcegitcommit: e5a74f882c14eaa0e5639ff082355e130559ba83
+ms.openlocfilehash: 505bd22c92c6723fb8f41621c05ba9fa3a74943b
+ms.sourcegitcommit: 04ce94b3c1b01d167f30eed60c1c95446dfe759d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71168192"
+ms.lasthandoff: 09/21/2019
+ms.locfileid: "71176452"
 ---
 # <a name="aspnet-core-blazor-javascript-interop"></a>ASP.NET Core a interoperabilidade de JavaScript mais incrivelmente
 
@@ -113,7 +113,7 @@ O aplicativo de exemplo inclui um componente para demonstrar a interoperabilidad
 
 ## <a name="call-a-void-javascript-function"></a>Chamar uma função JavaScript void
 
-As funções JavaScript que retornam [void (0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) ou [indefinido](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) são `IJSRuntime.InvokeAsync<object>`chamadas com, `null`que retorna.
+As funções JavaScript que retornam [void (0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) ou [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) são chamadas com `IJSRuntime.InvokeVoidAsync`.
 
 ## <a name="detect-when-a-blazor-app-is-prerendering"></a>Detectar quando um aplicativo mais incrivelmente está prerenderizando
  

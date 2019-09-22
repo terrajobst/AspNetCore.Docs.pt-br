@@ -5,14 +5,14 @@ description: Saiba como criar e usar componentes do Razor, incluindo como associ
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/19/2019
+ms.date: 09/21/2019
 uid: blazor/components
-ms.openlocfilehash: 55b40bc640715bf4052fa99ed68f63250b67e8d1
-ms.sourcegitcommit: e5a74f882c14eaa0e5639ff082355e130559ba83
+ms.openlocfilehash: cf12be950043095b7e3e5eab897dd626021cb982
+ms.sourcegitcommit: 04ce94b3c1b01d167f30eed60c1c95446dfe759d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71168214"
+ms.lasthandoff: 09/21/2019
+ms.locfileid: "71176380"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -27,14 +27,6 @@ Os aplicativos mais elaborados são criados usando *componentes*. Um componente 
 Os componentes são implementados em arquivos de componente do [Razor](xref:mvc/views/razor) ( *. Razor*) C# usando uma combinação de marcação HTML e. Um componente no mais alto é conhecido formalmente como um *componente do Razor*.
 
 O nome de um componente deve começar com um caractere maiúsculo. Por exemplo, *MyCoolComponent. Razor* é válido e *MyCoolComponent. Razor* é inválido.
-
-Os componentes podem ser criados usando a extensão de arquivo *. cshtml* , desde que os arquivos sejam identificados como arquivos de componente do `_RazorComponentInclude` Razor usando a Propriedade MSBuild. Por exemplo, um aplicativo que especifica que todos os arquivos *. cshtml* na pasta *páginas* devem ser tratados como arquivos de componentes do Razor:
-
-```xml
-<PropertyGroup>
-  <_RazorComponentInclude>Pages\**\*.cshtml</_RazorComponentInclude>
-</PropertyGroup>
-```
 
 A interface do usuário para um componente é definida usando HTML. A lógica de renderização dinâmica (por exemplo, loops, condicionais, expressões) é adicionada usando uma sintaxe de C# inserida chamada [Razor](xref:mvc/views/razor). Quando um aplicativo é compilado, a marcação HTML e C# a lógica de renderização são convertidas em uma classe de componente. O nome da classe gerada corresponde ao nome do arquivo.
 
@@ -1046,6 +1038,9 @@ Se `IsCompleted` for`false`, a caixa de seleção será renderizada como:
 
 Para obter mais informações, consulte <xref:mvc/views/razor>.
 
+> [!WARNING]
+> Alguns atributos HTML, como [pressionados pelo Aria](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), não funcionam corretamente quando o tipo .net é um `bool`. Nesses casos, use um `string` tipo em vez de um. `bool`
+
 ## <a name="raw-html"></a>HTML bruto
 
 Normalmente, as cadeias de caracteres são renderizadas usando nós de texto DOM, o que significa que qualquer marcação que ela possa conter será ignorada e tratada como texto literal. Para renderizar HTML bruto, empacote o conteúdo HTML em `MarkupString` um valor. O valor é analisado como HTML ou SVG e inserido no DOM.
@@ -1333,7 +1328,7 @@ Saída renderizada do código anterior:
 
 ## <a name="manual-rendertreebuilder-logic"></a>Lógica RenderTreeBuilder manual
 
-`Microsoft.AspNetCore.Components.RenderTree`fornece métodos para manipular componentes e elementos, incluindo a criação manual de componentes C# no código.
+`Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder`fornece métodos para manipular componentes e elementos, incluindo a criação manual de componentes C# no código.
 
 > [!NOTE]
 > O uso `RenderTreeBuilder` do para criar componentes é um cenário avançado. Um componente malformado (por exemplo, uma marca de marcação não fechada) pode resultar em um comportamento indefinido.
@@ -1386,6 +1381,8 @@ No exemplo a seguir, o loop no `CreateComponent` método gera três `PetDetails`
     }
 }
 ```
+
+> ! ALERTA Os tipos no `Microsoft.AspNetCore.Components.RenderTree` permitem o processamento dos *resultados* das operações de renderização. Esses são detalhes internos da implementação da estrutura mais incrivelmente. Esses tipos devem ser considerados *instáveis* e sujeitos a alterações em versões futuras.
 
 ### <a name="sequence-numbers-relate-to-code-line-numbers-and-not-execution-order"></a>Números de sequência se relacionam a números de linha de código e não a ordem de execução
 

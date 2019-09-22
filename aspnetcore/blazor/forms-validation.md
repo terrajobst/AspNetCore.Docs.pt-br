@@ -7,21 +7,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/15/2019
 uid: blazor/forms-validation
-ms.openlocfilehash: 2fd76db90a53e328cd2ac8f452fba58365db0384
-ms.sourcegitcommit: dc5b293e08336dc236de66ed1834f7ef78359531
+ms.openlocfilehash: c68ebf7f7bf07b6c243ab16307716cea13870446
+ms.sourcegitcommit: 04ce94b3c1b01d167f30eed60c1c95446dfe759d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/16/2019
-ms.locfileid: "71011067"
+ms.lasthandoff: 09/21/2019
+ms.locfileid: "71176351"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>Formulários e validação de mais e ASP.NET Core
 
 Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
 Há suporte para formulários e validação com mais de um e mais, usando as [anotações de dados](xref:mvc/models/validation).
-
-> [!NOTE]
-> Os cenários de validação e formulários provavelmente serão alterados com cada versão de visualização.
 
 O tipo `ExampleModel` a seguir define a lógica de validação usando as anotações de dados:
 
