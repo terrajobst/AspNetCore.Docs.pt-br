@@ -4,14 +4,14 @@ author: rick-anderson
 description: Um breve tutorial que cria e executa um aplicativo básico Olá, Mundo usando o ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/15/2019
+ms.date: 09/22/2019
 uid: getting-started
-ms.openlocfilehash: d1edf91f1b37ba2b69732471dc6c1f306ac5ad24
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: 0f05ab120d64832a4bc2fd70921efc7238ee9eac
+ms.sourcegitcommit: d34b2627a69bc8940b76a949de830335db9701d3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71081119"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71187063"
 ---
 # <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: Introdução ao ASP.NET Core
 
@@ -31,7 +31,7 @@ No final, você terá um aplicativo Web de trabalho em execução no seu computa
 
 ## <a name="prerequisites"></a>Pré-requisitos
 
-* [SDK do .NET Core 2.2](https://www.microsoft.com/net/download/all)
+[!INCLUDE[](~/includes/3.0-SDK.md)]
 
 ## <a name="create-a-web-app-project"></a>Criar um projeto de aplicativo Web
 
@@ -40,6 +40,11 @@ Abra um shell de comando e insira o seguinte comando:
 ```dotnetcli
 dotnet new webapp -o aspnetcoreapp
 ```
+
+O comando anterior:
+
+* Cria um novo aplicativo Web.  
+* O `-o` parâmetro cria um diretório chamado *aspnetcoreapp* com os arquivos de origem para o aplicativo.
 
 ### <a name="trust-the-development-certificate"></a>Confiar no certificado de desenvolvimento
 

@@ -3,14 +3,14 @@ title: Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 author: rick-anderson
 description: Saiba como adicionar classes de gerenciamento de filmes em um banco de dados usando o EF Core (Entity Framework Core).
 ms.author: riande
-ms.date: 07/22/2019
+ms.date: 9/22/2019
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 18cf9aea930a7989bb844bc6c40dfa1ce84b7b4d
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: dcbcf37dfd95d784ebe249ec6e9e4184a8853d3d
+ms.sourcegitcommit: d34b2627a69bc8940b76a949de830335db9701d3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71082621"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71187196"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -99,7 +99,7 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
 * Instale a ferramenta de scaffolding:
 
   ```dotnetcli
-   dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
+   dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
 * **para Windows**: Execute o seguinte comando:
@@ -122,7 +122,7 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
 * Instale a ferramenta de scaffolding:
 
   ```dotnetcli
-   dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
+   dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
 * Execute o seguinte comando:

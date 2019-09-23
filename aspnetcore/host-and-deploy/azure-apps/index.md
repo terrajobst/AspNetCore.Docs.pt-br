@@ -5,14 +5,14 @@ description: Este artigo contém links para o host do Azure e para implantar rec
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/07/2019
+ms.date: 07/28/2019
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: 7736888c43aafd2f64e3d7b079f2099fe548a825
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: 4dc150ff4534e42e1995a185f650cea9df70ccc4
+ms.sourcegitcommit: d34b2627a69bc8940b76a949de830335db9701d3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71081082"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71187053"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -97,7 +97,17 @@ O [Middleware de integração do IIS](xref:host-and-deploy/iis/index#enable-the-
 
 ## <a name="monitoring-and-logging"></a>Monitoramento e registro em log
 
-Azure App serviço oferece as **extensões de log de ASP.NET Core**, que habilitam a integração de log para aplicativos ASP.NET Core. Para adicionar automaticamente a extensão a um serviço de aplicativo, use o processo de **publicação** do Visual Studio com um perfil de publicação do **serviço de aplicativo** . Quando não estiver usando o Visual Studio para implantar um aplicativo, instale manualmente a extensão no portal do Azure por meio da caixa de diálogo**extensões** de **ferramentas** > de desenvolvimento do serviço de aplicativo.
+::: moniker range=">= aspnetcore-3.0"
+
+Os aplicativos ASP.NET Core implantados no Serviço de Aplicativo recebem automaticamente uma extensão do Serviço de Aplicativo, **Integração de Log do ASP.NET Core**. A extensão habilita a integração de log para aplicativos ASP.NET Core no Serviço de Aplicativo do Azure.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Os aplicativos ASP.NET Core implantados no Serviço de Aplicativo recebem automaticamente uma extensão do Serviço de Aplicativo, **Extensões de Log do ASP.NET Core**. A extensão habilita a integração de log para aplicativos ASP.NET Core no Serviço de Aplicativo do Azure.
+
+::: moniker-end
 
 Para monitoramento, registro em log e informações de solução de problemas, veja os seguintes artigos:
 
@@ -128,10 +138,21 @@ Quando ocorre a troca entre os slots de implantação, nenhum sistema que usa a 
 * Cache redis
 
 Para obter mais informações, consulte <xref:security/data-protection/implementation/key-storage-providers>.
+<a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>
+<!-- revert this after 3.0 supported
+## Deploy ASP.NET Core preview release to Azure App Service
 
-## <a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>Implantar a versão de visualização do ASP.NET Core para o Serviço de Aplicativo do Azure
+Use one of the following approaches if the app relies on a preview release of .NET Core:
 
-Use uma das seguintes abordagens se o aplicativo depender de uma versão prévia do .NET Core:
+* [Install the preview site extension](#install-the-preview-site-extension).
+* [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app).
+* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers).
+-->
+## <a name="deploy-aspnet-core-30-to-azure-app-service"></a>Implantar o ASP.NET Core 3,0 no serviço Azure App
+
+Esperamos ter ASP.NET Core 3,0 disponível no serviço Azure App em breve.
+
+Use uma das seguintes abordagens se o aplicativo depender do .NET Core 3,0:
 
 * [Instalar a extensão de site da versão prévia](#install-the-preview-site-extension).
 * [Implantar um aplicativo autossuficiente em versão prévia](#deploy-a-self-contained-preview-app).
@@ -221,7 +242,7 @@ Para uma [implantação dependente de estrutura](/dotnet/core/deploying/#framewo
    * Abra a lista suspensa **Modo de Implantação** e selecione **Dependente de Estrutura**.
    * Selecione **Portátil** como o **Tempo de Execução de Destino**.
    * Se você precisar remover arquivos adicionais após a implantação, abra as **Opções de Publicação do Arquivo** e marque a caixa de seleção para remover arquivos adicionais no destino.
-   * Clique em **Salvar**.
+   * Selecione **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
@@ -230,7 +251,7 @@ Para uma [implantação dependente de estrutura](/dotnet/core/deploying/#framewo
 
 1. Em um shell de comando, publique o aplicativo na Configuração de versão usando o comando [dotnet publish](/dotnet/core/tools/dotnet-publish). No exemplo a seguir, o aplicativo é publicado como dependente de estrutura:
 
-   ```dotnetcli
+   ```console
    dotnet publish --configuration Release
    ```
 
@@ -252,7 +273,7 @@ Use o Visual Studio ou as ferramentas da CLI (interface de linha de comando) par
    * Abra a lista suspensa **Modo de Implantação** e selecione **Autocontido**.
    * Selecione o tempo de execução de destino na lista suspensa **Tempo de Execução de Destino**. O padrão é `win-x86`.
    * Se você precisar remover arquivos adicionais após a implantação, abra as **Opções de Publicação do Arquivo** e marque a caixa de seleção para remover arquivos adicionais no destino.
-   * Clique em **Salvar**.
+   * Selecione **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
@@ -268,7 +289,7 @@ Use o Visual Studio ou as ferramentas da CLI (interface de linha de comando) par
 
 1. Em um shell de comando, publique o aplicativo na configuração de Versão do tempo de execução do host com o comando [dotnet publish](/dotnet/core/tools/dotnet-publish). No exemplo a seguir, o aplicativo é publicado para o RID `win-x86`. O RID fornecido para a opção `--runtime` precisa ser fornecida na propriedade `<RuntimeIdentifier>` (ou `<RuntimeIdentifiers>`) no arquivo de projeto.
 
-   ```dotnetcli
+   ```console
    dotnet publish --configuration Release --runtime win-x86
    ```
 

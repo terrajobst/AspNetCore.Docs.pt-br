@@ -20,17 +20,7 @@ Adicione uma cadeia de conexão ao arquivo *appsettings.json*, conforme mostrado
 
 ### <a name="add-nuget-packages-and-ef-tools"></a>Adicionar pacotes NuGet e ferramentas de EF
 
-Abra um terminal para o projeto RazorPagesMovie.  Clique com o botão direito do mouse no nome do projeto na barra de design/layout e vá para **Ferramentas > Abrir** no Terminal. Execute os seguintes comandos da CLI do .NET Core no Terminal:
-
-```dotnetcli
-dotnet tool install --global dotnet-ef --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
-```
-
-Os comandos anteriores adicionam Ferramentas do Entity Framework Core para a CLI do .NET e vários pacotes ao projeto. O pacote `Microsoft.VisualStudio.Web.CodeGeneration.Design` é necessário para scaffolding.
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
 
 <a name="reg"></a>
 

@@ -20,17 +20,7 @@ Adicione uma cadeia de conexão ao arquivo *appsettings.json*:
 
 ### <a name="add-nuget-packages-and-ef-tools"></a>Adicionar pacotes NuGet e ferramentas de EF
 
-Execute os seguintes comandos da CLI do .NET Core:
-
-```dotnetcli
-dotnet tool install --global dotnet-ef --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
-```
-
-Os comandos anteriores adicionam Ferramentas do Entity Framework Core para a CLI do .NET e vários pacotes ao projeto. O pacote `Microsoft.VisualStudio.Web.CodeGeneration.Design` é necessário para scaffolding.
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
 
 <a name="reg"></a>
 

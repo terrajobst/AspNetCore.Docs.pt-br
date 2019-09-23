@@ -5,12 +5,12 @@ description: Saiba como o model binding permite que as ações do controlador tr
 ms.author: riande
 ms.date: 11/13/2018
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: 91f42393ffee3249f9167e10eaea7b279a7cb70b
-ms.sourcegitcommit: e7c56e8da5419bbc20b437c2dd531dedf9b0dc6b
+ms.openlocfilehash: b2fbe6a9f11315d1fb8863fbf62e8929c7ff3fc2
+ms.sourcegitcommit: d34b2627a69bc8940b76a949de830335db9701d3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70878403"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71186884"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>Model binding personalizado no ASP.NET Core
 
@@ -132,9 +132,7 @@ A adição do provedor ao final da coleção pode resultar na chamada a um assoc
 
 ### <a name="polymorphic-model-binding"></a>Associação de modelo polimórfico
 
-A associação a diferentes modelos de tipos derivados é conhecida como associação de modelo polimórfico. A associação de modelo personalizado é necessária quando o valor da solicitação deve ser associado ao tipo de modelo derivado específico. A menos que essa abordagem seja necessária, é recomendável evitar a associação de modelo polimórfico. A associação de modelo polimórfico dificulta o raciocínio sobre os modelos associados. No entanto, se um aplicativo exigir Associação de modelo polimórfico, uma implementação poderá ser semelhante ao seguinte código:
-
-A associação a diferentes modelos de tipos derivados é conhecida como associação de modelo polimórfico. A associação de modelo personalizado é necessária quando o valor da solicitação deve ser associado ao tipo de modelo derivado específico. Associação de modelo polimórfico:
+A associação a diferentes modelos de tipos derivados é conhecida como associação de modelo polimórfico. A associação de modelo personalizado polimórfico é necessária quando o valor da solicitação deve ser associado ao tipo de modelo derivado específico. Associação de modelo polimórfico:
 
 * Não é comum para uma API REST projetada para interoperar com todos os idiomas.
 * Dificulta a razão dos modelos associados.
