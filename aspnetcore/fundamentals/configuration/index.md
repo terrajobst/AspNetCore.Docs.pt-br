@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/12/2019
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 0de2222e8072523ff0e5d261a9fe5ef8eb9a7606
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: 357a3d89648086f0329cd16bc9d72863df9bdcd6
+ms.sourcegitcommit: 8a36be1bfee02eba3b07b7a86085ec25c38bae6b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71081817"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "71217790"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configuração no ASP.NET Core
 
@@ -226,7 +226,7 @@ Para configurar o construtor de host, chame <xref:Microsoft.Extensions.Hosting.H
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
-        .ConfigureHostConfiguration((hostingContext, config) =>
+        .ConfigureHostConfiguration(config =>
         {
             var dict = new Dictionary<string, string>
             {

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/12/2019
 uid: host-and-deploy/proxy-load-balancer
-ms.openlocfilehash: 4f04e6cae120ee88734855252542e2bfc2f194a0
-ms.sourcegitcommit: 849af69ee3c94cdb9fd8fa1f1bb8f5a5dda7b9eb
-ms.translationtype: HT
+ms.openlocfilehash: 3243f5d3254e6585ff9ca48900a3326aa9b6f502
+ms.sourcegitcommit: 8a36be1bfee02eba3b07b7a86085ec25c38bae6b
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/22/2019
-ms.locfileid: "67856165"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "71219182"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>Configure o ASP.NET Core para trabalhar com servidores proxy e balanceadores de carga
 
@@ -29,7 +29,7 @@ Essas informações podem ser importantes no processamento de solicitações, po
 
 Por convenção, os proxies encaminham informações em cabeçalhos HTTP.
 
-| Cabeçalho | DESCRIÇÃO |
+| Cabeçalho | Descrição |
 | ------ | ----------- |
 | X-Forwarded-For | Contém informações sobre o cliente que iniciou a solicitação e os proxies subsequentes em uma cadeia de proxies. Esse parâmetro pode conter endereços IP (e, opcionalmente, os números de porta). Em uma cadeia de servidores proxy, o primeiro parâmetro indica o cliente em que a solicitação foi feita pela primeira vez. Depois, vêm os identificadores de proxy subsequentes. O último proxy na cadeia não está na lista de parâmetros. O endereço IP do último proxy (e opcionalmente um número da porta) estão disponíveis como o endereço IP remoto na camada de transporte. |
 | X-Forwarded-Proto | O valor do esquema de origem (HTTP/HTTPS). O valor também pode ser uma lista de esquemas se a solicitação percorreu vários proxies. |
@@ -121,7 +121,7 @@ services.Configure<ForwardedHeadersOptions>(options =>
 });
 ```
 
-| Opção | DESCRIÇÃO |
+| Opção | Descrição |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> | Restringe os hosts com o cabeçalho `X-Forwarded-Host` para os valores fornecidos.<ul><li>Os valores são comparados usando ordinal-ignore-case.</li><li>Os número de porta devem ser excluídos.</li><li>Se a lista estiver vazia, todos os hosts serão permitidos.</li><li>Um curinga de nível superior `*` permite todos os hosts não vazios.</li><li>Curingas de subdomínio são permitidos, mas não correspondem ao domínio raiz. Por exemplo, `*.contoso.com` corresponde o subdomínio `foo.contoso.com`, mas não ao domínio raiz `contoso.com`.</li><li>Nomes do host Unicode são permitidos, mas são convertidos em [Punycode](https://tools.ietf.org/html/rfc3492) para correspondência.</li><li>[Endereços IPv6](https://tools.ietf.org/html/rfc4291) devem incluir colchetes delimitadores e estar no [formato convencional](https://tools.ietf.org/html/rfc4291#section-2.2) (por exemplo, `[ABCD:EF01:2345:6789:ABCD:EF01:2345:6789]`). Endereços IPv6 não têm caso especial para verificar se há igualdade lógica entre formatos diferentes, e nenhuma canonicalização é executada.</li><li>Falha ao restringir os hosts permitidos pode permitir que um atacante falsifique links gerados pelo serviço.</li></ul>O valor padrão é um `IList<string>` vazio. |
 | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedForHeaderName> | Use o cabeçalho especificado por essa propriedade, em vez de um especificado por [ForwardedHeadersDefaults.XForwardedForHeaderName](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeadersDefaults.XForwardedForHeaderName). Esta opção é usada quando o proxy/encaminhador não usa o cabeçalho `X-Forwarded-For`, mas usa algum outro cabeçalho para encaminhar as informações.<br><br>O padrão é `X-Forwarded-For`. |
@@ -299,18 +299,18 @@ Para gravar em logs em vez de no corpo da resposta:
 app.Use(async (context, next) =>
 {
     // Request method, scheme, and path
-    _logger.LogDebug("Request Method: {METHOD}", context.Request.Method);
-    _logger.LogDebug("Request Scheme: {SCHEME}", context.Request.Scheme);
-    _logger.LogDebug("Request Path: {PATH}", context.Request.Path);
+    _logger.LogDebug("Request Method: {Method}", context.Request.Method);
+    _logger.LogDebug("Request Scheme: {Scheme}", context.Request.Scheme);
+    _logger.LogDebug("Request Path: {Path}", context.Request.Path);
 
     // Headers
     foreach (var header in context.Request.Headers)
     {
-        _logger.LogDebug("Header: {KEY}: {VALUE}", header.Key, header.Value);
+        _logger.LogDebug("Header: {Key}: {Value}", header.Key, header.Value);
     }
 
     // Connection: RemoteIp
-    _logger.LogDebug("Request RemoteIp: {REMOTE_IP_ADDRESS}", 
+    _logger.LogDebug("Request RemoteIp: {RemoteIpAddress}", 
         context.Connection.RemoteIpAddress);
 
     await next();

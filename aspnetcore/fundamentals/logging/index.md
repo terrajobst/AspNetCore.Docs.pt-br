@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: 03734addcc0e063c2c216b26b59762d27d35d47c
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: 90b439603dd51ff02e40045b9420876d7200bef1
+ms.sourcegitcommit: 8a36be1bfee02eba3b07b7a86085ec25c38bae6b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71081153"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "71219165"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Como fazer registro em log no .NET Core e no ASP.NET Core
 
@@ -529,7 +529,7 @@ A ordem dos espaços reservados e não de seus nomes, determina quais parâmetro
 ```csharp
 string p1 = "parm1";
 string p2 = "parm2";
-_logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
+_logger.LogInformation("Parameter values: {p1}, {p2}", p1, p2);
 ```
 
 Esse código cria uma mensagem de log com os valores de parâmetro na sequência:
@@ -541,7 +541,7 @@ Parameter values: parm1, parm2
 A estrutura de registros funciona dessa maneira para que os provedores de logs possam implementar [registro em log semântico, também conhecido como registro em log estruturado](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging). Os próprios argumentos são passados para o sistema de registro em log, não apenas o modelo de mensagem formatado. Essas informações permitem que os provedores de log armazenem os valores de parâmetro como campos. Por exemplo, suponha que as chamadas de método do agente sejam assim:
 
 ```csharp
-_logger.LogInformation("Getting item {ID} at {RequestTime}", id, DateTime.Now);
+_logger.LogInformation("Getting item {Id} at {RequestTime}", id, DateTime.Now);
 ```
 
 Se você estiver enviando os logs para o Armazenamento de Tabelas do Azure, cada entidade da Tabela do Azure poderá ter propriedades `ID` e `RequestTime`, o que simplificará as consultas nos dados de log. Uma consulta pode encontrar todos os logs em determinado intervalo de `RequestTime` sem analisar o tempo limite da mensagem de texto.
@@ -619,7 +619,7 @@ O segundo `AddFilter` especifica o provedor Depuração usando seu nome de tipo.
 
 Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anteriores, criam as regras mostradas na tabela a seguir. As primeiras seis vêm do exemplo de configuração e as últimas duas vêm do exemplo de código.
 
-| Number | Provider      | Categorias que começam com...          | Nível de log mínimo |
+| Número | Provider      | Categorias que começam com...          | Nível de log mínimo |
 | :----: | ------------- | --------------------------------------- | ----------------- |
 | 1      | Depurar         | Todas as categorias                          | Informações       |
 | 2      | Console       | Microsoft.AspNetCore.Mvc.Razor.Internal | Aviso           |
@@ -628,7 +628,7 @@ Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anter
 | 5      | Console       | Todas as categorias                          | Informações       |
 | 6      | Todos os provedores | Todas as categorias                          | Depurar             |
 | 7      | Todos os provedores | Sistema                                  | Depurar             |
-| 8      | Depurar         | Microsoft                               | Rastreamento             |
+| 8      | Depurar         | Microsoft                               | Rastrear             |
 
 Quando um objeto `ILogger` é criado, o objeto `ILoggerFactory` seleciona uma única regra por provedor para aplicar a esse agente. Todas as mensagens gravadas pela instância `ILogger` são filtradas com base nas regras selecionadas. A regra mais específica possível para cada par de categoria e provedor é selecionada dentre as regras disponíveis.
 
