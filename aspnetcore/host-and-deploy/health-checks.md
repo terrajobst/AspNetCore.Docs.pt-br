@@ -5,14 +5,14 @@ description: Saiba como configurar verificações de integridade para a infraest
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/10/2019
+ms.date: 09/23/2019
 uid: host-and-deploy/health-checks
-ms.openlocfilehash: 8fdb1332882fd25bd61f5403a3b1f10e8a0bc7f7
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: d8be6c8eb45cde162693621e63bf40d48d04c324
+ms.sourcegitcommit: 0365af91518004c4a44a30dc3a8ac324558a399b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71081524"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71199004"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Verificações de integridade no ASP.NET Core
 
@@ -727,9 +727,12 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 * <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> &ndash; Se <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> for `null` (padrão), o serviço publicador de verificação de integridade executará todas as verificações de integridade registradas. Para executar um subconjunto das verificações de integridade, forneça uma função que filtre o conjunto de verificações. O predicado é avaliado a cada período.
 * <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Timeout> &ndash; O tempo limite para a execução de verificações de integridade em todas as instâncias <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Use <xref:System.Threading.Timeout.InfiniteTimeSpan> para executar sem um tempo limite. O valor padrão é 30 segundos.
 
-No aplicativo de exemplo, `ReadinessPublisher` é uma implementação <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. O status de verificação de integridade é registrado no `Entries` e registrado para cada verificação:
+No aplicativo de exemplo, `ReadinessPublisher` é uma implementação <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. O status da verificação de integridade é registrado para cada verificação em um nível de log de:
 
-[!code-csharp[](health-checks/samples/3.x/HealthChecksSample/ReadinessPublisher.cs?name=snippet_ReadinessPublisher&highlight=20,22-23)]
+* Informações (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>) se o status das verificações de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy>integridade for.
+* Erro (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError*>) se o status <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded> for ou <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy>.
+
+[!code-csharp[](health-checks/samples/3.x/HealthChecksSample/ReadinessPublisher.cs?name=snippet_ReadinessPublisher&highlight=18-27)]
 
 No exemplo `LivenessProbeStartup` do aplicativo de amostra, a verificação de preparação `StartupHostedService` tem um atraso de inicialização de dois segundos, e executa a verificação a cada 30 segundos. Para ativar a implementação <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>, o exemplo registra `ReadinessPublisher` como um serviço singleton no contêiner [DI (injeção de dependência)](xref:fundamentals/dependency-injection):
 
@@ -1402,9 +1405,12 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 > [!WARNING]
 > Na versão para ASP.NET Core 2.2, a configuração de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period> não é respeitada pela implementação <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>; ela define o valor de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay>. Esse problema foi resolvido no ASP.NET Core 3,0.
 
-No aplicativo de exemplo, `ReadinessPublisher` é uma implementação <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. O status de verificação de integridade é registrado no `Entries` e registrado para cada verificação:
+No aplicativo de exemplo, `ReadinessPublisher` é uma implementação <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. O status da verificação de integridade é registrado para cada verificação:
 
-[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/ReadinessPublisher.cs?name=snippet_ReadinessPublisher&highlight=20,22-23)]
+* Informações (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>) se o status das verificações de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy>integridade for.
+* Erro (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError*>) se o status <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded> for ou <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy>.
+
+[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/ReadinessPublisher.cs?name=snippet_ReadinessPublisher&highlight=18-27)]
 
 No exemplo `LivenessProbeStartup` do aplicativo de amostra, a verificação de preparação `StartupHostedService` tem um atraso de inicialização de dois segundos, e executa a verificação a cada 30 segundos. Para ativar a implementação <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>, o exemplo registra `ReadinessPublisher` como um serviço singleton no contêiner [DI (injeção de dependência)](xref:fundamentals/dependency-injection):
 

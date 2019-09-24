@@ -1,24 +1,24 @@
 ---
-title: gRPC para configuração de ASP.NET Core
+title: configuração do gRPC para .NET
 author: jamesnk
-description: Saiba como configurar o gRPC para aplicativos ASP.NET Core.
+description: Saiba como configurar o gRPC para aplicativos .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
 ms.date: 09/05/2019
 uid: grpc/configuration
-ms.openlocfilehash: d6f095820271a3bb07e05e29299fbb82b042983b
-ms.sourcegitcommit: f65d8765e4b7c894481db9b37aa6969abc625a48
+ms.openlocfilehash: 42574b43b4751efc37ff3a827716df4cb8130842
+ms.sourcegitcommit: 0365af91518004c4a44a30dc3a8ac324558a399b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/06/2019
-ms.locfileid: "70773676"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71199084"
 ---
-# <a name="grpc-for-aspnet-core-configuration"></a>gRPC para configuração de ASP.NET Core
+# <a name="grpc-for-net-configuration"></a>configuração do gRPC para .NET
 
 ## <a name="configure-services-options"></a>Configurar opções de serviços
 
-A tabela a seguir descreve as opções para configurar os serviços gRPCs:
+os serviços gRPCs são `AddGrpc` configurados com o no *Startup.cs*. A tabela a seguir descreve as opções para configurar os serviços gRPCs:
 
 | Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
@@ -39,13 +39,13 @@ As opções para um único serviço substituem as opções globais `AddGrpc` for
 
 ## <a name="configure-client-options"></a>Configurar opções do cliente
 
-A tabela a seguir descreve as opções para configurar os canais gRPC:
+a configuração do cliente gRPC está `GrpcChannelOptions`definida em. A tabela a seguir descreve as opções para configurar os canais gRPC:
 
 | Opção | Valor padrão | Descrição |
 | ------ | ------------- | ----------- |
 | `HttpClient` | Nova instância | O `HttpClient` usado para fazer chamadas gRPC. Um cliente pode ser definido para configurar um personalizado `HttpClientHandler`ou adicionar manipuladores adicionais ao pipeline http para chamadas gRPC. Se não `HttpClient` for especificado, uma nova `HttpClient` instância será criada para o canal. Ele será descartado automaticamente. |
 | `DisposeHttpClient` | `false` | Se `true`e um `HttpClient` for especificado, a `HttpClient` instância será descartada quando o `GrpcChannel` for descartado. |
-| `LoggerFactory` | `null` | O `LoggerFactory` usado pelo cliente para registrar informações sobre chamadas gRPC. Uma `LoggerFactory` instância pode ser resolvida da injeção de dependência ou `LoggerFactory.Create`criada usando. Para obter exemplos de configuração de registro <xref:fundamentals/logging/index>em log, consulte. |
+| `LoggerFactory` | `null` | O `LoggerFactory` usado pelo cliente para registrar informações sobre chamadas gRPC. Uma `LoggerFactory` instância pode ser resolvida da injeção de dependência ou `LoggerFactory.Create`criada usando. Para obter exemplos de configuração de registro <xref:grpc/diagnostics#grpc-client-logging>em log, consulte. |
 | `MaxSendMessageSize` | `null` | O tamanho máximo da mensagem em bytes que pode ser enviado do cliente. A tentativa de enviar uma mensagem que exceda o tamanho máximo da mensagem configurada resultará em uma exceção. |
 | `MaxReceiveMessageSize` | 4 MB | O tamanho máximo da mensagem em bytes que pode ser recebido pelo cliente. Se o cliente receber uma mensagem que exceda esse limite, ele lançará uma exceção. Aumentar esse valor permite que o cliente receba mensagens maiores, mas pode afetar negativamente o consumo de memória. |
 | `Credentials` | `null` | Uma instância de `ChannelCredentials`. As credenciais são usadas para adicionar metadados de autenticação a chamadas gRPC. |
@@ -62,4 +62,5 @@ O código a seguir:
 
 * <xref:grpc/aspnetcore>
 * <xref:grpc/client>
+* <xref:grpc/diagnostics>
 * <xref:tutorials/grpc/grpc-start>

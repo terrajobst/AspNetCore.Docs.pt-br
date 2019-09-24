@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/09/2019
 uid: web-api/action-return-types
-ms.openlocfilehash: 79134ab252f309f8b39b8db5f8f3e82035e0eb7f
-ms.sourcegitcommit: 2d4c1732c4866ed26b83da35f7bc2ad021a9c701
+ms.openlocfilehash: 991265810324d6339ebf346ff9aa14c479112af9
+ms.sourcegitcommit: fa61d882be9d0c48bd681f2efcb97e05522051d0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/09/2019
-ms.locfileid: "70815757"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71205759"
 ---
 # <a name="controller-action-return-types-in-aspnet-core-web-api"></a>Tipos de retorno de ação do controlador em ASP.NET Core API Web
 
@@ -100,7 +100,7 @@ Considere a seguinte ação síncrona em que há dois tipos de retorno possívei
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[!code-csharp[](../web-api/action-return-types/samples/2x/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_GetById&highlight=8,11)]
+[!code-csharp[](../web-api/action-return-types/samples/2x/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_GetByIdIActionResult&highlight=8,11)]
 
 ::: moniker-end
 
@@ -121,13 +121,13 @@ Considere a seguinte ação assíncrona em que há dois tipos de retorno possív
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[!code-csharp[](../web-api/action-return-types/samples/2x/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_CreateAsync&highlight=8,13)]
+[!code-csharp[](../web-api/action-return-types/samples/2x/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_CreateAsyncIActionResult&highlight=9,14)]
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.0"
 
-[!code-csharp[](../web-api/action-return-types/samples/2x/WebApiSample.Api.Pre21/Controllers/ProductsController.cs?name=snippet_CreateAsync&highlight=8,13)]
+[!code-csharp[](../web-api/action-return-types/samples/2x/WebApiSample.Api.Pre21/Controllers/ProductsController.cs?name=snippet_CreateAsync&highlight=9,14)]
 
 ::: moniker-end
 
@@ -167,7 +167,7 @@ A maioria das ações tem um tipo de retorno específico. Condições inesperada
 
 Considere uma ação síncrona em que há dois tipos de retorno possíveis:
 
-[!code-csharp[](../web-api/action-return-types/samples/2x/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_GetById&highlight=7,10)]
+[!code-csharp[](../web-api/action-return-types/samples/2x/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_GetByIdActionResult&highlight=8,11)]
 
 Na ação anterior:
 
@@ -178,7 +178,7 @@ Na ação anterior:
 
 Considere uma ação assíncrona em que há dois tipos de retorno possíveis:
 
-[!code-csharp[](../web-api/action-return-types/samples/2x/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_CreateAsync&highlight=8,13)]
+[!code-csharp[](../web-api/action-return-types/samples/2x/WebApiSample.Api.21/Controllers/ProductsController.cs?name=snippet_CreateAsyncActionResult&highlight=9,14)]
 
 Na ação anterior:
 
