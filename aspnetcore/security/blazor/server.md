@@ -5,14 +5,14 @@ description: Saiba como mitigar as ameaças de segurança para aplicativos de se
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/07/2019
+ms.date: 09/23/2019
 uid: security/blazor/server
-ms.openlocfilehash: 72788980ff7c7bd56f55e4e84d820a3684f7275e
-ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
+ms.openlocfilehash: 706f504738d9c6e5af3c368c382424f2e206bcbf
+ms.sourcegitcommit: 79eeb17604b536e8f34641d1e6b697fb9a2ee21f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2019
-ms.locfileid: "70964264"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "71211713"
 ---
 # <a name="secure-aspnet-core-blazor-server-apps"></a>Proteger os aplicativos de servidor do mais ASP.NET Core
 
@@ -141,7 +141,7 @@ Não confie em chamadas de JavaScript para métodos .NET. Quando um método .NET
   * Evite passar dados fornecidos pelo usuário em parâmetros para chamadas JavaScript. Se a passagem de dados em parâmetros for absolutamente necessária, verifique se o código JavaScript lida com a passagem dos dados sem introduzir vulnerabilidades de [XSS (script entre sites)](#cross-site-scripting-xss) . Por exemplo, não grave dados fornecidos pelo usuário no modelo de objeto do documento (dom) definindo a `innerHTML` propriedade de um elemento. Considere o uso da [política de segurança de conteúdo (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) para desabilitar `eval` e outros primitivos JavaScript não seguros.
 * Evite implementar a expedição personalizada de invocações do .NET sobre a implementação de expedição da estrutura. Expor métodos .NET ao navegador é um cenário avançado, não recomendado para desenvolvimento geral mais incrivelmente.
 
-### <a name="events"></a>Events
+### <a name="events"></a>Eventos
 
 Os eventos fornecem um ponto de entrada para um aplicativo de servidor mais incrivelmente. As mesmas regras para proteger pontos de extremidade em aplicativos Web se aplicam à manipulação de eventos em aplicativos de servidor mais incrivelmente. Um cliente mal-intencionado pode enviar todos os dados que deseja enviar como a carga de um evento.
 

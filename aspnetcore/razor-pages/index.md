@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 09/19/2019
 uid: razor-pages/index
-ms.openlocfilehash: 284fb0fa64b26cf51f822b9ef42fe9bb7247e421
-ms.sourcegitcommit: e7dc89620fa02c2ff80bee1e3f77297f97616968
+ms.openlocfilehash: 7e27bbc84816bd282b2b8de936772eb5c597d74f
+ms.sourcegitcommit: 79eeb17604b536e8f34641d1e6b697fb9a2ee21f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71151161"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "71207376"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introdução a Páginas do Razor no ASP.NET Core
 
@@ -414,7 +414,7 @@ Para obter mais informações sobre exibições parciais, consulte <xref:mvc/vie
 
 A página `Create`, exibida anteriormente, usa `RedirectToPage`:
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=28)]
 
 O aplicativo tem a estrutura de arquivos/pastas a seguir:
 
@@ -428,13 +428,13 @@ O aplicativo tem a estrutura de arquivos/pastas a seguir:
     * *Edit.cshtml*
     * *Index.cshtml*
 
-As páginas *pages/Customers/Create. cshtml* e *pages/Customers/Edit. cshtml* redirecionam para *pages/Customers/index. cshtml* após o êxito. A cadeia de caracteres `./Index` faz parte do URI para acessar a página anterior. A cadeia `./Index` de caracteres pode ser usada para gerar URIs para a página *pages/Customers/index. cshtml* . Por exemplo:
+As páginas *pages/Customers/Create. cshtml* e *pages/Customers/Edit. cshtml* redirecionam para *pages/Customers/index. cshtml* após o êxito. A cadeia `./Index` de caracteres é um nome de página relativo usado para acessar a página anterior. Ele é usado para gerar URLs para a página *pages/Customers/index. cshtml* . Por exemplo:
 
 * `Url.Page("./Index", ...)`
-* `<a asp-page="/Customers/Index">Customers Index Page</a>`
+* `<a asp-page="./Index">Customers Index Page</a>`
 * `RedirectToPage("./Index")`
 
-A cadeia de caracteres `/Index` pode ser usada para gerar URIs para a página *Pages/Index.cshtml*. Por exemplo:
+O nome `/Index` de página absoluto é usado para gerar URLs para a página *pages/index. cshtml* . Por exemplo:
 
 * `Url.Page("/Index", ...)`
 * `<a asp-page="/Index">Home Index Page</a>`

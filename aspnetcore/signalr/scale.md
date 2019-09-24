@@ -1,88 +1,100 @@
 ---
-title: Hospedagem de produção do ASP.NET SignalR Core e dimensionamento
+title: Hospedagem e dimensionamento de produção de ASP.NET Core Signalr
 author: bradygaster
-description: Saiba como evitar o desempenho e dimensionamento problemas em aplicativos que usam o SignalR do ASP.NET Core.
+description: Saiba como evitar problemas de desempenho e dimensionamento em aplicativos que usam o ASP.NET Core Signalr.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/28/2018
 uid: signalr/scale
-ms.openlocfilehash: 4ac4509acc89d0091a3757c7cfbc9981614f29ad
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 26b02cffdd472fc21dc4aee7052a0ba939b82c0f
+ms.sourcegitcommit: 79eeb17604b536e8f34641d1e6b697fb9a2ee21f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64895073"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "71211741"
 ---
-# <a name="aspnet-core-signalr-hosting-and-scaling"></a>Hospedagem do ASP.NET SignalR Core e dimensionamento
+# <a name="aspnet-core-signalr-hosting-and-scaling"></a>Hospedagem e dimensionamento de ASP.NET Core Signalr
 
-Por [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaster](https://twitter.com/bradygaster), e [Tom Dykstra](https://github.com/tdykstra),
+Por [Andrew Stanton-enfermaria](https://twitter.com/anurse), [Brady GASTER](https://twitter.com/bradygaster)e [Tom Dykstra](https://github.com/tdykstra),
 
-Este artigo explica as considerações para aplicativos de alto tráfego que usam o SignalR do ASP.NET Core de dimensionamento e hospedagem.
+Este artigo explica as considerações de hospedagem e dimensionamento para aplicativos de alto tráfego que usam ASP.NET Core Signalr.
+
+## <a name="sticky-sessions"></a>Sessões adesivas
+
+O signalr requer que todas as solicitações HTTP de uma conexão específica sejam manipuladas pelo mesmo processo do servidor. Quando o Signalr está em execução em um farm de servidores (vários servidores), "sessões adesivas" devem ser usadas. "Sessões adesivas" também são chamadas de afinidade de sessão por alguns balanceadores de carga. Azure App serviço usa [Application Request Routing](https://docs.microsoft.com/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) (ARR) para rotear solicitações. Habilitar a configuração "afinidade de ARR" em seu serviço de Azure App permitirá "sessões adesivas". As únicas circunstâncias nas quais as sessões adesivas não são necessárias são:
+
+1. Ao hospedar em um único servidor, em um único processo.
+1. Ao usar o serviço de Signaler do Azure.
+1. Quando todos os clientes são configurados para usar **apenas** WebSockets **e** a [configuração SkipNegotiation](xref:signalr/configuration#configure-additional-options) está habilitada na configuração do cliente.
+
+Em todas as outras circunstâncias (incluindo quando o backplane Redis é usado), o ambiente de servidor deve ser configurado para sessões adesivas.
+
+Para obter orientação sobre como configurar o serviço de Azure App para <xref:signalr/publish-to-azure-web-app>o signalr, consulte.
 
 ## <a name="tcp-connection-resources"></a>Recursos de conexão TCP
 
-O número de conexões TCP simultâneas que pode dar suporte a um servidor web é limitado. Os clientes HTTP padrão usam *efêmero* conexões. Essas conexões podem ser fechadas quando o cliente fica ocioso e reabrir posteriormente. Por outro lado, uma conexão SignalR é *persistente*. Conexões do SignalR permanecem aberta até mesmo quando o cliente vai ocioso. Em um aplicativo de alto tráfego que atende a muitos clientes, essas conexões persistentes podem causar servidores atingido o número máximo de conexões.
+O número de conexões TCP simultâneas às quais um servidor Web pode dar suporte é limitado. Os clientes HTTP padrão usam conexões *efêmeras* . Essas conexões podem ser fechadas quando o cliente fica ocioso e reaberto mais tarde. Por outro lado, uma conexão de Signalr é *persistente*. As conexões do signalr permanecem abertas mesmo quando o cliente fica ocioso. Em um aplicativo de alto tráfego que atende a vários clientes, essas conexões persistentes podem fazer com que os servidores atinjam seu número máximo de conexões.
 
-Conexões persistentes também consomem memória extra, para acompanhar cada conexão.
+As conexões persistentes também consomem memória adicional para acompanhar cada conexão.
 
-O uso intenso de recursos relacionados à conexão pelo SignalR pode afetar outros aplicativos web hospedados no mesmo servidor. Quando o SignalR é aberto e mantém as último conexões TCP disponíveis, outros aplicativos web no mesmo servidor também não tem mais conexões disponíveis para eles.
+O uso intensivo de recursos relacionados à conexão por Signalr pode afetar outros aplicativos Web hospedados no mesmo servidor. Quando o Signalr é aberto e mantém as últimas conexões TCP disponíveis, outros aplicativos Web no mesmo servidor também não têm mais conexões disponíveis.
 
-Se um servidor ficar sem conexões, você verá erros de soquete aleatória e erros de redefinição de conexão. Por exemplo:
+Se um servidor ficar sem conexões, você verá erros de soquete aleatórios e erros de redefinição de conexão. Por exemplo:
 
 ```
 An attempt was made to access a socket in a way forbidden by its access permissions...
 ```
 
-Para evitar o uso de recursos do SignalR causando erros em outros aplicativos da web, execute o SignalR em servidores diferentes do que seus outros aplicativos da web.
+Para manter o uso de recursos do Signalr de causar erros em outros aplicativos Web, execute o Signalr em servidores diferentes dos outros aplicativos Web.
 
-Para evitar o uso de recursos do SignalR causando erros em um aplicativo do SignalR, escala horizontalmente para limitar o número de conexões que um servidor deve manipular.
+Para manter o uso de recursos do Signalr de causar erros em um aplicativo Signalr, escale horizontalmente para limitar o número de conexões que um servidor tem para lidar.
 
 ## <a name="scale-out"></a>Expansão do
 
-Um aplicativo que usa o SignalR precisa manter o controle de todas as suas conexões, que cria problemas para um farm de servidores. Adicionar um servidor, e ele obtém novas conexões de outros servidores não conhecer. Por exemplo, o SignalR em cada servidor no diagrama a seguir desconhece as conexões nos outros servidores. Quando quiser SignalR em um dos servidores enviar uma mensagem a todos os clientes, a mensagem é apenas vai para os clientes conectados a esse servidor.
+Um aplicativo que usa o Signalr precisa manter o controle de todas as suas conexões, o que cria problemas para um farm de servidores. Adicione um servidor e obtenha novas conexões que os outros servidores não conhecem. Por exemplo, o Signalr em cada servidor no diagrama a seguir não reconhece as conexões nos outros servidores. Quando o Signalr em um dos servidores quiser enviar uma mensagem a todos os clientes, a mensagem vai apenas para os clientes conectados a esse servidor.
 
-![Dimensionamento SignalR sem um backplane](scale/_static/scale-no-backplane.png)
+![Dimensionando o Signalr sem um backplane](scale/_static/scale-no-backplane.png)
 
-As opções para resolver esse problema são as [serviço do Azure SignalR](#azure-signalr-service) e [Redis backplane](#redis-backplane).
+As opções para resolver esse problema são o [serviço de signaler do Azure](#azure-signalr-service) e o [backplane Redis](#redis-backplane).
 
 ## <a name="azure-signalr-service"></a>Serviço Azure SignalR
 
-O serviço do Azure SignalR é um proxy em vez de um backplane. Cada vez que um cliente inicia uma conexão ao servidor, o cliente é redirecionado para se conectar ao serviço. Esse processo é ilustrado no diagrama a seguir:
+O serviço de sinalizador do Azure é um proxy em vez de um backplane. Cada vez que um cliente inicia uma conexão com o servidor, o cliente é redirecionado para se conectar ao serviço. Esse processo é ilustrado no diagrama a seguir:
 
-![Estabelecer uma conexão ao serviço Azure SignalR](scale/_static/azure-signalr-service-one-connection.png)
+![Estabelecendo uma conexão com o serviço de sinalizador do Azure](scale/_static/azure-signalr-service-one-connection.png)
 
-O resultado é que o serviço gerencia todas as conexões de cliente, enquanto cada servidor precisa de apenas um pequeno número constante de conexões para o serviço, conforme mostrado no diagrama a seguir:
+O resultado é que o serviço gerencia todas as conexões de cliente, enquanto cada servidor precisa apenas de um pequeno número constante de conexões com o serviço, conforme mostrado no diagrama a seguir:
 
 ![Clientes conectados ao serviço, servidores conectados ao serviço](scale/_static/azure-signalr-service-multiple-connections.png)
 
-Essa abordagem de expansão tem várias vantagens em relação a alternativa de backplane do Redis:
+Essa abordagem de expansão tem várias vantagens em relação à alternativa do backplane Redis:
 
-* Sessões adesivas, também conhecidas como [afinidade do cliente](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), não é necessário, pois os clientes imediatamente são redirecionados para o serviço do Azure SignalR quando eles se conectam.
-* Um aplicativo pode escalar horizontalmente de SignalR com base no número de mensagens enviadas, enquanto o serviço do Azure SignalR é dimensionado automaticamente para lidar com qualquer número de conexões. Por exemplo, pode haver milhares de clientes, mas se apenas algumas mensagens por segundo são enviadas, o aplicativo SignalR não será necessário escalar horizontalmente em vários servidores apenas para lidar com as conexões em si.
-* Um aplicativo de SignalR não usar significativamente mais recursos de conexão que um aplicativo web sem SignalR.
+* As sessões adesivas, também conhecidas como [afinidade de cliente](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), não são necessárias, porque os clientes são redirecionados imediatamente para o serviço de Signaler do Azure quando se conectam.
+* Um aplicativo Signalr pode escalar horizontalmente com base no número de mensagens enviadas, enquanto o serviço do Azure Signalr é dimensionado automaticamente para lidar com qualquer número de conexões. Por exemplo, pode haver milhares de clientes, mas se apenas algumas mensagens por segundo forem enviadas, o aplicativo Signalr não precisará escalar horizontalmente para vários servidores apenas para lidar com as próprias conexões.
+* Um aplicativo de sinalização não usará significativamente mais recursos de conexão do que um aplicativo Web sem Signalr.
 
-Por esses motivos, recomendamos que o serviço do Azure SignalR para todos os aplicativos do SignalR do ASP.NET Core hospedados no Azure, incluindo o serviço de aplicativo, as VMs e contêineres.
+Por esses motivos, recomendamos o serviço de Signalr do Azure para todos os ASP.NET Core aplicativos de sinalização hospedados no Azure, incluindo serviço de aplicativo, VMs e contêineres.
 
-Para obter mais informações, consulte o [documentação do serviço do Azure SignalR](/azure/azure-signalr/signalr-overview).
+Para obter mais informações, consulte a [documentação do serviço de signaler do Azure](/azure/azure-signalr/signalr-overview).
 
 ## <a name="redis-backplane"></a>Backplane de Redis
 
-[Redis](https://redis.io/) é um repositório de chave-valor na memória que dá suporte a um sistema de mensagens com um modelo de publicação/assinatura. O backplane SignalR Redis usa o recurso de publicação/assinatura para encaminhar mensagens para outros servidores. Quando um cliente faz uma conexão, as informações de conexão são passadas ao backplane. Quando um servidor deseja enviar uma mensagem a todos os clientes, ele envia ao backplane. Backplane sabe clientes tudo conectados e quais servidores que eles estão. Ele envia a mensagem a todos os clientes por meio de seus respectivos servidores. Esse processo é ilustrado no diagrama a seguir:
+[Redis](https://redis.io/) é um repositório de chave-valor na memória que dá suporte a um sistema de mensagens com um modelo de publicação/assinatura. O backplane Redis do Signalr usa o recurso pub/sub para encaminhar mensagens para outros servidores. Quando um cliente faz uma conexão, as informações de conexão são passadas para o backplane. Quando um servidor deseja enviar uma mensagem a todos os clientes, ele envia ao backplane. O backplane conhece todos os clientes conectados e em quais servidores eles estão. Ele envia a mensagem a todos os clientes por meio de seus respectivos servidores. Esse processo é ilustrado no diagrama a seguir:
 
-![Backplane de mensagem enviada de um servidor para todos os clientes de redis](scale/_static/redis-backplane.png)
+![Redis backplane, mensagem enviada de um servidor para todos os clientes](scale/_static/redis-backplane.png)
 
-O backplane do Redis é a abordagem recomendada de escalabilidade horizontal para aplicativos hospedados em sua própria infraestrutura. Azure SignalR Service não é uma opção prática para uso em produção com aplicativos no local devido à latência de conexão entre seu data center e um data center do Azure.
+O backplane Redis é a abordagem de expansão recomendada para aplicativos hospedados em sua própria infraestrutura. O serviço de Signaler do Azure não é uma opção prática para uso de produção com aplicativos locais devido à latência de conexão entre o data center e um data center do Azure.
 
-As vantagens de serviço do Azure SignalR observadas anteriormente são as desvantagens para o backplane do Redis:
+As vantagens do serviço de Signaler do Azure observadas anteriormente são desvantagens do Redis backplane:
 
-* Sessões adesivas, também conhecidas como [afinidade do cliente](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), é necessário. Depois que uma conexão é iniciada em um servidor, a conexão deve permanecer nesse servidor.
-* Um aplicativo de SignalR deve escalar horizontalmente com base no número de clientes, mesmo se algumas mensagens estão sendo enviadas.
-* Um aplicativo de SignalR usa significativamente mais recursos de conexão que um aplicativo web sem SignalR.
+* As sessões adesivas, também conhecidas como [afinidade de cliente](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), são necessárias. Depois que uma conexão é iniciada em um servidor, a conexão precisa permanecer nesse servidor.
+* Um aplicativo Signalr deve escalar horizontalmente com base no número de clientes, mesmo que poucas mensagens estejam sendo enviadas.
+* Um aplicativo de sinalização usa significativamente mais recursos de conexão do que um aplicativo Web sem Signalr.
 
 ## <a name="next-steps"></a>Próximas etapas
 
 Para obter mais informações, consulte os seguintes recursos:
 
-* [Documentação do SignalR Service do Azure](/azure/azure-signalr/signalr-overview)
-* [Configurar um backplane de Redis](xref:signalr/redis-backplane)
+* [Documentação do serviço de Signaler do Azure](/azure/azure-signalr/signalr-overview)
+* [Configurar um backplane Redis](xref:signalr/redis-backplane)
