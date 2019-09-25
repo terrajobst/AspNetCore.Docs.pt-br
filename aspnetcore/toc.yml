@@ -12,6 +12,8 @@
   uid: getting-started
 - name: O que há de novo
   items:
+    - name: Novidades no 3.0
+      uid: aspnetcore-3.0
     - name: Novidades no 2.2
       uid: aspnetcore-2.2
     - name: Novidades no 2.1
@@ -327,6 +329,8 @@
               uid: host-and-deploy/blazor/server
             - name: Configurar o vinculador
               uid: host-and-deploy/blazor/configure-linker
+        - name: Exemplos
+          href: 'https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor'
     - name: Desenvolvimento do lado do cliente
       items:
         - name: Aplicativos de página única
@@ -436,6 +440,8 @@
           uid: tutorials/get-started-with-swashbuckle
         - name: Introdução ao NSwag
           uid: tutorials/get-started-with-nswag
+        - name: Ferramentas de OpenAPI
+          uid: web-api/Microsoft.dotnet-openapi
     - name: Tipos de retorno de ação
       uid: web-api/action-return-types
     - name: Tratar solicitações JSON Patch
@@ -487,6 +493,9 @@
     - name: Clientes
       displayName: signalr
       items:
+        - name: Recursos de cliente SignalR
+          uid: signalr/client-features
+          displayName: signalr
         - name: Cliente .NET
           uid: signalr/dotnet-client
           displayName: signalr
@@ -563,6 +572,8 @@
       uid: grpc/configuration
     - name: Autenticação e autorização
       uid: grpc/authn-and-authz
+    - name: Log e diagnóstico
+      uid: grpc/diagnostics
     - name: Considerações sobre segurança
       uid: grpc/security
     - name: Migrar os serviços do gRPCs do núcleo do C
