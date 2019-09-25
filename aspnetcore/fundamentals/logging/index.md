@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: 90b439603dd51ff02e40045b9420876d7200bef1
-ms.sourcegitcommit: 8a36be1bfee02eba3b07b7a86085ec25c38bae6b
+ms.openlocfilehash: 2d517a89c6002b5c85e98128605f95585354f8db
+ms.sourcegitcommit: e54672f5c493258dc449fac5b98faf47eb123b28
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 09/24/2019
-ms.locfileid: "71219165"
+ms.locfileid: "71248260"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Como fazer registro em log no .NET Core e no ASP.NET Core
 
@@ -936,7 +936,7 @@ Algumas estruturas de terceiros podem fazer o [log semântico, também conhecido
 Usar uma estrutura de terceiros é semelhante ao uso de um dos provedores internos:
 
 1. Adicione um pacote NuGet ao projeto.
-1. Chame um `ILoggerFactory`.
+1. Chame um `ILoggerFactory` método de extensão fornecido pela estrutura de log.
 
 Para saber mais, consulte a documentação de cada provedor. Não há suporte para provedores de log de terceiros na Microsoft.
 
