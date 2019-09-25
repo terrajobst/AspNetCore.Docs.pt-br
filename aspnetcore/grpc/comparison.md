@@ -1,36 +1,38 @@
 ---
-title: Comparando serviços gRPC com APIs HTTP
+title: Comparar os serviços gRPCs com APIs HTTP
 author: jamesnk
 description: Saiba como o gRPC se compara com as APIs HTTP e o que são cenários recomendadas.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 03/31/2019
+ms.date: 09/25/2019
 uid: grpc/comparison
-ms.openlocfilehash: c34c7ecb668e478e2be3271928a2439979a746d9
-ms.sourcegitcommit: 8b36f75b8931ae3f656e2a8e63572080adc78513
+ms.openlocfilehash: 935078d890998fe6af366e3f6a7bf21f53c20cf7
+ms.sourcegitcommit: a7813a776809a5029c94aa503ee71994f156231f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/05/2019
-ms.locfileid: "70310466"
+ms.lasthandoff: 09/25/2019
+ms.locfileid: "71267712"
 ---
-# <a name="comparing-grpc-services-with-http-apis"></a>Comparando serviços gRPC com APIs HTTP
+# <a name="compare-grpc-services-with-http-apis"></a>Comparar os serviços gRPCs com APIs HTTP
 
 Por [James Newton – King](https://twitter.com/jamesnk)
 
 Este artigo explica como os [Serviços gRPCs](https://grpc.io/docs/guides/) se comparam às APIs http (incluindo ASP.NET Core [APIs Web](xref:web-api/index)). A tecnologia usada para fornecer uma API para seu aplicativo é uma opção importante, e o gRPC oferece benefícios exclusivos em comparação com as APIs HTTP. Este artigo discute os pontos fortes e fracos do gRPC e recomenda cenários para usar o gRPC em relação a outras tecnologias.
 
-#### <a name="overview"></a>Visão geral
+## <a name="high-level-comparison"></a>Comparação de alto nível
+
+A tabela a seguir oferece uma comparação de alto nível dos recursos entre as APIs gRPC e HTTP com JSON.
 
 | Recurso          | gRPC                                               | APIs HTTP com JSON           |
 | ---------------- | -------------------------------------------------- | ----------------------------- |
 | Contrato         | Necessário ( *. proto*)                                | Opcional (OpenAPI)            |
 | Porta        | HTTP/2                                             | HTTP                          |
 | Carga          | [Protobuf (pequeno, binário)](#performance)           | JSON (grande, legível por humanos)  |
-| Prescriptiveness | [Especificação estrita](#strict-specification)      | Cancelar. Qualquer HTTP é válido      |
+| Prescriptiveness | [Especificação estrita](#strict-specification)      | Cancelar. Qualquer HTTP é válido.      |
 | Streaming        | [Cliente, servidor, bidirecional](#streaming)       | Cliente, servidor                |
 | Suporte a navegador  | [Não (requer grpc-Web)](#limited-browser-support) | Sim                           |
 | Segurança         | Transporte (HTTPS)                                  | Transporte (HTTPS)             |
-| Código de cliente-Gen  | [Sim](#code-generation)                            | OpenAPI + ferramentas de terceiros |
+| Geração de código de cliente | [Sim](#code-generation)                      | OpenAPI + ferramentas de terceiros |
 
 ## <a name="grpc-strengths"></a>forças gRPCs
 
@@ -47,7 +49,7 @@ o gRPC foi projetado para HTTP/2, uma revisão importante do HTTP que fornece be
 
 Todas as estruturas gRPC fornecem suporte de primeira classe para geração de código. Um arquivo de núcleo para o desenvolvimento de gRPC é o [arquivo *. proto* ](https://developers.google.com/protocol-buffers/docs/proto3), que define o contrato de serviços e mensagens do gRPC. Desse arquivo, as estruturas do gRPC de código gerarão uma classe base de serviço, mensagens e um cliente completo.
 
-Ao compartilhar o `*.proto` arquivo entre o servidor e o cliente, as mensagens e o código do cliente podem ser gerados de ponta a ponta. A geração de código do cliente elimina a duplicação de mensagens no cliente e no servidor e cria um cliente fortemente tipado para você. Não ter de escrever um cliente economiza um tempo de desenvolvimento significativo em aplicativos com muitos serviços.
+Ao compartilhar o arquivo *. proto* entre o servidor e o cliente, as mensagens e o código do cliente podem ser gerados de ponta a ponta. A geração de código do cliente elimina a duplicação de mensagens no cliente e no servidor e cria um cliente fortemente tipado para você. Não ter de escrever um cliente economiza um tempo de desenvolvimento significativo em aplicativos com muitos serviços.
 
 ### <a name="strict-specification"></a>Especificação estrita
 
@@ -95,7 +97,7 @@ Nem todos os recursos de gRPC têm suporte no gRPC-Web. Não há suporte para o 
 
 As solicitações de API HTTP são enviadas como texto e podem ser lidas e criadas por humanos.
 
-as mensagens gRPC são codificadas com Protobuf por padrão. Embora o Protobuf seja eficiente para enviar e receber, seu formato binário não é legível por humanos. Protobuf requer a descrição da interface da mensagem especificada no `*.proto` arquivo para desserializar corretamente. Ferramentas adicionais são necessárias para analisar cargas de Protobuf na transmissão e para compor solicitações manualmente.
+as mensagens gRPC são codificadas com Protobuf por padrão. Embora o Protobuf seja eficiente para enviar e receber, seu formato binário não é legível por humanos. Protobuf requer a descrição da interface da mensagem especificada no arquivo *. proto* para desserializar corretamente. Ferramentas adicionais são necessárias para analisar cargas de Protobuf na transmissão e para compor solicitações manualmente.
 
 Recursos como [reflexão de servidor](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) e a [ferramenta de linha de comando gRPC](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md) existem para auxiliar com mensagens Protobuf binárias. Além disso, as mensagens Protobuf dão suporte à [conversão de e para JSON](https://developers.google.com/protocol-buffers/docs/proto3#json). A conversão interna de JSON fornece uma maneira eficiente de converter mensagens Protobuf de e para o formulário legível por humanos durante a depuração.
 
