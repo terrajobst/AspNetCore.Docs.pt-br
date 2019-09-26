@@ -4,14 +4,14 @@ author: juntaoluo
 description: Saiba como mover um aplicativo gRPC baseado em C-Core existente para ser executado no topo da pilha ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 03/31/2019
+ms.date: 09/25/2019
 uid: grpc/migration
-ms.openlocfilehash: 39aa711a1a47cf11ec5b08903b4130c7caa1501c
-ms.sourcegitcommit: 476ea5ad86a680b7b017c6f32098acd3414c0f6c
+ms.openlocfilehash: 8f0d9dd980fa3281f30dc29d329d10ccd352ae72
+ms.sourcegitcommit: 994da92edb0abf856b1655c18880028b15a28897
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/14/2019
-ms.locfileid: "69022298"
+ms.lasthandoff: 09/25/2019
+ms.locfileid: "71278707"
 ---
 # <a name="migrating-grpc-services-from-c-core-to-aspnet-core"></a>Migrando serviços gRPCs do C-Core para ASP.NET Core
 
@@ -49,14 +49,14 @@ No entanto, uma implementação de serviço com um tempo de vida singleton não 
 
 Em aplicativos baseados em C-Core, configurações `grpc.max_receive_message_length` como e `grpc.max_send_message_length` são configuradas `ChannelOption` com ao [construir a instância de servidor](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server__ctor_System_Collections_Generic_IEnumerable_Grpc_Core_ChannelOption__).
 
-No ASP.NET Core, gRPC fornece a configuração por `GrpcServiceOptions` meio do tipo. Por exemplo, um serviço gRPC o tamanho máximo da mensagem de entrada pode ser configurado `AddGrpc`por meio de:
+No ASP.NET Core, gRPC fornece a configuração por `GrpcServiceOptions` meio do tipo. Por exemplo, um serviço gRPC o tamanho máximo da mensagem de entrada pode ser configurado `AddGrpc`via. O exemplo a seguir altera o `ReceiveMaxMessageSize` padrão de 4 MB para 16 MB:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddGrpc(options =>
     {
-        options.ReceiveMaxMessageSize = 16384; // 16 MB
+        options.ReceiveMaxMessageSize = 16 * 1024 * 1024; // 16 MB
     });
 }
 ```
