@@ -1,5 +1,5 @@
 ---
-title: Recursos de cliente do signalr
+title: Recursos de cliente SignalR
 author: bradygaster
 description: Saiba quais recursos são compatíveis com os vários clientes do Signalr ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
@@ -7,12 +7,12 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 09/18/2019
 uid: signalr/client-features
-ms.openlocfilehash: 55086673e0c9f9b73f07730ea25c3fa322f7fd98
-ms.sourcegitcommit: d34b2627a69bc8940b76a949de830335db9701d3
+ms.openlocfilehash: 2d6759a5484c37aee6db3d22b3127414231605ae
+ms.sourcegitcommit: 14b25156e34c82ed0495b4aff5776ac5b1950b5e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71187463"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71301183"
 ---
 # <a name="aspnet-core-signalr-client-features"></a>ASP.NET Core recursos de cliente do Signalr
 
@@ -20,11 +20,19 @@ ms.locfileid: "71187463"
 
 A tabela a seguir mostra os recursos e o suporte para os clientes que oferecem suporte em tempo real.
 
-| Recurso | .NET Core | JavaScript | Java |
+| Recurso | .NET | JavaScript | Java |
 | ---- | :-: | :-: | :-: |
+| Suporte ao serviço de Signaler do Azure |✔|✔|✔|
 | [Streaming de servidor para cliente](xref:signalr/streaming)          |✔|✔|✔|
 | [Streaming de cliente para servidor](xref:signalr/streaming)          |✔|✔|✔|
 | Reconexão automática ([.net](/aspnet/core/signalr/dotnet-client?view=aspnetcore-3.0&tabs=visual-studio#handle-lost-connection), [JavaScript](/aspnet/core/signalr/javascript-client?view=aspnetcore-3.0#reconnect-clients))          |✔|✔| |
+| Transporte de WebSockets |✔|✔|✔|
+| Transporte de eventos enviados pelo servidor |✔|✔| |
+| Transporte de sondagem longa |✔|✔|✔|
+| Protocolo de Hub JSON |✔|✔|✔|
+| Protocolo de Hub do MessagePack |✔|✔| |
+
+O suporte para reconexão automática no cliente Java é acompanhado em [nosso Issue Tracker](https://github.com/aspnet/AspNetCore/issues/8711).
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
