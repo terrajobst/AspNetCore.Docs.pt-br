@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/14/2019
 uid: security/enforcing-ssl
-ms.openlocfilehash: aa42b1c7199e951714be809de9c9c5f857473485
-ms.sourcegitcommit: 994da92edb0abf856b1655c18880028b15a28897
+ms.openlocfilehash: 1d1bba6a1f1da2af959bc69b31f79bac53bf48b9
+ms.sourcegitcommit: fe3e556bf438fc4136fcf0bac61cf96e3e91caf5
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/25/2019
-ms.locfileid: "71278750"
+ms.lasthandoff: 09/27/2019
+ms.locfileid: "71341470"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Impor HTTPS em ASP.NET Core
 
@@ -284,9 +284,9 @@ O código a seguir:
 
 `UseHsts`exclui os seguintes hosts de loopback:
 
-* `localhost`: O endereço de loopback IPv4.
-* `127.0.0.1`: O endereço de loopback IPv4.
-* `[::1]`: O endereço de loopback IPv6.
+* `localhost` : O endereço de loopback IPv4.
+* `127.0.0.1` : O endereço de loopback IPv4.
+* `[::1]` : O endereço de loopback IPv6.
 
 ## <a name="opt-out-of-httpshsts-on-project-creation"></a>Recusa de HTTPS/HSTS na criação do projeto
 
@@ -393,8 +393,8 @@ Os comandos anteriores resolvem a maioria dos problemas de confiança do navegad
 * Execute os seguintes comandos:
 
 ```dotnetcli
-dotnet devcerts https --clean
-dotnet devcerts https --trust
+dotnet dev-certs https --clean
+dotnet dev-certs https --trust
 ```
 
 Feche todas as instâncias do navegador abertas. Abra uma nova janela do navegador para o aplicativo.
