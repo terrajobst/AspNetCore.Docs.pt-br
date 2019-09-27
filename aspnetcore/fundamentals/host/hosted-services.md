@@ -5,14 +5,14 @@ description: Aprenda a implementar tarefas em segundo plano com serviços hosped
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/18/2019
+ms.date: 09/26/2019
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: 8df86b10d7ba853edb3265df0e02eabbf8a2c058
-ms.sourcegitcommit: fa61d882be9d0c48bd681f2efcb97e05522051d0
+ms.openlocfilehash: 5a29952c4e50edb953fa03c6ea1a1ae27b728bb0
+ms.sourcegitcommit: e644258c95dd50a82284f107b9bf3becbc43b2b2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71205703"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71317717"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Tarefas em segundo plano com serviços hospedados no ASP.NET Core
 
@@ -123,10 +123,12 @@ O serviço hospedado é ativado uma única vez na inicialização do aplicativo 
 
 ## <a name="backgroundservice"></a>BackgroundService
 
-`BackgroundService`é uma classe base para implementar uma longa execução <xref:Microsoft.Extensions.Hosting.IHostedService>. `BackgroundService`define dois métodos para operações em segundo plano:
+`BackgroundService`é uma classe base para implementar uma longa execução <xref:Microsoft.Extensions.Hosting.IHostedService>. `BackgroundService`fornece o `ExecuteAsync(CancellationToken stoppingToken)` método abstract para conter a lógica do serviço. O `stoppingToken` é disparado quando [IHostedService. StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) é chamado. A implementação desse método retorna um `Task` que representa o tempo de vida inteiro do serviço em segundo plano.
 
-* `ExecuteAsync(CancellationToken stoppingToken)`Chamado quando o<xref:Microsoft.Extensions.Hosting.IHostedService>éiniciado. &ndash; `ExecuteAsync` A implementação deve retornar um `Task` que representa o tempo de vida das operações de execução longa executadas. O `stoppingToken` disparado quando [IHostedService. StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) é chamado.
-* `StopAsync(CancellationToken stoppingToken)`&ndash;édisparado quando o host de aplicativo está executando um desligamento normal. `StopAsync` O `stoppingToken` indica que o processo de desligamento não deve mais ser normal.
+Além disso, *opcionalmente* , substitua os métodos definidos `IHostedService` em para executar o código de inicialização e de desligamento para seu serviço:
+
+* `StopAsync(CancellationToken cancellationToken)`&ndash; échamadoquandoohostdeaplicativoestáexecutandoum`StopAsync` desligamento normal. O `cancellationToken` será sinalizado quando o host decidir forçar o encerramento do serviço. Se esse método for substituído, você **deverá** chamar (e `await`) o método de classe base para garantir que o serviço seja desligado corretamente.
+* `StartAsync(CancellationToken cancellationToken)`&ndash; échamadoparainiciaro`StartAsync` serviço em segundo plano. O `cancellationToken` será sinalizado se o processo de inicialização for interrompido. A implementação retorna um `Task` que representa o processo de inicialização para o serviço. Nenhum serviço adicional é iniciado até que `Task` isso seja concluído. Se esse método for substituído, você **deverá** chamar (e `await`) o método de classe base para garantir que o serviço seja iniciado corretamente.
 
 ## <a name="timed-background-tasks"></a>Tarefas em segundo plano temporizadas
 

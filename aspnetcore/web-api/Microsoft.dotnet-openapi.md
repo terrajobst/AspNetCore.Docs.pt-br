@@ -3,31 +3,29 @@ title: Desenvolver ASP.NET Core aplicativos usando o OpenAPI
 author: ryanbrandenburg
 description: Demonstra como usar a ferramenta ' Microsoft. dotnet-openapi ' para adicionar referências a arquivos OpenAPI.
 ms.author: rybrande
-ms.date: 08/26/2019
+ms.date: 09/26/2019
 monikerRange: '>= aspnetcore-3.0'
 uid: web-api/Microsoft.dotnet-openapi
-ms.openlocfilehash: a9b38bb7e69744d72867bf69cecf1fa92d7c15b3
-ms.sourcegitcommit: d34b2627a69bc8940b76a949de830335db9701d3
+ms.openlocfilehash: f5eae9e871bc8efc30d500769adb845ff244a90c
+ms.sourcegitcommit: e644258c95dd50a82284f107b9bf3becbc43b2b2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71187456"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71317768"
 ---
 # <a name="develop-aspnet-core-apps-using-openapi-tools"></a>Desenvolver ASP.NET Core aplicativos usando ferramentas OpenAPI
 
 Por Ryan Brandenburg
 
-`Microsoft.dotnet-openapi`é uma ferramenta global .NET Core para gerenciar referências de [openapi](https://github.com/OAI/OpenAPI-Specification) em um projeto.
+[Microsoft. dotnet-openapi](https://www.nuget.org/packages/Microsoft.dotnet-openapi) é uma [ferramenta global do .NET Core](/dotnet/core/tools/global-tools) para gerenciar referências do [openapi](https://github.com/OAI/OpenAPI-Specification) em um projeto.
 
 ## <a name="installation"></a>Instalação
 
 Para instalar `Microsoft.dotnet-openapi`o, execute o seguinte comando:
 
-```console
+```dotnetcli
 dotnet tool install -g Microsoft.dotnet-openapi
 ```
-
-`Microsoft.dotnet-openapi`é uma [ferramenta global do .NET Core](/dotnet/core/tools/global-tools).
 
 ## <a name="add"></a>Adicionar
 
@@ -66,7 +64,7 @@ A referência anterior é necessária para que o aplicativo chame o código do c
 | -c|--gerador de código| O gerador de código a ser aplicado à referência. As opções `NSwagCSharp` são `NSwagTypeScript`e. Se `--code-generator` não for especificado, as ferramentas padrão serão `NSwagCSharp`.|dotnet openapi Adicionar arquivo .\OpenApi.json--gerador de código
 | -h|--ajuda|Mostrar informações de ajuda|dotnet openapi Adicionar arquivo--ajuda|
 
-#### <a name="arguments"></a>Arguments
+#### <a name="arguments"></a>Argumentos
 
 |  Argumento  | Descrição | Exemplo |
 |-------------|-------------|---------|
@@ -84,7 +82,7 @@ A referência anterior é necessária para que o aplicativo chame o código do c
 | -c|--gerador de código| O gerador de código a ser aplicado à referência. As opções `NSwagCSharp` são `NSwagTypeScript`e. |dotnet openapi Adicionar arquivo .\OpenApi.json--gerador de código
 | -h|--ajuda|Mostrar informações de ajuda|dotnet openapi Adicionar URL--ajuda|
 
-#### <a name="arguments"></a>Arguments
+#### <a name="arguments"></a>Argumentos
 
 |  Argumento  | Descrição | Exemplo |
 |-------------|-------------|---------|
@@ -102,7 +100,7 @@ Remove a referência OpenAPI correspondente ao nome do arquivo *. csproj* fornec
 | -p|--updateProject | O projeto no qual operar. |dotnet openapi remover *--updateProject .\Ref.csproj* .\OpenAPI.JSON |
 | -h|--ajuda|Mostrar informações de ajuda|dotnet openapi remover--ajuda|
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 |  Argumento  | Descrição| Exemplo |
 | ------------|------------|---------|
@@ -120,7 +118,7 @@ Atualiza a versão local de um arquivo que foi baixado usando o conteúdo mais r
 | -p|--updateProject | O projeto no qual operar. | dotnet openapi atualização *--updateProject .\Ref.csproj*`https://contoso.com/openapi.json` |
 | -h|--ajuda|Mostrar informações de ajuda|dotnet openapi atualização--ajuda|
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 |  Argumento  | Descrição | Exemplo |
 | ------------|-------------|---------|

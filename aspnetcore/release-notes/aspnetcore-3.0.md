@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba mais sobre os novos recursos do ASP.NET Core 3,0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 09/26/2019
 uid: aspnetcore-3.0
-ms.openlocfilehash: 490d00da7282e2efe28fcc52e593dd71d7324d3f
-ms.sourcegitcommit: 0365af91518004c4a44a30dc3a8ac324558a399b
+ms.openlocfilehash: c1b61fee7264b972c70dbfa8f1461e33e3645746
+ms.sourcegitcommit: e644258c95dd50a82284f107b9bf3becbc43b2b2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71198985"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71317653"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>O que há de novo no ASP.NET Core 3,0
 
@@ -316,8 +316,19 @@ Para adicionar o Json.NET ao ASP.NET Core 3,0, consulte [Adicionar suporte ao fo
 
 A lista a seguir contém novas diretivas do Razor:
 
-* [@attribute](xref:mvc/views/razor#attribute)&ndash; A`@attribute` diretiva aplica o atributo fornecido à classe da página ou exibição gerada. Por exemplo, `@attribute [Authorize]`.
-* [@implements](xref:mvc/views/razor#implements)&ndash; A`@implements` diretiva implementa uma interface para a classe gerada. Por exemplo, `@implements IDisposable`.
+* [@attribute](xref:mvc/views/razor#attribute)&ndash; A`@attribute` diretiva aplica o atributo fornecido à classe da página ou exibição gerada. Por exemplo: `@attribute [Authorize]`.
+* [@implements](xref:mvc/views/razor#implements)&ndash; A`@implements` diretiva implementa uma interface para a classe gerada. Por exemplo: `@implements IDisposable`.
+
+## <a name="identityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>O IdentityServer4 dá suporte à autenticação e autorização para APIs Web e SPAs
+
+[IdentityServer4](https://identityserver.io) é uma estrutura de OpenID Connect e OAuth 2,0 para ASP.NET Core 3,0. O IdentityServer4 habilita os seguintes recursos de segurança:
+
+* AaaS (autenticação como serviço)
+* Logon único/logoff (SSO) em vários tipos de aplicativos
+* Controle de acesso para APIs
+* Gateway de Federação
+
+Para obter mais informações, consulte [Bem-vindo ao IdentityServer4](http://docs.identityserver.io/en/latest/index.html).
 
 ## <a name="certificate-and-kerberos-authentication"></a>Autenticação de certificado e Kerberos
 
@@ -420,9 +431,9 @@ Para obter mais informações, consulte <xref:migration/22-to-30#kestrel>.
 
 O HTTP/2 é habilitado por padrão em Kestrel para pontos de extremidade HTTPS. O suporte a HTTP/2 para IIS ou HTTP. sys é habilitado quando há suporte para o sistema operacional.
 
-## <a name="request-counters"></a>Contadores de solicitação
+## <a name="eventcounters-on-request"></a>EventCounters na solicitação
 
-O EventSource de hospedagem (Microsoft. AspNetCore. Hosting) emite os seguintes EventCounters relacionados a solicitações de entrada:
+A hospedagem EventSource, `Microsoft.AspNetCore.Hosting`, emite os seguintes novos <xref:System.Diagnostics.Tracing.EventCounter> tipos relacionados a solicitações de entrada:
 
 * `requests-per-second`
 * `total-requests`
