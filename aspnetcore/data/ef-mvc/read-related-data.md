@@ -3,15 +3,15 @@ title: 'Tutorial: Ler dados relacionados - ASP.NET MVC com EF Core'
 description: Neste tutorial, você lerá e exibirá dados relacionados – ou seja, os dados que o Entity Framework carrega nas propriedades de navegação.
 author: tdykstra
 ms.author: riande
-ms.date: 03/27/2019
+ms.date: 09/28/2019
 ms.topic: tutorial
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: 2bf556dae5d30819c54ecc3f0dadfbd3316db1cc
-ms.sourcegitcommit: 0774a61a3a6c1412a7da0e7d932dc60c506441fc
-ms.translationtype: HT
+ms.openlocfilehash: cb691dce757a72a01bfd29717710d1be590c4150
+ms.sourcegitcommit: f62014bb558ff6f8fdaef2e96cb05986e216aacd
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70059106"
+ms.lasthandoff: 09/28/2019
+ms.locfileid: "71592284"
 ---
 # <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Ler dados relacionados - ASP.NET MVC com EF Core
 
@@ -53,7 +53,7 @@ Há várias maneiras pelas quais um software ORM (Object-Relational Mapping), co
 
 * Carregamento lento. Quando a entidade é lida pela primeira vez, os dados relacionados não são recuperados. No entanto, na primeira vez que você tenta acessar uma propriedade de navegação, os dados necessários para essa propriedade de navegação são recuperados automaticamente. Uma consulta é enviada ao banco de dados sempre que você tenta obter dados de uma propriedade de navegação pela primeira vez. O Entity Framework Core 1.0 não dá suporte ao carregamento lento.
 
-### <a name="performance-considerations"></a>Considerações sobre desempenho
+### <a name="performance-considerations"></a>Considerações sobre o desempenho
 
 Se você sabe que precisa de dados relacionados para cada entidade recuperada, o carregamento adiantado costuma oferecer o melhor desempenho, porque uma única consulta enviada para o banco de dados é geralmente mais eficiente do que consultas separadas para cada entidade recuperada. Por exemplo, suponha que cada departamento tenha dez cursos relacionados. O carregamento adiantado de todos os dados relacionados resultará em apenas uma única consulta (junção) e uma única viagem de ida e volta para o banco de dados. Uma consulta separada para cursos de cada departamento resultará em onze viagens de ida e volta para o banco de dados. As viagens de ida e volta extras para o banco de dados são especialmente prejudiciais ao desempenho quando a latência é alta.
 
@@ -188,7 +188,7 @@ Você fez as seguintes alterações no código existente:
   }
   ```
 
-* Adicionou uma coluna **Courses** que exibe os cursos ministrados por cada instrutor. Para obter mais informações, consulte a seção [Transição de linha explícita com @:](xref:mvc/views/razor#explicit-line-transition-with-) no artigo sobre Sintaxe Razor.
+* Adicionou uma coluna **Courses** que exibe os cursos ministrados por cada instrutor. Para obter mais informações, consulte a seção [transição de linha explícita](xref:mvc/views/razor#explicit-line-transition) do artigo sintaxe Razor.
 
 * Adicionou um código que adiciona `class="success"` dinamicamente ao elemento `tr` do instrutor selecionado. Isso define uma cor da tela de fundo para a linha selecionada usando uma classe Bootstrap.
 

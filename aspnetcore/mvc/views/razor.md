@@ -3,14 +3,14 @@ title: Referência da sintaxe Razor para ASP.NET Core
 author: rick-anderson
 description: Saiba mais sobre a sintaxe de marcação Razor para inserir código baseado em servidor em páginas da Web.
 ms.author: riande
-ms.date: 09/19/2019
+ms.date: 09/28/2019
 uid: mvc/views/razor
-ms.openlocfilehash: 9a319f7efb6d879559afd9faca6955aba719fa2f
-ms.sourcegitcommit: e5a74f882c14eaa0e5639ff082355e130559ba83
+ms.openlocfilehash: 6f8835419dbf4c271617f57484c3408e0af30617
+ms.sourcegitcommit: f62014bb558ff6f8fdaef2e96cb05986e216aacd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71168297"
+ms.lasthandoff: 09/28/2019
+ms.locfileid: "71592322"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -227,7 +227,7 @@ A marca `<text>` é útil para controlar o espaço em branco ao renderizar conte
 * Somente o conteúdo entre a marca `<text>` é renderizado.
 * Não aparece nenhum espaço em branco antes ou depois da marca `<text>` na saída HTML.
 
-### <a name="explicit-line-transition-with-colon"></a>Transição de linha explícita com \@&colon;
+### <a name="explicit-line-transition"></a>Transição de linha explícita
 
 Para renderizar o restante de uma linha inteira como HTML dentro de um bloco de código, use a sintaxe `@:`:
 
