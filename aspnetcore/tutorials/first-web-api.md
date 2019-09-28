@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/27/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: 5e5215f246c6c7a805a4c99f485d51a2fb3c712d
-ms.sourcegitcommit: cf9ffcce4fe0b69fe795aae9ae06e99fdb18bdfc
+ms.openlocfilehash: 366323416061bf729c092419f2f6a5912884252b
+ms.sourcegitcommit: 5d25a7f22c50ca6fdd0f8ecd8e525822e1b35b7a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/26/2019
-ms.locfileid: "71306673"
+ms.lasthandoff: 09/28/2019
+ms.locfileid: "71551725"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Criar uma API Web com o ASP.NET Core
 
@@ -83,7 +83,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
    ```dotnetcli
    dotnet new webapi -o TodoApi
-   cd TodoAPI
+   cd TodoApi
    dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
@@ -271,8 +271,8 @@ O código anterior:
 * Selecione **Controlador de API com ações, usando o Entity Framework** e, em seguida, selecione **Adicionar**.
 * Na caixa de diálogo **Adicionar Controlador de API com ações, usando o Entity Framework**:
 
-  * Selecione **TodoItem (TodoAPI.Models**) na **classe Modelo**.
-  * Selecione **TodoContext (TodoAPI.Models**) na **classe Contexto de Dados**.
+  * Selecione **TodoItem (TodoApi. Models)** na **classe Model**.
+  * Selecione **TodoContext (TodoApi. Models)** na **classe de contexto de dados**.
   * Selecione **Adicionar**
 
 # <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
@@ -387,7 +387,7 @@ Uma resposta semelhante à seguinte é produzida pela chamada a `GetTodoItems`:
 
 * Crie uma solicitação.
 * Defina o método HTTP como **GET**.
-* Defina a URL de solicitação como `https://localhost:<port>/api/TodoItems`. Por exemplo, `https://localhost:5001/api/TodoItems`.
+* Defina a URL de solicitação como `https://localhost:<port>/api/TodoItems`. Por exemplo: `https://localhost:5001/api/TodoItems`.
 * Defina **Exibição de dois painéis** no Postman.
 * Selecione **Enviar**.
 
@@ -761,7 +761,7 @@ Este tutorial usa o Postman para testar a API Web.
 
 * Crie uma solicitação.
   * Defina o método HTTP como **GET**.
-  * Defina a URL de solicitação como `https://localhost:<port>/api/todo`. Por exemplo, `https://localhost:5001/api/todo`.
+  * Defina a URL de solicitação como `https://localhost:<port>/api/todo`. Por exemplo: `https://localhost:5001/api/todo`.
 * Defina **Exibição de dois painéis** no Postman.
 * Selecione **Enviar**.
 

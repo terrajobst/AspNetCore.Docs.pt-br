@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/24/2019
 uid: fundamentals/routing
-ms.openlocfilehash: 14fe4bf9266ec6b2d588fa26d7a460531e33aa30
-ms.sourcegitcommit: 14b25156e34c82ed0495b4aff5776ac5b1950b5e
+ms.openlocfilehash: c8037d79c79c5b7eb3b99d9724aa3e5361f92b8c
+ms.sourcegitcommit: 5d25a7f22c50ca6fdd0f8ecd8e525822e1b35b7a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/26/2019
-ms.locfileid: "71295499"
+ms.lasthandoff: 09/28/2019
+ms.locfileid: "71482039"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -44,7 +44,7 @@ O suporte à geração de URL permite que o aplicativo seja desenvolvido sem har
 
 O roteamento usa *pontos de extremidade* (`Endpoint`) para representar os pontos de extremidade lógicos em um aplicativo.
 
-Um ponto de extremidade define um delegado para processar solicitações e uma coleção de metadados arbitrários. Os metadados usados implementam interesses paralelos com base em políticas e na configuração anexada a cada ponto de extremidade.
+Um ponto de extremidade define um delegado para processar solicitações e uma coleção de metadados arbitrários. Os metadados são usados para implementar preocupações abrangentes com base em políticas e configurações anexadas a cada ponto de extremidade.
 
 O sistema de roteamento tem as seguintes características:
 
