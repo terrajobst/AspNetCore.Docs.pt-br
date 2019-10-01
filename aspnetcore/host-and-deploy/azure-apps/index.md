@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/28/2019
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: 4dc150ff4534e42e1995a185f650cea9df70ccc4
-ms.sourcegitcommit: d34b2627a69bc8940b76a949de830335db9701d3
+ms.openlocfilehash: 7489868fac513948cbe6f48391e7260a34b2175e
+ms.sourcegitcommit: dc96d76f6b231de59586fcbb989a7fb5106d26a8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71187053"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71703761"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -27,6 +27,8 @@ Use o Visual Studio para criar e implantar um aplicativo Web ASP.NET Core no Ser
 
 [Criar um aplicativo ASP.NET Core no Serviço de Aplicativo no Linux](/azure/app-service/containers/quickstart-dotnetcore)  
 Use a linha de comando do Visual Studio para criar e implantar um aplicativo Web ASP.NET Core no Serviço de Aplicativo do Azure no Linux.
+
+Consulte o [ASP.NET Core no painel do serviço de aplicativo](https://aspnetcoreon.azurewebsites.net/) para obter a versão do ASP.NET Core disponível no serviço Azure app.
 
 Os artigos a seguir estão disponíveis na documentação do ASP.NET Core:
 
@@ -242,7 +244,7 @@ Para uma [implantação dependente de estrutura](/dotnet/core/deploying/#framewo
    * Abra a lista suspensa **Modo de Implantação** e selecione **Dependente de Estrutura**.
    * Selecione **Portátil** como o **Tempo de Execução de Destino**.
    * Se você precisar remover arquivos adicionais após a implantação, abra as **Opções de Publicação do Arquivo** e marque a caixa de seleção para remover arquivos adicionais no destino.
-   * Selecione **Salvar**.
+   * Clique em **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
@@ -273,7 +275,7 @@ Use o Visual Studio ou as ferramentas da CLI (interface de linha de comando) par
    * Abra a lista suspensa **Modo de Implantação** e selecione **Autocontido**.
    * Selecione o tempo de execução de destino na lista suspensa **Tempo de Execução de Destino**. O padrão é `win-x86`.
    * Se você precisar remover arquivos adicionais após a implantação, abra as **Opções de Publicação do Arquivo** e marque a caixa de seleção para remover arquivos adicionais no destino.
-   * Selecione **Salvar**.
+   * Clique em **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)

@@ -5,16 +5,18 @@ description: Saiba como o ASP.NET Core fornece serviços e middleware para local
 ms.author: riande
 ms.date: 01/14/2017
 uid: fundamentals/localization
-ms.openlocfilehash: ec78d35daf6823779fca491aca7b7b309db4b02e
-ms.sourcegitcommit: e7e04a45195d4e0527af6f7cf1807defb56dc3c3
-ms.translationtype: HT
+ms.openlocfilehash: 6dfbeae201a3586dfea6620917083130c4985b22
+ms.sourcegitcommit: dc96d76f6b231de59586fcbb989a7fb5106d26a8
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/06/2019
-ms.locfileid: "66750031"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71703807"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalização e localização no ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/) e [Hisham Bin Ateya](https://twitter.com/hishambinateya)
+
+Até que este documento seja atualizado para o ASP.NET Core 3,0, consulte o blog de Hisham [o que há de novo na localização em ASP.NET Core 3,0](http://hishambinateya.com/what-is-new-in-localization-in-asp.net-core-3.0).
 
 A criação de um site multilíngue com o ASP.NET Core permitirá que seu site alcance um público maior. O ASP.NET Core fornece serviços e middleware para localização em diferentes idiomas e culturas.
 
@@ -151,7 +153,7 @@ No projeto de exemplo, o método `ConfigureServices` define o `ResourcesPath` co
 | Nome do recurso | Nomenclatura de ponto ou caminho |
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Ponto  |
-| Resources/Controllers/HomeController.fr.resx  | Caminho |
+| Resources/Controllers/HomeController.fr.resx  | Path |
 |    |     |
 
 Os arquivos de recurso que usam `@inject IViewLocalizer` em exibições do Razor seguem um padrão semelhante. O arquivo de recurso de uma exibição pode ser nomeado usando a nomenclatura de ponto ou de caminho. Os arquivos de recurso da exibição do Razor simulam o caminho de seu arquivo de exibição associado. Supondo que definimos o `ResourcesPath` como "Resources", o arquivo de recurso em francês associado à exibição *Views/Home/About.cshtml* pode ser um dos seguintes:
