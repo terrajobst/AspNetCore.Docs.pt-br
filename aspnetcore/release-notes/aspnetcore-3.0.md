@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/26/2019
 uid: aspnetcore-3.0
-ms.openlocfilehash: c1b61fee7264b972c70dbfa8f1461e33e3645746
-ms.sourcegitcommit: e644258c95dd50a82284f107b9bf3becbc43b2b2
+ms.openlocfilehash: a32307f6de01e03e548cbde2c38c9469db74b506
+ms.sourcegitcommit: fe88748b762525cb490f7e39089a4760f6a73a24
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/26/2019
-ms.locfileid: "71317653"
+ms.lasthandoff: 09/30/2019
+ms.locfileid: "71688039"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>O que há de novo no ASP.NET Core 3,0
 
@@ -423,7 +423,7 @@ Todos os serviços ainda podem ser injetados diretamente como argumentos para `S
 * Os adaptadores de conexão foram removidos do Kestrel e substituídos pelo middleware de conexão, que é semelhante ao middleware HTTP no pipeline de ASP.NET Core, mas para conexões de nível inferior.
 * A camada de transporte Kestrel foi exposta como uma interface pública no `Connections.Abstractions`.
 * A ambiguidade entre cabeçalhos e trailers foi resolvida movendo os cabeçalhos à direita para uma nova coleção.
-* APIs de e/s síncronas, `HttpReqeuest.Body.Read`como, são uma fonte comum de privação de thread que leva a falhas de aplicativo. No 3,0, `AllowSynchronousIO` é desabilitado por padrão.
+* APIs de e/s síncronas, `HttpRequest.Body.Read`como, são uma fonte comum de privação de thread que leva a falhas de aplicativo. No 3,0, `AllowSynchronousIO` é desabilitado por padrão.
 
 Para obter mais informações, consulte <xref:migration/22-to-30#kestrel>.
 

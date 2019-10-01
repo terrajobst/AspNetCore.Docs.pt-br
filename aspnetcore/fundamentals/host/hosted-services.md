@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/26/2019
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: 5a29952c4e50edb953fa03c6ea1a1ae27b728bb0
-ms.sourcegitcommit: e644258c95dd50a82284f107b9bf3becbc43b2b2
+ms.openlocfilehash: 0eaa3a62370c1e413840bb65f597dc664adafc38
+ms.sourcegitcommit: fe88748b762525cb490f7e39089a4760f6a73a24
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/26/2019
-ms.locfileid: "71317717"
+ms.lasthandoff: 09/30/2019
+ms.locfileid: "71688092"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Tarefas em segundo plano com serviços hospedados no ASP.NET Core
 
@@ -37,29 +37,7 @@ Este aplicativo de exemplo é fornecido em duas versões:
 
 O modelo de Serviço de Trabalho do ASP.NET Core fornece um ponto inicial para escrever aplicativos de serviço de execução prolongada. Para usar o modelo como base para um aplicativo de serviços hospedados:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
-
-1. Crie um novo projeto.
-1. Selecione **Aplicativo Web ASP.NET Core**. Selecione **Avançar**.
-1. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Selecione **Criar**.
-1. Na caixa de diálogo **Criar um aplicativo Web ASP.NET Core**, confirme se **.NET Core** e **ASP.NET Core 3.0** estão selecionados.
-1. Selecione o modelo **Serviço de Trabalho**. Selecione **Criar**.
-
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
-
-1. Crie um novo projeto.
-1. Selecione **aplicativo** em **.NET Core** na barra lateral.
-1. Selecione **trabalhador** em **ASP.NET Core**. Selecione **Avançar**.
-1. Selecione **.NET Core 3,0** para a **estrutura de destino**. Selecione **Avançar**.
-1. Forneça um nome no campo **nome do projeto** . Selecione **Criar**.
-
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
-
-Use o modelo de Serviço de Trabalho (`worker`) com o comando [dotnet novo](/dotnet/core/tools/dotnet-new) em um shell de comando. No exemplo a seguir, um aplicativo de Serviço de Trabalho é criado com o nome `ContosoWorker`. Uma pasta para o aplicativo `ContosoWorker` é criada automaticamente quando o comando é executado.
-
-```dotnetcli
-dotnet new worker -o ContosoWorker
-```
+[!INCLUDE[](~/includes/worker-template-instructions.md)]
 
 ---
 

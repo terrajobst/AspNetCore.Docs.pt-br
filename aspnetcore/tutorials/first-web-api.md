@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como criar uma API Web com o ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/27/2019
+ms.date: 09/29/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: 366323416061bf729c092419f2f6a5912884252b
-ms.sourcegitcommit: 5d25a7f22c50ca6fdd0f8ecd8e525822e1b35b7a
+ms.openlocfilehash: 7bb98fe5befa8eea80885d246da31ad87d5cfc2d
+ms.sourcegitcommit: fe88748b762525cb490f7e39089a4760f6a73a24
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/28/2019
-ms.locfileid: "71551725"
+ms.lasthandoff: 09/30/2019
+ms.locfileid: "71691210"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Criar uma API Web com o ASP.NET Core
 
@@ -273,7 +273,7 @@ O código anterior:
 
   * Selecione **TodoItem (TodoApi. Models)** na **classe Model**.
   * Selecione **TodoContext (TodoApi. Models)** na **classe de contexto de dados**.
-  * Selecione **Adicionar**
+  * Selecione **Adicionar**.
 
 # <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -283,7 +283,7 @@ Execute os seguintes comandos:
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext  -outDir Controllers
+dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
 Os comandos anteriores:
@@ -322,7 +322,7 @@ Este tutorial usa o Postman para testar a API Web.
 * Inicie o aplicativo Web.
 * Inicie o Postman.
 * Desabilite a **Verificação do certificado SSL**
-* Em **Arquivo > Configurações** (guia **Geral*), desabilite **Verificação do certificado SSL**.
+* Em **Arquivo** > **Configurações** (guia **Geral**), desabilite **Verificação de certificado SSL**.
     > [!WARNING]
     > Habilite novamente a verificação do certificado SSL depois de testar o controlador.
 
@@ -356,7 +356,7 @@ Este tutorial usa o Postman para testar a API Web.
   ![Guia Cabeçalhos do console do Postman](first-web-api/_static/3/create.png)
 
 * Defina o método como GET.
-* Cole o URI (por exemplo, `https://localhost:5001/api/TodoItems/1`)
+* Cole o URI (por exemplo, `https://localhost:5001/api/TodoItems/1`).
 * Selecione **Enviar**.
 
 ## <a name="examine-the-get-methods"></a>Examine os métodos GET
@@ -404,7 +404,7 @@ O atributo [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) 
 * Substitua `[controller]` pelo nome do controlador, que é o nome de classe do controlador menos o sufixo "Controlador" por convenção. Para esta amostra, o nome da classe do controlador é **TodoItems**Controller. Portanto, o nome do controlador é "TodoItems". O [roteamento](xref:mvc/controllers/routing) do ASP.NET Core não diferencia maiúsculas de minúsculas.
 * Se o atributo `[HttpGet]` tiver um modelo de rota (por exemplo, `[HttpGet("products")]`), acrescente isso ao caminho. Esta amostra não usa um modelo. Para obter mais informações, confira [Roteamento de atributo com atributos Http[Verb]](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
-No método `GetTodoItem` a seguir, `"{id}"` é uma variável de espaço reservado para o identificador exclusivo do item pendente. Quando `GetTodoItem` é invocado, o valor de `"{id}"` na URL é fornecido para o método no parâmetro `id`.
+No método `GetTodoItem` a seguir, `"{id}"` é uma variável de espaço reservado para o identificador exclusivo do item pendente. Quando `GetTodoItem` é invocado, o valor de `"{id}"` na URL é fornecido ao método em seu parâmetro `id`.
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
 
@@ -458,8 +458,8 @@ A resposta `DeleteTodoItem` é [204 (Sem conteúdo)](https://www.w3.org/Protocol
 Use o Postman para excluir um item pendente:
 
 * Defina o método como `DELETE`.
-* Defina o URI do objeto a ser excluído, por exemplo, `https://localhost:5001/api/TodoItems/1`
-* Selecione **Enviar**
+* Defina o URI do objeto a ser excluído (por exemplo `https://localhost:5001/api/TodoItems/1`).
+* Selecione **Enviar**.
 
 ## <a name="call-the-web-api-with-javascript"></a>Chamar a API Web com o JavaScript
 
@@ -741,10 +741,10 @@ Os tipos de retorno `ActionResult` podem representar uma ampla variedade de cód
 
 Este tutorial usa o Postman para testar a API Web.
 
-* Instale o [Postman](https://www.getpostman.com/downloads/)
+* Instalar o [postmaster](https://www.getpostman.com/downloads/).
 * Inicie o aplicativo Web.
 * Inicie o Postman.
-* Desabilite a **Verificação do certificado SSL**
+* Desabilite a **verificação de certificado SSL**.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -813,7 +813,7 @@ O método `CreatedAtAction`:
   ![Guia Cabeçalhos do console do Postman](first-web-api/_static/pmc2.png)
 
 * Defina o método como GET.
-* Cole o URI (por exemplo, `https://localhost:5001/api/Todo/2`)
+* Cole o URI (por exemplo, `https://localhost:5001/api/Todo/2`).
 * Selecione **Enviar**.
 
 ## <a name="add-a-puttodoitem-method"></a>Adicionar um método PutTodoItem
@@ -857,8 +857,8 @@ A resposta `DeleteTodoItem` é [204 (Sem conteúdo)](https://www.w3.org/Protocol
 Use o Postman para excluir um item pendente:
 
 * Defina o método como `DELETE`.
-* Defina o URI do objeto a ser excluído, por exemplo, `https://localhost:5001/api/todo/1`
-* Selecione **Enviar**
+* Defina o URI do objeto a ser excluído (por exemplo `https://localhost:5001/api/todo/1`).
+* Selecione **Enviar**.
 
 O aplicativo de exemplo permite que você exclua todos os itens. No entanto, quando o último item é excluído, um novo é criado pelo construtor de classe de modelo na próxima vez que a API for chamada.
 

@@ -5,14 +5,14 @@ description: Saiba como criar e usar componentes do Razor, incluindo como associ
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 09/30/2019
 uid: blazor/components
-ms.openlocfilehash: 28e908968bd77c61da72d1bcc6032e580d15541b
-ms.sourcegitcommit: 79eeb17604b536e8f34641d1e6b697fb9a2ee21f
+ms.openlocfilehash: ea216e405e5be52b578e99a529d8c6a726ea9cdd
+ms.sourcegitcommit: fe88748b762525cb490f7e39089a4760f6a73a24
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71207278"
+ms.lasthandoff: 09/30/2019
+ms.locfileid: "71688025"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -440,7 +440,7 @@ No exemplo a seguir, `UpdateHeading` é chamado de forma assíncrona quando o bo
 
 Para alguns eventos, são permitidos tipos de argumento de evento. Se o acesso a um desses tipos de evento não for necessário, ele não será necessário na chamada do método.
 
-O [EventArgs](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src/Web) com suporte é mostrado na tabela a seguir.
+@No__t-0 com suporte são mostrados na tabela a seguir.
 
 | evento | Classe |
 | ----- | ----- |
@@ -456,7 +456,7 @@ O [EventArgs](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src
 | Progresso         | `ProgressEventArgs` |
 | Toque            | `TouchEventArgs`&ndash; representaumúnicopontodecontatoemum`TouchPoint` dispositivo sensível ao toque. |
 
-Para obter informações sobre as propriedades e o comportamento de manipulação de eventos dos eventos na tabela anterior, consulte [classes EventArgs na fonte de referência (ASPNET/AspNetCore Release/3.0-preview9 Branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src/Web).
+Para obter informações sobre as propriedades e o comportamento de manipulação de eventos dos eventos na tabela anterior, consulte [classes EventArgs na fonte de referência (ramificação ASPNET/AspNetCore Release/3.0)](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Components/Web/src/Web).
 
 ### <a name="lambda-expressions"></a>Expressões lambda
 
@@ -1066,7 +1066,7 @@ Componentes modelo são componentes que aceitam um ou mais modelos de interface 
 * Um componente de tabela que permite que um usuário especifique modelos para o cabeçalho, as linhas e o rodapé da tabela.
 * Um componente de lista que permite que um usuário especifique um modelo para renderizar itens em uma lista.
 
-### <a name="template-parameters"></a>Parâmetros de modelo
+### <a name="template-parameters"></a>Parâmetros do modelo
 
 Um componente modelo é definido especificando um ou mais parâmetros de componente do tipo `RenderFragment` ou. `RenderFragment<T>` Um fragmento de renderização representa um segmento de interface do usuário a ser renderizado. `RenderFragment<T>`usa um parâmetro de tipo que pode ser especificado quando o fragmento de renderização é invocado.
 
@@ -1416,12 +1416,12 @@ Quando o código é executado pela primeira vez, se `someFlag` for `true`, o Con
 
 | Sequência | Tipo      | Dados   |
 | :------: | --------- | :----: |
-| 0        | Nó de texto | Primeiro  |
+| 0        | Nó de texto | First  |
 | 1        | Nó de texto | Segundo |
 
 Imagine que `someFlag` se `false`torna e a marcação é renderizada novamente. Desta vez, o Construtor recebe:
 
-| Sequência | Tipo       | Dados   |
+| Sequência | type       | Dados   |
 | :------: | ---------- | :----: |
 | 1        | Nó de texto  | Segundo |
 
@@ -1448,7 +1448,7 @@ Agora, a primeira saída é:
 
 | Sequência | Tipo      | Dados   |
 | :------: | --------- | :----: |
-| 0        | Nó de texto | Primeiro  |
+| 0        | Nó de texto | First  |
 | 1        | Nó de texto | Segundo |
 
 Esse resultado é idêntico ao caso anterior, portanto, não existem problemas negativos. `someFlag`está `false` no segundo processamento e a saída é:
@@ -1514,7 +1514,7 @@ A localização é manipulada no aplicativo:
 
 1. O navegador envia uma solicitação HTTP inicial para o aplicativo.
 1. A cultura é atribuída pelo middleware de localização.
-1. O `OnGet` método em *_Host. cshtml. cs* persiste a cultura em um cookie como parte da resposta.
+1. O método `OnGet` em *_Host. cshtml. cs* persiste a cultura em um cookie como parte da resposta.
 1. O navegador abre uma conexão WebSocket para criar uma sessão de servidor mais incrivelmente interativa.
 1. O middleware de localização lê o cookie e atribui a cultura.
 1. A sessão de servidor mais incrivelmente começa com a cultura correta.
