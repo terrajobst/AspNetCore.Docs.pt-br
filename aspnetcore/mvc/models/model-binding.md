@@ -8,7 +8,7 @@ ms.date: 05/31/2019
 uid: mvc/models/model-binding
 ms.openlocfilehash: 298e305cf918117ec2d313060a7420a1e721a365
 ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 08/22/2019
 ms.locfileid: "69975290"
@@ -165,21 +165,21 @@ A mesma estratégia será recomendada se você não desejar que erros de convers
 
 Os tipos simples em que o associador de modelos pode converter cadeias de caracteres de origem incluem os seguintes:
 
-* [Booliano](xref:System.ComponentModel.BooleanConverter)
+* [Boolean](xref:System.ComponentModel.BooleanConverter)
 * [Byte](xref:System.ComponentModel.ByteConverter), [SByte](xref:System.ComponentModel.SByteConverter)
 * [Char](xref:System.ComponentModel.CharConverter)
 * [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
-* [Duplo](xref:System.ComponentModel.DoubleConverter)
+* [Double](xref:System.ComponentModel.DoubleConverter)
 * [Enum](xref:System.ComponentModel.EnumConverter)
 * [Guid](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
-* [Simples](xref:System.ComponentModel.SingleConverter)
+* [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.UriTypeConverter)
-* [Versão](xref:System.ComponentModel.VersionConverter)
+* [Version](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>Tipos complexos
 
