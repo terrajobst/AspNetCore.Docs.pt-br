@@ -7,12 +7,12 @@ ms.author: jamesnk
 ms.custom: mvc
 ms.date: 09/21/2019
 uid: grpc/troubleshoot
-ms.openlocfilehash: 15377ba4b31ce9319df300b23e5a95c67bca7db4
-ms.sourcegitcommit: 04ce94b3c1b01d167f30eed60c1c95446dfe759d
+ms.openlocfilehash: c31f499b008cdec9d759e804b18965156ca99f30
+ms.sourcegitcommit: d8b12cc1716ee329d7bd2300e201b61e15d506ac
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/21/2019
-ms.locfileid: "71176499"
+ms.lasthandoff: 10/04/2019
+ms.locfileid: "71942897"
 ---
 # <a name="troubleshoot-grpc-on-net-core"></a>Solucionar problemas do gRPC no .NET Core
 
@@ -151,3 +151,21 @@ Um aplicativo cliente gRPC que faz chamadas gRPC precisa apenas do cliente concr
   <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
 </ItemGroup>
 ```
+
+## <a name="wpf-projects-unable-to-generated-grpc-c-assets-from-proto-files"></a>Projetos do WPF não podem gerar C# ativos gRPC de arquivos de *@no__t -2. proto*
+
+Os projetos do WPF têm um [problema conhecido](https://github.com/dotnet/wpf/issues/810) que impede a geração de código gRPC de funcionar corretamente. Quaisquer tipos de gRPC gerados em um projeto WPF referenciando `Grpc.Tools` e *. proto* arquivos criarão erros de compilação quando usados:
+
+> erro CS0246: Não foi possível encontrar o nome do tipo ou do namespace ' MyGrpcServices ' (está faltando uma diretiva using ou uma referência de assembly?)
+
+Você pode solucionar esse problema:
+
+1. Crie um novo projeto de biblioteca de classes do .NET Core.
+2. No novo projeto, adicione referências para habilitar [ C# a geração de código de arquivos *@no__t -3. proto* :
+    * Adicione uma referência de pacote ao pacote [Grpc. Tools](https://www.nuget.org/packages/Grpc.Tools/) .
+    * `<Protobuf>` Adicione  *\*arquivos. proto* ao grupo de itens.
+3. No aplicativo do WPF, adicione uma referência ao novo projeto.
+
+O aplicativo WPF pode usar os tipos gerados gRPC do novo projeto de biblioteca de classes.
+
+[!INCLUDE[](~/includes/gRPCazure.md)]

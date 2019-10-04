@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 09/19/2019
 uid: razor-pages/index
-ms.openlocfilehash: bccdd7e5c1c90dd76ca1b788dbf09000c5cbe14b
-ms.sourcegitcommit: fae6f0e253f9d62d8f39de5884d2ba2b4b2a6050
+ms.openlocfilehash: 63938b0347dc698a67f2ba8c083097c55c6c9c66
+ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/25/2019
-ms.locfileid: "71256181"
+ms.lasthandoff: 10/03/2019
+ms.locfileid: "71925273"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introdução a Páginas do Razor no ASP.NET Core
 
@@ -185,7 +185,7 @@ A `Customer` propriedade usa [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.Bi
 
 [!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
 
-`[BindProperty]`**não** deve ser usado em modelos que contêm propriedades que não devem ser alteradas pelo cliente. Para obter mais informações, consulte [superpostando](xref:data/ef-rp/crud#overposting)
+`[BindProperty]`**não** deve ser usado em modelos que contêm propriedades que não devem ser alteradas pelo cliente. Para obter mais informações, consulte [superpostando](xref:data/ef-rp/crud#overposting).
 
 O Razor Pages, por padrão, associa propriedades somente com verbos não `GET`. A associação a Propriedades remove a necessidade de escrever código para converter dados HTTP no tipo de modelo. A associação reduz o código usando a mesma propriedade para renderizar os campos de formulário (`<input asp-for="Customer.Name">`) e aceitar a entrada.
 
@@ -212,7 +212,7 @@ O arquivo *index. cshtml* contém a seguinte marcação:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=21)]
 
-O `<a /a>` [auxiliar de marca](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) de âncora `asp-route-{value}` usou o atributo para gerar um link para a página de edição. O link contém dados de rota com a ID de contato. Por exemplo, `https://localhost:5001/Edit/1`. Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor.
+O `<a /a>` [auxiliar de marca](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) de âncora `asp-route-{value}` usou o atributo para gerar um link para a página de edição. O link contém dados de rota com a ID de contato. Por exemplo: `https://localhost:5001/Edit/1`. Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor.
 
 O arquivo *index. cshtml* contém marcação para criar um botão de exclusão para cada contato de cliente:
 
@@ -298,7 +298,7 @@ Considere o seguinte `Movie` modelo:
 
 Os atributos de validação especificam o comportamento a ser aplicado nas propriedades de modelo às quais eles são aplicados:
 
-* Os atributos `Required` e `MinimumLength` indicam que uma propriedade deve ter um valor; porém, nada impede que um usuário insira um espaço em branco para atender a essa validação.
+* Os atributos `Required` e `MinimumLength` indicam que uma propriedade deve ter um valor, mas nada impede que um usuário insira espaço em branco para atender a essa validação.
 * O atributo `RegularExpression` é usado para limitar quais caracteres podem ser inseridos. No código anterior, "Gênero":
 
   * Deve usar apenas letras.
@@ -336,13 +336,13 @@ Razor Pages retornará para chamar o `OnGet` manipulador se nenhum `OnHead` mani
 
 ## <a name="xsrfcsrf-and-razor-pages"></a>XSRF/CSRF e Páginas do Razor
 
-Razor Pages são protegidos pela[validação de antifalsificação](xref:security/anti-request-forgery). O [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injeta tokens de antifalsificação em elementos de formulário HTML.
+Razor Pages são protegidos pela [validação de antifalsificação](xref:security/anti-request-forgery). O [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injeta tokens de antifalsificação em elementos de formulário HTML.
 
 <a name="layout"></a>
 
 ## <a name="using-layouts-partials-templates-and-tag-helpers-with-razor-pages"></a>Usando Layouts, parciais, modelos e auxiliares de marcas com Páginas do Razor
 
-As Páginas funcionam com todos os recursos do mecanismo de exibição do Razor. Layouts, parciais, modelos, auxiliares de marcas, *_ViewStart.cshtml* e *_ViewImports.cshtml* funcionam da mesma forma que funcionam exibições convencionais do Razor.
+As Páginas funcionam com todos os recursos do mecanismo de exibição do Razor. Layouts, parciais, modelos, auxiliares de marca, *_ViewStart. cshtml*e *_ViewImports. cshtml* funcionam da mesma maneira que fazem para exibições convencionais do Razor.
 
 Organizaremos essa página aproveitando alguns desses recursos.
 
@@ -356,7 +356,7 @@ O [Layout](xref:mvc/views/layout):
 * Importa estruturas HTML como JavaScript e folhas de estilo.
 * O conteúdo da página Razor é renderizado onde `@RenderBody()` é chamado.
 
-Para obter mais informações, consulte [página de layout](xref:mvc/views/layout)..
+Para obter mais informações, consulte [página de layout](xref:mvc/views/layout).
 
 A propriedade [Layout](xref:mvc/views/layout#specifying-a-layout) é definida em *Pages/_ViewStart.cshtml*:
 
@@ -474,7 +474,7 @@ Para obter mais informações, consulte <xref:mvc/controllers/areas> e <xref:raz
 
 ## <a name="viewdata-attribute"></a>Atributo ViewData
 
-Os dados podem ser passados para uma página <xref:Microsoft.AspNetCore.Mvc.ViewDataAttribute>com. As propriedades com o atributo [ViewData] têm seus valores armazenados e carregados do <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary>.
+Os dados podem ser passados para uma página <xref:Microsoft.AspNetCore.Mvc.ViewDataAttribute>com. As propriedades com o atributo `[ViewData]` têm seus valores armazenados e carregados do <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary>.
 
 No exemplo a seguir, o `AboutModel` aplica o `[ViewData]` atributo à `Title` Propriedade:
 
@@ -527,7 +527,7 @@ O modelo de página *Pages/Customers/Index.cshtml.cs* aplica o atributo `[TempDa
 public string Message { get; set; }
 ```
 
-Para obter mais informações, confira [TempData](xref:fundamentals/app-state#tempdata).
+Para obter mais informações, consulte [TempData](xref:fundamentals/app-state#tempdata).
 
 <a name="mhpp"></a>
 
@@ -579,7 +579,7 @@ Para configurar opções avançadas, use o método <xref:Microsoft.Extensions.De
 
 Use o <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> para definir o diretório raiz para páginas ou adicione convenções de modelo de aplicativo para páginas. Para obter mais informações sobre convenções, consulte [Razor Pages convenções de autorização](xref:security/authorization/razor-pages-authorization).
 
-Para pré-compilar exibições, consulte [Compilação de exibição do Razor](xref:mvc/views/view-compilation).
+Para pré-compilar exibições, consulte [compilação de exibição do Razor](xref:mvc/views/view-compilation).
 
 ### <a name="specify-that-razor-pages-are-at-the-content-root"></a>Especificar que as Páginas Razor estão na raiz do conteúdo
 
@@ -595,8 +595,8 @@ Adicionar <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBui
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* Consulte a [Introdução a Páginas do Razor](xref:tutorials/razor-pages/razor-pages-start), que se baseia nesta introdução.
-* [Baixar ou exibir código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/3.0sample).
+* Consulte Introdução [ao Razor Pages](xref:tutorials/razor-pages/razor-pages-start), que se baseia nesta introdução
+* [Baixar ou exibir código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/3.0sample)
 * <xref:index>
 * <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
@@ -768,7 +768,7 @@ O arquivo *cshtml* contém a marcação a seguir para criar um link de edição 
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
-O `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` [auxiliar de marca](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) de âncora `asp-route-{value}` usou o atributo para gerar um link para a página de edição. O link contém dados de rota com a ID de contato. Por exemplo, `https://localhost:5001/Edit/1`. Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. Os auxiliares de marcação são habilitados por`@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+O `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` [auxiliar de marca](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) de âncora `asp-route-{value}` usou o atributo para gerar um link para a página de edição. O link contém dados de rota com a ID de contato. Por exemplo: `https://localhost:5001/Edit/1`. Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. Os auxiliares de marcação são habilitados por`@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 O arquivo *Pages/Edit.cshtml*:
 

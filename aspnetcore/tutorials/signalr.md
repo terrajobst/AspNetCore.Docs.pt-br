@@ -6,12 +6,12 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 09/24/2019
 uid: tutorials/signalr
-ms.openlocfilehash: 7a6574bd3c463f0890f5dc076944f1ab0f0c919a
-ms.sourcegitcommit: e54672f5c493258dc449fac5b98faf47eb123b28
+ms.openlocfilehash: bec01adc2682f83b0225df66e221bd2e4ea9feb4
+ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71248399"
+ms.lasthandoff: 10/03/2019
+ms.locfileid: "71925332"
 ---
 # <a name="tutorial-get-started-with-aspnet-core-signalr"></a>Tutorial: Introdução ao SignalR para ASP.NET Core
 
@@ -95,16 +95,15 @@ A biblioteca do servidor SignalR está incluída na estrutura compartilhada do A
 
 * Na caixa de diálogo **Adicionar Biblioteca do Lado do Cliente**, para **Provedor**, selecione **unpkg**.
 
-* Para **Biblioteca**, insira `@aspnet/signalr@next`.
-<!-- when 3.0 is released, change @next to @latest -->
+* Para **Biblioteca**, insira `@microsoft/signalr@latest`.
 
 * Selecione **Escolher arquivos específicos**, expanda a pasta *distribuidor/navegador* e selecione *signalr.js* e *signalr.min.js*.
 
-* Defina **Localização de Destino** como *wwwroot/lib/signalr/* e selecione **Instalar**.
+* Defina **local de destino** como *wwwroot/js/signalr/* e selecione **instalar**.
 
-  ![Caixa de diálogo Adicionar Biblioteca do Lado do Cliente – selecionar biblioteca](signalr/_static/3.x/libman1.png)
+  ![Caixa de diálogo Adicionar Biblioteca do Lado do Cliente – selecionar biblioteca](signalr/_static/3.x/find-signalr-client-libs-select-files.png)
 
-  O LibMan cria uma pasta *wwwroot/lib/signalr* e copia os arquivos selecionados para ela.
+  LibMan cria uma pasta *wwwroot/js/signalr* e copia os arquivos selecionados nela.
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code/)
 
@@ -117,20 +116,20 @@ A biblioteca do servidor SignalR está incluída na estrutura compartilhada do A
 * Execute o comando a seguir para obter a biblioteca de clientes SignalR usando LibMan. Talvez seja necessário aguardar alguns segundos antes de ver a saída.
 
   ```console
-  libman install @aspnet/signalr@next -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
+  libman install @microsoft/signalr@latest -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
   ```
 
   Os parâmetros especificam as seguintes opções:
   * Use o provedor unpkg.
-  * Copie os arquivos para o destino *wwwroot/lib/signalr*.
+  * Copie os arquivos para o destino *wwwroot/js/signalr* .
   * Copie apenas os arquivos especificados.
 
   A saída tem a aparência do seguinte exemplo:
 
   ```console
-  wwwroot/lib/signalr/dist/browser/signalr.js written to disk
-  wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk
-  Installed library "@aspnet/signalr@next" to "wwwroot/lib/signalr"
+  wwwroot/js/signalr/dist/browser/signalr.js written to disk
+  wwwroot/js/signalr/dist/browser/signalr.min.js written to disk
+  Installed library "@microsoft/signalr@latest" to "wwwroot/js/signalr"
   ```
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
@@ -146,20 +145,20 @@ A biblioteca do servidor SignalR está incluída na estrutura compartilhada do A
 * Execute o comando a seguir para obter a biblioteca de clientes SignalR usando LibMan.
 
   ```console
-  libman install @aspnet/signalr@next -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
+  libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
   ```
 
   Os parâmetros especificam as seguintes opções:
   * Use o provedor unpkg.
-  * Copie os arquivos para o destino *wwwroot/lib/signalr*.
+  * Copie os arquivos para o destino *wwwroot/js/signalr* .
   * Copie apenas os arquivos especificados.
 
   A saída tem a aparência do seguinte exemplo:
 
   ```console
-  wwwroot/lib/signalr/dist/browser/signalr.js written to disk
-  wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk
-  Installed library "@aspnet/signalr@next" to "wwwroot/lib/signalr"
+  wwwroot/js/signalr/dist/browser/signalr.js written to disk
+  wwwroot/js/signalr/dist/browser/signalr.min.js written to disk
+  Installed library "@microsoft/signalr@latest" to "wwwroot/js/signalr"
   ```
 
 ---
@@ -241,7 +240,7 @@ O servidor do SignalR precisa ser configurado para passar solicitações do Sign
 > [!TIP]
 > * Se o aplicativo não funcionar, abra as ferramentas para desenvolvedores do navegador (F12) e acesse o console. Você pode encontrar erros relacionados ao código HTML e JavaScript. Por exemplo, suponha que você coloque *signalr.js* em uma pasta diferente daquela direcionada. Nesse caso, a referência a esse arquivo não funcionará e ocorrerá um erro 404 no console.
 >   ![Erro de signalr.js não encontrado](signalr/_static/3.x/f12-console.png)
-> * Se você receber o erro ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY no Chrome ou NS_ERROR_NET_INADEQUATE_SECURITY no Firefox, execute estes comandos para atualizar o certificado de desenvolvimento:
+> * Se você receber o erro ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY no Chrome, execute estes comandos para atualizar seu certificado de desenvolvimento:
 >
 >   ```dotnetcli
 >   dotnet dev-certs https --clean

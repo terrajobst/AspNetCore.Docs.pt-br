@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/14/2019
 uid: security/enforcing-ssl
-ms.openlocfilehash: 1d1bba6a1f1da2af959bc69b31f79bac53bf48b9
-ms.sourcegitcommit: fe3e556bf438fc4136fcf0bac61cf96e3e91caf5
+ms.openlocfilehash: 25e4f7cd6ae3cd58813c89d13262e91a706644b3
+ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/27/2019
-ms.locfileid: "71341470"
+ms.lasthandoff: 10/03/2019
+ms.locfileid: "71924719"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Impor HTTPS em ASP.NET Core
 
@@ -372,8 +372,8 @@ Esta seção fornece ajuda quando o ASP.NET Core certificado de desenvolvimento 
 Execute os seguintes comandos:
 
 ```dotnetcli
-dotnet devcerts https --clean
-dotnet devcerts https --trust
+dotnet dev-certs https --clean
+dotnet dev-certs https --trust
 ```
 
 Feche todas as instâncias do navegador abertas. Abra uma nova janela do navegador para o aplicativo. A confiança de certificado é armazenada em cache por navegadores.

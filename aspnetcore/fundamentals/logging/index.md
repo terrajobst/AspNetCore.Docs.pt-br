@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: 2d517a89c6002b5c85e98128605f95585354f8db
-ms.sourcegitcommit: e54672f5c493258dc449fac5b98faf47eb123b28
+ms.openlocfilehash: bb38ebca3c7b9bb4c28a52c0dad80be9669e1b40
+ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71248260"
+ms.lasthandoff: 10/03/2019
+ms.locfileid: "71924885"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Como fazer registro em log no .NET Core e no ASP.NET Core
 
@@ -529,7 +529,7 @@ A ordem dos espaços reservados e não de seus nomes, determina quais parâmetro
 ```csharp
 string p1 = "parm1";
 string p2 = "parm2";
-_logger.LogInformation("Parameter values: {p1}, {p2}", p1, p2);
+_logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
 ```
 
 Esse código cria uma mensagem de log com os valores de parâmetro na sequência:
@@ -619,7 +619,7 @@ O segundo `AddFilter` especifica o provedor Depuração usando seu nome de tipo.
 
 Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anteriores, criam as regras mostradas na tabela a seguir. As primeiras seis vêm do exemplo de configuração e as últimas duas vêm do exemplo de código.
 
-| Número | Provider      | Categorias que começam com...          | Nível de log mínimo |
+| Number | Provider      | Categorias que começam com...          | Nível de log mínimo |
 | :----: | ------------- | --------------------------------------- | ----------------- |
 | 1      | Depurar         | Todas as categorias                          | Informações       |
 | 2      | Console       | Microsoft.AspNetCore.Mvc.Razor.Internal | Aviso           |
@@ -628,7 +628,7 @@ Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anter
 | 5      | Console       | Todas as categorias                          | Informações       |
 | 6      | Todos os provedores | Todas as categorias                          | Depurar             |
 | 7      | Todos os provedores | Sistema                                  | Depurar             |
-| 8      | Depurar         | Microsoft                               | Rastrear             |
+| 8      | Depurar         | Microsoft                               | Rastreamento             |
 
 Quando um objeto `ILogger` é criado, o objeto `ILoggerFactory` seleciona uma única regra por provedor para aplicar a esse agente. Todas as mensagens gravadas pela instância `ILogger` são filtradas com base nas regras selecionadas. A regra mais específica possível para cada par de categoria e provedor é selecionada dentre as regras disponíveis.
 

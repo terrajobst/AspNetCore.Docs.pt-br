@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 8/26/2019
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: 8c0f57e69d4cdee5b5f5510d7db04991ed6df475
-ms.sourcegitcommit: fae6f0e253f9d62d8f39de5884d2ba2b4b2a6050
+ms.openlocfilehash: 9eeb71ca751005780560f0f2200edc2013541c34
+ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/25/2019
-ms.locfileid: "71250820"
+ms.lasthandoff: 10/03/2019
+ms.locfileid: "71925221"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Tutorial: Criar um cliente e um servidor gRPC no ASP.NET Core
 
@@ -314,6 +314,8 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 > [!NOTE]
 > O código neste artigo requer o certificado de desenvolvimento HTTPS do ASP.NET Core para proteger o serviço gRPC. Se houver falha no cliente e for exibida a mensagem `The remote certificate is invalid according to the validation procedure.`, o certificado de desenvolvimento não será confiável. Para obter instruções sobre como corrigir esse problema, confira [Confiar no certificado de desenvolvimento HTTPS do ASP.NET Core no Windows e no macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ### <a name="next-steps"></a>Próximas etapas
 

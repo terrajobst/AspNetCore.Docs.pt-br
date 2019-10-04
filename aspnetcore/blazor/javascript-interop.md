@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/23/2019
 uid: blazor/javascript-interop
-ms.openlocfilehash: 2b5d1433fce6e09adf3caa58e55e678b00ad98ee
-ms.sourcegitcommit: 79eeb17604b536e8f34641d1e6b697fb9a2ee21f
+ms.openlocfilehash: b30bce6ef3ebf1cd2f4f3fe8d046e1db9b6929d5
+ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71211650"
+ms.lasthandoff: 10/03/2019
+ms.locfileid: "71924643"
 ---
 # <a name="aspnet-core-blazor-javascript-interop"></a>ASP.NET Core a interoperabilidade de JavaScript mais incrivelmente
 
@@ -38,7 +38,7 @@ Para aplicativos de servidor de mais incrivelmente:
 
 O exemplo a seguir é baseado em [textdecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), um decodificador experimental baseado em JavaScript. O exemplo demonstra como invocar uma função JavaScript a partir C# de um método. A função JavaScript aceita uma matriz de bytes de C# um método, decodifica a matriz e retorna o texto para o componente para exibição.
 
-Dentro do `<head>` elemento de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente), forneça uma função que `TextDecoder` o usa para decodificar uma matriz passada:
+Dentro do elemento `<head>` de *wwwroot/index.html* (Webassembly mais alto) ou *pages/_Host. cshtml* (servidor de mais alta disponibilidade), forneça uma função que usa `TextDecoder` para decodificar uma matriz passada:
 
 [!code-html[](javascript-interop/samples_snapshot/index-script.html)]
 
@@ -81,13 +81,13 @@ No aplicativo de exemplo do lado do cliente que acompanha este tópico, duas fun
 
 [!code-javascript[](./common/samples/3.x/BlazorSample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
-Coloque a `<script>` marca que faz referência ao arquivo JavaScript no arquivo *wwwroot/index.html* (Webassembly do mais de um ou mais) ou arquivo *pages/_Host. cshtml* (servidor mais incrivelmente).
+Coloque a marca `<script>` que faz referência ao arquivo JavaScript no arquivo *wwwroot/index.html* (Webassembly do mais alto) ou ao arquivo *pages/_Host. cshtml* (servidor de mais alta disponibilidade).
 
 *wwwroot/index.html* (Webassembly mais incrivelmente):
 
 [!code-html[](./common/samples/3.x/BlazorSample/wwwroot/index.html?highlight=15)]
 
-*Páginas/_Host. cshtml* (Servidor mais incrivelmente):
+*Pages/_Host. cshtml* (servidor mais incrivelmente):
 
 [!code-cshtml[](javascript-interop/samples_snapshot/_Host.cshtml?highlight=29)]
 
@@ -139,7 +139,7 @@ O exemplo a seguir mostra a captura de uma `username` referência ao `<input>` e
 ```
 
 > [!NOTE]
-> Não **use referências** de elemento capturadas como uma forma de popular ou manipular o dom quando o mais fácil interage com os elementos referenciados. Isso pode interferir no modelo de renderização declarativa.
+> Não **use referências** de elemento capturadas como uma forma de popular o dom. Isso pode interferir no modelo de renderização declarativa.
 
 No que diz respeito ao código .net, um `ElementReference` é um identificador opaco. A *única* coisa que você pode fazer `ElementReference` com o é passá-lo para o código JavaScript por meio da interoperabilidade do JavaScript. Quando você faz isso, o código do lado do JavaScript recebe `HTMLElement` uma instância, que pode ser usada com APIs dom normais.
 
