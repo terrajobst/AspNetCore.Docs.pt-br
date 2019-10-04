@@ -5,12 +5,12 @@ description: Saiba mais sobre como usar o LocalDB ou o SQLite do SQL Server em u
 ms.author: riande
 ms.date: 8/16/2019
 uid: tutorials/first-mvc-app/working-with-sql
-ms.openlocfilehash: d2784d9edc32b79e67dbcd193be55b44bc8d2c49
-ms.sourcegitcommit: 7a46973998623aead757ad386fe33602b1658793
-ms.translationtype: HT
+ms.openlocfilehash: cb356bca50540d7c471cf625a26bfe2dd155b627
+ms.sourcegitcommit: 3ffcd8cbff8b49128733842f72270bc58279de70
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/15/2019
-ms.locfileid: "69487637"
+ms.lasthandoff: 10/04/2019
+ms.locfileid: "71955912"
 ---
 # <a name="work-with-sql-in-aspnet-core"></a>Trabalhar com o SQL no ASP.NET Core
 
@@ -93,7 +93,7 @@ if (context.Movie.Any())
 
 Substitua o conteúdo de *Program.cs* pelo código a seguir:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Program.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Program.cs)]
 
 Testar o aplicativo
 

@@ -4,14 +4,14 @@ author: ssougnez
 description: Neste tutorial, você configurará o Webpack para agrupar e criar um aplicativo Web SignalR do ASP.NET Core, cujo cliente é escrito em TypeScript.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 04/23/2019
+ms.date: 10/04/2019
 uid: tutorials/signalr-typescript-webpack
-ms.openlocfilehash: 99628b4f52980e6d32c70d11bb0d8a770dac7f86
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: 630e8cb5efe9c313479960626d3d864c4923cbd1
+ms.sourcegitcommit: 3ffcd8cbff8b49128733842f72270bc58279de70
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71081567"
+ms.lasthandoff: 10/04/2019
+ms.locfileid: "71955926"
 ---
 # <a name="use-aspnet-core-signalr-with-typescript-and-webpack"></a>Usar o SignalR do ASP.NET Core com TypeScript e Webpack
 
@@ -55,14 +55,14 @@ Neste tutorial, você aprenderá como:
 
 Configure o Visual Studio para pesquisar o npm na variável de ambiente *PATH*. Por padrão, o Visual Studio usa a versão do npm encontrada no diretório de instalação. Siga estas instruções no Visual Studio:
 
-1. Navegue até **ferramentas** > **Opções** >projetos e soluções Web Gerenciamentodepacotes> ferramentas da Web externas. >
+1. Navegue até **ferramentas** > **Opções** > **projetos e soluções** > **Web gerenciamento de pacotes** > **ferramentas da Web externas**.
 1. Selecione a entrada *$(PATH)* na lista. Clique na seta para cima para mover a entrada para a segunda posição da lista.
 
     ![Configuração do Visual Studio](signalr-typescript-webpack/_static/signalr-configure-path-visual-studio.png)
 
 A configuração do Visual Studio foi concluída. É hora de criar o projeto.
 
-1. Use a opção de menu **arquivo** > **novo** > **projeto** e escolha o modelo de **aplicativo Web ASP.NET Core** .
+1. Use a opção de menu **arquivo** > **novo** **projeto** de > e escolha o modelo de **aplicativo Web ASP.NET Core** .
 1. Nomeie o projeto *SignalRWebPack*e selecione **criar**.
 1. Selecione *.NET Core* na lista suspensa estrutura de destino e selecione *ASP.NET Core 3,0* na lista suspensa seletor de estrutura. Selecione o modelo **vazio** e selecione **criar**.
 
@@ -165,17 +165,17 @@ As etapas a seguir configuram a conversão do TypeScript para JavaScript e o agr
 
 ## <a name="configure-the-aspnet-core-app"></a>Configurar o aplicativo do ASP.NET Core
 
-1. No método, adicione chamadas para [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [UseStaticFiles.](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) `Startup.Configure`
+1. No método `Startup.Configure`, adicione chamadas para [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_).
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_UseStaticDefaultFiles&highlight=2-3)]
 
    O código precedente permite que o servidor localize e forneça o arquivo *index.html*, se o usuário inserir a URL completa ou a URL raiz do aplicativo Web.
 
-1. No final do `Startup.Configure` método, mapeie uma rota */Hub* para o `ChatHub` Hub. Substitua o código que exibe *Olá, mundo!* com a seguinte linha: 
+1. No final do método `Startup.Configure`, mapeie uma rota */Hub* para o Hub `ChatHub`. Substitua o código que exibe *Olá, mundo!* com a seguinte linha: 
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_UseSignalR&highlight=3)]
 
-1. No método, chame [addsignalr.](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) `Startup.ConfigureServices` Adiciona serviços SignalR ao seu projeto.
+1. No método `Startup.ConfigureServices`, chame [Addsignalr](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_). Adiciona serviços SignalR ao seu projeto.
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_AddSignalR)]
 
@@ -267,7 +267,7 @@ Confirme que o aplicativo funciona com as seguintes etapas.
 
 ::: moniker-end
 
-::: moniker range="<= aspnetcore-2.2"
+::: moniker range="< aspnetcore-3.0"
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -290,14 +290,14 @@ Confirme que o aplicativo funciona com as seguintes etapas.
 
 Configure o Visual Studio para pesquisar o npm na variável de ambiente *PATH*. Por padrão, o Visual Studio usa a versão do npm encontrada no diretório de instalação. Siga estas instruções no Visual Studio:
 
-1. Navegue até **ferramentas** > **Opções** >projetos e soluções Web Gerenciamentodepacotes> ferramentas da Web externas. >
+1. Navegue até **ferramentas** > **Opções** > **projetos e soluções** > **Web gerenciamento de pacotes** > **ferramentas da Web externas**.
 1. Selecione a entrada *$(PATH)* na lista. Clique na seta para cima para mover a entrada para a segunda posição da lista.
 
     ![Configuração do Visual Studio](signalr-typescript-webpack/_static/signalr-configure-path-visual-studio.png)
 
 A configuração do Visual Studio foi concluída. É hora de criar o projeto.
 
-1. Use a opção de menu **arquivo** > **novo** > **projeto** e escolha o modelo de **aplicativo Web ASP.NET Core** .
+1. Use a opção de menu **arquivo** > **novo** **projeto** de > e escolha o modelo de **aplicativo Web ASP.NET Core** .
 1. Nomeie o projeto *SignalRWebPack*e selecione **criar**.
 1. Selecione *.NET Core* no menu suspenso da estrutura de destino e selecione *ASP.NET Core 2.2* no menu suspenso do seletor de estrutura. Selecione o modelo **vazio** e selecione **criar**.
 
@@ -413,8 +413,6 @@ As etapas a seguir configuram a conversão do TypeScript para JavaScript e o agr
 1. Mapeie uma rota */hub* para o hub `ChatHub`. Adicione as linhas a seguir ao final do método `Startup.Configure`:
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_UseSignalR)]
-
-::: moniker-end
 
 1. Crie um novo diretório, chamado *Hubs*, na raiz do projeto. A finalidade é armazenar o hub SignalR, que é criado na próxima etapa.
 
