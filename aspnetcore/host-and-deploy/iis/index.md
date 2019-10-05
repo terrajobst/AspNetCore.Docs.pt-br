@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/31/2019
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: df4d74a2800ef586091347289561a03b31e33f44
-ms.sourcegitcommit: 776367717e990bdd600cb3c9148ffb905d56862d
-ms.translationtype: HT
+ms.openlocfilehash: 4cc25cba95b476f1d14aad87564f9777a0530f86
+ms.sourcegitcommit: 4649814d1ae32248419da4e8f8242850fd8679a5
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68913935"
+ms.lasthandoff: 10/05/2019
+ms.locfileid: "71975663"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -297,7 +297,7 @@ Habilite o **Console de Gerenciamento do IIS** e os **Serviços na World Wide We
 
 ## <a name="install-the-net-core-hosting-bundle"></a>Instalar o pacote de hospedagem do .NET Core
 
-Instale o *pacote de hospedagem do .NET Core* no sistema de hospedagem. O pacote instala o Tempo de Execução .NET Core, a Biblioteca do .NET Core e o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module). O módulo permite que aplicativos do ASP.NET Core sejam executados por trás do IIS. Se o sistema não tiver uma conexão com a Internet, obtenha e instale os [Pacotes redistribuíveis do Microsoft Visual C++ 2015](https://www.microsoft.com/download/details.aspx?id=53840) antes de instalar o pacote de hospedagem do .NET Core.
+Instale o *pacote de hospedagem do .NET Core* no sistema de hospedagem. O pacote instala o Tempo de Execução .NET Core, a Biblioteca do .NET Core e o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module). O módulo permite que aplicativos do ASP.NET Core sejam executados por trás do IIS.
 
 > [!IMPORTANT]
 > Se o pacote de hospedagem for instalado antes do IIS, a instalação do pacote deverá ser reparada. Execute o instalador do pacote de hospedagem novamente depois de instalar o IIS.

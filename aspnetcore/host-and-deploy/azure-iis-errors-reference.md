@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/11/2019
 uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: f6afd6491181830f4d79486fa26a64423cd4a0ac
-ms.sourcegitcommit: 092061c4f6ef46ed2165fa84de6273d3786fb97e
+ms.openlocfilehash: 047ef23bd2f4d349d2d342d17764c7edd3e0de4a
+ms.sourcegitcommit: 4649814d1ae32248419da4e8f8242850fd8679a5
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2019
-ms.locfileid: "70963669"
+ms.lasthandoff: 10/05/2019
+ms.locfileid: "71975682"
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Referência de erros comuns para o Serviço de Aplicativo do Azure e o IIS com o ASP.NET Core
 
@@ -20,7 +20,7 @@ Por [Luke Latham](https://github.com/guardrex)
 
 Este tópico descreve os erros comuns e fornece conselhos de solução de problemas para erros específicos ao hospedar ASP.NET Core aplicativos no serviço de aplicativos do Azure e no IIS.
 
-Para obter diretrizes gerais de solução de <xref:test/troubleshoot-azure-iis>problemas, consulte.
+Para obter diretrizes gerais de solução de problemas, consulte <xref:test/troubleshoot-azure-iis>.
 
 Colete as seguintes informações:
 
@@ -39,18 +39,6 @@ Compare as informações do erro para os erros comuns a seguir. Se uma correspon
 A lista de erros neste tópico não é exaustiva. Se você encontrar um erro não listado aqui, abra um novo problema usando o botão **Comentários sobre o Conteúdo** na parte inferior deste tópico com instruções detalhadas sobre como reproduzir o erro.
 
 [!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
-
-## <a name="installer-unable-to-obtain-vc-redistributable"></a>O instalador não pode obter os Pacotes Redistribuíveis do VC++
-
-* **Exceção do instalador:** 0x80072efd **–OU–** 0x80072f76 – erro não especificado
-
-* **Exceção do log do instalador&#8224;:** Erro 0x80072efd **–OU–** 0x80072f76: Falha ao executar o pacote EXE
-
-  &#8224;O log está localizado em *C:\Users\{USER}\AppData\Local\Temp\dd_DotNetCoreWinSvrHosting__{TIMESTAMP}.log*.
-
-Solução de problemas:
-
-Se o sistema não tiver acesso à Internet durante a [instalação do pacote de hospedagem do .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle), essa exceção ocorrerá quando o instalador for impedido de obter os *Pacotes Redistribuíveis do Microsoft Visual C++ 2015*. Obtenha um instalador do [Centro de Download da Microsoft](https://www.microsoft.com/download/details.aspx?id=53840). Se o instalador falhar, o servidor poderá não receber o tempo de execução do .NET Core necessário para hospedar uma [FDD (implantação dependente de estrutura)](/dotnet/core/deploying/#framework-dependent-deployments-fdd). Se estiver hospedando uma FDD, confirme se o tempo de execução está instalado em **Programas e Recursos** ou **Aplicativos e recursos**. Se um tempo de execução específico for necessário, baixe o tempo de execução dos [Arquivos de Download do .NET](https://dotnet.microsoft.com/download/archives) e instale-o no sistema. Depois de instalar o tempo de execução, reinicie o sistema ou o IIS executando **net stop was /y** seguido por **net start w3svc** em um prompt de comando.
 
 ## <a name="os-upgrade-removed-the-32-bit-aspnet-core-module"></a>O upgrade do sistema operacional removeu o Módulo do ASP.NET Core de 32 bits
 
@@ -250,8 +238,6 @@ Solução de problemas:
   Para obter mais informações, confira [Instalar o pacote de hospedagem do .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
   Se um tempo de execução específico for necessário, baixe o tempo de execução dos [Arquivos de Download do .NET](https://dotnet.microsoft.com/download/archives) e instale-o no sistema. Conclua a instalação reiniciando o sistema ou o IIS executando **net stop was /y** seguido por **net start w3svc** em um prompt de comando.
-
-* Talvez você tenha implantado uma FDD e os *Pacotes redistribuíveis do Microsoft Visual C++ 2015 (x64)* não estejam instalados no sistema. Obtenha um instalador do [Centro de Download da Microsoft](https://www.microsoft.com/download/details.aspx?id=53840).
 
 ## <a name="incorrect-arguments-of-aspnetcore-element"></a>Argumentos incorretos do elemento \<aspNetCore>
 

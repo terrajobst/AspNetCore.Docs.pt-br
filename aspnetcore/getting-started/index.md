@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/22/2019
 uid: getting-started
-ms.openlocfilehash: 798f1ee87c05d886d8991e3f0230c8ebc6341ba8
-ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
+ms.openlocfilehash: 116a22bce80257948bfcc02c03a74a4b5568b8b5
+ms.sourcegitcommit: 4649814d1ae32248419da4e8f8242850fd8679a5
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/03/2019
-ms.locfileid: "71925100"
+ms.lasthandoff: 10/05/2019
+ms.locfileid: "71975687"
 ---
 # <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: Introdução ao ASP.NET Core
 
@@ -44,7 +44,7 @@ dotnet new webapp -o aspnetcoreapp
 O comando anterior:
 
 * Cria um novo aplicativo Web.  
-* O `-o aspnetcoreapp` parâmetro cria um diretório chamado *aspnetcoreapp* com os arquivos de origem para o aplicativo.
+* O parâmetro `-o aspnetcoreapp` cria um diretório chamado *aspnetcoreapp* com os arquivos de origem para o aplicativo.
 
 ### <a name="trust-the-development-certificate"></a>Confiar no certificado de desenvolvimento
 
@@ -75,8 +75,6 @@ O comando anterior exibe a mensagem a seguir:
 Esse comando pode solicitar que você insira sua senha para instalar o certificado no conjunto de chaves do sistema. Insira sua senha se você concordar em confiar no certificado de desenvolvimento.
 
 # <a name="linuxtablinux"></a>[Linux](#tab/linux)
-
-Para o Subsistema do Windows para Linux, confira [certificado de confiança HTTPS do Subsistema do Windows para Linux](xref:security/enforcing-ssl#wsl).
 
 Consulte a documentação para sua distribuição do Linux sobre como confiar no certificado de desenvolvimento HTTPS.
 
