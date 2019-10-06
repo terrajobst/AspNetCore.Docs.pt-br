@@ -5,14 +5,14 @@ description: Saiba mais sobre o Host Genérico do .NET Core, que é responsável
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2019
+ms.date: 10/05/2019
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: 75af6dc58d31aaad888b14640268bf05c193272d
-ms.sourcegitcommit: e54672f5c493258dc449fac5b98faf47eb123b28
+ms.openlocfilehash: bd6e01697900b93d5b98122c726e1f8c8b89c0fc
+ms.sourcegitcommit: 4115bf0e850c13d4e655beb5ab5e8ff431173cb6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71248289"
+ms.lasthandoff: 10/06/2019
+ms.locfileid: "71981925"
 ---
 # <a name="net-generic-host"></a>Host Genérico .NET
 
@@ -113,13 +113,13 @@ Serviços que são registradosautomaticamente incluem o seguinte:
 * [IHostLifetime](#ihostlifetime)
 * [IHostEnvironment/IWebHostEnvironment](#ihostenvironment)
 
-Para obter mais informações sobre serviços fornecidos pela estrutura, <xref:fundamentals/dependency-injection#framework-provided-services>consulte.
+Para obter mais informações sobre os serviços fornecidos pela estrutura, consulte <xref:fundamentals/dependency-injection#framework-provided-services>.
 
 ## <a name="ihostapplicationlifetime"></a>IHostApplicationLifetime
 
 Injete o serviço <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (anteriormente conhecido como `IApplicationLifetime`) em qualquer classe para lidar com tarefas de pós-inicialização e de desligamento normal. Três propriedades na interface são tokens de cancelamento usados para registrar métodos de manipulador de eventos de inicialização e desligamento do aplicativo. A interface também inclui um método `StopApplication`.
 
-O exemplo a seguir é uma implementação `IHostedService` que registra os eventos `IApplicationLifetime`:
+O exemplo a seguir é uma implementação `IHostedService` que registra os eventos `IHostApplicationLifetime`:
 
 [!code-csharp[](generic-host/samples-snapshot/3.x/LifetimeEventsHostedService.cs?name=snippet_LifetimeEvents)]
 
@@ -376,11 +376,11 @@ webBuilder.UseStartup<Startup>();
 
 ### <a name="urls"></a>URLs
 
-Uma lista delimitada por ponto-e-vírgula de endereços IP ou endereços de host com portas e protocolos que o servidor deve escutar para solicitações. Por exemplo, `http://localhost:123`. Use "\*" para indicar que o servidor deve escutar solicitações em qualquer endereço IP ou nome do host usando a porta e o protocolo especificados (por exemplo, `http://*:5000`). O protocolo (`http://` ou `https://`) deve ser incluído com cada URL. Os formatos compatíveis variam dependendo dos servidores.
+Uma lista delimitada por ponto-e-vírgula de endereços IP ou endereços de host com portas e protocolos que o servidor deve escutar para solicitações. Por exemplo: `http://localhost:123`. Use "\*" para indicar que o servidor deve escutar solicitações em qualquer endereço IP ou nome do host usando a porta e o protocolo especificados (por exemplo, `http://*:5000`). O protocolo (`http://` ou `https://`) deve ser incluído com cada URL. Os formatos compatíveis variam dependendo dos servidores.
 
 **Chave**: urls  
 **Tipo**: *string*  
-**Padrão**: `http://localhost:5000` e`https://localhost:5001`  
+**Padrão**: `http://localhost:5000` e `https://localhost:5001`  
 **Variável de ambiente**: `<PREFIX_>URLS`
 
 Para definir esse valor, use a variável de ambiente ou a chamada `UseUrls`:

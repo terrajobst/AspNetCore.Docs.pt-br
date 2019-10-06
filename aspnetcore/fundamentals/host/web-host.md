@@ -1,21 +1,19 @@
 ---
 title: Host da Web do ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Saiba mais sobre o host da Web no ASP.NET Core, que é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo.
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/14/2019
 uid: fundamentals/host/web-host
-ms.openlocfilehash: d387098662cc832cc0e49b6a1636f0ebcc7308de
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: 977c1df67c2775870d630f3a1085d5e19cef58f5
+ms.sourcegitcommit: 4115bf0e850c13d4e655beb5ab5e8ff431173cb6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71081683"
+ms.lasthandoff: 10/06/2019
+ms.locfileid: "71981905"
 ---
 # <a name="aspnet-core-web-host"></a>Host da Web do ASP.NET Core
-
-Por [Luke Latham](https://github.com/guardrex)
 
 Aplicativos ASP.NET Core configuram e inicializam um *host*. O host é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo. No mínimo, o host configura um servidor e um pipeline de processamento de solicitações. O host também pode configurar registro em log, a injeção de dependência e a configuração.
 
