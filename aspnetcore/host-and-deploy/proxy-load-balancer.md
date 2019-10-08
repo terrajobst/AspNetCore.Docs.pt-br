@@ -5,14 +5,14 @@ description: Saiba mais sobre a configuração para aplicativos hospedados por t
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/12/2019
+ms.date: 10/07/2019
 uid: host-and-deploy/proxy-load-balancer
-ms.openlocfilehash: 3243f5d3254e6585ff9ca48900a3326aa9b6f502
-ms.sourcegitcommit: 8a36be1bfee02eba3b07b7a86085ec25c38bae6b
+ms.openlocfilehash: 5eb69c2a253d1b8c42edd39b64b595898e6fb948
+ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71219182"
+ms.lasthandoff: 10/07/2019
+ms.locfileid: "72007281"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>Configure o ASP.NET Core para trabalhar com servidores proxy e balanceadores de carga
 
@@ -252,7 +252,61 @@ if (string.Equals(
 }
 ```
 
-## <a name="troubleshoot"></a>Solução de problemas
+::: moniker range=">= aspnetcore-3.0"
+
+## <a name="certificate-forwarding"></a>Encaminhamento de certificado 
+
+### <a name="azure"></a>Azure
+
+Para configurar o serviço de Azure App para encaminhamento de certificado, consulte [Configurar a autenticação mútua TLS para o serviço Azure app](/azure/app-service/app-service-web-configure-tls-mutual-auth). As diretrizes a seguir pertencem à configuração do aplicativo ASP.NET Core.
+
+No `Startup.Configure`, adicione o seguinte código antes da chamada para `app.UseAuthentication();`:
+
+```csharp
+app.UseCertificateForwarding();
+```
+
+
+Configure o middleware de encaminhamento de certificado para especificar o nome do cabeçalho que o Azure usa. No `Startup.ConfigureServices`, adicione o seguinte código para configurar o cabeçalho do qual o middleware cria um certificado:
+
+```csharp
+services.AddCertificateForwarding(options =>
+    options.CertificateHeader = "X-ARR-ClientCert");
+```
+
+### <a name="other-web-proxies"></a>Outros proxies da Web
+
+Se for usado um proxy que não seja o Application Request Routing do IIS ou Azure App do serviço (ARR), configure o proxy para encaminhar o certificado que ele recebeu em um cabeçalho HTTP. No `Startup.Configure`, adicione o seguinte código antes da chamada para `app.UseAuthentication();`:
+
+```csharp
+app.UseCertificateForwarding();
+```
+
+Configure o middleware de encaminhamento de certificado para especificar o nome do cabeçalho. No `Startup.ConfigureServices`, adicione o seguinte código para configurar o cabeçalho do qual o middleware cria um certificado:
+
+```csharp
+services.AddCertificateForwarding(options =>
+    options.CertificateHeader = "YOUR_CERTIFICATE_HEADER_NAME");
+```
+
+Se o proxy não estiver codificando o certificado em Base64 (como é o caso com Nginx), defina a opção `HeaderConverter`. Considere o exemplo a seguir em `Startup.ConfigureServices`:
+
+```csharp
+services.AddCertificateForwarding(options =>
+{
+    options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME";
+    options.HeaderConverter = (headerValue) => 
+    {
+        var clientCertificate = 
+           /* some conversion logic to create an X509Certificate2 */
+        return clientCertificate;
+    }
+});
+```
+
+::: moniker-end
+
+## <a name="troubleshoot"></a>Solucionar problemas
 
 Quando os cabeçalhos não são encaminhados conforme o esperado, habilite [registro em log](xref:fundamentals/logging/index). Se os logs não fornecerem informações suficientes para solucionar o problema, enumere os cabeçalhos de solicitação recebidos pelo servidor. Use middleware embutido para gravar cabeçalhos de solicitação para uma resposta do aplicativo ou para log dos cabeçalhos. 
 
@@ -336,53 +390,6 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 > [!IMPORTANT]
 > Permitir que somente proxies e redes confiáveis encaminhem os cabeçalhos. Caso contrário, podem ocorrer ataques de [falsificação de IP](https://www.iplocation.net/ip-spoofing).
-
-## <a name="certificate-forwarding"></a>Encaminhamento de certificado 
-
-### <a name="on-azure"></a>No Azure
-
-Veja a [documentação do Azure](/azure/app-service/app-service-web-configure-tls-mutual-auth) para configurar os Aplicativos Web do Azure. No método `Startup.Configure` do seu aplicativo, adicione o seguinte código antes de chamar `app.UseAuthentication();`:
-
-```csharp
-app.UseCertificateForwarding();
-```
-
-Você também precisará configurar o middleware de Encaminhamento de Certificado para especificar o nome de cabeçalho que o Azure usa. No método `Startup.ConfigureServices` do seu aplicativo, adicione o código a seguir para configurar o cabeçalho do qual o middleware cria um certificado:
-
-```csharp
-services.AddCertificateForwarding(options =>
-    options.CertificateHeader = "X-ARR-ClientCert");
-```
-
-### <a name="with-other-web-proxies"></a>Com outros proxies da Web
-
-Se você estiver usando um proxy que não seja IIS ou Application Request Routing de Aplicativos Web do Azure, configure seu proxy para encaminhar o certificado que ele recebeu em um cabeçalho HTTP. No método `Startup.Configure` do seu aplicativo, adicione o seguinte código antes de chamar `app.UseAuthentication();`:
-
-```csharp
-app.UseCertificateForwarding();
-```
-
-Você também precisará configurar o middleware de Encaminhamento de Certificado para especificar o nome de cabeçalho. No método `Startup.ConfigureServices` do seu aplicativo, adicione o código a seguir para configurar o cabeçalho do qual o middleware cria um certificado:
-
-```csharp
-services.AddCertificateForwarding(options =>
-    options.CertificateHeader = "YOUR_CERTIFICATE_HEADER_NAME");
-```
-
-Por fim, se o proxy estiver fazendo algo que não for a base64 codificando o certificado (como acontece com o Nginx), defina a opção `HeaderConverter`. Considere o exemplo a seguir em `Startup.ConfigureServices`:
-
-```csharp
-services.AddCertificateForwarding(options =>
-{
-    options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME";
-    options.HeaderConverter = (headerValue) => 
-    {
-        var clientCertificate = 
-           /* some conversion logic to create an X509Certificate2 */
-        return clientCertificate;
-    }
-});
-```
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

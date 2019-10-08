@@ -5,14 +5,14 @@ description: Saiba como hospedar um aplicativo ASP.NET Core em um serviço Windo
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/09/2019
+ms.date: 10/07/2019
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 544037a2a1f836e51b4f10551316312ef55c68da
-ms.sourcegitcommit: fe88748b762525cb490f7e39089a4760f6a73a24
+ms.openlocfilehash: 32226c06ba005b4a61c473d6584b2b762733dcbd
+ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/30/2019
-ms.locfileid: "71688080"
+ms.lasthandoff: 10/07/2019
+ms.locfileid: "72007304"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedar o ASP.NET Core em um serviço Windows
 
@@ -49,7 +49,7 @@ O modelo de Serviço de Trabalho do ASP.NET Core fornece um ponto inicial para e
 `IHostBuilder.UseWindowsService`, fornecido pelo pacote [Microsoft.Extensions.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices), é chamado na compilação do host. Se o aplicativo estiver sendo executado como um Serviço Windows, o método:
 
 * Define o tempo de vida do host como `WindowsServiceLifetime`.
-* Define a raiz do conteúdo.
+* Define a [raiz do conteúdo](xref:fundamentals/index#content-root).
 * Habilita o registro de log no log de eventos com o nome do aplicativo como o nome da fonte padrão.
   * O nível do log pode ser configurado com a chave `Logging:LogLevel:Default` no arquivo *appsettings.Production.json*.
   * Somente administradores podem criar novas fontes de evento. Quando uma fonte de evento não puder ser criada usando o nome do aplicativo, um aviso será registrado em log como a fonte do *Aplicativo* e os logs de eventos serão desabilitados.
@@ -300,12 +300,12 @@ Serviços que interagem com solicitações da Internet ou de uma rede corporativ
 
 ## <a name="configure-endpoints"></a>Configurar pontos de extremidade
 
-Por padrão, o ASP.NET Core é associado a `http://localhost:5000`. Configure a URL e a porta definindo a `ASPNETCORE_URLS` variável de ambiente.
+Por padrão, o ASP.NET Core é associado a `http://localhost:5000`. Configure a URL e a porta definindo a variável de ambiente `ASPNETCORE_URLS`.
 
 Para obter mais abordagens de configuração de URL e porta, incluindo suporte para pontos de extremidade HTTPS, consulte os seguintes tópicos:
 
-* <xref:fundamentals/servers/kestrel#endpoint-configuration>Kestrel
-* <xref:fundamentals/servers/httpsys#configure-windows-server>(HTTP. sys)
+* <xref:fundamentals/servers/kestrel#endpoint-configuration> (Kestrel)
+* <xref:fundamentals/servers/httpsys#configure-windows-server> (HTTP. sys)
 
 > [!NOTE]
 > Não há suporte para uso do certificado de desenvolvimento HTTPS do ASP.NET Core para proteger um ponto de extremidade de serviço.
@@ -326,7 +326,7 @@ Use [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEn
 
 ### <a name="set-the-content-root-path-to-the-apps-folder"></a>Defina o caminho da raiz do conteúdo para a pasta do aplicativo
 
-O <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> é o mesmo caminho fornecido para o argumento `binPath` quando um serviço é criado. Em vez de chamar `GetCurrentDirectory` para criar caminhos para arquivos de configuração, chame <xref:System.IO.Directory.SetCurrentDirectory*> com o caminho para a raiz do conteúdo do aplicativo.
+O <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> é o mesmo caminho fornecido para o argumento `binPath` quando um serviço é criado. Em vez de chamar `GetCurrentDirectory` para criar caminhos para arquivos de configurações, chame <xref:System.IO.Directory.SetCurrentDirectory*> com o caminho para a [raiz do conteúdo](xref:fundamentals/index#content-root)do aplicativo.
 
 No `Program.Main`, determine o caminho para a pasta do executável do serviço e use o caminho para estabelecer a raiz do conteúdo do aplicativo:
 

@@ -4,14 +4,14 @@ author: guardrex
 description: Saiba como usar tokens de alteração para controlar alterações.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 08/27/2019
+ms.date: 10/07/2019
 uid: fundamentals/change-tokens
-ms.openlocfilehash: 86cde7b60f5c398fc6bb215b593643c05565cf3c
-ms.sourcegitcommit: 116bfaeab72122fa7d586cdb2e5b8f456a2dc92a
+ms.openlocfilehash: bb30d7a4c7dc82200821c60a49c314b246562111
+ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/05/2019
-ms.locfileid: "70384709"
+ms.lasthandoff: 10/07/2019
+ms.locfileid: "72007215"
 ---
 # <a name="detect-changes-with-change-tokens-in-aspnet-core"></a>Detectar alterações com tokens de alteração no ASP.NET Core
 
@@ -172,7 +172,7 @@ Se o conteúdo armazenado em cache não é encontrado com a chave de cache, as s
 1. Um token de alteração é obtido do provedor de arquivo com [IFileProviders.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*). O retorno de chamada do token é disparado quando o arquivo é modificado.
 1. O conteúdo do arquivo é armazenado em cache com um período de [expiração deslizante](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration). O token de alteração é anexado com [MemoryCacheEntryExtensions.AddExpirationToken](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.AddExpirationToken*) para remover a entrada do cache se o arquivo é alterado enquanto ele é armazenado em cache.
 
-No exemplo a seguir, os arquivos são armazenados na raiz do conteúdo do aplicativo. `IWebHostEnvironment.ContentRootFileProvider`é usado para obter um <xref:Microsoft.Extensions.FileProviders.IFileProvider> apontador para o `IWebHostEnvironment.ContentRootPath`aplicativo. O `filePath` é obtido com [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
+No exemplo a seguir, os arquivos são armazenados na raiz do [conteúdo](xref:fundamentals/index#content-root)do aplicativo. `IWebHostEnvironment.ContentRootFileProvider` é usado para obter um apontador de <xref:Microsoft.Extensions.FileProviders.IFileProvider> no @no__t do aplicativo-2. O `filePath` é obtido com [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Services/FileService.cs?name=snippet1)]
 
@@ -370,7 +370,7 @@ Se o conteúdo armazenado em cache não é encontrado com a chave de cache, as s
 1. Um token de alteração é obtido do provedor de arquivo com [IFileProviders.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*). O retorno de chamada do token é disparado quando o arquivo é modificado.
 1. O conteúdo do arquivo é armazenado em cache com um período de [expiração deslizante](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration). O token de alteração é anexado com [MemoryCacheEntryExtensions.AddExpirationToken](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.AddExpirationToken*) para remover a entrada do cache se o arquivo é alterado enquanto ele é armazenado em cache.
 
-No exemplo a seguir, os arquivos são armazenados na raiz do conteúdo do aplicativo. [IHostingEnvironment.ContentRootFileProvider](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootFileProvider) é usado para obter <xref:Microsoft.Extensions.FileProviders.IFileProvider> apontando para <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath> do aplicativo. O `filePath` é obtido com [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
+No exemplo a seguir, os arquivos são armazenados na raiz do [conteúdo](xref:fundamentals/index#content-root)do aplicativo. [IHostingEnvironment.ContentRootFileProvider](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootFileProvider) é usado para obter <xref:Microsoft.Extensions.FileProviders.IFileProvider> apontando para <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath> do aplicativo. O `filePath` é obtido com [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Services/FileService.cs?name=snippet1)]
 

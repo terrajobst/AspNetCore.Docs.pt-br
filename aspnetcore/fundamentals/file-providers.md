@@ -5,14 +5,14 @@ description: Saiba como o ASP.NET Core abstrai o acesso ao sistema de arquivos p
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/26/2019
+ms.date: 10/07/2019
 uid: fundamentals/file-providers
-ms.openlocfilehash: 44c439dce893d486668bf8ac3f20cdf7952c5186
-ms.sourcegitcommit: 0774a61a3a6c1412a7da0e7d932dc60c506441fc
-ms.translationtype: HT
+ms.openlocfilehash: 3a92b44efc70d156596ee9fe80b4f6a65266e73d
+ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70059092"
+ms.lasthandoff: 10/07/2019
+ms.locfileid: "72007174"
 ---
 # <a name="file-providers-in-aspnet-core"></a>Provedores de arquivos no ASP.NET Core
 
@@ -22,7 +22,7 @@ Por [Steve Smith](https://ardalis.com/) e [Luke Latham](https://github.com/guard
 
 O ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de provedores de arquivos. Os provedores de arquivos são usados ​​em toda a estrutura do ASP.NET Core:
 
-* `IWebHostEnvironment` expõe o conteúdo raiz do aplicativo e a raiz da Web como tipos `IFileProvider`.
+* `IWebHostEnvironment` expõe a raiz do [conteúdo](xref:fundamentals/index#content-root) do aplicativo e a [raiz da web](xref:fundamentals/index#web-root) como tipos `IFileProvider`.
 * O [middleware de arquivos estáticos](xref:fundamentals/static-files) usa provedores de arquivos para localizar arquivos estáticos.
 * [Razor](xref:mvc/views/razor) usa provedores de arquivos para localizar páginas e modos de exibição.
 * As ferramentas do .NET Core usam provedores de arquivos e padrões glob para especificar quais arquivos devem ser publicados.
@@ -53,7 +53,7 @@ O aplicativo de amostra demonstra como configurar um provedor de arquivos em `St
 
 Três implementações de `IFileProvider` estão disponíveis.
 
-| Implementação | DESCRIÇÃO |
+| Implementação | Descrição |
 | -------------- | ----------- |
 | [PhysicalFileProvider](#physicalfileprovider) | O provedor físico é usado para acessar os arquivos físicos do sistema. |
 | [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | O provedor inserido de manifesto é usado para acessar arquivos incorporados em assemblies. |
@@ -114,7 +114,7 @@ Sobrecargas adicionais permitem:
 * Delimitar os arquivos segundo a data da última modificação.
 * Nomear o recurso inserido que contém o manifesto do arquivo inserido.
 
-| Sobrecarga | DESCRIÇÃO |
+| Sobrecarga | Descrição |
 | -------- | ----------- |
 | `ManifestEmbeddedFileProvider(Assembly, String)` | Aceita um parâmetro de caminho relativo `root` opcional. Especifique o `root` para definir o escopo das chamadas de <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> para esses recursos no caminho fornecido. |
 | `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Aceita um parâmetro de caminho relativo `root` opcional e um parâmetro de data `lastModified` (<xref:System.DateTimeOffset>). A data `lastModified` tem como escopo a data da última modificação das instâncias de <xref:Microsoft.Extensions.FileProviders.IFileInfo> retornadas por <xref:Microsoft.Extensions.FileProviders.IFileProvider>. |
@@ -171,7 +171,7 @@ Corresponde a todos os arquivos com a extensão *.txt* encontrados em qualquer l
 
 O ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de provedores de arquivos. Os provedores de arquivos são usados ​​em toda a estrutura do ASP.NET Core:
 
-* <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> expõe o conteúdo raiz do aplicativo e a raiz da Web como tipos `IFileProvider`.
+* <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> expõe a raiz do [conteúdo](xref:fundamentals/index#content-root) do aplicativo e a [raiz da web](xref:fundamentals/index#web-root) como tipos `IFileProvider`.
 * O [middleware de arquivos estáticos](xref:fundamentals/static-files) usa provedores de arquivos para localizar arquivos estáticos.
 * [Razor](xref:mvc/views/razor) usa provedores de arquivos para localizar páginas e modos de exibição.
 * As ferramentas do .NET Core usam provedores de arquivos e padrões glob para especificar quais arquivos devem ser publicados.
@@ -202,7 +202,7 @@ O aplicativo de amostra demonstra como configurar um provedor de arquivos em `St
 
 Três implementações de `IFileProvider` estão disponíveis.
 
-| Implementação | DESCRIÇÃO |
+| Implementação | Descrição |
 | -------------- | ----------- |
 | [PhysicalFileProvider](#physicalfileprovider) | O provedor físico é usado para acessar os arquivos físicos do sistema. |
 | [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | O provedor inserido de manifesto é usado para acessar arquivos incorporados em assemblies. |
@@ -261,7 +261,7 @@ Sobrecargas adicionais permitem:
 * Delimitar os arquivos segundo a data da última modificação.
 * Nomear o recurso inserido que contém o manifesto do arquivo inserido.
 
-| Sobrecarga | DESCRIÇÃO |
+| Sobrecarga | Descrição |
 | -------- | ----------- |
 | `ManifestEmbeddedFileProvider(Assembly, String)` | Aceita um parâmetro de caminho relativo `root` opcional. Especifique o `root` para definir o escopo das chamadas de <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> para esses recursos no caminho fornecido. |
 | `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Aceita um parâmetro de caminho relativo `root` opcional e um parâmetro de data `lastModified` (<xref:System.DateTimeOffset>). A data `lastModified` tem como escopo a data da última modificação das instâncias de <xref:Microsoft.Extensions.FileProviders.IFileInfo> retornadas por <xref:Microsoft.Extensions.FileProviders.IFileProvider>. |

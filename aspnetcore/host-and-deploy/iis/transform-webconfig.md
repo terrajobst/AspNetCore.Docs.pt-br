@@ -5,14 +5,14 @@ description: Saiba como transformar o arquivo web.config ao publicar um aplicati
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2019
+ms.date: 10/07/2019
 uid: host-and-deploy/iis/transform-webconfig
-ms.openlocfilehash: 32e66007d527f7f7b7cfd88d3bebc9b808251941
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: d28c362a200ad433e316bc1af710231a169a30a4
+ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71081456"
+ms.lasthandoff: 10/07/2019
+ms.locfileid: "72007310"
 ---
 # <a name="transform-webconfig"></a>Transformação do web.config
 
@@ -28,7 +28,7 @@ As transformações no arquivo *web.config* podem ser aplicadas automaticamente 
 Essas transformações ocorrem para qualquer um dos seguintes cenários de geração *web.config*:
 
 * Gerado automaticamente pelo SDK `Microsoft.NET.Sdk.Web`.
-* Fornecido pelo desenvolvedor na raiz do conteúdo do aplicativo.
+* Fornecido pelo desenvolvedor na raiz de [conteúdo](xref:fundamentals/index#content-root) do aplicativo.
 
 ## <a name="build-configuration"></a>Configurações de compilação
 

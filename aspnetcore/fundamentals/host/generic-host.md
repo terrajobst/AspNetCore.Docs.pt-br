@@ -5,14 +5,14 @@ description: Saiba mais sobre o Host Genérico do .NET Core, que é responsável
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/05/2019
+ms.date: 10/07/2019
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: bd6e01697900b93d5b98122c726e1f8c8b89c0fc
-ms.sourcegitcommit: 4115bf0e850c13d4e655beb5ab5e8ff431173cb6
+ms.openlocfilehash: 1582955cd18e6739111af05c9a892cd5cb4e270d
+ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/06/2019
-ms.locfileid: "71981925"
+ms.lasthandoff: 10/07/2019
+ms.locfileid: "72007234"
 ---
 # <a name="net-generic-host"></a>Host Genérico .NET
 
@@ -78,7 +78,7 @@ Se o aplicativo usar o Entity Framework Core, não altere o nome ou a assinatura
 
 O método <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>:
 
-* Define a raiz do conteúdo como o caminho retornado por <xref:System.IO.Directory.GetCurrentDirectory*>.
+* Define a [raiz do conteúdo](xref:fundamentals/index#content-root) para o caminho retornado por <xref:System.IO.Directory.GetCurrentDirectory*>.
 * Carrega a configuração do host de:
   * Variáveis de ambiente prefixadas com "DOTNET_".
   * Argumentos de linha de comando.
@@ -199,6 +199,11 @@ Host.CreateDefaultBuilder(args)
     .UseContentRoot("c:\\content-root")
     //...
 ```
+
+Para obter mais informações, consulte:
+
+* [Fundamentals: Raiz do conteúdo @ no__t-0
+* [WebRoot](#webroot)
 
 ### <a name="environmentname"></a>EnvironmentName
 
@@ -397,7 +402,7 @@ O caminho relativo para os ativos estáticos do aplicativo.
 
 **Chave**: webroot  
 **Tipo**: *string*  
-**Padrão**: *(Raiz de conteúdo)/wwwroot* se o caminho existir. Se o caminho não existir, um provedor de arquivo não operacional será usado.  
+**Padrão**: O padrão é `wwwroot`. O caminho para *{Content root}/wwwroot* deve existir. Se o caminho não existir, um provedor de arquivo não operacional será usado.  
 **Variável de ambiente**: `<PREFIX_>WEBROOT`
 
 Para definir esse valor, use a variável de ambiente ou a chamada `UseWebRoot`:
@@ -405,6 +410,11 @@ Para definir esse valor, use a variável de ambiente ou a chamada `UseWebRoot`:
 ```csharp
 webBuilder.UseWebRoot("public");
 ```
+
+Para obter mais informações, consulte:
+
+* [Fundamentals: Raiz da Web @ no__t-0
+* [ContentRootPath](#contentrootpath)
 
 ## <a name="manage-the-host-lifetime"></a>Gerenciar o tempo de vida do host
 
@@ -574,6 +584,8 @@ Essa configuração determina onde o host começa a procurar por arquivos de con
 Se o caminho não existir, o host não será iniciado.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseContentRoot)]
+
+Para obter mais informações, consulte [Fundamentals: Raiz do conteúdo @ no__t-0.
 
 ### <a name="environment"></a>Ambiente
 

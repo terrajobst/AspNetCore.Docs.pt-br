@@ -5,14 +5,14 @@ description: Saiba como hospedar aplicativos ASP.NET Core no Windows Server IIS 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/31/2019
+ms.date: 10/07/2019
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 4cc25cba95b476f1d14aad87564f9777a0530f86
-ms.sourcegitcommit: 4649814d1ae32248419da4e8f8242850fd8679a5
+ms.openlocfilehash: 8131e9b8e6a3bb3643f41a9be57c5bd2e511476c
+ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/05/2019
-ms.locfileid: "71975663"
+ms.lasthandoff: 10/07/2019
+ms.locfileid: "72007363"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -239,7 +239,7 @@ Ao impedir que o SDK Web transforme o arquivo, o *processPath* e os *argumentos*
 
 ### <a name="webconfig-file-location"></a>Local do arquivo web.config
 
-Para configurar o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module) corretamente, o arquivo *web.config* deve estar presente no caminho raiz do conteúdo (geralmente, o aplicativo base do caminho) do aplicativo implantado. Esse é o mesmo local que o caminho físico do site fornecido ao IIS. O arquivo *web.config* é necessário na raiz do aplicativo para habilitar a publicação de vários aplicativos usando a Implantação da Web.
+Para configurar o [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) corretamente, o arquivo *Web. config* deve estar presente no caminho [raiz do conteúdo](xref:fundamentals/index#content-root) (normalmente o caminho base do aplicativo) do aplicativo implantado. Esse é o mesmo local que o caminho físico do site fornecido ao IIS. O arquivo *web.config* é necessário na raiz do aplicativo para habilitar a publicação de vários aplicativos usando a Implantação da Web.
 
 Existem arquivos confidenciais no caminho físico do aplicativo, como *\<assembly>.runtimeconfig.json*, *\<assembly>.xml* (comentários da Documentação XML) e *\<assembly>.deps.json*. Quando o arquivo *web.config* estiver presente e o site for iniciado normalmente, o IIS não atenderá a esses arquivos confidenciais se eles forem solicitados. Se o arquivo *web.config* estiver ausente, nomeado incorretamente ou se não for possível configurar o site para inicialização normal, o IIS poderá servir arquivos confidenciais publicamente.
 

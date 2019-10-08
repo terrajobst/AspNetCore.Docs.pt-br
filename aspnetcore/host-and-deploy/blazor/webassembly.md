@@ -5,14 +5,14 @@ description: Veja como hospedar e implantar um aplicativo do Blazor usando o ASP
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 10/07/2019
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: cdb424137d80b280873347c1352fc43d23b4aec3
-ms.sourcegitcommit: 79eeb17604b536e8f34641d1e6b697fb9a2ee21f
+ms.openlocfilehash: a0a11f3aed9035000e79844fbec7cdd17b73fdaa
+ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71211617"
+ms.lasthandoff: 10/07/2019
+ms.locfileid: "72007342"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Hospedar e implantar ASP.NET Core Webassembly de mais incrivelmente
 
@@ -111,7 +111,7 @@ Se um aplicativo autônomo for hospedado como um subaplicativo do IIS, execute u
 
 * Desabilite o manipulador do módulo ASP.NET Core herdado.
 
-  Remova o manipulador do arquivo *Web. config* publicado de um aplicativo mais incrivelmente adicionando uma `<handlers>` seção ao arquivo:
+  Remova o manipulador no arquivo *Web. config* publicado de um aplicativo mais alto, adicionando uma seção `<handlers>` ao arquivo:
 
   ```xml
   <handlers>
@@ -119,7 +119,7 @@ Se um aplicativo autônomo for hospedado como um subaplicativo do IIS, execute u
   </handlers>
   ```
 
-* Desabilite a herança da seção `<system.webServer>` do aplicativo raiz (pai) usando um `<location>` elemento `inheritInChildApplications` com definido `false`como:
+* Desabilite a herança da seção `<system.webServer>` do aplicativo raiz (pai) usando um elemento `<location>` com `inheritInChildApplications` definido como `false`:
 
   ```xml
   <?xml version="1.0" encoding="utf-8"?>
@@ -198,7 +198,7 @@ Os [aplicativos Webassembly mais incrivelmente](xref:blazor/hosting-models#blazo
 
 ### <a name="content-root"></a>Raiz do conteúdo
 
-O argumento `--contentroot` define o caminho absoluto para o diretório que contém os arquivos de conteúdo do aplicativo. Nos exemplos a seguir, `/content-root-path` é o caminho raiz do conteúdo do aplicativo.
+O argumento `--contentroot` define o caminho absoluto para o diretório que contém os arquivos de conteúdo do aplicativo ([raiz de conteúdo](xref:fundamentals/index#content-root)). Nos exemplos a seguir, `/content-root-path` é o caminho raiz do conteúdo do aplicativo.
 
 * Passe o argumento ao executar o aplicativo localmente em um prompt de comando. No diretório do aplicativo, execute:
 
@@ -220,7 +220,7 @@ O argumento `--contentroot` define o caminho absoluto para o diretório que cont
 
 ### <a name="path-base"></a>Caminho base
 
-O `--pathbase` argumento define o caminho base do aplicativo para um aplicativo executado localmente com um caminho de URL relativo não raiz ( `<base>` a `href` marca é definida para um caminho diferente `/` de para preparo e produção). Nos exemplos a seguir, `/relative-URL-path` é o caminho base do aplicativo. Para obter mais informações, consulte [caminho base do aplicativo](xref:host-and-deploy/blazor/index#app-base-path).
+O argumento `--pathbase` define o caminho base do aplicativo para um aplicativo executado localmente com um caminho de URL relativo não raiz (a marca `<base>` `href` é definida como um caminho diferente de `/` para preparo e produção). Nos exemplos a seguir, `/relative-URL-path` é o caminho base do aplicativo. Para obter mais informações, consulte [caminho base do aplicativo](xref:host-and-deploy/blazor/index#app-base-path).
 
 > [!IMPORTANT]
 > Ao contrário do caminho fornecido ao `href` da tag `<base>`, não inclua uma barra à direita (`/`) ao passar o valor do argumento `--pathbase`. Se o caminho base do aplicativo for fornecido na tag `<base>` como `<base href="/CoolApp/">` (inclui uma barra à direita), passe o valor do argumento de linha de comando como `--pathbase=/CoolApp` (nenhuma barra à direita).

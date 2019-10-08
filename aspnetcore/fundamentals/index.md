@@ -5,14 +5,14 @@ description: Aprenda os conceitos fundamentais para a criação de aplicativos d
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/06/2019
+ms.date: 10/07/2019
 uid: fundamentals/index
-ms.openlocfilehash: cff2afd62ed60648dc689d408dde56ecda18c261
-ms.sourcegitcommit: 2d4c1732c4866ed26b83da35f7bc2ad021a9c701
+ms.openlocfilehash: a70d6aa05a2c92d19076b8d6e4ea24d7554368b6
+ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/09/2019
-ms.locfileid: "70815645"
+ms.lasthandoff: 10/07/2019
+ms.locfileid: "72007122"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
 
@@ -252,36 +252,57 @@ Para obter mais informações, consulte <xref:fundamentals/http-requests>.
 
 ## <a name="content-root"></a>Raiz do conteúdo
 
-A raiz do conteúdo é o caminho base para qualquer conteúdo privado usado pelo aplicativo, como seus arquivos do Razor. Por padrão, a raiz do conteúdo é o caminho base do executável que hospeda o aplicativo. Um local alternativo pode ser especificado ao [criar o host](#host).
+A raiz do conteúdo é o caminho base para:
+
+* Executável que hospeda o aplicativo ( *. exe*).
+* Assemblies compilados que compõem o aplicativo ( *. dll*).
+* Arquivos de conteúdo que não são de código usados pelo aplicativo, como:
+  * Arquivos Razor ( *. cshtml*, *. Razor*)
+  * Arquivos de configuração ( *. JSON*, *. xml*)
+  * Arquivos de dados ( *. db*)
+* [Raiz da Web](#web-root), normalmente a pasta *wwwroot* publicada.
+
+Durante o desenvolvimento:
+
+* A raiz do conteúdo assume como padrão o diretório raiz do projeto.
+* O diretório raiz do projeto é usado para criar:
+  * Caminho para os arquivos de conteúdo sem código do aplicativo no diretório raiz do projeto.
+  * [Raiz da Web](#web-root), normalmente a pasta *wwwroot* no diretório raiz do projeto.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Para obter mais informações, veja [Raiz de conteúdo](xref:fundamentals/host/generic-host#content-root).
+Um caminho de raiz de conteúdo alternativo pode ser especificado ao [criar o host](#host). Para obter mais informações, consulte <xref:fundamentals/host/generic-host#contentrootpath>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-Para obter mais informações, veja [Raiz de conteúdo](xref:fundamentals/host/web-host#content-root).
+Um caminho de raiz de conteúdo alternativo pode ser especificado ao [criar o host](#host). Para obter mais informações, consulte <xref:fundamentals/host/web-host#content-root>.
 
 ::: moniker-end
 
 ## <a name="web-root"></a>Raiz da Web
 
-A raiz Web (também conhecida como *webroot*) é o caminho base para recursos públicos e estáticos como CSS, JavaScript e arquivos de imagem. O middleware de arquivos estáticos apenas veiculará arquivos do diretório raiz Web (e seus subdiretórios) por padrão. O caminho da raiz Web assume como padrão *{Content Root}/wwwroot*, mas é possível especificar um local diferente ao [criar o host](#host).
+A raiz da Web é o caminho base para arquivos de recurso estáticos, não de código e públicos, como:
+
+* Folhas de estilo ( *. css*)
+* JavaScript ( *. js*)
+* Imagens ( *. png*, *. jpg*)
+
+Os arquivos estáticos são servidos apenas por padrão no diretório raiz da Web (e subdiretórios).
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Para obter mais informações, consulte [Webroot](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#webroot)
+O caminho raiz da Web tem como padrão *{Content root}/wwwroot*, mas uma raiz da Web diferente pode ser especificada ao [criar o host](#host). Para obter mais informações, consulte <xref:fundamentals/host/generic-host#webroot>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-Para obter mais informações, confira [Diretório base](/aspnet/core/fundamentals/host/web-host#webroot).
+O caminho raiz da Web tem como padrão *{Content root}/wwwroot*, mas uma raiz da Web diferente pode ser especificada ao [criar o host](#host). Para obter mais informações, confira [Diretório base](xref:fundamentals/host/web-host#web-root).
 
 ::: moniker-end
 
-Em arquivos ( *.cshtml*) do Razor, o til-barra `~/` aponta para a raiz Web. Caminhos que começam com `~/` são denominados caminhos virtuais.
+Em arquivos Razor ( *. cshtml*), a barra de til (`~/`) aponta para a raiz da Web. Um caminho que começa com `~/` é conhecido como um *caminho virtual*.
 
 Para obter mais informações, consulte <xref:fundamentals/static-files>.

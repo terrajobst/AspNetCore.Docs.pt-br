@@ -5,14 +5,14 @@ description: Saiba como usar a ferramenta global HTTP REPL do .NET Core para nav
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/29/2019
+ms.date: 10/07/2019
 uid: web-api/http-repl
-ms.openlocfilehash: 086ac141a04ab4a560f2c26fb049ef8a5493dc97
-ms.sourcegitcommit: d34b2627a69bc8940b76a949de830335db9701d3
+ms.openlocfilehash: c845c28210d6defcb70a520f176b64986ae3d4a6
+ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71187248"
+ms.lasthandoff: 10/07/2019
+ms.locfileid: "72007439"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testar APIs Web com o HTTP REPL
 
@@ -384,7 +384,7 @@ pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json"
 get <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
@@ -468,7 +468,7 @@ Para emitir uma solicitação HTTP GET:
 post <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
@@ -538,7 +538,7 @@ Para emitir uma solicitação HTTP POST:
 put <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
@@ -652,7 +652,7 @@ Para emitir uma solicitação HTTP PUT:
 delete <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
@@ -738,7 +738,7 @@ Para emitir uma solicitação HTTP DELETE:
 patch <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
@@ -758,7 +758,7 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 head <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
@@ -776,7 +776,7 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 options <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
@@ -809,6 +809,88 @@ Para configurar um cabeçalho de solicitação HTTP, use uma das seguintes abord
   ```console
   https://localhost:5001/people~ set header Content-Type
   ```
+
+## <a name="test-secured-endpoints"></a>Pontos de extremidade protegidos de teste
+
+O HTTP REPL dá suporte ao teste de pontos de extremidade protegidos por meio do uso de cabeçalhos de solicitação HTTP. Exemplos de autenticação e esquemas de autorização com suporte incluem autenticação básica, tokens de portador JWT e autenticação Digest. Por exemplo, você pode enviar um token de portador para um ponto de extremidade com o seguinte comando:
+
+```console
+set header Authorization "bearer <TOKEN VALUE>"
+```
+
+Para acessar um ponto de extremidade hospedado no Azure ou usar a [API REST do Azure](/rest/api/azure/), você precisa de um token de portador. Use as etapas a seguir para obter um token de portador para sua assinatura do Azure por meio do [CLI do Azure](/cli/azure/). O HTTP REPL define o token de portador em um cabeçalho de solicitação HTTP e recupera uma lista de aplicativos Web do serviço Azure App.
+
+1. Faça logon no Azure:
+
+    ```azcli
+    az login
+    ```
+
+1. Obtenha sua ID de assinatura com o seguinte comando:
+
+    ```azcli
+    az account show --query id
+    ```
+
+1. Copie sua ID de assinatura e execute o seguinte comando:
+
+    ```azcli
+    az account set --subscription "<SUBSCRIPTION ID>"
+    ```
+
+1. Obtenha seu token de portador com o seguinte comando:
+
+    ```azcli
+    az account get-access-token --query accessToken
+    ```
+
+1. Conecte-se à API REST do Azure por meio do HTTP REPL:
+
+    ```console
+    httprepl https://management.azure.com
+    ```
+
+1. Defina o cabeçalho de solicitação HTTP `Authorization`:
+
+    ```console
+    https://management.azure.com/> set header Authorization "bearer <ACCESS TOKEN>"
+    ```
+
+1. Navegue até a assinatura:
+
+    ```console
+    https://management.azure.com/> cd subscriptions/<SUBSCRIPTION ID>
+    ```
+
+1. Obtenha uma lista dos aplicativos Web do serviço de Azure App da sua assinatura:
+
+    ```console
+    https://management.azure.com/subscriptions/{SUBSCRIPTION ID}> get providers/Microsoft.Web/sites?api-version=2016-08-01
+    ```
+
+    A seguinte resposta é exibida:
+
+    ```console
+    HTTP/1.1 200 OK
+    Cache-Control: no-cache
+    Content-Length: 35948
+    Content-Type: application/json; charset=utf-8
+    Date: Thu, 19 Sep 2019 23:04:03 GMT
+    Expires: -1
+    Pragma: no-cache
+    Strict-Transport-Security: max-age=31536000; includeSubDomains
+    X-Content-Type-Options: nosniff
+    x-ms-correlation-request-id: <em>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</em>
+    x-ms-original-request-ids: <em>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</em>
+    x-ms-ratelimit-remaining-subscription-reads: 11999
+    x-ms-request-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    x-ms-routing-request-id: WESTUS:xxxxxxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx
+    {
+      "value": [
+        <AZURE RESOURCES LIST>
+      ]
+    }
+    ```
 
 ## <a name="toggle-http-request-display"></a>Alternar exibição da solicitação HTTP
 
