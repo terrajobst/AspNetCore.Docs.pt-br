@@ -7,12 +7,12 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 10/03/2019
 uid: tutorials/signalr
-ms.openlocfilehash: 843416cf00c9241f8c05b1aba041ebbe7a05cf80
-ms.sourcegitcommit: 73a451e9a58ac7102f90b608d661d8c23dd9bbaf
-ms.translationtype: HT
+ms.openlocfilehash: 312bde7a5fee5d3af7abc38727024605f916c0d4
+ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/08/2019
-ms.locfileid: "72037632"
+ms.lasthandoff: 10/11/2019
+ms.locfileid: "72259647"
 ---
 # <a name="tutorial-get-started-with-aspnet-core-signalr"></a>Tutorial: Introdução ao SignalR para ASP.NET Core
 
@@ -115,7 +115,7 @@ A biblioteca do servidor SignalR está incluída na estrutura compartilhada do A
 * Execute o comando a seguir para obter a biblioteca de clientes SignalR usando LibMan. Talvez seja necessário aguardar alguns segundos antes de ver a saída.
 
   ```console
-  libman install @microsoft/signalr@latest -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
+  libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
   ```
 
   Os parâmetros especificam as seguintes opções:

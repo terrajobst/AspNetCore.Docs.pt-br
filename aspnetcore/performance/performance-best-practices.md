@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 09/26/2019
 uid: performance/performance-best-practices
-ms.openlocfilehash: f056f692c59da1fb42c0487be97dfeef05d0ad05
-ms.sourcegitcommit: d81912782a8b0bd164f30a516ad80f8defb5d020
+ms.openlocfilehash: c239c6d86e460f8fb80dfc47b88c090a796c617d
+ms.sourcegitcommit: c452e6af92e130413106c4863193f377cde4cd9c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72179630"
+ms.lasthandoff: 10/10/2019
+ms.locfileid: "72246484"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Práticas recomendadas de desempenho de ASP.NET Core
 
@@ -175,7 +175,6 @@ O código anterior lê de forma assíncrona todo o corpo da solicitação HTTP n
 > Se a solicitação for grande, a leitura do corpo de solicitação HTTP inteiro na memória poderá levar a uma condição de OOM (memória insuficiente). OOM pode resultar em uma negação de serviço.  Para obter mais informações, consulte [evitar a leitura de corpos de solicitação grandes ou corpos de resposta na memória](#arlb) deste documento.
 
 ## <a name="prefer-readasformasync-over-requestform"></a>Preferir ReadAsFormAsync sobre solicitação. Form
-<!-- TODO Review required. I change all the API's here from original -->
 
 Use `HttpContext.Request.ReadFormAsync` em vez de `HttpContext.Request.Form`.
 `HttpContext.Request.Form` pode ser lido com segurança apenas com as seguintes condições:
@@ -255,9 +254,6 @@ O código anterior freqüentemente captura um @no__t nulo ou incorreto no constr
 
 ## <a name="do-not-use-the-httpcontext-after-the-request-is-complete"></a>Não use o HttpContext após a conclusão da solicitação
 
-<!-- TODO Review, original uses `in flight`, which won't MT (Machine translate) 
-`HttpContext` is only valid as long as there is an active HTTP request `in flight`.
--->
 `HttpContext` só é válido contanto que haja uma solicitação HTTP ativa no pipeline de ASP.NET Core. Todo o pipeline de ASP.NET Core é uma cadeia assíncrona de delegados que executa cada solicitação. Quando o `Task` retornado dessa cadeia for concluído, o `HttpContext` será reciclado.
 
 **Não faça isso:** O exemplo a seguir usa `async void`:
@@ -290,7 +286,7 @@ O código anterior freqüentemente captura um @no__t nulo ou incorreto no constr
 
 ## <a name="do-not-capture-services-injected-into-the-controllers-on-background-threads"></a>Não capture os serviços injetados nos controladores em threads em segundo plano
 
-**Não faça isso:** O exemplo a seguir mostra que um fechamento está capturando o `DbContext` do parâmetro de ação `Controller`. Esta é uma prática inadequada.  O item de trabalho pode ser executado fora do escopo da solicitação. O `PokemonDbContext` tem como escopo a solicitação, resultando em um `ObjectDisposedException`.
+**Não faça isso:** O exemplo a seguir mostra que um fechamento está capturando o `DbContext` do parâmetro de ação `Controller`. Esta é uma prática inadequada.  O item de trabalho pode ser executado fora do escopo da solicitação. O `ContosoDbContext` tem como escopo a solicitação, resultando em um `ObjectDisposedException`.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
 
@@ -299,14 +295,14 @@ O código anterior freqüentemente captura um @no__t nulo ou incorreto no constr
 * Injeta um <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory> para criar um escopo no item de trabalho em segundo plano. `IServiceScopeFactory` é um singleton.
 * Cria um novo escopo de injeção de dependência no thread em segundo plano.
 * Não faz referência a nada do controlador.
-* Não captura o `PokemonDbContext` da solicitação de entrada.
+* Não captura o `ContosoDbContext` da solicitação de entrada.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2)]
 
 O seguinte código realçado:
 
 * Cria um escopo para o tempo de vida da operação em segundo plano e resolve os serviços dele.
-* Usa `PokemonDbContext` do escopo correto.
+* Usa `ContosoDbContext` do escopo correto.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2&highlight=9-16)]
 

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/08/2019
 uid: fundamentals/middleware/index
-ms.openlocfilehash: 5d02e1eb37693881d5b1855e1ed163590d8a44d3
-ms.sourcegitcommit: fcdf9aaa6c45c1a926bd870ed8f893bdb4935152
-ms.translationtype: HT
+ms.openlocfilehash: 8f5c3aabf17e78ae9675048602317c54f08e82a7
+ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72165304"
+ms.lasthandoff: 10/11/2019
+ms.locfileid: "72259828"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware do ASP.NET Core
 
@@ -154,7 +154,7 @@ public void Configure(IApplicationBuilder app)
 1. Exceção/tratamento de erro
    * Quando o aplicativo é executado no ambiente de desenvolvimento:
      * O middleware da página de exceção do desenvolvedor (<xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*>) relata erros de tempo de execução do aplicativo.
-     * O middleware da página de erro do banco de dados (<xref:Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage*>) relata erros de tempo de execução do banco de dados.
+     * O middleware da página de erro do banco de dados (`Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage`) relata erros de tempo de execução do banco de dados.
    * Quando o aplicativo é executado no ambiente de produção:
      * O middleware do manipulador de exceção (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>) captura exceções geradas nos middlewares a seguir.
      * O middleware do protocolo HTTP Strict Transport Security (HSTS) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>) adiciona o cabeçalho `Strict-Transport-Security`.
