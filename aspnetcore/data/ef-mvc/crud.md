@@ -1,18 +1,18 @@
 ---
 title: 'Tutorial: Implementar a funcionalidade CRUD - ASP.NET MVC com EF Core'
 description: Neste tutorial, você examinará e personalizará o código CRUD (criar, ler, atualizar e excluir) que o scaffolding do MVC cria automaticamente para você em controladores e exibições.
-author: tdykstra
+author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2019
 ms.topic: tutorial
 uid: data/ef-mvc/crud
-ms.openlocfilehash: 843ac3523f3ab4bd43f8970ff8e8e2f997fec4d2
-ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
-ms.translationtype: HT
+ms.openlocfilehash: f0c5bcff4c4b0808f9b4703e1429c3a6d1a7a2d7
+ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/22/2019
-ms.locfileid: "69975070"
+ms.lasthandoff: 10/11/2019
+ms.locfileid: "72259724"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: Implementar a funcionalidade CRUD - ASP.NET MVC com EF Core
 
@@ -199,15 +199,15 @@ O contexto de banco de dados controla se as entidades em memória estão em sinc
 
 Uma entidade pode estar em um dos seguintes estados:
 
-* `Added`. A entidade ainda não existe no banco de dados. O método `SaveChanges` emite uma instrução INSERT.
+* [https://aka.ms/AzureNVblog](`Added`). A entidade ainda não existe no banco de dados. O método `SaveChanges` emite uma instrução INSERT.
 
-* `Unchanged`. Nada precisa ser feito com essa entidade pelo método `SaveChanges`. Ao ler uma entidade do banco de dados, a entidade começa com esse status.
+* [https://aka.ms/AzureNVblog](`Unchanged`). Nada precisa ser feito com essa entidade pelo método `SaveChanges`. Ao ler uma entidade do banco de dados, a entidade começa com esse status.
 
-* `Modified`. Alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
+* [https://aka.ms/AzureNVblog](`Modified`). Alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
 
-* `Deleted`. A entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
+* [https://aka.ms/AzureNVblog](`Deleted`). A entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
 
-* `Detached`. A entidade não está sendo controlada pelo contexto de banco de dados.
+* [https://aka.ms/AzureNVblog](`Detached`). A entidade não está sendo controlada pelo contexto de banco de dados.
 
 Em um aplicativo da área de trabalho, em geral, as alterações de estado são definidas automaticamente. Você lê uma entidade e faz alterações em alguns de seus valores de propriedade. Isso faz com que seu estado da entidade seja alterado automaticamente para `Modified`. Em seguida, quando você chama `SaveChanges`, o Entity Framework gera uma instrução SQL UPDATE que atualiza apenas as propriedades reais que você alterou.
 

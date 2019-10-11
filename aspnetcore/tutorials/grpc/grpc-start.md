@@ -4,14 +4,14 @@ author: juntaoluo
 description: Este tutorial mostra como criar um serviço gRPC e um cliente gRPC no ASP.NET Core. Saiba como criar um projeto de serviço gRPC, editar um arquivo pronto e adicionar uma chamada de streaming duplex.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 8/26/2019
+ms.date: 10/10/2019
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: 9eeb71ca751005780560f0f2200edc2013541c34
-ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
+ms.openlocfilehash: 61324cdd5b574ea8a12a1be5846a25c311ab4499
+ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/03/2019
-ms.locfileid: "71925221"
+ms.lasthandoff: 10/11/2019
+ms.locfileid: "72259675"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Tutorial: Criar um cliente e um servidor gRPC no ASP.NET Core
 
@@ -91,7 +91,7 @@ Os comandos anteriores usam a [CLI do .NET Core](/dotnet/core/tools/dotnet) para
 
 ### <a name="open-the-project"></a>Abrir o projeto
 
-No Visual Studio, selecione **Arquivo** > **Abrir** e depois o arquivo *GrpcGreeter.sln*.
+No Visual Studio, selecione **arquivo** > **abrir**e, em seguida, selecione o arquivo *GrpcGreeter. csproj* .
 
 ---
 
@@ -256,7 +256,7 @@ Atualize o arquivo *Program.cs* do cliente gRPC com o seguinte código:
 O cliente Greeter é criado da seguinte forma:
 
 * Criando uma instância de `HttpClient` que contém as informações para criar a conexão com o serviço gRPC.
-* Usando o `HttpClient` para construir um canal do gRPC e o cliente do Greeter:
+* Usando o `HttpClient` para construir um canal gRPC e o cliente do Greeter:
 
 [!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-5)]
 

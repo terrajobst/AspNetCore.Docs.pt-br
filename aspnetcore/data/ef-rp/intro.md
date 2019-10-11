@@ -1,17 +1,17 @@
 ---
 title: Páginas Razor com o Entity Framework Core no ASP.NET Core – Tutorial 1 de 8
-author: tdykstra
+author: rick-anderson
 description: Mostra como criar um aplicativo das Páginas do Razor usando o Entity Framework Core
 ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 uid: data/ef-rp/intro
-ms.openlocfilehash: e261ccd30dc9ef0929e74fa44a5ed752d515b707
-ms.sourcegitcommit: e644258c95dd50a82284f107b9bf3becbc43b2b2
+ms.openlocfilehash: 01e507326ddd57057aa178ad3909fd4027a013fd
+ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/26/2019
-ms.locfileid: "71317676"
+ms.lasthandoff: 10/11/2019
+ms.locfileid: "72259366"
 ---
 # <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Páginas Razor com o Entity Framework Core no ASP.NET Core – Tutorial 1 de 8
 

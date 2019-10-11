@@ -1,18 +1,18 @@
 ---
 title: Como fazer registro em log no .NET Core e no ASP.NET Core
-author: tdykstra
+author: rick-anderson
 description: Saiba como usar a estrutura de registro em log fornecida pelo pacote do NuGet Microsoft.Extensions.Logging.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 10/08/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: 9f7b39cc1c557356b75608817db4e8d6f61af794
-ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
+ms.openlocfilehash: 697e6cf0cd1b51ad6c2942e21bc084d1fe6bfa4e
+ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/07/2019
-ms.locfileid: "72007030"
+ms.lasthandoff: 10/11/2019
+ms.locfileid: "72259741"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Como fazer registro em log no .NET Core e no ASP.NET Core
 
@@ -22,7 +22,7 @@ O .NET Core oferece suporte a uma API de registro em log que funciona com uma va
 
 ::: moniker range=">= aspnetcore-3.0"
 
-A maioria dos exemplos de código mostrados neste artigo é de aplicativos ASP.NET Core. As partes específicas a registro em log desses snippets de código se aplicam a qualquer aplicativo .NET Core que use o [host genérico](xref:fundamentals/host/generic-host). Para obter informações sobre como usar o host genérico em aplicativos de console não Web, confira [Serviços hospedados](xref:fundamentals/host/hosted-services).
+A maioria dos exemplos de código mostrados neste artigo é de aplicativos ASP.NET Core. As partes específicas de log desses trechos de código se aplicam a qualquer aplicativo .NET Core que usa o [host genérico](xref:fundamentals/host/generic-host). Para obter informações sobre como usar o host genérico em aplicativos de console não Web, confira [Serviços hospedados](xref:fundamentals/host/hosted-services).
 
 O código de registro em log de aplicativos sem host genérico difere na maneira como os [provedores são adicionados](#add-providers) e como os [agentes são criados](#create-logs). Exemplos de código não host são mostrados nessas seções do artigo.
 
@@ -394,8 +394,12 @@ O ASP.NET Core define os seguintes níveis de log, ordenados aqui da menor para 
 
 Use o nível de log para controlar a quantidade de saída de log que é gravada em uma mídia de armazenamento específica ou em uma janela de exibição. Por exemplo:
 
-* Em produção, envie `Trace` por meio do nível `Information` para um armazenamento de dados com volume. Envie `Warning` por meio de `Critical` para um armazenamento de dados com valor.
-* Durante o desenvolvimento, envie `Warning` por meio `Critical` para o console e adicione `Trace` por meio de `Information` ao solucionar problemas.
+* Em produção:
+  * O registro em log no `Trace` por meio de níveis `Information` produz um alto volume de mensagens de log detalhadas. Para controlar os custos e não exceder os limites de armazenamento de dados, faça o log `Trace` por meio de mensagens de nível `Information` para um armazenamento de dados de alto volume e baixo custo.
+  * O registro em log em `Warning` em níveis `Critical` normalmente produz menos mensagens de log menores. Portanto, os custos e os limites de armazenamento geralmente não são uma preocupação, o que resulta em maior flexibilidade de escolha de armazenamento de dados.
+* Durante o desenvolvimento:
+  * Log `Warning` através de mensagens `Critical` para o console.
+  * Adicione `Trace` por meio de mensagens `Information` ao solucionar problemas.
 
 A seção [Filtragem de log](#log-filtering) mais adiante neste artigo explicará como controlar os níveis de log que um provedor manipula.
 

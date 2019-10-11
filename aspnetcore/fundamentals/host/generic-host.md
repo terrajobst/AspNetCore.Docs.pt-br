@@ -1,18 +1,18 @@
 ---
 title: Host Genérico .NET
-author: tdykstra
+author: rick-anderson
 description: Saiba mais sobre o Host Genérico do .NET Core, que é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/07/2019
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: 1582955cd18e6739111af05c9a892cd5cb4e270d
-ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
+ms.openlocfilehash: 8e29c3a300cc1cdc37458427d3be7ceed84385ef
+ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/07/2019
-ms.locfileid: "72007234"
+ms.lasthandoff: 10/11/2019
+ms.locfileid: "72259633"
 ---
 # <a name="net-generic-host"></a>Host Genérico .NET
 

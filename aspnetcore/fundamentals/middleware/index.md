@@ -5,14 +5,14 @@ description: Saiba mais sobre o middleware do ASP.NET Core e o pipeline de solic
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/22/2019
+ms.date: 10/08/2019
 uid: fundamentals/middleware/index
-ms.openlocfilehash: 674e89cd22ce113474dfbba44b57d9255446fc3e
-ms.sourcegitcommit: f65d8765e4b7c894481db9b37aa6969abc625a48
-ms.translationtype: MT
+ms.openlocfilehash: 5d02e1eb37693881d5b1855e1ed163590d8a44d3
+ms.sourcegitcommit: fcdf9aaa6c45c1a926bd870ed8f893bdb4935152
+ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/06/2019
-ms.locfileid: "70773775"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72165304"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware do ASP.NET Core
 
@@ -68,7 +68,7 @@ O método `Startup.Configure` a seguir adiciona componentes de middleware para c
 1. Exceção/tratamento de erro
    * Quando o aplicativo é executado no ambiente de desenvolvimento:
      * O middleware da página de exceção do desenvolvedor (<xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*>) relata erros de tempo de execução do aplicativo.
-     * O middleware da página de erro do banco de dados (<xref:Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage*>) relata erros de tempo de execução do banco de dados.
+     * Erro de banco de dados os relatórios de tempo de execução do banco de dados.
    * Quando o aplicativo é executado no ambiente de produção:
      * O middleware do manipulador de exceção (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>) captura exceções geradas nos middlewares a seguir.
      * O middleware do protocolo HTTP Strict Transport Security (HSTS) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>) adiciona o cabeçalho `Strict-Transport-Security`.
@@ -77,9 +77,21 @@ O método `Startup.Configure` a seguir adiciona componentes de middleware para c
 1. O middleware da política de cookies (<xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*>) adapta o aplicativo às normas do RGPD (Regulamento Geral sobre a Proteção de Dados).
 1. Middleware de roteamento (`UseRouting`) para rotear solicitações.
 1. O middleware de autenticação (<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>) tenta autenticar o usuário antes de ele ter acesso aos recursos seguros.
-1. O middleware de autorização`UseAuthorization`() autoriza um usuário a acessar recursos seguros.
+1. O middleware de autorização (`UseAuthorization`) autoriza um usuário a acessar recursos seguros.
 1. O middleware de sessão (<xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*>) estabelece e mantém o estado de sessão. Se o aplicativo usa o estado de sessão, chame o middleware de sessão após o middleware de política de cookies, e antes do middleware do MVC.
-1. Middleware de roteamento de ponto`UseEndpoints` de `MapRazorPages`extremidade (com) para adicionar Razor Pages pontos de extremidades ao pipeline de solicitação.
+1. Middleware de roteamento de ponto de extremidade (`UseEndpoints` com `MapRazorPages`) para adicionar Razor Pages pontos de extremidade ao pipeline de solicitação.
+
+<!--
+
+FUTURE UPDATE
+
+On the next topic overhaul/release update, add API crosslink to "Database Error Page Middleware" in Item 1 of the list ...
+
+Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage*
+
+... when available via the API docs.
+
+-->
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

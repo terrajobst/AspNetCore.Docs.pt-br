@@ -4,14 +4,14 @@ author: ardalis
 description: Saiba como os filtros funcionam e como usá-los no ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/08/2019
+ms.date: 09/28/2019
 uid: mvc/controllers/filters
-ms.openlocfilehash: 50b199744f32ad19335080da406db69665ec1ae9
-ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
-ms.translationtype: HT
+ms.openlocfilehash: ed48c2074360768b8d8c5af7057b353b00592394
+ms.sourcegitcommit: 73a451e9a58ac7102f90b608d661d8c23dd9bbaf
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/12/2019
-ms.locfileid: "67856155"
+ms.lasthandoff: 10/08/2019
+ms.locfileid: "72037701"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtros no ASP.NET Core
 
@@ -437,9 +437,12 @@ O código a seguir mostra um filtro de resultado que adiciona um cabeçalho HTTP
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/LoggingAddHeaderFilter.cs?name=snippet_ResultFilter)]
 
-O tipo de resultado que está sendo executado depende da ação. Uma ação que retorna um modo de exibição incluiria todo o processamento de Razor como parte do <xref:Microsoft.AspNetCore.Mvc.ViewResult> em execução. Um método de API pode executar alguma serialização como parte da execução do resultado. Saiba mais sobre [resultados de ação](xref:mvc/controllers/actions)
+O tipo de resultado que está sendo executado depende da ação. Uma ação que retorna um modo de exibição incluiria todo o processamento de Razor como parte do <xref:Microsoft.AspNetCore.Mvc.ViewResult> em execução. Um método de API pode executar alguma serialização como parte da execução do resultado. Saiba mais sobre [os resultados da ação](xref:mvc/controllers/actions).
 
-Filtros de resultado são executados somente para resultados bem-sucedidos – quando a ação ou filtros da ação produzem um resultado de ação. Filtros de resultado não são executados quando filtros de exceção tratam uma exceção.
+Os filtros de resultado são executados somente quando um filtro de ação ou Action produz um resultado de ação. Os filtros de resultado não são executados quando:
+
+* Um filtro de autorização ou filtro de recursos de curto-circuitos do pipeline.
+* Um filtro de exceção trata uma exceção produzindo um resultado de ação.
 
 O método <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting*?displayProperty=fullName> pode fazer o curto-circuito da execução do resultado da ação e dos filtros de resultados posteriores definindo <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel?displayProperty=fullName> como `true`. Grave no objeto de resposta ao fazer um curto-circuito para evitar gerar uma resposta vazia. A geração de uma exceção em `IResultFilter.OnResultExecuting`:
 
@@ -471,12 +474,10 @@ A estrutura fornece um `ResultFilterAttribute` abstrato que você pode colocar e
 
 ### <a name="ialwaysrunresultfilter-and-iasyncalwaysrunresultfilter"></a>IAlwaysRunResultFilter e IAsyncAlwaysRunResultFilter
 
-As interfaces <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> e <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAlwaysRunResultFilter> declaram uma implementação <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> que é executada para todos os resultados da ação. O filtro é aplicado a todos os resultados da ação, a menos que:
+As interfaces <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> e <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAlwaysRunResultFilter> declaram uma implementação <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter> que é executada para todos os resultados da ação. Isso inclui resultados de ação produzidos por:
 
-* Uma <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter> ou <xref:Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter> aplica e causa curto-circuito à resposta.
-* Um filtro de exceção trata uma exceção produzindo um resultado de ação.
-
-Filtra o que não é `IExceptionFilter`, e `IAuthorizationFilter` não causa curto-circuito em `IAlwaysRunResultFilter` e `IAsyncAlwaysRunResultFilter`.
+* Filtros de autorização e filtros de recursos que curto-Circuit.
+* Filtros de exceção.
 
 Por exemplo, o filtro a seguir sempre é executado e define o resultado de uma ação (<xref:Microsoft.AspNetCore.Mvc.ObjectResult>) com um código de status *422 Entidade Não Processável* quando ocorre falha na negociação de conteúdo:
 

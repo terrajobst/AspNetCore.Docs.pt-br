@@ -5,12 +5,12 @@ description: Explica como trabalhar com um banco de dados e o ASP.NET Core.
 ms.author: riande
 ms.date: 7/22/2019
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: 197697f28e9faa45c1ac2b7f993bde15994957e5
-ms.sourcegitcommit: 051f068c78931432e030b60094c38376d64d013e
-ms.translationtype: HT
+ms.openlocfilehash: 87d27b60940826e21b060f2e07d344b30ff75b27
+ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/24/2019
-ms.locfileid: "68440383"
+ms.lasthandoff: 10/11/2019
+ms.locfileid: "72259787"
 ---
 # <a name="work-with-a-database-and-aspnet-core"></a>Trabalhar com um banco de dados e o ASP.NET Core
 
@@ -107,10 +107,10 @@ O código a seguir mostra o arquivo *Program.cs* atualizado.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
 
-Um aplicativo de produção não chamaria `Database.Migrate`. Ele é adicionado ao código anterior para evitar a exceção a seguir quando `Update-Database` não foi executado:
+A seguinte exceção ocorre quando `Update-Database` não foi executado:
 
-SqlException: não pode abrir o banco de dados "RazorPagesMovieContext-21" solicitado pelo logon. O logon falhou.
-O logon falhou para o usuário 'user name'.
+`SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
+`Login failed for user 'user name'.`
 
 ### <a name="test-the-app"></a>Testar o aplicativo
 
