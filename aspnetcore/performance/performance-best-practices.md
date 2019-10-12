@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 09/26/2019
 uid: performance/performance-best-practices
-ms.openlocfilehash: a2952f5234cdef7f749a1af8dd4adcb887290629
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: 3484a0233a0d56811235192c4b64aa9296e72b58
+ms.sourcegitcommit: 020c3760492efed71b19e476f25392dda5dd7388
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259780"
+ms.lasthandoff: 10/12/2019
+ms.locfileid: "72289074"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Práticas recomendadas de desempenho de ASP.NET Core
 
@@ -178,10 +178,7 @@ O código anterior lê de forma assíncrona todo o corpo da solicitação HTTP n
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet3)]
 
-O código anterior lê de forma assíncrona todo o corpo da solicitação HTTP na memória.
-
-> [!WARNING]
-> Se a solicitação for grande, a leitura do corpo de solicitação HTTP inteiro na memória poderá levar a uma condição de OOM (memória insuficiente). OOM pode resultar em uma negação de serviço.  Para obter mais informações, consulte [evitar a leitura de corpos de solicitação grandes ou corpos de resposta na memória](#arlb) deste documento.
+O código anterior desserializa de forma assíncrona o corpo da solicitação C# em um objeto.
 
 ## <a name="prefer-readformasync-over-requestform"></a>Preferir ReadFormAsync sobre solicitação. Form
 
@@ -265,7 +262,7 @@ O código anterior freqüentemente captura um @no__t nulo ou incorreto no constr
 
 `HttpContext` só é válido contanto que haja uma solicitação HTTP ativa no pipeline de ASP.NET Core. Todo o pipeline de ASP.NET Core é uma cadeia assíncrona de delegados que executa cada solicitação. Quando o `Task` retornado dessa cadeia for concluído, o `HttpContext` será reciclado.
 
-**Não faça isso:** O exemplo a seguir usa `async void`:
+**Não faça isso:** O exemplo a seguir usa `async void`, que faz com que a solicitação HTTP seja concluída quando o primeiro `await` é atingido:
 
 * Que é **sempre** uma prática inadequada em aplicativos ASP.NET Core.
 * Acessa o `HttpResponse` depois que a solicitação HTTP é concluída.

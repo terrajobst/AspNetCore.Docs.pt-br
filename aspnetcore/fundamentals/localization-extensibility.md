@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/03/2019
 uid: fundamentals/localization-extensibility
-ms.openlocfilehash: 92fe954ea6bf5d0a8f9f62f4da696d197c51af04
-ms.sourcegitcommit: 4fe3ae892f54dc540859bff78741a28c2daa9a38
-ms.translationtype: HT
+ms.openlocfilehash: dfa2efe78b2e1e118e6b3f09bfc41f3330e1d721
+ms.sourcegitcommit: 020c3760492efed71b19e476f25392dda5dd7388
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/04/2019
-ms.locfileid: "68776751"
+ms.lasthandoff: 10/12/2019
+ms.locfileid: "72288947"
 ---
 # <a name="localization-extensibility"></a>Extensibilidade de localização
 
@@ -47,11 +47,9 @@ Os provedores anteriores são descritos em detalhes na documentação sobre [Mid
 
 <xref:Microsoft.AspNetCore.Localization.CustomRequestCultureProvider> fornece um <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> personalizado que usa um delegado simples para determinar a cultura de localização atual:
 
-::: moniker range=">= aspnetcore-2.2"
-
+::: moniker range="< aspnetcore-3.0"
 ```csharp
-options.AddInitialRequestCultureProvider(
-    new CustomRequestCultureProvider(async context =>
+options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
 {
     var currentCulture = "en";
     var segments = context.Request.Path.Value.Split(new char[] { '/' }, 
@@ -70,11 +68,9 @@ options.AddInitialRequestCultureProvider(
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-2.2"
-
+::: moniker range=">= aspnetcore-3.0"
 ```csharp
-options.RequestCultureProviders.Insert(0, 
-    new CustomRequestCultureProvider(async context =>
+options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
 {
     var currentCulture = "en";
     var segments = context.Request.Path.Value.Split(new char[] { '/' }, 

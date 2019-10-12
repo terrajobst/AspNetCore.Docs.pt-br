@@ -5,12 +5,12 @@ description: Saiba como diagnosticar problemas com a localização em aplicativo
 ms.author: riande
 ms.date: 01/24/2019
 uid: fundamentals/troubleshoot-aspnet-core-localization
-ms.openlocfilehash: c76732c1a0389818f8f9efae8fe384ca0f9ca308
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
-ms.translationtype: HT
+ms.openlocfilehash: 98e06a92af0b6c045095ac803196bf4b1f25e5c5
+ms.sourcegitcommit: 020c3760492efed71b19e476f25392dda5dd7388
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087369"
+ms.lasthandoff: 10/12/2019
+ms.locfileid: "72289017"
 ---
 # <a name="troubleshoot-aspnet-core-localization"></a>Solucionar problemas de Localização no ASP.NET Core
 
@@ -75,6 +75,7 @@ O [CustomRequestCultureProvider](/dotnet/api/microsoft.aspnetcore.localization.c
 
 - Insira o provedor personalizado na posição 0 da lista `RequestCultureProviders`, desta maneira:
 
+::: moniker range="< aspnetcore-3.0"
 ```csharp
 options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
     {
@@ -82,6 +83,17 @@ options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async
         return new ProviderCultureResult("en");
     }));
 ```
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+```csharp
+options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
+    {
+        // My custom request culture logic
+        return new ProviderCultureResult("en");
+    }));
+```
+::: moniker-end
 
 - Use o método de extensão `AddInitialRequestCultureProvider` para definir o provedor personalizado como provedor inicial.
 
