@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 09/26/2019
 uid: performance/performance-best-practices
-ms.openlocfilehash: c239c6d86e460f8fb80dfc47b88c090a796c617d
-ms.sourcegitcommit: c452e6af92e130413106c4863193f377cde4cd9c
-ms.translationtype: HT
+ms.openlocfilehash: a2952f5234cdef7f749a1af8dd4adcb887290629
+ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2019
-ms.locfileid: "72246484"
+ms.lasthandoff: 10/11/2019
+ms.locfileid: "72259780"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Práticas recomendadas de desempenho de ASP.NET Core
 
@@ -174,12 +174,21 @@ O código anterior lê de forma assíncrona todo o corpo da solicitação HTTP n
 > [!WARNING]
 > Se a solicitação for grande, a leitura do corpo de solicitação HTTP inteiro na memória poderá levar a uma condição de OOM (memória insuficiente). OOM pode resultar em uma negação de serviço.  Para obter mais informações, consulte [evitar a leitura de corpos de solicitação grandes ou corpos de resposta na memória](#arlb) deste documento.
 
-## <a name="prefer-readasformasync-over-requestform"></a>Preferir ReadAsFormAsync sobre solicitação. Form
+**Faça o seguinte:** O exemplo a seguir é totalmente assíncrono usando um corpo de solicitação não armazenado em buffer:
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet3)]
+
+O código anterior lê de forma assíncrona todo o corpo da solicitação HTTP na memória.
+
+> [!WARNING]
+> Se a solicitação for grande, a leitura do corpo de solicitação HTTP inteiro na memória poderá levar a uma condição de OOM (memória insuficiente). OOM pode resultar em uma negação de serviço.  Para obter mais informações, consulte [evitar a leitura de corpos de solicitação grandes ou corpos de resposta na memória](#arlb) deste documento.
+
+## <a name="prefer-readformasync-over-requestform"></a>Preferir ReadFormAsync sobre solicitação. Form
 
 Use `HttpContext.Request.ReadFormAsync` em vez de `HttpContext.Request.Form`.
 `HttpContext.Request.Form` pode ser lido com segurança apenas com as seguintes condições:
 
-* O formulário foi lido por uma chamada para `ReadAsFormAsync` e
+* O formulário foi lido por uma chamada para `ReadFormAsync` e
 * O valor de formulário armazenado em cache está sendo lido usando `HttpContext.Request.Form`
 
 **Não faça isso:** O exemplo a seguir usa `HttpContext.Request.Form`.  `HttpContext.Request.Form` usa [sync sobre Async @ no__t-2 e pode levar à privação do pool de threads.
