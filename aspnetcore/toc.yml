@@ -310,7 +310,7 @@
           uid: blazor/debug
         - name: Chamar uma API da Web
           uid: blazor/call-web-api
-        - name: Hospedagem e implantação
+        - name: Hospedar e implantar
           items:
             - name: Visão geral
               uid: host-and-deploy/blazor/index
@@ -507,7 +507,7 @@
         - name: Referência da API JavaScript
           href: /javascript/api/?view=signalr-js-latest
           displayName: signalr
-    - name: Hospedagem e dimensionamento
+    - name: Hospedar e dimensionar
       displayName: signalr
       items:
         - name: Visão geral
@@ -661,13 +661,13 @@
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Armazenamento de tabelas
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-- name: Hospedagem e implantação
+- name: Hospedar e implantar
   displayName: publish
   items:
     - name: Visão geral
       displayName: 'azure, deploy, publish'
       uid: host-and-deploy/index
-    - name: Hospedar no Serviço de Aplicativo do Azure
+    - name: Serviço de Aplicativo do Azure
       displayName: 'deploy, publish'
       items:
         - name: Visão geral
@@ -717,7 +717,7 @@
         - name: Próximas etapas
           displayName: 'azure, deploy, publish'
           uid: azure/devops/next-steps
-    - name: Hospedar no Windows com o IIS
+    - name: IIS
       displayName: 'deploy, publish'
       items:
         - name: Visão geral
@@ -749,16 +749,16 @@
     - name: HTTP.sys
       displayName: 'deploy, publish, server'
       uid: fundamentals/servers/httpsys
-    - name: Hospedar em um serviço Windows
+    - name: Serviço Windows
       displayName: 'deploy, publish'
       uid: host-and-deploy/windows-service
-    - name: Hospedar em Linux com o Nginx
+    - name: Linux com o Nginx
       displayName: 'deploy, publish'
       uid: host-and-deploy/linux-nginx
-    - name: Hospedar em Linux com o Apache
+    - name: Linux com o Apache
       displayName: 'deploy, publish'
       uid: host-and-deploy/linux-apache
-    - name: Hospedar no Docker
+    - name: Docker
       displayName: 'deploy, publish'
       items:
         - name: Visão geral
@@ -779,7 +779,7 @@
     - name: Configuração de balanceador de carga e de proxy
       displayName: 'deploy, publish'
       uid: host-and-deploy/proxy-load-balancer
-    - name: Hospedar em uma web farm
+    - name: Web farm
       displayName: 'deploy, publish'
       uid: host-and-deploy/web-farm
     - name: Perfis de publicação do Visual Studio
