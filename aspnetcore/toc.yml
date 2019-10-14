@@ -569,6 +569,8 @@
       uid: grpc/diagnostics
     - name: Considerações sobre segurança
       uid: grpc/security
+    - name: Gerenciar referências de Protobuf com dotnet-grpc
+      uid: grpc/dotnet-grpc
     - name: Migrar serviços gRPC do C-core
       uid: grpc/migration
     - name: Comparar serviços gRPC com APIs HTTP
