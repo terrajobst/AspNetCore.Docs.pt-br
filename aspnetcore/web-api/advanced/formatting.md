@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 8/22/2019
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 0dd8b3b5ec58a199db086c4c0b0f057d26afd589
-ms.sourcegitcommit: 7a2c820692f04bfba04398641b70f27fa15391f5
+ms.openlocfilehash: 78fe620ea8fdd681a276253f77939bcb2a56ebb9
+ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/12/2019
-ms.locfileid: "72290637"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72391285"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Formatar dados de resposta na API Web ASP.NET Core
 
@@ -206,7 +206,7 @@ Ao usar o código anterior, os métodos do controlador devem retornar o formato 
 
 ### <a name="specify-a-format"></a>Especificar um formato
 
-Para restringir os formatos de resposta, aplique o filtro [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) . Assim como a maioria dos [filtros](xref:mvc/controllers/filters), `[Produces]` pode ser aplicado na ação, controlador ou escopo global:
+Para restringir os formatos de resposta, aplique o filtro [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) . Assim como a maioria dos [filtros](xref:mvc/controllers/filters), `[Produces]` pode ser aplicada na ação, controlador ou escopo global:
 
 [!code-csharp[](./formatting/3.0sample/Controllers/WeatherForecastController.cs?name=snippet)]
 
@@ -219,16 +219,16 @@ Para obter mais informações, consulte [filtros](xref:mvc/controllers/filters).
 
 ### <a name="special-case-formatters"></a>Formatadores de caso especiais
 
-Alguns casos especiais são implementados com formatadores internos. Por padrão, os tipos de retorno `string` são formatados como *texto/simples* (*texto/HTML* , se solicitado por meio do cabeçalho `Accept`). Esse comportamento pode ser excluído removendo o <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter>. Os formatadores são removidos no método `Configure`. As ações que têm um tipo de retorno de objeto de modelo retornam `204 No Content` ao retornar `null`. Esse comportamento pode ser excluído removendo o <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. O código a seguir remove o `TextOutputFormatter` e o `HttpNoContentOutputFormatter`.
+Alguns casos especiais são implementados com formatadores internos. Por padrão, os tipos de retorno `string` são formatados como *texto/simples* (*texto/HTML* , se solicitado por meio do cabeçalho `Accept`). Esse comportamento pode ser excluído removendo o <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter>. Os formatadores são removidos no método `ConfigureServices`. As ações que têm um tipo de retorno de objeto de modelo retornam `204 No Content` ao retornar `null`. Esse comportamento pode ser excluído removendo o <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. O código a seguir remove o `StringOutputFormatter` e o `HttpNoContentOutputFormatter`.
 
 ::: moniker range=">= aspnetcore-3.0"
-[!code-csharp[](./formatting/3.0sample/StartupTextOutputFormatter.cs?name=snippet)]
+[!code-csharp[](./formatting/3.0sample/StartupStringOutputFormatter.cs?name=snippet)]
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
-[!code-csharp[](./formatting/sample/StartupTextOutputFormatter.cs?name=snippet)]
+[!code-csharp[](./formatting/sample/StartupStringOutputFormatter.cs?name=snippet)]
 ::: moniker-end
 
-Sem os tipos de retorno `TextOutputFormatter`, `string` retornam `406 Not Acceptable`. Se existir um formatador XML, ele formatará os tipos de retorno `string` se o `TextOutputFormatter` for removido.
+Sem o `StringOutputFormatter`, o formatador JSON interno formata os tipos de retorno `string`. Se o formatador JSON interno for removido e um formatador XML estiver disponível, o formatador XML formatará os tipos de retorno `string`. Caso contrário, os tipos de retorno `string` retornarão `406 Not Acceptable`.
 
 Sem o `HttpNoContentOutputFormatter`, os objetos nulos são formatados com o formatador configurado. Por exemplo:
 

@@ -5,14 +5,14 @@ description: Entenda os modelos de Hospedagem de Webassembly e de mais incrivelm
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/03/2019
+ms.date: 10/15/2019
 uid: blazor/hosting-models
-ms.openlocfilehash: bc3ad9c7c4731b685fc161844d9f55e51722c0ea
-ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
+ms.openlocfilehash: 072f9bbdcf7171ede63383b085f9f0f030bf1076
+ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/03/2019
-ms.locfileid: "71924669"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72391169"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Modelos de hospedagem mais amASP.NET Core
 
@@ -28,7 +28,7 @@ Para criar um projeto para os modelos de hospedagem descritos neste artigo, cons
 
 O modelo de hospedagem principal para o mais alto é executar o lado do cliente no navegador no Webassembly. O aplicativo do Blazor, suas dependências e o tempo de execução do .NET são baixados no navegador. O aplicativo é executado diretamente no thread da interface do usuário do navegador. As atualizações da interface do usuário e o tratamento de eventos ocorrem no mesmo processo. Os ativos do aplicativo são implantados como arquivos estáticos em um servidor Web ou serviço capaz de fornecer conteúdo estático aos clientes.
 
-![Webassembly mais incrivelmente: O aplicativo mais incrivelmente é executado em um thread de interface do usuário dentro do navegador.](hosting-models/_static/blazor-webassembly.png)
+![Webassembly mais incrivelmente: o aplicativo mais incrivelmente é executado em um thread de interface do usuário dentro do navegador.](hosting-models/_static/blazor-webassembly.png)
 
 Para criar um aplicativo mais novo usando o modelo de hospedagem do lado do cliente, use o modelo de **aplicativo Webassembly** mais[novo (dotNet New blazorwasm](/dotnet/core/tools/dotnet-new)).
 
@@ -61,12 +61,12 @@ Com o modelo de Hospedagem de servidor mais incrivelmente, o aplicativo é execu
 
 Para criar um aplicativo mais novo usando o modelo de Hospedagem de servidor mais novo, use o modelo de **aplicativo de servidor** ASP.NET Core mais incrivelmente ([dotnet New blazorserver](/dotnet/core/tools/dotnet-new)). O aplicativo ASP.NET Core hospeda o aplicativo de servidor mais incrivelmente e cria o ponto de extremidade do Signalr onde os clientes se conectam.
 
-O aplicativo ASP.NET Core referencia a classe do `Startup` aplicativo a ser adicionada:
+O aplicativo ASP.NET Core referencia a classe `Startup` do aplicativo a ser adicionada:
 
 * Serviços do lado do servidor.
 * O aplicativo para o pipeline de tratamento de solicitação.
 
-O script&dagger; mais *incrivelmente. Server. js* estabelece a conexão do cliente. É responsabilidade do aplicativo persistir e restaurar o estado do aplicativo, conforme necessário (por exemplo, no caso de uma conexão de rede perdida).
+O script do mais alto *. Server. js* @ no__t-1 estabelece a conexão do cliente. É responsabilidade do aplicativo persistir e restaurar o estado do aplicativo, conforme necessário (por exemplo, no caso de uma conexão de rede perdida).
 
 O modelo de Hospedagem de servidor mais incrivelmente oferece vários benefícios:
 
@@ -83,7 +83,7 @@ Há desvantagens na Hospedagem de servidores mais incrivelmente:
 * A escalabilidade é desafiadora para aplicativos com muitos usuários. O servidor deve gerenciar várias conexões de cliente e manipular o estado do cliente.
 * Um servidor de ASP.NET Core é necessário para atender ao aplicativo. Cenários de implantação sem servidor não são possíveis (por exemplo, servir o aplicativo de uma CDN).
 
-&dagger;O script mais *incrivelmente. Server. js* é servido por meio de um recurso incorporado na estrutura compartilhada ASP.NET Core.
+o script &dagger;Thee *. Server. js* é servido por um recurso inserido na estrutura compartilhada ASP.NET Core.
 
 ### <a name="comparison-to-server-rendered-ui"></a>Comparação com a interface do usuário renderizada pelo servidor
 
@@ -106,7 +106,7 @@ Uma atualização de interface do usuário no mais incrivelmente é disparada po
 
 O grafo é rerenderizado e uma *comparação* de interface do usuário (diferença) é calculada. Essa diferença é o menor conjunto de edições DOM necessárias para atualizar a interface do usuário no cliente. A comparação é enviada ao cliente em um formato binário e aplicada pelo navegador.
 
-Um componente é descartado depois que o usuário navega para fora dele no cliente. Embora um usuário esteja interagindo com um componente, o estado do componente (serviços, recursos) deve ser mantido na memória do servidor. Como o estado de muitos componentes pode ser mantido pelo servidor simultaneamente, o esgotamento de memória é uma preocupação que deve ser resolvida. Para obter orientação sobre como criar um aplicativo de servidor mais incrivelmente para garantir o melhor uso da memória do servidor <xref:security/blazor/server>, consulte.
+Um componente é descartado depois que o usuário navega para fora dele no cliente. Embora um usuário esteja interagindo com um componente, o estado do componente (serviços, recursos) deve ser mantido na memória do servidor. Como o estado de muitos componentes pode ser mantido pelo servidor simultaneamente, o esgotamento de memória é uma preocupação que deve ser resolvida. Para obter orientação sobre como criar um aplicativo de servidor mais incrivelmente para garantir o melhor uso da memória do servidor, consulte <xref:security/blazor/server>.
 
 ### <a name="circuits"></a>Circuitos
 
@@ -124,7 +124,7 @@ Para um aplicativo de linha de negócios limitado a uma rede corporativa privada
 
 O uso de memória também pode contribuir para a latência do aplicativo. O aumento do uso da memória resulta em uma coleta de lixo frequente ou na paginação da memória no disco, e conseqüentemente aumenta a latência da interface do usuário. Para obter mais informações, consulte <xref:security/blazor/server>.
 
-Aplicativos de servidor mais incrivelmente devem ser otimizados para minimizar a latência da interface do usuário, reduzindo a latência de rede e o uso de memória. Para obter uma abordagem para medir a latência de <xref:host-and-deploy/blazor/server#measure-network-latency>rede, consulte. Para obter mais informações sobre o Signalr e o mais incrivelmente, consulte:
+Aplicativos de servidor mais incrivelmente devem ser otimizados para minimizar a latência da interface do usuário, reduzindo a latência de rede e o uso de memória. Para obter uma abordagem para medir a latência de rede, consulte <xref:host-and-deploy/blazor/server#measure-network-latency>. Para obter mais informações sobre o Signalr e o mais incrivelmente, consulte:
 
 * <xref:host-and-deploy/blazor/server>
 * <xref:security/blazor/server>
@@ -136,7 +136,7 @@ Os aplicativos de servidor mais poseriais exigem uma conexão ativa de sinaliza�
 Quando o cliente detecta que a conexão foi perdida, uma interface de usuário padrão é exibida para o usuário enquanto o cliente tenta se reconectar. Se a reconexão falhar, o usuário receberá a opção de tentar novamente. Para personalizar a interface do usuário, defina um elemento com `components-reconnect-modal` como seu `id` na página Razor *_Host. cshtml* . O cliente atualiza esse elemento com uma das seguintes classes CSS com base no estado da conexão:
 
 * `components-reconnect-show` &ndash; mostra a interface do usuário para indicar uma conexão perdida e o cliente está tentando se reconectar.
-* `components-reconnect-hide`&ndash; O cliente tem uma conexão ativa, oculta a interface do usuário.
+* `components-reconnect-hide` &ndash; o cliente tem uma conexão ativa, oculte a interface do usuário.
 * falha na reconexão `components-reconnect-failed` &ndash;, provavelmente devido a uma falha de rede. Para tentar a reconexão, chame `window.Blazor.reconnect()`.
 * `components-reconnect-rejected` &ndash; reconexão rejeitada. O servidor foi atingido, mas recusou a conexão, e o estado do usuário no servidor não existe mais. Para recarregar o aplicativo, chame `location.reload()`. Esse estado de conexão pode resultar quando:
   * Ocorre uma falha no circuito (código do lado do servidor).
@@ -154,7 +154,7 @@ Os aplicativos de servidor mais poseriais são configurados por padrão para Pre
 </body>
 ```
 
-`RenderMode`configura se o componente:
+`RenderMode` configura se o componente:
 
 * É renderizado na página.
 * É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um aplicativo mais incrivelmente do agente do usuário.
@@ -179,7 +179,7 @@ Quando a página ou a exibição renderiza:
 * O estado inicial do componente usado para o pré-processamento é perdido.
 * O novo estado do componente é criado quando a conexão do Signalr é estabelecida.
 
-A seguinte página do Razor renderiza um `Counter` componente:
+A seguinte página do Razor renderiza um componente `Counter`:
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -189,7 +189,7 @@ A seguinte página do Razor renderiza um `Counter` componente:
 
 ### <a name="render-noninteractive-components-from-razor-pages-and-views"></a>Renderizar componentes não interativos de páginas e exibições do Razor
 
-Na página Razor a seguir, o `MyComponent` componente é processado estaticamente com um valor inicial que é especificado usando um formulário:
+Na página Razor a seguir, o componente `MyComponent` é processado estaticamente com um valor inicial que é especificado usando um formulário:
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -220,8 +220,8 @@ Como `MyComponent` é processado estaticamente, o componente não pode ser inter
 
 Para configurar o cliente Signalr no arquivo *pages/_Host. cshtml* :
 
-* Adicione um `autostart="false"` atributo `<script>` à marca para o script mais *incrivelmente. Server. js* .
-* Chame `Blazor.start` e passe um objeto de configuração que especifica o construtor de signalr.
+* Adicione um atributo `autostart="false"` à marca `<script>` para o script mais alto *. Server. js* .
+* Chame `Blazor.start` e passe um objeto de configuração que especifica o construtor de Signalr.
 
 ```html
 <script src="_framework/blazor.server.js" autostart="false"></script>

@@ -5,14 +5,14 @@ description: Saiba como testes de integração garantem que os componentes do ap
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 10/14/2019
 uid: test/integration-tests
-ms.openlocfilehash: 2825073962d135608c52e7bde42106e7786de521
-ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
+ms.openlocfilehash: 863b95230d376d050c34a9ed585b7696e649cb05
+ms.sourcegitcommit: dd026eceee79e943bd6b4a37b144803b50617583
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/07/2019
-ms.locfileid: "72007458"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72378711"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Testes de integração no ASP.NET Core
 
@@ -76,9 +76,9 @@ Os testes de integração seguem uma sequência de eventos que incluem as etapas
 
 1. O host da Web do SUT está configurado.
 1. Um cliente de servidor de teste é criado para enviar solicitações ao aplicativo.
-1. A etapa *organizar* teste é executada: O aplicativo de teste prepara uma solicitação.
-1. A etapa de teste *Act* é executada: O cliente envia a solicitação e recebe a resposta.
-1. A etapa de teste *Assert* é executada: A resposta *real* é validada como uma *passagem* ou *falha* com base em uma resposta *esperada* .
+1. A etapa *organizar* teste é executada: o aplicativo de teste prepara uma solicitação.
+1. A etapa de teste *Act* é executada: o cliente envia a solicitação e recebe a resposta.
+1. A etapa de teste *Assert* é executada: a resposta *real* é validada como uma *passagem* ou *falha* com base em uma resposta *esperada* .
 1. O processo continua até que todos os testes sejam executados.
 1. Os resultados de teste são relatados.
 
@@ -108,8 +108,8 @@ O projeto de teste deve:
 
 Esses pré-requisitos podem ser vistos no aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/). Inspecione o arquivo *tests/RazorPagesProject. Tests/RazorPagesProject. Tests. csproj* . O aplicativo de exemplo usa a estrutura de teste do [xUnit](https://xunit.github.io/) e a biblioteca do analisador [AngleSharp](https://anglesharp.github.io/) , portanto, o aplicativo de exemplo também faz referência a:
 
-* [xunit](https://www.nuget.org/packages/xunit)
-* [xunit.runner.visualstudio](https://www.nuget.org/packages/xunit.runner.visualstudio)
+* [xUnit](https://www.nuget.org/packages/xunit)
+* [xUnit. Runner. VisualStudio](https://www.nuget.org/packages/xunit.runner.visualstudio)
 * [AngleSharp](https://www.nuget.org/packages/AngleSharp)
 
 Entity Framework Core também é usado nos testes. O aplicativo faz referência a:
@@ -167,7 +167,24 @@ A configuração do host Web pode ser criada independentemente das classes de te
 
    [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
-   A propagação de banco de dados no [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) é executada pelo método `InitializeDbForTests`. O método é descrito no exemplo de testes [Integration: Seção testar organização do aplicativo @ no__t-0.
+   A propagação de banco de dados no [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) é executada pelo método `InitializeDbForTests`. O método é descrito na seção [testes de integração exemplo: testar organização de aplicativos](#test-app-organization) .
+
+   O contexto do banco de dados do SUT é registrado em seu método `Startup.ConfigureServices`. O retorno de chamada `builder.ConfigureServices` do aplicativo de teste é executado *depois* que o código `Startup.ConfigureServices` do aplicativo é executado. Para usar um banco de dados diferente para os testes do que o banco de dados do aplicativo, o contexto do banco de dados do aplicativo deve ser substituído em `builder.ConfigureServices`.
+
+   O aplicativo de exemplo localiza o descritor de serviço para o contexto do banco de dados e usa o descritor para remover o registro do serviço. Em seguida, a fábrica adiciona um novo `ApplicationDbContext` que usa um banco de dados na memória para os testes.
+
+   Para se conectar a um banco de dados diferente do banco de dados na memória, altere a chamada `UseInMemoryDatabase` para conectar o contexto a um banco de dados diferente. Para usar um banco de dados de teste SQL Server:
+
+   * Referencie o pacote NuGet [Microsoft. EntityFrameworkCore. SqlServer] https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/) no arquivo de projeto.
+   * Chame `UseSqlServer` com uma cadeia de conexão para o banco de dados.
+
+   ```csharp
+   services.AddDbContext<ApplicationDbContext>((options, context) => 
+   {
+       context.UseSqlServer(
+           Configuration.GetConnectionString("TestingDbConnectionString"));
+   });
+   ```
 
 2. Use o @no__t personalizado-0 em classes de teste. O exemplo a seguir usa a fábrica na classe `IndexPageTests`:
 
@@ -236,11 +253,11 @@ Os serviços podem ser substituídos em um teste com uma chamada para [Configure
 
 O SUT de exemplo inclui um serviço com escopo que retorna uma aspa. A cotação é inserida em um campo oculto na página de índice quando a página de índice é solicitada.
 
-*Services/IQuoteService.cs*:
+*Serviços/IQuoteService. cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Services/IQuoteService.cs?name=snippet1)]
 
-*Services/QuoteService.cs*:
+*Serviços/QuoteService. cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Services/QuoteService.cs?name=snippet1)]
 
@@ -307,7 +324,7 @@ O [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/
 | Aplicação | Diretório do projeto | Descrição |
 | --- | ----------------- | ----------- |
 | Aplicativo de mensagens (o SUT) | *src/RazorPagesProject* | Permite que um usuário adicione, exclua um, exclua todos e analise as mensagens. |
-| Aplicativo de teste | *tests/RazorPagesProject.Tests* | Usado para testar a integração do SUT. |
+| Aplicativo de teste | *testes/RazorPagesProject. Tests* | Usado para testar a integração do SUT. |
 
 Os testes podem ser executados usando os recursos de teste internos de um IDE, como o [Visual Studio](https://visualstudio.microsoft.com). Se estiver usando [Visual Studio Code](https://code.visualstudio.com/) ou a linha de comando, execute o seguinte comando em um prompt de comando no diretório *tests/RazorPagesProject. Tests* :
 
@@ -349,6 +366,8 @@ Os testes de integração geralmente exigem um pequeno conjunto de dados no banc
 O aplicativo de exemplo propaga o banco de dados com três mensagens no *Utilities.cs* que os testes podem usar quando executam:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/Helpers/Utilities.cs?name=snippet1)]
+
+O contexto do banco de dados do SUT é registrado em seu método `Startup.ConfigureServices`. O retorno de chamada `builder.ConfigureServices` do aplicativo de teste é executado *depois* que o código `Startup.ConfigureServices` do aplicativo é executado. Para usar um banco de dados diferente para os testes, o contexto do banco de dados do aplicativo deve ser substituído em `builder.ConfigureServices`. Para obter mais informações, consulte a seção [Personalizar WebApplicationFactory](#customize-webapplicationfactory) .
 
 ::: moniker-end
 
@@ -410,9 +429,9 @@ Os testes de integração seguem uma sequência de eventos que incluem as etapas
 
 1. O host da Web do SUT está configurado.
 1. Um cliente de servidor de teste é criado para enviar solicitações ao aplicativo.
-1. A etapa *organizar* teste é executada: O aplicativo de teste prepara uma solicitação.
-1. A etapa de teste *Act* é executada: O cliente envia a solicitação e recebe a resposta.
-1. A etapa de teste *Assert* é executada: A resposta *real* é validada como uma *passagem* ou *falha* com base em uma resposta *esperada* .
+1. A etapa *organizar* teste é executada: o aplicativo de teste prepara uma solicitação.
+1. A etapa de teste *Act* é executada: o cliente envia a solicitação e recebe a resposta.
+1. A etapa de teste *Assert* é executada: a resposta *real* é validada como uma *passagem* ou *falha* com base em uma resposta *esperada* .
 1. O processo continua até que todos os testes sejam executados.
 1. Os resultados de teste são relatados.
 
@@ -439,13 +458,13 @@ O projeto de teste deve:
 
 * Faça referência aos seguintes pacotes:
   * [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
-  * [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/)
+  * [Microsoft. AspNetCore. Mvc. Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/)
 * Especifique o SDK da Web no arquivo de projeto (`<Project Sdk="Microsoft.NET.Sdk.Web">`). O SDK da Web é necessário ao fazer referência ao [metapacote do Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
 
 Esses pré-requisitos podem ser vistos no aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/). Inspecione o arquivo *tests/RazorPagesProject. Tests/RazorPagesProject. Tests. csproj* . O aplicativo de exemplo usa a estrutura de teste do [xUnit](https://xunit.github.io/) e a biblioteca do analisador [AngleSharp](https://anglesharp.github.io/) , portanto, o aplicativo de exemplo também faz referência a:
 
-* [xunit](https://www.nuget.org/packages/xunit/)
-* [xunit.runner.visualstudio](https://www.nuget.org/packages/xunit.runner.visualstudio/)
+* [xUnit](https://www.nuget.org/packages/xunit/)
+* [xUnit. Runner. VisualStudio](https://www.nuget.org/packages/xunit.runner.visualstudio/)
 * [AngleSharp](https://www.nuget.org/packages/AngleSharp/)
 
 ## <a name="sut-environment"></a>Ambiente SUT
@@ -495,7 +514,7 @@ A configuração do host Web pode ser criada independentemente das classes de te
 
    [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
-   A propagação de banco de dados no [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) é executada pelo método `InitializeDbForTests`. O método é descrito no exemplo de testes [Integration: Seção testar organização do aplicativo @ no__t-0.
+   A propagação de banco de dados no [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) é executada pelo método `InitializeDbForTests`. O método é descrito na seção [testes de integração exemplo: testar organização de aplicativos](#test-app-organization) .
 
 2. Use o @no__t personalizado-0 em classes de teste. O exemplo a seguir usa a fábrica na classe `IndexPageTests`:
 
@@ -564,11 +583,11 @@ Os serviços podem ser substituídos em um teste com uma chamada para [Configure
 
 O SUT de exemplo inclui um serviço com escopo que retorna uma aspa. A cotação é inserida em um campo oculto na página de índice quando a página de índice é solicitada.
 
-*Services/IQuoteService.cs*:
+*Serviços/IQuoteService. cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Services/IQuoteService.cs?name=snippet1)]
 
-*Services/QuoteService.cs*:
+*Serviços/QuoteService. cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Services/QuoteService.cs?name=snippet1)]
 
@@ -645,7 +664,7 @@ O [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/
 | Aplicação | Diretório do projeto | Descrição |
 | --- | ----------------- | ----------- |
 | Aplicativo de mensagens (o SUT) | *src/RazorPagesProject* | Permite que um usuário adicione, exclua um, exclua todos e analise as mensagens. |
-| Aplicativo de teste | *tests/RazorPagesProject.Tests* | Usado para testar a integração do SUT. |
+| Aplicativo de teste | *testes/RazorPagesProject. Tests* | Usado para testar a integração do SUT. |
 
 Os testes podem ser executados usando os recursos de teste internos de um IDE, como o [Visual Studio](https://visualstudio.microsoft.com). Se estiver usando [Visual Studio Code](https://code.visualstudio.com/) ou a linha de comando, execute o seguinte comando em um prompt de comando no diretório *tests/RazorPagesProject. Tests* :
 

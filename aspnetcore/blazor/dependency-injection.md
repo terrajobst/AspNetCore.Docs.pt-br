@@ -5,14 +5,14 @@ description: Veja como os aplicativos mais incrivelmente podem injetar serviços
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 10/15/2019
 uid: blazor/dependency-injection
-ms.openlocfilehash: 00c874e43496eaad8841db91843f41a299813aec
-ms.sourcegitcommit: 79eeb17604b536e8f34641d1e6b697fb9a2ee21f
+ms.openlocfilehash: b548f0e50e1a60b74969e5bbee43860be9ba5a7f
+ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71207172"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72391148"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>ASP.NET Core injeção de dependência mais incrivelmente
 
@@ -25,7 +25,7 @@ O mais incrivelmente dá suporte à [injeção de dependência (di)](xref:fundam
 DI é uma técnica para acessar os serviços configurados em um local central. Isso pode ser útil em aplicativos mais incrivelmente para:
 
 * Compartilhe uma única instância de uma classe de serviço em vários componentes, conhecido como um serviço *singleton* .
-* Dissociar componentes de classes de serviço concretas usando abstrações de referência. Por exemplo, considere uma interface `IDataAccess` para acessar dados no aplicativo. A interface é implementada por uma `DataAccess` classe concreta e registrada como um serviço no contêiner de serviço do aplicativo. Quando um componente usa di para receber uma `IDataAccess` implementação, o componente não é acoplado ao tipo concreto. A implementação pode ser trocada, talvez para uma implementação fictícia em testes de unidade.
+* Dissociar componentes de classes de serviço concretas usando abstrações de referência. Por exemplo, considere uma interface `IDataAccess` para acessar dados no aplicativo. A interface é implementada por uma classe concreta `DataAccess` e registrada como um serviço no contêiner de serviço do aplicativo. Quando um componente usa DI para receber uma implementação `IDataAccess`, o componente não é acoplado ao tipo concreto. A implementação pode ser trocada, talvez para uma implementação fictícia em testes de unidade.
 
 ## <a name="default-services"></a>Serviços padrão
 
@@ -41,7 +41,7 @@ Um provedor de serviços personalizado não fornece automaticamente os serviços
 
 ## <a name="add-services-to-an-app"></a>Adicionar serviços a um aplicativo
 
-Depois de criar um novo aplicativo, examine `Startup.ConfigureServices` o método:
+Depois de criar um novo aplicativo, examine o método `Startup.ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -50,7 +50,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-O `ConfigureServices` método é passado um <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, que é uma lista de objetos do descritor<xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor>de serviço (). Os serviços são adicionados fornecendo descritores de serviço à coleção de serviços. O exemplo a seguir demonstra o conceito com `IDataAccess` a interface e sua implementação `DataAccess`concreta:
+O método `ConfigureServices` é passado como um <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, que é uma lista de objetos de descritor de serviço (<xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor>). Os serviços são adicionados fornecendo descritores de serviço à coleção de serviços. O exemplo a seguir demonstra o conceito com a interface `IDataAccess` e sua implementação concreta `DataAccess`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -63,28 +63,28 @@ Os serviços podem ser configurados com os tempos de vida mostrados na tabela a 
 
 | Tempo de vida | Descrição |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Os aplicativos Webassembly mais claros não têm um conceito de escopos de DI. `Scoped`-serviços registrados se comportam como `Singleton` serviços. No entanto, o modelo de Hospedagem de servidor `Scoped` mais incrivelmente dá suporte ao tempo de vida. Em aplicativos de servidor mais incrivelmente, um registro de serviço com escopo é definido para a *conexão*. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI cria uma *única instância* do serviço. Todos os componentes que exigem `Singleton` um serviço recebem uma instância do mesmo serviço. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Sempre que um componente Obtém uma instância de um `Transient` serviço do contêiner de serviço, ele recebe uma *nova instância* do serviço. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Os aplicativos Webassembly mais claros não têm um conceito de escopos de DI. @no__t serviços registrados-0 se comportam como serviços `Singleton`. No entanto, o modelo de Hospedagem de servidor mais incrivelmente dá suporte ao tempo de vida de `Scoped`. Em aplicativos de servidor mais incrivelmente, um registro de serviço com escopo é definido para a *conexão*. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI cria uma *única instância* do serviço. Todos os componentes que exigem um serviço `Singleton` recebem uma instância do mesmo serviço. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Sempre que um componente Obtém uma instância de um serviço `Transient` do contêiner de serviço, ele recebe uma *nova instância* do serviço. |
 
 O sistema de DI é baseado no sistema de injeção de ASP.NET Core. Para obter mais informações, consulte <xref:fundamentals/dependency-injection>.
 
 ## <a name="request-a-service-in-a-component"></a>Solicitar um serviço em um componente
 
-Depois que os serviços forem adicionados à coleção de serviços, insira os serviços nos componentes usando a [ \@diretiva injetar](xref:mvc/views/razor#inject) Razor. `@inject`tem dois parâmetros:
+Depois que os serviços forem adicionados à coleção de serviços, insira os serviços nos componentes usando a diretiva do Razor [\@inject](xref:mvc/views/razor#inject) . `@inject` tem dois parâmetros:
 
-* Digite &ndash; o tipo do serviço a injetar.
+* Digite &ndash; o tipo de serviço a injetar.
 * Propriedade &ndash; o nome da propriedade que recebe o serviço de aplicativo injetado. A propriedade não requer criação manual. O compilador cria a propriedade.
 
 Para obter mais informações, consulte <xref:mvc/views/dependency-injection>.
 
-Use várias `@inject` instruções para injetar serviços diferentes.
+Use várias instruções `@inject` para injetar serviços diferentes.
 
-O exemplo a seguir mostra como usar `@inject`. A implementação `Services.IDataAccess` do serviço é injetada na propriedade `DataRepository`do componente. Observe como o código está usando apenas a `IDataAccess` abstração:
+O exemplo a seguir mostra como usar `@inject`. O serviço que implementa `Services.IDataAccess` é injetado na Propriedade do componente `DataRepository`. Observe como o código está usando a abstração `IDataAccess`:
 
 [!code-cshtml[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,23)]
 
-Internamente, a propriedade gerada (`DataRepository`) é decorada com `InjectAttribute` o atributo. Normalmente, esse atributo não é usado diretamente. Se uma classe base for necessária para componentes e propriedades injetadas também forem necessárias para a classe base, adicione `InjectAttribute`manualmente:
+Internamente, a propriedade gerada (`DataRepository`) é decorada com o atributo `InjectAttribute`. Normalmente, esse atributo não é usado diretamente. Se uma classe base for necessária para componentes e propriedades injetadas também forem necessárias para a classe base, adicione manualmente o `InjectAttribute`:
 
 ```csharp
 public class ComponentBase : IComponent
@@ -96,7 +96,7 @@ public class ComponentBase : IComponent
 }
 ```
 
-Em componentes derivados da classe base, a `@inject` diretiva não é necessária. O `InjectAttribute` da classe base é suficiente:
+Em componentes derivados da classe base, a diretiva `@inject` não é necessária. O `InjectAttribute` da classe base é suficiente:
 
 ```cshtml
 @page "/demo"
@@ -107,7 +107,7 @@ Em componentes derivados da classe base, a `@inject` diretiva não é necessári
 
 ## <a name="use-di-in-services"></a>Usar DI em serviços
 
-Serviços complexos podem exigir serviços adicionais. No exemplo anterior, `DataAccess` pode exigir o `HttpClient` serviço padrão. `@inject`(ou o `InjectAttribute`) não está disponível para uso em serviços. A *injeção de Construtor* deve ser usada em seu lugar. Os serviços necessários são adicionados adicionando parâmetros ao construtor do serviço. Quando DI cria o serviço, ele reconhece os serviços que ele requer no construtor e os fornece de acordo.
+Serviços complexos podem exigir serviços adicionais. No exemplo anterior, `DataAccess` pode exigir o serviço padrão `HttpClient`. `@inject` (ou o `InjectAttribute`) não está disponível para uso em serviços. A *injeção de Construtor* deve ser usada em seu lugar. Os serviços necessários são adicionados adicionando parâmetros ao construtor do serviço. Quando DI cria o serviço, ele reconhece os serviços que ele requer no construtor e os fornece de acordo.
 
 ```csharp
 public class DataAccess : IDataAccess
@@ -131,7 +131,7 @@ Pré-requisitos para injeção de construtor:
 
 Em aplicativos ASP.NET Core, os serviços com escopo normalmente são incluídos no escopo da solicitação atual. Depois que a solicitação for concluída, todos os serviços com escopo ou transitórios serão descartados pelo sistema de DI. Em aplicativos de servidor mais incrivelmente, o escopo da solicitação dura a duração da conexão do cliente, o que pode resultar em serviços transitórios e no escopo que vivem muito mais do que o esperado.
 
-Para os serviços de escopo até o tempo de vida de um componente `OwningComponentBase` , `OwningComponentBase<TService>` o pode usar as classes base e. Essas classes base expõem `ScopedServices` uma propriedade do `IServiceProvider` tipo que resolve serviços que estão no escopo do tempo de vida do componente. Para criar um componente que herda de uma classe base no Razor, use a `@inherits` diretiva.
+Para os serviços de escopo até o tempo de vida de um componente, o pode usar as classes base `OwningComponentBase` e `OwningComponentBase<TService>`. Essas classes base expõem uma propriedade `ScopedServices` do tipo `IServiceProvider` que resolve serviços que estão no escopo do tempo de vida do componente. Para criar um componente que herda de uma classe base no Razor, use a diretiva `@inherits`.
 
 ```cshtml
 @page "/users"
@@ -148,7 +148,7 @@ Para os serviços de escopo até o tempo de vida de um componente `OwningCompone
 ```
 
 > [!NOTE]
-> Os serviços injetados no componente usando `@inject` o ou `InjectAttribute` os não são criados no escopo do componente e estão vinculados ao escopo da solicitação.
+> Os serviços injetados no componente usando `@inject` ou o `InjectAttribute` não são criados no escopo do componente e estão vinculados ao escopo da solicitação.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

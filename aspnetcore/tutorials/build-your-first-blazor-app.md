@@ -5,14 +5,14 @@ description: Crie um aplicativo Blazor passo a passo.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/15/2019
+ms.date: 10/15/2019
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: 10feb5467a6a6b5a43e0df739fa72902af9854da
-ms.sourcegitcommit: e5a74f882c14eaa0e5639ff082355e130559ba83
+ms.openlocfilehash: c357b324905ee3a4c9f4bd167dbbcacaf7e1bc76
+ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71168363"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72391203"
 ---
 # <a name="build-your-first-blazor-app"></a>Como criar seu primeiro aplicativo Blazor
 
@@ -26,7 +26,7 @@ Siga as orientações no artigo <xref:blazor/get-started> para criar um projeto 
 
 ## <a name="build-components"></a>Componentes do build
 
-1. Navegue até cada uma das três páginas do aplicativo na pasta *Pages*: Início, Contador e Buscar dados. Essas páginas são implementadas pelos arquivos de componente Razor *Index.razor*, *Counter.razor* e *FetchData.razor*.
+1. Navegue até cada uma das três páginas do aplicativo na pasta *páginas* : Home, Counter e FETCH Data. Essas páginas são implementadas pelos arquivos de componente Razor *Index.razor*, *Counter.razor* e *FetchData.razor*.
 
 1. Na página Contador, selecione o botão **Clique aqui** para incrementar o contador sem uma atualização de página. A incrementação de um contador em uma página da Web normalmente exige JavaScript, mas o Blazor fornece uma abordagem melhor usando C#.
 
@@ -59,7 +59,7 @@ Inclua um componente em outro componente usando uma sintaxe HTML.
 
 1. Adicione o componente `Counter` no componente `Index` do aplicativo adicionando um elemento `<Counter />` ao componente `Index` (*Index.razor*).
 
-   Se você estiver usando Webassembly mais experiente para essa experiência, um `SurveyPrompt` componente será usado `Index` pelo componente. Substitua o elemento `<SurveyPrompt>` pelo elemento `<Counter />`. Se você estiver usando um aplicativo de servidor mais experiente para essa experiência, adicione `<Counter />` o elemento `Index` ao componente:
+   Se você estiver usando Webassembly mais experiente para essa experiência, um componente `SurveyPrompt` será usado pelo componente `Index`. Substitua o elemento `<SurveyPrompt>` pelo elemento `<Counter />`. Se você estiver usando um aplicativo de servidor mais experiente para essa experiência, adicione o elemento `<Counter />` ao componente `Index`:
 
    *Pages/Index.razor*:
 
@@ -69,11 +69,11 @@ Inclua um componente em outro componente usando uma sintaxe HTML.
 
 ## <a name="component-parameters"></a>Parâmetros do componente
 
-Componentes também podem ter parâmetros. Os parâmetros de componente são definidos usando propriedades públicas na classe de componente `[Parameter]` com o atributo. Use atributos para especificar argumentos para um componente na marcação.
+Componentes também podem ter parâmetros. Os parâmetros de componente são definidos usando propriedades públicas na classe de componente com o atributo `[Parameter]`. Use atributos para especificar argumentos para um componente na marcação.
 
 1. Atualizar o código C# do componente `@code`:
 
-   * Adicione uma propriedade `IncrementAmount` pública com o `[Parameter]` atributo.
+   * Adicione uma propriedade pública `IncrementAmount` com o atributo `[Parameter]`.
    * Altere o método `IncrementCount` para usar o `IncrementAmount` ao aumentar o valor de `currentCount`.
 
    *Pages/Counter.razor*:
@@ -99,11 +99,13 @@ A diretiva `@page` no início do arquivo *Counter.razor* especifica que esse com
 
 ## <a name="dependency-injection"></a>Injeção de dependência
 
-Se estiver trabalhando com um aplicativo de servidor mais incrivelmente `WeatherForecastService` , o serviço será registrado como um `Startup.ConfigureServices` [singleton](xref:fundamentals/dependency-injection#service-lifetimes) no. Uma instância do serviço está disponível em todo o aplicativo por meio de [injeção de dependência (di)](xref:fundamentals/dependency-injection):
+### <a name="blazor-server-experience"></a>Experiência de servidor mais incrivelmente
+
+Se estiver trabalhando com um aplicativo de servidor mais incrivelmente, o serviço `WeatherForecastService` será registrado como um [singleton](xref:fundamentals/dependency-injection#service-lifetimes) no `Startup.ConfigureServices`. Uma instância do serviço está disponível em todo o aplicativo por meio de [injeção de dependência (di)](xref:fundamentals/dependency-injection):
 
 [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-A `@inject` diretiva é usada para injetar a instância `WeatherForecastService` do serviço no `FetchData` componente.
+A diretiva `@inject` é usada para injetar a instância do serviço `WeatherForecastService` no componente `FetchData`.
 
 *Pages/FetchData.razor*:
 
@@ -113,13 +115,15 @@ O componente `FetchData` usa o serviço injetado, como `ForecastService`, para r
 
 [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
 
-Se estiver trabalhando com um aplicativo Webassembly de mais `HttpClient` alto, o é injetado para obter dados de previsão do tempo do arquivo *Weather. JSON* na pasta *wwwroot/Sample-data* .
+### <a name="blazor-webassembly-experience"></a>Experiência de Webassembly mais experiente
+
+Se estiver trabalhando com um aplicativo Webassembly mais alto, `HttpClient` será injetado para obter dados de previsão do tempo do arquivo *Weather. JSON* na pasta *wwwroot/Sample-data* .
 
 *Pages/FetchData.razor*:
 
 [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-8)]
 
-Um loop [\@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) é usado para renderizar cada uma das instâncias de previsão do tempo como uma linha na tabela de dados do tempo:
+Um loop [@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) é usado para renderizar cada instância de previsão como uma linha na tabela de dados meteorológicos:
 
 [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData3.razor?highlight=11-19)]
 

@@ -5,14 +5,14 @@ description: Saiba como depurar aplicativos mais Incrivelmenteos.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 10/15/2019
 uid: blazor/debug
-ms.openlocfilehash: 3519479d8058f013de23cc9cfa0f5574cd158053
-ms.sourcegitcommit: 79eeb17604b536e8f34641d1e6b697fb9a2ee21f
+ms.openlocfilehash: 9fc3f1d2dd7dc79d2ba3d64bff6e0f92ac2cf6dc
+ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71207201"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72391177"
 ---
 # <a name="debug-aspnet-core-blazor"></a>Depurar ASP.NET Core mais incrivelmente
 
@@ -25,13 +25,13 @@ Há suporte *antecipado* para depuração de aplicativos Webassembly mais recent
 Os recursos do depurador são limitados. Os cenários disponíveis incluem:
 
 * Definir e remover pontos de interrupção.
-* Etapa única (`F10`) por meio da execução do código ou`F8`retomar ().
-* Na exibição *locais* , observe os valores de qualquer variável local do tipo `int`, `string`e `bool`.
+* Etapa única (`F10`) por meio da execução do código ou retomar (`F8`).
+* Na exibição *locais* , observe os valores de quaisquer variáveis locais do tipo `int`, `string` e `bool`.
 * Consulte a pilha de chamadas, incluindo cadeias de chamada que vão do JavaScript para o .NET e do .NET para o JavaScript.
 
 Você *não pode*:
 
-* Observe os valores de quaisquer locais que não sejam `int`um `string`, ou `bool`.
+* Observe os valores de qualquer local que não seja um `int`, `string` ou `bool`.
 * Observe os valores de quaisquer propriedades ou campos de classe.
 * Passe o mouse sobre variáveis para ver seus valores.
 * Avalie as expressões no console.
@@ -40,7 +40,7 @@ Você *não pode*:
 
 O desenvolvimento de mais cenários de depuração é um foco contínuo da equipe de engenharia.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 A depuração requer um dos seguintes navegadores:
 
@@ -49,16 +49,16 @@ A depuração requer um dos seguintes navegadores:
 
 ## <a name="procedure"></a>Procedimento
 
-1. Execute um aplicativo Webassembly mais incrivelmente na `Debug` configuração. Passe a `--configuration Debug` opção para o comando [dotnet Run](/dotnet/core/tools/dotnet-run) : `dotnet run --configuration Debug`.
+1. Execute um aplicativo Webassembly mais incrivelmente na configuração `Debug`. Passe a opção `--configuration Debug` para o comando [dotnet Run](/dotnet/core/tools/dotnet-run) : `dotnet run --configuration Debug`.
 1. Acesse o aplicativo no navegador.
 1. Coloque o foco do teclado no aplicativo, não no painel Ferramentas do desenvolvedor. O painel Ferramentas do desenvolvedor pode ser fechado quando a depuração é iniciada.
 1. Selecione o seguinte atalho de teclado específico do mais alto:
-   * `Shift+Alt+D`no Windows/Linux
-   * `Shift+Cmd+D`no macOS
+   * `Shift+Alt+D` no Windows/Linux
+   * `Shift+Cmd+D` no macOS
 1. Siga as etapas listadas na tela para reiniciar o navegador com a depuração remota habilitada.
 1. Selecione o seguinte atalho de teclado específico para o mais novo para iniciar a sessão de depuração:
-   * `Shift+Alt+D`no Windows/Linux
-   * `Shift+Cmd+D`no macOS
+   * `Shift+Alt+D` no Windows/Linux
+   * `Shift+Cmd+D` no macOS
 
 ## <a name="enable-remote-debugging"></a>Habilitar depuração remota
 
@@ -66,7 +66,7 @@ Se a depuração remota estiver desabilitada, uma página de erro **não é poss
 
 ## <a name="debug-the-app"></a>Depurar o aplicativo
 
-Depois que o Chrome estiver em execução com a depuração remota habilitada, o atalho de teclado de depuração abrirá uma nova guia do depurador. Após alguns instantes, a guia **fontes** mostra uma lista dos assemblies .net no aplicativo. Expanda cada assembly e localize os arquivos de origem *. cs*/ *. Razor* disponíveis para depuração. Defina pontos de interrupção, alterne de volta para a guia do aplicativo e os pontos de interrupção serão atingidos quando o código for executado. Depois que um ponto de interrupção é atingido, etapa`F10`única () por meio da execução`F8`do código ou retomar () normalmente.
+Depois que o Chrome estiver em execução com a depuração remota habilitada, o atalho de teclado de depuração abrirá uma nova guia do depurador. Após alguns instantes, a guia **fontes** mostra uma lista dos assemblies .net no aplicativo. Expanda cada assembly e localize os arquivos de origem *. cs*/ *. Razor* disponíveis para depuração. Defina pontos de interrupção, alterne de volta para a guia do aplicativo e os pontos de interrupção serão atingidos quando o código for executado. Depois que um ponto de interrupção é atingido, a etapa única (`F10`) por meio da execução do código ou retomar (`F8`) normalmente.
 
 O mais incrivelmente fornece um proxy de depuração que implementa o [protocolo Chrome devtools](https://chromedevtools.github.io/devtools-protocol/) e aumenta o protocolo com o. Informações específicas de rede. Quando o atalho de teclado de depuração é pressionado, o mais um é apontado para o Chrome DevTools no proxy. O proxy se conecta à janela do navegador que você está procurando depurar (portanto, a necessidade de habilitar a depuração remota).
 
@@ -78,4 +78,4 @@ Os mapas de origem do navegador permitem que o navegador mapeie arquivos compila
 
 Se você estiver executando erros, a dica a seguir pode ajudar:
 
-Na guia **depurador** , abra as ferramentas de desenvolvedor em seu navegador. No console do, execute `localStorage.clear()` para remover qualquer ponto de interrupção.
+Na guia **depurador** , abra as ferramentas de desenvolvedor em seu navegador. No console do, execute `localStorage.clear()` para remover os pontos de interrupção.

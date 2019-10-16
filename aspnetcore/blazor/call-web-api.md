@@ -5,14 +5,14 @@ description: Saiba como chamar uma API da Web de um aplicativo mais novo usando 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/05/2019
+ms.date: 10/15/2019
 uid: blazor/call-web-api
-ms.openlocfilehash: 3d70af2226eb29870458a5fd3c2bbbc3ee5c14ce
-ms.sourcegitcommit: 73a451e9a58ac7102f90b608d661d8c23dd9bbaf
+ms.openlocfilehash: b08fdf5c2f9a523314b1744a33087eb64fa4c14a
+ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/08/2019
-ms.locfileid: "72037444"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72390847"
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>Chamar uma API Web do ASP.NET Core mais
 
@@ -200,7 +200,7 @@ Forneça opções de solicitação para a [API de busca](https://developer.mozil
 }
 ```
 
-Para obter mais informações sobre as opções de API de busca, consulte os documentos da Web [MDN: WindowOrWorkerGlobalScope. Fetch ():P arameters @ no__t-0.
+Para obter mais informações sobre as opções de API de busca, consulte [MDN Web docs: WindowOrWorkerGlobalScope. Fetch ():P arameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
 
 Ao enviar credenciais (cookies/cabeçalhos de autorização) em solicitações CORS, o cabeçalho `Authorization` deve ser permitido pela política CORS.
 

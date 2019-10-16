@@ -5,14 +5,14 @@ description: Saiba mais sobre o Host Genérico do .NET Core, que é responsável
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 10/15/2019
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: 8e29c3a300cc1cdc37458427d3be7ceed84385ef
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: f14917ad924e2c762a14c2cb5f51391d4be06e7b
+ms.sourcegitcommit: dd026eceee79e943bd6b4a37b144803b50617583
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259633"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72378747"
 ---
 # <a name="net-generic-host"></a>Host Genérico .NET
 
@@ -74,7 +74,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 Se o aplicativo usar o Entity Framework Core, não altere o nome ou a assinatura do método `CreateHostBuilder`. As [ferramentas do Entity Framework Core](/ef/core/miscellaneous/cli/) esperam encontrar um método `CreateHostBuilder` que elas possam chamar em tempo de design para configurar o host sem executar o aplicativo. Para obter mais informações, confira [Criação de DbContext no tempo de design](/ef/core/miscellaneous/cli/dbcontext-creation).
 
-## <a name="default-builder-settings"></a>Configurações do construtor padrão 
+## <a name="default-builder-settings"></a>Configurações do construtor padrão
 
 O método <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>:
 
@@ -127,7 +127,7 @@ O exemplo a seguir é uma implementação `IHostedService` que registra os event
 
 A implementação <xref:Microsoft.Extensions.Hosting.IHostLifetime> controla quando o host é iniciado e quando ele é interrompido. A última implementação registrada é usada.
 
-<xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime> é a implementação `IHostLifetime` padrão. `ConsoleLifetime`:
+`Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` é a implementação `IHostLifetime` padrão. `ConsoleLifetime`:
 
 * escuta Ctrl + C/SIGINT ou SIGTERM e chama <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> para iniciar o processo de desligamento.
 * Desbloqueia extensões como [RunAsync](#runasync) e [WaitForShutdownAsync](#waitforshutdownasync).
@@ -178,7 +178,7 @@ A propriedade [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosti
 
 **Chave**: applicationName  
 **Tipo**: *string*  
-**Padrão**: O nome do assembly que contém o ponto de entrada do aplicativo.
+**Padrão**: o nome do assembly que contém o ponto de entrada do aplicativo.
 **Variável de ambiente**: `<PREFIX_>APPLICATIONNAME`
 
 Para definir esse valor, use a variável de ambiente. 
@@ -189,7 +189,7 @@ A propriedade [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosti
 
 **Chave**: contentRoot  
 **Tipo**: *string*  
-**Padrão**: A pasta em que o assembly do aplicativo reside.  
+**Padrão**: a pasta onde o assembly de aplicativo reside.  
 **Variável de ambiente**: `<PREFIX_>CONTENTROOT`
 
 Para definir esse valor, use a variável de ambiente ou a chamada `UseContentRoot` em `IHostBuilder`:
@@ -202,7 +202,7 @@ Host.CreateDefaultBuilder(args)
 
 Para obter mais informações, consulte:
 
-* [Fundamentals: Raiz do conteúdo @ no__t-0
+* [Conceitos básicos: raiz de conteúdo](xref:fundamentals/index#content-root)
 * [WebRoot](#webroot)
 
 ### <a name="environmentname"></a>EnvironmentName
@@ -211,7 +211,7 @@ A propriedade [IHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosti
 
 **Chave**: ambiente  
 **Tipo**: *string*  
-**Padrão**: Produção  
+**Padrão**: Production  
 **Variável de ambiente**: `<PREFIX_>ENVIRONMENT`
 
 Para definir esse valor, use a variável de ambiente ou a chamada `UseEnvironment` em `IHostBuilder`:
@@ -233,7 +233,7 @@ Se o período de tempo limite expirar antes que todos os serviços hospedados pa
 
 **Chave**: shutdownTimeoutSeconds  
 **Tipo**: *int*  
-**Padrão**: **Variável de ambiente** de cinco segundos: `<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
+**Padrão**: 5 segundos **variável de ambiente**: `<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
 
 Para definir esse valor, use a variável de ambiente ou configure `HostOptions`. O exemplo a seguir define o tempo limite para 20 segundos:
 
@@ -291,7 +291,7 @@ Uma cadeia de caracteres delimitada por ponto e vírgula de assemblies de inicia
 
 **Chave**: hostingStartupAssemblies  
 **Tipo**: *string*  
-**Padrão**: Cadeia de caracteres vazia  
+**Padrão**: cadeia de caracteres vazia  
 **Variável de ambiente**: `<PREFIX_>_HOSTINGSTARTUPASSEMBLIES`
 
 Para definir esse valor, use a configuração ou a chamada `UseSetting`:
@@ -306,7 +306,7 @@ Uma cadeia de caracteres delimitada por ponto e vírgula de assemblies de inicia
 
 **Chave**: hostingStartupExcludeAssemblies  
 **Tipo**: *string*  
-**Padrão**: Cadeia de caracteres vazia  
+**Padrão**: cadeia de caracteres vazia  
 **Variável de ambiente**: `<PREFIX_>_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
 
 Para definir esse valor, use a configuração ou a chamada `UseSetting`:
@@ -381,7 +381,7 @@ webBuilder.UseStartup<Startup>();
 
 ### <a name="urls"></a>URLs
 
-Uma lista delimitada por ponto-e-vírgula de endereços IP ou endereços de host com portas e protocolos que o servidor deve escutar para solicitações. Por exemplo: `http://localhost:123`. Use "\*" para indicar que o servidor deve escutar solicitações em qualquer endereço IP ou nome do host usando a porta e o protocolo especificados (por exemplo, `http://*:5000`). O protocolo (`http://` ou `https://`) deve ser incluído com cada URL. Os formatos compatíveis variam dependendo dos servidores.
+Uma lista delimitada por ponto-e-vírgula de endereços IP ou endereços de host com portas e protocolos que o servidor deve escutar para solicitações. Por exemplo, `http://localhost:123`. Use "\*" para indicar que o servidor deve escutar solicitações em qualquer endereço IP ou nome do host usando a porta e o protocolo especificados (por exemplo, `http://*:5000`). O protocolo (`http://` ou `https://`) deve ser incluído com cada URL. Os formatos compatíveis variam dependendo dos servidores.
 
 **Chave**: urls  
 **Tipo**: *string*  
@@ -402,7 +402,7 @@ O caminho relativo para os ativos estáticos do aplicativo.
 
 **Chave**: webroot  
 **Tipo**: *string*  
-**Padrão**: O padrão é `wwwroot`. O caminho para *{Content root}/wwwroot* deve existir. Se o caminho não existir, um provedor de arquivo não operacional será usado.  
+**Padrão**: o padrão é `wwwroot`. O caminho para *{Content root}/wwwroot* deve existir. Se o caminho não existir, um provedor de arquivo não operacional será usado.  
 **Variável de ambiente**: `<PREFIX_>WEBROOT`
 
 Para definir esse valor, use a variável de ambiente ou a chamada `UseWebRoot`:
@@ -413,7 +413,7 @@ webBuilder.UseWebRoot("public");
 
 Para obter mais informações, consulte:
 
-* [Fundamentals: Raiz da Web @ no__t-0
+* [Conceitos básicos: raiz da Web](xref:fundamentals/index#web-root)
 * [ContentRootPath](#contentrootpath)
 
 ## <a name="manage-the-host-lifetime"></a>Gerenciar o tempo de vida do host
@@ -546,8 +546,8 @@ Os seguintes serviços são registrados durante a inicialização do host:
 * [Ambiente](xref:fundamentals/environments) (<xref:Microsoft.Extensions.Hosting.IHostingEnvironment>)
 * <xref:Microsoft.Extensions.Hosting.HostBuilderContext>
 * [Configuração](xref:fundamentals/configuration/index) (<xref:Microsoft.Extensions.Configuration.IConfiguration>)
-* <xref:Microsoft.Extensions.Hosting.IApplicationLifetime> (<xref:Microsoft.Extensions.Hosting.Internal.ApplicationLifetime>)
-* <xref:Microsoft.Extensions.Hosting.IHostLifetime> (<xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime>)
+* <xref:Microsoft.Extensions.Hosting.IApplicationLifetime> (`Microsoft.Extensions.Hosting.Internal.ApplicationLifetime`)
+* <xref:Microsoft.Extensions.Hosting.IHostLifetime> (`Microsoft.Extensions.Hosting.Internal.ConsoleLifetime`)
 * <xref:Microsoft.Extensions.Hosting.IHost>
 * [Opções](xref:fundamentals/configuration/options) (<xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions*>)
 * [Registro em log](xref:fundamentals/logging/index) (<xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging*>)
@@ -585,7 +585,7 @@ Se o caminho não existir, o host não será iniciado.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseContentRoot)]
 
-Para obter mais informações, consulte [Fundamentals: Raiz do conteúdo @ no__t-0.
+Para obter mais informações, consulte [conceitos básicos: content root](xref:fundamentals/index#content-root).
 
 ### <a name="environment"></a>Ambiente
 
@@ -593,7 +593,7 @@ Define o [ambiente](xref:fundamentals/environments) do aplicativo.
 
 **Chave**: ambiente  
 **Tipo**: *string*  
-**Padrão**: Produção  
+**Padrão**: Production  
 **Definido usando**: `UseEnvironment`  
 **Variável de ambiente**: `<PREFIX_>ENVIRONMENT` (`<PREFIX_>` é [opcional e definida pelo usuário](#configurehostconfiguration))
 
@@ -684,7 +684,7 @@ O [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/
 
 ### <a name="useconsolelifetime"></a>UseConsoleLifetime
 
-<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> escuta Ctrl + C/SIGINT ou SIGTERM e chama <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> para iniciar o processo de desligamento. <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> desbloqueia extensões como [RunAsync](#runasync) e [WaitForShutdownAsync](#waitforshutdownasync). <xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime> é previamente registrado como a implementação de tempo de vida padrão. O último tempo de vida registrado é usado.
+<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> escuta Ctrl + C/SIGINT ou SIGTERM e chama <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> para iniciar o processo de desligamento. <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> desbloqueia extensões como [RunAsync](#runasync) e [WaitForShutdownAsync](#waitforshutdownasync). `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` é previamente registrado como a implementação de tempo de vida padrão. O último tempo de vida registrado é usado.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseConsoleLifetime)]
 
@@ -840,7 +840,7 @@ public class Program
 
 ### <a name="waitforshutdown"></a>WaitForShutdown
 
-<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> é disparado por meio de <xref:Microsoft.Extensions.Hosting.IHostLifetime>, como <xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime> (escuta Ctrl + C/SIGINT ou SIGTERM). <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> chama <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
+<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> é disparado por meio de <xref:Microsoft.Extensions.Hosting.IHostLifetime>, como `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` (escuta Ctrl + C/SIGINT ou SIGTERM). <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> chama <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
 
 ```csharp
 public class Program

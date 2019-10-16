@@ -5,14 +5,14 @@ description: Saiba como estabelecer declarações e tokens adicionais de provedo
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/01/2019
+ms.date: 10/15/2019
 uid: security/authentication/social/additional-claims
-ms.openlocfilehash: cdf263df8d1aa17ea3820a16ecbd10abce9d683d
-ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
+ms.openlocfilehash: 72710d249d3210208dd9b0356a700ba02a0b727a
+ms.sourcegitcommit: dd026eceee79e943bd6b4a37b144803b50617583
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/03/2019
-ms.locfileid: "71925149"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72378881"
 ---
 # <a name="persist-additional-claims-and-tokens-from-external-providers-in-aspnet-core"></a>Manter declarações e tokens adicionais de provedores externos no ASP.NET Core
 
@@ -24,7 +24,7 @@ Um aplicativo ASP.NET Core pode estabelecer declarações e tokens adicionais de
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/social/additional-claims/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 Decida quais provedores de autenticação externa dar suporte no aplicativo. Para cada provedor, registre o aplicativo e obtenha uma ID do cliente e um segredo do cliente. Para obter mais informações, consulte <xref:security/authentication/social/index>. O aplicativo de exemplo usa o [provedor de autenticação do Google](xref:security/authentication/google-logins).
 
@@ -68,7 +68,7 @@ O aplicativo de exemplo cria declarações de localidade (`urn:google:locale`) e
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=13-14)]
 
-No <xref:Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync*>, um <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) é conectado ao aplicativo com <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. Durante o processo de entrada, o <xref:Microsoft.AspNetCore.Identity.UserManager%601> pode armazenar uma declaração `ApplicationUser` para dados do usuário disponíveis no <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
+No `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, um <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) é conectado ao aplicativo com <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. Durante o processo de entrada, o <xref:Microsoft.AspNetCore.Identity.UserManager%601> pode armazenar uma declaração `ApplicationUser` para dados do usuário disponíveis no <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
 
 No aplicativo de exemplo, `OnPostConfirmationAsync` (*Account/ExternalLogin. cshtml. cs*) estabelece as declarações de localidade (`urn:google:locale`) e imagem (`urn:google:picture`) para a entrada `ApplicationUser`, incluindo uma declaração para <xref:System.Security.Claims.ClaimTypes.GivenName>:
 
@@ -164,7 +164,7 @@ Um aplicativo ASP.NET Core pode estabelecer declarações e tokens adicionais de
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/social/additional-claims/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 Decida quais provedores de autenticação externa dar suporte no aplicativo. Para cada provedor, registre o aplicativo e obtenha uma ID do cliente e um segredo do cliente. Para obter mais informações, consulte <xref:security/authentication/social/index>. O aplicativo de exemplo usa o [provedor de autenticação do Google](xref:security/authentication/google-logins).
 
@@ -208,7 +208,7 @@ O aplicativo de exemplo cria declarações de localidade (`urn:google:locale`) e
 
 [!code-csharp[](additional-claims/samples/2.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=13-14)]
 
-No <xref:Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync*>, um <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) é conectado ao aplicativo com <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. Durante o processo de entrada, o <xref:Microsoft.AspNetCore.Identity.UserManager%601> pode armazenar uma declaração `ApplicationUser` para dados do usuário disponíveis no <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
+No `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, um <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) é conectado ao aplicativo com <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. Durante o processo de entrada, o <xref:Microsoft.AspNetCore.Identity.UserManager%601> pode armazenar uma declaração `ApplicationUser` para dados do usuário disponíveis no <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
 
 No aplicativo de exemplo, `OnPostConfirmationAsync` (*Account/ExternalLogin. cshtml. cs*) estabelece as declarações de localidade (`urn:google:locale`) e imagem (`urn:google:picture`) para a entrada `ApplicationUser`, incluindo uma declaração para <xref:System.Security.Claims.ClaimTypes.GivenName>:
 

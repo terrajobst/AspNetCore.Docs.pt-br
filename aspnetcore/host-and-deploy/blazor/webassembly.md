@@ -5,14 +5,14 @@ description: Veja como hospedar e implantar um aplicativo do Blazor usando o ASP
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 10/15/2019
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: a0a11f3aed9035000e79844fbec7cdd17b73fdaa
-ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
+ms.openlocfilehash: 8ff3f7b089b7aec6b1a6be2c85f24cfb9674b684
+ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/07/2019
-ms.locfileid: "72007342"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72391330"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Hospedar e implantar ASP.NET Core Webassembly de mais incrivelmente
 
@@ -44,7 +44,7 @@ Quando o documento padrão do aplicativo é solicitado usando a barra de endere�
 1. A *index.html* inicia o aplicativo.
 1. O roteador do Blazor é carregado e o componente `Main` Razor é renderizado.
 
-Na página principal, a seleção do link para o componente `About` funciona no cliente porque o roteador do Blazor impede que o navegador faça uma solicitação na Internet para `www.contoso.com` de `About` e atende ao componente `About` renderizado. Todas as solicitações de pontos de extremidade internos *no aplicativo Webassembly* mais claro funcionam da mesma maneira: Não são disparadas solicitações baseadas em navegador para os recursos hospedados no servidor na Internet. O roteador trata das solicitações internamente.
+Na página principal, a seleção do link para o componente `About` funciona no cliente porque o roteador do Blazor impede que o navegador faça uma solicitação na Internet para `www.contoso.com` de `About` e atende ao componente `About` renderizado. Todas as solicitações de pontos de extremidade internos *no aplicativo Webassembly* mais alto funcionam da mesma forma: as solicitações não disparam solicitações baseadas em navegador para recursos hospedados no servidor na Internet. O roteador trata das solicitações internamente.
 
 Se uma solicitação for feita usando a barra de endereços do navegador para `www.contoso.com/About`, a solicitação falhará. Este recurso não existe no host do aplicativo na Internet; portanto, uma resposta *404 – Não Encontrado* é retornada.
 

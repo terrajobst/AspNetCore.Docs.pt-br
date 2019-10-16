@@ -5,14 +5,14 @@ description: Saiba como persistir o estado em aplicativos de servidor mais incri
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 10/15/2019
 uid: blazor/state-management
-ms.openlocfilehash: 9d42fa64181bc175cfba97fd149528d5b7cf4ff8
-ms.sourcegitcommit: 79eeb17604b536e8f34641d1e6b697fb9a2ee21f
+ms.openlocfilehash: 67042fa9b86125fe95d877dbce246abeb6f35dd0
+ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71211640"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72391272"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>ASP.NET Core o gerenciamento de estado mais incrivelmente
 
@@ -24,7 +24,7 @@ O servidor mais incrivelmente é uma estrutura de aplicativo com estado. Na maio
 
 Exemplos de estado mantido para o circuito de um usuário incluem:
 
-* A interface do&mdash;usuário renderizada a hierarquia de instâncias de componente e sua saída de renderização mais recente.
+* A hierarquia de interface do usuário renderizada @ no__t-0the de instâncias de componente e sua saída de renderização mais recente.
 * Os valores de quaisquer campos e propriedades em instâncias de componente.
 * Dados mantidos em instâncias de serviço de [injeção de dependência (di)](xref:fundamentals/dependency-injection) que estão no escopo do circuito.
 
@@ -50,12 +50,12 @@ Em alguns cenários, a preservação do estado entre circuitos é desejável. Um
 
 Em geral, a manutenção de estado entre circuitos se aplica a cenários em que os usuários estão criando dados ativamente, não simplesmente lendo dados já existentes.
 
-Para preservar o estado além de um único circuito, *não armazene apenas os dados na memória do servidor*. O aplicativo deve manter os dados em algum outro local de armazenamento. A persistência de estado&mdash;não é automática você deve executar etapas ao desenvolver o aplicativo para implementar a persistência de dados com estado.
+Para preservar o estado além de um único circuito, *não armazene apenas os dados na memória do servidor*. O aplicativo deve manter os dados em algum outro local de armazenamento. A persistência de estado não é automática @ no__t-0you deve seguir etapas ao desenvolver o aplicativo para implementar a persistência de dados com estado.
 
 A persistência de dados normalmente é necessária apenas para o estado de alto valor que os usuários gastaram esforços para criar. Nos exemplos a seguir, o estado de persistência economiza tempo ou ajuda em atividades comerciais:
 
-* Formulário &ndash; da webstep é demorado para um usuário reinserir dados para várias etapas concluídas de um processo com vários passos, caso seu estado seja perdido. Um usuário perde o estado nesse cenário se ele navega para fora do formulário com várias etapas e retorna para o formulário mais tarde.
-* Carrinho &ndash; de compras qualquer componente comercialmente importante de um aplicativo que representa a possível receita pode ser mantido. Um usuário que perde seu estado e, portanto, seu carrinho de compras, pode comprar menos produtos ou serviços quando eles retornam para o site mais tarde.
+* Formulário da webstep &ndash; é demorado para um usuário reinserir os dados para várias etapas concluídas de um processo multietapa se seu estado for perdido. Um usuário perde o estado nesse cenário se ele navega para fora do formulário com várias etapas e retorna para o formulário mais tarde.
+* O carrinho de compras &ndash; qualquer componente comercialmente importante de um aplicativo que represente a receita potencial pode ser mantido. Um usuário que perde seu estado e, portanto, seu carrinho de compras, pode comprar menos produtos ou serviços quando eles retornam para o site mais tarde.
 
 Normalmente, não é necessário preservar o estado de recriação fácil, como o nome de usuário inserido em uma caixa de diálogo de entrada que não foi enviada.
 
@@ -93,28 +93,28 @@ Para dados transitórios que representam o estado de navegação, modele os dado
 O conteúdo da barra de endereços do navegador é mantido:
 
 * Se o usuário recarregar a página manualmente.
-* Se o servidor Web ficar indisponível&mdash;, o usuário será forçado a recarregar a página para se conectar a um servidor diferente.
+* Se o servidor Web ficar indisponível, @ no__t-0the usuário será forçado a recarregar a página para se conectar a um servidor diferente.
 
-Para obter informações sobre como definir padrões de `@page` URL com a <xref:blazor/routing>diretiva, consulte.
+Para obter informações sobre como definir padrões de URL com a diretiva `@page`, consulte <xref:blazor/routing>.
 
 ### <a name="client-side-in-the-browser"></a>Lado do cliente no navegador
 
-Para dados transitórios que o usuário está criando ativamente, um repositório de backup comum é o navegador `localStorage` e `sessionStorage` as coleções. O aplicativo não é necessário para gerenciar ou limpar o estado armazenado se o circuito for abandonado, o que é uma vantagem sobre o armazenamento do lado do servidor.
+Para dados transitórios que o usuário está criando ativamente, um repositório de backup comum são as coleções `localStorage` e `sessionStorage` do navegador. O aplicativo não é necessário para gerenciar ou limpar o estado armazenado se o circuito for abandonado, o que é uma vantagem sobre o armazenamento do lado do servidor.
 
 > [!NOTE]
-> "Lado do cliente" nesta seção refere-se aos cenários do lado do cliente no navegador, não no [modelo de hospedagem Webassembly](xref:blazor/hosting-models#blazor-webassembly)mais alto. `localStorage`e `sessionStorage` podem ser usados em aplicativos Webassembly mais elaborados, mas apenas escrevendo código personalizado ou usando um pacote de terceiros.
+> "Lado do cliente" nesta seção refere-se aos cenários do lado do cliente no navegador, não no [modelo de hospedagem Webassembly](xref:blazor/hosting-models#blazor-webassembly)mais alto. `localStorage` e `sessionStorage` podem ser usados em aplicativos Webassembly mais elaborados, mas apenas gravando código personalizado ou usando um pacote de terceiros.
 
-`localStorage`e `sessionStorage` diferem da seguinte maneira:
+`localStorage` e `sessionStorage` diferem da seguinte maneira:
 
-* `localStorage`está no escopo do navegador do usuário. Se o usuário recarregar a página ou fechar e abrir novamente o navegador, o estado persistirá. Se o usuário abrir várias guias do navegador, o estado será compartilhado entre as guias. Os dados persistem `localStorage` até serem explicitamente desmarcados.
-* `sessionStorage`está no escopo da guia do navegador do usuário. Se o usuário recarregar a guia, o estado persiste. Se o usuário fechar a guia ou o navegador, o estado será perdido. Se o usuário abrir várias guias do navegador, cada guia terá sua própria versão independente dos dados.
+* `localStorage` está no escopo do navegador do usuário. Se o usuário recarregar a página ou fechar e abrir novamente o navegador, o estado persistirá. Se o usuário abrir várias guias do navegador, o estado será compartilhado entre as guias. Os dados persistem em `localStorage` até que sejam explicitamente desmarcados.
+* `sessionStorage` está no escopo da guia do navegador do usuário. Se o usuário recarregar a guia, o estado persiste. Se o usuário fechar a guia ou o navegador, o estado será perdido. Se o usuário abrir várias guias do navegador, cada guia terá sua própria versão independente dos dados.
 
-Em geral `sessionStorage` , é mais seguro usar. `sessionStorage`evita o risco de um usuário abrir várias guias e encontrar o seguinte:
+Em geral, `sessionStorage` é mais seguro de usar. `sessionStorage` evita o risco de um usuário abrir várias guias e encontrar o seguinte:
 
 * Bugs no armazenamento de estado entre guias.
 * Comportamento confuso quando uma guia substitui o estado de outras guias.
 
-`localStorage`é a melhor opção se o aplicativo precisar manter o estado entre fechar e abrir novamente o navegador.
+`localStorage` é a melhor opção se o aplicativo precisar manter o estado entre fechar e reabrir o navegador.
 
 Advertências para usar o armazenamento de navegador:
 
@@ -125,29 +125,29 @@ Advertências para usar o armazenamento de navegador:
 
 ## <a name="third-party-browser-storage-solutions"></a>Soluções de armazenamento de navegadores de terceiros
 
-Os pacotes NuGet de terceiros fornecem APIs para trabalhar com `localStorage` o `sessionStorage`e o.
+Os pacotes NuGet de terceiros fornecem APIs para trabalhar com `localStorage` e `sessionStorage`.
 
 Vale a pena considerar a escolha de um pacote que usa de forma transparente a [proteção de dados](xref:security/data-protection/introduction)de ASP.NET Core. ASP.NET Core proteção de dados criptografa os dados armazenados e reduz o risco potencial de adulterar os dados armazenados. Se os dados serializados em JSON forem armazenados em texto não criptografado, os usuários poderão ver os dados usando as ferramentas de desenvolvedor do navegador e também modificar os dados armazenados. Proteger os dados nem sempre é um problema porque os dados podem ser triviais por natureza. Por exemplo, ler ou modificar a cor armazenada de um elemento de interface do usuário não é um risco de segurança significativo para o usuário ou a organização. Evite permitir que os usuários inspecionem ou violem *dados confidenciais*.
 
 ## <a name="protected-browser-storage-experimental-package"></a>Pacote experimental de armazenamento de navegador protegido
 
-Um exemplo de um pacote NuGet que fornece [proteção](xref:security/data-protection/introduction) de dados `localStorage` para `sessionStorage` o e é [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
+Um exemplo de um pacote NuGet que fornece [proteção de dados](xref:security/data-protection/introduction) para `localStorage` e `sessionStorage` é [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
 
 > [!WARNING]
-> `Microsoft.AspNetCore.ProtectedBrowserStorage`é um pacote experimental sem suporte não adequado para uso em produção no momento.
+> `Microsoft.AspNetCore.ProtectedBrowserStorage` é um pacote experimental sem suporte não adequado para uso em produção no momento.
 
 ### <a name="installation"></a>Instalação
 
-Para instalar o `Microsoft.AspNetCore.ProtectedBrowserStorage` pacote:
+Para instalar o pacote `Microsoft.AspNetCore.ProtectedBrowserStorage`:
 
 1. No projeto de aplicativo de servidor mais incrivelmente, adicione uma referência de pacote a [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
-1. No HTML de nível superior (por exemplo, no arquivo *pages/_Host. cshtml* no modelo de projeto padrão), adicione a seguinte `<script>` marca:
+1. No HTML de nível superior (por exemplo, no arquivo *pages/_Host. cshtml* no modelo de projeto padrão), adicione a seguinte marca `<script>`:
 
    ```html
    <script src="_content/Microsoft.AspNetCore.ProtectedBrowserStorage/protectedBrowserStorage.js"></script>
    ```
 
-1. No método, chame `AddProtectedBrowserStorage` para adicionar `localStorage` e `sessionStorage` serviços para a coleção de serviços: `Startup.ConfigureServices`
+1. No método `Startup.ConfigureServices`, chame `AddProtectedBrowserStorage` para adicionar serviços `localStorage` e `sessionStorage` à coleção de serviços:
 
    ```csharp
    services.AddProtectedBrowserStorage();
@@ -155,7 +155,7 @@ Para instalar o `Microsoft.AspNetCore.ProtectedBrowserStorage` pacote:
 
 ### <a name="save-and-load-data-within-a-component"></a>Salvar e carregar dados dentro de um componente
 
-Em qualquer componente que exija carregar ou salvar dados no armazenamento de navegador, [@inject](xref:blazor/dependency-injection#request-a-service-in-a-component) use para injetar uma instância de um dos seguintes:
+Em qualquer componente que requer o carregamento ou salvamento de dados no armazenamento de navegador, use [@inject](xref:blazor/dependency-injection#request-a-service-in-a-component) para injetar uma instância de um dos seguintes:
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
@@ -167,9 +167,9 @@ A escolha depende de qual repositório de backup você deseja usar. No exemplo a
 @inject ProtectedSessionStorage ProtectedSessionStore
 ```
 
-A `@using` instrução pode ser colocada em um arquivo *_Imports. Razor* em vez de no componente. O uso do arquivo *_Imports. Razor* torna o namespace disponível para segmentos maiores do aplicativo ou todo o aplicativo.
+A instrução `@using` pode ser colocada em um arquivo *_Imports. Razor* em vez de no componente. O uso do arquivo *_Imports. Razor* torna o namespace disponível para segmentos maiores do aplicativo ou todo o aplicativo.
 
-Para manter o `currentCount` valor `Counter` no componente do modelo de projeto, modifique o `IncrementCount` método a ser usado `ProtectedSessionStore.SetAsync`:
+Para persistir o valor de `currentCount` no componente `Counter` do modelo de projeto, modifique o método `IncrementCount` para usar `ProtectedSessionStore.SetAsync`:
 
 ```csharp
 private async Task IncrementCount()
@@ -179,11 +179,11 @@ private async Task IncrementCount()
 }
 ```
 
-Em aplicativos maiores e mais realistas, o armazenamento de campos individuais é um cenário improvável. Os aplicativos têm maior probabilidade de armazenar objetos de modelo inteiros que incluem estado complexo. `ProtectedSessionStore`o serializa e desserializa automaticamente os dados JSON.
+Em aplicativos maiores e mais realistas, o armazenamento de campos individuais é um cenário improvável. Os aplicativos têm maior probabilidade de armazenar objetos de modelo inteiros que incluem estado complexo. `ProtectedSessionStore` serializa e desserializa automaticamente os dados JSON.
 
-No exemplo de código anterior, os `currentCount` dados são armazenados como `sessionStorage['count']` no navegador do usuário. Os dados não são armazenados em texto sem formatação, mas, em vez disso, são protegidos usando a [proteção de dados](xref:security/data-protection/introduction)do ASP.NET Core. Os dados criptografados podem ser vistos `sessionStorage['count']` se o for avaliado no console do desenvolvedor do navegador.
+No exemplo de código anterior, os dados `currentCount` são armazenados como `sessionStorage['count']` no navegador do usuário. Os dados não são armazenados em texto sem formatação, mas, em vez disso, são protegidos usando a [proteção de dados](xref:security/data-protection/introduction)do ASP.NET Core. Os dados criptografados podem ser vistos se `sessionStorage['count']` for avaliado no console do desenvolvedor do navegador.
 
-Para recuperar os `currentCount` dados se o usuário retornar `Counter` ao componente posteriormente (incluindo se eles estiverem em um circuito totalmente novo), use `ProtectedSessionStore.GetAsync`:
+Para recuperar os dados de `currentCount` se o usuário retornar ao componente `Counter` posteriormente (incluindo se eles estiverem em um circuito totalmente novo), use `ProtectedSessionStore.GetAsync`:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -192,7 +192,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Se os parâmetros do componente incluírem o estado de `ProtectedSessionStore.GetAsync` navegação, chame e atribua `OnParametersSetAsync`o resultado `OnInitializedAsync`em, não. `OnInitializedAsync`é chamado apenas uma vez quando o componente é instanciado primeiro. `OnInitializedAsync`Não será chamado novamente mais tarde se o usuário navegar para uma URL diferente enquanto permanece na mesma página.
+Se os parâmetros do componente incluírem o estado de navegação, chame `ProtectedSessionStore.GetAsync` e atribua o resultado em `OnParametersSetAsync`, não `OnInitializedAsync`. `OnInitializedAsync` é chamado apenas uma vez quando o componente é instanciado primeiro. `OnInitializedAsync` não será chamado novamente mais tarde se o usuário navegar para uma URL diferente enquanto permanece na mesma página.
 
 > [!WARNING]
 > Os exemplos nesta seção só funcionarão se o servidor não tiver o pré-processamento habilitado. Com o pré-processamento habilitado, um erro é gerado semelhante a:
@@ -205,7 +205,7 @@ Se os parâmetros do componente incluírem o estado de `ProtectedSessionStore.Ge
 
 Como o armazenamento de navegador é assíncrono (acessado através de uma conexão de rede), sempre há um período de tempo antes que os dados sejam carregados e estejam disponíveis para uso por um componente. Para obter os melhores resultados, processe uma mensagem de estado de carregamento durante o carregamento em andamento, em vez de exibir dados em branco ou padrão.
 
-Uma abordagem é controlar se os dados estão `null` (ainda carregando) ou não. No componente padrão `Counter` , a contagem é mantida em um. `int` Tornar `currentCount` anulável adicionando um ponto de interrogação`?`() ao tipo (`int`):
+Uma abordagem é controlar se os dados são `null` (ainda carregando) ou não. No componente padrão `Counter`, a contagem é mantida em um `int`. Torne o `currentCount` anulável adicionando um ponto de interrogação (`?`) ao tipo (`int`):
 
 ```csharp
 private int? currentCount;
@@ -233,15 +233,15 @@ Durante o pré-processamento:
 * Não existe uma conexão interativa com o navegador do usuário.
 * O navegador ainda não tem uma página na qual possa executar código JavaScript.
 
-`localStorage`ou `sessionStorage` não estão disponíveis durante o pré-processamento. Se o componente tentar interagir com o armazenamento, um erro será gerado semelhante a:
+`localStorage` ou `sessionStorage` não estão disponíveis durante o pré-processamento. Se o componente tentar interagir com o armazenamento, um erro será gerado semelhante a:
 
 > As chamadas de interoperabilidade do JavaScript não podem ser emitidas neste momento. Isso ocorre porque o componente está sendo renderizado.
 
-Uma maneira de resolver o erro é desabilitar o pré-processamento. Normalmente, essa é a melhor opção se o aplicativo fizer uso intensivo de armazenamento baseado em navegador. O pré-processamento adiciona complexidade e não beneficia o aplicativo porque o aplicativo não pode colocar nenhum conteúdo útil até `localStorage` ou `sessionStorage` estar disponível.
+Uma maneira de resolver o erro é desabilitar o pré-processamento. Normalmente, essa é a melhor opção se o aplicativo fizer uso intensivo de armazenamento baseado em navegador. O pré-processamento adiciona complexidade e não beneficia o aplicativo, pois o aplicativo não pode colocar nenhum conteúdo útil antes que `localStorage` ou `sessionStorage` estejam disponíveis.
 
 Para desabilitar o pré-processamento, abra o arquivo *pages/_Host. cshtml* e altere a chamada para `Html.RenderComponentAsync<App>(RenderMode.Server)`.
 
-O pré-processamento pode ser útil para outras páginas que não usam `localStorage` o ou `sessionStorage`o. Para manter o pré-processamento habilitado, adie a operação de carregamento até que o navegador esteja conectado ao circuito. Veja a seguir um exemplo de como armazenar um valor de contador:
+O pré-processamento pode ser útil para outras páginas que não usam `localStorage` ou `sessionStorage`. Para manter o pré-processamento habilitado, adie a operação de carregamento até que o navegador esteja conectado ao circuito. Veja a seguir um exemplo de como armazenar um valor de contador:
 
 ```cshtml
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
@@ -282,7 +282,7 @@ O pré-processamento pode ser útil para outras páginas que não usam `localSto
 
 Se muitos componentes dependem do armazenamento baseado em navegador, a nova implementação do código do provedor de estado muitas vezes cria a duplicação de código. Uma opção para evitar a duplicação de código é criar um *componente pai do provedor de estado* que encapsula a lógica do provedor de estado. Os componentes filho podem trabalhar com dados persistentes sem considerar o mecanismo de persistência de estado.
 
-No exemplo a seguir de um `CounterStateProvider` componente, os dados do contador são persistidos:
+No exemplo a seguir de um componente `CounterStateProvider`, os dados do contador são persistidos:
 
 ```cshtml
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
@@ -320,9 +320,9 @@ else
 }
 ```
 
-O `CounterStateProvider` componente manipula a fase de carregamento não processando seu conteúdo filho até que o carregamento seja concluído.
+O componente `CounterStateProvider` manipula a fase de carregamento não processando seu conteúdo filho até que o carregamento seja concluído.
 
-Para usar o `CounterStateProvider` componente, empacote uma instância do componente em qualquer outro componente que exija acesso ao estado do contador. Para tornar o estado acessível a todos os componentes em um aplicativo, empacote `CounterStateProvider` o componente em `Router` volta do `App` no componente (*app. Razor*):
+Para usar o componente `CounterStateProvider`, empacote uma instância do componente em qualquer outro componente que exija acesso ao estado do contador. Para tornar o estado acessível a todos os componentes em um aplicativo, empacote o componente `CounterStateProvider` em volta do `Router` no componente `App` (*app. Razor*):
 
 ```cshtml
 <CounterStateProvider>
@@ -332,7 +332,7 @@ Para usar o `CounterStateProvider` componente, empacote uma instância do compon
 </CounterStateProvider>
 ```
 
-Os componentes encapsulados recebem e podem modificar o estado do contador persistente. O componente `Counter` a seguir implementa o padrão:
+Os componentes encapsulados recebem e podem modificar o estado do contador persistente. O seguinte componente `Counter` implementa o padrão:
 
 ```cshtml
 @page "/counter"
@@ -353,7 +353,7 @@ Os componentes encapsulados recebem e podem modificar o estado do contador persi
 }
 ```
 
-O componente anterior não precisa interagir com `ProtectedBrowserStorage`o, nem lidar com uma fase de "carregamento".
+O componente anterior não é necessário para interagir com `ProtectedBrowserStorage`, nem lidar com uma fase de "carregamento".
 
 Para lidar com o pré-processamento conforme descrito anteriormente, `CounterStateProvider` pode ser alterado para que todos os componentes que consumam os dados do contador funcionem automaticamente com o pré-processamento. Consulte a seção [manipular pré-processamento](#handle-prerendering) para obter detalhes.
 

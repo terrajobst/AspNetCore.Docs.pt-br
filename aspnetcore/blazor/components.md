@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/05/2019
 uid: blazor/components
-ms.openlocfilehash: 3e0966bf978c99fc00db7682bea3292306cbb03c
-ms.sourcegitcommit: d81912782a8b0bd164f30a516ad80f8defb5d020
+ms.openlocfilehash: a71bbf3921417cbd23aeb14d0d78ad8354d6e93a
+ms.sourcegitcommit: dd026eceee79e943bd6b4a37b144803b50617583
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72179033"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72378683"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -454,7 +454,7 @@ Para alguns eventos, são permitidos tipos de argumento de evento. Se o acesso a
 
 @No__t-0 com suporte são mostrados na tabela a seguir.
 
-| evento | Classe |
+| evento | Class |
 | ----- | ----- |
 | Área de Transferência        | `ClipboardEventArgs` |
 | Arraste             | `DragEventArgs` &ndash; `DataTransfer` e `DataTransferItem` mantêm os dados do item arrastados. |
@@ -692,7 +692,7 @@ As referências de componente fornecem uma maneira de fazer referência a uma in
 Quando o componente é renderizado, o campo `loginDialog` é populado com a instância de componente filho `MyLoginDialog`. Em seguida, você pode invocar os métodos .NET na instância do componente.
 
 > [!IMPORTANT]
-> A variável `loginDialog` só é populada depois que o componente é renderizado e sua saída inclui o elemento `MyLoginDialog`. Até esse ponto, não há nada a fazer referência. Para manipular referências de componentes após a conclusão da renderização do componente, use os métodos `OnAfterRenderAsync` ou `OnAfterRender`.
+> A variável `loginDialog` só é populada depois que o componente é renderizado e sua saída inclui o elemento `MyLoginDialog`. Até esse ponto, não há nada a fazer referência. Para manipular referências de componentes após a conclusão da renderização do componente, use os [métodos OnAfterRenderAsync ou OnAfterRender](#lifecycle-methods).
 
 Embora a captura de referências de componente use uma sintaxe semelhante à [captura de referências de elemento](xref:blazor/javascript-interop#capture-references-to-elements), ela não é um recurso de [interoperabilidade do JavaScript](xref:blazor/javascript-interop) . As referências de componente não são passadas para o código JavaScript @ no__t-0they're usado somente no código .NET.
 
@@ -841,6 +841,9 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
+> [!NOTE]
+> O trabalho assíncrono durante a inicialização do componente deve ocorrer durante o evento de ciclo de vida `OnInitializedAsync`.
+
 Para uma operação síncrona, use `OnInitialized`:
 
 ```csharp
@@ -858,6 +861,9 @@ protected override async Task OnParametersSetAsync()
     await ...
 }
 ```
+
+> [!NOTE]
+> O trabalho assíncrono ao aplicar parâmetros e valores de propriedade deve ocorrer durante o evento de ciclo de vida `OnParametersSetAsync`.
 
 ```csharp
 protected override void OnParametersSet()
@@ -884,6 +890,9 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
     }
 }
 ```
+
+> [!NOTE]
+> O trabalho assíncrono imediatamente após a renderização deve ocorrer durante o evento de ciclo de vida `OnAfterRenderAsync`.
 
 ```csharp
 protected override void OnAfterRender(bool firstRender)
@@ -1081,7 +1090,7 @@ Componentes modelo são componentes que aceitam um ou mais modelos de interface 
 * Um componente de tabela que permite que um usuário especifique modelos para o cabeçalho, as linhas e o rodapé da tabela.
 * Um componente de lista que permite que um usuário especifique um modelo para renderizar itens em uma lista.
 
-### <a name="template-parameters"></a>Parâmetros do modelo
+### <a name="template-parameters"></a>Parâmetros de modelo
 
 Um componente modelo é definido especificando um ou mais parâmetros de componente do tipo `RenderFragment` ou `RenderFragment<T>`. Um fragmento de renderização representa um segmento de interface do usuário a ser renderizado. `RenderFragment<T>` usa um parâmetro de tipo que pode ser especificado quando o fragmento de renderização é invocado.
 
@@ -1170,7 +1179,7 @@ Em alguns cenários, é inconveniente fluir dados de um componente ancestral par
 
 No exemplo a seguir do aplicativo de exemplo, a classe `ThemeInfo` especifica as informações do tema para fluir para baixo na hierarquia do componente para que todos os botões dentro de uma determinada parte do aplicativo compartilhem o mesmo estilo.
 
-*UIThemeClasses/ThemeInfo.cs*:
+*UIThemeClasses/ThemeInfo. cs*:
 
 ```csharp
 public class ThemeInfo
@@ -1294,7 +1303,7 @@ O componente `CascadingValuesParametersTabSet` usa o componente `TabSet`, que co
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/CascadingValuesParametersTabSet.razor?name=snippet_TabSet)]
 
-Os componentes filho `Tab` não são passados explicitamente como parâmetros para o `TabSet`. Em vez disso, os componentes filho `Tab` fazem parte do conteúdo filho do `TabSet`. No entanto, o `TabSet` ainda precisa saber sobre cada componente `Tab` para que ele possa renderizar os cabeçalhos e a guia ativa. Para habilitar essa coordenação sem a necessidade de código adicional, o componente `TabSet` *pode fornecer a si mesmo como um valor em cascata* que é então coletado pelos componentes do `Tab` descendentes.
+Os componentes filho `Tab` não são passados explicitamente como parâmetros para o `TabSet`. Em vez disso, os componentes filho `Tab` fazem parte do conteúdo filho do `TabSet`. No entanto, o `TabSet` ainda precisa saber sobre cada componente `Tab` para que ele possa renderizar os cabeçalhos e a guia ativa. Para habilitar essa coordenação sem a necessidade de código adicional, o componente `TabSet` *pode fornecer a si mesmo como um valor em cascata* que é então coletado pelos componentes descendentes `Tab`.
 
 componente `TabSet`:
 
@@ -1429,14 +1438,14 @@ builder.AddContent(1, "Second");
 
 Quando o código é executado pela primeira vez, se `someFlag` for `true`, o Construtor receberá:
 
-| Sequência | type      | Dados   |
+| Sequência | Digite      | Dados   |
 | :------: | --------- | :----: |
-| 0        | Nó de texto | First  |
+| 0        | Nó de texto | Primeiro  |
 | 1        | Nó de texto | Segundo |
 
 Imagine que `someFlag` se torna `false` e a marcação é renderizada novamente. Desta vez, o Construtor recebe:
 
-| Sequência | type       | Dados   |
+| Sequência | Digite       | Dados   |
 | :------: | ---------- | :----: |
 | 1        | Nó de texto  | Segundo |
 
@@ -1461,14 +1470,14 @@ builder.AddContent(seq++, "Second");
 
 Agora, a primeira saída é:
 
-| Sequência | Tipo      | Dados   |
+| Sequência | Digite      | Dados   |
 | :------: | --------- | :----: |
-| 0        | Nó de texto | First  |
+| 0        | Nó de texto | Primeiro  |
 | 1        | Nó de texto | Segundo |
 
 Esse resultado é idêntico ao caso anterior, portanto, não existem problemas negativos. `someFlag` é `false` no segundo processamento e a saída é:
 
-| Sequência | Tipo      | Dados   |
+| Sequência | Digite      | Dados   |
 | :------: | --------- | ------ |
 | 0        | Nó de texto | Segundo |
 

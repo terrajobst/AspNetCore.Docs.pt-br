@@ -5,14 +5,14 @@ description: Descubra como hospedar e implantar aplicativos Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 10/15/2019
 uid: host-and-deploy/blazor/index
-ms.openlocfilehash: 1cfe87c7194b34c2461429225c560f9e689168ae
-ms.sourcegitcommit: 79eeb17604b536e8f34641d1e6b697fb9a2ee21f
+ms.openlocfilehash: 271135a0ebe67d31fd8e2bcf672e723814727147
+ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71211704"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72391334"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor"></a>Hospedar e implantar o ASP.NET Core Blazor
 
@@ -51,15 +51,15 @@ Os ativos na pasta são implantados no servidor Web. A implantação pode ser um
 O *caminho base do aplicativo* é o caminho da URL raiz do aplicativo. Considere o seguinte aplicativo principal e o aplicativo mais rápido:
 
 * O aplicativo principal é chamado `MyApp`:
-  * O aplicativo reside fisicamente em *\\d: MyApp*.
+  * O aplicativo reside fisicamente em *d: \\MyApp*.
   * As solicitações são recebidas em `https://www.contoso.com/{MYAPP RESOURCE}`.
-* Um aplicativo mais incrivelmente chamado `CoolApp` é um subaplicativo do: `MyApp`
-  * O subaplicativo reside fisicamente em *d:\\MyApp\\CoolApp*.
+* Um aplicativo mais incrivelmente chamado `CoolApp` é um subaplicativo do `MyApp`:
+  * O subaplicativo reside fisicamente em *d: \\MyApp @ no__t-2CoolApp*.
   * As solicitações são recebidas em `https://www.contoso.com/CoolApp/{COOLAPP RESOURCE}`.
 
-Sem especificar a configuração adicional `CoolApp`para o, o subaplicativo nesse cenário não tem conhecimento de onde ele reside no servidor. Por exemplo, o aplicativo não pode construir URLs relativas corretas para seus recursos sem saber que ela reside no caminho `/CoolApp/`de URL relativo.
+Sem especificar configuração adicional para `CoolApp`, o subaplicativo nesse cenário não tem conhecimento de onde ele reside no servidor. Por exemplo, o aplicativo não pode construir URLs relativas corretas para seus recursos sem saber que ela reside no caminho de URL relativo `/CoolApp/`.
 
-Para fornecer a configuração para o `https://www.contoso.com/CoolApp/`caminho base do aplicativo mais incrivelmente, o `<base>` atributo da `href` marca é definido como o caminho raiz relativo no arquivo *wwwroot/index.html* :
+Para fornecer a configuração para o caminho base do aplicativo mais alto do `https://www.contoso.com/CoolApp/`, o atributo `href` da marca `<base>` é definido como o caminho raiz relativo no arquivo *wwwroot/index.html* :
 
 ```html
 <base href="/CoolApp/">
@@ -67,17 +67,17 @@ Para fornecer a configuração para o `https://www.contoso.com/CoolApp/`caminho 
 
 Ao fornecer o caminho de URL relativo, um componente que não está no diretório raiz pode construir URLs relativas ao caminho raiz do aplicativo. Os componentes em diferentes níveis da estrutura de diretório podem criar links para outros recursos em locais em todo o aplicativo. O caminho base do aplicativo também é usado para interceptar cliques em hiperlink em que o destino `href` do link está dentro do espaço do URI do caminho base do aplicativo. O roteador do Blazor manipula a navegação interna.
 
-Em muitos cenários de hospedagem, o caminho de URL relativo para o aplicativo é a raiz do aplicativo. Nesses casos, o caminho base da URL relativa do aplicativo é uma barra (`<base href="/" />`), que é a configuração padrão para um aplicativo mais incrivelmente. Em outros cenários de hospedagem, como páginas do GitHub e subaplicativos do IIS, o caminho base do aplicativo deve ser definido como o caminho da URL relativa do servidor para o aplicativo.
+Em muitos cenários de hospedagem, o caminho de URL relativo para o aplicativo é a raiz do aplicativo. Nesses casos, o caminho base da URL relativa do aplicativo é uma barra "/" (`<base href="/" />`), que é a configuração padrão para um aplicativo mais incrivelmente. Em outros cenários de hospedagem, como páginas do GitHub e subaplicativos do IIS, o caminho base do aplicativo deve ser definido como o caminho da URL relativa do servidor para o aplicativo.
 
-Para definir o caminho base do aplicativo, atualize a marca `<base>` encontrada nos elementos da marca `<head>` do arquivo *wwwroot/index.html*. Defina o `href` valor do atributo `/{RELATIVE URL PATH}/` como (a barra à direita é necessária), `{RELATIVE URL PATH}` em que é o caminho de URL relativo completo do aplicativo.
+Para definir o caminho base do aplicativo, atualize a marca `<base>` encontrada nos elementos da marca `<head>` do arquivo *wwwroot/index.html*. Defina o valor do atributo `href` como `/{RELATIVE URL PATH}/` (a barra à direita é necessária), em que `{RELATIVE URL PATH}` é o caminho de URL relativo completo do aplicativo.
 
-Para um aplicativo com um caminho de URL não raiz relativo (por exemplo, `<base href="/CoolApp/">`), o aplicativo não consegue localizar seus recursos *quando executado localmente*. Para superar esse problema durante o desenvolvimento e os testes locais, você pode fornecer um argumento *base de caminho* que corresponde ao valor de `href` da tag `<base>` no tempo de execução. Para passar o argumento de base Path ao executar o aplicativo localmente, execute `dotnet run` o comando no diretório do aplicativo com a `--pathbase` opção:
+Para um aplicativo com um caminho de URL não raiz relativo (por exemplo, `<base href="/CoolApp/">`), o aplicativo não consegue localizar seus recursos *quando executado localmente*. Para superar esse problema durante o desenvolvimento e os testes locais, você pode fornecer um argumento *base de caminho* que corresponde ao valor de `href` da tag `<base>` no tempo de execução. Para passar o argumento de base Path ao executar o aplicativo localmente, execute o comando `dotnet run` no diretório do aplicativo com a opção `--pathbase`:
 
 ```dotnetcli
 dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
 ```
 
-Para um aplicativo com um caminho de URL relativo `/CoolApp/` de`<base href="/CoolApp/">`(), o comando é:
+Para um aplicativo com um caminho de URL relativo de `/CoolApp/` (`<base href="/CoolApp/">`), o comando é:
 
 ```dotnetcli
 dotnet run --pathbase=/CoolApp

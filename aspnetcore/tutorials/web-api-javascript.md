@@ -1,35 +1,27 @@
 ---
-title: 'Tutorial: Chamar uma API Web do ASP.NET Core com o JavaScript'
+title: 'Tutorial: chamar uma API Web do ASP.NET Core com JavaScript'
 author: rick-anderson
 description: Saiba como chamar uma API Web do ASP.NET Core com o JavaScript.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/27/2019
+ms.date: 10/15/2019
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: 0070816149d64fc1d71d453eb0f135050c78597a
-ms.sourcegitcommit: de17150e5ec7507d7114dde0e5dbc2e45a66ef53
-ms.translationtype: HT
+ms.openlocfilehash: bbe261307f6f68af002cb98cc4895888ade7f61c
+ms.sourcegitcommit: dd026eceee79e943bd6b4a37b144803b50617583
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/28/2019
-ms.locfileid: "70116635"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72378696"
 ---
-# <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Tutorial: Chamar uma API Web do ASP.NET Core com o JavaScript
+# <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Tutorial: chamar uma API Web do ASP.NET Core com JavaScript
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Este tutorial mostra como chamar uma API Web do ASP.NET Core com JavaScript, usando a [API Fetch](https://developer.mozilla.org/docs/Web/API/Fetch_API).
 
-::: moniker range="< aspnetcore-3.0"
+## <a name="prerequisites"></a>Prerequisites
 
-Para o ASP.NET Core 2.2, confira a versão 2.2 de [Chamar a API Web com o JavaScript](xref:tutorials/first-web-api#call-the-web-api-with-javascript).
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-3.0"
-
-## <a name="prerequisites"></a>Pré-requisitos
-
-* Conclua o [Tutorial: Criar uma API Web](xref:tutorials/first-web-api)
+* [Tutorial completo: criar uma API Web](xref:tutorials/first-web-api)
 * Familiaridade com CSS, HTML e JavaScript
 
 ## <a name="call-the-web-api-with-javascript"></a>Chamar a API Web com o JavaScript
@@ -75,9 +67,9 @@ No seguinte código:
 
 * Uma variável `item` é declarada para construir uma representação literal de objeto do item de tarefas pendentes.
 * Uma solicitação Fetch é configurada com as seguintes opções:
-    * `method` &mdash; especifica o verbo de ação HTTP POST.
-    * `body` &mdash; especifica a representação JSON do corpo da solicitação. O JSON é produzido passando o literal de objeto armazenado em `item` para a função [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
-    * `headers` &mdash; especifica os cabeçalhos de solicitação HTTP `Accept` e `Content-Type`. Ambos os cabeçalhos são definidos como `application/json` para especificar o tipo de mídia que está sendo recebido e enviado, respectivamente.
+  * `method` &mdash; especifica o verbo de ação HTTP POST.
+  * `body` &mdash; especifica a representação JSON do corpo da solicitação. O JSON é produzido passando o literal de objeto armazenado em `item` para a função [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
+  * `headers` &mdash; especifica os cabeçalhos de solicitação HTTP `Accept` e `Content-Type`. Ambos os cabeçalhos são definidos como `application/json` para especificar o tipo de mídia que está sendo recebido e enviado, respectivamente.
 * Uma solicitação HTTP POST é enviada para a rota de *api/TodoItems*.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_AddItem)]
@@ -103,5 +95,3 @@ Avance para o próximo tutorial para saber como gerar páginas de ajuda da API W
 
 > [!div class="nextstepaction"]
 > <xref:tutorials/get-started-with-swashbuckle>
-
-::: moniker-end
