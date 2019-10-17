@@ -3,14 +3,14 @@ title: Introdução ao ASP.NET Core MVC
 author: rick-anderson
 description: Saiba como começar a usar o ASP.NET Core MVC.
 ms.author: riande
-ms.date: 08/05/2019
+ms.date: 10/16/2019
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 52d8fc631075408991d3a2e62cdaccf681c5927f
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: f07afb15c0a31110c20d96a5db5c02030cefe5d5
+ms.sourcegitcommit: e71b6a85b0e94a600af607107e298f932924c849
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71082155"
+ms.lasthandoff: 10/17/2019
+ms.locfileid: "72519095"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introdução ao ASP.NET Core MVC
 
@@ -34,7 +34,7 @@ No final, você terá um aplicativo que pode gerenciar e exibir dados de filmes.
 
 [!INCLUDE[](~/includes/mvc-intro/download.md)]
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -66,7 +66,7 @@ No final, você terá um aplicativo que pode gerenciar e exibir dados de filmes.
 
 * Selecione **Aplicativo Web (Model-View-Controller)** e, em seguida, **Criar**.
 
-![Caixa de diálogo Novo projeto, .NET Core no painel esquerdo, Web do ASP.NET Core ](start-mvc/_static/new_project22-21.png)
+![Caixa de diálogo Novo projeto, .NET Core no painel esquerdo, Web do ASP.NET Core ](start-mvc/_static/new_project30.png)
 
 O Visual Studio usou o modelo padrão para o projeto MVC que você acabou de criar. Para que o aplicativo comece a funcionar agora mesmo, digite um nome de projeto e selecione algumas opções. Este é um projeto inicial básico.
 
@@ -83,20 +83,20 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
    code -r MvcMovie
    ```
 
-  * Uma caixa de diálogo é exibida com **Os ativos necessários para build e depuração estão ausentes de 'MvcMovie'. Deseja adicioná-los?**  Selecione **Sim**
+  * Uma caixa de diálogo aparece com os **ativos necessários para compilação e depuração estão ausentes em ' MvcMovie '. Adicioná-los?**  Selecione **Sim**
 
   * `dotnet new mvc -o MvcMovie`: cria um novo projeto do ASP.NET Core MVC na pasta *MvcMovie*.
-  * `code -r MvcMovie`: carrega o arquivo de projeto *MvcMovie.csproj* no Visual Studio Code.
+  * `code -r MvcMovie`: carrega o arquivo de projeto *MvcMovie. csproj* em Visual Studio Code.
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Selecione **Arquivo** > **Nova Solução**.
 
-  ![Nova solução do macOS](./start-mvc/_static/new_project_vsmac.png)
+  ![Nova Solução do macOS](./start-mvc/_static/new_project_vsmac.png)
 
 * Selecione **.NET Core** > **Aplicativo** > **Aplicativo Web (Model-View-Controller)** > **Próximo**.
 
-  ![Caixa de diálogo Novo projeto do macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
+  ![Caixa de diálogo Novo Projeto do macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
 
 * Na caixa de diálogo **Configurar sua nova API Web do ASP.NET Core**, defina a **Estrutura de Destino** do **.NET Core 3.0**.
 
@@ -148,7 +148,7 @@ Selecione **Executar** > **Iniciar Sem Depuração** para iniciar o aplicativo. 
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web. Quando você executar o aplicativo, verá um número da porta diferente.
+* A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web. Quando você executar o aplicativo, verá um número de porta diferente.
 * Você pode iniciar o aplicativo no modo de depuração ou sem depuração no item de menu **Executar**.
 
   A imagem a seguir mostra o aplicativo:
@@ -184,7 +184,7 @@ No final, você terá um aplicativo que pode gerenciar e exibir dados de filmes.
 
 [!INCLUDE[](~/includes/mvc-intro/download.md)]
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -233,20 +233,20 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
    code -r MvcMovie
    ```
 
-  * Uma caixa de diálogo é exibida com **Os ativos necessários para build e depuração estão ausentes de 'MvcMovie'. Deseja adicioná-los?**  Selecione **Sim**
+  * Uma caixa de diálogo aparece com os **ativos necessários para compilação e depuração estão ausentes em ' MvcMovie '. Adicioná-los?**  Selecione **Sim**
 
   * `dotnet new mvc -o MvcMovie`: cria um novo projeto do ASP.NET Core MVC na pasta *MvcMovie*.
-  * `code -r MvcMovie`: carrega o arquivo de projeto *MvcMovie.csproj* no Visual Studio Code.
+  * `code -r MvcMovie`: carrega o arquivo de projeto *MvcMovie. csproj* em Visual Studio Code.
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Selecione **Arquivo** > **Nova Solução**.
 
-  ![Nova solução do macOS](./start-mvc/_static/new_project_vsmac.png)
+  ![Nova Solução do macOS](./start-mvc/_static/new_project_vsmac.png)
 
 * Selecione **.NET Core** > **Aplicativo** > **Aplicativo Web (Model-View-Controller)** > **Próximo**.
 
-  ![Caixa de diálogo Novo projeto do macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
+  ![Caixa de diálogo Novo Projeto do macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
 
 * Na caixa de diálogo **Configurar a nova API Web com o ASP.NET Core**, aceite a **Estrutura de Destino** padrão, que é o **.NET Core 2.2**.
 
@@ -274,7 +274,7 @@ Pressione **Ctrl+F5** para executar o aplicativo no modo sem depuração.
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
-* Selecione **Aceitar** para dar consentimento de rastreamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
+* Selecione **Aceitar** para dar consentimento de rastreamento. Este aplicativo não rastreia informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
 
   ![Página Inicial ou de Índice](start-mvc/_static/privacy.png)
 
@@ -292,7 +292,7 @@ Pressione Ctrl + F5 para execução sem o depurador.
 
   Iniciar o aplicativo com Ctrl+F5 (modo de não depuração) permite que você faça alterações de código, salve o arquivo, atualize o navegador e veja as alterações de código. Muitos desenvolvedores preferem usar o modo sem depuração para atualizar a página e exibir alterações.
 
-* Selecione **Aceitar** para dar consentimento de rastreamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
+* Selecione **Aceitar** para dar consentimento de rastreamento. Este aplicativo não rastreia informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
 
   ![Página Inicial ou de Índice](start-mvc/_static/privacy.png)
 
@@ -306,10 +306,10 @@ Selecione **Executar** > **Iniciar Sem Depuração** para iniciar o aplicativo. 
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web. Quando você executar o aplicativo, verá um número da porta diferente.
+* A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web. Quando você executar o aplicativo, verá um número de porta diferente.
 * Você pode iniciar o aplicativo no modo de depuração ou sem depuração no item de menu **Executar**.
 
-* Selecione **Aceitar** para dar consentimento de rastreamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
+* Selecione **Aceitar** para dar consentimento de rastreamento. Este aplicativo não rastreia informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
 
   ![Página Inicial ou de Índice](./start-mvc/_static/output_privacy_macos.png)
 

@@ -5,12 +5,12 @@ description: Saiba como adicionar classes de gerenciamento de filmes em um banco
 ms.author: riande
 ms.date: 9/22/2019
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: dcbcf37dfd95d784ebe249ec6e9e4184a8853d3d
-ms.sourcegitcommit: d34b2627a69bc8940b76a949de830335db9701d3
+ms.openlocfilehash: 4f8b80cb51bd10eb3b136a780dc123c41d61c0a5
+ms.sourcegitcommit: e71b6a85b0e94a600af607107e298f932924c849
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71187196"
+ms.lasthandoff: 10/17/2019
+ms.locfileid: "72519080"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -28,7 +28,7 @@ As classes de modelo são conhecidas como classes POCO (de "objetos CLR básicos
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Clique com o botão direito do mouse no projeto **RazorPagesMovie** > **Adicionar** > **Nova Pasta**. Nomeie a pasta *Models*.
+Clique com o botão direito do mouse no projeto **RazorPagesMovie** > **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
 
 Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar** > **Classe**. Dê à classe o nome **Movie**.
 
@@ -36,7 +36,7 @@ Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar**
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Adicione uma pasta chamada *Models*.
+* Adicione uma pasta denominada *Modelos*.
 * Adicionar uma classe denominada *Movie.cs* à pasta *Modelos*.
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]
@@ -45,7 +45,7 @@ Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar**
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* No Gerenciador de Soluções, clique com o botão direito do mouse no projeto **RazorPagesMovie** e então selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta *Models*.
+* No Gerenciador de Soluções, clique com o botão direito do mouse no projeto **RazorPagesMovie** e então selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
 * Clique com o botão direito do mouse na pasta *Models* e selecione **Adicionar** > **Novo Arquivo**.
 * Na caixa de diálogo **Novo Arquivo**:
 
@@ -102,13 +102,13 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* **para Windows**: Execute o seguinte comando:
+* **No Windows**, execute o comando a seguir:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
-* **para macOS e Linux**: Execute o seguinte comando:
+* **No macOS e Linux**, execute o comando a seguir:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
@@ -141,7 +141,7 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
 
 O processo de scaffold cria e atualiza os arquivos a seguir:
 
-* *Pages/Movies*: Criar, Excluir, Detalhes, Editar e Índice.
+* *Pages/Movies*: Create, Delete, Details, Edit e Index.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Atualizado
@@ -154,7 +154,7 @@ Os arquivos criados e atualizados são explicados na próxima seção.
 
 O processo de scaffold cria os arquivos a seguir:
 
-* *Pages/Movies*: Criar, Excluir, Detalhes, Editar e Índice.
+* *Pages/Movies*: Create, Delete, Details, Edit e Index.
 
 Os arquivos criados são explicados na próxima seção.
 
@@ -168,14 +168,14 @@ Os arquivos criados são explicados na próxima seção.
 
 Nesta seção, o PMC (Console de Gerenciador de Pacotes) é usado para:
 
-* Adicione uma migração inicial.
+* Adicionar uma migração inicial.
 * Atualize o banco de dados com a migração inicial.
 
 No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet** > **Console do Gerenciador de Pacotes**.
 
   ![Menu do PMC](../first-mvc-app/adding-model/_static/pmc.png)
 
-No PMC, insira os seguintes comandos:
+No PMC, digite os seguintes comandos:
 
 ```PMC
 Add-Migration InitialCreate
@@ -192,13 +192,13 @@ Update-Database
 
 ---
 
-Os comandos anteriores geram o seguinte aviso: “Nenhum tipo foi especificado para a coluna decimal "Preço" no tipo de entidade "Filme". Isso fará com que valores sejam truncados silenciosamente se não couberem na precisão e na escala padrão. Especifique explicitamente o tipo de coluna do SQL Server que pode acomodar todos os valores usando 'HasColumnType()'.”
+Os comandos anteriores geram o seguinte aviso: "nenhum tipo foi especificado para a coluna decimal ' Price ' no tipo de entidade ' Movie '. Isso fará com que valores sejam truncados silenciosamente se não couberem na precisão e na escala padrão. Especifique explicitamente o tipo de coluna do SQL Server que pode acomodar todos os valores usando 'HasColumnType()'.”
 
 Você pode ignorar esse aviso, ele será corrigido em um tutorial posterior.
 
-O comando `ef migrations add InitialCreate` gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado no `DbContext` (no arquivo *RazorPagesMovieContext.cs*). O argumento `InitialCreate` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado.
+O comando migrações gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado em `DbContext`. O argumento `InitialCreate` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado.
 
-O comando `ef database update` executa o método `Up` no arquivo *Migrations/\<time-stamp>_InitialCreate.cs*. O método `Up` cria o banco de dados.
+O comando `update` executa o método `Up` em migrações que não foram aplicadas. Nesse caso, `update` executa o método `Up` em *migrações/@no__t-stamp > arquivo _InitialCreate. cs* , que cria o banco de dados.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -230,10 +230,6 @@ Examine o método `Up`.
 
 ---
 
-O comando `Add-Migration` gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado no `RazorPagesMovieContext` (no arquivo *Data/RazorPagesMovieContext.cs*). O argumento `Initial` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é usado. Para obter mais informações, consulte <xref:data/ef-mvc/migrations>.
-
-O comando `Update-Database` executa o método `Up` no arquivo *Migrations/{time-stamp}_InitialCreate.cs*, que cria o banco de dados.
-
 <a name="test"></a>
 
 ### <a name="test-the-app"></a>Testar o aplicativo
@@ -263,8 +259,8 @@ O tutorial a seguir explica os arquivos criados por scaffolding.
 ## <a name="additional-resources"></a>Recursos adicionais
 
 > [!div class="step-by-step"]
-> [Anterior: introdução](xref:tutorials/razor-pages/razor-pages-start)
-> [Próximo: Razor Pages geradas por scaffolding](xref:tutorials/razor-pages/page)
+> [Anterior: Introdução](xref:tutorials/razor-pages/razor-pages-start)
+> [Próximo: Páginas Razor geradas por scaffolding](xref:tutorials/razor-pages/page)
 
 ::: moniker-end
 
@@ -281,7 +277,7 @@ As classes de modelo são conhecidas como classes POCO (de "objetos CLR básicos
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Clique com o botão direito do mouse no projeto **RazorPagesMovie** > **Adicionar** > **Nova Pasta**. Nomeie a pasta *Models*.
+Clique com o botão direito do mouse no projeto **RazorPagesMovie** > **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
 
 Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar** > **Classe**. Dê à classe o nome **Movie**.
 
@@ -289,7 +285,7 @@ Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar**
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Adicione uma pasta chamada *Models*.
+* Adicione uma pasta denominada *Modelos*.
 * Adicionar uma classe denominada *Movie.cs* à pasta *Modelos*.
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]
@@ -298,7 +294,7 @@ Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar**
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* No Gerenciador de Soluções, clique com o botão direito do mouse no projeto **RazorPagesMovie** e então selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta *Models*.
+* No Gerenciador de Soluções, clique com o botão direito do mouse no projeto **RazorPagesMovie** e então selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
 * Clique com o botão direito do mouse na pasta *Models* e selecione **Adicionar** > **Novo Arquivo**.
 * Na caixa de diálogo **Novo Arquivo**:
 
@@ -359,13 +355,13 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* **para Windows**: Execute o seguinte comando:
+* **No Windows**, execute o comando a seguir:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
-* **para macOS e Linux**: Execute o seguinte comando:
+* **No macOS e Linux**, execute o comando a seguir:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
@@ -396,7 +392,7 @@ O processo de scaffold cria e atualiza os arquivos a seguir:
 
 ### <a name="files-created"></a>Arquivos criados
 
-* *Pages/Movies*: Criar, Excluir, Detalhes, Editar e Índice.
+* *Pages/Movies*: Create, Delete, Details, Edit e Index.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="file-updated"></a>Arquivo atualizado
@@ -413,19 +409,23 @@ Os arquivos criados e atualizados são explicados na próxima seção.
 
 Nesta seção, o PMC (Console de Gerenciador de Pacotes) é usado para:
 
-* Adicione uma migração inicial.
+* Adicionar uma migração inicial.
 * Atualize o banco de dados com a migração inicial.
 
 No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet** > **Console do Gerenciador de Pacotes**.
 
   ![Menu do PMC](../first-mvc-app/adding-model/_static/pmc.png)
 
-No PMC, insira os seguintes comandos:
+No PMC, digite os seguintes comandos:
 
-```PMC
+```Powershell
 Add-Migration Initial
 Update-Database
 ```
+
+O comando `Add-Migration` gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado no `DbContext` (no arquivo *RazorPagesMovieContext.cs*). O argumento `InitialCreate` é usado para nomear a migração. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é usado. Para obter mais informações, consulte <xref:data/ef-mvc/migrations>.
+
+O comando `Update-Database` executa o método `Up` no arquivo *Migrations/\<time-stamp>_InitialCreate.cs*. O método `Up` cria o banco de dados.
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -436,14 +436,8 @@ Update-Database
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
 
 ---
-
-Os comandos anteriores geram o seguinte aviso: “Nenhum tipo foi especificado para a coluna decimal "Preço" no tipo de entidade "Filme". Isso fará com que valores sejam truncados silenciosamente se não couberem na precisão e na escala padrão. Especifique explicitamente o tipo de coluna do SQL Server que pode acomodar todos os valores usando 'HasColumnType()'.”
-
-Você pode ignorar esse aviso, ele será corrigido em um tutorial posterior.
-
-O comando `ef migrations add InitialCreate` gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado no `DbContext` (no arquivo *RazorPagesMovieContext.cs*). O argumento `InitialCreate` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado.
-
-O comando `ef database update` executa o método `Up` no arquivo *Migrations/\<time-stamp>_InitialCreate.cs*. O método `Up` cria o banco de dados.
+> [!NOTE]
+> Os comandos anteriores geram o seguinte aviso: "*nenhum tipo foi especificado para a coluna decimal ' Price ' no tipo de entidade ' Movie '. Isso fará com que os valores sejam truncados silenciosamente se não couberem na precisão e na escala padrão. Especifique explicitamente o tipo de coluna do SQL Server que pode acomodar todos os valores usando ' HasColumnType () '.* " Você pode ignorar esse aviso, ele será corrigido em um tutorial posterior.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -475,10 +469,6 @@ Examine o método `Up`.
 
 ---
 
-O comando `Add-Migration` gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado no `RazorPagesMovieContext` (no arquivo *Data/RazorPagesMovieContext.cs*). O argumento `Initial` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é usado. Para obter mais informações, consulte <xref:data/ef-mvc/migrations>.
-
-O comando `Update-Database` executa o método `Up` no arquivo *Migrations/{time-stamp}_InitialCreate.cs*, que cria o banco de dados.
-
 <a name="test"></a>
 
 ### <a name="test-the-app"></a>Testar o aplicativo
@@ -508,7 +498,7 @@ O tutorial a seguir explica os arquivos criados por scaffolding.
 ## <a name="additional-resources"></a>Recursos adicionais
 
 > [!div class="step-by-step"]
-> [Anterior: introdução](xref:tutorials/razor-pages/razor-pages-start)
-> [Próximo: Razor Pages geradas por scaffolding](xref:tutorials/razor-pages/page)
+> [Anterior: Introdução](xref:tutorials/razor-pages/razor-pages-start)
+> [Próximo: Páginas Razor geradas por scaffolding](xref:tutorials/razor-pages/page)
 
 ::: moniker-end

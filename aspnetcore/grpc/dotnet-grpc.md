@@ -4,20 +4,20 @@ author: juntaoluo
 description: Saiba mais sobre como adicionar, atualizar, remover e listar referências de Protobuf com a ferramenta global dotnet-grpc.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 09/24/2019
+ms.date: 10/17/2019
 uid: grpc/dotnet-grpc
-ms.openlocfilehash: ebd57419be24f7f4ed9765e36cf14189be8438b1
-ms.sourcegitcommit: 020c3760492efed71b19e476f25392dda5dd7388
+ms.openlocfilehash: 994597c854a95bb33de1686ab025cb3744cf6845
+ms.sourcegitcommit: e71b6a85b0e94a600af607107e298f932924c849
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/12/2019
-ms.locfileid: "72290057"
+ms.lasthandoff: 10/17/2019
+ms.locfileid: "72519040"
 ---
 # <a name="manage-protobuf-references-with-dotnet-grpc"></a>Gerenciar referências de Protobuf com dotnet-grpc
 
 Por [John Luo](https://github.com/juntaoluo)
 
-`dotnet-grpc` é uma ferramenta global do .NET Core para gerenciar referências Protobuf em um projeto .NET gRPC. A ferramenta pode ser usada para adicionar, atualizar, remover e listar referências de Protobuf.
+`dotnet-grpc` é uma ferramenta global do .NET Core para gerenciar referências de [Protobuf ( *. proto*)](xref:grpc/basics#proto-file) em um projeto gRPC do .net. A ferramenta pode ser usada para adicionar, atualizar, remover e listar referências de Protobuf.
 
 ## <a name="installation"></a>Instalação
 
@@ -32,10 +32,10 @@ dotnet tool install -g dotnet-grpc
 `dotnet-grpc` pode ser usado para adicionar referências Protobuf como itens `<Protobuf />` ao arquivo *. csproj* :
 
 ```xml
-<Protobuf Include="..\Proto\count.proto" GrpcServices="Server" Link="Protos\count.proto" />
+<Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
 ```
 
-As referências de Protobuf são usadas para gerar C# os ativos de cliente e/ou servidor. O `dotnet-grpc`tool pode:
+As referências de Protobuf são usadas para gerar C# os ativos de cliente e/ou servidor. A ferramenta `dotnet-grpc` pode:
 
 * Crie uma referência de Protobuf de arquivos locais em disco.
 * Crie uma referência de Protobuf de um arquivo remoto especificado por uma URL.
@@ -58,11 +58,11 @@ Se algum arquivo estiver fora do diretório do projeto, um elemento `Link` será
 dotnet grpc add-file [options] <files>...
 ```
 
-#### <a name="arguments"></a>Argumentos
+#### <a name="arguments"></a>Arguments
 
 | Argumento | Descrição |
 |-|-|
-| files | O arquivo protobuf faz referência a. Eles podem ser um caminho para glob para arquivos protobuf locais. |
+| arquivos | O arquivo protobuf faz referência a. Eles podem ser um caminho para glob para arquivos protobuf locais. |
 
 #### <a name="options"></a>Opções
 
@@ -83,7 +83,7 @@ O comando `add-url` é usado para adicionar um arquivo remoto especificado por u
 dotnet-grpc add-url [options] <url>
 ```
 
-#### <a name="arguments"></a>Argumentos
+#### <a name="arguments"></a>Arguments
 
 | Argumento | Descrição |
 |-|-|
@@ -112,7 +112,7 @@ O comando `remove` é usado para remover referências Protobuf do arquivo *. csp
 dotnet-grpc remove [options] <references>...
 ```
 
-### <a name="arguments"></a>Argumentos
+### <a name="arguments"></a>Arguments
 
 | Argumento | Descrição |
 |-|-|
@@ -139,7 +139,7 @@ A ferramenta sempre substituirá o arquivo local pelo arquivo remoto se uma atua
 dotnet-grpc refresh [options] [<references>...]
 ```
 
-### <a name="arguments"></a>Argumentos
+### <a name="arguments"></a>Arguments
 
 | Argumento | Descrição |
 |-|-|
@@ -152,7 +152,7 @@ dotnet-grpc refresh [options] [<references>...]
 | -p | --projeto | O caminho para o arquivo de projeto no qual operar. Se um arquivo não for especificado, o comando pesquisará o diretório atual em busca de um.
 | | --execução seca | Gera uma lista de arquivos que seriam atualizados sem baixar nenhum novo conteúdo.
 
-## <a name="list"></a>List
+## <a name="list"></a>Lista
 
 O comando `list` é usado para exibir todas as referências de Protobuf no arquivo de projeto. Se todos os valores de uma coluna forem valores padrão, a coluna poderá ser omitida.
 
