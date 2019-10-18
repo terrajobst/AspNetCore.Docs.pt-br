@@ -3,23 +3,23 @@ title: Azure Active Directory com o ASP.NET Core
 author: rick-anderson
 description: Descubra tópicos relacionados à autenticação com o Azure Active Directory no ASP.NET Core.
 ms.author: riande
-ms.date: 10/04/2017
+ms.date: 10/16/2017
 ms.custom: mvc, seodec18
 uid: security/authentication/azure-active-directory/index
-ms.openlocfilehash: 9aaad8ff555416a525bc23e3d405957c57e53f9d
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
-ms.translationtype: HT
+ms.openlocfilehash: e16821154320566f8461b33ccbfc217551a007dc
+ms.sourcegitcommit: ce2bfb01f2cc7dd83f8a97da0689d232c71bcdc4
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815075"
+ms.lasthandoff: 10/17/2019
+ms.locfileid: "72531071"
 ---
 # <a name="azure-active-directory-with-aspnet-core"></a>Azure Active Directory com o ASP.NET Core
 
 ## <a name="azure-ad-v1-samples"></a>Exemplos do Azure Active Directory V1
 
 Os exemplos a seguir mostram como integrar o Azure Active Directory V1, permitindo que os usuários entrem com uma conta corporativa ou de estudante:
-* [Integrando o Azure AD em um aplicativo Web ASP.NET Core](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/)
-* [Chamando uma API Web ASP.NET Core em um aplicativo do WPF usando o Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
+* [Integrando o Azure AD em um aplicativo Web ASP.NET Core](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect-aspnetcore)
+* [Chamando uma API Web ASP.NET Core em um aplicativo do WPF usando o Azure AD](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore)
 * [Chamando uma API Web em um aplicativo Web ASP.NET Core usando o Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
 
 ## <a name="azure-ad-v2-samples"></a>Exemplos do Azure Active Directory V2

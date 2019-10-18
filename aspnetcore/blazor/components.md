@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/05/2019
 uid: blazor/components
-ms.openlocfilehash: a71bbf3921417cbd23aeb14d0d78ad8354d6e93a
-ms.sourcegitcommit: dd026eceee79e943bd6b4a37b144803b50617583
+ms.openlocfilehash: cd48111e8d601fc67e8a938fcdd686759a9ddeca
+ms.sourcegitcommit: ce2bfb01f2cc7dd83f8a97da0689d232c71bcdc4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72378683"
+ms.lasthandoff: 10/17/2019
+ms.locfileid: "72531123"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -37,8 +37,8 @@ Os membros da classe de componente são definidos em um bloco `@code`. No bloco 
 
 Os membros do componente podem ser usados como parte da lógica de renderização do C# componente usando expressões que começam com `@`. Por exemplo, um C# campo é renderizado pela prefixação `@` para o nome do campo. O exemplo a seguir avalia e renderiza:
 
-* `_headingFontStyle` para o valor da propriedade CSS para `font-style`.
-* `_headingText` para o conteúdo do elemento `<h1>`.
+* `_headingFontStyle` ao valor da propriedade CSS para `font-style`.
+* `_headingText` o conteúdo do elemento `<h1>`.
 
 ```cshtml
 <h1 style="font-style:@_headingFontStyle">@_headingText</h1>
@@ -81,11 +81,11 @@ A associação de atributo diferencia maiúsculas de minúsculas. Por exemplo, `
 
 A marcação a seguir no *index. Razor* renderiza uma instância `HeadingComponent`:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/Index.razor?name=snippet_HeadingComponent)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/Index.razor?name=snippet_HeadingComponent)]
 
 *Componentes/HeadingComponent. Razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/HeadingComponent.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/HeadingComponent.razor)]
 
 Se um componente contiver um elemento HTML com uma letra maiúscula ou minúscula que não corresponda a um nome de componente, um aviso será emitido indicando que o elemento tem um nome inesperado. A adição de uma instrução `@using` para o namespace do componente disponibiliza o componente, o que remove o aviso.
 
@@ -95,13 +95,13 @@ Os componentes podem ter *parâmetros de componente*, que são definidos usando 
 
 *Componentes/ChildComponent. Razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=11-12)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=11-12)]
 
 No exemplo a seguir, o `ParentComponent` define o valor da propriedade `Title` do `ChildComponent`.
 
 *Páginas/ParentComponent. Razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=5-6)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=5-6)]
 
 ## <a name="child-content"></a>Conteúdo filho
 
@@ -111,7 +111,7 @@ No exemplo a seguir, o `ChildComponent` tem uma propriedade `ChildContent` que r
 
 *Componentes/ChildComponent. Razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=3,14-15)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
 
 > [!NOTE]
 > A propriedade que recebe o conteúdo `RenderFragment` deve ser nomeada `ChildContent` por convenção.
@@ -120,7 +120,7 @@ O `ParentComponent` a seguir pode fornecer conteúdo para renderizar o `ChildCom
 
 *Páginas/ParentComponent. Razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
 
 ## <a name="attribute-splatting-and-arbitrary-parameters"></a>Atributo nivelamento e parâmetros arbitrários
 
@@ -513,11 +513,11 @@ Um cenário comum com componentes aninhados é o desejo de executar o método de
 
 O `ChildComponent` no aplicativo de exemplo demonstra como o manipulador de `onclick` do botão é configurado para receber um delegado `EventCallback` da @no__t de exemplo-3. O `EventCallback` é digitado com `MouseEventArgs`, que é apropriado para um evento `onclick` de um dispositivo periférico:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=5-7,17-18)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
 O `ParentComponent` define o `EventCallback<T>` do filho para seu método `ShowMessage`:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=6,16-19)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=6,16-19)]
 
 Quando o botão for selecionado na `ChildComponent`:
 
@@ -968,7 +968,7 @@ Quando um arquivo Razor com uma diretiva `@page` é compilado, a classe gerada r
 
 Vários modelos de rota podem ser aplicados a um componente. O componente a seguir responde às solicitações de `/BlazorRoute` e `/DifferentBlazorRoute`:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
 ## <a name="route-parameters"></a>Parâmetros de rota
 
@@ -976,7 +976,7 @@ Os componentes podem receber parâmetros de rota do modelo de rota fornecido na 
 
 *Componente de parâmetro de rota*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/RouteParameter.razor?name=snippet_RouteParameter)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/RouteParameter.razor?name=snippet_RouteParameter)]
 
 Não há suporte para parâmetros opcionais, portanto, duas diretivas `@page` são aplicadas no exemplo acima. O primeiro permite a navegação para o componente sem um parâmetro. A segunda diretiva `@page` usa o parâmetro de rota `{text}` e atribui o valor à propriedade `Text`.
 
@@ -988,11 +988,11 @@ O [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/
 
 *Páginas/BlazorRocks. Razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRocks.razor?name=snippet_BlazorRocks)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRocks.razor?name=snippet_BlazorRocks)]
 
 *BlazorRocksBase.cs*:
 
-[!code-csharp[](common/samples/3.x/BlazorSample/Pages/BlazorRocksBase.cs)]
+[!code-csharp[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRocksBase.cs)]
 
 A classe base deve derivar de `ComponentBase`.
 
@@ -1096,7 +1096,7 @@ Um componente modelo é definido especificando um ou mais parâmetros de compone
 
 componente `TableTemplate`:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TableTemplate.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
 
 Ao usar um componente modelo, os parâmetros do modelo podem ser especificados usando elementos filho que correspondem aos nomes dos parâmetros (`TableHeader` e `RowTemplate` no exemplo a seguir):
 
@@ -1149,7 +1149,7 @@ Como alternativa, você pode especificar o atributo `Context` no elemento Compon
 
 Os componentes modelo são geralmente digitados genericamente. Por exemplo, um componente `ListViewTemplate` genérico pode ser usado para renderizar valores `IEnumerable<T>`. Para definir um componente genérico, use a diretiva [@typeparam](xref:mvc/views/razor#typeparam) para especificar parâmetros de tipo:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 
 Ao usar componentes de tipos genéricos, o parâmetro de tipo é inferido, se possível:
 
@@ -1297,23 +1297,23 @@ Os parâmetros em cascata também permitem que os componentes colaborem na hiera
 
 O aplicativo de exemplo tem uma interface `ITab` que as guias implementam:
 
-[!code-csharp[](common/samples/3.x/BlazorSample/UIInterfaces/ITab.cs)]
+[!code-csharp[](common/samples/3.x/BlazorWebAssemblySample/UIInterfaces/ITab.cs)]
 
 O componente `CascadingValuesParametersTabSet` usa o componente `TabSet`, que contém vários componentes `Tab`:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/CascadingValuesParametersTabSet.razor?name=snippet_TabSet)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/CascadingValuesParametersTabSet.razor?name=snippet_TabSet)]
 
 Os componentes filho `Tab` não são passados explicitamente como parâmetros para o `TabSet`. Em vez disso, os componentes filho `Tab` fazem parte do conteúdo filho do `TabSet`. No entanto, o `TabSet` ainda precisa saber sobre cada componente `Tab` para que ele possa renderizar os cabeçalhos e a guia ativa. Para habilitar essa coordenação sem a necessidade de código adicional, o componente `TabSet` *pode fornecer a si mesmo como um valor em cascata* que é então coletado pelos componentes descendentes `Tab`.
 
 componente `TabSet`:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TabSet.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/TabSet.razor)]
 
 Os componentes descendentes `Tab` capturam o `TabSet` que o contém como um parâmetro em cascata, para que os componentes `Tab` se adicionem ao `TabSet` e coordenada em qual guia está ativa.
 
 componente `Tab`:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/Tab.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/Tab.razor)]
 
 ## <a name="razor-templates"></a>Modelos do Razor
 
@@ -1406,7 +1406,7 @@ componente `BuiltContent`:
 }
 ```
 
-> ! ALERTA Os tipos no `Microsoft.AspNetCore.Components.RenderTree` permitem o processamento dos *resultados* das operações de renderização. Esses são detalhes internos da implementação da estrutura mais incrivelmente. Esses tipos devem ser considerados *instáveis* e sujeitos a alterações em versões futuras.
+> ! ALERTA Os tipos no `Microsoft.AspNetCore.Components.RenderTree` permitem o processamento dos *resultados* de operações de renderização. Esses são detalhes internos da implementação da estrutura mais incrivelmente. Esses tipos devem ser considerados *instáveis* e sujeitos a alterações em versões futuras.
 
 ### <a name="sequence-numbers-relate-to-code-line-numbers-and-not-execution-order"></a>Números de sequência se relacionam a números de linha de código e não a ordem de execução
 
