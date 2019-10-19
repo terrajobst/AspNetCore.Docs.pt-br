@@ -1,6 +1,6 @@
 Embora um aplicativo de servidor mais incrivelmente seja o pré-processamento, determinadas ações, como a chamada para JavaScript, não são possíveis porque uma conexão com o navegador não foi estabelecida. Os componentes podem precisar ser renderizados de forma diferente quando renderizados.
 
-Para atrasar as chamadas de interoperabilidade do JavaScript até que a conexão com o navegador seja estabelecida `OnAfterRenderAsync` , você pode usar o evento de ciclo de vida do componente. Esse evento é chamado somente depois que o aplicativo é totalmente renderizado e a conexão do cliente é estabelecida.
+Para atrasar as chamadas de interoperabilidade do JavaScript até que a conexão com o navegador seja estabelecida, você pode usar o evento `OnAfterRenderAsync` ciclo de vida do componente. Esse evento é chamado somente depois que o aplicativo é totalmente renderizado e a conexão do cliente é estabelecida.
 
 ```cshtml
 @using Microsoft.JSInterop
@@ -15,18 +15,18 @@ Para atrasar as chamadas de interoperabilidade do JavaScript até que a conexão
     {
         if (firstRender)
         {
-            JSRuntime.InvokeAsync<object>(
+            JSRuntime.InvokeVoidAsync(
                 "setElementValue", myInput, "Value set after render");
         }
     }
 }
 ```
 
-O componente a seguir demonstra como usar a interoperabilidade do JavaScript como parte da lógica de inicialização de um componente de forma que seja compatível com o pré-processamento. O componente mostra que é possível disparar uma atualização de renderização de dentro `OnAfterRenderAsync`do. O desenvolvedor deve evitar a criação de um loop infinito nesse cenário.
+O componente a seguir demonstra como usar a interoperabilidade do JavaScript como parte da lógica de inicialização de um componente de forma que seja compatível com o pré-processamento. O componente mostra que é possível disparar uma atualização de renderização de dentro `OnAfterRenderAsync`. O desenvolvedor deve evitar a criação de um loop infinito nesse cenário.
 
-Em `JSRuntime.InvokeAsync` que é chamado `ElementRef` , é usado apenas `OnAfterRenderAsync` em e não em nenhum método de ciclo de vida anterior porque não há nenhum elemento JavaScript até que o componente seja renderizado.
+Onde `JSRuntime.InvokeAsync` é chamado, `ElementRef` é usado somente no `OnAfterRenderAsync` e não em nenhum método de ciclo de vida anterior porque não há nenhum elemento JavaScript até que o componente seja renderizado.
 
-`StateHasChanged`é chamado para reprocessar o componente com o novo estado obtido da chamada de interoperabilidade JavaScript. O código não cria um loop infinito porque `StateHasChanged` é chamado somente quando `infoFromJs` é `null`.
+`StateHasChanged` é chamado para reprocessar o componente com o novo estado obtido da chamada de interoperabilidade do JavaScript. O código não cria um loop infinito porque `StateHasChanged` é chamado somente quando `infoFromJs` é `null`.
 
 ```cshtml
 @page "/prerendered-interop"
