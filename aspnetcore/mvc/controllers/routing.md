@@ -5,12 +5,12 @@ description: Saiba como o ASP.NET Core MVC usa o middleware de roteamento para c
 ms.author: riande
 ms.date: 01/24/2019
 uid: mvc/controllers/routing
-ms.openlocfilehash: b4d5cd3add3fda6b70873eb5cce1dcee651f9185
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
-ms.translationtype: HT
+ms.openlocfilehash: a0dbfbe60c151990581b494f81e500fe0b315f55
+ms.sourcegitcommit: a166291c6708f5949c417874108332856b53b6a9
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087514"
+ms.lasthandoff: 10/18/2019
+ms.locfileid: "72589861"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Roteamento para ações do controlador no ASP.NET Core
 
@@ -287,7 +287,7 @@ public IActionResult CreateProduct(...)
 Para um caminho de URL como `/products`, a ação `ProductsApi.ListProducts` será executada quando o verbo HTTP for `GET` e `ProductsApi.CreateProduct` será executado quando o verbo HTTP for `POST`. Primeiro, o roteamento de atributo faz a correspondência da URL com o conjunto de modelos de rota definidos por atributos de rota. Quando um modelo de rota for correspondente, restrições de `IActionConstraint` serão aplicadas para determinar quais ações podem ser executadas.
 
 > [!TIP]
-> Ao compilar uma API REST, é raro que você queira usar `[Route(...)]` em um método de ação. É melhor usar o `Http*Verb*Attributes` mais específico para ser preciso quanto ao que tem suporte de sua API. Espera-se que clientes de APIs REST saibam quais caminhos e verbos HTTP são mapeados para operações lógicas específicas.
+> Ao criar uma API REST, é raro que você queira usar `[Route(...)]` em um método de ação, pois a ação aceitará todos os métodos HTTP. É melhor usar o `Http*Verb*Attributes` mais específico para ser preciso quanto ao que tem suporte de sua API. Espera-se que clientes de APIs REST saibam quais caminhos e verbos HTTP são mapeados para operações lógicas específicas.
 
 Como uma rota de atributo se aplica a uma ação específica, é fácil fazer com que parâmetros sejam obrigatórios como parte da definição do modelo de rota. Neste exemplo, `id` é obrigatório como parte do caminho da URL.
 
@@ -322,7 +322,7 @@ Nomes de rota podem ser usados para gerar uma URL com base em uma rota específi
 
 ### <a name="combining-routes"></a>Combinando rotas
 
-Para tornar o roteamento de atributo menos repetitivo, os atributos de rota no controlador são combinados com atributos de rota nas ações individuais. Modelos de rota definidos no controlador precedem modelos de rota nas ações.  Colocar um atributo de rota no controlador foz com que **todas** as ações no controlador usem o roteamento de atributo.
+Para tornar o roteamento de atributo menos repetitivo, os atributos de rota no controlador são combinados com atributos de rota nas ações individuais. Modelos de rota definidos no controlador precedem modelos de rota nas ações. Colocar um atributo de rota no controlador foz com que **todas** as ações no controlador usem o roteamento de atributo.
 
 ```csharp
 [Route("products")]
@@ -376,7 +376,7 @@ Rotas de atributos podem configurar uma ordem, usando a propriedade `Order` de t
 > [!TIP]
 > Evite depender de `Order`. Se o seu espaço de URL exigir valores de ordem explícita para fazer o roteamento corretamente, provavelmente ele também será confuso para os clientes. De modo geral, o roteamento de atributos selecionará a rota correta com a correspondência de URL. Se a ordem padrão usada para a geração de URL não estiver funcionando, usar o nome da rota como uma substituição geralmente será mais simples do que aplicar a propriedade `Order`.
 
-Roteamento do Razor Pages e do controlador do MVC compartilham uma implementação. Para saber mais sobre Ordem de Rota, confira os tópicos do Razor Pages disponíveis em [Convenções de rota e aplicativo do Razor Pages: Ordem de Rota](xref:razor-pages/razor-pages-conventions#route-order).
+Roteamento do Razor Pages e do controlador do MVC compartilham uma implementação. Informações sobre a ordem de rota nos tópicos do Razor Pages estão disponíveis em [Convenções de rota e aplicativo do Razor Pages: ordem de rota](xref:razor-pages/razor-pages-conventions#route-order).
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 

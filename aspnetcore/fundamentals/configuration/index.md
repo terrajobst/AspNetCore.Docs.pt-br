@@ -5,14 +5,14 @@ description: Saiba como usar a API de configuração para configurar um aplicati
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/12/2019
+ms.date: 10/18/2019
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 357a3d89648086f0329cd16bc9d72863df9bdcd6
-ms.sourcegitcommit: 8a36be1bfee02eba3b07b7a86085ec25c38bae6b
+ms.openlocfilehash: 0a9b1a1a08617ef4ca8a36295cec8910ec111acd
+ms.sourcegitcommit: a166291c6708f5949c417874108332856b53b6a9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71217790"
+ms.lasthandoff: 10/18/2019
+ms.locfileid: "72589914"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configuração no ASP.NET Core
 
@@ -421,7 +421,7 @@ Para ativar a configuração das variáveis de ambiente, chame o método de exte
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-O [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/) permite que você defina variáveis de ambiente no portal do Azure que podem substituir a configuração do aplicativo usando o Provedor de Configuração de Variáveis de Ambiente. Para obter mais informações, confira [Aplicativos Azure: Substituir a configuração do aplicativo no Portal do Azure](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
+O [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/) permite que você defina variáveis de ambiente no portal do Azure que podem substituir a configuração do aplicativo usando o Provedor de Configuração de Variáveis de Ambiente. Para saber mais, confira [Aplicativos do Azure: substituir a configuração do aplicativo usando o portal do Azure](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -773,7 +773,7 @@ O dicionário é usado com uma chamada para `AddInMemoryCollection` a fim de for
 
 ## <a name="getvalue"></a>GetValue
 
-[ConfigurationBinder.GetValue\<T>](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extrai um valor de configuração com uma chave especificada e o converte para o tipo especificado. Uma sobrecarga permite que você forneça um valor padrão se a chave não for encontrada.
+[ConfigurationBinder. GetValue \<T >](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extrai um único valor da configuração com uma chave especificada e a converte para o tipo de não coleção especificado. Uma sobrecarga aceita um valor padrão.
 
 O exemplo a seguir:
 
@@ -1269,7 +1269,7 @@ public class Startup
 }
 ```
 
-Para obter um exemplo de como acessar a configuração usando os métodos de conveniência de inicialização, confira [Inicialização do aplicativo: Métodos de conveniência](xref:fundamentals/startup#convenience-methods).
+Para obter um exemplo de como acessar a configuração usando os métodos de conveniência de inicialização, consulte [Inicialização do aplicativo: métodos de conveniência](xref:fundamentals/startup#convenience-methods).
 
 ## <a name="access-configuration-in-a-razor-pages-page-or-mvc-view"></a>Acessar a configuração em uma página do Razor Pages ou exibição do MVC
 

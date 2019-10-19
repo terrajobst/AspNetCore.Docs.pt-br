@@ -1,35 +1,35 @@
 ---
 title: Autorização baseada em recursos no ASP.NET Core
 author: scottaddie
-description: Saiba como implementar a autorização baseada em recursos em um aplicativo ASP.NET Core quando um atributo Authorize não serão suficientes.
+description: Saiba como implementar a autorização baseada em recursos em um aplicativo ASP.NET Core quando um atributo de autorização não for suficiente.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/15/2018
 uid: security/authorization/resourcebased
-ms.openlocfilehash: afc152ea677cab42d57bd642b4821159f125117e
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 835592521c714e270595e1448ae6e0aed1707b77
+ms.sourcegitcommit: a166291c6708f5949c417874108332856b53b6a9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64891733"
+ms.lasthandoff: 10/18/2019
+ms.locfileid: "72590001"
 ---
 # <a name="resource-based-authorization-in-aspnet-core"></a>Autorização baseada em recursos no ASP.NET Core
 
-Estratégia de autorização depende do recurso que está sendo acessado. Considere um documento que tem uma propriedade de autor. Somente o autor tem permissão para atualizar o documento. Consequentemente, o documento deve ser recuperado do armazenamento de dados antes que a avaliação de autorização pode ocorrer.
+A estratégia de autorização depende do recurso que está sendo acessado. Considere um documento que tenha uma propriedade de autor. Somente o autor tem permissão para atualizar o documento. Consequentemente, o documento deve ser recuperado do armazenamento de dados antes que a avaliação de autorização possa ocorrer.
 
-Avaliação de atributo ocorre antes da vinculação de dados e antes da execução do manipulador de página ou ação que carrega o documento. Por esses motivos, a autorização declarativa com um `[Authorize]` atributo não é suficiente. Em vez disso, você pode invocar um método de autorização personalizada&mdash;um estilo conhecido como *autorização imperativa*.
+A avaliação de atributo ocorre antes da vinculação de dados e antes da execução do manipulador de página ou da ação que carrega o documento. Por esses motivos, a autorização declarativa com um atributo `[Authorize]` não é suficiente. Em vez disso, você pode invocar um método de autorização personalizado &mdash;a estilo conhecido como *autorização imperativa*.
 
 [Exibir ou baixar um código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/resourcebased/samples) ([como baixar](xref:index#how-to-download-a-sample)).
 
-[Criar um aplicativo ASP.NET Core com os dados de usuário protegidos por autorização](xref:security/authorization/secure-data) contém um aplicativo de exemplo que usa a autorização baseada em recursos.
+[Criar um aplicativo ASP.NET Core com os dados do usuário protegidos por autorização](xref:security/authorization/secure-data) contém um aplicativo de exemplo que usa a autorização baseada em recursos.
 
-## <a name="use-imperative-authorization"></a>Usar a autorização obrigatória
+## <a name="use-imperative-authorization"></a>Usar autorização imperativa
 
-Autorização é implementada como um [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) de serviço e é registrado na coleção de serviço dentro de `Startup` classe. O serviço é disponibilizado por meio [injeção de dependência](xref:fundamentals/dependency-injection) para manipuladores de página ou de ações.
+A autorização é implementada como um serviço [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) e é registrada na coleção de serviços dentro da classe `Startup`. O serviço é disponibilizado por meio de [injeção de dependência](xref:fundamentals/dependency-injection) para manipuladores de página ou ações.
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Controllers/DocumentController.cs?name=snippet_IAuthServiceDI&highlight=6)]
 
-`IAuthorizationService` tem dois `AuthorizeAsync` sobrecargas de método: uma aceitando o recurso e o nome da política e a outra aceitando o recurso e uma lista de requisitos para avaliar.
+`IAuthorizationService` tem duas sobrecargas de método `AuthorizeAsync`: uma aceita o recurso e o nome da política e a outra aceita o recurso e uma lista de requisitos a serem avaliados.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -59,10 +59,10 @@ Task<bool> AuthorizeAsync(ClaimsPrincipal user,
 
 <a name="security-authorization-resource-based-imperative"></a>
 
-O exemplo a seguir, o recurso a ser protegido é carregado em um personalizado `Document` objeto. Um `AuthorizeAsync` sobrecarga é invocada para determinar se o usuário atual tem permissão para editar o documento. Uma política de autorização personalizada "EditPolicy" é acrescentada a uma decisão. Ver [autorização de baseado em políticas personalizadas](xref:security/authorization/policies) para obter mais informações sobre como criar políticas de autorização.
+No exemplo a seguir, o recurso a ser protegido é carregado em um objeto de `Document` personalizado. Uma sobrecarga de `AuthorizeAsync` é invocada para determinar se o usuário atual tem permissão para editar o documento fornecido. Uma política de autorização personalizada "EditPolicy" é fatorada na decisão. Consulte [autorização personalizada baseada em políticas](xref:security/authorization/policies) para obter mais informações sobre a criação de políticas de autorização.
 
 > [!NOTE]
-> O código a seguir exemplos pressupõem que a autenticação foi executada e o conjunto de `User` propriedade.
+> Os exemplos de código a seguir pressupõem que a autenticação foi executada e definiu a propriedade `User`.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -76,11 +76,11 @@ O exemplo a seguir, o recurso a ser protegido é carregado em um personalizado `
 
 ::: moniker-end
 
-## <a name="write-a-resource-based-handler"></a>Escrever um Gerenciador de recursos
+## <a name="write-a-resource-based-handler"></a>Gravar um manipulador baseado em recursos
 
-Escrevendo um manipulador para a autorização baseada em recursos não é muito diferente [escrevendo um manipulador de requisitos simples](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). Criar uma classe de requisito personalizado e implementar uma classe de manipulador de requisito. Para obter mais informações sobre como criar uma classe de requisito, consulte [requisitos de](xref:security/authorization/policies#requirements).
+Escrever um manipulador para autorização baseada em recursos não é muito diferente de [escrever um manipulador de requisitos simples](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). Crie uma classe de requisito personalizada e implemente uma classe de manipulador de requisitos. Para obter mais informações sobre como criar uma classe de requisito, consulte [requirements](xref:security/authorization/policies#requirements).
 
-A classe de manipulador Especifica o requisito e o tipo de recurso. Por exemplo, uma utilização de manipulador uma `SameAuthorRequirement` e um `Document` recursos a seguir:
+A classe Handler especifica o requisito e o tipo de recurso. Por exemplo, um manipulador que utiliza um `SameAuthorRequirement` e um recurso de `Document` segue:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -94,19 +94,19 @@ A classe de manipulador Especifica o requisito e o tipo de recurso. Por exemplo,
 
 ::: moniker-end
 
-No exemplo anterior, imagine que `SameAuthorRequirement` é um caso especial de uma mais genérica `SpecificAuthorRequirement` classe. O `SpecificAuthorRequirement` classe (não mostrado) contém um `Name` propriedade que representa o nome do autor. O `Name` propriedade pode ser definida como o usuário atual.
+No exemplo anterior, imagine que `SameAuthorRequirement` é um caso especial de uma classe `SpecificAuthorRequirement` mais genérica. A classe `SpecificAuthorRequirement` (não mostrada) contém uma propriedade `Name` que representa o nome do autor. A propriedade `Name` pode ser definida como o usuário atual.
 
-Registrar o requisito e o manipulador no `Startup.ConfigureServices`:
+Registre o requisito e o manipulador no `Startup.ConfigureServices`:
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Startup.cs?name=snippet_ConfigureServicesSample&highlight=3-7,9)]
 
 ### <a name="operational-requirements"></a>Requisitos operacionais
 
-Se você estiver fazendo decisões com base nos resultados de operações CRUD (Create, Read, Update, Delete), use o [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) classe auxiliar. Essa classe permite que você escreva um único manipulador em vez de uma classe individual para cada tipo de operação. Para usá-lo, forneça alguns nomes de operação:
+Se você estiver tomando decisões com base nos resultados de operações CRUD (criar, ler, atualizar, excluir), use a classe auxiliar [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) . Essa classe permite que você grave um único manipulador em vez de uma classe individual para cada tipo de operação. Para usá-lo, forneça alguns nomes de operação:
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs?name=snippet_OperationsClass)]
 
-O manipulador é implementado da seguinte maneira, usando um `OperationAuthorizationRequirement` requisito e um `Document` recursos:
+O manipulador é implementado da seguinte maneira, usando um requisito de `OperationAuthorizationRequirement` e um recurso de `Document`:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -120,18 +120,22 @@ O manipulador é implementado da seguinte maneira, usando um `OperationAuthoriza
 
 ::: moniker-end
 
-O manipulador anterior valida a operação usando o recurso, a identidade do usuário e o requisito `Name` propriedade.
+O manipulador anterior valida a operação usando o recurso, a identidade do usuário e a propriedade de `Name` do requisito.
 
-Para chamar um manipulador de recursos operacionais, especifique a operação ao invocar `AuthorizeAsync` em seu manipulador de página ou ação. O exemplo a seguir determina se o usuário autenticado tem permissão para exibir o documento.
+## <a name="challenge-and-forbid-with-an-operational-resource-handler"></a>Desafio e proíba com um manipulador de recursos operacionais
+
+Esta seção mostra como os resultados de desafio e proíba são processados e como o desafio e proíba são diferentes.
+
+Para chamar um manipulador de recursos operacionais, especifique a operação ao invocar `AuthorizeAsync` em seu manipulador de página ou ação. O exemplo a seguir determina se o usuário autenticado tem permissão para exibir o documento fornecido.
 
 > [!NOTE]
-> O código a seguir exemplos pressupõem que a autenticação foi executada e o conjunto de `User` propriedade.
+> Os exemplos de código a seguir pressupõem que a autenticação foi executada e definiu a propriedade `User`.
 
 ::: moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Pages/Document/View.cshtml.cs?name=snippet_DocumentViewHandler&highlight=10-11)]
 
-Se a autorização for bem-sucedida, a página para exibir o documento é retornada. Se falhar de autorização, mas o usuário é autenticado, o retorno de `ForbidResult` informa qualquer middleware de autenticação que houve falha na autorização. Um `ChallengeResult` é retornado quando a autenticação deve ser executada. Para clientes de navegador interativo, ele pode ser apropriado redirecionar o usuário para uma página de logon.
+Se a autorização for realizada com sucesso, a página para exibir o documento será retornada. Se a autorização falhar, mas o usuário for autenticado, o retorno `ForbidResult` informará a qualquer middleware de autenticação que a autorização falhou. Um `ChallengeResult` é retornado quando A autenticação deve ser executada. Para clientes de navegador interativos, pode ser apropriado redirecionar o usuário para uma página de logon.
 
 ::: moniker-end
 
@@ -139,6 +143,6 @@ Se a autorização for bem-sucedida, a página para exibir o documento é retorn
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp1/Controllers/DocumentController.cs?name=snippet_DocumentViewAction&highlight=11-12)]
 
-Se a autorização for bem-sucedida, o modo de exibição para o documento é retornado. Se a autorização falhar, retornando `ChallengeResult` informa qualquer middleware de autenticação que houve falha na autorização e o middleware pode levar a resposta apropriada. Uma resposta apropriada pode estar retornando um código de status 401 ou 403. Para clientes de navegador interativo, isso poderia significar a redirecionar o usuário para uma página de logon.
+Se a autorização for realizada com sucesso, a exibição do documento será retornada. Se a autorização falhar, o retorno `ChallengeResult` informará a qualquer middleware de autenticação que a autorização falhou e o middleware poderá tomar a resposta apropriada. Uma resposta apropriada pode retornar um código de status 401 ou 403. Para clientes de navegador interativos, isso pode significar o redirecionamento do usuário para uma página de logon.
 
 ::: moniker-end

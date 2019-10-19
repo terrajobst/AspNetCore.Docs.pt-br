@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/29/2019
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: c13e63725298975fc882aa45c4e75de53e1d66a8
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
-ms.translationtype: HT
+ms.openlocfilehash: f0c7e114583b2ca2e681c507bef3487c863d8cd0
+ms.sourcegitcommit: a166291c6708f5949c417874108332856b53b6a9
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815153"
+ms.lasthandoff: 10/18/2019
+ms.locfileid: "72589867"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Auxiliares de marca de autor no ASP.NET Core
 
@@ -67,9 +67,9 @@ Ou seja, uma marca de âncora que torna isso um link de email. Talvez você dese
 
 1. Para disponibilizar a classe `EmailTagHelper` para todas as nossas exibições do Razor, adicione a diretiva `addTagHelper` ao arquivo *Views/_ViewImports.cshtml*:
 
-   [!code-html[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml?highlight=2,3)]
+   [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml?highlight=2,3)]
 
-   O código acima usa a sintaxe de curinga para especificar que todos os auxiliares de marca em nosso assembly estarão disponíveis. A primeira cadeia de caracteres após `@addTagHelper` especifica o auxiliar de marca a ser carregado (use "*" para todos os auxiliares de marca) e a segunda cadeia de caracteres "AuthoringTagHelpers" especifica o assembly no qual o auxiliar de marca se encontra. Além disso, observe que a segunda linha insere os auxiliares de marca do ASP.NET Core MVC usando a sintaxe de curinga (esses auxiliares são abordados em [Introdução ao auxiliares de marcação](intro.md)). É a diretiva `@addTagHelper` que disponibiliza o auxiliar de marca para a exibição do Razor. Como alternativa, você pode fornecer o FQN (nome totalmente qualificado) de um auxiliar de marca, conforme mostrado abaixo:
+   O código acima usa a sintaxe de curinga para especificar que todos os auxiliares de marca em nosso assembly estarão disponíveis. A primeira cadeia de caracteres após `@addTagHelper` especifica o auxiliar de marca a ser carregado (use "*" para todos os auxiliares de marca) e a segunda cadeia de caracteres "AuthoringTagHelpers" especifica o assembly no qual o auxiliar de marca se encontra. Além disso, observe que a segunda linha traz os auxiliares de marcação MVC ASP.NET Core usando a sintaxe curinga (esses auxiliares são discutidos na [introdução aos auxiliares de marca](intro.md).) É a diretiva `@addTagHelper` que torna o auxiliar de marca disponível para a exibição do Razor. Como alternativa, você pode fornecer o FQN (nome totalmente qualificado) de um auxiliar de marca, conforme mostrado abaixo:
 
 ```csharp
 @using AuthoringTagHelpers

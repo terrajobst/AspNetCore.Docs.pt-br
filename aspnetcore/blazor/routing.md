@@ -1,34 +1,36 @@
 ---
-title: Roteamento de ASP.NET Core mais
+title: Roteamento de Blazor de ASP.NET Core
 author: guardrex
 description: Saiba como rotear solicitações em aplicativos e sobre o componente NavLink.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
+no-loc:
+- Blazor
 uid: blazor/routing
-ms.openlocfilehash: d9f81c8aa2cf07f8bfaede65efcb7328088f55b9
-ms.sourcegitcommit: ce2bfb01f2cc7dd83f8a97da0689d232c71bcdc4
+ms.openlocfilehash: d4b76c00f79f333884fa7e30b27eadc6e36de287
+ms.sourcegitcommit: a166291c6708f5949c417874108332856b53b6a9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2019
-ms.locfileid: "72531144"
+ms.lasthandoff: 10/18/2019
+ms.locfileid: "72589932"
 ---
-# <a name="aspnet-core-blazor-routing"></a>Roteamento de ASP.NET Core mais
+# <a name="aspnet-core-opno-locblazor-routing"></a>Roteamento de Blazor de ASP.NET Core
 
 Por [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Saiba como rotear solicitações e como usar o componente `NavLink` para criar links de navegação em aplicativos mais Incrivelmenteos.
+Saiba como rotear solicitações e como usar o componente `NavLink` para criar links de navegação em aplicativos Blazor.
 
 ## <a name="aspnet-core-endpoint-routing-integration"></a>Integração de roteamento de ponto de extremidade ASP.NET Core
 
-O servidor mais incrivelmente é integrado ao [Roteamento de ponto de extremidade ASP.NET Core](xref:fundamentals/routing). Um aplicativo ASP.NET Core está configurado para aceitar conexões de entrada para componentes interativos com `MapBlazorHub` no `Startup.Configure`:
+o Blazor Server é integrado ao [Roteamento de ponto de extremidade ASP.NET Core](xref:fundamentals/routing). Um aplicativo ASP.NET Core está configurado para aceitar conexões de entrada para componentes interativos com `MapBlazorHub` no `Startup.Configure`:
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-A configuração mais típica é rotear todas as solicitações para uma página Razor, que atua como o host para a parte do lado do servidor do aplicativo de servidor mais grande. Por convenção, a página *host* geralmente é chamada de *_Host. cshtml*. A rota especificada no arquivo de host é chamada de *rota de fallback* porque opera com uma prioridade baixa na correspondência de rota. A rota de fallback é considerada quando outras rotas não correspondem. Isso permite que o aplicativo use outros controladores e páginas sem interferir no aplicativo de servidor mais incrivelmente.
+A configuração mais típica é rotear todas as solicitações para uma página Razor, que atua como o host da parte do lado do servidor do aplicativo Blazor Server. Por convenção, a página *host* geralmente é chamada de *_Host. cshtml*. A rota especificada no arquivo de host é chamada de *rota de fallback* porque opera com uma prioridade baixa na correspondência de rota. A rota de fallback é considerada quando outras rotas não correspondem. Isso permite que o aplicativo use outros controladores e páginas sem interferir no aplicativo Blazor Server.
 
 ## <a name="route-templates"></a>Modelos de rota
 
@@ -52,14 +54,14 @@ Em tempo de execução, o componente `RouteView`:
 * Recebe o `RouteData` do `Router` junto com os parâmetros desejados.
 * Renderiza o componente especificado com seu layout (ou um layout padrão opcional) usando os parâmetros especificados.
 
-Opcionalmente, você pode especificar um parâmetro `DefaultLayout` com uma classe de layout a ser usada para componentes que não especificam um layout. Os modelos de mais alto padrão especificam o componente `MainLayout`. *MainLayout. Razor* está na pasta *compartilhada* do projeto de modelo. Para obter mais informações sobre layouts, consulte <xref:blazor/layouts>.
+Opcionalmente, você pode especificar um parâmetro `DefaultLayout` com uma classe de layout a ser usada para componentes que não especificam um layout. Os modelos de Blazor padrão especificam o componente `MainLayout`. *MainLayout. Razor* está na pasta *compartilhada* do projeto de modelo. Para obter mais informações sobre layouts, consulte <xref:blazor/layouts>.
 
 Vários modelos de rota podem ser aplicados a um componente. O componente a seguir responde às solicitações de `/BlazorRoute` e `/DifferentBlazorRoute`:
 
 [!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
 > [!IMPORTANT]
-> Para que as URLs sejam resolvidas corretamente, o aplicativo deve incluir uma marca de `<base>` em seu arquivo *wwwroot/index.html* (Webassembly de mais de-voz) ou arquivo *pages/_Host. cshtml* (servidor mais incrivelmente) com o caminho base do aplicativo especificado no atributo `href` (`<base href="/">`). Para obter mais informações, consulte <xref:host-and-deploy/blazor/index#app-base-path>.
+> Para que as URLs sejam resolvidas corretamente, o aplicativo deve incluir uma marca de `<base>` em seu arquivo *wwwroot/index.html* (Blazor Webassembly) ou no arquivo *pages/_Host. cshtml* (Blazor Server) com o caminho base do aplicativo especificado no atributo `href` (`<base href="/">`). Para obter mais informações, consulte <xref:host-and-deploy/blazor/index#app-base-path>.
 
 ## <a name="provide-custom-content-when-content-isnt-found"></a>Fornecer conteúdo personalizado quando o conteúdo não for encontrado
 
@@ -83,7 +85,7 @@ O conteúdo das marcas `<NotFound>` pode incluir itens arbitrários, como outros
 
 ## <a name="route-to-components-from-multiple-assemblies"></a>Rotear para componentes de vários assemblies
 
-Use o parâmetro `AdditionalAssemblies` para especificar assemblies adicionais para o componente `Router` a ser considerado ao procurar componentes roteáveis. Os assemblies especificados são considerados além do @no__t assembly especificado pelo-0. No exemplo a seguir, `Component1` é um componente roteável definido em uma biblioteca de classes referenciada. O exemplo a seguir `AdditionalAssemblies` resulta no suporte de roteamento para `Component1`:
+Use o parâmetro `AdditionalAssemblies` para especificar assemblies adicionais para o componente `Router` a ser considerado ao procurar componentes roteáveis. Os assemblies especificados são considerados além do assembly especificado pelo `AppAssembly`. No exemplo a seguir, `Component1` é um componente roteável definido em uma biblioteca de classes referenciada. O exemplo a seguir `AdditionalAssemblies` resulta no suporte de roteamento para `Component1`:
 
 ```cshtml
 <Router
@@ -99,7 +101,7 @@ O roteador usa parâmetros de rota para popular os parâmetros de componente cor
 
 [!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/RouteParameter.razor?name=snippet_RouteParameter&highlight=2,7-8)]
 
-Os parâmetros opcionais não têm suporte para aplicativos mais no ASP.NET Core 3,0. Duas diretivas `@page` são aplicadas no exemplo anterior. O primeiro permite a navegação para o componente sem um parâmetro. A segunda diretiva `@page` usa o parâmetro de rota `{text}` e atribui o valor à propriedade `Text`.
+Não há suporte para parâmetros opcionais para aplicativos Blazor no ASP.NET Core 3,0. Duas diretivas `@page` são aplicadas no exemplo anterior. O primeiro permite a navegação para o componente sem um parâmetro. A segunda diretiva `@page` usa o parâmetro de rota `{text}` e atribui o valor à propriedade `Text`.
 
 ## <a name="route-constraints"></a>Restrições de rota
 
@@ -130,7 +132,7 @@ As restrições de rota mostradas na tabela a seguir estão disponíveis. Para a
 
 ### <a name="routing-with-urls-that-contain-dots"></a>Roteamento com URLs que contêm pontos
 
-Em aplicativos de servidor mais incrivelmente, a rota padrão em *_Host. cshtml* é `/` (`@page "/"`). Uma URL de solicitação que contém um ponto (`.`) não é correspondida pela rota padrão porque a URL parece solicitar um arquivo. Um aplicativo mais alto retorna uma resposta *404-não encontrada* para um arquivo estático que não existe. Para usar rotas que contenham um ponto, configure *_Host. cshtml* com o seguinte modelo de rota:
+Em aplicativos do Blazor Server, a rota padrão em *_Host. cshtml* é `/` (`@page "/"`). Uma URL de solicitação que contém um ponto (`.`) não é correspondida pela rota padrão porque a URL parece solicitar um arquivo. Um aplicativo Blazor retorna uma resposta *404-não encontrada* para um arquivo estático que não existe. Para usar rotas que contenham um ponto, configure *_Host. cshtml* com o seguinte modelo de rota:
 
 ```cshtml
 @page "/{**path}"
@@ -156,7 +158,7 @@ Há duas opções `NavLinkMatch` que você pode atribuir ao atributo `Match` do 
 * `NavLinkMatch.All` &ndash; o `NavLink` está ativo quando corresponde à URL atual inteira.
 * `NavLinkMatch.Prefix` (*padrão*) &ndash; o `NavLink` está ativo quando ele corresponde a qualquer prefixo da URL atual.
 
-No exemplo anterior, a @no__t inicial-0 `href=""` corresponde à URL inicial e recebe apenas a classe CSS `active` na URL do caminho base padrão do aplicativo (por exemplo, `https://localhost:5001/`). O segundo `NavLink` recebe a classe `active` quando o usuário visita qualquer URL com um prefixo `MyComponent` (por exemplo, `https://localhost:5001/MyComponent` e `https://localhost:5001/MyComponent/AnotherSegment`).
+No exemplo anterior, a `NavLink` inicial `href=""` corresponde à URL inicial e recebe somente a classe CSS `active` na URL do caminho base padrão do aplicativo (por exemplo, `https://localhost:5001/`). O segundo `NavLink` recebe a classe `active` quando o usuário visita qualquer URL com um prefixo `MyComponent` (por exemplo, `https://localhost:5001/MyComponent` e `https://localhost:5001/MyComponent/AnotherSegment`).
 
 Atributos de componente `NavLink` adicionais são passados para a marca de âncora renderizada. No exemplo a seguir, o componente `NavLink` inclui o atributo `target`:
 
@@ -177,7 +179,7 @@ Use `Microsoft.AspNetCore.Components.NavigationManager` para trabalhar com URIs 
 | Membro | Descrição |
 | ------ | ----------- |
 | `Uri` | Obtém o URI absoluto atual. |
-| `BaseUri` | Obtém o URI de base (com uma barra à direita) que pode ser anexado a caminhos de URI relativos para produzir um URI absoluto. Normalmente, `BaseUri` corresponde ao atributo `href` no elemento `<base>` do documento em *wwwroot/index.html* (Webassembly de mais ou-s) ou *pages/_Host. cshtml* (servidor mais incrivelmente). |
+| `BaseUri` | Obtém o URI de base (com uma barra à direita) que pode ser anexado a caminhos de URI relativos para produzir um URI absoluto. Normalmente, `BaseUri` corresponde ao atributo `href` no elemento `<base>` do documento em *wwwroot/index.html* (Blazor Webassembly) ou *pages/_Host. cshtml* (servidor Blazor). |
 | `NavigateTo` | Navega para o URI especificado. Se `forceLoad` for `true`:<ul><li>O roteamento do lado do cliente é ignorado.</li><li>O navegador é forçado a carregar a nova página do servidor, seja ou não o URI normalmente manipulado pelo roteador do lado do cliente.</li></ul> |
 | `LocationChanged` | Um evento que é acionado quando o local de navegação é alterado. |
 | `ToAbsoluteUri` | Converte um URI relativo em um URI absoluto. |

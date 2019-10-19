@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/10/2019
 uid: fundamentals/websockets
-ms.openlocfilehash: 5d4d9b02bd45e6650aa56448a3663cad06b3b45e
-ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
-ms.translationtype: HT
+ms.openlocfilehash: 098e6826d6f7114baceb9578dc6d9883eb83f0aa
+ms.sourcegitcommit: a166291c6708f5949c417874108332856b53b6a9
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/22/2019
-ms.locfileid: "69975450"
+ms.lasthandoff: 10/18/2019
+ms.locfileid: "72589701"
 ---
 # <a name="websockets-support-in-aspnet-core"></a>Suporte ao WebSockets no ASP.NET Core
 
@@ -28,7 +28,7 @@ Este artigo explica como começar a usar o WebSockets no ASP.NET Core. [WebSocke
 
 Para a maioria dos aplicativos, recomendamos o SignalR sobre WebSockets brutos. O SignalR fornece o fallback de transporte para os ambientes em que o WebSocket não está disponível. Ele também fornece um modelo de aplicativo de chamada de procedimento remoto simples. E, na maioria dos cenários, o SignalR não tem nenhuma desvantagem de desempenho significativa em comparação ao uso de WebSockets brutos.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 * ASP.NET Core 1.1 ou posterior
 * Qualquer sistema operacional compatível com o ASP.NET Core:
@@ -78,7 +78,7 @@ As seguintes configurações podem ser definidas:
 As seguintes configurações podem ser definidas:
 
 * `KeepAliveInterval` – a frequência para enviar quadros "ping" ao cliente para garantir que os proxies mantenham a conexão aberta. O padrão é dois minutos.
-* `ReceiveBufferSize` – o tamanho do buffer usado para receber dados. Os usuários avançados podem precisar alterar isso para ajuste de desempenho com base no tamanho dos dados. O padrão é 4 KB.
+* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.ReceiveBufferSize> – o tamanho do buffer usado para receber dados. Os usuários avançados podem precisar alterar isso para ajuste de desempenho com base no tamanho dos dados. O padrão é 4 KB.
 * `AllowedOrigins` – Uma lista de valores de cabeçalho de origem permitidos para solicitações do WebSocket. Por padrão, todas as origens são permitidas. Consulte "Restrição de origem do WebSocket" abaixo para obter detalhes.
 
 ::: moniker-end
@@ -183,12 +183,12 @@ Para habilitar o suporte para o protocolo WebSocket no Windows 8 ou posterior:
 > Estas etapas não são necessárias ao usar o IIS Express
 
 1. Navegue para **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
-1. Abra os seguintes nós: **Serviços de Informações da Internet** > **Serviços da World Wide Web** > **Recursos de Desenvolvimento de Aplicativos**.
+1. Abra os nós a seguir: **Serviços de Informações da Internet** > **Serviços da World Wide Web** > **Recursos de Desenvolvimento de Aplicativos**.
 1. Selecione o recurso **Protocolo WebSocket**. Selecione **OK**.
 
 ### <a name="disable-websocket-when-using-socketio-on-nodejs"></a>Desabilite o WebSocket ao usar o socket.io no Node.js
 
-Se você estiver usando o suporte do WebSocket no [socket.io](https://socket.io/) no [Node.js](https://nodejs.org/), desabilite o módulo do WebSocket do IIS padrão usando o elemento `webSocket` em *web.config* ou em *applicationHost.config*. Se essa etapa não for executada, o módulo do WebSocket do IIS tentará manipular a comunicação do WebSocket em vez do Node.js e o aplicativo.
+Se estiver usando o suporte WebSocket no [Socket.Io](https://socket.io/) no [node. js](https://nodejs.org/), desabilite o módulo WebSocket padrão do IIS usando o elemento `webSocket` em *Web. config* ou *ApplicationHost. config*. Se essa etapa não for executada, o módulo WebSocket do IIS tentará manipular a comunicação WebSocket em vez do node. js e do aplicativo.
 
 ```xml
 <system.webServer>
