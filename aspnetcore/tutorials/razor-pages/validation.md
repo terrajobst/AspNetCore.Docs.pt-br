@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 5c5419eb6ccfbd9ddd8d6fadb24d688966d76c10
-ms.sourcegitcommit: 476ea5ad86a680b7b017c6f32098acd3414c0f6c
-ms.translationtype: HT
+ms.openlocfilehash: c2397a535fa2c128f18d65323d0f4920af914205
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/14/2019
-ms.locfileid: "69022399"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72334212"
 ---
 # <a name="add-validation-to-an-aspnet-core-razor-page"></a>Adicionar validação a uma Página Razor do ASP.NET Core
 
@@ -63,7 +63,7 @@ Selecione o link **Criar Novo**. Preencha o formulário com alguns valores invá
 
 ![Formulário da exibição de filmes com vários erros de validação do lado do cliente do jQuery](validation/_static/val.png)
 
-[!INCLUDE[](~/includes/currency.md)]
+[!INCLUDE[](~/includes/localization/currency.md)]
 
 Observe como o formulário renderizou automaticamente uma mensagem de erro de validação em cada campo que contém um valor inválido. Os erros são impostos no lado do cliente (usando o JavaScript e o jQuery) e no lado do servidor (quando um usuário tem o JavaScript desabilitado).
 
@@ -174,7 +174,7 @@ CREATE TABLE [dbo].[Movie] (
 As alterações do esquema anterior não fazem com que o EF lance uma exceção. No entanto, crie uma migração de forma que o esquema seja consistente com o modelo.
 
 No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**.
-No PMC, insira os seguintes comandos:
+No PMC, digite os seguintes comandos:
 
 ```powershell
 Add-Migration New_DataAnnotations
@@ -207,7 +207,7 @@ As migrações não são necessárias para o SQLite.
 
 ### <a name="publish-to-azure"></a>Publicar no Azure
 
-Para obter informações sobre como implantar no Azure, consulte [Tutorial: Compilar um aplicativo ASP.NET Core no Azure com o Banco de Dados SQL](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
+Para obter informações sobre como implantar no Azure, consulte [tutorial: criar um aplicativo ASP.NET Core no Azure com o banco de dados SQL](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
 
 Obrigado por concluir esta introdução às Páginas Razor. A [Introdução ao Razor Pages e ao EF Core](xref:data/ef-rp/intro) é um excelente acompanhamento para este tutorial.
 
@@ -220,4 +220,4 @@ Obrigado por concluir esta introdução às Páginas Razor. A [Introdução ao R
 * [Versão do YouTube deste tutorial](https://youtu.be/b63m66eu7us)
 
 > [!div class="step-by-step"]
-> [Anterior: adicionando um novo campo](xref:tutorials/razor-pages/new-field)
+> [Anterior: Adicionando um novo campo](xref:tutorials/razor-pages/new-field)

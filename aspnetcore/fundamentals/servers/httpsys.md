@@ -5,14 +5,14 @@ description: Conheça o HTTP.sys, um servidor Web para o ASP.NET Core executado 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/08/2019
+ms.date: 10/14/2019
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: acdcdca3250f2aa3445458cc2c4e5f50360338a1
-ms.sourcegitcommit: 73a451e9a58ac7102f90b608d661d8c23dd9bbaf
+ms.openlocfilehash: f9e564119604e13bdc48a6c36de7d283c56f68f0
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/08/2019
-ms.locfileid: "72037603"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72333813"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementação do servidor Web HTTP.sys no ASP.NET Core
 
@@ -110,14 +110,14 @@ A configuração adicional do HTTP.sys é tratada por meio das [configurações 
 
 ::: moniker range=">= aspnetcore-3.1"
 
-| Propriedade | Descrição | Padrão |
+| propriedade | Descrição | Padrão |
 | -------- | ----------- | :-----: |
 | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `false` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
 | [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pela [enumeração AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate`, `None` e `NTLM`. | `None` |
 | [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Tentativa de cache do [modo kernel](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) para obtenção de respostas com cabeçalhos qualificados. A resposta pode não incluir `Set-Cookie`, `Vary` ou cabeçalhos `Pragma`. Ela deve incluir um cabeçalho `Cache-Control` que seja `public` e um valor `shared-max-age` ou `max-age`, ou um cabeçalho `Expires`. | `true` |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | O número máximo de aceitações simultâneas. | 5 &times; [Ambiente.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(ilimitado) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(em todo o computador<br>configuração |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Confira a seção <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 de bytes<br>(28,6 MB) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | O número máximo de solicitações que podem ser colocadas na fila. | 1000 |
 | `RequestQueueMode` | Isso indica se o servidor é responsável por criar e configurar a fila de solicitações ou se deve ser anexado a uma fila existente.<br>A maioria das opções de configuração existentes não se aplicam ao anexar a uma fila existente. | `RequestQueueMode.Create` |
@@ -130,14 +130,14 @@ A configuração adicional do HTTP.sys é tratada por meio das [configurações 
 
 ::: moniker range="= aspnetcore-3.0"
 
-| Propriedade | Descrição | Padrão |
+| propriedade | Descrição | Padrão |
 | -------- | ----------- | :-----: |
 | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `false` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
 | [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pela [enumeração AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate`, `None` e `NTLM`. | `None` |
 | [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Tentativa de cache do [modo kernel](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) para obtenção de respostas com cabeçalhos qualificados. A resposta pode não incluir `Set-Cookie`, `Vary` ou cabeçalhos `Pragma`. Ela deve incluir um cabeçalho `Cache-Control` que seja `public` e um valor `shared-max-age` ou `max-age`, ou um cabeçalho `Expires`. | `true` |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | O número máximo de aceitações simultâneas. | 5 &times; [Ambiente.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(ilimitado) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(em todo o computador<br>configuração |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Confira a seção <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 de bytes<br>(28,6 MB) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | O número máximo de solicitações que podem ser colocadas na fila. | 1000 |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se as gravações do corpo da resposta que falham quando o cliente se desconecta devem gerar exceções ou serem concluídas normalmente. | `false`<br>(concluir normalmente) |
@@ -148,14 +148,14 @@ A configuração adicional do HTTP.sys é tratada por meio das [configurações 
 
 ::: moniker range="< aspnetcore-3.0"
 
-| Propriedade | Descrição | Padrão |
+| propriedade | Descrição | Padrão |
 | -------- | ----------- | :-----: |
 | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Controlar quando a Entrada/Saída síncrona deve ser permitida para `HttpContext.Request.Body` e `HttpContext.Response.Body`. | `true` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Permitir solicitações anônimas. | `true` |
 | [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Especificar os esquemas de autenticação permitidos. É possível modificar a qualquer momento antes de descartar o ouvinte. Os valores são fornecidos pela [enumeração AuthenticationSchemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes): `Basic`, `Kerberos`, `Negotiate`, `None` e `NTLM`. | `None` |
 | [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Tentativa de cache do [modo kernel](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) para obtenção de respostas com cabeçalhos qualificados. A resposta pode não incluir `Set-Cookie`, `Vary` ou cabeçalhos `Pragma`. Ela deve incluir um cabeçalho `Cache-Control` que seja `public` e um valor `shared-max-age` ou `max-age`, ou um cabeçalho `Expires`. | `true` |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | O número máximo de aceitações simultâneas. | 5 &times; [Ambiente.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(ilimitado) |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | O número máximo de conexões simultâneas a serem aceitas. Usar `-1` como infinito. Usar `null` a fim de usar a configuração que abranja toda máquina do registro. | `null`<br>(em todo o computador<br>configuração |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Confira a seção <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 de bytes<br>(28,6 MB) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueLimit> | O número máximo de solicitações que podem ser colocadas na fila. | 1000 |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Indica se as gravações do corpo da resposta que falham quando o cliente se desconecta devem gerar exceções ou serem concluídas normalmente. | `false`<br>(concluir normalmente) |
@@ -248,7 +248,7 @@ No Visual Studio, o perfil de inicialização padrão destina-se ao IIS Express.
    O HTTP.sys usa os [formatos de cadeia de caracteres UrlPrefix da API do Servidor HTTP](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
 
    > [!WARNING]
-   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior criam vulnerabilidades de segurança no aplicativo. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos ou endereços IP em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não serão um risco à segurança se você controlar todo o domínio pai (ao contrário de `*.com`, o qual é vulnerável). Para saber mais, confira [RFC 7230: Seção 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4).
+   > Associações de curinga de nível superior (`http://*:80/` e `http://+:80`) **não** devem ser usadas. Associações de curinga de nível superior criam vulnerabilidades de segurança no aplicativo. Isso se aplica a curingas fortes e fracos. Use nomes de host explícitos ou endereços IP em vez de curingas. Associações de curinga de subdomínio (por exemplo, `*.mysub.com`) não serão um risco à segurança se você controlar todo o domínio pai (ao contrário de `*.com`, o qual é vulnerável). Para obter mais informações, consulte [RFC 7230: Section 5,4: host](https://tools.ietf.org/html/rfc7230#section-5.4).
 
 1. Pré-registre os prefixos de URL no servidor.
 

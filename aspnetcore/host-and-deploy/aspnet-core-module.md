@@ -5,14 +5,14 @@ description: Saiba como configurar o módulo do ASP.NET Core para hospedar aplic
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/08/2019
+ms.date: 10/13/2019
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: c1c34f368cb3f7767bf0f229ff70c5ab53c6005f
-ms.sourcegitcommit: fcdf9aaa6c45c1a926bd870ed8f893bdb4935152
+ms.openlocfilehash: 917ee462a8f9592120685b53d059a661cb4a7452
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72165320"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72333887"
 ---
 # <a name="aspnet-core-module"></a>Módulo do ASP.NET Core
 
@@ -76,6 +76,8 @@ As seguintes características se aplicam ao hospedar em processo:
       app.UseAuthentication();
   }
   ```
+  
+  * Não há suporte para [implantações de pacote da Web (arquivo único)](/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/deploying-web-packages) .
 
 ### <a name="out-of-process-hosting-model"></a>Modelo de hospedagem de fora do processo
 
@@ -188,7 +190,7 @@ Para saber mais sobre a configuração de subaplicativos do IIS, confira <xref:h
 
 Variáveis de ambiente podem ser especificadas para o processo no atributo `processPath`. Especificar uma variável de ambiente com o elemento filho `<environmentVariable>` de um elemento de coleção `<environmentVariables>`. Variáveis de ambiente definidas nesta seção têm precedência sobre variáveis de ambiente do sistema.
 
-O exemplo a seguir define duas variáveis de ambiente em *Web. config*. `ASPNETCORE_ENVIRONMENT` configura o ambiente do aplicativo para `Development`. Um desenvolvedor pode definir esse valor temporariamente no arquivo *web.config* para forçar o carregamento da [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) ao depurar uma exceção de aplicativo. `CONFIG_DIR` é um exemplo de uma variável de ambiente definida pelo usuário, em que o desenvolvedor escreveu código que lê o valor de inicialização para formar um caminho no qual carregar o arquivo de configuração do aplicativo.
+O exemplo a seguir define duas variáveis de ambiente em *Web. config*.  `ASPNETCORE_ENVIRONMENT` configura o ambiente do aplicativo para `Development`. Um desenvolvedor pode definir esse valor temporariamente no arquivo *web.config* para forçar o carregamento da [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) ao depurar uma exceção de aplicativo. `CONFIG_DIR` é um exemplo de uma variável de ambiente definida pelo usuário, em que o desenvolvedor escreveu código que lê o valor de inicialização para formar um caminho no qual carregar o arquivo de configuração do aplicativo.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -247,7 +249,7 @@ Uma extensão de arquivo e um carimbo de data/hora são adicionados automaticame
 
 Se `stdoutLogEnabled` for falso, os erros que ocorrerem na inicialização do aplicativo serão capturados e emitidos no log de eventos até 30 KB. Após a inicialização, todos os logs adicionais são descartados.
 
-O seguinte exemplo de elemento `aspNetCore` em um arquivo *Web. config* configura o log de stdout para um aplicativo hospedado no serviço Azure app. Um caminho local ou um caminho de compartilhamento de rede é aceitável para o registro em log local. Confirme se a identidade do usuário AppPool tem permissão para gravar no caminho fornecido.
+O elemento de `aspNetCore` de exemplo a seguir em um arquivo *Web. config* configura o log de stdout para um aplicativo hospedado no serviço Azure app. Um caminho local ou um caminho de compartilhamento de rede é aceitável para o registro em log local. Confirme se a identidade do usuário AppPool tem permissão para gravar no caminho fornecido.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -260,7 +262,7 @@ O seguinte exemplo de elemento `aspNetCore` em um arquivo *Web. config* configur
 
 ## <a name="enhanced-diagnostic-logs"></a>Logs de diagnóstico avançados
 
-O Módulo do ASP.NET Core é configurável para fornecer logs de diagnóstico avançados. Adicione o elemento `<handlerSettings>` ao elemento `<aspNetCore>` no *web.config*. A definição de `debugLevel` como `TRACE` expõe uma fidelidade maior de informações de diagnóstico:
+O Módulo do ASP.NET Core é configurável para fornecer logs de diagnóstico avançados. Adicione o elemento `<handlerSettings>` ao elemento `<aspNetCore>` em *Web. config*. Definir a `debugLevel` como `TRACE` expõe uma fidelidade mais alta das informações de diagnóstico:
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -306,7 +308,7 @@ Veja [Configuração com web.config](#configuration-with-webconfig) para obter u
 
 *Aplica-se somente ao usar o modelo de hospedagem em processo.*
 
-Configure o tamanho da pilha gerenciada usando a configuração `stackSize` em bytes em *Web. config*. O tamanho padrão é de `1048576` bytes (1 MB).
+Configure o tamanho da pilha gerenciada usando a configuração de `stackSize` em bytes em *Web. config*. O tamanho padrão é `1048576` bytes (1 MB).
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -352,9 +354,9 @@ Para determinar a versão do Módulo do ASP.NET Core instalado:
 1. No sistema de hospedagem, navegue até *%windir%\System32\inetsrv*.
 1. Localize o arquivo *aspnetcore.dll*.
 1. Clique com o botão direito do mouse no arquivo e selecione **Propriedades** no menu contextual.
-1. Selecione a guia **Detalhes**. A **Versão do arquivo** e a **Versão do produto** representam a versão instalada do módulo.
+1. Selecione a guia **detalhes** . A versão do **arquivo** e a **versão do produto** representam a versão instalada do módulo.
 
-Os logs de instalador do pacote de hospedagem para o módulo são encontrados em *C:\\Usuários\\%UserName%\\AppData\\Local\\Temp*. O arquivo é nomeado *dd_DotNetCoreWinSvrHosting__\<carimbo de data/hora>_000_AspNetCoreModule_x64.log*.
+Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C: \\Users \\% username% \\AppData \\Local \\Temp*. O arquivo é denominado *dd_DotNetCoreWinSvrHosting__ \<timestamp > _000_AspNetCoreModule_x64. log*.
 
 ## <a name="module-schema-and-configuration-file-locations"></a>Locais dos arquivos de módulo, de esquema e de configuração
 
@@ -663,7 +665,7 @@ O elemento `aspNetCore` de exemplo a seguir configura o registro em log de stdou
 
 ## <a name="enhanced-diagnostic-logs"></a>Logs de diagnóstico avançados
 
-O Módulo do ASP.NET Core é configurável para fornecer logs de diagnóstico avançados. Adicione o elemento `<handlerSettings>` ao elemento `<aspNetCore>` no *web.config*. A definição de `debugLevel` como `TRACE` expõe uma fidelidade maior de informações de diagnóstico:
+O Módulo do ASP.NET Core é configurável para fornecer logs de diagnóstico avançados. Adicione o elemento `<handlerSettings>` ao elemento `<aspNetCore>` em *Web. config*. Definir a `debugLevel` como `TRACE` expõe uma fidelidade mais alta das informações de diagnóstico:
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -737,9 +739,9 @@ Para determinar a versão do Módulo do ASP.NET Core instalado:
 1. No sistema de hospedagem, navegue até *%windir%\System32\inetsrv*.
 1. Localize o arquivo *aspnetcore.dll*.
 1. Clique com o botão direito do mouse no arquivo e selecione **Propriedades** no menu contextual.
-1. Selecione a guia **Detalhes**. A **Versão do arquivo** e a **Versão do produto** representam a versão instalada do módulo.
+1. Selecione a guia **detalhes** . A versão do **arquivo** e a **versão do produto** representam a versão instalada do módulo.
 
-Os logs de instalador do pacote de hospedagem para o módulo são encontrados em *C:\\Usuários\\%UserName%\\AppData\\Local\\Temp*. O arquivo é nomeado *dd_DotNetCoreWinSvrHosting__\<carimbo de data/hora>_000_AspNetCoreModule_x64.log*.
+Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C: \\Users \\% username% \\AppData \\Local \\Temp*. O arquivo é denominado *dd_DotNetCoreWinSvrHosting__ \<timestamp > _000_AspNetCoreModule_x64. log*.
 
 ## <a name="module-schema-and-configuration-file-locations"></a>Locais dos arquivos de módulo, de esquema e de configuração
 
@@ -971,9 +973,9 @@ Para determinar a versão do Módulo do ASP.NET Core instalado:
 1. No sistema de hospedagem, navegue até *%windir%\System32\inetsrv*.
 1. Localize o arquivo *aspnetcore.dll*.
 1. Clique com o botão direito do mouse no arquivo e selecione **Propriedades** no menu contextual.
-1. Selecione a guia **Detalhes**. A **Versão do arquivo** e a **Versão do produto** representam a versão instalada do módulo.
+1. Selecione a guia **detalhes** . A versão do **arquivo** e a **versão do produto** representam a versão instalada do módulo.
 
-Os logs de instalador do pacote de hospedagem para o módulo são encontrados em *C:\\Usuários\\%UserName%\\AppData\\Local\\Temp*. O arquivo é nomeado *dd_DotNetCoreWinSvrHosting__\<carimbo de data/hora>_000_AspNetCoreModule_x64.log*.
+Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C: \\Users \\% username% \\AppData \\Local \\Temp*. O arquivo é denominado *dd_DotNetCoreWinSvrHosting__ \<timestamp > _000_AspNetCoreModule_x64. log*.
 
 ## <a name="module-schema-and-configuration-file-locations"></a>Locais dos arquivos de módulo, de esquema e de configuração
 

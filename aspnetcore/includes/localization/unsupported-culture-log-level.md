@@ -1,0 +1,2 @@
+> [!NOTE]
+> Antes de ASP.NET Core aplicativos Web 3,0, grave um log do tipo `LogLevel.Warning` por solicitação se a cultura solicitada não for suportada. O registro em log de um `LogLevel.Warning` por solicitação é capaz de fazer grandes arquivos de log com informações redundantes. Esse comportamento foi alterado no ASP.NET 3,0. O `RequestLocalizationMiddleware` grava um log do tipo `LogLevel.Debug`, o que reduz o tamanho dos logs de produção.

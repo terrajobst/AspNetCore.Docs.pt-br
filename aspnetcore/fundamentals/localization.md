@@ -5,18 +5,16 @@ description: Saiba como o ASP.NET Core fornece serviços e middleware para local
 ms.author: riande
 ms.date: 01/14/2017
 uid: fundamentals/localization
-ms.openlocfilehash: 8398e99af42da48718eea370cffa6ce4be0086ae
-ms.sourcegitcommit: 020c3760492efed71b19e476f25392dda5dd7388
+ms.openlocfilehash: 9ed133c93a9ec95c63869b710d120eca9fda1b6e
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/12/2019
-ms.locfileid: "72288897"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72333718"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalização e localização no ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/) e [Hisham Bin Ateya](https://twitter.com/hishambinateya)
-
-Até que este documento seja atualizado para o ASP.NET Core 3,0, consulte o blog de Hisham [o que há de novo na localização em ASP.NET Core 3,0](http://hishambinateya.com/what-is-new-in-localization-in-asp.net-core-3.0).
 
 A criação de um site multilíngue com o ASP.NET Core permitirá que seu site alcance um público maior. O ASP.NET Core fornece serviços e middleware para localização em diferentes idiomas e culturas.
 
@@ -153,7 +151,7 @@ No projeto de exemplo, o método `ConfigureServices` define o `ResourcesPath` co
 | Nome do recurso | Nomenclatura de ponto ou caminho |
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Ponto  |
-| Resources/Controllers/HomeController.fr.resx  | Path |
+| Resources/Controllers/HomeController.fr.resx  | Caminho |
 |    |     |
 
 Os arquivos de recurso que usam `@inject IViewLocalizer` em exibições do Razor seguem um padrão semelhante. O arquivo de recurso de uma exibição pode ser nomeado usando a nomenclatura de ponto ou de caminho. Os arquivos de recurso da exibição do Razor simulam o caminho de seu arquivo de exibição associado. Supondo que definimos o `ResourcesPath` como "Resources", o arquivo de recurso em francês associado à exibição *Views/Home/About.cshtml* pode ser um dos seguintes:
@@ -275,6 +273,31 @@ O [cabeçalho Accept-Language](https://www.w3.org/International/questions/qa-acc
 
 6. Toque no idioma e, em seguida, em **Mover Para Cima**.
 
+::: moniker range=">= aspnetcore-3.0"
+### <a name="the-content-language-http-header"></a>O cabeçalho HTTP do idioma do conteúdo
+
+O cabeçalho da entidade de [linguagem de conteúdo](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) :
+
+ - É usado para descrever os idiomas destinados ao público.
+ - Permite que um usuário diferencie de acordo com a linguagem preferencial dos usuários.
+
+Os cabeçalhos de entidade são usados tanto em solicitações HTTP quanto em respostas.
+
+No ASP.NET Core 3,0, o cabeçalho `Content-Language` pode ser adicionado definindo a propriedade `ApplyCurrentCultureToResponseHeaders`.
+
+Adicionando o cabeçalho de `Content-Language`:
+
+ - Permite que o RequestLocalizationMiddleware defina o cabeçalho de `Content-Language` com o `CurrentUICulture`.
+ - Elimina a necessidade de definir o cabeçalho de resposta `Content-Language` explicitamente.
+
+```csharp
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    ApplyCurrentCultureToResponseHeaders = true
+});
+```
+::: moniker-end
+
 ### <a name="use-a-custom-provider"></a>Usar um provedor personalizado
 
 Suponha que você deseje permitir que os clientes armazenem seus idiomas e culturas nos bancos de dados. Você pode escrever um provedor para pesquisar esses valores para o usuário. O seguinte código mostra como adicionar um provedor personalizado:
@@ -368,7 +391,11 @@ Termos:
 * Cultura pai: a cultura neutra que contém uma cultura específica. (por exemplo, "en" é a cultura pai de "en-US" e "en-GB")
 * Localidade: uma localidade é o mesmo que uma cultura.
 
-[!INCLUDE[](~/includes/currency.md)]
+[!INCLUDE[](~/includes/localization/currency.md)]
+
+::: moniker range=">= aspnetcore-3.0"
+[!INCLUDE[](~/includes/localization/unsupported-culture-log-level.md)]
+::: moniker-end
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
@@ -378,3 +405,4 @@ Termos:
 * [Recursos em arquivos .resx](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Kit de Ferramentas de Aplicativo Multilíngue da Microsoft](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localização e genéricos](https://github.com/hishamco/hishambinateya.com/blob/master/Posts/localization-and-generics.md)
+* [O que há de novo na localização no ASP.NET Core 3,0](http://hishambinateya.com/what-is-new-in-localization-in-asp.net-core-3.0)

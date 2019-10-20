@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
 uid: mvc/controllers/filters
-ms.openlocfilehash: ed48c2074360768b8d8c5af7057b353b00592394
-ms.sourcegitcommit: 73a451e9a58ac7102f90b608d661d8c23dd9bbaf
+ms.openlocfilehash: 0c3597f24e02af40517e12a86127b140ed4fb550
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/08/2019
-ms.locfileid: "72037701"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72333930"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtros no ASP.NET Core
 
@@ -158,7 +158,7 @@ Por exemplo, no download de exemplo, `MySampleActionFilter` é aplicado globalme
 
 O `TestController`:
 
-* Aplica `SampleActionFilterAttribute` (`[SampleActionFilter]`) à ação `FilterTest2`:
+* Aplica o `SampleActionFilterAttribute` (`[SampleActionFilter]`) à ação `FilterTest2`.
 * Substitui `OnActionExecuting` e `OnActionExecuted`.
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/TestController.cs?name=snippet)]
@@ -449,18 +449,7 @@ O método <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting
 * Impedir a execução do resultado da ação e dos próximos filtros.
 * Ser tratada como uma falha e não como um resultado com êxito.
 
-Após a execução do método <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuted*?displayProperty=fullName>:
-
-* Provavelmente, a resposta foi enviada ao cliente e não pode ser alterada.
-* Se uma exceção foi lançada, o corpo da resposta não será enviado.
-
-<!-- Review preceding "If an exception was thrown: Original 
-When the OnResultExecuted method runs, the response has likely been sent to the client and cannot be changed further (unless an exception was thrown).
-
-SHould that be , 
-If an exception was thrown **IN THE RESULT FILTER**, the response body is not sent.
-
- -->
+Quando o método <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuted*?displayProperty=fullName> é executado, a resposta provavelmente já foi enviada para o cliente. Se a resposta já tiver sido enviada ao cliente, ela não poderá ser alterada ainda mais.
 
 `ResultExecutedContext.Canceled` será definido como `true` se a execução do resultado da ação tiver sofrido curto-circuito por outro filtro.
 
@@ -494,7 +483,7 @@ Implemente `IFilterFactory` usando implementações personalizadas de atributo c
 O código anterior pode ser testado executando o [exemplo para download](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample):
 
 * Invocar as ferramentas de desenvolvedor F12.
-* Navegue até `https://localhost:5001/Sample/HeaderWithFactory`
+* Navegue para `https://localhost:5001/Sample/HeaderWithFactory`.
 
 As ferramentas de desenvolvedor F12 exibem os seguintes cabeçalhos de resposta adicionados pelo código de exemplo:
 
@@ -532,7 +521,7 @@ Filtros de recursos funcionam como [middleware](xref:fundamentals/middleware/ind
 
 Para usar o middleware como um filtro, crie um tipo com um método `Configure` que especifica o middleware para injeção no pipeline de filtros. O exemplo a seguir usa o middleware de localização para estabelecer a cultura atual para uma solicitação:
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/LocalizationPipeline.cs?name=snippet_MiddlewareFilter&highlight=3,21)]
+[!code-csharp[](./filters/sample/FiltersSample/Filters/LocalizationPipeline.cs?name=snippet_MiddlewareFilter&highlight=3,22)]
 
 Use <xref:Microsoft.AspNetCore.Mvc.MiddlewareFilterAttribute> para executar o middleware:
 
@@ -542,5 +531,5 @@ Filtros de middleware são executados no mesmo estágio do pipeline de filtros q
 
 ## <a name="next-actions"></a>Próximas ações
 
-* Confira [Métodos de filtro do Razor Pages](xref:razor-pages/filter)
+* Consulte [métodos de filtro para Razor Pages](xref:razor-pages/filter).
 * Para fazer experiências com filtros, [baixe, teste e modifique o exemplo do GitHub](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).

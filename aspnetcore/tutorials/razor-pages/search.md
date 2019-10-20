@@ -5,12 +5,12 @@ description: Mostra como adicionar uma pesquisa às Páginas Razor do ASP.NET Co
 ms.author: riande
 ms.date: 7/23/2019
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: fde99d8fab00265294bccb2ecdb380d02a8f3673
-ms.sourcegitcommit: a7813a776809a5029c94aa503ee71994f156231f
+ms.openlocfilehash: 1eeb3aa86f2a6928b6d0b368c90e4760a66a6c6e
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/25/2019
-ms.locfileid: "71267762"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72334058"
 ---
 # <a name="add-search-to-aspnet-core-razor-pages"></a>Adicionar a pesquisa às Páginas Razor do ASP.NET Core
 
@@ -53,7 +53,8 @@ Se a propriedade `SearchString` não é nula nem vazia, a consulta de filmes é 
 
 O código `s => s.Title.Contains()` é uma [Expressão Lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas são usados em consultas [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) baseadas em método como argumentos para métodos de operadores de consulta padrão, como o método [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) ou `Contains` (usado no código anterior). As consultas LINQ não são executadas quando são definidas ou quando são modificadas com uma chamada a um método (como `Where`, `Contains` ou `OrderBy`). Em vez disso, a execução da consulta é adiada. Isso significa que a avaliação de uma expressão é atrasada até que seu valor realizado seja iterado ou o método `ToListAsync` seja chamado. Consulte [Execução de consulta](/dotnet/framework/data/adonet/ef/language-reference/query-execution) para obter mais informações.
 
-**Observação:** o método [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) é executado no banco de dados, não no código C#. A diferenciação de maiúsculas e minúsculas na consulta depende do banco de dados e da ordenação. No SQL Server, `Contains` é mapeado para [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), que não diferencia maiúsculas de minúsculas. No SQLite, com a ordenação padrão, ele diferencia maiúsculas de minúsculas.
+> [!NOTE]
+> O método [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) é executado no banco de dados, não no C# código. A diferenciação de maiúsculas e minúsculas na consulta depende do banco de dados e da ordenação. No SQL Server, `Contains` é mapeado para [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), que não diferencia maiúsculas de minúsculas. No SQLite, com a ordenação padrão, ele diferencia maiúsculas de minúsculas.
 
 Navegue para a página Movies e acrescente uma cadeia de consulta, como `?searchString=Ghost`, à URL (por exemplo, `https://localhost:5001/Movies?searchString=Ghost`). Os filmes filtrados são exibidos.
 
@@ -113,8 +114,8 @@ Teste o aplicativo pesquisando por gênero, título do filme e por ambos.
 * [Versão do YouTube deste tutorial](https://youtu.be/4B6pHtdyo08)
 
 > [!div class="step-by-step"]
-> [Anterior: atualizando as páginas](xref:tutorials/razor-pages/da1)
-> [Próximo: adicionando um novo campo](xref:tutorials/razor-pages/new-field)
+> [Anterior: Atualizando as páginas](xref:tutorials/razor-pages/da1)
+> [Próximo: Adicionando um novo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end
 
@@ -216,7 +217,7 @@ O código anterior usa o auxiliar [Select tag](xref:mvc/views/working-with-forms
 * [Versão do YouTube deste tutorial](https://youtu.be/4B6pHtdyo08)
 
 > [!div class="step-by-step"]
-> [Anterior: atualizando as páginas](xref:tutorials/razor-pages/da1)
-> [Próximo: adicionando um novo campo](xref:tutorials/razor-pages/new-field)
+> [Anterior: Atualizando as páginas](xref:tutorials/razor-pages/da1)
+> [Próximo: Adicionando um novo campo](xref:tutorials/razor-pages/new-field)
 
 ::: moniker-end

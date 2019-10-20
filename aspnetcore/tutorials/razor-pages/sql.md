@@ -5,12 +5,12 @@ description: Explica como trabalhar com um banco de dados e o ASP.NET Core.
 ms.author: riande
 ms.date: 7/22/2019
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: 87d27b60940826e21b060f2e07d344b30ff75b27
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: b5acb573f8fa39e5300ecdb359113d8697d78934
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259787"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72334223"
 ---
 # <a name="work-with-a-database-and-aspnet-core"></a>Trabalhar com um banco de dados e o ASP.NET Core
 
@@ -38,7 +38,7 @@ O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET 
 
 O valor do nome do banco de dados (`Database={Database name}`) será diferente para o seu código gerado. O valor do nome é arbitrário.
 
-[!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json)]
+[!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json?highlight=10-12)]
 
 # <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -52,7 +52,7 @@ Quando o aplicativo é implantado em um servidor de teste ou de produção, uma 
 
 ## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
-O LocalDB é uma versão leve do mecanismo de banco de dados do SQL Server Express direcionada para o desenvolvimento de programas. O LocalDB é iniciado sob demanda e executado no modo de usuário e, portanto, não há nenhuma configuração complexa. Por padrão, o banco de dados LocalDB cria arquivos `*.mdf` no diretório `C:/Users/<user/>`.
+O LocalDB é uma versão leve do mecanismo de banco de dados do SQL Server Express direcionada para o desenvolvimento de programas. O LocalDB é iniciado sob demanda e executado no modo de usuário e, portanto, não há nenhuma configuração complexa. Por padrão, o banco de dados LocalDB cria arquivos `*.mdf` no diretório `C:\Users\<user>\`.
 
 <a name="ssox"></a>
 * No menu **Exibir**, abra **SSOX** (Pesquisador de Objetos do SQL Server).
@@ -107,10 +107,10 @@ O código a seguir mostra o arquivo *Program.cs* atualizado.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
 
-A seguinte exceção ocorre quando `Update-Database` não foi executado:
+A seguinte exceção ocorre quando `Update-Database` não foi executada:
 
-`SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
-`Login failed for user 'user name'.`
+> `SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
+> `Login failed for user 'user name'.`
 
 ### <a name="test-the-app"></a>Testar o aplicativo
 
@@ -141,8 +141,8 @@ O próximo tutorial melhorará a apresentação dos dados.
 ## <a name="additional-resources"></a>Recursos adicionais
 
 > [!div class="step-by-step"]
-> [Anterior: Razor Pages geradas por scaffolding](xref:tutorials/razor-pages/page)
-> [A seguir: atualização de páginas](xref:tutorials/razor-pages/da1)
+> [Anterior: Páginas do Razor geradas por scaffolding](xref:tutorials/razor-pages/page)
+> [Próximo: Atualização das páginas](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
 
@@ -297,7 +297,7 @@ O próximo tutorial limpará a apresentação dos dados.
 * [Versão do YouTube deste tutorial](https://youtu.be/A_5ff11sDHY)
 
 > [!div class="step-by-step"]
-> [Anterior: Razor Pages geradas por scaffolding](xref:tutorials/razor-pages/page)
-> [A seguir: atualização de páginas](xref:tutorials/razor-pages/da1)
+> [Anterior: Páginas do Razor geradas por scaffolding](xref:tutorials/razor-pages/page)
+> [Próximo: Atualização das páginas](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end

@@ -5,12 +5,12 @@ description: Saiba como atualizar as páginas geradas em um aplicativo ASP.NET C
 ms.author: riande
 ms.date: 12/20/2018
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: f1f69b7facf584d46248405c808e75bdd8448d2b
-ms.sourcegitcommit: 051f068c78931432e030b60094c38376d64d013e
-ms.translationtype: HT
+ms.openlocfilehash: 0f6535462fe2d308825bf7289c10d2b0690cebd4
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/24/2019
-ms.locfileid: "68440317"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72334107"
 ---
 # <a name="update-the-generated-pages-in-an-aspnet-core-app"></a>Atualizar as páginas geradas em um aplicativo ASP.NET Core
 
@@ -53,6 +53,8 @@ Use **Exibir Código-fonte** em seu navegador favorito para examinar a marcaçã
 ```
 
 Os links gerados dinamicamente passam a ID de filme com uma cadeia de consulta (por exemplo, o `?id=1` em `https://localhost:5001/Movies/Details?id=1`).
+
+### <a name="add-route-template"></a>Adicionar modelo de rota
 
 Atualize as Páginas Editar, Detalhes e Excluir do Razor para que elas usem o modelo de rota “{id:int}”. Altere a diretiva de página de cada uma dessas páginas de `@page` para `@page "{id:int}"`. Execute o aplicativo e, em seguida, exiba o código-fonte. O HTML gerado adiciona a ID à parte do caminho da URL:
 
@@ -124,8 +126,8 @@ Os métodos HTTP GET nas páginas Índice, Criar e Excluir do Razor seguem um pa
 ## <a name="additional-resources"></a>Recursos adicionais
 
 > [!div class="step-by-step"]
-> [Anterior: trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
-> [Próximo: adicionar pesquisa](xref:tutorials/razor-pages/search)
+> [Anterior: Trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
+> [Próximo: Adicionar uma pesquisa](xref:tutorials/razor-pages/search)
 
 ::: moniker-end
 
@@ -241,7 +243,7 @@ A pesquisa é adicionada no próximo tutorial.
 * [Versão do YouTube deste tutorial](https://youtu.be/yLnnleREMtQ)
 
 > [!div class="step-by-step"]
-> [Anterior: trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
-> [Próximo: adicionar pesquisa](xref:tutorials/razor-pages/search)
+> [Anterior: Trabalhando com um banco de dados](xref:tutorials/razor-pages/sql)
+> [Próximo: Adicionar uma pesquisa](xref:tutorials/razor-pages/search)
 
 ::: moniker-end

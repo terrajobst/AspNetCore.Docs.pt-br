@@ -4,14 +4,14 @@ author: pkellner
 description: Descubra os atributos do Auxiliar de Marca de Âncora do ASP.NET e a função que cada atributo desempenha no comportamento de extensão da marca de âncora de HTML.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 04/18/2019
+ms.date: 10/13/2019
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: 44fc4ff6334e33630974181021aa1a6880a89917
-ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
-ms.translationtype: HT
+ms.openlocfilehash: 3ff8a52361b4911a5bb3163a8ea6ae90e504e4ef
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/12/2019
-ms.locfileid: "67856219"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72333949"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>Auxiliar de Marca de Âncora no ASP.NET Core
 
@@ -19,7 +19,7 @@ De [Peter Kellner](https://peterkellner.net) e [Scott Addie](https://github.com/
 
 O [Auxiliar de Marca de Âncora](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper) aprimora a marca de âncora HTML padrão (`<a ... ></a>`) adicionando novos atributos. Por convenção, os nomes de atributos são prefixados com `asp-`. O valor do atributo `href` do elemento de âncora renderizado é determinado pelos valores dos atributos `asp-`.
 
-Para obter uma visão geral dos Auxiliares de Marca, confira <xref:mvc/views/tag-helpers/intro>.
+Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
@@ -47,7 +47,7 @@ Se o atributo `asp-controller` for especificado e `asp-action` não for, o valor
 <a href="/Home">All Speakers</a>
 ```
 
-## <a name="asp-action"></a>asp-action
+### <a name="asp-action"></a>asp-action
 
 O valor do atributo [asp-action](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Action*) representa o nome da ação do controlador incluído no atributo `href` gerado. A seguinte marcação define o valor do atributo `href` gerado para a página de avaliações do palestrante:
 
@@ -135,7 +135,7 @@ O Auxiliar de Marca de Âncora gera uma rota diretamente para essa ação de con
 
 Se `asp-controller` ou `asp-action` for especificado além de `asp-route`, a rota gerada poderá não ser a esperada. Para evitar um conflito de rota, `asp-route` não deve ser usado com os atributos `asp-controller` ou `asp-action`.
 
-## <a name="asp-all-route-data"></a>asp-all-route-data
+### <a name="asp-all-route-data"></a>asp-all-route-data
 
 O atributo [asp-all-route-data](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.RouteValues*) oferece suporte à criação de um dicionário ou par chave-valor. A chave é o nome do parâmetro e o valor é o valor do parâmetro.
 
@@ -173,7 +173,7 @@ As marcas de hash são úteis ao criar aplicativos do lado do cliente. Elas pode
 
 O atributo [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) define o nome de área usado para definir a rota apropriada. O exemplo a seguir ilustra como o atributo `asp-area` causa um remapeamento das rotas.
 
-### <a name="usage-in-razor-pages"></a>Uso no Razor Pages
+#### <a name="usage-in-razor-pages"></a>Uso no Razor Pages
 
 As áreas do Razor Pages têm suporte no ASP.NET Core 2.1 ou posterior.
 
@@ -207,7 +207,7 @@ O HTML gerado:
 >
 >   [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_AllowAreas)]
 
-### <a name="usage-in-mvc"></a>Uso no MVC
+#### <a name="usage-in-mvc"></a>Uso no MVC
 
 Considere a seguinte hierarquia de diretórios:
 

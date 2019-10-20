@@ -5,14 +5,14 @@ description: Saiba como usar o provedor de configuração Azure Key Vault para c
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 10/14/2019
 uid: security/key-vault-configuration
-ms.openlocfilehash: cc3894df4df169d941f54ef3dfad5d3e6f798aad
-ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
+ms.openlocfilehash: c8e76068dbcf2a59a15fa75a1fc5aa0032e6acc5
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/07/2019
-ms.locfileid: "72007407"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72334208"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Azure Key Vault provedor de configuração no ASP.NET Core
 
@@ -40,7 +40,7 @@ Para adotar as [identidades gerenciadas para o cenário de recursos do Azure](/a
 
 O aplicativo de exemplo é executado em um dos dois modos determinados pela instrução `#define` na parte superior do arquivo *Program.cs* :
 
-* `Certificate` &ndash; demonstra o uso de uma Azure Key Vault ID do cliente e do certificado X. 509 para acessar os segredos armazenados no Azure Key Vault. Esta versão do exemplo pode ser executada em qualquer local, implantada no serviço Azure App ou em qualquer host capaz de servir um aplicativo ASP.NET Core.
+* `Certificate` &ndash; demonstra o uso de uma ID de cliente do Azure Key Vault e o certificado X. 509 para acessar os segredos armazenados no Azure Key Vault. Esta versão do exemplo pode ser executada em qualquer local, implantada no serviço Azure App ou em qualquer host capaz de servir um aplicativo ASP.NET Core.
 * `Managed` &ndash; demonstra como usar [identidades gerenciadas para recursos do Azure](/azure/active-directory/managed-identities-azure-resources/overview) para autenticar o aplicativo para Azure Key Vault com a autenticação do Azure ad sem credenciais armazenadas no código ou na configuração do aplicativo. Ao usar identidades gerenciadas para autenticar, uma ID de aplicativo do Azure AD e senha (segredo do cliente) não são necessárias. A versão `Managed` do exemplo deve ser implantada no Azure. Siga as orientações na seção [usar as identidades gerenciadas para recursos do Azure](#use-managed-identities-for-azure-resources) .
 
 Para obter mais informações sobre como configurar um aplicativo de exemplo usando diretivas de pré-processador (`#define`), consulte <xref:index#preprocessor-directives-in-sample-code>.
@@ -76,7 +76,7 @@ Quando esses segredos são armazenados em Azure Key Vault no [armazenamento secr
 
 ## <a name="secret-storage-in-the-production-environment-with-azure-key-vault"></a>Armazenamento de segredo no ambiente de produção com Azure Key Vault
 
-As instruções fornecidas pelo [Quickstart: Defina e recupere um segredo de Azure Key Vault usando CLI do Azure tópico @ no__t-0 é resumido aqui para criar um Azure Key Vault e armazenar segredos usados pelo aplicativo de exemplo. Consulte o tópico para obter mais detalhes.
+As instruções fornecidas pelo guia de [início rápido: definem e recuperam um segredo de Azure Key Vault usando CLI do Azure](/azure/key-vault/quick-create-cli) tópico são resumidos aqui para criar um Azure Key Vault e armazenar segredos usados pelo aplicativo de exemplo. Consulte o tópico para obter mais detalhes.
 
 1. Abra o Azure cloud shell usando qualquer um dos seguintes métodos no [portal do Azure](https://portal.azure.com/):
 
@@ -136,13 +136,13 @@ O aplicativo de exemplo usa uma ID de aplicativo e um certificado X. 509 quando 
 1. Selecione **selecionar entidade de segurança** e selecione o aplicativo registrado por nome. Selecione o botão **selecionar** .
 1. Abra **permissões de segredo** e forneça ao aplicativo as permissões **Get** e **list** .
 1. Selecione **OK**.
-1. Clique em **Salvar**.
+1. Selecione **Salvar**.
 1. Implante o aplicativo.
 
 O aplicativo de exemplo `Certificate` obtém seus valores de configuração de `IConfigurationRoot` com o mesmo nome que o nome do segredo:
 
-* Valores não hierárquicos: O valor de `SecretName` é obtido com `config["SecretName"]`.
-* Valores hierárquicos (seções): Use a notação `:` (dois-pontos) ou o método de extensão `GetSection`. Use qualquer uma dessas abordagens para obter o valor de configuração:
+* Valores não hierárquicos: o valor de `SecretName` é obtido com `config["SecretName"]`.
+* Valores hierárquicos (seções): Use a notação de `:` (dois-pontos) ou o método de extensão de `GetSection`. Use qualquer uma dessas abordagens para obter o valor de configuração:
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
@@ -174,7 +174,7 @@ Implante o aplicativo de exemplo no serviço Azure App.
 
 Um aplicativo implantado no serviço Azure App é registrado automaticamente com o Azure AD quando o serviço é criado. Obtenha a ID de objeto da implantação para uso no comando a seguir. A ID de objeto é mostrada no portal do Azure no painel de **identidade** do serviço de aplicativo.
 
-Usando CLI do Azure e a ID de objeto do aplicativo, forneça ao aplicativo as permissões `list` e `get` para acessar o cofre de chaves:
+Usando CLI do Azure e a ID de objeto do aplicativo, forneça ao aplicativo as permissões de `list` e `get` para acessar o cofre de chaves:
 
 ```azure-cli
 az keyvault set-policy --name '{KEY VAULT NAME}' --object-id {OBJECT ID} --secret-permissions get list
@@ -185,14 +185,24 @@ az keyvault set-policy --name '{KEY VAULT NAME}' --object-id {OBJECT ID} --secre
 O aplicativo de exemplo:
 
 * Cria uma instância da classe `AzureServiceTokenProvider` sem uma cadeia de conexão. Quando uma cadeia de conexão não é fornecida, o provedor tenta obter um token de acesso de identidades gerenciadas para recursos do Azure.
-* Um novo `KeyVaultClient` é criado com o retorno de chamada de token de instância `AzureServiceTokenProvider`.
-* A instância `KeyVaultClient` é usada com uma implementação padrão de `IKeyVaultSecretManager` que carrega todos os valores secretos e substitui dois traços (`--`) por dois-pontos (`:`) em nomes de chave.
+* Um novo `KeyVaultClient` é criado com o retorno de chamada de token de instância de `AzureServiceTokenProvider`.
+* A instância de `KeyVaultClient` é usada com uma implementação padrão de `IKeyVaultSecretManager` que carrega todos os valores secretos e substitui duplos (`--`) por dois-pontos (`:`) em nomes de chave.
 
 [!code-csharp[](key-vault-configuration/sample/Program.cs?name=snippet2&highlight=13-21)]
 
+Nome do cofre de chaves valor de exemplo: `contosovault`
+    
+*appsettings.json*:
+
+```json
+{
+  "KeyVaultName": "Key Vault Name"
+}
+```
+
 Quando você executa o aplicativo, uma página da Web mostra os valores secretos carregados. No ambiente de desenvolvimento, os valores secretos têm o sufixo `_dev` porque são fornecidos por segredos do usuário. No ambiente de produção, os valores são carregados com o sufixo `_prod` porque são fornecidos por Azure Key Vault.
 
-Se você receber um erro `Access denied`, confirme se o aplicativo está registrado no Azure AD e se forneceu acesso ao cofre de chaves. Confirme que você reiniciou o serviço no Azure.
+Se você receber um erro de `Access denied`, confirme se o aplicativo está registrado no Azure AD e se forneceu acesso ao cofre de chaves. Confirme que você reiniciou o serviço no Azure.
 
 ## <a name="use-a-key-name-prefix"></a>Usar um prefixo de nome de chave
 
@@ -203,15 +213,15 @@ Se você receber um erro `Access denied`, confirme se o aplicativo está registr
 
 No exemplo a seguir, um segredo é estabelecido no cofre de chaves (e usando a ferramenta Gerenciador de segredo para o ambiente de desenvolvimento) para `5000-AppSecret` (os períodos não são permitidos em nomes de segredo do cofre de chaves). Esse segredo representa um segredo do aplicativo para a versão 5.0.0.0 do aplicativo. Para outra versão do aplicativo, 5.1.0.0, um segredo é adicionado ao cofre de chaves (e usando a ferramenta Gerenciador de segredo) para `5100-AppSecret`. Cada versão do aplicativo carrega seu valor secreto com versão em sua configuração como `AppSecret`, eliminando a versão à medida que ela carrega o segredo.
 
-`AddAzureKeyVault` é chamado com um @no__t personalizado-1:
+`AddAzureKeyVault` é chamado com uma `IKeyVaultSecretManager` personalizada:
 
 [!code-csharp[](key-vault-configuration/sample_snapshot/Program.cs?highlight=30-34)]
 
-A implementação `IKeyVaultSecretManager` reage aos prefixos de versão dos segredos para carregar o segredo apropriado na configuração:
+A implementação de `IKeyVaultSecretManager` reage aos prefixos de versão dos segredos para carregar o segredo apropriado na configuração:
 
 [!code-csharp[](key-vault-configuration/sample_snapshot/Startup.cs?name=snippet1)]
 
-O método `Load` é chamado por um algoritmo de provedor que itera por meio dos segredos do cofre para localizar aqueles que têm o prefixo de versão. Quando um prefixo de versão é encontrado com `Load`, o algoritmo usa o método `GetKey` para retornar o nome da configuração do nome do segredo. Ele retira o prefixo de versão do nome do segredo e retorna o restante do nome do segredo para carregar nos pares nome-valor da configuração do aplicativo.
+O método `Load` é chamado por um algoritmo de provedor que itera pelos segredos do cofre para localizar aqueles que têm o prefixo de versão. Quando um prefixo de versão é encontrado com `Load`, o algoritmo usa o método `GetKey` para retornar o nome da configuração do nome do segredo. Ele retira o prefixo de versão do nome do segredo e retorna o restante do nome do segredo para carregar nos pares nome-valor da configuração do aplicativo.
 
 Quando essa abordagem é implementada:
 
@@ -245,24 +255,24 @@ Quando essa abordagem é implementada:
    az keyvault secret set --vault-name "{KEY VAULT NAME}" --name "5100-AppSecret" --value "5.1.0.0_secret_value_prod"
    ```
 
-1. Quando o aplicativo é executado, os segredos do cofre de chaves são carregados. O segredo de cadeia de caracteres para `5000-AppSecret` é correspondido à versão do aplicativo especificada no arquivo de projeto do aplicativo (`5.0.0.0`).
+1. Quando o aplicativo é executado, os segredos do cofre de chaves são carregados. O segredo da cadeia de caracteres para `5000-AppSecret` corresponde à versão do aplicativo especificada no arquivo de projeto do aplicativo (`5.0.0.0`).
 
 1. A versão, `5000` (com o Dash), é extraída do nome da chave. Em todo o aplicativo, a leitura da configuração com a chave `AppSecret` carrega o valor secreto.
 
 1. Se a versão do aplicativo for alterada no arquivo de projeto para `5.1.0.0` e o aplicativo for executado novamente, o valor secreto retornado será `5.1.0.0_secret_value_dev` no ambiente de desenvolvimento e `5.1.0.0_secret_value_prod` em produção.
 
 > [!NOTE]
-> Você também pode fornecer sua própria implementação `KeyVaultClient` para `AddAzureKeyVault`. Um cliente personalizado permite compartilhar uma única instância do cliente no aplicativo.
+> Você também pode fornecer sua própria implementação de `KeyVaultClient` para `AddAzureKeyVault`. Um cliente personalizado permite compartilhar uma única instância do cliente no aplicativo.
 
 ## <a name="bind-an-array-to-a-class"></a>Associar uma matriz a uma classe
 
 O provedor é capaz de ler valores de configuração em uma matriz para associação a uma matriz POCO.
 
-Ao ler de uma fonte de configuração que permite que as chaves contenham separadores de dois pontos (`:`), um segmento de chave numérico é usado para distinguir as chaves que compõem uma matriz (`:0:`, `:1:`,... `:{n}:`). Para obter mais informações, consulte [Configuration: Associar uma matriz a uma classe @ no__t-0.
+Ao ler de uma fonte de configuração que permite que as chaves contenham separadores de dois pontos (`:`), um segmento de chave numérico é usado para distinguir as chaves que compõem uma matriz (`:0:`, `:1:`,... `:{n}:`). Para obter mais informações, consulte [configuração: associar uma matriz a uma classe](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
 
-Azure Key Vault chaves não podem usar dois-pontos como separador. A abordagem descrita neste tópico usa traços duplos (`--`) como um separador para valores hierárquicos (seções). As chaves de matriz são armazenadas em Azure Key Vault com traços duplos e segmentos de chave numérica (`--0--`, `--1--`, &hellip; `--{n}--`).
+Azure Key Vault chaves não podem usar dois-pontos como separador. A abordagem descrita neste tópico usa traços duplos (`--`) como um separador de valores hierárquicos (seções). As chaves de matriz são armazenadas em Azure Key Vault com traços duplos e segmentos de chave numérica (`--0--`, `--1--` &hellip; `--{n}--`).
 
-Examine a seguinte configuração do provedor de log [Serilog](https://serilog.net/) fornecida por um arquivo JSON. Há dois literais de objeto definidos na matriz `WriteTo` que refletem dois *coletores*Serilog, que descrevem os destinos para a saída de log:
+Examine a seguinte configuração do provedor de log [Serilog](https://serilog.net/) fornecida por um arquivo JSON. Há dois literais de objeto definidos na matriz de `WriteTo` que refletem dois *coletores*Serilog, que descrevem os destinos para a saída de log:
 
 ```json
 "Serilog": {
@@ -285,7 +295,7 @@ Examine a seguinte configuração do provedor de log [Serilog](https://serilog.n
 }
 ```
 
-A configuração mostrada no arquivo JSON anterior é armazenada em Azure Key Vault usando a notação de traço duplo (`--`) e os segmentos numéricos:
+A configuração mostrada no arquivo JSON anterior é armazenada em Azure Key Vault usando a notação de travessão duplo (`--`) e os segmentos numéricos:
 
 | Chave | Valor |
 | --- | ----- |
@@ -306,9 +316,9 @@ Configuration.Reload();
 
 ## <a name="disabled-and-expired-secrets"></a>Segredos desabilitados e expirados
 
-Os segredos desabilitados e expirados lançam um `KeyVaultClientException` no tempo de execução. Para impedir que o aplicativo seja acionado, forneça a configuração usando um provedor de configuração diferente ou atualize o segredo desabilitado ou expirado.
+Os segredos desabilitados e expirados lançam um `KeyVaultClientException` em tempo de execução. Para impedir que o aplicativo seja acionado, forneça a configuração usando um provedor de configuração diferente ou atualize o segredo desabilitado ou expirado.
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 Quando o aplicativo falha ao carregar a configuração usando o provedor, uma mensagem de erro é gravada na [infraestrutura de log de ASP.NET Core](xref:fundamentals/logging/index). As seguintes condições impedirão que a configuração seja carregada:
 
@@ -317,15 +327,15 @@ Quando o aplicativo falha ao carregar a configuração usando o provedor, uma me
 * O aplicativo não está autorizado a acessar o cofre de chaves.
 * A política de acesso não inclui as permissões `Get` e `List`.
 * No cofre de chaves, os dados de configuração (par nome-valor) são nomeados incorretamente, ausentes, desabilitados ou expirados.
-* O aplicativo tem o nome do cofre de chaves errado (`KeyVaultName`), a ID do aplicativo do Azure AD (`AzureADApplicationId`) ou a impressão digital do certificado do Azure AD (`AzureADCertThumbprint`).
+* O aplicativo tem o nome do cofre de chaves (`KeyVaultName`) errado, a ID do aplicativo do Azure AD (`AzureADApplicationId`) ou a impressão digital do certificado do Azure AD (`AzureADCertThumbprint`).
 * A chave de configuração (Name) está incorreta no aplicativo para o valor que você está tentando carregar.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:fundamentals/configuration/index>
-* [Microsoft o Azure: Key Vault @ no__t-0
-* [Microsoft o Azure: Documentação do Key Vault @ no__t-0
+* [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)
+* [Microsoft Azure: Key Vault documentação](/azure/key-vault/)
 * [Como gerar e transferir chaves protegidas por HSM para Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)
 * [Classe KeyVaultClient](/dotnet/api/microsoft.azure.keyvault.keyvaultclient)
-* [Início Rápido: Definir e recuperar um segredo de Azure Key Vault usando um aplicativo Web .NET @ no__t-0
-* [Tutorial: Como usar Azure Key Vault com a máquina virtual do Windows do Azure no. NET @ no__t-0
+* [Início rápido: definir e recuperar um segredo de Azure Key Vault usando um aplicativo Web .NET](/azure/key-vault/quick-create-net)
+* [Tutorial: como usar o Azure Key Vault com a máquina virtual do Windows do Azure no .NET](/azure/key-vault/tutorial-net-windows-virtual-machine)

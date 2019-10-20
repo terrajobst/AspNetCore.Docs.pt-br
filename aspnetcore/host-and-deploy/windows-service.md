@@ -5,14 +5,14 @@ description: Saiba como hospedar um aplicativo ASP.NET Core em um serviço Windo
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 10/10/2019
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 32226c06ba005b4a61c473d6584b2b762733dcbd
-ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
+ms.openlocfilehash: b02e627af875f15a81d68b0d625a2eccf25c0657
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/07/2019
-ms.locfileid: "72007304"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72333799"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedar o ASP.NET Core em um serviço Windows
 
@@ -22,7 +22,7 @@ Um aplicativo ASP.NET Core pode ser hospedado no Windows somo um [Serviço Windo
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 * [SDK do ASP.NET Core 2.1 ou posterior](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 ou posterior](https://github.com/PowerShell/PowerShell)
@@ -302,10 +302,12 @@ Serviços que interagem com solicitações da Internet ou de uma rede corporativ
 
 Por padrão, o ASP.NET Core é associado a `http://localhost:5000`. Configure a URL e a porta definindo a variável de ambiente `ASPNETCORE_URLS`.
 
-Para obter mais abordagens de configuração de URL e porta, incluindo suporte para pontos de extremidade HTTPS, consulte os seguintes tópicos:
+Para obter mais abordagens de configuração de porta e URL, consulte o artigo relevante do servidor:
 
-* <xref:fundamentals/servers/kestrel#endpoint-configuration> (Kestrel)
-* <xref:fundamentals/servers/httpsys#configure-windows-server> (HTTP. sys)
+* <xref:fundamentals/servers/kestrel#endpoint-configuration>
+* <xref:fundamentals/servers/httpsys#configure-windows-server>
+
+As diretrizes anteriores abordam o suporte para pontos de extremidade HTTPS. Por exemplo, configure o aplicativo para HTTPS quando a autenticação for usada com um serviço do Windows.
 
 > [!NOTE]
 > Não há suporte para uso do certificado de desenvolvimento HTTPS do ASP.NET Core para proteger um ponto de extremidade de serviço.

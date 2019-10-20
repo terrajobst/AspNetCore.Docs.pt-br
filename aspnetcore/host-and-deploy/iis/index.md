@@ -5,14 +5,14 @@ description: Saiba como hospedar aplicativos ASP.NET Core no Windows Server IIS 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/11/2019
+ms.date: 10/13/2019
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: c11a46220f0055f4d3d14c84065281f642a4cbe7
-ms.sourcegitcommit: 020c3760492efed71b19e476f25392dda5dd7388
+ms.openlocfilehash: bf535134277a08103ba8ce55eeed540a9fce8260
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/12/2019
-ms.locfileid: "72289029"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72333876"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -22,7 +22,7 @@ Para uma experiência de tutorial sobre como publicar um aplicativo de ASP.NET C
 
 [Instalar o pacote de hospedagem do .NET Core](#install-the-net-core-hosting-bundle)
 
-## <a name="supported-operating-systems"></a>Sistemas operacionais com suporte
+## <a name="supported-operating-systems"></a>Supported operating systems
 
 Há suporte para os seguintes sistemas operacionais:
 
@@ -66,7 +66,7 @@ O diagrama a seguir ilustra a relação entre o IIS, o Módulo do ASP.NET Core e
 
 ![Módulo do ASP.NET Core no cenário de hospedagem em processo](index/_static/ancm-inprocess.png)
 
-A solicitação chega da Web para o driver do HTTP.sys no modo kernel. O driver roteia as solicitações nativas ao IIS na porta configurada do site, normalmente, a 80 (HTTP) ou a 443 (HTTPS). O módulo recebe a solicitação nativa e a passa para o Servidor HTTP do IIS (`IISHttpServer`). O servidor HTTP do IIS é uma implementação de servidor em processo do IIS que converte a solicitação de nativa para gerenciada.
+A solicitação chega da Web para o driver do HTTP.sys no modo kernel. O driver roteia as solicitações nativas ao IIS na porta configurada do site, normalmente, a 80 (HTTP) ou a 443 (HTTPS). O módulo ASP.NET Core recebe a solicitação nativa e a passa para o servidor HTTP IIS (`IISHttpServer`). O servidor HTTP do IIS é uma implementação de servidor em processo do IIS que converte a solicitação de nativa para gerenciada.
 
 Depois que o Servidor HTTP do IIS processa a solicitação, a solicitação é enviada por push para o pipeline de middleware do ASP.NET Core. O pipeline do middleware manipula a solicitação e a passa como uma instância de `HttpContext` para a lógica do aplicativo. A resposta do aplicativo é retornada ao IIS por meio do Servidor HTTP do IIS. O IIS enviará a resposta ao cliente que iniciou a solicitação.
 
@@ -87,7 +87,7 @@ A hospedagem em processo é uma opção de aceitação para os aplicativos exist
 
 ### <a name="out-of-process-hosting-model"></a>Modelo de hospedagem de fora do processo
 
-Como os aplicativos ASP.NET Core são executados em um processo separado do processo de trabalho do IIS, o módulo realiza o gerenciamento de processos. O módulo inicia o processo para o aplicativo ASP.NET Core quando a primeira solicitação chega e reinicia o aplicativo se ele é desligado ou falha. Isso é basicamente o mesmo comportamento que o dos aplicativos que são executados dentro do processo e são gerenciados pelo [WAS (Serviço de Ativação de Processos do Windows)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+Como ASP.NET Core aplicativos são executados em um processo separado do processo de trabalho do IIS, o módulo ASP.NET Core lida com o gerenciamento de processos. O módulo inicia o processo para o aplicativo ASP.NET Core quando a primeira solicitação chega e reinicia o aplicativo se ele é desligado ou falha. Isso é basicamente o mesmo comportamento que o dos aplicativos que são executados dentro do processo e são gerenciados pelo [WAS (Serviço de Ativação de Processos do Windows)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
 O diagrama a seguir ilustra a relação entre o IIS, o Módulo do ASP.NET Core e um aplicativo hospedado de fora d processo:
 
@@ -243,7 +243,7 @@ Para configurar o [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module
 
 Existem arquivos confidenciais no caminho físico do aplicativo, como *\<assembly>.runtimeconfig.json*, *\<assembly>.xml* (comentários da Documentação XML) e *\<assembly>.deps.json*. Quando o arquivo *web.config* estiver presente e o site for iniciado normalmente, o IIS não atenderá a esses arquivos confidenciais se eles forem solicitados. Se o arquivo *web.config* estiver ausente, nomeado incorretamente ou se não for possível configurar o site para inicialização normal, o IIS poderá servir arquivos confidenciais publicamente.
 
-**O arquivo *web.config* deve estar presente na implantação em todos os momentos, nomeado corretamente e ser capaz de configurar o site para inicialização normal. Nunca remova o arquivo *web.config* de uma implantação de produção.**
+**O arquivo *Web. config* deve estar presente na implantação o tempo todo, corretamente nomeado e ser capaz de configurar o site para inicialização normal. Nunca remova o arquivo *Web. config* de uma implantação de produção.**
 
 ### <a name="transform-webconfig"></a>Transformação do Web.config
 
@@ -267,7 +267,7 @@ Habilite a função **Servidor Web (IIS)** e estabeleça serviços de função.
    Para habilitar a Autenticação do Windows, expanda os nós a seguir: **Servidor Web** > **Segurança**. Selecione o recurso **Autenticação do Windows**. Saiba mais em [Autenticação do Windows \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [Configurar autenticação do Windows](xref:security/authentication/windowsauth).
 
    **WebSockets (opcional)**  
-   O WebSockets é compatível com o ASP.NET Core 1.1 ou posterior. Para habilitar WebSockets, expanda os nós a seguir: **Servidor Web** > **Desenvolvimento de Aplicativo**. Selecione o recurso **Protocolo WebSocket**. Para obter mais informações, consulte [WebSockets](xref:fundamentals/websockets).
+   O WebSockets é compatível com o ASP.NET Core 1.1 ou posterior. Para habilitar o WebSockets, expanda os nós a seguir: **Servidor Web** > **Desenvolvimento de Aplicativos**. Selecione o recurso **Protocolo WebSocket**. Para obter mais informações, consulte [WebSockets](xref:fundamentals/websockets).
 
 1. Continue para a etapa **Confirmação** para instalar os serviços e a função de servidor Web. Um comando server/IIS restart não será necessário após a instalação da função **Servidor Web (IIS)** .
 
@@ -286,10 +286,10 @@ Habilite o **Console de Gerenciamento do IIS** e os **Serviços na World Wide We
 1. Aceite os recursos padrão dos **Serviços na World Wide Web** ou personalize os recursos do IIS.
 
    **Autenticação do Windows (opcional)**  
-   Para habilitar a Autenticação do Windows, expanda os nós a seguir: **Serviços na World Wide Web** > **Segurança**. Selecione o recurso **Autenticação do Windows**. Saiba mais em [Autenticação do Windows \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [Configurar autenticação do Windows](xref:security/authentication/windowsauth).
+   Para habilitar a Autenticação do Windows, expanda os nós a seguir: **Serviços World Wide Web** > **Segurança**. Selecione o recurso **Autenticação do Windows**. Saiba mais em [Autenticação do Windows \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) e [Configurar autenticação do Windows](xref:security/authentication/windowsauth).
 
    **WebSockets (opcional)**  
-   O WebSockets é compatível com o ASP.NET Core 1.1 ou posterior. Para habilitar WebSockets, expanda os nós a seguir: **Serviços na World Wide Web** > **Recursos de Desenvolvimento de Aplicativos**. Selecione o recurso **Protocolo WebSocket**. Para obter mais informações, consulte [WebSockets](xref:fundamentals/websockets).
+   O WebSockets é compatível com o ASP.NET Core 1.1 ou posterior. Para habilitar o WebSockets, expanda os nós a seguir: **Serviços World Wide Web** > **Recursos de Desenvolvimento de Aplicativos**. Selecione o recurso **Protocolo WebSocket**. Para obter mais informações, consulte [WebSockets](xref:fundamentals/websockets).
 
 1. Se a instalação do IIS exigir uma reinicialização, reinicie o sistema.
 
@@ -586,11 +586,11 @@ Se o processo de trabalho do IIS requerer acesso elevado ao aplicativo, modifiqu
 
 1. Insira **IIS AppPool\\<nome_pool_aplicativos>** na área **Inserir os nomes de objeto a serem selecionados**. Selecione o botão **Verificar Nomes**. Para o *DefaultAppPool*, verifique os nomes usando **IIS AppPool\DefaultAppPool**. Quando o botão **Verificar Nomes** é selecionado, um valor de **DefaultAppPool** é indicado na área de nomes de objeto. Não é possível inserir o nome do pool de aplicativos diretamente na área de nomes de objeto. Use o formato **IIS AppPool\\<nome_pool_aplicativos>** ao verificar o nome do objeto.
 
-   ![Caixa de diálogo Selecionar usuários ou grupos da pasta do aplicativo: o nome do pool de aplicativos "DefaultAppPool" é anexado ao "IIS AppPool\" na área de nomes de objeto, antes de escolher "Verificar Nomes".](index/_static/select-users-or-groups-1.png)
+   ![Selecione a caixa de diálogo de usuários ou grupos para a pasta do aplicativo: o nome do pool de aplicativos "DefaultAppPool" é anexado ao "IIS AppPool\" na área de nomes de objeto antes de selecionar"Verificar Nomes".](index/_static/select-users-or-groups-1.png)
 
 1. Selecione **OK**.
 
-   ![Caixa de diálogo Selecionar usuários ou grupos da pasta do aplicativo: depois de escolher "Verificar Nomes", o nome do objeto "DefaultAppPool" é mostrado na área de nomes de objeto.](index/_static/select-users-or-groups-2.png)
+   ![Selecione a caixa de diálogo de usuários ou grupos para a pasta do aplicativo: depois de selecionar "Verificar Nomes", o nome do objeto "DefaultAppPool" é mostrado na área de nomes de objeto.](index/_static/select-users-or-groups-2.png)
 
 1. As permissões de leitura &amp; execução devem ser concedidas por padrão. Forneça permissões adicionais conforme necessário.
 
@@ -641,7 +641,7 @@ O HTTP/2 está habilitado por padrão. As conexões retornarão para HTTP/1.1 se
 
 *Esta seção só se aplica a aplicativos ASP.NET Core com o .NET Framework como destino.*
 
-Para um aplicativo ASP.NET Core com o .NET Framework como destino, as solicitações OPTIONS não são passadas para o aplicativo por padrão no IIS. Confira como configurar os manipuladores IIS do aplicativo no *Web.config* para passar as solicitações OPTIONS em [Habilitar solicitações entre origens na ASP.NET Web API 2: Como funciona o CORS](/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api#how-cors-works).
+Para um aplicativo ASP.NET Core com o .NET Framework como destino, as solicitações OPTIONS não são passadas para o aplicativo por padrão no IIS. Para saber como configurar os manipuladores do IIS do aplicativo no *Web. config* para passar solicitações de opções, consulte [habilitar solicitações entre origens no ASP.NET Web API 2: como o CORS funciona](/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api#how-cors-works).
 
 ::: moniker range=">= aspnetcore-2.2"
 

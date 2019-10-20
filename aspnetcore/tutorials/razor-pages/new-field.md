@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: 0629605f4d5597a9694cb20ce00b91ff4a768468
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: 1b08e1515afe656b95be9fb436caa00cd53ab9ad
+ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71082464"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72334098"
 ---
 # <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Adicionar um novo campo em uma página Razor no ASP.NET Core
 
@@ -28,7 +28,7 @@ Nesta seção, as Migrações do [Entity Framework](/ef/core/get-started/aspnetc
 
 Ao usar o Code First do EF para criar automaticamente um banco de dados, o Code First:
 
-* Adiciona uma tabela ao banco de dados para acompanhar se o esquema do banco de dados está sincronizado com as classes de modelo das quais ele foi gerado.
+* Adiciona uma tabela de `__EFMigrationsHistory` ao banco de dados para controlar se o esquema do banco de dados está em sincronia com as classes de modelo das quais ele foi gerado.
 * Se as classes de modelo não estiverem em sincronia com o banco de dados, o EF gerará uma exceção.
 
 Verificação automática de esquema/modelo em sincronia torna mais fácil encontrar problemas de código/banco de dados inconsistente.
@@ -51,11 +51,11 @@ Atualize as seguintes páginas:
 * Atualize [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) com um campo `Rating`.
 * Adicione o campo `Rating` à página Editar.
 
-O aplicativo não funcionará até que o BD seja atualizado para incluir o novo campo. Se for executado agora, o aplicativo gerará uma `SqlException`:
+O aplicativo não funcionará até que o BD seja atualizado para incluir o novo campo. Executar o aplicativo sem Atualizar o banco de dados gera um `SqlException`:
 
 `SqlException: Invalid column name 'Rating'.`
 
-Esse erro é causado devido à classe de modelo Movie atualizada ser diferente do esquema da tabela Movie do banco de dados. (Não há nenhuma coluna `Rating` na tabela de banco de dados.)
+A exceção de `SqlException` é causada pela classe de modelo de filme atualizada que é diferente do esquema da tabela de filmes do banco de dados. (Não há nenhuma coluna `Rating` na tabela de banco de dados.)
 
 Existem algumas abordagens para resolver o erro:
 
@@ -82,7 +82,7 @@ Compile a solução.
 ### <a name="add-a-migration-for-the-rating-field"></a>Adicionar uma migração para o campo de classificação
 
 No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**.
-No PMC, insira os seguintes comandos:
+No PMC, digite os seguintes comandos:
 
 ```powershell
 Add-Migration Rating
@@ -96,7 +96,7 @@ O comando `Add-Migration` informa à estrutura:
 
 O nome “Classificação” é arbitrário e é usado para nomear o arquivo de migração. É útil usar um nome significativo para o arquivo de migração.
 
-O comando `Update-Database` informa à estrutura para aplicar as alterações de esquema no banco de dados.
+O comando `Update-Database` informa à estrutura para aplicar as alterações de esquema ao banco de dados e para preservar os existentes.
 
 <a name="ssox"></a>
 
@@ -137,8 +137,8 @@ Execute o aplicativo e verifique se você pode criar/editar/exibir filmes com um
 * [Versão do YouTube deste tutorial](https://youtu.be/3i7uMxiGGR8)
 
 > [!div class="step-by-step"]
-> [Anterior: Adicionar pesquisa](xref:tutorials/razor-pages/search)
-> [Próximo: Adicionar validação](xref:tutorials/razor-pages/validation)
+> [Anterior: Adicionando uma pesquisa](xref:tutorials/razor-pages/search)
+> [Próximo: Adicionando Validação](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end
 
@@ -207,7 +207,7 @@ Compile a solução.
 ### <a name="add-a-migration-for-the-rating-field"></a>Adicionar uma migração para o campo de classificação
 
 No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**.
-No PMC, insira os seguintes comandos:
+No PMC, digite os seguintes comandos:
 
 ```powershell
 Add-Migration Rating
@@ -260,7 +260,7 @@ Execute o aplicativo e verifique se você pode criar/editar/exibir filmes com um
 * [Versão do YouTube deste tutorial](https://youtu.be/3i7uMxiGGR8)
 
 > [!div class="step-by-step"]
-> [Anterior: Adicionar pesquisa](xref:tutorials/razor-pages/search)
-> [Próximo: Adicionar validação](xref:tutorials/razor-pages/validation)
+> [Anterior: Adicionando uma pesquisa](xref:tutorials/razor-pages/search)
+> [Próximo: Adicionando Validação](xref:tutorials/razor-pages/validation)
 
 ::: moniker-end
