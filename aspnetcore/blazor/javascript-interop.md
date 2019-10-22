@@ -5,14 +5,14 @@ description: Saiba como invocar funções JavaScript de métodos .NET e .NET do 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 10/16/2019
 uid: blazor/javascript-interop
-ms.openlocfilehash: a8c3a0951761faab1c11507834aeef2507388d71
-ms.sourcegitcommit: ce2bfb01f2cc7dd83f8a97da0689d232c71bcdc4
+ms.openlocfilehash: b157e16918975cd522318a02f21824d9a0198b11
+ms.sourcegitcommit: eb4fcdeb2f9e8413117624de42841a4997d1d82d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2019
-ms.locfileid: "72531133"
+ms.lasthandoff: 10/21/2019
+ms.locfileid: "72697918"
 ---
 # <a name="aspnet-core-blazor-javascript-interop"></a>ASP.NET Core a interoperabilidade de JavaScript mais incrivelmente
 
@@ -38,9 +38,9 @@ Para aplicativos de servidor de mais incrivelmente:
 
 O exemplo a seguir é baseado em [textdecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), um decodificador experimental baseado em JavaScript. O exemplo demonstra como invocar uma função JavaScript a partir C# de um método. A função JavaScript aceita uma matriz de bytes de C# um método, decodifica a matriz e retorna o texto para o componente para exibição.
 
-Dentro do elemento `<head>` de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente), forneça uma função que usa `TextDecoder` para decodificar uma matriz passada:
+Dentro do elemento `<head>` de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente), forneça uma função JavaScript que usa `TextDecoder` para decodificar uma matriz passada e retornar o valor decodificado:
 
-[!code-html[](javascript-interop/samples_snapshot/index-script.html)]
+[!code-html[](javascript-interop/samples_snapshot/index-script-convertarray.html)]
 
 O código JavaScript, como o código mostrado no exemplo anterior, também pode ser carregado de um arquivo JavaScript ( *. js*) com uma referência ao arquivo de script:
 
@@ -50,10 +50,12 @@ O código JavaScript, como o código mostrado no exemplo anterior, também pode 
 
 O seguinte componente:
 
-* Invoca a função JavaScript `ConvertArray` usando `JsRuntime` quando um botão de componente (**matriz de conversão**) é selecionado.
+* Invoca a função `convertArray` JavaScript usando `JSRuntime` quando um botão de componente (**matriz de conversão**) é selecionado.
 * Depois que a função JavaScript é chamada, a matriz passada é convertida em uma cadeia de caracteres. A cadeia de caracteres é retornada para o componente para exibição.
 
 [!code-cshtml[](javascript-interop/samples_snapshot/call-js-example.razor?highlight=2,34-35)]
+
+##  <a name="use-of-ijsruntime"></a>Uso de IJSRuntime
 
 Para usar a abstração `IJSRuntime`, adote qualquer uma das seguintes abordagens:
 
@@ -61,9 +63,17 @@ Para usar a abstração `IJSRuntime`, adote qualquer uma das seguintes abordagen
 
   [!code-cshtml[](javascript-interop/samples_snapshot/inject-abstraction.razor?highlight=1)]
 
+  Dentro do elemento `<head>` de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente), forneça uma função JavaScript `handleTickerChanged`. A função é chamada com `IJSRuntime.InvokeVoidAsync` e não retorna um valor:
+
+  [!code-html[](javascript-interop/samples_snapshot/index-script-handleTickerChanged1.html)]
+
 * Injetar a abstração `IJSRuntime` em uma classe ( *. cs*):
 
   [!code-csharp[](javascript-interop/samples_snapshot/inject-abstraction-class.cs?highlight=5)]
+
+  Dentro do elemento `<head>` de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente), forneça uma função JavaScript `handleTickerChanged`. A função é chamada com `JSRuntime.InvokeAsync` e retorna um valor:
+
+  [!code-html[](javascript-interop/samples_snapshot/index-script-handleTickerChanged2.html)]
 
 * Para a geração de conteúdo dinâmico com [BuildRenderTree](xref:blazor/components#manual-rendertreebuilder-logic), use o atributo `[Inject]`:
 
