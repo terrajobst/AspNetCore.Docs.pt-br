@@ -5,14 +5,14 @@ description: Saiba como criar e usar componentes do Razor, incluindo como associ
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/05/2019
+ms.date: 10/20/2019
 uid: blazor/components
-ms.openlocfilehash: cd48111e8d601fc67e8a938fcdd686759a9ddeca
-ms.sourcegitcommit: ce2bfb01f2cc7dd83f8a97da0689d232c71bcdc4
+ms.openlocfilehash: 065a3a078c56f813ed38f85d7414f22061217dff
+ms.sourcegitcommit: eb4fcdeb2f9e8413117624de42841a4997d1d82d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2019
-ms.locfileid: "72531123"
+ms.lasthandoff: 10/21/2019
+ms.locfileid: "72697957"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -254,7 +254,7 @@ Considere o seguinte cenário:
 
 No cenário anterior, o valor do elemento é revertido para `123`. Quando o valor `123.45` é rejeitado em favor do valor original de `123`, o usuário entende que seu valor não foi aceito.
 
-Por padrão, a associação aplica-se ao evento `onchange` do elemento (`@bind="{PROPERTY OR FIELD}"`). Use `@bind-value="{PROPERTY OR FIELD}" @bind-value:event={EVENT}` para definir um evento diferente. Para o evento `oninput` (`@bind-value:event="oninput"`), a reversão ocorre após qualquer pressionamento de tecla que introduz um valor não analisável. Ao direcionar o evento `oninput` com um tipo de-1 @no__t, um usuário é impedido de digitar um caractere `.`. Um caractere `.` é removido imediatamente e, portanto, o usuário recebe comentários imediatos de que apenas números inteiros são permitidos. Há cenários em que a reversão do valor no evento `oninput` não é ideal, por exemplo, quando o usuário deve ter permissão para limpar um valor de `<input>` não analisável. As alternativas incluem:
+Por padrão, a associação aplica-se ao evento `onchange` do elemento (`@bind="{PROPERTY OR FIELD}"`). Use `@bind-value="{PROPERTY OR FIELD}" @bind-value:event={EVENT}` para definir um evento diferente. Para o evento `oninput` (`@bind-value:event="oninput"`), a reversão ocorre após qualquer pressionamento de tecla que introduz um valor não analisável. Ao direcionar o evento de `oninput` com um tipo de associação de `int`, um usuário é impedido de digitar um caractere `.`. Um caractere `.` é removido imediatamente e, portanto, o usuário recebe comentários imediatos de que apenas números inteiros são permitidos. Há cenários em que a reversão do valor no evento `oninput` não é ideal, por exemplo, quando o usuário deve ter permissão para limpar um valor de `<input>` não analisável. As alternativas incluem:
 
 * Não use o evento `oninput`. Use o evento `onchange` padrão (`@bind="{PROPERTY OR FIELD}"`), em que um valor inválido não é revertido até que o elemento perca o foco.
 * Associar a um tipo anulável, como `int?` ou `string`, e fornecer uma lógica personalizada para manipular entradas inválidas.
@@ -452,7 +452,7 @@ No exemplo a seguir, `UpdateHeading` é chamado de forma assíncrona quando o bo
 
 Para alguns eventos, são permitidos tipos de argumento de evento. Se o acesso a um desses tipos de evento não for necessário, ele não será necessário na chamada do método.
 
-@No__t-0 com suporte são mostrados na tabela a seguir.
+Os `EventArgs` com suporte são mostrados na tabela a seguir.
 
 | evento | Class |
 | ----- | ----- |
@@ -505,13 +505,13 @@ Geralmente, é conveniente fechar valores adicionais, como ao iterar em um conju
 ```
 
 > [!NOTE]
-> **Não** use a variável de loop (`i`) em um loop `for` diretamente em uma expressão lambda. Caso contrário, a mesma variável é usada por todas as expressões lambda que fazem com que @no__t valor de 0 seja o mesmo em todos os lambdas. Sempre Capture seu valor em uma variável local (`buttonNumber` no exemplo anterior) e, em seguida, use-o.
+> **Não** use a variável de loop (`i`) em um loop `for` diretamente em uma expressão lambda. Caso contrário, a mesma variável é usada por todas as expressões lambda, fazendo com que `i` valor seja o mesmo em todos os lambdas. Sempre Capture seu valor em uma variável local (`buttonNumber` no exemplo anterior) e, em seguida, use-o.
 
 ### <a name="eventcallback"></a>EventCallback
 
-Um cenário comum com componentes aninhados é o desejo de executar o método de um componente pai quando um evento de componente filho ocorre no exemplo @ no__t-0for, quando um evento `onclick` ocorre no filho. Para expor eventos entre componentes, use um `EventCallback`. Um componente pai pode atribuir um método de retorno de chamada para o `EventCallback` de um componente filho.
+Um cenário comum com componentes aninhados é o desejo de executar o método de um componente pai quando ocorre um evento de componente filho &mdash;for exemplo, quando um evento de `onclick` ocorre no filho. Para expor eventos entre componentes, use um `EventCallback`. Um componente pai pode atribuir um método de retorno de chamada para o `EventCallback` de um componente filho.
 
-O `ChildComponent` no aplicativo de exemplo demonstra como o manipulador de `onclick` do botão é configurado para receber um delegado `EventCallback` da @no__t de exemplo-3. O `EventCallback` é digitado com `MouseEventArgs`, que é apropriado para um evento `onclick` de um dispositivo periférico:
+O `ChildComponent` no aplicativo de exemplo demonstra como o manipulador de `onclick` de um botão é configurado para receber um delegado de `EventCallback` da `ParentComponent` de exemplo. O `EventCallback` é digitado com `MouseEventArgs`, que é apropriado para um evento `onclick` de um dispositivo periférico:
 
 [!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
@@ -694,7 +694,7 @@ Quando o componente é renderizado, o campo `loginDialog` é populado com a inst
 > [!IMPORTANT]
 > A variável `loginDialog` só é populada depois que o componente é renderizado e sua saída inclui o elemento `MyLoginDialog`. Até esse ponto, não há nada a fazer referência. Para manipular referências de componentes após a conclusão da renderização do componente, use os [métodos OnAfterRenderAsync ou OnAfterRender](#lifecycle-methods).
 
-Embora a captura de referências de componente use uma sintaxe semelhante à [captura de referências de elemento](xref:blazor/javascript-interop#capture-references-to-elements), ela não é um recurso de [interoperabilidade do JavaScript](xref:blazor/javascript-interop) . As referências de componente não são passadas para o código JavaScript @ no__t-0they're usado somente no código .NET.
+Embora a captura de referências de componente use uma sintaxe semelhante à [captura de referências de elemento](xref:blazor/javascript-interop#capture-references-to-elements), ela não é um recurso de [interoperabilidade do JavaScript](xref:blazor/javascript-interop) . As referências de componente não são passadas para o código JavaScript &mdash;they só são usadas no código .NET.
 
 > [!NOTE]
 > Não **use referências** de componente para converter o estado dos componentes filho. Em vez disso, use parâmetros declarativos normais para passar dados para componentes filho. O uso de parâmetros declarativos normais resulta em componentes filho que são reprocessados nos horários corretos automaticamente.
@@ -754,7 +754,7 @@ Uso do `NotifierService` para atualizar um componente:
 }
 ```
 
-No exemplo anterior, `NotifierService` invoca o método `OnNotify` do componente fora do @no__t do mais alto-2. `InvokeAsync` é usado para alternar para o contexto correto e enfileirar uma renderização.
+No exemplo anterior, `NotifierService` invoca o método `OnNotify` do componente fora do `SynchronizationContext` de mais claros. `InvokeAsync` é usado para alternar para o contexto correto e enfileirar uma renderização.
 
 ## <a name="use-key-to-control-the-preservation-of-elements-and-components"></a>Use o \@key para controlar a preservação de elementos e componentes
 
@@ -960,6 +960,9 @@ Se um componente implementar <xref:System.IDisposable>, o [método Dispose](/dot
 }
 ```
 
+> [!NOTE]
+> Não há suporte para a chamada de `StateHasChanged` em `Dispose`. `StateHasChanged` pode ser invocado como parte do renderizador sendo interrompido. Não há suporte para a solicitação de atualizações da interface do usuário nesse ponto.
+
 ## <a name="routing"></a>Roteamento
 
 O roteamento no mais fácil é obtido fornecendo um modelo de rota para cada componente acessível no aplicativo.
@@ -980,21 +983,106 @@ Os componentes podem receber parâmetros de rota do modelo de rota fornecido na 
 
 Não há suporte para parâmetros opcionais, portanto, duas diretivas `@page` são aplicadas no exemplo acima. O primeiro permite a navegação para o componente sem um parâmetro. A segunda diretiva `@page` usa o parâmetro de rota `{text}` e atribui o valor à propriedade `Text`.
 
-## <a name="base-class-inheritance-for-a-code-behind-experience"></a>Herança de classe base para uma experiência de "code-behind"
+::: moniker range=">= aspnetcore-3.1"
 
-Os arquivos de componente misturam C# o código de marcação e processamento HTML no mesmo arquivo. A diretiva `@inherits` pode ser usada para fornecer aos aplicativos mais incrivelmente uma experiência "code-behind" que separa a marcação de componente do código de processamento.
+## <a name="partial-class-support"></a>Suporte de classe parcial
+
+Os componentes do Razor são gerados como classes parciais. Os componentes do Razor são criados usando uma das seguintes abordagens:
+
+* C#o código é definido em um bloco de [@code](xref:mvc/views/razor#code) com marcação HTML e código do Razor em um único arquivo. Os modelos mais poseriativos definem seus componentes do Razor usando essa abordagem.
+* C#o código é colocado em um arquivo code-behind definido como uma classe parcial.
+
+O exemplo a seguir mostra o componente de `Counter` padrão com um bloco de `@code` em um aplicativo gerado por meio de um modelo mais avançado. Marcação HTML, código do Razor e C# código estão no mesmo arquivo:
+
+*Counter. Razor*:
+
+```cshtml
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    int currentCount = 0;
+
+    void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
+O componente `Counter` também pode ser criado usando um arquivo code-behind com uma classe parcial:
+
+*Counter. Razor*:
+
+```cshtml
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+```
+
+*Counter.Razor.cs*:
+
+```csharp
+namespace BlazorApp.Pages
+{
+    public partial class Counter
+    {
+        int currentCount = 0;
+
+        void IncrementCount()
+        {
+            currentCount++;
+        }
+    }
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.1"
+
+## <a name="specify-a-component-base-class"></a>Especificar uma classe base de componente
+
+A diretiva `@inherits` pode ser usada para especificar uma classe base para um componente.
 
 O [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) mostra como um componente pode herdar uma classe base, `BlazorRocksBase`, para fornecer as propriedades e os métodos do componente.
 
 *Páginas/BlazorRocks. Razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRocks.razor?name=snippet_BlazorRocks)]
+```cshtml
+@page "/BlazorRocks"
+@inherits BlazorRocksBase
+
+<h1>@BlazorRocksText</h1>
+```
 
 *BlazorRocksBase.cs*:
 
-[!code-csharp[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRocksBase.cs)]
+```csharp
+using Microsoft.AspNetCore.Components;
+
+namespace BlazorSample
+{
+    public class BlazorRocksBase : ComponentBase
+    {
+        public string BlazorRocksText { get; set; } = 
+            "Blazor rocks the browser!";
+    }
+}
+```
 
 A classe base deve derivar de `ComponentBase`.
+
+::: moniker-end
 
 ## <a name="import-components"></a>Importar componentes
 
@@ -1494,7 +1582,7 @@ Esse é um exemplo trivial. Em casos mais realistas com estruturas complexas e p
 
 * O desempenho do aplicativo será afetado se os números de sequência forem gerados dinamicamente.
 * A estrutura não pode criar seus próprios números de sequência automaticamente em tempo de execução porque as informações necessárias não existem, a menos que sejam capturadas no momento da compilação.
-* Não grave blocos longos de lógica `RenderTreeBuilder` implementadas manualmente. Prefira arquivos `.razor` e permita que o compilador lide com os números de sequência. Se não for possível evitar a lógica `RenderTreeBuilder` manual, divida blocos longos de código em partes menores encapsuladas em chamadas `OpenRegion` @ no__t-2 @ no__t-3. Cada região tem seu próprio espaço separado de números de sequência, para que você possa reiniciar de zero (ou qualquer outro número arbitrário) dentro de cada região.
+* Não grave blocos longos de lógica `RenderTreeBuilder` implementadas manualmente. Prefira arquivos `.razor` e permita que o compilador lide com os números de sequência. Se você não conseguir evitar a lógica de `RenderTreeBuilder` manual, divida blocos longos de código em partes menores encapsuladas em chamadas `OpenRegion` / `CloseRegion`. Cada região tem seu próprio espaço separado de números de sequência, para que você possa reiniciar de zero (ou qualquer outro número arbitrário) dentro de cada região.
 * Se os números de sequência forem codificados, o algoritmo diff só exigirá que os números de sequência aumentem de valor. O valor inicial e as lacunas são irrelevantes. Uma opção legítima é usar o número de linha de código como o número de sequência, ou começar de zero e aumentar por um ou centenas (ou qualquer intervalo preferencial). 
 * O mais alto número de seqüências usa números de sequência, enquanto outras estruturas de interface do usuário de diferenciação de árvore não as usam. A comparação é muito mais rápida quando os números de sequência são usados, e o mais vantajoso tem a vantagem de uma etapa de compilação que lida com números de sequência automaticamente para desenvolvedores que criam arquivos `.razor`.
 
@@ -1545,7 +1633,7 @@ A localização é manipulada no aplicativo:
 
 ## <a name="provide-ui-to-choose-the-culture"></a>Fornecer interface do usuário para escolher a cultura
 
-Para fornecer à interface do usuário a fim de permitir a seleção de uma cultura, é recomendável uma *abordagem baseada em redirecionamento* . O processo é semelhante ao que acontece em um aplicativo Web quando um usuário tenta acessar um recurso seguro @ no__t-0the usuário é redirecionado para uma página de entrada e, em seguida, Redirecionado para o recurso original. 
+Para fornecer à interface do usuário a fim de permitir a seleção de uma cultura, é recomendável uma *abordagem baseada em redirecionamento* . O processo é semelhante ao que acontece em um aplicativo Web quando um usuário tenta acessar um recurso seguro &mdash;the o usuário é redirecionado para uma página de entrada e, em seguida, Redirecionado de volta para o recurso original. 
 
 O aplicativo persiste a cultura selecionada do usuário por meio de um redirecionamento para um controlador. O controlador define a cultura selecionada do usuário em um cookie e redireciona o usuário de volta para o URI original.
 
