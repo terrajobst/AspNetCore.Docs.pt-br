@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 8/22/2019
 uid: performance/caching/memory
-ms.openlocfilehash: aa39503f034cf46fa4317a1f3cbb8d130afd1b8c
-ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
+ms.openlocfilehash: d6b2aa363c552fdbda7f6e9ec5d476768c17d8a5
+ms.sourcegitcommit: 810d5831169770ee240d03207d6671dabea2486e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72333745"
+ms.lasthandoff: 10/22/2019
+ms.locfileid: "72779187"
 ---
 # <a name="cache-in-memory-in-aspnet-core"></a>Cache na memória no ASP.NET Core
 
@@ -56,6 +56,7 @@ Use `System.Runtime.Caching` / `MemoryCache` como uma ponte de compatibilidade a
 > [!WARNING]
 > Usar um cache de memória *compartilhada* de [injeção de dependência](xref:fundamentals/dependency-injection) e chamar `SetSize`, `Size` ou `SizeLimit` para limitar o tamanho do cache pode causar falha no aplicativo. Quando um limite de tamanho é definido em um cache, todas as entradas devem especificar um tamanho ao serem adicionadas. Isso pode levar a problemas, já que os desenvolvedores podem não ter controle total sobre o que usa o cache compartilhado. Por exemplo, Entity Framework Core usa o cache compartilhado e não especifica um tamanho. Se um aplicativo definir um limite de tamanho de cache e usar EF Core, o aplicativo lançará um `InvalidOperationException`.
 > Ao usar `SetSize`, `Size` ou `SizeLimit` para limitar o cache, crie um singleton de cache para cache. Para obter mais informações e um exemplo, consulte [usar SetSize, tamanho e SizeLimit para limitar o tamanho do cache](#use-setsize-size-and-sizelimit-to-limit-cache-size).
+> Um cache compartilhado é um compartilhado por outras estruturas ou bibliotecas. Por exemplo, EF Core usa o cache compartilhado e não especifica um tamanho. 
 
 O cache na memória é um *serviço* que é referenciado de um aplicativo usando [injeção de dependência](xref:fundamentals/dependency-injection). Solicite a instância de `IMemoryCache` no construtor:
 
