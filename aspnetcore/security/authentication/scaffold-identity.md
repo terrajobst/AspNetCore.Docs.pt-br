@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: f3ae089d344d95ed84c9720ab4ba2c697400901e
-ms.sourcegitcommit: dc96d76f6b231de59586fcbb989a7fb5106d26a8
+ms.openlocfilehash: ca2046563281efc3c1cd8f4fec73fe4f8d3fbdda
+ms.sourcegitcommit: 383017d7060a6d58f6a79cf4d7335d5b4b6c5659
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/01/2019
-ms.locfileid: "71703769"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72816118"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Identidade Scaffold em projetos ASP.NET Core
 
@@ -84,7 +84,7 @@ No método `Configure` da classe `Startup`, chame [UseAuthentication](/dotnet/ap
 
 ### <a name="layout-changes"></a>Alterações de layout
 
-Opcional: Adicione o logon Partial (`_LoginPartial`) ao arquivo de layout:
+Opcional: Adicione o logon parcial (`_LoginPartial`) ao arquivo de layout:
 
 [!code-html[Main](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
@@ -98,12 +98,11 @@ uld option: Use Local DB, not SQLite
 dotnet new webapp -au Individual -uld -o RPauth
 cd RPauth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet restore
-dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files Account.Register
+dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Register"
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-Algumas opções de identidade são configuradas em *áreas/identidade/IdentityHostingStartup. cs*. Para obter mais informações, consulte [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Algumas opções de identidade são configuradas em *áreas/identidade/IdentityHostingStartup. cs*. para obter mais informações, consulte [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## <a name="scaffold-identity-into-an-mvc-project-without-existing-authorization"></a>Scaffold identidade em um projeto MVC sem autorização existente
 
@@ -146,7 +145,7 @@ dotnet new mvc -au Individual -o MvcAuth
 cd MvcAuth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
-dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext --files Account.Register
+dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --files "Account.Login;Account.Register"
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
@@ -171,11 +170,85 @@ O código a seguir define [LoginPath](/dotnet/api/microsoft.aspnetcore.authentic
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
-Registre uma implementação `IEmailSender`, por exemplo:
+Registre uma implementação de `IEmailSender`, por exemplo:
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet)]
+
+<!--
+uld option: Use Local DB, not SQLite
+
+dotnet new webapp -au Individual -uld -o RPauth
+cd RPauth
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
+-->
+## <a name="disable-register-page"></a>Página desabilitar registro
+
+Para desabilitar o registro do usuário:
+
+* Identidade Scaffold. Inclua conta. Register, Account. login e Account. RegisterConfirmation. Por exemplo:
+
+  ```dotnetcli
+   dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
+  ```
+
+* Atualize *áreas/identidade/páginas/conta/registro. cshtml. cs* para que os usuários não possam se registrar neste ponto de extremidade:
+
+  [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
+
+* Atualize *áreas/identidade/páginas/Account/Register. cshtml* para que sejam consistentes com as alterações anteriores:
+
+  [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
+
+* Comente ou remova o link de registro de *áreas/identidade/páginas/conta/login. cshtml*
+
+```cshtml
+@*
+<p>
+    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+</p>
+*@
+```
+
+* Atualize a página *áreas/identidade/páginas/conta/RegisterConfirmation* .
+
+  * Remova o código e os links do arquivo cshtml.
+  * Remova o código de confirmação do `PageModel`:
+
+  ```csharp
+   [AllowAnonymous]
+    public class RegisterConfirmationModel : PageModel
+    {
+        public IActionResult OnGet()
+        {  
+            return Page();
+        }
+    }
+  ```
+  
+### <a name="use-another-app-to-add-users"></a>Usar outro aplicativo para adicionar usuários
+
+Forneça um mecanismo para adicionar usuários fora do aplicativo Web. As opções para adicionar usuários incluem:
+
+* Um aplicativo Web de administrador dedicado.
+* Um aplicativo de console.
+
+O código a seguir descreve uma abordagem para adicionar usuários:
+
+* Uma lista de usuários é lida na memória.
+* Uma senha exclusiva forte é gerada para cada usuário.
+* O usuário é adicionado ao banco de dados de identidade.
+* O usuário é notificado e foi instruído a alterar a senha.
+
+[!code-csharp[](scaffold-identity/consoleAddUser/Program.cs?name=snippet)]
+
+O código a seguir descreve como adicionar um usuário:
+
+[!code-csharp[](scaffold-identity/consoleAddUser/Data/SeedData.cs?name=snippet)]
+
+Uma abordagem semelhante pode ser seguida para cenários de produção.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
