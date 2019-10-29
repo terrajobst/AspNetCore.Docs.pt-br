@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 10/07/2019
 uid: razor-pages/index
-ms.openlocfilehash: d12cf7f4f45c98c292b0d035c99e051d9b779e9a
-ms.sourcegitcommit: 383017d7060a6d58f6a79cf4d7335d5b4b6c5659
+ms.openlocfilehash: 61e15b9b9b8f84de36621c301ecb9d33b21dff88
+ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72816127"
+ms.lasthandoff: 10/29/2019
+ms.locfileid: "73034271"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introdução a Páginas do Razor no ASP.NET Core
 
@@ -157,7 +157,7 @@ O arquivo de exibição *Pages/Create.cshtml*:
 
 O HTML renderizado de *pages/Create. cshtml*:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
+[!code-html[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
 
 No código anterior, postando o formulário:
 
@@ -283,7 +283,7 @@ O código anterior:
 
 * Gera o seguinte HTML:
 
-  [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create5.html)]
+  [!code-html[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create5.html)]
 
 A postagem do valor de criar formulário sem um nome exibe a mensagem de erro "o campo nome é obrigatório". no formulário. Se o JavaScript estiver habilitado no cliente, o navegador exibirá o erro sem postar no servidor.
 

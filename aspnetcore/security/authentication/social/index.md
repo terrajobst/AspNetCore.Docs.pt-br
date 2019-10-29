@@ -1,31 +1,30 @@
 ---
 title: Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 author: rick-anderson
-description: Este tutorial demonstra como criar um aplicativo do ASP.NET Core 2.x usando o OAuth 2.0 com provedores de autenticação externa.
+description: Este tutorial demonstra como criar um aplicativo ASP.NET Core usando o OAuth 2,0 com provedores de autenticação externa.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/10/2019
+ms.date: 10/21/2019
 uid: security/authentication/social/index
-ms.openlocfilehash: edaf9eeaf02879b2f7816bab0eb373a7de640c05
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: 627ca483d60514d85e38c0e346ff5aef64ad9fee
+ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71082514"
+ms.lasthandoff: 10/29/2019
+ms.locfileid: "73034301"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 
 Por [Valeriy Novytskyy](https://github.com/01binary) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Este tutorial demonstra como criar um aplicativo ASP.NET Core 2.2, que permite aos usuários se conectarem usando o OAuth 2.0 com as credenciais de provedores de autenticação externa.
+Este tutorial demonstra como criar um aplicativo ASP.NET Core 3,0 que permite que os usuários entrem usando o OAuth 2,0 com credenciais de provedores de autenticação externa.
 
-Os provedores [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins) e [Microsoft](xref:security/authentication/microsoft-logins) são abordados nas seções a seguir. Outros provedores estão disponíveis em pacotes de terceiros, como [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) e [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
-
-![Ícones de mídia social do Facebook, Twitter, Google+ e Windows](index/_static/social.png)
+Os provedores do [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins)e [Microsoft](xref:security/authentication/microsoft-logins) são abordados nas seções a seguir e usam o projeto inicial criado neste artigo. Outros provedores estão disponíveis em pacotes de terceiros, como [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) e [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
 Permitir que os usuários entrem com suas credenciais existentes:
+
 * É conveniente para os usuários.
-* Remove muitas das complexidades de gerenciar o processo de conexão para um terceiro. 
+* Remove muitas das complexidades de gerenciar o processo de conexão para um terceiro.
 
 Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as conversões de clientes, consulte os estudos de caso do [Facebook](https://www.facebook.com/unsupportedbrowser) e do [Twitter](https://dev.twitter.com/resources/case-studies).
 
@@ -36,36 +35,32 @@ Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as 
 * Crie um novo projeto.
 * Selecione **Aplicativo Web ASP.NET Core** e **Próximo**.
 * Forneça um **Nome do projeto** e confirme ou altere a **localização**. Selecione **Criar**.
-* Selecione **ASP.NET Core 2.2** na lista suspensa. Selecione **aplicativo Web** na lista de modelos.
+* Selecione **ASP.NET Core 3,0** na lista suspensa e, em seguida, selecione **aplicativo Web**.
 * Selecione **Autenticação** selecione **Mudar** e configure a autenticação para **Contas de Usuário Individuais**. Selecione **OK**.
 * Na janela **Criar novo aplicativo Web ASP.NET Core**, selecione **Criar**.
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Abra o terminal.  Para Visual Studio Code você pode abrir o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
 * Altere os diretórios (`cd`) para uma pasta que conterá o projeto.
 
-* Execute os seguintes comandos:
+* Para o Windows, execute o seguinte comando:
 
   ```dotnetcli
   dotnet new webapp -o WebApp1 -au Individual -uld
-  code -r WebApp1
+  ```
+
+  Para macOS e Linux, execute o seguinte comando:
+
+  ```dotnetcli
+  dotnet new webapp -o WebApp1 -au Individual
   ```
 
   * O comando `dotnet new` cria um projeto do Razor Pages na pasta *WebApp1*.
-  * `-uld` usa o LocalDB em vez do SQLite. Omita `-uld` para usar o SQLite.
   * `-au Individual` cria o código para autenticação individual.
+  * `-uld` usa o LocalDB, uma versão leve do SQL Server Express para Windows. Omita `-uld` para usar o SQLite.
   * O comando `code` abre a pasta *WebApp1* em uma nova instância do Visual Studio Code.
-
-* Uma caixa de diálogo é exibida com a mensagem **Os ativos necessários para build e depuração estão ausentes no 'WebApp1'. Deseja adicioná-los?** Selecione **Sim** na barra superior.
-
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
-
-* Selecione **Arquivo** > **Nova Solução**.
-* Selecione o  > **aplicativo** **.NET Core** na barra lateral. Selecione o modelo **Aplicativo Web**. Selecione **Avançar**.
-* Defina a **estrutura de destino**, na lista suspensa busque o **.NET Core 2.2**. Selecione **Avançar**.
-* Forneça um **Nome de Projeto**. Confirme ou altere a **localização**. Selecione **Criar**.
 
 ---
 

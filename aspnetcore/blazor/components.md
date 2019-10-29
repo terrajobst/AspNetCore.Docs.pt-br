@@ -5,14 +5,14 @@ description: Saiba como criar e usar componentes do Razor, incluindo como associ
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/20/2019
+ms.date: 10/21/2019
 uid: blazor/components
-ms.openlocfilehash: 065a3a078c56f813ed38f85d7414f22061217dff
-ms.sourcegitcommit: eb4fcdeb2f9e8413117624de42841a4997d1d82d
+ms.openlocfilehash: 8c228b168cdbd58928ef3f57ff26bc86e8dfc1ba
+ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/21/2019
-ms.locfileid: "72697957"
+ms.lasthandoff: 10/29/2019
+ms.locfileid: "73033974"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -191,6 +191,52 @@ Para aceitar atributos arbitrários, defina um parâmetro de componente usando o
 ```
 
 A propriedade `CaptureUnmatchedValues` em `[Parameter]` permite que o parâmetro corresponda a todos os atributos que não correspondem a nenhum outro parâmetro. Um componente só pode definir um único parâmetro com `CaptureUnmatchedValues`. O tipo de propriedade usado com `CaptureUnmatchedValues` deve ser atribuível de `Dictionary<string, object>` com chaves de cadeia de caracteres. `IEnumerable<KeyValuePair<string, object>>` ou `IReadOnlyDictionary<string, object>` também são opções neste cenário.
+
+A posição de `@attributes` em relação à posição dos atributos do elemento é importante. Quando `@attributes` são splatted no elemento, os atributos são processados da direita para a esquerda (último a primeiro). Considere o exemplo a seguir de um componente que consome um componente `Child`:
+
+*ParentComponent. Razor*:
+
+```cshtml
+<ChildComponent extra="10" />
+```
+
+*ChildComponent. Razor*:
+
+```cshtml
+<div @attributes="AdditionalAttributes" extra="5" />
+
+[Parameter(CaptureUnmatchedValues = true)]
+public IDictionary<string, object> AdditionalAttributes { get; set; }
+```
+
+O atributo `extra` do componente de `Child` é definido à direita de `@attributes`. O `<div>` renderizado do componente `Parent` contém `extra="5"` quando passa pelo atributo adicional porque os atributos são processados da direita para a esquerda (último a primeiro):
+
+```html
+<div extra="5" />
+```
+
+No exemplo a seguir, a ordem de `extra` e `@attributes` é revertida na `<div>`do componente `Child`:
+
+*ParentComponent. Razor*:
+
+```cshtml
+<ChildComponent extra="10" />
+```
+
+*ChildComponent. Razor*:
+
+```cshtml
+<div extra="5" @attributes="AdditionalAttributes" />
+
+[Parameter(CaptureUnmatchedValues = true)]
+public IDictionary<string, object> AdditionalAttributes { get; set; }
+```
+
+O `<div>` renderizado no componente `Parent` contém `extra="10"` quando passado pelo atributo adicional:
+
+```html
+<div extra="10" />
+```
 
 ## <a name="data-binding"></a>Associação de dados
 

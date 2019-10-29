@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 2461bc398cd237dac04f4eb8832c70290663ff56
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: 1244b2e23a842538ff2fca01a513317a690afe7c
+ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259492"
+ms.lasthandoff: 10/29/2019
+ms.locfileid: "73034026"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Modelo de dados – 5 de 8
 
@@ -59,7 +59,7 @@ O código anterior adiciona uma propriedade `FullName` e adiciona os seguintes a
 
 Para as datas de registro do aluno, todas as páginas atualmente exibem a hora do dia junto com a data, embora apenas a data seja relevante. Usando atributos de anotação de dados, você pode fazer uma alteração de código que corrigirá o formato de exibição em cada página que mostra os dados. 
 
-O atributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) especifica um tipo de dados mais específico do que o tipo intrínseco de banco de dados. Neste caso, apenas a data deve ser exibida, não a data e a hora. A [Enumeração DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornece muitos tipos de dados, como Date, Time, PhoneNumber, Currency, EmailAddress, etc. O atributo `DataType` também pode permitir que o aplicativo forneça automaticamente recursos específicos a um tipo. Por exemplo:
+O atributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) especifica um tipo de dados mais específico do que o tipo intrínseco de banco de dados. Neste caso, apenas a data deve ser exibida, não a data e a hora. A [Enumeração DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornece vários tipos de dados, como data, hora, PhoneNumber, moeda, EmailAddress, etc. O atributo `DataType` também pode habilitar o aplicativo para fornecer automaticamente recursos específicos do tipo. Por exemplo:
 
 * O link `mailto:` é criado automaticamente para `DataType.EmailAddress`.
 * O seletor de data é fornecido para `DataType.Date` na maioria dos navegadores.
@@ -441,7 +441,7 @@ Se a tabela `Enrollment` não incluir informações de nota, ela apenas precisar
 
 As entidades `Instructor` e `Course` têm uma relação muitos para muitos usando uma tabela de junção pura.
 
-Observação: O EF 6.x é compatível com tabelas de junção implícita para relações muitos para muitos, ao contrário do EF Core. Para obter mais informações, consulte [Relações muitos para muitos no EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
+Observação: o EF 6.x é compatível com tabelas de junção implícita para relações muitos para muitos, ao contrário do EF Core. Para obter mais informações, consulte [Relações muitos para muitos no EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
 
 ## <a name="the-courseassignment-entity"></a>A entidade CourseAssignment
 
@@ -682,7 +682,7 @@ Na classe de migração `ComplexDataModel`, atualize o método `Up`:
 
 Adicione o código realçado a seguir. O novo código é inserido após o bloco `.CreateTable( name: "Department"`:
 
-[!code-csharp[](intro/samples/cu30snapshots/5-complex/Migrations/ ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=23-31)]
+[!code-csharp[](intro/samples/cu30snapshots/5-complex/Migrations/ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=23-31)]
 
 Com as alterações anteriores, as linhas `Course` existentes estarão relacionadas ao departamento "Temp" após a execução do método `ComplexDataModel.Up`.
 
@@ -749,7 +749,7 @@ Atualize *Models/Student.cs* com o seguinte código realçado:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
-O atributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) especifica um tipo de dados mais específico do que o tipo intrínseco de banco de dados. Neste caso, apenas a data deve ser exibida, não a data e a hora. A [Enumeração DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornece muitos tipos de dados, como Date, Time, PhoneNumber, Currency, EmailAddress, etc. O atributo `DataType` também pode permitir que o aplicativo forneça automaticamente recursos específicos a um tipo. Por exemplo:
+O atributo [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) especifica um tipo de dados mais específico do que o tipo intrínseco de banco de dados. Neste caso, apenas a data deve ser exibida, não a data e a hora. A [Enumeração DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) fornece vários tipos de dados, como data, hora, PhoneNumber, moeda, EmailAddress, etc. O atributo `DataType` também pode habilitar o aplicativo para fornecer automaticamente recursos específicos do tipo. Por exemplo:
 
 * O link `mailto:` é criado automaticamente para `DataType.EmailAddress`.
 * O seletor de data é fornecido para `DataType.Date` na maioria dos navegadores.
@@ -1144,7 +1144,7 @@ Se a tabela `Enrollment` não incluir informações de nota, ela apenas precisar
 
 As entidades `Instructor` e `Course` têm uma relação muitos para muitos usando uma tabela de junção pura.
 
-Observação: O EF 6.x é compatível com tabelas de junção implícita para relações muitos para muitos, ao contrário do EF Core. Para obter mais informações, consulte [Relações muitos para muitos no EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
+Observação: o EF 6.x é compatível com tabelas de junção implícita para relações muitos para muitos, ao contrário do EF Core. Para obter mais informações, consulte [Relações muitos para muitos no EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
 
 ## <a name="the-courseassignment-entity"></a>A entidade CourseAssignment
 

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
 uid: blazor/hosting-models
-ms.openlocfilehash: 072f9bbdcf7171ede63383b085f9f0f030bf1076
-ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
+ms.openlocfilehash: be67c129af4f071d10719e0bbf121de761dde9f4
+ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72391169"
+ms.lasthandoff: 10/29/2019
+ms.locfileid: "73033992"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Modelos de hospedagem mais amASP.NET Core
 
@@ -66,7 +66,7 @@ O aplicativo ASP.NET Core referencia a classe `Startup` do aplicativo a ser adic
 * Serviços do lado do servidor.
 * O aplicativo para o pipeline de tratamento de solicitação.
 
-O script do mais alto *. Server. js* @ no__t-1 estabelece a conexão do cliente. É responsabilidade do aplicativo persistir e restaurar o estado do aplicativo, conforme necessário (por exemplo, no caso de uma conexão de rede perdida).
+O script mais *incrivelmente. Server. js*&dagger; estabelece a conexão do cliente. É responsabilidade do aplicativo persistir e restaurar o estado do aplicativo, conforme necessário (por exemplo, no caso de uma conexão de rede perdida).
 
 O modelo de Hospedagem de servidor mais incrivelmente oferece vários benefícios:
 
@@ -228,7 +228,7 @@ Para configurar o cliente Signalr no arquivo *pages/_Host. cshtml* :
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
-      builder.configureLogging(2); // LogLevel.Information
+      builder.configureLogging("information"); // LogLevel.Information
     }
   });
 </script>
