@@ -43,7 +43,7 @@ Aplicativos publicados para implantação de 32 bits (x86) ou 64 bits (x64) têm
 * Exija o maior tamanho de pilha do IIS.
 * Tenha dependências nativas de 64 bits.
 
-Use um SDK do .NET Core de 64 bits (x64) para publicar um aplicativo de 64 bits. Um tempo de execução de 64 bits deve estar presente no sistema host.
+Use um SDK do .NET Core de 64 bits (x64) para publicar um aplicativo de 64 bits. Um runtime de 64 bits deve estar presente no sistema host.
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -327,7 +327,7 @@ Para obter uma versão anterior do instalador:
    * `OPT_NO_ANCM=1` &ndash; Ignorar a instalação do Módulo do ASP.NET Core.
    * `OPT_NO_RUNTIME=1` &ndash; Ignorar a instalação do tempo de execução do .NET Core.
    * `OPT_NO_SHAREDFX=1` &ndash; Ignorar a instalação da Estrutura Compartilhada do ASP.NET (tempo de execução do ASP.NET).
-   * `OPT_NO_X86=1` &ndash; Ignorar a instalação dos tempos de execução x86. Use esse parâmetro quando você souber que não hospedará aplicativos de 32 bits. Se houver uma possibilidade de hospedar aplicativos de 32 bits e 64 bits no futuro, não use esse parâmetro e instale ambos os tempos de execução.
+   * `OPT_NO_X86=1` &ndash; Ignorar a instalação dos tempos de execução x86. Use esse parâmetro quando você souber que não hospedará aplicativos de 32 bits. Se houver uma possibilidade de hospedar aplicativos de 32 bits e 64 bits no futuro, não use esse parâmetro e instale ambos os runtimes.
    * `OPT_NO_SHARED_CONFIG_CHECK=1` &ndash; Desabilite a verificação para usar uma Configuração Compartilhada do IIS quando a configuração compartilhada (*applicationHost.config*) estiver no mesmo computador do que a instalação do IIS. *Disponível somente para instaladores do ASP.NET Core 2.2 ou Hosting Bundler posterior.* Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
 1. Reinicie o sistema ou execute **net stop was /y**, seguido por **net start w3svc** de um shell de comando. A reinicialização do IIS identifica uma alteração no CAMINHO do sistema, que é uma variável de ambiente, realizada pelo instalador.
 
@@ -363,7 +363,7 @@ Ao implantar aplicativos para servidores com [Implantação da Web](/iis/install
 
    ![Defina Sem Código Gerenciado para a versão do CLR do .NET.](index/_static/edit-apppool-ws2016.png)
 
-    O ASP.NET Core é executado em um processo separado e gerencia o tempo de execução. O ASP.NET Core não depende do carregamento do CLR de Área de trabalho (CLR do .NET)&mdash;o Core Common Language Runtime (CoreCLR) para o .NET Core é inicializado para hospedar o aplicativo no processo de trabalho. Definir a **versão do CLR do .NET** como **Sem Código Gerenciado** é opcional, porém recomendado.
+    O ASP.NET Core é executado em um processo separado e gerencia o runtime. O ASP.NET Core não depende do carregamento do CLR de Área de trabalho (CLR do .NET)&mdash;o Core Common Language Runtime (CoreCLR) para o .NET Core é inicializado para hospedar o aplicativo no processo de trabalho. Definir a **versão do CLR do .NET** como **Sem Código Gerenciado** é opcional, porém recomendado.
 
 1. *ASP.NET Core 2.2 ou posterior*: para uma [implantação autocontida](/dotnet/core/deploying/#self-contained-deployments-scd) de 64 bits (x64) que usa o [modelo de hospedagem em processo](#in-process-hosting-model), desabilite o pool de aplicativos para processos de 32 bits (x86).
 

@@ -7,7 +7,7 @@ ms.date: 04/03/2019
 uid: mvc/views/overview
 ms.openlocfilehash: 5e56c6bb18cb5d2389c11eb3e4aa9869228da47d
 ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 04/27/2019
 ms.locfileid: "64891341"
@@ -43,7 +43,7 @@ As exibições ajudam a estabelecer uma [separação de Interesses](/dotnet/stan
 
 ## <a name="creating-a-view"></a>Criando uma exibição
 
-Exibições que são específicas de um controlador são criadas na pasta *Views/ [NomeDoControlador]*. Exibições que são compartilhadas entre controladores são colocadas na pasta *Views/Shared*. Para criar uma exibição, adicione um novo arquivo e dê a ele o mesmo nome que o da ação de seu controlador associado, com a extensão de arquivo *.cshtml*. Para criar uma exibição correspondente à ação *About* no controlador *Home*, crie um arquivo *About.cshtml* na pasta *Views/Home*:
+Exibições que são específicas de um controlador são criadas na pasta *Views/ [NomeDoControlador]* . Exibições que são compartilhadas entre controladores são colocadas na pasta *Views/Shared*. Para criar uma exibição, adicione um novo arquivo e dê a ele o mesmo nome que o da ação de seu controlador associado, com a extensão de arquivo *.cshtml*. Para criar uma exibição correspondente à ação *About* no controlador *Home*, crie um arquivo *About.cshtml* na pasta *Views/Home*:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
@@ -87,7 +87,7 @@ O método auxiliar `View` tem várias sobrecargas. Opcionalmente, você pode esp
 
 Quando uma ação retorna uma exibição, um processo chamado *descoberta de exibição* ocorre. Esse processo determina qual arquivo de exibição é usado com base no nome da exibição. 
 
-O comportamento padrão do método `View` (`return View();`) é retornar uma exibição com o mesmo nome que o método de ação do qual ela é chamada. Por exemplo, o nome do método `ActionResult` de *About* do controlador é usado para pesquisar um arquivo de exibição chamado *About.cshtml*. Primeiro, o tempo de execução pesquisa pela exibição na pasta *Views/[NomeDoControlador]*. Se não encontrar uma exibição correspondente nela, ele procura pela exibição na pasta *Shared*.
+O comportamento padrão do método `View` (`return View();`) é retornar uma exibição com o mesmo nome que o método de ação do qual ela é chamada. Por exemplo, o nome do método `ActionResult` de *About* do controlador é usado para pesquisar um arquivo de exibição chamado *About.cshtml*. Primeiro, o tempo de execução pesquisa pela exibição na pasta *Views/[NomeDoControlador]* . Se não encontrar uma exibição correspondente nela, ele procura pela exibição na pasta *Shared*.
 
 Não importa se você retornar implicitamente o `ViewResult` com `return View();` ou se passar explicitamente o nome de exibição para o método `View` com `return View("<ViewName>");`. Nos dois casos, a descoberta de exibição pesquisa por um arquivo de exibição correspondente nesta ordem:
 

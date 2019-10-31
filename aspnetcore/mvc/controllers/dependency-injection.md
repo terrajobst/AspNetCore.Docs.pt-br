@@ -7,7 +7,7 @@ ms.date: 02/24/2019
 uid: mvc/controllers/dependency-injection
 ms.openlocfilehash: 6b08c321f4cae1f4efd8ea40300eaf4dfc2f63a1
 ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 04/27/2019
 ms.locfileid: "64890931"

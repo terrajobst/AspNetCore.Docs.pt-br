@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/24/2019
 uid: fundamentals/routing
-ms.openlocfilehash: c8037d79c79c5b7eb3b99d9724aa3e5361f92b8c
-ms.sourcegitcommit: 5d25a7f22c50ca6fdd0f8ecd8e525822e1b35b7a
+ms.openlocfilehash: 8b4da4e1e262ec82225413d0338b3492d0b5e152
+ms.sourcegitcommit: 032113208bb55ecfb2faeb6d3e9ea44eea827950
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/28/2019
-ms.locfileid: "71482039"
+ms.lasthandoff: 10/31/2019
+ms.locfileid: "73190508"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -441,7 +441,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | Observações |
+| restrição | Exemplo | Correspondências de exemplo | Anotações |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |
@@ -591,6 +591,81 @@ A geração de link somente gera um link para essa rota quando os valores corres
 Segmentos complexos (por exemplo, `[Route("/x{token}y")]`) são processados por meio da combinação de literais da direita para a esquerda, de uma maneira diferente de Greedy. Confira [este código](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) para ver uma explicação detalhada de como os segmentos complexos são combinados. O [exemplo de código](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) não é usado pelo ASP.NET Core, mas fornece uma explicação adequada sobre segmentos complexos.
 <!-- While that code is no longer used by ASP.NET Core for complex segment matching, it provides a good match to the current algorithm. The [current code](https://github.com/aspnet/AspNetCore/blob/91514c9af7e0f4c44029b51f05a01c6fe4c96e4c/src/Http/Routing/src/Matching/DfaMatcherBuilder.cs#L227-L244) is too abstracted from matching to be useful for understanding complex segment matching.
 -->
+
+## <a name="configuring-endpoint-metadata"></a>Configurando metadados de ponto de extremidade
+
+Os links a seguir fornecem informações sobre como configurar metadados de ponto de extremidade:
+
+* [Habilitar CORS com roteamento de ponto de extremidade](xref:security/cors#enable-cors-with-endpoint-routing)
+* [Exemplo de IAuthorizationPolicyProvider](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/CustomPolicyProvider) usando um atributo de `[MinimumAgeAuthorize]` personalizado
+* [Testar a autenticação com o atributo [autorizar]](xref:security/authentication/identity#test-identity)
+* <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
+* [Selecionando o esquema com o atributo [autorizar]](xref:security/authorization/limitingidentitybyscheme#selecting-the-scheme-with-the-authorize-attribute)
+* [Aplicando políticas usando o atributo [autorizar]](xref:security/authorization/policies#applying-policies-to-mvc-controllers)
+* <xref:security/authorization/roles>
+
+<a name="hostmatch"></a>
+
+## <a name="host-matching-in-routes-with-requirehost"></a>Correspondência de host em rotas com RequireHost
+
+`RequireHost` aplica uma restrição à rota que requer o host especificado. O parâmetro `RequireHost` ou `[Host]` pode ser:
+
+* Host: `www.domain.com` (corresponde a `www.domain.com` com qualquer porta)
+* Host com curinga: `*.domain.com` (corresponde a `www.domain.com`, `subdomain.domain.com`ou `www.subdomain.domain.com` em qualquer porta)
+* Porta: `*:5000` (corresponde à porta 5000 com qualquer host)
+* Host e porta: `www.domain.com:5000`, `*.domain.com:5000` (corresponde ao host e à porta)
+
+Vários parâmetros podem ser especificados usando `RequireHost` ou `[Host]`. A restrição corresponderá aos hosts válidos para qualquer um dos parâmetros. Por exemplo, `[Host("domain.com", "*.domain.com")]` corresponderá `domain.com`, `www.domain.com`ou `subdomain.domain.com`.
+
+O código a seguir usa `RequireHost` para exigir o host especificado na rota:
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    app.UseRouting();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapGet("/", context => context.Response.WriteAsync("Hi Contoso!"))
+            .RequireHost("contoso.com");
+        endpoints.MapGet("/", context => context.Response.WriteAsync("Hi AdventureWorks!"))
+            .RequireHost("adventure-works.com");
+        endpoints.MapHealthChecks("/healthz").RequireHost("*:8080");
+    });
+}
+```
+
+O código a seguir usa o atributo `[Host]` para exigir o host especificado no controlador:
+
+```csharp
+[Host("contoso.com", "adventure-works.com")]
+public class HomeController : Controller
+{
+    private readonly ILogger<HomeController> _logger;
+
+    public HomeController(ILogger<HomeController> logger)
+    {
+        _logger = logger;
+    }
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    [Host("example.com:8080")]
+    public IActionResult Privacy()
+    {
+        return View();
+    }
+
+}
+```
+
+Quando o atributo `[Host]` é aplicado ao controlador e ao método de ação:
+
+* O atributo na ação é usado.
+* O atributo do controlador é ignorado.
 
 ::: moniker-end
 
@@ -1027,7 +1102,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | Observações |
+| restrição | Exemplo | Correspondências de exemplo | Anotações |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |
@@ -1481,7 +1556,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | Observações |
+| restrição | Exemplo | Correspondências de exemplo | Anotações |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |

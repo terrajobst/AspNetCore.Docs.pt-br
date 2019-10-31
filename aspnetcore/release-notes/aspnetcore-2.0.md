@@ -8,7 +8,7 @@ ms.date: 05/28/2019
 uid: aspnetcore-2.0
 ms.openlocfilehash: dac5a48042a71774cb884e30a166be68bee69691
 ms.sourcegitcommit: f5762967df3be8b8c868229e679301f2f7954679
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 06/13/2019
 ms.locfileid: "67048114"

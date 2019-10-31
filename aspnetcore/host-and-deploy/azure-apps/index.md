@@ -1,18 +1,18 @@
 ---
 title: Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
-author: guardrex
+author: bradygaster
 description: Este artigo contém links para o host do Azure e para implantar recursos.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: bradyg
 ms.custom: mvc
-ms.date: 10/02/2019
+ms.date: 10/11/2019
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: bda4923adb0f9769f883ef64f7902c8650308222
-ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
+ms.openlocfilehash: 392868b4fc9105279f8f3b10436a9915123e7070
+ms.sourcegitcommit: 032113208bb55ecfb2faeb6d3e9ea44eea827950
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/03/2019
-ms.locfileid: "71924897"
+ms.lasthandoff: 10/31/2019
+ms.locfileid: "73190619"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -30,6 +30,8 @@ Use a linha de comando do Visual Studio para criar e implantar um aplicativo Web
 
 Consulte o [ASP.NET Core no painel do serviço de aplicativo](https://aspnetcoreon.azurewebsites.net/) para obter a versão do ASP.NET Core disponível no serviço Azure app.
 
+Assine o repositório de [anúncios do serviço de aplicativo](https://github.com/Azure/app-service-announcements/) e monitore os problemas. A equipe do serviço de aplicativo publica regularmente anúncios e cenários chegando ao serviço de aplicativo.
+
 Os artigos a seguir estão disponíveis na documentação do ASP.NET Core:
 
 <xref:tutorials/publish-to-azure-webapp-using-vs>  
@@ -42,7 +44,7 @@ Saiba como criar um aplicativo Web ASP.NET Core usando o Visual Studio e implant
 Configurar um build de CI para um aplicativo ASP.NET Core e, em seguida, criar uma versão de implantação contínua para o Serviço de Aplicativo do Azure.
 
 [Área restrita de aplicativo Web do Azure](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
-Descubra as limitações de tempo de execução do Serviço de Aplicativo do Azure impostas pela plataforma de Aplicativos do Azure.
+Descubra as limitações de runtime do Serviço de Aplicativo do Azure impostas pela plataforma de Aplicativos do Azure.
 
 <xref:test/troubleshoot>  
 Compreenda e solucione problemas de avisos e erros com projetos do ASP.NET Core.
@@ -53,17 +55,17 @@ Compreenda e solucione problemas de avisos e erros com projetos do ASP.NET Core.
 
 ::: moniker range=">= aspnetcore-2.2"
 
-Os tempos de execução para aplicativos de 32 bits (x86) e 64 bits (x64) estão presentes no Serviço de Aplicativo do Azure. O [SDK do .NET Core](/dotnet/core/sdk) disponível no Serviço de Aplicativo é de 32 bits, mas é possível implantar aplicativos de 64 bits compilados localmente usando o console do [Kudu](https://github.com/projectkudu/kudu/wiki) ou o processo de publicação do Visual Studio. Para obter mais informações, consulte a seção [Publicar e implantar o aplicativo](#publish-and-deploy-the-app).
+Os runtimes para aplicativos de 32 bits (x86) e 64 bits (x64) estão presentes no Serviço de Aplicativo do Azure. O [SDK do .NET Core](/dotnet/core/sdk) disponível no Serviço de Aplicativo é de 32 bits, mas é possível implantar aplicativos de 64 bits compilados localmente usando o console do [Kudu](https://github.com/projectkudu/kudu/wiki) ou o processo de publicação do Visual Studio. Para obter mais informações, consulte a seção [Publicar e implantar o aplicativo](#publish-and-deploy-the-app).
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-Para aplicativos com dependências nativas, os tempos de execução para aplicativos de 32 bits (x86) estão presentes no Serviço de Aplicativo do Azure. O [SDK do .NET Core](/dotnet/core/sdk) disponível no Serviço de Aplicativo é de 32 bits.
+Para aplicativos com dependências nativas, os runtimes para aplicativos de 32 bits (x86) estão presentes no Serviço de Aplicativo do Azure. O [SDK do .NET Core](/dotnet/core/sdk) disponível no Serviço de Aplicativo é de 32 bits.
 
 ::: moniker-end
 
-Para obter mais informações sobre os componentes e os métodos de distribuição da estrutura do .NET Core (por exemplo, informações sobre o tempo de execução e sobre o SDK do .NET Core), consulte [Sobre o .NET Core: Composição](/dotnet/core/about#composition).
+Para obter mais informações sobre os componentes do .NET Core Framework e os métodos de distribuição, como informações sobre o tempo de execução do .NET Core e o SDK do .NET Core, consulte [sobre o .NET Core: composição](/dotnet/core/about#composition).
 
 ### <a name="packages"></a>Pacotes
 
@@ -141,24 +143,48 @@ Quando ocorre a troca entre os slots de implantação, nenhum sistema que usa a 
 
 Para obter mais informações, consulte <xref:security/data-protection/implementation/key-storage-providers>.
 <a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>
-<!-- revert this after 3.0 supported
-## Deploy ASP.NET Core preview release to Azure App Service
 
-Use one of the following approaches if the app relies on a preview release of .NET Core:
-
-* [Install the preview site extension](#install-the-preview-site-extension).
-* [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app).
-* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers).
--->
 ## <a name="deploy-aspnet-core-30-to-azure-app-service"></a>Implantar o ASP.NET Core 3,0 no serviço Azure App
 
-Esperamos ter ASP.NET Core 3,0 disponível no serviço Azure App em breve.
+ASP.NET Core 3,0 tem suporte no serviço Azure App. Para implantar uma versão de visualização de versões do .NET Core posteriores ao .NET Core 3,0, use uma das técnicas a seguir. Essas abordagens também são usadas quando o tempo de execução está disponível, mas o SDK não foi instalado no serviço Azure App.
 
-Use uma das seguintes abordagens se o aplicativo depender do .NET Core 3,0:
-
-* [Instalar a extensão de site da versão prévia](#install-the-preview-site-extension).
+* [Especifique a versão de SDK do .NET Core usando Azure Pipelines](#specify-the-net-core-sdk-version-using-azure-pipelines)
 * [Implantar um aplicativo autossuficiente em versão prévia](#deploy-a-self-contained-preview-app).
 * [Usar o Docker com aplicativos Web para contêineres](#use-docker-with-web-apps-for-containers).
+* [Instalar a extensão de site da versão prévia](#install-the-preview-site-extension).
+
+### <a name="specify-the-net-core-sdk-version-using-azure-pipelines"></a>Especifique a versão de SDK do .NET Core usando Azure Pipelines
+
+Use [Azure app cenários de CI/CD de serviço](/azure/app-service/deploy-continuous-deployment) para configurar uma compilação de integração contínua com o Azure DevOps. Depois que a compilação DevOps do Azure for criada, configure opcionalmente a compilação para usar uma versão específica do SDK. 
+
+#### <a name="specify-the-net-core-sdk-version"></a>Especificar a versão de SDK do .NET Core
+
+Ao usar o centro de implantação do serviço de aplicativo para criar uma compilação DevOps do Azure, o pipeline de compilação padrão inclui etapas para `Restore`, `Build`, `Test`e `Publish`. Para especificar a versão do SDK, selecione o botão **Adicionar (+)** na lista de trabalhos do agente para adicionar uma nova etapa. Pesquise **SDK do .NET Core** na barra de pesquisa. 
+
+![Adicionar a etapa de SDK do .NET Core](index/add-sdk-step.png)
+
+Mova a etapa para a primeira posição na compilação para que as etapas a seguir usem a versão especificada do SDK do .NET Core. Especifique a versão do SDK do .NET Core. Neste exemplo, o SDK é definido como `3.0.100`.
+
+![Etapa do SDK concluída](index/sdk-step-first-place.png)
+
+Para publicar uma [SCD (implantação autônoma)](/dotnet/core/deploying/#self-contained-deployments-scd), configure o SCD na etapa `Publish` e forneça o [RID (identificador de tempo de execução)](/dotnet/core/rid-catalog).
+
+![Publicação independente](index/self-contained.png)
+
+### <a name="deploy-a-self-contained-preview-app"></a>Implantar um aplicativo autossuficiente em versão prévia
+
+Uma [SCD (implantação autocontida)](/dotnet/core/deploying/#self-contained-deployments-scd) voltada para um tempo de execução de versão prévia transporta o tempo de execução da versão prévia na implantação.
+
+Ao implantar um aplicativo autocontido:
+
+* O site no Serviço de Aplicativo do Azure não exige a [extensão de site da versão prévia](#install-the-preview-site-extension).
+* O aplicativo precisa ser publicado após uma abordagem diferente da publicação em uma [FDD (implantação dependente de estrutura)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
+
+Siga as orientações fornecidas na seção [Implantar o aplicativo autossuficiente](#deploy-the-app-self-contained).
+
+### <a name="use-docker-with-web-apps-for-containers"></a>Usar o Docker com aplicativos Web para contêineres
+
+O [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contém as imagens de versão prévia do Docker mais recentes. As imagens podem ser usadas como uma imagem de base. Use a imagem e implante aplicativos Web para contêineres normalmente.
 
 ### <a name="install-the-preview-site-extension"></a>Instalar a extensão de site de visualização
 
@@ -187,9 +213,9 @@ Quando a operação for concluída, a versão prévia mais recente do .NET Core 
    O comando retornará `True` quando o tempo de execução da versão prévia x64 estiver instalado.
 
 > [!NOTE]
-> A arquitetura da plataforma (x86/x64) de um aplicativo dos Serviços de Aplicativos é definida nas configurações do aplicativo no portal do Azure para aplicativos hospedados em um nível de hospedagem de computação da série A ou melhor. Se o aplicativo for executado no modo em processo e a arquitetura da plataforma estiver configurada para 64 bits (x64), o Módulo do ASP.NET Core usará o tempo de execução da versão prévia de 64 bits, se estiver presente. Instale a extensão **Tempo de execução do ASP.NET Core {X.Y} (x64)** .
+> A arquitetura da plataforma (x86/x64) de um aplicativo dos Serviços de Aplicativos é definida nas configurações do aplicativo no portal do Azure para aplicativos hospedados em um nível de hospedagem de computação da série A ou melhor. Se o aplicativo for executado no modo em processo e a arquitetura da plataforma estiver configurada para 64 bits (x64), o Módulo do ASP.NET Core usará o runtime da versão prévia de 64 bits, se estiver presente. Instale a extensão **Tempo de execução do ASP.NET Core {X.Y} (x64)** .
 >
-> Depois de instalar o tempo de execução da versão prévia x64, execute o seguinte comando na janela de comando do Kudu PowerShell para verificar a instalação. Substitua a versão de tempo de execução do ASP.NET Core por `{X.Y}` no comando:
+> Depois de instalar o runtime da versão prévia x64, execute o seguinte comando na janela de comando do Kudu PowerShell para verificar a instalação. Substitua a versão de tempo de execução do ASP.NET Core por `{X.Y}` no comando:
 >
 > ```powershell
 > Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64\
@@ -205,21 +231,6 @@ Quando a operação for concluída, a versão prévia mais recente do .NET Core 
 Se um modelo do ARM for usado para criar e implantar aplicativos, o tipo de recurso `siteextensions` poderá ser usado para adicionar a extensão de site a um aplicativo Web. Por exemplo:
 
 [!code-json[](index/sample/arm.json?highlight=2)]
-
-### <a name="deploy-a-self-contained-preview-app"></a>Implantar um aplicativo autossuficiente em versão prévia
-
-Uma [SCD (implantação autocontida)](/dotnet/core/deploying/#self-contained-deployments-scd) voltada para um tempo de execução de versão prévia transporta o tempo de execução da versão prévia na implantação.
-
-Ao implantar um aplicativo autocontido:
-
-* O site no Serviço de Aplicativo do Azure não exige a [extensão de site da versão prévia](#install-the-preview-site-extension).
-* O aplicativo precisa ser publicado após uma abordagem diferente da publicação em uma [FDD (implantação dependente de estrutura)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
-
-Siga as orientações fornecidas na seção [Implantar o aplicativo autossuficiente](#deploy-the-app-self-contained).
-
-### <a name="use-docker-with-web-apps-for-containers"></a>Usar o Docker com aplicativos Web para contêineres
-
-O [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contém as imagens de versão prévia do Docker mais recentes. As imagens podem ser usadas como uma imagem de base. Use a imagem e implante aplicativos Web para contêineres normalmente.
 
 ## <a name="publish-and-deploy-the-app"></a>Publicar e implantar o aplicativo
 
@@ -244,7 +255,7 @@ Para uma [implantação dependente de estrutura](/dotnet/core/deploying/#framewo
    * Abra a lista suspensa **Modo de Implantação** e selecione **Dependente de Estrutura**.
    * Selecione **Portátil** como o **Tempo de Execução de Destino**.
    * Se você precisar remover arquivos adicionais após a implantação, abra as **Opções de Publicação do Arquivo** e marque a caixa de seleção para remover arquivos adicionais no destino.
-   * Clique em **Salvar**.
+   * Selecione **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
@@ -275,7 +286,7 @@ Use o Visual Studio ou as ferramentas da CLI (interface de linha de comando) par
    * Abra a lista suspensa **Modo de Implantação** e selecione **Autocontido**.
    * Selecione o tempo de execução de destino na lista suspensa **Tempo de Execução de Destino**. O padrão é `win-x86`.
    * Se você precisar remover arquivos adicionais após a implantação, abra as **Opções de Publicação do Arquivo** e marque a caixa de seleção para remover arquivos adicionais no destino.
-   * Clique em **Salvar**.
+   * Selecione **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
@@ -301,9 +312,9 @@ Use o Visual Studio ou as ferramentas da CLI (interface de linha de comando) par
 
 ## <a name="protocol-settings-https"></a>Configurações de protocolo (HTTPS)
 
-As associações de protocolo de segurança permitem que você especifique um certificado a ser usado ao responder a solicitações em HTTPS. A associação requer um certificado privado válido ( *.pfx*) emitido para o nome do host específico. Para obter mais informações, confira [Tutorial: Associar um certificado SSL personalizado existente ao Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-tutorial-custom-ssl).
+As associações de protocolo de segurança permitem que você especifique um certificado a ser usado ao responder a solicitações em HTTPS. A associação requer um certificado privado válido ( *.pfx*) emitido para o nome do host específico. Para obter mais informações, consulte [tutorial: associar um certificado SSL personalizado existente ao serviço de Azure app](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
-## <a name="transform-webconfig"></a>Transformação do web.config
+## <a name="transform-webconfig"></a>Transformação do Web.config
 
 Se você precisar transformar o *Web.config* em publicação (por exemplo, definir variáveis ​​de ambiente com base na configuração, no perfil ou no ambiente), consulte <xref:host-and-deploy/iis/transform-webconfig>.
 

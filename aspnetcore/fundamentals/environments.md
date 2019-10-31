@@ -9,7 +9,7 @@ ms.date: 04/10/2019
 uid: fundamentals/environments
 ms.openlocfilehash: a0e6d62f352a886a9bc051813a21d94c1605a1ce
 ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 05/06/2019
 ms.locfileid: "65087041"
@@ -240,7 +240,7 @@ Para definir a variável de ambiente `ASPNETCORE_ENVIRONMENT` com *web.config*, 
 
 **Arquivo de projeto ou perfil de publicação**
 
-**Para implantações do Windows IIS:** Inclua a propriedade `<EnvironmentName>` no perfil de publicação (*.pubxml*) ou no arquivo de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
+**Para implantações do Windows IIS:** Inclua a propriedade `<EnvironmentName>` no perfil de publicação ( *.pubxml*) ou no arquivo de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
 
 ```xml
 <PropertyGroup>

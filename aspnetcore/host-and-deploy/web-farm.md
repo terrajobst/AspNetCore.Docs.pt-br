@@ -9,7 +9,7 @@ ms.date: 05/12/2019
 uid: host-and-deploy/web-farm
 ms.openlocfilehash: df1be8cc76a5017923f26636a241b69881dfcc81
 ms.sourcegitcommit: b4ef2b00f3e1eb287138f8b43c811cb35a100d3e
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 05/21/2019
 ms.locfileid: "65970105"

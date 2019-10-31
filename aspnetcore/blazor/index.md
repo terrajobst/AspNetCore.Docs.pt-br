@@ -116,20 +116,20 @@ O código WebAssembly pode acessar a funcionalidade completa do navegador por me
 Quando um aplicativo Webassembly mais elaborado é criado e executado em um navegador:
 
 * os arquivos C# e os arquivos Razor são compilados em assemblies do .NET.
-* os assemblies e o tempo de execução do .NET são baixados no navegador.
+* os assemblies e o runtime do .NET são baixados no navegador.
 * O Webassembly de mais incrivelmente Inicializa o tempo de execução do .NET e configura o tempo de execução para carregar os assemblies para o aplicativo. O tempo de execução do Webassembly mais incrivelmente usa a interoperabilidade JavaScript para lidar com a manipulação de DOM e chamadas de API de navegador
 
 O tamanho do aplicativo publicado, seu *tamanho de payload*, é um fator de desempenho crítico para a utilidade do aplicativo. Um aplicativo grande leva um tempo relativamente longo para baixar para um navegador, o que afeta a experiência do usuário. Webassembly mais incrivelmente otimiza o tamanho da carga para reduzir os tempos de download:
 
 * O código não utilizado é retirado do aplicativo quando publicado pelo [Vinculador de linguagem intermediária (IL)](xref:host-and-deploy/blazor/configure-linker).
 * As respostas HTTP são compactadas.
-* O tempo de execução do .NET e os assemblies são armazenados em cache no navegador.
+* O runtime do .NET e os assemblies são armazenados em cache no navegador.
 
 ## <a name="blazor-server"></a>Servidor Blazor
 
 Os componentes Blazor desvinculam a lógica de renderização do componente da forma como as atualizações da interface do usuário são aplicadas. O servidor mais incrivelmente dá suporte para hospedar componentes do Razor no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário são tratadas por uma conexão [SignalR](xref:signalr/introduction).
 
-O tempo de execução realiza o envio de eventos da interface do usuário do navegador para o servidor e executar os componentes, aplica as atualizações na interface do usuário retornadas pelo servidor ao navegador.
+O runtime realiza o envio de eventos da interface do usuário do navegador para o servidor e executar os componentes, aplica as atualizações na interface do usuário retornadas pelo servidor ao navegador.
 
 A conexão usada pelo servidor mais incrivelmente para se comunicar com o navegador também é usada para lidar com as chamadas de interoperabilidade do JavaScript.
 

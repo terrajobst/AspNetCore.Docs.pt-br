@@ -22,7 +22,7 @@ Por [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.tim
 
 Com o [modelo de hospedagem Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly):
 
-* O aplicativo do Blazor, suas dependências e o tempo de execução do .NET são baixados no navegador.
+* O aplicativo do Blazor, suas dependências e o runtime do .NET são baixados no navegador.
 * O aplicativo é executado diretamente no thread da interface do usuário do navegador.
 
 Há suporte para as seguintes estratégias de implantação:

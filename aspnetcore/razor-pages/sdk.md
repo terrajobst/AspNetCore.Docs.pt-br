@@ -137,9 +137,9 @@ O SDK do Razor define dois destinos primários:
 * `RazorCompile` &ndash; compila arquivos *. cs* gerados em um assembly Razor. Use o `RazorCompileDependsOn` para especificar destinos adicionais que podem ser executados antes ou depois desse destino.
 * `RazorComponentGenerate` &ndash; código gera arquivos *. cs* para elementos de `RazorComponent` item. Use a propriedade `RazorComponentGenerateDependsOn` para especificar destinos adicionais que podem ser executados antes ou depois desse destino.
 
-### <a name="runtime-compilation-of-razor-views"></a>Compilação de tempo de execução de modos de exibição do Razor
+### <a name="runtime-compilation-of-razor-views"></a>Compilação de runtime de modos de exibição do Razor
 
-* Por padrão, o SDK do Razor não publica assemblies de referência que são necessários para realizar compilação no tempo de execução. Isso resulta em falhas de compilação quando o modelo de aplicativo se baseia na compilação em tempo de execução&mdash;, por exemplo, o aplicativo usa exibições inseridas ou muda as exibições depois que o aplicativo é publicado. Defina `CopyRefAssembliesToPublishDirectory` como `true` para continuar publicando assemblies de referência.
+* Por padrão, o SDK do Razor não publica assemblies de referência que são necessários para realizar compilação no runtime. Isso resulta em falhas de compilação quando o modelo de aplicativo se baseia na compilação em tempo de execução&mdash;, por exemplo, o aplicativo usa exibições inseridas ou muda as exibições depois que o aplicativo é publicado. Defina `CopyRefAssembliesToPublishDirectory` como `true` para continuar publicando assemblies de referência.
 
 * Para um aplicativo Web, verifique se seu aplicativo está direcionando o SDK do `Microsoft.NET.Sdk.Web`.
 

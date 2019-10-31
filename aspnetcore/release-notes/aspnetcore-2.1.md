@@ -8,7 +8,7 @@ ms.date: 04/30/2019
 uid: aspnetcore-2.1
 ms.openlocfilehash: 359f961db768b9048427c8ab296ee3e035879408
 ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 05/06/2019
 ms.locfileid: "65086400"
@@ -81,7 +81,7 @@ O ASP.NET Core fornece APIs e modelos para ajudar a atender alguns dos requisito
 
 É introduzido um novo pacote que simplifica a criação e a execução do teste. O pacote [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/) lida com as seguintes tarefas:
 
-* Copia o arquivo de dependência (*\*.deps*) do aplicativo testado para a pasta *bin* do projeto de teste.
+* Copia o arquivo de dependência ( *\*.deps*) do aplicativo testado para a pasta *bin* do projeto de teste.
 * Define a raiz de conteúdo para a raiz do projeto do aplicativo testado para que arquivos estáticos e páginas/exibições sejam encontrados quando os testes forem executados.
 * Fornece a classe [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) para simplificar a inicialização do aplicativo testado com [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver).
 

@@ -144,7 +144,7 @@ O arquivo *web.config*, que normalmente é gerado durante a publicação de um a
 
 ### <a name="self-contained-deployment-scd"></a>SCD (Implantação Autossuficiente)
 
-A SCD (Implantação Autossuficiente) não se baseia na presença de uma estrutura compartilhada no sistema de destino. O tempo de execução e as dependências do aplicativo são implantados com o aplicativo.
+A SCD (Implantação Autossuficiente) não se baseia na presença de uma estrutura compartilhada no sistema de destino. O runtime e as dependências do aplicativo são implantados com o aplicativo.
 
 Um [RID (Identificador do Tempo de Execução)](/dotnet/core/rid-catalog) do Windows está incluído no `<PropertyGroup>` que contém a estrutura de destino:
 

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
 uid: mvc/controllers/filters
-ms.openlocfilehash: 0c3597f24e02af40517e12a86127b140ed4fb550
-ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
+ms.openlocfilehash: 6a83b8e85b68a9b8796aeed2fd39108dbeed3266
+ms.sourcegitcommit: 032113208bb55ecfb2faeb6d3e9ea44eea827950
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72333930"
+ms.lasthandoff: 10/31/2019
+ms.locfileid: "73190526"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtros no ASP.NET Core
 
@@ -76,7 +76,7 @@ No código anterior, o `SampleAsyncActionFilter` tem um <xref:Microsoft.AspNetCo
 
 É possível implementar interfaces para vários estágios do filtro em uma única classe. Por exemplo, a classe <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> implementa `IActionFilter`, `IResultFilter` e os respectivos equivalentes assíncronos.
 
-Implemente **ou** a versão assíncrona ou a versão síncrona de uma interface de filtro, **não** ambas. Primeiro, o tempo de execução verifica se o filtro implementa a interface assíncrona e, se for esse o caso, a chama. Caso contrário, ela chama os métodos da interface síncrona. Se as interfaces síncrona e assíncrona forem implementadas em uma classe, somente o método assíncrono será chamado. Ao usar classes abstratas como <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute>, substitua apenas os métodos síncronos ou o método assíncrono para cada tipo de filtro.
+Implemente **ou** a versão assíncrona ou a versão síncrona de uma interface de filtro, **não** ambas. Primeiro, o runtime verifica se o filtro implementa a interface assíncrona e, se for esse o caso, a chama. Caso contrário, ela chama os métodos da interface síncrona. Se as interfaces síncrona e assíncrona forem implementadas em uma classe, somente o método assíncrono será chamado. Ao usar classes abstratas como <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute>, substitua apenas os métodos síncronos ou o método assíncrono para cada tipo de filtro.
 
 ### <a name="built-in-filter-attributes"></a>Atributos de filtro internos
 
@@ -261,7 +261,7 @@ No código a seguir, o atributo `ServiceFilter` recupera uma instância do filtr
 
 Ao usar `ServiceFilterAttribute`, configurar [ServiceFilterAttribute.IsReusable](xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.IsReusable):
 
-* Fornece uma dica de que a instância de filtro *pode* ser reutilizada fora do escopo de solicitação em que foi criada. O tempo de execução do ASP.NET Core não garante:
+* Fornece uma dica de que a instância de filtro *pode* ser reutilizada fora do escopo de solicitação em que foi criada. O runtime do ASP.NET Core não garante:
 
   * Que uma única instância do filtro será criada.
   * Que o filtro não será solicitado novamente no contêiner de DI em algum momento posterior.
@@ -280,7 +280,7 @@ Como os tipos `TypeFilterAttribute` não são resolvidos diretamente do contêin
 * Opcionalmente, o `TypeFilterAttribute` pode aceitar argumentos de construtor para o tipo.
 
 Ao usar `TypeFilterAttribute`, configurar [TypeFilterAttribute.IsReusable](xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute.IsReusable):
-* Fornece uma dica de que a instância de filtro *pode* ser reutilizada fora do escopo de solicitação em que foi criada. O tempo de execução do ASP.NET Core não fornece garantias de que uma única instância do filtro será criada.
+* Fornece uma dica de que a instância de filtro *pode* ser reutilizada fora do escopo de solicitação em que foi criada. O runtime do ASP.NET Core não fornece garantias de que uma única instância do filtro será criada.
 
 * Não deve ser usado com um filtro que dependa dos serviços com um tempo de vida diferente de singleton.
 
@@ -404,7 +404,7 @@ Filtros de exceção:
 
 O exemplo de filtro de exceção a seguir usa uma exibição de erro personalizada para mostrar detalhes sobre exceções que ocorrem quando o aplicativo está em desenvolvimento:
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/CustomExceptionFilterAttribute.cs?name=snippet_ExceptionFilter&highlight=16-19)]
+[!code-csharp[](./filters/sample/FiltersSample/Filters/CustomExceptionFilter.cs?name=snippet_ExceptionFilter&highlight=16-19)]
 
 Filtros de exceção:
 

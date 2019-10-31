@@ -9,7 +9,7 @@ ms.date: 06/17/2019
 uid: host-and-deploy/directory-structure
 ms.openlocfilehash: f1df047decc7a0a6b7dcee57a690c55eea428b05
 ms.sourcegitcommit: 28a2874765cefe9eaa068dceb989a978ba2096aa
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 06/17/2019
 ms.locfileid: "67166974"

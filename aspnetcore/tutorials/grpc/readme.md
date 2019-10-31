@@ -10,7 +10,7 @@ products:
 urlFragment: create-grpc-client
 ms.openlocfilehash: a281adc3b1fe90eeb32c1185750f911af683af83
 ms.sourcegitcommit: 476ea5ad86a680b7b017c6f32098acd3414c0f6c
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 08/14/2019
 ms.locfileid: "69029009"

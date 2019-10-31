@@ -7,18 +7,20 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 03/07/2019
 uid: spa/react
-ms.openlocfilehash: 0e61c5b3e31a0b050d356b8f8e16306dc1e2a7f3
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: bbe5328bfa5b4187989a00c3c94e98dabc5d032a
+ms.sourcegitcommit: 032113208bb55ecfb2faeb6d3e9ea44eea827950
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71080410"
+ms.lasthandoff: 10/31/2019
+ms.locfileid: "73190523"
 ---
 # <a name="use-the-react-project-template-with-aspnet-core"></a>Usar o modelo de projeto do React com o ASP.NET Core
 
 O modelo de projeto do React atualizado fornece um ponto inicial conveniente para aplicativos do ASP.NET Core usando convenções do React e de CRA [(criar-aplicativo-do-React)](https://github.com/facebookincubator/create-react-app) para implementar uma IU (interface do usuário) avançada do lado do cliente.
 
 O modelo é equivalente à criação de dois projetos: um projeto do ASP.NET Core, para atuar como um back-end de API, e um projeto do React CRA padrão, para atuar como uma interface do usuário, mas com a praticidade de hospedar ambos em um único projeto de aplicativo que pode ser criado e publicado como uma única unidade.
+
+O modelo de projeto reajam não é destinado à renderização no lado do servidor (SSR). Para SSR com reagir e node. js, considere [Next. js](https://github.com/zeit/next.js/) ou [Razzle](https://github.com/jaredpalmer/razzle).
 
 ## <a name="create-a-new-app"></a>Criar um novo aplicativo
 

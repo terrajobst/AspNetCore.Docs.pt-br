@@ -26,7 +26,7 @@ Para criar um projeto para os modelos de hospedagem descritos neste artigo, cons
 
 ## <a name="blazor-webassembly"></a>WebAssembly Blazor
 
-O modelo de hospedagem principal para o mais alto é executar o lado do cliente no navegador no Webassembly. O aplicativo do Blazor, suas dependências e o tempo de execução do .NET são baixados no navegador. O aplicativo é executado diretamente no thread da interface do usuário do navegador. As atualizações da interface do usuário e o tratamento de eventos ocorrem no mesmo processo. Os ativos do aplicativo são implantados como arquivos estáticos em um servidor Web ou serviço capaz de fornecer conteúdo estático aos clientes.
+O modelo de hospedagem principal para o mais alto é executar o lado do cliente no navegador no Webassembly. O aplicativo do Blazor, suas dependências e o runtime do .NET são baixados no navegador. O aplicativo é executado diretamente no thread da interface do usuário do navegador. As atualizações da interface do usuário e o tratamento de eventos ocorrem no mesmo processo. Os ativos do aplicativo são implantados como arquivos estáticos em um servidor Web ou serviço capaz de fornecer conteúdo estático aos clientes.
 
 ![Webassembly mais incrivelmente: o aplicativo mais incrivelmente é executado em um thread de interface do usuário dentro do navegador.](hosting-models/_static/blazor-webassembly.png)
 

@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 uid: mobile/native-mobile-backend
 ms.openlocfilehash: b50d2593d7dc4b89472033898373e3a22fc9a7a3
 ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 04/27/2019
 ms.locfileid: "64883951"

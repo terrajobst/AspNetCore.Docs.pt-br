@@ -8,7 +8,7 @@ ms.date: 05/14/2019
 uid: mvc/views/view-components
 ms.openlocfilehash: e6990368519857a27b291d7d565c09072f23f1b0
 ms.sourcegitcommit: 7001657c00358b082734ba4273693b9b3ed35d2a
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 07/31/2019
 ms.locfileid: "68670079"

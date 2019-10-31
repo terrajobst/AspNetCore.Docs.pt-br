@@ -329,7 +329,7 @@ Para ativar a configuração de linha de comando, o método de extensão <xref:M
 * [Segredos do usuário (Gerenciador de Segredo)](xref:security/app-secrets) no ambiente de desenvolvimento.
 * Variáveis de ambiente.
 
-`CreateDefaultBuilder` adiciona o Provedor de Configuração de Linha de Comando por último. Os argumentos de linha de comando passados em tempo de execução substituem a configuração definida por outros provedores.
+`CreateDefaultBuilder` adiciona o Provedor de Configuração de Linha de Comando por último. Os argumentos de linha de comando passados em runtime substituem a configuração definida por outros provedores.
 
 `CreateDefaultBuilder` age quando o host é construído. Portanto, a configuração de linha de comando ativada por `CreateDefaultBuilder` pode afetar como o host é configurado.
 

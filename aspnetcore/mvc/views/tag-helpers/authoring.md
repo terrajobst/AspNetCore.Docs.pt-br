@@ -169,7 +169,7 @@ A decoração de uma classe com vários atributos `[HtmlTargetElement]` resulta 
 
 [!code-csharp[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/zBoldTagHelperCopy.cs?highlight=1,2&range=5-15)]
 
-Quando vários atributos são adicionados à mesma instrução, o tempo de execução trata-os como um AND lógico. Por exemplo, no código abaixo, um elemento HTML precisa ser nomeado "bold" com um atributo nomeado "bold" (`<bold bold />`) para que haja a correspondência.
+Quando vários atributos são adicionados à mesma instrução, o runtime trata-os como um AND lógico. Por exemplo, no código abaixo, um elemento HTML precisa ser nomeado "bold" com um atributo nomeado "bold" (`<bold bold />`) para que haja a correspondência.
 
 ```csharp
 [HtmlTargetElement("bold", Attributes = "bold")]

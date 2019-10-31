@@ -9,7 +9,7 @@ ms.date: 12/13/2018
 uid: web-api/advanced/conventions
 ms.openlocfilehash: ae409158defe15ffaa7454039b302cf3c6437e54
 ms.sourcegitcommit: 6d9cf728465cdb0de1037633a8b7df9a8989cccb
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 06/28/2019
 ms.locfileid: "67463290"
