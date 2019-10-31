@@ -7,7 +7,7 @@ ms.date: 08/16/2019
 uid: mvc/controllers/areas
 ms.openlocfilehash: 9065aa23a537add5a9376472e4f4478e9d4149bd
 ms.sourcegitcommit: 776598f71da0d1e4c9e923b3b395d3c3b5825796
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 08/26/2019
 ms.locfileid: "70024738"

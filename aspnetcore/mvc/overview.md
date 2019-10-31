@@ -7,7 +7,7 @@ ms.date: 08/01/2019
 uid: mvc/overview
 ms.openlocfilehash: 7f09751850cbfa7bb3dc79656d4530445a9767b1
 ms.sourcegitcommit: 3204bc89ae6354b61ee0a9b2770ebe5214b7790c
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 08/01/2019
 ms.locfileid: "68707814"

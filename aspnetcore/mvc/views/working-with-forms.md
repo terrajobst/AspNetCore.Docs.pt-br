@@ -8,7 +8,7 @@ ms.date: 04/06/2019
 uid: mvc/views/working-with-forms
 ms.openlocfilehash: 43a1c408ff1a03468989e5bb0839ca2cd245082b
 ms.sourcegitcommit: b5e63714afc26e94be49a92619586df5189ed93a
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 08/02/2019
 ms.locfileid: "68739489"

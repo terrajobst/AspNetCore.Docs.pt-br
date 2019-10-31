@@ -8,7 +8,7 @@ ms.date: 09/12/2018
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ms.openlocfilehash: 5faf0be19448d8272901bf018357da63bbe22d4b
 ms.sourcegitcommit: b40613c603d6f0cc71f3232c16df61550907f550
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 07/18/2019
 ms.locfileid: "68308067"

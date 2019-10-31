@@ -9,7 +9,7 @@ monikerRange: '>= aspnetcore-2.1'
 uid: mvc/models/validation
 ms.openlocfilehash: eb18d3a701a4d1937ac6eb9f61916f348b95882a
 ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 08/22/2019
 ms.locfileid: "69975254"

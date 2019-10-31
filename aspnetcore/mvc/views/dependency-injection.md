@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 uid: mvc/views/dependency-injection
 ms.openlocfilehash: 63feea5ddf286dd3e659f3a622cfb0f7451b9bba
 ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 07/11/2019
 ms.locfileid: "67815335"

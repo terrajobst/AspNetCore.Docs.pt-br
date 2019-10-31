@@ -8,7 +8,7 @@ ms.date: 07/15/2019
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ms.openlocfilehash: 9e093e83a1f6367cbb244076a8351644244f9874
 ms.sourcegitcommit: 7e00e8236ca4eabf058f07020a5a3882daf7564f
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 07/16/2019
 ms.locfileid: "68239220"
