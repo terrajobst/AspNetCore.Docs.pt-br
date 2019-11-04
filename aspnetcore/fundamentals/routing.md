@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/24/2019
 uid: fundamentals/routing
-ms.openlocfilehash: 8b4da4e1e262ec82225413d0338b3492d0b5e152
-ms.sourcegitcommit: 032113208bb55ecfb2faeb6d3e9ea44eea827950
+ms.openlocfilehash: be4493cc927bd5437a2c9dab00b6a555756195bb
+ms.sourcegitcommit: eb2fe5ad2e82fab86ca952463af8d017ba659b25
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/31/2019
-ms.locfileid: "73190508"
+ms.lasthandoff: 11/01/2019
+ms.locfileid: "73416134"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -127,7 +127,7 @@ Os métodos fornecidos pelo <xref:Microsoft.AspNetCore.Routing.LinkGenerator> d�
 >
 > * Use <xref:Microsoft.AspNetCore.Routing.LinkGenerator> com cuidado no middleware em combinação com `Map` ou `MapWhen`. `Map*` altera o caminho base da solicitação em execução, o que afeta a saída da geração de link. Todas as APIs de <xref:Microsoft.AspNetCore.Routing.LinkGenerator> permitem a especificação de um caminho base. Sempre especifique um caminho base vazio para desfazer o efeito de `Map*` na geração de link.
 
-## <a name="differences-from-earlier-versions-of-routing"></a>Diferenças das versões anteriores de roteamento
+## <a name="endpoint-routing-differences-from-earlier-versions-of-routing"></a>Diferenças de roteamento de ponto de extremidade de versões anteriores do roteamento
 
 Existem algumas diferenças entre o roteamento do ponto de extremidade e as versões de roteamento anteriores ao ASP.NET Core 2,2:
 

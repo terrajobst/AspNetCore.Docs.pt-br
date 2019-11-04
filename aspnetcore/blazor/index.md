@@ -5,14 +5,14 @@ description: Explore o Blazor no ASP.NET Core, uma maneira de criar a IU da Web 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc, seoapril2019
-ms.date: 10/15/2019
+ms.date: 10/31/2019
 uid: blazor/index
-ms.openlocfilehash: abf631b5e1cf762eaef4bd85a6b85802c9899291
-ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
+ms.openlocfilehash: c2574c1250cf94e89dd5476b6174620d83546236
+ms.sourcegitcommit: 77c8be22d5e88dd710f42c739748869f198865dd
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72391151"
+ms.lasthandoff: 11/01/2019
+ms.locfileid: "73427025"
 ---
 # <a name="introduction-to-aspnet-core-blazor"></a>Introdução ao ASP.NET Core mais incrivelmente
 
@@ -116,20 +116,20 @@ O código WebAssembly pode acessar a funcionalidade completa do navegador por me
 Quando um aplicativo Webassembly mais elaborado é criado e executado em um navegador:
 
 * os arquivos C# e os arquivos Razor são compilados em assemblies do .NET.
-* os assemblies e o runtime do .NET são baixados no navegador.
+* os assemblies e o tempo de execução do .NET são baixados no navegador.
 * O Webassembly de mais incrivelmente Inicializa o tempo de execução do .NET e configura o tempo de execução para carregar os assemblies para o aplicativo. O tempo de execução do Webassembly mais incrivelmente usa a interoperabilidade JavaScript para lidar com a manipulação de DOM e chamadas de API de navegador
 
 O tamanho do aplicativo publicado, seu *tamanho de payload*, é um fator de desempenho crítico para a utilidade do aplicativo. Um aplicativo grande leva um tempo relativamente longo para baixar para um navegador, o que afeta a experiência do usuário. Webassembly mais incrivelmente otimiza o tamanho da carga para reduzir os tempos de download:
 
 * O código não utilizado é retirado do aplicativo quando publicado pelo [Vinculador de linguagem intermediária (IL)](xref:host-and-deploy/blazor/configure-linker).
 * As respostas HTTP são compactadas.
-* O runtime do .NET e os assemblies são armazenados em cache no navegador.
+* O tempo de execução do .NET e os assemblies são armazenados em cache no navegador.
 
 ## <a name="blazor-server"></a>Servidor Blazor
 
 Os componentes Blazor desvinculam a lógica de renderização do componente da forma como as atualizações da interface do usuário são aplicadas. O servidor mais incrivelmente dá suporte para hospedar componentes do Razor no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário são tratadas por uma conexão [SignalR](xref:signalr/introduction).
 
-O runtime realiza o envio de eventos da interface do usuário do navegador para o servidor e executar os componentes, aplica as atualizações na interface do usuário retornadas pelo servidor ao navegador.
+O tempo de execução realiza o envio de eventos da interface do usuário do navegador para o servidor e executar os componentes, aplica as atualizações na interface do usuário retornadas pelo servidor ao navegador.
 
 A conexão usada pelo servidor mais incrivelmente para se comunicar com o navegador também é usada para lidar com as chamadas de interoperabilidade do JavaScript.
 
@@ -152,3 +152,4 @@ As APIs que não são aplicáveis em um navegador da Web (por exemplo, para aces
 * [Guia do C#](/dotnet/csharp/)
 * <xref:mvc/views/razor>
 * [HTML](https://www.w3.org/html/)
+* Links da Comunidade [incríveis](https://github.com/AdrienTorris/awesome-blazor)
