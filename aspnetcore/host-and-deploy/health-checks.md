@@ -5,14 +5,14 @@ description: Saiba como configurar verificações de integridade para a infraest
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/27/2019
+ms.date: 11/03/2019
 uid: host-and-deploy/health-checks
-ms.openlocfilehash: e4b2a577815335078f7e0c9128144a514e42a6c3
-ms.sourcegitcommit: 5d25a7f22c50ca6fdd0f8ecd8e525822e1b35b7a
+ms.openlocfilehash: c7cf1c432d2186f0e2f9f5082e8a2229d8a5ef8f
+ms.sourcegitcommit: 9e85c2562df5e108d7933635c830297f484bb775
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/28/2019
-ms.locfileid: "71482059"
+ms.lasthandoff: 11/04/2019
+ms.locfileid: "73463024"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Verificações de integridade no ASP.NET Core
 
@@ -32,11 +32,11 @@ As verificações de integridade são expostas por um aplicativo como pontos de 
 
 O aplicativo de exemplo inclui exemplos dos cenários descritos neste tópico. Para executar o aplicativo de exemplo para determinado cenário, use o comando [dotnet run](/dotnet/core/tools/dotnet-run) na pasta do projeto em um shell de comando. Confira o arquivo *README.md* do aplicativo de exemplo e as descrições de cenários neste tópico para obter detalhes sobre como usar o aplicativo de exemplo.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 As verificações de integridade são normalmente usadas com um orquestrador de contêineres ou um serviço de monitoramento externo para verificar o status de um aplicativo. Antes de adicionar verificações de integridade a um aplicativo, decida qual sistema de monitoramento será usado. O sistema de monitoramento determina quais tipos de verificações de integridade serão criados e como configurar seus pontos de extremidade.
 
-Adicione uma referência de pacote ao pacote [Microsoft. AspNetCore. Diagnostics. HealthChecks](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks) . Para executar verificações de integridade usando Entity Framework Core, adicione uma referência de pacote ao pacote [Microsoft. Extensions. Diagnostics. HealthChecks. EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore) .
+O pacote [Microsoft. AspNetCore. Diagnostics. HealthChecks](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks) é referenciado implicitamente para aplicativos ASP.NET Core. Para executar verificações de integridade usando Entity Framework Core, adicione uma referência de pacote ao pacote [Microsoft. Extensions. Diagnostics. HealthChecks. EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore) .
 
 O aplicativo de exemplo fornece um código de inicialização para demonstrar verificações de integridade para vários cenários. O cenário [investigação de banco de dados](#database-probe) verifica a integridade de uma conexão de banco de dados usando [AspNetCore.Diagnostics.HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks). O cenário [investigação de DbContext](#entity-framework-core-dbcontext-probe) verifica um banco de dados usando um `DbContext` do EF Core. Para explorar os cenários de banco de dados, o aplicativo de exemplo:
 
@@ -56,7 +56,7 @@ Para muitos aplicativos, uma configuração básica de investigação de integri
 
 A configuração básica registra serviços de verificação de integridade e chama o middleware de verificações de integridade para responder em um ponto de extremidade de URL com uma resposta de integridade. Por padrão, nenhuma verificação de integridade específica é registrada para testar qualquer dependência ou subsistema específico. O aplicativo é considerado íntegro se consegue responder na URL do ponto de extremidade de integridade. O gravador de resposta padrão grava o status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) como uma resposta de texto não criptografado no cliente, indicando um status [HealthStatus.Healthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus), [HealthStatus.Degraded](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus) ou [HealthStatus.Unhealthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus).
 
-Registre os serviços de verificação de integridade com <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> em `Startup.ConfigureServices`. Crie um ponto de extremidade de verificação `MapHealthChecks` de `Startup.Configure`integridade chamando em.
+Registre os serviços de verificação de integridade com <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> em `Startup.ConfigureServices`. Crie um ponto de extremidade de verificação de integridade chamando `MapHealthChecks` em `Startup.Configure`.
 
 No aplicativo de exemplo, o ponto de extremidade de verificação de integridade é criado em `/health` (*BasicStartup.cs*):
 
@@ -98,7 +98,7 @@ HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit
 
 As verificações de integridade são criadas pela implementação da interface <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck>. O método <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync*> retorna um <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> que indica a integridade como `Healthy`, `Degraded` ou `Unhealthy`. O resultado é gravado como uma resposta de texto sem formatação com um código de status configurável (a configuração é descrita na seção [Opções de verificação de integridade](#health-check-options)). <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> também pode retornar pares chave-valor opcionais.
 
-A classe `ExampleHealthCheck` a seguir demonstra o layout de uma verificação de integridade. A lógica de verificações de integridade é colocada `CheckHealthAsync` no método. O exemplo a seguir define uma variável fictícia `healthCheckResultHealthy`,, `true`para. Se o valor de `healthCheckResultHealthy` for definido como `false`, o [HealthCheckResult.](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Unhealthy*) status não íntegro será retornado.
+A classe de `ExampleHealthCheck` a seguir demonstra o layout de uma verificação de integridade. A lógica de verificações de integridade é colocada no método `CheckHealthAsync`. O exemplo a seguir define uma variável fictícia, `healthCheckResultHealthy`, para `true`. Se o valor de `healthCheckResultHealthy` for definido como `false`, o [HealthCheckResult.](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Unhealthy*) status não íntegro será retornado.
 
 ```csharp
 public class ExampleHealthCheck : IHealthCheck
@@ -123,7 +123,7 @@ public class ExampleHealthCheck : IHealthCheck
 
 ## <a name="register-health-check-services"></a>Registrar os serviços de verificação de integridade
 
-O `ExampleHealthCheck` tipo é adicionado aos serviços de verificação de <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> integridade `Startup.ConfigureServices`com em:
+O tipo de `ExampleHealthCheck` é adicionado aos serviços de verificação de integridade com <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> no `Startup.ConfigureServices`:
 
 ```csharp
 services.AddHealthChecks()
@@ -176,7 +176,7 @@ Para obter mais informações, confira a seção [Filtrar por porta](#filter-by-
 
 ### <a name="require-authorization"></a>Exigir autorização
 
-Chame `RequireAuthorization` para executar o middleware de autorização no ponto de extremidade de solicitação de verificação de integridade. Uma `RequireAuthorization` sobrecarga aceita uma ou mais políticas de autorização. Se uma política não for fornecida, a política de autorização padrão será usada.
+Chame `RequireAuthorization` para executar o middleware de autorização no ponto de extremidade de solicitação de verificação de integridade. Uma sobrecarga de `RequireAuthorization` aceita uma ou mais políticas de autorização. Se uma política não for fornecida, a política de autorização padrão será usada.
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -187,7 +187,7 @@ app.UseEndpoints(endpoints =>
 
 ### <a name="enable-cross-origin-requests-cors"></a>Habilitar o CORS (Solicitações Entre Origens)
 
-Embora a execução manual de verificações de integridade de um navegador não seja um cenário de uso comum, o middleware CORS `RequireCors` pode ser habilitado chamando os pontos de extremidade de verificações de integridade. Uma `RequireCors` sobrecarga aceita um delegado do construtor de política`CorsPolicyBuilder`CORS () ou um nome de política. Se uma política não for fornecida, a política CORS padrão será usada. Para obter mais informações, consulte <xref:security/cors>.
+Embora a execução manual de verificações de integridade de um navegador não seja um cenário de uso comum, o middleware CORS pode ser habilitado chamando `RequireCors` nos pontos de extremidade de verificações de integridade. Uma sobrecarga de `RequireCors` aceita um delegado de construtor de política CORS (`CorsPolicyBuilder`) ou um nome de política. Se uma política não for fornecida, a política CORS padrão será usada. Para obter mais informações, consulte <xref:security/cors>.
 
 ## <a name="health-check-options"></a>Opções de verificação de integridade
 
@@ -250,7 +250,7 @@ app.UseEndpoints(endpoints =>
 
 ### <a name="suppress-cache-headers"></a>Suprimir os cabeçalhos de cache
 
-<xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.AllowCachingResponses>controla se o middleware de verificações de integridade adiciona cabeçalhos HTTP a uma resposta de investigação para evitar o cache de resposta. Se o valor é `false` (padrão), o middleware define ou substitui os cabeçalhos `Cache-Control`, `Expires` e `Pragma` para prevenir o cache de resposta. Se o valor é `true`, o middleware não modifica os cabeçalhos de cache da resposta.
+<xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.AllowCachingResponses> controla se o middleware de verificações de integridade adiciona cabeçalhos HTTP a uma resposta de investigação para evitar o cache de resposta. Se o valor é `false` (padrão), o middleware define ou substitui os cabeçalhos `Cache-Control`, `Expires` e `Pragma` para prevenir o cache de resposta. Se o valor é `true`, o middleware não modifica os cabeçalhos de cache da resposta.
 
 No `Startup.Configure`:
 
@@ -300,7 +300,7 @@ private static Task WriteResponse(HttpContext httpContext, HealthReport result)
 }
 ```
 
-O sistema de verificações de integridade não fornece suporte interno para formatos de retorno JSON complexos porque o formato é específico à sua escolha de sistema de monitoramento. Fique à vontade para personalizar `JObject` o no exemplo anterior conforme necessário para atender às suas necessidades.
+O sistema de verificações de integridade não fornece suporte interno para formatos de retorno JSON complexos porque o formato é específico à sua escolha de sistema de monitoramento. Fique à vontade para personalizar o `JObject` no exemplo anterior, conforme necessário, para atender às suas necessidades.
 
 ## <a name="database-probe"></a>Investigação de banco de dados
 
@@ -321,7 +321,7 @@ Registre os serviços de verificação de integridade com <xref:Microsoft.Extens
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/DbHealthStartup.cs?name=snippet_ConfigureServices)]
 
-Um ponto de extremidade de verificação de integridade `MapHealthChecks` é `Startup.Configure`criado chamando em:
+Um ponto de extremidade de verificação de integridade é criado chamando `MapHealthChecks` em `Startup.Configure`:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -353,11 +353,11 @@ Por padrão:
 * o `DbContextHealthCheck` chama o método `CanConnectAsync` do EF Core. Você pode personalizar qual operação é executada durante a verificação de integridade usando sobrecargas do método `AddDbContextCheck`.
 * O nome da verificação de integridade é o nome do tipo `TContext`.
 
-No aplicativo de exemplo, `AppDbContext` é `AddDbContextCheck` fornecido e registrado como um serviço no `Startup.ConfigureServices` (*DbContextHealthStartup.cs*):
+No aplicativo de exemplo, `AppDbContext` é fornecida para `AddDbContextCheck` e registrada como um serviço no `Startup.ConfigureServices` (*DbContextHealthStartup.cs*):
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/DbContextHealthStartup.cs?name=snippet_ConfigureServices)]
 
-Um ponto de extremidade de verificação de integridade `MapHealthChecks` é `Startup.Configure`criado chamando em:
+Um ponto de extremidade de verificação de integridade é criado chamando `MapHealthChecks` em `Startup.Configure`:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -429,10 +429,10 @@ A verificação de integridade é registrada em <xref:Microsoft.Extensions.Depen
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/LivenessProbeStartup.cs?name=snippet_ConfigureServices)]
 
-Um ponto de extremidade de verificação de integridade `MapHealthChecks` é `Startup.Configure`criado chamando em. No aplicativo de exemplo, os pontos de extremidade de verificação de integridade são criados em:
+Um ponto de extremidade de verificação de integridade é criado chamando `MapHealthChecks` em `Startup.Configure`. No aplicativo de exemplo, os pontos de extremidade de verificação de integridade são criados em:
 
-* `/health/ready`para a verificação de preparação. A verificação de preparação filtra as verificações de integridade para a verificação de integridade com a marca `ready`.
-* `/health/live`para a verificação de tempo de vida. A verificação de vida filtra `StartupHostedServiceHealthCheck` o retornando `false` no [HealthCheckOptions. Predicate](xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate) (para obter mais informações, consulte [Filtrar verificações de integridade](#filter-health-checks))
+* `/health/ready` para a verificação de preparação. A verificação de preparação filtra as verificações de integridade para a verificação de integridade com a marca `ready`.
+* `/health/live` para a verificação de tempo de vida. A verificação de vida filtra a `StartupHostedServiceHealthCheck` retornando `false` no [predicado HealthCheckOptions.](xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate) (para obter mais informações, consulte [Filtrar verificações de integridade](#filter-health-checks))
 
 No código de exemplo a seguir:
 
@@ -501,7 +501,7 @@ No aplicativo de exemplo (*CustomWriterStartup.cs*):
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/CustomWriterStartup.cs?name=snippet_ConfigureServices&highlight=4)]
 
-Um ponto de extremidade de verificação de integridade `MapHealthChecks` é `Startup.Configure`criado chamando em. Um representante `WriteResponse` é fornecido para a propriedade `ResponseWriter` para gerar uma resposta JSON personalizada quando a verificação de integridade é executada:
+Um ponto de extremidade de verificação de integridade é criado chamando `MapHealthChecks` em `Startup.Configure`. Um representante `WriteResponse` é fornecido para a propriedade `ResponseWriter` para gerar uma resposta JSON personalizada quando a verificação de integridade é executada:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -530,7 +530,7 @@ dotnet run --scenario writer
 
 ## <a name="filter-by-port"></a>Filtrar por porta
 
-Chame `RequireHost` on`MapHealthChecks` com um padrão de URL que especifica uma porta para restringir as solicitações de verificação de integridade à porta especificada. Isso normalmente é usado em um ambiente de contêiner para expor uma porta para os serviços de monitoramento.
+Chame `RequireHost` em `MapHealthChecks` com um padrão de URL que especifica uma porta para restringir as solicitações de verificação de integridade à porta especificada. Isso normalmente é usado em um ambiente de contêiner para expor uma porta para os serviços de monitoramento.
 
 O aplicativo de exemplo configura a porta usando o [Provedor de Configuração de Variáveis de Ambiente](xref:fundamentals/configuration/index#environment-variables-configuration-provider). A porta é definida no arquivo *launchSettings.json* e passada para o provedor de configuração por meio de uma variável de ambiente. Você também precisa configurar o servidor para escutar as solicitações na porta de gerenciamento.
 
@@ -556,16 +556,16 @@ O arquivo de *Propriedades/launchSettings. JSON* a seguir no aplicativo de exemp
 }
 ```
 
-Registre os serviços de verificação de integridade com <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> em `Startup.ConfigureServices`. Crie um ponto de extremidade de verificação `MapHealthChecks` de `Startup.Configure`integridade chamando em.
+Registre os serviços de verificação de integridade com <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> em `Startup.ConfigureServices`. Crie um ponto de extremidade de verificação de integridade chamando `MapHealthChecks` em `Startup.Configure`.
 
-No aplicativo de exemplo, uma chamada para `RequireHost` no ponto de extremidade `Startup.Configure` no especifica a porta de gerenciamento da configuração:
+No aplicativo de exemplo, uma chamada para `RequireHost` no ponto de extremidade em `Startup.Configure` especifica a porta de gerenciamento da configuração:
 
 ```csharp
 endpoints.MapHealthChecks("/health")
     .RequireHost($"*:{Configuration["ManagementPort"]}");
 ```
 
-Os pontos de extremidade são criados no aplicativo de exemplo `Startup.Configure`no. No código de exemplo a seguir:
+Os pontos de extremidade são criados no aplicativo de exemplo no `Startup.Configure`. No código de exemplo a seguir:
 
 * A verificação de preparação usa todas as verificações registradas com a marca ' Ready '.
 * O `Predicate` exclui todas as verificações e retorna um 200-OK.
@@ -586,7 +586,7 @@ app.UseEndpoints(endpoints =>
 ```
 
 > [!NOTE]
-> Você pode evitar criar o arquivo *launchSettings. JSON* no aplicativo de exemplo definindo a porta de gerenciamento explicitamente no código. Em *Program.cs* em que <xref:Microsoft.Extensions.Hosting.HostBuilder> o é criado, adicione uma chamada <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP*> para e forneça o ponto de extremidade da porta de gerenciamento do aplicativo. Em `Configure` *ManagementPortStartup.cs*, especifique a porta de gerenciamento com `RequireHost`:
+> Você pode evitar criar o arquivo *launchSettings. JSON* no aplicativo de exemplo definindo a porta de gerenciamento explicitamente no código. Em *Program.cs* em que o <xref:Microsoft.Extensions.Hosting.HostBuilder> é criado, adicione uma chamada para <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP*> e forneça o ponto de extremidade da porta de gerenciamento do aplicativo. Em `Configure` de *ManagementPortStartup.cs*, especifique a porta de gerenciamento com `RequireHost`:
 >
 > *Program.cs*:
 >
@@ -625,12 +625,12 @@ Para distribuir uma verificação de integridade como uma biblioteca:
 
 1. Escreva uma verificação de integridade que implementa a interface <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> como uma classe autônoma. A classe pode depender da [DI (injeção de dependência)](xref:fundamentals/dependency-injection), da ativação de tipo e das [opções nomeadas](xref:fundamentals/configuration/options) para acessar os dados de configuração.
 
-   Na lógica de verificações de integridade `CheckHealthAsync`de:
+   Na lógica de verificações de integridade de `CheckHealthAsync`:
 
-   * `data1`e `data2` são usados no método para executar a lógica de verificação de integridade da investigação.
-   * `AccessViolationException`é manipulado.
+   * `data1` e `data2` são usados no método para executar a lógica de verificação de integridade da investigação.
+   * `AccessViolationException` é manipulado.
 
-   Quando ocorre <xref:System.AccessViolationException> um erro, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus> o é retornado com <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> o para permitir que os usuários configurem o status de falha de verificações de integridade.
+   Quando ocorre uma <xref:System.AccessViolationException>, a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus> é retornada com a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> para permitir que os usuários configurem o status de falha de verificações de integridade.
 
    ```csharp
    using System;
@@ -729,8 +729,8 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 
 No aplicativo de exemplo, `ReadinessPublisher` é uma implementação <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. O status da verificação de integridade é registrado para cada verificação em um nível de log de:
 
-* Informações (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>) se o status das verificações de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy>integridade for.
-* Erro (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError*>) se o status <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded> for ou <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy>.
+* Informações (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>) se o status das verificações de integridade for <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy>.
+* Erro (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError*>) se o status for <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded> ou <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy>.
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/ReadinessPublisher.cs?name=snippet_ReadinessPublisher&highlight=18-27)]
 
@@ -747,7 +747,7 @@ No exemplo `LivenessProbeStartup` do aplicativo de amostra, a verificação de p
 
 Use <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> para ramificar condicionalmente o pipeline de solicitação para pontos de extremidade de verificação de integridade.
 
-No exemplo a seguir, `MapWhen` ramifica o pipeline de solicitação para ativar o middleware de verificações de integridade se uma solicitação get for `api/HealthCheck` recebida para o ponto de extremidade:
+No exemplo a seguir, `MapWhen` ramifica o pipeline de solicitação para ativar o middleware de verificações de integridade se uma solicitação GET for recebida para o ponto de extremidade de `api/HealthCheck`:
 
 ```csharp
 app.MapWhen(
@@ -779,7 +779,7 @@ As verificações de integridade são expostas por um aplicativo como pontos de 
 
 O aplicativo de exemplo inclui exemplos dos cenários descritos neste tópico. Para executar o aplicativo de exemplo para determinado cenário, use o comando [dotnet run](/dotnet/core/tools/dotnet-run) na pasta do projeto em um shell de comando. Confira o arquivo *README.md* do aplicativo de exemplo e as descrições de cenários neste tópico para obter detalhes sobre como usar o aplicativo de exemplo.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 As verificações de integridade são normalmente usadas com um orquestrador de contêineres ou um serviço de monitoramento externo para verificar o status de um aplicativo. Antes de adicionar verificações de integridade a um aplicativo, decida qual sistema de monitoramento será usado. O sistema de monitoramento determina quais tipos de verificações de integridade serão criados e como configurar seus pontos de extremidade.
 
@@ -803,7 +803,7 @@ Para muitos aplicativos, uma configuração básica de investigação de integri
 
 A configuração básica registra serviços de verificação de integridade e chama o middleware de verificações de integridade para responder em um ponto de extremidade de URL com uma resposta de integridade. Por padrão, nenhuma verificação de integridade específica é registrada para testar qualquer dependência ou subsistema específico. O aplicativo é considerado íntegro se consegue responder na URL do ponto de extremidade de integridade. O gravador de resposta padrão grava o status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) como uma resposta de texto não criptografado no cliente, indicando um status [HealthStatus.Healthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus), [HealthStatus.Degraded](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus) ou [HealthStatus.Unhealthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus).
 
-Registre os serviços de verificação de integridade com <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> em `Startup.ConfigureServices`. Adicione um ponto de extremidade para o middleware de <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*> verificações de integridade com no pipeline `Startup.Configure`de processamento de solicitação de.
+Registre os serviços de verificação de integridade com <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> em `Startup.ConfigureServices`. Adicione um ponto de extremidade para o middleware de verificações de integridade com <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*> no pipeline de processamento de solicitação de `Startup.Configure`.
 
 No aplicativo de exemplo, o ponto de extremidade de verificação de integridade é criado em `/health` (*BasicStartup.cs*):
 
@@ -842,7 +842,7 @@ As verificações de integridade são criadas pela implementação da interface 
 
 ### <a name="example-health-check"></a>Verificação de integridade de exemplo
 
-A classe `ExampleHealthCheck` a seguir demonstra o layout de uma verificação de integridade. A lógica de verificações de integridade é colocada `CheckHealthAsync` no método. O exemplo a seguir define uma variável fictícia `healthCheckResultHealthy`,, `true`para. Se o valor de `healthCheckResultHealthy` for definido como `false`, o [HealthCheckResult.](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Unhealthy*) status não íntegro será retornado.
+A classe de `ExampleHealthCheck` a seguir demonstra o layout de uma verificação de integridade. A lógica de verificações de integridade é colocada no método `CheckHealthAsync`. O exemplo a seguir define uma variável fictícia, `healthCheckResultHealthy`, para `true`. Se o valor de `healthCheckResultHealthy` for definido como `false`, o [HealthCheckResult.](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Unhealthy*) status não íntegro será retornado.
 
 ```csharp
 public class ExampleHealthCheck : IHealthCheck
@@ -867,7 +867,7 @@ public class ExampleHealthCheck : IHealthCheck
 
 ### <a name="register-health-check-services"></a>Registrar os serviços de verificação de integridade
 
-O `ExampleHealthCheck` tipo é adicionado aos serviços de verificação de `Startup.ConfigureServices` integridade <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*>no com:
+O tipo de `ExampleHealthCheck` é adicionado aos serviços de verificação de integridade em `Startup.ConfigureServices` com <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*>:
 
 ```csharp
 services.AddHealthChecks()
@@ -886,7 +886,7 @@ services.AddHealthChecks()
         tags: new[] { "example" });
 ```
 
-<xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> também pode executar uma função lambda. No exemplo a `Startup.ConfigureServices` seguir, o nome da verificação de integridade é `Example` especificado como e a verificação sempre retorna um estado íntegro:
+<xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> também pode executar uma função lambda. No exemplo a seguir `Startup.ConfigureServices`, o nome da verificação de integridade é especificado como `Example` e a verificação sempre retorna um estado íntegro:
 
 ```csharp
 services.AddHealthChecks()
@@ -971,7 +971,7 @@ app.UseHealthChecks("/health", new HealthCheckOptions()
 
 ### <a name="suppress-cache-headers"></a>Suprimir os cabeçalhos de cache
 
-<xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.AllowCachingResponses>controla se o middleware de verificações de integridade adiciona cabeçalhos HTTP a uma resposta de investigação para evitar o cache de resposta. Se o valor é `false` (padrão), o middleware define ou substitui os cabeçalhos `Cache-Control`, `Expires` e `Pragma` para prevenir o cache de resposta. Se o valor é `true`, o middleware não modifica os cabeçalhos de cache da resposta.
+<xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.AllowCachingResponses> controla se o middleware de verificações de integridade adiciona cabeçalhos HTTP a uma resposta de investigação para evitar o cache de resposta. Se o valor é `false` (padrão), o middleware define ou substitui os cabeçalhos `Cache-Control`, `Expires` e `Pragma` para prevenir o cache de resposta. Se o valor é `true`, o middleware não modifica os cabeçalhos de cache da resposta.
 
 No `Startup.Configure`:
 
@@ -1021,7 +1021,7 @@ private static Task WriteResponse(HttpContext httpContext, HealthReport result)
 }
 ```
 
-O sistema de verificações de integridade não fornece suporte interno para formatos de retorno JSON complexos porque o formato é específico à sua escolha de sistema de monitoramento. Fique à vontade para personalizar `JObject` o no exemplo anterior conforme necessário para atender às suas necessidades.
+O sistema de verificações de integridade não fornece suporte interno para formatos de retorno JSON complexos porque o formato é específico à sua escolha de sistema de monitoramento. Fique à vontade para personalizar o `JObject` no exemplo anterior, conforme necessário, para atender às suas necessidades.
 
 ## <a name="database-probe"></a>Investigação de banco de dados
 
@@ -1042,7 +1042,7 @@ Registre os serviços de verificação de integridade com <xref:Microsoft.Extens
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/DbHealthStartup.cs?name=snippet_ConfigureServices)]
 
-Chame o middleware de verificações de integridade no pipeline de processamento `Startup.Configure`de aplicativo em:
+O middleware de verificações de integridade de chamada no pipeline de processamento de aplicativo no `Startup.Configure`:
 
 ```csharp
 app.UseHealthChecks("/health");
@@ -1071,11 +1071,11 @@ Por padrão:
 * o `DbContextHealthCheck` chama o método `CanConnectAsync` do EF Core. Você pode personalizar qual operação é executada durante a verificação de integridade usando sobrecargas do método `AddDbContextCheck`.
 * O nome da verificação de integridade é o nome do tipo `TContext`.
 
-No aplicativo de exemplo, `AppDbContext` é `AddDbContextCheck` fornecido e registrado como um serviço no `Startup.ConfigureServices` (*DbContextHealthStartup.cs*):
+No aplicativo de exemplo, `AppDbContext` é fornecida para `AddDbContextCheck` e registrada como um serviço no `Startup.ConfigureServices` (*DbContextHealthStartup.cs*):
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/DbContextHealthStartup.cs?name=snippet_ConfigureServices)]
 
-No aplicativo de exemplo, `UseHealthChecks` o adiciona o middleware de verificações de `Startup.Configure`integridade no.
+No aplicativo de exemplo, `UseHealthChecks` adiciona o middleware de verificações de integridade em `Startup.Configure`.
 
 ```csharp
 app.UseHealthChecks("/health");
@@ -1144,7 +1144,7 @@ A verificação de integridade é registrada em <xref:Microsoft.Extensions.Depen
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/LivenessProbeStartup.cs?name=snippet_ConfigureServices)]
 
-Chame o middleware de verificações de integridade no pipeline de processamento `Startup.Configure`de aplicativo no. No aplicativo de exemplo, os pontos de extremidade de verificação de integridade são criados em `/health/ready` para a verificação de preparação e em `/health/live` para a verificação de atividade. A verificação de preparação filtra as verificações de integridade para a verificação de integridade com a marca `ready`. A verificação de atividade filtra a `StartupHostedServiceHealthCheck` retornando `false` no [HealthCheckOptions.Predicate](xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate) (para obter mais informações, confira [Filtrar verificações de integridade](#filter-health-checks)):
+Chame o middleware de verificações de integridade no pipeline de processamento de aplicativos no `Startup.Configure`. No aplicativo de exemplo, os pontos de extremidade de verificação de integridade são criados em `/health/ready` para a verificação de preparação e em `/health/live` para a verificação de atividade. A verificação de preparação filtra as verificações de integridade para a verificação de integridade com a marca `ready`. A verificação de atividade filtra a `StartupHostedServiceHealthCheck` retornando `false` no [HealthCheckOptions.Predicate](xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate) (para obter mais informações, confira [Filtrar verificações de integridade](#filter-health-checks)):
 
 ```csharp
 app.UseHealthChecks("/health/ready", new HealthCheckOptions()
@@ -1195,7 +1195,7 @@ spec:
 
 O aplicativo de exemplo demonstra uma verificação de integridade da memória com um gravador de resposta personalizada.
 
-`MemoryHealthCheck`relata um status não íntegro se o aplicativo usar mais do que um determinado limite de memória (1 GB no aplicativo de exemplo). O <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> inclui informações de GC (Coletor de Lixo) para o aplicativo (*MemoryHealthCheck.cs*):
+`MemoryHealthCheck` relatará um status não íntegro se o aplicativo usar mais do que um determinado limite de memória (1 GB no aplicativo de exemplo). O <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> inclui informações de GC (Coletor de Lixo) para o aplicativo (*MemoryHealthCheck.cs*):
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/MemoryHealthCheck.cs?name=snippet1)]
 
@@ -1205,7 +1205,7 @@ No aplicativo de exemplo (*CustomWriterStartup.cs*):
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/CustomWriterStartup.cs?name=snippet_ConfigureServices&highlight=4)]
 
-Chame o middleware de verificações de integridade no pipeline de processamento `Startup.Configure`de aplicativo no. Um representante `WriteResponse` é fornecido para a propriedade `ResponseWriter` para gerar uma resposta JSON personalizada quando a verificação de integridade é executada:
+Chame o middleware de verificações de integridade no pipeline de processamento de aplicativos no `Startup.Configure`. Um representante `WriteResponse` é fornecido para a propriedade `ResponseWriter` para gerar uma resposta JSON personalizada quando a verificação de integridade é executada:
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -1303,12 +1303,12 @@ Para distribuir uma verificação de integridade como uma biblioteca:
 
 1. Escreva uma verificação de integridade que implementa a interface <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> como uma classe autônoma. A classe pode depender da [DI (injeção de dependência)](xref:fundamentals/dependency-injection), da ativação de tipo e das [opções nomeadas](xref:fundamentals/configuration/options) para acessar os dados de configuração.
 
-   Na lógica de verificações de integridade `CheckHealthAsync`de:
+   Na lógica de verificações de integridade de `CheckHealthAsync`:
 
-   * `data1`e `data2` são usados no método para executar a lógica de verificação de integridade da investigação.
-   * `AccessViolationException`é manipulado.
+   * `data1` e `data2` são usados no método para executar a lógica de verificação de integridade da investigação.
+   * `AccessViolationException` é manipulado.
 
-   Quando ocorre <xref:System.AccessViolationException> um erro, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus> o é retornado com <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> o para permitir que os usuários configurem o status de falha de verificações de integridade.
+   Quando ocorre uma <xref:System.AccessViolationException>, a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus> é retornada com a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> para permitir que os usuários configurem o status de falha de verificações de integridade.
 
    ```csharp
    using System;
@@ -1407,8 +1407,8 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 
 No aplicativo de exemplo, `ReadinessPublisher` é uma implementação <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. O status da verificação de integridade é registrado para cada verificação:
 
-* Informações (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>) se o status das verificações de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy>integridade for.
-* Erro (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError*>) se o status <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded> for ou <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy>.
+* Informações (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>) se o status das verificações de integridade for <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy>.
+* Erro (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError*>) se o status for <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded> ou <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy>.
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/ReadinessPublisher.cs?name=snippet_ReadinessPublisher&highlight=18-27)]
 
@@ -1438,7 +1438,7 @@ No exemplo `LivenessProbeStartup` do aplicativo de amostra, a verificação de p
 
 Use <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> para ramificar condicionalmente o pipeline de solicitação para pontos de extremidade de verificação de integridade.
 
-No exemplo a seguir, `MapWhen` ramifica o pipeline de solicitação para ativar o middleware de verificações de integridade se uma solicitação get for `api/HealthCheck` recebida para o ponto de extremidade:
+No exemplo a seguir, `MapWhen` ramifica o pipeline de solicitação para ativar o middleware de verificações de integridade se uma solicitação GET for recebida para o ponto de extremidade de `api/HealthCheck`:
 
 ```csharp
 app.MapWhen(

@@ -5,14 +5,14 @@ description: Como usar o model binding e o streaming para carregar arquivos no A
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/02/2019
+ms.date: 10/31/2019
 uid: mvc/models/file-uploads
-ms.openlocfilehash: de8bfee22e39dfc5a6ed254cf0555887891d4590
-ms.sourcegitcommit: d81912782a8b0bd164f30a516ad80f8defb5d020
+ms.openlocfilehash: 04e7533aa190a4875d3f66e8665fec16abec48b3
+ms.sourcegitcommit: 9e85c2562df5e108d7933635c830297f484bb775
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72179301"
+ms.lasthandoff: 11/04/2019
+ms.locfileid: "73462945"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Carregar arquivos no ASP.NET Core
 
@@ -34,17 +34,16 @@ Tome cuidado ao fornecer aos usuários a capacidade de carregar arquivos em um s
 
 As etapas de segurança que reduzem a probabilidade de um ataque bem-sucedido são:
 
-* Carregue arquivos em uma área de carregamento de arquivo dedicada no sistema, preferencialmente para uma unidade que não seja do sistema. Usar um local dedicado torna mais fácil impor restrições de segurança em arquivos carregados. Desabilite as permissões de execução no local de carregamento do arquivo. &dagger;
-* Nunca persista arquivos carregados na mesma árvore de diretório que o aplicativo. &dagger;
-* Use um nome de arquivo seguro determinado pelo aplicativo. Não use um nome de arquivo fornecido pelo usuário ou o nome de arquivo não confiável do arquivo carregado. &dagger; Para exibir um nome de arquivo não confiável em uma interface do usuário ou em uma mensagem de log, codifique o valor em HTML.
-* Permitir apenas um conjunto específico de extensões de arquivo aprovadas. &dagger;
-* Verifique a assinatura de formato de arquivo para impedir que um usuário carregue um arquivo mascarado. &dagger; Por exemplo, não permita que um usuário carregue um arquivo *. exe* com uma extensão *. txt* .
-* Verifique se as verificações do lado do cliente também são executadas no servidor. &dagger; As verificações do lado do cliente são fáceis de contornar.
-* Verifique o tamanho de um arquivo carregado e evite carregamentos maiores que o esperado. &dagger;
+* Carregue arquivos em uma área de carregamento de arquivo dedicada, preferencialmente para uma unidade que não seja do sistema. Um local dedicado torna mais fácil impor restrições de segurança em arquivos carregados. Desabilite as permissões de execução no local de carregamento do arquivo.&dagger;
+* **Não** persiste arquivos carregados na mesma árvore de diretório que o aplicativo.&dagger;
+* Use um nome de arquivo seguro determinado pelo aplicativo. Não use um nome de arquivo fornecido pelo usuário ou o nome de arquivo não confiável do arquivo carregado.&dagger; código HTML codifica o nome de arquivo não confiável ao exibi-lo. Por exemplo, registrar em log o nome do arquivo ou exibindo na interface do usuário (o Razor codifica automaticamente a saída).
+* Permitir somente extensões de arquivo aprovadas para a especificação de design do aplicativo.&dagger; <!-- * Check the file format signature to prevent a user from uploading a masqueraded file.&dagger; For example, don't permit a user to upload an *.exe* file with a *.txt* extension. Add this back when we get instructions how to do this.  -->
+* Verifique se as verificações do lado do cliente são executadas no servidor.&dagger; verificações do lado do cliente são fáceis de evitar.
+* Verifique o tamanho de um arquivo carregado. Defina um limite de tamanho máximo para evitar carregamentos grandes.&dagger;
 * Quando os arquivos não devem ser substituídos por um arquivo carregado com o mesmo nome, verifique o nome do arquivo no banco de dados ou no armazenamento físico antes de carregar o arquivo.
 * **Execute um scanner de vírus/malware no conteúdo carregado antes de o arquivo ser armazenado.**
 
-o aplicativo de exemplo &dagger;The demonstra uma abordagem que atende aos critérios.
+&dagger;aplicativo de exemplo demonstra uma abordagem que atende aos critérios.
 
 > [!WARNING]
 > Carregar códigos mal-intencionados em um sistema é frequentemente a primeira etapa para executar o código que pode:
@@ -57,7 +56,7 @@ o aplicativo de exemplo &dagger;The demonstra uma abordagem que atende aos crit�
 > Para obter informações de como reduzir a área da superfície de ataque ao aceitar arquivos de usuários, confira os seguintes recursos:
 >
 > * [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload) (Carregamento de arquivo irrestrito)
-> * Segurança de @no__t 0Azure: Verifique se os controles apropriados estão em vigor ao aceitar arquivos de usuários @ no__t-0
+> * [Segurança do Azure: Verifique se os controles adequados estão em vigor ao aceitar arquivos de usuários](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
 
 Para obter mais informações sobre como implementar medidas de segurança, incluindo exemplos do aplicativo de exemplo, consulte a seção [validação](#validation) .
 
@@ -84,7 +83,7 @@ As opções de armazenamento comuns para arquivos incluem:
   * Os serviços geralmente oferecem escalabilidade e resiliência aprimoradas sobre soluções locais que geralmente estão sujeitas a pontos únicos de falha.
   * Os serviços são um custo potencialmente menor em cenários de infraestrutura de armazenamento grandes.
 
-  Para obter mais informações, confira [Início Rápido: Use o .NET para criar um blob no armazenamento de objetos @ no__t-0. O tópico demonstra <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync*>, mas <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync*> pode ser usado para salvar um <xref:System.IO.FileStream> no armazenamento de BLOBs ao trabalhar com um <xref:System.IO.Stream>.
+  Para obter mais informações, consulte [início rápido: usar o .net para criar um blob no armazenamento de objetos](/azure/storage/blobs/storage-quickstart-blobs-dotnet). O tópico demonstra <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync*>, mas <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync*> pode ser usado para salvar um <xref:System.IO.FileStream> no armazenamento de BLOBs ao trabalhar com um <xref:System.IO.Stream>.
 
 ## <a name="file-upload-scenarios"></a>Cenários de upload de arquivo
 
@@ -212,24 +211,36 @@ Para um elemento de entrada `files` para dar suporte ao carregamento de vários 
 
 Os arquivos individuais carregados no servidor podem ser acessados por meio de [Associação de modelo](xref:mvc/models/model-binding) usando <xref:Microsoft.AspNetCore.Http.IFormFile>. O aplicativo de exemplo demonstra vários uploads de arquivo em buffer para cenários de armazenamento físico e banco de dados.
 
+<a name="filename"></a>
+
 > [!WARNING]
-> Não confie ou confie na propriedade `FileName` de <xref:Microsoft.AspNetCore.Http.IFormFile> sem validação. A propriedade `FileName` só deve ser usada para fins de exibição e somente após a codificação HTML do valor.
+> **Não** use a propriedade `FileName` de <xref:Microsoft.AspNetCore.Http.IFormFile> diferente de para exibição e registro em log. Ao exibir ou registrar em log, o HTML codifica o nome do arquivo. Um invasor pode fornecer um nome de arquivo mal-intencionado, incluindo caminhos completos ou caminhos relativos. Os aplicativos devem:
+>
+> * Remova o caminho do nome de arquivo fornecido pelo usuário.
+> * Salve o nome de arquivo com codificação em HTML e removido por caminho para a interface do usuário ou log.
+> * Gere um novo nome de arquivo aleatório para armazenamento.
+>
+> O código a seguir remove o caminho do nome do arquivo:
+>
+> ```csharp
+> string untrustedFileName = Path.GetFileName(pathName);
+> ```
 >
 > Os exemplos fornecidos até o momento não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
 > * [Considerações sobre segurança](#security-considerations)
 > * [Validação](#validation)
 
-Ao carregar arquivos usando a associação de modelo e <xref:Microsoft.AspNetCore.Http.IFormFile>, o método de ação pode aceitar:
+Ao carregar arquivos usando Associação de modelo e <xref:Microsoft.AspNetCore.Http.IFormFile>, o método de ação pode aceitar:
 
 * Um único <xref:Microsoft.AspNetCore.Http.IFormFile>.
 * Qualquer uma das seguintes coleções que representam vários arquivos:
   * <xref:Microsoft.AspNetCore.Http.IFormFileCollection>
   * <xref:System.Collections.IEnumerable>\<<xref:Microsoft.AspNetCore.Http.IFormFile>>
-  * [Listar](xref:System.Collections.Generic.List`1)\< @ no__t-2 @ no__t-3
+  * [Listar](xref:System.Collections.Generic.List`1)\<<xref:Microsoft.AspNetCore.Http.IFormFile>>
 
 > [!NOTE]
-> A Associação corresponde aos arquivos de formulário por nome. Por exemplo, o valor HTML `name` em `<input type="file" name="formFile">` deve corresponder ao C# parâmetro/propriedade associado (`FormFile`). Para obter mais informações, consulte o [valor do atributo Match Name para o nome do parâmetro da seção do método post](#match-name-attribute-value-to-parameter-name-of-post-method) .
+> A Associação corresponde aos arquivos de formulário por nome. Por exemplo, o valor de `name` HTML em `<input type="file" name="formFile">` deve corresponder C# ao parâmetro/propriedade associado (`FormFile`). Para obter mais informações, consulte o [valor do atributo Match Name para o nome do parâmetro da seção do método post](#match-name-attribute-value-to-parameter-name-of-post-method) .
 
 O exemplo a seguir:
 
@@ -283,7 +294,7 @@ foreach (var formFile in files)
 
 O caminho passado para o <xref:System.IO.FileStream> *deve* incluir o nome do arquivo. Se o nome do arquivo não for fornecido, um <xref:System.UnauthorizedAccessException> será lançado em tempo de execução.
 
-Os arquivos carregados usando a técnica <xref:Microsoft.AspNetCore.Http.IFormFile> são armazenados em buffer na memória ou no disco no servidor antes do processamento. Dentro do método de ação, o conteúdo <xref:Microsoft.AspNetCore.Http.IFormFile> é acessível como um <xref:System.IO.Stream>. Além do sistema de arquivos local, os arquivos podem ser salvos em um compartilhamento de rede ou em um serviço de armazenamento de arquivos, como o [armazenamento de BLOBs do Azure](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
+Os arquivos carregados usando a técnica de <xref:Microsoft.AspNetCore.Http.IFormFile> são armazenados em buffer na memória ou no disco no servidor antes do processamento. Dentro do método de ação, o conteúdo do <xref:Microsoft.AspNetCore.Http.IFormFile> pode ser acessado como um <xref:System.IO.Stream>. Além do sistema de arquivos local, os arquivos podem ser salvos em um compartilhamento de rede ou em um serviço de armazenamento de arquivos, como o [armazenamento de BLOBs do Azure](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
 
 Para outro exemplo que executa um loop sobre vários arquivos para carregar e usa nomes de arquivo seguros, consulte *pages/BufferedMultipleFileUploadPhysical. cshtml. cs* no aplicativo de exemplo.
 
@@ -295,7 +306,7 @@ Para outro exemplo que executa um loop sobre vários arquivos para carregar e us
 
 ### <a name="upload-small-files-with-buffered-model-binding-to-a-database"></a>Carregar arquivos pequenos com associação de modelo em buffer para um banco de dados
 
-Para armazenar dados de arquivo binário em um banco de dado usando [Entity Framework](/ef/core/index), defina uma propriedade de matriz <xref:System.Byte> na entidade:
+Para armazenar dados de arquivo binário em um banco de dado usando [Entity Framework](/ef/core/index), defina uma propriedade de matriz de <xref:System.Byte> na entidade:
 
 ```csharp
 public class AppFile
@@ -327,7 +338,7 @@ public class BufferedSingleFileUploadDb
 ```
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Http.IFormFile> pode ser usado diretamente como um parâmetro de método de ação ou como uma propriedade de modelo associada. O exemplo anterior usa uma propriedade de modelo associada.
+> <xref:Microsoft.AspNetCore.Http.IFormFile> pode ser usada diretamente como um parâmetro de método de ação ou como uma propriedade de modelo associada. O exemplo anterior usa uma propriedade de modelo associada.
 
 O `FileUpload` é usado no formulário de Razor Pages:
 
@@ -345,7 +356,7 @@ O `FileUpload` é usado no formulário de Razor Pages:
 </form>
 ```
 
-Quando o formulário for Postado no servidor, copie o <xref:Microsoft.AspNetCore.Http.IFormFile> em um fluxo e salve-o como uma matriz de bytes no banco de dados. No exemplo a seguir, `_dbContext` armazena o contexto do banco de dados do aplicativo:
+Quando o formulário for Postado no servidor, copie o <xref:Microsoft.AspNetCore.Http.IFormFile> para um fluxo e salve-o como uma matriz de bytes no banco de dados. No exemplo a seguir, `_dbContext` armazena o contexto do banco de dados do aplicativo:
 
 ```csharp
 public async Task<IActionResult> OnPostUploadAsync()
@@ -403,13 +414,13 @@ O `DisableFormValueModelBindingAttribute` é usado para desabilitar a associaç�
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-No aplicativo de exemplo, `GenerateAntiforgeryTokenCookieAttribute` e `DisableFormValueModelBindingAttribute` são aplicados como filtros para os modelos de aplicativo de página de `/StreamedSingleFileUploadDb` e `/StreamedSingleFileUploadPhysical` no `Startup.ConfigureServices` usando [convenções de Razor Pages](xref:razor-pages/razor-pages-conventions):
+No aplicativo de exemplo, `GenerateAntiforgeryTokenCookieAttribute` e `DisableFormValueModelBindingAttribute` são aplicados como filtros aos modelos de aplicativo de página de `/StreamedSingleFileUploadDb` e `/StreamedSingleFileUploadPhysical` em `Startup.ConfigureServices` usando [convenções de Razor Pages](xref:razor-pages/razor-pages-conventions):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Startup.cs?name=snippet_AddRazorPages&highlight=8-11,17-20)]
 
 Como a associação de modelo não lê o formulário, os parâmetros que estão associados do formulário não são associados (a consulta, a rota e o cabeçalho continuam a funcionar). O método de ação funciona diretamente com a propriedade `Request`. Um `MultipartReader` é usado para ler cada seção. Os dados de chave/valor são armazenados em um `KeyValueAccumulator`. Depois que as seções com várias partes forem lidas, o conteúdo do `KeyValueAccumulator` será usado para associar os dados do formulário a um tipo de modelo.
 
-O método `StreamingController.UploadDatabase` completo para streaming para um banco de dados com EF Core:
+O método de `StreamingController.UploadDatabase` completo para streaming para um banco de dados com EF Core:
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
@@ -417,15 +428,15 @@ O método `StreamingController.UploadDatabase` completo para streaming para um b
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
-O método `StreamingController.UploadPhysical` completo para streaming para um local físico:
+O método de `StreamingController.UploadPhysical` completo para streaming para um local físico:
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadPhysical)]
 
-No aplicativo de exemplo, as verificações de validação são manipuladas por `FileHelpers.ProcessStreamedFile`.
+No aplicativo de exemplo, as verificações de validação são manipuladas pelo `FileHelpers.ProcessStreamedFile`.
 
 ## <a name="validation"></a>Validação
 
-A classe `FileHelpers` do aplicativo de exemplo demonstra várias verificações de carregamentos em buffer <xref:Microsoft.AspNetCore.Http.IFormFile> e de arquivos transmitidos. Para processar carregamentos de arquivo em buffer <xref:Microsoft.AspNetCore.Http.IFormFile> no aplicativo de exemplo, consulte o método `ProcessFormFile` no arquivo *Utilities/FileHelpers. cs* . Para o processamento de arquivos transmitidos, consulte o método `ProcessStreamedFile` no mesmo arquivo.
+A classe de `FileHelpers` do aplicativo de exemplo demonstra várias verificações para uploads em buffer <xref:Microsoft.AspNetCore.Http.IFormFile> e arquivos transmitidos. Para processar <xref:Microsoft.AspNetCore.Http.IFormFile> carregamentos de arquivo em buffer no aplicativo de exemplo, consulte o método `ProcessFormFile` no arquivo *Utilities/FileHelpers. cs* . Para o processamento de arquivos transmitidos, consulte o método `ProcessStreamedFile` no mesmo arquivo.
 
 > [!WARNING]
 > Os métodos de processamento de validação demonstrados no aplicativo de exemplo não verificam o conteúdo dos arquivos carregados. Na maioria dos cenários de produção, uma API de scanner de vírus/malware é usada no arquivo antes de disponibilizar o arquivo para os usuários ou outros sistemas.
@@ -584,7 +595,7 @@ Use um nome correspondente para o parâmetro do C# método (`battlePlans`):
 
 ### <a name="multipart-body-length-limit"></a>Limite de comprimento de corpo com várias partes
 
-<xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> define o limite para o comprimento de cada corpo com diversas partes. As seções de formulário que excedem esse limite lançam um <xref:System.IO.InvalidDataException> quando analisadas. O padrão é 134.217.728 (128 MB). Personalize o limite usando a configuração <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> em `Startup.ConfigureServices`:
+<xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> define o limite para o comprimento de cada corpo com diversas partes. As seções de formulário que excedem esse limite lançam uma <xref:System.IO.InvalidDataException> quando analisadas. O padrão é 134.217.728 (128 MB). Personalize o limite usando a configuração de <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> no `Startup.ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -599,7 +610,7 @@ public void ConfigureServices(IServiceCollection services)
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> é usado para definir o <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> para uma única página ou ação.
 
-Em um aplicativo Razor Pages, aplique o filtro com uma [Convenção](xref:razor-pages/razor-pages-conventions) em `Startup.ConfigureServices`:
+Em um aplicativo Razor Pages, aplique o filtro com uma [Convenção](xref:razor-pages/razor-pages-conventions) no `Startup.ConfigureServices`:
 
 ```csharp
 services.AddRazorPages()
@@ -647,7 +658,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> é usado para definir o [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) para uma única página ou ação.
 
-Em um aplicativo Razor Pages, aplique o filtro com uma [Convenção](xref:razor-pages/razor-pages-conventions) em `Startup.ConfigureServices`:
+Em um aplicativo Razor Pages, aplique o filtro com uma [Convenção](xref:razor-pages/razor-pages-conventions) no `Startup.ConfigureServices`:
 
 ```csharp
 services.AddRazorPages()
@@ -703,11 +714,11 @@ O limite de solicitação padrão (`maxAllowedContentLength`) é 30 milhões byt
 </system.webServer>
 ```
 
-Essa configuração só se aplica ao IIS. Esse comportamento não ocorre por padrão quando a hospedagem é feita no Kestrel. Para obter mais informações, consulte [Limits Request \<requestLimits >](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
+Essa configuração só se aplica ao IIS. Esse comportamento não ocorre por padrão quando a hospedagem é feita no Kestrel. Para obter mais informações, consulte [limites de solicitação \<requestLimits >](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
 As limitações no módulo ASP.NET Core ou na presença do módulo filtragem de solicitações do IIS podem limitar os carregamentos a dois ou 4 GB. Para obter mais informações, consulte [não é possível carregar o arquivo com mais de 2GB de tamanho (ASPNET/AspNetCore #2711)](https://github.com/aspnet/AspNetCore/issues/2711).
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 Abaixo, são listados alguns problemas comuns encontrados ao trabalhar com o upload de arquivos e suas possíveis soluções.
 
@@ -728,7 +739,7 @@ Um erro de conexão e uma conexão de servidor de redefinição provavelmente in
 
 ### <a name="null-reference-exception-with-iformfile"></a>Exceção de referência nula com IFormFile
 
-Se o controlador estiver aceitando arquivos carregados usando <xref:Microsoft.AspNetCore.Http.IFormFile>, mas o valor for `null`, confirme se o formulário HTML está especificando um valor `enctype` de `multipart/form-data`. Se esse atributo não estiver definido no elemento `<form>`, o upload do arquivo não ocorrerá e todos os argumentos vinculados a <xref:Microsoft.AspNetCore.Http.IFormFile> serão `null`. Além disso, confirme se a [nomenclatura de carregamento em dados de formulário corresponde à nomenclatura do aplicativo](#match-name-attribute-value-to-parameter-name-of-post-method).
+Se o controlador estiver aceitando arquivos carregados usando <xref:Microsoft.AspNetCore.Http.IFormFile>, mas o valor for `null`, confirme se o formulário HTML está especificando um valor `enctype` de `multipart/form-data`. Se esse atributo não estiver definido no elemento `<form>`, o upload do arquivo não ocorrerá e os argumentos de <xref:Microsoft.AspNetCore.Http.IFormFile> associados serão `null`. Além disso, confirme se a [nomenclatura de carregamento em dados de formulário corresponde à nomenclatura do aplicativo](#match-name-attribute-value-to-parameter-name-of-post-method).
 
 ::: moniker-end
 
@@ -748,17 +759,16 @@ Tome cuidado ao fornecer aos usuários a capacidade de carregar arquivos em um s
 
 As etapas de segurança que reduzem a probabilidade de um ataque bem-sucedido são:
 
-* Carregue arquivos em uma área de carregamento de arquivo dedicada no sistema, preferencialmente para uma unidade que não seja do sistema. Usar um local dedicado torna mais fácil impor restrições de segurança em arquivos carregados. Desabilite as permissões de execução no local de carregamento do arquivo. &dagger;
-* Nunca persista arquivos carregados na mesma árvore de diretório que o aplicativo. &dagger;
-* Use um nome de arquivo seguro determinado pelo aplicativo. Não use um nome de arquivo fornecido pelo usuário ou o nome de arquivo não confiável do arquivo carregado. &dagger; Para exibir um nome de arquivo não confiável em uma interface do usuário ou em uma mensagem de log, codifique o valor em HTML.
-* Permitir apenas um conjunto específico de extensões de arquivo aprovadas. &dagger;
-* Verifique a assinatura de formato de arquivo para impedir que um usuário carregue um arquivo mascarado. &dagger; Por exemplo, não permita que um usuário carregue um arquivo *. exe* com uma extensão *. txt* .
-* Verifique se as verificações do lado do cliente também são executadas no servidor. &dagger; As verificações do lado do cliente são fáceis de contornar.
-* Verifique o tamanho de um arquivo carregado e evite carregamentos maiores que o esperado. &dagger;
+* Carregue arquivos em uma área de carregamento de arquivo dedicada, preferencialmente para uma unidade que não seja do sistema. Um local dedicado torna mais fácil impor restrições de segurança em arquivos carregados. Desabilite as permissões de execução no local de carregamento do arquivo.&dagger;
+* **Não** persiste arquivos carregados na mesma árvore de diretório que o aplicativo.&dagger;
+* Use um nome de arquivo seguro determinado pelo aplicativo. Não use um nome de arquivo fornecido pelo usuário ou o nome de arquivo não confiável do arquivo carregado.&dagger; código HTML codifica o nome de arquivo não confiável ao exibi-lo. Por exemplo, registrar em log o nome do arquivo ou exibindo na interface do usuário (o Razor codifica automaticamente a saída).
+* Permitir somente extensões de arquivo aprovadas para a especificação de design do aplicativo.&dagger; <!-- * Check the file format signature to prevent a user from uploading a masqueraded file.&dagger; For example, don't permit a user to upload an *.exe* file with a *.txt* extension. Add this back when we get instructions how to do this.  -->
+* Verifique se as verificações do lado do cliente são executadas no servidor.&dagger; verificações do lado do cliente são fáceis de evitar.
+* Verifique o tamanho de um arquivo carregado. Defina um limite de tamanho máximo para evitar carregamentos grandes.&dagger;
 * Quando os arquivos não devem ser substituídos por um arquivo carregado com o mesmo nome, verifique o nome do arquivo no banco de dados ou no armazenamento físico antes de carregar o arquivo.
 * **Execute um scanner de vírus/malware no conteúdo carregado antes de o arquivo ser armazenado.**
 
-o aplicativo de exemplo &dagger;The demonstra uma abordagem que atende aos critérios.
+&dagger;aplicativo de exemplo demonstra uma abordagem que atende aos critérios.
 
 > [!WARNING]
 > Carregar códigos mal-intencionados em um sistema é frequentemente a primeira etapa para executar o código que pode:
@@ -771,7 +781,7 @@ o aplicativo de exemplo &dagger;The demonstra uma abordagem que atende aos crit�
 > Para obter informações de como reduzir a área da superfície de ataque ao aceitar arquivos de usuários, confira os seguintes recursos:
 >
 > * [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload) (Carregamento de arquivo irrestrito)
-> * Segurança de @no__t 0Azure: Verifique se os controles apropriados estão em vigor ao aceitar arquivos de usuários @ no__t-0
+> * [Segurança do Azure: Verifique se os controles adequados estão em vigor ao aceitar arquivos de usuários](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
 
 Para obter mais informações sobre como implementar medidas de segurança, incluindo exemplos do aplicativo de exemplo, consulte a seção [validação](#validation) .
 
@@ -798,7 +808,7 @@ As opções de armazenamento comuns para arquivos incluem:
   * Os serviços geralmente oferecem escalabilidade e resiliência aprimoradas sobre soluções locais que geralmente estão sujeitas a pontos únicos de falha.
   * Os serviços são um custo potencialmente menor em cenários de infraestrutura de armazenamento grandes.
 
-  Para obter mais informações, confira [Início Rápido: Use o .NET para criar um blob no armazenamento de objetos @ no__t-0. O tópico demonstra <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync*>, mas <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync*> pode ser usado para salvar um <xref:System.IO.FileStream> no armazenamento de BLOBs ao trabalhar com um <xref:System.IO.Stream>.
+  Para obter mais informações, consulte [início rápido: usar o .net para criar um blob no armazenamento de objetos](/azure/storage/blobs/storage-quickstart-blobs-dotnet). O tópico demonstra <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync*>, mas <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync*> pode ser usado para salvar um <xref:System.IO.FileStream> no armazenamento de BLOBs ao trabalhar com um <xref:System.IO.Stream>.
 
 ## <a name="file-upload-scenarios"></a>Cenários de upload de arquivo
 
@@ -926,24 +936,36 @@ Para um elemento de entrada `files` para dar suporte ao carregamento de vários 
 
 Os arquivos individuais carregados no servidor podem ser acessados por meio de [Associação de modelo](xref:mvc/models/model-binding) usando <xref:Microsoft.AspNetCore.Http.IFormFile>. O aplicativo de exemplo demonstra vários uploads de arquivo em buffer para cenários de armazenamento físico e banco de dados.
 
+<a name="filename2"></a>
+
 > [!WARNING]
-> Não confie ou confie na propriedade `FileName` de <xref:Microsoft.AspNetCore.Http.IFormFile> sem validação. A propriedade `FileName` só deve ser usada para fins de exibição e somente após a codificação HTML do valor.
+> **Não** use a propriedade `FileName` de <xref:Microsoft.AspNetCore.Http.IFormFile> diferente de para exibição e registro em log. Ao exibir ou registrar em log, o HTML codifica o nome do arquivo. Um invasor pode fornecer um nome de arquivo mal-intencionado, incluindo caminhos completos ou caminhos relativos. Os aplicativos devem:
+>
+> * Remova o caminho do nome de arquivo fornecido pelo usuário.
+> * Salve o nome de arquivo com codificação em HTML e removido por caminho para a interface do usuário ou log.
+> * Gere um novo nome de arquivo aleatório para armazenamento.
+>
+> O código a seguir remove o caminho do nome do arquivo:
+>
+> ```csharp
+> string untrustedFileName = Path.GetFileName(pathName);
+> ```
 >
 > Os exemplos fornecidos até o momento não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
 > * [Considerações sobre segurança](#security-considerations)
 > * [Validação](#validation)
 
-Ao carregar arquivos usando a associação de modelo e <xref:Microsoft.AspNetCore.Http.IFormFile>, o método de ação pode aceitar:
+Ao carregar arquivos usando Associação de modelo e <xref:Microsoft.AspNetCore.Http.IFormFile>, o método de ação pode aceitar:
 
 * Um único <xref:Microsoft.AspNetCore.Http.IFormFile>.
 * Qualquer uma das seguintes coleções que representam vários arquivos:
   * <xref:Microsoft.AspNetCore.Http.IFormFileCollection>
   * <xref:System.Collections.IEnumerable>\<<xref:Microsoft.AspNetCore.Http.IFormFile>>
-  * [Listar](xref:System.Collections.Generic.List`1)\< @ no__t-2 @ no__t-3
+  * [Listar](xref:System.Collections.Generic.List`1)\<<xref:Microsoft.AspNetCore.Http.IFormFile>>
 
 > [!NOTE]
-> A Associação corresponde aos arquivos de formulário por nome. Por exemplo, o valor HTML `name` em `<input type="file" name="formFile">` deve corresponder ao C# parâmetro/propriedade associado (`FormFile`). Para obter mais informações, consulte o [valor do atributo Match Name para o nome do parâmetro da seção do método post](#match-name-attribute-value-to-parameter-name-of-post-method) .
+> A Associação corresponde aos arquivos de formulário por nome. Por exemplo, o valor de `name` HTML em `<input type="file" name="formFile">` deve corresponder C# ao parâmetro/propriedade associado (`FormFile`). Para obter mais informações, consulte o [valor do atributo Match Name para o nome do parâmetro da seção do método post](#match-name-attribute-value-to-parameter-name-of-post-method) .
 
 O exemplo a seguir:
 
@@ -997,7 +1019,7 @@ foreach (var formFile in files)
 
 O caminho passado para o <xref:System.IO.FileStream> *deve* incluir o nome do arquivo. Se o nome do arquivo não for fornecido, um <xref:System.UnauthorizedAccessException> será lançado em tempo de execução.
 
-Os arquivos carregados usando a técnica <xref:Microsoft.AspNetCore.Http.IFormFile> são armazenados em buffer na memória ou no disco no servidor antes do processamento. Dentro do método de ação, o conteúdo <xref:Microsoft.AspNetCore.Http.IFormFile> é acessível como um <xref:System.IO.Stream>. Além do sistema de arquivos local, os arquivos podem ser salvos em um compartilhamento de rede ou em um serviço de armazenamento de arquivos, como o [armazenamento de BLOBs do Azure](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
+Os arquivos carregados usando a técnica de <xref:Microsoft.AspNetCore.Http.IFormFile> são armazenados em buffer na memória ou no disco no servidor antes do processamento. Dentro do método de ação, o conteúdo do <xref:Microsoft.AspNetCore.Http.IFormFile> pode ser acessado como um <xref:System.IO.Stream>. Além do sistema de arquivos local, os arquivos podem ser salvos em um compartilhamento de rede ou em um serviço de armazenamento de arquivos, como o [armazenamento de BLOBs do Azure](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
 
 Para outro exemplo que executa um loop sobre vários arquivos para carregar e usa nomes de arquivo seguros, consulte *pages/BufferedMultipleFileUploadPhysical. cshtml. cs* no aplicativo de exemplo.
 
@@ -1009,7 +1031,7 @@ Para outro exemplo que executa um loop sobre vários arquivos para carregar e us
 
 ### <a name="upload-small-files-with-buffered-model-binding-to-a-database"></a>Carregar arquivos pequenos com associação de modelo em buffer para um banco de dados
 
-Para armazenar dados de arquivo binário em um banco de dado usando [Entity Framework](/ef/core/index), defina uma propriedade de matriz <xref:System.Byte> na entidade:
+Para armazenar dados de arquivo binário em um banco de dado usando [Entity Framework](/ef/core/index), defina uma propriedade de matriz de <xref:System.Byte> na entidade:
 
 ```csharp
 public class AppFile
@@ -1041,7 +1063,7 @@ public class BufferedSingleFileUploadDb
 ```
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Http.IFormFile> pode ser usado diretamente como um parâmetro de método de ação ou como uma propriedade de modelo associada. O exemplo anterior usa uma propriedade de modelo associada.
+> <xref:Microsoft.AspNetCore.Http.IFormFile> pode ser usada diretamente como um parâmetro de método de ação ou como uma propriedade de modelo associada. O exemplo anterior usa uma propriedade de modelo associada.
 
 O `FileUpload` é usado no formulário de Razor Pages:
 
@@ -1059,7 +1081,7 @@ O `FileUpload` é usado no formulário de Razor Pages:
 </form>
 ```
 
-Quando o formulário for Postado no servidor, copie o <xref:Microsoft.AspNetCore.Http.IFormFile> em um fluxo e salve-o como uma matriz de bytes no banco de dados. No exemplo a seguir, `_dbContext` armazena o contexto do banco de dados do aplicativo:
+Quando o formulário for Postado no servidor, copie o <xref:Microsoft.AspNetCore.Http.IFormFile> para um fluxo e salve-o como uma matriz de bytes no banco de dados. No exemplo a seguir, `_dbContext` armazena o contexto do banco de dados do aplicativo:
 
 ```csharp
 public async Task<IActionResult> OnPostUploadAsync()
@@ -1117,13 +1139,13 @@ O `DisableFormValueModelBindingAttribute` é usado para desabilitar a associaç�
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-No aplicativo de exemplo, `GenerateAntiforgeryTokenCookieAttribute` e `DisableFormValueModelBindingAttribute` são aplicados como filtros para os modelos de aplicativo de página de `/StreamedSingleFileUploadDb` e `/StreamedSingleFileUploadPhysical` no `Startup.ConfigureServices` usando [convenções de Razor Pages](xref:razor-pages/razor-pages-conventions):
+No aplicativo de exemplo, `GenerateAntiforgeryTokenCookieAttribute` e `DisableFormValueModelBindingAttribute` são aplicados como filtros aos modelos de aplicativo de página de `/StreamedSingleFileUploadDb` e `/StreamedSingleFileUploadPhysical` em `Startup.ConfigureServices` usando [convenções de Razor Pages](xref:razor-pages/razor-pages-conventions):
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Startup.cs?name=snippet_AddMvc&highlight=8-11,17-20)]
 
 Como a associação de modelo não lê o formulário, os parâmetros que estão associados do formulário não são associados (a consulta, a rota e o cabeçalho continuam a funcionar). O método de ação funciona diretamente com a propriedade `Request`. Um `MultipartReader` é usado para ler cada seção. Os dados de chave/valor são armazenados em um `KeyValueAccumulator`. Depois que as seções com várias partes forem lidas, o conteúdo do `KeyValueAccumulator` será usado para associar os dados do formulário a um tipo de modelo.
 
-O método `StreamingController.UploadDatabase` completo para streaming para um banco de dados com EF Core:
+O método de `StreamingController.UploadDatabase` completo para streaming para um banco de dados com EF Core:
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
@@ -1131,15 +1153,15 @@ O método `StreamingController.UploadDatabase` completo para streaming para um b
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
-O método `StreamingController.UploadPhysical` completo para streaming para um local físico:
+O método de `StreamingController.UploadPhysical` completo para streaming para um local físico:
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadPhysical)]
 
-No aplicativo de exemplo, as verificações de validação são manipuladas por `FileHelpers.ProcessStreamedFile`.
+No aplicativo de exemplo, as verificações de validação são manipuladas pelo `FileHelpers.ProcessStreamedFile`.
 
 ## <a name="validation"></a>Validação
 
-A classe `FileHelpers` do aplicativo de exemplo demonstra várias verificações de carregamentos em buffer <xref:Microsoft.AspNetCore.Http.IFormFile> e de arquivos transmitidos. Para processar carregamentos de arquivo em buffer <xref:Microsoft.AspNetCore.Http.IFormFile> no aplicativo de exemplo, consulte o método `ProcessFormFile` no arquivo *Utilities/FileHelpers. cs* . Para o processamento de arquivos transmitidos, consulte o método `ProcessStreamedFile` no mesmo arquivo.
+A classe de `FileHelpers` do aplicativo de exemplo demonstra várias verificações para uploads em buffer <xref:Microsoft.AspNetCore.Http.IFormFile> e arquivos transmitidos. Para processar <xref:Microsoft.AspNetCore.Http.IFormFile> carregamentos de arquivo em buffer no aplicativo de exemplo, consulte o método `ProcessFormFile` no arquivo *Utilities/FileHelpers. cs* . Para o processamento de arquivos transmitidos, consulte o método `ProcessStreamedFile` no mesmo arquivo.
 
 > [!WARNING]
 > Os métodos de processamento de validação demonstrados no aplicativo de exemplo não verificam o conteúdo dos arquivos carregados. Na maioria dos cenários de produção, uma API de scanner de vírus/malware é usada no arquivo antes de disponibilizar o arquivo para os usuários ou outros sistemas.
@@ -1298,7 +1320,7 @@ Use um nome correspondente para o parâmetro do C# método (`battlePlans`):
 
 ### <a name="multipart-body-length-limit"></a>Limite de comprimento de corpo com várias partes
 
-<xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> define o limite para o comprimento de cada corpo com diversas partes. As seções de formulário que excedem esse limite lançam um <xref:System.IO.InvalidDataException> quando analisadas. O padrão é 134.217.728 (128 MB). Personalize o limite usando a configuração <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> em `Startup.ConfigureServices`:
+<xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> define o limite para o comprimento de cada corpo com diversas partes. As seções de formulário que excedem esse limite lançam uma <xref:System.IO.InvalidDataException> quando analisadas. O padrão é 134.217.728 (128 MB). Personalize o limite usando a configuração de <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> no `Startup.ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -1313,7 +1335,7 @@ public void ConfigureServices(IServiceCollection services)
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> é usado para definir o <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> para uma única página ou ação.
 
-Em um aplicativo Razor Pages, aplique o filtro com uma [Convenção](xref:razor-pages/razor-pages-conventions) em `Startup.ConfigureServices`:
+Em um aplicativo Razor Pages, aplique o filtro com uma [Convenção](xref:razor-pages/razor-pages-conventions) no `Startup.ConfigureServices`:
 
 ```csharp
 services.AddMvc()
@@ -1359,7 +1381,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> é usado para definir o [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) para uma única página ou ação.
 
-Em um aplicativo Razor Pages, aplique o filtro com uma [Convenção](xref:razor-pages/razor-pages-conventions) em `Startup.ConfigureServices`:
+Em um aplicativo Razor Pages, aplique o filtro com uma [Convenção](xref:razor-pages/razor-pages-conventions) no `Startup.ConfigureServices`:
 
 ```csharp
 services.AddMvc()
@@ -1410,11 +1432,11 @@ O limite de solicitação padrão (`maxAllowedContentLength`) é 30 milhões byt
 </system.webServer>
 ```
 
-Essa configuração só se aplica ao IIS. Esse comportamento não ocorre por padrão quando a hospedagem é feita no Kestrel. Para obter mais informações, consulte [Limits Request \<requestLimits >](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
+Essa configuração só se aplica ao IIS. Esse comportamento não ocorre por padrão quando a hospedagem é feita no Kestrel. Para obter mais informações, consulte [limites de solicitação \<requestLimits >](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
 As limitações no módulo ASP.NET Core ou na presença do módulo filtragem de solicitações do IIS podem limitar os carregamentos a dois ou 4 GB. Para obter mais informações, consulte [não é possível carregar o arquivo com mais de 2GB de tamanho (ASPNET/AspNetCore #2711)](https://github.com/aspnet/AspNetCore/issues/2711).
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 Abaixo, são listados alguns problemas comuns encontrados ao trabalhar com o upload de arquivos e suas possíveis soluções.
 
@@ -1435,7 +1457,7 @@ Um erro de conexão e uma conexão de servidor de redefinição provavelmente in
 
 ### <a name="null-reference-exception-with-iformfile"></a>Exceção de referência nula com IFormFile
 
-Se o controlador estiver aceitando arquivos carregados usando <xref:Microsoft.AspNetCore.Http.IFormFile>, mas o valor for `null`, confirme se o formulário HTML está especificando um valor `enctype` de `multipart/form-data`. Se esse atributo não estiver definido no elemento `<form>`, o upload do arquivo não ocorrerá e todos os argumentos vinculados a <xref:Microsoft.AspNetCore.Http.IFormFile> serão `null`. Além disso, confirme se a [nomenclatura de carregamento em dados de formulário corresponde à nomenclatura do aplicativo](#match-name-attribute-value-to-parameter-name-of-post-method).
+Se o controlador estiver aceitando arquivos carregados usando <xref:Microsoft.AspNetCore.Http.IFormFile>, mas o valor for `null`, confirme se o formulário HTML está especificando um valor `enctype` de `multipart/form-data`. Se esse atributo não estiver definido no elemento `<form>`, o upload do arquivo não ocorrerá e os argumentos de <xref:Microsoft.AspNetCore.Http.IFormFile> associados serão `null`. Além disso, confirme se a [nomenclatura de carregamento em dados de formulário corresponde à nomenclatura do aplicativo](#match-name-attribute-value-to-parameter-name-of-post-method).
 
 ::: moniker-end
 
@@ -1443,5 +1465,5 @@ Se o controlador estiver aceitando arquivos carregados usando <xref:Microsoft.As
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload) (Carregamento de arquivo irrestrito)
-* Segurança de @no__t 0Azure: Quadro de segurança: Validação de entrada | Mitigações @ no__t-0
-* Padrões de design de nuvem @no__t 0Azure: Padrão de chave valet @ no__t-0
+* [Segurança do Azure: estrutura de segurança: validação de entrada | Mitigações](/azure/security/azure-security-threat-modeling-tool-input-validation)
+* [Padrões de design de nuvem do Azure: padrão valet Key](/azure/architecture/patterns/valet-key)
