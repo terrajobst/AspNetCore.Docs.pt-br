@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como usar o cache de resposta para reduzir os requisitos de largura de banda e elevar o desempenho de aplicativos ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 10/15/2019
+ms.date: 11/04/2019
 uid: performance/caching/response
-ms.openlocfilehash: 4ebac97689347245d25e0954b33729d78dd1b516
-ms.sourcegitcommit: dd026eceee79e943bd6b4a37b144803b50617583
+ms.openlocfilehash: a456e97053fea7c9ee9ec634ae9b7bbd52febe7f
+ms.sourcegitcommit: 09f4a5ded39cc8204576fe801d760bd8b611f3aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72378829"
+ms.lasthandoff: 11/05/2019
+ms.locfileid: "73611467"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Cache de resposta no ASP.NET Core
 
@@ -21,7 +21,9 @@ Por [John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.co
 
 O cache de resposta reduz o número de solicitações que um cliente ou proxy faz a um servidor Web. O cache de resposta também reduz a quantidade de trabalho que o servidor Web executa para gerar uma resposta. O cache de resposta é controlado por cabeçalhos que especificam como você deseja que o cliente, o proxy e o middleware armazenem em cache as respostas.
 
-O [atributo ResponseCache](#responsecache-attribute) participa da configuração de cabeçalhos de cache de resposta, que os clientes podem honrar ao armazenar respostas em cache. O [middleware de cache de resposta](xref:performance/caching/middleware) pode ser usado para armazenar em cache as respostas no servidor. O middleware pode usar Propriedades <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> para influenciar o comportamento de cache do lado do servidor.
+O [atributo ResponseCache](#responsecache-attribute) participa da configuração de cabeçalhos de cache de resposta. Os clientes e proxies intermediários devem respeitar os cabeçalhos para armazenar em cache as respostas na [especificação de cache HTTP 1,1](https://tools.ietf.org/html/rfc7234).
+
+Para o cache do lado do servidor que segue a especificação de cache HTTP 1,1, use o [middleware de cache de resposta](xref:performance/caching/middleware). O middleware pode usar as propriedades <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> para influenciar o comportamento de cache do lado do servidor.
 
 ## <a name="http-based-response-caching"></a>Cache de resposta baseado em HTTP
 
@@ -140,10 +142,15 @@ Pragma: no-cache
 
 ### <a name="location-and-duration"></a>Localização e duração
 
-Para habilitar o Caching, o <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> deve ser definido como um valor positivo e <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> deve ser `Any` (o padrão) ou `Client`. Nesse caso, o cabeçalho `Cache-Control` é definido como o valor de local seguido pelo `max-age` da resposta.
+Para habilitar o Caching, o <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> deve ser definido como um valor positivo e <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> deve ser `Any` (o padrão) ou `Client`. A estrutura define o cabeçalho de `Cache-Control` como o valor de local seguido pelo `max-age` da resposta.
 
-> [!NOTE]
-> as opções de <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> de `Any` e `Client` são transvertidas em valores de cabeçalho `Cache-Control` de `public` e `private`, respectivamente. Conforme observado anteriormente, definir <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> como `None` define os cabeçalhos `Cache-Control` e `Pragma` como `no-cache`.
+as opções de <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> de `Any` e `Client` são transvertidas em valores de cabeçalho `Cache-Control` de `public` e `private`, respectivamente. Conforme observado na seção [NoStore e Location. None](#nostore-and-locationnone) , definir <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> como `None` define os cabeçalhos `Cache-Control` e `Pragma` como `no-cache`.
+
+`Location.Any` (`Cache-Control` definido como `public`) indica que o *cliente ou qualquer proxy intermediário* pode armazenar em cache o valor, incluindo o [middleware de cache de resposta](xref:performance/caching/middleware).
+
+`Location.Client` (`Cache-Control` definido como `private`) indica que *somente o cliente* pode armazenar o valor em cache. Nenhum cache intermediário deve armazenar em cache o valor, incluindo o [middleware de cache de resposta](xref:performance/caching/middleware).
+
+Os cabeçalhos de controle de cache simplesmente fornecem diretrizes para clientes e proxies intermediários quando e como armazenar em cache as respostas. Não há nenhuma garantia de que os clientes e proxies respeitarão a [especificação de cache HTTP 1,1](https://tools.ietf.org/html/rfc7234). O [middleware de cache de resposta](xref:performance/caching/middleware) sempre segue as regras de cache apresentadas pela especificação.
 
 O exemplo a seguir mostra o modelo de página Cache3 do aplicativo de exemplo e os cabeçalhos produzidos pela configuração <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> e deixando o valor padrão <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>:
 
@@ -159,7 +166,7 @@ Cache-Control: public,max-age=10
 
 Em vez de duplicar as configurações de cache de resposta em vários atributos de ação do controlador, os perfis de cache podem ser configurados como opções ao configurar MVC/Razor Pages no `Startup.ConfigureServices`. Os valores encontrados em um perfil de cache referenciado são usados como os padrões pelo <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> e são substituídos por todas as propriedades especificadas no atributo.
 
-Configure um perfil de cache. O exemplo a seguir mostra um perfil de cache de 30 segundos no @no__t do aplicativo de exemplo-0:
+Configure um perfil de cache. O exemplo a seguir mostra um perfil de cache de 30 segundos no `Startup.ConfigureServices`do aplicativo de exemplo:
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup.cs?name=snippet1)]
 
