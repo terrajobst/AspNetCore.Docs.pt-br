@@ -5,14 +5,14 @@ description: Saiba como configurar o Nginx como um proxy reverso no Ubuntu 16.04
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2019
+ms.date: 11/05/2019
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: b71bc0464892f15ef8db0324a8e66a28a6192577
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: c6ae86ec9ac54ddf2d487fd72156199fbdd029ef
+ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71080868"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73659870"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Host ASP.NET Core no Linux com Nginx
 
@@ -32,12 +32,12 @@ Este guia:
 * Assegura que o aplicativo Web seja executado na inicialização como um daemon.
 * Configura uma ferramenta de gerenciamento de processo para ajudar a reiniciar o aplicativo Web.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 1. Acesso a um servidor Ubuntu 16.04 com uma conta de usuário padrão com privilégio sudo.
-1. Instale o tempo de execução do .NET Core no servidor.
+1. Instale o runtime do .NET Core no servidor.
    1. Acesse a [página Todos os Downloads do .NET Core](https://www.microsoft.com/net/download/all).
-   1. Selecione o tempo de execução não de versão prévia mais recente da lista em **Tempo de Execução**.
+   1. Selecione o runtime não de versão prévia mais recente da lista em **Runtime**.
    1. Selecione e siga as instruções para Ubuntu que correspondem à versão Ubuntu do servidor.
 1. Um aplicativo ASP.NET Core existente.
 
@@ -56,7 +56,7 @@ Execute [dotnet publish](/dotnet/core/tools/dotnet-publish) do ambiente de desen
 dotnet publish --configuration Release
 ```
 
-O aplicativo também poderá ser publicado como uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd) se você preferir não manter o tempo de execução do .NET Core no servidor.
+O aplicativo também poderá ser publicado como uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd) se você preferir não manter o runtime do .NET Core no servidor.
 
 Copie o aplicativo ASP.NET Core para o servidor usando uma ferramenta que se integre ao fluxo de trabalho da organização (por exemplo, SCP, SFTP). É comum para localizar os aplicativos Web no diretório *var* (por exemplo, *var/www/helloapp*).
 
@@ -108,7 +108,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/proxy-load-balance
 
 ### <a name="install-nginx"></a>Instalar o Nginx
 
-Use `apt-get` para instalar o Nginx. O instalador cria um script de inicialização *systemd* que executa o Nginx como daemon na inicialização do sistema. Siga as instruções de instalação do Ubuntu no [Nginx: pacotes Debian/Ubuntu oficiais](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
+Use `apt-get` para instalar o Nginx. O instalador cria um script de inicialização *systemd* que executa o Nginx como daemon na inicialização do sistema. Siga as instruções de instalação para o Ubuntu em [Nginx: pacotes Debian/Ubuntu oficiais](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
 
 > [!NOTE]
 > Se módulos Nginx opcionais forem exigidos, poderá haver necessidade de criar o Nginx da origem.
@@ -152,7 +152,7 @@ server {
 }
 ```
 
-Com o servidor padrão e o arquivo de configuração anterior, o Nginx aceita tráfego público na porta 80 com um cabeçalho de host `example.com` ou `*.example.com`. Solicitações que não correspondam a esses hosts não serão encaminhadas para o Kestrel. O Nginx encaminha as solicitações correspondentes para o Kestrel em `http://localhost:5000`. Veja [Como o nginx processa uma solicitação](https://nginx.org/docs/http/request_processing.html) para obter mais informações. Para alterar o IP/porta do Kestrel, veja [Kestrel: configuração do ponto de extremidade](xref:fundamentals/servers/kestrel#endpoint-configuration).
+Com o servidor padrão e o arquivo de configuração anterior, o Nginx aceita tráfego público na porta 80 com um cabeçalho de host `example.com` ou `*.example.com`. Solicitações que não correspondam a esses hosts não serão encaminhadas para o Kestrel. O Nginx encaminha as solicitações correspondentes para o Kestrel em `http://localhost:5000`. Veja [Como o nginx processa uma solicitação](https://nginx.org/docs/http/request_processing.html) para obter mais informações. Para alterar o IP/porta do Kestrel, veja [Kestrel: configuração de ponto de extremidade](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 > [!WARNING]
 > Falha ao especificar uma [diretiva server_name](https://nginx.org/docs/http/server_names.html) expõe seu aplicativo para vulnerabilidades de segurança. Associações de curinga de subdomínio (por exemplo, `*.example.com`) não oferecerão esse risco de segurança se você controlar o domínio pai completo (em vez de `*.com`, o qual é vulnerável). Veja [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) para obter mais informações.
@@ -264,7 +264,7 @@ Já que o aplicativo Web usando Kestrel é gerenciado usando `systemd`, todos os
 sudo journalctl -fu kestrel-helloapp.service
 ```
 
-Para obter mais filtragem, opções de hora como `--since today`, `--until 1 hour ago` ou uma combinação delas, pode reduzir a quantidade de entradas retornadas.
+Para obter mais filtragem, opções de tempo como `--since today`, `--until 1 hour ago` ou uma combinação desses fatores pode reduzir a quantidade de entradas retornadas.
 
 ```bash
 sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-10-18 04:00"
@@ -287,7 +287,7 @@ Para configurar a proteção de dados de modo que ela mantenha e criptografe o t
 
 ## <a name="long-request-header-fields"></a>Campos de cabeçalho da solicitação muito grandes
 
-Se o aplicativo exigir campos de cabeçalho de solicitação mais longos que o permitido pelas configurações padrão do servidor proxy (normalmente de 4K ou 8K dependendo da plataforma), as seguintes diretivas precisarão de ajustes. Os valores que serão aplicados são dependentes de cenário. Para obter mais informações, confira a documentação do servidor.
+As configurações padrão do servidor proxy normalmente limitam os campos de cabeçalho de solicitação a 4 K ou 8 K, dependendo da plataforma. Um aplicativo pode exigir campos maiores do que o padrão (por exemplo, aplicativos que usam [Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). Se forem necessários campos mais longos, as configurações padrão do servidor proxy exigirão ajuste. Os valores a serem aplicados dependem do cenário. Para obter mais informações, confira a documentação do servidor.
 
 * [proxy_buffer_size](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffer_size)
 * [proxy_buffers](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffers)

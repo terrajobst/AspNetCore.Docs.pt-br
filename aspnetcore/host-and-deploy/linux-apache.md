@@ -5,14 +5,14 @@ description: Saiba como configurar o Apache como um servidor proxy reverso no Ce
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
 ms.custom: mvc
-ms.date: 03/31/2019
+ms.date: 11/05/2019
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: ec14bce5d8ada9a56ccc44d1159373dc73a09c1b
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: fce91db736908e433ba6803319aa8984bb68a554
+ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71081889"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73659881"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hospedar o ASP.NET Core no Linux com o Apache
 
@@ -20,12 +20,12 @@ Por [Shayne Boyer](https://github.com/spboyer)
 
 Usando este guia, saiba como configurar o [Apache](https://httpd.apache.org/) como um servidor proxy reverso no [CentOS 7](https://www.centos.org/) para redirecionar o tráfego HTTP para um aplicativo Web ASP.NET Core em execução no servidor [Kestrel](xref:fundamentals/servers/kestrel). A [extensão mod_proxy](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html) e os módulos relacionados criam o proxy reverso do servidor.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 * Servidor que executa o CentOS 7 com uma conta de usuário padrão com privilégio sudo.
-* Instale o tempo de execução do .NET Core no servidor.
+* Instale o runtime do .NET Core no servidor.
    1. Acesse a [página Todos os Downloads do .NET Core](https://www.microsoft.com/net/download/all).
-   1. Selecione o tempo de execução não de versão prévia mais recente da lista em **Tempo de Execução**.
+   1. Selecione o runtime não de versão prévia mais recente da lista em **Runtime**.
    1. Selecione e siga as instruções para CentOS/Oracle.
 * Um aplicativo ASP.NET Core existente.
 
@@ -44,7 +44,7 @@ Execute [dotnet publish](/dotnet/core/tools/dotnet-publish) do ambiente de desen
 dotnet publish --configuration Release
 ```
 
-O aplicativo também poderá ser publicado como uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd) se você preferir não manter o tempo de execução do .NET Core no servidor.
+O aplicativo também poderá ser publicado como uma [implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd) se você preferir não manter o runtime do .NET Core no servidor.
 
 Copie o aplicativo ASP.NET Core para o servidor usando uma ferramenta que se integre ao fluxo de trabalho da organização (por exemplo, SCP, SFTP). É comum para localizar os aplicativos Web no diretório *var* (por exemplo, *var/www/helloapp*).
 
@@ -142,7 +142,7 @@ Crie um arquivo de configuração chamado *helloapp.conf* para o aplicativo:
 </VirtualHost>
 ```
 
-O bloco `VirtualHost` pode aparecer várias vezes, em um ou mais arquivos em um servidor. No arquivo de configuração anterior, o Apache aceita tráfego público na porta 80. O domínio `www.example.com` está sendo atendido e o alias `*.example.com` é resolvido para o mesmo site. Veja [Suporte a host virtual baseado em nome](https://httpd.apache.org/docs/current/vhosts/name-based.html) para obter mais informações. As solicitações passadas por proxy na raiz para a porta 5000 do servidor em 127.0.0.1. Para a comunicação bidirecional, `ProxyPass` e `ProxyPassReverse` são necessários. Para alterar o IP/porta do Kestrel, veja [Kestrel: configuração do ponto de extremidade](xref:fundamentals/servers/kestrel#endpoint-configuration).
+O bloco `VirtualHost` pode aparecer várias vezes, em um ou mais arquivos em um servidor. No arquivo de configuração anterior, o Apache aceita tráfego público na porta 80. O domínio `www.example.com` está sendo atendido e o alias `*.example.com` é resolvido para o mesmo site. Veja [Suporte a host virtual baseado em nome](https://httpd.apache.org/docs/current/vhosts/name-based.html) para obter mais informações. As solicitações passadas por proxy na raiz para a porta 5000 do servidor em 127.0.0.1. Para a comunicação bidirecional, `ProxyPass` e `ProxyPassReverse` são necessários. Para alterar o IP/porta do Kestrel, veja [Kestrel: configuração de ponto de extremidade](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 > [!WARNING]
 > Falha ao especificar uma [diretiva ServerName](https://httpd.apache.org/docs/current/mod/core.html#servername) no bloco **VirtualHost** expõe seu aplicativo para vulnerabilidades de segurança. Associações de curinga de subdomínio (por exemplo, `*.example.com`) não oferecerão esse risco de segurança se você controlar o domínio pai completo (em vez de `*.com`, o qual é vulnerável). Veja [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) para obter mais informações.
@@ -484,7 +484,7 @@ O arquivo de exemplo limita a largura de banda a 600 KB/s no local raiz:
 
 ### <a name="long-request-header-fields"></a>Campos de cabeçalho da solicitação muito grandes
 
-Se o aplicativo exigir campos de cabeçalho de solicitação maiores do que o permitido pela configuração padrão do servidor proxy (normalmente 8.190 bytes), ajuste o valor da diretiva [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize). O valor que será aplicada é dependentes de cenário. Para obter mais informações, confira a documentação do servidor.
+As configurações padrão do servidor proxy normalmente limitam os campos de cabeçalho de solicitação a 8.190 bytes. Um aplicativo pode exigir campos maiores do que o padrão (por exemplo, aplicativos que usam [Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). Se forem necessários campos mais longos, a diretiva [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize) do servidor proxy exigirá ajuste. O valor a ser aplicado depende do cenário. Para obter mais informações, confira a documentação do servidor.
 
 > [!WARNING]
 > Não aumente o valor padrão de `LimitRequestFieldSize` a menos que necessário. Aumentar esse valor aumenta o risco de estouro de buffer (estouro) e ataques de DoS (negação de serviço) por usuários mal-intencionados.

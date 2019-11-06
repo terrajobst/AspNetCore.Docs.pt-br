@@ -5,14 +5,14 @@ description: Saiba como usar a estrutura de registro em log fornecida pelo pacot
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/08/2019
+ms.date: 11/05/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: 697e6cf0cd1b51ad6c2942e21bc084d1fe6bfa4e
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: 2cb19d251ad69ebd7d18480c14857e948c69b747
+ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259741"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73659966"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Como fazer registro em log no .NET Core e no ASP.NET Core
 
@@ -131,6 +131,69 @@ Para gravar logs na classe `Program` de um aplicativo ASP.NET Core, obtenha uma 
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
 
+Não há suporte direto para o registro em log durante a construção do host. No entanto, um agente separado pode ser usado. No exemplo a seguir, um agente de log do [Serilog](https://serilog.net/) é usado para fazer logon `CreateHostBuilder`. `AddSerilog` usa a configuração estática especificada em `Log.Logger`:
+
+```csharp
+using System;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args)
+    {
+        var builtConfig = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .AddCommandLine(args)
+            .Build();
+
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File(builtConfig["Logging:FilePath"])
+            .CreateLogger();
+
+        try
+        {
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureServices((context, services) =>
+                {
+                    services.AddRazorPages();
+                })
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddConfiguration(builtConfig);
+                })
+                .ConfigureLogging(logging =>
+                {   
+                    logging.AddSerilog();
+                })
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, "Host builder error");
+
+            throw;
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
+    }
+}
+```
+
 ### <a name="create-logs-in-the-startup-class"></a>Criar logs na classe Startup
 
 Para gravar logs no método `Startup.Configure` de um aplicativo ASP.NET Core, inclua um parâmetro `ILogger` na assinatura do método:
@@ -167,6 +230,66 @@ Para gravar logs na classe `Startup`, inclua um parâmetro `ILogger` na assinatu
 Para gravar logs na classe `Program`, obtenha uma instância `ILogger` da DI:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
+
+Não há suporte direto para o registro em log durante a construção do host. No entanto, um agente separado pode ser usado. No exemplo a seguir, um agente de log do [Serilog](https://serilog.net/) é usado para fazer logon `CreateWebHostBuilder`. `AddSerilog` usa a configuração estática especificada em `Log.Logger`:
+
+```csharp
+using System;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateWebHostBuilder(args).Build().Run();
+    }
+
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+    {
+        var builtConfig = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .AddCommandLine(args)
+            .Build();
+
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File(builtConfig["Logging:FilePath"])
+            .CreateLogger();
+
+        try
+        {
+            return WebHost.CreateDefaultBuilder(args)
+                .ConfigureServices((context, services) =>
+                {
+                    services.AddMvc();
+                })
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddConfiguration(builtConfig);
+                })
+                .ConfigureLogging(logging =>
+                {
+                    logging.AddSerilog();
+                })
+                .UseStartup<Startup>();
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, "Host builder error");
+
+            throw;
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
+    }
+}
+```
 
 ::: moniker-end
 
@@ -395,11 +518,11 @@ O ASP.NET Core define os seguintes níveis de log, ordenados aqui da menor para 
 Use o nível de log para controlar a quantidade de saída de log que é gravada em uma mídia de armazenamento específica ou em uma janela de exibição. Por exemplo:
 
 * Em produção:
-  * O registro em log no `Trace` por meio de níveis `Information` produz um alto volume de mensagens de log detalhadas. Para controlar os custos e não exceder os limites de armazenamento de dados, faça o log `Trace` por meio de mensagens de nível `Information` para um armazenamento de dados de alto volume e baixo custo.
-  * O registro em log em `Warning` em níveis `Critical` normalmente produz menos mensagens de log menores. Portanto, os custos e os limites de armazenamento geralmente não são uma preocupação, o que resulta em maior flexibilidade de escolha de armazenamento de dados.
+  * O registro em log na `Trace` por meio de níveis de `Information` produz um alto volume de mensagens de log detalhadas. Para controlar os custos e não exceder os limites de armazenamento de dados, `Trace` de log por meio de mensagens de nível de `Information` para um armazenamento de dados de alto volume e baixo custo.
+  * O registro em log em `Warning` por meio de níveis de `Critical` produz menos mensagens de log menores. Portanto, os custos e os limites de armazenamento geralmente não são uma preocupação, o que resulta em maior flexibilidade de escolha de armazenamento de dados.
 * Durante o desenvolvimento:
-  * Log `Warning` através de mensagens `Critical` para o console.
-  * Adicione `Trace` por meio de mensagens `Information` ao solucionar problemas.
+  * `Warning` de log por meio de mensagens de `Critical` para o console.
+  * Adicione `Trace` por meio de mensagens `Information` ao solucionar o problema.
 
 A seção [Filtragem de log](#log-filtering) mais adiante neste artigo explicará como controlar os níveis de log que um provedor manipula.
 
@@ -623,7 +746,7 @@ O segundo `AddFilter` especifica o provedor Depuração usando seu nome de tipo.
 
 Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anteriores, criam as regras mostradas na tabela a seguir. As primeiras seis vêm do exemplo de configuração e as últimas duas vêm do exemplo de código.
 
-| Number | Provider      | Categorias que começam com...          | Nível de log mínimo |
+| Número | Provider      | Categorias que começam com...          | Nível de log mínimo |
 | :----: | ------------- | --------------------------------------- | ----------------- |
 | 1      | Depurar         | Todas as categorias                          | Informações       |
 | 2      | Console       | Microsoft.AspNetCore.Mvc.Razor.Internal | Aviso           |
@@ -632,7 +755,7 @@ Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anter
 | 5      | Console       | Todas as categorias                          | Informações       |
 | 6      | Todos os provedores | Todas as categorias                          | Depurar             |
 | 7      | Todos os provedores | Sistema                                  | Depurar             |
-| 8      | Depurar         | Microsoft                               | Rastreamento             |
+| 8      | Depurar         | Microsoft                               | Rastrear             |
 
 Quando um objeto `ILogger` é criado, o objeto `ILoggerFactory` seleciona uma única regra por provedor para aplicar a esse agente. Todas as mensagens gravadas pela instância `ILogger` são filtradas com base nas regras selecionadas. A regra mais específica possível para cada par de categoria e provedor é selecionada dentre as regras disponíveis.
 
@@ -701,7 +824,7 @@ Uma função de filtro é invocada para todos os provedores e categorias que nã
 
 Veja algumas categorias usadas pelo ASP.NET Core e Entity Framework Core, com anotações sobre quais logs esperar delas:
 
-| Categoria                            | Observações |
+| Categoria                            | Anotações |
 | ----------------------------------- | ----- |
 | Microsoft.AspNetCore                | Diagnóstico geral de ASP.NET Core. |
 | Microsoft.AspNetCore.DataProtection | Quais chaves foram consideradas, encontradas e usadas. |
@@ -768,7 +891,7 @@ warn: TodoApiSample.Controllers.TodoController[4000]
 O ASP.NET Core vem com os seguintes provedores:
 
 * [Console](#console-provider)
-* [Depurar](#debug-provider)
+* [Depuração](#debug-provider)
 * [EventSource](#eventsource-provider)
 * [EventLog](#windows-eventlog-provider)
 * [TraceSource](#tracesource-provider)
@@ -941,7 +1064,7 @@ Algumas estruturas de terceiros podem fazer o [log semântico, também conhecido
 Usar uma estrutura de terceiros é semelhante ao uso de um dos provedores internos:
 
 1. Adicione um pacote NuGet ao projeto.
-1. Chame um método de extensão `ILoggerFactory` fornecido pela estrutura de log.
+1. Chame um método de extensão de `ILoggerFactory` fornecido pela estrutura de log.
 
 Para saber mais, consulte a documentação de cada provedor. Não há suporte para provedores de log de terceiros na Microsoft.
 

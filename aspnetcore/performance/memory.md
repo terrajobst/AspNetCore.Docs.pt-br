@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/05/2019
 uid: performance/memory
-ms.openlocfilehash: 48397e9fe7da912c1930f17fb86b686f0a20c60e
-ms.sourcegitcommit: 897d4abff58505dae86b2947c5fe3d1b80d927f3
+ms.openlocfilehash: 8f6b47ecde6f265bfb9437234b89f11f7d235869
+ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 11/06/2019
-ms.locfileid: "73638237"
+ms.locfileid: "73660010"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Gerenciamento de memória e coleta de lixo (GC) no ASP.NET Core
 
@@ -70,7 +70,7 @@ Se o valor de memória do Gerenciador de tarefas aumentar indefinidamente e nunc
 
 O [aplicativo de exemplo MemoryLeak](https://github.com/sebastienros/memoryleak) está disponível no github. O aplicativo MemoryLeak:
 
-* Inclui um controlador de diagnóstico que reúne a memória real Tine e os dados do GC para o aplicativo.
+* Inclui um controlador de diagnóstico que reúne a memória em tempo real e os dados do GC para o aplicativo.
 * Tem uma página de índice que exibe os dados de memória e GC. A página de índice é atualizada a cada segundo.
 * Contém um controlador de API que fornece vários padrões de carga de memória.
 * Não é uma ferramenta com suporte, no entanto, pode ser usada para exibir os padrões de uso de memória de aplicativos ASP.NET Core.
@@ -114,7 +114,7 @@ O gráfico a seguir é obtido com a taxa de transferência máxima que pode ser 
 
 O gráfico anterior mostra:
 
-* 22 RPS
+* 22K RPS
 * As coleções de GC de geração 0 ocorrem várias vezes por segundo.
 * As coleções de geração 1 são disparadas porque o aplicativo alocou significativamente mais memória por segundo.
 * O conjunto de trabalho é constante em aproximadamente 500 MB.
