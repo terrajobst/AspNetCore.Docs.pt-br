@@ -1,16 +1,16 @@
 ---
 title: Adicione um modelo a um aplicativo ASP.NET Core MVC
 author: rick-anderson
-description: Adicione um modelo a um aplicativo ASP.NET Core simples.
+description: Adicione um modelo para um aplicativo simples do ASP.NET Core.
 ms.author: riande
 ms.date: 8/15/2019
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 5ad31a2536ad70590eaa767cf20068512241f36b
-ms.sourcegitcommit: 14b25156e34c82ed0495b4aff5776ac5b1950b5e
+ms.openlocfilehash: d6d75bcbab875c08bfff532d968013dca323beed
+ms.sourcegitcommit: 897d4abff58505dae86b2947c5fe3d1b80d927f3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/26/2019
-ms.locfileid: "71295470"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73634128"
 ---
 # <a name="add-a-model-to-an-aspnet-core-mvc-app"></a>Adicione um modelo a um aplicativo ASP.NET Core MVC
 
@@ -18,7 +18,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Tom Dykstra](https://git
 
 Nesta seção, você adiciona classes para gerenciamento de filmes em um banco de dados. Essas classes serão a parte “**M**odel” parte do aplicativo **M**VC.
 
-Você usa essas classes com o [EF Core](/ef/core) (Entity Framework Core) para trabalhar com um banco de dados. O EF Core é uma estrutura ORM (mapeamento relacional de objetos) que simplifica o código de acesso a dados que você precisa escrever.
+Você usa essas classes com o [Entity Framework Core](/ef/core) (EF Core) para trabalhar com um banco de dados. O EF Core é uma estrutura ORM (de mapeamento relacional de objetos) que simplifica o código de acesso a dados que você precisa escrever.
 
 As classes de modelo que você cria são conhecidas como classes de dados POCO (de **o**bjetos **C**L**R** **b**ásicos) porque elas não têm nenhuma dependência no EF Core. Elas apenas definem as propriedades dos dados que serão armazenados no banco de dados.
 
@@ -89,7 +89,7 @@ O código anterior cria uma propriedade [DbSet\<Movie>](/dotnet/api/microsoft.en
 
 <a name="reg"></a>
 
-## <a name="register-the-database-context"></a>Registrar o contexto de banco de dados
+## <a name="register-the-database-context"></a>Registrar o contexto do banco de dados
 
 O ASP.NET Core foi criado com a [DI (injeção de dependência)](xref:fundamentals/dependency-injection). Os serviços (como o contexto de BD do EF Core) devem ser registrados com a DI durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como as Páginas do Razor) recebem esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD será mostrado mais adiante no tutorial. Nesta seção, você registra o contexto do banco de dados com o contêiner DI.
 
@@ -149,7 +149,7 @@ Na caixa de diálogo **Adicionar Scaffold**, selecione **Controlador MVC com exi
 Preencha a caixa de diálogo **Adicionar Controlador**:
 
 * **Classe de modelo:** *Movie (MvcMovie.Models)*
-* **Classe de contexto de dados:** *MvcMovieContext (MvcMovie.Data)*
+* **Classe de contexto de dados:** *MvcMovieContext (MvcMovie. Data)*
 
 ![Adicionar contexto de dados](adding-model/_static/dc3.png)
 
@@ -198,7 +198,7 @@ A criação automática desses arquivos é conhecida como *scaffolding*.
 
 <!-- End of tabs                  -->
 
-Você não pode usar as páginas com scaffold ainda porque o banco de dados não existe. Se você executar o aplicativo e clicar no link **Aplicativo de Filme**, obterá uma mensagem de erro de *Não é possível abrir o banco de dados* ou *Não há uma tabela assim: Filme*.
+Você não pode usar as páginas com scaffold ainda porque o banco de dados não existe. Se você executar o aplicativo e clicar no link do **aplicativo de filme** , receberá uma mensagem de erro *não é possível abrir o banco de dados* ou *nenhuma tabela: filme* .
 
 <a name="migration"></a>
 
@@ -210,16 +210,16 @@ Use o recurso [Migrações](xref:data/ef-mvc/migrations) do EF Core para criar o
 
 No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet** > **Console do Gerenciador de Pacotes** (PMC).
 
-No PMC, insira os seguintes comandos:
+No PMC, digite os seguintes comandos:
 
-```console
+```PMC
 Add-Migration InitialCreate
 Update-Database
 ```
 
-* `Add-Migration InitialCreate`: Gera um arquivo de migração *Migrations/{timestamp}_InitialCreate.cs*. O argumento `InitialCreate` é o nome da migração. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado. Como essa é a primeira migração, a classe gerada contém o código para criar o esquema de banco de dados. O esquema de banco de dados é baseado no modelo especificado na classe `MvcMovieContext`.
+* `Add-Migration InitialCreate`: gera um arquivo de migração de *migrações/{timestamp} _InitialCreate. cs* . O argumento `InitialCreate` é o nome da migração. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado. Como essa é a primeira migração, a classe gerada contém o código para criar o esquema de banco de dados. O esquema de banco de dados é baseado no modelo especificado na classe `MvcMovieContext`.
 
-* `Update-Database`: Atualiza o banco de dados para a migração mais recente, que o comando anterior criou. Esse comando executa o método `Up` no arquivo *Migrations/{time-stamp}_InitialCreate.cs*, que cria o banco de dados.
+* `Update-Database`: atualiza o banco de dados para a migração mais recente, que o comando anterior criou. Esse comando executa o método `Up` no arquivo *Migrations/{time-stamp}_InitialCreate.cs*, que cria o banco de dados.
 
   O comando de atualização de banco de dados gera o seguinte aviso: 
 
@@ -238,9 +238,9 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-* `ef migrations add InitialCreate`: Gera um arquivo de migração *Migrations/{timestamp}_InitialCreate.cs*. O argumento `InitialCreate` é o nome da migração. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado. Como essa é a primeira migração, a classe gerada contém o código para criar o esquema de banco de dados. O esquema do banco de dados é baseado no modelo especificado na classe `MvcMovieContext` (no arquivo *Data/MvcMovieContext.cs*).
+* `ef migrations add InitialCreate`: gera um arquivo de migração de *migrações/{timestamp} _InitialCreate. cs* . O argumento `InitialCreate` é o nome da migração. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado. Como essa é a primeira migração, a classe gerada contém o código para criar o esquema de banco de dados. O esquema do banco de dados é baseado no modelo especificado na classe `MvcMovieContext` (no arquivo *Data/MvcMovieContext.cs*).
 
-* `ef database update`: Atualiza o banco de dados para a migração mais recente, que o comando anterior criou. Esse comando executa o método `Up` no arquivo *Migrations/{time-stamp}_InitialCreate.cs*, que cria o banco de dados.
+* `ef database update`: atualiza o banco de dados para a migração mais recente, que o comando anterior criou. Esse comando executa o método `Up` no arquivo *Migrations/{time-stamp}_InitialCreate.cs*, que cria o banco de dados.
 
 [!INCLUDE [ more information on the CLI tools for EF Core](~/includes/ef-cli.md)]
 
@@ -362,7 +362,7 @@ Como o objeto `Model` é fortemente tipado (como um objeto `IEnumerable<Movie>`)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Auxiliares de marcação](xref:mvc/views/tag-helpers/intro)
+* [Auxiliares de Marcas](xref:mvc/views/tag-helpers/intro)
 * [Globalização e localização](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
@@ -506,7 +506,7 @@ Você precisa criar o banco de dados e usará o recurso [Migrações](xref:data/
 
 Nesta seção, há estas tarefas:
 
-* Adicione uma migração inicial.
+* Adicionar uma migração inicial.
 * Atualize o banco de dados com a migração inicial.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
@@ -515,9 +515,9 @@ Nesta seção, há estas tarefas:
 
    ![Menu do PMC](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
 
-1. No PMC, insira os seguintes comandos:
+1. No PMC, digite os seguintes comandos:
 
-   ```console
+   ```PMC
    Add-Migration Initial
    Update-Database
    ```
@@ -671,7 +671,7 @@ Como o objeto `Model` é fortemente tipado (como um objeto `IEnumerable<Movie>`)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Auxiliares de marcação](xref:mvc/views/tag-helpers/intro)
+* [Auxiliares de Marcas](xref:mvc/views/tag-helpers/intro)
 * [Globalização e localização](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
