@@ -4,14 +4,14 @@ author: blowdart
 description: Saiba como configurar a autenticação de certificado no ASP.NET Core para IIS e HTTP. sys.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
-ms.date: 08/19/2019
+ms.date: 11/05/2019
 uid: security/authentication/certauth
-ms.openlocfilehash: 1e646aabb4e384e6906575e7beaa680e91f968a0
-ms.sourcegitcommit: e5d4768aaf85703effb4557a520d681af8284e26
+ms.openlocfilehash: 081935e6e6248b5fe9b7bf4cd966dc73761d2ec1
+ms.sourcegitcommit: 897d4abff58505dae86b2947c5fe3d1b80d927f3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/05/2019
-ms.locfileid: "73616573"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73634051"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurar a autenticação de certificado no ASP.NET Core
 
@@ -32,7 +32,7 @@ Uma alternativa à autenticação de certificado em ambientes em que proxies e b
 
 Adquira um certificado HTTPS, aplique-o e [configure seu host](#configure-your-host-to-require-certificates) para exigir certificados.
 
-Em seu aplicativo Web, adicione uma referência ao pacote de `Microsoft.AspNetCore.Authentication.Certificate`. Em seguida, no método `Startup.ConfigureServices`, chame `services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).UseCertificateAuthentication(...);` com suas opções, fornecendo um delegado para `OnCertificateValidated` fazer qualquer validação suplementar no certificado do cliente enviado com solicitações. Transforme essas informações em um `ClaimsPrincipal` e defina-as na propriedade `context.Principal`.
+Em seu aplicativo Web, adicione uma referência ao pacote de `Microsoft.AspNetCore.Authentication.Certificate`. Em seguida, no método `Startup.ConfigureServices`, chame `services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);` com suas opções, fornecendo um delegado para `OnCertificateValidated` fazer qualquer validação suplementar no certificado do cliente enviado com solicitações. Transforme essas informações em um `ClaimsPrincipal` e defina-as na propriedade `context.Principal`.
 
 Se a autenticação falhar, esse manipulador retornará uma `403 (Forbidden)` resposta em vez de uma `401 (Unauthorized)`, como você pode esperar. O raciocínio é que a autenticação deve ocorrer durante a conexão de TLS inicial. No momento em que atinge o manipulador, é tarde demais. Não há como atualizar a conexão de uma conexão anônima para uma com um certificado.
 
@@ -186,16 +186,24 @@ Conceitualmente, a validação do certificado é um problema de autorização. A
 No *Program.cs*, configure o Kestrel da seguinte maneira:
 
 ```csharp
-public static IWebHost BuildWebHost(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .UseStartup<Startup>()
-        .ConfigureKestrel(options =>
-        {
-            options.ConfigureHttpsDefaults(opt => 
-                opt.ClientCertificateMode = 
-                    ClientCertificateMode.RequireCertificate);
-        })
-        .Build();
+
+public static void Main(string[] args)
+{
+    CreateHostBuilder(args).Build().Run();
+}
+
+public static IHostBuilder CreateHostBuilder(string[] args)
+{
+    return Host.CreateDefaultBuilder(args)
+               .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureKestrel(o =>
+                    {
+                        o.ConfigureHttpsDefaults(o => o.ClientCertificateMode = ClientCertificateMode.RequireCertificate);
+                    });
+                });
+}
 ```
 
 ### <a name="iis"></a>IIS

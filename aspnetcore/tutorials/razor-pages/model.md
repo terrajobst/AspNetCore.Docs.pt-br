@@ -3,14 +3,14 @@ title: Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 author: rick-anderson
 description: Saiba como adicionar classes de gerenciamento de filmes em um banco de dados usando o EF Core (Entity Framework Core).
 ms.author: riande
-ms.date: 9/22/2019
+ms.date: 11/05/2019
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 4f8b80cb51bd10eb3b136a780dc123c41d61c0a5
-ms.sourcegitcommit: e71b6a85b0e94a600af607107e298f932924c849
+ms.openlocfilehash: 312b3d4eb13eb04453bf0c3256fc362918157a45
+ms.sourcegitcommit: 897d4abff58505dae86b2947c5fe3d1b80d927f3
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2019
-ms.locfileid: "72519080"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73634153"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -18,7 +18,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Nesta seção, classes são adicionadas para o gerenciamento de filmes em um banco de dados. Essas classes são usadas com o [EF Core](/ef/core) (Entity Framework Core) para trabalhar com um banco de dados. O EF Core é uma estrutura ORM (mapeamento relacional de objetos) que simplifica o acesso a dados.
+Nesta seção, as classes são adicionadas para gerenciar filmes em um banco de [dados SQLite](https://www.sqlite.org/index.html)de plataforma cruzada. Os aplicativos criados por meio de um modelo de ASP.NET Core usam um banco de dados SQLite. As classes de modelo do aplicativo são usadas com [Entity Framework Core (EF Core)](/ef/core) ([SQLite EF Core provedor de banco de dados](/ef/core/providers/sqlite)) para trabalhar com o banco de dados. O EF Core é uma estrutura ORM (mapeamento relacional de objetos) que simplifica o acesso a dados.
 
 As classes de modelo são conhecidas como classes POCO (de "objetos CLR básicos") porque não têm nenhuma dependência do EF Core. Elas definem as propriedades dos dados que são armazenados no banco de dados.
 
@@ -198,7 +198,7 @@ Você pode ignorar esse aviso, ele será corrigido em um tutorial posterior.
 
 O comando migrações gera código para criar o esquema de banco de dados inicial. O esquema é baseado no modelo especificado em `DbContext`. O argumento `InitialCreate` é usado para nomear as migrações. Qualquer nome pode ser usado, mas, por convenção, um nome que descreve a migração é selecionado.
 
-O comando `update` executa o método `Up` em migrações que não foram aplicadas. Nesse caso, `update` executa o método `Up` em *migrações/@no__t-stamp > arquivo _InitialCreate. cs* , que cria o banco de dados.
+O comando `update` executa o método `Up` em migrações que não foram aplicadas. Nesse caso, `update` executa o método `Up` em *migrações/\<carimbo de data/hora > arquivo _InitialCreate. cs* , que cria o banco de dados.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -267,7 +267,7 @@ O tutorial a seguir explica os arquivos criados por scaffolding.
 <!--  ::: moniker previous version   -->
 ::: moniker range="< aspnetcore-3.0"
 
-Nesta seção, classes são adicionadas para o gerenciamento de filmes em um banco de dados. Essas classes são usadas com o [EF Core](/ef/core) (Entity Framework Core) para trabalhar com um banco de dados. O EF Core é uma estrutura ORM (mapeamento relacional de objetos) que simplifica o código de acesso a dados.
+Nesta seção, as classes são adicionadas para gerenciar filmes em um banco de [dados SQLite](https://www.sqlite.org/index.html)de plataforma cruzada. Os aplicativos criados por meio de um modelo de ASP.NET Core usam um banco de dados SQLite. As classes de modelo do aplicativo são usadas com [Entity Framework Core (EF Core)](/ef/core) ([SQLite EF Core provedor de banco de dados](/ef/core/providers/sqlite)) para trabalhar com o banco de dados. O EF Core é uma estrutura ORM (mapeamento relacional de objetos) que simplifica o acesso a dados.
 
 As classes de modelo são conhecidas como classes POCO (de "objetos CLR básicos") porque não têm nenhuma dependência do EF Core. Elas definem as propriedades dos dados que são armazenados no banco de dados.
 
