@@ -5,14 +5,14 @@ description: Saiba como configurar o módulo do ASP.NET Core para hospedar aplic
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2019
+ms.date: 11/07/2019
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: 42ff4438738931fde70e123031412bcfc8a83efb
-ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
+ms.openlocfilehash: c9bbd36b8a55b837f6d78abf99215c5496895a39
+ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2019
-ms.locfileid: "73034206"
+ms.lasthandoff: 11/07/2019
+ms.locfileid: "73799410"
 ---
 # <a name="aspnet-core-module"></a>Módulo do ASP.NET Core
 
@@ -208,7 +208,7 @@ O exemplo a seguir define duas variáveis de ambiente em *Web. config*. `ASPNETC
 ```
 
 > [!NOTE]
-> Em vez de configurar o ambiente diretamente no *web.config*, você pode incluir a propriedade `<EnvironmentName>` no perfil de publicação ( *.pubxml*) ou no perfil de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
+> Uma alternativa para definir o ambiente diretamente no *Web. config* é incluir a propriedade `<EnvironmentName>` no perfil de [publicação (. pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) ou no arquivo de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
 >
 > ```xml
 > <PropertyGroup>
@@ -366,7 +366,7 @@ Para determinar a versão do Módulo do ASP.NET Core instalado:
 1. Clique com o botão direito do mouse no arquivo e selecione **Propriedades** no menu contextual.
 1. Selecione a guia **detalhes** . A versão do **arquivo** e a **versão do produto** representam a versão instalada do módulo.
 
-Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C:\\usuários\\% username%\\AppData\\Local\\Temp*. O arquivo é denominado *dd_DotNetCoreWinSvrHosting__\<carimbo de data/hora > _000_AspNetCoreModule_x64. log*.
+Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C:\\usuários\\% username%\\AppData\\Local\\Temp*. O arquivo é nomeado *dd_DotNetCoreWinSvrHosting__ carimbo de data/hora\<> _000_AspNetCoreModule_x64. log*.
 
 ## <a name="module-schema-and-configuration-file-locations"></a>Locais dos arquivos de módulo, de esquema e de configuração
 
@@ -623,7 +623,7 @@ O exemplo a seguir define duas variáveis de ambiente. `ASPNETCORE_ENVIRONMENT` 
 ```
 
 > [!NOTE]
-> Em vez de configurar o ambiente diretamente no *web.config*, você pode incluir a propriedade `<EnvironmentName>` no perfil de publicação ( *.pubxml*) ou no perfil de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
+> Uma alternativa para definir o ambiente diretamente no *Web. config* é incluir a propriedade `<EnvironmentName>` no perfil de [publicação (. pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) ou no arquivo de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
 >
 > ```xml
 > <PropertyGroup>
@@ -761,7 +761,7 @@ Para determinar a versão do Módulo do ASP.NET Core instalado:
 1. Clique com o botão direito do mouse no arquivo e selecione **Propriedades** no menu contextual.
 1. Selecione a guia **detalhes** . A versão do **arquivo** e a **versão do produto** representam a versão instalada do módulo.
 
-Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C:\\usuários\\% username%\\AppData\\Local\\Temp*. O arquivo é denominado *dd_DotNetCoreWinSvrHosting__\<carimbo de data/hora > _000_AspNetCoreModule_x64. log*.
+Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C:\\usuários\\% username%\\AppData\\Local\\Temp*. O arquivo é nomeado *dd_DotNetCoreWinSvrHosting__ carimbo de data/hora\<> _000_AspNetCoreModule_x64. log*.
 
 ## <a name="module-schema-and-configuration-file-locations"></a>Locais dos arquivos de módulo, de esquema e de configuração
 
@@ -999,7 +999,7 @@ Para determinar a versão do Módulo do ASP.NET Core instalado:
 1. Clique com o botão direito do mouse no arquivo e selecione **Propriedades** no menu contextual.
 1. Selecione a guia **detalhes** . A versão do **arquivo** e a **versão do produto** representam a versão instalada do módulo.
 
-Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C:\\usuários\\% username%\\AppData\\Local\\Temp*. O arquivo é denominado *dd_DotNetCoreWinSvrHosting__\<carimbo de data/hora > _000_AspNetCoreModule_x64. log*.
+Os logs do instalador do pacote de hospedagem para o módulo são encontrados em *C:\\usuários\\% username%\\AppData\\Local\\Temp*. O arquivo é nomeado *dd_DotNetCoreWinSvrHosting__ carimbo de data/hora\<> _000_AspNetCoreModule_x64. log*.
 
 ## <a name="module-schema-and-configuration-file-locations"></a>Locais dos arquivos de módulo, de esquema e de configuração
 

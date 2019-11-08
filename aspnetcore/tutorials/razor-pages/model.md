@@ -5,12 +5,12 @@ description: Saiba como adicionar classes de gerenciamento de filmes em um banco
 ms.author: riande
 ms.date: 11/05/2019
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 312b3d4eb13eb04453bf0c3256fc362918157a45
-ms.sourcegitcommit: 897d4abff58505dae86b2947c5fe3d1b80d927f3
+ms.openlocfilehash: f2c9c2fc8112ef8a1a5afdbe448de6319c43521d
+ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73634153"
+ms.lasthandoff: 11/07/2019
+ms.locfileid: "73761228"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -116,6 +116,8 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
 
+[!INCLUDE [use SQL Server in production](~/includes/RP/sqlitedev.md)]
+
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Abra uma janela de comando no diretório do projeto (o diretório que contém os arquivos *Program.cs*, *Startup.cs* e *.csproj*).
@@ -132,6 +134,8 @@ O arquivo *appsettings.json* é atualizado com a cadeia de conexão usada para s
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
+
+[!INCLUDE [use SQL Server in production](~/includes/RP/sqlitedev.md)]
 
 ---
 

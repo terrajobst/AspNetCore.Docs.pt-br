@@ -1,18 +1,18 @@
 ---
-title: Visão geral do ASP.NET Core MVC
+title: Visão geral sobre o ASP.NET Core MVC
 author: ardalis
 description: Saiba como o ASP.NET Core MVC é uma estrutura avançada para a criação de aplicativos Web e APIs usando o padrão de design Model-View-Controller.
 ms.author: riande
-ms.date: 08/01/2019
+ms.date: 11/07/2019
 uid: mvc/overview
-ms.openlocfilehash: 7f09751850cbfa7bb3dc79656d4530445a9767b1
-ms.sourcegitcommit: 3204bc89ae6354b61ee0a9b2770ebe5214b7790c
+ms.openlocfilehash: 4f4ea3da8563cabaaa6183c6835c2f1eb8c387b4
+ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/01/2019
-ms.locfileid: "68707814"
+ms.lasthandoff: 11/07/2019
+ms.locfileid: "73799491"
 ---
-# <a name="overview-of-aspnet-core-mvc"></a>Visão geral do ASP.NET Core MVC
+# <a name="overview-of-aspnet-core-mvc"></a>Visão geral sobre o ASP.NET Core MVC
 
 Por [Steve Smith](https://ardalis.com/)
 
@@ -20,7 +20,7 @@ O ASP.NET Core MVC é uma estrutura avançada para a criação de aplicativos We
 
 ## <a name="what-is-the-mvc-pattern"></a>O que é o padrão MVC?
 
-O padrão de arquitetura MVC (Model-View-Controller) separa um aplicativo em três grupos de componentes principais: Modelos, Exibições e Controladores. Esse padrão ajuda a obter a [separação de interesses](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns). Usando esse padrão, as solicitações de usuário são encaminhadas para um Controlador, que é responsável por trabalhar com o Modelo para executar as ações do usuário e/ou recuperar os resultados de consultas. O Controlador escolhe a Exibição a ser exibida para o usuário e fornece-a com os dados do Modelo solicitados.
+O padrão de arquitetura MVC (Model-View-Controller) separa um aplicativo em três grupos de componentes principais: Modelos, Exibições e Componentes. Esse padrão ajuda a obter a [separação de interesses](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns). Usando esse padrão, as solicitações de usuário são encaminhadas para um Controlador, que é responsável por trabalhar com o Modelo para executar as ações do usuário e/ou recuperar os resultados de consultas. O Controlador escolhe a Exibição a ser exibida para o usuário e fornece-a com os dados do Modelo solicitados.
 
 O seguinte diagrama mostra os três componentes principais e quais deles referenciam os outros:
 
@@ -69,7 +69,7 @@ ASP.NET Core MVC inclui o seguinte:
 * [Capacidade de teste](#testability)
 * [Mecanismo de exibição do Razor](#razor-view-engine)
 * [Exibições fortemente tipadas](#strongly-typed-views)
-* [Auxiliares de marcação](#tag-helpers)
+* [Auxiliares de Marcas](#tag-helpers)
 * [Componentes da exibição](#view-components)
 
 ### <a name="routing"></a>Roteamento
@@ -172,7 +172,7 @@ public class AccountController : Controller
 
 ### <a name="areas"></a>Áreas
 
-As [áreas](controllers/areas.md) fornecem uma maneira de particionar um aplicativo Web ASP.NET Core MVC grande em agrupamentos funcionais menores. Uma área é uma estrutura MVC dentro de um aplicativo. Em um projeto MVC, componentes lógicos como Modelo, Controlador e Exibição são mantidos em pastas diferentes e o MVC usa convenções de nomenclatura para criar a relação entre esses componentes. Para um aplicativo grande, pode ser vantajoso particionar o aplicativo em áreas de nível alto separadas de funcionalidade. Por exemplo, um aplicativo de comércio eletrônico com várias unidades de negócios, como check-out, cobrança e pesquisa, etc. Cada uma dessas unidades têm suas próprias exibições de componente lógico, controladores e modelos.
+As [áreas](controllers/areas.md) fornecem uma maneira de particionar um aplicativo Web ASP.NET Core MVC grande em agrupamentos funcionais menores. Uma área é uma estrutura MVC dentro de um aplicativo. Em um projeto MVC, componentes lógicos como Modelo, Controlador e Exibição são mantidos em pastas diferentes e o MVC usa convenções de nomenclatura para criar a relação entre esses componentes. Para um aplicativo grande, pode ser vantajoso particionar o aplicativo em áreas de nível alto separadas de funcionalidade. Por exemplo, um aplicativo de comércio eletrônico com várias unidades de negócios, como check-out, cobrança e pesquisa etc. Cada uma dessas unidades tem suas próprias exibições, controladores e modelos de componentes lógicos.
 
 ### <a name="web-apis"></a>APIs da Web
 
@@ -254,3 +254,8 @@ Os [Componentes de Exibição](views/view-components.md) permitem que você empa
 O método <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> permite que um aplicativo aceite ou recuse as possíveis alterações da falha de comportamento introduzidas no ASP.NET Core MVC 2.1 ou posteriores.
 
 Para obter mais informações, consulte <xref:mvc/compatibility-version>.
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+* [Mytested. AspNetCore. Mvc-biblioteca de testes fluente para ASP.NET Core Mvc](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; biblioteca de testes de unidade fortemente tipada, fornecendo uma interface fluente para testar aplicativos de API da Web e MVC. (*Não é mantido ou não tem suporte da Microsoft.* )
+

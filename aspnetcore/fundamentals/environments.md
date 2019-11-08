@@ -5,14 +5,14 @@ description: Aprenda a controlar o comportamento do aplicativo em vários ambien
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 11/07/2019
 uid: fundamentals/environments
-ms.openlocfilehash: 91fa2a78e62dff65704a3dda826f45f27bad6064
-ms.sourcegitcommit: 897d4abff58505dae86b2947c5fe3d1b80d927f3
+ms.openlocfilehash: 7e49499e94fb9ea82a0ba17e4e9de05c6a2d4e98
+ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73634087"
+ms.lasthandoff: 11/07/2019
+ms.locfileid: "73799306"
 ---
 # <a name="use-multiple-environments-in-aspnet-core"></a>Usar vários ambientes no ASP.NET Core
 
@@ -262,7 +262,7 @@ Para definir a variável de ambiente `ASPNETCORE_ENVIRONMENT` com *web.config*, 
 
 **Arquivo de projeto ou perfil de publicação**
 
-**Para implantações do Windows IIS:** Inclua a propriedade `<EnvironmentName>` no perfil de publicação ( *. pubxml*) ou no arquivo de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
+**Para implantações do Windows IIS:** Inclua a propriedade `<EnvironmentName>` no [perfil de publicação (. pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) ou no arquivo de projeto. Esta abordagem define o ambiente no arquivo *web.config* quando o projeto é publicado:
 
 ```xml
 <PropertyGroup>

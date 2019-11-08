@@ -5,14 +5,14 @@ description: Descubra os servidores Web Kestrel e HTTP.sys para ASP.NET Core. Sa
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/10/2019
+ms.date: 11/07/2019
 uid: fundamentals/servers/index
-ms.openlocfilehash: 3bdc2bf776946b8fae8886a37ecd3ed5e3f860fe
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: e542dd4506eb77f949c0c87bea3044397bbb1b8f
+ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259827"
+ms.lasthandoff: 11/07/2019
+ms.locfileid: "73799399"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Implementações de servidor Web em ASP.NET Core
 
@@ -34,7 +34,7 @@ Use o Kestrel:
 
   ![O Kestrel se comunica indiretamente com a Internet através de um servidor proxy reverso, tal como o IIS, o Nginx ou o Apache](kestrel/_static/kestrel-to-internet.png)
 
-Hospedar a configuração @ no__t-0with ou sem um servidor proxy reverso @ no__t-1is com suporte.
+Há suporte para hospedar a configuração&mdash;com ou sem um servidor proxy reverso&mdash;.
 
 Para obter diretrizes de configuração do Kestrel e informações sobre quando usar o Kestrel em uma configuração de proxy reverso, confira <xref:fundamentals/servers/kestrel>.
 
@@ -142,7 +142,7 @@ Para obter as diretrizes de configuração do HTTP.sys, confira <xref:fundamenta
 
 O <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> disponível no método `Startup.Configure` expõe a propriedade <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ServerFeatures> do tipo <xref:Microsoft.AspNetCore.Http.Features.IFeatureCollection>. O Kestrel e o HTTP.sys expõem apenas um único recurso cada, o <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>, mas diferentes implementações de servidor podem expor funcionalidades adicionais.
 
-`IServerAddressesFeature` pode ser usado para descobrir a qual porta a implementação do servidor se acoplou durante o tempo de execução.
+`IServerAddressesFeature` pode ser usado para descobrir a qual porta a implementação do servidor se acoplou durante o runtime.
 
 ## <a name="custom-servers"></a>Servidores personalizados
 
@@ -156,7 +156,9 @@ O servidor é iniciado quando o IDE (Ambiente de Desenvolvimento Integrado) ou o
 * [Visual Studio Code](https://code.visualstudio.com/) &ndash; o aplicativo e o servidor são iniciados pelo [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode), que ativa o depurador CoreCLR.
 * [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/) &ndash; o aplicativo e o servidor são iniciados pelo [Depurador de modo suave Mono](https://www.mono-project.com/docs/advanced/runtime/docs/soft-debugger/).
 
-Ao iniciar o aplicativo usando um prompt de comando na pasta do projeto, o [dotnet run](/dotnet/core/tools/dotnet-run) inicia o aplicativo e o servidor (apenas Kestrel e HTTP.sys). A configuração é especificada pela opção `-c|--configuration`, que é definida como `Debug` (padrão) ou `Release`. Se os perfis de inicialização estiverem presentes em um arquivo *launchSettings.json*, use a opção `--launch-profile <NAME>` para definir o perfil de inicialização (por exemplo, `Development` ou `Production`). Para obter mais informações, confira [dotnet run](/dotnet/core/tools/dotnet-run) e [pacote de distribuição do .NET Core](/dotnet/core/build/distribution-packaging).
+Ao iniciar o aplicativo usando um prompt de comando na pasta do projeto, o [dotnet run](/dotnet/core/tools/dotnet-run) inicia o aplicativo e o servidor (apenas Kestrel e HTTP.sys). A configuração é especificada pela opção `-c|--configuration`, que é definida como `Debug` (padrão) ou `Release`.
+
+Um arquivo *launchSettings. JSON* fornece configuração ao iniciar um aplicativo com `dotnet run` ou com um depurador interno de ferramentas, como o Visual Studio. Se os perfis de inicialização estiverem presentes em um arquivo *launchSettings. JSON* , use a opção `--launch-profile {PROFILE NAME}` com o comando`dotnet run` ou selecione o perfil no Visual Studio. Para obter mais informações, confira [dotnet run](/dotnet/core/tools/dotnet-run) e [pacote de distribuição do .NET Core](/dotnet/core/build/distribution-packaging).
 
 ## <a name="http2-support"></a>Compatibilidade com HTTP/2
 
@@ -172,14 +174,14 @@ O [HTTP/2](https://httpwg.org/specs/rfc7540.html) é compatível com ASP.NET Cor
   * Estrutura de destino: .NET Core 2.2 ou posterior
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 ou posterior
-  * Estrutura de destino: Não aplicável a implantações do HTTP.sys.
+  * Estrutura de destino: não aplicável a implantações de HTTP.sys.
 * [IIS (em processo)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 ou posterior; IIS 10 ou posterior
   * Estrutura de destino: .NET Core 2.2 ou posterior
 * [IIS (fora do processo)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 ou posterior; IIS 10 ou posterior
   * Conexões de servidor de borda voltadas para o público usam HTTP/2, mas a conexão de proxy reverso para o Kestrel usa HTTP/1.1.
-  * Estrutura de destino: Não aplicável a implantações fora do processo do IIS.
+  * Estrutura de destino: não aplicável a implantações IIS fora de processo.
 
 &dagger;O Kestrel tem suporte limitado para HTTP/2 no Windows Server 2012 R2 e Windows 8.1. O suporte é limitado porque a lista de conjuntos de codificação TLS disponível nesses sistemas operacionais é limitada. Um certificado gerado usando um ECDSA (Algoritmo de Assinatura Digital Curva Elíptica) pode ser necessário para proteger conexões TLS.
 
@@ -189,11 +191,11 @@ O [HTTP/2](https://httpwg.org/specs/rfc7540.html) é compatível com ASP.NET Cor
 
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 ou posterior
-  * Estrutura de destino: Não aplicável a implantações do HTTP.sys.
+  * Estrutura de destino: não aplicável a implantações de HTTP.sys.
 * [IIS (fora do processo)](xref:host-and-deploy/iis/index#http2-support)
   * Windows Server 2016/Windows 10 ou posterior; IIS 10 ou posterior
   * Conexões de servidor de borda voltadas para o público usam HTTP/2, mas a conexão de proxy reverso para o Kestrel usa HTTP/1.1.
-  * Estrutura de destino: Não aplicável a implantações fora do processo do IIS.
+  * Estrutura de destino: não aplicável a implantações IIS fora de processo.
 
 ::: moniker-end
 

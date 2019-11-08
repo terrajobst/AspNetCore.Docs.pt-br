@@ -5,14 +5,14 @@ description: Saiba como testar a lógica do controlador no ASP.NET Core com o Mo
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/22/2019
+ms.date: 11/07/2019
 uid: mvc/controllers/testing
-ms.openlocfilehash: 3b5e60bbc76030b6d08bcb2f3aa1f6eca3c9bb05
-ms.sourcegitcommit: 0365af91518004c4a44a30dc3a8ac324558a399b
+ms.openlocfilehash: 7f4fcb1a5d6e9959c751ebe24e41b39ee05a5819
+ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71199097"
+ms.lasthandoff: 11/07/2019
+ms.locfileid: "73799507"
 ---
 # <a name="test-controller-logic-in-aspnet-core"></a>Lógica do controlador de teste no ASP.NET Core
 
@@ -127,7 +127,7 @@ O terceiro teste `Create`, `Create_ReturnsNewlyCreatedIdeaForSession`, verifica 
 
 ## <a name="test-actionresultt"></a>Testar ActionResult\<T >
 
-No ASP.NET Core 2,1 ou posterior, [ActionResult\<T >](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) permite que você retorne um tipo derivado de `ActionResult` ou retorne um tipo específico.
+No ASP.NET Core 2,1 ou posterior, [ActionResult\<t >](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) permite que você retorne um tipo derivado de `ActionResult` ou retorne um tipo específico.
 
 O aplicativo de exemplo inclui um método que retorna um `List<IdeaDTO>` para uma sessão `id` determinada. Se a sessão `id` não existir, o controlador retornará <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>:
 
@@ -145,7 +145,7 @@ O primeiro teste confirma se o controlador retorna um `ActionResult`, mas não u
 Para uma sessão `id` válida, o segundo teste confirma se o método retorna:
 
 * Um `ActionResult` com um tipo `List<IdeaDTO>`.
-* [ActionResult\<T >. O valor](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) é `List<IdeaDTO>` um tipo.
+* [ActionResult\<t >. O valor](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) é um tipo de `List<IdeaDTO>`.
 * O primeiro item na lista é uma ideia válida que corresponde à ideia armazenada na sessão fictícia (obtida chamando `GetTestSession`).
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ForSessionActionResult_ReturnsIdeasForSession&highlight=7-8,15-18)]
@@ -171,8 +171,8 @@ O segundo teste verifica se um <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Not
 Para uma sessão `id` válida, o teste final confirmará se:
 
 * O método retorna um `ActionResult` com um tipo `BrainstormSession`.
-* [ActionResult\<T >. O resultado](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) é <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>um. `CreatedAtActionResult` é semelhante à resposta *201 Criado* com um cabeçalho `Location`.
-* [ActionResult\<T >. O valor](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) é `BrainstormSession` um tipo.
+* [ActionResult\<t >. O resultado](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) é um <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>. `CreatedAtActionResult` é semelhante à resposta *201 Criado* com um cabeçalho `Location`.
+* [ActionResult\<t >. O valor](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) é um tipo de `BrainstormSession`.
 * A chamada fictícia para atualizar a sessão, `UpdateAsync(testSession)`, foi invocada. A chamada de método `Verifiable` é verificada por meio da execução de `mockRepo.Verify()` nas declarações.
 * Dois objetos `Idea` são retornados para a sessão.
 * O último item (o `Idea` adicionado pela chamada fictícia a `UpdateAsync`) corresponde ao `newIdea` adicionado à sessão no teste.
@@ -290,7 +290,7 @@ O terceiro teste `Create`, `Create_ReturnsNewlyCreatedIdeaForSession`, verifica 
 
 ## <a name="test-actionresultt"></a>Testar ActionResult\<T >
 
-No ASP.NET Core 2,1 ou posterior, [ActionResult\<T >](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) permite que você retorne um tipo derivado de `ActionResult` ou retorne um tipo específico.
+No ASP.NET Core 2,1 ou posterior, [ActionResult\<t >](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) permite que você retorne um tipo derivado de `ActionResult` ou retorne um tipo específico.
 
 O aplicativo de exemplo inclui um método que retorna um `List<IdeaDTO>` para uma sessão `id` determinada. Se a sessão `id` não existir, o controlador retornará <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>:
 
@@ -308,7 +308,7 @@ O primeiro teste confirma se o controlador retorna um `ActionResult`, mas não u
 Para uma sessão `id` válida, o segundo teste confirma se o método retorna:
 
 * Um `ActionResult` com um tipo `List<IdeaDTO>`.
-* [ActionResult\<T >. O valor](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) é `List<IdeaDTO>` um tipo.
+* [ActionResult\<t >. O valor](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) é um tipo de `List<IdeaDTO>`.
 * O primeiro item na lista é uma ideia válida que corresponde à ideia armazenada na sessão fictícia (obtida chamando `GetTestSession`).
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ForSessionActionResult_ReturnsIdeasForSession&highlight=7-8,15-18)]
@@ -334,8 +334,8 @@ O segundo teste verifica se um <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Not
 Para uma sessão `id` válida, o teste final confirmará se:
 
 * O método retorna um `ActionResult` com um tipo `BrainstormSession`.
-* [ActionResult\<T >. O resultado](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) é <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>um. `CreatedAtActionResult` é semelhante à resposta *201 Criado* com um cabeçalho `Location`.
-* [ActionResult\<T >. O valor](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) é `BrainstormSession` um tipo.
+* [ActionResult\<t >. O resultado](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) é um <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult>. `CreatedAtActionResult` é semelhante à resposta *201 Criado* com um cabeçalho `Location`.
+* [ActionResult\<t >. O valor](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) é um tipo de `BrainstormSession`.
 * A chamada fictícia para atualizar a sessão, `UpdateAsync(testSession)`, foi invocada. A chamada de método `Verifiable` é verificada por meio da execução de `mockRepo.Verify()` nas declarações.
 * Dois objetos `Idea` são retornados para a sessão.
 * O último item (o `Idea` adicionado pela chamada fictícia a `UpdateAsync`) corresponde ao `newIdea` adicionado à sessão no teste.
@@ -347,4 +347,6 @@ Para uma sessão `id` válida, o teste final confirmará se:
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:test/integration-tests>
-* [Crie e execute testes de unidade com o Visual Studio](/visualstudio/test/unit-test-your-code).
+* [Criar e executar testes de unidade com o Visual Studio](/visualstudio/test/unit-test-your-code)
+* [Mytested. AspNetCore. Mvc-biblioteca de testes fluente para ASP.NET Core Mvc](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; biblioteca de testes de unidade fortemente tipada, fornecendo uma interface fluente para testar aplicativos de API da Web e MVC. (*Não é mantido ou não tem suporte da Microsoft.* )
+

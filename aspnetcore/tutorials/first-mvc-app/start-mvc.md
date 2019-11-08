@@ -5,12 +5,12 @@ description: Saiba como começar a usar o ASP.NET Core MVC.
 ms.author: riande
 ms.date: 10/16/2019
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: f07afb15c0a31110c20d96a5db5c02030cefe5d5
-ms.sourcegitcommit: e71b6a85b0e94a600af607107e298f932924c849
+ms.openlocfilehash: 0c8c59a5c59c8a70985dc8463c80f9569a00621f
+ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2019
-ms.locfileid: "72519095"
+ms.lasthandoff: 11/07/2019
+ms.locfileid: "73761241"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introdução ao ASP.NET Core MVC
 
@@ -205,7 +205,7 @@ No final, você terá um aplicativo que pode gerenciar e exibir dados de filmes.
 
 * No Visual Studio, selecione **Criar um projeto**.
 
-* Selecione **Aplicativo Web ASP.NET Core** e, em seguida, **Avançar**.
+* Selecione **Aplicativo Web ASP.NET Core** e, em seguida, selecione **Avançar**.
 
 ![novo Aplicativo Web ASP.NET Core](start-mvc/_static/np_2.1.png)
 

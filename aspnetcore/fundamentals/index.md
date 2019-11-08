@@ -5,14 +5,14 @@ description: Aprenda os conceitos fundamentais para a criação de aplicativos d
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 11/07/2019
 uid: fundamentals/index
-ms.openlocfilehash: a70d6aa05a2c92d19076b8d6e4ea24d7554368b6
-ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
+ms.openlocfilehash: 7173a732a04bf3e598adef298fa9120c15dd52fb
+ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/07/2019
-ms.locfileid: "72007122"
+ms.lasthandoff: 11/07/2019
+ms.locfileid: "73799380"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
 
@@ -37,7 +37,7 @@ Para obter mais informações, consulte <xref:fundamentals/startup>.
 
 ## <a name="dependency-injection-services"></a>Injeção de dependência (serviços)
 
-O ASP.NET Core tem uma estrutura de DI (injeção de dependência) interna que torna serviços configurados disponíveis para classes do aplicativo. Uma maneira de obter uma instância de um serviço em uma classe criar um construtor com um parâmetro do tipo necessário. O parâmetro pode ser o tipo de serviço ou uma interface. O sistema de DI fornece o serviço em tempo de execução.
+O ASP.NET Core tem uma estrutura de DI (injeção de dependência) interna que torna serviços configurados disponíveis para classes do aplicativo. Uma maneira de obter uma instância de um serviço em uma classe criar um construtor com um parâmetro do tipo necessário. O parâmetro pode ser o tipo de serviço ou uma interface. O sistema de DI fornece o serviço em runtime.
 
 Aqui está uma classe que usa DI para obter um objeto de contexto do Entity Framework Core. A linha realçada é um exemplo de injeção de construtor:
 
@@ -303,6 +303,14 @@ O caminho raiz da Web tem como padrão *{Content root}/wwwroot*, mas uma raiz da
 
 ::: moniker-end
 
-Em arquivos Razor ( *. cshtml*), a barra de til (`~/`) aponta para a raiz da Web. Um caminho que começa com `~/` é conhecido como um *caminho virtual*.
+Impedir a publicação de arquivos em *wwwroot* com o [\<conteúdo > item de projeto](/visualstudio/msbuild/common-msbuild-project-items#content) no arquivo de projeto. O exemplo a seguir impede a publicação de conteúdo no diretório *wwwroot/local* e nos subpastas:
+
+```xml
+<ItemGroup>
+  <Content Update="wwwroot\local\**\*.*" CopyToPublishDirectory="Never" />
+</ItemGroup>
+```
+
+Em arquivos Razor ( *. cshtml*), a barra de tils (`~/`) aponta para a raiz da Web. Um caminho que começa com `~/` é conhecido como um *caminho virtual*.
 
 Para obter mais informações, consulte <xref:fundamentals/static-files>.

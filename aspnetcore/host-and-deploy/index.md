@@ -5,14 +5,14 @@ description: Aprenda como configurar ambientes de hospedagem e implantar aplicat
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2019
+ms.date: 11/07/2019
 uid: host-and-deploy/index
-ms.openlocfilehash: 068c5f357b8010d78493a78a10c353e3317f3867
-ms.sourcegitcommit: b4ef2b00f3e1eb287138f8b43c811cb35a100d3e
+ms.openlocfilehash: aa6e3da5f40211535037c671de913ab3219f063a
+ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/21/2019
-ms.locfileid: "65969892"
+ms.lasthandoff: 11/07/2019
+ms.locfileid: "73799331"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hospedar e implantar o ASP.NET Core
 
@@ -28,9 +28,9 @@ O comando [dotnet publish](/dotnet/core/tools/dotnet-publish) compila o código 
 
 ### <a name="folder-contents"></a>Conteúdo da pasta
 
-A pasta *publish* contém um ou mais arquivos do assembly, dependências e, opcionalmente, o tempo de execução do .NET.
+A pasta *publish* contém um ou mais arquivos do assembly, dependências e, opcionalmente, o runtime do .NET.
 
-Um aplicativo .NET Core pode ser publicado como uma *implantação autocontida* ou uma *implantação dependente de estrutura*. Se o aplicativo for autocontido, os arquivos do assembly que contêm o tempo de execução do .NET serão incluídos na pasta *publish*. Se o aplicativo depender da estrutura, os arquivos de tempo de execução do .NET não serão incluídos porque o aplicativo tem uma referência para uma versão do .NET que está instalada no servidor. O modelo de implantação padrão é dependente da estrutura. Para obter mais informações, consulte [Implantação de aplicativos .NET Core](/dotnet/core/deploying/).
+Um aplicativo .NET Core pode ser publicado como uma *implantação autocontida* ou uma *implantação dependente de estrutura*. Se o aplicativo for autocontido, os arquivos do assembly que contêm o runtime do .NET serão incluídos na pasta *publish*. Se o aplicativo depender da estrutura, os arquivos de runtime do .NET não serão incluídos porque o aplicativo tem uma referência para uma versão do .NET que está instalada no servidor. O modelo de implantação padrão é dependente da estrutura. Para obter mais informações, consulte [Implantação de aplicativos .NET Core](/dotnet/core/deploying/).
 
 Além de arquivos *.exe* e *.dll*, a pasta *publish* para um aplicativo ASP.NET Core normalmente contém arquivos de configuração, ativos estáticos e exibições do MVC. Para obter mais informações, consulte <xref:host-and-deploy/directory-structure>.
 
@@ -68,6 +68,10 @@ Confira <xref:tutorials/publish-to-azure-webapp-using-vs> para obter instruçõe
 ## <a name="publish-with-msdeploy-on-windows"></a>Publicar com MSDeploy no Windows
 
 Confira <xref:host-and-deploy/visual-studio-publish-profiles> para obter instruções sobre como publicar um aplicativo com um perfil de publicação do Visual Studio, inclusive de um prompt de comando do Windows, usando o comando [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild).
+
+## <a name="internet-information-services-iis"></a>Serviços de Informações da Internet (IIS)
+
+Para implantações no Serviços de Informações da Internet (IIS) com a configuração fornecida pelo arquivo *Web. config* , consulte os artigos em <xref:host-and-deploy/iis/index>.
 
 ## <a name="host-in-a-web-farm"></a>Hospedar em uma web farm
 
