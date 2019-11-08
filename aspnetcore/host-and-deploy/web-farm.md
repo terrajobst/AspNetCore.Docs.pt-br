@@ -5,14 +5,14 @@ description: Saiba como hospedar várias instâncias de um aplicativo ASP.NET Co
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2019
+ms.date: 11/07/2019
 uid: host-and-deploy/web-farm
-ms.openlocfilehash: df1be8cc76a5017923f26636a241b69881dfcc81
-ms.sourcegitcommit: b4ef2b00f3e1eb287138f8b43c811cb35a100d3e
+ms.openlocfilehash: 16ec2162be8199857d0f2d0ff989ec4cdc6c3277
+ms.sourcegitcommit: 68d804d60e104c81fe77a87a9af70b5df2726f60
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/21/2019
-ms.locfileid: "65970105"
+ms.lasthandoff: 11/08/2019
+ms.locfileid: "73830697"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Hospedar o ASP.NET Core em um web farm
 
@@ -30,7 +30,7 @@ Este tópico descreve as configurações e dependências para aplicativos ASP.NE
 ## <a name="general-configuration"></a>Configuração geral
 
 <xref:host-and-deploy/index>  
-Aprenda como configurar ambientes de hospedagem e implantar aplicativos ASP.NET Core. Configure um gerenciador de processo em cada nó do web farm para automatizar o início e a reinicialização do aplicativo. Cada nó requer o tempo de execução do ASP.NET Core. Para saber mais, confira os tópicos na área [Hospedar e implantar](xref:host-and-deploy/index) da documentação.
+Aprenda como configurar ambientes de hospedagem e implantar aplicativos ASP.NET Core. Configure um gerenciador de processo em cada nó do web farm para automatizar o início e a reinicialização do aplicativo. Cada nó requer o runtime do ASP.NET Core. Para saber mais, confira os tópicos na área [Hospedar e implantar](xref:host-and-deploy/index) da documentação.
 
 <xref:host-and-deploy/proxy-load-balancer>  
 Saiba mais sobre a configuração para aplicativos hospedados por trás de servidores proxy e balanceadores de carga, o que muitas vezes oculta informações de solicitação importantes.
@@ -62,8 +62,8 @@ Os cenários a seguir não exigem configuração adicional, mas dependem de tecn
 | -------- | ------------------- |
 | Autenticação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/authentication/cookie> e <xref:security/cookie-sharing>. |
 | Identidade | Configuração e autenticação do banco de dados.<br><br>Para obter mais informações, consulte <xref:security/authentication/identity>. |
-| Session | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) e cache (confira <xref:performance/caching/distributed>).<br><br>Saiba mais em [Estado de sessão e de aplicativo: Estado de sessão](xref:fundamentals/app-state#session-state). |
-| TempData | Proteção de Dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) ou Sessão (confira [Estado de sessão e de aplicativo: Estado de sessão](xref:fundamentals/app-state#session-state)).<br><br>Saiba mais em [Estado de sessão e de aplicativo: TempData](xref:fundamentals/app-state#tempdata). |
+| Session | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) e cache (confira <xref:performance/caching/distributed>).<br><br>Para saber mais, confira [Estado de sessão e aplicativo: estado de sessão](xref:fundamentals/app-state#session-state). |
+| TempData | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) ou sessão (confira [Estado de sessão e aplicativo: estado de sessão](xref:fundamentals/app-state#session-state)).<br><br>Para saber mais, consulte [Estado de sessão e aplicativo: TempData](xref:fundamentals/app-state#tempdata). |
 | Antifalsificação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/anti-request-forgery>. |
 
 ## <a name="troubleshoot"></a>Solução de problemas
@@ -88,3 +88,7 @@ Para saber mais sobre a configuração de Proteção de dados para implantaçõe
 ## <a name="obtain-data-from-apps"></a>Obter dados de aplicativos
 
 Se os aplicativos do web farm forem capazes de responder às solicitações, obtenha as solicitações, conexão e dados adicionais dos aplicativos que usarem o middleware embutido de terminal. Para saber mais e obter um código de exemplo, consulte <xref:test/troubleshoot#obtain-data-from-an-app>.
+
+## <a name="additional-resources"></a>Recursos adicionais
+
+* A [extensão de script personalizado para o Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; baixa e executa scripts em máquinas virtuais do Azure, o que é útil para configuração de pós-implantação e instalação de software.
