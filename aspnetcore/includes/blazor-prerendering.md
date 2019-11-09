@@ -25,7 +25,6 @@ Para atrasar as chamadas de interoperabilidade do JavaScript até que a conexão
 Para o código de exemplo anterior, forneça uma `setElementText` função JavaScript dentro do elemento `<head>` de *wwwroot/index.html* (Webassembly de mais claro) ou *pages/_Host. cshtml* (servidor mais incrivelmente). A função é chamada com `IJSRuntime.InvokeVoidAsync` e não retorna um valor:
 
 ```html
-<!--  -->
 <script>
   window.setElementText = (element, text) => element.innerText = text;
 </script>
