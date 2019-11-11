@@ -3,14 +3,14 @@ title: Partes do aplicativo no ASP.NET Core
 author: rick-anderson
 description: Compartilhar controladores, exibir, Razor Pages e muito mais com partes de aplicativo no ASP.NET Core
 ms.author: riande
-ms.date: 11/7/2019
+ms.date: 11/10/2019
 uid: mvc/extensibility/app-parts
-ms.openlocfilehash: ff6afa1852a3ee97fc4dbbae970dd746ec92f74c
-ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
+ms.openlocfilehash: 92c408adfad8af3dfd2572b625ae28ef24f64948
+ms.sourcegitcommit: a7bbe3890befead19440075b05b9674351f98872
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2019
-ms.locfileid: "73799460"
+ms.lasthandoff: 11/10/2019
+ms.locfileid: "73905758"
 ---
 # <a name="share-controllers-views-razor-pages-and-more-with-application-parts-in-aspnet-core"></a>Compartilhar controladores, exibições, Razor Pages e muito mais com partes de aplicativo no ASP.NET Core
 
@@ -132,7 +132,7 @@ View Components:
 
 ::: moniker-end
 
-::: moniker range="<= aspnetcore-3.0"
+::: moniker range="< aspnetcore-3.0"
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
