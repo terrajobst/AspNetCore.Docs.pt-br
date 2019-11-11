@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/05/2019
 uid: performance/memory
-ms.openlocfilehash: 8f6b47ecde6f265bfb9437234b89f11f7d235869
-ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
+ms.openlocfilehash: 4c25c069aa2a6088c0549d786ecdd487ab7b9ea5
+ms.sourcegitcommit: 4818385c3cfe0805e15138a2c1785b62deeaab90
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73660010"
+ms.lasthandoff: 11/09/2019
+ms.locfileid: "73896940"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Gerenciamento de memória e coleta de lixo (GC) no ASP.NET Core
 
@@ -82,7 +82,7 @@ Execute MemoryLeak. A memória alocada aumenta lentamente até que ocorra um GC.
 O gráfico exibe dois valores para o uso de memória:
 
 - Alocado: a quantidade de memória ocupada por objetos gerenciados
-- Conjunto de trabalho: a memória física total (RAM) usada pelo processo. O conjunto de trabalho mostrado é o mesmo valor que o Gerenciador de tarefas pode exibir.
+- [Conjunto de trabalho](/windows/win32/memory/working-set): o conjunto de páginas no espaço de endereço virtual do processo que estão atualmente residentes na memória física. O conjunto de trabalho mostrado é o mesmo valor que o Gerenciador de tarefas exibe.
 
 ### <a name="transient-objects"></a>Objetos transitórios
 

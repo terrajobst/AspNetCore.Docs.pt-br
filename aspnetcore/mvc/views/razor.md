@@ -5,12 +5,12 @@ description: Saiba mais sobre a sintaxe de marcação Razor para inserir código
 ms.author: riande
 ms.date: 09/28/2019
 uid: mvc/views/razor
-ms.openlocfilehash: 6f8835419dbf4c271617f57484c3408e0af30617
-ms.sourcegitcommit: f62014bb558ff6f8fdaef2e96cb05986e216aacd
+ms.openlocfilehash: d8d686c23ea61950947798f213c9846058f1812e
+ms.sourcegitcommit: 4818385c3cfe0805e15138a2c1785b62deeaab90
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/28/2019
-ms.locfileid: "71592322"
+ms.lasthandoff: 11/09/2019
+ms.locfileid: "73896904"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -220,7 +220,7 @@ Para definir uma subseção de um bloco de código que deve renderizar HTML, cir
 }
 ```
 
-Use essa abordagem para renderizar HTML que não está circundado por uma marca HTML. Sem uma marca HTML ou Razor, ocorrerá um erro de tempo de execução do Razor.
+Use essa abordagem para renderizar HTML que não está circundado por uma marca HTML. Sem uma marca HTML ou Razor, ocorrerá um erro de runtime do Razor.
 
 A marca `<text>` é útil para controlar o espaço em branco ao renderizar conteúdo:
 
@@ -229,7 +229,7 @@ A marca `<text>` é útil para controlar o espaço em branco ao renderizar conte
 
 ### <a name="explicit-line-transition"></a>Transição de linha explícita
 
-Para renderizar o restante de uma linha inteira como HTML dentro de um bloco de código, use a sintaxe `@:`:
+Para renderizar o restante de uma linha inteira como HTML dentro de um bloco de código, use `@:` sintaxe:
 
 ```cshtml
 @for (var i = 0; i < people.Length; i++)
@@ -239,7 +239,7 @@ Para renderizar o restante de uma linha inteira como HTML dentro de um bloco de 
 }
 ```
 
-Sem o `@:` no código, será gerado um erro de tempo de execução do Razor.
+Sem o `@:` no código, será gerado um erro de runtime do Razor.
 
 Caracteres `@` extras em um arquivo Razor podem causar erros do compilador em instruções mais adiante no bloco. Esses erros do compilador podem ser difíceis de entender porque o erro real ocorre antes do erro relatado. Esse erro é comum após combinar várias expressões implícitas/explícitas em um bloco de código único.
 
@@ -455,7 +455,7 @@ A diretiva `@attribute` adiciona o atributo fornecido à classe da página ou ex
 
 ::: moniker range=">= aspnetcore-3.0"
 
-### <a name="code"></a>\@auto-completar
+### <a name="code"></a>código de \@
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
@@ -652,7 +652,7 @@ Para o exemplo de Razor Pages mostrado na tabela a seguir:
 * *Pages/_ViewImports.cshtml* contém `@namespace Hello.World`.
 * Cada página tem `Hello.World` como a raiz do namespace.
 
-| Página                                        | Namespace                             |
+| Página                                        | espaço de nome                             |
 | ------------------------------------------- | ------------------------------------- |
 | *Pages/Index.cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
@@ -664,7 +664,7 @@ Quando vários arquivos de importação têm uma diretiva `@namespace`, o arquiv
 
 Se a pasta *EvenMorePages* no exemplo anterior tiver um arquivo de importações com `@namespace Another.Planet` (ou se o arquivo *Pages/MorePages/EvenMorePages/Page.cshtml* contiver `@namespace Another.Planet`), o resultado será mostrado na tabela a seguir.
 
-| Página                                        | Namespace               |
+| Página                                        | espaço de nome               |
 | ------------------------------------------- | ----------------------- |
 | *Pages/Index.cshtml*                        | `Hello.World`           |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
@@ -676,7 +676,7 @@ Se a pasta *EvenMorePages* no exemplo anterior tiver um arquivo de importações
 
 A diretiva `@page` tem efeitos diferentes dependendo do tipo do arquivo em que aparece. A diretiva:
 
-* Em um arquivo *.cshtml*, indica que o arquivo é uma página do Razor. Para obter mais informações, consulte <xref:razor-pages/index>.
+* Em um arquivo *.cshtml*, indica que o arquivo é uma página do Razor. Para obter mais informações, consulte [rotas personalizadas](xref:razor-pages/index#custom-routes) e <xref:razor-pages/index>.
 * Especifica que um componente de Razor deve tratar as solicitações diretamente. Para obter mais informações, consulte <xref:blazor/routing>.
 
 ::: moniker-end
@@ -743,7 +743,7 @@ Referências de componente (`@ref`) proporcionam uma maneira de fazer referênci
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
-A `@typeparam` diretiva declara um parâmetro de tipo genérico para a classe de componente gerada. Para obter mais informações, consulte <xref:blazor/components#generic-typed-components>.
+A diretiva `@typeparam` declara um parâmetro de tipo genérico para a classe de componente gerada. Para obter mais informações, consulte <xref:blazor/components#generic-typed-components>.
 
 ::: moniker-end
 
@@ -960,7 +960,7 @@ O mecanismo de exibição do Razor executa pesquisas que diferenciam maiúsculas
 * Origem baseada em arquivo:
   * Em sistemas operacionais com sistemas de arquivos que não diferenciam maiúsculas e minúsculas (por exemplo, Windows), pesquisas no provedor de arquivos físico não diferenciam maiúsculas de minúsculas. Por exemplo, `return View("Test")` resulta em correspondências para */Views/Home/Test.cshtml*, */Views/home/test.cshtml* e qualquer outra variação de maiúsculas e minúsculas.
   * Em sistemas de arquivos que diferenciam maiúsculas de minúsculas (por exemplo, Linux, OSX e com `EmbeddedFileProvider`), as pesquisas diferenciam maiúsculas de minúsculas. Por exemplo, `return View("Test")` corresponde especificamente a */Views/Home/Test.cshtml*.
-* Exibições pré-compiladas: Com o ASP.NET Core 2.0 e posteriores, pesquisar em exibições pré-compiladas não diferencia maiúsculas de minúsculas em nenhum sistema operacional. O comportamento é idêntico ao comportamento do provedor de arquivos físico no Windows. Se duas exibições pré-compiladas diferirem apenas quanto ao padrão de maiúsculas e minúsculas, o resultado da pesquisa não será determinístico.
+* Exibições pré-compiladas: com o ASP.NET Core 2.0 e posteriores, pesquisar em exibições pré-compiladas não diferencia maiúsculas de minúsculas em nenhum sistema operacional. O comportamento é idêntico ao comportamento do provedor de arquivos físico no Windows. Se duas exibições pré-compiladas diferirem apenas quanto ao padrão de maiúsculas e minúsculas, o resultado da pesquisa não será determinístico.
 
 Os desenvolvedores são incentivados a fazer a correspondência entre as maiúsculas e minúsculas dos nomes dos arquivos e de diretórios com o uso de maiúsculas e minúsculas em:
 

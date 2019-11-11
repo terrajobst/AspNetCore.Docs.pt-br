@@ -5,14 +5,14 @@ description: Use a identidade com um aplicativo de página única hospedado dent
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/29/2019
+ms.date: 11/08/2019
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 5ed5fb61e5989b291523332c6a2ec332f9ca0f6b
-ms.sourcegitcommit: e5d4768aaf85703effb4557a520d681af8284e26
+ms.openlocfilehash: f58d92634ce1ef6110533d56c40b7520dda90514
+ms.sourcegitcommit: 4818385c3cfe0805e15138a2c1785b62deeaab90
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/05/2019
-ms.locfileid: "73616616"
+ms.lasthandoff: 11/09/2019
+ms.locfileid: "73897043"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Autenticação e autorização para SPAs
 
@@ -182,6 +182,30 @@ services.Configure<JwtBearerOptions>(
         ...
     });
 ```
+
+O manipulador JWT da API gera eventos que permitem o controle sobre o processo de autenticação usando `JwtBearerEvents`. Para fornecer suporte para autorização de API, `AddIdentityServerJwt` registra seus próprios manipuladores de eventos.
+
+Para personalizar o tratamento de um evento, empacote o manipulador de eventos existente com lógica adicional, conforme necessário. Por exemplo:
+
+```csharp
+services.Configure<JwtBearerOptions>(
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
+    options =>
+    {
+        var onTokenValidated = options.Events.OnTokenValidated;       
+        
+        options.Events.OnTokenValidated = async context =>
+        {
+            await onTokenValidated(context);
+            ...
+        }
+    });
+```
+
+No código anterior, o manipulador de eventos `OnTokenValidated` é substituído por uma implementação personalizada. Esta implementação:
+
+1. Chama a implementação original fornecida pelo suporte à autorização da API.
+1. Execute sua própria lógica personalizada.
 
 ## <a name="protect-a-client-side-route-angular"></a>Proteger uma rota do lado do cliente (angular)
 
