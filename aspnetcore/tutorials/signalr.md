@@ -8,12 +8,12 @@ ms.date: 11/12/2019
 no-loc:
 - SignalR
 uid: tutorials/signalr
-ms.openlocfilehash: 962cc0318ebbfc7fac16ca0947a2e3e83e51665c
+ms.openlocfilehash: ac727ed0517a8b30fd8194c010576fdd74a5950a
 ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73964036"
+ms.lasthandoff: 11/13/2019
+ms.locfileid: "74052852"
 ---
 # <a name="tutorial-get-started-with-aspnet-core-opno-locsignalr"></a>Tutorial: introdução ao ASP.NET Core SignalR
 
@@ -249,13 +249,6 @@ O servidor de SignalR deve ser configurado para passar SignalR solicitações pa
 >   dotnet dev-certs https --trust
 >   ```
 
-## <a name="next-steps"></a>Próximas etapas
-
-Para saber mais sobre SignalR, consulte a introdução:
-
-> [!div class="nextstepaction"]
-> [Introdução ao ASP.NET Core SignalR](xref:signalr/introduction)
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -485,18 +478,4 @@ O servidor de SignalR deve ser configurado para passar SignalR solicitações pa
 ## <a name="additional-resources"></a>Recursos adicionais 
 * [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=iKlVmu-r0JQ)   
 
-## <a name="next-steps"></a>Próximas etapas   
-
-Neste tutorial, você aprendeu como:   
-
-> [!div class="checklist"]  
-> * Criar um projeto de aplicativo Web.   
-> * Adicione a biblioteca de cliente SignalR.   
-> * Crie um hub de SignalR. 
-> * Configure o projeto a ser usado SignalR. 
-> * Adicionar o código que usa o hub para enviar mensagens de qualquer cliente para todos os clientes conectados.   
-Para saber mais sobre SignalR, consulte a introdução:    
-> [!div class="nextstepaction"] 
-> [Introdução ao ASP.NET Core SignalR](xref:signalr/introduction)   
 ::: moniker-end
-
