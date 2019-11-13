@@ -5,14 +5,16 @@ description: Descubra abordagens para preservar o estado da sessão e do aplicat
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/12/2019
+ms.date: 11/12/2019
+no-loc:
+- SignalR
 uid: fundamentals/app-state
-ms.openlocfilehash: ccb37a422d972ab9113bb4115473d054282dac87
-ms.sourcegitcommit: 994da92edb0abf856b1655c18880028b15a28897
+ms.openlocfilehash: b80b1e72eb2f25e9c9fe07a0c33c14ecf5ae05aa
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/25/2019
-ms.locfileid: "71278688"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963475"
 ---
 # <a name="session-and-app-state-in-aspnet-core"></a>Estado de sessão e aplicativo no ASP.NET Core
 
@@ -52,7 +54,7 @@ Esteja ciente do [RGPD (Regulamento Geral sobre a Proteção de Dados) da União
 Estado de sessão é um cenário do ASP.NET Core para o armazenamento de dados de usuário enquanto o usuário procura um aplicativo Web. Estado de sessão usa um armazenamento mantido pelo aplicativo para que os dados persistam entre solicitações de um cliente. Os dados da sessão são apoiados por um cache e considerados dados efêmeros&mdash;o site deve continuar funcionando sem os dados da sessão. Os dados críticos do aplicativo devem ser armazenados no banco de dados do usuário e armazenados em cache na sessão apenas como uma otimização de desempenho.
 
 > [!NOTE]
-> A sessão não é compatível com os aplicativos [SignalR](xref:signalr/index) porque um [Hub SignalR](xref:signalr/hubs) pode ser executado independente de um contexto HTTP. Por exemplo, isso pode ocorrer quando uma solicitação de sondagem longa é mantida aberta por um hub além do tempo de vida do contexto HTTP da solicitação.
+> A sessão não tem suporte em aplicativos [SignalR](xref:signalr/index) porque um [Hub deSignalR](xref:signalr/hubs) pode ser executado independentemente de um contexto http. Por exemplo, isso pode ocorrer quando uma solicitação de sondagem longa é mantida aberta por um hub além do tempo de vida do contexto HTTP da solicitação.
 
 O ASP.NET Core mantém o estado de sessão fornecendo um cookie para o cliente que contém uma ID de sessão, que é enviada para o aplicativo com cada solicitação. O aplicativo usa a ID da sessão para buscar os dados da sessão.
 
@@ -163,7 +165,7 @@ O exemplo a seguir mostra como definir e obter um objeto serializável com os m�
 
 ## <a name="tempdata"></a>TempData
 
-ASP.NET Core expõe o Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) ou Controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. Essa propriedade armazena dados até que eles sejam lidos em outra solicitação. Os métodos [Keep (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) e [Peek (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) podem ser usados para examinar os dados sem exclusão no final da solicitação. [Keep ()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) marca todos os itens no dicionário para retenção. `TempData`é particularmente útil para o redirecionamento quando os dados são necessários para mais do que uma única solicitação. `TempData`é implementado por `TempData` provedores usando cookies ou o estado de sessão.
+ASP.NET Core expõe o Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) ou <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>do controlador. Essa propriedade armazena dados até que eles sejam lidos em outra solicitação. Os métodos [Keep (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) e [Peek (String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) podem ser usados para examinar os dados sem exclusão no final da solicitação. [Keep ()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) marca todos os itens no dicionário para retenção. `TempData` é particularmente útil para o redirecionamento quando os dados são necessários para mais de uma única solicitação. o `TempData` é implementado por provedores de `TempData` usando cookies ou estado de sessão.
 
 ## <a name="tempdata-samples"></a>Amostras de TempData
 
@@ -171,19 +173,19 @@ Considere a seguinte página que cria um cliente:
 
 [!code-csharp[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-16,30)]
 
-A página a seguir `TempData["Message"]`exibe:
+A página a seguir exibe `TempData["Message"]`:
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexPeek.cshtml?range=1-14)]
 
-Na marcação anterior, no final da solicitação, `TempData["Message"]` **não** é excluído porque `Peek` é usado. A atualização da página `TempData["Message"]`é exibida.
+Na marcação anterior, no final da solicitação, `TempData["Message"]` **não** é excluído porque `Peek` é usado. A atualização da página exibe `TempData["Message"]`.
 
 A marcação a seguir é semelhante ao código anterior, mas usa `Keep` para preservar os dados no final da solicitação:
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
 
-A navegação entre as páginas *IndexPeek* e *IndexKeep* não `TempData["Message"]`será excluída.
+Navegar entre as páginas *IndexPeek* e *IndexKeep* não excluirá `TempData["Message"]`.
 
-O código a seguir `TempData["Message"]`exibe, mas no final da solicitação, `TempData["Message"]` é excluído:
+O código a seguir exibe `TempData["Message"]`, mas no final da solicitação, `TempData["Message"]` é excluído:
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
 
@@ -316,9 +318,9 @@ Use a [Injeção de dependência](xref:fundamentals/dependency-injection) para d
 
   A abordagem recomendada para verificar se há erros é chamar `await feature.Session.CommitAsync();` do código de aplicativo quando o aplicativo tiver terminado de gravar na sessão. `CommitAsync` gerará uma exceção se o repositório de backup não estiver disponível. Se `CommitAsync` falhar, o aplicativo poderá processar a exceção. `LoadAsync` gera sob as mesmas condições em que o armazenamento de dados não está disponível.
   
-## <a name="signalr-and-session-state"></a>Sinalizador e estado da sessão
+## <a name="opno-locsignalr-and-session-state"></a>SignalR e estado da sessão
 
-Os aplicativos signalr não devem usar o estado de sessão para armazenar informações. Os aplicativos signalr podem armazenar por estado de `Context.Items` conexão no no Hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
+SignalR aplicativos não devem usar o estado de sessão para armazenar informações. SignalR aplicativos podem armazenar por estado de conexão em `Context.Items` no Hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
