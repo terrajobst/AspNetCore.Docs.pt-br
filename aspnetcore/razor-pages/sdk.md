@@ -6,13 +6,15 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 08/23/2019
+no-loc:
+- Blazor
 uid: razor-pages/sdk
-ms.openlocfilehash: 606d2bdca3fa4fb1c81df73ac697d2175c3ab633
-ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
+ms.openlocfilehash: 2fbdf95d02d7918236981c7fee8ebcbedf5c55e1
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72334031"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963256"
 ---
 # <a name="aspnet-core-razor-sdk"></a>SDK do Razor do ASP.NET Core
 
@@ -24,7 +26,7 @@ O [!INCLUDE[](~/includes/2.1-SDK.md)] inclui o SDK do MSBuild do `Microsoft.NET.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* É necessário para compilar, empacotar e publicar projetos que contenham arquivos [Razor](xref:mvc/views/razor) [para projetos do](xref:blazor/index) ASP.NET Core com base em MVC ou mais.
+* É necessário para compilar, empacotar e publicar projetos que contenham arquivos [Razor](xref:mvc/views/razor) para ASP.NET Core projetos baseados em MVC ou [Blazor](xref:blazor/index) .
 * Inclui um conjunto de destinos, propriedades e itens predefinidos que permitem personalizar a compilação de arquivos Razor ( *. cshtml* ou *. Razor*).
 
 O SDK do Razor inclui `Content` itens com `Include` atributos definidos para os padrões de mascaramento `**\*.cshtml` e `**\*.razor`. Os arquivos correspondentes são publicados.
@@ -50,7 +52,7 @@ A maioria dos aplicativos Web não é necessária para referenciar explicitament
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Para usar o SDK do Razor para criar bibliotecas de classes que contêm exibições do Razor ou Razor Pages, é recomendável começar com o modelo de projeto RCL (biblioteca de classes Razor). Um RCL que é usado para criar arquivos de mais e ( *. Razor*) requer minimamente uma referência ao pacote [Microsoft. AspNetCore. Components](https://www.nuget.org/packages/Microsoft.AspNetCore.Components) . Um RCL que é usado para criar exibições ou páginas do Razor (arquivos *. cshtml* ) requer minimamente o direcionamento `netcoreapp3.0` ou posterior e tem uma `FrameworkReference` ao [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) em seu arquivo de projeto.
+Para usar o SDK do Razor para criar bibliotecas de classes que contêm exibições do Razor ou Razor Pages, é recomendável começar com o modelo de projeto RCL (biblioteca de classes Razor). Um RCL que é usado para compilar arquivos Blazor ( *. Razor*) requer minimamente uma referência ao pacote [Microsoft. AspNetCore. Components](https://www.nuget.org/packages/Microsoft.AspNetCore.Components) . Um RCL que é usado para criar exibições ou páginas do Razor (arquivos *. cshtml* ) requer minimamente o direcionamento `netcoreapp3.0` ou posterior e tem uma `FrameworkReference` ao [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) em seu arquivo de projeto.
 
 ::: moniker-end
 
@@ -139,7 +141,7 @@ O SDK do Razor define dois destinos primários:
 
 ### <a name="runtime-compilation-of-razor-views"></a>Compilação de runtime de modos de exibição do Razor
 
-* Por padrão, o SDK do Razor não publica assemblies de referência que são necessários para realizar compilação no runtime. Isso resulta em falhas de compilação quando o modelo de aplicativo se baseia na compilação em tempo de execução&mdash;, por exemplo, o aplicativo usa exibições inseridas ou muda as exibições depois que o aplicativo é publicado. Defina `CopyRefAssembliesToPublishDirectory` como `true` para continuar publicando assemblies de referência.
+* Por padrão, o SDK do Razor não publica assemblies de referência que são necessários para realizar compilação no runtime. Isso resulta em falhas de compilação quando o modelo de aplicativo se baseia na compilação em runtime&mdash;, por exemplo, o aplicativo usa exibições inseridas ou muda as exibições depois que o aplicativo é publicado. Defina `CopyRefAssembliesToPublishDirectory` como `true` para continuar publicando assemblies de referência.
 
 * Para um aplicativo Web, verifique se seu aplicativo está direcionando o SDK do `Microsoft.NET.Sdk.Web`.
 

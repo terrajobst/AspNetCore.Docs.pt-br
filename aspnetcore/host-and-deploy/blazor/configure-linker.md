@@ -1,26 +1,28 @@
 ---
-title: Configurar o vinculador para o Blazor do ASP.NET Core
+title: Configurar o vinculador para ASP.NET Core Blazor
 author: guardrex
-description: Saiba como controlar o Vinculador de IL (Linguagem Intermediária) ao criar um aplicativo Blazor.
+description: Saiba como controlar o vinculador de linguagem intermediária (IL) ao criar um aplicativo Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
+no-loc:
+- Blazor
 uid: host-and-deploy/blazor/configure-linker
-ms.openlocfilehash: a7e59e63c163986c40155e230dc644028e78e5fd
-ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
+ms.openlocfilehash: b30669a7ca02c756fa10c8cf9973ef87e29e7bd4
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72391456"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963610"
 ---
-# <a name="configure-the-linker-for-aspnet-core-blazor"></a>Configurar o vinculador para o Blazor do ASP.NET Core
+# <a name="configure-the-linker-for-aspnet-core-opno-locblazor"></a>Configurar o vinculador para ASP.NET Core Blazor
 
 Por [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-O Blazor executa a vinculação de [IL (linguagem intermediária)](/dotnet/standard/managed-code#intermediate-language--execution) durante um build de Versão para remover a IL desnecessária dos assemblies de saída do aplicativo.
+Blazor executa a vinculação de [Il (linguagem intermediária)](/dotnet/standard/managed-code#intermediate-language--execution) durante uma compilação de versão para remover o Il desnecessário dos assemblies de saída do aplicativo.
 
 Controle a vinculação do assembly com uma das seguintes abordagens:
 

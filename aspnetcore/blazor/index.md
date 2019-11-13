@@ -1,26 +1,29 @@
 ---
-title: Introdução ao ASP.NET Core mais incrivelmente
+title: Introdução ao ASP.NET Core Blazor
 author: guardrex
-description: Explore o Blazor no ASP.NET Core, uma maneira de criar a IU da Web interativa do lado do cliente com o .NET em um aplicativo ASP.NET Core.
+description: Explore ASP.NET Core Blazor, uma maneira de criar interface do usuário da Web interativa do lado do cliente com o .NET em um aplicativo ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc, seoapril2019
-ms.date: 10/31/2019
+ms.date: 11/12/2019
+no-loc:
+- Blazor
+- SignalR
 uid: blazor/index
-ms.openlocfilehash: c2574c1250cf94e89dd5476b6174620d83546236
-ms.sourcegitcommit: 77c8be22d5e88dd710f42c739748869f198865dd
+ms.openlocfilehash: 8b656a7461c78475432722540ad628258cfe19c4
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/01/2019
-ms.locfileid: "73427025"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73962921"
 ---
-# <a name="introduction-to-aspnet-core-blazor"></a>Introdução ao ASP.NET Core mais incrivelmente
+# <a name="introduction-to-aspnet-core-opno-locblazor"></a>Introdução ao ASP.NET Core Blazor
 
 Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
 *Bem-vindo ao Blazor!*
 
-O Blazor é uma estrutura para criar uma interface do usuário web interativa do lado do cliente com o .NET:
+Blazor é uma estrutura para a criação de interface do usuário da Web interativa do lado do cliente com o .NET:
 
 * Crie interfaces do usuário interativas avançadas usando C# em vez de JavaScript.
 * Compartilhe a lógica de aplicativo do lado do cliente e do servidor gravada no .NET.
@@ -37,7 +40,7 @@ Usar o .NET para desenvolvimento web do lado do cliente oferece as seguintes van
 
 ## <a name="components"></a>Componentes
 
-Os aplicativos Blazor se baseiam em *componentes*. Um componente no Blazor é um elemento da interface do usuário, como uma página, uma caixa de diálogo ou um formulário de entrada de dados.
+Blazor aplicativos são baseados em *componentes*. Um componente no Blazor é um elemento da interface do usuário, como um formulário de página, caixa de diálogo ou entrada de dados.
 
 Os componentes são classes do .NET incorporadas a assemblies .NET que:
 
@@ -75,7 +78,7 @@ A seguinte marcação Razor demonstra um componente (*Dialog.razor*), que pode s
 
 O conteúdo do corpo da caixa de diálogo (`ChildContent`) e o título (`Title`) são fornecidos pelo componente que usa esse componente em sua interface do usuário. `OnYes` é um método C# disparado pelo evento `onclick` do botão.
 
-O Blazor usa marcações HTML naturais para composição de interface do usuário. Os elementos HTML especificam componentes e os atributos da marcação transmitem valores para as propriedades de um componente.
+Blazor usa marcas HTML naturais para composição da interface do usuário. Os elementos HTML especificam componentes e os atributos da marcação transmitem valores para as propriedades de um componente.
 
 No exemplo a seguir, o componente `Index` usa o componente `Dialog`. `ChildContent` e `Title` são definidos pelos atributos e pelo conteúdo do elemento `<Dialog>`.
 
@@ -101,39 +104,39 @@ Quando esse componente é usado no aplicativo, o IntelliSense no [Visual Studio]
 
 Os componentes são renderizados em uma representação na memória do Modelo de Objeto do Documento (DOM) do navegador chamada *árvore de renderização*, que é usada para atualizar a interface do usuário de maneira flexível e eficiente.
 
-## <a name="blazor-webassembly"></a>WebAssembly Blazor
+## <a name="opno-locblazor-webassembly"></a>Blazor Webassembly
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Webassembly mais simples é uma estrutura de aplicativo de página única para criar aplicativos Web do lado do cliente interativos com o .NET. Webassembly mais versátil usa padrões abertos da Web sem plug-ins ou código transpilação e trabalha em todos os navegadores modernos da Web, incluindo navegadores móveis.
+Blazor Webassembly é uma estrutura de aplicativo de página única para criar aplicativos Web do lado do cliente interativos com o .NET. Blazor Webassembly usa padrões abertos da Web sem plug-ins ou código transpilação e trabalha em todos os navegadores da Web modernos, incluindo navegadores móveis.
 
 A execução do código do .NET em navegadores da Web é possibilitada por [WebAssembly](https://webassembly.org) (abreviado como *wasm*). O WebAssembly é um formato de código de bytes compacto, otimizado para download rápido e máxima velocidade de execução. O WebAssembly é um padrão aberto da Web compatível com navegadores da Web sem plug-ins.
 
 O código WebAssembly pode acessar a funcionalidade completa do navegador por meio de JavaScript, chamado *Interoperabilidade do JavaScript* (ou *Interop do JavaScript*). O código .NET executado por meio da WebAssembly no navegador é executado na área restrita do JavaScript do navegador com as proteções que a área restrita oferece contra ações mal intencionadas no computador cliente.
 
-![Webassembly mais incrivelmente executa o código .NET no navegador com Webassembly.](index/_static/blazor-webassembly.png)
+![[! Parar. Não-LOC (mais alto)] o Webassembly executa o código .NET no navegador com Webassembly.](index/_static/blazor-webassembly.png)
 
-Quando um aplicativo Webassembly mais elaborado é criado e executado em um navegador:
+Quando um aplicativo Webassembly Blazor é compilado e executado em um navegador:
 
 * os arquivos C# e os arquivos Razor são compilados em assemblies do .NET.
-* os assemblies e o tempo de execução do .NET são baixados no navegador.
-* O Webassembly de mais incrivelmente Inicializa o tempo de execução do .NET e configura o tempo de execução para carregar os assemblies para o aplicativo. O tempo de execução do Webassembly mais incrivelmente usa a interoperabilidade JavaScript para lidar com a manipulação de DOM e chamadas de API de navegador
+* os assemblies e o runtime do .NET são baixados no navegador.
+* Blazor Webassembly Inicializa o tempo de execução do .NET e configura o tempo de execução para carregar os assemblies para o aplicativo. O tempo de execução do Webassembly Blazor usa a interoperabilidade JavaScript para manipular as chamadas de API do navegador e a manipulação DOM.
 
-O tamanho do aplicativo publicado, seu *tamanho de payload*, é um fator de desempenho crítico para a utilidade do aplicativo. Um aplicativo grande leva um tempo relativamente longo para baixar para um navegador, o que afeta a experiência do usuário. Webassembly mais incrivelmente otimiza o tamanho da carga para reduzir os tempos de download:
+O tamanho do aplicativo publicado, seu *tamanho de payload*, é um fator de desempenho crítico para a utilidade do aplicativo. Um aplicativo grande leva um tempo relativamente longo para baixar para um navegador, o que afeta a experiência do usuário. Blazor Webassembly otimiza o tamanho da carga para reduzir os tempos de download:
 
 * O código não utilizado é retirado do aplicativo quando publicado pelo [Vinculador de linguagem intermediária (IL)](xref:host-and-deploy/blazor/configure-linker).
 * As respostas HTTP são compactadas.
-* O tempo de execução do .NET e os assemblies são armazenados em cache no navegador.
+* O runtime do .NET e os assemblies são armazenados em cache no navegador.
 
-## <a name="blazor-server"></a>Servidor Blazor
+## <a name="opno-locblazor-server"></a>Servidor de Blazor
 
-Os componentes Blazor desvinculam a lógica de renderização do componente da forma como as atualizações da interface do usuário são aplicadas. O servidor mais incrivelmente dá suporte para hospedar componentes do Razor no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário são tratadas por uma conexão [SignalR](xref:signalr/introduction).
+Blazor dissocia a lógica de renderização do componente de como as atualizações da interface do usuário são aplicadas. o Blazor Server fornece suporte para hospedar componentes do Razor no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário são manipuladas por uma conexão [SignalR](xref:signalr/introduction) .
 
-O tempo de execução realiza o envio de eventos da interface do usuário do navegador para o servidor e executar os componentes, aplica as atualizações na interface do usuário retornadas pelo servidor ao navegador.
+O runtime realiza o envio de eventos da interface do usuário do navegador para o servidor e executar os componentes, aplica as atualizações na interface do usuário retornadas pelo servidor ao navegador.
 
-A conexão usada pelo servidor mais incrivelmente para se comunicar com o navegador também é usada para lidar com as chamadas de interoperabilidade do JavaScript.
+A conexão usada pelo Blazor Server para se comunicar com o navegador também é usada para lidar com as chamadas de interoperabilidade do JavaScript.
 
-![O servidor de mais incrivelmente executa o código .NET no servidor e interage com o Modelo de Objeto do Documento no cliente por meio de uma conexão de sinalização](index/_static/blazor-server.png)
+![[! Parar. O servidor não LOC (mais novo)] executa o código .NET no servidor e interage com o Modelo de Objeto do Documento no cliente por meio de um [! Parar. Conexão não-LOC (Signalr)]](index/_static/blazor-server.png)
 
 ## <a name="javascript-interop"></a>Interoperabilidade do JavaScript
 
@@ -141,7 +144,7 @@ Para aplicativos que exigem bibliotecas JavaScript e acesso a APIs do navegador 
 
 ## <a name="code-sharing-and-net-standard"></a>Compartilhamento de código e o .NET Standard
 
-O Blazor implementa o [.NET Standard 2.0](/dotnet/standard/net-standard). O .NET Standard é uma especificação formal das APIs do .NET que são comuns entre as implementações do .NET. As bibliotecas de classe do .NET Standard podem ser compartilhadas entre diferentes plataformas do .NET, como Blazor, .NET Framework, .NET Core, Xamarin, Mono e Unity.
+Blazor implementa [.NET Standard 2,0](/dotnet/standard/net-standard). O .NET Standard é uma especificação formal das APIs do .NET que são comuns entre as implementações do .NET. .NET Standard bibliotecas de classe podem ser compartilhadas entre diferentes plataformas .NET, como Blazor, .NET Framework, .NET Core, Xamarin, mono e Unity.
 
 As APIs que não são aplicáveis em um navegador da Web (por exemplo, para acessar o sistema de arquivos, abrir um soquete e threading) geram a <xref:System.PlatformNotSupportedException>.
 
@@ -152,4 +155,4 @@ As APIs que não são aplicáveis em um navegador da Web (por exemplo, para aces
 * [Guia do C#](/dotnet/csharp/)
 * <xref:mvc/views/razor>
 * [HTML](https://www.w3.org/html/)
-* Links da Comunidade [incríveis](https://github.com/AdrienTorris/awesome-blazor)
+* Links de comunidade do [Blazorincríveis](https://github.com/AdrienTorris/awesome-blazor)

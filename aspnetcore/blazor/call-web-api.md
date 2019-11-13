@@ -1,39 +1,41 @@
 ---
-title: Chamar uma API Web do ASP.NET Core mais
+title: Chamar uma API da Web de ASP.NET Core Blazor
 author: guardrex
-description: Saiba como chamar uma API da Web de um aplicativo mais novo usando auxiliares JSON, incluindo a criação de solicitações de CORS (compartilhamento de recursos entre origens).
+description: Saiba como chamar uma API da Web de um aplicativo Blazor usando auxiliares JSON, incluindo a criação de solicitações de compartilhamento de recursos entre origens (CORS).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
+no-loc:
+- Blazor
 uid: blazor/call-web-api
-ms.openlocfilehash: b08fdf5c2f9a523314b1744a33087eb64fa4c14a
-ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
+ms.openlocfilehash: b5c57317005d0072410542bad322458b1cb3f5ee
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72390847"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73962722"
 ---
-# <a name="call-a-web-api-from-aspnet-core-blazor"></a>Chamar uma API Web do ASP.NET Core mais
+# <a name="call-a-web-api-from-aspnet-core-opno-locblazor"></a>Chamar uma API da Web de ASP.NET Core Blazor
 
 Por [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27)e [Juan de la Cruz](https://github.com/juandelacruz23)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Os aplicativos Webassembly mais incrivelmente chamam APIs da Web usando um serviço pré-configurado `HttpClient`. Redação de solicitações, que podem incluir opções de API de busca de JavaScript, usando auxiliares de JSON mais [Populadores](https://developer.mozilla.org/docs/Web/API/Fetch_API) ou com <xref:System.Net.Http.HttpRequestMessage>.
+Blazor aplicativos Webassembly chamam APIs Web usando um serviço de `HttpClient` pré-configurado. Redação de solicitações, que podem incluir opções de [API de busca](https://developer.mozilla.org/docs/Web/API/Fetch_API) de JavaScript, usando Blazor auxiliares JSON ou com <xref:System.Net.Http.HttpRequestMessage>.
 
-Os aplicativos de servidor mais fáceis chamam APIs da Web usando instâncias <xref:System.Net.Http.HttpClient> normalmente criadas usando <xref:System.Net.Http.IHttpClientFactory>. Para obter mais informações, consulte <xref:fundamentals/http-requests>.
+os aplicativos do Blazor Server chamam APIs da Web usando <xref:System.Net.Http.HttpClient> instâncias normalmente criadas usando <xref:System.Net.Http.IHttpClientFactory>. Para obter mais informações, consulte <xref:fundamentals/http-requests>.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
-Para obter exemplos de Webassembly mais incrivelmente, consulte os seguintes componentes no aplicativo de exemplo:
+Para obter Blazor exemplos de Webassembly, consulte os seguintes componentes no aplicativo de exemplo:
 
 * Chamar a API Web (*pages/CallWebAPI. Razor*)
 * Testador de solicitação HTTP (*componentes/HTTPRequestTester. Razor*)
 
 ## <a name="httpclient-and-json-helpers"></a>Auxiliares HttpClient e JSON
 
-Em aplicativos Webassembly mais podestas, o [HttpClient](xref:fundamentals/http-requests) está disponível como um serviço pré-configurado para fazer solicitações de volta ao servidor de origem. Para usar auxiliares JSON `HttpClient`, adicione uma referência de pacote a `Microsoft.AspNetCore.Blazor.HttpClient`. os auxiliares `HttpClient` e JSON também são usados para chamar pontos de extremidade de API Web de terceiros. `HttpClient` é implementado usando a [API de busca](https://developer.mozilla.org/docs/Web/API/Fetch_API) de navegador e está sujeito a suas limitações, incluindo a imposição da mesma política de origem.
+Em Blazor aplicativos Webassembly, o [HttpClient](xref:fundamentals/http-requests) está disponível como um serviço pré-configurado para fazer solicitações de volta ao servidor de origem. Para usar `HttpClient` auxiliares JSON, adicione uma referência de pacote a `Microsoft.AspNetCore.Blazor.HttpClient`. os auxiliares `HttpClient` e JSON também são usados para chamar pontos de extremidade de API Web de terceiros. `HttpClient` é implementado usando a [API de busca](https://developer.mozilla.org/docs/Web/API/Fetch_API) de navegador e está sujeito a suas limitações, incluindo a imposição da mesma política de origem.
 
 O endereço base do cliente é definido como o endereço do servidor de origem. Injetar uma instância `HttpClient` usando a diretiva `@inject`:
 
@@ -61,7 +63,7 @@ Os métodos auxiliares JSON enviam solicitações para um URI (uma API Web nos e
 
 * `GetJsonAsync` &ndash; envia uma solicitação HTTP GET e analisa o corpo da resposta JSON para criar um objeto.
 
-  No código a seguir, o `_todoItems` é exibido pelo componente. O método `GetTodoItems` é disparado quando a renderização do componente é concluída ([OnInitializedAsync](xref:blazor/components#lifecycle-methods)). Consulte o aplicativo de exemplo para obter um exemplo completo.
+  No código a seguir, os `_todoItems` são exibidos pelo componente. O método `GetTodoItems` é disparado quando a renderização do componente é concluída ([OnInitializedAsync](xref:blazor/components#lifecycle-methods)). Consulte o aplicativo de exemplo para obter um exemplo completo.
 
   ```cshtml
   @using System.Net.Http
@@ -99,7 +101,7 @@ Os métodos auxiliares JSON enviam solicitações para um URI (uma API Web nos e
 
 * `PutJsonAsync` &ndash; envia uma solicitação HTTP PUT, incluindo conteúdo codificado em JSON.
 
-  No código a seguir, `_editItem` valores para `Name` e `IsCompleted` são fornecidos pelos elementos associados do componente. A `Id` do item é definida quando o item é selecionado em outra parte da interface do usuário e `EditItem` é chamado. O método `SaveItem` é disparado selecionando o elemento salvar `<button>`. Consulte o aplicativo de exemplo para obter um exemplo completo.
+  No código a seguir, `_editItem` valores para `Name` e `IsCompleted` são fornecidos por elementos associados do componente. A `Id` do item é definida quando o item é selecionado em outra parte da interface do usuário e `EditItem` é chamado. O método `SaveItem` é disparado selecionando o elemento salvar `<button>`. Consulte o aplicativo de exemplo para obter um exemplo completo.
 
   ```cshtml
   @using System.Net.Http
@@ -153,7 +155,7 @@ Para permitir que outros sites façam solicitações de compartilhamento de recu
 
 ## <a name="httpclient-and-httprequestmessage-with-fetch-api-request-options"></a>HttpClient e HttpRequestMessage com opções de solicitação de API de busca
 
-Ao executar em Webassembly em um aplicativo Webassembly mais alto, use [HttpClient](xref:fundamentals/http-requests) e <xref:System.Net.Http.HttpRequestMessage> para personalizar solicitações. Por exemplo, você pode especificar o URI de solicitação, o método HTTP e todos os cabeçalhos de solicitação desejados.
+Ao executar em Webassembly em um aplicativo Webassembly Blazor, use [HttpClient](xref:fundamentals/http-requests) e <xref:System.Net.Http.HttpRequestMessage> para personalizar solicitações. Por exemplo, você pode especificar o URI de solicitação, o método HTTP e todos os cabeçalhos de solicitação desejados.
 
 Forneça opções de solicitação para a [API de busca](https://developer.mozilla.org/docs/Web/API/Fetch_API) de JavaScript subjacente usando a propriedade `WebAssemblyHttpMessageHandler.FetchArgs` na solicitação. Conforme mostrado no exemplo a seguir, a propriedade `credentials` é definida como qualquer um dos seguintes valores:
 

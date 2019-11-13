@@ -1,28 +1,30 @@
 ---
-title: ASP.NET Core injeção de dependência mais incrivelmente
+title: Injeção de dependência de Blazor ASP.NET Core
 author: guardrex
-description: Veja como os aplicativos mais incrivelmente podem injetar serviços em componentes.
+description: Veja como Blazor aplicativos podem injetar serviços em componentes.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
+no-loc:
+- Blazor
 uid: blazor/dependency-injection
-ms.openlocfilehash: b548f0e50e1a60b74969e5bbee43860be9ba5a7f
-ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
+ms.openlocfilehash: a39d913636afc55ac9d831de923ba7ae8db1216b
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72391148"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963074"
 ---
-# <a name="aspnet-core-blazor-dependency-injection"></a>ASP.NET Core injeção de dependência mais incrivelmente
+# <a name="aspnet-core-opno-locblazor-dependency-injection"></a>Injeção de dependência de Blazor ASP.NET Core
 
 Por [Rainer Stropek](https://www.timecockpit.com)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-O mais incrivelmente dá suporte à [injeção de dependência (di)](xref:fundamentals/dependency-injection). Os aplicativos podem usar serviços internos injetando-os em componentes. Os aplicativos também podem definir e registrar serviços personalizados e torná-los disponíveis em todo o aplicativo por meio de DI.
+Blazor dá suporte à [injeção de dependência (di)](xref:fundamentals/dependency-injection). Os aplicativos podem usar serviços internos injetando-os em componentes. Os aplicativos também podem definir e registrar serviços personalizados e torná-los disponíveis em todo o aplicativo por meio de DI.
 
-DI é uma técnica para acessar os serviços configurados em um local central. Isso pode ser útil em aplicativos mais incrivelmente para:
+DI é uma técnica para acessar os serviços configurados em um local central. Isso pode ser útil em aplicativos Blazor para:
 
 * Compartilhe uma única instância de uma classe de serviço em vários componentes, conhecido como um serviço *singleton* .
 * Dissociar componentes de classes de serviço concretas usando abstrações de referência. Por exemplo, considere uma interface `IDataAccess` para acessar dados no aplicativo. A interface é implementada por uma classe concreta `DataAccess` e registrada como um serviço no contêiner de serviço do aplicativo. Quando um componente usa DI para receber uma implementação `IDataAccess`, o componente não é acoplado ao tipo concreto. A implementação pode ser trocada, talvez para uma implementação fictícia em testes de unidade.
@@ -63,7 +65,7 @@ Os serviços podem ser configurados com os tempos de vida mostrados na tabela a 
 
 | Tempo de vida | Descrição |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Os aplicativos Webassembly mais claros não têm um conceito de escopos de DI. @no__t serviços registrados-0 se comportam como serviços `Singleton`. No entanto, o modelo de Hospedagem de servidor mais incrivelmente dá suporte ao tempo de vida de `Scoped`. Em aplicativos de servidor mais incrivelmente, um registro de serviço com escopo é definido para a *conexão*. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Blazor aplicativos Webassembly não têm atualmente um conceito de escopos de DI. os serviços registrados `Scoped`se comportam como serviços `Singleton`. No entanto, o modelo de hospedagem do servidor Blazor dá suporte ao tempo de vida `Scoped`. Em aplicativos do Blazor Server, um registro de serviço com escopo é definido para a *conexão*. Por esse motivo, o uso de serviços com escopo é preferencial para serviços que devem ser delimitados para o usuário atual, mesmo que a intenção atual seja executar o lado do cliente no navegador. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI cria uma *única instância* do serviço. Todos os componentes que exigem um serviço `Singleton` recebem uma instância do mesmo serviço. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Sempre que um componente Obtém uma instância de um serviço `Transient` do contêiner de serviço, ele recebe uma *nova instância* do serviço. |
 
@@ -129,7 +131,7 @@ Pré-requisitos para injeção de construtor:
 
 ## <a name="utility-base-component-classes-to-manage-a-di-scope"></a>Classes de componente base do utilitário para gerenciar um escopo de DI
 
-Em aplicativos ASP.NET Core, os serviços com escopo normalmente são incluídos no escopo da solicitação atual. Depois que a solicitação for concluída, todos os serviços com escopo ou transitórios serão descartados pelo sistema de DI. Em aplicativos de servidor mais incrivelmente, o escopo da solicitação dura a duração da conexão do cliente, o que pode resultar em serviços transitórios e no escopo que vivem muito mais do que o esperado.
+Em aplicativos ASP.NET Core, os serviços com escopo normalmente são incluídos no escopo da solicitação atual. Depois que a solicitação for concluída, todos os serviços com escopo ou transitórios serão descartados pelo sistema de DI. Em aplicativos Blazor Server, o escopo da solicitação dura a duração da conexão do cliente, o que pode resultar em serviços transitórios e no escopo que vivem muito mais do que o esperado.
 
 Para os serviços de escopo até o tempo de vida de um componente, o pode usar as classes base `OwningComponentBase` e `OwningComponentBase<TService>`. Essas classes base expõem uma propriedade `ScopedServices` do tipo `IServiceProvider` que resolve serviços que estão no escopo do tempo de vida do componente. Para criar um componente que herda de uma classe base no Razor, use a diretiva `@inherits`.
 

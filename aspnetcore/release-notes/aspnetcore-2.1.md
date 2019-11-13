@@ -4,22 +4,24 @@ author: isaac2004
 description: Conheça os novos recursos no ASP.NET Core 2.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2019
+ms.date: 11/12/2019
+no-loc:
+- SignalR
 uid: aspnetcore-2.1
-ms.openlocfilehash: 359f961db768b9048427c8ab296ee3e035879408
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: a45ba44fb7911a21927a4a996c0d6fa9eb776357
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65086400"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963185"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Novidades do ASP.NET Core 2.1
 
 Este artigo destaca as alterações mais significativas no ASP.NET Core 2.1, com links para a documentação relevante.
 
-## <a name="signalr"></a>SignalR
+## SignalR
 
-O SignalR foi reescrito para ASP.NET Core 2.1. O SignalR do ASP.NET Core inclui uma série de melhorias:
+SignalR foi reescrito para ASP.NET Core 2,1. ASP.NET Core SignalR inclui vários aprimoramentos:
 
 * Um modelo de expansão simplificado.
 * Um novo cliente JavaScript sem dependência jQuery.
@@ -28,14 +30,14 @@ O SignalR foi reescrito para ASP.NET Core 2.1. O SignalR do ASP.NET Core inclui 
 * Um novo modelo de resposta de transmissão.
 * Suporte para clientes com base em WebSockets básicos.
 
-Para obter mais informações, veja [ASP.NET Core SignalR](xref:signalr/introduction).
+Para obter mais informações, consulte [ASP.NET Core SignalR](xref:signalr/introduction).
 
 ## <a name="razor-class-libraries"></a>Biblioteca de classes Razor
 
 O ASP.NET Core 2.1 torna mais fácil criar e incluir interface do usuário baseada em Razor em uma biblioteca e compartilhá-la em vários projetos. O novo SDK do Razor habilita o build de arquivos do Razor em um projeto de biblioteca de classes que podem ser empacotados em um pacote do NuGet. Exibições e páginas em bibliotecas são descobertas automaticamente e podem ser substituídas pelo aplicativo. Ao integrar a compilação do Razor ao build:
 
 * O tempo de inicialização do aplicativo é significativamente mais rápido.
-* Atualizações rápidas a modos de exibição e páginas Razor em tempo de execução ainda estão disponíveis como parte de um fluxo de trabalho de desenvolvimento iterativo.
+* Atualizações rápidas a modos de exibição e páginas Razor em runtime ainda estão disponíveis como parte de um fluxo de trabalho de desenvolvimento iterativo.
 
 Para obter mais informações, veja [Criar interface do usuário reutilizável usando o projeto de Biblioteca de Classes do Razor](xref:razor-pages/ui-class).
 
@@ -70,7 +72,7 @@ O uso de HTTPS pode ser imposto ainda mais empregando [HSTS (Protocolo de Segura
 
 Em produção, HTTPS precisa ser configurado explicitamente. Na versão 2.1, foi adicionado o esquema de configuração padrão para configurar HTTPS para Kestrel. Os aplicativos podem ser configurados para usar:
 
-* Vários pontos de extremidade incluindo as URLs. Para saber mais, confira [Implementação do servidor Web Kestrel: configuração do ponto de extremidade](xref:fundamentals/servers/kestrel#endpoint-configuration).
+* Vários pontos de extremidade incluindo as URLs. Para obter mais informações, veja [Implementação do servidor Web Kestrel: configuração de ponto de extremidade](xref:fundamentals/servers/kestrel#endpoint-configuration).
 * O certificado a ser usado para HTTPS de um arquivo no disco ou de um repositório de certificados.
 
 ## <a name="gdpr"></a>RGPD
@@ -131,7 +133,7 @@ Para obter mais informações, veja [Iniciar solicitações de HTTP](xref:fundam
 
 ## <a name="kestrel-transport-configuration"></a>Configuração de transporte do Kestrel
 
-Com a liberação do ASP.NET Core 2.1, o transporte padrão do Kestrel deixa de ser baseado no Libuv, baseando-se agora em soquetes gerenciados. Para saber mais, confira [Implementação do servidor Web Kestrel: configuração de transporte](xref:fundamentals/servers/kestrel#transport-configuration).
+Com a liberação do ASP.NET Core 2.1, o transporte padrão do Kestrel deixa de ser baseado no Libuv, baseando-se agora em soquetes gerenciados. Para obter mais informações, veja [Implementação do servidor Web Kestrel: configuração de transporte](xref:fundamentals/servers/kestrel#transport-configuration).
 
 ## <a name="generic-host-builder"></a>Construtor de host genérico
 

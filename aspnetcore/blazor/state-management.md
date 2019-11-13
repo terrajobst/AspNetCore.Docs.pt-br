@@ -1,39 +1,41 @@
 ---
-title: ASP.NET Core o gerenciamento de estado mais incrivelmente
+title: Gerenciamento de estado de Blazor ASP.NET Core
 author: guardrex
-description: Saiba como persistir o estado em aplicativos de servidor mais incrivelmente.
+description: Saiba como persistir o estado em aplicativos do Blazor Server.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
+no-loc:
+- Blazor
 uid: blazor/state-management
-ms.openlocfilehash: 67042fa9b86125fe95d877dbce246abeb6f35dd0
-ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
+ms.openlocfilehash: 408d44a3f2e81a165e8b786c6d2efc9329082e30
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72391272"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73962821"
 ---
-# <a name="aspnet-core-blazor-state-management"></a>ASP.NET Core o gerenciamento de estado mais incrivelmente
+# <a name="aspnet-core-opno-locblazor-state-management"></a>Gerenciamento de estado de Blazor ASP.NET Core
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-O servidor mais incrivelmente é uma estrutura de aplicativo com estado. Na maioria das vezes, o aplicativo mantém uma conexão contínua com o servidor. O estado do usuário é mantido na memória do servidor em um *circuito*. 
+o Blazor Server é uma estrutura de aplicativo com estado. Na maioria das vezes, o aplicativo mantém uma conexão contínua com o servidor. O estado do usuário é mantido na memória do servidor em um *circuito*. 
 
 Exemplos de estado mantido para o circuito de um usuário incluem:
 
-* A hierarquia de interface do usuário renderizada @ no__t-0the de instâncias de componente e sua saída de renderização mais recente.
+* A interface do usuário renderizada&mdash;hierarquia de instâncias de componente e sua saída de renderização mais recente.
 * Os valores de quaisquer campos e propriedades em instâncias de componente.
 * Dados mantidos em instâncias de serviço de [injeção de dependência (di)](xref:fundamentals/dependency-injection) que estão no escopo do circuito.
 
 > [!NOTE]
-> Este artigo aborda a persistência de estado em aplicativos de servidor mais incrivelmente. Os aplicativos Webassembly mais recentes podem aproveitar a [persistência de estado do lado do cliente no navegador](#client-side-in-the-browser) , mas exigem soluções personalizadas ou pacotes de terceiros além do escopo deste artigo.
+> Este artigo aborda a persistência de estado em aplicativos do Blazor Server. Blazor aplicativos Webassembly podem aproveitar [a persistência de estado do lado do cliente no navegador](#client-side-in-the-browser) , mas exigem soluções personalizadas ou pacotes de terceiros além do escopo deste artigo.
 
-## <a name="blazor-circuits"></a>Circuitos mais incrivelmente
+## <a name="opno-locblazor-circuits"></a>circuitos de Blazor
 
-Se um usuário tiver uma perda de conexão de rede temporária, um mais incrivelmente tentará reconectar o usuário ao seu circuito original para que ele possa continuar a usar o aplicativo. No entanto, a reconexão de um usuário ao seu circuito original na memória do servidor nem sempre é possível:
+Se um usuário tiver uma perda de conexão de rede temporária, Blazor tentar reconectar o usuário ao seu circuito original para que ele possa continuar a usar o aplicativo. No entanto, a reconexão de um usuário ao seu circuito original na memória do servidor nem sempre é possível:
 
 * O servidor não pode manter um circuito desconectado para sempre. O servidor deve liberar um circuito desconectado após um tempo limite ou quando o servidor está sob pressão de memória.
 * No multisservidor, ambientes de implantação com balanceamento de carga, qualquer solicitação de processamento de servidor pode se tornar indisponível em um determinado momento. Os servidores individuais podem falhar ou ser removidos automaticamente quando não forem mais necessários para lidar com o volume geral de solicitações. O servidor original pode não estar disponível quando o usuário tenta se reconectar.
@@ -50,7 +52,7 @@ Em alguns cenários, a preservação do estado entre circuitos é desejável. Um
 
 Em geral, a manutenção de estado entre circuitos se aplica a cenários em que os usuários estão criando dados ativamente, não simplesmente lendo dados já existentes.
 
-Para preservar o estado além de um único circuito, *não armazene apenas os dados na memória do servidor*. O aplicativo deve manter os dados em algum outro local de armazenamento. A persistência de estado não é automática @ no__t-0you deve seguir etapas ao desenvolver o aplicativo para implementar a persistência de dados com estado.
+Para preservar o estado além de um único circuito, *não armazene apenas os dados na memória do servidor*. O aplicativo deve manter os dados em algum outro local de armazenamento. A persistência de estado não é automática&mdash;você deve executar etapas ao desenvolver o aplicativo para implementar a persistência de dados com estado.
 
 A persistência de dados normalmente é necessária apenas para o estado de alto valor que os usuários gastaram esforços para criar. Nos exemplos a seguir, o estado de persistência economiza tempo ou ajuda em atividades comerciais:
 
@@ -64,7 +66,7 @@ Normalmente, não é necessário preservar o estado de recriação fácil, como 
 
 ## <a name="where-to-persist-state"></a>Onde persistir o estado
 
-Existem três localizações comuns para o estado persistente em um aplicativo de servidor mais incrivelmente. Cada abordagem é mais adequada para cenários diferentes e tem diferentes limitações:
+Existem três localizações comuns para o estado persistente em um aplicativo do Blazor Server. Cada abordagem é mais adequada para cenários diferentes e tem diferentes limitações:
 
 * [Lado do servidor em um banco de dados](#server-side-in-a-database)
 * [URL](#url)
@@ -93,7 +95,7 @@ Para dados transitórios que representam o estado de navegação, modele os dado
 O conteúdo da barra de endereços do navegador é mantido:
 
 * Se o usuário recarregar a página manualmente.
-* Se o servidor Web ficar indisponível, @ no__t-0the usuário será forçado a recarregar a página para se conectar a um servidor diferente.
+* Se o servidor Web ficar indisponível&mdash;o usuário será forçado a recarregar a página para se conectar a um servidor diferente.
 
 Para obter informações sobre como definir padrões de URL com a diretiva `@page`, consulte <xref:blazor/routing>.
 
@@ -102,7 +104,7 @@ Para obter informações sobre como definir padrões de URL com a diretiva `@pag
 Para dados transitórios que o usuário está criando ativamente, um repositório de backup comum são as coleções `localStorage` e `sessionStorage` do navegador. O aplicativo não é necessário para gerenciar ou limpar o estado armazenado se o circuito for abandonado, o que é uma vantagem sobre o armazenamento do lado do servidor.
 
 > [!NOTE]
-> "Lado do cliente" nesta seção refere-se aos cenários do lado do cliente no navegador, não no [modelo de hospedagem Webassembly](xref:blazor/hosting-models#blazor-webassembly)mais alto. `localStorage` e `sessionStorage` podem ser usados em aplicativos Webassembly mais elaborados, mas apenas gravando código personalizado ou usando um pacote de terceiros.
+> "Lado do cliente" nesta seção refere-se aos cenários do lado do cliente no navegador, não ao [modelo de hospedagem do WebassemblyBlazor](xref:blazor/hosting-models#blazor-webassembly). `localStorage` e `sessionStorage` podem ser usados em Blazor aplicativos Webassembly, mas apenas escrevendo código personalizado ou usando um pacote de terceiros.
 
 `localStorage` e `sessionStorage` diferem da seguinte maneira:
 
@@ -120,7 +122,7 @@ Advertências para usar o armazenamento de navegador:
 
 * Assim como o uso de um banco de dados do lado do servidor, o carregamento e o salvamento do data são assíncronos.
 * Ao contrário de um banco de dados do lado do servidor, o armazenamento não está disponível durante o pré-processamento porque a página solicitada não existe no navegador durante o estágio de pré-processamento.
-* O armazenamento de alguns kilobytes de dados é razoável para persistir em aplicativos de servidor de mais incrivelmente. Além de alguns quilobytes, você deve considerar as implicações de desempenho porque os dados são carregados e salvos na rede.
+* O armazenamento de alguns kilobytes de dados é razoável para persistir para os aplicativos do Blazor Server. Além de alguns quilobytes, você deve considerar as implicações de desempenho porque os dados são carregados e salvos na rede.
 * Os usuários podem exibir ou adulterar os dados. ASP.NET Core [proteção de dados](xref:security/data-protection/introduction) pode reduzir o risco.
 
 ## <a name="third-party-browser-storage-solutions"></a>Soluções de armazenamento de navegadores de terceiros
@@ -140,8 +142,8 @@ Um exemplo de um pacote NuGet que fornece [proteção de dados](xref:security/da
 
 Para instalar o pacote `Microsoft.AspNetCore.ProtectedBrowserStorage`:
 
-1. No projeto de aplicativo de servidor mais incrivelmente, adicione uma referência de pacote a [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
-1. No HTML de nível superior (por exemplo, no arquivo *pages/_Host. cshtml* no modelo de projeto padrão), adicione a seguinte marca `<script>`:
+1. No projeto de aplicativo Blazor Server, adicione uma referência de pacote a [Microsoft. AspNetCore. ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
+1. No HTML de nível superior (por exemplo, no arquivo *pages/_Host. cshtml* no modelo de projeto padrão), adicione a seguinte marca de `<script>`:
 
    ```html
    <script src="_content/Microsoft.AspNetCore.ProtectedBrowserStorage/protectedBrowserStorage.js"></script>
@@ -181,7 +183,7 @@ private async Task IncrementCount()
 
 Em aplicativos maiores e mais realistas, o armazenamento de campos individuais é um cenário improvável. Os aplicativos têm maior probabilidade de armazenar objetos de modelo inteiros que incluem estado complexo. `ProtectedSessionStore` serializa e desserializa automaticamente os dados JSON.
 
-No exemplo de código anterior, os dados `currentCount` são armazenados como `sessionStorage['count']` no navegador do usuário. Os dados não são armazenados em texto sem formatação, mas, em vez disso, são protegidos usando a [proteção de dados](xref:security/data-protection/introduction)do ASP.NET Core. Os dados criptografados podem ser vistos se `sessionStorage['count']` for avaliado no console do desenvolvedor do navegador.
+No exemplo de código anterior, os dados de `currentCount` são armazenados como `sessionStorage['count']` no navegador do usuário. Os dados não são armazenados em texto sem formatação, mas, em vez disso, são protegidos usando a [proteção de dados](xref:security/data-protection/introduction)do ASP.NET Core. Os dados criptografados podem ser vistos se `sessionStorage['count']` for avaliado no console do desenvolvedor do navegador.
 
 Para recuperar os dados de `currentCount` se o usuário retornar ao componente `Counter` posteriormente (incluindo se eles estiverem em um circuito totalmente novo), use `ProtectedSessionStore.GetAsync`:
 

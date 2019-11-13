@@ -1,42 +1,44 @@
 ---
-title: Usar o SignalR do ASP.NET Core com TypeScript e Webpack
+title: Usar ASP.NET Core SignalR com TypeScript e webpack
 author: ssougnez
-description: Neste tutorial, você configurará o Webpack para agrupar e criar um aplicativo Web SignalR do ASP.NET Core, cujo cliente é escrito em TypeScript.
+description: Neste tutorial, você configura o webpack para agrupar e criar um ASP.NET Core SignalR aplicativo Web cujo cliente é escrito em TypeScript.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 10/04/2019
+ms.date: 11/12/2019
+no-loc:
+- SignalR
 uid: tutorials/signalr-typescript-webpack
-ms.openlocfilehash: 630e8cb5efe9c313479960626d3d864c4923cbd1
-ms.sourcegitcommit: 3ffcd8cbff8b49128733842f72270bc58279de70
+ms.openlocfilehash: 759584f432807689ba194c86046364552fce1a45
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/04/2019
-ms.locfileid: "71955926"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73964023"
 ---
-# <a name="use-aspnet-core-signalr-with-typescript-and-webpack"></a>Usar o SignalR do ASP.NET Core com TypeScript e Webpack
+# <a name="use-aspnet-core-opno-locsignalr-with-typescript-and-webpack"></a>Usar ASP.NET Core SignalR com TypeScript e webpack
 
 Por [Sébastien Sougnez](https://twitter.com/ssougnez) e [Scott Addie](https://twitter.com/Scott_Addie)
 
-O [Webpack](https://webpack.js.org/) habilita os desenvolvedores a agrupar e criar recursos de um aplicativo Web do lado do cliente. Este tutorial demonstra como usar o Webpack em um aplicativo Web SignalR do ASP.NET Core cujo cliente é escrito em [TypeScript](https://www.typescriptlang.org/).
+O [Webpack](https://webpack.js.org/) habilita os desenvolvedores a agrupar e criar recursos de um aplicativo Web do lado do cliente. Este tutorial demonstra como usar o webpack em um ASP.NET Core SignalR aplicativo Web cujo cliente é escrito em [TypeScript](https://www.typescriptlang.org/).
 
 Neste tutorial, você aprenderá como:
 
 > [!div class="checklist"]
-> * Gerar um aplicativo inicial SignalR do ASP.NET Core por scaffold
-> * Configurar o cliente TypeScript do SignalR
+> * Scaffold um aplicativo de SignalR inicial ASP.NET Core
+> * Configurar o cliente TypeScript SignalR
 > * Configurar um pipeline de build usando o Webpack
-> * Configurar o servidor SignalR
+> * Configurar o servidor de SignalR
 > * Habilitar a comunicação entre o cliente e o servidor
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com carga de trabalho **ASP.NET e desenvolvimento Web**
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com a carga de trabalho de **desenvolvimento da Web e do ASP.NET**
 * [SDK do .NET Core 3.0 ou posterior](https://www.microsoft.com/net/download/all)
 * [Node.js](https://nodejs.org/) com [npm](https://www.npmjs.com/)
 
@@ -62,7 +64,7 @@ Configure o Visual Studio para pesquisar o npm na variável de ambiente *PATH*. 
 
 A configuração do Visual Studio foi concluída. É hora de criar o projeto.
 
-1. Use a opção de menu **arquivo** > **novo** **projeto** de > e escolha o modelo de **aplicativo Web ASP.NET Core** .
+1. Use a opção de menu **arquivo** > **nova** > **projeto** e escolha o modelo de **aplicativo Web ASP.NET Core** .
 1. Nomeie o projeto *SignalRWebPack*e selecione **criar**.
 1. Selecione *.NET Core* na lista suspensa estrutura de destino e selecione *ASP.NET Core 3,0* na lista suspensa seletor de estrutura. Selecione o modelo **vazio** e selecione **criar**.
 
@@ -130,7 +132,7 @@ As etapas a seguir configuram a conversão do TypeScript para JavaScript e o agr
     O arquivo precedente configura a compilação Webpack. Detalhes de configuração a serem notados:
 
     * A propriedade `output` substitui o valor padrão do *dist*. Em vez disso, o lote é emitido no diretório *wwwroot*.
-    * A matriz `resolve.extensions` inclui *.js* para importar o JavaScript do cliente SignalR.
+    * A matriz de `resolve.extensions` inclui o *. js* para importar o SignalR cliente JavaScript.
 
 1. Crie um novo diretório *src* na raiz do projeto. O propósito é armazenar os ativos do lado do cliente do projeto.
 
@@ -175,11 +177,11 @@ As etapas a seguir configuram a conversão do TypeScript para JavaScript e o agr
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_UseSignalR&highlight=3)]
 
-1. No método `Startup.ConfigureServices`, chame [Addsignalr](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_). Adiciona serviços SignalR ao seu projeto.
+1. No método `Startup.ConfigureServices`, chame [Addsignalr](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_). Ele adiciona os serviços de SignalR ao seu projeto.
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_AddSignalR)]
 
-1. Crie um novo diretório, chamado *Hubs*, na raiz do projeto. A finalidade é armazenar o hub SignalR, que é criado na próxima etapa.
+1. Crie um novo diretório, chamado *Hubs*, na raiz do projeto. Sua finalidade é armazenar o Hub de SignalR, que é criado na próxima etapa.
 
 1. Crie o hub *Hubs/ChatHub.cs* com o código a seguir:
 
@@ -199,7 +201,7 @@ Atualmente, o aplicativo exibe um formulário simples para enviar mensagens. Nad
     npm install @aspnet/signalr
     ```
 
-    O comando precedente instala o [cliente TypeScript do SignalR](https://www.npmjs.com/package/@aspnet/signalr), que permite ao cliente enviar mensagens para o servidor.
+    O comando anterior instala o [SignalR cliente TypeScript](https://www.npmjs.com/package/@aspnet/signalr), que permite ao cliente enviar mensagens para o servidor.
 
 1. Adicione o código destacado ao arquivo *src/index.ts*:
 
@@ -207,7 +209,7 @@ Atualmente, o aplicativo exibe um formulário simples para enviar mensagens. Nad
 
     O código precedente é compatível com o recebimento de mensagens do servidor. A classe `HubConnectionBuilder` cria um novo construtor para configurar a conexão do servidor. A função `withUrl` configura a URL do hub.
 
-    O SignalR habilita a troca de mensagens entre um cliente e um servidor. Cada mensagem tem um nome específico. Por exemplo, você pode ter mensagens com o nome `messageReceived` que executam a lógica responsável por exibir a nova mensagem na zona de mensagens. É possível escutar uma mensagem específica por meio da função `on`. Você pode escutar qualquer número de nomes de mensagem. Também é possível passar parâmetros para a mensagem, como o nome do autor e o conteúdo da mensagem recebida. Quando o cliente recebe a mensagem, um novo elemento `div` é criado com o nome do autor e o conteúdo da mensagem em seu atributo `innerHTML`. Ele é adicionado ao elemento principal `div` que exibe as mensagens.
+    SignalR permite a troca de mensagens entre um cliente e um servidor. Cada mensagem tem um nome específico. Por exemplo, você pode ter mensagens com o nome `messageReceived` que executam a lógica responsável por exibir a nova mensagem na zona de mensagens. É possível escutar uma mensagem específica por meio da função `on`. Você pode escutar qualquer número de nomes de mensagem. Também é possível passar parâmetros para a mensagem, como o nome do autor e o conteúdo da mensagem recebida. Quando o cliente recebe a mensagem, um novo elemento `div` é criado com o nome do autor e o conteúdo da mensagem em seu atributo `innerHTML`. Ele é adicionado ao elemento principal `div` que exibe as mensagens.
 
 1. Agora que o cliente pode receber mensagens, configure-o para enviá-las. Adicione o código destacado ao arquivo *src/index.ts*:
 
@@ -271,7 +273,7 @@ Confirme que o aplicativo funciona com as seguintes etapas.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com carga de trabalho **ASP.NET e desenvolvimento Web**
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com a carga de trabalho de **desenvolvimento da Web e do ASP.NET**
 * [SDK 2.2 ou posterior do .NET Core](https://www.microsoft.com/net/download/all)
 * [Node.js](https://nodejs.org/) com [npm](https://www.npmjs.com/)
 
@@ -297,7 +299,7 @@ Configure o Visual Studio para pesquisar o npm na variável de ambiente *PATH*. 
 
 A configuração do Visual Studio foi concluída. É hora de criar o projeto.
 
-1. Use a opção de menu **arquivo** > **novo** **projeto** de > e escolha o modelo de **aplicativo Web ASP.NET Core** .
+1. Use a opção de menu **arquivo** > **nova** > **projeto** e escolha o modelo de **aplicativo Web ASP.NET Core** .
 1. Nomeie o projeto *SignalRWebPack*e selecione **criar**.
 1. Selecione *.NET Core* no menu suspenso da estrutura de destino e selecione *ASP.NET Core 2.2* no menu suspenso do seletor de estrutura. Selecione o modelo **vazio** e selecione **criar**.
 
@@ -365,7 +367,7 @@ As etapas a seguir configuram a conversão do TypeScript para JavaScript e o agr
     O arquivo precedente configura a compilação Webpack. Detalhes de configuração a serem notados:
 
     * A propriedade `output` substitui o valor padrão do *dist*. Em vez disso, o lote é emitido no diretório *wwwroot*.
-    * A matriz `resolve.extensions` inclui *.js* para importar o JavaScript do cliente SignalR.
+    * A matriz de `resolve.extensions` inclui o *. js* para importar o SignalR cliente JavaScript.
 
 1. Crie um novo diretório *src* na raiz do projeto. O propósito é armazenar os ativos do lado do cliente do projeto.
 
@@ -406,7 +408,7 @@ As etapas a seguir configuram a conversão do TypeScript para JavaScript e o agr
 
     O código precedente permite que o servidor localize e forneça o arquivo *index.html*, se o usuário inserir a URL completa ou a URL raiz do aplicativo Web.
 
-1. Chame [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) no método `Startup.ConfigureServices`. Adiciona serviços SignalR ao seu projeto.
+1. Chame [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr#Microsoft_Extensions_DependencyInjection_SignalRDependencyInjectionExtensions_AddSignalR_Microsoft_Extensions_DependencyInjection_IServiceCollection_) no método `Startup.ConfigureServices`. Ele adiciona os serviços de SignalR ao seu projeto.
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_AddSignalR)]
 
@@ -414,7 +416,7 @@ As etapas a seguir configuram a conversão do TypeScript para JavaScript e o agr
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_UseSignalR)]
 
-1. Crie um novo diretório, chamado *Hubs*, na raiz do projeto. A finalidade é armazenar o hub SignalR, que é criado na próxima etapa.
+1. Crie um novo diretório, chamado *Hubs*, na raiz do projeto. Sua finalidade é armazenar o Hub de SignalR, que é criado na próxima etapa.
 
 1. Crie o hub *Hubs/ChatHub.cs* com o código a seguir:
 
@@ -434,7 +436,7 @@ Atualmente, o aplicativo exibe um formulário simples para enviar mensagens. Nad
     npm install @aspnet/signalr
     ```
 
-    O comando precedente instala o [cliente TypeScript do SignalR](https://www.npmjs.com/package/@aspnet/signalr), que permite ao cliente enviar mensagens para o servidor.
+    O comando anterior instala o [SignalR cliente TypeScript](https://www.npmjs.com/package/@aspnet/signalr), que permite ao cliente enviar mensagens para o servidor.
 
 1. Adicione o código destacado ao arquivo *src/index.ts*:
 
@@ -442,7 +444,7 @@ Atualmente, o aplicativo exibe um formulário simples para enviar mensagens. Nad
 
     O código precedente é compatível com o recebimento de mensagens do servidor. A classe `HubConnectionBuilder` cria um novo construtor para configurar a conexão do servidor. A função `withUrl` configura a URL do hub.
 
-    O SignalR habilita a troca de mensagens entre um cliente e um servidor. Cada mensagem tem um nome específico. Por exemplo, você pode ter mensagens com o nome `messageReceived` que executam a lógica responsável por exibir a nova mensagem na zona de mensagens. É possível escutar uma mensagem específica por meio da função `on`. Você pode escutar qualquer número de nomes de mensagem. Também é possível passar parâmetros para a mensagem, como o nome do autor e o conteúdo da mensagem recebida. Quando o cliente recebe a mensagem, um novo elemento `div` é criado com o nome do autor e o conteúdo da mensagem em seu atributo `innerHTML`. Ele é adicionado ao elemento principal `div` que exibe as mensagens.
+    SignalR permite a troca de mensagens entre um cliente e um servidor. Cada mensagem tem um nome específico. Por exemplo, você pode ter mensagens com o nome `messageReceived` que executam a lógica responsável por exibir a nova mensagem na zona de mensagens. É possível escutar uma mensagem específica por meio da função `on`. Você pode escutar qualquer número de nomes de mensagem. Também é possível passar parâmetros para a mensagem, como o nome do autor e o conteúdo da mensagem recebida. Quando o cliente recebe a mensagem, um novo elemento `div` é criado com o nome do autor e o conteúdo da mensagem em seu atributo `innerHTML`. Ele é adicionado ao elemento principal `div` que exibe as mensagens.
 
 1. Agora que o cliente pode receber mensagens, configure-o para enviá-las. Adicione o código destacado ao arquivo *src/index.ts*:
 

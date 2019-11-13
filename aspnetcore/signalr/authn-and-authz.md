@@ -1,30 +1,32 @@
 ---
-title: Autenticação e autorização no Signalr ASP.NET Core
+title: Autenticação e autorização no ASP.NET Core SignalR
 author: bradygaster
-description: Saiba como usar a autenticação e a autorização no Signalr ASP.NET Core.
+description: Saiba como usar a autenticação e a autorização no ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 10/17/2019
+ms.date: 11/12/2019
+no-loc:
+- SignalR
 uid: signalr/authn-and-authz
-ms.openlocfilehash: 258b6d92896d38b79116278abb7c70b6063e8131
-ms.sourcegitcommit: ce2bfb01f2cc7dd83f8a97da0689d232c71bcdc4
+ms.openlocfilehash: 5a1e15ef46a3f89af3fbd3d505e7bd340c46e672
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2019
-ms.locfileid: "72531175"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963823"
 ---
-# <a name="authentication-and-authorization-in-aspnet-core-signalr"></a>Autenticação e autorização no Signalr ASP.NET Core
+# <a name="authentication-and-authorization-in-aspnet-core-opno-locsignalr"></a>Autenticação e autorização no ASP.NET Core SignalR
 
 Por [Andrew Stanton-enfermaria](https://twitter.com/anurse)
 
 [Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/authn-and-authz/sample/) [(como baixar)](xref:index#how-to-download-a-sample)
 
-## <a name="authenticate-users-connecting-to-a-signalr-hub"></a>Autenticar usuários que se conectam a um Hub do Signalr
+## <a name="authenticate-users-connecting-to-a-opno-locsignalr-hub"></a>Autenticar usuários que se conectam a um hub de SignalR
 
-O signalr pode ser usado com [ASP.NET Core autenticação](xref:security/authentication/identity) para associar um usuário a cada conexão. Em um Hub, os dados de autenticação podem ser acessados por meio da propriedade [`HubConnectionContext.User`](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) . A autenticação permite que o Hub Chame métodos em todas as conexões associadas a um usuário. Para obter mais informações, consulte [gerenciar usuários e grupos no signalr](xref:signalr/groups). Várias conexões podem ser associadas a um único usuário.
+SignalR pode ser usado com a [autenticação do ASP.NET Core](xref:security/authentication/identity) para associar um usuário a cada conexão. Em um Hub, os dados de autenticação podem ser acessados por meio da propriedade [`HubConnectionContext.User`](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) . A autenticação permite que o Hub Chame métodos em todas as conexões associadas a um usuário. Para obter mais informações, consulte [gerenciar usuários e grupos no SignalR](xref:signalr/groups). Várias conexões podem ser associadas a um único usuário.
 
-Veja a seguir um exemplo de `Startup.Configure` que usa a autenticação de sinalização e de ASP.NET Core:
+Veja a seguir um exemplo de `Startup.Configure` que usa SignalR e ASP.NET Core autenticação:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -74,13 +76,13 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> A ordem na qual você registra o Signalr e o middleware de autenticação ASP.NET Core é importante. Sempre chame `UseAuthentication` antes `UseSignalR` para que o Signalr tenha um usuário no `HttpContext`.
+> A ordem na qual você registra o SignalR e o middleware de autenticação ASP.NET Core é importante. Sempre chame `UseAuthentication` antes de `UseSignalR` para que SignalR tenha um usuário no `HttpContext`.
 
 ::: moniker-end
 
 ### <a name="cookie-authentication"></a>Autenticação de cookie
 
-Em um aplicativo baseado em navegador, a autenticação de cookie permite que suas credenciais de usuário existentes fluam automaticamente para conexões de Signalr. Ao usar o cliente de navegador, nenhuma configuração adicional é necessária. Se o usuário estiver conectado ao seu aplicativo, a conexão do Signalr herdará automaticamente essa autenticação.
+Em um aplicativo baseado em navegador, a autenticação de cookie permite que suas credenciais de usuário existentes fluam automaticamente para SignalR conexões. Ao usar o cliente de navegador, nenhuma configuração adicional é necessária. Se o usuário estiver conectado ao seu aplicativo, a conexão SignalR herdará automaticamente essa autenticação.
 
 Cookies são uma maneira específica do navegador de enviar tokens de acesso, mas os clientes sem navegador podem enviá-los. Ao usar o [cliente .net](xref:signalr/dotnet-client), a propriedade `Cookies` pode ser configurada na chamada `.WithUrl` para fornecer um cookie. No entanto, usar a autenticação de cookie do cliente .NET requer que o aplicativo forneça uma API para trocar dados de autenticação para um cookie.
 
@@ -106,14 +108,14 @@ var connection = new HubConnectionBuilder()
 ```
 
 > [!NOTE]
-> A função de token de acesso que você fornece é chamada antes de **cada** solicitação HTTP feita pelo signalr. Se você precisar renovar o token para manter a conexão ativa (porque ela pode expirar durante a conexão), faça isso de dentro dessa função e retorne o token atualizado.
+> A função de token de acesso que você fornece é chamada antes de **cada** solicitação HTTP feita por SignalR. Se você precisar renovar o token para manter a conexão ativa (porque ela pode expirar durante a conexão), faça isso de dentro dessa função e retorne o token atualizado.
 
-Nas APIs Web padrão, os tokens de portador são enviados em um cabeçalho HTTP. No entanto, o Signalr não pode definir esses cabeçalhos em navegadores ao usar alguns transportes. Ao usar Websockets e eventos enviados pelo servidor, o token é transmitido como um parâmetro de cadeia de caracteres de consulta. Para dar suporte a isso no servidor, é necessária uma configuração adicional:
+Nas APIs Web padrão, os tokens de portador são enviados em um cabeçalho HTTP. No entanto, SignalR não pode definir esses cabeçalhos em navegadores ao usar alguns transportes. Ao usar Websockets e eventos enviados pelo servidor, o token é transmitido como um parâmetro de cadeia de caracteres de consulta. Para dar suporte a isso no servidor, é necessária uma configuração adicional:
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?name=snippet)]
 
 > [!NOTE]
-> A cadeia de caracteres de consulta é usada em navegadores ao se conectar com WebSockets e eventos enviados pelo servidor devido a limitações da API do navegador. Ao usar HTTPS, os valores de cadeia de caracteres de consulta são protegidos pela conexão TLS. No entanto, muitos servidores registram valores de cadeia de caracteres de consulta. Para obter mais informações, consulte [considerações de segurança no signalr ASP.NET Core](xref:signalr/security). O signalr usa cabeçalhos para transmitir tokens em ambientes que dão suporte a eles (como os clientes .NET e Java).
+> A cadeia de caracteres de consulta é usada em navegadores ao se conectar com WebSockets e eventos enviados pelo servidor devido a limitações da API do navegador. Ao usar HTTPS, os valores de cadeia de caracteres de consulta são protegidos pela conexão TLS. No entanto, muitos servidores registram valores de cadeia de caracteres de consulta. Para obter mais informações, consulte [Security Considerations in ASP.NET Core SignalR](xref:signalr/security). SignalR usa cabeçalhos para transmitir tokens em ambientes que dão suporte a eles (como os clientes .NET e Java).
 
 ### <a name="cookies-vs-bearer-tokens"></a>Cookies versus tokens de portador 
 
@@ -121,7 +123,7 @@ Os cookies são específicos para os navegadores. Enviá-los de outros tipos de 
 
 ### <a name="windows-authentication"></a>Autenticação do Windows
 
-Se a [autenticação do Windows](xref:security/authentication/windowsauth) estiver configurada em seu aplicativo, o signalr poderá usar essa identidade para proteger os hubs. No entanto, para enviar mensagens a usuários individuais, você precisa adicionar um provedor de ID de usuário personalizado. O sistema de autenticação do Windows não fornece a declaração de "identificador de nome". O signalr usa a declaração para determinar o nome de usuário.
+Se a [autenticação do Windows](xref:security/authentication/windowsauth) estiver configurada em seu aplicativo, SignalR poderá usar essa identidade para proteger os hubs. No entanto, para enviar mensagens a usuários individuais, você precisa adicionar um provedor de ID de usuário personalizado. O sistema de autenticação do Windows não fornece a declaração de "identificador de nome". SignalR usa a declaração para determinar o nome de usuário.
 
 Adicione uma nova classe que implementa `IUserIdProvider` e recupere uma das declarações do usuário para usar como o identificador. Por exemplo, para usar a declaração "Name" (que é o nome de usuário do Windows no formulário `[Domain]\[Username]`), crie a seguinte classe:
 
@@ -159,7 +161,7 @@ A autenticação do Windows só tem suporte pelo cliente de navegador ao usar o 
 
 ### <a name="use-claims-to-customize-identity-handling"></a>Usar declarações para personalizar o tratamento de identidades
 
-Um aplicativo que autentica os usuários pode derivar IDs de usuário do Signalr de declarações do usuário. Para especificar como o Signalr cria IDs de usuário, implemente `IUserIdProvider` e registre a implementação.
+Um aplicativo que autentica os usuários pode derivar SignalR IDs de usuário de declarações do usuário. Para especificar como SignalR cria IDs de usuário, implemente `IUserIdProvider` e registre a implementação.
 
 O código de exemplo demonstra como você usaria declarações para selecionar o endereço de email do usuário como a propriedade de identificação. 
 
@@ -216,7 +218,7 @@ public class ChatHub : Hub
 
 ### <a name="use-authorization-handlers-to-customize-hub-method-authorization"></a>Usar manipuladores de autorização para personalizar a autorização do método de Hub
 
-O signalr fornece um recurso personalizado para manipuladores de autorização quando um método de Hub requer autorização. O recurso é uma instância do `HubInvocationContext`. O `HubInvocationContext` inclui o `HubCallerContext`, o nome do método de Hub que está sendo invocado e os argumentos para o método Hub.
+SignalR fornece um recurso personalizado para manipuladores de autorização quando um método de Hub requer autorização. O recurso é uma instância do `HubInvocationContext`. O `HubInvocationContext` inclui o `HubCallerContext`, o nome do método de Hub que está sendo invocado e os argumentos para o método Hub.
 
 Considere o exemplo de uma sala de chat que permite a entrada de várias organizações por meio de Azure Active Directory. Qualquer pessoa com um conta Microsoft pode entrar no chat, mas somente os membros da organização proprietária devem ser capazes de proibir os usuários ou exibir os históricos de chat dos usuários. Além disso, talvez queiramos restringir determinadas funcionalidades de determinados usuários. Usando os recursos atualizados do ASP.NET Core 3,0, isso é totalmente possível. Observe como o `DomainRestrictedRequirement` serve como um `IAuthorizationRequirement` personalizado. Agora que o parâmetro de recurso `HubInvocationContext` está sendo passado, a lógica interna pode inspecionar o contexto no qual o Hub está sendo chamado e tomar decisões sobre como permitir que o usuário execute métodos de Hub individuais.
 

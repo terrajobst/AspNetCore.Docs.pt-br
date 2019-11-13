@@ -5,12 +5,12 @@ description: Saiba como o ASP.NET Core fornece serviços e middleware para local
 ms.author: riande
 ms.date: 01/14/2017
 uid: fundamentals/localization
-ms.openlocfilehash: 0cf6e5d391242322aa4c7b1a0b6a20dd484c80f6
-ms.sourcegitcommit: 4818385c3cfe0805e15138a2c1785b62deeaab90
+ms.openlocfilehash: 36235e305037c0bbf20093327e2a0ff21b3de809
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/09/2019
-ms.locfileid: "73896882"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963675"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalização e localização no ASP.NET Core
 
@@ -165,6 +165,9 @@ Se você não usar a opção `ResourcesPath`, o arquivo *.resx* de uma exibiçã
 ### <a name="rootnamespaceattribute"></a>RootNamespaceAttribute 
 
 O atributo [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1) fornece o namespace raiz de um assembly quando o namespace raiz de um assembly é diferente do nome do assembly. 
+
+> [!WARNING]
+> Isso pode ocorrer quando o nome de um projeto não é um identificador .NET válido. Por exemplo, `my-project-name.csproj` usará o namespace raiz `my_project_name` e o nome do assembly `my-project-name` levando a esse erro. 
 
 Se o namespace raiz de um assembly é diferente do nome do assembly:
 

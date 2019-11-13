@@ -4,28 +4,31 @@ author: rick-anderson
 description: Saiba mais sobre os novos recursos do ASP.NET Core 3,0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/31/2019
+ms.date: 11/12/2019
+no-loc:
+- Blazor
+- SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: 8c53d8a9fa222ca40f26dc713ec3b70ddde76539
-ms.sourcegitcommit: eb2fe5ad2e82fab86ca952463af8d017ba659b25
+ms.openlocfilehash: c3dde383507ec919f82b5268ddbf23911c3d24f8
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/01/2019
-ms.locfileid: "73416120"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963118"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>O que há de novo no ASP.NET Core 3,0
 
 Este artigo destaca as alterações mais significativas no ASP.NET Core 3,0 com links para a documentação relevante.
 
-## <a name="blazor"></a>Blazor
+## Blazor
 
-O mais novo é uma estrutura em ASP.NET Core para a criação de interface do usuário da Web interativa do lado do cliente com o .NET:
+Blazor é uma nova estrutura no ASP.NET Core para criar interface do usuário da Web interativa do lado do cliente com o .NET:
 
 * Crie interfaces do usuário interativas avançadas usando C# em vez de JavaScript.
 * Compartilhe a lógica de aplicativo do lado do cliente e do servidor gravada no .NET.
 * Renderize a interface do usuário, como HTML e CSS para suporte amplo de navegadores, incluindo navegadores móveis.
 
-Cenários com suporte da estrutura de mais incrivelmente:
+cenários com suporte do Blazor Framework:
 
 * Componentes de interface do usuário reutilizáveis (componentes do Razor)
 * Roteamento do lado do cliente
@@ -37,19 +40,19 @@ Cenários com suporte da estrutura de mais incrivelmente:
 
 Para obter mais informações, consulte <xref:blazor/index>.
 
-### <a name="blazor-server"></a>Servidor Blazor
+### <a name="opno-locblazor-server"></a>Servidor de Blazor
 
-Os componentes Blazor desvinculam a lógica de renderização do componente da forma como as atualizações da interface do usuário são aplicadas. O servidor mais incrivelmente dá suporte para hospedar componentes do Razor no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário são tratadas por uma conexão SignalR. Há suporte para o servidor mais incrivelmente no ASP.NET Core 3,0.
+Blazor dissocia a lógica de renderização do componente de como as atualizações da interface do usuário são aplicadas. o Blazor Server fornece suporte para hospedar componentes do Razor no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário são manipuladas por uma conexão SignalR. o Blazor Server tem suporte no ASP.NET Core 3,0.
 
-### <a name="blazor-webassembly-preview"></a>Webassembly mais incrivelmente (visualização)
+### <a name="opno-locblazor-webassembly-preview"></a>Blazor Webassembly (versão prévia)
 
-Os aplicativos mais fáceis também podem ser executados diretamente no navegador usando um tempo de execução .NET baseado em Webassembly. Webassembly de mais de-teste está em versão prévia e *sem* suporte no ASP.NET Core 3,0. O Webassembly mais incrivelmente terá suporte em uma versão futura do ASP.NET Core.
+Blazor aplicativos também podem ser executados diretamente no navegador usando um tempo de execução .NET baseado em Webassembly. Blazor Webassembly está em visualização e *não* tem suporte no ASP.NET Core 3,0. Blazor Webassembly terá suporte em uma versão futura do ASP.NET Core.
 
 ### <a name="razor-components"></a>Componentes do Razor
 
-Os aplicativos mais elaborados são criados a partir de componentes. Os componentes são partes independentes da interface do usuário (IU), como uma página, uma caixa de diálogo ou um formulário. Os componentes são classes normais do .NET que definem a lógica de renderização da interface do usuário e manipuladores de eventos do lado do cliente. Você pode criar aplicativos Web interativos sofisticados sem JavaScript.
+Blazor aplicativos são criados a partir de componentes. Os componentes são partes independentes da interface do usuário (IU), como uma página, uma caixa de diálogo ou um formulário. Os componentes são classes normais do .NET que definem a lógica de renderização da interface do usuário e manipuladores de eventos do lado do cliente. Você pode criar aplicativos Web interativos sofisticados sem JavaScript.
 
-Os componentes no mais claro normalmente são criados usando sintaxe Razor, uma mistura natural de HTML e C#. Os componentes do Razor são semelhantes às exibições Razor Pages e MVC, pois ambos usam o Razor. Ao contrário de páginas e exibições, que se baseiam em um modelo de solicitação-resposta, os componentes são usados especificamente para manipular a composição da interface do usuário.
+Os componentes em Blazor normalmente são criados usando sintaxe Razor, uma mistura natural de HTML e C#. Os componentes do Razor são semelhantes às exibições Razor Pages e MVC, pois ambos usam o Razor. Ao contrário de páginas e exibições, que se baseiam em um modelo de solicitação-resposta, os componentes são usados especificamente para manipular a composição da interface do usuário.
 
 ## <a name="grpc"></a>gRPC
 
@@ -76,11 +79,11 @@ a funcionalidade gRPC no ASP.NET Core 3,0 inclui:
 
 Para obter mais informações, consulte <xref:grpc/index>.
 
-## <a name="signalr"></a>SignalR
+## SignalR
 
-Consulte [atualizar o código do sinalizador](xref:migration/22-to-30#signalr) para obter instruções de migração. O signalr agora usa `System.Text.Json` para serializar/desserializar mensagens JSON. Consulte [mudar para Newtonsoft. JSON](xref:migration/22-to-30#switch-to-newtonsoftjson) para obter instruções para restaurar o serializador baseado em `Newtonsoft.Json`.
+Consulte [atualizar código de SignalR](xref:migration/22-to-30#signalr) para obter instruções de migração. SignalR agora usa `System.Text.Json` para serializar/desserializar mensagens JSON. Consulte [mudar para Newtonsoft. JSON](xref:migration/22-to-30#switch-to-newtonsoftjson) para obter instruções para restaurar o serializador baseado em `Newtonsoft.Json`.
 
-Nos clientes JavaScript e .NET para Signalr, foi adicionado suporte para reconexão automática. Por padrão, o cliente tenta se reconectar imediatamente e tentar novamente após 2, 10 e 30 segundos, se necessário. Se o cliente reconectar-se com êxito, ele receberá uma nova ID de conexão. A reconexão automática é opcional:
+Nos clientes JavaScript e .NET para SignalR, foi adicionado suporte para reconexão automática. Por padrão, o cliente tenta se reconectar imediatamente e tentar novamente após 2, 10 e 30 segundos, se necessário. Se o cliente reconectar-se com êxito, ele receberá uma nova ID de conexão. A reconexão automática é opcional:
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -105,7 +108,7 @@ Se a reconexão falhar após o último intervalo de reconexão:
 
 Durante as tentativas de reconexão, atualize a interface de usuário do aplicativo para notificar o usuário de que a reconexão está sendo tentada.
 
-Para fornecer comentários da interface do usuário quando a conexão é interrompida, a API de cliente do Signalr foi expandida para incluir os seguintes manipuladores de eventos:
+Para fornecer comentários da interface do usuário quando a conexão é interrompida, a API de cliente do SignalR foi expandida para incluir os seguintes manipuladores de eventos:
 
 * `onreconnecting`: dá aos desenvolvedores uma oportunidade para desabilitar a interface do usuário ou para permitir que os usuários saibam que o aplicativo está offline.
 * `onreconnected`: dá aos desenvolvedores uma oportunidade de atualizar a interface do usuário quando a conexão é restabelecida.
@@ -132,7 +135,7 @@ connection.onreconnected((connectionId) => {
 });
 ```
 
-O signalr 3,0 e posterior fornece um recurso personalizado para manipuladores de autorização quando um método de Hub requer autorização. O recurso é uma instância do `HubInvocationContext`. O `HubInvocationContext` inclui:
+SignalR 3,0 e posterior fornece um recurso personalizado para manipuladores de autorização quando um método de Hub requer autorização. O recurso é uma instância do `HubInvocationContext`. O `HubInvocationContext` inclui:
 
 * `HubCallerContext`
 * Nome do método de Hub que está sendo invocado.
@@ -222,7 +225,7 @@ services
     });
 ```
 
-Os hubs de sinalização usam [Roteamento de ponto de extremidade](xref:fundamentals/routing). A conexão do Hub do signalr foi feita explicitamente anteriormente:
+os hubs de SignalR usam o [Roteamento de ponto de extremidade](xref:fundamentals/routing). a conexão de Hub de SignalR foi feita explicitamente anteriormente:
 
 ```csharp
 app.UseSignalR(routes =>
@@ -245,7 +248,7 @@ app.UseRouting(routes =>
 });
 ```
 
-Os hubs 3,0 do signalr podem ser roteados por meio do roteamento de ponto de extremidade. Com o roteamento de ponto de extremidade, normalmente todo o roteamento pode ser configurado no `UseRouting`:
+SignalR hubs 3,0 podem ser roteados por meio de roteamento de ponto de extremidade. Com o roteamento de ponto de extremidade, normalmente todo o roteamento pode ser configurado no `UseRouting`:
 
 ```csharp
 app.UseRouting(routes =>
@@ -255,7 +258,7 @@ app.UseRouting(routes =>
 });
 ```
 
-ASP.NET Core Signaler 3,0 adicionado:
+ASP.NET Core 3,0 SignalR adicionado:
 
 Streaming de cliente para servidor. Com o streaming de cliente para servidor, os métodos do lado do servidor podem ter instâncias de um `IAsyncEnumerable<T>` ou `ChannelReader<T>`. No exemplo a C# seguir, o método `UploadStream` no Hub receberá um fluxo de cadeias de caracteres do cliente:
 
@@ -286,7 +289,7 @@ async IAsyncEnumerable<string> clientStreamData()
 await connection.SendAsync("UploadStream", clientStreamData());
 ```
 
-Os aplicativos cliente JavaScript usam o `Subject` do Signalr (ou um [assunto RxJS](https://rxjs.dev/api/index/class/Subject)) para o argumento `stream` do método de Hub `UploadStream` acima.
+Os aplicativos cliente JavaScript usam o `Subject` de SignalR (ou um [assunto RxJS](https://rxjs.dev/api/index/class/Subject)) para o argumento `stream` do método Hub `UploadStream` acima.
 
 ```javascript
 let subject = new signalR.Subject();

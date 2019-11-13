@@ -4,14 +4,16 @@ author: rick-anderson
 description: Conheça os novos recursos do ASP.NET Core 2.2.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 11/12/2019
+no-loc:
+- SignalR
 uid: aspnetcore-2.2
-ms.openlocfilehash: 88a202d85c4d4ed7a395dba78feea29ef4637732
-ms.sourcegitcommit: 8835b6777682da6fb3becf9f9121c03f89dc7614
+ms.openlocfilehash: fca653158c95e7c1a11f25f4076830fe3e7e93ae
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/22/2019
-ms.locfileid: "69975705"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963132"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>Novidades do ASP.NET Core 2.2
 
@@ -19,13 +21,13 @@ Este artigo destaca as alterações mais significativas no ASP.NET Core 2.2, com
 
 ## <a name="openapi-analyzers--conventions"></a>Analisadores e convenções do OpenAPI
 
-O Open API (anteriormente conhecido como Swagger) é uma especificação independente de linguagem para descrever APIs REST. O ecossistema do Open API tem ferramentas que permitem descobrir, testar e produzir o código do cliente usando a especificação. O suporte para gerar e visualizar documentos do OpenAPI no ASP.NET Core MVC é fornecido por meio de projetos controlados pela comunidade, como [NSwag](https://github.com/RicoSuter/NSwag) e [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). O ASP.NET Core 2.2 fornece ferramentas e experiências de tempo de execução aprimoradas para a criação de documentos do OpenAPI.
+O Open API (anteriormente conhecido como Swagger) é uma especificação independente de linguagem para descrever APIs REST. O ecossistema do Open API tem ferramentas que permitem descobrir, testar e produzir o código do cliente usando a especificação. O suporte para gerar e visualizar documentos do OpenAPI no ASP.NET Core MVC é fornecido por meio de projetos controlados pela comunidade, como [NSwag](https://github.com/RicoSuter/NSwag) e [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). O ASP.NET Core 2.2 fornece ferramentas e experiências de runtime aprimoradas para a criação de documentos do OpenAPI.
 
 Para obter mais informações, consulte os seguintes recursos:
 
 * <xref:web-api/advanced/analyzers>
 * <xref:web-api/advanced/conventions>
-* [ASP.NET Core 2.2.0-preview1: analisadores e convenções do OpenAPI](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
+* [ASP.NET Core 2.2.0-Preview1: analisadores de OpenAPI & convenções](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
 
 ## <a name="problem-details-support"></a>Suporte de detalhes do problema
 
@@ -74,11 +76,11 @@ Em versões anteriores do ASP.NET Core, o IIS funciona como um proxy reverso. No
 
 Para obter mais informações, confira [Hospedagem em processo para IIS](xref:host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
 
-## <a name="signalr-java-client"></a>Cliente Java do SignalR
+## <a name="opno-locsignalr-java-client"></a>SignalR cliente Java
 
-O ASP.NET Core 2.2 introduz um Cliente Java para o SignalR. Esse cliente dá suporte à conexão a um Servidor do ASP.NET Core SignalR por meio do código Java, incluindo aplicativos Android.
+ASP.NET Core 2,2 apresenta um cliente Java para SignalR. Este cliente dá suporte à conexão com um ASP.NET Core SignalR Server a partir do código Java, incluindo aplicativos Android.
 
-Para obter mais informações, confira [Cliente Java do ASP.NET Core SignalR](https://docs.microsoft.com/aspnet/core/signalr/java-client?view=aspnetcore-2.2).
+Para obter mais informações, consulte [ASP.NET Core SignalR cliente Java](https://docs.microsoft.com/aspnet/core/signalr/java-client?view=aspnetcore-2.2).
 
 ## <a name="cors-improvements"></a>Melhorias do CORS
 

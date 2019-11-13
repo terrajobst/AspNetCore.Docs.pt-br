@@ -1,17 +1,19 @@
 ---
 title: Escolher entre o ASP.NET 4.x e o ASP.NET Core
 author: rick-anderson
-description: Explica o ASP.NET Core vs. ASP.NET 4.x e como escolher entre eles.
+description: Explica ASP.NET Core vs. ASP.NET 4. x e como escolher entre eles.
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 07/15/2019
+ms.date: 11/12/2019
+no-loc:
+- SignalR
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
-ms.openlocfilehash: 9e093e83a1f6367cbb244076a8351644244f9874
-ms.sourcegitcommit: 7e00e8236ca4eabf058f07020a5a3882daf7564f
+ms.openlocfilehash: 8b1681476f96e8613f9461c507fbb7696f888cbc
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/16/2019
-ms.locfileid: "68239220"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963620"
 ---
 # <a name="choose-between-aspnet-4x-and-aspnet-core"></a>Escolher entre o ASP.NET 4.x e o ASP.NET Core
 
@@ -34,11 +36,11 @@ A tabela a seguir compara o ASP.NET Core com o ASP.NET 4. x.
 | ASP.NET Core | ASP.NET 4.x |
 |---|---|
 |Build para Windows, macOS ou Linux|Build para Windows|
-|[Páginas Razor](xref:razor-pages/index) é a abordagem recomendada para criar uma interface do usuário da Web começando com o ASP.NET Core 2.x. Confira também [MVC](xref:mvc/overview), [API Web](xref:tutorials/first-web-api) e [SignalR](xref:signalr/introduction).|Use o [Web Forms](/aspnet/web-forms), o [SignalR](/aspnet/signalr), o [MVC](/aspnet/mvc), a [API Web](/aspnet/web-api/), [Webhooks](/aspnet/webhooks/) ou [páginas da Web](/aspnet/web-pages)|
+|[Páginas Razor](xref:razor-pages/index) é a abordagem recomendada para criar uma interface do usuário da Web começando com o ASP.NET Core 2.x. Consulte também [MVC](xref:mvc/overview), [API da Web](xref:tutorials/first-web-api)e [SignalR](xref:signalr/introduction).|Usar [Web Forms](/aspnet/web-forms), [SignalR](/aspnet/signalr), [MVC](/aspnet/mvc), [API da Web](/aspnet/web-api/), [WebHooks](/aspnet/webhooks/)ou [páginas da Web](/aspnet/web-pages)|
 |Várias versões por computador|Uma versão por computador|
 |Desenvolva com o [Visual Studio](https://visualstudio.microsoft.com/vs/), [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/) ou [Visual Studio Code](https://code.visualstudio.com/) usando C# ou F#|Desenvolva com o [Visual Studio](https://visualstudio.microsoft.com/vs/) usando C#, VB ou F#|
 |Desempenho superior ao do ASP.NET 4.x|Bom desempenho|
-|[Usar o tempo de execução do .NET Core](/dotnet/standard/choosing-core-framework-server)|Use o tempo de execução do .NET Framework|
+|[Usar o runtime do .NET Core](/dotnet/standard/choosing-core-framework-server)|Use o runtime do .NET Framework|
 
 Confira [ASP.NET Core targeting .NET Framework](xref:index#target-framework) (ASP.NET Core direcionado para o .NET Framework) para obter informações sobre o suporte do ASP.NET Core 2.x no .NET Framework.
 

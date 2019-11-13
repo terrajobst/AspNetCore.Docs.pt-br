@@ -1,50 +1,52 @@
 ---
 title: Gerenciar usuários e grupos no SignalR
 author: bradygaster
-description: Visão geral do gerenciamento de usuários do SignalR do ASP.NET Core e o grupo.
+description: Visão geral de ASP.NET Core SignalR gerenciamento de usuário e grupo.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 06/04/2018
+ms.date: 11/12/2019
+no-loc:
+- SignalR
 uid: signalr/groups
-ms.openlocfilehash: 180f8b4551eea39cc340bf1d250f4575cb5f71ed
-ms.sourcegitcommit: dd9c73db7853d87b566eef136d2162f648a43b85
+ms.openlocfilehash: 59e90042ecbaf936602643bbdc3965e036426b26
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65087430"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963817"
 ---
-# <a name="manage-users-and-groups-in-signalr"></a>Gerenciar usuários e grupos no SignalR
+# <a name="manage-users-and-groups-in-opno-locsignalr"></a>Gerenciar usuários e grupos no SignalR
 
 Por [Brennan Conroy](https://github.com/BrennanConroy)
 
-O SignalR permite que mensagens sejam enviadas para todas as conexões associadas a um usuário específico, bem como grupos de conexões nomeados.
+SignalR permite que as mensagens sejam enviadas a todas as conexões associadas a um usuário específico, bem como a grupos nomeados de conexões.
 
-[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/groups/sample/) [(como fazer o download)](xref:index#how-to-download-a-sample)
+[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/groups/sample/) [(como baixar)](xref:index#how-to-download-a-sample)
 
-## <a name="users-in-signalr"></a>Usuários no SignalR
+## <a name="users-in-opno-locsignalr"></a>Usuários no SignalR
 
-O SignalR permite enviar mensagens para todas as conexões associadas a um usuário específico. Por padrão, o SignalR usa o `ClaimTypes.NameIdentifier` do `ClaimsPrincipal` associado com a conexão como o identificador de usuário. Um único usuário pode ter várias conexões a um aplicativo do SignalR. Por exemplo, um usuário pode ser conectado em sua área de trabalho, bem como seu telefone. Cada dispositivo tem uma conexão SignalR separado, mas eles são todos associados ao mesmo usuário. Se uma mensagem é enviada para o usuário, todas as conexões associadas ao usuário recebem a mensagem. O identificador de usuário para uma conexão pode ser acessado pelo `Context.UserIdentifier` propriedade em seu hub.
+SignalR permite que você envie mensagens para todas as conexões associadas a um usuário específico. Por padrão, SignalR usa o `ClaimTypes.NameIdentifier` do `ClaimsPrincipal` associado à conexão como o identificador de usuário. Um único usuário pode ter várias conexões com um aplicativo SignalR. Por exemplo, um usuário pode estar conectado à área de trabalho e ao seu telefone. Cada dispositivo tem uma conexão SignalR separada, mas todos estão associados ao mesmo usuário. Se uma mensagem for enviada ao usuário, todas as conexões associadas a esse usuário receberão a mensagem. O identificador de usuário para uma conexão pode ser acessado pela propriedade `Context.UserIdentifier` em seu hub.
 
-Enviar uma mensagem para um usuário específico, passando o identificador de usuário para o `User` funcionar no seu método de hub, conforme mostrado no exemplo a seguir:
+Envie uma mensagem para um usuário específico passando o identificador de usuário para a função `User` em seu método de Hub, conforme mostrado no exemplo a seguir:
 
 > [!NOTE]
-> O identificador de usuário diferencia maiusculas de minúsculas.
+> O identificador de usuário diferencia maiúsculas de minúsculas.
 
 [!code-csharp[Configure service](groups/sample/hubs/chathub.cs?range=29-32)]
 
-## <a name="groups-in-signalr"></a>Grupos no SignalR
+## <a name="groups-in-opno-locsignalr"></a>Grupos no SignalR
 
-Um grupo é uma coleção de conexões associado com um nome. As mensagens podem ser enviadas para todas as conexões em um grupo. Grupos são a maneira recomendada para enviar para uma conexão ou várias conexões, porque os grupos são gerenciados pelo aplicativo. Uma conexão pode ser um membro de vários grupos. Isso torna grupos ideal para algo como um aplicativo de bate-papo, onde cada sala pode ser representada como um grupo. Conexões podem ser adicionadas ou removidas de grupos por meio de `AddToGroupAsync` e `RemoveFromGroupAsync` métodos.
+Um grupo é uma coleção de conexões associadas a um nome. As mensagens podem ser enviadas a todas as conexões em um grupo. Os grupos são a maneira recomendada de enviar para uma conexão ou várias conexões, pois os grupos são gerenciados pelo aplicativo. Uma conexão pode ser membro de vários grupos. Isso torna os grupos ideais para algo como um aplicativo de chat, onde cada sala pode ser representada como um grupo. As conexões podem ser adicionadas ou removidas dos grupos por meio dos métodos `AddToGroupAsync` e `RemoveFromGroupAsync`.
 
 [!code-csharp[Hub methods](groups/sample/hubs/chathub.cs?range=15-27)]
 
-Associação de grupo não é preservada quando uma conexão se reconecta. A conexão precisa ingressar novamente o grupo quando é restabelecida. Não é possível contar os membros de um grupo, uma vez que essas informações não estarão disponíveis se o aplicativo é dimensionado para vários servidores.
+A associação de grupo não é preservada quando uma conexão é reconectada. A conexão precisa reingressar no grupo quando ele for restabelecido. Não é possível contar os membros de um grupo, pois essas informações não estarão disponíveis se o aplicativo for dimensionado para vários servidores.
 
-Para proteger o acesso a recursos durante o uso de grupos, use [autenticação e autorização](xref:signalr/authn-and-authz) funcionalidade no ASP.NET Core. Se você adicionar apenas os usuários a um grupo quando as credenciais são válidas para esse grupo, as mensagens enviadas a esse grupo só irá para os usuários autorizados. No entanto, os grupos não são um recurso de segurança. Declarações de autenticação têm recursos que grupos não fizer isso, como a expiração e a revogação. Se a permissão do usuário para acessar o grupo for revogada, você precisa detectar que e removê-las manualmente.
+Para proteger o acesso aos recursos usando grupos, use a funcionalidade de [autenticação e autorização](xref:signalr/authn-and-authz) no ASP.NET Core. Se você apenas adicionar usuários a um grupo quando as credenciais forem válidas para esse grupo, as mensagens enviadas para esse grupo irão apenas para usuários autorizados. No entanto, os grupos não são um recurso de segurança. As declarações de autenticação têm recursos que os grupos não têm, como expiração e revogação. Se a permissão de um usuário para acessar o grupo for revogada, você precisará detectá-lo manualmente e removê-lo do grupo.
 
 > [!NOTE]
-> Nomes de grupo diferenciam maiusculas de minúsculas.
+> Os nomes de grupo diferenciam maiúsculas de minúsculas.
 
 ## <a name="related-resources"></a>Recursos relacionados
 

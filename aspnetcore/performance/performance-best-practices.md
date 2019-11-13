@@ -4,14 +4,16 @@ author: mjrousos
 description: Dicas para aumentar o desempenho em aplicativos ASP.NET Core e evitar problemas comuns de desempenho.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 09/26/2019
+ms.date: 11/12/2019
+no-loc:
+- SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 1cd4ca6fccfee674f46e87ba051e049f7daa5b66
-ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
+ms.openlocfilehash: 279bf352580e5e45fc005e800ee536871210409b
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2019
-ms.locfileid: "73799523"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963252"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Práticas recomendadas de desempenho de ASP.NET Core
 
@@ -117,7 +119,7 @@ Recommendations
 
 * **Não** aguarde a conclusão de tarefas de execução longa como parte do processamento de solicitação HTTP comum.
 * **Considere manipular** solicitações de execução longa com [serviços em segundo plano](xref:fundamentals/host/hosted-services) ou fora do processo com uma [função do Azure](/azure/azure-functions/). Concluir o trabalho fora do processo é especialmente benéfico para tarefas com uso intensivo de CPU.
-* **Use opções** de comunicação em tempo real, como [signalr](xref:signalr/introduction), para se comunicar com os clientes de forma assíncrona.
+* **Use opções** de comunicação em tempo real, como [SignalR](xref:signalr/introduction), para se comunicar com os clientes de forma assíncrona.
 
 ## <a name="minify-client-assets"></a>Ativos do cliente reduzir
 

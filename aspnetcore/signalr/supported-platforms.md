@@ -1,24 +1,26 @@
 ---
-title: Plataformas com suporte do Signalr ASP.NET Core
+title: ASP.NET Core SignalR plataformas com suporte
 author: bradygaster
-description: Saiba mais sobre as plataformas com suporte para o Signalr ASP.NET Core.
+description: Saiba mais sobre as plataformas com suporte para SignalRde ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/01/2019
+ms.date: 11/12/2019
+no-loc:
+- SignalR
 uid: signalr/supported-platforms
-ms.openlocfilehash: 1be7a307710e6e522c0088fd1ca01da11a13eda1
-ms.sourcegitcommit: 77c8be22d5e88dd710f42c739748869f198865dd
+ms.openlocfilehash: 86ba5b1aec230d78c1a0e1709187e129df6cb4cc
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/01/2019
-ms.locfileid: "73426971"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963737"
 ---
-# <a name="aspnet-core-signalr-supported-platforms"></a>Plataformas com suporte do Signalr ASP.NET Core
+# <a name="aspnet-core-opno-locsignalr-supported-platforms"></a>ASP.NET Core SignalR plataformas com suporte
 
 ## <a name="server-system-requirements"></a>Requisitos de sistema do servidor
 
-O signalr para ASP.NET Core dá suporte a qualquer plataforma de servidor com suporte ASP.NET Core.
+SignalR para ASP.NET Core dá suporte a qualquer plataforma de servidor com suporte no ASP.NET Core.
 
 ## <a name="javascript-client"></a>Cliente JavaScript
 
@@ -36,7 +38,7 @@ O [cliente JavaScript](https://www.npmjs.com/package/@aspnet/signalr) é executa
 
 ## <a name="net-client"></a>Cliente .NET
 
-O [cliente .net](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR/) é executado em qualquer plataforma com suporte do ASP.NET Core. Por exemplo, [os desenvolvedores do xamarin podem usar o signalr](https://github.com/aspnet/Announcements/issues/305) para criar aplicativos Android usando Xamarin. Android 8.4.0.1 e posterior e aplicativos Ios usando Xamarin. Ios 11.14.0.4 e posterior.
+O [cliente .net](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR/) é executado em qualquer plataforma com suporte do ASP.NET Core. Por exemplo, [os desenvolvedores do xamarin podem usar SignalR](https://github.com/aspnet/Announcements/issues/305) para criar aplicativos Android usando o Xamarin. Android 8.4.0.1 e versões posteriores e aplicativos Ios usando o Xamarin. Ios 11.14.0.4 e posterior.
 
 Se o servidor executar o IIS, o transporte do WebSockets exigirá o IIS 8,0 ou posterior no Windows Server 2012 ou posterior. Outros transportes têm suporte em todas as plataformas.
 

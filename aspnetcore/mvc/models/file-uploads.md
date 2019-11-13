@@ -5,14 +5,14 @@ description: Como usar o model binding e o streaming para carregar arquivos no A
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/31/2019
+ms.date: 11/04/2019
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 04e7533aa190a4875d3f66e8665fec16abec48b3
-ms.sourcegitcommit: 9e85c2562df5e108d7933635c830297f484bb775
+ms.openlocfilehash: b57ad4fe62de38085c11d7026d278cc6e0c565ce
+ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/04/2019
-ms.locfileid: "73462945"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73963153"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Carregar arquivos no ASP.NET Core
 
@@ -741,6 +741,10 @@ Um erro de conexão e uma conexão de servidor de redefinição provavelmente in
 
 Se o controlador estiver aceitando arquivos carregados usando <xref:Microsoft.AspNetCore.Http.IFormFile>, mas o valor for `null`, confirme se o formulário HTML está especificando um valor `enctype` de `multipart/form-data`. Se esse atributo não estiver definido no elemento `<form>`, o upload do arquivo não ocorrerá e os argumentos de <xref:Microsoft.AspNetCore.Http.IFormFile> associados serão `null`. Além disso, confirme se a [nomenclatura de carregamento em dados de formulário corresponde à nomenclatura do aplicativo](#match-name-attribute-value-to-parameter-name-of-post-method).
 
+### <a name="stream-was-too-long"></a>O fluxo era muito longo
+
+Os exemplos neste tópico dependem de <xref:System.IO.MemoryStream> para manter o conteúdo do arquivo carregado. O limite de tamanho de um `MemoryStream` é `int.MaxValue`. Se o cenário de upload de arquivo do aplicativo exigir a retenção de conteúdo de arquivo com mais de 50 MB, use uma abordagem alternativa que não dependa de um único `MemoryStream` para manter o conteúdo de um arquivo carregado.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -1458,6 +1462,10 @@ Um erro de conexão e uma conexão de servidor de redefinição provavelmente in
 ### <a name="null-reference-exception-with-iformfile"></a>Exceção de referência nula com IFormFile
 
 Se o controlador estiver aceitando arquivos carregados usando <xref:Microsoft.AspNetCore.Http.IFormFile>, mas o valor for `null`, confirme se o formulário HTML está especificando um valor `enctype` de `multipart/form-data`. Se esse atributo não estiver definido no elemento `<form>`, o upload do arquivo não ocorrerá e os argumentos de <xref:Microsoft.AspNetCore.Http.IFormFile> associados serão `null`. Além disso, confirme se a [nomenclatura de carregamento em dados de formulário corresponde à nomenclatura do aplicativo](#match-name-attribute-value-to-parameter-name-of-post-method).
+
+### <a name="stream-was-too-long"></a>O fluxo era muito longo
+
+Os exemplos neste tópico dependem de <xref:System.IO.MemoryStream> para manter o conteúdo do arquivo carregado. O limite de tamanho de um `MemoryStream` é `int.MaxValue`. Se o cenário de upload de arquivo do aplicativo exigir a retenção de conteúdo de arquivo com mais de 50 MB, use uma abordagem alternativa que não dependa de um único `MemoryStream` para manter o conteúdo de um arquivo carregado.
 
 ::: moniker-end
 
