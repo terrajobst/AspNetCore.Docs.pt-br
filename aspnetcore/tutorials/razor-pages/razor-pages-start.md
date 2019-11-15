@@ -1,18 +1,18 @@
 ---
-title: 'Tutorial: Introdução às Páginas do Razor no ASP.NET Core'
+title: 'Tutorial: introdução ao Razor Pages no ASP.NET Core'
 author: rick-anderson
 description: Esta série de tutoriais mostra como usar Razor Pages no ASP.NET Core. Saiba como criar um modelo, gerar código para Razor Pages, usar o Entity Framework Core e o SQL Server para acesso a dados, adicionar funcionalidade de pesquisa, adicionar validação de entrada e usar migrações para atualizar o modelo.
 ms.author: riande
-ms.date: 07/25/2019
+ms.date: 11/12/2019
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 0cc00cb85b6054752417b82c783cfd4c306aeda5
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: a8381dee05f267077a29999f3d8bbe6327c2b863
+ms.sourcegitcommit: 231780c8d7848943e5e9fd55e93f437f7e5a371d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71082570"
+ms.lasthandoff: 11/15/2019
+ms.locfileid: "74116155"
 ---
-# <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: Introdução às Páginas do Razor no ASP.NET Core
+# <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: introdução ao Razor Pages no ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -36,7 +36,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -86,7 +86,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
   * O comando `dotnet new` cria um projeto do Razor Pages na pasta *RazorPagesMovie*.
   * O comando `code` abre a pasta *RazorPagesMovie* na instância atual do Visual Studio Code.
 
-* Depois que o ícone de chama do OmniSharp da barra de status ficar verde, uma caixa de diálogo perguntará se **Os ativos necessários para criar e depurar estão ausentes no "RazorPagesMovie". Deseja adicioná-los?** Selecione **Sim** na barra superior.
+* Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' RazorPagesMovie '. Adicioná-los?** Selecione **Sim** na barra superior.
 
   Um diretório *.vscode*, contendo os arquivos *launch.json* e *tasks.json*, é adicionado ao diretório raiz do projeto.
 
@@ -94,11 +94,11 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 * Selecione **Arquivo** > **Nova Solução**.
 
-![Nova solução do macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
+![Nova Solução do macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
 * Selecione **.NET Core** > **Aplicativo** > **Aplicativo Web** > **Avançar**.
 
-  ![Caixa de diálogo Novo projeto do macOS](razor-pages-start/_static/webapp.png)
+  ![Caixa de diálogo Novo Projeto do macOS](razor-pages-start/_static/webapp.png)
 
 * Na caixa de diálogo **Configurar a nova API Web do ASP.NET Core**, defina a **Estrutura de Destino** como **.NET Core 3.0**.
 
@@ -119,34 +119,7 @@ No Visual Studio, selecione **Arquivo > Abrir** e, em seguida, selecione o arqui
 
 ## <a name="run-the-app"></a>Executar o aplicativo
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
-
-* Pressione Ctrl + F5 para execução sem o depurador.
-
-  [!INCLUDE[](~/includes/trustCertVS.md)]
-
-  O Visual Studio inicia o [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) e executa o aplicativo. A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web.
- 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
-
-  [!INCLUDE[](~/includes/trustCertVSC.md)]
-
-* Pressione **Ctrl-F5** para execução sem o depurador.
-
-  O Visual Studio Code inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicializa um navegador e navega até `http://localhost:5001`. A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Localhost serve somente solicitações da Web do computador local.
-
-  
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
-
-  [!INCLUDE[](~/includes/trustCertMac.md)]
-
-* Pressione **Alt-Cmd-Enter** para executar sem o depurador. Como alternativa, navegue até a barra de menus e acesse Executar > Iniciar sem depuração.
-
-  O Visual Studio inicia o [Kestrel](xref:fundamentals/servers/kestrel), inicia um navegador e navega para `http://localhost:5001`.
-
-<!-- End of VS tabs -->
-
----
+  [!INCLUDE[](~/includes/run-the-app.md)]
 
 ## <a name="examine-the-project-files"></a>Examinar os arquivos de projeto
 
@@ -209,7 +182,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -263,7 +236,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
   * O comando `dotnet new` cria um projeto do Razor Pages na pasta *RazorPagesMovie*.
   * O comando `code` abre a pasta *RazorPagesMovie* na instância atual do Visual Studio Code.
 
-* Depois que o ícone de chama do OmniSharp da barra de status ficar verde, uma caixa de diálogo perguntará se **Os ativos necessários para criar e depurar estão ausentes no "RazorPagesMovie". Deseja adicioná-los?** Selecione **Sim** na barra superior.
+* Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' RazorPagesMovie '. Adicioná-los?** Selecione **Sim** na barra superior.
 
   Um diretório *.vscode*, contendo os arquivos *launch.json* e *tasks.json*, é adicionado ao diretório raiz do projeto.
 

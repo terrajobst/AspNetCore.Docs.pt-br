@@ -5,14 +5,14 @@ description: Aprenda a implementar tarefas em segundo plano com serviços hosped
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/26/2019
+ms.date: 11/14/2019
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: c1fbb5ae8ffc4ee506f42df6a4cbbe845b2b903d
-ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
+ms.openlocfilehash: 0fdf503e4a5f6f73d5488261707180cfb5967492
+ms.sourcegitcommit: 231780c8d7848943e5e9fd55e93f437f7e5a371d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72333652"
+ms.lasthandoff: 11/15/2019
+ms.locfileid: "74115946"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Tarefas em segundo plano com serviços hospedados no ASP.NET Core
 
@@ -28,22 +28,23 @@ No ASP.NET Core, as tarefas em segundo plano podem ser implementadas como *servi
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
-Este aplicativo de exemplo é fornecido em duas versões:
-
-* Host da Web &ndash; O Host da Web é útil para hospedar aplicativos Web. O código de exemplo mostrado neste tópico é da versão do host da Web do exemplo. Para obter mais informações, consulte o tópico [Host da Web](xref:fundamentals/host/web-host).
-* Host Genérico &ndash; O Host Genérico é novo no ASP.NET Core 2.1. Para obter mais informações, confira o tópico [Host Genérico](xref:fundamentals/host/generic-host).
-
 ## <a name="worker-service-template"></a>Modelo de serviço de trabalho
 
-O modelo de Serviço de Trabalho do ASP.NET Core fornece um ponto inicial para escrever aplicativos de serviço de execução prolongada. Para usar o modelo como base para um aplicativo de serviços hospedados:
+O modelo de Serviço de Trabalho do ASP.NET Core fornece um ponto inicial para escrever aplicativos de serviço de execução prolongada. Um aplicativo criado a partir do modelo de serviço de trabalho especifica o SDK do trabalhador em seu arquivo de projeto:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+```
+
+Para usar o modelo como base para um aplicativo de serviços hospedados:
 
 [!INCLUDE[](~/includes/worker-template-instructions.md)]
 
----
-
 ## <a name="package"></a>Pacote
 
-Uma referência de pacote para o pacote [Microsoft. Extensions. Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) é adicionada implicitamente para aplicativos ASP.NET Core.
+Um aplicativo baseado no modelo de serviço de trabalho usa o SDK do `Microsoft.NET.Sdk.Worker` e tem uma referência de pacote explícita para o pacote [Microsoft. Extensions. Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) . Por exemplo, consulte o arquivo de projeto do aplicativo de exemplo (*BackgroundTasksSample. csproj*).
+
+Para aplicativos Web que usam o SDK do `Microsoft.NET.Sdk.Web`, o pacote [Microsoft. Extensions. Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) é referenciado implicitamente da estrutura compartilhada. Uma referência de pacote explícita no arquivo de projeto do aplicativo não é necessária.
 
 ## <a name="ihostedservice-interface"></a>Interface IHostedService
 
@@ -176,11 +177,6 @@ No ASP.NET Core, as tarefas em segundo plano podem ser implementadas como *servi
 * Tarefas em segundo plano na fila que são executadas sequencialmente.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([como baixar](xref:index#how-to-download-a-sample))
-
-Este aplicativo de exemplo é fornecido em duas versões:
-
-* Host da Web &ndash; O Host da Web é útil para hospedar aplicativos Web. O código de exemplo mostrado neste tópico é da versão do host da Web do exemplo. Para obter mais informações, consulte o tópico [Host da Web](xref:fundamentals/host/web-host).
-* Host Genérico &ndash; O Host Genérico é novo no ASP.NET Core 2.1. Para obter mais informações, confira o tópico [Host Genérico](xref:fundamentals/host/generic-host).
 
 ## <a name="package"></a>Pacote
 

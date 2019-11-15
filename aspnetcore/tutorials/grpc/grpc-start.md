@@ -2,16 +2,15 @@
 title: Criar um cliente e um servidor gRPC do .NET Core no ASP.NET Core
 author: juntaoluo
 description: Este tutorial mostra como criar um serviço gRPC e um cliente gRPC no ASP.NET Core. Saiba como criar um projeto de serviço gRPC, editar um arquivo pronto e adicionar uma chamada de streaming duplex.
-monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 10/10/2019
+ms.date: 11/12/2019
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: 0da5a4cf0d9cc15fee6417d143cfc9e9f1e4509c
-ms.sourcegitcommit: 9e85c2562df5e108d7933635c830297f484bb775
+ms.openlocfilehash: e5373d9abb9a770132e756843dbd15534dbe3356
+ms.sourcegitcommit: 231780c8d7848943e5e9fd55e93f437f7e5a371d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/04/2019
-ms.locfileid: "73463057"
+ms.lasthandoff: 11/15/2019
+ms.locfileid: "74116108"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Tutorial: criar um cliente gRPC e um servidor no ASP.NET Core
 
@@ -97,21 +96,7 @@ No Visual Studio, selecione **arquivo** > **abrir**e, em seguida, selecione o ar
 
 ### <a name="run-the-service"></a>Executar o serviço
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
-
-* Pressione `Ctrl+F5` para executar o serviço gRPC sem o depurador.
-
-  O Visual Studio executa o serviço em um prompt de comando.
-
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
-
-* Execute o projeto de Boas-vindas gRPC *GrpcGreeter* por meio da linha de comando usando `dotnet run`.
-
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
-
-* Execute o projeto de Boas-vindas gRPC *GrpcGreeter* por meio da linha de comando usando `dotnet run`.
-
----
+  [!INCLUDE[](~/includes/run-the-app.md)]
 
 Os logs mostram o serviço escutando em `https://localhost:5001`.
 
