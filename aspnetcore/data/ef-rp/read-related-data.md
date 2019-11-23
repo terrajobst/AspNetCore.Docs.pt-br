@@ -281,7 +281,7 @@ O código anterior faz as seguintes alterações:
 
 * Adiciona uma tabela de inscrições de alunos para o curso selecionado.
 
-Execute o aplicativo e selecione a guia **Instrutores**. A página exibe o `Location` (escritório) da entidade `OfficeAssignment` relacionada. Se `OfficeAssignment` for nulo, uma célula de tabela vazia será exibida.
+Execute o aplicativo e selecione a guia **instrutores** . A página exibe a `Location` (Office) da entidade `OfficeAssignment` relacionada. Se `OfficeAssignment` for nulo, uma célula de tabela vazia será exibida.
 
 Clique no link **Selecionar** para um instrutor. As alterações de estilo de linha e os cursos atribuídos a esse instrutor são exibidos.
 
@@ -396,7 +396,7 @@ Siga as instruções em [Gere um modelo de aluno por scaffold](xref:data/ef-rp/i
 
 ---
 
-O comando anterior gera o modelo `Course` por scaffolding. Abra o projeto no Visual Studio.
+O comando anterior gera o modelo `Course` por scaffolding. {1&gt;Abra o projeto no Visual Studio.&lt;1}
 
 Abra *Pages/Courses/Index.cshtml.cs* e examine o método `OnGetAsync`. O mecanismo de scaffolding especificou o carregamento adiantado para a propriedade de navegação `Department`. O método `Include` especifica o carregamento adiantado.
 
@@ -498,8 +498,8 @@ Examine a consulta no arquivo *Pages/Instructors/Index.cshtml*:
 
 A consulta tem duas inclusões:
 
-* `OfficeAssignment`: mostrado na [exibição de instrutores](#IP).
-* `CourseAssignments`: que mostra os cursos ministrados.
+* `OfficeAssignment`: exibido na [exibição de instrutores](#IP).
+* `CourseAssignments`: que exibe os cursos ministrados.
 
 ### <a name="update-the-instructors-index-page"></a>Atualizar a página Índice de instrutores
 
@@ -546,7 +546,7 @@ A marcação anterior faz as seguintes alterações:
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 
-Execute o aplicativo e selecione a guia **Instrutores**. A página exibe o `Location` (escritório) da entidade `OfficeAssignment` relacionada. Se OfficeAssignment é nulo, uma célula de tabela vazia é exibida.
+Execute o aplicativo e selecione a guia **instrutores** . A página exibe a `Location` (Office) da entidade `OfficeAssignment` relacionada. Se OfficeAssignment é nulo, uma célula de tabela vazia é exibida.
 
 Clique no link **Selecionar**. O estilo de linha é alterado.
 

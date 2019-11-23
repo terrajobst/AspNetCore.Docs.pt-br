@@ -3,7 +3,7 @@
 O aplicativo de exemplo demonstra como:
 
 * Obtenha o nome do usuário e o sobrenome do Google e armazene as declarações de nome com os valores fornecidos pelo Google.
-* Armazene o token de acesso do Google no @no__t do usuário-0.
+* Armazene o token de acesso do Google no `AuthenticationProperties`do usuário.
 
 Para usar o aplicativo de exemplo:
 

@@ -75,7 +75,7 @@ Atualize a classe `SeedData` para que ela forneça um valor para a nova coluna. 
 
 Consulte o [arquivo SeedData.cs concluído](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/SeedDataRating.cs).
 
-Compile a solução.
+{1&gt;Compile a solução.&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -200,7 +200,7 @@ Atualize a classe `SeedData` para que ela forneça um valor para a nova coluna. 
 
 Consulte o [arquivo SeedData.cs concluído](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs).
 
-Compile a solução.
+{1&gt;Compile a solução.&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 

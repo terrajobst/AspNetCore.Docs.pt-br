@@ -42,11 +42,11 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Defina o local de armazenamento do anel de chave (por exemplo, [PersistKeysToAzureBlobStorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage)). O local deve ser definido porque a chamada a `ProtectKeysWithAzureKeyVault` implementa um [IXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmlencryptor) que desabilita as configurações automáticas de proteção de dados, incluindo o local de armazenamento do anel de chave. O exemplo anterior usa o armazenamento de BLOBs do Azure para persistir o anel de chave. Para obter mais informações, consulte provedores de armazenamento de @no__t 0Key: Armazenamento do Azure](xref:security/data-protection/implementation/key-storage-providers#azure-storage). Você também pode persistir o anel de chave localmente com [PersistKeysToFileSystem](xref:security/data-protection/implementation/key-storage-providers#file-system).
+Defina o local de armazenamento do anel de chave (por exemplo, [PersistKeysToAzureBlobStorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage)). O local deve ser definido porque a chamada a `ProtectKeysWithAzureKeyVault` implementa um [IXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmlencryptor) que desabilita as configurações automáticas de proteção de dados, incluindo o local de armazenamento do anel de chave. O exemplo anterior usa o armazenamento de BLOBs do Azure para persistir o anel de chave. Para obter mais informações, consulte [provedores de armazenamento de chaves: armazenamento do Azure](xref:security/data-protection/implementation/key-storage-providers#azure-storage). Você também pode persistir o anel de chave localmente com [PersistKeysToFileSystem](xref:security/data-protection/implementation/key-storage-providers#file-system).
 
-O `keyIdentifier` é o identificador de chave do Key Vault usado para criptografia de chave. Por exemplo, uma chave criada no cofre de chaves denominada `dataprotection` no `contosokeyvault` tem o identificador de chave `https://contosokeyvault.vault.azure.net/keys/dataprotection/`. Forneça ao aplicativo a **chave de desencapsulamento** e as permissões de **chave de encapsulamento** para o cofre de chaves.
+O `keyIdentifier` é o identificador de chave do Key Vault usado para criptografia de chave. Por exemplo, uma chave criada no cofre de chaves chamado `dataprotection` no `contosokeyvault` tem o identificador de chave `https://contosokeyvault.vault.azure.net/keys/dataprotection/`. Forneça ao aplicativo a **chave de desencapsulamento** e as permissões de **chave de encapsulamento** para o cofre de chaves.
 
-sobrecargas `ProtectKeysWithAzureKeyVault`:
+sobrecargas de `ProtectKeysWithAzureKeyVault`:
 
 * [ProtectKeysWithAzureKeyVault (IDataProtectionBuilder, KeyVaultClient, String)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_Microsoft_Azure_KeyVault_KeyVaultClient_System_String_) permite o uso de um [KeyVaultClient](/dotnet/api/microsoft.azure.keyvault.keyvaultclient) para permitir que o sistema de proteção de dados use o cofre de chaves.
 * [ProtectKeysWithAzureKeyVault (IDataProtectionBuilder, String, String, X509Certificate2)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_System_String_System_String_System_Security_Cryptography_X509Certificates_X509Certificate2_) permite o uso de um `ClientId` e [X509Certificate](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2) para permitir que o sistema de proteção de dados use o cofre de chaves.
@@ -69,9 +69,9 @@ public void ConfigureServices(IServiceCollection services)
 > [!WARNING]
 > Se você alterar o local de persistência da chave, o sistema não criptografará mais automaticamente as chaves em repouso, pois não sabe se o DPAPI é um mecanismo de criptografia apropriado.
 
-## <a name="protectkeyswith"></a>ProtectKeysWith @ no__t-0
+## <a name="protectkeyswith"></a>\* ProtectKeysWith
 
-Você pode configurar o sistema para proteger as chaves em repouso chamando qualquer uma das APIs de configuração [ProtectKeysWith @ no__t-1](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions) . Considere o exemplo a seguir, que armazena chaves em um compartilhamento UNC e criptografa essas chaves em repouso com um certificado X. 509 específico:
+Você pode configurar o sistema para proteger as chaves em repouso chamando qualquer uma das APIs de configuração de [\*ProtectKeysWith](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions) . Considere o exemplo a seguir, que armazena chaves em um compartilhamento UNC e criptografa essas chaves em repouso com um certificado X. 509 específico:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -173,11 +173,11 @@ O mecanismo de isolamento funciona considerando cada aplicativo no computador lo
 * Para aplicativos hospedados no IIS, a ID exclusiva é o caminho físico do IIS do aplicativo. Se um aplicativo for implantado em um ambiente de web farm, esse valor será estável supondo que os ambientes IIS sejam configurados de forma semelhante em todos os computadores da web farm.
 * Para aplicativos hospedados internamente em execução no [servidor Kestrel](xref:fundamentals/servers/index#kestrel), a ID exclusiva é o caminho físico para o aplicativo no disco.
 
-O identificador exclusivo é projetado para sobreviver à redefinição de @ no__t-0both do aplicativo individual e da própria máquina.
+O identificador exclusivo é projetado para sobreviver a redefinições&mdash;o aplicativo individual e o próprio computador.
 
 Esse mecanismo de isolamento pressupõe que os aplicativos não são mal-intencionados. Um aplicativo mal-intencionado sempre pode afetar qualquer outro aplicativo em execução na mesma conta de processo de trabalho. Em um ambiente de hospedagem compartilhado em que os aplicativos são mutuamente não confiáveis, o provedor de hospedagem deve executar etapas para garantir o isolamento no nível do sistema operacional entre aplicativos, incluindo a separação dos repositórios de chave subjacente dos aplicativos.
 
-Se o sistema de proteção de dados não for fornecido por um host ASP.NET Core (por exemplo, se você instanciá-lo por meio do tipo concreto `DataProtectionProvider`), o isolamento de aplicativo será desabilitado por padrão. Quando o isolamento de aplicativo é desabilitado, todos os aplicativos apoiados pelo mesmo material de chave podem compartilhar cargas desde que forneçam as [finalidades](xref:security/data-protection/consumer-apis/purpose-strings)apropriadas. Para fornecer isolamento de aplicativo nesse ambiente, chame o método [Setapplicationname](#setapplicationname) no objeto de configuração e forneça um nome exclusivo para cada aplicativo.
+Se o sistema de proteção de dados não for fornecido por um host ASP.NET Core (por exemplo, se você instanciá-lo via `DataProtectionProvider` tipo concreto), o isolamento de aplicativo será desabilitado por padrão. Quando o isolamento de aplicativo é desabilitado, todos os aplicativos apoiados pelo mesmo material de chave podem compartilhar cargas desde que forneçam as [finalidades](xref:security/data-protection/consumer-apis/purpose-strings)apropriadas. Para fornecer isolamento de aplicativo nesse ambiente, chame o método [Setapplicationname](#setapplicationname) no objeto de configuração e forneça um nome exclusivo para cada aplicativo.
 
 ## <a name="changing-algorithms-with-usecryptographicalgorithms"></a>Alterando algoritmos com UseCryptographicAlgorithms
 
@@ -266,7 +266,7 @@ serviceCollection.AddDataProtection()
 
 ::: moniker-end
 
-Geralmente, as propriedades \*Type devem apontar para concreto, instanciáveis (por meio de uma implementação de construtor público sem parâmetros) de [SymmetricAlgorithm](/dotnet/api/system.security.cryptography.symmetricalgorithm) e [KeyedHashAlgorithm](/dotnet/api/system.security.cryptography.keyedhashalgorithm), embora o sistema especial tenha alguns valores como `typeof(Aes)` para necessidade.
+Geralmente, as propriedades de tipo de \*devem apontar para concreto, instanciáveis (por meio de uma implementação de construtor público sem parâmetros) de [SymmetricAlgorithm](/dotnet/api/system.security.cryptography.symmetricalgorithm) e [KeyedHashAlgorithm](/dotnet/api/system.security.cryptography.keyedhashalgorithm), embora o sistema especial tenha alguns valores como `typeof(Aes)` para sua conveniência.
 
 > [!NOTE]
 > O SymmetricAlgorithm deve ter um comprimento de chave de ≥ 128 bits e um tamanho de bloco de ≥ 64 bits, e deve dar suporte à criptografia no modo CBC com o preenchimento de #7 PKCS. O KeyedHashAlgorithm deve ter um tamanho de Resumo de > = 128 bits e deve dar suporte a chaves de comprimento igual ao tamanho de resumo do algoritmo de hash. O KeyedHashAlgorithm não é estritamente necessário para ser HMAC.
@@ -322,7 +322,7 @@ services.AddDataProtection()
 ::: moniker-end
 
 > [!NOTE]
-> O algoritmo de codificação de bloco simétrico deve ter um comprimento de chave de > = 128 bits, um tamanho de bloco de > = 64 bits e deve dar suporte à criptografia do modo CBC com o preenchimento de #7 PKCS. O algoritmo de hash deve ter um tamanho de Resumo de > = 128 bits e deve ter suporte para ser aberto com o sinalizador BCRYPT @ no__t-0ALG @ no__t-1HANDLE @ no__t-2HMAC @ no__t-3FLAG. As propriedades \*Provider podem ser definidas como NULL para usar o provedor padrão para o algoritmo especificado. Consulte a documentação do [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) para obter mais informações.
+> O algoritmo de codificação de bloco simétrico deve ter um comprimento de chave de > = 128 bits, um tamanho de bloco de > = 64 bits e deve dar suporte à criptografia do modo CBC com o preenchimento de #7 PKCS. O algoritmo de hash deve ter um tamanho de Resumo de > = 128 bits e deve ter suporte para ser aberto com o manipulador BCRYPT\_ALG\_identificador\_sinal de sinalizador de\_HMAC. As propriedades do provedor de \*podem ser definidas como NULL para usar o provedor padrão para o algoritmo especificado. Consulte a documentação do [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) para obter mais informações.
 
 ::: moniker range=">= aspnetcore-2.0"
 

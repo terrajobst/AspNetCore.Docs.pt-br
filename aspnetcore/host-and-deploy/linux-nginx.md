@@ -32,7 +32,7 @@ Este guia:
 * Assegura que o aplicativo Web seja executado na inicialização como um daemon.
 * Configura uma ferramenta de gerenciamento de processo para ajudar a reiniciar o aplicativo Web.
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
 
 1. Acesso a um servidor Ubuntu 16.04 com uma conta de usuário padrão com privilégio sudo.
 1. Instale o runtime do .NET Core no servidor.

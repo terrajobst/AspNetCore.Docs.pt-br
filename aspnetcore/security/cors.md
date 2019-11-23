@@ -60,7 +60,7 @@ O código anterior:
 * Chama o método de extensão <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*>, que habilita o CORS.
 * Chama <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> com uma [expressão lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). O lambda usa um objeto <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder>. [Opções de configuração](#cors-policy-options), como `WithOrigins`, são descritas posteriormente neste artigo.
 
-A chamada de método <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> adiciona serviços CORS ao contêiner de serviço do aplicativo:
+A chamada do método <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> adiciona serviços CORS ao contêiner de serviço do aplicativo:
 
 [!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet2)]
 
@@ -135,7 +135,7 @@ Consulte [testar CORS](#test) para obter instruções sobre como testar o códig
 
 ## <a name="enable-cors-with-endpoint-routing"></a>Habilitar CORS com roteamento de ponto de extremidade
 
-Com o roteamento de ponto de extremidade, o CORS pode ser habilitado em uma base por ponto de extremidade usando o conjunto `RequireCors` de métodos de extensão.
+Com o roteamento de ponto de extremidade, o CORS pode ser habilitado em uma base por ponto de extremidade usando o conjunto de `RequireCors` de métodos de extensão.
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -158,13 +158,13 @@ app.UseEndpoints(endpoints =>
 
 ## <a name="enable-cors-with-attributes"></a>Habilitar CORS com atributos
 
-O atributo [&lbrack;EnableCors @ no__t-2](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) fornece uma alternativa para aplicar o CORS globalmente. O atributo `[EnableCors]` habilita o CORS para os pontos de extremidade selecionados, em vez de todos os pontos de extremidade.
+O atributo [&lbrack;EnableCors&rbrack;](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) fornece uma alternativa para aplicar o CORS globalmente. O atributo `[EnableCors]` habilita CORS para os pontos de extremidade selecionados, em vez de todos os pontos de extremidade.
 
 Use `[EnableCors]` para especificar a política padrão e `[EnableCors("{Policy String}")]` para especificar uma política.
 
 O atributo `[EnableCors]` pode ser aplicado a:
 
-* @No__t de página Razor-0
+* `PageModel` de página Razor
 * Controlador
 * Método de ação do controlador
 
@@ -180,7 +180,7 @@ O código a seguir cria uma política padrão CORS e uma política chamada `"Ano
 
 ### <a name="disable-cors"></a>Desabilitar CORS
 
-O atributo [&lbrack;DisableCors @ no__t-2](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) DESABILITA o CORS para o controlador/página-modelo/ação.
+O atributo [&lbrack;DisableCors&rbrack;](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) DESABILITA o CORS para o controlador/página-modelo/ação.
 
 <a name="cpo"></a>
 
@@ -195,7 +195,7 @@ Esta seção descreve as várias opções que podem ser definidas em uma políti
 * [Credenciais em solicitações entre origens](#credentials-in-cross-origin-requests)
 * [Definir o tempo de expiração de simulação](#set-the-preflight-expiration-time)
 
-<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.AddPolicy*> é chamado em `Startup.ConfigureServices`. Para algumas opções, pode ser útil ler a seção [como o CORS funciona](#how-cors) primeiro.
+<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.AddPolicy*> é chamado no `Startup.ConfigureServices`. Para algumas opções, pode ser útil ler a seção [como o CORS funciona](#how-cors) primeiro.
 
 ## <a name="set-the-allowed-origins"></a>Definir as origens permitidas
 
@@ -215,7 +215,7 @@ Esta seção descreve as várias opções que podem ser definidas em uma políti
 
 ::: moniker-end
 
-`AllowAnyOrigin` afeta as solicitações de simulação e o cabeçalho `Access-Control-Allow-Origin`. Para obter mais informações, consulte a seção [solicitações de simulação](#preflight-requests) .
+`AllowAnyOrigin` afeta as solicitações de simulação e o cabeçalho de `Access-Control-Allow-Origin`. Para obter mais informações, consulte a seção [solicitações de simulação](#preflight-requests) .
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -230,7 +230,7 @@ Esta seção descreve as várias opções que podem ser definidas em uma políti
 <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyMethod*>:
 
 * Permite qualquer método HTTP:
-* Afeta as solicitações de simulação e o cabeçalho `Access-Control-Allow-Methods`. Para obter mais informações, consulte a seção [solicitações de simulação](#preflight-requests) .
+* Afeta as solicitações de simulação e o cabeçalho de `Access-Control-Allow-Methods`. Para obter mais informações, consulte a seção [solicitações de simulação](#preflight-requests) .
 
 ### <a name="set-the-allowed-request-headers"></a>Definir os cabeçalhos de solicitação permitidos
 
@@ -246,7 +246,7 @@ Essa configuração afeta as solicitações de simulação e o cabeçalho `Acces
 
 ::: moniker range=">= aspnetcore-2.2"
 
-Uma política de middleware CORS corresponde a cabeçalhos específicos especificados por `WithHeaders` só é possível quando os cabeçalhos enviados em `Access-Control-Request-Headers` correspondem exatamente aos cabeçalhos indicados em `WithHeaders`.
+Uma política de middleware CORS correspondente a cabeçalhos específicos especificados por `WithHeaders` só é possível quando os cabeçalhos enviados em `Access-Control-Request-Headers` correspondem exatamente aos cabeçalhos indicados no `WithHeaders`.
 
 Por exemplo, considere um aplicativo configurado da seguinte maneira:
 
@@ -266,7 +266,7 @@ O aplicativo retorna uma resposta de *200 OK* , mas não envia os cabeçalhos CO
 
 ::: moniker range="< aspnetcore-2.2"
 
-O middleware CORS sempre permite que quatro cabeçalhos no `Access-Control-Request-Headers` sejam enviados, independentemente dos valores configurados em CorsPolicy. Headers. Essa lista de cabeçalhos inclui:
+O middleware CORS sempre permite que quatro cabeçalhos na `Access-Control-Request-Headers` sejam enviados, independentemente dos valores configurados em CorsPolicy. Headers. Essa lista de cabeçalhos inclui:
 
 * `Accept`
 * `Accept-Language`
@@ -279,7 +279,7 @@ Por exemplo, considere um aplicativo configurado da seguinte maneira:
 app.UseCors(policy => policy.WithHeaders(HeaderNames.CacheControl));
 ```
 
-O middleware CORS responde com êxito a uma solicitação de simulação com o seguinte cabeçalho de solicitação porque `Content-Language` está sempre na lista de permissões:
+O middleware CORS responde com êxito a uma solicitação de simulação com o seguinte cabeçalho de solicitação porque `Content-Language` sempre está na lista de permissões:
 
 ```
 Access-Control-Request-Headers: Cache-Control, Content-Language
@@ -342,25 +342,25 @@ O servidor deve permitir as credenciais. Para permitir credenciais entre origens
 
 A resposta HTTP inclui um cabeçalho `Access-Control-Allow-Credentials`, que informa ao navegador que o servidor permite credenciais para uma solicitação entre origens.
 
-Se o navegador enviar credenciais, mas a resposta não incluir um cabeçalho `Access-Control-Allow-Credentials` válido, o navegador não exporá a resposta ao aplicativo e a solicitação entre origens falhará.
+Se o navegador enviar credenciais, mas a resposta não incluir um cabeçalho de `Access-Control-Allow-Credentials` válido, o navegador não exporá a resposta ao aplicativo e a solicitação entre origens falhará.
 
 Permitir credenciais entre origens é um risco de segurança. Um site em outro domínio pode enviar as credenciais de um usuário conectado para o aplicativo em nome do usuário sem o conhecimento do usuário. <!-- TODO Review: When using `AllowCredentials`, all CORS enabled domains must be trusted.
 I don't like "all CORS enabled domains must be trusted", because it implies that if you're not using  `AllowCredentials`, domains don't need to be trusted. -->
 
-A especificação CORS também indica que a definição de origens como `"*"` (todas as origens) é inválida se o cabeçalho `Access-Control-Allow-Credentials` estiver presente.
+A especificação CORS também indica que a definição de origens para `"*"` (todas as origens) é inválida se o cabeçalho `Access-Control-Allow-Credentials` estiver presente.
 
 ### <a name="preflight-requests"></a>Solicitações de simulação
 
 Para algumas solicitações de CORS, o navegador envia uma solicitação adicional antes de fazer a solicitação real. Essa solicitação é chamada de uma *solicitação de simulação*. O navegador poderá ignorar a solicitação de simulação se as seguintes condições forem verdadeiras:
 
 * O método de solicitação é GET, HEAD ou POST.
-* O aplicativo não define cabeçalhos de solicitação diferentes de `Accept`, `Accept-Language`, `Content-Language`, `Content-Type` ou `Last-Event-ID`.
+* O aplicativo não define cabeçalhos de solicitação diferentes de `Accept`, `Accept-Language`, `Content-Language`, `Content-Type`ou `Last-Event-ID`.
 * O cabeçalho `Content-Type`, se definido, tem um dos seguintes valores:
   * `application/x-www-form-urlencoded`
   * `multipart/form-data`
   * `text/plain`
 
-A regra nos cabeçalhos de solicitação definidos para a solicitação do cliente aplica-se aos cabeçalhos que o aplicativo define chamando `setRequestHeader` no objeto `XMLHttpRequest`. A especificação CORS chama esses cabeçalhos de *solicitação de autor*de cabeçalho. A regra não se aplica aos cabeçalhos que o navegador pode definir, como `User-Agent`, `Host` ou `Content-Length`.
+A regra nos cabeçalhos de solicitação definidos para a solicitação do cliente aplica-se aos cabeçalhos que o aplicativo define ao chamar `setRequestHeader` no objeto `XMLHttpRequest`. A especificação CORS chama esses cabeçalhos de *solicitação de autor*de cabeçalho. A regra não se aplica aos cabeçalhos que o navegador pode definir, como `User-Agent`, `Host`ou `Content-Length`.
 
 Veja a seguir um exemplo de uma solicitação de simulação:
 
@@ -391,7 +391,7 @@ Para permitir todos os cabeçalhos de solicitação de autor, chame <xref:Micros
 
 [!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=64-69&highlight=5)]
 
-Os navegadores não são totalmente consistentes em como eles definem `Access-Control-Request-Headers`. Se você definir cabeçalhos para algo diferente de `"*"` (ou usar <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyHeader*>), deverá incluir pelo menos `Accept`, `Content-Type` e `Origin`, além de todos os cabeçalhos personalizados aos quais você deseja dar suporte.
+Os navegadores não são totalmente consistentes em como eles definem `Access-Control-Request-Headers`. Se você definir cabeçalhos para algo diferente de `"*"` (ou usar <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyHeader*>), deverá incluir pelo menos `Accept`, `Content-Type`e `Origin`, além de todos os cabeçalhos personalizados aos quais você deseja dar suporte.
 
 Veja a seguir um exemplo de resposta para a solicitação de simulação (supondo que o servidor permita a solicitação):
 
@@ -435,7 +435,7 @@ Esta seção descreve o que acontece em uma solicitação de [CORS](https://deve
 
 A [especificação CORS](https://www.w3.org/TR/cors/) introduziu vários novos cabeçalhos HTTP que habilitam solicitações entre origens. Se um navegador oferecer suporte a CORS, ele definirá esses cabeçalhos automaticamente para solicitações entre origens. O código JavaScript personalizado não é necessário para habilitar o CORS.
 
-Veja a seguir um exemplo de uma solicitação entre origens. O cabeçalho `Origin` fornece o domínio do site que está fazendo a solicitação. O cabeçalho `Origin` é necessário e deve ser diferente do host.
+Veja a seguir um exemplo de uma solicitação entre origens. O cabeçalho `Origin` fornece o domínio do site que está fazendo a solicitação. O cabeçalho de `Origin` é necessário e deve ser diferente do host.
 
 ```
 GET https://myservice.azurewebsites.net/api/test HTTP/1.1
@@ -448,7 +448,7 @@ User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6
 Host: myservice.azurewebsites.net
 ```
 
-Se o servidor permitir a solicitação, ele definirá o cabeçalho `Access-Control-Allow-Origin` na resposta. O valor desse cabeçalho corresponde ao cabeçalho `Origin` da solicitação ou é o valor curinga `"*"`, o que significa que qualquer origem é permitida:
+Se o servidor permitir a solicitação, ele definirá o cabeçalho `Access-Control-Allow-Origin` na resposta. O valor desse cabeçalho corresponde ao cabeçalho de `Origin` da solicitação ou é o valor curinga `"*"`, o que significa que qualquer origem é permitida:
 
 ```
 HTTP/1.1 200 OK
@@ -491,13 +491,13 @@ Para testar o CORS:
 
    * Usando o Microsoft Edge:
 
-     **SEC7120: [CORS] a origem `https://localhost:44375` não encontrou `https://localhost:44375` no cabeçalho de resposta Access-Control-Allow-Origin para o recurso entre origens em `https://webapi.azurewebsites.net/api/values/1`**
+     **SEC7120: [CORS] a origem `https://localhost:44375` não encontrou `https://localhost:44375` no cabeçalho de resposta Access-Control-Allow-Origin para recursos entre origens em `https://webapi.azurewebsites.net/api/values/1`**
 
    * Usando o Chrome:
 
-     **O acesso a XMLHttpRequest na `https://webapi.azurewebsites.net/api/values/1` da origem `https://localhost:44375` foi bloqueado pela política CORS: nenhum cabeçalho ' Access-Control-Allow-Origin ' está presente no recurso solicitado.**
+     **O acesso a XMLHttpRequest em `https://webapi.azurewebsites.net/api/values/1` da origem `https://localhost:44375` foi bloqueado pela política CORS: nenhum cabeçalho ' Access-Control-Allow-Origin ' está presente no recurso solicitado.**
      
-Os pontos de extremidade habilitados para CORS podem ser testados com uma ferramenta, como o [Fiddler](https://www.telerik.com/fiddler) ou o [postmaster](https://www.getpostman.com/). Ao usar uma ferramenta, a origem da solicitação especificada pelo cabeçalho `Origin` deve ser diferente do host que está recebendo a solicitação. Se a solicitação não for de *origem cruzada* com base no valor do cabeçalho `Origin`:
+Os pontos de extremidade habilitados para CORS podem ser testados com uma ferramenta, como o [Fiddler](https://www.telerik.com/fiddler) ou o [postmaster](https://www.getpostman.com/). Ao usar uma ferramenta, a origem da solicitação especificada pelo cabeçalho de `Origin` deve ser diferente do host que está recebendo a solicitação. Se a solicitação não for de *origem cruzada* com base no valor do cabeçalho de `Origin`:
 
 * Não há necessidade de middleware de CORS para processar a solicitação.
 * Cabeçalhos CORS não são retornados na resposta.

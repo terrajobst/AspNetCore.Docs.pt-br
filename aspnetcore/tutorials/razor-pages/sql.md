@@ -57,7 +57,7 @@ O LocalDB é uma versão leve do mecanismo de banco de dados do SQL Server Expre
 <a name="ssox"></a>
 * No menu **Exibir**, abra **SSOX** (Pesquisador de Objetos do SQL Server).
 
-  ![Menu de exibição](sql/_static/ssox.png)
+  ![Menu Visualizar](sql/_static/ssox.png)
 
 * Clique com o botão direito do mouse na tabela `Movie` e selecione **Designer de exibição**:
 
@@ -196,7 +196,7 @@ O LocalDB é uma versão leve do mecanismo de banco de dados do SQL Server Expre
 <a name="ssox"></a>
 * No menu **Exibir**, abra **SSOX** (Pesquisador de Objetos do SQL Server).
 
-  ![Menu de exibição](sql/_static/ssox.png)
+  ![Menu Visualizar](sql/_static/ssox.png)
 
 * Clique com o botão direito do mouse na tabela `Movie` e selecione **Designer de exibição**:
 

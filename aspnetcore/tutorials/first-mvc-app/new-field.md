@@ -105,7 +105,7 @@ No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet > Console do G
 
   ![Menu do PMC](adding-model/_static/pmc.png)
 
-No PMC, insira os seguintes comandos:
+No PMC, digite os seguintes comandos:
 
 ```powershell
 Add-Migration Rating

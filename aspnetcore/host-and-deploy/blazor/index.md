@@ -50,16 +50,16 @@ Os ativos na pasta são implantados no servidor Web. A implantação pode ser um
 
 O *caminho base do aplicativo* é o caminho da URL raiz do aplicativo. Considere o seguinte aplicativo principal e o aplicativo mais rápido:
 
-* O aplicativo principal é chamado `MyApp`:
-  * O aplicativo reside fisicamente em *d: \\MyApp*.
+* O aplicativo principal é chamado de `MyApp`:
+  * O aplicativo reside fisicamente em *d:\\MyApp*.
   * As solicitações são recebidas em `https://www.contoso.com/{MYAPP RESOURCE}`.
 * Um aplicativo mais incrivelmente chamado `CoolApp` é um subaplicativo do `MyApp`:
-  * O subaplicativo reside fisicamente em *d: \\MyApp @ no__t-2CoolApp*.
+  * O subaplicativo reside fisicamente em *d:\\MyApp\\CoolApp*.
   * As solicitações são recebidas em `https://www.contoso.com/CoolApp/{COOLAPP RESOURCE}`.
 
 Sem especificar configuração adicional para `CoolApp`, o subaplicativo nesse cenário não tem conhecimento de onde ele reside no servidor. Por exemplo, o aplicativo não pode construir URLs relativas corretas para seus recursos sem saber que ela reside no caminho de URL relativo `/CoolApp/`.
 
-Para fornecer a configuração para o caminho base do aplicativo mais alto do `https://www.contoso.com/CoolApp/`, o atributo `href` da marca `<base>` é definido como o caminho raiz relativo no arquivo *wwwroot/index.html* :
+Para fornecer a configuração para o caminho base do aplicativo mais claro do `https://www.contoso.com/CoolApp/`, o atributo `href` da marca `<base>` é definido como o caminho raiz relativo no arquivo *wwwroot/index.html* :
 
 ```html
 <base href="/CoolApp/">
@@ -67,11 +67,11 @@ Para fornecer a configuração para o caminho base do aplicativo mais alto do `h
 
 Ao fornecer o caminho de URL relativo, um componente que não está no diretório raiz pode construir URLs relativas ao caminho raiz do aplicativo. Os componentes em diferentes níveis da estrutura de diretório podem criar links para outros recursos em locais em todo o aplicativo. O caminho base do aplicativo também é usado para interceptar cliques em hiperlink em que o destino `href` do link está dentro do espaço do URI do caminho base do aplicativo. O roteador do Blazor manipula a navegação interna.
 
-Em muitos cenários de hospedagem, o caminho de URL relativo para o aplicativo é a raiz do aplicativo. Nesses casos, o caminho base da URL relativa do aplicativo é uma barra "/" (`<base href="/" />`), que é a configuração padrão para um aplicativo mais incrivelmente. Em outros cenários de hospedagem, como páginas do GitHub e subaplicativos do IIS, o caminho base do aplicativo deve ser definido como o caminho da URL relativa do servidor para o aplicativo.
+Em muitos cenários de hospedagem, o caminho de URL relativo para o aplicativo é a raiz do aplicativo. Nesses casos, o caminho base da URL relativa do aplicativo é uma barra (`<base href="/" />`), que é a configuração padrão para um aplicativo mais incrivelmente. Em outros cenários de hospedagem, como páginas do GitHub e subaplicativos do IIS, o caminho base do aplicativo deve ser definido como o caminho da URL relativa do servidor para o aplicativo.
 
 Para definir o caminho base do aplicativo, atualize a marca `<base>` encontrada nos elementos da marca `<head>` do arquivo *wwwroot/index.html*. Defina o valor do atributo `href` como `/{RELATIVE URL PATH}/` (a barra à direita é necessária), em que `{RELATIVE URL PATH}` é o caminho de URL relativo completo do aplicativo.
 
-Para um aplicativo com um caminho de URL não raiz relativo (por exemplo, `<base href="/CoolApp/">`), o aplicativo não consegue localizar seus recursos *quando executado localmente*. Para superar esse problema durante o desenvolvimento e os testes locais, você pode fornecer um argumento *base de caminho* que corresponde ao valor de `href` da tag `<base>` no tempo de execução. Para passar o argumento de base Path ao executar o aplicativo localmente, execute o comando `dotnet run` no diretório do aplicativo com a opção `--pathbase`:
+Para um aplicativo com um caminho de URL não raiz relativo (por exemplo, `<base href="/CoolApp/">`), o aplicativo não consegue localizar seus recursos *quando executado localmente*. Para superar esse problema durante o desenvolvimento e os testes locais, você pode fornecer um argumento *base de caminho* que corresponde ao valor de `href` da tag `<base>` no runtime. Para passar o argumento de base Path ao executar o aplicativo localmente, execute o comando `dotnet run` no diretório do aplicativo com a opção `--pathbase`:
 
 ```dotnetcli
 dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}

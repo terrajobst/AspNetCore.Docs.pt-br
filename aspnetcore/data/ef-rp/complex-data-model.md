@@ -534,7 +534,7 @@ O código anterior fornece dados de semente para as novas entidades. A maioria d
 
 ## <a name="add-a-migration"></a>Adicionar uma migração
 
-Compile o projeto.
+Crie o projeto.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -827,7 +827,7 @@ SqlException: Invalid column name 'FirstName'.
 
 Para atualizar o BD:
 
-* Compile o projeto.
+* Crie o projeto.
 * Abra uma janela Comando na pasta do projeto. Insira os seguintes comandos para criar uma nova migração e atualizar o BD:
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
@@ -1242,7 +1242,7 @@ O código anterior fornece dados de semente para as novas entidades. A maioria d
 
 ## <a name="add-a-migration"></a>Adicionar uma migração
 
-Compile o projeto.
+Crie o projeto.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -1347,7 +1347,7 @@ Para fazer a migração `ComplexDataModel` funcionar com os dados existentes:
 
 #### <a name="fix-the-foreign-key-constraints"></a>Corrigir as restrições de chave estrangeira
 
-Atualize o método `Up` das classes `ComplexDataModel`:
+Atualize o método `ComplexDataModel` das classes `Up`:
 
 * Abra o arquivo *{timestamp}_ComplexDataModel.cs*.
 * Comente a linha de código que adiciona a coluna `DepartmentID` à tabela `Course`.

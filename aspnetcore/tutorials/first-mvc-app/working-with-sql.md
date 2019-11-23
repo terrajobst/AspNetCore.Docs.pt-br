@@ -48,7 +48,7 @@ O LocalDB é uma versão leve do Mecanismo de Banco de Dados do SQL Server Expre
 
 * No menu **Exibir**, abra **SSOX** (Pesquisador de Objetos do SQL Server).
 
-  ![Menu de exibição](working-with-sql/_static/ssox.png)
+  ![Menu Visualizar](working-with-sql/_static/ssox.png)
 
 * Clique com o botão direito do mouse na tabela `Movie` **> Designer de Exibição**
 
@@ -74,7 +74,7 @@ Observe o ícone de chave ao lado de `ID`. Por padrão, o EF tornará uma propri
 
 ## <a name="seed-the-database"></a>Propagar o banco de dados
 
-Crie uma nova classe chamada `SeedData` na pasta *Models*. Substitua o código gerado pelo seguinte:
+Crie uma nova classe chamada `SeedData` na pasta *Models*. Substitua o código gerado pelo mostrado a seguir:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/SeedData.cs?name=snippet_1)]
 
@@ -160,7 +160,7 @@ O LocalDB é uma versão leve do Mecanismo de Banco de Dados do SQL Server Expre
 
 * No menu **Exibir**, abra **SSOX** (Pesquisador de Objetos do SQL Server).
 
-  ![Menu de exibição](working-with-sql/_static/ssox.png)
+  ![Menu Visualizar](working-with-sql/_static/ssox.png)
 
 * Clique com o botão direito do mouse na tabela `Movie` **> Designer de Exibição**
 
@@ -186,7 +186,7 @@ Observe o ícone de chave ao lado de `ID`. Por padrão, o EF tornará uma propri
 
 ## <a name="seed-the-database"></a>Propagar o banco de dados
 
-Crie uma nova classe chamada `SeedData` na pasta *Models*. Substitua o código gerado pelo seguinte:
+Crie uma nova classe chamada `SeedData` na pasta *Models*. Substitua o código gerado pelo mostrado a seguir:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/SeedData.cs?name=snippet_1)]
 

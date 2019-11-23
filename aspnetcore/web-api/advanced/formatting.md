@@ -25,14 +25,14 @@ ASP.NET Core MVC tem suporte para formatar dados de resposta. Os dados de respos
 
 Alguns tipos de resultado de ação são específicos a um formato específico, como <xref:Microsoft.AspNetCore.Mvc.JsonResult> e <xref:Microsoft.AspNetCore.Mvc.ContentResult>. As ações podem retornar resultados formatados em um formato específico, independentemente das preferências do cliente. Por exemplo, retornar `JsonResult` retorna dados formatados em JSON. Retornar `ContentResult` ou uma cadeia de caracteres retorna dados de cadeia de caracteres formatados com texto sem formatação.
 
-Uma ação não é necessária para retornar qualquer tipo específico. ASP.NET Core dá suporte a qualquer valor de retorno de objeto.  Os resultados de ações que retornam objetos que não são <xref:Microsoft.AspNetCore.Mvc.IActionResult> tipos são serializados usando a implementação apropriada de <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>. Para obter mais informações, consulte <xref:web-api/action-return-types>.
+Uma ação não é necessária para retornar qualquer tipo específico. ASP.NET Core dá suporte a qualquer valor de retorno de objeto.  Os resultados de ações que retornam objetos que não são <xref:Microsoft.AspNetCore.Mvc.IActionResult> tipos são serializados usando a implementação de <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> apropriada. Para obter mais informações, consulte <xref:web-api/action-return-types>.
 
-O método auxiliar interno <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> retorna dados formatados para JSON: [!code-csharp @ no__t-2
+O método auxiliar interno <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> retorna dados formatados em JSON: [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 
 O download de exemplo retorna a lista de autores. Usando as ferramentas de desenvolvedor de navegador F12 ou o [postmaster](https://www.getpostman.com/tools) com o código anterior:
 
 * O cabeçalho de resposta contendo **Content-Type:** `application/json; charset=utf-8` é exibido.
-* Os cabeçalhos de solicitação são exibidos. Por exemplo, o cabeçalho `Accept`. O cabeçalho `Accept` é ignorado pelo código anterior.
+* Os cabeçalhos de solicitação são exibidos. Por exemplo, o cabeçalho `Accept`. O cabeçalho de `Accept` é ignorado pelo código anterior.
 
 Para retornar dados formatados como texto sem formatação, use <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content> e o auxiliar <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content>:
 
@@ -57,7 +57,7 @@ O seguinte método de ação usa os métodos auxiliares `Ok` e `NotFound`:
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_search)]
 
-Por padrão, o ASP.NET Core dá suporte a tipos de mídia `application/json`, `text/json` e `text/plain`. Ferramentas como o [Fiddler](https://www.telerik.com/fiddler) ou o [postmaster](https://www.getpostman.com/tools) podem definir o cabeçalho de solicitação `Accept` para especificar o formato de retorno. Quando o cabeçalho `Accept` contém um tipo ao qual o servidor dá suporte, esse tipo é retornado. A próxima seção mostra como adicionar outros formatadores.
+Por padrão, o ASP.NET Core dá suporte aos tipos de mídia `application/json`, `text/json`e `text/plain`. Ferramentas como o [Fiddler](https://www.telerik.com/fiddler) ou o [postmaster](https://www.getpostman.com/tools) podem definir o `Accept` cabeçalho de solicitação para especificar o formato de retorno. Quando o cabeçalho de `Accept` contém um tipo ao qual o servidor dá suporte, esse tipo é retornado. A próxima seção mostra como adicionar outros formatadores.
 
 As ações do controlador podem retornar POCOs (objetos Plain antigos do CLR). Quando um POCO é retornado, o tempo de execução cria automaticamente um `ObjectResult` que encapsula o objeto. O cliente obtém o objeto serializado formatado. Se o objeto que está sendo retornado for `null`, uma resposta `204 No Content` será retornada.
 
@@ -65,21 +65,21 @@ Retornando um tipo de objeto:
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_alias)]
 
-No código anterior, uma solicitação para um alias de autor válido retorna uma resposta `200 OK` com os dados do autor. Uma solicitação para um alias inválido retorna uma resposta `204 No Content`.
+No código anterior, uma solicitação para um alias de autor válido retorna uma resposta de `200 OK` com os dados do autor. Uma solicitação para um alias inválido retorna uma resposta `204 No Content`.
 
 ### <a name="the-accept-header"></a>O cabeçalho Accept
 
-A *negociação* de conteúdo ocorre quando um cabeçalho `Accept` é exibido na solicitação. Quando uma solicitação contém um cabeçalho Accept, ASP.NET Core:
+A *negociação* de conteúdo ocorre quando um cabeçalho de `Accept` aparece na solicitação. Quando uma solicitação contém um cabeçalho Accept, ASP.NET Core:
 
 * Enumera os tipos de mídia no cabeçalho Accept na ordem de preferência.
 * Tenta localizar um formatador que pode produzir uma resposta em um dos formatos especificados.
 
 Se nenhum formatador for encontrado que possa atender à solicitação do cliente, ASP.NET Core:
 
-* Retornará `406 Not Acceptable` se <xref:Microsoft.AspNetCore.Mvc.MvcOptions> tiver sido definido ou-
+* Retorna `406 Not Acceptable` se <xref:Microsoft.AspNetCore.Mvc.MvcOptions> foi definido ou-
 * Tenta encontrar o primeiro formatador que pode produzir uma resposta.
 
-Se nenhum formatador estiver configurado para o formato solicitado, o primeiro formatador que pode formatar o objeto será usado. Se nenhum cabeçalho `Accept` aparecer na solicitação:
+Se nenhum formatador estiver configurado para o formato solicitado, o primeiro formatador que pode formatar o objeto será usado. Se nenhum cabeçalho de `Accept` aparecer na solicitação:
 
 * O primeiro formatador que pode manipular o objeto é usado para serializar a resposta.
 * Não há nenhuma negociação ocorrendo. O servidor está determinando o formato a ser retornado.
@@ -88,9 +88,9 @@ Se o cabeçalho Accept contiver `*/*`, o cabeçalho será ignorado, a menos que 
 
 ### <a name="browsers-and-content-negotiation"></a>Navegadores e negociação de conteúdo
 
-Diferentemente dos clientes de API típicos, os navegadores da Web fornecem cabeçalhos `Accept`. O navegador da Web especifica vários formatos, incluindo curingas. Por padrão, quando a estrutura detecta que a solicitação é proveniente de um navegador:
+Diferentemente dos clientes de API típicos, os navegadores da Web fornecem cabeçalhos de `Accept`. O navegador da Web especifica vários formatos, incluindo curingas. Por padrão, quando a estrutura detecta que a solicitação é proveniente de um navegador:
 
-* O cabeçalho `Accept` é ignorado.
+* O cabeçalho de `Accept` é ignorado.
 * O conteúdo é retornado em JSON, a menos que configurado de outra forma.
 
 Isso fornece uma experiência mais consistente entre navegadores ao consumir APIs.
@@ -118,7 +118,7 @@ Os formatadores XML implementados usando <xref:System.Xml.Serialization.XmlSeria
 
 O código anterior serializa os resultados usando `XmlSerializer`.
 
-Ao usar o código anterior, os métodos do controlador devem retornar o formato apropriado com base no cabeçalho `Accept` da solicitação.
+Ao usar o código anterior, os métodos do controlador devem retornar o formato apropriado com base no cabeçalho de `Accept` da solicitação.
 
 ### <a name="configure-systemtextjson-based-formatters"></a>Configurar formatadores com base em System.Text.Json
 
@@ -149,19 +149,19 @@ public IActionResult Get()
 
 ### <a name="add-newtonsoftjson-based-json-format-support"></a>Adicionar suporte ao formato JSON com base em Newtonsoft.Json
 
-Antes do ASP.NET Core 3,0, os formatadores JSON usados por padrão implementaram usando o pacote `Newtonsoft.Json`. No ASP.NET Core 3.0 ou posterior, os formatadores JSON padrão baseiam-se no `System.Text.Json`. O suporte para formatadores e recursos baseados em `Newtonsoft.Json` está disponível ao instalar o pacote NuGet [Microsoft. AspNetCore. Mvc. NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) e configurá-lo no `Startup.ConfigureServices`.
+Antes do ASP.NET Core 3,0, os formatadores JSON usados por padrão são implementados usando o pacote `Newtonsoft.Json`. No ASP.NET Core 3.0 ou posterior, os formatadores JSON padrão baseiam-se no `System.Text.Json`. O suporte para formatadores e recursos baseados em `Newtonsoft.Json` está disponível ao instalar o pacote NuGet [Microsoft. AspNetCore. Mvc. NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) e configurá-lo no `Startup.ConfigureServices`.
 
 [!code-csharp[](./formatting/3.0sample/StartupNewtonsoftJson.cs?name=snippet)]
 
-Alguns recursos podem não funcionar bem com @no__t formatadores baseados em-0 e exigem uma referência aos formatadores baseados em-1 de @no__t. Continue usando o @no__t formatadores baseados em-0 se o aplicativo:
+Alguns recursos podem não funcionar bem com formatadores baseados em `System.Text.Json`e exigem uma referência aos formatadores baseados em `Newtonsoft.Json`. Continue usando os formatadores baseados em `Newtonsoft.Json`se o aplicativo:
 
-* Usa atributos `Newtonsoft.Json`. Por exemplo `[JsonProperty]` ou `[JsonIgnore]`.
+* Usa atributos de `Newtonsoft.Json`. Por exemplo, `[JsonProperty]` ou `[JsonIgnore]`.
 * Personaliza as configurações de serialização.
-* O se baseia em recursos fornecidos pelo `Newtonsoft.Json`.
+* O se baseia em recursos que o `Newtonsoft.Json` fornece.
 * Configura `Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings`. Antes do ASP.NET Core 3.0, `JsonResult.SerializerSettings` aceita uma instância de `JsonSerializerSettings` que é específico para `Newtonsoft.Json`.
 * Gera documentação [OpenAPI](<xref:tutorials/web-api-help-pages-using-swagger>).
 
-Os recursos para os formatadores baseados em-0 @no__t podem ser configurados usando `Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings`:
+Os recursos para os formatadores baseados em `Newtonsoft.Json`podem ser configurados usando `Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings`:
 
 ```csharp
 services.AddControllers().AddNewtonsoftJson(options =>
@@ -200,17 +200,17 @@ Os formatadores XML implementados usando <xref:System.Xml.Serialization.XmlSeria
 
 O código anterior serializa os resultados usando `XmlSerializer`.
 
-Ao usar o código anterior, os métodos do controlador devem retornar o formato apropriado com base no cabeçalho `Accept` da solicitação.
+Ao usar o código anterior, os métodos do controlador devem retornar o formato apropriado com base no cabeçalho de `Accept` da solicitação.
 
 ::: moniker-end
 
 ### <a name="specify-a-format"></a>Especificar um formato
 
-Para restringir os formatos de resposta, aplique o filtro [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) . Assim como a maioria dos [filtros](xref:mvc/controllers/filters), `[Produces]` pode ser aplicada na ação, controlador ou escopo global:
+Para restringir os formatos de resposta, aplique o filtro de [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) . Assim como a maioria dos [filtros](xref:mvc/controllers/filters), `[Produces]` pode ser aplicado na ação, controlador ou escopo global:
 
 [!code-csharp[](./formatting/3.0sample/Controllers/WeatherForecastController.cs?name=snippet)]
 
-O filtro [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) anterior:
+O filtro de [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) anterior:
 
 * Força todas as ações dentro do controlador a retornar respostas formatadas em JSON.
 * Se outros formatadores estiverem configurados e o cliente especificar um formato diferente, o JSON será retornado.
@@ -219,7 +219,7 @@ Para obter mais informações, consulte [filtros](xref:mvc/controllers/filters).
 
 ### <a name="special-case-formatters"></a>Formatadores de caso especiais
 
-Alguns casos especiais são implementados com formatadores internos. Por padrão, os tipos de retorno `string` são formatados como *texto/simples* (*texto/HTML* , se solicitado por meio do cabeçalho `Accept`). Esse comportamento pode ser excluído removendo o <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter>. Os formatadores são removidos no método `ConfigureServices`. As ações que têm um tipo de retorno de objeto de modelo retornam `204 No Content` ao retornar `null`. Esse comportamento pode ser excluído removendo o <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. O código a seguir remove o `StringOutputFormatter` e o `HttpNoContentOutputFormatter`.
+Alguns casos especiais são implementados com formatadores internos. Por padrão, `string` tipos de retorno são formatados como *texto/simples* (*texto/HTML* , se solicitado por meio do cabeçalho `Accept`). Esse comportamento pode ser excluído removendo o <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter>. Os formatadores são removidos no método `ConfigureServices`. As ações que têm um tipo de retorno de objeto de modelo retornam `204 No Content` ao retornar `null`. Esse comportamento pode ser excluído removendo o <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. O código a seguir remove o `StringOutputFormatter` e o `HttpNoContentOutputFormatter`.
 
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](./formatting/3.0sample/StartupStringOutputFormatter.cs?name=snippet)]
@@ -228,7 +228,7 @@ Alguns casos especiais são implementados com formatadores internos. Por padrão
 [!code-csharp[](./formatting/sample/StartupStringOutputFormatter.cs?name=snippet)]
 ::: moniker-end
 
-Sem o `StringOutputFormatter`, o formatador JSON interno formata os tipos de retorno `string`. Se o formatador JSON interno for removido e um formatador XML estiver disponível, o formatador XML formatará os tipos de retorno `string`. Caso contrário, os tipos de retorno `string` retornarão `406 Not Acceptable`.
+Sem o `StringOutputFormatter`, os formatos de formatadores JSON internos `string` tipos de retorno. Se o formatador JSON interno for removido e um formatador XML estiver disponível, os formatos de formatador XML `string` tipos de retorno. Caso contrário, `string` tipos de retorno retornarão `406 Not Acceptable`.
 
 Sem o `HttpNoContentOutputFormatter`, os objetos nulos são formatados com o formatador configurado. Por exemplo:
 
@@ -246,7 +246,7 @@ O mapeamento do caminho da solicitação deve ser especificado na rota que está
 
 [!code-csharp[](./formatting/sample/Controllers/ProductsController.cs?name=snippet)]
 
-A rota anterior permite que o formato solicitado seja especificado como uma extensão de arquivo opcional. O atributo [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) verifica a existência do valor de formato no `RouteData` e mapeia o formato de resposta para o formatador apropriado quando a resposta é criada.
+A rota anterior permite que o formato solicitado seja especificado como uma extensão de arquivo opcional. O atributo [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) verifica a existência do valor de formato na `RouteData` e mapeia o formato de resposta para o formatador apropriado quando a resposta é criada.
 
 |           Rota        |             Formatador              |
 |------------------------|------------------------------------|

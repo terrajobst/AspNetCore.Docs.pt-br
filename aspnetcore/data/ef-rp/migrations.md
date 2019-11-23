@@ -306,7 +306,7 @@ The login failed.
 Login failed for user 'user name'.
 ```
 
-Solução: Execute `dotnet ef database update`
+Solução: execute `dotnet ef database update`
 
 ### <a name="additional-resources"></a>Recursos adicionais
 

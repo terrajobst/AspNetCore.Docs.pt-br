@@ -134,7 +134,7 @@ Ao configurar um host, os métodos [Configure](/dotnet/api/microsoft.aspnetcore.
 
 [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) conta com as seguintes abordagens para definir os valores de configuração do host:
 
-* Configuração do construtor do host, que inclui variáveis de ambiente com o formato `ASPNETCORE_{configurationKey}`. Por exemplo: `ASPNETCORE_ENVIRONMENT`.
+* Configuração do construtor do host, que inclui variáveis de ambiente com o formato `ASPNETCORE_{configurationKey}`. Por exemplo, `ASPNETCORE_ENVIRONMENT`.
 * Extensões como [UseContentRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usecontentroot) e [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration) (consulte a seção [Configuração de substituição](#override-configuration)).
 * [UseSetting](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder.usesetting) e a chave associada. Ao definir um valor com `UseSetting`, o valor é definido como uma cadeia de caracteres, independentemente do tipo.
 
@@ -201,7 +201,7 @@ WebHost.CreateDefaultBuilder(args)
 
 Para obter mais informações, consulte:
 
-* [Fundamentals: Raiz do conteúdo @ no__t-0
+* [Conceitos básicos: raiz de conteúdo](xref:fundamentals/index#content-root)
 * [Raiz da Web](#web-root)
 
 ### <a name="detailed-errors"></a>Erros detalhados
@@ -227,7 +227,7 @@ Define o ambiente do aplicativo.
 
 **Chave**: ambiente  
 **Tipo**: *string*  
-**Padrão**: Produção  
+**Padrão**: Production  
 **Definido usando**: `UseEnvironment`  
 **Variável de ambiente**: `ASPNETCORE_ENVIRONMENT`
 
@@ -244,7 +244,7 @@ Define os assemblies de inicialização de hospedagem do aplicativo.
 
 **Chave**: hostingStartupAssemblies  
 **Tipo**: *string*  
-**Padrão**: Cadeia de caracteres vazia  
+**Padrão**: cadeia de caracteres vazia  
 **Definido usando**: `UseSetting`  
 **Variável de ambiente**: `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`
 
@@ -261,9 +261,9 @@ WebHost.CreateDefaultBuilder(args)
 
 Defina a porta de redirecionamento HTTPS. Uso em [aplicação de HTTPS](xref:security/enforcing-ssl).
 
-**Chave**: https_port **Tipo**: *cadeia de caracteres*
-**Padrão**: um valor padrão não está definido.
-**Definir usando**: `UseSetting`
+**Chave**: https_port **Tipo**: *string*
+**Padrão**: Um valor padrão não está definido.
+**Definido usando**: `UseSetting`
 **Variável de ambiente**: `ASPNETCORE_HTTPS_PORT`
 
 ```csharp
@@ -277,7 +277,7 @@ Uma cadeia de caracteres delimitada por ponto e vírgula de assemblies de inicia
 
 **Chave**: hostingStartupExcludeAssemblies  
 **Tipo**: *string*  
-**Padrão**: Cadeia de caracteres vazia  
+**Padrão**: cadeia de caracteres vazia  
 **Definido usando**: `UseSetting`  
 **Variável de ambiente**: `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
 
@@ -326,7 +326,7 @@ Indica os endereços IP ou endereços de host com portas e protocolos que o serv
 **Definido usando**: `UseUrls`  
 **Variável de ambiente**: `ASPNETCORE_URLS`
 
-Defina como uma lista separada por ponto e vírgula (;) de prefixos de URL aos quais o servidor deve responder. Por exemplo: `http://localhost:123`. Use "\*" para indicar que o servidor deve escutar solicitações em qualquer endereço IP ou nome do host usando a porta e o protocolo especificados (por exemplo, `http://*:5000`). O protocolo (`http://` ou `https://`) deve ser incluído com cada URL. Os formatos compatíveis variam dependendo dos servidores.
+Defina como uma lista separada por ponto e vírgula (;) de prefixos de URL aos quais o servidor deve responder. Por exemplo, `http://localhost:123`. Use "\*" para indicar que o servidor deve escutar solicitações em qualquer endereço IP ou nome do host usando a porta e o protocolo especificados (por exemplo, `http://*:5000`). O protocolo (`http://` ou `https://`) deve ser incluído com cada URL. Os formatos compatíveis variam dependendo dos servidores.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -387,7 +387,7 @@ Define o caminho relativo para os ativos estáticos do aplicativo.
 
 **Chave**: webroot  
 **Tipo**: *string*  
-**Padrão**: O padrão é `wwwroot`. O caminho para *{Content root}/wwwroot* deve existir. Se o caminho não existir, um provedor de arquivo não operacional será usado.  
+**Padrão**: o padrão é `wwwroot`. O caminho para *{Content root}/wwwroot* deve existir. Se o caminho não existir, um provedor de arquivo não operacional será usado.  
 **Definido usando**: `UseWebRoot`  
 **Variável de ambiente**: `ASPNETCORE_WEBROOT`
 
@@ -398,7 +398,7 @@ WebHost.CreateDefaultBuilder(args)
 
 Para obter mais informações, consulte:
 
-* [Fundamentals: Raiz da Web @ no__t-0
+* [Conceitos básicos: raiz da Web](xref:fundamentals/index#web-root)
 * [Raiz do conteúdo](#content-root)
 
 ## <a name="override-configuration"></a>Substituir configuração
@@ -526,7 +526,7 @@ using (var host = WebHost.Start("http://localhost:8080", app => app.Response.Wri
 
 Produz o mesmo resultado que **Start(RequestDelegate app)** , mas o aplicativo responde em `http://localhost:8080`.
 
-**Início (ação @ no__t-1IRouteBuilder > routeBuilder)**
+**Start (ação\<IRouteBuilder > routeBuilder)**
 
 Use uma instância de `IRouteBuilder` ([Microsoft.AspNetCore.Routing](https://www.nuget.org/packages/Microsoft.AspNetCore.Routing/)) para usar o middleware de roteamento:
 
@@ -560,7 +560,7 @@ Use as seguintes solicitações de navegador com o exemplo:
 
 `WaitForShutdown` bloqueia até que uma quebra (Ctrl-C/SIGINT ou SIGTERM) seja emitida. O aplicativo exibe a mensagem `Console.WriteLine` e aguarda um pressionamento de tecla para ser encerrado.
 
-**Start (cadeia de caracteres URL, ação @ no__t-1IRouteBuilder > routeBuilder)**
+**Start (cadeia de caracteres URL, ação\<IRouteBuilder > routeBuilder)**
 
 Use uma URL e uma instância de `IRouteBuilder`:
 
@@ -581,9 +581,9 @@ using (var host = WebHost.Start("http://localhost:8080", router => router
 }
 ```
 
-Produz o mesmo resultado que o **início (Action @ no__t-1IRouteBuilder > routeBuilder)** , exceto que o aplicativo responde em `http://localhost:8080`.
+Produz o mesmo resultado que **Start (ação\<IRouteBuilder > routeBuilder)** , exceto que o aplicativo responde em `http://localhost:8080`.
 
-**StartWith (ação @ no__t-1IApplicationBuilder > aplicativo)**
+**StartWith (ação\<IApplicationBuilder > aplicativo)**
 
 Forneça um delegado para configurar um `IApplicationBuilder`:
 
@@ -604,7 +604,7 @@ using (var host = WebHost.StartWith(app =>
 
 Faça uma solicitação no navegador para `http://localhost:5000` para receber a resposta "Olá, Mundo!" `WaitForShutdown` bloqueia até que uma quebra (Ctrl-C/SIGINT ou SIGTERM) seja emitida. O aplicativo exibe a mensagem `Console.WriteLine` e aguarda um pressionamento de tecla para ser encerrado.
 
-**StartWith (cadeia de caracteres URL, ação @ no__t-1IApplicationBuilder aplicativo de >)**
+**StartWith (URL de cadeia de caracteres, ação\<IApplicationBuilder > aplicativo)**
 
 Forneça um delegado e uma URL para configurar um `IApplicationBuilder`:
 
@@ -623,7 +623,7 @@ using (var host = WebHost.StartWith("http://localhost:8080", app =>
 }
 ```
 
-Produz o mesmo resultado que **StartWith (Action @ no__t-1IApplicationBuilder > app)** , exceto que o aplicativo responde em `http://localhost:8080`.
+Produz o mesmo resultado que **StartWith (Action\<IApplicationBuilder > app)** , exceto que o aplicativo responde `http://localhost:8080`.
 
 ::: moniker range=">= aspnetcore-3.0"
 
