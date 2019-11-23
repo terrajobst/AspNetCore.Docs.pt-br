@@ -32,7 +32,7 @@ As Páginas do Razor são derivadas de `PageModel`. Por convenção, a classe de
 
 Quando uma solicitação é feita à página, o método `OnGetAsync` retorna uma lista de filmes para a Página do Razor. `OnGetAsync` ou `OnGet` é chamado para inicializar o estado da página. Nesse caso, `OnGetAsync` obtém uma lista de filmes e os exibe.
 
-Quando `OnGet` retorna `void` ou `OnGetAsync` retorna `Task`, nenhuma instrução de retorno é usada. Quando o tipo de retorno for `IActionResult` ou `Task<IActionResult>`, é necessário fornecer uma instrução de retorno. Por exemplo, o método `OnPostAsync` do arquivo *Pages/Movies/Create.cshtml.cs*:
+Quando `OnGet` retorna `void` ou `OnGetAsync` retorna`Task`, nenhuma instrução de retorno é usada. Quando o tipo de retorno for `IActionResult` ou `Task<IActionResult>`, é necessário fornecer uma instrução de retorno. Por exemplo, o método *do arquivo*Pages/Movies/Create.cshtml.cs`OnPostAsync`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
@@ -60,7 +60,7 @@ O auxiliar HTML `DisplayNameFor` inspeciona a propriedade `Title` referenciada n
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
 
-A diretiva `@model` especifica o tipo de modelo passado para a Página do Razor. No exemplo anterior, a linha `@model` torna a classe derivada de `PageModel` disponível para a Página do Razor. O modelo é usado nos [auxiliares HTML](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) `@Html.DisplayNameFor` e `@Html.DisplayFor` na página.
+A diretiva `@model` especifica o tipo de modelo passado para a Página do Razor. No exemplo anterior, a linha `@model` torna a classe derivada de `PageModel` disponível para a Página do Razor. O modelo é usado nos `@Html.DisplayNameFor`auxiliares HTML`@Html.DisplayFor` [ e ](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) na página.
 
 ### <a name="the-layout-page"></a>A página de layout
 
@@ -135,7 +135,7 @@ Examine o modelo de página *Pages/Movies/Create.cshtml.cs*:
 
 O método `OnGet` inicializa qualquer estado necessário para a página. A página Criar não tem nenhum estado para inicializar, assim, `Page` é retornado. Apresentamos um exemplo de inicialização de estado `OnGet` posteriormente no tutorial. O método `Page` cria um objeto `PageResult` que renderiza a página *Create.cshtml*.
 
-A propriedade `Movie` usa o atributo `[BindProperty]` para aceitar o [model binding](xref:mvc/models/model-binding). Quando o formulário Criar posta os valores de formulário, o tempo de execução do ASP.NET Core associa os valores postados ao modelo `Movie`.
+A propriedade `Movie` usa o atributo `[BindProperty]` para aceitar o [model binding](xref:mvc/models/model-binding). Quando o formulário Criar posta os valores de formulário, o runtime do ASP.NET Core associa os valores postados ao modelo `Movie`.
 
 O método `OnPostAsync` é executado quando a página posta dados de formulário:
 
@@ -202,7 +202,7 @@ Para obter mais informações sobre Auxiliares de Marcas, como `<form method="po
 ## <a name="additional-resources"></a>Recursos adicionais
 
 > [!div class="step-by-step"]
-> [Anterior: adicionando um modelo](xref:tutorials/razor-pages/model) 
+> [Anterior: adicionando um modelo](xref:tutorials/razor-pages/model)
 > [próximo: banco de dados](xref:tutorials/razor-pages/sql)
 
 ::: moniker-end
@@ -225,7 +225,7 @@ As Páginas do Razor são derivadas de `PageModel`. Por convenção, a classe de
 
 Quando uma solicitação é feita à página, o método `OnGetAsync` retorna uma lista de filmes para a Página do Razor. `OnGetAsync` ou `OnGet` é chamado em uma Página do Razor para inicializar o estado da página. Nesse caso, `OnGetAsync` obtém uma lista de filmes e os exibe.
 
-Quando `OnGet` retorna `void` ou `OnGetAsync` retorna `Task`, então nenhum método de retorno é usado. Quando o tipo de retorno for `IActionResult` ou `Task<IActionResult>`, é necessário fornecer uma instrução de retorno. Por exemplo, o método `OnPostAsync` do arquivo *Pages/Movies/Create.cshtml.cs*:
+Quando `OnGet` retorna `void` ou `OnGetAsync` retorna `Task`, então nenhum método de retorno é usado. Quando o tipo de retorno for `IActionResult` ou `Task<IActionResult>`, é necessário fornecer uma instrução de retorno. Por exemplo, o método *do arquivo*Pages/Movies/Create.cshtml.cs`OnPostAsync`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
@@ -251,7 +251,7 @@ O auxiliar HTML `DisplayNameFor` inspeciona a propriedade `Title` referenciada n
 
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
 
-A diretiva `@model` especifica o tipo de modelo passado para a Página do Razor. No exemplo anterior, a linha `@model` torna a classe derivada de `PageModel` disponível para a Página do Razor. O modelo é usado nos [auxiliares HTML](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) `@Html.DisplayNameFor` e `@Html.DisplayFor` na página.
+A diretiva `@model` especifica o tipo de modelo passado para a Página do Razor. No exemplo anterior, a linha `@model` torna a classe derivada de `PageModel` disponível para a Página do Razor. O modelo é usado nos `@Html.DisplayNameFor`auxiliares HTML`@Html.DisplayFor` [ e ](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) na página.
 
 ### <a name="the-layout-page"></a>A página de layout
 
@@ -321,7 +321,7 @@ Examine o modelo de página *Pages/Movies/Create.cshtml.cs*:
 
 O método `OnGet` inicializa qualquer estado necessário para a página. A página Criar não tem nenhum estado para inicializar, assim, `Page` é retornado. Mais adiante no tutorial, você verá o estado de inicialização do método `OnGet`. O método `Page` cria um objeto `PageResult` que renderiza a página *Create.cshtml*.
 
-A propriedade `Movie` usa o atributo `[BindProperty]` para aceitar o [model binding](xref:mvc/models/model-binding). Quando o formulário Criar posta os valores de formulário, o tempo de execução do ASP.NET Core associa os valores postados ao modelo `Movie`.
+A propriedade `Movie` usa o atributo `[BindProperty]` para aceitar o [model binding](xref:mvc/models/model-binding). Quando o formulário Criar posta os valores de formulário, o runtime do ASP.NET Core associa os valores postados ao modelo `Movie`.
 
 O método `OnPostAsync` é executado quando a página posta dados de formulário:
 
@@ -370,7 +370,7 @@ O [auxiliar de marcas de entrada](xref:mvc/views/working-with-forms) (`<input as
 * [Versão do YouTube deste tutorial](https://youtu.be/zxgKjPYnOMM)
 
 > [!div class="step-by-step"]
-> [Anterior: adicionando um modelo](xref:tutorials/razor-pages/model) 
+> [Anterior: adicionando um modelo](xref:tutorials/razor-pages/model)
 > [próximo: banco de dados](xref:tutorials/razor-pages/sql)
 
 ::: moniker-end
