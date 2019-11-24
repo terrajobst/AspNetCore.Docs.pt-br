@@ -168,7 +168,7 @@ public class IndexModel : PageModel
 
 Os provedores de configuração não podem utilizar a DI, pois ela não é disponibilizada quando eles são configurados pelo host.
 
-### <a name="keys"></a>Novas
+### <a name="keys"></a>Keys
 
 As chaves de configuração adotam as convenções a seguir:
 
@@ -191,7 +191,7 @@ Os valores de configuração adotam as convenções a seguir:
 
 A tabela a seguir mostra os provedores de configuração disponíveis para aplicativos ASP.NET Core.
 
-| Provider | Fornece a configuração de &hellip; |
+| Provedor | Fornece a configuração de &hellip; |
 | -------- | ----------------------------------- |
 | [Provedor de Configuração do Azure Key Vault](xref:security/key-vault-configuration) (tópicos de *Segurança*) | Azure Key Vault |
 | [Provedor da Configuração de Aplicativos do Azure](/azure/azure-app-configuration/quickstart-aspnet-core-app) (documentação do Azure) | Configuração de Azure App |
@@ -352,7 +352,7 @@ O aplicativo de exemplo aproveita o método de conveniência estático `CreateDe
 1. Quando o aplicativo estiver em execução, abra um navegador para o aplicativo em `http://localhost:5000`.
 1. Observe que a saída contém o par chave-valor do argumento de linha de comando de configuração fornecido para `dotnet run`.
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 O valor deve vir após um sinal de igual (`=`), ou a chave deve ter um prefixo (`--` ou `/`) quando o valor vier após um espaço. O valor não é necessário se um sinal de igual é usado (por exemplo, `CommandLineKey=`).
 
@@ -403,7 +403,7 @@ Quando o host for criado, chame `AddCommandLine` com o dicionário de mapeamento
 })
 ```
 
-Para aplicativos que usam mapeamentos de opção, a chamada `CreateDefaultBuilder` para não deve passar argumentos. A chamada `AddCommandLine` do método `CreateDefaultBuilder` não inclui opções mapeadas, e não é possível passar o dicionário de mapeamento de opções para `CreateDefaultBuilder`. A solução não é passar os argumentos para `CreateDefaultBuilder`, mas, em vez disso, permitir que o método `AddCommandLine` do método `ConfigurationBuilder` processe os dois argumentos e o dicionário de mapeamento de opções.
+Para aplicativos que usam mapeamentos de opção, a chamada `CreateDefaultBuilder` para não deve passar argumentos. A chamada `CreateDefaultBuilder` do método `AddCommandLine` não inclui opções mapeadas, e não é possível passar o dicionário de mapeamento de opções para `CreateDefaultBuilder`. A solução não é passar os argumentos para `CreateDefaultBuilder`, mas, em vez disso, permitir que o método `ConfigurationBuilder` do método `AddCommandLine` processe os dois argumentos e o dicionário de mapeamento de opções.
 
 Depois que o dicionário de mapeamentos de comutador for criado, ele conterá os dados mostrados na tabela a seguir.
 
@@ -503,7 +503,7 @@ Quando o construtor de host é criado, a configuração do host é fornecida por
 
 A API de configuração tem regras de processamento especiais para quatro variáveis de ambiente de cadeia de conexão envolvidas na configuração de cadeias de conexão do Azure para o ambiente de aplicativo. As variáveis de ambiente com os prefixos mostrados na tabela são carregadas no aplicativo se nenhum prefixo for fornecido para `AddEnvironmentVariables`.
 
-| Prefixo da cadeia de conexão | Provider |
+| Prefixo da cadeia de conexão | Provedor |
 | ------------------------ | -------- |
 | `CUSTOMCONNSTR_` | Provedor personalizado |
 | `MYSQLCONNSTR_` | [MySQL](https://www.mysql.com/) |
@@ -773,7 +773,7 @@ O dicionário é usado com uma chamada para `AddInMemoryCollection` a fim de for
 
 ## <a name="getvalue"></a>GetValue
 
-[ConfigurationBinder. GetValue \<T >](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extrai um único valor da configuração com uma chave especificada e a converte para o tipo de não coleção especificado. Uma sobrecarga aceita um valor padrão.
+[ConfigurationBinder. GetValue\<t >](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extrai um único valor da configuração com uma chave especificada e converte-o para o tipo de não coleção especificado. Uma sobrecarga aceita um valor padrão.
 
 O exemplo a seguir:
 

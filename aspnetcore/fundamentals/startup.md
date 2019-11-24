@@ -97,7 +97,7 @@ O método <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> é:
 
 * Opcional.
 * Chamado pelo host antes do método `Configure` para configurar os serviços do aplicativo.
-* Onde as [opções de configuração](xref:fundamentals/configuration/index) são definidas por convenção.
+* Quando as [opções de configuração](xref:fundamentals/configuration/index) são definidas por convenção.
 
 O host pode configurar alguns serviços antes que métodos `Startup` sejam chamados. Para obter mais informações, confira [O host](xref:fundamentals/index#host).
 
