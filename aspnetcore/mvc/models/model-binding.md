@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como funciona o model binding no ASP.NET Core e como personalizar seu comportamento.
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
-ms.date: 05/31/2019
+ms.date: 11/15/2019
 uid: mvc/models/model-binding
-ms.openlocfilehash: aeb2da7e11df1eab5a17e2ae0a3971420c9383b4
-ms.sourcegitcommit: 032113208bb55ecfb2faeb6d3e9ea44eea827950
+ms.openlocfilehash: a025419a5b4d2c2e3e5c5a7850df281ddd3164ea
+ms.sourcegitcommit: f91d322f790123d41ec3271fa084ae20ed9f89a6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/31/2019
-ms.locfileid: "73190599"
+ms.lasthandoff: 11/18/2019
+ms.locfileid: "74155045"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Model binding no ASP.NET Core
 
@@ -40,7 +40,7 @@ E o aplicativo receba uma solicitação com esta URL:
 http://contoso.com/api/pets/2?DogsOnly=true
 ```
 
-O model binding passa pelas etapas a seguir depois que o sistema de roteamento seleciona o método de ação:
+A associação de modelo passa pelas seguintes etapas depois que o sistema de roteamento seleciona o método de ação:
 
 * Localiza o primeiro parâmetro de `GetByID`, um número inteiro denominado `id`.
 * Examina as fontes disponíveis na solicitação HTTP e localiza `id` = "2" em dados de rota.

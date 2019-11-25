@@ -4,14 +4,14 @@ author: blowdart
 description: Saiba como configurar a autenticação de certificado no ASP.NET Core para IIS e HTTP. sys.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
-ms.date: 11/07/2019
+ms.date: 11/14/2019
 uid: security/authentication/certauth
-ms.openlocfilehash: 0062bc0d7688ebcc67f8240da7166d89493f6639
-ms.sourcegitcommit: 4818385c3cfe0805e15138a2c1785b62deeaab90
+ms.openlocfilehash: 2ed3e88adf3bdb7528f47492b6eb5792f99f20d8
+ms.sourcegitcommit: f91d322f790123d41ec3271fa084ae20ed9f89a6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/09/2019
-ms.locfileid: "73897031"
+ms.lasthandoff: 11/18/2019
+ms.locfileid: "74154998"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurar a autenticação de certificado no ASP.NET Core
 
@@ -204,6 +204,9 @@ public static IHostBuilder CreateHostBuilder(string[] args)
                 });
 }
 ```
+
+> [!NOTE]
+> Os pontos de extremidade criados chamando <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **antes** de chamar <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> não terão os padrões aplicados.
 
 ### <a name="iis"></a>IIS
 

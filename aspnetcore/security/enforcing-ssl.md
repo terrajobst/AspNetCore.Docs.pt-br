@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/14/2019
 uid: security/enforcing-ssl
-ms.openlocfilehash: 044e9d594fa037214d80898e3ecc420d80a6f869
-ms.sourcegitcommit: 73a451e9a58ac7102f90b608d661d8c23dd9bbaf
+ms.openlocfilehash: 82cd2e52f3bd929682b9eae24611ad04fd9f8682
+ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/08/2019
-ms.locfileid: "72037628"
+ms.lasthandoff: 11/22/2019
+ms.locfileid: "74317364"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Impor HTTPS em ASP.NET Core
 
@@ -81,7 +81,7 @@ O código a seguir chama `UseHttpsRedirection` na classe `Startup`:
 O código realçado anterior:
 
 * Usa o padrão [HttpsRedirectionOptions. RedirectStatusCode](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.redirectstatuscode) ([Status307TemporaryRedirect](/dotnet/api/microsoft.aspnetcore.http.statuscodes.status307temporaryredirect)).
-* Usa o [HttpsRedirectionOptions. HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) (nulo) padrão, a menos que seja substituído pela variável de ambiente `ASPNETCORE_HTTPS_PORT` ou [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature).
+* Usa o [HttpsRedirectionOptions. HttpsPort](/dotnet/api/microsoft.aspnetcore.httpspolicy.httpsredirectionoptions.httpsport) (nulo) padrão, a menos que seja substituído pelo `ASPNETCORE_HTTPS_PORT` variável de ambiente ou [IServerAddressesFeature](/dotnet/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature).
 
 É recomendável usar redirecionamentos temporários em vez de redirecionamentos permanentes. O cache de link pode causar comportamento instável em ambientes de desenvolvimento. Se você preferir enviar um código de status de redirecionamento permanente quando o aplicativo estiver em um ambiente que não seja de desenvolvimento, consulte a seção [Configurar redirecionamentos permanentes na produção](#configure-permanent-redirects-in-production) . É recomendável usar [HSTS](#http-strict-transport-security-protocol-hsts) para sinalizar para clientes que apenas as solicitações de recursos de segurança devem ser enviadas para o aplicativo (somente em produção).
 
@@ -106,7 +106,7 @@ Especifique a porta HTTPS usando qualquer uma das seguintes abordagens:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
-* Indique uma porta com o esquema seguro usando a [variável de ambiente ASPNETCORE_URLS](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#urls). A variável de ambiente configura o servidor. O middleware descobre indiretamente a porta HTTPS via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. Essa abordagem não funciona em implantações de proxy reverso.
+* Indique uma porta com o esquema seguro usando a [variável de ambiente ASPNETCORE_URLS](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#urls). A variável de ambiente configura o servidor. O middleware descobre indiretamente a porta HTTPS por meio de <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. Essa abordagem não funciona em implantações de proxy reverso.
 
 ::: moniker-end
 
@@ -120,7 +120,7 @@ Especifique a porta HTTPS usando qualquer uma das seguintes abordagens:
 
     [!code-json[](enforcing-ssl/sample-snapshot/2.x/appsettings.json?highlight=2)]
 
-* Indique uma porta com o esquema seguro usando a [variável de ambiente ASPNETCORE_URLS](xref:fundamentals/host/web-host#server-urls). A variável de ambiente configura o servidor. O middleware descobre indiretamente a porta HTTPS via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. Essa abordagem não funciona em implantações de proxy reverso.
+* Indique uma porta com o esquema seguro usando a [variável de ambiente ASPNETCORE_URLS](xref:fundamentals/host/web-host#server-urls). A variável de ambiente configura o servidor. O middleware descobre indiretamente a porta HTTPS por meio de <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. Essa abordagem não funciona em implantações de proxy reverso.
 
 ::: moniker-end
 
@@ -140,7 +140,7 @@ Quando Kestrel ou HTTP. sys é usado como um servidor de borda voltado ao públi
 
 A porta insegura deve ser acessível pelo cliente para que o aplicativo receba uma solicitação insegura e redirecione o cliente para a porta segura.
 
-Para obter mais informações, consulte [Kestrel Endpoint Configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) ou <xref:fundamentals/servers/httpsys>.
+Para obter mais informações, consulte [configuração de ponto de extremidade Kestrel](xref:fundamentals/servers/kestrel#endpoint-configuration) ou <xref:fundamentals/servers/httpsys>.
 
 ### <a name="deployment-scenarios"></a>Cenários de implantação
 
@@ -148,7 +148,7 @@ Qualquer firewall entre o cliente e o servidor também deve ter portas de comuni
 
 Se as solicitações forem encaminhadas em uma configuração de proxy reverso, use o [middleware de cabeçalhos encaminhados](xref:host-and-deploy/proxy-load-balancer) antes de chamar o middleware de redirecionamento de HTTPS. O middleware de cabeçalhos encaminhados atualiza o `Request.Scheme`, usando o cabeçalho `X-Forwarded-Proto`. O middleware permite que os URIs de redirecionamento e outras políticas de segurança funcionem corretamente. Quando o middleware de cabeçalhos encaminhados não é usado, o aplicativo de back-end pode não receber o esquema correto e terminar em um loop de redirecionamento. Uma mensagem de erro comum do usuário final é que ocorreram muitos redirecionamentos.
 
-Ao implantar no serviço Azure App, siga as orientações em [Tutorial: vincular um certificado SSL personalizado ao serviço Aplicativos Web do Azure](/azure/app-service/app-service-web-tutorial-custom-ssl).
+Ao implantar no serviço Azure App, siga as diretrizes em [tutorial: associar um certificado SSL personalizado existente aos aplicativos Web do Azure](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
 ### <a name="options"></a>Opções
 
@@ -168,11 +168,11 @@ O código realçado a seguir chama [AddHttpsRedirection](/dotnet/api/microsoft.a
 ::: moniker-end
 
 
-A chamada a `AddHttpsRedirection` só é necessária para alterar os valores de `HttpsPort` ou `RedirectStatusCode`.
+A chamada de `AddHttpsRedirection` só é necessária para alterar os valores de `HttpsPort` ou `RedirectStatusCode`.
 
 O código realçado anterior:
 
-* Define [HttpsRedirectionOptions. RedirectStatusCode](xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode*) como <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect>, que é o valor padrão. Use os campos da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para as atribuições para `RedirectStatusCode`.
+* Define [HttpsRedirectionOptions. RedirectStatusCode](xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode*) como <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect>, que é o valor padrão. Use os campos da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para as atribuições a serem `RedirectStatusCode`.
 * Define a porta HTTPS como 5001. O valor padrão é 443.
 
 #### <a name="configure-permanent-redirects-in-production"></a>Configurar redirecionamentos permanentes na produção
@@ -282,11 +282,11 @@ O código a seguir:
 * Define explicitamente o parâmetro Max-age do cabeçalho Strict-Transport-Security como 60 dias. Se não estiver definido, o padrão será 30 dias. Consulte a [diretiva Max-age](https://tools.ietf.org/html/rfc6797#section-6.1.1) para obter mais informações.
 * Adiciona `example.com` à lista de hosts a serem excluídos.
 
-`UseHsts` exclui os seguintes hosts de loopback:
+`UseHsts` exclui os seguintes hosts de auto-retorno:
 
-* `localhost` : O endereço de loopback IPv4.
-* `127.0.0.1` : O endereço de loopback IPv4.
-* `[::1]` : O endereço de loopback IPv6.
+* `localhost`: o endereço de loopback IPv4.
+* `127.0.0.1`: o endereço de loopback IPv4.
+* `[::1]`: o endereço de loopback IPv6.
 
 ## <a name="opt-out-of-httpshsts-on-project-creation"></a>Recusa de HTTPS/HSTS na criação do projeto
 
@@ -365,7 +365,7 @@ O subsistema do Windows para Linux (WSL) gera um certificado HTTPS autoassinado.
 
 ## <a name="troubleshoot-certificate-problems"></a>Solucionar problemas de certificado
 
-Esta seção fornece ajuda quando o ASP.NET Core certificado de desenvolvimento HTTPS foi [instalado e é confiável](#trust), mas você ainda tem avisos do navegador de que o certificado não é confiável.
+Esta seção fornece ajuda quando o ASP.NET Core certificado de desenvolvimento HTTPS foi [instalado e é confiável](#trust), mas você ainda tem avisos do navegador de que o certificado não é confiável. O certificado de desenvolvimento de ASP.NET Core HTTPS é usado pelo [Kestrel](xref:fundamentals/servers/kestrel).
 
 ### <a name="all-platforms---certificate-not-trusted"></a>Todas as plataformas-certificado não confiável
 
@@ -382,13 +382,13 @@ Os comandos anteriores resolvem a maioria dos problemas de confiança do navegad
 
 ### <a name="docker---certificate-not-trusted"></a>Docker-certificado não confiável
 
-* Exclua a pasta *C:\Users @ no__t-1USER} \AppData\Roaming\ASP.NET\Https*
+* Exclua a pasta *C:\Users\{usuário} \AppData\Roaming\ASP.NET\Https*
 * Limpe a solução. Exclua as pastas *bin* e *obj*.
 * Reinicie a ferramenta de desenvolvimento. Por exemplo, Visual Studio, Visual Studio Code ou Visual Studio para Mac.
 
 ### <a name="windows---certificate-not-trusted"></a>Windows-certificado não confiável
 
-* Verifique os certificados no repositório de certificados. Deve haver um certificado `localhost` com o nome amigável de `ASP.NET Core HTTPS development certificate` em `Current User > Personal > Certificates` e `Current User > Trusted root certification authorities > Certificates`
+* Verifique os certificados no repositório de certificados. Deve haver um certificado de `localhost` com o nome amigável `ASP.NET Core HTTPS development certificate` em `Current User > Personal > Certificates` e `Current User > Trusted root certification authorities > Certificates`
 * Remova todos os certificados encontrados das autoridades de certificação raiz pessoais e confiáveis. **Não** remova o IIS Express certificado localhost.
 * Execute os seguintes comandos:
 
@@ -404,7 +404,7 @@ Feche todas as instâncias do navegador abertas. Abra uma nova janela do navegad
 * Abra o acesso ao conjunto de chaves.
 * Selecione o conjunto de chaves do sistema.
 * Verifique a presença de um certificado localhost.
-* Verifique se ele contém um símbolo `+` no ícone para indicar seu confiável para todos os usuários.
+* Verifique se ele contém um símbolo de `+` no ícone para indicar seu confiável para todos os usuários.
 * Remova o certificado do conjunto de chaves do sistema.
 * Execute os seguintes comandos:
 
@@ -415,10 +415,16 @@ dotnet dev-certs https --trust
 
 Feche todas as instâncias do navegador abertas. Abra uma nova janela do navegador para o aplicativo.
 
+Consulte [erro de HTTPS usando IIS Express (ASPNET/AspNetCore #16892)](https://github.com/aspnet/AspNetCore/issues/16892) para solucionar problemas de certificado com o Visual Studio.
+
+### <a name="iis-express-ssl-certificate-used-with-visual-studio"></a>IIS Express certificado SSL usado com o Visual Studio
+
+Para corrigir problemas com o certificado de IIS Express, selecione **reparar** no instalador do Visual Studio.
+
 ## <a name="additional-information"></a>Informações adicionais
 
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Host ASP.NET Core no Linux com Apache: Configuração de HTTPS @ no__t-0
-* [Host ASP.NET Core no Linux com Nginx: Configuração de HTTPS @ no__t-0
+* [ASP.NET Core de host no Linux com Apache: Configuração HTTPS](xref:host-and-deploy/linux-apache#https-configuration)
+* [Host ASP.NET Core no Linux com Nginx: configuração de HTTPS](xref:host-and-deploy/linux-nginx#https-configuration)
 * [Como configurar o SSL no IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * [Suporte ao navegador OWASP HSTS](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)

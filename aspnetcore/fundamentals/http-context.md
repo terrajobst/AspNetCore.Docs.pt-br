@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/11/2018
 uid: fundamentals/httpcontext
-ms.openlocfilehash: 888adf6d61e6968127385952e65f942e86b7eb63
-ms.sourcegitcommit: 020c3760492efed71b19e476f25392dda5dd7388
+ms.openlocfilehash: 0bf40f9cd2554f5ba01ccc06001fa4f1940d51a5
+ms.sourcegitcommit: f40c9311058c9b1add4ec043ddc5629384af6c56
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/12/2019
-ms.locfileid: "72288974"
+ms.lasthandoff: 11/21/2019
+ms.locfileid: "74289046"
 ---
 # <a name="access-httpcontext-in-aspnet-core"></a>Acessar o HttpContext no ASP.NET Core
 
@@ -137,7 +137,7 @@ public class UserRepository : IUserRepository
 `HttpContext` não é thread-safe. Ler ou gravar propriedades de `HttpContext` fora do processamento de uma solicitação pode resultar em um `NullReferenceException`.
 
 > [!NOTE]
-> Usar `HttpContext` fora do processamento de uma solicitação geralmente resulta em um `NullReferenceException`. Se seu aplicativo gera `NullReferenceException`s esporádicos, revise as partes do código que iniciam o processamento em segundo plano ou que continuam o processamento depois que uma solicitação é concluída. Procure erros, como definir um método de controlador como `async void`.
+> Usar `HttpContext` fora do processamento de uma solicitação geralmente resulta em um `NullReferenceException`. Se seu aplicativo gera `NullReferenceException`s esporádicos, revise as partes do código que iniciam o processamento em segundo plano ou que continuam o processamento depois que uma solicitação é concluída. Procure erros, como a definição de um método de controlador como `async void`.
 
 Para executar com segurança o trabalho em segundo plano com os dados de `HttpContext`:
 
@@ -147,9 +147,9 @@ Para executar com segurança o trabalho em segundo plano com os dados de `HttpCo
 Para evitar o código não seguro, nunca passe o `HttpContext` em um método que realiza o trabalho em segundo plano. Em vez disso, passe os dados necessários.
 
 ```csharp
-public class EmailController
+public class EmailController : Controller
 {
-    public ActionResult SendEmail(string email)
+    public IActionResult SendEmail(string email)
     {
         var correlationId = HttpContext.Request.Headers["x-correlation-id"].ToString();
 

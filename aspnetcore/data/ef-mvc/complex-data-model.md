@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Criar um modelo de dados complexo - ASP.NET MVC com EF Core'
+title: 'Tutorial: criar um modelo de dados complexo – ASP.NET MVC com EF Core'
 description: Neste tutorial, você adiciona mais entidades e relações e personaliza o modelo de dados especificando formatação, validação e regras de mapeamento.
 author: rick-anderson
 ms.author: riande
@@ -7,14 +7,14 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: 313d951ccdd45ae1209ffd9612d24738822fbed8
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: b8b1ade4c8c29d34200bf8c0944cff6adec0bb95
+ms.sourcegitcommit: f40c9311058c9b1add4ec043ddc5629384af6c56
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259602"
+ms.lasthandoff: 11/21/2019
+ms.locfileid: "74288961"
 ---
-# <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Tutorial: Criar um modelo de dados complexo - ASP.NET MVC com EF Core
+# <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Tutorial: criar um modelo de dados complexo – ASP.NET MVC com EF Core
 
 Nos tutoriais anteriores, você trabalhou com um modelo de dados simples composto por três entidades. Neste tutorial, você adicionará mais entidades e relações e personalizará o modelo de dados especificando formatação, validação e regras de mapeamento de banco de dados.
 
@@ -155,11 +155,12 @@ Em *Models/Student.cs*, substitua o código que você adicionou anteriormente pe
 
 O atributo `Required` torna as propriedades de nome campos obrigatórios. O atributo `Required` não é necessário para tipos que permitem valor nulo como tipos de valor (DateTime, int, double, float, etc.). Tipos que não podem ser nulos são tratados automaticamente como campos obrigatórios.
 
-Remova o atributo `Required` e substitua-o por um parâmetro de tamanho mínimo para o atributo `StringLength`:
+O atributo `Required` precisa ser usado com `MinimumLength` para que `MinimumLength` seja imposto.
 
 ```csharp
 [Display(Name = "Last Name")]
-[StringLength(50, MinimumLength=1)]
+[Required]
+[StringLength(50, MinimumLength=2)]
 public string LastName { get; set; }
 ```
 
@@ -532,4 +533,4 @@ Neste tutorial, você:
 Vá para o próximo tutorial para aprender a acessar dados relacionados.
 
 > [!div class="nextstepaction"]
-> [Avançar: Acessar dados relacionados](read-related-data.md)
+> [Próximo: acessar dados relacionados](read-related-data.md)

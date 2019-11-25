@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2019
 uid: fundamentals/servers/index
-ms.openlocfilehash: e542dd4506eb77f949c0c87bea3044397bbb1b8f
-ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
+ms.openlocfilehash: d46793ef54c99fe609b5983c5a658fb7b20032fa
+ms.sourcegitcommit: f40c9311058c9b1add4ec043ddc5629384af6c56
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2019
-ms.locfileid: "73799399"
+ms.lasthandoff: 11/21/2019
+ms.locfileid: "74289057"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Implementações de servidor Web em ASP.NET Core
 
@@ -22,7 +22,7 @@ Um aplicativo ASP.NET Core é executado com uma implementação do servidor HTTP
 
 ## <a name="kestrel"></a>Kestrel
 
-O Kestrel é o servidor Web padrão incluído nos modelos de projeto do ASP.NET Core.
+Kestrel é o servidor Web padrão especificado pelos modelos de projeto ASP.NET Core.
 
 Use o Kestrel:
 
@@ -158,7 +158,7 @@ O servidor é iniciado quando o IDE (Ambiente de Desenvolvimento Integrado) ou o
 
 Ao iniciar o aplicativo usando um prompt de comando na pasta do projeto, o [dotnet run](/dotnet/core/tools/dotnet-run) inicia o aplicativo e o servidor (apenas Kestrel e HTTP.sys). A configuração é especificada pela opção `-c|--configuration`, que é definida como `Debug` (padrão) ou `Release`.
 
-Um arquivo *launchSettings. JSON* fornece configuração ao iniciar um aplicativo com `dotnet run` ou com um depurador interno de ferramentas, como o Visual Studio. Se os perfis de inicialização estiverem presentes em um arquivo *launchSettings. JSON* , use a opção `--launch-profile {PROFILE NAME}` com o comando`dotnet run` ou selecione o perfil no Visual Studio. Para obter mais informações, confira [dotnet run](/dotnet/core/tools/dotnet-run) e [pacote de distribuição do .NET Core](/dotnet/core/build/distribution-packaging).
+Um arquivo *launchSettings. JSON* fornece configuração ao iniciar um aplicativo com `dotnet run` ou com um depurador interno de ferramentas, como o Visual Studio. Se os perfis de inicialização estiverem presentes em um arquivo *launchSettings. JSON* , use a opção `--launch-profile {PROFILE NAME}` com o comando `dotnet run` ou selecione o perfil no Visual Studio. Para obter mais informações, confira [dotnet run](/dotnet/core/tools/dotnet-run) e [pacote de distribuição do .NET Core](/dotnet/core/build/distribution-packaging).
 
 ## <a name="http2-support"></a>Compatibilidade com HTTP/2
 

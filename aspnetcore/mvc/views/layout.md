@@ -5,12 +5,12 @@ description: Saiba como usar layouts comuns, compartilhar diretivas e executar u
 ms.author: riande
 ms.date: 07/30/2019
 uid: mvc/views/layout
-ms.openlocfilehash: 9a7b8003b24329f6e9cbd349ee47f6844b7c5f6d
-ms.sourcegitcommit: e6bd2bbe5683e9a7dbbc2f2eab644986e6dc8a87
+ms.openlocfilehash: 3ba2f459ca2b04a3001e261acab26880b6582500
+ms.sourcegitcommit: f40c9311058c9b1add4ec043ddc5629384af6c56
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/03/2019
-ms.locfileid: "70238038"
+ms.lasthandoff: 11/21/2019
+ms.locfileid: "74288993"
 ---
 # <a name="layout-in-aspnet-core"></a>Layout no ASP.NET Core
 
@@ -68,9 +68,9 @@ Por padrão, todo layout precisa chamar `RenderBody`. Sempre que a chamada a `Re
 Um layout, opcionalmente, pode referenciar uma ou mais *seções*, chamando `RenderSection`. As seções fornecem uma maneira de organizar o local em que determinados elementos da página devem ser colocados. Cada chamada a `RenderSection` pode especificar se essa seção é obrigatória ou opcional:
 
 ```html
-@section Scripts {
-    @RenderSection("Scripts", required: false)
-}
+<script type="text/javascript" src="~/scripts/global.js"></script>
+
+@RenderSection("Scripts", required: false)
 ```
 
 Se uma seção obrigatória não for encontrada, uma exceção será gerada. As exibições individuais especificam o conteúdo a ser renderizado em uma seção usando a sintaxe Razor `@section`. Se uma página ou exibição definir uma seção, ela precisará ser renderizada (ou ocorrerá um erro).
@@ -79,7 +79,7 @@ Uma definição `@section` de exemplo na exibição do Razor Pages:
 
 ```html
 @section Scripts {
-     <script type="text/javascript" src="/scripts/main.js"></script>
+     <script type="text/javascript" src="~/scripts/main.js"></script>
 }
 ```
 

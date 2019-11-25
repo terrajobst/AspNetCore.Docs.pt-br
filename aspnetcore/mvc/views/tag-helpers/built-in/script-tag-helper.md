@@ -6,12 +6,12 @@ description: Descubra os atributos auxiliares de marca de script ASP.NET Core e 
 ms.custom: mvc
 ms.date: 12/18/2018
 uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
-ms.openlocfilehash: 5f2fb8a45048804afa8aff2989cd53489e45a33b
-ms.sourcegitcommit: fae6f0e253f9d62d8f39de5884d2ba2b4b2a6050
+ms.openlocfilehash: c3d9148bd62dcc045873cc3a72884ae458349d70
+ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/25/2019
-ms.locfileid: "71256494"
+ms.lasthandoff: 11/22/2019
+ms.locfileid: "74317116"
 ---
 # <a name="script-tag-helper-in-aspnet-core"></a>Auxiliar de marca de script no ASP.NET Core
 
@@ -23,43 +23,28 @@ O [auxiliar de marca de script](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptT
 
 O auxiliar de marca de script permite que você especifique uma CDN para o arquivo de script e um fallback quando a CDN não estiver disponível. O auxiliar de marca de script fornece a vantagem de desempenho de uma CDN com a robustez da hospedagem local.
 
-A marcação Razor a seguir mostra `script` o elemento de um arquivo de layout criado com o modelo de aplicativo Web ASP.NET Core:
+A marcação Razor a seguir mostra um elemento `script` com um fallback:
 
-[!code-html[](link-tag-helper/sample/_Layout.cshtml?name=snippet2)]
-
-O seguinte é semelhante ao HTML renderizado do código anterior (em um ambiente que não é de desenvolvimento):
-
-[!code-csharp[](link-tag-helper/sample/HtmlPage2.html)]
-
-No código anterior, o auxiliar de marca de script gerou o segundo elemento `<script>  (window.jQuery || document.write(`script (), que testa `window.jQuery`o para. Se `window.jQuery` não for encontrado, `document.write(` o executará e criará um script 
+```HTML
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+        asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+        asp-fallback-test="window.jQuery"
+        crossorigin="anonymous"
+        integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+</script>
+```
 
 ## <a name="commonly-used-script-tag-helper-attributes"></a>Atributos auxiliares de marca de script comumente usados
 
 Consulte [auxiliar de marca de script](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper) para todos os atributos, propriedades e métodos auxiliares de marca de script.
 
-### <a name="href"></a>{1&gt;href&lt;1}
+### <a name="asp-fallback-test"></a>ASP – teste de fallback
 
-Endereço preferencial do recurso vinculado. O endereço é passado para o HTML gerado em todos os casos.
+O método de script definido no script primário a ser usado para o teste de fallback. Para obter mais informações, consulte <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackTestExpression>.
 
-### <a name="asp-fallback-href"></a>ASP-fallback-href
+### <a name="asp-fallback-src"></a>ASP-fallback-src
 
-A URL de uma folha de estilos CSS para fazer fallback no caso em que a URL primária falhar.
-
-### <a name="asp-fallback-test-class"></a>ASP-fallback-Test-Class
-
-O nome da classe definida na folha de estilos a ser usada para o teste de fallback. Para obter mais informações, consulte <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestClass>.
-
-### <a name="asp-fallback-test-property"></a>ASP-fallback-Test-Property
-
-O nome da propriedade CSS a ser usado para o teste de fallback. Para obter mais informações, consulte <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestProperty>.
-
-### <a name="asp-fallback-test-value"></a>ASP-fallback-Test-Value
-
-O valor da propriedade CSS a ser usado para o teste de fallback. Para obter mais informações, consulte <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestValue>.
-
-### <a name="asp-fallback-test-value"></a>ASP-fallback-Test-Value
-
-O valor da propriedade CSS a ser usado para o teste de fallback. Para obter mais informações, consulte <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestValue>.
+A URL de uma marca de script para fazer fallback no caso do primário falhar. Para obter mais informações, consulte <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrc>.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

@@ -8,8 +8,6 @@
 
 **[Auxiliar de marcação de ambiente](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper)**
 
-**[FormActionTagHelper](xref:mvc/views/working-with-forms#the-form-action-tag-helper)**
-
 **[Auxiliar de marcação de formulário](xref:mvc/views/working-with-forms#the-form-tag-helper)**
 
 **[Auxiliar de marcação de ação de formulário](xref:mvc/views/working-with-forms#the-form-action-tag-helper)**
@@ -20,13 +18,11 @@
 
 **[Auxiliar de marcação de rótulo](xref:mvc/views/working-with-forms#the-label-tag-helper)**
 
-**[LinkTagHelper](xref:mvc/views/tag-helpers/builtin-th/link-tag-helper)**
-
-[comment]: **[OptionTagHelper](xref:mvc/views/tag-helpers/builtin-th/option-tag-helper)**
-
-**[ScriptTagHelper](xref:mvc/views/tag-helpers/builtin-th/script-tag-helper)**
+**[Auxiliar de marca de link](xref:mvc/views/tag-helpers/builtin-th/link-tag-helper)**
 
 **[Auxiliar de marcação parcial](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)**
+
+**[Auxiliar de marca de script](xref:mvc/views/tag-helpers/builtin-th/script-tag-helper)**
 
 **[Selecionar o auxiliar de marcação](xref:mvc/views/working-with-forms#the-select-tag-helper)**
 

@@ -5,32 +5,32 @@ description: Aprenda a implementar tarefas em segundo plano com serviços hosped
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2019
+ms.date: 11/19/2019
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: 0fdf503e4a5f6f73d5488261707180cfb5967492
-ms.sourcegitcommit: 231780c8d7848943e5e9fd55e93f437f7e5a371d
+ms.openlocfilehash: da3c2679005714a3d82de94cf3bc3c809aa3500d
+ms.sourcegitcommit: 8157e5a351f49aeef3769f7d38b787b4386aad5f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2019
-ms.locfileid: "74115946"
+ms.lasthandoff: 11/20/2019
+ms.locfileid: "74239727"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Tarefas em segundo plano com serviços hospedados no ASP.NET Core
 
-De [Luke Latham](https://github.com/guardrex) e [Jeow li Huan](https://github.com/huan086)
+By [Luke Latham](https://github.com/guardrex) and [Jeow Li Huan](https://github.com/huan086)
 
 ::: moniker range=">= aspnetcore-3.0"
 
 No ASP.NET Core, as tarefas em segundo plano podem ser implementadas como *serviços hospedados*. Um serviço hospedado é uma classe com lógica de tarefa em segundo plano que implementa a interface <xref:Microsoft.Extensions.Hosting.IHostedService>. Este tópico fornece três exemplos de serviço hospedado:
 
 * Tarefa em segundo plano que é executada com um temporizador.
-* Serviço hospedado que ativa um [serviço com escopo](xref:fundamentals/dependency-injection#service-lifetimes). O serviço com escopo pode usar [injeção de dependência (di)](xref:fundamentals/dependency-injection).
+* Serviço hospedado que ativa um [serviço com escopo](xref:fundamentals/dependency-injection#service-lifetimes). The scoped service can use [dependency injection (DI)](xref:fundamentals/dependency-injection).
 * Tarefas em segundo plano na fila que são executadas sequencialmente.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="worker-service-template"></a>Modelo de serviço de trabalho
 
-O modelo de Serviço de Trabalho do ASP.NET Core fornece um ponto inicial para escrever aplicativos de serviço de execução prolongada. Um aplicativo criado a partir do modelo de serviço de trabalho especifica o SDK do trabalhador em seu arquivo de projeto:
+O modelo de Serviço de Trabalho do ASP.NET Core fornece um ponto inicial para escrever aplicativos de serviço de execução prolongada. An app created from the Worker Service template specifies the Worker SDK in its project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Worker">
@@ -42,20 +42,20 @@ Para usar o modelo como base para um aplicativo de serviços hospedados:
 
 ## <a name="package"></a>Pacote
 
-Um aplicativo baseado no modelo de serviço de trabalho usa o SDK do `Microsoft.NET.Sdk.Worker` e tem uma referência de pacote explícita para o pacote [Microsoft. Extensions. Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) . Por exemplo, consulte o arquivo de projeto do aplicativo de exemplo (*BackgroundTasksSample. csproj*).
+An app based on the Worker Service template uses the `Microsoft.NET.Sdk.Worker` SDK and has an explicit package reference to the [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) package. For example, see the sample app's project file (*BackgroundTasksSample.csproj*).
 
-Para aplicativos Web que usam o SDK do `Microsoft.NET.Sdk.Web`, o pacote [Microsoft. Extensions. Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) é referenciado implicitamente da estrutura compartilhada. Uma referência de pacote explícita no arquivo de projeto do aplicativo não é necessária.
+For web apps that use the `Microsoft.NET.Sdk.Web` SDK, the [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) package is referenced implicitly from the shared framework. An explicit package reference in the app's project file isn't required.
 
 ## <a name="ihostedservice-interface"></a>Interface IHostedService
 
-A interface <xref:Microsoft.Extensions.Hosting.IHostedService> define dois métodos para objetos que são gerenciados pelo host:
+The <xref:Microsoft.Extensions.Hosting.IHostedService> interface defines two methods for objects that are managed by the host:
 
-* [StartAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*) &ndash; `StartAsync` contém a lógica para iniciar a tarefa em segundo plano. `StartAsync` é chamado *antes*de:
+* [StartAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*) &ndash; `StartAsync` contém a lógica para iniciar a tarefa em segundo plano. `StartAsync` is called *before*:
 
-  * O pipeline de processamento de solicitação do aplicativo está configurado (`Startup.Configure`).
-  * O servidor é iniciado e [IApplicationLifetime. ApplicationStarted](xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted*) é disparado.
+  * The app's request processing pipeline is configured (`Startup.Configure`).
+  * The server is started and [IApplicationLifetime.ApplicationStarted](xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStarted*) is triggered.
 
-  O comportamento padrão pode ser alterado para que o `StartAsync` do serviço hospedado seja executado depois que o pipeline do aplicativo tiver sido configurado e `ApplicationStarted` for chamado. Para alterar o comportamento padrão, adicione o serviço hospedado (`VideosWatcher` no exemplo a seguir) depois de chamar `ConfigureWebHostDefaults`:
+  The default behavior can be changed so that the hosted service's `StartAsync` runs after the app's pipeline has been configured and `ApplicationStarted` is called. To change the default behavior, add the hosted service (`VideosWatcher` in the following example) after calling `ConfigureWebHostDefaults`:
 
   ```csharp
   using Microsoft.AspNetCore.Hosting;
@@ -100,14 +100,13 @@ A interface <xref:Microsoft.Extensions.Hosting.IHostedService> define dois méto
 
 O serviço hospedado é ativado uma única vez na inicialização do aplicativo e desligado normalmente durante o desligamento do aplicativo. Se um erro for gerado durante a execução da tarefa em segundo plano, `Dispose` deverá ser chamado mesmo se `StopAsync` não for chamado.
 
-## <a name="backgroundservice"></a>BackgroundService
+## <a name="backgroundservice-base-class"></a>BackgroundService base class
 
-`BackgroundService` é uma classe base para implementar um <xref:Microsoft.Extensions.Hosting.IHostedService> de longa execução. `BackgroundService` fornece o método abstract `ExecuteAsync(CancellationToken stoppingToken)` para conter a lógica do serviço. O `stoppingToken` é disparado quando [IHostedService. StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) é chamado. A implementação desse método retorna um `Task` que representa o tempo de vida inteiro do serviço em segundo plano.
+<xref:Microsoft.Extensions.Hosting.BackgroundService> is a base class for implementing a long running <xref:Microsoft.Extensions.Hosting.IHostedService>.
 
-Além disso, *opcionalmente* , substitua os métodos definidos em `IHostedService` para executar o código de inicialização e desligamento para seu serviço:
+[ExecuteAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.ExecuteAsync*) is called to run the background service. The implementation returns a <xref:System.Threading.Tasks.Task> that represents the entire lifetime of the background service. No further services are started until [ExecuteAsync becomes asynchronous](https://github.com/aspnet/Extensions/issues/2149), such as by calling `await`. Avoid performing long, blocking initialization work in `ExecuteAsync`. The host blocks in [StopAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.StopAsync*) waiting for `ExecuteAsync` to complete.
 
-* `StopAsync(CancellationToken cancellationToken)` &ndash; `StopAsync` é chamado quando o host do aplicativo está executando um desligamento normal. A `cancellationToken` será sinalizada quando o host decidir forçar o encerramento do serviço. Se esse método for substituído, você **deverá** chamar (e `await`) o método da classe base para garantir que o serviço seja desligado corretamente.
-* `StartAsync(CancellationToken cancellationToken)` &ndash; `StartAsync` é chamado para iniciar o serviço em segundo plano. O `cancellationToken` será sinalizado se o processo de inicialização for interrompido. A implementação retorna um `Task` que representa o processo de inicialização para o serviço. Nenhum serviço adicional será iniciado até que esse `Task` seja concluído. Se esse método for substituído, você **deverá** chamar (e `await`) o método da classe base para garantir que o serviço seja iniciado corretamente.
+The cancellation token is triggered when [IHostedService.StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) is called. Your implementation of `ExecuteAsync` should finish promptly when the cancellation token is fired in order to gracefully shut down the service. Otherwise, the service ungracefully shuts down at the shutdown timeout. For more information, see the [IHostedService interface](#ihostedservice-interface) section.
 
 ## <a name="timed-background-tasks"></a>Tarefas em segundo plano temporizadas
 
@@ -115,54 +114,54 @@ Uma tarefa em segundo plano temporizada usa a classe [System.Threading.Timer](xr
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/TimedHostedService.cs?name=snippet1&highlight=16-18,34,41)]
 
-O serviço é registrado em `IHostBuilder.ConfigureServices` (*Program.cs*) com o método de extensão `AddHostedService`:
+The service is registered in `IHostBuilder.ConfigureServices` (*Program.cs*) with the `AddHostedService` extension method:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet1)]
 
 ## <a name="consuming-a-scoped-service-in-a-background-task"></a>Consumindo um serviço com escopo em uma tarefa em segundo plano
 
-Para usar [serviços com escopo](xref:fundamentals/dependency-injection#service-lifetimes) dentro de um `BackgroundService`, crie um escopo. Por padrão, nenhum escopo é criado para um serviço hospedado.
+To use [scoped services](xref:fundamentals/dependency-injection#service-lifetimes) within a [BackgroundService](#backgroundservice-base-class), create a scope. Por padrão, nenhum escopo é criado para um serviço hospedado.
 
 O serviço da tarefa em segundo plano com escopo contém a lógica da tarefa em segundo plano. No exemplo a seguir:
 
-* O serviço é assíncrono. O método `DoWork` retorna um `Task`. Para fins de demonstração, um atraso de dez segundos é aguardado no método `DoWork`.
-* Um <xref:Microsoft.Extensions.Logging.ILogger> é injetado no serviço.
+* The service is asynchronous. O método `DoWork` retorna um `Task`. For demonstration purposes, a delay of ten seconds is awaited in the `DoWork` method.
+* An <xref:Microsoft.Extensions.Logging.ILogger> is injected into the service.
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ScopedProcessingService.cs?name=snippet1)]
 
-O serviço hospedado cria um escopo para resolver o serviço de tarefa em segundo plano com escopo para chamar seu método de `DoWork`. `DoWork` retorna um `Task`, que é aguardado em `ExecuteAsync`:
+The hosted service creates a scope to resolve the scoped background task service to call its `DoWork` method. `DoWork` returns a `Task`, which is awaited in `ExecuteAsync`:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=19,22-35)]
 
-Os serviços são registrados em `IHostBuilder.ConfigureServices` (*Program.cs*). O serviço hospedado está registrado com o método de extensão `AddHostedService`:
+The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). The hosted service is registered with the `AddHostedService` extension method:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet2)]
 
 ## <a name="queued-background-tasks"></a>Tarefas em segundo plano na fila
 
-Uma fila de tarefas em segundo plano é baseada no <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> do .NET 4. x ([agendado provisoriamente para ser interno para ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
+A background task queue is based on the .NET 4.x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> ([tentatively scheduled to be built-in for ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 
-No exemplo a seguir `QueueHostedService`:
+In the following `QueueHostedService` example:
 
-* O método `BackgroundProcessing` retorna um `Task`, que é aguardado em `ExecuteAsync`.
-* As tarefas em segundo plano na fila são removidas da fila e executadas em `BackgroundProcessing`.
-* Os itens de trabalho são aguardados antes de o serviço parar em `StopAsync`.
+* The `BackgroundProcessing` method returns a `Task`, which is awaited in `ExecuteAsync`.
+* Background tasks in the queue are dequeued and executed in `BackgroundProcessing`.
+* Work items are awaited before the service stops in `StopAsync`.
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/QueuedHostedService.cs?name=snippet1&highlight=28-29,33)]
 
-Um serviço de `MonitorLoop` trata das tarefas de enfileiramento para o serviço hospedado sempre que a chave de `w` é selecionada em um dispositivo de entrada:
+A `MonitorLoop` service handles enqueuing tasks for the hosted service whenever the `w` key is selected on an input device:
 
-* O `IBackgroundTaskQueue` é injetado no serviço `MonitorLoop`.
-* `IBackgroundTaskQueue.QueueBackgroundWorkItem` é chamado para enfileirar um item de trabalho.
-* O item de trabalho simula uma tarefa em segundo plano de execução longa:
-  * Três atrasos de 5 segundos são executados (`Task.Delay`).
-  * Uma instrução `try-catch` intercepta <xref:System.OperationCanceledException> se a tarefa for cancelada.
+* The `IBackgroundTaskQueue` is injected into the `MonitorLoop` service.
+* `IBackgroundTaskQueue.QueueBackgroundWorkItem` is called to enqueue a work item.
+* The work item simulates a long-running background task:
+  * Three 5-second delays are executed (`Task.Delay`).
+  * A `try-catch` statement traps <xref:System.OperationCanceledException> if the task is cancelled.
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/MonitorLoop.cs?name=snippet_Monitor&highlight=7,33)]
 
-Os serviços são registrados em `IHostBuilder.ConfigureServices` (*Program.cs*). O serviço hospedado está registrado com o método de extensão `AddHostedService`:
+The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). The hosted service is registered with the `AddHostedService` extension method:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
 
@@ -173,7 +172,7 @@ Os serviços são registrados em `IHostBuilder.ConfigureServices` (*Program.cs*)
 No ASP.NET Core, as tarefas em segundo plano podem ser implementadas como *serviços hospedados*. Um serviço hospedado é uma classe com lógica de tarefa em segundo plano que implementa a interface <xref:Microsoft.Extensions.Hosting.IHostedService>. Este tópico fornece três exemplos de serviço hospedado:
 
 * Tarefa em segundo plano que é executada com um temporizador.
-* Serviço hospedado que ativa um [serviço com escopo](xref:fundamentals/dependency-injection#service-lifetimes). O serviço com escopo pode usar [injeção de dependência (di)](xref:fundamentals/dependency-injection)
+* Serviço hospedado que ativa um [serviço com escopo](xref:fundamentals/dependency-injection#service-lifetimes). The scoped service can use [dependency injection (DI)](xref:fundamentals/dependency-injection)
 * Tarefas em segundo plano na fila que são executadas sequencialmente.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([como baixar](xref:index#how-to-download-a-sample))
@@ -234,11 +233,11 @@ Os serviços são registrados em `Startup.ConfigureServices`. A implementação 
 
 ## <a name="queued-background-tasks"></a>Tarefas em segundo plano na fila
 
-Uma fila de tarefas em segundo plano é baseada no <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> .NET Framework 4. x ([provisoriamente agendado para ser interno para ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
+A background task queue is based on the .NET Framework 4.x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> ([tentatively scheduled to be built-in for ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 
-No `QueueHostedService`, as tarefas em segundo plano na fila são removidas da fila e executadas como um <xref:Microsoft.Extensions.Hosting.BackgroundService>, que é uma classe base para implementar um `IHostedService` de longa execução:
+No `QueueHostedService`, as tarefas em segundo plano na fila são removidas da fila e executadas como um [BackgroundService](#backgroundservice-base-class), que é uma classe base para implementar um `IHostedService` de longa execução:
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Services/QueuedHostedService.cs?name=snippet1&highlight=21,25)]
 
@@ -253,7 +252,7 @@ Na classe de modelo de página de índice:
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Pages/Index.cshtml.cs?name=snippet1)]
 
-Quando o botão **Adicionar Tarefa** é selecionado na página de índice, o método `OnPostAddTask` é executado. `QueueBackgroundWorkItem` é chamado para enfileirar um item de trabalho:
+Quando o botão **Adicionar Tarefa** é selecionado na página de índice, o método `OnPostAddTask` é executado. `QueueBackgroundWorkItem` is called to enqueue a work item:
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Pages/Index.cshtml.cs?name=snippet2)]
 

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 03/18/2019
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 870ce2eb28f384b380cc1178842325dc28199f09
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
-ms.translationtype: HT
+ms.openlocfilehash: 15f94fd1c619e9f69c5783f664eafc9ca28f86f9
+ms.sourcegitcommit: 8157e5a351f49aeef3769f7d38b787b4386aad5f
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67814984"
+ms.lasthandoff: 11/20/2019
+ms.locfileid: "74239853"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Auxiliares de Marca no ASP.NET Core
 
@@ -27,7 +27,7 @@ Os Auxiliares de Marca permitem que o código do lado do servidor participe da c
 
 **Um ambiente avançado do IntelliSense para criação do HTML e da marcação do Razor** Isso é um nítido contraste com Auxiliares HTML, a abordagem anterior para a criação do lado do servidor de marcação nas exibições do Razor. [Comparação entre Auxiliares de Marca e Auxiliares HTML](#tag-helpers-compared-to-html-helpers) explica as diferenças mais detalhadamente. [Suporte do IntelliSense para Auxiliares de Marca](#intellisense-support-for-tag-helpers) explica o ambiente do IntelliSense. Até mesmo desenvolvedores experientes com a sintaxe Razor do C# são mais produtivos usando Auxiliares de Marca do que escrevendo a marcação do Razor do C#.
 
-**Uma maneira de fazer com que você fique mais produtivo e possa produzir um código mais robusto, confiável e possível de ser mantido usando as informações apenas disponíveis no servidor** Por exemplo, historicamente, o mantra da atualização de imagens era alterar o nome da imagem quando a imagem era alterada. As imagens devem ser armazenadas em cache de forma agressiva por motivos de desempenho e, a menos que você altere o nome de uma imagem, você corre o risco de os clientes obterem uma cópia obsoleta. Historicamente, depois que uma imagem era editada, o nome precisava ser alterado e cada referência à imagem no aplicativo Web precisava ser atualizada. Não apenas isso exige muito trabalho, mas também é propenso a erros (você pode perder uma referência, inserir a cadeia de caracteres incorreta acidentalmente, etc.) O `ImageTagHelper` interno pode fazer isso para você automaticamente. O `ImageTagHelper` pode acrescentar um número de versão ao nome da imagem, de modo que sempre que a imagem é alterada, o servidor gera automaticamente uma nova versão exclusiva para a imagem. Os clientes têm a garantia de obter a imagem atual. Basicamente, essa economia na robustez e no trabalho é obtida gratuitamente com o `ImageTagHelper`.
+**Uma maneira de fazer com que você fique mais produtivo e possa produzir um código mais robusto, confiável e possível de ser mantido usando as informações apenas disponíveis no servidor** Por exemplo, historicamente, o mantra da atualização de imagens era alterar o nome da imagem quando a imagem era alterada. As imagens devem ser armazenadas em cache de forma agressiva por motivos de desempenho e, a menos que você altere o nome de uma imagem, você corre o risco de os clientes obterem uma cópia obsoleta. Historicamente, depois que uma imagem era editada, o nome precisava ser alterado e cada referência à imagem no aplicativo Web precisava ser atualizada. Not only is this very labor intensive, it's also error prone (you could miss a reference, accidentally enter the wrong string, etc.) The built-in `ImageTagHelper` can do this for you automatically. O `ImageTagHelper` pode acrescentar um número de versão ao nome da imagem, de modo que sempre que a imagem é alterada, o servidor gera automaticamente uma nova versão exclusiva para a imagem. Os clientes têm a garantia de obter a imagem atual. Basicamente, essa economia na robustez e no trabalho é obtida gratuitamente com o `ImageTagHelper`.
 
 A maioria dos auxiliares de marca internos é direcionada a elementos HTML padrão e fornece atributos do lado do servidor para o elemento. Por exemplo, o elemento `<input>` usado em várias exibições na pasta *Exibição/Conta* contém o atributo `asp-for`. Esse atributo extrai o nome da propriedade do modelo especificado no HTML renderizado. Considere uma exibição Razor com o seguinte modelo:
 
@@ -97,7 +97,7 @@ Conforme mencionado anteriormente, a adição da diretiva `@addTagHelper` ao arq
 
 O `@removeTagHelper` tem os mesmos dois parâmetros `@addTagHelper` e remove um Auxiliar de Marca adicionado anteriormente. Por exemplo, `@removeTagHelper` aplicado a uma exibição específica remove o Auxiliar de Marca especificado da exibição. O uso de `@removeTagHelper` em um arquivo *Views/Folder/_ViewImports.cshtml* remove o Auxiliar de Marca especificado de todas as exibições em *Folder*.
 
-### <a name="controlling-tag-helper-scope-with-the-viewimportscshtml-file"></a>Controlando o escopo do Auxiliar de Marca com o arquivo *_ViewImports.cshtml*
+### <a name="controlling-tag-helper-scope-with-the-_viewimportscshtml-file"></a>Controlando o escopo do Auxiliar de Marca com o arquivo *_ViewImports.cshtml*
 
 Adicione um *_ViewImports.cshtml* a qualquer pasta de exibição e o mecanismo de exibição aplicará as diretivas desse arquivo e do arquivo *Views/_ViewImports.cshtml*. Se você adicionou um arquivo *Views/Home/_ViewImports.cshtml* vazio às exibições *Home*, não haverá nenhuma alteração porque o arquivo *_ViewImports.cshtml* é aditivo. As diretivas `@addTagHelper` que você adicionar ao arquivo *Views/Home/_ViewImports.cshtml* (que não estão no arquivo *Views/_ViewImports.cshtml* padrão) exporão os Auxiliares de Marca às exibições somente na pasta *Home*.
 
@@ -132,6 +132,22 @@ As mesmas regras de hierarquia que se aplicam a `@addTagHelper` também se aplic
 ## <a name="self-closing-tag-helpers"></a>Auxiliares de Marca com autofechamento
 
 Muitos Auxiliares de Marca não podem ser usados como marcações com autofechamento. Alguns Auxiliares de Marca são projetados para serem marcações com autofechamento. Usar um Auxiliar de Marca que não foi projetado para ser de autofechamento suprime a saída renderizada. Um Auxiliar de Marca com autofechamento resulta em uma marca com autofechamento na saída renderizada. Para obter mais informações, confira [esta observação](xref:mvc/views/tag-helpers/authoring#self-closing) em [Criando Auxiliares de Marca](xref:mvc/views/tag-helpers/authoring).
+
+## <a name="c-in-tag-helpers-attributedeclaration"></a>C# in Tag Helpers attribute/declaration 
+
+Tag Helpers do not allow C# in the element's attribute or tag declaration area. For example, the following code is not valid:
+
+```cshtml
+<input asp-for="LastName"  
+       @(Model?.LicenseId == null ? "disabled" : string.Empty) />
+```
+
+The preceding code can be written as:
+
+```cshtml
+<input asp-for="LastName" 
+       disabled="@(Model?.LicenseId == null)" />
+```
 
 ## <a name="intellisense-support-for-tag-helpers"></a>Suporte do IntelliSense para Auxiliares de Marca
 

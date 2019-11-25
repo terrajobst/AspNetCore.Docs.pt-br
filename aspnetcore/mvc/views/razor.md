@@ -3,14 +3,14 @@ title: Referência da sintaxe Razor para ASP.NET Core
 author: rick-anderson
 description: Saiba mais sobre a sintaxe de marcação Razor para inserir código baseado em servidor em páginas da Web.
 ms.author: riande
-ms.date: 09/28/2019
+ms.date: 11/09/2019
 uid: mvc/views/razor
-ms.openlocfilehash: d8d686c23ea61950947798f213c9846058f1812e
-ms.sourcegitcommit: 4818385c3cfe0805e15138a2c1785b62deeaab90
+ms.openlocfilehash: dea1cd8986757b0bafab9ba9e8aa358a57a6b5eb
+ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/09/2019
-ms.locfileid: "73896904"
+ms.lasthandoff: 11/22/2019
+ms.locfileid: "74317402"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -652,7 +652,7 @@ Para o exemplo de Razor Pages mostrado na tabela a seguir:
 * *Pages/_ViewImports.cshtml* contém `@namespace Hello.World`.
 * Cada página tem `Hello.World` como a raiz do namespace.
 
-| Página                                        | espaço de nome                             |
+| Página                                        | Namespace                             |
 | ------------------------------------------- | ------------------------------------- |
 | *Pages/Index.cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
@@ -664,7 +664,7 @@ Quando vários arquivos de importação têm uma diretiva `@namespace`, o arquiv
 
 Se a pasta *EvenMorePages* no exemplo anterior tiver um arquivo de importações com `@namespace Another.Planet` (ou se o arquivo *Pages/MorePages/EvenMorePages/Page.cshtml* contiver `@namespace Another.Planet`), o resultado será mostrado na tabela a seguir.
 
-| Página                                        | espaço de nome               |
+| Página                                        | Namespace               |
 | ------------------------------------------- | ----------------------- |
 | *Pages/Index.cshtml*                        | `Hello.World`           |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
@@ -721,11 +721,31 @@ Nos [componentes de Razor](xref:blazor/components), `@using` também controla qu
 
 A vinculação de dados nos componentes é realizada com o atributo `@bind`. Para obter mais informações, consulte <xref:blazor/components#data-binding>.
 
-### <a name="onevent"></a>\@on{event}
+### <a name="onevent"></a>\@no {EVENT}
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
 O Razor fornece recursos de manipulação de eventos para os componentes. Para obter mais informações, consulte <xref:blazor/components#event-handling>.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.1"
+
+### <a name="oneventpreventdefault"></a>\@em {EVENT}:p reventDefault
+
+*Este cenário aplica-se somente a componentes do Razor (.razor).*
+
+Impede a ação padrão para o evento.
+
+### <a name="oneventstoppropagation"></a>\@em {EVENT}: stopPropagation
+
+*Este cenário aplica-se somente a componentes do Razor (.razor).*
+
+Interrompe a propagação do evento.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 ### <a name="key"></a>\@key
 
@@ -947,7 +967,7 @@ Em `Startup.ConfigureServices`, substitua o `RazorTemplateEngine` adicionado pel
 
 [!code-csharp[](razor/sample/Startup.cs?highlight=4&range=10-14)]
 
-Defina o ponto de interrupção `CustomTemplateEngine` na instrução `return csharpDocument;`. Quando a execução do programa for interrompida no ponto de interrupção, veja o valor de `generatedCode`.
+Defina o ponto de interrupção `return csharpDocument;` na instrução `CustomTemplateEngine`. Quando a execução do programa for interrompida no ponto de interrupção, veja o valor de `generatedCode`.
 
 ![Exibição do Visualizador de Texto de generatedCode](razor/_static/tvr.png)
 

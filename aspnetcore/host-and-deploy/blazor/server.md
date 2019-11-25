@@ -5,17 +5,17 @@ description: Saiba como hospedar e implantar um aplicativo do Blazor Server usan
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 11/21/2019
 no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/server
-ms.openlocfilehash: ad83c57f55c75d4a49656fa5d7046c32b0f049ff
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: b688d000f26c9b230d9fdee8423b3194145fe1aa
+ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963569"
+ms.lasthandoff: 11/22/2019
+ms.locfileid: "74317303"
 ---
 # <a name="host-and-deploy-opno-locblazor-server"></a>Hospedar e implantar o servidor de Blazor
 
@@ -55,11 +55,55 @@ os aplicativos do Blazor Server usam ASP.NET Core SignalR para se comunicar com 
 
 Blazor funciona melhor ao usar Websockets como transporte de SignalR devido a latência, confiabilidade e [segurança](xref:signalr/security)menores. A sondagem longa é usada pelo SignalR quando o WebSockets não está disponível ou quando o aplicativo é configurado explicitamente para usar a sondagem longa. Ao implantar no serviço Azure App, configure o aplicativo para usar Websockets nas configurações de portal do Azure para o serviço. Para obter detalhes sobre como configurar o aplicativo para Azure App serviço, consulte as [diretrizes de publicação deSignalR](xref:signalr/publish-to-azure-web-app).
 
+#### <a name="azure-opno-locsignalr-service"></a>Serviço de SignalR do Azure
+
 É recomendável usar o [serviço de SignalR do Azure](/azure/azure-signalr) para aplicativos do Blazor Server. O serviço permite escalar verticalmente um aplicativo do Blazor Server para um grande número de conexões de SignalR simultâneas. Além disso, o alcance global do serviço de SignalR e os data centers de alto desempenho auxiliam significativamente na redução da latência devido à geografia. Para configurar um aplicativo (e, opcionalmente, provisionar) o serviço de SignalR do Azure:
 
-* Crie um perfil de publicação de aplicativos do Azure no Visual Studio para o aplicativo Blazor Server.
-* Adicione a dependência do **serviço de SignalR do Azure** ao perfil. Se a assinatura do Azure não tiver uma instância de serviço de SignalR do Azure já existente para atribuir ao aplicativo, selecione **criar uma nova instância do serviço de SignalR do Azure** para provisionar uma nova instância de serviço.
-* Publicar o aplicativo no Azure.
+1. Habilite o serviço para dar suporte a *sessões adesivas*, em que os clientes são [redirecionados de volta para o mesmo servidor ao renderizar](xref:blazor/hosting-models#reconnection-to-the-same-server). Defina a opção `ServerStickyMode` ou o valor de configuração como `Required`. Normalmente, um aplicativo cria a configuração usando **uma** das seguintes abordagens:
+
+   * `Startup.ConfigureServices`:
+  
+     ```csharp
+     services.AddSignalR().AddAzureSignalR(options =>
+     {
+         options.ServerStickyMode = 
+             Microsoft.Azure.SignalR.ServerStickyMode.Required;
+     });
+     ```
+
+   * Configuração (use **uma** das seguintes abordagens):
+  
+     * *appsettings.json*:
+
+       ```json
+       "Azure:SignalR:ServerStickyMode": "Required"
+       ```
+
+     * A **configuração** do serviço de aplicativo > **configurações do aplicativo** na portal do Azure (**nome**: `Azure:SignalR:ServerStickyMode`, **valor**: `Required`).
+
+1. Crie um perfil de publicação de aplicativos do Azure no Visual Studio para o aplicativo Blazor Server.
+1. Adicione a dependência do **serviço de SignalR do Azure** ao perfil. Se a assinatura do Azure não tiver uma instância de serviço de SignalR do Azure já existente para atribuir ao aplicativo, selecione **criar uma nova instância do serviço de SignalR do Azure** para provisionar uma nova instância de serviço.
+1. Publicar o aplicativo no Azure.
+
+#### <a name="iis"></a>IIS
+
+Ao usar o IIS, as sessões adesivas são habilitadas com Application Request Routing. Para obter mais informações, consulte [balanceamento de carga http usando Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
+
+#### <a name="kubernetes"></a>Kubernetes
+
+Crie uma definição de entrada com as seguintes [anotações de kubernetes para sessões adesivas](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/):
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: <ingress-name>
+  annotations:
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "affinity"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "14400"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "14400"
+```
 
 ### <a name="measure-network-latency"></a>Medir latência de rede
 

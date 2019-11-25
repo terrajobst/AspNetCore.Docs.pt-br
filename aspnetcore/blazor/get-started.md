@@ -1,7 +1,7 @@
 ---
-title: Introdução ao ASP.NET Core Blazor
+title: Get started with ASP.NET Core Blazor
 author: guardrex
-description: Comece a usar o Blazor criando um aplicativo Blazor com as ferramentas de sua escolha.
+description: Get started with Blazor by building a Blazor app with the tooling of your choice.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
@@ -9,77 +9,77 @@ ms.date: 11/07/2019
 no-loc:
 - Blazor
 uid: blazor/get-started
-ms.openlocfilehash: 9b4aee0be30568f098c756e9ab4cb5298e9a049b
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 198093b37cb4f440eb7b520d18004304aea570a5
+ms.sourcegitcommit: 8157e5a351f49aeef3769f7d38b787b4386aad5f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963004"
+ms.lasthandoff: 11/20/2019
+ms.locfileid: "74239713"
 ---
-# <a name="get-started-with-aspnet-core-opno-locblazor"></a>Introdução ao ASP.NET Core Blazor
+# <a name="get-started-with-aspnet-core-opno-locblazor"></a>Get started with ASP.NET Core Blazor
 
 Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Introdução ao Blazor:
+Get started with Blazor:
 
 ::: moniker range=">= aspnetcore-3.1"
 
-1. Instale o [SDK da versão prévia do .NET Core 3,1](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+1. Install the [.NET Core 3.1 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-1. Instale o modelo [WebassemblyBlazor](xref:blazor/hosting-models#blazor-webassembly) executando o comando a seguir em um shell de comando. O [Microsoft. AspNetCore.Blazor. ](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/)O pacote de modelos tem uma versão de visualização enquanto Blazor Webassembly está em visualização.
+1. Install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template by running the following command in a command shell. The [Microsoft.AspNetCore.Blazor.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/) package has a preview version while Blazor WebAssembly is in preview.
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview2.19528.8
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview3.19555.2
    ```
 
-1. Siga as orientações para sua escolha de ferramentas:
+1. Follow the guidance for your choice of tooling:
 
    # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-   1 \. Instale o [Visual Studio 16,4 Preview 2 ou posterior](https://visualstudio.microsoft.com/vs/preview/) com a ASP.net e a carga de trabalho de **desenvolvimento Web** .
+   1\. Install [Visual Studio 16.4 Preview 2 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
-   2 \. Crie um novo projeto.
+   2\. Crie um novo projeto.
 
-   3 \. Selecione **Blazor aplicativo**. Selecione **Avançar**.
+   3\. Select **Blazor App**. Selecione **Avançar**.
 
-   4 \. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Confirme se a entrada de **local** está correta ou forneça um local para o projeto. Selecione **Criar**.
+   4\. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Confirm the **Location** entry is correct or provide a location for the project. Selecione **Criar**.
 
-   5 \. Para obter uma experiência de Webassembly Blazor, escolha o modelo de **aplicativoBlazor Webassembly** . Para obter uma experiência de Blazor Server, escolha o modelo de **aplicativoBlazor Server** . Selecione **Criar**. Para obter informações sobre os dois modelos de hospedagem Blazor, *Blazor Server* e *Blazor Webassembly*, consulte <xref:blazor/hosting-models>.
+   5\. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Selecione **Criar**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
-   6 \. Pressione **Ctrl**+**F5** para executar o aplicativo.
+   6\. Pressione **Ctrl**+**F5** para executar o aplicativo.
 
    > [!NOTE]
-   > Se você instalou a extensão do Blazor Visual Studio para uma versão prévia anterior do ASP.NET Core Blazor (visualização 6 ou anterior), você pode desinstalar a extensão. Instalar os modelos de Blazor em um shell de comando agora é suficiente para retonar os modelos no Visual Studio.
+   > If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor (Preview 6 or earlier), you can uninstall the extension. Installing the Blazor templates in a command shell is now sufficient to surface the templates in Visual Studio.
 
    # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-   1 \. Instalar o [Visual Studio Code](https://code.visualstudio.com/).
+   1\. Instalar o [Visual Studio Code](https://code.visualstudio.com/).
 
-   2 \. Instale o mais recente [ C# para a extensão de Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
+   2\. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
-   3 \. Para obter uma experiência de Webassembly Blazor, execute o seguinte comando em um shell de comando:
+   3\. For a Blazor WebAssembly experience, execute the following command in a command shell:
 
       ```dotnetcli
       dotnet new blazorwasm -o WebApplication1
       ```
 
-      Para obter uma experiência de Blazor Server, execute o seguinte comando em um shell de comando:
+      For a Blazor Server experience, execute the following command in a command shell:
 
       ```dotnetcli
       dotnet new blazorserver -o WebApplication1
       ```
 
-      Para obter informações sobre os dois modelos de hospedagem Blazor, *Blazor Server* e *Blazor Webassembly*, consulte <xref:blazor/hosting-models>.
+      For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
-   4 \. Abra a pasta *WebApplication1* em Visual Studio Code.
+   4\. Open the *WebApplication1* folder in Visual Studio Code.
 
-   5 \. Para um projeto do Blazor Server, o IDE solicita que você adicione ativos para compilar e depurar o projeto. Selecione **Sim** na barra superior.
+   5\. For a Blazor Server project, the IDE requests that you add assets to build and debug the project. Selecione **Sim** na barra superior.
 
-   6 \. Se estiver usando um aplicativo do Blazor Server, execute o aplicativo usando o depurador de Visual Studio Code. Se estiver usando um aplicativo Webassembly Blazor, execute `dotnet run` na pasta do projeto do aplicativo.
+   6\. If using a Blazor Server app, run the app using the Visual Studio Code debugger. If using a Blazor WebAssembly app, execute `dotnet run` from the app's project folder.
 
-   7 \. Em um navegador, navegue até `https://localhost:5001`.
+   7\. Em um navegador, navegue até `https://localhost:5001`.
 
    <!--
 
@@ -103,7 +103,7 @@ Introdução ao Blazor:
 
    # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
-   Para obter uma experiência de Webassembly Blazor, execute os seguintes comandos em um shell de comando:
+   For a Blazor WebAssembly experience, execute the following commands in a command shell:
 
    ```dotnetcli
    dotnet new blazorwasm -o WebApplication1
@@ -111,7 +111,7 @@ Introdução ao Blazor:
    dotnet run
    ```
 
-   Para obter uma experiência de Blazor Server, execute os seguintes comandos em um shell de comando:
+   For a Blazor Server experience, execute the following commands in a command shell:
 
    ```dotnetcli
    dotnet new blazorserver -o WebApplication1
@@ -119,7 +119,7 @@ Introdução ao Blazor:
    dotnet run
    ```
 
-   Para obter informações sobre os dois modelos de hospedagem Blazor, *Blazor Server* e *Blazor Webassembly*, consulte <xref:blazor/hosting-models>.
+   For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
    Em um navegador, navegue até `https://localhost:5001`.
 
@@ -129,62 +129,62 @@ Introdução ao Blazor:
 
 ::: moniker range="< aspnetcore-3.1"
 
-1. Instale a versão mais recente do [SDK do .NET Core 3,0](https://dotnet.microsoft.com/download/dotnet-core/3.0) .
+1. Install the latest [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
 
-1. Opcionalmente, instale o modelo [WebassemblyBlazor](xref:blazor/hosting-models#blazor-webassembly) instalando o [SDK do .NET Core 3,1 Preview](https://dotnet.microsoft.com/download/dotnet-core/3.1) e, em seguida, executando o seguinte comando em um shell de comando:
+1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template by installing the [.NET Core 3.1 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1) and then running the following command in a command shell:
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview2.19528.8
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview3.19555.2
    ```
 
-1. Siga as orientações para sua escolha de ferramentas:
+1. Follow the guidance for your choice of tooling:
 
    # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-   1 \. Instale o [Visual Studio](https://visualstudio.com/vs/) mais recente com a ASP.net e a carga de trabalho de **desenvolvimento Web** .
+   1\. Install the latest [Visual Studio](https://visualstudio.com/vs/) with the **ASP.NET and web development** workload.
 
-   2 \. Opcionalmente, instale o [Visual Studio 16,4 Preview 2 ou posterior](https://visualstudio.microsoft.com/vs/preview/) com o ASP.net e a carga de trabalho de **desenvolvimento Web** para o desenvolvimento de aplicativos Webassembly Blazor.
+   2\. Optionally install [Visual Studio 16.4 Preview 2 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload for Blazor WebAssembly app development.
 
-   3 \. Crie um novo projeto.
+   3\. Crie um novo projeto.
 
-   4 \. Selecione **Blazor aplicativo**. Selecione **Avançar**.
+   4\. Select **Blazor App**. Selecione **Avançar**.
 
-   5 \. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Confirme se a entrada de **local** está correta ou forneça um local para o projeto. Selecione **Criar**.
+   5\. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Confirm the **Location** entry is correct or provide a location for the project. Selecione **Criar**.
 
-   6 \. Para obter uma experiência de Webassembly Blazor, escolha o modelo de **aplicativoBlazor Webassembly** . Para obter uma experiência de Blazor Server, escolha o modelo de **aplicativoBlazor Server** . Selecione **Criar**. Para obter informações sobre os dois modelos de hospedagem Blazor, *Blazor Server* e *Blazor Webassembly*, consulte <xref:blazor/hosting-models>.
+   6\. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Selecione **Criar**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
-   7 \. Pressione **F5** para executar o aplicativo.
+   7\. Pressione **F5** para executar o aplicativo.
 
    > [!NOTE]
-   > Se você instalou a extensão do Blazor Visual Studio para uma versão prévia anterior do ASP.NET Core Blazor (visualização 6 ou anterior), você pode desinstalar a extensão. Instalar os modelos de Blazor em um shell de comando agora é suficiente para retonar os modelos no Visual Studio.
+   > If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor (Preview 6 or earlier), you can uninstall the extension. Installing the Blazor templates in a command shell is now sufficient to surface the templates in Visual Studio.
 
    # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-   1 \. Instalar o [Visual Studio Code](https://code.visualstudio.com/).
+   1\. Instalar o [Visual Studio Code](https://code.visualstudio.com/).
 
-   2 \. Instale o mais recente [ C# para a extensão de Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
+   2\. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
-   3 \. Para obter uma experiência de Webassembly Blazor, execute o seguinte comando em um shell de comando:
+   3\. For a Blazor WebAssembly experience, execute the following command in a command shell:
 
       ```dotnetcli
       dotnet new blazorwasm -o WebApplication1
       ```
 
-      Para obter uma experiência de Blazor Server, execute o seguinte comando em um shell de comando:
+      For a Blazor Server experience, execute the following command in a command shell:
 
       ```dotnetcli
       dotnet new blazorserver -o WebApplication1
       ```
 
-      Para obter informações sobre os dois modelos de hospedagem Blazor, *Blazor Server* e *Blazor Webassembly*, consulte <xref:blazor/hosting-models>.
+      For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
-   4 \. Abra a pasta *WebApplication1* em Visual Studio Code.
+   4\. Open the *WebApplication1* folder in Visual Studio Code.
 
-   5 \. Para um projeto do Blazor Server, o IDE solicita que você adicione ativos para compilar e depurar o projeto. Selecione **Sim** na barra superior.
+   5\. For a Blazor Server project, the IDE requests that you add assets to build and debug the project. Selecione **Sim** na barra superior.
 
-   6 \. Se estiver usando um aplicativo do Blazor Server, execute o aplicativo usando o depurador de Visual Studio Code. Se estiver usando um aplicativo Webassembly Blazor, execute `dotnet run` na pasta do projeto do aplicativo.
+   6\. If using a Blazor Server app, run the app using the Visual Studio Code debugger. If using a Blazor WebAssembly app, execute `dotnet run` from the app's project folder.
 
-   7 \. Em um navegador, navegue até `https://localhost:5001`.
+   7\. Em um navegador, navegue até `https://localhost:5001`.
 
    <!--
 
@@ -208,7 +208,7 @@ Introdução ao Blazor:
 
    # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
-   Para obter uma experiência de Webassembly Blazor, execute os seguintes comandos em um shell de comando:
+   For a Blazor WebAssembly experience, execute the following commands in a command shell:
 
    ```dotnetcli
    dotnet new blazorwasm -o WebApplication1
@@ -216,7 +216,7 @@ Introdução ao Blazor:
    dotnet run
    ```
 
-   Para obter uma experiência de Blazor Server, execute os seguintes comandos em um shell de comando:
+   For a Blazor Server experience, execute the following commands in a command shell:
 
    ```dotnetcli
    dotnet new blazorserver -o WebApplication1
@@ -224,7 +224,7 @@ Introdução ao Blazor:
    dotnet run
    ```
 
-   Para obter informações sobre os dois modelos de hospedagem Blazor, *Blazor Server* e *Blazor Webassembly*, consulte <xref:blazor/hosting-models>.
+   For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
    Em um navegador, navegue até `https://localhost:5001`.
 
@@ -232,53 +232,53 @@ Introdução ao Blazor:
 
 ::: moniker-end
 
-Várias páginas estão disponíveis em guias na barra lateral:
+Multiple pages are available from tabs in the sidebar:
 
 * Home
 * Contador
-* Buscar dados
+* Fetch data
 
-Na página Contador, selecione o botão **Clique aqui** para incrementar o contador sem uma atualização de página. Incrementar um contador em uma página da Web normalmente requer a escrita de JavaScript, mas com Blazor C#você pode usar.
+Na página Contador, selecione o botão **Clique aqui** para incrementar o contador sem uma atualização de página. Incrementing a counter in a webpage normally requires writing JavaScript, but with Blazor you can use C#.
 
 *Pages/Counter.razor*:
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Counter1.razor?highlight=7,12-15)]
 
-Uma solicitação de `/counter` no navegador, conforme especificado pela diretiva `@page` na parte superior, faz com que o componente `Counter` processe seu conteúdo. Os componentes são renderizados em uma representação na memória da árvore de renderização que pode ser usada para atualizar a interface do usuário de maneira flexível e eficiente.
+A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the `Counter` component to render its content. Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.
 
-Sempre que o botão **clicar em mim** estiver selecionado:
+Each time the **Click me** button is selected:
 
-* O evento `onclick` é acionado.
+* The `onclick` event is fired.
 * O método `IncrementCount` é chamado.
-* O `currentCount` é incrementado.
-* O componente é renderizado novamente.
+* The `currentCount` is incremented.
+* The component is rendered again.
 
-O tempo de execução compara o novo conteúdo com o conteúdo anterior e aplica apenas o conteúdo alterado para o Modelo de Objeto do Documento (DOM).
+The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).
 
-Adicione um componente a outro componente usando a sintaxe HTML. Por exemplo, adicione o componente `Counter` à página inicial do aplicativo adicionando um elemento `<Counter />` ao componente `Index`.
+Add a component to another component using HTML syntax. For example, add the `Counter` component to the app's homepage by adding a `<Counter />` element to the `Index` component.
 
 *Pages/Index.razor*:
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Index1.razor?highlight=7)]
 
-Execute o aplicativo. A Home Page tem seu próprio contador fornecido pelo componente `Counter`.
+Execute o aplicativo. The homepage has its own counter provided by the `Counter` component.
 
-Os parâmetros de componente são especificados usando atributos ou [conteúdo filho](xref:blazor/components#child-content), que permitem definir propriedades no componente filho. Para adicionar um parâmetro ao componente `Counter`, atualize o bloco `@code` do componente:
+Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the `Counter` component, update the component's `@code` block:
 
-* Adicione uma propriedade pública para `IncrementAmount` com um atributo `[Parameter]`.
+* Add a public property for `IncrementAmount` with a `[Parameter]` attribute.
 * Altere o método `IncrementCount` para usar o `IncrementAmount` ao aumentar o valor de `currentCount`.
 
 *Pages/Counter.razor*:
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=12-13,17)]
 
-Especifique o `IncrementAmount` no elemento `<Counter>` do componente `Index` usando um atributo.
+Specify the `IncrementAmount` in the `Index` component's `<Counter>` element using an attribute.
 
 *Pages/Index.razor*:
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Index2.razor?highlight=7)]
 
-Execute o aplicativo. O componente `Index` tem seu próprio contador que é incrementado em dez cada vez que o botão **Click me** é selecionado. O componente `Counter` (*Counter. Razor*) em `/counter` continua a incrementar um.
+Execute o aplicativo. The `Index` component has its own counter that increments by ten each time the **Click me** button is selected. The `Counter` component (*Counter.razor*) at `/counter` continues to increment by one.
 
 ## <a name="next-steps"></a>Próximas etapas
 

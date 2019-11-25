@@ -9,12 +9,12 @@ ms.date: 11/12/2019
 no-loc:
 - SignalR
 uid: signalr/redis-backplane
-ms.openlocfilehash: 379d46fcaabb8eb0d04e521a5ad698229f947b7c
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 0461fc6a212ba78111bc2054cca74951721c5820
+ms.sourcegitcommit: f40c9311058c9b1add4ec043ddc5629384af6c56
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963912"
+ms.lasthandoff: 11/21/2019
+ms.locfileid: "74289033"
 ---
 # <a name="set-up-a-redis-backplane-for-aspnet-core-opno-locsignalr-scale-out"></a>Configurar um Redis backplane para ASP.NET Core SignalR escalar horizontalmente
 
@@ -37,8 +37,7 @@ Este artigo explica SignalRaspectos específicos da configuração de um servido
 
 ::: moniker range="= aspnetcore-2.1"
 
-* No aplicativo SignalR, instale o pacote NuGet do `Microsoft.AspNetCore.SignalR.Redis`. (Há também um pacote `Microsoft.AspNetCore.SignalR.StackExchangeRedis`, mas esse é para o ASP.NET Core 2,2 e posterior.)
-
+* No aplicativo SignalR, instale o pacote NuGet do `Microsoft.AspNetCore.SignalR.Redis`.
 * No método `Startup.ConfigureServices`, chame `AddRedis` após `AddSignalR`:
 
   ```csharp
@@ -62,19 +61,54 @@ Este artigo explica SignalRaspectos específicos da configuração de um servido
 
 ::: moniker-end
 
-::: moniker range="> aspnetcore-2.1"
+::: moniker range="= aspnetcore-2.2"
 
 * No aplicativo SignalR, instale um dos seguintes pacotes NuGet:
 
   * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`-depende de StackExchange. Redis 2. X.X. Este é o pacote recomendado para o ASP.NET Core 2,2 e posterior.
-  * `Microsoft.AspNetCore.SignalR.Redis`-depende de StackExchange. Redis 1. X.X. Este pacote não será enviado no ASP.NET Core 3,0.
+  * `Microsoft.AspNetCore.SignalR.Redis`-depende de StackExchange. Redis 1. X.X. Este pacote não está incluído no ASP.NET Core 3,0 e posterior.
 
-* No método `Startup.ConfigureServices`, chame `AddStackExchangeRedis` após `AddSignalR`:
+* No método `Startup.ConfigureServices`, chame <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>:
 
   ```csharp
   services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
   ```
 
+ Ao usar `Microsoft.AspNetCore.SignalR.Redis`, chame <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*>.
+
+* Configure as opções conforme necessário:
+ 
+  A maioria das opções pode ser definida na cadeia de conexão ou no objeto [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) . As opções especificadas em `ConfigurationOptions` substituem aquelas definidas na cadeia de conexão.
+
+  O exemplo a seguir mostra como definir opções no objeto `ConfigurationOptions`. Este exemplo adiciona um prefixo de canal para que vários aplicativos possam compartilhar a mesma instância de Redis, conforme explicado na etapa a seguir.
+
+  ```csharp
+  services.AddSignalR()
+    .AddStackExchangeRedis(connectionString, options => {
+        options.Configuration.ChannelPrefix = "MyApp";
+    });
+  ```
+
+ Ao usar `Microsoft.AspNetCore.SignalR.Redis`, chame <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*>.
+
+  No código anterior, `options.Configuration` é inicializado com o que for especificado na cadeia de conexão.
+
+  Para obter informações sobre as opções de Redis, consulte a [documentação do StackExchange Redis](https://stackexchange.github.io/StackExchange.Redis/Configuration.html).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+* No aplicativo SignalR, instale o seguinte pacote NuGet:
+
+  * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
+  
+* No método `Startup.ConfigureServices`, chame <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>:
+
+  ```csharp
+  services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
+  ```
+  
 * Configure as opções conforme necessário:
  
   A maioria das opções pode ser definida na cadeia de conexão ou no objeto [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) . As opções especificadas em `ConfigurationOptions` substituem aquelas definidas na cadeia de conexão.

@@ -1,20 +1,3 @@
-::: moniker range=">= aspnetcore-3.0"
-O Visual Studio exibe a caixa de diálogo a seguir:
-
-![Este projeto é configurado para usar SSL. Para evitar avisos SSL no navegador, você pode optar por confiar no certificado autoassinado que ASP.NET Core gerado. Deseja confiar no certificado SSL de ASP.NET Core?](~/getting-started/_static/trustCert-3x.png)
-
-Selecione **Sim** se você confiar no certificado SSL de ASP.NET Core.
-
-A seguinte caixa de diálogo é exibida:
-
-![Caixa de diálogo de aviso de segurança](~/getting-started/_static/cert.png)
-
-Selecione **Sim** se você concordar com confiar no certificado de desenvolvimento.
-
-Para obter mais informações, veja [Confiar no certificado de desenvolvimento HTTPS do ASP.NET Core](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
 O Visual Studio exibe a caixa de diálogo a seguir:
 
 ![Este projeto é configurado para usar SSL. Para evitar avisos de SSL no navegador, você pode optar por confiar no certificado autoassinado que o IIS Express gerou. Você deseja confiar no certificado SSL do IIS Express?](~/getting-started/_static/trustCert.png)
@@ -26,6 +9,3 @@ A seguinte caixa de diálogo é exibida:
 ![Caixa de diálogo de aviso de segurança](~/getting-started/_static/cert.png)
 
 Selecione **Sim** se você concordar com confiar no certificado de desenvolvimento.
-
-Para obter mais informações, veja [Confiar no certificado de desenvolvimento HTTPS do ASP.NET Core](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
-::: moniker-end

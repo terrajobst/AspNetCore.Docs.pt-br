@@ -5,14 +5,14 @@ description: Saiba como diagnosticar problemas com implantações de serviço Az
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/18/2019
+ms.date: 11/20/2019
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 384ae6645ce083fba76a430dfc3bec3a59d3870e
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: 49a0f59fb6930235de10c726f3695f2a5352efb2
+ms.sourcegitcommit: 8157e5a351f49aeef3769f7d38b787b4386aad5f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71081530"
+ms.lasthandoff: 11/20/2019
+ms.locfileid: "74251972"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
 
@@ -68,11 +68,11 @@ Execute as seguintes etapas:
 1. Exclua todos os arquivos e pastas da pasta de implantação no sistema de hospedagem.
 1. Reimplante o conteúdo da pasta de *publicação* do aplicativo no sistema de hospedagem usando o método normal de implantação, como o Visual Studio, o PowerShell ou a implantação manual:
    * Confirme se o arquivo *Web. config* está presente na implantação e se seu conteúdo está correto.
-   * Ao hospedar no serviço Azure app, confirme se o aplicativo está implantado `D:\home\site\wwwroot` na pasta.
+   * Ao hospedar no serviço Azure App, confirme se o aplicativo está implantado na pasta `D:\home\site\wwwroot`.
    * Quando o aplicativo é hospedado pelo IIS, confirme se o aplicativo está implantado no **caminho físico** do IIS mostrado nas **configurações básicas**do **Gerenciador do IIS**.
 1. Confirme se todos os arquivos e pastas do aplicativo estão implantados comparando a implantação no sistema de hospedagem ao conteúdo da pasta de *publicação* do projeto.
 
-Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, <xref:host-and-deploy/directory-structure>consulte. Para obter mais informações sobre o arquivo *Web. config* , <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>consulte.
+Para obter mais informações sobre o layout de um aplicativo ASP.NET Core publicado, consulte <xref:host-and-deploy/directory-structure>. Para obter mais informações sobre o arquivo *Web. config* , consulte <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
 
 ### <a name="500-internal-server-error"></a>500 Erro Interno do Servidor
 
@@ -123,7 +123,7 @@ Uma condição de falha comum é o aplicativo configurado incorretamente, direci
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o tempo de execução do .NET Core em processo, mas falha ao iniciar. A causa mais comum dessa falha de inicialização é quando o tempo de execução `Microsoft.NETCore.App` ou `Microsoft.AspNetCore.App` não está instalado. Se o aplicativo for implantado no ASP.NET Core 3.0 de destino e essa versão não existir no computador, esse erro ocorrerá. Segue um exemplo de mensagem de erro:
+O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o tempo de execução do .NET Core em processo, mas falha ao iniciar. A causa mais comum dessa falha de inicialização é quando o runtime `Microsoft.NETCore.App` ou `Microsoft.AspNetCore.App` não está instalado. Se o aplicativo for implantado no ASP.NET Core 3.0 de destino e essa versão não existir no computador, esse erro ocorrerá. Segue um exemplo de mensagem de erro:
 
 ```
 The specified framework 'Microsoft.NETCore.App', version '3.0.0' was not found.
@@ -158,7 +158,7 @@ Para corrigir esse erro:
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O aplicativo não referenciou a estrutura `Microsoft.AspNetCore.App`. Somente aplicativos direcionados `Microsoft.AspNetCore.App` à estrutura podem ser hospedados pelo [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module).
+O aplicativo não referenciou a estrutura `Microsoft.AspNetCore.App`. Somente aplicativos direcionados para o `Microsoft.AspNetCore.App` Framework podem ser hospedados pelo [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module).
 
 Para corrigir esse erro, confirme se o aplicativo está direcionado para a estrutura `Microsoft.AspNetCore.App`. Confira o `.runtimeconfig.json` para verificar a estrutura de destino do aplicativo.
 
@@ -170,7 +170,7 @@ Para corrigir esse erro, execute aplicativos em pools de aplicativos do IIS sepa
 
 ### <a name="50035-ancm-multiple-in-process-applications-in-same-process"></a>500.35 Vários aplicativos do ANCM em processo no mesmo processo
 
-O processo de trabalho não pode executar um aplicativo em processo e um aplicativo fora do processo no mesmo processo.
+O processo de trabalho não pode executar vários aplicativos em processo no mesmo processo.
 
 Para corrigir esse erro, execute aplicativos em pools de aplicativos do IIS separados.
 
@@ -279,9 +279,9 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 
 **Implantação dependente de estrutura em execução em uma versão de visualização**
 
-*Requer a instalação da extensão de site de tempo de execução do ASP.NET Core {VERSION} (x86).*
+*Requer a instalação da extensão de site de runtime do ASP.NET Core {VERSION} (x86).*
 
-1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` é a versão de tempo de execução)
+1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` é a versão de runtime)
 1. Execute o aplicativo: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
@@ -301,9 +301,9 @@ A saída do console do aplicativo, mostrando eventuais erros, é conectada ao co
 
 **Implantação dependente de estrutura em execução em uma versão de visualização**
 
-*Requer a instalação da extensão de site de tempo de execução do ASP.NET Core {VERSION} (x64).*
+*Requer a instalação da extensão de site de runtime do ASP.NET Core {VERSION} (x64).*
 
-1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64` (`{X.Y}` é a versão de tempo de execução)
+1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64` (`{X.Y}` é a versão de runtime)
 1. Execute o aplicativo: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
 A saída do console do aplicativo, mostrando eventuais erros, é conectada ao console do Kudu.
@@ -507,7 +507,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 
 ### <a name="enable-the-developer-exception-page"></a>Habilitar a página de exceção do desenvolvedor
 
-A [variável de ambiente `ASPNETCORE_ENVIRONMENT` pode ser adicionada ao web.config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) para executar o aplicativo no ambiente de desenvolvimento. Desde que o ambiente não seja substituído na inicialização do aplicativo por `UseEnvironment` no compilador do host, definir a variável de ambiente permite que a [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) apareça quando o aplicativo é executado.
+A `ASPNETCORE_ENVIRONMENT`variável de ambiente [ pode ser adicionada ao web.config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) para executar o aplicativo no ambiente de desenvolvimento. Desde que o ambiente não seja substituído na inicialização do aplicativo por `UseEnvironment` no compilador do host, definir a variável de ambiente permite que a [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) apareça quando o aplicativo é executado.
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -589,7 +589,7 @@ Depois que um aplicativo falhar e a coleta de despejo de memória for concluída
 
 #### <a name="app-hangs-fails-during-startup-or-runs-normally"></a>O aplicativo trava, falha durante a inicialização ou executa normalmente
 
-Quando um aplicativo *travar* (para de responder, mas não falha), falhar durante a inicialização ou executar normalmente, veja [Arquivos de despejo de memória do modo de usuário: escolher a melhor ferramenta](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) para selecionar uma ferramenta adequada para produzir o despejo de memória.
+Quando um aplicativo *paralisa* (para de responder, mas não falha), falha durante a inicialização ou é executado normalmente, consulte [arquivos de despejo no modo de usuário: escolhendo a melhor ferramenta](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) para selecionar uma ferramenta apropriada para produzir o despejo.
 
 #### <a name="analyze-the-dump"></a>Analisar o despejo de memória
 
@@ -600,9 +600,9 @@ Um despejo de memória pode ser analisado usando várias abordagens. Para obter 
 Às vezes, um aplicativo funcional falha imediatamente após a atualização do SDK do .NET Core no computador de desenvolvimento ou a alteração das versões do pacote no aplicativo. Em alguns casos, pacotes incoerentes podem interromper um aplicativo ao executar atualizações principais. A maioria desses problemas pode ser corrigida seguindo estas instruções:
 
 1. Exclua as pastas *bin* e *obj*.
-1. Limpe os caches de pacote executando `dotnet nuget locals all --clear` em um shell de comando.
+1. Limpe os caches de pacote executando `dotnet nuget locals all --clear` de um shell de comando.
 
-   A limpeza de caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e `nuget locals all -clear`executando o comando. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+   A limpeza dos caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e a execução do comando `nuget locals all -clear`. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 
 1. Restaure e recompile o projeto.
 1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.
@@ -624,7 +624,7 @@ Um despejo de memória pode ser analisado usando várias abordagens. Para obter 
 * [Solucionar problemas de erros HTTP de "502 – gateway incorreto" e "503 – serviço não disponível" em seus aplicativos Web do Azure](/azure/app-service/app-service-web-troubleshoot-http-502-http-503)
 * [Solucionar problemas de desempenho lento do aplicativo Web no Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-troubleshoot-performance-degradation)
 * [Perguntas frequentes sobre o desempenho do aplicativo para aplicativos Web no Azure](/azure/app-service/app-service-web-availability-performance-application-issues-faq)
-* [Área restrita do aplicativo Web do Azure (limitações de execução de tempo de execução do Serviço de Aplicativo)](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)
+* [Área restrita do aplicativo Web do Azure (limitações de execução de runtime do Serviço de Aplicativo)](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)
 * [Azure Friday: experiência de diagnóstico e solução de problemas do Serviço de Aplicativo do Azure (vídeo com 12 minutos)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience)
 
 ### <a name="visual-studio-documentation"></a>Documentação do Visual Studio

@@ -5,14 +5,14 @@ description: Saiba como usar a estrutura de registro em log fornecida pelo pacot
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/13/2019
+ms.date: 11/19/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: eda5c9c0372e47f5670cf097b5db80ec227bcb47
-ms.sourcegitcommit: 231780c8d7848943e5e9fd55e93f437f7e5a371d
+ms.openlocfilehash: b23e64077290f0f613e904651e4bb640fcbba95d
+ms.sourcegitcommit: f40c9311058c9b1add4ec043ddc5629384af6c56
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2019
-ms.locfileid: "74115958"
+ms.lasthandoff: 11/21/2019
+ms.locfileid: "74289086"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Como fazer registro em log no .NET Core e no ASP.NET Core
 
@@ -311,8 +311,6 @@ A configuração do provedor de logs é fornecida por um ou mais provedores de s
 
 Por exemplo, a configuração de log geralmente é fornecida pela seção `Logging` dos arquivos de configurações do aplicativo. O exemplo a seguir mostra o conteúdo de um típico arquivo *appsettings.Development.json*:
 
-::: moniker range=">= aspnetcore-2.1"
-
 ```json
 {
   "Logging": {
@@ -337,7 +335,7 @@ Outras propriedades em `Logging` especificam provedores de logs. O exemplo se re
 
 Se os níveis forem especificados em `Logging.{providername}.LogLevel`, eles substituirão o que estiver definido em `Logging.LogLevel`.
 
-::: moniker-end
+A API de registro em log não inclui um cenário para alterar os níveis de log enquanto um aplicativo está em execução. No entanto, alguns provedores de configuração são capazes de recarregar a configuração, o que exige um efeito imediato na configuração de log. Por exemplo, o [provedor de configuração de arquivo](xref:fundamentals/configuration/index#file-configuration-provider), que é adicionado pelo `CreateDefaultBuilder` para ler arquivos de configuração, recarrega a configuração de log por padrão. Se a configuração for alterada no código enquanto um aplicativo estiver em execução, o aplicativo poderá chamar [IConfigurationRoot. recarregar](xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*) para atualizar a configuração de log do aplicativo.
 
 Saiba mais sobre como implementar provedores de configuração em <xref:fundamentals/configuration/index>.
 
@@ -706,7 +704,7 @@ Para suprimir todos os logs, especifique `LogLevel.None` como o nível de log m�
 
 ### <a name="create-filter-rules-in-configuration"></a>Criar regras de filtro na configuração
 
-O código do modelo de projeto chama `CreateDefaultBuilder` para configurar o registro em log para os provedores Console e Depuração. O método `CreateDefaultBuilder` configura o registro em log para procurar a configuração em uma seção `Logging`, conforme explicado [anteriormente neste artigo](#configuration).
+O código de modelo de projeto chama `CreateDefaultBuilder` para configurar o registro em log para os provedores console, Debug e EventSource (ASP.NET Core 2,2 ou posteriores). O método `CreateDefaultBuilder` configura o registro em log para procurar a configuração em uma seção `Logging`, conforme explicado [anteriormente neste artigo](#configuration).
 
 Os dados de configuração especificam níveis de log mínimo por provedor e por categoria, como no exemplo a seguir:
 
@@ -824,7 +822,7 @@ Uma função de filtro é invocada para todos os provedores e categorias que nã
 
 Veja algumas categorias usadas pelo ASP.NET Core e Entity Framework Core, com anotações sobre quais logs esperar delas:
 
-| Categoria                            | Anotações |
+| Categoria                            | Observações |
 | ----------------------------------- | ----- |
 | Microsoft.AspNetCore                | Diagnóstico geral de ASP.NET Core. |
 | Microsoft.AspNetCore.DataProtection | Quais chaves foram consideradas, encontradas e usadas. |
@@ -1081,7 +1079,7 @@ O pacote do provedor não está incluído na estrutura compartilhada. Para usar 
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+::: moniker range="< aspnetcore-3.0"
 
 O pacote de provedor não está incluído no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app). Se você estiver direcionando para o .NET Framework ou referenciando o metapacote `Microsoft.AspNetCore.App`, adicione o pacote do provedor ao projeto. 
 
@@ -1130,7 +1128,7 @@ Para configurar o fluxo de log do Azure:
 
 * Navegue até a página **Logs do Serviço de Aplicativo** da página do portal do seu aplicativo.
 * Defina o **Log de aplicativo (Sistema de Arquivos)** como **Ativado**.
-* Escolha o **Nível** de log.
+* Escolha o **Nível** de log. Essa configuração se aplica somente ao streaming de log do Azure, não a outros provedores de log no aplicativo.
 
 Navegue até a página **Fluxo de Log** para exibir as mensagens de aplicativo. Elas são registradas pelo aplicativo por meio da interface `ILogger`.
 
