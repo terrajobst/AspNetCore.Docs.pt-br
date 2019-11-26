@@ -4,31 +4,31 @@ author: stevejgordon
 description: Saiba mais sobre como usar a interface IHttpClientFactory para gerenciar instâncias de HttpClient lógicas no ASP.NET Core.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/27/2019
+ms.date: 11/27/2019
 uid: fundamentals/http-requests
-ms.openlocfilehash: a963833acfa12889c8ae3dac443962682e1cb931
-ms.sourcegitcommit: 032113208bb55ecfb2faeb6d3e9ea44eea827950
+ms.openlocfilehash: 7a5b5c84775ea2482034ef9f3e8a2376036e66cb
+ms.sourcegitcommit: a104ba258ae7c0b3ee7c6fa7eaea1ddeb8b6eb73
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/31/2019
-ms.locfileid: "73190588"
+ms.lasthandoff: 11/25/2019
+ms.locfileid: "74478742"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Fazer solicitações HTTP usando IHttpClientFactory no ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Por [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak), [Steve Gordon](https://github.com/stevejgordon), [Rick Anderson](https://twitter.com/RickAndMSFT)e [Kirk Larkin](https://github.com/serpent5)
+By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak),  [Steve Gordon](https://github.com/stevejgordon), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Kirk Larkin](https://github.com/serpent5)
 
-É possível registrar e usar um <xref:System.Net.Http.IHttpClientFactory> para configurar e criar instâncias de <xref:System.Net.Http.HttpClient> em um aplicativo. o `IHttpClientFactory` oferece os seguintes benefícios:
+É possível registrar e usar um <xref:System.Net.Http.IHttpClientFactory> para configurar e criar instâncias de <xref:System.Net.Http.HttpClient> em um aplicativo. `IHttpClientFactory` offers the following benefits:
 
-* Fornece um local central para nomear e configurar instâncias lógicas de `HttpClient`. Por exemplo, um cliente chamado *GitHub* pode ser registrado e configurado para acessar o [GitHub](https://github.com/). Um cliente padrão pode ser registrado para acesso geral.
-* Codifica o conceito de middleware de saída por meio da delegação de manipuladores no `HttpClient`. Fornece extensões para o middleware baseado em Polly para tirar proveito da delegação de manipuladores no `HttpClient`.
-* Gerencia o pooling e o tempo de vida das instâncias de `HttpClientMessageHandler` subjacentes. O gerenciamento automático evita problemas comuns de DNS (sistema de nomes de domínio) que ocorrem ao gerenciar manualmente `HttpClient` tempos de vida.
+* Fornece um local central para nomear e configurar instâncias lógicas de `HttpClient`. For example, a client named  *github* could be registered and configured to access [GitHub](https://github.com/). A default client can be registered for general access.
+* Codifies the concept of outgoing middleware via delegating handlers in `HttpClient`. Provides extensions for Polly-based middleware to take advantage of delegating handlers in `HttpClient`.
+* Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances. Automatic management avoids common DNS (Domain Name System) problems that occur when manually managing `HttpClient` lifetimes.
 * Adiciona uma experiência de registro em log configurável (via `ILogger`) para todas as solicitações enviadas por meio de clientes criados pelo alocador.
 
 [Exibir ou baixar um código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([como baixar](xref:index#how-to-download-a-sample)).
 
-O código de exemplo nesta versão de tópico usa <xref:System.Text.Json> para desserializar o conteúdo JSON retornado em respostas HTTP. Para obter exemplos que usam `Json.NET` e `ReadAsAsync<T>`, use o seletor de versão para selecionar uma versão 2. x deste tópico.
+The sample code in this topic version uses <xref:System.Text.Json> to deserialize JSON content returned in HTTP responses. For samples that use `Json.NET` and `ReadAsAsync<T>`, use the version selector to select a 2.x version of this topic.
 
 ## <a name="consumption-patterns"></a>Padrões de consumo
 
@@ -39,48 +39,48 @@ Há várias maneiras de usar o `IHttpClientFactory` em um aplicativo:
 * [Clientes com tipo](#typed-clients)
 * [Clientes gerados](#generated-clients)
 
-A melhor abordagem depende dos requisitos do aplicativo.
+The best approach depends upon the app's requirements.
 
 ### <a name="basic-usage"></a>Uso básico
 
-`IHttpClientFactory` pode ser registrado chamando `AddHttpClient`:
+`IHttpClientFactory` can be registered by calling `AddHttpClient`:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1)]
 
-Um `IHttpClientFactory` pode ser solicitado usando [injeção de dependência (di)](xref:fundamentals/dependency-injection). O código a seguir usa `IHttpClientFactory` para criar uma instância de `HttpClient`:
+An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=9-12,21)]
 
-Usar `IHttpClientFactory` como no exemplo anterior é uma boa maneira de refatorar um aplicativo existente. Ele não tem impacto sobre como `HttpClient` é usado. Em locais onde `HttpClient` instâncias são criadas em um aplicativo existente, substitua essas ocorrências por chamadas para <xref:System.Net.Http.IHttpClientFactory.CreateClient*>.
+Using `IHttpClientFactory` like in the preceding example is a good way to refactor an existing app. It has no impact on how `HttpClient` is used. In places where `HttpClient` instances are created in an existing app, replace those occurrences with calls to <xref:System.Net.Http.IHttpClientFactory.CreateClient*>.
 
 ### <a name="named-clients"></a>Clientes nomeados
 
-Os clientes nomeados são uma boa opção quando:
+Named clients are a good choice when:
 
-* O aplicativo requer muitos usos distintos de `HttpClient`.
-* Muitos `HttpClient`s têm configuração diferente.
+* The app requires many distinct uses of `HttpClient`.
+* Many `HttpClient`s have different configuration.
 
-A configuração para um `HttpClient` nomeado pode ser especificada durante o registro no `Startup.ConfigureServices`:
+Configuration for a named `HttpClient` can be specified during registration in `Startup.ConfigureServices`:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet2)]
 
-No código anterior, o cliente está configurado com:
+In the preceding code the client is configured with:
 
-* O endereço base `https://api.github.com/`.
-* Dois cabeçalhos necessários para trabalhar com a API do GitHub.
+* The base address `https://api.github.com/`.
+* Two headers required to work with the GitHub API.
 
 #### <a name="createclient"></a>CreateClient
 
-Cada vez que <xref:System.Net.Http.IHttpClientFactory.CreateClient*> é chamado:
+Each time <xref:System.Net.Http.IHttpClientFactory.CreateClient*> is called:
 
-* Uma nova instância do `HttpClient` é criada.
-* A ação de configuração é chamada.
+* A new instance of `HttpClient` is created.
+* The configuration action is called.
 
-Para criar um cliente nomeado, passe seu nome para `CreateClient`:
+To create a named client, pass its name into `CreateClient`:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/NamedClient.cshtml.cs?name=snippet1&highlight=21)]
 
-No código anterior, a solicitação não precisa especificar um nome do host. O código pode passar apenas o caminho, já que o endereço base configurado para o cliente é usado.
+No código anterior, a solicitação não precisa especificar um nome do host. The code can pass just the path, since the base address configured for the client is used.
 
 ### <a name="typed-clients"></a>Clientes com tipo
 
@@ -88,10 +88,10 @@ Clientes com tipo:
 
 * Fornecem as mesmas funcionalidade que os clientes nomeados sem a necessidade de usar cadeias de caracteres como chaves.
 * Fornecem a ajuda do IntelliSense e do compilador durante o consumo de clientes.
-* Fornecem um único local para configurar e interagir com um determinado `HttpClient`. Por exemplo, um único cliente tipado pode ser usado:
-  * Para um ponto de extremidade de back-end único.
-  * Para encapsular toda a lógica lidando com o ponto de extremidade.
-* Trabalhe com DI e pode ser injetado onde necessário no aplicativo.
+* Fornecem um único local para configurar e interagir com um determinado `HttpClient`. For example, a single typed client might be used:
+  * For a single backend endpoint.
+  * To encapsulate all logic dealing with the endpoint.
+* Work with DI and can be injected where required in the app.
 
 Um cliente com tipo aceita um parâmetro `HttpClient` em seu construtor:
 
@@ -99,12 +99,12 @@ Um cliente com tipo aceita um parâmetro `HttpClient` em seu construtor:
 
 No código anterior:
 
-* A configuração é movida para o cliente digitado.
+* The configuration is moved into the typed client.
 * O objeto `HttpClient` é exposto como uma propriedade pública.
 
-Métodos específicos de API podem ser criados para expor `HttpClient` funcionalidade. Por exemplo, o método `GetAspNetDocsIssues` encapsula o código para recuperar problemas abertos.
+API-specific methods can be created that expose `HttpClient` functionality. For example, the `GetAspNetDocsIssues` method encapsulates code to retrieve open issues.
 
-O código a seguir chama <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient*> em `Startup.ConfigureServices` para registrar uma classe de cliente tipada:
+The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient*> in `Startup.ConfigureServices` to register a typed client class:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet3)]
 
@@ -112,19 +112,19 @@ O cliente com tipo é registrado como transitório com a DI. O cliente com tipo 
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/TypedClient.cshtml.cs?name=snippet1&highlight=11-14,20)]
 
-A configuração de um cliente tipado pode ser especificada durante o registro no `Startup.ConfigureServices`, em vez de no construtor do cliente digitado:
+The configuration for a typed client can be specified during registration in `Startup.ConfigureServices`, rather than in the typed client's constructor:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet4)]
 
-O `HttpClient` pode ser encapsulado em um cliente digitado. Em vez de expô-lo como uma propriedade, defina um método que chame a instância de `HttpClient` internamente:
+The `HttpClient` can be encapsulated within a typed client. Rather than exposing it as a property, define a method which calls the `HttpClient` instance internally:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/GitHub/RepoService.cs?name=snippet1&highlight=4)]
 
-No código anterior, a `HttpClient` é armazenada em um campo particular. O acesso ao `HttpClient` é pelo método `GetRepos` público.
+In the preceding code, the `HttpClient` is stored in a private field. Access to the `HttpClient` is by the public `GetRepos` method.
 
 ### <a name="generated-clients"></a>Clientes gerados
 
-`IHttpClientFactory` pode ser usado em combinação com bibliotecas de terceiros, como [rEFIt](https://github.com/paulcbetts/refit). Refit é uma biblioteca REST para .NET. Ela converte APIs REST em interfaces dinâmicas. Uma implementação da interface é gerada dinamicamente pelo `RestService` usando `HttpClient` para fazer as chamadas de HTTP externas.
+`IHttpClientFactory` can be used in combination with third-party libraries such as [Refit](https://github.com/paulcbetts/refit). Refit é uma biblioteca REST para .NET. Ela converte APIs REST em interfaces dinâmicas. Uma implementação da interface é gerada dinamicamente pelo `RestService` usando `HttpClient` para fazer as chamadas de HTTP externas.
 
 Uma interface e uma resposta são definidas para representar a API externa e sua resposta:
 
@@ -179,33 +179,33 @@ public class ValuesController : ControllerBase
 
 ## <a name="outgoing-request-middleware"></a>Middleware de solicitação de saída
 
-`HttpClient` tem o conceito de delegar manipuladores que podem ser vinculados para solicitações HTTP de saída. `IHttpClientFactory`:
+`HttpClient` has the concept of delegating handlers that can be linked together for outgoing HTTP requests. `IHttpClientFactory`:
 
-* Simplifica a definição dos manipuladores a serem aplicados para cada cliente nomeado.
-* Dá suporte ao registro e encadeamento de vários manipuladores para criar um pipeline de middleware de solicitação de saída. Cada um desses manipuladores é capaz de executar o trabalho antes e após a solicitação de saída. Esse padrão:
+* Simplifies defining the handlers to apply for each named client.
+* Supports registration and chaining of multiple handlers to build an outgoing request middleware pipeline. Cada um desses manipuladores é capaz de executar o trabalho antes e após a solicitação de saída. This pattern:
 
-  * É semelhante ao pipeline de middleware de entrada no ASP.NET Core.
-  * Fornece um mecanismo para gerenciar preocupações abrangentes em relação a solicitações HTTP, como:
+  * Is similar to the inbound middleware pipeline in ASP.NET Core.
+  * Provides a mechanism to manage cross-cutting concerns around HTTP requests, such as:
 
     * cache
     * tratamento de erros
     * serialização
     * log
 
-Para criar um manipulador de delegação:
+To create a delegating handler:
 
-* Derive de <xref:System.Net.Http.DelegatingHandler>.
-* Substitua <xref:System.Net.Http.DelegatingHandler.SendAsync*>. Execute o código antes de passar a solicitação para o próximo manipulador no pipeline:
+* Derive from <xref:System.Net.Http.DelegatingHandler>.
+* Substitua <xref:System.Net.Http.DelegatingHandler.SendAsync*>. Execute code before passing the request to the next handler in the pipeline:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Handlers/ValidateHeaderHandler.cs?name=snippet1)]
 
-O código anterior verifica se o cabeçalho de `X-API-KEY` está na solicitação. Se `X-API-KEY` estiver ausente, <xref:System.Net.HttpStatusCode.BadRequest> será retornado.
+The preceding code checks if the `X-API-KEY` header is in the request. If `X-API-KEY` is missing, <xref:System.Net.HttpStatusCode.BadRequest> is returned.
 
-Mais de um manipulador pode ser adicionado à configuração para um `HttpClient` com <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*?displayProperty=fullName>:
+More than one handler can be added to the configuration for a `HttpClient` with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*?displayProperty=fullName>:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs?name=snippet1)]
 
-No código anterior, o `ValidateHeaderHandler` é registrado com a DI. O `IHttpClientFactory` cria um escopo de injeção de dependência separado para cada manipulador. Os manipuladores podem depender dos serviços de qualquer escopo. Os serviços dos quais os manipuladores dependem são descartados quando o manipulador é descartado.
+No código anterior, o `ValidateHeaderHandler` é registrado com a DI. O `IHttpClientFactory` cria um escopo de injeção de dependência separado para cada manipulador. Handlers can depend upon services of any scope. Os serviços dos quais os manipuladores dependem são descartados quando o manipulador é descartado.
 
 Depois de registrado, o <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> poderá ser chamado, passando o tipo para o manipulador.
 
@@ -215,25 +215,25 @@ Vários manipuladores podem ser registrados na ordem em que eles devem ser execu
 
 Use uma das seguintes abordagens para compartilhar o estado por solicitação com os manipuladores de mensagens:
 
-* Passe dados para o manipulador usando [HttpRequestMessage. Properties](xref:System.Net.Http.HttpRequestMessage.Properties).
+* Pass data into the handler using [HttpRequestMessage.Properties](xref:System.Net.Http.HttpRequestMessage.Properties).
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> para acessar a solicitação atual.
 * Crie um objeto de armazenamento <xref:System.Threading.AsyncLocal`1> personalizado para passar os dados.
 
 ## <a name="use-polly-based-handlers"></a>Usar manipuladores baseados no Polly
 
-o `IHttpClientFactory` integra-se com a biblioteca de terceiros [Polly](https://github.com/App-vNext/Polly). O Polly é uma biblioteca abrangente de tratamento de falha transitória e de resiliência para .NET. Ela permite que os desenvolvedores expressem políticas, como Repetição, Disjuntor, Tempo Limite, Isolamento de Bulkhead e Fallback de maneira fluente e thread-safe.
+`IHttpClientFactory` integrates with the third-party library [Polly](https://github.com/App-vNext/Polly). O Polly é uma biblioteca abrangente de tratamento de falha transitória e de resiliência para .NET. Ela permite que os desenvolvedores expressem políticas, como Repetição, Disjuntor, Tempo Limite, Isolamento de Bulkhead e Fallback de maneira fluente e thread-safe.
 
-Os métodos de extensão são fornecidos para habilitar o uso de políticas do Polly com instâncias de `HttpClient` configuradas. As extensões Polly dão suporte à adição de manipuladores baseados em Polly a clientes. Polly requer o pacote NuGet [Microsoft. Extensions. http. Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) .
+Os métodos de extensão são fornecidos para habilitar o uso de políticas do Polly com instâncias de `HttpClient` configuradas. The Polly extensions support adding Polly-based handlers to clients. Polly requires the [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) NuGet package.
 
 ### <a name="handle-transient-faults"></a>Tratar falhas transitórias
 
-As falhas normalmente ocorrem quando chamadas HTTP externas são transitórias. <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*> permite que uma política seja definida para lidar com erros transitórios. As políticas configuradas com `AddTransientHttpErrorPolicy` manipulam as seguintes respostas:
+Faults typically occur when external HTTP calls are transient. <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*> allows a policy to be defined to handle transient errors. Policies configured with `AddTransientHttpErrorPolicy` handle the following responses:
 
 * <xref:System.Net.Http.HttpRequestException>
 * HTTP 5xx
 * HTTP 408
 
-`AddTransientHttpErrorPolicy` fornece acesso a um objeto `PolicyBuilder` configurado para tratar erros que representam uma possível falha transitória:
+`AddTransientHttpErrorPolicy` provides access to a `PolicyBuilder` object configured to handle errors representing a possible transient fault:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup3.cs?name=snippet1)]
 
@@ -241,7 +241,7 @@ No código anterior, uma política `WaitAndRetryAsync` é definida. As solicita�
 
 ### <a name="dynamically-select-policies"></a>Selecionar políticas dinamicamente
 
-Os métodos de extensão são fornecidos para adicionar manipuladores baseados em Polly, por exemplo, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler*>. A sobrecarga de `AddPolicyHandler` a seguir inspeciona a solicitação para decidir qual política aplicar:
+Extension methods are provided to add Polly-based handlers, for example, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler*>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet8)]
 
@@ -249,15 +249,15 @@ No código anterior, se a solicitação de saída é um HTTP GET, um tempo limit
 
 ### <a name="add-multiple-polly-handlers"></a>Adicionar vários manipuladores do Polly
 
-É comum aninhar políticas Polly:
+It's common to nest Polly policies:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet9)]
 
 No exemplo anterior:
 
-* Dois manipuladores são adicionados.
-* O primeiro manipulador usa <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*> para adicionar uma política de repetição. As solicitações com falha são repetidas até três vezes.
-* A segunda chamada de `AddTransientHttpErrorPolicy` adiciona uma política de disjuntor. Outras solicitações externas serão bloqueadas por 30 segundos se 5 tentativas com falha ocorrerem em sequência. As políticas de disjuntor são políticas com estado. Todas as chamadas por meio desse cliente compartilham o mesmo estado do circuito.
+* Two handlers are added.
+* The first handler uses <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*> to add a retry policy. As solicitações com falha são repetidas até três vezes.
+* The second `AddTransientHttpErrorPolicy` call adds a circuit breaker policy. Further external requests are blocked for 30 seconds if 5 failed attempts occur sequentially. As políticas de disjuntor são políticas com estado. Todas as chamadas por meio desse cliente compartilham o mesmo estado do circuito.
 
 ### <a name="add-policies-from-the-polly-registry"></a>Adicionar políticas do registro do Polly
 
@@ -265,40 +265,69 @@ Uma abordagem para gerenciar as políticas usadas com frequência é defini-las 
 
 No seguinte código:
 
-* As políticas "regular" e "longa" são adicionadas.
-* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry*> adiciona as políticas "regular" e "longa" do registro.
+* The "regular" and "long" polices are added.
+* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry*>  adds the "regular" and "long" policies from the registry.
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs?name=snippet1)]
 
-Para obter mais informações sobre as integrações `IHttpClientFactory` e Polly, consulte o [wiki do Polly](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory).
+For more information on `IHttpClientFactory` and Polly integrations, see the [Polly wiki](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory).
 
 ## <a name="httpclient-and-lifetime-management"></a>HttpClient e gerenciamento de tempo de vida
 
-Uma nova instância de `HttpClient` é chamada, sempre que `CreateClient` é chamado na `IHttpClientFactory`. Um <xref:System.Net.Http.HttpMessageHandler> é criado por cliente nomeado. O alocador gerencia a vida útil das instâncias do `HttpMessageHandler`.
+Uma nova instância de `HttpClient` é chamada, sempre que `CreateClient` é chamado na `IHttpClientFactory`. An <xref:System.Net.Http.HttpMessageHandler> is created per named client. O alocador gerencia a vida útil das instâncias do `HttpMessageHandler`.
 
 `IHttpClientFactory` cria pools com as instâncias de `HttpMessageHandler` criadas pelo alocador para reduzir o consumo de recursos. Uma instância de `HttpMessageHandler` poderá ser reutilizada no pool, ao criar uma nova instância de `HttpClient`, se o respectivo tempo de vida não tiver expirado.
 
-O pooling de manipuladores é preferível porque normalmente cada manipulador gerencia as próprias conexões HTTP subjacentes. Criar mais manipuladores do que o necessário pode resultar em atrasos de conexão. Alguns manipuladores também mantêm as conexões abertas indefinidamente, o que pode impedir que o manipulador reajam às alterações de DNS (sistema de nomes de domínio).
+O pooling de manipuladores é preferível porque normalmente cada manipulador gerencia as próprias conexões HTTP subjacentes. Criar mais manipuladores do que o necessário pode resultar em atrasos de conexão. Some handlers also keep connections open indefinitely, which can prevent the handler from reacting to DNS (Domain Name System) changes.
 
-O tempo de vida padrão do manipulador é de 2 minutos. O valor padrão pode ser substituído em uma base de cliente por nome:
+O tempo de vida padrão do manipulador é de 2 minutos. The default value can be overridden on a per named client basis:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup5.cs?name=snippet1)]
 
-instâncias de `HttpClient` geralmente podem ser tratadas como objetos .NET que **não** exigem descarte. O descarte cancela as solicitações de saída e garante que a determinada instância de `HttpClient` não seja usada depois de chamar <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` rastreia e descarta recursos usados pelas instâncias de `HttpClient`.
+`HttpClient` instances can generally be treated as .NET objects **not** requiring disposal. O descarte cancela as solicitações de saída e garante que a determinada instância de `HttpClient` não seja usada depois de chamar <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` rastreia e descarta recursos usados pelas instâncias de `HttpClient`.
 
 Manter uma única instância de `HttpClient` ativa por uma longa duração é um padrão comum usado, antes do início de `IHttpClientFactory`. Esse padrão se torna desnecessário após a migração para `IHttpClientFactory`.
 
+### <a name="alternatives-to-ihttpclientfactory"></a>Alternatives to IHttpClientFactory
+
+Using `IHttpClientFactory` in a DI-enabled app avoids:
+
+* Resource exhaustion problems by pooling `HttpMessageHandler` instances.
+* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+
+There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
+
+- Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
+- Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
+- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+
+The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
+
+- The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
+- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+
+### <a name="cookies"></a>Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
+
 ## <a name="logging"></a>Registrando em log
 
-Os clientes criado pelo `IHttpClientFactory` registram mensagens de log para todas as solicitações. Habilite o nível de informações apropriado na configuração de log para ver as mensagens de log padrão. Os registros em log adicionais, como o registro em log dos cabeçalhos de solicitação, estão incluídos somente no nível de rastreamento.
+Os clientes criado pelo `IHttpClientFactory` registram mensagens de log para todas as solicitações. Enable the appropriate information level in the logging configuration to see the default log messages. Os registros em log adicionais, como o registro em log dos cabeçalhos de solicitação, estão incluídos somente no nível de rastreamento.
 
-A categoria de log usada para cada cliente inclui o nome do cliente. Um cliente chamado *MyNamedClient*, por exemplo, registra mensagens com uma categoria de "System .net. http. HttpClient. **MyNamedClient**. LogicalHandler". Mensagens sufixadas com *LogicalHandler* ocorrem fora do pipeline do manipulador de solicitações. Na solicitação, as mensagens são registradas em log antes que qualquer outro manipulador no pipeline a tenha processado. Na resposta, as mensagens são registradas depois que qualquer outro manipulador do pipeline tenha recebido a resposta.
+A categoria de log usada para cada cliente inclui o nome do cliente. A client named *MyNamedClient*, for example, logs messages with a category of "System.Net.Http.HttpClient.**MyNamedClient**.LogicalHandler". Mensagens sufixadas com *LogicalHandler* ocorrem fora do pipeline do manipulador de solicitações. Na solicitação, as mensagens são registradas em log antes que qualquer outro manipulador no pipeline a tenha processado. Na resposta, as mensagens são registradas depois que qualquer outro manipulador do pipeline tenha recebido a resposta.
 
-O registro em log também ocorre dentro do pipeline do manipulador de solicitações. No exemplo de *MyNamedClient* , essas mensagens são registradas com a categoria de log "System .net. http. HttpClient. **MyNamedClient**. ClientHandler". Para a solicitação, isso ocorre depois que todos os outros manipuladores forem executados e imediatamente antes de a solicitação ser enviada. Na resposta, esse registro em log inclui o estado da resposta antes que ela seja retornada por meio do pipeline do manipulador.
+O registro em log também ocorre dentro do pipeline do manipulador de solicitações. In the *MyNamedClient* example, those messages are logged with the log category "System.Net.Http.HttpClient.**MyNamedClient**.ClientHandler". For the request, this occurs after all other handlers have run and immediately before the request is sent. Na resposta, esse registro em log inclui o estado da resposta antes que ela seja retornada por meio do pipeline do manipulador.
 
-Habilitar o registro em log dentro e fora do pipeline permite a inspeção das alterações feitas por outros manipuladores do pipeline. Isso pode incluir alterações nos cabeçalhos de solicitação ou no código de status de resposta.
+Habilitar o registro em log dentro e fora do pipeline permite a inspeção das alterações feitas por outros manipuladores do pipeline. This may include changes to request headers or to the response status code.
 
-A inclusão do nome do cliente na categoria de log permite a filtragem de log para clientes nomeados específicos.
+Including the name of the client in the log category enables log filtering for specific named clients.
 
 ## <a name="configure-the-httpmessagehandler"></a>Configurar o HttpMessageHandler
 
@@ -559,6 +588,35 @@ O tempo de vida padrão do manipulador é de 2 minutos. O valor padrão pode ser
 Não é necessário descartar o cliente. O descarte cancela as solicitações de saída e garante que a determinada instância de `HttpClient` não seja usada depois de chamar <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` rastreia e descarta recursos usados pelas instâncias de `HttpClient`. Geralmente, as instâncias de `HttpClient` podem ser tratadas como objetos do .NET e não exigem descarte.
 
 Manter uma única instância de `HttpClient` ativa por uma longa duração é um padrão comum usado, antes do início de `IHttpClientFactory`. Esse padrão se torna desnecessário após a migração para `IHttpClientFactory`.
+
+### <a name="alternatives-to-ihttpclientfactory"></a>Alternatives to IHttpClientFactory
+
+Using `IHttpClientFactory` in a DI-enabled app avoids:
+
+* Resource exhaustion problems by pooling `HttpMessageHandler` instances.
+* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+
+There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
+
+- Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
+- Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
+- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+
+The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
+
+- The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
+- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+
+### <a name="cookies"></a>Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
 ## <a name="logging"></a>Registrando em log
 
@@ -838,6 +896,35 @@ O tempo de vida padrão do manipulador é de 2 minutos. O valor padrão pode ser
 Não é necessário descartar o cliente. O descarte cancela as solicitações de saída e garante que a determinada instância de `HttpClient` não seja usada depois de chamar <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` rastreia e descarta recursos usados pelas instâncias de `HttpClient`. Geralmente, as instâncias de `HttpClient` podem ser tratadas como objetos do .NET e não exigem descarte.
 
 Manter uma única instância de `HttpClient` ativa por uma longa duração é um padrão comum usado, antes do início de `IHttpClientFactory`. Esse padrão se torna desnecessário após a migração para `IHttpClientFactory`.
+
+### <a name="alternatives-to-ihttpclientfactory"></a>Alternatives to IHttpClientFactory
+
+Using `IHttpClientFactory` in a DI-enabled app avoids:
+
+* Resource exhaustion problems by pooling `HttpMessageHandler` instances.
+* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+
+There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
+
+- Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
+- Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
+- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+
+The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
+
+- The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
+- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+
+### <a name="cookies"></a>Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
 ## <a name="logging"></a>Registrando em log
 
