@@ -587,8 +587,6 @@
       uid: grpc/troubleshoot
 - name: 'Testar, depurar e solucionar problemas'
   items:
-    - name: Teste de unidade
-      href: /dotnet/core/testing/unit-testing-with-dotnet-test?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
     - name: Testes de unidades de páginas Razor
       uid: test/razor-pages-tests
     - name: Controladores de teste
