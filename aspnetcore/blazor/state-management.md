@@ -85,7 +85,7 @@ Depois que os dados são salvos no banco de dado, um novo circuito pode ser inic
 
 Para obter mais informações sobre as opções de armazenamento de dados do Azure, consulte a [documentação do armazenamento do Azure](/azure/storage/) e [os bancos de dados do Azure](https://azure.microsoft.com/product-categories/databases/).
 
-### <a name="url"></a>URL
+### <a name="url"></a>{1&gt;URL&lt;1}
 
 Para dados transitórios que representam o estado de navegação, modele os dados como parte da URL. Exemplos de estado modelado na URL incluem:
 

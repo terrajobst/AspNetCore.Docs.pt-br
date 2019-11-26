@@ -11,9 +11,9 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 
 Os comandos anteriores adicionam:
 
-* The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
-* The Entity Framework Core Tools for the .NET Core CLI.
+* A [ferramenta ASPNET-CodeGenerator scaffolding](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* As ferramentas de Entity Framework Core para o CLI do .NET Core.
 * O provedor do EF Core SQLite, que instala o pacote EF Core como uma dependência.
 * Pacotes necessários para scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` e `Microsoft.EntityFrameworkCore.SqlServer`.
 
-For guidance on multiple environment configuration that permits an app to configure its database contexts by environment, see <xref:fundamentals/environments#environment-based-startup-class-and-methods>.
+Para obter orientação sobre a configuração de vários ambientes que permite que um aplicativo Configure seus contextos de banco de dados por ambiente, consulte <xref:fundamentals/environments#environment-based-startup-class-and-methods>.

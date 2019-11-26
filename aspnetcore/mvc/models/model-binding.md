@@ -40,7 +40,7 @@ E o aplicativo receba uma solicitação com esta URL:
 http://contoso.com/api/pets/2?DogsOnly=true
 ```
 
-Model binding goes through the following steps after the routing system selects the action method:
+A associação de modelo passa pelas seguintes etapas depois que o sistema de roteamento seleciona o método de ação:
 
 * Localiza o primeiro parâmetro de `GetByID`, um número inteiro denominado `id`.
 * Examina as fontes disponíveis na solicitação HTTP e localiza `id` = "2" em dados de rota.
@@ -79,22 +79,22 @@ Por padrão, as propriedades não são vinculadas para solicitações HTTP GET. 
 
 [!code-csharp[](model-binding/samples/2.x/Pages/Instructors/Index.cshtml.cs?name=snippet_SupportsGet)]
 
-## <a name="sources"></a>Origens
+## <a name="sources"></a>Fontes
 
 Por padrão, o model binding obtém dados na forma de pares chave-valor das seguintes fontes em uma solicitação HTTP:
 
 1. Campos de formulário
 1. O corpo da solicitação (para [controladores que têm o atributo [ApiController]](xref:web-api/index#binding-source-parameter-inference)).
 1. Dados de rota
-1. Parâmetros de cadeia de caracteres de consulta
+1. Consultar parâmetros de cadeia de caracteres
 1. Arquivos carregados
 
-For each target parameter or property, the sources are scanned in the order indicated in the preceding list. Há algumas exceções:
+Para cada parâmetro ou propriedade de destino, as fontes são verificadas na ordem indicada na lista anterior. Há algumas exceções:
 
 * Os valores de cadeia de caracteres de consulta e dados de rota são usados apenas para tipos simples.
 * Arquivos carregados são associados apenas a tipos de destino que implementam `IFormFile` ou `IEnumerable<IFormFile>`.
 
-If the default source is not correct, use one of the following attributes to specify the source:
+Se a origem padrão não estiver correta, use um dos seguintes atributos para especificar a origem:
 
 * [[FromQuery]](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) – obtém valores da cadeia de caracteres de consulta. 
 * [[FromRoute]](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) – obtém valores dos dados de rota.
@@ -114,15 +114,15 @@ Esses atributos:
 
 ### <a name="frombody-attribute"></a>Atributo [FromBody]
 
-Apply the `[FromBody]` attribute to a parameter to populate its properties from the body of an HTTP request. The ASP.NET Core runtime delegates the responsibility of reading the body to an input formatter. O formatadores de entrada são explicados [posteriormente neste artigo](#input-formatters).
+Aplique o atributo `[FromBody]` a um parâmetro para popular suas propriedades do corpo de uma solicitação HTTP. O tempo de execução de ASP.NET Core delega a responsabilidade de ler o corpo para um formatador de entrada. O formatadores de entrada são explicados [posteriormente neste artigo](#input-formatters).
 
-When `[FromBody]` is applied to a complex type parameter, any binding source attributes applied to its properties are ignored. For example, the following `Create` action specifies that its `pet` parameter is populated from the body:
+Quando `[FromBody]` é aplicado a um parâmetro de tipo complexo, todos os atributos de origem de associação aplicados às suas propriedades são ignorados. Por exemplo, a ação a seguir `Create` especifica que seu parâmetro `pet` é populado a partir do corpo:
 
 ```csharp
 public ActionResult<Pet> Create([FromBody] Pet pet)
 ```
 
-The `Pet` class specifies that its `Breed` property is populated from a query string parameter:
+A classe `Pet` especifica que sua propriedade `Breed` é populada a partir de um parâmetro de cadeia de caracteres de consulta:
 
 ```csharp
 public class Pet
@@ -136,12 +136,12 @@ public class Pet
 
 No exemplo anterior:
 
-* The `[FromQuery]` attribute is ignored.
-* The `Breed` property is not populated from a query string parameter. 
+* O atributo `[FromQuery]` é ignorado.
+* A propriedade `Breed` não é preenchida a partir de um parâmetro de cadeia de caracteres de consulta. 
 
-Input formatters read only the body and don't understand binding source attributes. If a suitable value is found in the body, that value is used to populate the `Breed` property.
+Os formatadores de entrada lêem apenas o corpo e não entendem os atributos de origem da associação. Se um valor adequado for encontrado no corpo, esse valor será usado para popular a propriedade `Breed`.
 
-Não aplique `[FromBody]` a mais de um parâmetro por método de ação. Once the request stream is read by an input formatter, it's no longer available to be read again for binding other `[FromBody]` parameters.
+Não aplique `[FromBody]` a mais de um parâmetro por método de ação. Depois que o fluxo de solicitação é lido por um formatador de entrada, ele não está mais disponível para ser lido novamente para associar outros parâmetros de `[FromBody]`.
 
 ### <a name="additional-sources"></a>Fontes adicionais
 
@@ -304,7 +304,7 @@ O atributo `[Bind]` pode ser usado para proteção contra o excesso de postagem 
 
 ## <a name="collections"></a>Coleções
 
-Para destinos que são coleções de tipos simples, o model binding procura correspondências para *parameter_name* ou *property_name*. Se nenhuma correspondência for encontrada, procurará um dos formatos compatível sem o prefixo. Por exemplo:
+Para destinos que são coleções de tipos simples, o model binding procura correspondências para *parameter_name* ou *property_name*. Se nenhuma correspondência for encontrada, procurará um dos formatos compatíveis sem o prefixo. Por exemplo:
 
 * Suponha que o parâmetro a ser associado seja uma matriz chamada `selectedCourses`:
 
@@ -349,7 +349,7 @@ Para destinos que são coleções de tipos simples, o model binding procura corr
 
 ## <a name="dictionaries"></a>Dicionários
 
-Para destinos `Dictionary`, o model binding procura correspondências para *parameter_name* ou *property_name*. Se nenhuma correspondência for encontrada, procurará um dos formatos compatível sem o prefixo. Por exemplo:
+Para destinos `Dictionary`, o model binding procura correspondências para *parameter_name* ou *property_name*. Se nenhuma correspondência for encontrada, procurará um dos formatos compatíveis sem o prefixo. Por exemplo:
 
 * Suponha que o parâmetro de destino seja um `Dictionary<int, string>` chamado `selectedCourses`:
 

@@ -52,7 +52,7 @@ Nenhuma API pode impedir que um cliente envie dados confidenciais na primeira so
 
 ::: moniker-end
 
-## <a name="require-https"></a>Exigir HTTPS
+## <a name="require-https"></a>Solicitar HTTPS
 
 É recomendável que a produção ASP.NET Core aplicativos Web usem:
 
@@ -421,7 +421,7 @@ Consulte [erro de HTTPS usando IIS Express (ASPNET/AspNetCore #16892)](https://g
 
 Para corrigir problemas com o certificado de IIS Express, selecione **reparar** no instalador do Visual Studio.
 
-## <a name="additional-information"></a>Informações adicionais
+## <a name="additional-information"></a>{1&gt;{2&gt;Informações adicionais&lt;2}&lt;1}
 
 * <xref:host-and-deploy/proxy-load-balancer>
 * [ASP.NET Core de host no Linux com Apache: Configuração HTTPS](xref:host-and-deploy/linux-apache#https-configuration)

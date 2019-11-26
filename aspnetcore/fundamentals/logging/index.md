@@ -49,7 +49,7 @@ Em um aplicativo de console não host, chame o método de extensão `Add{provide
 Os modelos de projeto padrão do ASP.NET Core chamam <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, que adiciona os seguintes provedores de log:
 
 * Console
-* Depurar
+* Depuração
 * EventSource
 * EventLog (somente quando em execução no Windows)
 
@@ -70,7 +70,7 @@ O código anterior requer referências a `Microsoft.Extensions.Logging` e `Micro
 O modelo de projeto padrão chama o <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, que adiciona os seguintes provedores de log:
 
 * Console
-* Depurar
+* Depuração
 * EventSource (a partir do ASP.NET Core 2.2)
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_TemplateCode&highlight=7)]
@@ -505,7 +505,7 @@ O ASP.NET Core define os seguintes níveis de log, ordenados aqui da menor para 
 
   Para eventos anormais ou inesperados no fluxo de aplicativo. Eles podem incluir erros ou outras condições que não fazem com que o aplicativo pare, mas que talvez precisem ser investigados. Exceções manipuladas são um local comum para usar o nível de log `Warning`. Exemplo: `FileNotFoundException for file quotes.txt.`
 
-* Error = 4
+* Erro = 4
 
   Para erros e exceções que não podem ser manipulados. Essas mensagens indicam uma falha na atividade ou na operação atual (como a solicitação HTTP atual) e não uma falha em todo o aplicativo. Mensagem de log de exemplo:`Cannot insert record due to duplicate key violation.`
 
@@ -744,16 +744,16 @@ O segundo `AddFilter` especifica o provedor Depuração usando seu nome de tipo.
 
 Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anteriores, criam as regras mostradas na tabela a seguir. As primeiras seis vêm do exemplo de configuração e as últimas duas vêm do exemplo de código.
 
-| Número | Provider      | Categorias que começam com...          | Nível de log mínimo |
+| Número | Provedor      | Categorias que começam com...          | Nível de log mínimo |
 | :----: | ------------- | --------------------------------------- | ----------------- |
-| 1      | Depurar         | Todas as categorias                          | Informações       |
+| 1      | Depuração         | Todas as categorias                          | Informações       |
 | 2      | Console       | Microsoft.AspNetCore.Mvc.Razor.Internal | Aviso           |
-| 3      | Console       | Microsoft.AspNetCore.Mvc.Razor.Razor    | Depurar             |
-| 4      | Console       | Microsoft.AspNetCore.Mvc.Razor          | Erro             |
+| 3      | Console       | Microsoft.AspNetCore.Mvc.Razor.Razor    | Depuração             |
+| 4      | Console       | Microsoft.AspNetCore.Mvc.Razor          | Error             |
 | 5      | Console       | Todas as categorias                          | Informações       |
-| 6      | Todos os provedores | Todas as categorias                          | Depurar             |
-| 7      | Todos os provedores | Sistema                                  | Depurar             |
-| 8      | Depurar         | Microsoft                               | Rastrear             |
+| 6      | Todos os provedores | Todas as categorias                          | Depuração             |
+| 7      | Todos os provedores | System                                  | Depuração             |
+| 8      | Depuração         | Microsoft                               | Rastreamento             |
 
 Quando um objeto `ILogger` é criado, o objeto `ILoggerFactory` seleciona uma única regra por provedor para aplicar a esse agente. Todas as mensagens gravadas pela instância `ILogger` são filtradas com base nas regras selecionadas. A regra mais específica possível para cada par de categoria e provedor é selecionada dentre as regras disponíveis.
 
@@ -776,7 +776,7 @@ A instância `ILogger` resultante envia logs de nível `Trace` e superior para o
 Cada provedor define um *alias* que pode ser usado na configuração no lugar do nome de tipo totalmente qualificado.  Para os provedores internos, use os seguintes aliases:
 
 * Console
-* Depurar
+* Depuração
 * EventSource
 * EventLog
 * TraceSource
@@ -822,7 +822,7 @@ Uma função de filtro é invocada para todos os provedores e categorias que nã
 
 Veja algumas categorias usadas pelo ASP.NET Core e Entity Framework Core, com anotações sobre quais logs esperar delas:
 
-| Categoria                            | Observações |
+| Categoria                            | {1&gt;Observações&lt;1} |
 | ----------------------------------- | ----- |
 | Microsoft.AspNetCore                | Diagnóstico geral de ASP.NET Core. |
 | Microsoft.AspNetCore.DataProtection | Quais chaves foram consideradas, encontradas e usadas. |
@@ -996,7 +996,7 @@ Use as ferramentas de rastreamento dotnet para coletar um rastreamento de um apl
    | 4       | Ativa o evento `FormatMessage` quando `ILogger.Log()` é chamado. Fornece a versão de cadeia de caracteres formatada das informações. |
    | 8       | Ativa o evento `MessageJson` quando `ILogger.Log()` é chamado. Fornece uma representação JSON dos argumentos. |
 
-   | Evento em nível | Descrição     |
+   | Nível de evento | Descrição     |
    | :---------: | --------------- |
    | 0           | `LogAlways`     |
    | 1           | `Critical`      |

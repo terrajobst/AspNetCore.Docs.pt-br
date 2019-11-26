@@ -89,7 +89,7 @@ No aplicativo de exemplo do lado do cliente que acompanha este tópico, duas fun
 * `showPrompt` &ndash; produz um prompt para aceitar a entrada do usuário (o nome do usuário) e retorna o nome para o chamador.
 * `displayWelcome` &ndash; atribui uma mensagem de boas-vindas do chamador a um objeto DOM com uma `id` de `welcome`.
 
-*wwwroot/exampleJsInterop.js*:
+*wwwroot/exampleJsInterop. js*:
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
@@ -170,7 +170,7 @@ No que diz respeito ao código .NET, um `ElementReference` é um identificador o
 
 Por exemplo, o código a seguir define um método de extensão .NET que permite definir o foco em um elemento:
 
-*exampleJsInterop.js*:
+*exampleJsInterop. js*:
 
 ```javascript
 window.exampleJsFunctions = {
@@ -215,7 +215,7 @@ O aplicativo de exemplo inclui C# um método para retornar uma matriz de `int`s.
 
 O JavaScript servido para o cliente invoca o C# método .net.
 
-*wwwroot/exampleJsInterop.js*:
+*wwwroot/exampleJsInterop. js*:
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
 
@@ -251,13 +251,13 @@ Quando o botão do **método de instância .net do disparador HelloHelper. sayHe
 
 [!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=10-16)]
 
-*wwwroot/exampleJsInterop.js*:
+*wwwroot/exampleJsInterop. js*:
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
 
 O nome é passado para o construtor de `HelloHelper`, que define a propriedade `HelloHelper.Name`. Quando a função JavaScript `sayHello` é executada, `HelloHelper.SayHello` retorna a mensagem de `Hello, {Name}!`, que é gravada no console pela função JavaScript.
 
-*JsInteropClasses/HelloHelper.cs*:
+*JsInteropClasses/HelloHelper. cs*:
 
 [!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
 

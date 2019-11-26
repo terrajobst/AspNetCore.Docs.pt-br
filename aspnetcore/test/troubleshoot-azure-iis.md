@@ -86,7 +86,7 @@ Esse erro ocorre no código do aplicativo durante a inicialização ou durante a
 
 O processo de trabalho falha. O aplicativo não foi iniciado.
 
-O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) falha ao localizar o .NET Core CLR e encontrar o manipulador de solicitação em processo (*aspnetcorev2_inprocess. dll*). Verifique se:
+O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) falha ao localizar o .NET Core CLR e encontrar o manipulador de solicitação em processo (*aspnetcorev2_inprocess. dll*). Verifique que:
 
 * O aplicativo destina-se ao pacote NuGet [Microsoft.AspNetCore.Server.IIS](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IIS) ou ao [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app).
 * A versão da estrutura compartilhada do ASP.NET Core a que o aplicativo se destina está instalada no computador de destino.

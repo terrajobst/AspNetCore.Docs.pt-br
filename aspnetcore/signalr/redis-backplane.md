@@ -224,7 +224,7 @@ services.AddSignalR()
 
 O [clustering Redis](https://redis.io/topics/cluster-spec) é um método para obter alta disponibilidade usando vários servidores Redis. O clustering não tem suporte oficialmente, mas pode funcionar.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Para obter mais informações, consulte os seguintes recursos:
 

@@ -547,9 +547,9 @@ Os `EventArgs` com suporte são mostrados na tabela a seguir.
 
 | Evento            | Classe                | Eventos e observações do DOM |
 | ---------------- | -------------------- | -------------------- |
-| Área de Transferência        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
+| Área de transferência        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
 | Arraste             | `DragEventArgs`      | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br>`DataTransfer` e `DataTransferItem` manter os dados do item arrastados. |
-| Erro            | `ErrorEventArgs`     | `onerror` |
+| Error            | `ErrorEventArgs`     | `onerror` |
 | Evento            | `EventArgs`          | *Geral*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Área de transferência*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Meio*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
 | Foco            | `FocusEventArgs`     | `onfocus`, `onblur`, `onfocusin`, `onfocusout`<br><br>Não inclui suporte para `relatedTarget`. |
 | Entrada            | `ChangeEventArgs`    | `onchange`, `oninput` |
@@ -557,7 +557,7 @@ Os `EventArgs` com suporte são mostrados na tabela a seguir.
 | Mouse            | `MouseEventArgs`     | `onclick`, `oncontextmenu`, `ondblclick`, `onmousedown`, `onmouseup`, `onmouseover`, `onmousemove`, `onmouseout` |
 | Ponteiro do mouse    | `PointerEventArgs`   | `onpointerdown`, `onpointerup`, `onpointercancel`, `onpointermove`, `onpointerover`, `onpointerout`, `onpointerenter`, `onpointerleave`, `ongotpointercapture`, `onlostpointercapture` |
 | Roda do mouse      | `WheelEventArgs`     | `onwheel`, `onmousewheel` |
-| Progresso         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
+| Andamento         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
 | Toque            | `TouchEventArgs`     | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br>`TouchPoint` representa um único ponto de contato em um dispositivo sensível ao toque. |
 
 Para obter informações sobre as propriedades e o comportamento de manipulação de eventos dos eventos na tabela anterior, consulte [classes EventArgs na fonte de referência (ramificação ASPNET/AspNetCore Release/3.0)](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Components/Web/src/Web).
@@ -1340,7 +1340,7 @@ Componentes modelo são componentes que aceitam um ou mais modelos de interface 
 * Um componente de tabela que permite que um usuário especifique modelos para o cabeçalho, as linhas e o rodapé da tabela.
 * Um componente de lista que permite que um usuário especifique um modelo para renderizar itens em uma lista.
 
-### <a name="template-parameters"></a>Parâmetros de modelo
+### <a name="template-parameters"></a>Parâmetros do Modelo
 
 Um componente modelo é definido especificando um ou mais parâmetros de componente do tipo `RenderFragment` ou `RenderFragment<T>`. Um fragmento de renderização representa um segmento de interface do usuário a ser renderizado. `RenderFragment<T>` usa um parâmetro de tipo que pode ser especificado quando o fragmento de renderização é invocado.
 
@@ -1429,7 +1429,7 @@ Em alguns cenários, é inconveniente fluir dados de um componente ancestral par
 
 No exemplo a seguir do aplicativo de exemplo, a classe `ThemeInfo` especifica as informações do tema para fluir para baixo na hierarquia do componente para que todos os botões de uma determinada parte do aplicativo compartilhem o mesmo estilo.
 
-*UIThemeClasses/ThemeInfo.cs*:
+*UIThemeClasses/ThemeInfo. cs*:
 
 ```csharp
 public class ThemeInfo
@@ -1688,14 +1688,14 @@ builder.AddContent(1, "Second");
 
 Quando o código é executado pela primeira vez, se `someFlag` for `true`, o Construtor receberá:
 
-| Sequência | Digite      | Dados   |
+| Sequence | Tipo      | Dados   |
 | :------: | --------- | :----: |
-| 0        | Nó de texto | Primeiro  |
+| 0        | Nó de texto | First  |
 | 1        | Nó de texto | Segundo |
 
 Imagine que `someFlag` se torna `false`e a marcação é renderizada novamente. Desta vez, o Construtor recebe:
 
-| Sequência | Digite       | Dados   |
+| Sequence | Tipo       | Dados   |
 | :------: | ---------- | :----: |
 | 1        | Nó de texto  | Segundo |
 
@@ -1720,14 +1720,14 @@ builder.AddContent(seq++, "Second");
 
 Agora, a primeira saída é:
 
-| Sequência | Digite      | Dados   |
+| Sequence | Tipo      | Dados   |
 | :------: | --------- | :----: |
-| 0        | Nó de texto | Primeiro  |
+| 0        | Nó de texto | First  |
 | 1        | Nó de texto | Segundo |
 
 Esse resultado é idêntico ao caso anterior, portanto, não existem problemas negativos. `someFlag` é `false` no segundo processamento e a saída é:
 
-| Sequência | Digite      | Dados   |
+| Sequence | Tipo      | Dados   |
 | :------: | --------- | ------ |
 | 0        | Nó de texto | Segundo |
 

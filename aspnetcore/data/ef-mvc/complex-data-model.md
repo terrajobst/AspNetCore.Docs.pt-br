@@ -38,7 +38,7 @@ Neste tutorial, você:
 > * Alterar a cadeia de conexão
 > * Atualizar o banco de dados
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
 
 * [Usar as migrações do EF Core](migrations.md)
 
@@ -512,7 +512,7 @@ Clique com o botão direito do mouse na tabela **CourseAssignment** e selecione 
 
 [Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Neste tutorial, você:
 

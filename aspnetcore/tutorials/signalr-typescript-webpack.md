@@ -34,7 +34,7 @@ Neste tutorial, você aprenderá como:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 

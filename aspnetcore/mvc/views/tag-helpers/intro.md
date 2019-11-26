@@ -27,7 +27,7 @@ Os Auxiliares de Marca permitem que o código do lado do servidor participe da c
 
 **Um ambiente avançado do IntelliSense para criação do HTML e da marcação do Razor** Isso é um nítido contraste com Auxiliares HTML, a abordagem anterior para a criação do lado do servidor de marcação nas exibições do Razor. [Comparação entre Auxiliares de Marca e Auxiliares HTML](#tag-helpers-compared-to-html-helpers) explica as diferenças mais detalhadamente. [Suporte do IntelliSense para Auxiliares de Marca](#intellisense-support-for-tag-helpers) explica o ambiente do IntelliSense. Até mesmo desenvolvedores experientes com a sintaxe Razor do C# são mais produtivos usando Auxiliares de Marca do que escrevendo a marcação do Razor do C#.
 
-**Uma maneira de fazer com que você fique mais produtivo e possa produzir um código mais robusto, confiável e possível de ser mantido usando as informações apenas disponíveis no servidor** Por exemplo, historicamente, o mantra da atualização de imagens era alterar o nome da imagem quando a imagem era alterada. As imagens devem ser armazenadas em cache de forma agressiva por motivos de desempenho e, a menos que você altere o nome de uma imagem, você corre o risco de os clientes obterem uma cópia obsoleta. Historicamente, depois que uma imagem era editada, o nome precisava ser alterado e cada referência à imagem no aplicativo Web precisava ser atualizada. Not only is this very labor intensive, it's also error prone (you could miss a reference, accidentally enter the wrong string, etc.) The built-in `ImageTagHelper` can do this for you automatically. O `ImageTagHelper` pode acrescentar um número de versão ao nome da imagem, de modo que sempre que a imagem é alterada, o servidor gera automaticamente uma nova versão exclusiva para a imagem. Os clientes têm a garantia de obter a imagem atual. Basicamente, essa economia na robustez e no trabalho é obtida gratuitamente com o `ImageTagHelper`.
+**Uma maneira de fazer com que você fique mais produtivo e possa produzir um código mais robusto, confiável e possível de ser mantido usando as informações apenas disponíveis no servidor** Por exemplo, historicamente, o mantra da atualização de imagens era alterar o nome da imagem quando a imagem era alterada. As imagens devem ser armazenadas em cache de forma agressiva por motivos de desempenho e, a menos que você altere o nome de uma imagem, você corre o risco de os clientes obterem uma cópia obsoleta. Historicamente, depois que uma imagem era editada, o nome precisava ser alterado e cada referência à imagem no aplicativo Web precisava ser atualizada. Isso não só é muito trabalhoso, também é propenso a erros (você pode perder uma referência, inserir acidentalmente a cadeia de caracteres errada, etc.) O `ImageTagHelper` interno pode fazer isso para você automaticamente. O `ImageTagHelper` pode acrescentar um número de versão ao nome da imagem, de modo que sempre que a imagem é alterada, o servidor gera automaticamente uma nova versão exclusiva para a imagem. Os clientes têm a garantia de obter a imagem atual. Basicamente, essa economia na robustez e no trabalho é obtida gratuitamente com o `ImageTagHelper`.
 
 A maioria dos auxiliares de marca internos é direcionada a elementos HTML padrão e fornece atributos do lado do servidor para o elemento. Por exemplo, o elemento `<input>` usado em várias exibições na pasta *Exibição/Conta* contém o atributo `asp-for`. Esse atributo extrai o nome da propriedade do modelo especificado no HTML renderizado. Considere uma exibição Razor com o seguinte modelo:
 
@@ -125,7 +125,7 @@ A diretiva `@tagHelperPrefix` permite que você especifique uma cadeia de caract
 
 Na imagem do código abaixo, o prefixo do Auxiliar de Marca é definido como `th:`; portanto, somente esses elementos que usam o prefixo `th:` dão suporte a Auxiliares de Marca (elementos habilitados para Auxiliar de Marca têm uma fonte diferenciada). Os elementos `<label>` e `<input>` têm o prefixo do Auxiliar de Marca e são habilitados para Auxiliar de Marca, ao contrário do elemento `<span>`.
 
-![imagem](intro/_static/thp.png)
+![image](intro/_static/thp.png)
 
 As mesmas regras de hierarquia que se aplicam a `@addTagHelper` também se aplicam a `@tagHelperPrefix`.
 
@@ -133,16 +133,16 @@ As mesmas regras de hierarquia que se aplicam a `@addTagHelper` também se aplic
 
 Muitos Auxiliares de Marca não podem ser usados como marcações com autofechamento. Alguns Auxiliares de Marca são projetados para serem marcações com autofechamento. Usar um Auxiliar de Marca que não foi projetado para ser de autofechamento suprime a saída renderizada. Um Auxiliar de Marca com autofechamento resulta em uma marca com autofechamento na saída renderizada. Para obter mais informações, confira [esta observação](xref:mvc/views/tag-helpers/authoring#self-closing) em [Criando Auxiliares de Marca](xref:mvc/views/tag-helpers/authoring).
 
-## <a name="c-in-tag-helpers-attributedeclaration"></a>C# in Tag Helpers attribute/declaration 
+## <a name="c-in-tag-helpers-attributedeclaration"></a>C#em marcação atributo/declaração de auxiliares 
 
-Tag Helpers do not allow C# in the element's attribute or tag declaration area. For example, the following code is not valid:
+Os auxiliares de marcação não C# permitem no atributo ou na área de declaração de marca do elemento. Por exemplo, o código a seguir não é válido:
 
 ```cshtml
 <input asp-for="LastName"  
        @(Model?.LicenseId == null ? "disabled" : string.Empty) />
 ```
 
-The preceding code can be written as:
+O código anterior pode ser escrito como:
 
 ```cshtml
 <input asp-for="LastName" 
@@ -155,39 +155,39 @@ Quando você cria um novo aplicativo Web ASP.NET Core no Visual Studio, ele adic
 
 Considere a escrita de um elemento `<label>` HTML. Assim que você insere `<l` no editor do Visual Studio, o IntelliSense exibe elementos correspondentes:
 
-![imagem](intro/_static/label.png)
+![image](intro/_static/label.png)
 
 Não só você obtém a ajuda do HTML, mas também o ícone (o "@" symbol with "<>" abaixo dele).
 
-![imagem](intro/_static/tagSym.png)
+![image](intro/_static/tagSym.png)
 
 identifica o elemento como direcionado a Auxiliares de Marca. Elementos HTML puros (como o `fieldset`) exibem o ícone "<>".
 
 Uma marca `<label>` HTML pura exibe a marca HTML (com o tema de cores padrão do Visual Studio) em uma fonte marrom, os atributos em vermelho e os valores de atributo em azul.
 
-![imagem](intro/_static/LableHtmlTag.png)
+![image](intro/_static/LableHtmlTag.png)
 
 Depois de inserir `<label`, o IntelliSense lista os atributos HTML/CSS disponíveis e os atributos direcionados ao Auxiliar de Marca:
 
-![imagem](intro/_static/labelattr.png)
+![image](intro/_static/labelattr.png)
 
 O preenchimento de declaração do IntelliSense permite que você pressione a tecla TAB para preencher a declaração com o valor selecionado:
 
-![imagem](intro/_static/stmtcomplete.png)
+![image](intro/_static/stmtcomplete.png)
 
 Assim que um atributo do Auxiliar de Marca é inserido, as fontes da marca e do atributo são alteradas. Usando o tema de cores padrão "Azul" ou "Claro" do Visual Studio, a fonte é roxo em negrito. Se estiver usando o tema "Escuro", a fonte será azul-petróleo em negrito. As imagens deste documento foram obtidas usando o tema padrão.
 
-![imagem](intro/_static/labelaspfor2.png)
+![image](intro/_static/labelaspfor2.png)
 
 Insira o atalho *CompleteWord* do Visual Studio – Ctrl + barra de espaços é o [padrão](/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio) dentro das aspas duplas ("") e você está agora no C#, exatamente como estaria em uma classe do C#. O IntelliSense exibe todos os métodos e propriedades no modelo de página. Os métodos e as propriedades estão disponíveis porque o tipo de propriedade é `ModelExpression`. Na imagem abaixo, estou editando a exibição `Register` e, portanto, o `RegisterViewModel` está disponível.
 
-![imagem](intro/_static/intellemail.png)
+![image](intro/_static/intellemail.png)
 
 O IntelliSense lista as propriedades e os métodos disponíveis para o modelo na página. O ambiente avançado de IntelliSense ajuda você a selecionar a classe CSS:
 
-![imagem](intro/_static/iclass.png)
+![image](intro/_static/iclass.png)
 
-![imagem](intro/_static/intel3.png)
+![image](intro/_static/intel3.png)
 
 ## <a name="tag-helpers-compared-to-html-helpers"></a>Comparação entre Auxiliares de Marca e Auxiliares HTML
 
@@ -213,13 +213,13 @@ Usando o `LabelTagHelper`, a mesma marcação pode ser escrita como:
 
 Com a versão do Auxiliar de Marca, assim que você insere `<l` no editor do Visual Studio, o IntelliSense exibe elementos correspondentes:
 
-![imagem](intro/_static/label.png)
+![image](intro/_static/label.png)
 
 O IntelliSense ajuda você a escrever a linha inteira.
 
 A imagem de código a seguir mostra a parte do Formulário da exibição do Razor *Views/Account/Register.cshtml* gerada com base no modelo do ASP.NET 4.5 MVC incluído com o Visual Studio.
 
-![imagem](intro/_static/regCS.png)
+![image](intro/_static/regCS.png)
 
 O editor do Visual Studio exibe o código C# com uma tela de fundo cinza. Por exemplo, o Auxiliar HTML `AntiForgeryToken`:
 
@@ -229,7 +229,7 @@ O editor do Visual Studio exibe o código C# com uma tela de fundo cinza. Por ex
 
 é exibido com uma tela de fundo cinza. A maior parte da marcação na exibição Register é C#. Compare isso com a abordagem equivalente ao uso de Auxiliares de Marca:
 
-![imagem](intro/_static/regTH.png)
+![image](intro/_static/regTH.png)
 
 A marcação é muito mias limpa e fácil de ler, editar e manter que a abordagem dos Auxiliares HTML. O código C# é reduzido ao mínimo que o servidor precisa conhecer. O editor do Visual Studio exibe a marcação direcionada por um Auxiliar de Marca em uma fonte diferenciada.
 
@@ -263,7 +263,7 @@ O editor do Visual Studio ajuda você a escrever **toda** a marcação na aborda
 
 Personalize a fonte e a colorização em **Ferramentas** > **Opções** > **Ambiente** > **Fontes e Cores**:
 
-![imagem](intro/_static/fontoptions2.png)
+![image](intro/_static/fontoptions2.png)
 
 [!INCLUDE[](~/includes/built-in-TH.md)]
 

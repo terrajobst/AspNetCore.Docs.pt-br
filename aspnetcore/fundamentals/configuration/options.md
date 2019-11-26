@@ -31,7 +31,7 @@ As opções também fornecem um mecanismo para validar os dados da configuraçã
 
 ## <a name="package"></a>Pacote
 
-The [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package is implicitly referenced in ASP.NET Core apps.
+O pacote [Microsoft. Extensions. Options. ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) é referenciado implicitamente em aplicativos ASP.NET Core.
 
 ## <a name="options-interfaces"></a>Interfaces de opções
 
@@ -138,7 +138,7 @@ No código a seguir, um terceiro serviço <xref:Microsoft.Extensions.Options.ICo
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
+O método `GetSection` requer o namespace <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>.
 
 O arquivo *appsettings.json* de exemplo define um membro `subsection` com chaves para `suboption1` e `suboption2`:
 
@@ -162,16 +162,16 @@ Quando o aplicativo é executado, o método `OnGet` retorna uma cadeia de caract
 subOption1 = subvalue1_from_json, subOption2 = 200
 ```
 
-## <a name="options-injection"></a>Options injection
+## <a name="options-injection"></a>Injeção de opções
 
-Options injection is demonstrated as Example &num;4 in the sample app.
+A injeção de opções é demonstrada como exemplo &num;4 no aplicativo de exemplo.
 
-Inject <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into:
+Injetar <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em:
 
-* A Razor page or MVC view with the [@inject](xref:mvc/views/razor#inject) Razor directive.
-* A page or view model.
+* Uma página Razor ou uma exibição MVC com a diretiva [@inject](xref:mvc/views/razor#inject) Razor.
+* Um modelo de página ou de exibição.
 
-The following example from the sample app injects <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into a page model (*Pages/Index.cshtml.cs*):
+O exemplo a seguir do aplicativo de exemplo injeta <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em um modelo de página (*pages/index. cshtml. cs*):
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
@@ -191,12 +191,12 @@ Quando o aplicativo é executado, os valores de opções são mostrados na pági
 
 O recarregamento de dados de configuração com <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> é demonstrado no Exemplo &num;5 no aplicativo de exemplo.
 
-Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are computed once per request when accessed and cached for the lifetime of the request.
+Usando <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, as opções são computadas uma vez por solicitação quando acessadas e armazenadas em cache durante o tempo de vida da solicitação.
 
-The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
+A diferença entre `IOptionsMonitor` e `IOptionsSnapshot` é que:
 
-* `IOptionsMonitor` is a [singleton service](xref:fundamentals/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
-* `IOptionsSnapshot` is a [scoped service](xref:fundamentals/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
+* `IOptionsMonitor` é um [serviço singleton](xref:fundamentals/dependency-injection#singleton) que recupera os valores de opção atuais a qualquer momento, o que é especialmente útil em dependências singleton.
+* `IOptionsSnapshot` é um [serviço com escopo](xref:fundamentals/dependency-injection#scoped) e fornece um instantâneo das opções no momento em que o objeto `IOptionsSnapshot<T>` é construído. Os instantâneos de opções são projetados para uso com dependências transitórias e com escopo definido.
 
 O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> é criado após a alteração de *appsettings.json* (*Pages/Index.cshtml.cs*). Várias solicitações ao servidor retornam valores constantes fornecidos pelo arquivo *appsettings.json*, até que o arquivo seja alterado e a configuração seja recarregada.
 
@@ -206,7 +206,7 @@ O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOp
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example5)]
 
-A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
+A seguinte imagem mostra os valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
 
 ```html
 snapshot option1 = value1_from_json, snapshot option2 = -1
@@ -350,7 +350,7 @@ public interface IValidateOptions<TOptions> where TOptions : class
 }
 ```
 
-A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> em `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations` is implicitly referenced in ASP.NET Core apps.
+A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> em `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations` é referenciado implicitamente em aplicativos ASP.NET Core.
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
@@ -453,7 +453,7 @@ As opções também fornecem um mecanismo para validar os dados da configuraçã
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
 
 Referencie o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) ou adicione uma referência de pacote ao pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).
 
@@ -562,7 +562,7 @@ No código a seguir, um terceiro serviço <xref:Microsoft.Extensions.Options.ICo
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
+O método `GetSection` requer o namespace <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>.
 
 O arquivo *appsettings.json* de exemplo define um membro `subsection` com chaves para `suboption1` e `suboption2`:
 
@@ -586,16 +586,16 @@ Quando o aplicativo é executado, o método `OnGet` retorna uma cadeia de caract
 subOption1 = subvalue1_from_json, subOption2 = 200
 ```
 
-## <a name="options-injection"></a>Options injection
+## <a name="options-injection"></a>Injeção de opções
 
-Options injection is demonstrated as Example &num;4 in the sample app.
+A injeção de opções é demonstrada como exemplo &num;4 no aplicativo de exemplo.
 
-Inject <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into:
+Injetar <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em:
 
-* A Razor page or MVC view with the [@inject](xref:mvc/views/razor#inject) Razor directive.
-* A page or view model.
+* Uma página Razor ou uma exibição MVC com a diretiva [@inject](xref:mvc/views/razor#inject) Razor.
+* Um modelo de página ou de exibição.
 
-The following example from the sample app injects <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into a page model (*Pages/Index.cshtml.cs*):
+O exemplo a seguir do aplicativo de exemplo injeta <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em um modelo de página (*pages/index. cshtml. cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
@@ -615,12 +615,12 @@ Quando o aplicativo é executado, os valores de opções são mostrados na pági
 
 O recarregamento de dados de configuração com <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> é demonstrado no Exemplo &num;5 no aplicativo de exemplo.
 
-Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are computed once per request when accessed and cached for the lifetime of the request.
+Usando <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, as opções são computadas uma vez por solicitação quando acessadas e armazenadas em cache durante o tempo de vida da solicitação.
 
-The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
+A diferença entre `IOptionsMonitor` e `IOptionsSnapshot` é que:
 
-* `IOptionsMonitor` is a [singleton service](xref:fundamentals/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
-* `IOptionsSnapshot` is a [scoped service](xref:fundamentals/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
+* `IOptionsMonitor` é um [serviço singleton](xref:fundamentals/dependency-injection#singleton) que recupera os valores de opção atuais a qualquer momento, o que é especialmente útil em dependências singleton.
+* `IOptionsSnapshot` é um [serviço com escopo](xref:fundamentals/dependency-injection#scoped) e fornece um instantâneo das opções no momento em que o objeto `IOptionsSnapshot<T>` é construído. Os instantâneos de opções são projetados para uso com dependências transitórias e com escopo definido.
 
 O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> é criado após a alteração de *appsettings.json* (*Pages/Index.cshtml.cs*). Várias solicitações ao servidor retornam valores constantes fornecidos pelo arquivo *appsettings.json*, até que o arquivo seja alterado e a configuração seja recarregada.
 
@@ -630,7 +630,7 @@ O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOp
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example5)]
 
-A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
+A seguinte imagem mostra os valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
 
 ```html
 snapshot option1 = value1_from_json, snapshot option2 = -1
@@ -774,7 +774,7 @@ public interface IValidateOptions<TOptions> where TOptions : class
 }
 ```
 
-A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> em `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations` is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+A validação de anotação de dados está disponível no pacote [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) por meio da chamada do método <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> em `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations` está incluído no [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app).
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -875,7 +875,7 @@ As opções também fornecem um mecanismo para validar os dados da configuraçã
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
 
 Referencie o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) ou adicione uma referência de pacote ao pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).
 
@@ -984,7 +984,7 @@ No código a seguir, um terceiro serviço <xref:Microsoft.Extensions.Options.ICo
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
+O método `GetSection` requer o namespace <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>.
 
 O arquivo *appsettings.json* de exemplo define um membro `subsection` com chaves para `suboption1` e `suboption2`:
 
@@ -1044,7 +1044,7 @@ O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOp
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example5)]
 
-A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
+A seguinte imagem mostra os valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
 
 ```html
 snapshot option1 = value1_from_json, snapshot option2 = -1

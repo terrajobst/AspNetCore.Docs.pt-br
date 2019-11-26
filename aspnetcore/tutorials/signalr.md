@@ -32,7 +32,7 @@ No final, você terá um aplicativo de chat funcionando:
 
 ![[! Parar. Aplicativo de exemplo não LOC (Signalr)]](signalr/_static/3.x/signalr-get-started-finished.png)
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -263,7 +263,7 @@ Este tutorial ensina as noções básicas da criação de um aplicativo em tempo
 > * Adicione o código que envia mensagens de qualquer cliente para todos os clientes conectados.  
 No final, você terá um aplicativo de chat em funcionamento: ![[! Parar. Não-LOC (Signalr)] aplicativo de exemplo](signalr/_static/2.x/signalr-get-started-finished.png)   
 
-## <a name="prerequisites"></a>Pré-requisitos    
+## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}    
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)   
 
