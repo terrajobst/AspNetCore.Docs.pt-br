@@ -5,16 +5,16 @@ description: Saiba como rotear solicitações em aplicativos e sobre o component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 11/23/2019
 no-loc:
 - Blazor
 uid: blazor/routing
-ms.openlocfilehash: d4b76c00f79f333884fa7e30b27eadc6e36de287
-ms.sourcegitcommit: a166291c6708f5949c417874108332856b53b6a9
+ms.openlocfilehash: 2c139db4e44679fbd9f3455a2d2543be0e128765
+ms.sourcegitcommit: 918d7000b48a2892750264b852bad9e96a1165a7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/18/2019
-ms.locfileid: "72589932"
+ms.lasthandoff: 11/27/2019
+ms.locfileid: "74550329"
 ---
 # <a name="aspnet-core-opno-locblazor-routing"></a>Roteamento de Blazor de ASP.NET Core
 
@@ -51,7 +51,7 @@ Quando um arquivo *. Razor* com uma diretiva `@page` é compilado, a classe gera
 
 Em tempo de execução, o componente `RouteView`:
 
-* Recebe o `RouteData` do `Router` junto com os parâmetros desejados.
+* Recebe o `RouteData` da `Router` junto com os parâmetros desejados.
 * Renderiza o componente especificado com seu layout (ou um layout padrão opcional) usando os parâmetros especificados.
 
 Opcionalmente, você pode especificar um parâmetro `DefaultLayout` com uma classe de layout a ser usada para componentes que não especificam um layout. Os modelos de Blazor padrão especificam o componente `MainLayout`. *MainLayout. Razor* está na pasta *compartilhada* do projeto de modelo. Para obter mais informações sobre layouts, consulte <xref:blazor/layouts>.
@@ -61,13 +61,13 @@ Vários modelos de rota podem ser aplicados a um componente. O componente a segu
 [!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
 > [!IMPORTANT]
-> Para que as URLs sejam resolvidas corretamente, o aplicativo deve incluir uma marca de `<base>` em seu arquivo *wwwroot/index.html* (Blazor Webassembly) ou no arquivo *pages/_Host. cshtml* (Blazor Server) com o caminho base do aplicativo especificado no atributo `href` (`<base href="/">`). Para obter mais informações, consulte <xref:host-and-deploy/blazor/index#app-base-path>.
+> Para que as URLs sejam resolvidas corretamente, o aplicativo deve incluir uma marca de `<base>` em seu arquivo *wwwroot/index.html* (Blazor Webassembly) ou no arquivo *pages/_Host. cshtml* (servidorBlazor) com o caminho base do aplicativo especificado no atributo `href` (`<base href="/">`). Para obter mais informações, consulte <xref:host-and-deploy/blazor/index#app-base-path>.
 
 ## <a name="provide-custom-content-when-content-isnt-found"></a>Fornecer conteúdo personalizado quando o conteúdo não for encontrado
 
 O componente `Router` permite que o aplicativo especifique conteúdo personalizado se o conteúdo não for encontrado para a rota solicitada.
 
-No arquivo *app. Razor* , defina conteúdo personalizado no parâmetro de modelo `NotFound` do componente `Router`:
+No arquivo *app. Razor* , defina o conteúdo personalizado no parâmetro `NotFound` template do componente `Router`:
 
 ```cshtml
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -81,7 +81,7 @@ No arquivo *app. Razor* , defina conteúdo personalizado no parâmetro de modelo
 </Router>
 ```
 
-O conteúdo das marcas `<NotFound>` pode incluir itens arbitrários, como outros componentes interativos. Para aplicar um layout padrão ao conteúdo `NotFound`, consulte <xref:blazor/layouts>.
+O conteúdo das marcas de `<NotFound>` pode incluir itens arbitrários, como outros componentes interativos. Para aplicar um layout padrão ao conteúdo de `NotFound`, consulte <xref:blazor/layouts>.
 
 ## <a name="route-to-components-from-multiple-assemblies"></a>Rotear para componentes de vários assemblies
 
@@ -101,7 +101,7 @@ O roteador usa parâmetros de rota para popular os parâmetros de componente cor
 
 [!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/RouteParameter.razor?name=snippet_RouteParameter&highlight=2,7-8)]
 
-Não há suporte para parâmetros opcionais para aplicativos Blazor no ASP.NET Core 3,0. Duas diretivas `@page` são aplicadas no exemplo anterior. O primeiro permite a navegação para o componente sem um parâmetro. A segunda diretiva `@page` usa o parâmetro de rota `{text}` e atribui o valor à propriedade `Text`.
+Não há suporte para parâmetros opcionais para aplicativos Blazor no ASP.NET Core 3,0. Duas diretivas `@page` são aplicadas no exemplo anterior. O primeiro permite a navegação para o componente sem um parâmetro. A segunda diretiva de `@page` usa o parâmetro `{text}` Route e atribui o valor à propriedade `Text`.
 
 ## <a name="route-constraints"></a>Restrições de rota
 
@@ -110,7 +110,7 @@ Uma restrição de rota impõe a correspondência de tipo em um segmento de rota
 No exemplo a seguir, a rota para o componente `Users` só corresponde se:
 
 * Um segmento de rota `Id` está presente na URL da solicitação.
-* O segmento `Id` é um inteiro (`int`).
+* O segmento de `Id` é um inteiro (`int`).
 
 [!code-cshtml[](routing/samples_snapshot/3.x/Constraint.razor?highlight=1)]
 
@@ -138,24 +138,27 @@ Em aplicativos do Blazor Server, a rota padrão em *_Host. cshtml* é `/` (`@pag
 @page "/{**path}"
 ```
 
-O modelo `"/{**path}"` inclui:
+O modelo de `"/{**path}"` inclui:
 
 * Sintaxe *catch-all* de asterisco duplo (`**`) para capturar o caminho entre vários limites de pasta sem barras invertidas de codificação (`/`).
-* Um nome de parâmetro de rota `path`.
+* `path` nome do parâmetro de rota.
+
+> [!NOTE]
+> **Não** há suporte para a sintaxe de parâmetro *Catch* (`*`/`**`) em componentes do Razor ( *. Razor*).
 
 Para obter mais informações, consulte <xref:fundamentals/routing>.
 
 ## <a name="navlink-component"></a>Componente NavLink
 
-Use um componente `NavLink` no lugar de elementos de hiperlink HTML (`<a>`) ao criar links de navegação. Um componente `NavLink` se comporta como um elemento `<a>`, exceto que alterna uma classe CSS `active` com base em se seu `href` corresponde à URL atual. A classe `active` ajuda um usuário a entender qual página é a página ativa entre os links de navegação exibidos.
+Use um componente `NavLink` em vez de elementos HTML HYPERLINK (`<a>`) ao criar links de navegação. Um componente `NavLink` se comporta como um elemento `<a>`, exceto que ele alterna uma classe CSS `active` com base em se seu `href` corresponde à URL atual. A classe `active` ajuda um usuário a entender qual página é a página ativa entre os links de navegação exibidos.
 
-O componente `NavMenu` a seguir cria uma barra de navegação de [inicialização](https://getbootstrap.com/docs/) que demonstra como usar componentes `NavLink`:
+O componente `NavMenu` a seguir cria uma barra de navegação de [inicialização](https://getbootstrap.com/docs/) que demonstra como usar os componentes do `NavLink`:
 
 [!code-cshtml[](routing/samples_snapshot/3.x/NavMenu.razor?highlight=4,9)]
 
-Há duas opções `NavLinkMatch` que você pode atribuir ao atributo `Match` do elemento `<NavLink>`:
+Há duas opções de `NavLinkMatch` que você pode atribuir ao atributo `Match` do elemento `<NavLink>`:
 
-* `NavLinkMatch.All` &ndash; o `NavLink` está ativo quando corresponde à URL atual inteira.
+* `NavLinkMatch.All` &ndash; o `NavLink` está ativo quando corresponde à URL atual.
 * `NavLinkMatch.Prefix` (*padrão*) &ndash; o `NavLink` está ativo quando ele corresponde a qualquer prefixo da URL atual.
 
 No exemplo anterior, a `NavLink` inicial `href=""` corresponde à URL inicial e recebe somente a classe CSS `active` na URL do caminho base padrão do aplicativo (por exemplo, `https://localhost:5001/`). O segundo `NavLink` recebe a classe `active` quando o usuário visita qualquer URL com um prefixo `MyComponent` (por exemplo, `https://localhost:5001/MyComponent` e `https://localhost:5001/MyComponent/AnotherSegment`).
@@ -179,13 +182,13 @@ Use `Microsoft.AspNetCore.Components.NavigationManager` para trabalhar com URIs 
 | Membro | Descrição |
 | ------ | ----------- |
 | `Uri` | Obtém o URI absoluto atual. |
-| `BaseUri` | Obtém o URI de base (com uma barra à direita) que pode ser anexado a caminhos de URI relativos para produzir um URI absoluto. Normalmente, `BaseUri` corresponde ao atributo `href` no elemento `<base>` do documento em *wwwroot/index.html* (Blazor Webassembly) ou *pages/_Host. cshtml* (servidor Blazor). |
+| `BaseUri` | Obtém o URI de base (com uma barra à direita) que pode ser anexado a caminhos de URI relativos para produzir um URI absoluto. Normalmente, `BaseUri` corresponde ao atributo `href` no elemento `<base>` do documento em *wwwroot/index.html* (Blazor Webassembly) ou *pages/_Host. cshtml* (servidorBlazor). |
 | `NavigateTo` | Navega para o URI especificado. Se `forceLoad` for `true`:<ul><li>O roteamento do lado do cliente é ignorado.</li><li>O navegador é forçado a carregar a nova página do servidor, seja ou não o URI normalmente manipulado pelo roteador do lado do cliente.</li></ul> |
 | `LocationChanged` | Um evento que é acionado quando o local de navegação é alterado. |
 | `ToAbsoluteUri` | Converte um URI relativo em um URI absoluto. |
-| `ToBaseRelativePath` | Dado um URI de base (por exemplo, um URI retornado anteriormente por `GetBaseUri`), converte um URI absoluto em um URI relativo ao prefixo de URI de base. |
+| `ToBaseRelativePath` | Dado um URI de base (por exemplo, um URI retornado anteriormente pelo `GetBaseUri`), converte um URI absoluto em um URI relativo ao prefixo de URI de base. |
 
-O componente a seguir navega para o componente `Counter` do aplicativo quando o botão é selecionado:
+O componente a seguir navega para o componente de `Counter` do aplicativo quando o botão é selecionado:
 
 ```cshtml
 @page "/navigate"
