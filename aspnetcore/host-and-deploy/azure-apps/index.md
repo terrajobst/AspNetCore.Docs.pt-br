@@ -28,9 +28,9 @@ Use o Visual Studio para criar e implantar um aplicativo Web ASP.NET Core no Ser
 [Criar um aplicativo ASP.NET Core no Serviço de Aplicativo no Linux](/azure/app-service/containers/quickstart-dotnetcore)  
 Use a linha de comando do Visual Studio para criar e implantar um aplicativo Web ASP.NET Core no Serviço de Aplicativo do Azure no Linux.
 
-See the [ASP.NET Core on App Service Dashboard](https://aspnetcoreon.azurewebsites.net/) for the version of ASP.NET Core available on Azure App service.
+Consulte o [ASP.NET Core no painel do serviço de aplicativo](https://aspnetcoreon.azurewebsites.net/) para obter a versão do ASP.NET Core disponível no serviço Azure app.
 
-Subscribe to the [App Service Announcements](https://github.com/Azure/app-service-announcements/) repository and monitor the issues. The App Service team regularly posts announcements and scenarios arriving in App Service.
+Assine o repositório de [anúncios do serviço de aplicativo](https://github.com/Azure/app-service-announcements/) e monitore os problemas. A equipe do serviço de aplicativo publica regularmente anúncios e cenários chegando ao serviço de aplicativo.
 
 Os artigos a seguir estão disponíveis na documentação do ASP.NET Core:
 
@@ -51,9 +51,9 @@ Compreenda e solucione problemas de avisos e erros com projetos do ASP.NET Core.
 
 ## <a name="application-configuration"></a>Configuração do aplicativo
 
-### <a name="platform"></a>Plataforma
+### <a name="platform"></a>Platform
 
-The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure Portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) match the setting in the app's service configuration in the Azure Portal.
+A arquitetura da plataforma (x86/x64) de um aplicativo dos serviços de aplicativos é definida nas configurações do aplicativo no portal do Azure para aplicativos que são hospedados em uma camada de hospedagem superior (básica) ou mais alta. Confirme se as configurações de publicação do aplicativo (por exemplo, no perfil de publicação do Visual Studio [(. pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) correspondem à configuração na configuração de serviço do aplicativo no portal do Azure.
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -67,7 +67,7 @@ Para aplicativos com dependências nativas, os runtimes para aplicativos de 32 b
 
 ::: moniker-end
 
-For more information on .NET Core framework components and distribution methods, such as information on the .NET Core runtime and the .NET Core SDK, see [About .NET Core: Composition](/dotnet/core/about#composition).
+Para obter mais informações sobre os componentes do .NET Core Framework e os métodos de distribuição, como informações sobre o tempo de execução do .NET Core e o SDK do .NET Core, consulte [sobre o .NET Core: composição](/dotnet/core/about#composition).
 
 ### <a name="packages"></a>Pacotes
 
@@ -146,32 +146,32 @@ Quando ocorre a troca entre os slots de implantação, nenhum sistema que usa a 
 Para obter mais informações, consulte <xref:security/data-protection/implementation/key-storage-providers>.
 <a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>
 
-## <a name="deploy-aspnet-core-30-to-azure-app-service"></a>Deploy ASP.NET Core 3.0 to Azure App Service
+## <a name="deploy-aspnet-core-30-to-azure-app-service"></a>Implantar o ASP.NET Core 3,0 no serviço Azure App
 
-ASP.NET Core 3.0 is supported on Azure App Service. To deploy a preview release of a .NET Core version later than .NET Core 3.0, use one of the following techniques. These approaches are also used when the runtime is available but the SDK hasn't been installed on Azure App Service.
+ASP.NET Core 3,0 tem suporte no serviço Azure App. Para implantar uma versão de visualização de versões do .NET Core posteriores ao .NET Core 3,0, use uma das técnicas a seguir. Essas abordagens também são usadas quando o tempo de execução está disponível, mas o SDK não foi instalado no serviço Azure App.
 
-* [Specify the .NET Core SDK Version using Azure Pipelines](#specify-the-net-core-sdk-version-using-azure-pipelines)
+* [Especifique a versão de SDK do .NET Core usando Azure Pipelines](#specify-the-net-core-sdk-version-using-azure-pipelines)
 * [Implantar um aplicativo autossuficiente em versão prévia](#deploy-a-self-contained-preview-app).
 * [Usar o Docker com aplicativos Web para contêineres](#use-docker-with-web-apps-for-containers).
 * [Instalar a extensão de site da versão prévia](#install-the-preview-site-extension).
 
-### <a name="specify-the-net-core-sdk-version-using-azure-pipelines"></a>Specify the .NET Core SDK Version using Azure Pipelines
+### <a name="specify-the-net-core-sdk-version-using-azure-pipelines"></a>Especifique a versão de SDK do .NET Core usando Azure Pipelines
 
-Use [Azure App Service CI/CD scenarios](/azure/app-service/deploy-continuous-deployment) to set up a continuous integration build with Azure DevOps. After the Azure DevOps build is created, optionally configure the build to use a specific SDK version. 
+Use [Azure app cenários de CI/CD de serviço](/azure/app-service/deploy-continuous-deployment) para configurar uma compilação de integração contínua com o Azure DevOps. Depois que a compilação DevOps do Azure for criada, configure opcionalmente a compilação para usar uma versão específica do SDK. 
 
-#### <a name="specify-the-net-core-sdk-version"></a>Specify the .NET Core SDK version
+#### <a name="specify-the-net-core-sdk-version"></a>Especificar a versão de SDK do .NET Core
 
-When using the App Service deployment center to create an Azure DevOps build, the default build pipeline includes steps for `Restore`, `Build`, `Test`, and `Publish`. To specify the SDK version, select the **Add (+)** button in the Agent job list to add a new step. Search for **.NET Core SDK** in the search bar. 
+Ao usar o centro de implantação do serviço de aplicativo para criar uma compilação DevOps do Azure, o pipeline de compilação padrão inclui etapas para `Restore`, `Build`, `Test`e `Publish`. Para especificar a versão do SDK, selecione o botão **Adicionar (+)** na lista de trabalhos do agente para adicionar uma nova etapa. Pesquise **SDK do .NET Core** na barra de pesquisa. 
 
-![Add the .NET Core SDK step](index/add-sdk-step.png)
+![Adicionar a etapa de SDK do .NET Core](index/add-sdk-step.png)
 
-Move the step into the first position in the build so that the steps following it use the specified version of the .NET Core SDK. Specify the version of the .NET Core SDK. In this example, the SDK is set to `3.0.100`.
+Mova a etapa para a primeira posição na compilação para que as etapas a seguir usem a versão especificada do SDK do .NET Core. Especifique a versão do SDK do .NET Core. Neste exemplo, o SDK é definido como `3.0.100`.
 
-![Completed SDK step](index/sdk-step-first-place.png)
+![Etapa do SDK concluída](index/sdk-step-first-place.png)
 
-To publish a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd), configure SCD in the `Publish` step and provide the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+Para publicar uma [SCD (implantação autônoma)](/dotnet/core/deploying/#self-contained-deployments-scd), configure o SCD na etapa `Publish` e forneça o [RID (identificador de tempo de execução)](/dotnet/core/rid-catalog).
 
-![Self-contained publish](index/self-contained.png)
+![Publicação independente](index/self-contained.png)
 
 ### <a name="deploy-a-self-contained-preview-app"></a>Implantar um aplicativo autossuficiente em versão prévia
 
@@ -215,11 +215,11 @@ Quando a operação for concluída, a versão prévia mais recente do .NET Core 
    O comando retornará `True` quando o runtime da versão prévia x64 estiver instalado.
 
 > [!NOTE]
-> The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure Portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) match the setting in the app's service configuration in the Azure portal.
+> A arquitetura da plataforma (x86/x64) de um aplicativo dos serviços de aplicativos é definida nas configurações do aplicativo no portal do Azure para aplicativos que são hospedados em uma camada de hospedagem superior (básica) ou mais alta. Confirme se as configurações de publicação do aplicativo (por exemplo, no perfil de publicação do Visual Studio [(. pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) correspondem à configuração na configuração de serviço do aplicativo no portal do Azure.
 >
-> Se o aplicativo for executado no modo em processo e a arquitetura da plataforma estiver configurada para 64 bits (x64), o Módulo do ASP.NET Core usará o runtime da versão prévia de 64 bits, se estiver presente. Install the **ASP.NET Core {X.Y} (x64) Runtime** extension using the Azure Portal.
+> Se o aplicativo for executado no modo em processo e a arquitetura da plataforma estiver configurada para 64 bits (x64), o Módulo do ASP.NET Core usará o runtime da versão prévia de 64 bits, se estiver presente. Instale a extensão de **tempo de execução do ASP.NET Core {X. Y} (x64)** usando o portal do Azure.
 >
-> After installing the x64 preview runtime, run the following command in the Azure Kudu PowerShell command window to verify the installation. Substitute the ASP.NET Core runtime version for `{X.Y}` in the following command:
+> Depois de instalar o tempo de execução x64 Preview, execute o seguinte comando na janela de comando do Azure kudu PowerShell para verificar a instalação. Substitua a versão de tempo de execução ASP.NET Core por `{X.Y}` no seguinte comando:
 >
 > ```powershell
 > Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64\
@@ -240,7 +240,7 @@ Se um modelo do ARM for usado para criar e implantar aplicativos, o tipo de recu
 
 ::: moniker range=">= aspnetcore-2.2"
 
-For a 64-bit deployment:
+Para uma implantação de 64 bits:
 
 * Use um SDK do .NET Core de 64 bits para compilar um aplicativo de 64 bits.
 * Configure a **Plataforma** como **64 bits** na seção **Configuração** > **Configurações gerais** do Serviço de Aplicativo. O aplicativo deve usar um plano de serviço Básico ou superior para possibilitar a escolha do número de bits da plataforma.
@@ -316,7 +316,7 @@ Use o Visual Studio ou as ferramentas da CLI (interface de linha de comando) par
 
 ## <a name="protocol-settings-https"></a>Configurações de protocolo (HTTPS)
 
-As associações de protocolo de segurança permitem que você especifique um certificado a ser usado ao responder a solicitações em HTTPS. A associação requer um certificado privado válido ( *.pfx*) emitido para o nome do host específico. For more information, see [Tutorial: Bind an existing custom SSL certificate to Azure App Service](/azure/app-service/app-service-web-tutorial-custom-ssl).
+As associações de protocolo de segurança permitem que você especifique um certificado a ser usado ao responder a solicitações em HTTPS. A associação requer um certificado privado válido ( *.pfx*) emitido para o nome do host específico. Para obter mais informações, consulte [tutorial: associar um certificado SSL personalizado existente ao serviço de Azure app](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
 ## <a name="transform-webconfig"></a>Transformação do Web.config
 
