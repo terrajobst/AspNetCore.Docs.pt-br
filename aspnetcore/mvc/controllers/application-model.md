@@ -5,12 +5,12 @@ description: Saiba como ler e manipular o modelo de aplicativo para modificar co
 ms.author: riande
 ms.date: 10/14/2016
 uid: mvc/controllers/application-model
-ms.openlocfilehash: f7f64c8b3a63ec66936772e724edb57037654059
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
-ms.translationtype: HT
+ms.openlocfilehash: 4e264dc7cc63955df42df0b9eeeb7b82ae286241
+ms.sourcegitcommit: 169ea5116de729c803685725d96450a270bc55b7
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815503"
+ms.lasthandoff: 12/03/2019
+ms.locfileid: "74733954"
 ---
 # <a name="work-with-the-application-model-in-aspnet-core"></a>Trabalhar com o modelo de aplicativo no ASP.NET Core
 
@@ -71,7 +71,7 @@ O `CorsApplicationModelProvider` implementa o comportamento associado ao `IEnabl
 
 ## <a name="conventions"></a>Convenções
 
-O modelo de aplicativo define abstrações de convenção que fornecem uma maneira simples de personalizar o comportamento dos modelos em vez de substituir o modelo ou o provedor inteiro. Essas abstrações são a maneira recomendada para modificar o comportamento do aplicativo. As convenções fornecem uma maneira de escrever código que aplicará personalizações de forma dinâmica. Enquanto os [filtros](xref:mvc/controllers/filters) fornecem um meio de modificar o comportamento da estrutura, as personalizações permitem que você controle como todo o aplicativo está conectado.
+O modelo de aplicativo define abstrações de convenção que fornecem uma maneira simples de personalizar o comportamento dos modelos em vez de substituir o modelo ou o provedor inteiro. Essas abstrações são a maneira recomendada para modificar o comportamento do aplicativo. As convenções fornecem uma maneira de escrever código que aplicará personalizações de forma dinâmica. Embora os [filtros](xref:mvc/controllers/filters) forneçam um meio de modificar o comportamento da estrutura, as personalizações permitem controlar como o aplicativo inteiro funciona em conjunto.
 
 As seguintes convenções estão disponíveis:
 
@@ -82,7 +82,7 @@ As seguintes convenções estão disponíveis:
 
 As convenções são aplicadas por sua adição às opções do MVC ou pela implementação de `Attribute`s e sua aplicação a controladores, ações ou parâmetros de ação (semelhante a [`Filters`](xref:mvc/controllers/filters)). Ao contrário dos filtros, as convenções são executadas apenas quando o aplicativo é iniciado, não como parte de cada solicitação.
 
-### <a name="sample-modifying-the-applicationmodel"></a>Amostra: modificação do ApplicationModel
+### <a name="sample-modifying-the-applicationmodel"></a>Amostra: modificando o ApplicationModel
 
 A convenção a seguir é usada para adicionar uma propriedade ao modelo de aplicativo. 
 
@@ -96,7 +96,7 @@ As propriedades são acessíveis na coleção de propriedades `ActionDescriptor`
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/AppModelController.cs?name=AppModelController)]
 
-### <a name="sample-modifying-the-controllermodel-description"></a>Amostra: modificação da descrição de ControllerModel
+### <a name="sample-modifying-the-controllermodel-description"></a>Amostra: modificando a descrição de ControllerModel
 
 Como no exemplo anterior, o modelo de controlador também pode ser modificado para incluir propriedades personalizadas. Elas substituirão as propriedades existentes com o mesmo nome especificado no modelo de aplicativo. O seguinte atributo de convenção adiciona uma descrição no nível do controlador:
 
@@ -108,7 +108,7 @@ Essa convenção é aplicada como um atributo em um controlador.
 
 A propriedade "description" é acessada da mesma maneira como nos exemplos anteriores.
 
-### <a name="sample-modifying-the-actionmodel-description"></a>Amostra: modificação da descrição de ActionModel
+### <a name="sample-modifying-the-actionmodel-description"></a>Amostra: modificando a descrição de ActionModel
 
 Uma convenção de atributo separada pode ser aplicada a ações individuais, substituindo o comportamento já aplicado no nível do aplicativo ou do controlador.
 
@@ -118,7 +118,7 @@ A aplicação disso a uma ação no controlador do exemplo anterior demonstra co
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/DescriptionAttributesController.cs?name=DescriptionAttributesController&highlight=9)]
 
-### <a name="sample-modifying-the-parametermodel"></a>Amostra: modificação do ParameterModel
+### <a name="sample-modifying-the-parametermodel"></a>Amostra: modificando o ParameterModel
 
 A convenção a seguir pode ser aplicada a parâmetros de ação para modificar seu `BindingInfo`. A convenção a seguir exige que o parâmetro seja um parâmetro de rota; outras possíveis origens da associação (como valores de cadeia de caracteres de consulta) são ignoradas.
 
@@ -128,7 +128,7 @@ O atributo pode ser aplicado a qualquer parâmetro de ação:
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/ParameterModelController.cs?name=ParameterModelController&highlight=5)]
 
-### <a name="sample-modifying-the-actionmodel-name"></a>Amostra: modificação do nome de ActionModel
+### <a name="sample-modifying-the-actionmodel-name"></a>Amostra: modificando o nome de ActionModel
 
 A convenção a seguir modifica o `ActionModel` para atualizar o *nome* da ação ao qual ele é aplicado. O novo nome é fornecido como um parâmetro para o atributo. Esse novo nome é usado pelo roteamento e, portanto, isso afetará a rota usada para acessar esse método de ação.
 

@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/27/2019
 uid: fundamentals/http-requests
-ms.openlocfilehash: 746604bc92775a6fac124ee8bfcf37635786fe41
-ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
+ms.openlocfilehash: f33444b8fc08dc022da7700af53a218600290162
+ms.sourcegitcommit: 169ea5116de729c803685725d96450a270bc55b7
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 12/03/2019
-ms.locfileid: "74717003"
+ms.locfileid: "74733915"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Fazer solicitações HTTP usando IHttpClientFactory no ASP.NET Core
 
@@ -93,7 +93,7 @@ Clientes com tipo:
   * Para encapsular toda a lógica lidando com o ponto de extremidade.
 * Trabalhe com DI e pode ser injetado onde necessário no aplicativo.
 
-Um cliente com tipo aceita um parâmetro `HttpClient` em seu construtor:
+Um cliente tipado aceita um parâmetro `HttpClient` em seu construtor:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
 
@@ -421,7 +421,7 @@ Clientes com tipo:
 * Fornecem um único local para configurar e interagir com um determinado `HttpClient`. Por exemplo, um único cliente com tipo pode ser usado para um único ponto de extremidade de back-end e encapsular toda a lógica que lida com esse ponto de extremidade.
 * Funcionam com a DI e podem ser injetados no local necessário no aplicativo.
 
-Um cliente com tipo aceita um parâmetro `HttpClient` em seu construtor:
+Um cliente tipado aceita um parâmetro `HttpClient` em seu construtor:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
 
@@ -510,7 +510,7 @@ Para criar um manipulador, defina uma classe derivando-a de <xref:System.Net.Htt
 
 O código anterior define um manipulador básico. Ele verifica se um cabeçalho `X-API-KEY` foi incluído na solicitação. Se o cabeçalho estiver ausente, isso poderá evitar a chamada de HTTP e retornar uma resposta adequada.
 
-Durante o registro, um ou mais manipuladores podem ser adicionados à configuração de um `HttpClient`. Essa tarefa é realizada por meio de métodos de extensão no <xref:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder>.
+Durante o registro, um ou mais manipuladores podem ser adicionados à configuração para um `HttpClient`. Essa tarefa é realizada por meio de métodos de extensão no <xref:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder>.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet5)]
 
@@ -726,7 +726,7 @@ Clientes com tipo:
 * Fornecem um único local para configurar e interagir com um determinado `HttpClient`. Por exemplo, um único cliente com tipo pode ser usado para um único ponto de extremidade de back-end e encapsular toda a lógica que lida com esse ponto de extremidade.
 * Funcionam com a DI e podem ser injetados no local necessário no aplicativo.
 
-Um cliente com tipo aceita um parâmetro `HttpClient` em seu construtor:
+Um cliente tipado aceita um parâmetro `HttpClient` em seu construtor:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
 
@@ -815,7 +815,7 @@ Para criar um manipulador, defina uma classe derivando-a de <xref:System.Net.Htt
 
 O código anterior define um manipulador básico. Ele verifica se um cabeçalho `X-API-KEY` foi incluído na solicitação. Se o cabeçalho estiver ausente, isso poderá evitar a chamada de HTTP e retornar uma resposta adequada.
 
-Durante o registro, um ou mais manipuladores podem ser adicionados à configuração de um `HttpClient`. Essa tarefa é realizada por meio de métodos de extensão no <xref:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder>.
+Durante o registro, um ou mais manipuladores podem ser adicionados à configuração para um `HttpClient`. Essa tarefa é realizada por meio de métodos de extensão no <xref:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder>.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet5)]
 
