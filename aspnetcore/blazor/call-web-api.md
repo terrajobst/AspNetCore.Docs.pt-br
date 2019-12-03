@@ -5,16 +5,16 @@ description: Saiba como chamar uma API da Web de um aplicativo Blazor usando aux
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 11/23/2019
 no-loc:
 - Blazor
 uid: blazor/call-web-api
-ms.openlocfilehash: b5c57317005d0072410542bad322458b1cb3f5ee
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: ffc9904c5746fbf0fafa10cf054666608942650c
+ms.sourcegitcommit: 0dd224b2b7efca1fda0041b5c3f45080327033f6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73962722"
+ms.lasthandoff: 12/02/2019
+ms.locfileid: "74680896"
 ---
 # <a name="call-a-web-api-from-aspnet-core-opno-locblazor"></a>Chamar uma API da Web de ASP.NET Core Blazor
 
@@ -37,7 +37,7 @@ Para obter Blazor exemplos de Webassembly, consulte os seguintes componentes no 
 
 Em Blazor aplicativos Webassembly, o [HttpClient](xref:fundamentals/http-requests) está disponível como um serviço pré-configurado para fazer solicitações de volta ao servidor de origem. Para usar `HttpClient` auxiliares JSON, adicione uma referência de pacote a `Microsoft.AspNetCore.Blazor.HttpClient`. os auxiliares `HttpClient` e JSON também são usados para chamar pontos de extremidade de API Web de terceiros. `HttpClient` é implementado usando a [API de busca](https://developer.mozilla.org/docs/Web/API/Fetch_API) de navegador e está sujeito a suas limitações, incluindo a imposição da mesma política de origem.
 
-O endereço base do cliente é definido como o endereço do servidor de origem. Injetar uma instância `HttpClient` usando a diretiva `@inject`:
+O endereço base do cliente é definido como o endereço do servidor de origem. Injetar uma instância de `HttpClient` usando a diretiva `@inject`:
 
 ```cshtml
 @using System.Net.Http
@@ -48,7 +48,7 @@ Nos exemplos a seguir, uma API Web todo processa as operações CRUD (criar, ler
 
 * ID (`Id`, `long`) &ndash; ID exclusiva do item.
 * Nome (`Name`, `string`) &ndash; nome do item.
-* Status (`IsComplete`, `bool`) indicação de &ndash; se o item de tarefas pendentes for concluído.
+* Status (`IsComplete`, `bool`) &ndash; indica se o item de tarefas pendentes foi concluído.
 
 ```csharp
 private class TodoItem
@@ -63,7 +63,7 @@ Os métodos auxiliares JSON enviam solicitações para um URI (uma API Web nos e
 
 * `GetJsonAsync` &ndash; envia uma solicitação HTTP GET e analisa o corpo da resposta JSON para criar um objeto.
 
-  No código a seguir, os `_todoItems` são exibidos pelo componente. O método `GetTodoItems` é disparado quando a renderização do componente é concluída ([OnInitializedAsync](xref:blazor/components#lifecycle-methods)). Consulte o aplicativo de exemplo para obter um exemplo completo.
+  No código a seguir, os `_todoItems` são exibidos pelo componente. O método `GetTodoItems` é disparado quando o processamento do componente é concluído ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). Consulte o aplicativo de exemplo para obter um exemplo completo.
 
   ```cshtml
   @using System.Net.Http
@@ -101,7 +101,7 @@ Os métodos auxiliares JSON enviam solicitações para um URI (uma API Web nos e
 
 * `PutJsonAsync` &ndash; envia uma solicitação HTTP PUT, incluindo conteúdo codificado em JSON.
 
-  No código a seguir, `_editItem` valores para `Name` e `IsCompleted` são fornecidos por elementos associados do componente. A `Id` do item é definida quando o item é selecionado em outra parte da interface do usuário e `EditItem` é chamado. O método `SaveItem` é disparado selecionando o elemento salvar `<button>`. Consulte o aplicativo de exemplo para obter um exemplo completo.
+  No código a seguir, `_editItem` valores para `Name` e `IsCompleted` são fornecidos por elementos associados do componente. O `Id` do item é definido quando o item é selecionado em outra parte da interface do usuário e `EditItem` é chamado. O método `SaveItem` é disparado selecionando o elemento salvar `<button>`. Consulte o aplicativo de exemplo para obter um exemplo completo.
 
   ```cshtml
   @using System.Net.Http
@@ -126,9 +126,9 @@ Os métodos auxiliares JSON enviam solicitações para um URI (uma API Web nos e
   }
   ```
 
-<xref:System.Net.Http> inclui métodos de extensão adicionais para enviar solicitações HTTP e receber respostas HTTP. [HttpClient. DeleteAsync](xref:System.Net.Http.HttpClient.DeleteAsync*) é usado para enviar uma solicitação HTTP Delete para uma API da Web.
+o <xref:System.Net.Http> inclui métodos de extensão adicionais para enviar solicitações HTTP e receber respostas HTTP. [HttpClient. DeleteAsync](xref:System.Net.Http.HttpClient.DeleteAsync*) é usado para enviar uma solicitação HTTP Delete para uma API da Web.
 
-No código a seguir, o elemento delete `<button>` chama o método `DeleteItem`. O elemento `<input>` associado fornece o `id` do item a ser excluído. Consulte o aplicativo de exemplo para obter um exemplo completo.
+No código a seguir, o elemento delete `<button>` chama o método `DeleteItem`. O elemento `<input>` associado fornece a `id` do item a ser excluído. Consulte o aplicativo de exemplo para obter um exemplo completo.
 
 ```cshtml
 @using System.Net.Http
@@ -160,7 +160,7 @@ Ao executar em Webassembly em um aplicativo Webassembly Blazor, use [HttpClient]
 Forneça opções de solicitação para a [API de busca](https://developer.mozilla.org/docs/Web/API/Fetch_API) de JavaScript subjacente usando a propriedade `WebAssemblyHttpMessageHandler.FetchArgs` na solicitação. Conforme mostrado no exemplo a seguir, a propriedade `credentials` é definida como qualquer um dos seguintes valores:
 
 * `FetchCredentialsOption.Include` ("include") &ndash; aconselha o navegador a enviar credenciais (como cookies ou cabeçalhos de autenticação HTTP) mesmo para solicitações entre origens. Permitido somente quando a política CORS está configurada para permitir credenciais.
-* `FetchCredentialsOption.Omit` ("omitir") &ndash; aconselha que o navegador nunca envie credenciais (como cookies ou cabeçalhos de autenticação HTTP).
+* `FetchCredentialsOption.Omit` ("omitir") &ndash; aconselha que o navegador nunca envie credenciais (como cookies ou cabeçalhos HTTP auth).
 * `FetchCredentialsOption.SameOrigin` ("mesma origem") &ndash; aconselha o navegador a enviar credenciais (como cookies ou cabeçalhos de autenticação HTTP) somente se a URL de destino estiver na mesma origem que o aplicativo de chamada.
 
 ```cshtml
@@ -204,14 +204,14 @@ Forneça opções de solicitação para a [API de busca](https://developer.mozil
 
 Para obter mais informações sobre as opções de API de busca, consulte [MDN Web docs: WindowOrWorkerGlobalScope. Fetch ():P arameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
 
-Ao enviar credenciais (cookies/cabeçalhos de autorização) em solicitações CORS, o cabeçalho `Authorization` deve ser permitido pela política CORS.
+Ao enviar credenciais (cookies/cabeçalhos de autorização) em solicitações de CORS, o cabeçalho de `Authorization` deve ser permitido pela política de CORS.
 
 A política a seguir inclui a configuração para o:
 
 * Origens de solicitação (`http://localhost:5000`, `https://localhost:5001`).
 * Qualquer método (verbo).
-* cabeçalhos `Content-Type` e `Authorization`. Para permitir um cabeçalho personalizado (por exemplo, `x-custom-header`), liste o cabeçalho ao chamar <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>.
-* As credenciais definidas pelo código JavaScript do lado do cliente (Propriedade `credentials` definida como `include`).
+* cabeçalhos de `Content-Type` e `Authorization`. Para permitir um cabeçalho personalizado (por exemplo, `x-custom-header`), liste o cabeçalho ao chamar <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>.
+* As credenciais definidas pelo código JavaScript do lado do cliente (`credentials` propriedade definida como `include`).
 
 ```csharp
 app.UseCors(policy => 

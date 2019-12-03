@@ -7,32 +7,32 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2019
 uid: mvc/controllers/testing
-ms.openlocfilehash: 7f4fcb1a5d6e9959c751ebe24e41b39ee05a5819
-ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
+ms.openlocfilehash: 449d8791962e4233d599f364b2e8c922f0975d2f
+ms.sourcegitcommit: 0dd224b2b7efca1fda0041b5c3f45080327033f6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2019
-ms.locfileid: "73799507"
+ms.lasthandoff: 12/02/2019
+ms.locfileid: "74681091"
 ---
-# <a name="test-controller-logic-in-aspnet-core"></a>Lógica do controlador de teste no ASP.NET Core
+# <a name="unit-test-controller-logic-in-aspnet-core"></a>Lógica do controlador de teste de unidade no ASP.NET Core
 
 Por [Steve Smith](https://ardalis.com/)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[Controladores](xref:mvc/controllers/actions) desempenham um papel central em qualquer aplicativo ASP.NET Core MVC. Assim, você precisa estar confiante de que os controladores se comportarão conforme o esperado. Testes automatizados podem detectar erros antes do aplicativo ser implantado em um ambiente de produção.
-
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/testing/samples/) ([como baixar](xref:index#how-to-download-a-sample))
-
-## <a name="unit-tests-of-controller-logic"></a>Testes de unidade da lógica do controlador
-
 Os [testes de unidade](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) envolvem o teste de uma parte de um aplicativo isoladamente em relação à sua infraestrutura e às suas dependências. Quando a unidade está testando a lógica do controlador, somente o conteúdo de uma única ação é testada, não o comportamento de suas dependências ou da estrutura em si.
+
+## <a name="unit-testing-controllers"></a>Controladores de teste de unidade
 
 Configure testes de unidade de ações do controlador para se concentrarem no comportamento do controlador. Um teste de unidade do controlador evita cenários como [filtros](xref:mvc/controllers/filters), [roteamento](xref:fundamentals/routing) ou [model binding](xref:mvc/models/model-binding). Os testes que abrangem as interações entre os componentes que respondem coletivamente a uma solicitação são manipulados pelos *testes de integração*. Para obter mais informações sobre os testes de integração, consulte <xref:test/integration-tests>.
 
 Se você estiver escrevendo filtros e rotas personalizados, realize testes de unidade neles de forma isolada, não como parte dos testes em uma ação do controlador específica.
 
-Para demonstrar testes de unidade do controlador, examine o controlador a seguir no aplicativo de exemplo. O controlador Home exibe uma lista de sessões de debate e permite que novas sessões sejam criadas com uma solicitação POST:
+Para demonstrar testes de unidade do controlador, examine o controlador a seguir no aplicativo de exemplo. 
+
+[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/testing/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+
+O controlador Home exibe uma lista de sessões de debate e permite que novas sessões sejam criadas com uma solicitação POST:
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/HomeController.cs?name=snippet_HomeController&highlight=1,5,10,31-32)]
 

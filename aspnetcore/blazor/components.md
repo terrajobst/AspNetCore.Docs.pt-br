@@ -9,12 +9,12 @@ ms.date: 11/23/2019
 no-loc:
 - Blazor
 uid: blazor/components
-ms.openlocfilehash: 89c92fbd5a3939cd2b4a34c39163767bcdf73bb8
-ms.sourcegitcommit: 918d7000b48a2892750264b852bad9e96a1165a7
+ms.openlocfilehash: 764e5e7db995b2dcadccf6d93c826ccf32c9ba04
+ms.sourcegitcommit: 0dd224b2b7efca1fda0041b5c3f45080327033f6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/27/2019
-ms.locfileid: "74550313"
+ms.lasthandoff: 12/02/2019
+ms.locfileid: "74681000"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -522,7 +522,7 @@ O código a seguir chama o método `CheckChanged` quando a caixa de seleção é
 }
 ```
 
-Os manipuladores de eventos também podem ser assíncronos e retornar um <xref:System.Threading.Tasks.Task>. Não há necessidade de chamar `StateHasChanged()`manualmente. As exceções são registradas quando ocorrem.
+Os manipuladores de eventos também podem ser assíncronos e retornar um <xref:System.Threading.Tasks.Task>. Não é necessário chamar [StateHasChanged](xref:blazor/lifecycle#state-changes)manualmente. As exceções são registradas quando ocorrem.
 
 No exemplo a seguir, `UpdateHeading` é chamado de forma assíncrona quando o botão é selecionado:
 
@@ -545,12 +545,12 @@ Para alguns eventos, são permitidos tipos de argumento de evento. Se o acesso a
 
 Os `EventArgs` com suporte são mostrados na tabela a seguir.
 
-| evento            | Class                | Eventos e observações do DOM |
+| Event            | Classe                | Eventos e observações do DOM |
 | ---------------- | -------------------- | -------------------- |
-| Área de Transferência        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
+| Área de transferência        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
 | Arraste             | `DragEventArgs`      | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br>`DataTransfer` e `DataTransferItem` manter os dados do item arrastados. |
-| Erro            | `ErrorEventArgs`     | `onerror` |
-| evento            | `EventArgs`          | *Geral*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Área de transferência*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Meio*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
+| Erro do            | `ErrorEventArgs`     | `onerror` |
+| Event            | `EventArgs`          | *Geral*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Área de transferência*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Meio*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
 | Foco            | `FocusEventArgs`     | `onfocus`, `onblur`, `onfocusin`, `onfocusout`<br><br>Não inclui suporte para `relatedTarget`. |
 | Entrada            | `ChangeEventArgs`    | `onchange`, `oninput` |
 | Teclado         | `KeyboardEventArgs`  | `onkeydown`, `onkeypress`, `onkeyup` |
@@ -614,7 +614,7 @@ O `ParentComponent` define o `EventCallback<T>` do filho como seu método `ShowM
 Quando o botão estiver selecionado na `ChildComponent`:
 
 * O método `ShowMessage` do `ParentComponent`é chamado. `messageText` é atualizado e exibido no `ParentComponent`.
-* Uma chamada para `StateHasChanged` não é necessária no método do retorno de chamada (`ShowMessage`). `StateHasChanged` é chamado automaticamente para renderizar novamente o `ParentComponent`, assim como os eventos filho disparam o reprocessamento de componentes em manipuladores de eventos que são executados dentro do filho.
+* Uma chamada para [StateHasChanged](xref:blazor/lifecycle#state-changes) não é necessária no método do retorno de chamada (`ShowMessage`). `StateHasChanged` é chamado automaticamente para renderizar novamente o `ParentComponent`, assim como os eventos filho disparam o reprocessamento de componentes em manipuladores de eventos que são executados dentro do filho.
 
 `EventCallback` e `EventCallback<T>` permitir delegados assíncronos. `EventCallback<T>` é fortemente tipado e requer um tipo de argumento específico. `EventCallback` é digitado de forma fraca e permite qualquer tipo de argumento.
 
@@ -854,7 +854,7 @@ As referências de componente fornecem uma maneira de fazer referência a uma in
 Quando o componente é renderizado, o campo `loginDialog` é populado com a instância de componente filho `MyLoginDialog`. Em seguida, você pode invocar os métodos .NET na instância do componente.
 
 > [!IMPORTANT]
-> A variável `loginDialog` é populada apenas depois que o componente é renderizado e sua saída inclui o elemento `MyLoginDialog`. Até esse ponto, não há nada a fazer referência. Para manipular referências de componentes após a conclusão da renderização do componente, use os [métodos OnAfterRenderAsync ou OnAfterRender](#lifecycle-methods).
+> A variável `loginDialog` é populada apenas depois que o componente é renderizado e sua saída inclui o elemento `MyLoginDialog`. Até esse ponto, não há nada a fazer referência. Para manipular referências de componentes após a conclusão da renderização do componente, use os [métodos OnAfterRenderAsync ou OnAfterRender](xref:blazor/lifecycle#after-component-render).
 
 Embora a captura de referências de componente use uma sintaxe semelhante à [captura de referências de elemento](xref:blazor/javascript-interop#capture-references-to-elements), ela não é um recurso de [interoperabilidade do JavaScript](xref:blazor/javascript-interop) . As referências de componente não são passadas para o código JavaScript&mdash;elas são usadas apenas no código .NET.
 
@@ -863,7 +863,7 @@ Embora a captura de referências de componente use uma sintaxe semelhante à [ca
 
 ## <a name="invoke-component-methods-externally-to-update-state"></a>Invocar métodos de componente externamente para atualizar o estado
 
-Blazor usa uma `SynchronizationContext` para impor um único thread lógico de execução. Os métodos de ciclo de vida de um componente e quaisquer retornos de chamada de evento gerados por Blazor são executados nesse `SynchronizationContext`. No caso de um componente precisar ser atualizado com base em um evento externo, como um temporizador ou outras notificações, use o método `InvokeAsync`, que será expedido para o `SynchronizationContext`de Blazor.
+Blazor usa uma `SynchronizationContext` para impor um único thread lógico de execução. Os métodos de [ciclo de vida](xref:blazor/lifecycle) de um componente e quaisquer retornos de chamada de evento gerados por Blazor são executados nesse `SynchronizationContext`. No caso de um componente precisar ser atualizado com base em um evento externo, como um temporizador ou outras notificações, use o método `InvokeAsync`, que será expedido para o `SynchronizationContext`de Blazor.
 
 Por exemplo, considere um *serviço de notificação* que pode notificar qualquer componente de escuta do estado atualizado:
 
@@ -991,139 +991,6 @@ Geralmente, faz sentido fornecer um dos seguintes tipos de valor para `@key`:
 * Identificadores exclusivos (por exemplo, valores de chave primária do tipo `int`, `string`ou `Guid`).
 
 Verifique se os valores usados para `@key` não estão em conflito. Se valores conflitantes forem detectados dentro do mesmo elemento pai, Blazor lançará uma exceção porque ele não pode mapear de forma determinística elementos ou componentes antigos para novos elementos ou componentes. Use apenas valores distintos, como instâncias de objeto ou valores de chave primária.
-
-## <a name="lifecycle-methods"></a>Métodos de ciclo de vida
-
-`OnInitializedAsync` e `OnInitialized` executar código para inicializar o componente. Para executar uma operação assíncrona, use `OnInitializedAsync` e a palavra-chave `await` na operação:
-
-```csharp
-protected override async Task OnInitializedAsync()
-{
-    await ...
-}
-```
-
-> [!NOTE]
-> O trabalho assíncrono durante a inicialização do componente deve ocorrer durante o evento de ciclo de vida `OnInitializedAsync`.
-
-Para uma operação síncrona, use `OnInitialized`:
-
-```csharp
-protected override void OnInitialized()
-{
-    ...
-}
-```
-
-`OnParametersSetAsync` e `OnParametersSet` são chamados quando um componente recebe parâmetros de seu pai e os valores são atribuídos às propriedades. Esses métodos são executados após a inicialização do componente e cada vez que o componente pai é renderizado:
-
-```csharp
-protected override async Task OnParametersSetAsync()
-{
-    await ...
-}
-```
-
-> [!NOTE]
-> O trabalho assíncrono ao aplicar parâmetros e valores de propriedade deve ocorrer durante o evento de ciclo de vida `OnParametersSetAsync`.
-
-```csharp
-protected override void OnParametersSet()
-{
-    ...
-}
-```
-
-`OnAfterRenderAsync` e `OnAfterRender` são chamados após a conclusão da renderização de um componente. Referências de elemento e componente são preenchidas neste ponto. Use este estágio para executar etapas de inicialização adicionais usando o conteúdo renderizado, como a ativação de bibliotecas JavaScript de terceiros que operam nos elementos DOM renderizados.
-
-`OnAfterRender` *não é chamado durante o pré-processamento no servidor.*
-
-O parâmetro `firstRender` para `OnAfterRenderAsync` e `OnAfterRender` é:
-
-* Defina como `true` na primeira vez que a instância do componente for invocada.
-* Garante que o trabalho de inicialização seja executado apenas uma vez.
-
-```csharp
-protected override async Task OnAfterRenderAsync(bool firstRender)
-{
-    if (firstRender)
-    {
-        await ...
-    }
-}
-```
-
-> [!NOTE]
-> O trabalho assíncrono imediatamente após a renderização deve ocorrer durante o evento de ciclo de vida `OnAfterRenderAsync`.
-
-```csharp
-protected override void OnAfterRender(bool firstRender)
-{
-    if (firstRender)
-    {
-        ...
-    }
-}
-```
-
-### <a name="handle-incomplete-async-actions-at-render"></a>Tratar ações assíncronas incompletas no processamento
-
-Ações assíncronas executadas em eventos de ciclo de vida podem não ter sido concluídas antes que o componente seja renderizado. Os objetos podem ser `null` ou preenchidos incompletamente com dados enquanto o método de ciclo de vida está em execução. Forneça a lógica de renderização para confirmar que os objetos são inicializados. Renderizar elementos de interface do usuário de espaço reservado (por exemplo, uma mensagem de carregamento) enquanto os objetos são `null`.
-
-No componente `FetchData` dos modelos de Blazor, `OnInitializedAsync` é substituído para Asychronously receber dados de previsão (`forecasts`). Quando `forecasts` é `null`, uma mensagem de carregamento é exibida para o usuário. Depois que o `Task` retornado pela `OnInitializedAsync` for concluído, o componente será rerenderizado com o estado atualizado.
-
-*Pages/FetchData.razor*:
-
-[!code-cshtml[](components/samples_snapshot/3.x/FetchData.razor?highlight=9)]
-
-### <a name="execute-code-before-parameters-are-set"></a>Executar código antes que os parâmetros sejam definidos
-
-`SetParameters` pode ser substituído para executar o código antes de os parâmetros serem definidos:
-
-```csharp
-public override void SetParameters(ParameterView parameters)
-{
-    ...
-
-    base.SetParameters(parameters);
-}
-```
-
-Se `base.SetParameters` não for invocado, o código personalizado poderá interpretar o valor dos parâmetros de entrada de qualquer forma necessária. Por exemplo, os parâmetros de entrada não precisam ser atribuídos às propriedades na classe.
-
-### <a name="suppress-refreshing-of-the-ui"></a>Suprimir a atualização da interface do usuário
-
-`ShouldRender` pode ser substituído para suprimir a atualização da interface do usuário. Se a implementação retornar `true`, a interface do usuário será atualizada. Mesmo se `ShouldRender` for substituído, o componente será sempre renderizado inicialmente.
-
-```csharp
-protected override bool ShouldRender()
-{
-    var renderUI = true;
-
-    return renderUI;
-}
-```
-
-## <a name="component-disposal-with-idisposable"></a>Descarte de componentes com IDisposable
-
-Se um componente implementar <xref:System.IDisposable>, o [método Dispose](/dotnet/standard/garbage-collection/implementing-dispose) será chamado quando o componente for removido da interface do usuário. O componente a seguir usa `@implements IDisposable` e o método `Dispose`:
-
-```csharp
-@using System
-@implements IDisposable
-
-...
-
-@code {
-    public void Dispose()
-    {
-        ...
-    }
-}
-```
-
-> [!NOTE]
-> Não há suporte para a chamada de `StateHasChanged` em `Dispose`. `StateHasChanged` pode ser invocado como parte do renderizador sendo interrompido. Não há suporte para a solicitação de atualizações da interface do usuário nesse ponto.
 
 ## <a name="routing"></a>Roteamento
 
@@ -1342,7 +1209,7 @@ Componentes modelo são componentes que aceitam um ou mais modelos de interface 
 * Um componente de tabela que permite que um usuário especifique modelos para o cabeçalho, as linhas e o rodapé da tabela.
 * Um componente de lista que permite que um usuário especifique um modelo para renderizar itens em uma lista.
 
-### <a name="template-parameters"></a>Parâmetros de modelo
+### <a name="template-parameters"></a>Parâmetros do Modelo
 
 Um componente modelo é definido especificando um ou mais parâmetros de componente do tipo `RenderFragment` ou `RenderFragment<T>`. Um fragmento de renderização representa um segmento de interface do usuário a ser renderizado. `RenderFragment<T>` usa um parâmetro de tipo que pode ser especificado quando o fragmento de renderização é invocado.
 
@@ -1690,14 +1557,14 @@ builder.AddContent(1, "Second");
 
 Quando o código é executado pela primeira vez, se `someFlag` for `true`, o Construtor receberá:
 
-| Sequência | Digite      | Dados   |
+| Sequence | {1&gt;Tipo&lt;1}      | Dados   |
 | :------: | --------- | :----: |
-| 0        | Nó de texto | Primeiro  |
+| 0        | Nó de texto | First  |
 | 1        | Nó de texto | Segundo |
 
 Imagine que `someFlag` se torna `false`e a marcação é renderizada novamente. Desta vez, o Construtor recebe:
 
-| Sequência | Digite       | Dados   |
+| Sequence | {1&gt;Tipo&lt;1}       | Dados   |
 | :------: | ---------- | :----: |
 | 1        | Nó de texto  | Segundo |
 
@@ -1722,14 +1589,14 @@ builder.AddContent(seq++, "Second");
 
 Agora, a primeira saída é:
 
-| Sequência | Digite      | Dados   |
+| Sequence | {1&gt;Tipo&lt;1}      | Dados   |
 | :------: | --------- | :----: |
-| 0        | Nó de texto | Primeiro  |
+| 0        | Nó de texto | First  |
 | 1        | Nó de texto | Segundo |
 
 Esse resultado é idêntico ao caso anterior, portanto, não existem problemas negativos. `someFlag` é `false` no segundo processamento e a saída é:
 
-| Sequência | Digite      | Dados   |
+| Sequence | {1&gt;Tipo&lt;1}      | Dados   |
 | :------: | --------- | ------ |
 | 0        | Nó de texto | Segundo |
 

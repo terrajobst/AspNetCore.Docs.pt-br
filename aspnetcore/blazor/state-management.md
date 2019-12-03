@@ -5,16 +5,16 @@ description: Saiba como persistir o estado em aplicativos do Blazor Server.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 11/23/2019
 no-loc:
 - Blazor
 uid: blazor/state-management
-ms.openlocfilehash: 38ee5fccdf476f08c9f39d01b53c81b48eea04bf
-ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
+ms.openlocfilehash: facd6c2747bb0b31404c3c4fce25b76cd141932e
+ms.sourcegitcommit: 0dd224b2b7efca1fda0041b5c3f45080327033f6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/22/2019
-ms.locfileid: "74317179"
+ms.lasthandoff: 12/02/2019
+ms.locfileid: "74680974"
 ---
 # <a name="aspnet-core-opno-locblazor-state-management"></a>Gerenciamento de estado de Blazor ASP.NET Core
 
@@ -194,7 +194,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Se os parâmetros do componente incluírem o estado de navegação, chame `ProtectedSessionStore.GetAsync` e atribua o resultado em `OnParametersSetAsync`, não `OnInitializedAsync`. `OnInitializedAsync` é chamado apenas uma vez quando o componente é instanciado primeiro. `OnInitializedAsync` não será chamado novamente mais tarde se o usuário navegar para uma URL diferente enquanto permanece na mesma página.
+Se os parâmetros do componente incluírem o estado de navegação, chame `ProtectedSessionStore.GetAsync` e atribua o resultado em `OnParametersSetAsync`, não `OnInitializedAsync`. `OnInitializedAsync` é chamado apenas uma vez quando o componente é instanciado primeiro. `OnInitializedAsync` não será chamado novamente mais tarde se o usuário navegar para uma URL diferente enquanto permanece na mesma página. Para obter mais informações, consulte <xref:blazor/lifecycle>.
 
 > [!WARNING]
 > Os exemplos nesta seção só funcionarão se o servidor não tiver o pré-processamento habilitado. Com o pré-processamento habilitado, um erro é gerado semelhante a:

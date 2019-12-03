@@ -5,16 +5,16 @@ description: Saiba como invocar funções JavaScript de métodos .NET e .NET do 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 11/23/2019
 no-loc:
 - Blazor
 uid: blazor/javascript-interop
-ms.openlocfilehash: f55eda512f8dcf0695c2e7f4655db83b26ea4159
-ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
+ms.openlocfilehash: 79555ca6c987e2ca57e0cfab9779024498fdd58b
+ms.sourcegitcommit: 0dd224b2b7efca1fda0041b5c3f45080327033f6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/22/2019
-ms.locfileid: "74317190"
+ms.lasthandoff: 12/02/2019
+ms.locfileid: "74681013"
 ---
 # <a name="aspnet-core-opno-locblazor-javascript-interop"></a>ASP.NET Core interoperabilidade Blazor JavaScript
 
@@ -199,7 +199,7 @@ O método é chamado diretamente no objeto. O exemplo a seguir pressupõe que o 
 [!code-cshtml[](javascript-interop/samples_snapshot/component2.razor?highlight=1,4,12)]
 
 > [!IMPORTANT]
-> A variável `username` é populada apenas depois que o componente é renderizado. Se um `ElementReference` não populado for passado para o código JavaScript, o código JavaScript receberá um valor de `null`. Para manipular referências de elemento após a conclusão da renderização do componente (para definir o foco inicial em um elemento), use os [métodos de ciclo de vida de componente](xref:blazor/components#lifecycle-methods)`OnAfterRenderAsync` ou `OnAfterRender`.
+> A variável `username` é populada apenas depois que o componente é renderizado. Se um `ElementReference` não populado for passado para o código JavaScript, o código JavaScript receberá um valor de `null`. Para manipular referências de elemento após a conclusão da renderização do componente (para definir o foco inicial em um elemento), use os [métodos de ciclo de vida do componente OnAfterRenderAsync ou OnAfterRender](xref:blazor/lifecycle#after-component-render).
 
 ## <a name="invoke-net-methods-from-javascript-functions"></a>Invocar métodos .NET de funções JavaScript
 

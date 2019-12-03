@@ -5,17 +5,17 @@ description: Descubra como ASP.NET Core Blazor como o Blazor gerencia exceções
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 11/23/2019
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: f2fa59259f1dd36f50e81256bddea265e347554b
-ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
+ms.openlocfilehash: 9784b357c2cdeb7422bbe40a39f881c97f6d716a
+ms.sourcegitcommit: 0dd224b2b7efca1fda0041b5c3f45080327033f6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/22/2019
-ms.locfileid: "74317163"
+ms.lasthandoff: 12/02/2019
+ms.locfileid: "74680987"
 ---
 # <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Tratar erros em aplicativos ASP.NET Core Blazor
 
@@ -122,7 +122,7 @@ Um circuito falha quando qualquer Construtor executado ou um setter para qualque
 
 ### <a name="lifecycle-methods"></a>Métodos de ciclo de vida
 
-Durante o tempo de vida de um componente, Blazor invoca métodos de ciclo de vida:
+Durante o tempo de vida de um componente, Blazor invoca [métodos de ciclo de vida](xref:blazor/lifecycle):
 
 * `OnInitialized` / `OnInitializedAsync`
 * `OnParametersSet` / `OnParametersSetAsync`
@@ -173,7 +173,7 @@ Um componente pode ser removido da interface do usuário, por exemplo, porque o 
 
 Se o método de `Dispose` do componente lançar uma exceção sem tratamento, a exceção será fatal para o circuito. Se a lógica de descarte puder gerar exceções, o aplicativo deverá interceptar as exceções usando uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com o tratamento de erros e o registro em log.
 
-Para obter mais informações sobre a disposição de componentes, consulte <xref:blazor/components#component-disposal-with-idisposable>.
+Para obter mais informações sobre a disposição de componentes, consulte <xref:blazor/lifecycle#component-disposal-with-idisposable>.
 
 ### <a name="javascript-interop"></a>Interoperabilidade do JavaScript
 

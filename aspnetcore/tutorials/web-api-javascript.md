@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como chamar uma API Web do ASP.NET Core com o JavaScript.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/27/2019
+ms.date: 11/26/2019
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: 0070816149d64fc1d71d453eb0f135050c78597a
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 5a31aa2974eb41938db89f97c070c352a26290fd
+ms.sourcegitcommit: 0dd224b2b7efca1fda0041b5c3f45080327033f6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/13/2019
-ms.locfileid: "72378696"
+ms.lasthandoff: 12/02/2019
+ms.locfileid: "74681169"
 ---
 # <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Tutorial: chamar uma API Web do ASP.NET Core com JavaScript
 
@@ -27,7 +27,7 @@ Para o ASP.NET Core 2.2, confira a versão 2.2 de [Chamar a API Web com o JavaSc
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [Tutorial completo: criar uma API Web](xref:tutorials/first-web-api)
 * Familiaridade com CSS, HTML e JavaScript
@@ -44,13 +44,15 @@ A chamada `fetch` mais simples aceita um parâmetro único que representa a rota
 
     [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJavaScript.cs?highlight=8-9&name=snippet_configure)]
 
-1. Crie um novo diretório *wwwroot* na raiz do projeto.
+1. Crie uma pasta *wwwroot* na raiz do projeto.
 
-1. Adicione um arquivo HTML chamado *index.html* ao diretório *wwwroot*. Substitua seu conteúdo pela seguinte marcação:
+1. Crie uma pasta *js* dentro da pasta *wwwroot* .
+
+1. Adicione um arquivo HTML chamado *index. html* à pasta *wwwroot* . Substitua o conteúdo de *index. html* pela seguinte marcação:
 
     [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
-1. Adicione um arquivo JavaScript chamado *site.js* ao diretório *wwwroot*. Substitua seu conteúdo pelo código a seguir:
+1. Adicione um arquivo JavaScript chamado *site. js* à pasta *wwwroot/js* . Substitua o conteúdo de *site. js* pelo código a seguir:
 
     [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
 
@@ -75,9 +77,9 @@ No seguinte código:
 
 * Uma variável `item` é declarada para construir uma representação literal de objeto do item de tarefas pendentes.
 * Uma solicitação Fetch é configurada com as seguintes opções:
-    * `method` &mdash; especifica o verbo de ação HTTP POST.
-    * `body` &mdash; especifica a representação JSON do corpo da solicitação. O JSON é produzido passando o literal de objeto armazenado em `item` para a função [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
-    * `headers` &mdash; especifica os cabeçalhos de solicitação HTTP `Accept` e `Content-Type`. Ambos os cabeçalhos são definidos como `application/json` para especificar o tipo de mídia que está sendo recebido e enviado, respectivamente.
+  * `method` &mdash; especifica o verbo de ação HTTP POST.
+  * `body` &mdash; especifica a representação JSON do corpo da solicitação. O JSON é produzido passando o literal de objeto armazenado em `item` para a função [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
+  * `headers` &mdash; especifica os cabeçalhos de solicitação HTTP `Accept` e `Content-Type`. Ambos os cabeçalhos são definidos como `application/json` para especificar o tipo de mídia que está sendo recebido e enviado, respectivamente.
 * Uma solicitação HTTP POST é enviada para a rota de *api/TodoItems*.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_AddItem)]
