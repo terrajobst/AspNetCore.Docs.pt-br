@@ -5,14 +5,14 @@ description: Saiba mais sobre o Host Genérico do .NET Core, que é responsável
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 12/02/2019
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: f14917ad924e2c762a14c2cb5f51391d4be06e7b
-ms.sourcegitcommit: dd026eceee79e943bd6b4a37b144803b50617583
+ms.openlocfilehash: 2ed4af109b5ccd303a03a0d9167649dda7793126
+ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72378747"
+ms.lasthandoff: 12/03/2019
+ms.locfileid: "74717016"
 ---
 # <a name="net-generic-host"></a>Host Genérico .NET
 
@@ -26,7 +26,7 @@ Um *host* é um objeto que encapsula os recursos de um aplicativo, tais como:
 
 * DI (injeção de dependência)
 * Registrando em log
-* Configuração
+* Configuração do
 * Implementações de `IHostedService`
 
 Quando um host é iniciado, ele chama `IHostedService.StartAsync` em cada implementação de <xref:Microsoft.Extensions.Hosting.IHostedService> que encontra no contêiner de injeção de dependência. Em um aplicativo Web, uma das implementações de `IHostedService` é um serviço Web que inicia uma [implementação do servidor HTTP](xref:fundamentals/index#servers).
@@ -89,8 +89,8 @@ O método <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>:
   * Variáveis de ambiente.
   * Argumentos de linha de comando.
 * Adiciona os seguintes provedores de [registro em log](xref:fundamentals/logging/index):
-  * Console
-  * Depurar
+  * Console do
+  * Depuração
   * EventSource
   * EventLog (somente quando em execução no Windows)
 * Habilita a [validação de escopo](xref:fundamentals/dependency-injection#scope-validation) e a [validação de dependência](xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild) quando o ambiente é o de Desenvolvimento.
@@ -119,7 +119,7 @@ Para obter mais informações sobre os serviços fornecidos pela estrutura, cons
 
 Injete o serviço <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (anteriormente conhecido como `IApplicationLifetime`) em qualquer classe para lidar com tarefas de pós-inicialização e de desligamento normal. Três propriedades na interface são tokens de cancelamento usados para registrar métodos de manipulador de eventos de inicialização e desligamento do aplicativo. A interface também inclui um método `StopApplication`.
 
-O exemplo a seguir é uma implementação `IHostedService` que registra os eventos `IHostApplicationLifetime`:
+O exemplo a seguir é uma implementação de `IHostedService` que registra `IHostApplicationLifetime` eventos:
 
 [!code-csharp[](generic-host/samples-snapshot/3.x/LifetimeEventsHostedService.cs?name=snippet_LifetimeEvents)]
 
@@ -129,7 +129,7 @@ A implementação <xref:Microsoft.Extensions.Hosting.IHostLifetime> controla qua
 
 `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` é a implementação `IHostLifetime` padrão. `ConsoleLifetime`:
 
-* escuta Ctrl + C/SIGINT ou SIGTERM e chama <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> para iniciar o processo de desligamento.
+* Escuta CTRL + C/SIGINT ou SIGTERM e chama <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*> para iniciar o processo de desligamento.
 * Desbloqueia extensões como [RunAsync](#runasync) e [WaitForShutdownAsync](#waitforshutdownasync).
 
 ## <a name="ihostenvironment"></a>IHostEnvironment
@@ -140,9 +140,7 @@ Injete o serviço <xref:Microsoft.Extensions.Hosting.IHostEnvironment> em uma cl
 * [EnvironmentName](#environmentname)
 * [ContentRootPath](#contentrootpath)
 
-Os aplicativos Web implementam a interface `IWebHostEnvironment`, que herda `IHostEnvironment` e adiciona:
-
-* [WebRootPath](#webroot)
+Os aplicativos Web implementam a interface `IWebHostEnvironment`, que herda `IHostEnvironment` e adiciona o [WebRootPath](#webroot).
 
 ## <a name="host-configuration"></a>Configuração do host
 
@@ -200,7 +198,7 @@ Host.CreateDefaultBuilder(args)
     //...
 ```
 
-Para obter mais informações, consulte:
+Para obter mais informações, consulte .
 
 * [Conceitos básicos: raiz de conteúdo](xref:fundamentals/index#content-root)
 * [WebRoot](#webroot)
@@ -226,14 +224,14 @@ Host.CreateDefaultBuilder(args)
 
 [HostOptions.ShutdownTimeout](xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*) define o tempo limite para <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>. O valor padrão é cinco segundos.  Durante o período de tempo limite, o host:
 
-* Dispara [IHostApplicationLifetime.ApplicationStopping](/dotnet/api/microsoft.aspnetcore.hosting.iapplicationlifetime.applicationstopping).
+* Dispara [IHostApplicationLifetime.ApplicationStopping](/dotnet/api/microsoft.aspnetcore.hosting.ihostapplicationlifetime.applicationstopping).
 * Tenta parar os serviços hospedados, registrando em log os erros dos serviços que falham ao parar.
 
 Se o período de tempo limite expirar antes que todos os serviços hospedados parem, os serviços ativos restantes serão parados quando o aplicativo for desligado. Os serviços serão parados mesmo se ainda não tiverem concluído o processamento. Se os serviços exigirem mais tempo para parar, aumente o tempo limite.
 
 **Chave**: shutdownTimeoutSeconds  
 **Tipo**: *int*  
-**Padrão**: 5 segundos **variável de ambiente**: `<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
+**Padrão**: 5 segundos de **variável de ambiente**: `<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
 
 Para definir esse valor, use a variável de ambiente ou configure `HostOptions`. O exemplo a seguir define o tempo limite para 20 segundos:
 
@@ -411,7 +409,7 @@ Para definir esse valor, use a variável de ambiente ou a chamada `UseWebRoot`:
 webBuilder.UseWebRoot("public");
 ```
 
-Para obter mais informações, consulte:
+Para obter mais informações, consulte .
 
 * [Conceitos básicos: raiz da Web](xref:fundamentals/index#web-root)
 * [ContentRootPath](#contentrootpath)
@@ -420,7 +418,7 @@ Para obter mais informações, consulte:
 
 Chame métodos na implementação de <xref:Microsoft.Extensions.Hosting.IHost> criada para iniciar e parar o aplicativo. Esses métodos afetam todas as implementações de <xref:Microsoft.Extensions.Hosting.IHostedService> que são registradas no contêiner de serviço.
 
-### <a name="run"></a>Executar
+### <a name="run"></a>Execute
 
 <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run*> executa o aplicativo e bloqueia o thread de chamada até que o host seja desligado.
 
@@ -740,7 +738,7 @@ public static class Extensions
 
 A implementação <xref:Microsoft.Extensions.Hosting.IHost> é responsável por iniciar e parar as implementações <xref:Microsoft.Extensions.Hosting.IHostedService> que estão registradas no contêiner de serviço.
 
-### <a name="run"></a>Executar
+### <a name="run"></a>Execute
 
 <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run*> executa o aplicativo e bloqueia o thread de chamada até que o host seja desligado:
 
@@ -840,7 +838,7 @@ public class Program
 
 ### <a name="waitforshutdown"></a>WaitForShutdown
 
-<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> é disparado por meio de <xref:Microsoft.Extensions.Hosting.IHostLifetime>, como `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` (escuta Ctrl + C/SIGINT ou SIGTERM). <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> chama <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
+<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> é disparado por meio de <xref:Microsoft.Extensions.Hosting.IHostLifetime>, como `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` (escuta Ctrl + C/SIGINT ou SIGTERM). <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> chamadas <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
 
 ```csharp
 public class Program

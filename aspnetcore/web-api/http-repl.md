@@ -5,14 +5,14 @@ description: Saiba como usar a ferramenta global HTTP REPL do .NET Core para nav
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 12/02/2019
 uid: web-api/http-repl
-ms.openlocfilehash: bb3757f51487a307ebfb97452b80995f84e95e4b
-ms.sourcegitcommit: 73a451e9a58ac7102f90b608d661d8c23dd9bbaf
+ms.openlocfilehash: c6e3ab5685b5bd0b154d20585fb0d187f81da641
+ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/08/2019
-ms.locfileid: "72037717"
+ms.lasthandoff: 12/03/2019
+ms.locfileid: "74717159"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testar APIs Web com o HTTP REPL
 
@@ -27,16 +27,16 @@ O HTTP REPL (Read-Eval-Print Loop) é:
 Os [verbos HTTP](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods) a seguir são compatíveis:
 
 * [DELETE](#test-http-delete-requests)
-* [OBTER](#test-http-get-requests)
+* [Obter](#test-http-get-requests)
 * [HEAD](#test-http-head-requests)
 * [OPTIONS](#test-http-options-requests)
 * [DISTRIBUÍDO](#test-http-patch-requests)
-* [POSTAR](#test-http-post-requests)
-* [POSICIONE](#test-http-put-requests)
+* [Postar](#test-http-post-requests)
+* [Posicione](#test-http-put-requests)
 
 Para acompanhar, [exiba ou baixe a API Web de exemplo do ASP.NET Core](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([como baixar](xref:index#how-to-download-a-sample)).
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [!INCLUDE [2.1-SDK](~/includes/2.1-SDK.md)]
 
@@ -50,7 +50,7 @@ dotnet tool install -g Microsoft.dotnet-httprepl
 
 Uma [ferramenta global do .NET Core](/dotnet/core/tools/global-tools#install-a-global-tool) é instalada pelo pacote do NuGet [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl).
 
-## <a name="usage"></a>Uso
+## <a name="usage"></a>Medição de
 
 Após a instalação da ferramenta, execute o seguinte comando para iniciar o HTTP REPL:
 
@@ -239,7 +239,7 @@ As [cores](#set-color-preferences) padrão do HTTP REPL podem ser personalizadas
 
 ---
 
-O arquivo *.httpreplprefs* é carregado na inicialização e suas alterações não são monitoradas no tempo de execução. As modificações manuais no arquivo entram em vigor somente após a reinicialização da ferramenta.
+O arquivo *.httpreplprefs* é carregado na inicialização e suas alterações não são monitoradas no runtime. As modificações manuais no arquivo entram em vigor somente após a reinicialização da ferramenta.
 
 ### <a name="view-the-settings"></a>Exibir as configurações
 
@@ -270,7 +270,7 @@ No momento, as cores das respostas só são compatíveis com JSON. Para personal
 https://localhost:5001/people~ pref set colors.json White
 ```
 
-Somente as [cores permitidas](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) podem ser usadas. As solicitações HTTP subsequentes exibem a saída com a nova cor.
+Somente as [cores permitidas](https://github.com/dotnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) podem ser usadas. As solicitações HTTP subsequentes exibem a saída com a nova cor.
 
 Quando chaves de cor específicas não estão definidas, mais chaves genéricas são consideradas. Para demonstrar esse comportamento de fallback, considere o seguinte exemplo:
 
@@ -384,7 +384,7 @@ pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json"
 get <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argumentos
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -468,7 +468,7 @@ Para emitir uma solicitação HTTP GET:
 post <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argumentos
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -538,7 +538,7 @@ Para emitir uma solicitação HTTP POST:
 put <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argumentos
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -554,7 +554,7 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 
 Para emitir uma solicitação HTTP PUT:
 
-1. *Opcional*: Execute o comando `get` para exibir os dados antes de modificá-los:
+1. *Opcional*: execute o comando `get` para exibir os dados antes de modificá-los:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -615,7 +615,7 @@ Para emitir uma solicitação HTTP PUT:
     Server: Kestrel
     ```
 
-1. *Opcional*: Emita um comando `get` para ver as modificações. Por exemplo, se você digitou "Cereja" no editor de texto, um `get` retornará o seguinte:
+1. *Opcional*: emita um comando `get` para ver as modificações. Por exemplo, se você digitou "Cereja" no editor de texto, um `get` retornará o seguinte:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -652,7 +652,7 @@ Para emitir uma solicitação HTTP PUT:
 delete <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argumentos
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -666,7 +666,7 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 
 Para emitir uma solicitação HTTP DELETE:
 
-1. *Opcional*: Execute o comando `get` para exibir os dados antes de modificá-los:
+1. *Opcional*: execute o comando `get` para exibir os dados antes de modificá-los:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -705,7 +705,7 @@ Para emitir uma solicitação HTTP DELETE:
     Server: Kestrel
     ```
 
-1. *Opcional*: Emita um comando `get` para ver as modificações. Neste exemplo, o `get` retornará o seguinte:
+1. *Opcional*: emita um comando `get` para ver as modificações. Neste exemplo, o `get` retornará o seguinte:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -738,7 +738,7 @@ Para emitir uma solicitação HTTP DELETE:
 patch <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argumentos
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -758,7 +758,7 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 head <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argumentos
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -776,7 +776,7 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 options <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Argumentos
+### <a name="arguments"></a>Arguments
 
 `PARAMETER`
 
@@ -1037,4 +1037,4 @@ https://localhost:5001/~
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Solicitações da API REST](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
-* [Repositório do GitHub do HTTP REPL](https://github.com/aspnet/HttpRepl)
+* [Repositório do GitHub do HTTP REPL](https://github.com/dotnet/HttpRepl)

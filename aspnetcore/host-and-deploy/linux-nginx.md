@@ -5,14 +5,14 @@ description: Saiba como configurar o Nginx como um proxy reverso no Ubuntu 16.04
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 12/02/2019
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: c6ae86ec9ac54ddf2d487fd72156199fbdd029ef
-ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
+ms.openlocfilehash: f307a1c3e0dc62c5dc03e50d710696fadd9fd487
+ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73659870"
+ms.lasthandoff: 12/03/2019
+ms.locfileid: "74717384"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Host ASP.NET Core no Linux com Nginx
 
@@ -32,14 +32,17 @@ Este guia:
 * Assegura que o aplicativo Web seja executado na inicialização como um daemon.
 * Configura uma ferramenta de gerenciamento de processo para ajudar a reiniciar o aplicativo Web.
 
-## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 1. Acesso a um servidor Ubuntu 16.04 com uma conta de usuário padrão com privilégio sudo.
 1. Instale o runtime do .NET Core no servidor.
-   1. Acesse a [página Todos os Downloads do .NET Core](https://www.microsoft.com/net/download/all).
-   1. Selecione o runtime não de versão prévia mais recente da lista em **Runtime**.
-   1. Selecione e siga as instruções para Ubuntu que correspondem à versão Ubuntu do servidor.
+   1. Visite a [página baixar o .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
+   1. Selecione a versão mais recente do .NET Core sem visualização.
+   1. Baixe o tempo de execução de não visualização mais recente na tabela em **executar aplicativos-tempo de execução**.
+   1. Selecione o link de **instruções do Gerenciador de pacotes** do Linux e siga as instruções do Ubuntu para sua versão do Ubuntu.
 1. Um aplicativo ASP.NET Core existente.
+
+A qualquer momento no futuro depois de atualizar a estrutura compartilhada, reinicie o ASP.NET Core aplicativos hospedados pelo servidor.
 
 ## <a name="publish-and-copy-over-the-app"></a>Publicar e copiar o aplicativo
 
@@ -393,6 +396,10 @@ sudo nano /etc/nginx/nginx.conf
 ```
 
 Adicione a linha `add_header X-Content-Type-Options "nosniff";` e salve o arquivo, depois reinicie o Nginx.
+
+## <a name="additional-nginx-suggestions"></a>Sugestões de Nginx adicionais
+
+Depois de atualizar a estrutura compartilhada no servidor, reinicie o ASP.NET Core aplicativos hospedados pelo servidor.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

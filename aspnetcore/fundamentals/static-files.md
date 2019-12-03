@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/07/2019
 uid: fundamentals/static-files
-ms.openlocfilehash: b989b90100318ac874dc399daf65ef7d21c5549f
-ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
+ms.openlocfilehash: 00bab51cb411552c884f85fa63d42d0691b401b1
+ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2019
-ms.locfileid: "73799477"
+ms.lasthandoff: 12/03/2019
+ms.locfileid: "74717267"
 ---
 # <a name="static-files-in-aspnet-core"></a>Arquivos estáticos no ASP.NET Core
 
@@ -206,7 +206,7 @@ O seguinte código habilita arquivos estáticos, arquivos padrão e a navegaçã
 
 Com o uso da hierarquia de arquivos e do código anterior, as URLs são resolvidas da seguinte maneira:
 
-| URI            |                             Resposta  |
+| {1&gt;URI&lt;1}            |                             Resposta  |
 | ------- | ------|
 | *http://\<server_address>/StaticFiles/images/banner1.svg*    |      MyStaticFiles/images/banner1.svg |
 | *http://\<server_address>/StaticFiles*             |     MyStaticFiles/default.html |
@@ -238,6 +238,10 @@ Com o código anterior, uma solicitação para um arquivo com um tipo de conteú
 
 > [!WARNING]
 > A habilitação de [ServeUnknownFileTypes](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions.serveunknownfiletypes#Microsoft_AspNetCore_Builder_StaticFileOptions_ServeUnknownFileTypes) é um risco de segurança. Ela está desabilitada por padrão, e seu uso não é recomendado. [FileExtensionContentTypeProvider](#fileextensioncontenttypeprovider) fornece uma alternativa mais segura para o fornecimento de arquivos com extensões não padrão.
+
+## <a name="serve-files-from-multiple-locations"></a>Fornecer arquivos de vários locais
+
+`UseStaticFiles` e `UseFileServer` usa como padrão o provedor de arquivos que aponta para *wwwroot*. Você pode fornecer instâncias adicionais de `UseStaticFiles` e `UseFileServer` com outros provedores de arquivos para fornecer arquivos de outros locais. Para obter mais informações, consulte [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/15578).
 
 ### <a name="considerations"></a>Considerações
 

@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/27/2019
 uid: fundamentals/http-requests
-ms.openlocfilehash: 7a5b5c84775ea2482034ef9f3e8a2376036e66cb
-ms.sourcegitcommit: a104ba258ae7c0b3ee7c6fa7eaea1ddeb8b6eb73
+ms.openlocfilehash: 746604bc92775a6fac124ee8bfcf37635786fe41
+ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/25/2019
-ms.locfileid: "74478742"
+ms.lasthandoff: 12/03/2019
+ms.locfileid: "74717003"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Fazer solicitações HTTP usando IHttpClientFactory no ASP.NET Core
 
@@ -187,7 +187,7 @@ public class ValuesController : ControllerBase
   * É semelhante ao pipeline de middleware de entrada no ASP.NET Core.
   * Fornece um mecanismo para gerenciar preocupações abrangentes em relação a solicitações HTTP, como:
 
-    * cache
+    * caching
     * tratamento de erros
     * serialização
     * log
@@ -293,7 +293,7 @@ Manter uma única instância de `HttpClient` ativa por uma longa duração é um
 O uso de `IHttpClientFactory` em um aplicativo habilitado para DI é evitado:
 
 * Problemas de esgotamento de recursos por meio do pooling `HttpMessageHandler` instâncias.
-* Problemas de DNS obsoletos por ciclo `HttpMessageHandler` instâncias em instâncias regulares.
+* Problemas de DNS obsoletos por ciclo `HttpMessageHandler` instâncias em intervalos regulares.
 
 Há maneiras alternativas de resolver os problemas anteriores usando uma instância de <xref:System.Net.Http.SocketsHttpHandler> de vida longa.
 
@@ -304,7 +304,7 @@ Há maneiras alternativas de resolver os problemas anteriores usando uma instân
 As abordagens anteriores resolvem os problemas de gerenciamento de recursos que `IHttpClientFactory` resolve de forma semelhante.
 
 - O `SocketsHttpHandler` compartilha conexões entre instâncias de `HttpClient`. Esse compartilhamento impede o esgotamento de soquete.
-- O `SocketsHttpHandler ` ciclos conexões de acordo com `PooledConnectionLifetime` para evitar problemas de DNS de estado.
+- O `SocketsHttpHandler` ciclos conexões de acordo com `PooledConnectionLifetime` para evitar problemas de DNS obsoletos.
 
 ### <a name="cookies"></a>Cookies
 
@@ -594,7 +594,7 @@ Manter uma única instância de `HttpClient` ativa por uma longa duração é um
 O uso de `IHttpClientFactory` em um aplicativo habilitado para DI é evitado:
 
 * Problemas de esgotamento de recursos por meio do pooling `HttpMessageHandler` instâncias.
-* Problemas de DNS obsoletos por ciclo `HttpMessageHandler` instâncias em instâncias regulares.
+* Problemas de DNS obsoletos por ciclo `HttpMessageHandler` instâncias em intervalos regulares.
 
 Há maneiras alternativas de resolver os problemas anteriores usando uma instância de <xref:System.Net.Http.SocketsHttpHandler> de vida longa.
 
@@ -605,7 +605,7 @@ Há maneiras alternativas de resolver os problemas anteriores usando uma instân
 As abordagens anteriores resolvem os problemas de gerenciamento de recursos que `IHttpClientFactory` resolve de forma semelhante.
 
 - O `SocketsHttpHandler` compartilha conexões entre instâncias de `HttpClient`. Esse compartilhamento impede o esgotamento de soquete.
-- O `SocketsHttpHandler ` ciclos conexões de acordo com `PooledConnectionLifetime` para evitar problemas de DNS de estado.
+- O `SocketsHttpHandler` ciclos conexões de acordo com `PooledConnectionLifetime` para evitar problemas de DNS obsoletos.
 
 ### <a name="cookies"></a>Cookies
 
@@ -674,7 +674,7 @@ Por [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 Os projetos direcionados ao .NET Framework exigem a instalação do pacote do NuGet [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/). Os projetos destinados ao .Net Core e a referência ao [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) já incluem o pacote `Microsoft.Extensions.Http`.
 
@@ -902,7 +902,7 @@ Manter uma única instância de `HttpClient` ativa por uma longa duração é um
 O uso de `IHttpClientFactory` em um aplicativo habilitado para DI é evitado:
 
 * Problemas de esgotamento de recursos por meio do pooling `HttpMessageHandler` instâncias.
-* Problemas de DNS obsoletos por ciclo `HttpMessageHandler` instâncias em instâncias regulares.
+* Problemas de DNS obsoletos por ciclo `HttpMessageHandler` instâncias em intervalos regulares.
 
 Há maneiras alternativas de resolver os problemas anteriores usando uma instância de <xref:System.Net.Http.SocketsHttpHandler> de vida longa.
 
@@ -913,7 +913,7 @@ Há maneiras alternativas de resolver os problemas anteriores usando uma instân
 As abordagens anteriores resolvem os problemas de gerenciamento de recursos que `IHttpClientFactory` resolve de forma semelhante.
 
 - O `SocketsHttpHandler` compartilha conexões entre instâncias de `HttpClient`. Esse compartilhamento impede o esgotamento de soquete.
-- O `SocketsHttpHandler ` ciclos conexões de acordo com `PooledConnectionLifetime` para evitar problemas de DNS de estado.
+- O `SocketsHttpHandler` ciclos conexões de acordo com `PooledConnectionLifetime` para evitar problemas de DNS obsoletos.
 
 ### <a name="cookies"></a>Cookies
 

@@ -5,14 +5,14 @@ description: Saiba como configurar o Apache como um servidor proxy reverso no Ce
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 12/02/2019
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: fce91db736908e433ba6803319aa8984bb68a554
-ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
+ms.openlocfilehash: 730ed1847ec5728657d56db3ccf0f1f5fab6b5dd
+ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73659881"
+ms.lasthandoff: 12/03/2019
+ms.locfileid: "74717358"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hospedar o ASP.NET Core no Linux com o Apache
 
@@ -20,14 +20,17 @@ Por [Shayne Boyer](https://github.com/spboyer)
 
 Usando este guia, saiba como configurar o [Apache](https://httpd.apache.org/) como um servidor proxy reverso no [CentOS 7](https://www.centos.org/) para redirecionar o tráfego HTTP para um aplicativo Web ASP.NET Core em execução no servidor [Kestrel](xref:fundamentals/servers/kestrel). A [extensão mod_proxy](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html) e os módulos relacionados criam o proxy reverso do servidor.
 
-## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * Servidor que executa o CentOS 7 com uma conta de usuário padrão com privilégio sudo.
 * Instale o runtime do .NET Core no servidor.
-   1. Acesse a [página Todos os Downloads do .NET Core](https://www.microsoft.com/net/download/all).
-   1. Selecione o runtime não de versão prévia mais recente da lista em **Runtime**.
-   1. Selecione e siga as instruções para CentOS/Oracle.
+   1. Visite a [página baixar o .NET Core](https://dotnet.microsoft.com/download/dotnet-core).
+   1. Selecione a versão mais recente do .NET Core sem visualização.
+   1. Baixe o tempo de execução de não visualização mais recente na tabela em **executar aplicativos-tempo de execução**.
+   1. Selecione o link de **instruções do Gerenciador de pacotes** do Linux e siga as instruções do CentOS.
 * Um aplicativo ASP.NET Core existente.
+
+A qualquer momento no futuro depois de atualizar a estrutura compartilhada, reinicie o ASP.NET Core aplicativos hospedados pelo servidor.
 
 ## <a name="publish-and-copy-over-the-app"></a>Publicar e copiar o aplicativo
 
@@ -380,6 +383,10 @@ sudo systemctl restart httpd
 ```
 
 ## <a name="additional-apache-suggestions"></a>Sugestões adicionais do Apache
+
+### <a name="restart-apps-with-shared-framework-updates"></a>Reiniciar aplicativos com atualizações de estrutura compartilhadas
+
+Depois de atualizar a estrutura compartilhada no servidor, reinicie o ASP.NET Core aplicativos hospedados pelo servidor.
 
 ### <a name="additional-headers"></a>Cabeçalhos adicionais
 

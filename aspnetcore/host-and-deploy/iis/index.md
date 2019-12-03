@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/26/2019
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 179ab4c97426c9d3cb8ed069d2059d767d755533
-ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
+ms.openlocfilehash: de1b3e270ccd90bde741975de38a224e557f1a08
+ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2019
-ms.locfileid: "73034260"
+ms.lasthandoff: 12/03/2019
+ms.locfileid: "74717410"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -295,7 +295,7 @@ Habilite o **Console de Gerenciamento do IIS** e os **Serviços na World Wide We
 
 ## <a name="install-the-net-core-hosting-bundle"></a>Instalar o pacote de hospedagem do .NET Core
 
-Instale o *pacote de hospedagem do .NET Core* no sistema de hospedagem. O pacote instala o Tempo de Execução .NET Core, a Biblioteca do .NET Core e o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module). O módulo permite que aplicativos do ASP.NET Core sejam executados por trás do IIS.
+Instale o *pacote de hospedagem do .NET Core* no sistema de hospedagem. O pacote instala o Runtime .NET Core, a Biblioteca do .NET Core e o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module). O módulo permite que aplicativos do ASP.NET Core sejam executados por trás do IIS.
 
 > [!IMPORTANT]
 > Se o pacote de hospedagem for instalado antes do IIS, a instalação do pacote deverá ser reparada. Execute o instalador do pacote de hospedagem novamente depois de instalar o IIS.
@@ -314,8 +314,8 @@ Para obter uma versão anterior do instalador:
 
 1. Navegue até os [arquivos de downloads do .NET](https://www.microsoft.com/net/download/archives).
 1. Em **.NET Core**, selecione a versão do .NET Core.
-1. Na coluna **Executar aplicativos – Tempo de execução**, localize a linha da versão de tempo de execução do .NET Core desejada.
-1. Baixe o instalador usando o link **Pacote de hospedagem e de tempo de execução**.
+1. Na coluna **Executar aplicativos – runtime**, localize a linha da versão de runtime do .NET Core desejada.
+1. Baixe o instalador usando o link **Pacote de hospedagem e de runtime**.
 
 > [!WARNING]
 > Alguns instaladores contêm versões de lançamento que atingiram o EOL (fim da vida útil) e não têm mais suporte da Microsoft. Para saber mais, confira a [política de suporte](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
@@ -325,15 +325,36 @@ Para obter uma versão anterior do instalador:
 1. Execute o instalador no servidor. Os parâmetros a seguir estão disponíveis ao executar o instalador por meio de um shell de comando do administrador:
 
    * `OPT_NO_ANCM=1` &ndash; Ignorar a instalação do Módulo do ASP.NET Core.
-   * `OPT_NO_RUNTIME=1` &ndash; Ignorar a instalação do tempo de execução do .NET Core.
-   * `OPT_NO_SHAREDFX=1` &ndash; Ignorar a instalação da Estrutura Compartilhada do ASP.NET (tempo de execução do ASP.NET).
-   * `OPT_NO_X86=1` &ndash; Ignorar a instalação dos tempos de execução x86. Use esse parâmetro quando você souber que não hospedará aplicativos de 32 bits. Se houver uma possibilidade de hospedar aplicativos de 32 bits e 64 bits no futuro, não use esse parâmetro e instale ambos os runtimes.
+   * `OPT_NO_RUNTIME=1`&ndash; Ignorar a instalação do runtime do .NET Core. Usado quando o servidor hospeda apenas [implantações independentes (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_SHAREDFX=1`&ndash; Ignorar a instalação da Estrutura Compartilhada do ASP.NET (runtime do ASP.NET). Usado quando o servidor hospeda apenas [implantações independentes (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_X86=1`&ndash; Ignorar a instalação dos runtimes x86. Use esse parâmetro quando você souber que não hospedará aplicativos de 32 bits. Se houver uma possibilidade de hospedar aplicativos de 32 bits e 64 bits no futuro, não use esse parâmetro e instale ambos os runtimes.
    * `OPT_NO_SHARED_CONFIG_CHECK=1` &ndash; Desabilite a verificação para usar uma Configuração Compartilhada do IIS quando a configuração compartilhada (*applicationHost.config*) estiver no mesmo computador do que a instalação do IIS. *Disponível somente para instaladores do ASP.NET Core 2.2 ou Hosting Bundler posterior.* Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
-1. Reinicie o sistema ou execute **net stop was /y**, seguido por **net start w3svc** de um shell de comando. A reinicialização do IIS identifica uma alteração no CAMINHO do sistema, que é uma variável de ambiente, realizada pelo instalador.
+1. Reinicie o sistema ou execute os seguintes comandos em um shell de comando:
+
+   ```console
+   net stop was /y
+   net start w3svc
+   ```
+   A reinicialização do IIS identifica uma alteração no CAMINHO do sistema, que é uma variável de ambiente, realizada pelo instalador.
+
+::: moniker range=">= aspnetcore-3.0"
+
+ASP.NET Core não adota o comportamento de roll-forward para versões de patch de pacotes de estrutura compartilhados. Depois de atualizar a estrutura compartilhada instalando um novo pacote de hospedagem, reinicie o sistema ou execute os seguintes comandos em um shell de comando:
+
+```console
+net stop was /y
+net start w3svc
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 
 Não é necessário interromper manualmente os sites individuais no IIS ao instalar o pacote de hospedagem. Aplicativos hospedados (sites do IIS) são reiniciados quando o IIS é reiniciado. Os aplicativos são iniciados novamente quando recebem sua primeira solicitação, incluindo a partir do [módulo de inicialização do aplicativo](#application-initialization-module-and-idle-timeout).
 
 ASP.NET Core adota o comportamento de roll-forward para versões de patch de pacotes de estrutura compartilhados. Quando os aplicativos hospedados pelo IIS são reiniciados com o IIS, os aplicativos são carregados com as versões de patch mais recentes de seus pacotes referenciados quando recebem sua primeira solicitação. Se o IIS não for reiniciado, os aplicativos serão reiniciados e exibirão o comportamento de roll-forward quando seus processos de trabalho forem reciclados e receberem sua primeira solicitação.
+
+::: moniker-end
 
 > [!NOTE]
 > Para obter informações sobre a Configuração Compartilhada do IIS, consulte [Módulo do ASP.NET Core com a Configuração Compartilhada do IIS](xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
@@ -410,7 +431,7 @@ Os arquivos na pasta de implantação são bloqueados quando o aplicativo está 
 
 * Use a Implantação da Web e referencie `Microsoft.NET.Sdk.Web` no arquivo do projeto. Um arquivo *app_offline.htm* é colocado na raiz do diretório de aplicativo da Web. Quando o arquivo estiver presente, o módulo do ASP.NET Core apenas desligará o aplicativo e servirá o arquivo *app_offline.htm* durante a implantação. Para obter mais informações, consulte [Referência de configuração do módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
 * Manualmente interrompa o pool de aplicativos no Gerenciador do IIS no servidor.
-* Use o PowerShell para remover o *App_offline. htm* (requer o PowerShell 5 ou posterior):
+* Use o PowerShell para descartar *App_offline. htm* (requer o PowerShell 5 ou posterior):
 
   ```PowerShell
   $pathToApp = 'PATH_TO_APP'
@@ -469,7 +490,7 @@ Para configurar a proteção de dados no IIS para persistir o token de autentica
 
   O sistema de proteção de dados tem suporte limitado para a configuração da [política de todo o computador](xref:security/data-protection/configuration/machine-wide-policy) padrão para todos os aplicativos que consomem as APIs de proteção de dados. Para obter mais informações, consulte <xref:security/data-protection/introduction>.
 
-## <a name="virtual-directories"></a>Diretórios virtuais
+## <a name="virtual-directories"></a>Diretórios Virtuais
 
 [Diretórios virtuais IIS](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) não são compatíveis com aplicativos ASP.NET Core. Um aplicativo pode ser hospedado como um [subaplicativo](#sub-applications).
 
@@ -555,7 +576,7 @@ As seções de configuração de aplicativos ASP.NET 4.x em *web.config* não s�
 
 Aplicativos ASP.NET Core são configurados para usar outros provedores de configuração. Para obter mais informações, consulte [Configuração](xref:fundamentals/configuration/index).
 
-## <a name="application-pools"></a>Pools de aplicativos
+## <a name="application-pools"></a>Pools de Aplicativos
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -574,7 +595,7 @@ Ao hospedar vários sites em um servidor, é recomendável isolar os aplicativos
 
 ::: moniker-end
 
-## <a name="application-pool-identity"></a>Identidade do pool de aplicativos
+## <a name="application-pool-identity"></a>Identidade do Pool de Aplicativos
 
 Uma conta de identidade do pool de aplicativos permite executar um aplicativo em uma conta exclusiva sem a necessidade de criar e gerenciar domínios ou contas locais. No IIS 8.0 ou posterior, o WAS (Processo de trabalho do administrador) do IIS cria uma conta virtual com o nome do novo pool de aplicativos e executa os processos de trabalho do pool de aplicativos nesta conta por padrão. No Console de Gerenciamento do IIS, em **Configurações avançadas** do pool de aplicativos, verifique se a **Identidade** é definida para usar **ApplicationPoolIdentity**:
 

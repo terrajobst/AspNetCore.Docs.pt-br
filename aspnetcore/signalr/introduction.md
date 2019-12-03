@@ -5,16 +5,16 @@ description: Saiba como o ASP.NET Core SignalR library simplifica a adição de 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 11/27/2019
 no-loc:
 - SignalR
 uid: signalr/introduction
-ms.openlocfilehash: 7108d9f223db78937dd1203a1cb4b890006b20ec
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: e84dd0d086cbfc80a80bc10baa33979da9b5d137
+ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963946"
+ms.lasthandoff: 12/03/2019
+ms.locfileid: "74717228"
 ---
 # <a name="introduction-to-aspnet-core-opno-locsignalr"></a>Introdução ao ASP.NET Core SignalR
 
@@ -42,7 +42,7 @@ A origem é hospedada em um [repositórioSignalR no GitHub](https://github.com/a
 
 ## <a name="transports"></a>Transportes
 
-o SignalR dá suporte a várias técnicas para lidar com comunicações em tempo real:
+o SignalR dá suporte às seguintes técnicas para lidar com a comunicação em tempo real (em ordem de fallback normal):
 
 * [WebSockets](https://tools.ietf.org/html/rfc7118)
 * Eventos enviados pelo servidor

@@ -6,12 +6,12 @@ ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 11/21/2019
 uid: mvc/models/model-binding
-ms.openlocfilehash: 823d92c279454fc6c744eebbecf4268412774eba
-ms.sourcegitcommit: a104ba258ae7c0b3ee7c6fa7eaea1ddeb8b6eb73
+ms.openlocfilehash: a49fec38a6d38bbd33e9461cbcceb39bfe810f5c
+ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/25/2019
-ms.locfileid: "74478712"
+ms.lasthandoff: 12/03/2019
+ms.locfileid: "74717280"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Model binding no ASP.NET Core
 
@@ -304,7 +304,7 @@ O atributo `[Bind]` pode ser usado para proteção contra o excesso de postagem 
 
 ## <a name="collections"></a>Coleções
 
-Para destinos que são coleções de tipos simples, o model binding procura correspondências para *parameter_name* ou *property_name*. Se nenhuma correspondência for encontrada, procurará um dos formatos compatíveis sem o prefixo. Por exemplo:
+Para destinos que são coleções de tipos simples, o model binding procura correspondências para *parameter_name* ou *property_name*. Se nenhuma correspondência for encontrada, procurará um dos formatos compatível sem o prefixo. Por exemplo:
 
 * Suponha que o parâmetro a ser associado seja uma matriz chamada `selectedCourses`:
 
@@ -349,7 +349,7 @@ Para destinos que são coleções de tipos simples, o model binding procura corr
 
 ## <a name="dictionaries"></a>Dicionários
 
-Para destinos `Dictionary`, o model binding procura correspondências para *parameter_name* ou *property_name*. Se nenhuma correspondência for encontrada, procurará um dos formatos compatíveis sem o prefixo. Por exemplo:
+Para destinos `Dictionary`, o model binding procura correspondências para *parameter_name* ou *property_name*. Se nenhuma correspondência for encontrada, procurará um dos formatos compatível sem o prefixo. Por exemplo:
 
 * Suponha que o parâmetro de destino seja um `Dictionary<int, string>` chamado `selectedCourses`:
 
@@ -380,6 +380,27 @@ Para destinos `Dictionary`, o model binding procura correspondências para *para
 
   * selectedCourses["1050"]="Chemistry"
   * selectedCourses["2000"]="Economics"
+
+<a name="glob"></a>
+
+## <a name="globalization-behavior-of-model-binding-route-data-and-query-strings"></a>Comportamento de globalização de dados de rota de associação de modelo e cadeias de consulta
+
+O provedor de valor de rota ASP.NET Core e o provedor de valor de cadeia de consulta:
+
+* Tratar valores como cultura invariável.
+* Espere que as URLs sejam invariáveis de cultura.
+
+Por outro lado, os valores provenientes de dados de formulário passam por uma conversão sensível à cultura. Isso ocorre por design para que as URLs sejam compartilháveis entre as localidades.
+
+Para tornar o provedor de valor de rota ASP.NET Core e o provedor de valor da cadeia de consulta passam por uma conversão sensível à cultura:
+
+* Herdam de <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory>
+* Copie o código de [QueryStringValueProviderFactory](https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs) ou [RouteValueValueProviderFactory](https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/ModelBinding/RouteValueProviderFactory.cs)
+* Substitua o [valor de cultura](https://github.com/aspnet/AspNetCore/blob/e625fe29b049c60242e8048b4ea743cca65aa7b5/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs#L30) passado para o construtor do provedor de valor por [CultureInfo. CurrentCulture](xref:System.Globalization.CultureInfo.CurrentCulture)
+* Substitua o alocador de provedor de valor padrão nas opções do MVC por seu novo:
+
+[!code-csharp[](model-binding/samples/StartupMB.cs?name=snippet)]
+[!code-csharp[](model-binding/samples/StartupMB.cs?name=snippet1)]
 
 ## <a name="special-data-types"></a>Tipos de dados especiais
 
