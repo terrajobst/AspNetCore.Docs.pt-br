@@ -1,28 +1,40 @@
 ---
-title: Introdução à identidade no ASP.NET Core
+title: Introdução à identidade do ASP.NET Core
 author: rick-anderson
 description: Use a identidade com um aplicativo ASP.NET Core. Saiba como definir os requisitos de senha (RequireDigit, RequiredLength, RequiredUniqueChars e mais).
 ms.author: riande
-ms.date: 10/15/2019
+ms.date: 12/7/2019
 uid: security/authentication/identity
-ms.openlocfilehash: 8da13ca5f74a9c829eb8137d33af0684ff88266d
-ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
+ms.openlocfilehash: 331ebe36eb4bb7fa694de8daa969bcabcab1c974
+ms.sourcegitcommit: b3e1e31e5d8bdd94096cf27444594d4a7b065525
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72333569"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74803390"
 ---
-# <a name="introduction-to-identity-on-aspnet-core"></a>Introdução à identidade no ASP.NET Core
+# <a name="introduction-to-identity-on-aspnet-core"></a>Introdução à identidade do ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core identidade é um sistema de associação que dá suporte à funcionalidade de logon da interface do usuário. Os usuários podem criar uma conta com as informações de logon armazenadas em identidade ou podem usar um provedor de logon externo. Os provedores de logon externo com suporte incluem [o Facebook, o Google, a conta da Microsoft e o Twitter](xref:security/authentication/social/index).
+ASP.NET Core identidade:
 
-A identidade pode ser configurada usando um banco de dados de SQL Server para armazenar nomes de usuário, senhas e de perfil. Como alternativa, outro armazenamento persistente pode ser usado, por exemplo, o armazenamento de tabelas do Azure.
+* É uma API que dá suporte à funcionalidade de logon da interface do usuário.
+* Gerencia usuários, senhas, dados de perfil, funções, declarações, tokens, confirmação por email e muito mais.
+
+Os usuários podem criar uma conta com as informações de logon armazenadas em identidade ou podem usar um provedor de logon externo. Os provedores de logon externo com suporte incluem [o Facebook, o Google, a conta da Microsoft e o Twitter](xref:security/authentication/social/index).
+
+O [código-fonte da identidade](https://github.com/aspnet/AspNetCore/tree/master/src/Identity) está disponível no github. [Scaffold identidade](xref:security/authentication/scaffold-identity) e exiba os arquivos gerados para examinar a interação do modelo com a identidade.
+
+Normalmente, a identidade é configurada usando um banco de dados SQL Server para armazenar nomes de usuário, senhas e de perfil. Como alternativa, outro armazenamento persistente pode ser usado, por exemplo, o armazenamento de tabelas do Azure.
 
 Neste tópico, você aprenderá a usar a identidade para registrar, fazer logon e fazer logoff de um usuário. Para obter instruções mais detalhadas sobre como criar aplicativos que usam identidade, consulte a seção próximas etapas no final deste artigo.
+
+A [plataforma Microsoft Identity](/azure/active-directory/develop/) é:
+
+* Uma evolução da plataforma de desenvolvedor do Azure Active Directory (AD do Azure).
+* Não relacionado à identidade de ASP.NET Core.
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
@@ -36,7 +48,7 @@ Crie um projeto de aplicativo Web ASP.NET Core com contas de usuário individuai
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Selecione **arquivo** > **novo** **projeto**de >.
+* Selecione **Arquivo** > **Novo** > **Projeto**.
 * Selecione **Aplicativo Web ASP.NET Core**. Nomeie o projeto **WebApp1** para ter o mesmo namespace do download do projeto. Clique em **OK**.
 * Selecione um **aplicativo Web**ASP.NET Core e, em seguida, selecione **alterar autenticação**.
 * Selecione **contas de usuário individuais** e clique em **OK**.
@@ -101,7 +113,7 @@ A identidade é habilitada chamando <xref:Microsoft.AspNetCore.Builder.AuthAppBu
 
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configure&highlight=19)]
 
-O aplicativo gerado por modelo não usa [autorização](xref:security/authorization/secure-data). `app.UseAuthorization` está incluído para garantir que ele seja adicionado na ordem correta caso o aplicativo adicione autorização. `UseRouting`, `UseAuthentication`, `UseAuthorization` e `UseEndpoints` devem ser chamados na ordem mostrada no código anterior.
+O aplicativo gerado por modelo não usa [autorização](xref:security/authorization/secure-data). `app.UseAuthorization` está incluído para garantir que ele seja adicionado na ordem correta caso o aplicativo adicione autorização. `UseRouting`, `UseAuthentication`, `UseAuthorization`e `UseEndpoints` devem ser chamados na ordem mostrada no código anterior.
 
 Para obter mais informações sobre `IdentityOptions` e `Startup`, consulte <xref:Microsoft.AspNetCore.Identity.IdentityOptions> e [inicialização do aplicativo](xref:fundamentals/startup).
 
@@ -149,7 +161,7 @@ Quando o formulário na página de logon é enviado, a ação de `OnPostAsync` �
 
 A classe base `Controller` expõe uma propriedade `User` que pode ser acessada por meio de métodos do controlador. Por exemplo, você pode enumerar `User.Claims` e tomar decisões de autorização. Para obter mais informações, consulte <xref:security/authorization/introduction>.
 
-### <a name="log-out"></a>Fazer logoff
+### <a name="log-out"></a>Logoff
 
 O link **logout** invoca a ação `LogoutModel.OnPost`. 
 
@@ -169,7 +181,7 @@ Os modelos de projeto Web padrão permitem acesso anônimo às home pages. Para 
 
 [!code-csharp[](identity/sample/WebApp3/Pages/Privacy.cshtml.cs?highlight=7)]
 
-Se você estiver conectado, saia. Execute o aplicativo e selecione o link de **privacidade** . Você será redirecionado para a página de logon.
+Se você estiver conectado, saia. Execute o aplicativo e selecione o link de **privacidade** . Você é redirecionado à página de logon.
 
 ### <a name="explore-identity"></a>Explorar identidade
 
@@ -190,7 +202,7 @@ Para obter mais informações e orientações sobre como migrar seu repositório
 
 ## <a name="setting-password-strength"></a>Definindo a força da senha
 
-Consulte [configuração](#pw) para um exemplo que define os requisitos mínimos de senha.
+Consulte [configuração](#pw) para obter um exemplo que defina os requisitos mínimos de senha.
 
 ## <a name="adddefaultidentity-and-addidentity"></a>AddDefaultIdentity e addidentity
 
@@ -245,7 +257,7 @@ Crie um projeto de aplicativo Web ASP.NET Core com contas de usuário individuai
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Selecione **arquivo** > **novo** **projeto**de >.
+* Selecione **Arquivo** > **Novo** > **Projeto**.
 * Selecione **Aplicativo Web ASP.NET Core**. Nomeie o projeto **WebApp1** para ter o mesmo namespace do download do projeto. Clique em **OK**.
 * Selecione um **aplicativo Web**ASP.NET Core e, em seguida, selecione **alterar autenticação**.
 * Selecione **contas de usuário individuais** e clique em **OK**.
@@ -333,7 +345,7 @@ Quando um usuário clica no link **registrar** , a ação `RegisterModel.OnPostA
 
 Se o usuário tiver sido criado com êxito, o usuário será conectado pela chamada para `_signInManager.SignInAsync`.
 
-**Observação:** Consulte [confirmação da conta](xref:security/authentication/accconfirm#prevent-login-at-registration) para obter as etapas para impedir o logon imediato no registro.
+**Observação:** consulte a [confirmação de conta](xref:security/authentication/accconfirm#prevent-login-at-registration) para verificar as etapas para impedir o logon imediato no registro.
 
 ### <a name="log-in"></a>Fazer Logon
 
@@ -348,7 +360,7 @@ Quando o formulário na página de logon é enviado, a ação de `OnPostAsync` �
 
 A classe base `Controller` expõe uma propriedade `User` que você pode acessar por meio de métodos do controlador. Por exemplo, você pode enumerar `User.Claims` e tomar decisões de autorização. Para obter mais informações, consulte <xref:security/authorization/introduction>.
 
-### <a name="log-out"></a>Fazer logoff
+### <a name="log-out"></a>Logoff
 
 O link **logout** invoca a ação `LogoutModel.OnPost`. 
 
@@ -366,7 +378,7 @@ Os modelos de projeto Web padrão permitem acesso anônimo às home pages. Para 
 
 [!code-csharp[](identity/sample/WebApp1/Pages/Privacy.cshtml.cs?highlight=7)]
 
-Se você estiver conectado, saia. Execute o aplicativo e selecione o link de **privacidade** . Você será redirecionado para a página de logon.
+Se você estiver conectado, saia. Execute o aplicativo e selecione o link de **privacidade** . Você é redirecionado à página de logon.
 
 ### <a name="explore-identity"></a>Explorar identidade
 
@@ -387,7 +399,7 @@ Para obter mais informações e orientações sobre como migrar seu repositório
 
 ## <a name="setting-password-strength"></a>Definindo a força da senha
 
-Consulte [configuração](#pw) para um exemplo que define os requisitos mínimos de senha.
+Consulte [configuração](#pw) para obter um exemplo que defina os requisitos mínimos de senha.
 
 ## <a name="next-steps"></a>Próximas etapas
 

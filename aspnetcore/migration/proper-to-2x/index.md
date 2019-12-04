@@ -3,14 +3,14 @@ title: Migrar do ASP.NET para o ASP.NET Core
 author: isaac2004
 description: Receba orientações para migrar os aplicativos existentes do ASP.NET MVC ou da API Web para o ASP.NET Core.web
 ms.author: scaddie
-ms.date: 12/11/2018
+ms.date: 10/18/2019
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 9c97b9c0f13a265ab5c90225dcd5a581a1272701
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
-ms.translationtype: HT
+ms.openlocfilehash: 1564b644b774939c3c242a41812851917e96d2b2
+ms.sourcegitcommit: a166291c6708f5949c417874108332856b53b6a9
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815472"
+ms.lasthandoff: 10/18/2019
+ms.locfileid: "74803338"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Migrar do ASP.NET para o ASP.NET Core
 
@@ -18,7 +18,7 @@ Por [Isaac Levin](https://isaaclevin.com)
 
 Este artigo serve como um guia de referência para migração de aplicativos ASP.NET para o ASP.NET Core.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 [SDK 2.2 ou posterior do .NET Core](https://www.microsoft.com/net/download)
 
@@ -36,7 +36,7 @@ Usar o .NET Core como destino permite que você elimine várias referências de 
 </ItemGroup>
 ```
 
-Quando o metapacote é usado, nenhum pacote referenciado no metapacote é implantado com o aplicativo. O repositório de tempo de execução do .NET Core inclui esses ativos e eles são pré-compilados para melhorar o desempenho. Para saber mais, confira [Metapacote Microsoft.AspNetCore.App para ASP.NET Core](xref:fundamentals/metapackage-app).
+Quando o metapacote é usado, nenhum pacote referenciado no metapacote é implantado com o aplicativo. O repositório de runtime do .NET Core inclui esses ativos e eles são pré-compilados para melhorar o desempenho. Para saber mais, confira [Metapacote Microsoft.AspNetCore.App para ASP.NET Core](xref:fundamentals/metapackage-app).
 
 ## <a name="project-structure-differences"></a>Diferenças de estrutura do projeto
 
@@ -154,6 +154,10 @@ Por exemplo, um ativo de imagem na pasta *wwwroot/imagens* está acessível para
 
 > [!NOTE]
 > Para obter uma referência mais aprofundada sobre como servir arquivos estáticos no ASP.NET Core, veja [Arquivos estáticos](xref:fundamentals/static-files).
+
+## <a name="multi-value-cookies"></a>Cookies com vários valores
+
+Não há suporte para [cookies de vários valores](xref:System.Web.HttpCookie.Values) no ASP.NET Core. Crie um cookie por valor.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
