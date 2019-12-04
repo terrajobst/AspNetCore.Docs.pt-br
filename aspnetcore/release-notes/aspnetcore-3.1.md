@@ -9,12 +9,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 4737747f84a59780fe70f63195f7580bd812e4de
-ms.sourcegitcommit: 169ea5116de729c803685725d96450a270bc55b7
-ms.translationtype: HT
+ms.openlocfilehash: 634c6937089a0a0fe1f862a83771aff65a1f8418
+ms.sourcegitcommit: 5974e3e66dab3398ecf2324fbb82a9c5636f70de
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 12/03/2019
-ms.locfileid: "74734022"
+ms.locfileid: "74778837"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>O que há de novo no ASP.NET Core 3,1
 
@@ -51,9 +51,9 @@ O [http. sys](xref:fundamentals/servers/httpsys) dá suporte à criação de fil
 
 [!code-csharp[](sample/Program.cs?name=snippet)]
 
-<!-- TODO
-## Breaking changes for SameSite cookies
--->
+## <a name="breaking-changes-for-samesite-cookies"></a>Alterações recentes para cookies SameSite
+
+O comportamento dos cookies SameSite foi alterado para refletir as próximas alterações do navegador. Isso pode afetar os cenários de autenticação como AzureAd, OpenIdConnect ou WsFederation. Para obter mais informações, consulte <xref:security/samesite>.
 
 ## <a name="prevent-default-actions-for-events-in-opno-locblazor-apps"></a>Impedir ações padrão para eventos em aplicativos Blazor
 
