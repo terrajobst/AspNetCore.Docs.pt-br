@@ -4,14 +4,14 @@ author: mjrousos
 description: Saiba mais sobre a autenticação no ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/22/2019
+ms.date: 12/04/2019
 uid: security/authentication/index
-ms.openlocfilehash: 5e6c875188831c468bc6ca52ce71c5961b43573c
-ms.sourcegitcommit: 0dd224b2b7efca1fda0041b5c3f45080327033f6
+ms.openlocfilehash: 324b2669d3b69e4757a284e4ae7e1de5f4e87e5a
+ms.sourcegitcommit: 05ca05a5c8f6ae556aaad66ad9e4ec1e6b643c77
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/02/2019
-ms.locfileid: "74681451"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74810243"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Visão geral da autenticação ASP.NET Core
 
@@ -57,7 +57,7 @@ Um esquema de autenticação é um nome que corresponde a:
 * Um manipulador de autenticação.
 * Opções para configurar essa instância específica do manipulador.
 
-Os esquemas são úteis como um mecanismo para se referir aos comportamentos de autenticação, desafio e proíba do manipulador associado. Por exemplo, uma política de autorização pode especificar por nome qual esquema de autorização (ou esquemas) deve ser usado para autenticar o usuário. Ao configurar a autenticação, é comum especificar o esquema de autenticação padrão. O esquema padrão é usado, a menos que um recurso solicite um esquema específico. Também é possível:
+Os esquemas são úteis como um mecanismo para se referir aos comportamentos de autenticação, desafio e proíba do manipulador associado. Por exemplo, uma política de autorização pode usar nomes de esquema para especificar qual esquema (ou esquemas) de autenticação deve ser usado para autenticar o usuário. Ao configurar a autenticação, é comum especificar o esquema de autenticação padrão. O esquema padrão é usado, a menos que um recurso solicite um esquema específico. Também é possível:
 
 * Especifique esquemas padrão diferentes a serem usados para ações de autenticação, desafio e proibir.
 * Combine vários esquemas em um usando [esquemas de política](xref:security/authentication/policyschemes).
@@ -78,7 +78,7 @@ Com base na configuração do esquema de autenticação e no contexto de solicit
   * Eles não são autorizados a acessar (proíba).
   * Quando eles não são autenticados (desafio).
 
-### <a name="authenticate"></a>Autenticação
+### <a name="authenticate"></a>Autenticar
 
 A ação de autenticação de um esquema de autenticação é responsável por construir a identidade do usuário com base no contexto da solicitação. Ele retorna um <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicando se a autenticação foi bem-sucedida e, em caso afirmativo, a identidade do usuário em um tíquete de autenticação. Consulte HttpContext. AuthenticateAsync. Os exemplos de autenticação incluem:
 
