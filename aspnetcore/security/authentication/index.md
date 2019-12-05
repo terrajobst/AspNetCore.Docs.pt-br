@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/04/2019
 uid: security/authentication/index
-ms.openlocfilehash: 324b2669d3b69e4757a284e4ae7e1de5f4e87e5a
-ms.sourcegitcommit: 05ca05a5c8f6ae556aaad66ad9e4ec1e6b643c77
+ms.openlocfilehash: 40b2fb59b96486435a2ec0a7d69bee5ab4a814d2
+ms.sourcegitcommit: 76d7fff62014c3db02564191ab768acea00f1b26
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74810243"
+ms.lasthandoff: 12/05/2019
+ms.locfileid: "74852708"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Visão geral da autenticação ASP.NET Core
 
@@ -41,7 +41,7 @@ O parâmetro `AddAuthentication` `JwtBearerDefaults.AuthenticationScheme` é o n
 
 Se vários esquemas forem usados, as políticas de autorização (ou atributos de autorização) poderão [especificar o esquema de autenticação (ou esquemas)](xref:security/authorization/limitingidentitybyscheme) que dependem para autenticar o usuário. No exemplo acima, o esquema de autenticação de cookie poderia ser usado especificando seu nome (`CookieAuthenticationDefaults.AuthenticationScheme` por padrão, embora um nome diferente possa ser fornecido ao chamar `AddCookie`).
 
-Em alguns casos, a chamada para `AddAuthentication` é feita automaticamente por outros métodos de extensão. Por exemplo, ao usar a [identidade de ASP.NET Core](xref:security/authentication/identity),`AddAuthentication` é chamado internamente.
+Em alguns casos, a chamada para `AddAuthentication` é feita automaticamente por outros métodos de extensão. Por exemplo, ao usar a [identidade de ASP.NET Core](xref:security/authentication/identity), `AddAuthentication` é chamado internamente.
 
 O middleware de autenticação é adicionado em `Startup.Configure` chamando o método de extensão <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> na `IApplicationBuilder`do aplicativo. Chamar `UseAuthentication` registra o middleware que usa os esquemas de autenticação registrados anteriormente. Chame `UseAuthentication` antes de qualquer middleware que dependa dos usuários que estão sendo autenticados. Ao usar o roteamento de ponto de extremidade, a chamada para `UseAuthentication` deve ir:
 
@@ -80,14 +80,14 @@ Com base na configuração do esquema de autenticação e no contexto de solicit
 
 ### <a name="authenticate"></a>Autenticar
 
-A ação de autenticação de um esquema de autenticação é responsável por construir a identidade do usuário com base no contexto da solicitação. Ele retorna um <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicando se a autenticação foi bem-sucedida e, em caso afirmativo, a identidade do usuário em um tíquete de autenticação. Consulte HttpContext. AuthenticateAsync. Os exemplos de autenticação incluem:
+A ação de autenticação de um esquema de autenticação é responsável por construir a identidade do usuário com base no contexto da solicitação. Ele retorna um <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicando se a autenticação foi bem-sucedida e, em caso afirmativo, a identidade do usuário em um tíquete de autenticação. Consulte `HttpContext.AuthenticateAsync`. Os exemplos de autenticação incluem:
 
 * Um esquema de autenticação de cookie que constrói a identidade do usuário a partir de cookies.
 * Um esquema de portador JWT desserializando e Validando um token de portador JWT para construir a identidade do usuário.
 
 ### <a name="challenge"></a>Desafio
 
-Um desafio de autenticação é invocado pela autorização quando um usuário não autenticado solicita um ponto de extremidade que requer autenticação. Um desafio de autenticação é emitido, por exemplo, quando um usuário anônimo solicita um recurso restrito ou clica em um link de logon. A autorização invoca um desafio usando os esquemas de autenticação especificados ou o padrão, se nenhum for especificado. Consulte HttpContext. ChallengeAsync. Os exemplos de desafio de autenticação incluem:
+Um desafio de autenticação é invocado pela autorização quando um usuário não autenticado solicita um ponto de extremidade que requer autenticação. Um desafio de autenticação é emitido, por exemplo, quando um usuário anônimo solicita um recurso restrito ou clica em um link de logon. A autorização invoca um desafio usando os esquemas de autenticação especificados ou o padrão, se nenhum for especificado. Consulte `HttpContext.ChallengeAsync`. Os exemplos de desafio de autenticação incluem:
 
 * Um esquema de autenticação de cookie redirecionando o usuário para uma página de logon.
 * Um esquema de portador JWT que retorna um resultado 401 com um cabeçalho `www-authenticate: bearer`.
@@ -96,7 +96,7 @@ Uma ação de desafio deve permitir que o usuário saiba qual mecanismo de auten
 
 ### <a name="forbid"></a>Proíba
 
-Uma ação proibir do esquema de autenticação é chamada por autorização quando um usuário autenticado tenta acessar um recurso que não tem permissão para acessar. Consulte HttpContext. ForbidAsync. A autenticação proíbem exemplos incluem:
+Uma ação proibir do esquema de autenticação é chamada por autorização quando um usuário autenticado tenta acessar um recurso que não tem permissão para acessar. Consulte `HttpContext.ForbidAsync`. A autenticação proíbem exemplos incluem:
 * Um esquema de autenticação de cookie redirecionando o usuário para uma página indicando que o acesso foi proibido.
 * Um esquema de portador JWT que retorna um resultado 403.
 * Um esquema de autenticação personalizado redirecionando para uma página na qual o usuário pode solicitar acesso ao recurso.
