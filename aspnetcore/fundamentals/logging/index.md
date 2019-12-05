@@ -5,14 +5,14 @@ description: Saiba como usar a estrutura de registro em log fornecida pelo pacot
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/19/2019
+ms.date: 12/04/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: 23ce2d09d2ce9f415ce71bcd7c21c29cb2a040fc
-ms.sourcegitcommit: 918d7000b48a2892750264b852bad9e96a1165a7
+ms.openlocfilehash: 49d598330948c5f4a137c534094e14ed5e01e27c
+ms.sourcegitcommit: f4cd3828e26e6d549ba8d0c36a17be35ad9e5a51
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/27/2019
-ms.locfileid: "74550355"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74825484"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Como fazer registro em log no .NET Core e no ASP.NET Core
 
@@ -48,10 +48,10 @@ Em um aplicativo de console não host, chame o método de extensão `Add{provide
 
 Os modelos de projeto padrão do ASP.NET Core chamam <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, que adiciona os seguintes provedores de log:
 
-* Console
-* Depurar
-* EventSource
-* EventLog (somente quando em execução no Windows)
+* [Console](#console-provider)
+* [Depuração](#debug-provider)
+* [EventSource](#event-source-provider)
+* [EventLog](#windows-eventlog-provider) (somente quando executado no Windows)
 
 Você pode substituir os provedores padrão por aqueles de sua preferência. Chame <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> e adicione os provedores desejados.
 
@@ -69,8 +69,8 @@ O código anterior requer referências a `Microsoft.Extensions.Logging` e `Micro
 
 O modelo de projeto padrão chama o <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, que adiciona os seguintes provedores de log:
 
-* Console
-* Depurar
+* Console do
+* Depuração
 * EventSource (a partir do ASP.NET Core 2.2)
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_TemplateCode&highlight=7)]
@@ -129,7 +129,7 @@ Nos exemplos de ASP.NET Core e aplicativo de console a seguir, o agente é usado
 
 Para gravar logs na classe `Program` de um aplicativo ASP.NET Core, obtenha uma instância de `ILogger` por meio da DI após compilar o host:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
+[!code-csharp[](index/samples_snapshot/3.x/TodoApiSample/Program.cs?highlight=9,10)]
 
 Não há suporte direto para o registro em log durante a construção do host. No entanto, um agente separado pode ser usado. No exemplo a seguir, um agente de log do [Serilog](https://serilog.net/) é usado para fazer logon `CreateHostBuilder`. `AddSerilog` usa a configuração estática especificada em `Log.Logger`:
 
@@ -297,7 +297,7 @@ public class Program
 
 O registro em log deve ser tão rápido que não justifique o custo de desempenho de código assíncrono. Se o armazenamento de dados em log estiver lento, não grave diretamente nele. Grave as mensagens de log em um repositório rápido primeiro e, depois, mova-as para um repositório lento. Por exemplo, se você estiver enviado logs para o SQL Server, convém não fazer isso diretamente em um método `Log`, uma vez que os métodos `Log` são síncronos. Em vez disso, adicione mensagens de log de forma síncrona a uma fila na memória e faça com que uma função de trabalho de plano de fundo efetue pull das mensagens para fora da fila para fazer o trabalho assíncrono de envio de dados por push para o SQL Server. Para obter mais informações, consulte [este](https://github.com/aspnet/AspNetCore.Docs/issues/11801) problema do github.
 
-## <a name="configuration"></a>Configuração
+## <a name="configuration"></a>Configuração do
 
 A configuração do provedor de logs é fornecida por um ou mais provedores de sincronização:
 
@@ -505,7 +505,7 @@ O ASP.NET Core define os seguintes níveis de log, ordenados aqui da menor para 
 
   Para eventos anormais ou inesperados no fluxo de aplicativo. Eles podem incluir erros ou outras condições que não fazem com que o aplicativo pare, mas que talvez precisem ser investigados. Exceções manipuladas são um local comum para usar o nível de log `Warning`. Exemplo: `FileNotFoundException for file quotes.txt.`
 
-* Error = 4
+* Erro = 4
 
   Para erros e exceções que não podem ser manipulados. Essas mensagens indicam uma falha na atividade ou na operação atual (como a solicitação HTTP atual) e não uma falha em todo o aplicativo. Mensagem de log de exemplo:`Cannot insert record due to duplicate key violation.`
 
@@ -746,14 +746,14 @@ Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anter
 
 | Número | Provider      | Categorias que começam com...          | Nível de log mínimo |
 | :----: | ------------- | --------------------------------------- | ----------------- |
-| 1      | Depurar         | Todas as categorias                          | Informações       |
-| 2      | Console       | Microsoft.AspNetCore.Mvc.Razor.Internal | Aviso           |
-| 3      | Console       | Microsoft.AspNetCore.Mvc.Razor.Razor    | Depurar             |
-| 4      | Console       | Microsoft.AspNetCore.Mvc.Razor          | Erro             |
-| 5      | Console       | Todas as categorias                          | Informações       |
-| 6      | Todos os provedores | Todas as categorias                          | Depurar             |
-| 7      | Todos os provedores | Sistema                                  | Depurar             |
-| 8      | Depurar         | Microsoft                               | Rastrear             |
+| 1      | Depuração         | Todas as categorias                          | Informações do       |
+| 2      | Console do       | Microsoft.AspNetCore.Mvc.Razor.Internal | Aviso           |
+| 3      | Console do       | Microsoft.AspNetCore.Mvc.Razor.Razor    | Depuração             |
+| 4      | Console do       | Microsoft.AspNetCore.Mvc.Razor          | Erro do             |
+| 5      | Console do       | Todas as categorias                          | Informações do       |
+| 6      | Todos os provedores | Todas as categorias                          | Depuração             |
+| 7      | Todos os provedores | System                                  | Depuração             |
+| 8      | Depuração         | Microsoft                               | Rastrear             |
 
 Quando um objeto `ILogger` é criado, o objeto `ILoggerFactory` seleciona uma única regra por provedor para aplicar a esse agente. Todas as mensagens gravadas pela instância `ILogger` são filtradas com base nas regras selecionadas. A regra mais específica possível para cada par de categoria e provedor é selecionada dentre as regras disponíveis.
 
@@ -775,8 +775,8 @@ A instância `ILogger` resultante envia logs de nível `Trace` e superior para o
 
 Cada provedor define um *alias* que pode ser usado na configuração no lugar do nome de tipo totalmente qualificado.  Para os provedores internos, use os seguintes aliases:
 
-* Console
-* Depurar
+* Console do
+* Depuração
 * EventSource
 * EventLog
 * TraceSource
@@ -822,7 +822,7 @@ Uma função de filtro é invocada para todos os provedores e categorias que nã
 
 Veja algumas categorias usadas pelo ASP.NET Core e Entity Framework Core, com anotações sobre quais logs esperar delas:
 
-| Categoria                            | Anotações |
+| Categoria                            | {1&gt;Observações&lt;1} |
 | ----------------------------------- | ----- |
 | Microsoft.AspNetCore                | Diagnóstico geral de ASP.NET Core. |
 | Microsoft.AspNetCore.DataProtection | Quais chaves foram consideradas, encontradas e usadas. |
@@ -996,7 +996,7 @@ Use as ferramentas de rastreamento dotnet para coletar um rastreamento de um apl
    | 4       | Ativa o evento `FormatMessage` quando `ILogger.Log()` é chamado. Fornece a versão de cadeia de caracteres formatada das informações. |
    | 8       | Ativa o evento `MessageJson` quando `ILogger.Log()` é chamado. Fornece uma representação JSON dos argumentos. |
 
-   | Evento em nível | Descrição     |
+   | Nível de evento | Descrição     |
    | :---------: | --------------- |
    | 0           | `LogAlways`     |
    | 1           | `Critical`      |
@@ -1024,7 +1024,7 @@ Use as ferramentas de rastreamento dotnet para coletar um rastreamento de um apl
 
 1. Abra o rastreamento com [Perfview](#perfview). Abra o arquivo *trace. NetTrace* e explore os eventos de rastreamento.
 
-Para obter mais informações, consulte:
+Para obter mais informações, consulte .
 
 * [Rastreamento do utilitário de análise de desempenho (dotNet-Trace)](/dotnet/core/diagnostics/dotnet-trace) (documentação do .NET Core)
 * [Rastreamento do utilitário de análise de desempenho (dotNet-Trace)](https://github.com/dotnet/diagnostics/blob/master/documentation/dotnet-trace-instructions.md) (documentação do repositório do GitHub de dotnet/diagnóstico)
@@ -1051,7 +1051,11 @@ O pacote de provedor [Microsoft.Extensions.Logging.EventLog](https://www.nuget.o
 logging.AddEventLog();
 ```
 
-As [sobrecargas de AddEventLog](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) permitem que você passe <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>.
+As [sobrecargas de AddEventLog](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) permitem que você passe <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. Se `null` ou não for especificado, as seguintes configurações padrão serão usadas:
+
+* `LogName` &ndash; "aplicativo"
+* `SourceName` &ndash; ".NET Runtime"
+* `MachineName` &ndash; computador local
 
 ### <a name="tracesource-provider"></a>Provedor TraceSource
 
