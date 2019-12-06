@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: e82f28afdac8517f72538094d97f28bdcfe46102
-ms.sourcegitcommit: 918d7000b48a2892750264b852bad9e96a1165a7
+ms.openlocfilehash: bc0ea4a777e8684a7b0925377b8a19a45c2b531c
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/27/2019
-ms.locfileid: "74551581"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74879665"
 ---
 # <a name="aspnet-core-opno-locblazor-templates"></a>Modelos de Blazor ASP.NET Core
 
@@ -43,7 +43,7 @@ Os arquivos e pastas a seguir compõem um aplicativo Blazor gerado a partir de u
   * `ConfigureServices` &ndash; configura os serviços de injeção de [dependência (di)](xref:fundamentals/dependency-injection) do aplicativo. Em aplicativos do Blazor Server, os serviços são adicionados chamando <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>e o `WeatherForecastService` é adicionado ao contêiner de serviço para ser usado pelo componente de `FetchData` de exemplo.
   * `Configure` &ndash; configura o pipeline de tratamento de solicitação do aplicativo:
     * Blazor Webassembly &ndash; adiciona o componente `App` (especificado como o elemento DOM `app` ao método `AddComponent`), que é o componente raiz do aplicativo.
-    * Servidor de Blazor
+    * Servidor do Blazor
       * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> é chamado para configurar um ponto de extremidade para a conexão em tempo real com o navegador. A conexão é criada com [SignalR](xref:signalr/introduction), que é uma estrutura para adicionar funcionalidade da Web em tempo real a aplicativos.
       * [MapFallbackToPage ("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) é chamado para configurar a página raiz do aplicativo (*pages/_Host. cshtml*) e habilitar a navegação.
 
@@ -61,7 +61,7 @@ Os arquivos e pastas a seguir compõem um aplicativo Blazor gerado a partir de u
 
 * *App. razor* &ndash; o componente raiz do aplicativo que configura o roteamento do lado do cliente usando o componente <xref:Microsoft.AspNetCore.Components.Routing.Router>. O componente `Router` intercepta a navegação do navegador e renderiza a página que corresponde ao endereço solicitado.
 
-* A pasta de *páginas* &ndash; contém os componentes/páginas roteáveis ( *. Razor*) que compõem o aplicativo Blazor. A rota para cada página é especificada usando a diretiva [@page](xref:mvc/views/razor#page) . O modelo inclui os seguintes componentes:
+* A pasta de *páginas* &ndash; contém os componentes/páginas roteáveis ( *. Razor*) que compõem o aplicativo Blazor. A rota para cada página é especificada usando a diretiva [`@page`](xref:mvc/views/razor#page) . O modelo inclui os seguintes componentes:
   * `Index` (*index. Razor*) &ndash; implementa a Home Page.
   * `Counter` (*Counter. Razor*) &ndash; implementa a página do contador.
   * `Error` (*Error. Razor*, somente aplicativo Blazor Server) &ndash; renderizado quando ocorre uma exceção sem tratamento no aplicativo.
@@ -71,7 +71,7 @@ Os arquivos e pastas a seguir compõem um aplicativo Blazor gerado a partir de u
   * `MainLayout` (*MainLayout. Razor*) &ndash; o componente de layout do aplicativo.
   * `NavMenu` (*NavMenu. Razor*) &ndash; implementa a navegação na barra lateral. Inclui o [componente NavLink](xref:blazor/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), que renderiza links de navegação para outros componentes do Razor. O componente `NavLink` indica automaticamente um estado selecionado quando seu componente é carregado, o que ajuda o usuário a entender qual componente está sendo exibido no momento.
 
-* *_Imports. razor* &ndash; inclui diretivas comuns do Razor para incluir nos componentes do aplicativo ( *. Razor*), como diretivas de [@using](xref:mvc/views/razor#using) para namespaces.
+* *_Imports. razor* &ndash; inclui diretivas comuns do Razor para incluir nos componentes do aplicativo ( *. Razor*), como diretivas de [`@using`](xref:mvc/views/razor#using) para namespaces.
 
 * A pasta de *dados* (Blazor Server) &ndash; contém a classe `WeatherForecast` e a implementação do `WeatherForecastService` que fornecem dados meteorológicos de exemplo para o componente de `FetchData` do aplicativo.
 

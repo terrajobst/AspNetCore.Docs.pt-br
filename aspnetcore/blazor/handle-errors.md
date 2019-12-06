@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: 9f249fac331d31249f9325892e8365e3d0b4cc5a
-ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
+ms.openlocfilehash: e737a8a85e7eb83d95618d71e85b0307c54b0766
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/03/2019
-ms.locfileid: "74717055"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74879691"
 ---
 # <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Tratar erros em aplicativos ASP.NET Core Blazor
 
@@ -116,7 +116,7 @@ As exceções sem tratamento anteriores são descritas nas seções a seguir des
 Quando Blazor cria uma instância de um componente:
 
 * O construtor do componente é invocado.
-* Os construtores de quaisquer serviços não singleton de DI fornecidos ao construtor do componente por meio da diretiva [@inject](xref:blazor/dependency-injection#request-a-service-in-a-component) ou do atributo [[injetar]](xref:blazor/dependency-injection#request-a-service-in-a-component) são invocados. 
+* Os construtores de quaisquer serviços não singleton de DI fornecidos ao construtor do componente por meio da diretiva [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) ou do atributo [`[Inject]`](xref:blazor/dependency-injection#request-a-service-in-a-component) são invocados. 
 
 Um circuito falha quando qualquer Construtor executado ou um setter para qualquer propriedade de `[Inject]` gera uma exceção sem tratamento. A exceção é fatal porque a estrutura não pode instanciar o componente. Se a lógica do Construtor puder gerar exceções, o aplicativo deverá interceptar as exceções usando uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log.
 
@@ -185,7 +185,7 @@ As seguintes condições se aplicam ao tratamento de erros com `InvokeAsync<T>`:
 * Se uma chamada para `InvokeAsync<T>` falhar de forma assíncrona, o <xref:System.Threading.Tasks.Task> .NET falhará. Uma chamada para `InvokeAsync<T>` pode falhar, por exemplo, porque o código do lado do JavaScript gera uma exceção ou retorna uma `Promise` concluída como `rejected`. O código do desenvolvedor deve capturar a exceção. Se estiver usando o operador [Await](/dotnet/csharp/language-reference/keywords/await) , considere encapsular a chamada de método em uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log. Caso contrário, o código com falha resultará em uma exceção sem tratamento que é fatal para o circuito.
 * Por padrão, as chamadas para `InvokeAsync<T>` devem ser concluídas em um determinado período ou, caso contrário, a chamada expirará. O período de tempo limite padrão é de um minuto. O tempo limite protege o código contra uma perda na conectividade de rede ou no código JavaScript que nunca envia uma mensagem de conclusão. Se a chamada atingir o tempo limite, a `Task` resultante falhará com um <xref:System.OperationCanceledException>. Interceptar e processar a exceção com registro em log.
 
-Da mesma forma, o código JavaScript pode iniciar chamadas para métodos .NET indicados pelo [atributo [JSInvokable]](xref:blazor/javascript-interop#invoke-net-methods-from-javascript-functions). Se esses métodos .NET lançarem uma exceção sem tratamento:
+Da mesma forma, o código JavaScript pode iniciar chamadas para métodos .NET indicados pelo atributo [`[JSInvokable]`](xref:blazor/javascript-interop#invoke-net-methods-from-javascript-functions) . Se esses métodos .NET lançarem uma exceção sem tratamento:
 
 * A exceção não é tratada como fatal para o circuito.
 * O `Promise` do lado do JavaScript é rejeitado.

@@ -3,14 +3,14 @@ title: Criar um cliente e um servidor gRPC do .NET Core no ASP.NET Core
 author: juntaoluo
 description: Este tutorial mostra como criar um serviço gRPC e um cliente gRPC no ASP.NET Core. Saiba como criar um projeto de serviço gRPC, editar um arquivo pronto e adicionar uma chamada de streaming duplex.
 ms.author: johluo
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: e5373d9abb9a770132e756843dbd15534dbe3356
-ms.sourcegitcommit: 231780c8d7848943e5e9fd55e93f437f7e5a371d
+ms.openlocfilehash: c179dd31e6484246498c857aad797eb752f00bf5
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2019
-ms.locfileid: "74116108"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74879642"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Tutorial: criar um cliente gRPC e um servidor no ASP.NET Core
 
@@ -29,7 +29,7 @@ Neste tutorial, você:
 > * Criará um cliente gRPC.
 > * Testará o serviço do cliente gRPC com o serviço Greeter do gRPC.
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -52,7 +52,7 @@ Neste tutorial, você:
 * Inicie o Visual Studio e selecione **Criar um novo projeto**. Como alternativa, no menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**.
 * Na caixa de diálogo **criar um novo projeto** , selecione **serviço GRPC** e selecione **Avançar**:
 
-  ![Caixa de diálogo **Criar um novo projeto**](~/tutorials/grpc/grpc-start/static/cnp.png)
+  ![Caixa de diálogo criar um novo projeto](~/tutorials/grpc/grpc-start/static/cnp.png)
 
 * Nomeie o projeto **GrpcGreeter**. É importante nomear o projeto *GrpcGreeter* de modo que os namespaces façam a correspondência quando você copiar e colar o código.
 * Selecione **Criar**.
@@ -302,7 +302,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 [!INCLUDE[](~/includes/gRPCazure.md)]
 
-### <a name="next-steps"></a>Próximas etapas
+### <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 * <xref:grpc/index>
 * <xref:grpc/basics>
