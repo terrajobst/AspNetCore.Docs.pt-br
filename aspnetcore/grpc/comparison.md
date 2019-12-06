@@ -4,16 +4,16 @@ author: jamesnk
 description: Saiba como o gRPC se compara com as APIs HTTP e o que são cenários recomendadas.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc:
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: ceb24d656827548492a6fa326681922297fc481b
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 8935e665dfd5d8f9afa002f475c202ec0f0ee657
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963656"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880681"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Comparar serviços gRPC com APIs HTTP
 
@@ -49,7 +49,7 @@ o gRPC foi projetado para HTTP/2, uma revisão importante do HTTP que fornece be
 
 ### <a name="code-generation"></a>Geração de código
 
-Todas as estruturas gRPC fornecem suporte de primeira classe para geração de código. Um arquivo de núcleo para o desenvolvimento de gRPC é o [arquivo *. proto* ](https://developers.google.com/protocol-buffers/docs/proto3), que define o contrato de serviços e mensagens do gRPC. Desse arquivo, as estruturas do gRPC de código gerarão uma classe base de serviço, mensagens e um cliente completo.
+Todas as estruturas gRPC fornecem suporte de primeira classe para geração de código. Um arquivo de núcleo para o desenvolvimento de gRPC é o [arquivo. proto](https://developers.google.com/protocol-buffers/docs/proto3), que define o contrato de serviços e mensagens do gRPC. Desse arquivo, as estruturas do gRPC de código gerarão uma classe base de serviço, mensagens e um cliente completo.
 
 Ao compartilhar o arquivo *. proto* entre o servidor e o cliente, as mensagens e o código do cliente podem ser gerados de ponta a ponta. A geração de código do cliente elimina a duplicação de mensagens no cliente e no servidor e cria um cliente fortemente tipado para você. Não ter de escrever um cliente economiza um tempo de desenvolvimento significativo em aplicativos com muitos serviços.
 

@@ -6,12 +6,12 @@ ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 11/21/2019
 uid: mvc/models/model-binding
-ms.openlocfilehash: a49fec38a6d38bbd33e9461cbcceb39bfe810f5c
-ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
+ms.openlocfilehash: 705044804b6ecc980baa88a624863ce5ac72a694
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/03/2019
-ms.locfileid: "74717280"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74881047"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Model binding no ASP.NET Core
 
@@ -96,11 +96,11 @@ Para cada parâmetro ou propriedade de destino, as fontes são verificadas na or
 
 Se a origem padrão não estiver correta, use um dos seguintes atributos para especificar a origem:
 
-* [[FromQuery]](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) – obtém valores da cadeia de caracteres de consulta. 
-* [[FromRoute]](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) – obtém valores dos dados de rota.
-* [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) – obtém valores de campos de formulário postados.
-* [[FromBody]](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) – obtém os valores do corpo da solicitação.
-* [[FromHeader]](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) – obtém valores de cabeçalhos HTTP.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) -obtém valores da cadeia de caracteres de consulta. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) -obtém valores de dados de rota.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) -obtém valores dos campos de formulário postados.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) -obtém valores do corpo da solicitação.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) -obtém valores de cabeçalhos HTTP.
 
 Esses atributos:
 
@@ -166,7 +166,7 @@ Por padrão, um erro de estado de modelo não será criado se nenhum valor for e
 * Para tipos complexos, o model binding cria uma instância usando o construtor padrão sem definir propriedades.
 * As matrizes são definidas como `Array.Empty<T>()`, exceto que matrizes `byte[]` são definidas como `null`.
 
-Se o estado do modelo precisar ser invalidado quando nada for encontrado em campos de formulário para uma propriedade de modelo, use o [atributo [BindRequired]](#bindrequired-attribute).
+Se o estado do modelo deve ser invalidado quando nada for encontrado em campos de formulário para uma propriedade de modelo, use o atributo [`[BindRequired]`](#bindrequired-attribute) .
 
 Observe que este comportamento `[BindRequired]` se aplica ao model binding de dados de formulário postados, não a dados JSON ou XML em um corpo da solicitação. Dados do corpo da solicitação são tratados pelos [formatadores de entrada](#input-formatters).
 

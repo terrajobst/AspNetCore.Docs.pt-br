@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/18/2019
 uid: fundamentals/configuration/options
-ms.openlocfilehash: 4192bab8acef7c4f7bdf1ac481c468cd0a835420
-ms.sourcegitcommit: 8157e5a351f49aeef3769f7d38b787b4386aad5f
+ms.openlocfilehash: 46cfff905636dc0d50fcde5e781ce47fb6d85cc0
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/20/2019
-ms.locfileid: "74239793"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880395"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Padrão de opções no ASP.NET Core
 
@@ -168,7 +168,7 @@ A injeção de opções é demonstrada como exemplo &num;4 no aplicativo de exem
 
 Injetar <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em:
 
-* Uma página Razor ou uma exibição MVC com a diretiva [@inject](xref:mvc/views/razor#inject) Razor.
+* Uma página Razor ou uma exibição MVC com a diretiva [`@inject`](xref:mvc/views/razor#inject) Razor.
 * Um modelo de página ou de exibição.
 
 O exemplo a seguir do aplicativo de exemplo injeta <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em um modelo de página (*pages/index. cshtml. cs*):
@@ -206,7 +206,7 @@ O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOp
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example5)]
 
-A seguinte imagem mostra os valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
+A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
 
 ```html
 snapshot option1 = value1_from_json, snapshot option2 = -1
@@ -453,7 +453,7 @@ As opções também fornecem um mecanismo para validar os dados da configuraçã
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 Referencie o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) ou adicione uma referência de pacote ao pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).
 
@@ -592,7 +592,7 @@ A injeção de opções é demonstrada como exemplo &num;4 no aplicativo de exem
 
 Injetar <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em:
 
-* Uma página Razor ou uma exibição MVC com a diretiva [@inject](xref:mvc/views/razor#inject) Razor.
+* Uma página Razor ou uma exibição MVC com a diretiva [`@inject`](xref:mvc/views/razor#inject) Razor.
 * Um modelo de página ou de exibição.
 
 O exemplo a seguir do aplicativo de exemplo injeta <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> em um modelo de página (*pages/index. cshtml. cs*):
@@ -630,7 +630,7 @@ O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOp
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example5)]
 
-A seguinte imagem mostra os valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
+A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
 
 ```html
 snapshot option1 = value1_from_json, snapshot option2 = -1
@@ -875,7 +875,7 @@ As opções também fornecem um mecanismo para validar os dados da configuraçã
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 Referencie o [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) ou adicione uma referência de pacote ao pacote [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/).
 
@@ -1044,7 +1044,7 @@ O exemplo a seguir demonstra como um novo <xref:Microsoft.Extensions.Options.IOp
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example5)]
 
-A seguinte imagem mostra os valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
+A seguinte imagem mostra is valores `option1` e `option2` iniciais carregados do arquivo *appsettings.json*:
 
 ```html
 snapshot option1 = value1_from_json, snapshot option2 = -1

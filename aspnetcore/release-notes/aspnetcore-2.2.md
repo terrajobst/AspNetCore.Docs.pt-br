@@ -4,16 +4,16 @@ author: rick-anderson
 description: Conheça os novos recursos do ASP.NET Core 2.2.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc:
 - SignalR
 uid: aspnetcore-2.2
-ms.openlocfilehash: fca653158c95e7c1a11f25f4076830fe3e7e93ae
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 8995a514ea2e5016da85952d0f0beaf396a5d639
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963132"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880840"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>Novidades do ASP.NET Core 2.2
 
@@ -57,7 +57,12 @@ Para obter mais informações, confira [Verificações de integridade no ASP.NET
 
 O ASP.NET Core 2.2 adiciona suporte ao HTTP/2.
 
-O HTTP/2 é uma revisão principal do protocolo HTTP. Alguns dos recursos importantes do HTTP/2 são o suporte à compactação de cabeçalho e fluxos totalmente multiplexados em uma única conexão. Embora o HTTP/2 preserve a semântica do HTTP (cabeçalhos HTTP, métodos etc.), ele é uma alteração da falha do HTTP/1.x com relação a como esses dados são estruturados e enviados pela conexão.
+O HTTP/2 é uma revisão principal do protocolo HTTP. Os recursos notáveis do HTTP/2 incluem:
+
+* Suporte para compactação de cabeçalho.
+* Fluxos totalmente multiplexados em uma única conexão.
+
+Embora HTTP/2 preserve a semântica de HTTP (por exemplo, cabeçalhos e métodos HTTP), trata-se de uma alteração significativa do HTTP/1. x sobre como os dados são emoldurados e enviados entre o cliente e o servidor.
 
 Como consequência dessa alteração no enquadramento, os servidores e os clientes precisam negociar a versão de protocolo usada. O recurso ALPN (Negociação de Protocolo da Camada de Aplicativo) é uma extensão TLS com a qual o servidor e o cliente podem negociar a versão de protocolo usada como parte do handshake TLS. Embora seja possível ter um conhecimento prévio entre o servidor e o cliente sobre o protocolo, todos os principais navegadores dão suporte ALPN como a única maneira de estabelecer uma conexão HTTP/2.
 
@@ -112,6 +117,6 @@ No ASP.NET Core 2.2, o desempenho do `SocketsHttpHandler` foi aprimorado, reduzi
 
 Para obter mais informações, confira [a solicitação de pull que fez essa melhoria](https://github.com/dotnet/corefx/pull/32568).
 
-## <a name="additional-information"></a>Informações adicionais
+## <a name="additional-information"></a>{1&gt;{2&gt;Informações adicionais&lt;2}&lt;1}
 
 Para obter a lista completa de alterações, confira as [Notas sobre a versão do ASP.NET Core 2.2](https://github.com/aspnet/Home/releases/tag/2.2.0).

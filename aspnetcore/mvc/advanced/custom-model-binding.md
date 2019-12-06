@@ -3,14 +3,14 @@ title: Model binding personalizado no ASP.NET Core
 author: ardalis
 description: Saiba como o model binding permite que as ações do controlador trabalhem diretamente com os tipos de modelo no ASP.NET Core.
 ms.author: riande
-ms.date: 11/13/2018
+ms.date: 12/05/2019
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: b2fbe6a9f11315d1fb8863fbf62e8929c7ff3fc2
-ms.sourcegitcommit: d34b2627a69bc8940b76a949de830335db9701d3
+ms.openlocfilehash: 625cc6c9ca5a2c22d028ea25f8fc0d942b71f12d
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71186884"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74881126"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>Model binding personalizado no ASP.NET Core
 
@@ -34,11 +34,11 @@ Antes de criar seu próprio associador de modelos personalizado, vale a pena ana
 
 Cadeias de caracteres codificadas em Base64 podem ser usadas para representar dados binários. Por exemplo, a imagem a seguir pode ser codificada como uma cadeia de caracteres.
 
-![dotnet bot](custom-model-binding/images/bot.png "dotnet bot")
+![bot de dotnet](custom-model-binding/images/bot.png "bot de dotnet")
 
 Uma pequena parte da cadeia de caracteres codificada é mostrada na seguinte imagem:
 
-![dotnet bot codificado](custom-model-binding/images/encoded-bot.png "dotnet bot encoded")
+![bot de dotnet codificado](custom-model-binding/images/encoded-bot.png "bot de dotnet codificado")
 
 Siga as instruções do [LEIAME da amostra](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/sample/CustomModelBindingSample/README.md) para converter a cadeia de caracteres codificada em Base64 em um arquivo.
 
@@ -69,7 +69,7 @@ O seguinte exemplo mostra como usar `ByteArrayModelBinder` para converter uma ca
 
 Execute POST em uma cadeia de caracteres codificada em Base64 para esse método de API usando uma ferramenta como o [Postman](https://www.getpostman.com/):
 
-![postman](custom-model-binding/images/postman.png "postman")
+![Postman](custom-model-binding/images/postman.png "Postman")
 
 Desde que o associador possa associar dados de solicitação a propriedades ou argumentos nomeados de forma adequada, o model binding terá êxito. O seguinte exemplo mostra como usar `ByteArrayModelBinder` com um modelo de exibição:
 
@@ -124,7 +124,7 @@ Ao avaliar associadores de modelos, a coleção de provedores é examinada na or
 
 A imagem a seguir mostra os associadores de modelos padrão do depurador.
 
-![associadores de modelo padrão](custom-model-binding/images/default-model-binders.png "default model binders")
+![vinculadores de modelo padrão](custom-model-binding/images/default-model-binders.png "vinculadores de modelo padrão")
 
 A adição do provedor ao final da coleção pode resultar na chamada a um associador de modelos interno antes que o associador personalizado tenha uma oportunidade. Neste exemplo, o provedor personalizado é adicionado ao início da coleção para garantir que ele é usado para argumentos de ação `Author`.
 
@@ -147,4 +147,4 @@ Associadores de modelos personalizados:
 
 - Não devem tentar definir códigos de status ou retornar resultados (por exemplo, 404 Não Encontrado). Se o model binding falhar, um [filtro de ação](xref:mvc/controllers/filters) ou uma lógica no próprio método de ação deverá resolver a falha.
 - São muito úteis para eliminar código repetitivo e interesses paralelos de métodos de ação.
-- Normalmente, não devem ser usados para converter uma cadeia de caracteres em um tipo personalizado; um [`TypeConverter`](/dotnet/api/system.componentmodel.typeconverter) geralmente é uma opção melhor.
+- Normalmente não deve ser usado para converter uma cadeia de caracteres em um tipo personalizado, um [TypeConverter](/dotnet/api/system.componentmodel.typeconverter) geralmente é uma opção melhor.

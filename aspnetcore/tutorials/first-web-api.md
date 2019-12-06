@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como criar uma API Web com o ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/29/2019
+ms.date: 12/05/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: abb55ea12583374639f28945037cb6aa41a5a32d
-ms.sourcegitcommit: 77c8be22d5e88dd710f42c739748869f198865dd
+ms.openlocfilehash: 96b4c030c1d91f97725d1f3623c7b4023ad99ff3
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/01/2019
-ms.locfileid: "73427036"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880633"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: criar uma API Web com ASP.NET Core
 
@@ -32,23 +32,23 @@ Neste tutorial, você aprenderá como:
 
 No final, você terá uma API Web que pode gerenciar itens de "tarefas pendentes" armazenados em um banco de dados.
 
-## <a name="overview"></a>Visão Geral
+## <a name="overview"></a>{1&gt;Visão Geral&lt;1}
 
 Este tutorial cria a seguinte API:
 
 |API | Descrição | Corpo da solicitação | Corpo da resposta |
 |--- | ---- | ---- | ---- |
-|GET /api/TodoItems | Obter todos os itens de tarefas pendentes | Nenhum | Matriz de itens de tarefas pendentes|
-|GET /api/TodoItems/{id} | Obter um item por ID | Nenhum | Item de tarefas pendentes|
+|GET /api/TodoItems | Obter todos os itens de tarefas pendentes | {1&gt;Nenhum&lt;1} | Matriz de itens de tarefas pendentes|
+|GET /api/TodoItems/{id} | Obter um item por ID | {1&gt;Nenhum&lt;1} | Item de tarefas pendentes|
 |POST /api/TodoItems | Adicionar um novo item | Item de tarefas pendentes | Item de tarefas pendentes |
-|PUT /api/TodoItems/{id} | Atualizar um item &nbsp; existente | Item de tarefas pendentes | Nenhum |
-|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Excluir um item &nbsp; &nbsp; | Nenhum | Nenhum|
+|PUT /api/TodoItems/{id} | Atualizar um item &nbsp; existente | Item de tarefas pendentes | {1&gt;Nenhum&lt;1} |
+|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Excluir um item &nbsp; &nbsp; | {1&gt;Nenhum&lt;1} | {1&gt;Nenhum&lt;1}|
 
 O diagrama a seguir mostra o design do aplicativo.
 
 ![O cliente é representado por uma caixa à esquerda. Ele envia uma solicitação e recebe uma resposta do aplicativo, uma caixa desenhada à direita. Dentro da caixa do aplicativo, três caixas representam o controlador, o modelo e a camada de acesso a dados. A solicitação é recebida no controlador do aplicativo e as operações de leitura/gravação ocorrem entre o controlador e a camada de acesso a dados. O modelo é serializado e retornado para o cliente na resposta.](first-web-api/_static/architecture.png)
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -297,7 +297,7 @@ Os comandos anteriores:
 O código gerado:
 
 * Define uma classe de controlador de API sem métodos.
-* Decora a classe com o atributo [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute). Esse atributo indica se o controlador responde às solicitações da API Web. Para saber mais sobre comportamentos específicos habilitados pelo atributo, consulte <xref:web-api/index>.
+* Marca a classe com o atributo [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) . Esse atributo indica se o controlador responde às solicitações da API Web. Para saber mais sobre comportamentos específicos habilitados pelo atributo, consulte <xref:web-api/index>.
 * Usa a DI para injetar o contexto de banco de dados (`TodoContext`) no controlador. O contexto de banco de dados é usado em cada um dos métodos [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) no controlador.
 
 ## <a name="examine-the-posttodoitem-create-method"></a>Examine o método criar do PostTodoItem
@@ -306,7 +306,7 @@ Substitua a instrução return no `PostTodoItem` para usar o operador [nameof](/
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
-O código anterior é um método HTTP POST, conforme indicado pelo atributo [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute). O método obtém o valor do item pendente no corpo da solicitação HTTP.
+O código anterior é um método HTTP POST, conforme indicado pelo atributo [`[HttpPost]`](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) . O método obtém o valor do item pendente no corpo da solicitação HTTP.
 
 O método <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*>:
 
@@ -483,23 +483,23 @@ Neste tutorial, você aprenderá como:
 
 No final, você terá uma API Web que pode gerenciar itens de "tarefas pendentes" armazenados em um banco de dados relacional.
 
-## <a name="overview"></a>Visão Geral
+## <a name="overview"></a>{1&gt;Visão Geral&lt;1}
 
 Este tutorial cria a seguinte API:
 
 |API | Descrição | Corpo da solicitação | Corpo da resposta |
 |--- | ---- | ---- | ---- |
-|GET /api/TodoItems | Obter todos os itens de tarefas pendentes | Nenhum | Matriz de itens de tarefas pendentes|
-|GET /api/TodoItems/{id} | Obter um item por ID | Nenhum | Item de tarefas pendentes|
+|GET /api/TodoItems | Obter todos os itens de tarefas pendentes | {1&gt;Nenhum&lt;1} | Matriz de itens de tarefas pendentes|
+|GET /api/TodoItems/{id} | Obter um item por ID | {1&gt;Nenhum&lt;1} | Item de tarefas pendentes|
 |POST /api/TodoItems | Adicionar um novo item | Item de tarefas pendentes | Item de tarefas pendentes |
-|PUT /api/TodoItems/{id} | Atualizar um item &nbsp; existente | Item de tarefas pendentes | Nenhum |
-|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Excluir um item &nbsp; &nbsp; | Nenhum | Nenhum|
+|PUT /api/TodoItems/{id} | Atualizar um item &nbsp; existente | Item de tarefas pendentes | {1&gt;Nenhum&lt;1} |
+|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Excluir um item &nbsp; &nbsp; | {1&gt;Nenhum&lt;1} | {1&gt;Nenhum&lt;1}|
 
 O diagrama a seguir mostra o design do aplicativo.
 
 ![O cliente é representado por uma caixa à esquerda. Ele envia uma solicitação e recebe uma resposta do aplicativo, uma caixa desenhada à direita. Dentro da caixa do aplicativo, três caixas representam o controlador, o modelo e a camada de acesso a dados. A solicitação é recebida no controlador do aplicativo e as operações de leitura/gravação ocorrem entre o controlador e a camada de acesso a dados. O modelo é serializado e retornado para o cliente na resposta.](first-web-api/_static/architecture.png)
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -679,7 +679,7 @@ O código anterior:
 O código anterior:
 
 * Define uma classe de controlador de API sem métodos.
-* Decora a classe com o atributo [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute). Esse atributo indica se o controlador responde às solicitações da API Web. Para saber mais sobre comportamentos específicos habilitados pelo atributo, consulte <xref:web-api/index>.
+* Marca a classe com o atributo [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) . Esse atributo indica se o controlador responde às solicitações da API Web. Para saber mais sobre comportamentos específicos habilitados pelo atributo, consulte <xref:web-api/index>.
 * Usa a DI para injetar o contexto de banco de dados (`TodoContext`) no controlador. O contexto de banco de dados é usado em cada um dos métodos [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) no controlador.
 * Adiciona um item chamado `Item1` ao banco de dados se o banco de dados está vazio. Esse código está no construtor, de modo que ele seja executado sempre que há uma nova solicitação HTTP. Se você excluir todos os itens, o construtor criará `Item1` novamente na próxima vez que um método de API for chamado. Portanto, pode parecer que a exclusão não funcionou quando ela realmente funcionou.
 
@@ -773,7 +773,7 @@ Adicione o seguinte método `PostTodoItem` dentro de *Controllers/TodoController
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
-O código anterior é um método HTTP POST, conforme indicado pelo atributo [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute). O método obtém o valor do item pendente no corpo da solicitação HTTP.
+O código anterior é um método HTTP POST, conforme indicado pelo atributo [`[HttpPost]`](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) . O método obtém o valor do item pendente no corpo da solicitação HTTP.
 
 O método `CreatedAtAction`:
 
@@ -785,7 +785,7 @@ O método `CreatedAtAction`:
 
 ### <a name="test-the-posttodoitem-method"></a>Testar o método PostTodoItem
 
-* Compile o projeto.
+* Crie o projeto.
 * No Postman, defina o método HTTP como `POST`.
 * Selecione a guia **Corpo**.
 * Selecione o botão de opção **bruto**.

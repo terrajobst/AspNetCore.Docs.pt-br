@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como a memória é gerenciada em ASP.NET Core e como o coletor de lixo (GC) funciona.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 12/05/2019
 uid: performance/memory
-ms.openlocfilehash: 4c25c069aa2a6088c0549d786ecdd487ab7b9ea5
-ms.sourcegitcommit: 4818385c3cfe0805e15138a2c1785b62deeaab90
+ms.openlocfilehash: 85e34c9faa31a1020a4200eb99003455ca435ec3
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/09/2019
-ms.locfileid: "73896940"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880945"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Gerenciamento de memória e coleta de lixo (GC) no ASP.NET Core
 
@@ -274,7 +274,7 @@ Os links a seguir mostram a abordagem de ASP.NET Core para manter os objetos sob
 - [ResponseCaching/streams/StreamUtilities. cs](https://github.com/aspnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
 - [ResponseCaching/MemoryResponseCache. cs](https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55)
 
-Para obter mais informações, consulte:
+Para obter mais informações, consulte .
 
 * [Heap de objeto grande descoberto](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
 * [Heap de objeto grande](/dotnet/standard/garbage-collection/large-object-heap)
@@ -373,7 +373,7 @@ A exibição de gráfico a seguir chamando a API anterior com carga moderada:
 
 No gráfico anterior, as coletas de geração 0 acontecem aproximadamente uma vez por segundo.
 
-O código anterior pode ser otimizado com o pool do buffer de `byte` usando [`ArrayPool<T>`](xref:System.Buffers.ArrayPool`1). Uma instância estática é reutilizada entre solicitações.
+O código anterior pode ser otimizado com o pool do buffer de `byte` usando [ArrayPool\<t >](xref:System.Buffers.ArrayPool`1). Uma instância estática é reutilizada entre solicitações.
 
 O que é diferente com essa abordagem é que um objeto em pool é retornado da API. Isso significa que:
 

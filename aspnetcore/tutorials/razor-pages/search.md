@@ -3,14 +3,14 @@ title: Adicionar a pesquisa às Páginas Razor do ASP.NET Core
 author: rick-anderson
 description: Mostra como adicionar uma pesquisa às Páginas Razor do ASP.NET Core
 ms.author: riande
-ms.date: 7/23/2019
+ms.date: 12/05/2019
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: 1eeb3aa86f2a6928b6d0b368c90e4760a66a6c6e
-ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
+ms.openlocfilehash: 8228207b0f37a6923b29891ac3115dd0be115501
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72334058"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74881329"
 ---
 # <a name="add-search-to-aspnet-core-razor-pages"></a>Adicionar a pesquisa às Páginas Razor do ASP.NET Core
 
@@ -26,7 +26,7 @@ Adicione as seguintes propriedades realçadas em *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contém o texto que os usuários inserem na caixa de texto de pesquisa. `SearchString` está decorada com o atributo [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute). `[BindProperty]` associa valores de formulário e cadeias de consulta ao mesmo nome da propriedade. `(SupportsGet = true)` é necessário para a associação em solicitações GET.
+* `SearchString`: contém o texto que os usuários inserem na caixa de texto de pesquisa. `SearchString` tem o atributo [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) . `[BindProperty]` associa valores de formulário e cadeias de consulta ao mesmo nome da propriedade. `(SupportsGet = true)` é necessário para a associação em solicitações GET.
 * `Genres`: contém a lista de gêneros. `Genres` permite que o usuário selecione um gênero na lista. `SelectList` exige `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contém o gênero específico que o usuário seleciona (por exemplo, "Oeste").
 * `Genres` e `MovieGenre` são abordados mais adiante neste tutorial.
@@ -54,7 +54,7 @@ Se a propriedade `SearchString` não é nula nem vazia, a consulta de filmes é 
 O código `s => s.Title.Contains()` é uma [Expressão Lambda](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas são usados em consultas [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) baseadas em método como argumentos para métodos de operadores de consulta padrão, como o método [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) ou `Contains` (usado no código anterior). As consultas LINQ não são executadas quando são definidas ou quando são modificadas com uma chamada a um método (como `Where`, `Contains` ou `OrderBy`). Em vez disso, a execução da consulta é adiada. Isso significa que a avaliação de uma expressão é atrasada até que seu valor realizado seja iterado ou o método `ToListAsync` seja chamado. Consulte [Execução de consulta](/dotnet/framework/data/adonet/ef/language-reference/query-execution) para obter mais informações.
 
 > [!NOTE]
-> o método [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) é executado no banco de dados, não no código C#. A diferenciação de maiúsculas e minúsculas na consulta depende do banco de dados e da ordenação. No SQL Server, `Contains` é mapeado para [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), que não diferencia maiúsculas de minúsculas. No SQLite, com a ordenação padrão, ele diferencia maiúsculas de minúsculas.
+> O método [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) é executado no banco de dados, não no C# código. A diferenciação de maiúsculas e minúsculas na consulta depende do banco de dados e da ordenação. No SQL Server, `Contains` é mapeado para [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), que não diferencia maiúsculas de minúsculas. No SQLite, com a ordenação padrão, ele diferencia maiúsculas de minúsculas.
 
 Navegue para a página Movies e acrescente uma cadeia de consulta, como `?searchString=Ghost`, à URL (por exemplo, `https://localhost:5001/Movies?searchString=Ghost`). Os filmes filtrados são exibidos.
 
@@ -129,7 +129,7 @@ Adicione as seguintes propriedades realçadas em *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contém o texto que os usuários inserem na caixa de texto de pesquisa. `SearchString` está decorada com o atributo [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute). `[BindProperty]` associa valores de formulário e cadeias de consulta ao mesmo nome da propriedade. `(SupportsGet = true)` é necessário para a associação em solicitações GET.
+* `SearchString`: contém o texto que os usuários inserem na caixa de texto de pesquisa. `SearchString` tem o atributo [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) . `[BindProperty]` associa valores de formulário e cadeias de consulta ao mesmo nome da propriedade. `(SupportsGet = true)` é necessário para a associação em solicitações GET.
 * `Genres`: contém a lista de gêneros. `Genres` permite que o usuário selecione um gênero na lista. `SelectList` exige `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contém o gênero específico que o usuário seleciona (por exemplo, "Oeste").
 * `Genres` e `MovieGenre` são abordados mais adiante neste tutorial.

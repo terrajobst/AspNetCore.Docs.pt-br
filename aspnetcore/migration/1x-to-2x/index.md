@@ -4,14 +4,14 @@ author: scottaddie
 description: Este artigo descreve os pré-requisitos e as etapas mais comuns para a migração de um projeto ASP.NET Core 1.x para o ASP.NET Core 2.0.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 12/05/2019
 uid: migration/1x-to-2x/index
-ms.openlocfilehash: 056930f3c586153d13555bbb6036f46587e2352d
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
-ms.translationtype: HT
+ms.openlocfilehash: 1242ec9f71f4a26b07f9a56a2a960bf315b56ccf
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815095"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880009"
 ---
 # <a name="migrate-from-aspnet-core-1x-to-20"></a>Migrar do ASP.NET Core 1.x para 2.0
 
@@ -23,7 +23,7 @@ Os aplicativos ASP.NET Core 1.x existentes baseiam-se em modelos de projeto espe
 
 <a name="prerequisites"></a>
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 Veja a [Introdução ao ASP.NET Core](xref:getting-started).
 
@@ -48,7 +48,7 @@ Se o arquivo de projeto contiver `<RuntimeFrameworkVersion>1.{sub-version}</Runt
 
 ## <a name="update-net-core-sdk-version-in-globaljson"></a>Atualizar a versão do SDK do .NET Core em global.json
 
-Se a solução depender de um arquivo [*global.json*](/dotnet/core/tools/global-json) para direcionar uma versão específica do SDK do .NET Core, atualize sua propriedade `version` para que ela use a versão 2.0 instalada no computador:
+Se sua solução depende de um arquivo [global. JSON](/dotnet/core/tools/global-json) para direcionar uma versão específica do SDK do .NET Core, atualize sua propriedade `version` para usar a versão 2,0 instalada em seu computador:
 
 [!code-json[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/global.json?highlight=3)]
 

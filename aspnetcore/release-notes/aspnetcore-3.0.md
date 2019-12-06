@@ -4,17 +4,17 @@ author: rick-anderson
 description: Saiba mais sobre os novos recursos do ASP.NET Core 3,0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc:
 - Blazor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: c3dde383507ec919f82b5268ddbf23911c3d24f8
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 4ade13c38880c9915ec590297f2a43548ca400a8
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963118"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880836"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>O que há de novo no ASP.NET Core 3,0
 
@@ -40,7 +40,7 @@ cenários com suporte do Blazor Framework:
 
 Para obter mais informações, consulte <xref:blazor/index>.
 
-### <a name="opno-locblazor-server"></a>Servidor de Blazor
+### <a name="opno-locblazor-server"></a>Servidor do Blazor
 
 Blazor dissocia a lógica de renderização do componente de como as atualizações da interface do usuário são aplicadas. o Blazor Server fornece suporte para hospedar componentes do Razor no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário são manipuladas por uma conexão SignalR. o Blazor Server tem suporte no ASP.NET Core 3,0.
 
@@ -182,7 +182,7 @@ No código anterior, `DomainRestrictedRequirement` serve como uma `IAuthorizatio
 * Inspecione o contexto no qual o Hub está sendo chamado.
 * Tome decisões sobre como permitir que o usuário execute métodos de Hub individuais.
 
-Os métodos de Hub individuais podem ser decorados com o nome da política que o código verifica em tempo de execução. À medida que os clientes tentam chamar métodos de Hub individuais, o manipulador de `DomainRestrictedRequirement` é executado e controla o acesso aos métodos. Com base no modo como o `DomainRestrictedRequirement` controla o acesso:
+Os métodos de Hub individuais podem ser marcados com o nome da política que o código verifica em tempo de execução. À medida que os clientes tentam chamar métodos de Hub individuais, o manipulador de `DomainRestrictedRequirement` é executado e controla o acesso aos métodos. Com base no modo como o `DomainRestrictedRequirement` controla o acesso:
 
 * Todos os usuários conectados podem chamar o método `SendMessage`.
 * Somente os usuários que fizeram logon com um endereço de email `@jabbr.net` podem exibir os históricos dos usuários.
@@ -319,8 +319,8 @@ Para adicionar o Json.NET ao ASP.NET Core 3,0, consulte [Adicionar suporte ao fo
 
 A lista a seguir contém novas diretivas do Razor:
 
-* [@attribute](xref:mvc/views/razor#attribute) &ndash; diretiva de `@attribute` aplica o atributo fornecido à classe da página ou exibição gerada. Por exemplo, `@attribute [Authorize]`.
-* [@implements](xref:mvc/views/razor#implements) &ndash; a diretiva de `@implements` implementa uma interface para a classe gerada. Por exemplo, `@implements IDisposable`.
+* [`@attribute`](xref:mvc/views/razor#attribute) &ndash; diretiva de `@attribute` aplica o atributo fornecido à classe da página ou exibição gerada. Por exemplo, `@attribute [Authorize]`.
+* [`@implements`](xref:mvc/views/razor#implements) &ndash; a diretiva de `@implements` implementa uma interface para a classe gerada. Por exemplo, `@implements IDisposable`.
 
 ## <a name="identityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>O IdentityServer4 dá suporte à autenticação e autorização para APIs Web e SPAs
 
@@ -428,7 +428,7 @@ Todos os serviços ainda podem ser injetados diretamente como argumentos para o 
 * Os adaptadores de conexão foram removidos do Kestrel e substituídos pelo middleware de conexão, que é semelhante ao middleware HTTP no pipeline de ASP.NET Core, mas para conexões de nível inferior.
 * A camada de transporte Kestrel foi exposta como uma interface pública no `Connections.Abstractions`.
 * A ambiguidade entre cabeçalhos e trailers foi resolvida movendo os cabeçalhos à direita para uma nova coleção.
-* As APIs de e/s síncronas, como `HttpRequest.Body.Read`, são uma fonte comum de privação de thread que leva a falhas de aplicativo. Em 3,0, `AllowSynchronousIO` é desabilitado por padrão.
+* As APIs de e/s síncronas, como `HttpRequest.Body.Read`, são uma fonte comum de privação de thread que leva a falhas de aplicativo. Em 3,0, `AllowSynchronousIO` é desabilitada por padrão.
 
 Para obter mais informações, consulte <xref:migration/22-to-30#kestrel>.
 
@@ -456,9 +456,9 @@ O roteamento de ponto de extremidade, que permite que as estruturas (por exemplo
 
 Para obter mais informações, consulte <xref:fundamentals/routing#routing-basics>.
 
-## <a name="health-checks"></a>Verificações de integridade
+## <a name="health-checks"></a>Verificações de Integridade
 
-As verificações de integridade usam o roteamento de ponto de extremidade com o host genérico. No `Startup.Configure`, chame `MapHealthChecks` no construtor de ponto de extremidade com a URL do ponto de extremidade ou o caminho relativo:
+As verificações de integridade usam o roteamento de ponto de extremidade com o host genérico. Em `Startup.Configure`, chame `MapHealthChecks` no construtor de ponto de extremidade com a URL do ponto de extremidade ou o caminho relativo:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -492,7 +492,7 @@ Os erros de inicialização ao hospedar aplicativos ASP.NET Core no IIS agora pr
 
 O .NET Core 3,0 apresenta o novo modelo de aplicativo do serviço de trabalho. Este modelo fornece um ponto de partida para escrever serviços de longa execução no .NET Core.
 
-Para obter mais informações, consulte:
+Para obter mais informações, consulte .
 
 * [Trabalhos do .NET Core como serviços do Windows](https://devblogs.microsoft.com/aspnet/net-core-workers-as-windows-services/)
 * <xref:fundamentals/host/hosted-services>

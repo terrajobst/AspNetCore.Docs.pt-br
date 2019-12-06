@@ -4,14 +4,14 @@ author: jamesnk
 description: Saiba como usar a autenticação e a autorização no gRPC para ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/13/2019
+ms.date: 12/05/2019
 uid: grpc/authn-and-authz
-ms.openlocfilehash: 84903ee781588ff525d1dfce6a313e3867794762
-ms.sourcegitcommit: 76d7fff62014c3db02564191ab768acea00f1b26
+ms.openlocfilehash: 258b34113f3c3d9ef2031a43295ea5806b1e22ff
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/05/2019
-ms.locfileid: "74852695"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880684"
 ---
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>Autenticação e autorização no gRPC para ASP.NET Core
 
@@ -150,7 +150,7 @@ Para obter mais informações sobre como configurar a autenticação no servidor
 
 Configurar o cliente gRPC para usar a autenticação dependerá do mecanismo de autenticação que você está usando. Os exemplos anteriores de token de portador e certificado de cliente mostram duas maneiras que o cliente gRPC pode ser configurado para enviar metadados de autenticação com chamadas gRPC:
 
-* Clientes gRPC fortemente tipados usam `HttpClient` internamente. A autenticação pode ser configurada em [`HttpClientHandler`](/dotnet/api/system.net.http.httpclienthandler)ou adicionando instâncias de [`HttpMessageHandler`](/dotnet/api/system.net.http.httpmessagehandler) personalizadas ao `HttpClient`.
+* Clientes gRPC fortemente tipados usam `HttpClient` internamente. A autenticação pode ser configurada em [HttpClientHandler](/dotnet/api/system.net.http.httpclienthandler)ou adicionando instâncias de [HttpMessageHandler](/dotnet/api/system.net.http.httpmessagehandler) personalizadas ao `HttpClient`.
 * Cada chamada gRPC tem um argumento opcional `CallOptions`. Cabeçalhos personalizados podem ser enviados usando a coleção de cabeçalhos da opção.
 
 > [!NOTE]
@@ -158,7 +158,7 @@ Configurar o cliente gRPC para usar a autenticação dependerá do mecanismo de 
 
 ## <a name="authorize-users-to-access-services-and-service-methods"></a>Autorizar usuários a acessar os serviços e métodos de serviço
 
-Por padrão, todos os métodos em um serviço podem ser chamados por usuários não autenticados. Para exigir autenticação, aplique o atributo [[autorizar]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) ao serviço:
+Por padrão, todos os métodos em um serviço podem ser chamados por usuários não autenticados. Para exigir autenticação, aplique o atributo [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) ao serviço:
 
 ```csharp
 [Authorize]

@@ -4,14 +4,14 @@ author: ardalis
 description: Saiba como formatar dados de resposta na API Web ASP.NET Core.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 8/22/2019
+ms.date: 12/05/2019
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 78fe620ea8fdd681a276253f77939bcb2a56ebb9
-ms.sourcegitcommit: 35a86ce48041caaf6396b1e88b0472578ba24483
+ms.openlocfilehash: 4433ed11dad7522962ebeed411c4bef88e07e7af
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72391285"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74881351"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Formatar dados de resposta na API Web ASP.NET Core
 
@@ -155,7 +155,7 @@ Antes do ASP.NET Core 3,0, os formatadores JSON usados por padrão são implemen
 
 Alguns recursos podem não funcionar bem com formatadores baseados em `System.Text.Json`e exigem uma referência aos formatadores baseados em `Newtonsoft.Json`. Continue usando os formatadores baseados em `Newtonsoft.Json`se o aplicativo:
 
-* Usa atributos de `Newtonsoft.Json`. Por exemplo, `[JsonProperty]` ou `[JsonIgnore]`.
+* Usa atributos de `Newtonsoft.Json`. Por exemplo `[JsonProperty]` ou `[JsonIgnore]`.
 * Personaliza as configurações de serialização.
 * O se baseia em recursos que o `Newtonsoft.Json` fornece.
 * Configura `Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings`. Antes do ASP.NET Core 3.0, `JsonResult.SerializerSettings` aceita uma instância de `JsonSerializerSettings` que é específico para `Newtonsoft.Json`.

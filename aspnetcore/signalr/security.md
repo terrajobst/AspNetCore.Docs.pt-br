@@ -5,16 +5,16 @@ description: Saiba como usar a autenticação e a autorização no ASP.NET Core 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc:
 - SignalR
 uid: signalr/security
-ms.openlocfilehash: c5a34ae67bdfb8f7fd92c00f18973b66b685a99c
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: f443fe0fbaaa1facd09edc0878c048772895ecff
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963909"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74881176"
 ---
 # <a name="security-considerations-in-aspnet-core-opno-locsignalr"></a>Considerações sobre segurança no ASP.NET Core SignalR
 
@@ -117,7 +117,7 @@ Se você tiver dúvidas sobre como registrar esses dados nos logs do servidor, p
 
 ## <a name="exceptions"></a>Exceções
 
-As mensagens de exceção geralmente são consideradas dados confidenciais que não devem ser revelados a um cliente. Por padrão, o SignalR não envia os detalhes de uma exceção gerada por um método de Hub para o cliente. Em vez disso, o cliente recebe uma mensagem genérica indicando que ocorreu um erro. A entrega de mensagem de exceção ao cliente pode ser substituída (por exemplo, em desenvolvimento ou teste) com [`EnableDetailedErrors`](xref:signalr/configuration#configure-server-options). As mensagens de exceção não devem ser expostas ao cliente em aplicativos de produção.
+As mensagens de exceção geralmente são consideradas dados confidenciais que não devem ser revelados a um cliente. Por padrão, o SignalR não envia os detalhes de uma exceção gerada por um método de Hub para o cliente. Em vez disso, o cliente recebe uma mensagem genérica indicando que ocorreu um erro. A entrega de mensagem de exceção ao cliente pode ser substituída (por exemplo, em desenvolvimento ou teste) com [EnableDetailedErrors](xref:signalr/configuration#configure-server-options). As mensagens de exceção não devem ser expostas ao cliente em aplicativos de produção.
 
 ## <a name="buffer-management"></a>Gerenciamento de buffer
 
@@ -131,7 +131,7 @@ Se suas mensagens forem maiores que 32 KB, você poderá aumentar o limite. Aume
 * O cliente pode fazer com que o servidor aloque buffers de memória grandes.
 * A alocação de servidor de buffers grandes pode reduzir o número de conexões simultâneas.
 
-Há limites para mensagens de entrada e saída, ambas podem ser configuradas no objeto [`HttpConnectionDispatcherOptions`](xref:signalr/configuration#configure-server-options) configurado em `MapHub`:
+Há limites para mensagens de entrada e saída, ambas podem ser configuradas no objeto [HttpConnectionDispatcherOptions](xref:signalr/configuration#configure-server-options) configurado no `MapHub`:
 
 * `ApplicationMaxBufferSize` representa o número máximo de bytes do cliente que o servidor armazena em buffer. Se o cliente tentar enviar uma mensagem maior que esse limite, a conexão poderá ser fechada.
 * `TransportMaxBufferSize` representa o número máximo de bytes que o servidor pode enviar. Se o servidor tentar enviar uma mensagem (incluindo valores de retorno dos métodos de Hub) maior que esse limite, uma exceção será lançada.

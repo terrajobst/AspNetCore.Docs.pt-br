@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba mais sobre a validação de modelo no ASP.NET Core MVC e Razor Pages.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 12/05/2019
 uid: mvc/models/validation
-ms.openlocfilehash: 19f71799e958e2761832c91cec6762a6d391d2b5
-ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
+ms.openlocfilehash: 7a6017141eb1016128c4a135c187479717580bb5
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/22/2019
-ms.locfileid: "74317436"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74881039"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Validação de modelo no ASP.NET Core MVC e Razor Pages
 
@@ -55,10 +55,10 @@ Aqui estão alguns dos atributos de validação internos:
 * `[Phone]`: valida que a propriedade tem um formato de número de telefone.
 * `[Range]`: valida que o valor da propriedade cai em um intervalo especificado.
 * `[RegularExpression]`: valida que o valor da propriedade corresponde a uma expressão regular especificada.
-* `[Required]`: valida que o campo não é nulo. Consulte [atributo [Required]](#required-attribute) para obter detalhes sobre o comportamento desse atributo.
+* `[Required]`: valida que o campo não é nulo. Consulte [`[Required]` atributo](#required-attribute) para obter detalhes sobre o comportamento desse atributo.
 * `[StringLength]`: valida que um valor de propriedade da cadeia de caracteres não excede um limite de comprimento especificado.
 * `[Url]`: valida que a propriedade tem um formato de URL.
-* `[Remote]`: valida a entrada no cliente chamando um método de ação no servidor. Consulte [atributo [Remote]](#remote-attribute) para obter detalhes sobre o comportamento desse atributo.
+* `[Remote]`: valida a entrada no cliente chamando um método de ação no servidor. Consulte `[`[Remote] ' atributo] (#remote-Attribute) para obter detalhes sobre o comportamento desse atributo.
 
 Uma lista completa de atributos de validação pode ser encontrada no namespace [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations).
 
@@ -134,7 +134,7 @@ A propriedade `AdditionalFields` do atributo `[Remote]` permite validar combina�
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Models/User.cs?name=snippet_Name&highlight=1,5)]
 
-`AdditionalFields` pode ser definido de forma explícita com as cadeias de caracteres `"FirstName"` e `"LastName"`, mas o uso do operador [`nameof`](/dotnet/csharp/language-reference/keywords/nameof), simplifica a refatoração posterior. O método de ação para essa validação deve aceitar os argumentos `firstName` e `lastName`:
+`AdditionalFields` pode ser definido explicitamente para as cadeias de caracteres "FirstName" e "LastName", mas o uso do operador [nameof](/dotnet/csharp/language-reference/keywords/nameof) simplifica a refatoração posterior. O método de ação para essa validação deve aceitar os argumentos `firstName` e `lastName`:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Controllers/UsersController.cs?name=snippet_VerifyName)]
 
@@ -255,9 +255,13 @@ Os auxiliares de marcação anteriores renderizam o seguinte HTML:
 </div>
 ```
 
-Observe que os atributos `data-` na saída HTML correspondem aos atributos de validação da propriedade `Movie.ReleaseDate`. O atributo `data-val-required` conterá uma mensagem de erro a ser exibida se o usuário não preencher o campo de data de lançamento. O jQuery Unobtrusive Validation passa esse valor para o método [`required()`](https://jqueryvalidation.org/required-method/) do jQuery Validate, que, por sua vez, exibe essa mensagem no elemento **\<span>** complementar.
+Observe que os atributos `data-` na saída HTML correspondem aos atributos de validação da propriedade `Movie.ReleaseDate`. O atributo `data-val-required` conterá uma mensagem de erro a ser exibida se o usuário não preencher o campo de data de lançamento. a validação não invasiva do jQuery passa esse valor para o método de validação do jQuery [requerido ()](https://jqueryvalidation.org/required-method/) , que, em seguida, exibe essa mensagem no elemento **> do\<span** em acompanhamento.
 
 A validação de tipo de dados é baseada no tipo .NET de uma propriedade, a menos que seja substituída por um atributo `[DataType]`. Os navegadores têm suas próprias mensagens de erro padrão, mas o pacote de validação do jQuery Validation Unobtrusive pode substituir essas mensagens. Os atributos `[DataType]` e as subclasses como `[EmailAddress]` permitem que você especifique a mensagem de erro.
+
+## <a name="unobtrusive-validation"></a>Validação não invasiva
+
+Para obter informações sobre a validação não invasiva, consulte [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/1111).
 
 ### <a name="add-validation-to-dynamic-forms"></a>Adicionar validação a formulários dinâmicos
 
@@ -415,10 +419,10 @@ Os atributos de validação internos incluem:
 * `[Phone]`: valida que a propriedade tem um formato de número de telefone.
 * `[Range]`: valida que o valor da propriedade cai em um intervalo especificado.
 * `[RegularExpression]`: valida que o valor da propriedade corresponde a uma expressão regular especificada.
-* `[Required]`: valida que o campo não é nulo. Consulte [atributo [Required]](#required-attribute) para obter detalhes sobre o comportamento desse atributo.
+* `[Required]`: valida que o campo não é nulo. Consulte [`[Required]` atributo](#required-attribute) para obter detalhes sobre o comportamento desse atributo.
 * `[StringLength]`: valida que um valor de propriedade da cadeia de caracteres não excede um limite de comprimento especificado.
 * `[Url]`: valida que a propriedade tem um formato de URL.
-* `[Remote]`: valida a entrada no cliente chamando um método de ação no servidor. Consulte [atributo [Remote]](#remote-attribute) para obter detalhes sobre o comportamento desse atributo.
+* `[Remote]`: valida a entrada no cliente chamando um método de ação no servidor. Consulte [`[Remote]` atributo](#remote-attribute) para obter detalhes sobre o comportamento desse atributo.
 
 Uma lista completa de atributos de validação pode ser encontrada no namespace [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations).
 
@@ -494,7 +498,7 @@ A propriedade `AdditionalFields` do atributo `[Remote]` permite validar combina�
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Models/User.cs?name=snippet_UserNameProperties)]
 
-`AdditionalFields` pode ser definido de forma explícita com as cadeias de caracteres `"FirstName"` e `"LastName"`, mas o uso do operador [`nameof`](/dotnet/csharp/language-reference/keywords/nameof), simplifica a refatoração posterior. O método de ação para essa validação deve aceitar os argumentos de primeiro nome e de sobrenome:
+`AdditionalFields` pode ser definido explicitamente para as cadeias de caracteres `"FirstName"` e `"LastName"`, mas usar o operador [nameof](/dotnet/csharp/language-reference/keywords/nameof) simplifica a refatoração posterior. O método de ação para essa validação deve aceitar os argumentos de primeiro nome e de sobrenome:
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Controllers/UsersController.cs?name=snippet_VerifyName)]
 
@@ -624,7 +628,7 @@ Os auxiliares de marca acima renderizam o HTML a seguir.
 </form>
 ```
 
-Observe que os atributos `data-` na saída HTML correspondem aos atributos de validação da propriedade `ReleaseDate`. O atributo `data-val-required` conterá uma mensagem de erro a ser exibida se o usuário não preencher o campo de data de lançamento. O jQuery Unobtrusive Validation passa esse valor para o método [`required()`](https://jqueryvalidation.org/required-method/) do jQuery Validate, que, por sua vez, exibe essa mensagem no elemento **\<span>** complementar.
+Observe que os atributos `data-` na saída HTML correspondem aos atributos de validação da propriedade `ReleaseDate`. O atributo `data-val-required` conterá uma mensagem de erro a ser exibida se o usuário não preencher o campo de data de lançamento. a validação não invasiva do jQuery passa esse valor para o método de validação do jQuery [requerido ()](https://jqueryvalidation.org/required-method/) , que, em seguida, exibe essa mensagem no elemento **> do\<span** em acompanhamento.
 
 A validação de tipo de dados é baseada no tipo .NET de uma propriedade, a menos que seja substituída por um atributo `[DataType]`. Os navegadores têm suas próprias mensagens de erro padrão, mas o pacote de validação do jQuery Validation Unobtrusive pode substituir essas mensagens. Os atributos `[DataType]` e as subclasses como `[EmailAddress]` permitem que você especifique a mensagem de erro.
 

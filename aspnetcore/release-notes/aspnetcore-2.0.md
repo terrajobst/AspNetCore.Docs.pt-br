@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba mais sobre os novos recursos no ASP.NET Core 2.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2019
+ms.date: 12/05/2019
 uid: aspnetcore-2.0
-ms.openlocfilehash: dac5a48042a71774cb884e30a166be68bee69691
-ms.sourcegitcommit: f5762967df3be8b8c868229e679301f2f7954679
+ms.openlocfilehash: 452ccd76eece55cb5cf38fe39781f2f64dd5d466
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/13/2019
-ms.locfileid: "67048114"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880870"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>Novidades do ASP.NET Core 2.0
 
@@ -32,21 +32,21 @@ Um novo metapacote do ASP.NET Core inclui todos os pacotes feitos e com suporte 
 
 Para obter mais informações, consulte [Metapacote do Microsoft.AspNetCore.All para ASP.NET Core 2.0](xref:fundamentals/metapackage).
 
-## <a name="runtime-store"></a>Repositório de tempo de execução
+## <a name="runtime-store"></a>Repositório de runtime
 
-Aplicativos que usam o metapacote `Microsoft.AspNetCore.All` aproveitam automaticamente o novo repositório de tempo de execução do .NET Core. O repositório contém todos os ativos de tempo de execução necessários para executar aplicativos ASP.NET Core 2.0. Quando você usa o metapacote `Microsoft.AspNetCore.All`, nenhum ativo dos pacotes NuGet do ASP.NET Core referenciados são implantados com o aplicativo porque eles já estão no sistema de destino. Os ativos no repositório de tempo de execução também são pré-compilados para melhorar o tempo de inicialização do aplicativo.
+Aplicativos que usam o metapacote `Microsoft.AspNetCore.All` aproveitam automaticamente o novo repositório de runtime do .NET Core. O repositório contém todos os ativos de runtime necessários para executar aplicativos ASP.NET Core 2.0. Quando você usa o metapacote `Microsoft.AspNetCore.All`, nenhum ativo dos pacotes NuGet do ASP.NET Core referenciados são implantados com o aplicativo porque eles já estão no sistema de destino. Os ativos no repositório de runtime também são pré-compilados para melhorar o tempo de inicialização do aplicativo.
 
-Para obter mais informações, consulte [Repositório de tempo de execução](/dotnet/core/deploying/runtime-store)
+Para obter mais informações, consulte [Repositório de runtime](/dotnet/core/deploying/runtime-store)
 
 ## <a name="net-standard-20"></a>.NET Standard 2.0
 
 Os pacotes do ASP.NET Core 2.0 são direcionados ao .NET Standard 2.0. Os pacotes podem ser referenciados por outras bibliotecas do .NET Standard 2.0 e podem ser executados em implementações em conformidade com o .NET Standard 2.0, incluindo o .NET Core 2.0 e o .NET Framework 4.6.1. 
 
-O metapacote `Microsoft.AspNetCore.All` aborda apenas o .Net Core 2.0 porque ele foi projetado para ser utilizado com o repositório de tempo de execução do .Net Core 2.0.
+O metapacote `Microsoft.AspNetCore.All` aborda apenas o .Net Core 2.0 porque ele foi projetado para ser utilizado com o repositório de runtime do .Net Core 2.0.
 
 ## <a name="configuration-update"></a>Atualização da configuração
 
-Uma instância de `IConfiguration` é adicionada ao contêiner de serviços por padrão no ASP.NET Core 2.0. `IConfiguration` no contêiner de serviços torna mais fácil para aplicativos recuperarem valores de configuração do contêiner.
+Uma instância de `IConfiguration` é adicionada ao contêiner de serviços por padrão no ASP.NET Core 2.0. O `IConfiguration` no contêiner de serviços torna mais fácil para os aplicativos recuperarem os valores de configuração do contêiner.
 
 Para obter informações sobre o status da documentação planejada, consulte o [problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/3387).
 
@@ -66,7 +66,7 @@ Para obter informações sobre o status da documentação planejada, consulte o 
 
 ## <a name="identity-update"></a>Atualização de identidade
 
-Tornamos mais fácil criar APIs Web seguras usando a identidade do ASP.NET Core 2.0. Você pode adquirir tokens de acesso para acessar suas APIs Web usando a [MSAL (Biblioteca de Autenticação da Microsoft)](https://www.nuget.org/packages/Microsoft.Identity.Client).
+Facilitamos a criação de APIs Web seguras usando a identidade do ASP.NET Core 2.0. Você pode adquirir tokens de acesso para acessar suas APIs Web usando a [MSAL (Biblioteca de Autenticação da Microsoft)](https://www.nuget.org/packages/Microsoft.Identity.Client).
 
 Para obter mais informações sobre alterações de autenticação no 2.0, consulte os seguintes recursos:
 
@@ -104,7 +104,7 @@ var entityTag = new EntityTagHeaderValue("\"MyCalculatedEtagValue\"");
 return File(data, "text/plain", "downloadName.txt", lastModified: DateTime.UtcNow.AddSeconds(-5), entityTag: entityTag);
 ```
 
-O arquivo retornado para os visitantes será decorado com os cabeçalhos HTTP apropriados para os valores `ETag` e `LastModified`.
+O arquivo retornado para os visitantes tem os cabeçalhos HTTP apropriados para os valores de `ETag` e `LastModified`.
 
 Se um visitante do aplicativo solicitar o conteúdo com um cabeçalho de solicitação de intervalo, o ASP.NET Core reconhecerá a solicitação e lidará com o cabeçalho. Se parte do conteúdo solicitado puder ser entregue, o ASP.NET Core ignorará a parte em questão e retornará apenas o conjunto de bytes solicitado. Você não precisa gravar nenhum manipulador especial em seus métodos para adaptar ou manipular esse recurso; ele é manipulado automaticamente para você.
 
@@ -154,7 +154,7 @@ Para obter diretrizes sobre como migrar aplicativos ASP.NET Core 1.x para o ASP.
 * [Migrar do ASP.NET Core 1.x para o ASP.NET Core 2.0](xref:migration/1x-to-2x/index)
 * [Migrar a autenticação e a identidade para o ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
 
-## <a name="additional-information"></a>Informações adicionais
+## <a name="additional-information"></a>{1&gt;Informações Adicionais&lt;1}
 
 Para obter uma lista de alterações, consulte as [Notas de versão do ASP.NET Core 2.0](https://github.com/aspnet/Home/releases/tag/2.0.0).
 

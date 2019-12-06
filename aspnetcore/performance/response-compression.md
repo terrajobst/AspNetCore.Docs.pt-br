@@ -5,14 +5,14 @@ description: Saiba mais sobre a compactação de resposta e como usar o Middlewa
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/09/2019
+ms.date: 12/05/2019
 uid: performance/response-compression
-ms.openlocfilehash: e320e87179f9f1b9773a55c380684a3f3f712632
-ms.sourcegitcommit: 89fcc6cb3e12790dca2b8b62f86609bed6335be9
+ms.openlocfilehash: 04b2ffd7047e8b127968adb5d40e0141365fb5fe
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/13/2019
-ms.locfileid: "68993466"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880904"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Compactação de resposta no ASP.NET Core
 
@@ -30,7 +30,7 @@ Use o middleware de compactação de resposta quando você estiver:
 
 * Não é possível usar as seguintes tecnologias de compactação baseadas em servidor:
   * [Módulo de compactação dinâmica do IIS](https://www.iis.net/overview/reliability/dynamiccachingandcompression)
-  * [Módulo Apache mod_deflate](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
+  * [Módulo mod_deflate do Apache](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Compactação e descompactação de Nginx](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Hospedando diretamente em:
   * [Servidor http. sys](xref:fundamentals/servers/httpsys) (anteriormente chamado WebListener)
@@ -40,17 +40,17 @@ Use o middleware de compactação de resposta quando você estiver:
 
 Normalmente, qualquer resposta não compactada nativamente pode se beneficiar da compactação de resposta. As respostas não compactadas nativamente normalmente incluem: CSS, JavaScript, HTML, XML e JSON. Você não deve compactar ativos compactados nativamente, como arquivos PNG. Se você tentar compactar ainda mais uma resposta compactada nativamente, qualquer pequena redução adicional no tamanho e no tempo de transmissão provavelmente será ofuscada no tempo necessário para processar a compactação. Não compacte arquivos com menos de 150-1000 bytes (dependendo do conteúdo do arquivo e da eficiência da compactação). A sobrecarga de compactação de arquivos pequenos pode produzir um arquivo compactado maior do que o arquivo descompactado.
 
-Quando um cliente pode processar conteúdo compactado, o cliente deve informar o servidor de seus recursos enviando o `Accept-Encoding` cabeçalho com a solicitação. Quando um servidor envia conteúdo compactado, ele deve incluir informações no `Content-Encoding` cabeçalho sobre como a resposta compactada é codificada. As designações de codificação de conteúdo com suporte no middleware são mostradas na tabela a seguir.
+Quando um cliente pode processar conteúdo compactado, o cliente deve informar o servidor de seus recursos enviando o cabeçalho de `Accept-Encoding` com a solicitação. Quando um servidor envia conteúdo compactado, ele deve incluir informações no cabeçalho `Content-Encoding` sobre como a resposta compactada é codificada. As designações de codificação de conteúdo com suporte no middleware são mostradas na tabela a seguir.
 
 ::: moniker range=">= aspnetcore-2.2"
 
-| `Accept-Encoding`valores de cabeçalho | Suporte do middleware | Descrição |
+| `Accept-Encoding` valores de cabeçalho | Suporte do middleware | Descrição |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Sim (padrão)        | [Formato de dados compactados Brotli](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | Não                   | [Desinflar formato de dados compactados](https://tools.ietf.org/html/rfc1951) |
 | `exi`                           | Não                   | [Intercâmbio de XML eficiente do W3C](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
 | `gzip`                          | Sim                  | [Formato de arquivo gzip](https://tools.ietf.org/html/rfc1952) |
-| `identity`                      | Sim                  | Identificador "sem codificação": A resposta não deve ser codificada. |
+| `identity`                      | Sim                  | Identificador "sem codificação": a resposta não deve ser codificada. |
 | `pack200-gzip`                  | Não                   | [Formato de transferência de rede para arquivos Java](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
 | `*`                             | Sim                  | Qualquer codificação de conteúdo disponível não explicitamente solicitada |
 
@@ -58,13 +58,13 @@ Quando um cliente pode processar conteúdo compactado, o cliente deve informar o
 
 ::: moniker range="< aspnetcore-2.2"
 
-| `Accept-Encoding`valores de cabeçalho | Suporte do middleware | Descrição |
+| `Accept-Encoding` valores de cabeçalho | Suporte do middleware | Descrição |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Não                   | [Formato de dados compactados Brotli](https://tools.ietf.org/html/rfc7932) |
 | `deflate`                       | Não                   | [Desinflar formato de dados compactados](https://tools.ietf.org/html/rfc1951) |
 | `exi`                           | Não                   | [Intercâmbio de XML eficiente do W3C](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
 | `gzip`                          | Sim (padrão)        | [Formato de arquivo gzip](https://tools.ietf.org/html/rfc1952) |
-| `identity`                      | Sim                  | Identificador "sem codificação": A resposta não deve ser codificada. |
+| `identity`                      | Sim                  | Identificador "sem codificação": a resposta não deve ser codificada. |
 | `pack200-gzip`                  | Não                   | [Formato de transferência de rede para arquivos Java](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
 | `*`                             | Sim                  | Qualquer codificação de conteúdo disponível não explicitamente solicitada |
 
@@ -72,9 +72,9 @@ Quando um cliente pode processar conteúdo compactado, o cliente deve informar o
 
 Para obter mais informações, consulte a [lista de código de conteúdo oficial da IANA](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
-O middleware permite que você adicione outros provedores de compactação para `Accept-Encoding` valores de cabeçalho personalizados. Para obter mais informações, consulte [provedores personalizados](#custom-providers) abaixo.
+O middleware permite que você adicione outros provedores de compactação para valores de cabeçalho de `Accept-Encoding` personalizados. Para obter mais informações, consulte [provedores personalizados](#custom-providers) abaixo.
 
-O middleware é capaz de reagir ao valor de qualidade (qvalue, `q`) ponderado quando enviado pelo cliente para priorizar os esquemas de compactação. Para obter mais informações, [consulte RFC 7231: Aceitação-codificação](https://tools.ietf.org/html/rfc7231#section-5.3.4).
+O middleware é capaz de reagir à importância do valor de qualidade (qvalue, `q`) quando enviado pelo cliente para priorizar os esquemas de compactação. Para obter mais informações, consulte [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4).
 
 Os algoritmos de compactação estão sujeitos a uma compensação entre a velocidade de compactação e a eficácia da compactação. A *eficácia* neste contexto refere-se ao tamanho da saída após a compactação. O menor tamanho é obtido pela compactação *ideal* .
 
@@ -84,10 +84,10 @@ Os cabeçalhos envolvidos na solicitação, no envio, no cache e no recebimento 
 | ------------------ | ---- |
 | `Accept-Encoding`  | Enviado do cliente para o servidor para indicar os esquemas de codificação de conteúdo aceitáveis para o cliente. |
 | `Content-Encoding` | Enviado do servidor para o cliente para indicar a codificação do conteúdo na carga. |
-| `Content-Length`   | Quando ocorre a compactação `Content-Length` , o cabeçalho é removido, pois o conteúdo do corpo é alterado quando a resposta é compactada. |
-| `Content-MD5`      | Quando ocorre a compactação `Content-MD5` , o cabeçalho é removido, pois o conteúdo do corpo foi alterado e o hash não é mais válido. |
+| `Content-Length`   | Quando ocorre a compactação, o cabeçalho de `Content-Length` é removido, pois o conteúdo do corpo é alterado quando a resposta é compactada. |
+| `Content-MD5`      | Quando ocorre a compactação, o cabeçalho de `Content-MD5` é removido, pois o conteúdo do corpo foi alterado e o hash não é mais válido. |
 | `Content-Type`     | Especifica o tipo MIME do conteúdo. Cada resposta deve especificar seu `Content-Type`. O middleware verifica esse valor para determinar se a resposta deve ser compactada. O middleware especifica um conjunto de [tipos MIME padrão](#mime-types) que ele pode codificar, mas você pode substituir ou adicionar tipos de MIME. |
-| `Vary`             | Quando enviado pelo servidor com um valor de `Accept-Encoding` para clientes e proxies, o `Vary` cabeçalho indica ao cliente ou ao proxy que ele deve armazenar em cache (variar) as respostas com base `Accept-Encoding` no valor do cabeçalho da solicitação. O resultado do retorno do conteúdo com `Vary: Accept-Encoding` o cabeçalho é que as respostas compactadas e não compactadas são armazenadas em cache separadamente. |
+| `Vary`             | Quando enviado pelo servidor com um valor de `Accept-Encoding` para clientes e proxies, o cabeçalho `Vary` indica ao cliente ou ao proxy que ele deve armazenar em cache (variar) as respostas com base no valor do cabeçalho `Accept-Encoding` da solicitação. O resultado do retorno do conteúdo com o cabeçalho `Vary: Accept-Encoding` é que as respostas compactadas e não compactadas são armazenadas em cache separadamente. |
 
 Explore os recursos do middleware de compactação de resposta com o [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/response-compression/samples). O exemplo ilustra:
 
@@ -104,11 +104,11 @@ O middleware de compactação de resposta é fornecido pelo pacote [Microsoft. A
 
 ::: moniker range="< aspnetcore-3.0"
 
-Para incluir o middleware em um projeto, adicione uma referência ao metapacote [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app), que inclui o pacote [Microsoft. AspNetCore. ResponseCompression](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) .
+Para incluir o middleware em um projeto, adicione uma referência ao [metapacote Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app), que inclui o pacote [Microsoft. AspNetCore. ResponseCompression](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) .
 
 ::: moniker-end
 
-## <a name="configuration"></a>Configuração
+## <a name="configuration"></a>Configuração do
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -137,18 +137,18 @@ public class Startup
 }
 ```
 
-Notas:
+Observações:
 
-* `app.UseResponseCompression`deve ser chamado antes `app.UseMvc`de.
-* Use uma ferramenta como o [Fiddler](https://www.telerik.com/fiddler), o [Firebug](https://getfirebug.com/)ou o [postmaster](https://www.getpostman.com/) para definir o `Accept-Encoding` cabeçalho da solicitação e estudar os cabeçalhos, o tamanho e o corpo da resposta.
+* `app.UseResponseCompression` deve ser chamado antes de `app.UseMvc`.
+* Use uma ferramenta como o [Fiddler](https://www.telerik.com/fiddler), o [Firebug](https://getfirebug.com/)ou o [postmaster](https://www.getpostman.com/) para definir o cabeçalho de solicitação `Accept-Encoding` e estudar os cabeçalhos, o tamanho e o corpo da resposta.
 
-Envie uma solicitação para o aplicativo de exemplo sem `Accept-Encoding` o cabeçalho e observe que a resposta é descompactada. Os `Content-Encoding` cabeçalhos `Vary` e não estão presentes na resposta.
+Envie uma solicitação para o aplicativo de exemplo sem o cabeçalho `Accept-Encoding` e observe que a resposta é descompactada. Os cabeçalhos `Content-Encoding` e `Vary` não estão presentes na resposta.
 
 ![Janela Fiddler mostrando o resultado de uma solicitação sem o cabeçalho Accept-Encoding. A resposta não está compactada.](response-compression/_static/request-uncompressed.png)
 
 ::: moniker range=">= aspnetcore-2.2"
 
-Envie uma solicitação para o aplicativo de exemplo com `Accept-Encoding: br` o cabeçalho (compactação Brotli) e observe que a resposta está compactada. Os `Content-Encoding` cabeçalhos `Vary` e estão presentes na resposta.
+Envie uma solicitação para o aplicativo de exemplo com o cabeçalho `Accept-Encoding: br` (compactação Brotli) e observe que a resposta está compactada. Os cabeçalhos `Content-Encoding` e `Vary` estão presentes na resposta.
 
 ![Janela Fiddler mostrando o resultado de uma solicitação com o cabeçalho Accept-Encoding e um valor de br. Os cabeçalhos Vary e codificação de conteúdo são adicionados à resposta. A resposta é compactada.](response-compression/_static/request-compressed-br.png)
 
@@ -156,7 +156,7 @@ Envie uma solicitação para o aplicativo de exemplo com `Accept-Encoding: br` o
 
 ::: moniker range="< aspnetcore-2.2"
 
-Envie uma solicitação para o aplicativo de exemplo com `Accept-Encoding: gzip` o cabeçalho e observe que a resposta está compactada. Os `Content-Encoding` cabeçalhos `Vary` e estão presentes na resposta.
+Envie uma solicitação para o aplicativo de exemplo com o cabeçalho `Accept-Encoding: gzip` e observe que a resposta está compactada. Os cabeçalhos `Content-Encoding` e `Vary` estão presentes na resposta.
 
 ![Janela Fiddler mostrando o resultado de uma solicitação com o cabeçalho Accept-Encoding e um valor de gzip. Os cabeçalhos Vary e codificação de conteúdo são adicionados à resposta. A resposta é compactada.](response-compression/_static/request-compressed.png)
 
@@ -168,9 +168,9 @@ Envie uma solicitação para o aplicativo de exemplo com `Accept-Encoding: gzip`
 
 ### <a name="brotli-compression-provider"></a>Provedor de compactação Brotli
 
-Use o <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProvider> para compactar respostas com o [formato de dados compactados Brotli](https://tools.ietf.org/html/rfc7932).
+Use o <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProvider> para compactar respostas com o [formato de dados compactado Brotli](https://tools.ietf.org/html/rfc7932).
 
-Se nenhum provedor de <xref:Microsoft.AspNetCore.ResponseCompression.CompressionProviderCollection>compactação for explicitamente adicionado ao:
+Se nenhum provedor de compactação for explicitamente adicionado à <xref:Microsoft.AspNetCore.ResponseCompression.CompressionProviderCollection>:
 
 * O provedor de compactação Brotli é adicionado por padrão à matriz de provedores de compactação junto com o [provedor de compactação Gzip](#gzip-compression-provider).
 * O padrão de compactação é a compactação Brotli quando o formato de dados compactados Brotli é suportado pelo cliente. Se Brotli não for suportado pelo cliente, a compactação padronizará para gzip quando o cliente oferecer suporte à compactação Gzip.
@@ -202,7 +202,7 @@ O provedor de compactação Brotoli deve ser adicionado quando qualquer provedor
 
 Defina o nível de compactação com <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions>. O provedor de compactação Brotli usa como padrão o nível de compactação mais rápido ([CompressionLevel. mais rápido](xref:System.IO.Compression.CompressionLevel)), que pode não produzir a compactação mais eficiente. Se a compactação mais eficiente for desejada, configure o middleware para uma compactação ideal.
 
-| Nível de compactação | Descrição |
+| Nível de Compactação | Descrição |
 | ----------------- | ----------- |
 | [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) | A compactação deve ser concluída o mais rápido possível, mesmo que a saída resultante não seja compactada de forma ideal. |
 | [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | Nenhuma compactação deve ser executada. |
@@ -226,7 +226,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Use o <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProvider> para compactar respostas com o [formato de arquivo gzip](https://tools.ietf.org/html/rfc1952).
 
-Se nenhum provedor de <xref:Microsoft.AspNetCore.ResponseCompression.CompressionProviderCollection>compactação for explicitamente adicionado ao:
+Se nenhum provedor de compactação for explicitamente adicionado à <xref:Microsoft.AspNetCore.ResponseCompression.CompressionProviderCollection>:
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -265,7 +265,7 @@ O provedor de compactação Gzip deve ser adicionado quando qualquer provedor de
 
 Defina o nível de compactação com <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>. O provedor de compactação Gzip usa como padrão o nível de compactação mais rápido ([CompressionLevel. mais rápido](xref:System.IO.Compression.CompressionLevel)), que pode não produzir a compactação mais eficiente. Se a compactação mais eficiente for desejada, configure o middleware para uma compactação ideal.
 
-| Nível de compactação | Descrição |
+| Nível de Compactação | Descrição |
 | ----------------- | ----------- |
 | [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) | A compactação deve ser concluída o mais rápido possível, mesmo que a saída resultante não seja compactada de forma ideal. |
 | [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | Nenhuma compactação deve ser executada. |
@@ -285,9 +285,9 @@ public void ConfigureServices(IServiceCollection services)
 
 ### <a name="custom-providers"></a>Provedores personalizados
 
-Crie implementações de compactação personalizadas com <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider>o. O <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider.EncodingName*> representa a codificação de conteúdo que `ICompressionProvider` isso produz. O middleware usa essas informações para escolher o provedor com base na lista especificada no `Accept-Encoding` cabeçalho da solicitação.
+Crie implementações de compactação personalizadas com <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider>. O <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider.EncodingName*> representa a codificação de conteúdo que esse `ICompressionProvider` produz. O middleware usa essas informações para escolher o provedor com base na lista especificada no cabeçalho `Accept-Encoding` da solicitação.
 
-Usando o aplicativo de exemplo, o cliente envia uma solicitação com o `Accept-Encoding: mycustomcompression` cabeçalho. O middleware usa a implementação de compactação personalizada e retorna a resposta com `Content-Encoding: mycustomcompression` um cabeçalho. O cliente deve ser capaz de descompactar a codificação personalizada para que uma implementação de compactação personalizada funcione.
+Usando o aplicativo de exemplo, o cliente envia uma solicitação com o cabeçalho `Accept-Encoding: mycustomcompression`. O middleware usa a implementação de compactação personalizada e retorna a resposta com um cabeçalho `Content-Encoding: mycustomcompression`. O cliente deve ser capaz de descompactar a codificação personalizada para que uma implementação de compactação personalizada funcione.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -305,7 +305,7 @@ Usando o aplicativo de exemplo, o cliente envia uma solicitação com o `Accept-
 
 ::: moniker-end
 
-Envie uma solicitação para o aplicativo de exemplo com `Accept-Encoding: mycustomcompression` o cabeçalho e observe os cabeçalhos de resposta. Os `Vary` cabeçalhos `Content-Encoding` e estão presentes na resposta. O corpo da resposta (não mostrado) não é compactado pelo exemplo. Não há uma implementação de compactação `CustomCompressionProvider` na classe do exemplo. No entanto, o exemplo mostra onde você implementaria esse algoritmo de compactação.
+Envie uma solicitação para o aplicativo de exemplo com o cabeçalho `Accept-Encoding: mycustomcompression` e observe os cabeçalhos de resposta. Os cabeçalhos `Vary` e `Content-Encoding` estão presentes na resposta. O corpo da resposta (não mostrado) não é compactado pelo exemplo. Não há uma implementação de compactação na classe `CustomCompressionProvider` do exemplo. No entanto, o exemplo mostra onde você implementaria esse algoritmo de compactação.
 
 ![Janela Fiddler mostrando o resultado de uma solicitação com o cabeçalho Accept-Encoding e um valor de mycustomcompression. Os cabeçalhos Vary e codificação de conteúdo são adicionados à resposta.](response-compression/_static/request-custom-compression.png)
 
@@ -322,7 +322,7 @@ O middleware especifica um conjunto padrão de tipos MIME para compactação:
 * `text/plain`
 * `text/xml`
 
-Substitua ou acrescente tipos MIME com as opções de middleware de compactação de resposta. Observe que os `text/*` tipos MIME curinga, como não têm suporte. O aplicativo de exemplo adiciona um tipo MIME `image/svg+xml` para e compacta e serve a imagem de faixa ASP.NET Core (*banner. svg*).
+Substitua ou acrescente tipos MIME com as opções de middleware de compactação de resposta. Observe que não há suporte para os tipos MIME curinga, como `text/*`. O aplicativo de exemplo adiciona um tipo MIME para `image/svg+xml` e compacta e serve a imagem ASP.NET Core banner (*banner. svg*).
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -338,15 +338,15 @@ Substitua ou acrescente tipos MIME com as opções de middleware de compactaçã
 
 ## <a name="compression-with-secure-protocol"></a>Compactação com protocolo seguro
 
-As respostas compactadas sobre conexões seguras podem ser controladas com a `EnableForHttps` opção, que é desabilitada por padrão. O uso da compactação com páginas geradas dinamicamente pode levar a problemas de segurança, como ataques de [crime](https://wikipedia.org/wiki/CRIME_(security_exploit)) e [violação](https://wikipedia.org/wiki/BREACH_(security_exploit)) .
+As respostas compactadas em conexões seguras podem ser controladas com a opção `EnableForHttps`, que é desabilitada por padrão. O uso da compactação com páginas geradas dinamicamente pode levar a problemas de segurança, como ataques de [crime](https://wikipedia.org/wiki/CRIME_(security_exploit)) e [violação](https://wikipedia.org/wiki/BREACH_(security_exploit)) .
 
 ## <a name="adding-the-vary-header"></a>Adicionando o cabeçalho Vary
 
-Ao compactar respostas com base no `Accept-Encoding` cabeçalho, há potencialmente várias versões compactadas da resposta e uma versão não compactada. Para instruir os caches de cliente e proxy de que várias versões existem e devem ser armazenadas `Vary` , o cabeçalho é adicionado `Accept-Encoding` com um valor. No ASP.NET Core 2,0 ou posterior, o middleware adiciona o `Vary` cabeçalho automaticamente quando a resposta é compactada.
+Ao compactar respostas com base no cabeçalho de `Accept-Encoding`, há potencialmente várias versões compactadas da resposta e uma versão não compactada. Para instruir os caches de cliente e proxy de que várias versões existem e devem ser armazenadas, o cabeçalho de `Vary` é adicionado com um valor de `Accept-Encoding`. No ASP.NET Core 2,0 ou posterior, o middleware adiciona o cabeçalho de `Vary` automaticamente quando a resposta é compactada.
 
 ## <a name="middleware-issue-when-behind-an-nginx-reverse-proxy"></a>Problema de middleware quando por trás de um proxy reverso Nginx
 
-Quando uma solicitação é modificada por proxy pelo Nginx `Accept-Encoding` , o cabeçalho é removido. A remoção do `Accept-Encoding` cabeçalho impede que o middleware compacte a resposta. Confira mais informações em [NGINX: Compactação e descompactação](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). Esse problema é rastreado por [descobrir a compactação de passagem para Nginx (ASPNET/ \#BasicMiddleware 123)](https://github.com/aspnet/BasicMiddleware/issues/123).
+Quando uma solicitação é modificada por proxy pelo Nginx, o cabeçalho `Accept-Encoding` é removido. A remoção do cabeçalho de `Accept-Encoding` impede que o middleware compacte a resposta. Para obter mais informações, consulte [Nginx: compactação e descompactação](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). Esse problema é rastreado por [descobrir a compactação de passagem para Nginx (ASPNET/BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
 
 ## <a name="working-with-iis-dynamic-compression"></a>Trabalhando com compactação dinâmica do IIS
 
@@ -354,22 +354,22 @@ Se você tiver um módulo de compactação dinâmica do IIS ativo configurado no
 
 ## <a name="troubleshooting"></a>Solução de problemas
 
-Use uma ferramenta como [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)ou [postmaster](https://www.getpostman.com/), que permite definir o `Accept-Encoding` cabeçalho da solicitação e estudar os cabeçalhos, o tamanho e o corpo da resposta. Por padrão, o middleware de compactação de resposta compacta as respostas que atendem às seguintes condições:
+Use uma ferramenta como [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)ou [postmaster](https://www.getpostman.com/), que permite definir o cabeçalho de solicitação `Accept-Encoding` e estudar os cabeçalhos de resposta, o tamanho e o corpo. Por padrão, o middleware de compactação de resposta compacta as respostas que atendem às seguintes condições:
 
 ::: moniker range=">= aspnetcore-2.2"
 
-* O `Accept-Encoding` cabeçalho está presente com um valor de `br`, `gzip`, `*`ou codificação personalizada que corresponde a um provedor de compactação personalizado que você estabeleceu. O valor não deve ser `identity` ou ter uma configuração de valor de qualidade `q`(qvalue) de 0 (zero).
-* O tipo MIME (`Content-Type`) deve ser definido e deve corresponder a um tipo MIME configurado <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions>no.
-* A solicitação não deve incluir o `Content-Range` cabeçalho.
+* O cabeçalho `Accept-Encoding` está presente com um valor de `br`, `gzip`, `*`ou codificação personalizada que corresponde a um provedor de compactação personalizado que você estabeleceu. O valor não deve ser `identity` ou ter uma configuração de valor de qualidade (qvalue, `q`) igual a 0 (zero).
+* O tipo MIME (`Content-Type`) deve ser definido e deve corresponder a um tipo MIME configurado no <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions>.
+* A solicitação não deve incluir o cabeçalho de `Content-Range`.
 * A solicitação deve usar o protocolo http, a menos que o protocolo SSL (https) esteja configurado nas opções de middleware de compactação de resposta. *Observe o perigo [descrito acima](#compression-with-secure-protocol) ao habilitar a compactação de conteúdo seguro.*
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-* O `Accept-Encoding` cabeçalho está presente com um valor de `gzip`, `*`ou codificação personalizada que corresponde a um provedor de compactação personalizado que você estabeleceu. O valor não deve ser `identity` ou ter uma configuração de valor de qualidade `q`(qvalue) de 0 (zero).
-* O tipo MIME (`Content-Type`) deve ser definido e deve corresponder a um tipo MIME configurado <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions>no.
-* A solicitação não deve incluir o `Content-Range` cabeçalho.
+* O cabeçalho de `Accept-Encoding` está presente com um valor de `gzip`, `*`ou codificação personalizada que corresponde a um provedor de compactação personalizado que você estabeleceu. O valor não deve ser `identity` ou ter uma configuração de valor de qualidade (qvalue, `q`) igual a 0 (zero).
+* O tipo MIME (`Content-Type`) deve ser definido e deve corresponder a um tipo MIME configurado no <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions>.
+* A solicitação não deve incluir o cabeçalho de `Content-Range`.
 * A solicitação deve usar o protocolo http, a menos que o protocolo SSL (https) esteja configurado nas opções de middleware de compactação de resposta. *Observe o perigo [descrito acima](#compression-with-secure-protocol) ao habilitar a compactação de conteúdo seguro.*
 
 ::: moniker-end
@@ -378,7 +378,7 @@ Use uma ferramenta como [Fiddler](https://www.telerik.com/fiddler), [Firebug](ht
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
-* [Rede de desenvolvedores do Mozilla: Accept-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding)
-* [3.1.2.1 da seção RFC 7231: Codificações de conteúdo](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
-* [4.2.3 da seção RFC 7230: Codificação gzip](https://tools.ietf.org/html/rfc7230#section-4.2.3)
+* [Rede de desenvolvedores do Mozilla: aceitação-codificação](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding)
+* [RFC 7231 seção 3.1.2.1: codificações de conteúdo](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
+* [RFC 7230 seção 4.2.3: codificação gzip](https://tools.ietf.org/html/rfc7230#section-4.2.3)
 * [Especificação de formato de arquivo GZIP versão 4,3](https://www.ietf.org/rfc/rfc1952.txt)

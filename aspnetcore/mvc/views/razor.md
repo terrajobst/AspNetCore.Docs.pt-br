@@ -5,12 +5,12 @@ description: Saiba mais sobre a sintaxe de marcação Razor para inserir código
 ms.author: riande
 ms.date: 11/09/2019
 uid: mvc/views/razor
-ms.openlocfilehash: dea1cd8986757b0bafab9ba9e8aa358a57a6b5eb
-ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
+ms.openlocfilehash: a18fd2886124f186b8f35abf4b55a51f1f996958
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/22/2019
-ms.locfileid: "74317402"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74881008"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -455,7 +455,7 @@ A diretiva `@attribute` adiciona o atributo fornecido à classe da página ou ex
 
 ::: moniker range=">= aspnetcore-3.0"
 
-### <a name="code"></a>código de \@
+### <a name="code"></a>\@code
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
@@ -467,7 +467,7 @@ O bloco `@code` permite que um [componente de Razor](xref:blazor/components) adi
 }
 ```
 
-Para componentes de Razor, `@code` é um alias de [@functions](#functions) e é recomendado seu uso com `@functions`. Mais de um bloco de `@code` é permitido.
+Para componentes de Razor, `@code` é um alias de [`@functions`](#functions) e é recomendado seu uso com `@functions`. Mais de um bloco de `@code` é permitido.
 
 ::: moniker-end
 
@@ -652,7 +652,7 @@ Para o exemplo de Razor Pages mostrado na tabela a seguir:
 * *Pages/_ViewImports.cshtml* contém `@namespace Hello.World`.
 * Cada página tem `Hello.World` como a raiz do namespace.
 
-| {1&gt;Página&lt;1}                                        | {1&gt;Namespace&lt;1}                             |
+| Página                                        | Namespace                             |
 | ------------------------------------------- | ------------------------------------- |
 | *Pages/Index.cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
@@ -664,7 +664,7 @@ Quando vários arquivos de importação têm uma diretiva `@namespace`, o arquiv
 
 Se a pasta *EvenMorePages* no exemplo anterior tiver um arquivo de importações com `@namespace Another.Planet` (ou se o arquivo *Pages/MorePages/EvenMorePages/Page.cshtml* contiver `@namespace Another.Planet`), o resultado será mostrado na tabela a seguir.
 
-| {1&gt;Página&lt;1}                                        | {1&gt;Namespace&lt;1}               |
+| Página                                        | Namespace               |
 | ------------------------------------------- | ----------------------- |
 | *Pages/Index.cshtml*                        | `Hello.World`           |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
@@ -874,16 +874,16 @@ Há três diretivas que relacionadas aos [Auxiliares de marca](xref:mvc/views/ta
 
 | Directive | Função |
 | --------- | -------- |
-| [@addTagHelper](xref:mvc/views/tag-helpers/intro#add-helper-label) | Disponibiliza os Auxiliares de marca para uma exibição. |
-| [@removeTagHelper](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Remove os Auxiliares de marca adicionados anteriormente de uma exibição. |
-| [@tagHelperPrefix](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Especifica um prefixo de marca para habilitar o suporte do Auxiliar de marca e tornar explícito o uso do Auxiliar de marca. |
+| [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#add-helper-label) | Disponibiliza os Auxiliares de marca para uma exibição. |
+| [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Remove os Auxiliares de marca adicionados anteriormente de uma exibição. |
+| [`@tagHelperPrefix`](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Especifica um prefixo de marca para habilitar o suporte do Auxiliar de marca e tornar explícito o uso do Auxiliar de marca. |
 
 ## <a name="razor-reserved-keywords"></a>Palavras-chave reservadas ao Razor
 
 ### <a name="razor-keywords"></a>Palavras-chave do Razor
 
 * page (exige o ASP.NET Core 2.1 ou posterior)
-* namespace
+* Namespace
 * funções
 * herda
 * {1&gt;modelo&lt;1}
@@ -897,7 +897,7 @@ Palavras-chave do Razor têm o escape feito com `@(Razor Keyword)` (por exemplo,
 * case
 * do
 * {1&gt;default&lt;1}
-* for
+* para
 * foreach
 * if
 * else
@@ -967,7 +967,7 @@ Em `Startup.ConfigureServices`, substitua o `RazorTemplateEngine` adicionado pel
 
 [!code-csharp[](razor/sample/Startup.cs?highlight=4&range=10-14)]
 
-Defina o ponto de interrupção `return csharpDocument;` na instrução `CustomTemplateEngine`. Quando a execução do programa for interrompida no ponto de interrupção, veja o valor de `generatedCode`.
+Defina o ponto de interrupção `CustomTemplateEngine` na instrução `return csharpDocument;`. Quando a execução do programa for interrompida no ponto de interrupção, veja o valor de `generatedCode`.
 
 ![Exibição do Visualizador de Texto de generatedCode](razor/_static/tvr.png)
 

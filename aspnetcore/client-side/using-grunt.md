@@ -1,62 +1,62 @@
 ---
-title: Usar o Grunt no ASP.NET Core
+title: Usar Grunt no ASP.NET Core
 author: rick-anderson
-description: Usar o Grunt no ASP.NET Core
+description: Usar Grunt no ASP.NET Core
 ms.author: riande
-ms.date: 06/18/2019
+ms.date: 12/05/2019
 uid: client-side/using-grunt
-ms.openlocfilehash: f3832bd1fe5721fbda114103ac11a8d55312bcb2
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.openlocfilehash: e516b85da7e94d0c93be642086fede0a11fea3c2
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67813558"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74879787"
 ---
-# <a name="use-grunt-in-aspnet-core"></a>Usar o Grunt no ASP.NET Core
+# <a name="use-grunt-in-aspnet-core"></a>Usar Grunt no ASP.NET Core
 
-Grunt é um executor de tarefas JavaScript que automatiza a minimização de script, compilação TypeScript, ferramentas de "lint" qualidade do código, processadores de pré-lançamento do CSS e praticamente qualquer tarefa repetitiva que precisa fazer para dar suporte ao desenvolvimento de cliente. Grunt tem suporte total no Visual Studio.
+Grunt é um executor de tarefa JavaScript que automatiza o script minificação, compilação TypeScript, ferramentas de "pano" de qualidade de código, pré-processadores de CSS e praticamente qualquer tarefa repetitiva que precise fazer para dar suporte ao desenvolvimento de clientes. O Grunt tem suporte total no Visual Studio.
 
-Este exemplo usa um projeto vazio do ASP.NET Core como ponto de partida, para mostrar como automatizar o processo de compilação do cliente do zero.
+Este exemplo usa um projeto de ASP.NET Core vazio como ponto de partida, para mostrar como automatizar o processo de criação do cliente do zero.
 
-O exemplo concluído limpa o diretório de implantação de destino, combina arquivos JavaScript, verificações de qualidade do código, condensa o conteúdo do arquivo JavaScript e implanta na raiz do seu aplicativo web. Usaremos os seguintes pacotes:
+O exemplo concluído limpa o diretório de implantação de destino, combina arquivos JavaScript, verifica a qualidade do código, condensa o conteúdo do arquivo JavaScript e implanta na raiz do seu aplicativo Web. Usaremos os seguintes pacotes:
 
-* **grunt**: O pacote de executor de tarefa do Grunt.
+* **Grunt**: o pacote do executor de tarefa do Grunt.
 
-* **grunt-contrib-clean**: Um plug-in que remove os arquivos ou diretórios.
+* **Grunt-contrib-Clean**: um plug-in que remove arquivos ou diretórios.
 
-* **grunt-contrib-jshint**: Um plug-in que analisa a qualidade do código JavaScript.
+* **Grunt-contrib-jshint**: um plug-in que revisa a qualidade do código JavaScript.
 
-* **grunt-contrib-concat**: Um plug-in que une os arquivos em um único arquivo.
+* **Grunt-contrib-Concat**: um plug-in que une arquivos em um único arquivo.
 
-* **grunt-contrib-uglify**: Um plug-in que minimiza o JavaScript para reduzir o tamanho.
+* **Grunt-contrib-uglify**: um plug-in que minifies JavaScript para reduzir o tamanho.
 
-* **grunt-contrib-watch**: Um plug-in que observa a atividade de arquivos.
+* **Grunt-contrib-Watch**: um plug-in que observa a atividade do arquivo.
 
 ## <a name="preparing-the-application"></a>Preparando o aplicativo
 
-Para começar, configure um novo aplicativo web vazio e adicionar arquivos de exemplo do TypeScript. Arquivos TypeScript são automaticamente compilados em JavaScript usando as configurações do Visual Studio padrão e serão nosso matéria-prima para processar usando o Grunt.
+Para começar, configure um novo aplicativo Web vazio e adicione arquivos de exemplo do TypeScript. Os arquivos TypeScript são compilados automaticamente em JavaScript usando as configurações padrão do Visual Studio e serão nosso material bruto para processar usando Grunt.
 
 1. No Visual Studio, crie um novo `ASP.NET Web Application`.
 
-2. No **novo projeto ASP.NET** caixa de diálogo, selecione o ASP.NET Core **vazia** modelo e clique no botão Okey.
+2. Na caixa de diálogo **novo projeto ASP.net** , selecione o modelo ASP.NET Core **vazio** e clique no botão OK.
 
-3. No Gerenciador de soluções, examine a estrutura do projeto. O `\src` pasta inclui vazia `wwwroot` e `Dependencies` nós.
+3. Na Gerenciador de Soluções, examine a estrutura do projeto. A pasta `\src` inclui os nós `wwwroot` e `Dependencies` vazios.
 
-    ![solução de web vazio](using-grunt/_static/grunt-solution-explorer.png)
+    ![solução Web vazia](using-grunt/_static/grunt-solution-explorer.png)
 
-4. Adicionar uma nova pasta chamada `TypeScript` no diretório do projeto.
+4. Adicione uma nova pasta chamada `TypeScript` ao diretório do projeto.
 
-5. Antes de adicionar todos os arquivos, certifique-se de que o Visual Studio tem a opção ' Compilar ao salvar ' para arquivos TypeScript check. Navegue até **ferramentas** > **opções** > **Editor de texto** > **Typescript**  >  **Projeto**:
+5. Antes de adicionar qualquer arquivo, verifique se o Visual Studio tem a opção ' Compilar ao salvar ' para arquivos TypeScript verificados. Navegue até **ferramentas** > **Opções** > **Editor de texto** > **typescript** > **projeto**:
 
-    ![Opções de configuração de compilação automática de arquivos TypeScript](using-grunt/_static/typescript-options.png)
+    ![opções de configuração da compilação automática de arquivos TypeScript](using-grunt/_static/typescript-options.png)
 
-6. Clique com botão direito do `TypeScript` diretório e selecione **Adicionar > Novo Item** no menu de contexto. Selecione o **arquivo JavaScript** de item e nomeie o arquivo *Tastes.ts* (Observe o \*extensão. TS). Copie a linha de código do TypeScript abaixo para o arquivo (quando você salva, um novo *Tastes.js* arquivo aparecerá com a fonte do JavaScript).
+6. Clique com o botão direito do mouse no diretório `TypeScript` e selecione **adicionar > novo item** no menu de contexto. Selecione o item de **arquivo JavaScript** e nomeie o arquivo *preferências. TS* (Observe a extensão \*. TS). Copie a linha do código TypeScript abaixo para o arquivo (quando você salvar, um novo arquivo *preferências. js* será exibido com a origem do JavaScript).
 
     ```typescript
     enum Tastes { Sweet, Sour, Salty, Bitter }
     ```
 
-7. Adicionar um segundo arquivo para o **TypeScript** diretório e nomeie-o `Food.ts`. Copie o código a seguir para o arquivo.
+7. Adicione um segundo arquivo ao diretório **TypeScript** e nomeie-o `Food.ts`. Copie o código abaixo para o arquivo.
 
     ```typescript
     class Food {
@@ -83,20 +83,20 @@ Para começar, configure um novo aplicativo web vazio e adicionar arquivos de ex
     }
     ```
 
-## <a name="configuring-npm"></a>Configuração do NPM
+## <a name="configuring-npm"></a>Configurando o NPM
 
-Em seguida, configure o NPM para baixar o grunt e tarefas do grunt.
+Em seguida, configure NPM para baixar Grunt e Grunt-Tasks.
 
-1. No Gerenciador de soluções, clique com botão direito no projeto e selecione **Adicionar > Novo Item** no menu de contexto. Selecione o **arquivo de configuração do NPM** item, deixe o nome padrão, *Package. JSON*e clique no **Add** botão.
+1. Na Gerenciador de Soluções, clique com o botão direito do mouse no projeto e selecione **adicionar > novo item** no menu de contexto. Selecione o item de **arquivo de configuração NPM** , deixe o nome padrão, *Package. JSON*e clique no botão **Adicionar** .
 
-2. No *Package. JSON* do arquivo, dentro de `devDependencies` chaves de objeto, digite "grunt". Selecione `grunt` do Intellisense lista e pressione a tecla Enter. Visual Studio será colocada entre aspas no nome do pacote grunt e adicione dois-pontos. À direita dos dois pontos, selecione a versão estável mais recente do pacote na parte superior da lista do Intellisense (pressione `Ctrl-Space` se o Intellisense não aparece).
+2. No arquivo *Package. JSON* , dentro do `devDependencies` chaves do objeto, digite "Grunt". Selecione `grunt` na lista do IntelliSense e pressione a tecla Enter. O Visual Studio irá citar o nome do pacote Grunt e adicionará dois-pontos. À direita dos dois-pontos, selecione a versão estável mais recente do pacote na parte superior da lista do IntelliSense (pressione `Ctrl-Space` se o IntelliSense não aparecer).
 
-    ![grunt Intellisense](using-grunt/_static/devdependencies-grunt.png)
+    ![Grunt IntelliSense](using-grunt/_static/devdependencies-grunt.png)
 
     > [!NOTE]
-    > Usa NPM [controle de versão semântico](https://semver.org/) para organizar as dependências. Controle de versão semântico, também conhecido como SemVer, identifica os pacotes com o esquema de numeração \<principal >.\< secundária >. \<patch >. IntelliSense simplifica o controle de versão semântico, mostrando apenas algumas opções comuns. O item superior na lista do Intellisense (0.4.5 no exemplo acima) é considerado a versão estável mais recente do pacote. O símbolo de acento circunflexo (^) corresponde à versão principal mais recente e o til (~) corresponde a versão secundária mais recente. Consulte a [referência do analisador de versão do NPM semver](https://www.npmjs.com/package/semver) como um guia para a expressividade completa que fornece SemVer.
+    > O NPM usa o [controle de versão semântico](https://semver.org/) para organizar dependências. O controle de versão semântico, também conhecido como SemVer, identifica pacotes com o esquema de numeração \<> principal.\<> secundárias. >\<patch. O IntelliSense simplifica o controle de versão semântico mostrando apenas algumas opções comuns. O item superior na lista do IntelliSense (0.4.5 no exemplo acima) é considerado a versão estável mais recente do pacote. O símbolo de acento circunflexo (^) corresponde à versão principal mais recente e o til (~) corresponde à versão secundária mais recente. Consulte a [referência do analisador de versão do NPM semver](https://www.npmjs.com/package/semver) como um guia para o expressividade completo que o semver fornece.
 
-3. Adicionar mais dependências ao carregar o grunt-contrib -\* pacotes de *limpa*, *jshint*, *concat*, *tarefa uglify*e *inspeção* conforme mostrado no exemplo a seguir. As versões não precisam coincidir com o exemplo.
+3. Adicione mais dependências para carregar pacotes Grunt-contrib-\* para *Clean*, *jshint*, *concat*, *uglify*e *Watch* , conforme mostrado no exemplo a seguir. As versões não precisam corresponder ao exemplo.
 
     ```json
     "devDependencies": {
@@ -109,24 +109,24 @@ Em seguida, configure o NPM para baixar o grunt e tarefas do grunt.
     }
     ```
 
-4. Salvar a *Package. JSON* arquivo.
+4. Salve o arquivo *Package. JSON* .
 
-Os pacotes para cada `devDependencies` item fará o download, juntamente com todos os arquivos que requer que cada pacote. Você pode encontrar os arquivos de pacote a *node_modules* diretório, permitindo a **Mostrar todos os arquivos** botão na **Gerenciador de soluções**.
+Os pacotes para cada item de `devDependencies` serão baixados, juntamente com todos os arquivos que cada pacote exigir. Você pode encontrar os arquivos de pacote no diretório *node_modules* habilitando o botão **Mostrar todos os arquivos** em **Gerenciador de soluções**.
 
-![grunt node_modules](using-grunt/_static/node-modules.png)
+![node_modules Grunt](using-grunt/_static/node-modules.png)
 
 > [!NOTE]
-> Se necessário, você pode restaurar manualmente as dependências no **Gerenciador de soluções** clicando em `Dependencies\NPM` e selecionando o **restaurar pacotes** opção de menu.
+> Se necessário, você pode restaurar manualmente as dependências no **Gerenciador de soluções** clicando com o botão direito do mouse em `Dependencies\NPM` e selecionando a opção de menu **restaurar pacotes** .
 
-![Restaurar pacotes](using-grunt/_static/restore-packages.png)
+![restaurar pacotes](using-grunt/_static/restore-packages.png)
 
 ## <a name="configuring-grunt"></a>Configurando o Grunt
 
-Grunt é configurado usando um manifesto chamado *gruntfile* que define, carrega e registra as tarefas que podem ser executadas manualmente ou configuradas para ser executado automaticamente com base em eventos no Visual Studio.
+O Grunt é configurado usando um manifesto chamado *Gruntfile. js* que define, carrega e registra tarefas que podem ser executadas manualmente ou configuradas para serem executadas automaticamente com base em eventos no Visual Studio.
 
-1. Clique com botão direito no projeto e selecione **Add** > **Novo Item**. Selecione o **arquivo JavaScript** modelo de item, altere o nome a ser *gruntfile*e clique no **Add** botão.
+1. Clique com o botão direito do mouse no projeto e selecione **adicionar** > **novo item**. Selecione o modelo de item de **arquivo JavaScript** , altere o nome para *Gruntfile. js*e clique no botão **Adicionar** .
 
-1. Adicione o seguinte código ao *gruntfile*. O `initConfig` função define opções para cada pacote, e o restante do módulo carrega e registra tarefas.
+1. Adicione o código a seguir a *Gruntfile. js*. A função `initConfig` define opções para cada pacote e o restante do módulo carrega e registra as tarefas.
 
    ```javascript
    module.exports = function (grunt) {
@@ -135,7 +135,7 @@ Grunt é configurado usando um manifesto chamado *gruntfile* que define, carrega
    };
    ```
 
-1. Dentro de `initConfig` função, adicione as opções para o `clean` conforme mostrado no exemplo de tarefa *gruntfile* abaixo. O `clean` tarefa aceita uma matriz de cadeias de caracteres de diretório. Essa tarefa remove arquivos de *wwwroot/lib* e remove toda a */temp* directory.
+1. Dentro da função `initConfig`, adicione opções para a tarefa `clean`, conforme mostrado no exemplo *Gruntfile. js* abaixo. A tarefa `clean` aceita uma matriz de cadeias de caracteres de diretório. Essa tarefa remove arquivos de *wwwroot/lib* e remove todo o diretório */Temp* .
 
     ```javascript
     module.exports = function (grunt) {
@@ -145,34 +145,34 @@ Grunt é configurado usando um manifesto chamado *gruntfile* que define, carrega
     };
     ```
 
-1. Abaixo de `initConfig` função, adicione uma chamada para `grunt.loadNpmTasks`. Isso tornará a tarefa executável do Visual Studio.
+1. Abaixo da função `initConfig`, adicione uma chamada para `grunt.loadNpmTasks`. Isso fará com que a tarefa seja executável do Visual Studio.
 
     ```javascript
     grunt.loadNpmTasks("grunt-contrib-clean");
     ```
 
-1. Salve *gruntfile*. O arquivo deve ser semelhante a captura de tela abaixo.
+1. Salve *Gruntfile. js*. O arquivo deve ser semelhante à captura de tela abaixo.
 
     ![gruntfile inicial](using-grunt/_static/gruntfile-js-initial.png)
 
-1. Clique com botão direito *gruntfile* e selecione **Task Runner Explorer** no menu de contexto. O **Task Runner Explorer** janela será aberta.
+1. Clique com o botão direito do mouse em *Gruntfile. js* e selecione **Task Runner Explorer** no menu de contexto. A janela **Gerenciador de executores de tarefas** será aberta.
 
     ![menu do Gerenciador de executor de tarefas](using-grunt/_static/task-runner-explorer-menu.png)
 
-1. Verifique `clean` mostra sob **tarefas** no **Task Runner Explorer**.
+1. Verifique se `clean` mostra em **tarefas** no **Task Runner Explorer**.
 
     ![lista de tarefas do Gerenciador de executor de tarefas](using-grunt/_static/task-runner-explorer-tasks.png)
 
-1. A tarefa limpar com o botão direito e selecione **executar** no menu de contexto. Uma janela de comando exibe o progresso da tarefa.
+1. Clique com o botão direito do mouse na tarefa limpar e selecione **executar** no menu de contexto. Uma janela de comando exibe o progresso da tarefa.
 
-    ![tarefa de limpeza runner explorer executar tarefa](using-grunt/_static/task-runner-explorer-run-clean.png)
+    ![Gerenciador do executor de tarefas executar limpar tarefa](using-grunt/_static/task-runner-explorer-run-clean.png)
 
     > [!NOTE]
-    > Não há nenhum arquivo ou diretório para limpar ainda. Se desejar, você pode criá-las manualmente no Gerenciador de soluções e, em seguida, executar a tarefa de limpeza como um teste.
+    > Não há arquivos ou diretórios para limpar ainda. Se desejar, você pode criá-los manualmente no Gerenciador de Soluções e executar a tarefa de limpeza como um teste.
 
-1. No `initConfig` função, adicione uma entrada para `concat` usando o código a seguir.
+1. Na função `initConfig`, adicione uma entrada para `concat` usando o código abaixo.
 
-    O `src` matriz de propriedade lista arquivos combinar, na ordem em que eles devem ser combinados. O `dest` propriedade atribui o caminho para o arquivo combinado que é produzido.
+    A matriz de propriedades `src` lista os arquivos a serem combinados, na ordem em que devem ser combinados. A propriedade `dest` atribui o caminho para o arquivo combinado que é produzido.
 
     ```javascript
     concat: {
@@ -184,11 +184,11 @@ Grunt é configurado usando um manifesto chamado *gruntfile* que define, carrega
     ```
 
     > [!NOTE]
-    > O `all` propriedade no código acima é o nome de um destino. Destinos são usados em algumas tarefas do Grunt para permitir que vários ambientes de compilação. Você pode exibir os destinos internos usando o IntelliSense ou atribuir seu próprio.
+    > A propriedade `all` no código acima é o nome de um destino. Os destinos são usados em algumas tarefas do Grunt para permitir vários ambientes de compilação. Você pode exibir os destinos internos usando o IntelliSense ou atribuir o seu próprio.
 
-1. Adicionar o `jshint` de tarefas usando o código a seguir.
+1. Adicione a tarefa de `jshint` usando o código abaixo.
 
-    O jshint `code-quality` utilitário é executado em relação a todos os arquivos JavaScript encontrado na *temp* directory.
+    O utilitário jshint `code-quality` é executado em todos os arquivos JavaScript encontrados no diretório *temporário* .
 
     ```javascript
     jshint: {
@@ -200,11 +200,11 @@ Grunt é configurado usando um manifesto chamado *gruntfile* que define, carrega
     ```
 
     > [!NOTE]
-    > A opção "-W069" é um erro gerado pela jshint quando o JavaScript usa a sintaxe para atribuir uma propriedade em vez de notação de ponto, ou seja, de colchete `Tastes["Sweet"]` em vez de `Tastes.Sweet`. A opção desliga o aviso para permitir que o restante do processo para continuar.
+    > A opção "-W069" é um erro produzido por jshint quando o JavaScript usa a sintaxe de colchete para atribuir uma propriedade em vez de uma notação de ponto, ou seja, `Tastes["Sweet"]` em vez de `Tastes.Sweet`. A opção desativa o aviso para permitir que o restante do processo continue.
 
-1. Adicionar o `uglify` de tarefas usando o código a seguir.
+1. Adicione a tarefa de `uglify` usando o código abaixo.
 
-    A tarefa minimiza a *combined.js* arquivo encontrado no diretório temp e cria o arquivo de resultado no seguindo a convenção de nomenclatura padrão wwwroot/lib  *\<nome do arquivo\>. Min*.
+    A tarefa minifies o arquivo *. js combinado* encontrado no diretório temporário e cria o arquivo de resultado em wwwroot/lib seguindo a Convenção de nomenclatura padrão *\<nome do arquivo\>. min. js*.
 
     ```javascript
     uglify: {
@@ -215,7 +215,7 @@ Grunt é configurado usando um manifesto chamado *gruntfile* que define, carrega
     },
     ```
 
-1. Sob a chamada para `grunt.loadNpmTasks` que carrega `grunt-contrib-clean`, incluir a mesma chamada para jshint, concat e tarefa uglify usando o código a seguir.
+1. Na chamada para `grunt.loadNpmTasks` que carrega `grunt-contrib-clean`, inclua a mesma chamada para jshint, Concat e uglify usando o código a seguir.
 
     ```javascript
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -223,36 +223,36 @@ Grunt é configurado usando um manifesto chamado *gruntfile* que define, carrega
     grunt.loadNpmTasks('grunt-contrib-uglify');
     ```
 
-1. Salve *gruntfile*. O arquivo deve ser algo parecido com o exemplo a seguir.
+1. Salve *Gruntfile. js*. O arquivo deve ser semelhante ao exemplo abaixo.
 
-    ![exemplo de arquivo completo do grunt](using-grunt/_static/gruntfile-js-complete.png)
+    ![exemplo de arquivo Grunt completo](using-grunt/_static/gruntfile-js-complete.png)
 
-1. Observe que o **Task Runner Explorer** lista de tarefas inclui `clean`, `concat`, `jshint` e `uglify` tarefas. Executar cada tarefa na ordem e observar os resultados no **Gerenciador de soluções**. Cada tarefa deve ser executado sem erros.
+1. Observe que a lista tarefas do **Gerenciador de executores de tarefas** inclui `clean`, `concat`, `jshint` e `uglify` tarefas. Execute cada tarefa na ordem e observe os resultados em **Gerenciador de soluções**. Cada tarefa deve ser executada sem erros.
 
-    ![Gerenciador de executor executar cada tarefa](using-grunt/_static/task-runner-explorer-run-each-task.png)
+    ![Explorador do executor de tarefas executar cada tarefa](using-grunt/_static/task-runner-explorer-run-each-task.png)
 
-    A tarefa concat cria um novo *combined.js* de arquivo e o coloca no diretório temporário. O `jshint` tarefa é executada apenas e não produz a saída. O `uglify` tarefa cria uma nova *combined.min.js* do arquivo e coloca-o na *wwwroot/lib*. Após a conclusão, a solução deve ser algo parecido com a captura de tela abaixo:
+    A tarefa Concat cria um novo arquivo *. js combinado* e o coloca no diretório temporário. A `jshint` tarefa simplesmente é executada e não produz a saída. A tarefa `uglify` cria um novo arquivo *. min. js combinado* e o coloca em *wwwroot/lib*. Ao concluir, a solução deve ser semelhante à captura de tela abaixo:
 
-    ![Depois que todas as tarefas de Gerenciador de soluções](using-grunt/_static/solution-explorer-after-all-tasks.png)
+    ![Gerenciador de soluções após todas as tarefas](using-grunt/_static/solution-explorer-after-all-tasks.png)
 
     > [!NOTE]
-    > Para obter mais informações sobre as opções para cada pacote, visite [ https://www.npmjs.com/ ](https://www.npmjs.com/) e pesquisa o nome do pacote na caixa de pesquisa na página principal. Por exemplo, você pode procurar o pacote grunt-contrib-clean para obter um link de documentação que explica todos os seus parâmetros.
+    > Para obter mais informações sobre as opções para cada pacote, visite [https://www.npmjs.com/](https://www.npmjs.com/) e pesquise o nome do pacote na caixa de pesquisa na página principal. Por exemplo, você pode pesquisar o pacote Grunt-contrib-Clean para obter um link de documentação que explica todos os seus parâmetros.
 
 ### <a name="all-together-now"></a>Todos juntos agora
 
-Usar o Grunt `registerTask()` método para executar uma série de tarefas em uma sequência específica. Por exemplo, para executar o exemplo etapas acima na ordem limpa -> concat -> jshint -> tarefa uglify, adicione o código a seguir para o módulo. O código deve ser adicionado ao mesmo nível que as chamadas loadNpmTasks(), fora initConfig.
+Use o método Grunt `registerTask()` para executar uma série de tarefas em uma sequência específica. Por exemplo, para executar as etapas de exemplo acima no pedido Clean-> Concat-> jshint-> uglify, adicione o código abaixo ao módulo. O código deve ser adicionado ao mesmo nível que as chamadas loadNpmTasks (), fora de initConfig.
 
 ```javascript
 grunt.registerTask("all", ['clean', 'concat', 'jshint', 'uglify']);
 ```
 
-A nova tarefa aparece no Gerenciador do executor de tarefas em tarefas de Alias. Pode-se com o botão direito e executá-lo exatamente como faria com outras tarefas. O `all` tarefa será executada `clean`, `concat`, `jshint` e `uglify`, na ordem.
+A nova tarefa aparece no Gerenciador do executor de tarefas em tarefas de alias. Você pode clicar com o botão direito do mouse e executá-lo da mesma forma que faria com outras tarefas. A tarefa `all` será executada `clean`, `concat`, `jshint` e `uglify`, na ordem.
 
-![tarefas do grunt de alias](using-grunt/_static/alias-tasks.png)
+![tarefas de Grunt de alias](using-grunt/_static/alias-tasks.png)
 
 ## <a name="watching-for-changes"></a>Monitorando alterações
 
-Um `watch` tarefa fica de olho em arquivos e diretórios. A inspeção dispara tarefas automaticamente se detectar alterações. Adicione o código abaixo ao initConfig observar alterações para \*arquivos. js no diretório do TypeScript. Se um arquivo JavaScript for alterado, `watch` executará o `all` tarefa.
+Uma tarefa `watch` fica atento aos arquivos e diretórios. O Watch acionará as tarefas automaticamente se detectar alterações. Adicione o código abaixo a initConfig para observar alterações em arquivos \*. js no diretório TypeScript. Se um arquivo JavaScript for alterado, `watch` executará a tarefa `all`.
 
 ```javascript
 watch: {
@@ -261,26 +261,26 @@ watch: {
 }
 ```
 
-Adicione uma chamada para `loadNpmTasks()` para mostrar o `watch` tarefa em Task Runner Explorer.
+Adicione uma chamada para `loadNpmTasks()` para mostrar a tarefa de `watch` no Task Runner Explorer.
 
 ```javascript
 grunt.loadNpmTasks('grunt-contrib-watch');
 ```
 
-A tarefa de inspeção do Task Runner Explorer com o botão direito e selecione Executar no menu de contexto. A janela de comando que mostra a tarefa de inspeção em execução exibirá um "Aguardando..." Mensagem. Abra um dos arquivos TypeScript, adicione um espaço e, em seguida, salve o arquivo. Isso disparar a tarefa de inspeção e disparar as outras tarefas executadas em ordem. Captura de tela abaixo mostra uma exemplo de execução.
+Clique com o botão direito do mouse na tarefa de inspeção no Gerenciador do executor de tarefa e selecione executar no menu de contexto. A janela de comando que mostra a tarefa de inspeção em execução exibirá um "aguardando..." Mensagem. Abra um dos arquivos TypeScript, adicione um espaço e, em seguida, salve o arquivo. Isso disparará a tarefa de inspeção e disparará as outras tarefas a serem executadas na ordem. A captura de tela abaixo mostra uma execução de exemplo.
 
-![executar tarefas de saída](using-grunt/_static/watch-running.png)
+![saída de tarefas em execução](using-grunt/_static/watch-running.png)
 
 ## <a name="binding-to-visual-studio-events"></a>Associação a eventos do Visual Studio
 
-A menos que você deseja iniciar manualmente suas tarefas toda vez que você trabalha no Visual Studio, você pode vincular tarefas a serem **antes da compilação**, **depois de compilar**, **Clean**, e  **Projeto aberto** eventos.
+A menos que você queira iniciar manualmente suas tarefas sempre que trabalhar no Visual Studio, associe tarefas a **antes da compilação**, **após a compilação**, **limpeza**e eventos **abertos do projeto** .
 
-Vamos associar `watch` para que ele seja executado sempre que o Visual Studio abre. No Gerenciador de executor, a tarefa de inspeção com o botão direito e selecione **associações > Abrir projeto** no menu de contexto.
+Associe `watch` para que ele seja executado toda vez que o Visual Studio for aberto. No Gerenciador do executor de tarefas, clique com o botão direito do mouse na tarefa Watch e selecione **associações** > **projeto aberto** no menu de contexto.
 
-![associar uma tarefa para a abertura de projeto](using-grunt/_static/bindings-project-open.png)
+![associar uma tarefa à abertura do projeto](using-grunt/_static/bindings-project-open.png)
 
-Descarregue e recarregue o projeto. Quando o projeto for carregado novamente, a tarefa de inspeção iniciará a execução automática.
+Descarregue e recarregue o projeto. Quando o projeto é carregado novamente, a tarefa de inspeção começa a ser executada automaticamente.
 
 ## <a name="summary"></a>Resumo
 
-Grunt é um executor de tarefas poderosa que pode ser usado para automatizar a maioria das tarefas de build do cliente. Grunt aproveita o NPM para fornecer seus pacotes, recursos e ferramentas de integração com o Visual Studio. Gerenciador de executor de tarefas do Visual Studio detecta alterações nos arquivos de configuração e fornece uma interface conveniente para executar tarefas, exibir tarefas em execução e vincular tarefas a eventos do Visual Studio.
+O Grunt é um executor de tarefas poderoso que pode ser usado para automatizar a maioria das tarefas de compilação do cliente. O Grunt aproveita o NPM para fornecer seus pacotes e recursos de integração de ferramentas com o Visual Studio. O Task Runner Explorer do Visual Studio detecta alterações nos arquivos de configuração e fornece uma interface conveniente para executar tarefas, exibir tarefas em execução e associar tarefas a eventos do Visual Studio.

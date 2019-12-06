@@ -3,14 +3,14 @@ title: Criar serviços de back-end para aplicativos móveis nativos com o ASP.NE
 author: ardalis
 description: Saiba como criar serviços de back-end usando o ASP.NET Core MVC para dar suporte a aplicativos móveis nativos.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 12/05/2019
 uid: mobile/native-mobile-backend
-ms.openlocfilehash: b50d2593d7dc4b89472033898373e3a22fc9a7a3
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: 38ac69bfe9d99d6d61f96fde92d86fd752ebbb6b
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64883951"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74881156"
 ---
 # <a name="create-backend-services-for-native-mobile-apps-with-aspnet-core"></a>Criar serviços de back-end para aplicativos móveis nativos com o ASP.NET Core
 
@@ -63,7 +63,7 @@ O aplicativo deve responder a todas as solicitações feitas através da porta 5
 > [!NOTE]
 > Execute o aplicativo diretamente, em vez de por trás do IIS Express, que ignora solicitações não local por padrão. Execute [dotnet run](/dotnet/core/tools/dotnet-run) em um prompt de comando ou escolha o perfil de nome do aplicativo no menu suspenso Destino de Depuração na barra de ferramentas do Visual Studio.
 
-Adicione uma classe de modelo para representar itens pendentes. Marque os campos obrigatórios usando o atributo `[Required]`:
+Adicione uma classe de modelo para representar itens pendentes. Marque os campos obrigatórios com o atributo `[Required]`:
 
 [!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Models/ToDoItem.cs)]
 
@@ -88,7 +88,7 @@ Neste ponto, você está pronto para criar o *ToDoItemsController*.
 
 Adicione um novo controlador ao projeto, *ToDoItemsController*. Ele deve herdar de Microsoft.AspNetCore.Mvc.Controller. Adicione um atributo `Route` para indicar que o controlador manipulará as solicitações feitas para caminhos que começam com `api/todoitems`. O token `[controller]` na rota é substituído pelo nome do controlador (com a omissão do sufixo `Controller`) e é especialmente útil para rotas globais. Saiba mais sobre o [roteamento](../fundamentals/routing.md).
 
-O controlador requer um `IToDoRepository` para a função; solicite uma instância desse tipo usando o construtor do controlador. No tempo de execução, esta instância será fornecida com suporte do framework para[injeção de dependência](../fundamentals/dependency-injection.md).
+O controlador requer um `IToDoRepository` para a função; solicite uma instância desse tipo usando o construtor do controlador. No runtime, esta instância será fornecida com suporte do framework para[injeção de dependência](../fundamentals/dependency-injection.md).
 
 [!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=1-17&highlight=9,14)]
 
@@ -108,7 +108,7 @@ Você pode testar o novo método de API usando uma variedade de ferramentas, com
 
 ### <a name="creating-items"></a>Criando itens
 
-Por convenção, a criação de novos itens de dados é mapeada para o verbo HTTP POST. O método `Create` tem um atributo `[HttpPost]` aplicado a ele e aceita uma instância `ToDoItem`. Como o argumento `item` será enviado no corpo de POST, este parâmetro será decorado com o atributo `[FromBody]`.
+Por convenção, a criação de novos itens de dados é mapeada para o verbo HTTP POST. O método `Create` tem um atributo `[HttpPost]` aplicado a ele e aceita uma instância `ToDoItem`. Como o argumento `item` é passado no corpo da POSTAgem, esse parâmetro especifica o atributo `[FromBody]`.
 
 Dentro do método, o item é verificado quanto à validade e existência anterior no armazenamento de dados e, se nenhum problema ocorrer, ele será adicionado usando o repositório. A verificação de `ModelState.IsValid` executa a [validação do modelo](../mvc/models/validation.md) e deve ser feita em todos os métodos de API que aceitam a entrada do usuário.
 

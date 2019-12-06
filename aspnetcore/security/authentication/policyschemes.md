@@ -1,38 +1,38 @@
 ---
 title: Esquemas de política no ASP.NET Core
 author: rick-anderson
-description: Esquemas de política de autenticação torná-lo mais fácil ter um esquema de autenticação lógica
+description: Os esquemas de política de autenticação facilitam a tarefa de ter um único esquema de autenticação lógica
 ms.author: riande
-ms.date: 02/28/2019
+ms.date: 12/05/2019
 uid: security/authentication/policyschemes
-ms.openlocfilehash: be03f349455c673b0739935ad20e596325c8cb74
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.openlocfilehash: f02d8e5cac20a9b60c5eddbd28253efacf682ea1
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815290"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880710"
 ---
 # <a name="policy-schemes-in-aspnet-core"></a>Esquemas de política no ASP.NET Core
 
-Esquemas de política de autenticação torná-lo mais fácil ter um esquema de autenticação lógica potencialmente usar várias abordagens. Por exemplo, um esquema de política pode usar autenticação do Google para desafios e autenticação de cookie para todo o resto. Esquemas de política de autenticação torná-lo:
+Os esquemas de diretiva de autenticação facilitam a utilização de um único esquema de autenticação lógica, o que pode usar várias abordagens. Por exemplo, um esquema de política pode usar a autenticação do Google para desafios e a autenticação de cookie para todo o resto. Os esquemas de política de autenticação o fazem:
 
-* Fácil encaminhar qualquer ação de autenticação para outro esquema.
-* Encaminhar dinamicamente com base na solicitação.
+* É fácil encaminhar qualquer ação de autenticação para outro esquema.
+* Encaminhe dinamicamente com base na solicitação.
 
-Todos os esquemas de autenticação que use derivado <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> e os respectivos [ `AuthenticationHandler<TOptions>` ](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
+Todos os esquemas de autenticação que usam <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> derivadas e o [AuthenticationHandler associado\<TOptions >](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
 
-* São automaticamente esquemas de política no ASP.NET Core 2.1 e versões posteriores.
-* Pode ser habilitado por meio de configuração de opções do esquema.
+* São esquemas de política automaticamente no ASP.NET Core 2,1 e posterior.
+* Pode ser habilitado por meio da configuração das opções do esquema.
 
 [!code-csharp[sample](policyschemes/samples/AuthenticationSchemeOptions.cs?name=snippet)]
 
 ## <a name="examples"></a>Exemplos
 
-O exemplo a seguir mostra um esquema de nível superior que combina os esquemas de nível inferiores. Autenticação do Google é usada para os desafios e autenticação de cookie é usada para todo o resto:
+O exemplo a seguir mostra um esquema de nível superior que combina esquemas de nível inferior. A autenticação do Google é usada para desafios e a autenticação de cookie é usada para todo o resto:
 
 [!code-csharp[sample](policyschemes/samples/Startup.cs?name=snippet1)]
 
-O exemplo a seguir habilita a seleção dinâmica de esquemas em uma base por solicitação. Ou seja, como a combinação de cookies e autenticação de API:
+O exemplo a seguir habilita a seleção dinâmica de esquemas de acordo com a solicitação. Ou seja, como misturar cookies e autenticação de API:
 
  <!-- REVIEW, missing If set in public Func<HttpContext, string> ForwardDefaultSelector -->
 

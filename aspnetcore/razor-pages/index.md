@@ -4,14 +4,14 @@ author: Rick-Anderson
 description: Saiba como as Páginas Razor no ASP.NET Core tornam a codificação de cenários centrados em página mais fácil e mais produtiva do que com o uso de MVC.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 10/07/2019
+ms.date: 12/05/2019
 uid: razor-pages/index
-ms.openlocfilehash: 67cc4f9b261372996d612f922c9f491f53948ece
-ms.sourcegitcommit: ddc813f0f1fb293861a01597532919945b0e7fe5
+ms.openlocfilehash: fbe6e307ff5f7388e91cc2276f22ae1672507587
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/23/2019
-ms.locfileid: "74412075"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880890"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introdução a Páginas do Razor no ASP.NET Core
 
@@ -25,7 +25,7 @@ Se você estiver procurando um tutorial que utiliza a abordagem Modelo-Exibiçã
 
 Este documento proporciona uma introdução a páginas do Razor. Este não é um tutorial passo a passo. Se você achar que algumas das seções são muito avançadas, consulte a [Introdução a Páginas do Razor](xref:tutorials/razor-pages/razor-pages-start). Para obter uma visão geral do ASP.NET Core, consulte a [Introdução ao ASP.NET Core](xref:index).
 
-## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -71,7 +71,7 @@ Considere uma página básica: <a name="OnGet"></a>
 
 [!code-cshtml[](index/3.0sample/RazorPagesIntro/Pages/Index.cshtml?highlight=1)]
 
-O código anterior se assemelha muito a um [arquivo de exibição do Razor](xref:tutorials/first-mvc-app/adding-view) usado em um aplicativo ASP.NET Core com controladores e exibições. O que o torna diferente é a diretiva [@page](xref:mvc/views/razor#page) . `@page` transforma o arquivo em uma ação do MVC – o que significa que ele trata solicitações diretamente, sem passar por um controlador. `@page` deve ser a primeira diretiva do Razor em uma página. `@page` afeta o comportamento de outras construções do [Razor](xref:mvc/views/razor) . Razor Pages nomes de arquivo têm um sufixo *. cshtml* .
+O código anterior se assemelha muito a um [arquivo de exibição do Razor](xref:tutorials/first-mvc-app/adding-view) usado em um aplicativo ASP.NET Core com controladores e exibições. O que o torna diferente é a diretiva [`@page`](xref:mvc/views/razor#page) . `@page` transforma o arquivo em uma ação do MVC – o que significa que ele trata solicitações diretamente, sem passar por um controlador. `@page` deve ser a primeira diretiva do Razor em uma página. `@page` afeta o comportamento de outras construções do [Razor](xref:mvc/views/razor) . Razor Pages nomes de arquivo têm um sufixo *. cshtml* .
 
 Uma página semelhante, usando uma classe `PageModel`, é mostrada nos dois arquivos a seguir. O arquivo *Pages/Index2.cshtml*:
 
@@ -126,9 +126,9 @@ Por convenção, a classe `PageModel` é chamada de `<PageName>Model` e está no
 A classe `PageModel` permite separar a lógica de uma página da respectiva apresentação. Ela define manipuladores para as solicitações enviadas e os dados usados para renderizar a página. Essa separação permite:
 
 * Gerenciamento de dependências de página por meio de [injeção de dependência](xref:fundamentals/dependency-injection).
-* [Teste de unidade](xref:test/razor-pages-tests)
+* [Testes de unidade](xref:test/razor-pages-tests)
 
-A página tem um `OnPostAsync`método de manipulador, que é executado em solicitações `POST` (quando um usuário posta o formulário). Métodos de manipulador para qualquer verbo HTTP podem ser adicionados. Os manipuladores mais comuns são:
+A página tem um *método de manipulador* `OnPostAsync`, que é executado em solicitações `POST` (quando um usuário posta o formulário). Métodos de manipulador para qualquer verbo HTTP podem ser adicionados. Os manipuladores mais comuns são:
 
 * `OnGet` para inicializar o estado necessário para a página. No código anterior, o método `OnGet` exibe a página Razor *CREATEMODEL. cshtml* .
 * `OnPost` para manipular envios de formulário.
@@ -198,7 +198,7 @@ Examinando o arquivo de exibição *páginas/Create. cshtml* :
 * No código anterior, o [auxiliar de marca de entrada](xref:mvc/views/working-with-forms#the-input-tag-helper) `<input asp-for="Customer.Name" />` associa o elemento HTML `<input>` à expressão do modelo `Customer.Name`.
 * [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#addtaghelper-makes-tag-helpers-available) torna os auxiliares de marca disponíveis.
 
-### <a name="the-home-page"></a>O home page
+### <a name="the-home-page"></a>Home page
 
 *Index. cshtml* é o Home Page:
 
@@ -317,7 +317,7 @@ A página criar para o modelo de `Movie` mostra exibe erros com valores inválid
 
 ![Formulário da exibição de filmes com vários erros de validação do lado do cliente do jQuery](~/tutorials/razor-pages/validation/_static/val.png)
 
-Para obter mais informações, consulte:
+Para obter mais informações, consulte .
 
 * [Adicionar validação ao aplicativo de filme](xref:tutorials/razor-pages/validation)
 * [Validação de modelo no ASP.NET Core](xref:mvc/models/validation).
@@ -425,7 +425,7 @@ O aplicativo tem a estrutura de arquivos/pastas a seguir:
 * */Pages*
 
   * *Index.cshtml*
-  * *Privacidade. cshtml*
+  * *Privacy.cshtml*
   * */Clientes*
 
     * *Create.cshtml*
@@ -448,7 +448,7 @@ O nome da página é o caminho para a página da pasta raiz */Pages*, incluindo 
 
 A Geração de URL para páginas dá suporte a nomes relativos. A tabela a seguir mostra qual página de índice é selecionada usando parâmetros de `RedirectToPage` diferentes em *pages/Customers/Create. cshtml*.
 
-| RedirectToPage(x)| {1&gt;Página&lt;1} |
+| RedirectToPage(x)| Página |
 | ----------------- | ------------ |
 | RedirectToPage("/Index") | *Pages/Index* |
 | RedirectToPage("./Index"); | *Pages/Customers/Index* |
@@ -618,7 +618,7 @@ Se você estiver procurando um tutorial que utiliza a abordagem Modelo-Exibiçã
 
 Este documento proporciona uma introdução a páginas do Razor. Este não é um tutorial passo a passo. Se você achar que algumas das seções são muito avançadas, consulte a [Introdução a Páginas do Razor](xref:tutorials/razor-pages/razor-pages-start). Para obter uma visão geral do ASP.NET Core, consulte a [Introdução ao ASP.NET Core](xref:index).
 
-## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -721,7 +721,7 @@ A classe `PageModel` permite separar a lógica de uma página da respectiva apre
 * Gerenciamento de dependências de página por meio de [injeção de dependência](xref:fundamentals/dependency-injection).
 * [Teste de unidade](xref:test/razor-pages-tests) das páginas.
 
-A página tem um `OnPostAsync`método de manipulador, que é executado em solicitações `POST` (quando um usuário posta o formulário). Você pode adicionar métodos de manipulador para qualquer verbo HTTP. Os manipuladores mais comuns são:
+A página tem um *método de manipulador* `OnPostAsync`, que é executado em solicitações `POST` (quando um usuário posta o formulário). Você pode adicionar métodos de manipulador para qualquer verbo HTTP. Os manipuladores mais comuns são:
 
 * `OnGet` para inicializar o estado necessário para a página. Amostra de [OnGet](#OnGet).
 * `OnPost` para manipular envios de formulário.
@@ -814,7 +814,7 @@ O método `OnPostDeleteAsync`:
 
 ## <a name="mark-page-properties-as-required"></a>Marque as propriedades da página conforme necessário
 
-As propriedades em um `PageModel` podem ser decoradas com o atributo [Required](/dotnet/api/system.componentmodel.dataannotations.requiredattribute):
+As propriedades em uma `PageModel` podem ser marcadas com o atributo [Required](/dotnet/api/system.componentmodel.dataannotations.requiredattribute) :
 
 [!code-cs[](index/sample/Create.cshtml.cs?highlight=3,15-16)]
 
@@ -958,7 +958,7 @@ O nome da página é o caminho para a página da pasta raiz */Pages*, incluindo 
 
 A Geração de URL para páginas dá suporte a nomes relativos. A tabela a seguir mostra qual página de Índice é selecionada com diferentes parâmetros `RedirectToPage` de *Pages/Customers/Create.cshtml*:
 
-| RedirectToPage(x)| {1&gt;Página&lt;1} |
+| RedirectToPage(x)| Página |
 | ----------------- | ------------ |
 | RedirectToPage("/Index") | *Pages/Index* |
 | RedirectToPage("./Index"); | *Pages/Customers/Index* |
@@ -979,9 +979,9 @@ Para obter mais informações, consulte <xref:mvc/controllers/areas>.
 
 ## <a name="viewdata-attribute"></a>Atributo ViewData
 
-Os dados podem ser passados para uma página com [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). As propriedades nos controladores ou nos modelos da Página Razor decoradas com `[ViewData]` têm seus valores armazenados e carregados em [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary).
+Os dados podem ser passados para uma página com [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). As propriedades em controladores ou modelos de página do Razor com o atributo `[ViewData]` têm seus valores armazenados e carregados do [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary).
 
-No exemplo a seguir, o `AboutModel` contém uma propriedade `Title` decorada com `[ViewData]`. A propriedade `Title` está definida como o título da página Sobre:
+No exemplo a seguir, o `AboutModel` contém uma propriedade `Title` marcada com `[ViewData]`. A propriedade `Title` está definida como o título da página Sobre:
 
 ```csharp
 public class AboutModel : PageModel

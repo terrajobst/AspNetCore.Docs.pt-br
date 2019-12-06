@@ -4,16 +4,16 @@ author: mjrousos
 description: Dicas para aumentar o desempenho em aplicativos ASP.NET Core e evitar problemas comuns de desempenho.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc:
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 64d231ca435ccbfe9bfcd839a2b67fcee68c0cc6
-ms.sourcegitcommit: 8157e5a351f49aeef3769f7d38b787b4386aad5f
+ms.openlocfilehash: bd30776d527b4ac9f44005e9f5d03fec7cfda2e6
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/20/2019
-ms.locfileid: "74239888"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880928"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Práticas recomendadas de desempenho de ASP.NET Core
 
@@ -41,7 +41,7 @@ Um problema de desempenho comum no ASP.NET Core aplicativos é bloquear chamadas
 * Adquirir bloqueios em caminhos de código comuns. Os aplicativos ASP.NET Core são mais com o melhor desempenho quando arquitetados para executar código em paralelo.
 * Chame [Task. Execute](/dotnet/api/system.threading.tasks.task.run) e o Await imediatamente. ASP.NET Core já executa o código do aplicativo em threads de pool de threads normais, portanto, chamar Task. Run só resulta em agendamento de pool de threads desnecessários extra. Mesmo que o código agendado bloqueie um thread, Task. Run não impede isso.
 
-**Fazer**:
+**Certo**:
 
 * Torne os [caminhos de código dinâmico](#understand-hot-code-paths) assíncronos.
 * Chame o acesso a dados e as APIs de operações de longa execução de forma assíncrona se uma API assíncrona estiver disponível. Mais uma vez, não use [Task. Execute](/dotnet/api/system.threading.tasks.task.run) para tornar uma API synchronus assíncrona.
@@ -56,7 +56,7 @@ O [coletor de lixo do .NET Core](/dotnet/standard/garbage-collection/) gerencia 
 Recomendações:
 
 * **Considere armazenar** em cache objetos grandes que são usados com frequência. O Caching de objetos grandes impede alocações caras.
-* **Faça** buffers de pool usando um [`ArrayPool<T>`](/dotnet/api/system.buffers.arraypool-1) para armazenar matrizes grandes.
+* **Faça** buffers de pool usando um [ArrayPool\<t >](/dotnet/api/system.buffers.arraypool-1) para armazenar grandes matrizes.
 * **Não** aloque muitos objetos grandes de curta duração em caminhos de [código quente](#understand-hot-code-paths).
 
 Problemas de memória, como os anteriores, podem ser diagnosticados examinando as estatísticas de GC (coleta de lixo) em [Perfview](https://github.com/Microsoft/perfview) e examinando:
@@ -140,7 +140,7 @@ Recomendações:
 
 ## <a name="use-the-latest-aspnet-core-release"></a>Usar a versão mais recente do ASP.NET Core
 
-Cada nova versão do ASP.NET Core inclui melhorias de desempenho. Otimizações no .NET Core e ASP.NET Core significam que as versões mais recentes geralmente superam as versões mais antigas. Por exemplo, o .NET Core 2,1 adicionou suporte para expressões regulares compiladas e se beneficiou da [`Span<T>`](https://msdn.microsoft.com/magazine/mt814808.aspx). ASP.NET Core 2,2 adicionado suporte para HTTP/2. [ASP.NET Core 3,0 adiciona muitas melhorias](xref:aspnetcore-3.0) que reduzem o uso de memória e melhoram a taxa de transferência. Se o desempenho for uma prioridade, considere atualizar para a versão atual do ASP.NET Core.
+Cada nova versão do ASP.NET Core inclui melhorias de desempenho. Otimizações no .NET Core e ASP.NET Core significam que as versões mais recentes geralmente superam as versões mais antigas. Por exemplo, o .NET Core 2,1 adicionou suporte para expressões regulares compiladas e se beneficiou do [Span\<t >](https://msdn.microsoft.com/magazine/mt814808.aspx). ASP.NET Core 2,2 adicionado suporte para HTTP/2. [ASP.NET Core 3,0 adiciona muitas melhorias](xref:aspnetcore-3.0) que reduzem o uso de memória e melhoram a taxa de transferência. Se o desempenho for uma prioridade, considere atualizar para a versão atual do ASP.NET Core.
 
 ## <a name="minimize-exceptions"></a>Minimizar exceções
 

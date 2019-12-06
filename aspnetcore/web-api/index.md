@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/22/2019
 uid: web-api/index
-ms.openlocfilehash: 3f52e4ce2d26902324ab30e0bda7ed8a4942daa0
-ms.sourcegitcommit: ddc813f0f1fb293861a01597532919945b0e7fe5
+ms.openlocfilehash: 5ef8b4d012f4ed90339ffea191612e4dc365d958
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/23/2019
-ms.locfileid: "74412051"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880536"
 ---
 # <a name="create-web-apis-with-aspnet-core"></a>Criar APIs Web com o ASP.NET Core
 
@@ -56,7 +56,7 @@ Veja mais alguns exemplos de métodos fornecidos por `ControllerBase`.
 
 Confira uma lista com todos os métodos e propriedades disponíveis em <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
 
-## <a name="attributes"></a>Atributos
+## <a name="attributes"></a>{1&gt;{2&gt;Atributos&lt;2}&lt;1}
 
 O namespace <xref:Microsoft.AspNetCore.Mvc> fornece atributos que podem ser usados para configurar o comportamento de controladores de API Web e dos métodos de ação. O exemplo a seguir usa atributos para especificar o verbo de ação HTTP com suporte e quaisquer códigos de status HTTP conhecidos que poderiam ser retornados:
 
@@ -66,17 +66,17 @@ Confira mais alguns exemplos de atributos disponíveis.
 
 |Atributo|{1&gt;Observações&lt;1}|
 |---------|-----|
-|[[Route]](<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>)      |Especifica o padrão de URL para um controlador ou ação.|
-|[[Bind]](<xref:Microsoft.AspNetCore.Mvc.BindAttribute>)        |Especifica o prefixo e as propriedades que serão incluídos no model binding.|
-|[[HttpGet]](<xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute>)  |Identifica uma ação que dá suporte ao verbo de ação HTTP GET.|
-|[[Consumes]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>)|Especifica os tipos de dados aceitos por uma ação.|
-|[[Produces]](<xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>)|Especifica os tipos de dados retornados por uma ação.|
+|[`[Route]`](<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>)      |Especifica o padrão de URL para um controlador ou ação.|
+|[`[Bind]`](<xref:Microsoft.AspNetCore.Mvc.BindAttribute>)        |Especifica o prefixo e as propriedades que serão incluídos no model binding.|
+|[`[HttpGet]`](<xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute>)  |Identifica uma ação que dá suporte ao verbo de ação HTTP GET.|
+|[`[Consumes]`](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>)|Especifica os tipos de dados aceitos por uma ação.|
+|[`[Produces]`](<xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>)|Especifica os tipos de dados retornados por uma ação.|
 
 Veja uma lista que inclui os atributos disponíveis no namespace <xref:Microsoft.AspNetCore.Mvc>.
 
 ## <a name="apicontroller-attribute"></a>Atributo ApiController
 
-O atributo [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) pode ser aplicado a uma classe de controlador para habilitar os seguintes conceituada, comportamentos específicos de API:
+O atributo [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) pode ser aplicado a uma classe de controlador para habilitar os seguintes conceituada, comportamentos específicos de API:
 
 * [Requisito de roteamento de atributo](#attribute-routing-requirement)
 * [Respostas HTTP 400 automáticas](#automatic-http-400-responses)
@@ -241,12 +241,12 @@ Um atributo de origem de associação define o local no qual o valor do parâmet
 
 |Atributo|Fonte de associação |
 |---------|---------|
-|[[FromBody]](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)     | Corpo da solicitação |
-|[[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)     | Dados do formulário no corpo da solicitação |
-|[[FromHeader]](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) | Cabeçalho da solicitação |
-|[[FromQuery]](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)   | Parâmetro de cadeia de caracteres de consulta de solicitação |
-|[[FromRoute]](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)   | Dados de rota da solicitação atual |
-|[[FromServices]](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) | O serviço de solicitação inserido como um parâmetro de ação |
+|[`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)     | Corpo da solicitação |
+|[`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)     | Dados do formulário no corpo da solicitação |
+|[`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) | Cabeçalho da solicitação |
+|[`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)   | Parâmetro de cadeia de caracteres de consulta de solicitação |
+|[`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)   | Dados de rota da solicitação atual |
+|[`[FromServices]`](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) | O serviço de solicitação inserido como um parâmetro de ação |
 
 > [!WARNING]
 > Não use `[FromRoute]` quando os valores puderem conter `%2f` (ou seja, `/`). `%2f` não ficará sem escape para `/`. Use `[FromQuery]`, se o valor puder conter `%2f`.
@@ -322,7 +322,7 @@ Para desabilitar a inferência da origem da associação, defina <xref:Microsoft
 
 ## <a name="multipartform-data-request-inference"></a>Inferência de solicitação de várias partes/dados de formulário
 
-O atributo `[ApiController]` aplica uma regra de inferência quando um parâmetro de ação é anotado com o atributo [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) . O tipo de conteúdo da solicitação `multipart/form-data` é inferido.
+O atributo `[ApiController]` aplica uma regra de inferência quando um parâmetro de ação é anotado com o atributo [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) . O tipo de conteúdo da solicitação `multipart/form-data` é inferido.
 
 Para desabilitar o comportamento padrão, defina a propriedade <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> como `true` em `Startup.ConfigureServices`:
 

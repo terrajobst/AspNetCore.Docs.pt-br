@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/04/2019
 uid: mvc/models/file-uploads
-ms.openlocfilehash: b57ad4fe62de38085c11d7026d278cc6e0c565ce
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 20e58660185a3055e06e92d9136e80e2394a470d
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963153"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74881064"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Carregar arquivos no ASP.NET Core
 
@@ -686,7 +686,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 }
 ```
 
-O `RequestSizeLimitAttribute` também pode ser aplicado usando a diretiva [@attribute](xref:mvc/views/razor#attribute) Razor:
+O `RequestSizeLimitAttribute` também pode ser aplicado usando a diretiva [`@attribute`](xref:mvc/views/razor#attribute) Razor:
 
 ```cshtml
 @attribute [RequestSizeLimitAttribute(52428800)]
@@ -733,7 +733,7 @@ The request filtering module is configured to deny a request that exceeds the re
 
 Para obter mais informações sobre como aumentar o limite, consulte a seção [limite de tamanho de conteúdo do IIS](#iis-content-length-limit) .
 
-### <a name="connection-failure"></a>Falha na conexão
+### <a name="connection-failure"></a>Falha de conexão
 
 Um erro de conexão e uma conexão de servidor de redefinição provavelmente indicam que o arquivo carregado excede o tamanho máximo do corpo de solicitação do Kestrel. Para obter mais informações, consulte a seção [tamanho máximo de corpo de solicitação do Kestrel](#kestrel-maximum-request-body-size) . Os limites de conexão de cliente Kestrel também podem exigir ajuste.
 
@@ -1455,7 +1455,7 @@ The request filtering module is configured to deny a request that exceeds the re
 
 Para obter mais informações sobre como aumentar o limite, consulte a seção [limite de tamanho de conteúdo do IIS](#iis-content-length-limit) .
 
-### <a name="connection-failure"></a>Falha na conexão
+### <a name="connection-failure"></a>Falha de conexão
 
 Um erro de conexão e uma conexão de servidor de redefinição provavelmente indicam que o arquivo carregado excede o tamanho máximo do corpo de solicitação do Kestrel. Para obter mais informações, consulte a seção [tamanho máximo de corpo de solicitação do Kestrel](#kestrel-maximum-request-body-size) . Os limites de conexão de cliente Kestrel também podem exigir ajuste.
 

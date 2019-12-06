@@ -3,14 +3,14 @@ title: Áreas no ASP.NET Core
 author: rick-anderson
 description: Saiba por que as áreas são um recurso do ASP.NET MVC usado para organizar funcionalidades relacionadas em um grupo como um namespace (para roteamento) e uma estrutura de pasta (para exibições) separados.
 ms.author: riande
-ms.date: 08/16/2019
+ms.date: 12/05/2019
 uid: mvc/controllers/areas
-ms.openlocfilehash: 9065aa23a537add5a9376472e4f4478e9d4149bd
-ms.sourcegitcommit: 776598f71da0d1e4c9e923b3b395d3c3b5825796
+ms.openlocfilehash: 7e02a21361e0e2148b29a3ae0f1ba25e68239e13
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/26/2019
-ms.locfileid: "70024738"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74881111"
 ---
 # <a name="areas-in-aspnet-core"></a>Áreas no ASP.NET Core
 
@@ -18,7 +18,7 @@ Por [Dhananjay Kumar](https://twitter.com/debug_mode) e [Rick Anderson](https://
 
 Áreas são um recurso do ASP.NET usado para organizar funcionalidades relacionadas em um grupo como um namespace separado (para roteamento) e uma estrutura de pastas (para exibições). O uso de áreas cria uma hierarquia para fins de roteamento, adicionando outro parâmetro de rota, `area`, a `controller` e `action` ou a uma Razor Page, `page`.
 
-As áreas proporcionam uma maneira de particionar um aplicativo Web do ASP.NET Core em grupos funcionais menores, cada um com seu próprio conjunto de Razor Pages, controladores, exibições e modelos. Uma área é efetivamente uma estrutura MVC dentro de um aplicativo. Em um projeto Web do ASP.NET Core, os componentes lógicos como páginas, modelo, controlador e modo de exibição são mantidos em pastas diferentes. O tempo de execução do ASP.NET Core usa as convenções de nomenclatura para criar a relação entre esses componentes. Para um aplicativo grande, pode ser vantajoso particionar o aplicativo em áreas de nível alto separadas de funcionalidade. Por exemplo, um aplicativo de comércio eletrônico com várias unidades de negócios, como check-out, cobrança e pesquisa. Cada uma dessas unidades tem sua própria área para conter exibições, controladores, Razor Pages e modelos.
+As áreas proporcionam uma maneira de particionar um aplicativo Web do ASP.NET Core em grupos funcionais menores, cada um com seu próprio conjunto de Razor Pages, controladores, exibições e modelos. Uma área é efetivamente uma estrutura MVC dentro de um aplicativo. Em um projeto Web do ASP.NET Core, os componentes lógicos como páginas, modelo, controlador e modo de exibição são mantidos em pastas diferentes. O runtime do ASP.NET Core usa as convenções de nomenclatura para criar a relação entre esses componentes. Para um aplicativo grande, pode ser vantajoso particionar o aplicativo em áreas de nível alto separadas de funcionalidade. Por exemplo, um aplicativo de comércio eletrônico com várias unidades de negócios, como check-out, cobrança e pesquisa. Cada uma dessas unidades tem sua própria área para conter exibições, controladores, Razor Pages e modelos.
 
 Considere o uso de Áreas em um projeto quando:
 
@@ -34,7 +34,7 @@ Se você estiver usando o Razor Pages, confira [Áreas com Razor Pages](#areas-w
 Um aplicativo Web do ASP.NET Core típico usando áreas, controladores e exibições contém o seguinte:
 
 * Uma [estrutura de pastas da área](#area-folder-structure).
-* Controladores decorados com o atributo [&lbrack;Area&rbrack;](#attribute) para associar o controlador à área:
+* Controladores com o atributo [`[Area]`](#attribute) para associar o controlador à área:
 
   [!code-csharp[](areas/samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
 
@@ -53,7 +53,7 @@ Considere um aplicativo que tem dois grupos lógicos, *Produtos* e *Serviços*. 
         * HomeController.cs
         * ManageController.cs
       * Exibições
-        * Home
+        * Página inicial do
           * Index.cshtml
         * Gerenciar
           * Index.cshtml
@@ -62,7 +62,7 @@ Considere um aplicativo que tem dois grupos lógicos, *Produtos* e *Serviços*. 
       * Controladores
         * HomeController.cs
       * Exibições
-        * Home
+        * Página inicial do
           * Index.cshtml
 
 Enquanto o layout anterior é típico ao usar áreas, somente os arquivos de exibição são necessários para usar essa estrutura de pastas. Pesquisas de descoberta de exibição para um arquivo de exibição de área correspondente, na seguinte ordem:
@@ -142,12 +142,12 @@ As Áreas com Razor Pages exigem uma pasta *Areas/<area name>/Pages* na raiz do 
       * Pages (Páginas)
         * _ViewImports
         * Sobre o
-        * Índice
+        * Index
     * Serviços
       * Pages (Páginas)
         * Gerenciar
           * Sobre o
-          * Índice
+          * Index
 
 ### <a name="link-generation-with-razor-pages-and-areas"></a>Geração de links com áreas e Razor Pages
 

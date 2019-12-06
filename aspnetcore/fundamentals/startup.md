@@ -5,14 +5,14 @@ description: Saiba como a classe Startup no ASP.NET Core configura serviços e o
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/02/2019
+ms.date: 12/05/2019
 uid: fundamentals/startup
-ms.openlocfilehash: 081eaa772d136477a37a3392877886327e0cda7c
-ms.sourcegitcommit: 897d4abff58505dae86b2947c5fe3d1b80d927f3
+ms.openlocfilehash: 2468c685850f74b8dafb3e0abea6d7b83c417af0
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73634046"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880517"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Inicialização de aplicativo no ASP.NET Core
 
@@ -43,7 +43,7 @@ O exemplo anterior é para [Razor Pages](xref:razor-pages/index); a versão MVC 
 
 ::: moniker-end
 
-A classe `Startup` é especificada quando o [host](xref:fundamentals/index#host) do aplicativo é criado. A classe `Startup` normalmente é especificada chamando o método [`WebHostBuilderExtensions.UseStartup<TStartup>`](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) no construtor de host:
+A classe `Startup` é especificada quando o [host](xref:fundamentals/index#host) do aplicativo é criado. A classe `Startup` normalmente é especificada chamando o método [WebHostBuilderExtensions. UseStartup\<TStartup >](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) no host Builder:
 
 ::: moniker range="< aspnetcore-3.0"
 
@@ -97,7 +97,7 @@ O método <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> é:
 
 * Opcional.
 * Chamado pelo host antes do método `Configure` para configurar os serviços do aplicativo.
-* Quando as [opções de configuração](xref:fundamentals/configuration/index) são definidas por convenção.
+* Onde as [opções de configuração](xref:fundamentals/configuration/index) são definidas por convenção.
 
 O host pode configurar alguns serviços antes que métodos `Startup` sejam chamados. Para obter mais informações, confira [O host](xref:fundamentals/index#host).
 

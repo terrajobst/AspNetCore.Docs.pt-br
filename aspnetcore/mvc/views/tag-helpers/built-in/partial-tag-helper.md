@@ -7,22 +7,22 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/06/2019
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-ms.openlocfilehash: 757c407bbae9c33c5b05a1edc01a37c2ced8dd36
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
-ms.translationtype: HT
+ms.openlocfilehash: 508f91cdcd93c149602223250520eecb73625b24
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64890281"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880986"
 ---
 # <a name="partial-tag-helper-in-aspnet-core"></a>Auxiliar de marca parcial no ASP.NET Core
 
 Por [Scott Addie](https://github.com/scottaddie)
 
-Para obter uma visão geral dos Auxiliares de Marca, confira <xref:mvc/views/tag-helpers/intro>.
+Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="overview"></a>Visão geral
+## <a name="overview"></a>{1&gt;Visão Geral&lt;1}
 
 O auxiliar de marca parcial é usado para renderizar uma [exibição parcial](xref:mvc/views/partial) em Páginas Razor e em aplicativos MVC. Considere que ele:
 
@@ -32,10 +32,10 @@ O auxiliar de marca parcial é usado para renderizar uma [exibição parcial](xr
 
 As opções do HTML Helper para renderizar uma exibição parcial incluem:
 
-* [@await Html.PartialAsync](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.partialasync)
-* [@await Html.RenderPartialAsync](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.renderpartialasync)
-* [@Html.Partial](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.partial)
-* [@Html.RenderPartial](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.renderpartial)
+* [`@await Html.PartialAsync`](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.partialasync)
+* [`@await Html.RenderPartialAsync`](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.renderpartialasync)
+* [`@Html.Partial`](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.partial)
+* [`@Html.RenderPartial`](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.renderpartial)
 
 O modelo *Product* é usado nos exemplos ao longo deste documento:
 
@@ -43,7 +43,7 @@ O modelo *Product* é usado nos exemplos ao longo deste documento:
 
 Segue um inventário dos atributos do auxiliar de marca parcial.
 
-## <a name="name"></a>name
+## <a name="name"></a>{1&gt;name&lt;1}
 
 O atributo `name` é necessário. Indica o nome ou o caminho da exibição parcial a ser renderizada. Quando é fornecido um nome de exibição parcial, o processo [descoberta de exibição](xref:mvc/views/overview#view-discovery) é iniciado. Esse processo é ignorado quando um caminho explícito é fornecido. Para todos os valores de `name` aceitáveis, consulte [Descoberta de exibição parcial](xref:mvc/views/partial#partial-view-discovery).
 
@@ -51,7 +51,7 @@ A marcação a seguir usa um caminho explícito, indicando que *_ProductPartial.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_Name)]
 
-## <a name="for"></a>for
+## <a name="for"></a>para
 
 O atributo `for` atribui uma [ModelExpression](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.modelexpression) a ser avaliada em relação ao modelo atual. Uma `ModelExpression` infere a sintaxe `@Model.`. Por exemplo, `for="Product"` pode ser usado em vez de `for="@Model.Product"`. Esse comportamento de inferência padrão é substituído usando o símbolo `@` para definir uma expressão embutida.
 
@@ -63,7 +63,7 @@ A exibição parcial é associada à propriedade `Product` do modelo de página 
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Pages/Product.cshtml.cs?highlight=8)]
 
-## <a name="model"></a>modelo
+## <a name="model"></a>{1&gt;modelo&lt;1}
 
 O atributo `model` atribui uma instância de modelo a ser passada para a exibição parcial. O atributo `model` não pode ser usado com o atributo [for](#for).
 

@@ -3,15 +3,15 @@ title: Autenticação em APIs web com o Azure Active Directory B2C no ASP.NET Co
 author: camsoper
 description: Descubra como configurar a autenticação do Azure Active Directory B2C com a API Web ASP.NET Core. Teste a autenticado API web com o Postman.
 ms.author: casoper
-ms.date: 09/21/2018
+ms.date: 12/05/2019
 ms.custom: mvc, seodec18
 uid: security/authentication/azure-ad-b2c-webapi
-ms.openlocfilehash: c917a5130857165716bd801ac19dad0f53a7d214
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.openlocfilehash: 0c7e8a1db924bdedf29468bf6b8cc17f03962c6d
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815375"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880734"
 ---
 # <a name="authentication-in-web-apis-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticação em APIs web com o Azure Active Directory B2C no ASP.NET Core
 
@@ -19,7 +19,7 @@ Por [Cam Soper](https://twitter.com/camsoper)
 
 [Azure Active Directory B2C do diretório](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) é uma solução de gerenciamento de identidade de nuvem para aplicativos web e móveis. O serviço fornece autenticação para aplicativos hospedados na nuvem e locais. Tipos de autenticação incluem contas individuais, contas de rede social e contas corporativas de federado. B2C do AD do Azure também fornece a autenticação multifator com configuração mínima.
 
-Azure Active Directory (Azure AD) e o Azure AD B2C são ofertas de produtos separados. Um locatário do AD do Azure representa uma organização, enquanto que um locatário do Azure AD B2C representa uma coleção de identidades a serem usados com aplicativos de terceira parte confiável. Para obter mais informações, consulte [do Azure AD B2C: Perguntas frequentes (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
+Azure Active Directory (Azure AD) e o Azure AD B2C são ofertas de produtos separados. Um locatário do AD do Azure representa uma organização, enquanto que um locatário do Azure AD B2C representa uma coleção de identidades a serem usados com aplicativos de terceira parte confiável. Para obter mais informações, consulte [do Azure AD B2C: perguntas frequentes (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
 
 Uma vez que as APIs da web não tem nenhuma interface do usuário, eles são não é possível redirecionar o usuário a um serviço de token seguro, como o Azure AD B2C. Em vez disso, a API é passada um token de portador do aplicativo de chamada, que já tiver autenticado o usuário com o Azure AD B2C. A API, em seguida, valida o token sem interação direta do usuário.
 
@@ -32,7 +32,7 @@ Neste tutorial, saiba como:
 > * Configure políticas para controlar o comportamento do locatário do Azure AD B2C.
 > * Usar o Postman para simular um aplicativo web que apresenta uma caixa de diálogo de logon, recupera um token e usa-o para fazer uma solicitação em relação a API da web.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 A seguir é necessários para este passo a passo:
 
@@ -54,7 +54,7 @@ No locatário do Azure AD B2C recém-criado, registre sua API usando [as etapas 
 
 Use os seguintes valores:
 
-| Configuração                       | Valor               | Observações                                                                                  |
+| Configuração                       | Value               | {1&gt;Observações&lt;1}                                                                                  |
 |-------------------------------|---------------------|----------------------------------------------------------------------------------------|
 | **Nome**                      | *{Nome da API}*        | Insira um **nome** para o aplicativo que descrevem seu aplicativo para os consumidores.                     |
 | **Incluir aplicativo web / API web** | Sim                 |                                                                                        |
@@ -83,7 +83,7 @@ No Visual Studio:
 
 5. Preencha o formulário com os seguintes valores:
 
-    | Configuração                       | Valor                                                 |
+    | Configuração                       | Value                                                 |
     |-------------------------------|-------------------------------------------------------|
     | **Nome de domínio**               | *{o nome de domínio do seu locatário B2C}*                |
     | **ID do aplicativo**            | *{Colar a ID do aplicativo da área de transferência}*       |
@@ -91,7 +91,7 @@ No Visual Studio:
 
     Selecione **Okey** para fechar o **alterar autenticação** caixa de diálogo. Selecione **Okey** para criar o aplicativo web.
 
-O Visual Studio cria a API da web com um controlador chamado *ValuesController.cs* que retorna valores embutidos para solicitações GET. A classe é decorada com o [atributo Authorize](xref:security/authorization/simple), portanto, todas as solicitações requerem autenticação.
+O Visual Studio cria a API da web com um controlador chamado *ValuesController.cs* que retorna valores embutidos para solicitações GET. A classe é marcada com o atributo [Authorize](xref:security/authorization/simple) , para que todas as solicitações exijam autenticação.
 
 ## <a name="run-the-web-api"></a>Executar a API da web
 
@@ -110,7 +110,7 @@ Uma vez que o Postman simula um aplicativo web que obtém tokens de locatário d
 
 Use os seguintes valores:
 
-| Configuração                       | Valor                            | Observações                           |
+| Configuração                       | Value                            | {1&gt;Observações&lt;1}                           |
 |-------------------------------|----------------------------------|---------------------------------|
 | **Nome**                      | Postman                          |                                 |
 | **Incluir aplicativo web / API web** | Sim                              |                                 |
@@ -157,7 +157,7 @@ Para verificar que a API da web requer autenticação, primeiro verifique uma so
     ![resposta 401 não autorizado](./azure-ad-b2c-webapi/postman-401-status.png)
 
 > [!IMPORTANT]
-> Se você receber um erro "Não foi possível obter qualquer resposta", você talvez precise desabilitar a verificação do certificado SSL na [configurações do Postman](https://learning.getpostman.com/docs/postman/launching_postman/settings).
+> Se você receber um erro "não foi possível obter resposta", talvez seja necessário desabilitar a verificação do certificado SSL nas [configurações do postmaster](https://learning.getpostman.com/docs/postman/launching_postman/settings).
 
 ### <a name="obtain-a-bearer-token"></a>Obter um token de portador
 
@@ -169,19 +169,19 @@ Para fazer uma solicitação autenticada a API da web, é necessário um token d
 
 2. Conclua o **obter novo TOKEN de acesso** caixa de diálogo da seguinte maneira:
 
-   |                Configuração                 |                                             Valor                                             |                                                                                                                                    Observações                                                                                                                                     |
+   |                Configuração                 |                                             Value                                             |                                                                                                                                    {1&gt;Observações&lt;1}                                                                                                                                     |
    |----------------------------------------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
    |      **Nome do token**       |                                          *{nome do token}*                                       |                                                                                                                   Insira um nome descritivo para o token.                                                                                                                    |
    |      **Tipo de concessão**       |                                           Implícita                                            |                                                                                                                                                                                                                                                                              |
    |     **URL de retorno de chamada**      |                                 `https://getpostman.com/postman`                              |                                                                                                                                                                                                                                                                              |
-   |       **URL de autenticação**        | `https://login.microsoftonline.com/{tenant domain name}/oauth2/v2.0/authorize?p=B2C_1_SiUpIn` |  Substitua *{nome de domínio do locatário}* com o nome de domínio do locatário. **IMPORTANTE**: Essa URL deve ter o mesmo nome de domínio que o que for encontrado na `AzureAdB2C.Instance` da API web *appSettings. JSON* arquivo. Consulte a Observação&dagger;.                                                  |
+   |       **URL de autenticação**        | `https://login.microsoftonline.com/{tenant domain name}/oauth2/v2.0/authorize?p=B2C_1_SiUpIn` |  Substitua *{nome de domínio do locatário}* com o nome de domínio do locatário. **IMPORTANTE**: essa URL deve ter o mesmo nome de domínio que o que for encontrado no `AzureAdB2C.Instance` da API web *appSettings. JSON* arquivo. Consulte a Observação&dagger;.                                                  |
    |       **ID do cliente**       |                *{entrar no aplicativo de Postman **ID do aplicativo**}*                              |                                                                                                                                                                                                                                                                              |
    |         **Escopo**         |         `https://{tenant domain name}/{api}/user_impersonation openid offline_access`       | Substitua *{nome de domínio do locatário}* com o nome de domínio do locatário. Substitua *{api}* com o URI da ID do aplicativo você deu a API da web ao registrado pela primeira vez (nesse caso, `api`). O padrão para a URL é: `https://{tenant}.onmicrosoft.com/{api-id-uri}/{scope name}`.         |
    |         **Estado**         |                                      *{Deixe em branco}*                                          |                                                                                                                                                                                                                                                                              |
    | **Autenticação de cliente** |                                Enviar as credenciais do cliente no corpo                                |                                                                                                                                                                                                                                                                              |
 
     > [!NOTE]
-    > &dagger; A caixa de diálogo de configurações de política no portal do Azure Active Directory B2C exibe duas URLs possíveis: Uma no formato `https://login.microsoftonline.com/`{nome de domínio do locatário} / {informações adicionais de caminho} e o outro no formato `https://{tenant name}.b2clogin.com/`{nome de domínio do locatário} / {informações adicionais de caminho}. Ele tem **críticos** que o domínio encontrado na `AzureAdB2C.Instance` da API web *appSettings. JSON* arquivo corresponde ao usado no aplicativo de web *appSettings. JSON* arquivo. Isso é o mesmo domínio usado para o campo de URL do Auth no Postman. Observe que o Visual Studio usa um formato de URL ligeiramente diferente que o que é exibido no portal. Desde que os domínios corresponderem, a URL funciona.
+    > &dagger; A caixa de diálogo de configurações de política no portal do Azure Active Directory B2C exibe duas URLs possíveis: um no formato `https://login.microsoftonline.com/`{nome de domínio do locatário} / {informações adicionais de caminho} e o outro no formato `https://{tenant name}.b2clogin.com/`{nome de domínio do locatário} / {adicionais informações de caminho}. Ele tem **críticos** que o domínio encontrado na `AzureAdB2C.Instance` da API web *appSettings. JSON* arquivo corresponde ao usado no aplicativo de web *appSettings. JSON* arquivo. Isso é o mesmo domínio usado para o campo de URL do Auth no Postman. Observe que o Visual Studio usa um formato de URL ligeiramente diferente que o que é exibido no portal. Desde que os domínios corresponderem, a URL funciona.
 
 3. Selecione o **solicitar Token** botão.
 
@@ -197,7 +197,7 @@ Selecione o **enviar** botão para enviar a solicitação novamente. Neste momen
 
 ![Status de êxito e de carga](./azure-ad-b2c-webapi/postman-success.png)
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Neste tutorial, você aprendeu como:
 

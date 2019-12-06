@@ -3,14 +3,14 @@ title: Exibições no ASP.NET Core MVC
 author: ardalis
 description: Saiba como as exibições tratam da apresentação de dados do aplicativo e da interação com o usuário no ASP.NET Core MVC.
 ms.author: riande
-ms.date: 04/03/2019
+ms.date: 12/05/2019
 uid: mvc/views/overview
-ms.openlocfilehash: 5e56c6bb18cb5d2389c11eb3e4aa9869228da47d
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.openlocfilehash: f636908ee36d0af6e92875876240cb8712dd2ccc
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64891341"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74881032"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Exibições no ASP.NET Core MVC
 
@@ -202,9 +202,9 @@ Além de exibições fortemente tipadas, as exibições têm acesso a uma coleç
 | Uma exibição e uma [exibição de layout](xref:mvc/views/layout)   | Definir o conteúdo do elemento **\<title>** na exibição de layout de um arquivo de exibição.  |
 | Uma [exibição parcial](xref:mvc/views/partial) e uma exibição | Um widget que exibe dados com base na página da Web que o usuário solicitou.      |
 
-Essa coleção pode ser referenciada por meio das propriedades `ViewData` ou `ViewBag` em controladores e exibições. A propriedade `ViewData` é um dicionário de objetos fracamente tipados. A propriedade `ViewBag` é um wrapper em torno de `ViewData` que fornece propriedades dinâmicas à coleção de `ViewData` subjacente. Observação: as pesquisas de chave diferenciam maiúsculas de minúsculas tanto para `ViewData` quanto para `ViewBag`.
+Essa coleção pode ser referenciada por meio das propriedades `ViewData` ou `ViewBag` em controladores e exibições. A propriedade `ViewData` é um dicionário de objetos fracamente tipados. A propriedade `ViewBag` é um wrapper em torno de `ViewData` que fornece propriedades dinâmicas à coleção de `ViewData` subjacente. Observação: as pesquisas de chave não diferenciam maiúsculas de minúsculas para `ViewData` e `ViewBag`.
 
-`ViewData` e `ViewBag` são resolvidos dinamicamente em tempo de execução. Uma vez que não oferecem verificação de tipo em tempo de compilação, geralmente ambos são mais propensos a erros do que quando um viewmodel é usado. Por esse motivo, alguns desenvolvedores preferem nunca usar `ViewData` e `ViewBag` ou usá-los o mínimo possível.
+`ViewData` e `ViewBag` são resolvidos dinamicamente em runtime. Uma vez que não oferecem verificação de tipo em tempo de compilação, geralmente ambos são mais propensos a erros do que quando um viewmodel é usado. Por esse motivo, alguns desenvolvedores preferem nunca usar `ViewData` e `ViewBag` ou usá-los o mínimo possível.
 
 <a name="VD"></a>
 
@@ -252,9 +252,9 @@ Trabalhar com os dados em uma exibição:
 
 **Atributo ViewData**
 
-Outra abordagem que usa o [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) é [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). As propriedades nos controladores ou nos modelos da Página do Razor decoradas com `[ViewData]` têm seus valores armazenados e carregados do dicionário.
+Outra abordagem que usa o [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) é [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). As propriedades em controladores ou modelos de página Razor marcados com o atributo `[ViewData]` têm seus valores armazenados e carregados do dicionário.
 
-No exemplo a seguir, o controlador Home contém uma propriedade `Title` decorada com `[ViewData]`. O método `About` define o título para a exibição About:
+No exemplo a seguir, o controlador inicial contém uma propriedade `Title` marcada com `[ViewData]`. O método `About` define o título para a exibição About:
 
 ```csharp
 public class HomeController : Controller
@@ -377,7 +377,7 @@ Usar `ViewData` e `ViewBag` ao mesmo tempo funciona, assim como misturar e combi
 
 **Quando usar ViewData ou ViewBag**
 
-`ViewData` e `ViewBag` são abordagens igualmente válidas para passar pequenas quantidades de dados entre controladores e exibições. A escolha de qual delas usar é baseada na preferência. Você pode misturar e combinar objetos `ViewData` e `ViewBag`, mas é mais fácil ler e manter o código quando uma abordagem é usada de maneira consistente. Ambas as abordagens são resolvidas dinamicamente em tempo de execução e, portanto, são propensas a causar erros de tempo de execução. Algumas equipes de desenvolvimento as evitam.
+`ViewData` e `ViewBag` são abordagens igualmente válidas para passar pequenas quantidades de dados entre controladores e exibições. A escolha de qual delas usar é baseada na preferência. Você pode misturar e combinar objetos `ViewData` e `ViewBag`, mas é mais fácil ler e manter o código quando uma abordagem é usada de maneira consistente. Ambas as abordagens são resolvidas dinamicamente em runtime e, portanto, são propensas a causar erros de runtime. Algumas equipes de desenvolvimento as evitam.
 
 ### <a name="dynamic-views"></a>Exibições dinâmicas
 
@@ -391,7 +391,7 @@ Exibições que não declaram um tipo de modelo usando `@model`, mas que têm um
 </address>
 ```
 
-Esse recurso oferece flexibilidade, mas não oferece proteção de compilação ou IntelliSense. Se a propriedade não existir, a geração da página da Web falhará em tempo de execução.
+Esse recurso oferece flexibilidade, mas não oferece proteção de compilação ou IntelliSense. Se a propriedade não existir, a geração da página da Web falhará em runtime.
 
 ## <a name="more-view-features"></a>Mais recursos das exibições
 

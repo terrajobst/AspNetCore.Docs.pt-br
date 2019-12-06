@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/index
-ms.openlocfilehash: 2ebc4d72191dff33a7fb6170650be67c3836cdaa
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 693ac1a5b5bcaf8a9bbf0ff9ab63fb41764e3888
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73964004"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880450"
 ---
 # <a name="aspnet-core-opno-locblazor-authentication-and-authorization"></a>Autenticação e autorização do ASP.NET Core Blazor
 
@@ -69,7 +69,7 @@ Os valores de autenticação permitidos (`{AUTHENTICATION}`) são mostrados na t
 
 | Mecanismo de autenticação                                                                 | Valor `{AUTHENTICATION}` |
 | ---------------------------------------------------------------------------------------- | :----------------------: |
-| Sem autenticação                                                                        | `None`                   |
+| Sem Autenticação                                                                        | `None`                   |
 | Individual<br>Usuários armazenados no aplicativo com o ASP.NET Core Identity.                        | `Individual`             |
 | Individual<br>Usuários armazenados no [Azure AD B2C](xref:security/authentication/azure-ad-b2c). | `IndividualB2C`          |
 | Contas corporativas ou de estudante<br>Autenticação organizacional para um único locatário.            | `SingleOrg`              |
@@ -237,7 +237,7 @@ Se os dados do estado de autenticação forem necessários para a lógica do pro
 
 Se `user.Identity.IsAuthenticated` for `true`, será possível enumerar as declarações e avaliar a associação nas funções.
 
-Configure o parâmetro em cascata `Task<AuthenticationState>` usando os componentes `AuthorizeRouteView` e `CascadingAuthenticationState`:
+Configure o `Task<AuthenticationState>` parâmetro em cascata usando os componentes `AuthorizeRouteView` e `CascadingAuthenticationState`:
 
 ```cshtml
 <Router AppAssembly="@typeof(Program).Assembly">
@@ -295,7 +295,7 @@ Também é possível fornecer um conteúdo diferente para ser exibido caso o usu
 </AuthorizeView>
 ```
 
-O conteúdo das marcas `<Authorized>` e `<NotAuthorized>` pode incluir itens arbitrários, como outros componentes interativos.
+O conteúdo das marcas de `<Authorized>` e `<NotAuthorized>` pode incluir itens arbitrários, como outros componentes interativos.
 
 As condições de autorização, como funções ou políticas que controlam o acesso ou as opções da interface do usuário, são abordadas na seção [Autorização](#authorization).
 
@@ -398,7 +398,7 @@ Se `Roles` e `Policy` não forem especificados, `[Authorize]` usará a política
 O componente `Router`, em conjunto com o componente `AuthorizeRouteView`, permite que o aplicativo especifique conteúdo personalizado se:
 
 * O conteúdo não for encontrado.
-* O usuário não atender à condição `[Authorize]` aplicada ao componente. O atributo `[Authorize]` é abordado na seção [Atributo [Authorize]](#authorize-attribute).
+* O usuário não atender à condição `[Authorize]` aplicada ao componente. O atributo `[Authorize]` é abordado na seção [atributo de`[Authorize]`](#authorize-attribute) .
 * A autenticação assíncrona estiver em andamento.
 
 No modelo de projeto padrão do Blazor Server, o arquivo *app. Razor* demonstra como definir o conteúdo personalizado:
@@ -429,7 +429,7 @@ No modelo de projeto padrão do Blazor Server, o arquivo *app. Razor* demonstra 
 </Router>
 ```
 
-O conteúdo das marcas `<NotFound>`, `<NotAuthorized>` e `<Authorizing>` pode incluir itens arbitrários, como outros componentes interativos.
+O conteúdo das marcas `<NotFound>`, `<NotAuthorized>`e `<Authorizing>` pode incluir itens arbitrários, como outros componentes interativos.
 
 Se o elemento `<NotAuthorized>` não for especificado, o `AuthorizeRouteView` usará a seguinte mensagem de fallback:
 
@@ -492,7 +492,7 @@ Em Blazor aplicativos Webassembly, as verificações de autorização podem ser 
 
 **Sempre execute as verificações de autorização no servidor em qualquer ponto de extremidade da API acessada pelo aplicativo do lado do cliente.**
 
-## <a name="troubleshoot-errors"></a>Solucionar erros
+## <a name="troubleshoot-errors"></a>Solucionar problemas de erros
 
 Erros comuns:
 

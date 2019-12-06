@@ -4,17 +4,17 @@ author: rick-anderson
 description: Saiba mais sobre os novos recursos do ASP.NET Core 3,1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc:
 - Blazor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 634c6937089a0a0fe1f862a83771aff65a1f8418
-ms.sourcegitcommit: 5974e3e66dab3398ecf2324fbb82a9c5636f70de
+ms.openlocfilehash: 5eaf14f3b9c5a5b2b83e469c4dc8119b5fc341c1
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/03/2019
-ms.locfileid: "74778837"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880821"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>O que há de novo no ASP.NET Core 3,1
 
@@ -47,7 +47,7 @@ Para obter mais informações, consulte [integrar componentes em aplicativos Raz
 
 ## <a name="support-for-shared-queues-in-httpsys"></a>Suporte para filas compartilhadas em HTTP. sys
 
-O [http. sys](xref:fundamentals/servers/httpsys) dá suporte à criação de filas de solicitações anônimas. No ASP.NET Core 3,1, adicionamos a capacidade de criar ou anexar a uma fila de solicitações de HTTP. sys chamada existente. Criar ou anexar a uma fila de solicitações HTTP. sys denominada existente permite cenários em que o HTTP. O processo do controlador sys que possui a fila é independente do processo do ouvinte. Essa independência possibilita preservar as conexões existentes e as solicitações enfileiradas entre as reinicializações do processo de ouvinte:
+O [http. sys](xref:fundamentals/servers/httpsys) dá suporte à criação de filas de solicitações anônimas. No ASP.NET Core 3,1, adicionamos a capacidade de criar ou anexar a uma fila de solicitações de HTTP. sys chamada existente. A criação ou anexação a uma fila de solicitações HTTP. sys denominada permite cenários em que o processo do controlador HTTP. sys que possui a fila é independente do processo do ouvinte. Essa independência possibilita preservar as conexões existentes e as solicitações enfileiradas entre as reinicializações do processo de ouvinte:
 
 [!code-csharp[](sample/Program.cs?name=snippet)]
 

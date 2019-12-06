@@ -4,16 +4,16 @@ author: isaac2004
 description: Conheça os novos recursos no ASP.NET Core 2.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc:
 - SignalR
 uid: aspnetcore-2.1
-ms.openlocfilehash: a45ba44fb7911a21927a4a996c0d6fa9eb776357
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: d969b4caab44e3e50b3a0202b25864921d6d01dc
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963185"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880851"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Novidades do ASP.NET Core 2.1
 
@@ -147,7 +147,7 @@ Os modelos de Aplicativo de Página Única para Angular, React e React com Redux
 
 O modelo Angular se baseia na CLI Angular e os modelos React baseiam-se em create-react-app.
 
-Para obter mais informações, consulte:
+Para obter mais informações, consulte .
 
 * <xref:spa/angular>
 * <xref:spa/react>
@@ -175,6 +175,6 @@ Para obter mais informações, consulte <xref:mvc/compatibility-version>.
 
 Veja [Migrar do ASP.NET Core 2.0 para 2.1](xref:migration/20_21).
 
-## <a name="additional-information"></a>Informações adicionais
+## <a name="additional-information"></a>{1&gt;{2&gt;Informações adicionais&lt;2}&lt;1}
 
 Para obter uma lista de alterações, vejas as [Notas de versão do ASP.NET Core 2.1](https://github.com/aspnet/Home/releases/tag/2.1.0).

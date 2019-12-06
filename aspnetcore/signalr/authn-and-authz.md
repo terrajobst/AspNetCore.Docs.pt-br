@@ -5,16 +5,16 @@ description: Saiba como usar a autenticação e a autorização no ASP.NET Core 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc:
 - SignalR
 uid: signalr/authn-and-authz
-ms.openlocfilehash: 5a1e15ef46a3f89af3fbd3d505e7bd340c46e672
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 091cc9b2adc1f6a8fac79519884695d1c1725d2a
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963823"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880412"
 ---
 # <a name="authentication-and-authorization-in-aspnet-core-opno-locsignalr"></a>Autenticação e autorização no ASP.NET Core SignalR
 
@@ -24,7 +24,7 @@ Por [Andrew Stanton-enfermaria](https://twitter.com/anurse)
 
 ## <a name="authenticate-users-connecting-to-a-opno-locsignalr-hub"></a>Autenticar usuários que se conectam a um hub de SignalR
 
-SignalR pode ser usado com a [autenticação do ASP.NET Core](xref:security/authentication/identity) para associar um usuário a cada conexão. Em um Hub, os dados de autenticação podem ser acessados por meio da propriedade [`HubConnectionContext.User`](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) . A autenticação permite que o Hub Chame métodos em todas as conexões associadas a um usuário. Para obter mais informações, consulte [gerenciar usuários e grupos no SignalR](xref:signalr/groups). Várias conexões podem ser associadas a um único usuário.
+SignalR pode ser usado com a [autenticação do ASP.NET Core](xref:security/authentication/identity) para associar um usuário a cada conexão. Em um Hub, os dados de autenticação podem ser acessados da propriedade [HubConnectionContext. User](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) . A autenticação permite que o Hub Chame métodos em todas as conexões associadas a um usuário. Para obter mais informações, consulte [gerenciar usuários e grupos no SignalR](xref:signalr/groups). Várias conexões podem ser associadas a um único usuário.
 
 Veja a seguir um exemplo de `Startup.Configure` que usa SignalR e ASP.NET Core autenticação:
 
@@ -220,7 +220,7 @@ public class ChatHub : Hub
 
 SignalR fornece um recurso personalizado para manipuladores de autorização quando um método de Hub requer autorização. O recurso é uma instância do `HubInvocationContext`. O `HubInvocationContext` inclui o `HubCallerContext`, o nome do método de Hub que está sendo invocado e os argumentos para o método Hub.
 
-Considere o exemplo de uma sala de chat que permite a entrada de várias organizações por meio de Azure Active Directory. Qualquer pessoa com um conta Microsoft pode entrar no chat, mas somente os membros da organização proprietária devem ser capazes de proibir os usuários ou exibir os históricos de chat dos usuários. Além disso, talvez queiramos restringir determinadas funcionalidades de determinados usuários. Usando os recursos atualizados do ASP.NET Core 3,0, isso é totalmente possível. Observe como o `DomainRestrictedRequirement` serve como um `IAuthorizationRequirement` personalizado. Agora que o parâmetro de recurso `HubInvocationContext` está sendo passado, a lógica interna pode inspecionar o contexto no qual o Hub está sendo chamado e tomar decisões sobre como permitir que o usuário execute métodos de Hub individuais.
+Considere o exemplo de uma sala de chat que permite a entrada de várias organizações por meio de Azure Active Directory. Qualquer pessoa com um conta Microsoft pode entrar no chat, mas somente os membros da organização proprietária devem ser capazes de proibir os usuários ou exibir os históricos de chat dos usuários. Além disso, talvez queiramos restringir determinadas funcionalidades de determinados usuários. Usando os recursos atualizados do ASP.NET Core 3,0, isso é totalmente possível. Observe como o `DomainRestrictedRequirement` serve como um `IAuthorizationRequirement`personalizado. Agora que o parâmetro de recurso `HubInvocationContext` está sendo passado, a lógica interna pode inspecionar o contexto no qual o Hub está sendo chamado e tomar decisões sobre como permitir que o usuário execute métodos de Hub individuais.
 
 ```csharp
 [Authorize]

@@ -5,14 +5,14 @@ description: Descubra como tratar erros em aplicativos ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/08/2019
+ms.date: 12/05/2019
 uid: fundamentals/error-handling
-ms.openlocfilehash: bff526e196ecc378d4687e1c38188977aeeccfd9
-ms.sourcegitcommit: a166291c6708f5949c417874108332856b53b6a9
+ms.openlocfilehash: 162972043a90fc8cc45aed52b5fa80ade3e11f39
+ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/18/2019
-ms.locfileid: "72589884"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74880068"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Tratar erros no ASP.NET Core
 
@@ -64,7 +64,7 @@ public IActionResult Error()
 }
 ```
 
-Não decore o método de ação do manipulador de erro com atributos de método HTTP, como `HttpGet`. Verbos explícitos impedem algumas solicitações de chegar ao método. Permita acesso anônimo ao método para que os usuários não autenticados possam capazes receber a exibição de erro.
+Não marque o método de ação do manipulador de erros com atributos do método HTTP, como `HttpGet`. Verbos explícitos impedem algumas solicitações de chegar ao método. Permita acesso anônimo ao método para que os usuários não autenticados possam capazes receber a exibição de erro.
 
 ### <a name="access-the-exception"></a>Acessar a exceção
 
@@ -166,7 +166,7 @@ O ponto de extremidade que processa o erro pode obter a URL original que gerou o
 
 ## <a name="disable-status-code-pages"></a>Desabilitar páginas de código de status
 
-Para desabilitar as páginas de código de status de um método de ação ou controlador MVC, use o atributo [[SkipStatusCodePages]](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute).
+Para desabilitar as páginas de código de status para um controlador MVC ou um método de ação, use o atributo [`[SkipStatusCodePages]`](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) .
 
 Para desabilitar as páginas de código de status de solicitações específicas em um método manipulador Razor Pages ou em um controlador MVC, use <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>:
 
