@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: security/app-secrets
-ms.openlocfilehash: 3323b7b614b7e8bc711b2c5acfb501b65b3d783b
-ms.sourcegitcommit: 76d7fff62014c3db02564191ab768acea00f1b26
+ms.openlocfilehash: 0bbd6af01ce3a29d3931faa2853a50dc895490cc
+ms.sourcegitcommit: fd2483f0a384b1c479c5b4af025ee46917db1919
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 12/05/2019
-ms.locfileid: "74852682"
+ms.locfileid: "74868024"
 ---
 # <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Armazenamento seguro de segredos do aplicativo em desenvolvimento no ASP.NET Core
 
@@ -27,7 +27,7 @@ As variáveis de ambiente são usadas para evitar o armazenamento de segredos do
 
 ::: moniker range="<= aspnetcore-1.1"
 
-Configure a leitura de valores de variáveis de ambiente chamando <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> no construtor de `Startup`:
+Configure a leitura de valores de variáveis de ambiente chamando <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables%2A> no construtor de `Startup`:
 
 [!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=8)]
 
@@ -229,11 +229,11 @@ Se seu projeto tiver como destino .NET Framework, instale o pacote NuGet [Micros
 
 ::: moniker range=">= aspnetcore-2.0"
 
-No ASP.NET Core 2,0 ou posterior, a fonte de configuração de segredos do usuário é adicionada automaticamente no modo de desenvolvimento quando o projeto chama <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> para inicializar uma nova instância do host com padrões pré-configurados. `CreateDefaultBuilder` chama <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> quando o <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> é <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development>:
+No ASP.NET Core 2,0 ou posterior, a fonte de configuração de segredos do usuário é adicionada automaticamente no modo de desenvolvimento quando o projeto chama <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> para inicializar uma nova instância do host com padrões pré-configurados. `CreateDefaultBuilder` chama <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> quando o <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> é <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development>:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Program.cs?name=snippet_CreateWebHostBuilder&highlight=2)]
 
-Quando `CreateDefaultBuilder` não for chamado, adicione a fonte de configuração de segredos do usuário explicitamente chamando <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> no Construtor `Startup`. Chame `AddUserSecrets` somente quando o aplicativo for executado no ambiente de desenvolvimento, conforme mostrado no exemplo a seguir:
+Quando `CreateDefaultBuilder` não for chamado, adicione a fonte de configuração de segredos do usuário explicitamente chamando <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> no Construtor `Startup`. Chame `AddUserSecrets` somente quando o aplicativo for executado no ambiente de desenvolvimento, conforme mostrado no exemplo a seguir:
 
 [!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=12)]
 
@@ -243,7 +243,7 @@ Quando `CreateDefaultBuilder` não for chamado, adicione a fonte de configuraç�
 
 Instale o pacote NuGet [Microsoft. Extensions. Configuration. Usersecretos](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) .
 
-Adicione a fonte de configuração de segredos do usuário com uma chamada para <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets*> no construtor de `Startup`:
+Adicione a fonte de configuração de segredos do usuário com uma chamada para <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> no construtor de `Startup`:
 
 [!code-csharp[](app-secrets/samples/1.x/UserSecrets/Startup.cs?name=snippet_StartupConstructor&highlight=12)]
 
@@ -303,7 +303,7 @@ Remova o `Password` par chave-valor da cadeia de conexão em *appSettings. JSON*
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings.json?highlight=3)]
 
-O valor do segredo pode ser definido em uma propriedade <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password*> do objeto de <xref:System.Data.SqlClient.SqlConnectionStringBuilder> para concluir a cadeia de conexão:
+O valor do segredo pode ser definido em uma propriedade <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> do objeto de <xref:System.Data.SqlClient.SqlConnectionStringBuilder> para concluir a cadeia de conexão:
 
 ::: moniker range=">= aspnetcore-2.0"
 
