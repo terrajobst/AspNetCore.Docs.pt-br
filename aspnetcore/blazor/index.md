@@ -5,17 +5,17 @@ description: Explore ASP.NET Core Blazor, uma maneira de criar interface do usu�
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc, seoapril2019
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: 8b656a7461c78475432722540ad628258cfe19c4
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 4ab6af649afe66d92fb2ea07d3abed057f321bce
+ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73962921"
+ms.lasthandoff: 12/09/2019
+ms.locfileid: "74943713"
 ---
 # <a name="introduction-to-aspnet-core-opno-locblazor"></a>Introdução ao ASP.NET Core Blazor
 
@@ -53,7 +53,7 @@ A classe do componente geralmente é gravada na forma de uma página de marcaç�
 
 A seguinte marcação Razor demonstra um componente (*Dialog.razor*), que pode ser aninhado dentro de outro componente:
 
-```cshtml
+```razor
 <div>
     <h1>@Title</h1>
 
@@ -84,7 +84,7 @@ No exemplo a seguir, o componente `Index` usa o componente `Dialog`. `ChildConte
 
 *Index.razor*:
 
-```cshtml
+```razor
 @page "/"
 
 <h1>Hello, world!</h1>
@@ -128,7 +128,7 @@ O tamanho do aplicativo publicado, seu *tamanho de payload*, é um fator de dese
 * As respostas HTTP são compactadas.
 * O runtime do .NET e os assemblies são armazenados em cache no navegador.
 
-## <a name="opno-locblazor-server"></a>Servidor de Blazor
+## <a name="opno-locblazor-server"></a>Servidor do Blazor
 
 Blazor dissocia a lógica de renderização do componente de como as atualizações da interface do usuário são aplicadas. o Blazor Server fornece suporte para hospedar componentes do Razor no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário são manipuladas por uma conexão [SignalR](xref:signalr/introduction) .
 

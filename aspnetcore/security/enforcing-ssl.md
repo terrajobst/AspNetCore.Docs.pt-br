@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como exigir HTTPS/TLS em um aplicativo Web ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/14/2019
+ms.date: 12/06/2019
 uid: security/enforcing-ssl
-ms.openlocfilehash: 82cd2e52f3bd929682b9eae24611ad04fd9f8682
-ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
+ms.openlocfilehash: 032105c67e15ab94635ae6fadea103450c7eb0fb
+ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/22/2019
-ms.locfileid: "74317364"
+ms.lasthandoff: 12/09/2019
+ms.locfileid: "74944233"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Impor HTTPS em ASP.NET Core
 
@@ -131,7 +131,7 @@ Especifique a porta HTTPS usando qualquer uma das seguintes abordagens:
 > [!NOTE]
 > Quando um aplicativo é executado em uma configuração de proxy reverso, <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> não está disponível. Defina a porta usando uma das outras abordagens descritas nesta seção.
 
-### <a name="edge-deployments"></a>Implantações de borda 
+### <a name="edge-deployments"></a>Implantações do Edge 
 
 Quando Kestrel ou HTTP. sys é usado como um servidor de borda voltado ao público, Kestrel ou HTTP. sys deve ser configurado para escutar em ambos:
 
@@ -173,7 +173,7 @@ A chamada de `AddHttpsRedirection` só é necessária para alterar os valores de
 O código realçado anterior:
 
 * Define [HttpsRedirectionOptions. RedirectStatusCode](xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode*) como <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect>, que é o valor padrão. Use os campos da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para as atribuições a serem `RedirectStatusCode`.
-* Define a porta HTTPS como 5001. O valor padrão é 443.
+* Define a porta HTTPS como 5001.
 
 #### <a name="configure-permanent-redirects-in-production"></a>Configurar redirecionamentos permanentes na produção
 
@@ -261,7 +261,7 @@ o `UseHsts` não é recomendado no desenvolvimento porque as configurações de 
 
 Para ambientes de produção que estão implementando HTTPS pela primeira vez, defina o [HstsOptions inicial. MaxAge](xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*) como um valor pequeno usando um dos métodos <xref:System.TimeSpan>. Defina o valor de horas para não mais do que um único dia, caso precise reverter a infraestrutura HTTPS para HTTP. Depois que você estiver confiante na sustentabilidade da configuração de HTTPS, aumente o valor de idade máxima HSTS; um valor comumente usado é de um ano.
 
-O código a seguir:
+O seguinte código:
 
 
 ::: moniker range=">= aspnetcore-3.0"

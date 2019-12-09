@@ -5,17 +5,17 @@ description: Saiba como hospedar e implantar um aplicativo do Blazor Server usan
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 12/05/2019
 no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/server
-ms.openlocfilehash: b688d000f26c9b230d9fdee8423b3194145fe1aa
-ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
+ms.openlocfilehash: d45d355eabc53fc90bcda4cb7be22fb6a9f04541
+ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/22/2019
-ms.locfileid: "74317303"
+ms.lasthandoff: 12/09/2019
+ms.locfileid: "74944328"
 ---
 # <a name="host-and-deploy-opno-locblazor-server"></a>Hospedar e implantar o servidor de Blazor
 
@@ -31,7 +31,7 @@ Usando o [modelo de hospedagem do servidorBlazor](xref:blazor/hosting-models#bla
 
 É necessário um servidor Web capaz de hospedar um aplicativo ASP.NET Core. O Visual Studio inclui o modelo de projeto de **aplicativo doBlazor Server** (`blazorserverside` modelo ao usar o comando [dotnet New](/dotnet/core/tools/dotnet-new) ).
 
-## <a name="scalability"></a>Escalabilidade
+## <a name="scalability"></a>Dimensionamento
 
 Planeje uma implantação para fazer o melhor uso da infraestrutura disponível para um aplicativo do Blazor Server. Consulte os seguintes recursos para resolver a escalabilidade do aplicativo Blazor Server:
 
@@ -49,7 +49,7 @@ Para obter orientação sobre a criação de aplicativos de servidor Blazor de s
 
 Cada circuito usa aproximadamente 250 KB de memória para um aplicativo estilo mínimo de *Olá, mundo*. O tamanho de um circuito depende do código do aplicativo e dos requisitos de manutenção de estado associados a cada componente. Recomendamos que você meça as demandas de recursos durante o desenvolvimento para seu aplicativo e infraestrutura, mas a linha de base a seguir pode ser um ponto de partida para planejar seu destino de implantação: se você espera que seu aplicativo ofereça suporte a 5.000 usuários simultâneos, considere o orçamento para menos 1,3 GB de memória do servidor para o aplicativo (ou ~ 273 KB por usuário).
 
-### <a name="opno-locsignalr-configuration"></a>configuração de SignalR
+### <a name="opno-locsignalr-configuration"></a>SignalR configuração
 
 os aplicativos do Blazor Server usam ASP.NET Core SignalR para se comunicar com o navegador. as [condições de hospedagem e colocação deSignalR](xref:signalr/publish-to-azure-web-app) se aplicam aos aplicativos Blazor Server.
 
@@ -109,7 +109,7 @@ metadata:
 
 A [interoperabilidade js](xref:blazor/javascript-interop) pode ser usada para medir a latência de rede, como demonstra o exemplo a seguir:
 
-```cshtml
+```razor
 @inject IJSRuntime JS
 
 @if (latency is null)

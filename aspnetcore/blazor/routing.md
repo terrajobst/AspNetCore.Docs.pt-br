@@ -5,16 +5,16 @@ description: Saiba como rotear solicitações em aplicativos e sobre o component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/23/2019
+ms.date: 12/05/2019
 no-loc:
 - Blazor
 uid: blazor/routing
-ms.openlocfilehash: 2c139db4e44679fbd9f3455a2d2543be0e128765
-ms.sourcegitcommit: 918d7000b48a2892750264b852bad9e96a1165a7
+ms.openlocfilehash: 1690434f48141bc83e7bc02e22cb763430eaa10d
+ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/27/2019
-ms.locfileid: "74550329"
+ms.lasthandoff: 12/09/2019
+ms.locfileid: "74944012"
 ---
 # <a name="aspnet-core-opno-locblazor-routing"></a>Roteamento de Blazor de ASP.NET Core
 
@@ -36,7 +36,7 @@ A configuração mais típica é rotear todas as solicitações para uma página
 
 O componente `Router` permite o roteamento para cada componente com uma rota especificada. O componente `Router` aparece no arquivo *app. Razor* :
 
-```cshtml
+```razor
 <Router AppAssembly="typeof(Startup).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
@@ -58,7 +58,12 @@ Opcionalmente, você pode especificar um parâmetro `DefaultLayout` com uma clas
 
 Vários modelos de rota podem ser aplicados a um componente. O componente a seguir responde às solicitações de `/BlazorRoute` e `/DifferentBlazorRoute`:
 
-[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
+```razor
+@page "/BlazorRoute"
+@page "/DifferentBlazorRoute"
+
+<h1>Blazor routing</h1>
+```
 
 > [!IMPORTANT]
 > Para que as URLs sejam resolvidas corretamente, o aplicativo deve incluir uma marca de `<base>` em seu arquivo *wwwroot/index.html* (Blazor Webassembly) ou no arquivo *pages/_Host. cshtml* (servidorBlazor) com o caminho base do aplicativo especificado no atributo `href` (`<base href="/">`). Para obter mais informações, consulte <xref:host-and-deploy/blazor/index#app-base-path>.
@@ -69,7 +74,7 @@ O componente `Router` permite que o aplicativo especifique conteúdo personaliza
 
 No arquivo *app. Razor* , defina o conteúdo personalizado no parâmetro `NotFound` template do componente `Router`:
 
-```cshtml
+```razor
 <Router AppAssembly="typeof(Startup).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
@@ -87,7 +92,7 @@ O conteúdo das marcas de `<NotFound>` pode incluir itens arbitrários, como out
 
 Use o parâmetro `AdditionalAssemblies` para especificar assemblies adicionais para o componente `Router` a ser considerado ao procurar componentes roteáveis. Os assemblies especificados são considerados além do assembly especificado pelo `AppAssembly`. No exemplo a seguir, `Component1` é um componente roteável definido em uma biblioteca de classes referenciada. O exemplo a seguir `AdditionalAssemblies` resulta no suporte de roteamento para `Component1`:
 
-```cshtml
+```razor
 <Router
     AppAssembly="typeof(Program).Assembly"
     AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
@@ -99,7 +104,22 @@ Use o parâmetro `AdditionalAssemblies` para especificar assemblies adicionais p
 
 O roteador usa parâmetros de rota para popular os parâmetros de componente correspondentes com o mesmo nome (não diferencia maiúsculas de minúsculas):
 
-[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/RouteParameter.razor?name=snippet_RouteParameter&highlight=2,7-8)]
+```razor
+@page "/RouteParameter"
+@page "/RouteParameter/{text}"
+
+<h1>Blazor is @Text!</h1>
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Text = Text ?? "fantastic";
+    }
+}
+```
 
 Não há suporte para parâmetros opcionais para aplicativos Blazor no ASP.NET Core 3,0. Duas diretivas `@page` são aplicadas no exemplo anterior. O primeiro permite a navegação para o componente sem um parâmetro. A segunda diretiva de `@page` usa o parâmetro `{text}` Route e atribui o valor à propriedade `Text`.
 
@@ -112,7 +132,7 @@ No exemplo a seguir, a rota para o componente `Users` só corresponde se:
 * Um segmento de rota `Id` está presente na URL da solicitação.
 * O segmento de `Id` é um inteiro (`int`).
 
-[!code-cshtml[](routing/samples_snapshot/3.x/Constraint.razor?highlight=1)]
+[!code-razor[](routing/samples_snapshot/3.x/Constraint.razor?highlight=1)]
 
 As restrições de rota mostradas na tabela a seguir estão disponíveis. Para as restrições de rota que correspondem à cultura invariável, consulte o aviso abaixo da tabela para obter mais informações.
 
@@ -154,7 +174,7 @@ Use um componente `NavLink` em vez de elementos HTML HYPERLINK (`<a>`) ao criar 
 
 O componente `NavMenu` a seguir cria uma barra de navegação de [inicialização](https://getbootstrap.com/docs/) que demonstra como usar os componentes do `NavLink`:
 
-[!code-cshtml[](routing/samples_snapshot/3.x/NavMenu.razor?highlight=4,9)]
+[!code-razor[](routing/samples_snapshot/3.x/NavMenu.razor?highlight=4,9)]
 
 Há duas opções de `NavLinkMatch` que você pode atribuir ao atributo `Match` do elemento `<NavLink>`:
 
@@ -165,7 +185,7 @@ No exemplo anterior, a `NavLink` inicial `href=""` corresponde à URL inicial e 
 
 Atributos de componente `NavLink` adicionais são passados para a marca de âncora renderizada. No exemplo a seguir, o componente `NavLink` inclui o atributo `target`:
 
-```cshtml
+```razor
 <NavLink href="my-page" target="_blank">My page</NavLink>
 ```
 
@@ -179,7 +199,7 @@ A seguinte marcação HTML é renderizada:
 
 Use `Microsoft.AspNetCore.Components.NavigationManager` para trabalhar com URIs e navegação no C# código. `NavigationManager` fornece o evento e os métodos mostrados na tabela a seguir.
 
-| Membro | Descrição |
+| {1&gt;Membro&lt;1} | Descrição |
 | ------ | ----------- |
 | `Uri` | Obtém o URI absoluto atual. |
 | `BaseUri` | Obtém o URI de base (com uma barra à direita) que pode ser anexado a caminhos de URI relativos para produzir um URI absoluto. Normalmente, `BaseUri` corresponde ao atributo `href` no elemento `<base>` do documento em *wwwroot/index.html* (Blazor Webassembly) ou *pages/_Host. cshtml* (servidorBlazor). |
@@ -190,7 +210,7 @@ Use `Microsoft.AspNetCore.Components.NavigationManager` para trabalhar com URIs 
 
 O componente a seguir navega para o componente de `Counter` do aplicativo quando o botão é selecionado:
 
-```cshtml
+```razor
 @page "/navigate"
 @inject NavigationManager NavigationManager
 

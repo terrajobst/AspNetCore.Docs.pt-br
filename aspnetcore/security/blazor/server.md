@@ -5,17 +5,17 @@ description: Saiba como mitigar as ameaças de segurança para Blazor aplicativo
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/server
-ms.openlocfilehash: 5cf83a4dd255959e8840fca3a8194b5b4e2ad0a8
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 2d644b84b304a31ad0debc16164ad155c7f7da65
+ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963873"
+ms.lasthandoff: 12/09/2019
+ms.locfileid: "74944276"
 ---
 # <a name="secure-aspnet-core-opno-locblazor-server-apps"></a>Proteger ASP.NET Core aplicativos do Blazor Server
 
@@ -38,7 +38,7 @@ O esgotamento de recursos pode ocorrer quando um cliente interage com o servidor
 
 * [CPU](#cpu)
 * [Memória](#memory)
-* [Conexões de cliente](#client-connections)
+* [Conexões de clientes](#client-connections)
 
 Ataques de DoS (negação de serviço) geralmente buscam esgotar os recursos de um aplicativo ou servidor. No entanto, o esgotamento de recursos não é necessariamente o resultado de um ataque no sistema. Por exemplo, recursos finitos podem ser esgotados devido à alta demanda do usuário. O DoS é abordado mais detalhadamente na seção [ataques dos (negação de serviço)](#denial-of-service-dos-attacks) .
 
@@ -73,7 +73,7 @@ As demandas de memória do lado do servidor são uma consideração para todos o
 > [!NOTE]
 > Durante o desenvolvimento, um criador de perfil pode ser usado ou um rastreamento capturado para avaliar as demandas de memória dos clientes. Um criador de perfil ou rastreamento não capturará a memória alocada para um cliente específico. Para capturar o uso de memória de um cliente específico durante o desenvolvimento, Capture um despejo e examine a demanda de memória de todos os objetos com raiz no circuito do usuário.
 
-### <a name="client-connections"></a>Conexões de cliente
+### <a name="client-connections"></a>Conexões de clientes
 
 O esgotamento de conexão pode ocorrer quando um ou mais clientes abrem muitas conexões simultâneas com o servidor, impedindo que outros clientes estabeleçam novas conexões.
 
@@ -97,7 +97,7 @@ Ataques de DoS (negação de serviço) envolvem um cliente que está fazendo com
 | limite de aplicativo do Blazor Server                            | Descrição | Padrão |
 | ------------------------------------------------------- | ----------- | ------- |
 | `CircuitOptions.DisconnectedCircuitMaxRetained`         | Número máximo de circuitos desconectados que um determinado servidor mantém na memória por vez. | 100 |
-| `CircuitOptions.DisconnectedCircuitRetentionPeriod`     | Quantidade máxima de tempo que um circuito desconectado é mantido na memória antes de ser interrompido. | 3 minutos |
+| `CircuitOptions.DisconnectedCircuitRetentionPeriod`     | Quantidade máxima de tempo que um circuito desconectado é mantido na memória antes de ser interrompido. | Três minutos |
 | `CircuitOptions.JSInteropDefaultCallTimeout`            | Quantidade máxima de tempo que o servidor espera antes de atingir o tempo limite de uma invocação de função JavaScript assíncrona. | 1 minuto |
 | `CircuitOptions.MaxBufferedUnacknowledgedRenderBatches` | Número máximo de lotes de renderização não confirmados que o servidor mantém na memória por circuito em um determinado momento para dar suporte à reconexão robusta. Depois de atingir o limite, o servidor para de produzir novos lotes de renderização até que um ou mais lotes tenham sido confirmados pelo cliente. | 10 |
 
@@ -144,7 +144,7 @@ Não confie em chamadas de JavaScript para métodos .NET. Quando um método .NET
   * Evite passar dados fornecidos pelo usuário em parâmetros para chamadas JavaScript. Se a passagem de dados em parâmetros for absolutamente necessária, verifique se o código JavaScript lida com a passagem dos dados sem introduzir vulnerabilidades de [XSS (script entre sites)](#cross-site-scripting-xss) . Por exemplo, não grave dados fornecidos pelo usuário no Modelo de Objeto do Documento (DOM) definindo a propriedade `innerHTML` de um elemento. Considere o uso da [política de segurança de conteúdo (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) para desabilitar `eval` e outros primitivos JavaScript não seguros.
 * Evite implementar a expedição personalizada de invocações do .NET sobre a implementação de expedição da estrutura. Expor métodos .NET ao navegador é um cenário avançado, não recomendado para desenvolvimento de Blazor geral.
 
-### <a name="events"></a>Eventos
+### <a name="events"></a>Events
 
 Os eventos fornecem um ponto de entrada para um aplicativo do Blazor Server. As mesmas regras para proteger pontos de extremidade em aplicativos Web se aplicam à manipulação de eventos em aplicativos do Blazor Server. Um cliente mal-intencionado pode enviar todos os dados que deseja enviar como a carga de um evento.
 
@@ -159,7 +159,7 @@ os eventos do Blazor Server são assíncronos, de modo que vários eventos podem
 
 Considere um componente de contador que deve permitir que um usuário aumente um contador no máximo três vezes. O botão para incrementar o contador é condicionalmente baseado no valor de `count`:
 
-```cshtml
+```razor
 <p>Count: @count<p>
 
 @if (count < 3)
@@ -180,7 +180,7 @@ Considere um componente de contador que deve permitir que um usuário aumente um
 
 Um cliente pode enviar um ou mais eventos de incremento antes que a estrutura produza um novo processamento desse componente. O resultado é que o `count` pode ser incrementado *em três vezes* pelo usuário, pois o botão não é removido pela interface de usuário com rapidez suficiente. A maneira correta de atingir o limite de três `count` incrementos é mostrada no exemplo a seguir:
 
-```cshtml
+```razor
 <p>Count: @count<p>
 
 @if (count < 3)
@@ -208,7 +208,7 @@ Ao adicionar a `if (count < 3) { ... }` verificação dentro do manipulador, a d
 
 Se um retorno de chamada de evento invocar uma operação de execução demorada, como buscar dados de um serviço ou banco de dado externo, considere usar uma proteção. A proteção pode impedir que o usuário enfileirar várias operações enquanto a operação está em andamento com comentários visuais. O código de componente a seguir define `isLoading` para `true` enquanto `GetForecastAsync` obtém dados do servidor. Embora `isLoading` seja `true`, o botão é desabilitado na interface do usuário:
 
-```cshtml
+```razor
 @page "/fetchdata"
 @using BlazorServerSample.Data
 @inject WeatherForecastService ForecastService
@@ -235,7 +235,7 @@ Se um retorno de chamada de evento invocar uma operação de execução demorada
 
 Além de usar uma proteção, conforme descrito na seção [proteção contra vários despachos](#guard-against-multiple-dispatches) , considere usar um <xref:System.Threading.CancellationToken> para cancelar operações de execução longa quando o componente for descartado. Essa abordagem tem o benefício adicional de evitar o *uso-After-Dispose* nos componentes:
 
-```cshtml
+```razor
 @implements IDisposable
 
 ...
@@ -291,8 +291,8 @@ O erro do lado do cliente não inclui a pilha de chamadas e não fornece detalhe
 
 Habilitar erros detalhados com:
 
-* `CircuitOptions.DetailedErrors`
-* `DetailedErrors` chave de configuração. Por exemplo, defina a variável de ambiente `ASPNETCORE_DETAILEDERRORS` como um valor de `true`.
+* `CircuitOptions.DetailedErrors`.
+* Chave de configuração de `DetailedErrors`. Por exemplo, defina a variável de ambiente `ASPNETCORE_DETAILEDERRORS` como um valor de `true`.
 
 > [!WARNING]
 > Expor informações de erro aos clientes na Internet é um risco de segurança que sempre deve ser evitado.

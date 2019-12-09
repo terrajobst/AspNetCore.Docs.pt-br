@@ -3,14 +3,14 @@ title: Referência da sintaxe Razor para ASP.NET Core
 author: rick-anderson
 description: Saiba mais sobre a sintaxe de marcação Razor para inserir código baseado em servidor em páginas da Web.
 ms.author: riande
-ms.date: 11/09/2019
+ms.date: 12/05/2019
 uid: mvc/views/razor
-ms.openlocfilehash: a18fd2886124f186b8f35abf4b55a51f1f996958
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: baac0ac38a0781cb9c16689cf3e29526b602d8da
+ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74881008"
+ms.lasthandoff: 12/09/2019
+ms.locfileid: "74944246"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -461,7 +461,7 @@ A diretiva `@attribute` adiciona o atributo fornecido à classe da página ou ex
 
 O bloco `@code` permite que um [componente de Razor](xref:blazor/components) adicione membros (campos, propriedades e métodos) de C# a um componente:
 
-```cshtml
+```razor
 @code {
     // C# members (fields, properties, and methods)
 }

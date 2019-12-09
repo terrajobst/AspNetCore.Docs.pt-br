@@ -5,17 +5,17 @@ description: Descubra como ASP.NET Core Blazor como o Blazor gerencia exceções
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/01/2019
+ms.date: 12/05/2019
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: e737a8a85e7eb83d95618d71e85b0307c54b0766
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: d73eb9a0dd0ec7a4bec4b7b9aeaaa4a9ee888bce
+ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74879691"
+ms.lasthandoff: 12/09/2019
+ms.locfileid: "74943700"
 ---
 # <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Tratar erros em aplicativos ASP.NET Core Blazor
 
@@ -138,7 +138,7 @@ No exemplo a seguir, onde `OnParametersSetAsync` chama um método para obter um 
   * `loadFailed` é definido como `true`, que é usado para exibir uma mensagem de erro para o usuário.
   * O erro é registrado.
 
-[!code-cshtml[](handle-errors/samples_snapshot/3.x/product-details.razor?highlight=11,27-39)]
+[!code-razor[](handle-errors/samples_snapshot/3.x/product-details.razor?highlight=11,27-39)]
 
 ### <a name="rendering-logic"></a>Lógica de renderização
 
@@ -148,7 +148,7 @@ A lógica de renderização pode gerar uma exceção. Um exemplo desse cenário 
 
 Para evitar uma exceção de referência nula na lógica de renderização, verifique se há um objeto `null` antes de acessar seus membros. No exemplo a seguir, `person.Address` Propriedades não serão acessadas se `person.Address` for `null`:
 
-[!code-cshtml[](handle-errors/samples_snapshot/3.x/person-example.razor?highlight=1)]
+[!code-razor[](handle-errors/samples_snapshot/3.x/person-example.razor?highlight=1)]
 
 O código anterior pressupõe que `person` não é `null`. Geralmente, a estrutura do código garante que um objeto exista no momento em que o componente é renderizado. Nesses casos, não é necessário verificar `null` na lógica de renderização. No exemplo anterior, talvez seja garantido que `person` existam porque `person` é criado quando o componente é instanciado.
 
