@@ -29,7 +29,7 @@ Adicione uma cadeia de conexão ao arquivo *appsettings.json*, conforme mostrado
 Adicione os demonstrativos do `using` a seguir à parte superior do *Startup.cs*:
 
 ```csharp
-using RazorPagesMovie.Models;
+using RazorPagesMovie.Data;
 using Microsoft.EntityFrameworkCore;
 ```
 
