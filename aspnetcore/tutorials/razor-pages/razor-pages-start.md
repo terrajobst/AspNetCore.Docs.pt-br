@@ -5,12 +5,12 @@ description: Esta série de tutoriais mostra como usar Razor Pages no ASP.NET Co
 ms.author: riande
 ms.date: 11/12/2019
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: a8381dee05f267077a29999f3d8bbe6327c2b863
-ms.sourcegitcommit: 231780c8d7848943e5e9fd55e93f437f7e5a371d
+ms.openlocfilehash: b651437b698d01310f90c5f14832616c1896e6c0
+ms.sourcegitcommit: 4e3edff24ba6e43a103fee1b126c9826241bb37b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2019
-ms.locfileid: "74116155"
+ms.lasthandoff: 12/10/2019
+ms.locfileid: "74959093"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: introdução ao Razor Pages no ASP.NET Core
 
@@ -36,19 +36,19 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
 ---
 
@@ -62,13 +62,13 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 * Nomeie o projeto **RazorPagesMovie**. É importante nomear o projeto *RazorPagesMovie* de modo que os namespaces façam a correspondência quando você copiar e colar o código.
   ![novo aplicativo Web ASP.NET Core](razor-pages-start/_static/config.png)
 
-* Selecione **ASP.NET Core 3.0** na lista suspensa **Aplicativo Web** e, em seguida, selecione **Criar**.
+* Selecione **ASP.NET Core 3,1** no menu suspenso, **aplicativo Web**e, em seguida, selecione **criar**.
 
 ![novo Aplicativo Web ASP.NET Core](razor-pages-start/_static/3/npx.png)
 
   O seguinte projeto inicial é criado:
 
-  ![Gerenciador de Soluções](razor-pages-start/_static/se2.2.png)
+  ![Gerenciador de soluções](razor-pages-start/_static/se2.2.png)
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -100,7 +100,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   ![Caixa de diálogo Novo Projeto do macOS](razor-pages-start/_static/webapp.png)
 
-* Na caixa de diálogo **Configurar a nova API Web do ASP.NET Core**, defina a **Estrutura de Destino** como **.NET Core 3.0**.
+* Na caixa de diálogo **configurar sua nova API Web do ASP.NET Core** , defina a **estrutura de destino** como **.NET Core 3,1**.
 
   ![Seleção do .NET Core 3.0 do macOS](razor-pages-start/_static/targetframework3.png)
 
@@ -150,7 +150,7 @@ Contém o ponto de entrada para o programa. Para obter mais informações, consu
 
 contém código que configura o comportamento do aplicativo. Para obter mais informações, consulte <xref:fundamentals/startup>.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Vá para o próximo tutorial da série:
 
@@ -182,7 +182,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -218,7 +218,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   O seguinte projeto inicial é criado:
 
-  ![Gerenciador de Soluções](razor-pages-start/_static/se2.2.png)
+  ![Gerenciador de soluções](razor-pages-start/_static/se2.2.png)
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -353,7 +353,7 @@ Contém o código que configura o comportamento do aplicativo, como se ele reque
 
 * [Versão do YouTube deste tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Vá para o próximo tutorial da série:
 
