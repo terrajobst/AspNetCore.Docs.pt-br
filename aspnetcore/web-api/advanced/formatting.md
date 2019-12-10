@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 12/05/2019
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 4433ed11dad7522962ebeed411c4bef88e07e7af
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: cab383053751598b882f3716943d3d9392c56f4a
+ms.sourcegitcommit: 29ace642ca0e1f0b48a18d66de266d8811df2b83
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74881351"
+ms.lasthandoff: 12/10/2019
+ms.locfileid: "74987962"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Formatar dados de resposta na API Web ASP.NET Core
 
@@ -118,7 +118,7 @@ Os formatadores XML implementados usando <xref:System.Xml.Serialization.XmlSeria
 
 O código anterior serializa os resultados usando `XmlSerializer`.
 
-Ao usar o código anterior, os métodos do controlador devem retornar o formato apropriado com base no cabeçalho de `Accept` da solicitação.
+Ao usar o código anterior, os métodos do controlador retornam o formato apropriado com base no cabeçalho de `Accept` da solicitação.
 
 ### <a name="configure-systemtextjson-based-formatters"></a>Configurar formatadores com base em System.Text.Json
 

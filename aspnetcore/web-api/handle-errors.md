@@ -5,14 +5,14 @@ description: Saiba mais sobre o tratamento de erros com as APIs da Web do ASP.NE
 monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
-ms.date: 09/27/2019
+ms.date: 12/10/2019
 uid: web-api/handle-errors
-ms.openlocfilehash: 457ad7449c608c3b1b0acd729626e07808f55897
-ms.sourcegitcommit: ddc813f0f1fb293861a01597532919945b0e7fe5
+ms.openlocfilehash: c2dbc47b4495b7187aefbc62eb6d2f0c9683c2da
+ms.sourcegitcommit: 29ace642ca0e1f0b48a18d66de266d8811df2b83
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/23/2019
-ms.locfileid: "74412095"
+ms.lasthandoff: 12/10/2019
+ms.locfileid: "74987824"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>Tratar erros em APIs da Web ASP.NET Core
 
@@ -149,7 +149,7 @@ Em ambientes que não são de desenvolvimento, o [middleware de manipulação de
 
     ::: moniker-end
 
-A ação de `Error` anterior envia uma carga compatível com [RFC7807](https://tools.ietf.org/html/rfc7807)para o cliente.
+A ação de `Error` anterior envia uma carga compatível com [RFC 7807](https://tools.ietf.org/html/rfc7807)para o cliente.
 
 O middleware de manipulação de exceção também pode fornecer uma saída de negociação de conteúdo mais detalhada no ambiente de desenvolvimento local. Use as etapas a seguir para produzir um formato de carga consistente entre ambientes de desenvolvimento e produção:
 
@@ -267,6 +267,13 @@ Para controladores de API Web, o MVC responde com um tipo de resposta <xref:Micr
 ## <a name="client-error-response"></a>Resposta de erro do cliente
 
 Um *resultado de erro* é definido como resultado com um código de status HTTP de 400 ou superior. Para controladores de API Web, o MVC transforma um resultado de erro em um resultado com <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
+
+::: moniker range="= aspnetcore-2.1"
+
+> [!IMPORTANT]
+> ASP.NET Core 2,1 gera uma resposta de detalhes do problema que é quase compatível com RFC 7807. Se a conformidade com o percentual de 100 for importante, atualize o projeto para ASP.NET Core 2,2 ou posterior.
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
 
