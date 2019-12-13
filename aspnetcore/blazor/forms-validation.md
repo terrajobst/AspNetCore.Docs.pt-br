@@ -1,24 +1,26 @@
 ---
-title: Formulários e validação de mais e ASP.NET Core
+title: ASP.NET Core Blazor formulários e validação
 author: guardrex
-description: Saiba como usar os formulários e cenários de validação de campo no mais incrivelmente.
+description: Saiba como usar formulários e cenários de validação de campo no Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/04/2019
+ms.date: 12/05/2019
+no-loc:
+- Blazor
 uid: blazor/forms-validation
-ms.openlocfilehash: 6dcc36c5133367493b476655dbdf73b75db9d168
-ms.sourcegitcommit: a7bbe3890befead19440075b05b9674351f98872
+ms.openlocfilehash: f4c1845ee4b6ff9274b7117167367ccdd9f36c12
+ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/10/2019
-ms.locfileid: "73905741"
+ms.lasthandoff: 12/09/2019
+ms.locfileid: "74943687"
 ---
-# <a name="aspnet-core-blazor-forms-and-validation"></a>Formulários e validação de mais e ASP.NET Core
+# <a name="aspnet-core-opno-locblazor-forms-and-validation"></a>ASP.NET Core Blazor formulários e validação
 
 Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
-Há suporte para formulários e validação com mais de um e mais, usando as [anotações de dados](xref:mvc/models/validation).
+Há suporte para formulários e validação em Blazor usando [anotações de dados](xref:mvc/models/validation).
 
 O tipo de `ExampleModel` a seguir define a lógica de validação usando anotações de dados:
 
@@ -109,7 +111,7 @@ No exemplo anterior, `Description` é opcional porque não há anotações de da
 
 O formulário a seguir valida a entrada do usuário usando a validação definida no modelo de `Starship`:
 
-```cshtml
+```razor
 @page "/FormsValidation"
 
 <h1>Starfleet Starship Database</h1>
@@ -178,7 +180,7 @@ Use o componente `InputText` para criar um componente personalizado que usa o ev
 
 Crie um componente com a marcação a seguir e use o componente da mesma forma que `InputText` é usado:
 
-```cshtml
+```razor
 @inherits InputText
 
 <input 
@@ -193,25 +195,113 @@ Crie um componente com a marcação a seguir e use o componente da mesma forma q
 
 O componente `DataAnnotationsValidator` anexa o suporte à validação usando anotações de dados para o `EditContext`em cascata. Habilitar o suporte para validação usando anotações de dados requer esse gesto explícito. Para usar um sistema de validação diferente de anotações de dados, substitua o `DataAnnotationsValidator` por uma implementação personalizada. A implementação de ASP.NET Core está disponível para inspeção na fonte de referência: [DataAnnotationsValidator](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[AddDataAnnotationsValidation](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
 
-O componente `ValidationSummary` resume todas as mensagens de validação, que é semelhante ao [auxiliar de marca de Resumo de validação](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper).
+Blazor executa dois tipos de validação:
+
+* A *validação de campo* é executada quando o usuário faz a Tabulação de um campo. Durante a validação de campo, o componente `DataAnnotationsValidator` associa todos os resultados de validação relatados com o campo.
+* A *validação do modelo* é executada quando o usuário envia o formulário. Durante a validação do modelo, o componente `DataAnnotationsValidator` tenta determinar o campo com base no nome do membro que o resultado da validação relata. Os resultados de validação que não estão associados a um membro individual são associados ao modelo em vez de um campo.
+
+### <a name="validation-summary-and-validation-message-components"></a>Resumo de validação e componentes de mensagem de validação
+
+O componente `ValidationSummary` resume todas as mensagens de validação, que é semelhante ao [auxiliar de marca de Resumo de validação](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper):
+
+```razor
+<ValidationSummary />
+```
+
+Mensagens de validação de saída para um modelo específico com o parâmetro `Model`:
+  
+```razor
+<ValidationSummary Model="@starship" />
+```
 
 O componente `ValidationMessage` exibe mensagens de validação para um campo específico, que é semelhante ao [auxiliar de marca de mensagem de validação](xref:mvc/views/working-with-forms#the-validation-message-tag-helper). Especifique o campo para validação com o atributo `For` e uma expressão lambda nomeando a propriedade do modelo:
 
-```cshtml
+```razor
 <ValidationMessage For="@(() => starship.MaximumAccommodation)" />
 ```
 
 Os componentes `ValidationMessage` e `ValidationSummary` dão suporte a atributos arbitrários. Qualquer atributo que não corresponda a um parâmetro de componente é adicionado ao `<div>` gerado ou ao elemento `<ul>`.
 
+### <a name="custom-validation-attributes"></a>Atributos de validação personalizados
+
+Para garantir que um resultado de validação esteja corretamente associado a um campo ao usar um [atributo de validação personalizado](xref:mvc/models/validation#custom-attributes), passe o <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> do contexto de validação ao criar o <xref:System.ComponentModel.DataAnnotations.ValidationResult>:
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+private class MyCustomValidator : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object value, 
+        ValidationContext validationContext)
+    {
+        ...
+
+        return new ValidationResult("Validation message to user.",
+            new[] { validationContext.MemberName });
+    }
+}
+```
+
 ::: moniker range=">= aspnetcore-3.1"
 
-**Pacote Microsoft. AspNetCore. mais. Annotations. revalidation**
+### <a name="opno-locblazor-data-annotations-validation-package"></a>Blazor pacote de validação de anotações de dados
 
-O [Microsoft. AspNetCore. mais experiente. Annotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) é um pacote que preenche as lacunas da experiência de validação usando o componente `DataAnnotationsValidator`. O pacote está *experimental*no momento e planejamos adicionar esses cenários à estrutura de ASP.NET Core em uma versão futura.
+O [Microsoft. AspNetCore.Blazor. Annotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) é um pacote que preenche as lacunas da experiência de validação usando o componente `DataAnnotationsValidator`. O pacote está *experimental*no momento.
 
-O componente `DataAnnotationsValidator` não valida as subpropriedades de propriedades complexas em um modelo de validação. Itens de propriedades de tipo de coleção não são validados. Para validar esses tipos, o pacote de `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` apresenta o `ValidateComplexType` atributo de validação que funciona em conjunto com o componente de `ObjectGraphDataAnnotationsValidator`. Para obter um exemplo desses tipos em uso, consulte o [exemplo de validação mais simples no repositório GitHub ASPNET/Samples ](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
+### <a name="compareproperty-attribute"></a>Atributo [compareproperty]
 
-O <xref:System.ComponentModel.DataAnnotations.CompareAttribute> não funciona bem com o componente `DataAnnotationsValidator`. O pacote de `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` introduz um atributo de validação adicional, `ComparePropertyAttribute`, que funciona em relação a essas limitações. Em um aplicativo mais incrivelmente, `ComparePropertyAttribute` é uma substituição direta para o `CompareAttribute`. Para obter mais informações, consulte [compareAttribute ignorado com OnValidSubmit EditForm (ASPNET/AspNetCore \#10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
+O <xref:System.ComponentModel.DataAnnotations.CompareAttribute> não funciona bem com o componente `DataAnnotationsValidator`. O [Microsoft. AspNetCore.Blazor. Annotations.](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) o pacote *experimental* de validação introduz um atributo de validação adicional, `ComparePropertyAttribute`, que funciona em relação a essas limitações. Em um aplicativo Blazor, `[CompareProperty]` é uma substituição direta para o atributo `[Compare]`. Para obter mais informações, consulte [compareAttribute ignorado com OnValidSubmit EditForm (ASPNET/AspNetCore #10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
+
+### <a name="nested-models-collection-types-and-complex-types"></a>Modelos aninhados, tipos de coleção e tipos complexos
+
+Blazor fornece suporte para validar a entrada de formulário usando anotações de dados com o `DataAnnotationsValidator`interno. No entanto, a `DataAnnotationsValidator` só valida as propriedades de nível superior do modelo associado ao formulário que não são propriedades de tipo de coleção ou complexas.
+
+Para validar o gráfico de objeto inteiro do modelo associado, incluindo propriedades de tipo de coleção e complexas, use o `ObjectGraphDataAnnotationsValidator` fornecido pelo [Microsoft. AspNetCore.Blazorexperimental. Pacote Annotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) :
+
+```razor
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
+    <ObjectGraphDataAnnotationsValidator />
+    ...
+</EditForm>
+```
+
+Anote as propriedades do modelo com `[ValidateComplexType]`. Nas classes de modelo a seguir, a classe `ShipDescription` contém anotações de dados adicionais para validar quando o modelo está associado ao formulário:
+
+*Starship.cs*:
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class Starship
+{
+    ...
+
+    [ValidateComplexType]
+    public ShipDescription ShipDescription { get; set; }
+
+    ...
+}
+```
+
+*ShipDescription.cs*:
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class ShipDescription
+{
+    [Required]
+    [StringLength(40, ErrorMessage = "Description too long (40 char).")]
+    public string ShortDescription { get; set; }
+    
+    [Required]
+    [StringLength(240, ErrorMessage = "Description too long (240 char).")]
+    public string LongDescription { get; set; }
+}
+```
 
 ::: moniker-end
 
@@ -219,6 +309,6 @@ O <xref:System.ComponentModel.DataAnnotations.CompareAttribute> não funciona be
 
 ### <a name="validation-of-complex-or-collection-type-properties"></a>Validação de propriedades de tipo de coleção ou complexas
 
-Os atributos de validação aplicados às propriedades de um modelo são validados quando o formulário é enviado. No entanto, as propriedades de coleções ou tipos de dados complexos de um modelo não são validadas no envio de formulários pelo componente `DataAnnotationsValidator`. Para honrar os atributos de validação aninhados nesse cenário, use um componente de validação personalizado. Para obter um exemplo, consulte o [exemplo de validação mais simples no repositório do GitHub ASPNET/Samples](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
+Os atributos de validação aplicados às propriedades de um modelo são validados quando o formulário é enviado. No entanto, as propriedades de coleções ou tipos de dados complexos de um modelo não são validadas no envio de formulários pelo componente `DataAnnotationsValidator`. Para honrar os atributos de validação aninhados nesse cenário, use um componente de validação personalizado. Para obter um exemplo, consulte o [exemplo de validação deBlazor (ASPNET/samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
 
 ::: moniker-end
