@@ -1,5 +1,5 @@
 ---
-title: Empacotar e reduzirr ativos estáticos no ASP.NET Core
+title: Empacotar e reduzir ativos estáticos no ASP.NET Core
 author: scottaddie
 description: Saiba como otimizar recursos estáticos em um aplicativo Web ASP.NET Core aplicando técnicas de agrupamento e minificação.
 ms.author: scaddie
@@ -13,7 +13,7 @@ ms.contentlocale: pt-BR
 ms.lasthandoff: 12/04/2019
 ms.locfileid: "74803273"
 ---
-# <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Empacotar e reduzirr ativos estáticos no ASP.NET Core
+# <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Empacotar e reduzir ativos estáticos no ASP.NET Core
 
 Por [Scott Addie](https://twitter.com/Scott_Addie) e [David Pinheiro](https://twitter.com/davidpine7)
 
