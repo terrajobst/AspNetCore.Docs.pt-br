@@ -86,7 +86,7 @@ Os modelos de [layout](xref:mvc/views/layout) permitem especificar o layout de c
 
 ## <a name="change-the-title-footer-and-menu-link-in-the-layout-file"></a>Alterar o título, o rodapé e o link de menu no arquivo de layout
 
-Substitua o conteúdo do arquivo *views/Shared/_ layout. cshtml* pela marcação a seguir. As alterações são realçadas:
+Substitua o conteúdo do arquivo *views/Shared/_Layout. cshtml* pela marcação a seguir. As alterações são realçadas:
 
 [!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
 
@@ -95,9 +95,9 @@ A marcação anterior fez as seguintes alterações:
 * 3 ocorrências de `MvcMovie` para `Movie App`.
 * O elemento de âncora `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` para `<a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
-Na marcação anterior, o valor do atributo e o [atributo do Auxiliar de Marca de Âncora](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-area=""` foram omitidos porque este aplicativo não está usando [Áreas](xref:mvc/controllers/areas).
+Na marcação anterior, o valor do atributo e o `asp-area=""` [atributo do Auxiliar de Marca de Âncora](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) foram omitidos porque este aplicativo não está usando [Áreas](xref:mvc/controllers/areas).
 
-**Observação**: O controlador `Movies` não foi implementado. Neste ponto, o link `Movie App` não está funcionando.
+**Observação**: o controlador de `Movies` não foi implementado. Neste ponto, o link `Movie App` não está funcionando.
 
 Salve suas alterações e selecione o link **Privacidade**. Observe como o título na guia do navegador agora exibe **Política de Privacidade – Aplicativo de filme**, em vez de **Política de Privacidade – Filme MVC**:
 
@@ -127,7 +127,7 @@ O título e o elemento `<h2>` são ligeiramente diferentes para que possa ver qu
 <title>@ViewData["Title"] - Movie App</title>
    ```
 
-Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione Ctrl+F5 no navegador para forçar a resposta do servidor a ser carregada.) O título do navegador é criado com `ViewData["Title"]` que definimos no modelo de exibição *Index.cshtml* e o “– Aplicativo de Filme” adicional adicionado no arquivo de layout.
+Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione CTRL + F5 em seu navegador para forçar a resposta do servidor a ser carregado.) O título do navegador é criado com `ViewData["Title"]` que definimos no modelo de exibição *index. cshtml* e o "aplicativo de filme" adicional adicionado ao arquivo de layout.
 
 O conteúdo do modelo de exibição *Index.cshtml* é mesclado com o modelo de exibição *Views/Shared/_Layout.cshtml*. Uma única resposta HTML é enviada ao navegador. Os modelos de layout facilitam a realização de alterações que se aplicam a todas as páginas de um aplicativo. Para saber mais, consulte [Layout](xref:mvc/views/layout).
 
@@ -257,7 +257,7 @@ Na marcação anterior, o `asp-area` [atributo do Auxiliar de Marca de Âncora](
 > We haven't implemented the `Movies` controller yet, so if you click the `Movie App` link, you get a 404 (Not found) error.
 -->
 
-**Observação**: O controlador `Movies` não foi implementado. Neste ponto, o link `Movie App` não está funcionando.
+**Observação**: o controlador de `Movies` não foi implementado. Neste ponto, o link `Movie App` não está funcionando.
 
 Salve suas alterações e selecione o link **Privacidade**. Observe como o título na guia do navegador agora exibe **Política de Privacidade – Aplicativo de filme**, em vez de **Política de Privacidade – Filme MVC**:
 
@@ -287,7 +287,7 @@ O título e o elemento `<h2>` são ligeiramente diferentes para que possa ver qu
 <title>@ViewData["Title"] - Movie App</title>
    ```
 
-Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione Ctrl+F5 no navegador para forçar a resposta do servidor a ser carregada.) O título do navegador é criado com `ViewData["Title"]` que definimos no modelo de exibição *Index.cshtml* e o “– Aplicativo de Filme” adicional adicionado no arquivo de layout.
+Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione CTRL + F5 em seu navegador para forçar a resposta do servidor a ser carregado.) O título do navegador é criado com `ViewData["Title"]` que definimos no modelo de exibição *index. cshtml* e o "aplicativo de filme" adicional adicionado ao arquivo de layout.
 
 Observe também como o conteúdo no modelo de exibição *Index.cshtml* foi mesclado com o modelo de exibição *Views/Shared/_Layout.cshtml* e uma única resposta HTML foi enviada para o navegador. Os modelos de layout facilitam realmente a realização de alterações que se aplicam a todas as páginas do aplicativo. Para saber mais, consulte [Layout](xref:mvc/views/layout).
 
