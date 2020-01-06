@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/07/2019
 uid: security/data-protection/configuration/overview
-ms.openlocfilehash: 380293f650c9548c286f98c0447c7ed08b918f2a
-ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
+ms.openlocfilehash: cda510d0f8211641e3544b53ded79878d717cc58
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/07/2019
-ms.locfileid: "72007382"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75358404"
 ---
 # <a name="configure-aspnet-core-data-protection"></a>Configurar a proteção de dados do ASP.NET Core
 
@@ -26,6 +26,15 @@ Para esses cenários, o sistema de proteção de dados oferece uma API de config
 > Semelhante aos arquivos de configuração, o anel da chave de proteção de dados deve ser protegido usando as permissões apropriadas. Você pode optar por criptografar as chaves em repouso, mas isso não impede que os invasores criem novas chaves. Consequentemente, a segurança do seu aplicativo é afetada. O local de armazenamento configurado com proteção de dados deve ter seu acesso limitado ao aplicativo em si, semelhante ao modo como você protegeria os arquivos de configuração. Por exemplo, se você optar por armazenar o anel de chave no disco, use as permissões do sistema de arquivos. Certifique-se de que apenas a identidade sob a qual seu aplicativo Web é executado tenha acesso de leitura, gravação e criação para esse diretório. Se você usar o armazenamento de BLOBs do Azure, somente o aplicativo Web deverá ter a capacidade de ler, gravar ou criar novas entradas no repositório de BLOB, etc.
 >
 > O método de extensão [AddDataProtection](/dotnet/api/microsoft.extensions.dependencyinjection.dataprotectionservicecollectionextensions.adddataprotection) retorna um [IDataProtectionBuilder](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotectionbuilder). `IDataProtectionBuilder` expõe métodos de extensão que você pode encadear para configurar opções de proteção de dados.
+
+::: moniker range=">= aspnetcore-3.0"
+
+Os seguintes pacotes NuGet são necessários para as extensões de proteção de dados usadas neste artigo:
+
+* [Microsoft. AspNetCore. dataprotection. AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/)
+* [Microsoft. AspNetCore. dataprotection. AzureKeyVault](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureKeyVault/)
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
 

@@ -1,6 +1,6 @@
 * `-c|--content`
 
-  Fornece um corpo de solicitação HTTP embutido. Por exemplo, `-c "{ 'id': 2, 'name': 'Cherry' }"`.
+  Fornece um corpo de solicitação HTTP embutido. Por exemplo, `-c "{"id":2,"name":"Cherry"}"`.
 
 * `-f|--file`
 

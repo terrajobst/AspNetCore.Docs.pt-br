@@ -5,12 +5,12 @@ description: Receba orientações para migrar os aplicativos existentes do ASP.N
 ms.author: scaddie
 ms.date: 10/18/2019
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 1564b644b774939c3c242a41812851917e96d2b2
-ms.sourcegitcommit: a166291c6708f5949c417874108332856b53b6a9
+ms.openlocfilehash: 19be7191792c44fb5414eb0a7b24772c45391253
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/18/2019
-ms.locfileid: "74803338"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75359406"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Migrar do ASP.NET para o ASP.NET Core
 
@@ -60,7 +60,7 @@ Essa abordagem associa o aplicativo e o servidor no qual ele é implantado de um
 
 Isso configura as rotas padrão e usa XmlSerialization em Json por padrão. Adicione outro Middleware para este pipeline conforme necessário (carregamento de serviços, definições de configuração, arquivos estáticos, etc.).
 
-O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manipular a entrada. Em vez disso, isso é feito por meio do método `Main` de *Program.cs* (semelhante a aplicativos de console) e `Startup` é carregado por lá.
+O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manipular a entrada. Em vez disso, isso é feito por meio do método de `Main` *Program.cs* (semelhante a aplicativos de console) e `Startup` é carregado por aí.
 
 [!code-csharp[](samples/program.cs)]
 
@@ -158,6 +158,40 @@ Por exemplo, um ativo de imagem na pasta *wwwroot/imagens* está acessível para
 ## <a name="multi-value-cookies"></a>Cookies com vários valores
 
 Não há suporte para [cookies de vários valores](xref:System.Web.HttpCookie.Values) no ASP.NET Core. Crie um cookie por valor.
+
+## <a name="partial-app-migration"></a>Migração de aplicativo parcial
+
+Uma abordagem para a migração de aplicativo parcial é criar um subaplicativo do IIS e mover apenas determinadas rotas de ASP.NET 4. x para ASP.NET Core enquanto preserva a estrutura de URL do aplicativo. Por exemplo, considere a estrutura de URL do aplicativo do arquivo *ApplicationHost. config* :
+
+```xml
+<sites>
+    <site name="Default Web Site" id="1" serverAutoStart="true">
+        <application path="/">
+            <virtualDirectory path="/" physicalPath="D:\sites\MainSite\" />
+        </application>
+        <application path="/api" applicationPool="DefaultAppPool">
+            <virtualDirectory path="/" physicalPath="D:\sites\netcoreapi" />
+        </application>
+        <bindings>
+            <binding protocol="http" bindingInformation="*:80:" />
+            <binding protocol="https" bindingInformation="*:443:" sslFlags="0" />
+        </bindings>
+    </site>
+    ...
+</sites>
+```
+
+Estrutura de diretório:
+
+```
+.
+├── MainSite
+│   ├── ...
+│   └── Web.config
+└── NetCoreApi
+    ├── ...
+    └── web.config
+```
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

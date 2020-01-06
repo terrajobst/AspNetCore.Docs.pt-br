@@ -5,14 +5,14 @@ description: Aprenda a controlar o comportamento do aplicativo em vários ambien
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 12/17/2019
 uid: fundamentals/environments
-ms.openlocfilehash: affbb95273c91fe5bf452e0e1ebefa669297304c
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: 30e2771c0a24fcbf6490d08c7028566314b6c011
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74944315"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75358715"
 ---
 # <a name="use-multiple-environments-in-aspnet-core"></a>Usar vários ambientes no ASP.NET Core
 
@@ -188,11 +188,12 @@ Quando o host é criado, a última configuração de ambiente lida pelo aplicati
 Para definir o ambiente no [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/), execute as seguintes etapas:
 
 1. Selecione o aplicativo na folha **Serviços de Aplicativos**.
-1. No grupo **CONFIGURAÇÕES**, selecione a folha **Configurações do aplicativo**.
-1. Na área **Configurações do aplicativo**, selecione **Adicionar nova configuração**.
-1. Para **Inserir um nome**, forneça `ASPNETCORE_ENVIRONMENT`. Para **Inserir um valor**, fornecer o ambiente (por exemplo, `Staging`).
-1. Marque a caixa de seleção **Configuração do Slot** se desejar que a configuração do ambiente permaneça no slot atual quando os slots de implantação forem trocados. Para obter mais informações, veja [Documentação do Azure: que configurações são trocadas?](/azure/app-service/web-sites-staged-publishing).
-1. Selecione **Salvar** na parte superior da folha.
+1. No grupo **configurações** , selecione a folha **configuração** .
+1. Na guia **configurações do aplicativo** , selecione **nova configuração de aplicativo**.
+1. Na janela **Adicionar/Editar configuração de aplicativo** , forneça `ASPNETCORE_ENVIRONMENT` para o **nome**. Para **valor**, forneça o ambiente (por exemplo, `Staging`).
+1. Marque a caixa de seleção **configuração do slot de implantação** se desejar que a configuração do ambiente permaneça com o slot atual quando os slots de implantação forem trocados. Para obter mais informações, consulte [configurar ambientes de preparo no serviço de Azure app](/azure/app-service/web-sites-staged-publishing) na documentação do Azure.
+1. Selecione **OK** para fechar a janela **Adicionar/Editar configuração de aplicativo** .
+1. Selecione **salvar** na parte superior da folha de **configuração** .
 
 O Serviço de Aplicativo do Azure reinicia automaticamente o aplicativo após uma configuração de aplicativo (variável de ambiente) ser adicionada, alterada ou excluída no portal do Azure.
 
@@ -617,11 +618,12 @@ Quando o host é criado, a última configuração de ambiente lida pelo aplicati
 Para definir o ambiente no [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/), execute as seguintes etapas:
 
 1. Selecione o aplicativo na folha **Serviços de Aplicativos**.
-1. No grupo **CONFIGURAÇÕES**, selecione a folha **Configurações do aplicativo**.
-1. Na área **Configurações do aplicativo**, selecione **Adicionar nova configuração**.
-1. Para **Inserir um nome**, forneça `ASPNETCORE_ENVIRONMENT`. Para **Inserir um valor**, fornecer o ambiente (por exemplo, `Staging`).
-1. Marque a caixa de seleção **Configuração do Slot** se desejar que a configuração do ambiente permaneça no slot atual quando os slots de implantação forem trocados. Para obter mais informações, veja [Documentação do Azure: que configurações são trocadas?](/azure/app-service/web-sites-staged-publishing).
-1. Selecione **Salvar** na parte superior da folha.
+1. No grupo **configurações** , selecione a folha **configuração** .
+1. Na guia **configurações do aplicativo** , selecione **nova configuração de aplicativo**.
+1. Na janela **Adicionar/Editar configuração de aplicativo** , forneça `ASPNETCORE_ENVIRONMENT` para o **nome**. Para **valor**, forneça o ambiente (por exemplo, `Staging`).
+1. Marque a caixa de seleção **configuração do slot de implantação** se desejar que a configuração do ambiente permaneça com o slot atual quando os slots de implantação forem trocados. Para obter mais informações, consulte [configurar ambientes de preparo no serviço de Azure app](/azure/app-service/web-sites-staged-publishing) na documentação do Azure.
+1. Selecione **OK** para fechar a janela **Adicionar/Editar configuração de aplicativo** .
+1. Selecione **salvar** na parte superior da folha de **configuração** .
 
 O Serviço de Aplicativo do Azure reinicia automaticamente o aplicativo após uma configuração de aplicativo (variável de ambiente) ser adicionada, alterada ou excluída no portal do Azure.
 

@@ -9,12 +9,12 @@ ms.date: 12/05/2019
 no-loc:
 - Blazor
 uid: blazor/javascript-interop
-ms.openlocfilehash: 05225b86701b7a5d5c84dd43afbef70dd1ece228
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: 2350870f8548a9c8df324182883a105706c12c20
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74944064"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75355743"
 ---
 # <a name="aspnet-core-opno-locblazor-javascript-interop"></a>ASP.NET Core interoperabilidade Blazor JavaScript
 
@@ -30,13 +30,9 @@ Um aplicativo Blazor pode invocar funções JavaScript de métodos .NET e .NET d
 
 Há ocasiões em que o código .NET é necessário para chamar uma função JavaScript. Por exemplo, uma chamada de JavaScript pode expor recursos de navegador ou funcionalidade de uma biblioteca JavaScript para o aplicativo. Esse cenário é chamado de *interoperabilidade JavaScript* (*js Interop*).
 
-Para chamar o JavaScript do .NET, use a abstração de `IJSRuntime`. O método `InvokeAsync<T>` usa um identificador para a função JavaScript que você deseja invocar junto com qualquer número de argumentos serializáveis para JSON. O identificador de função é relativo ao escopo global (`window`). Se você quiser chamar `window.someScope.someFunction`, o identificador será `someScope.someFunction`. Não é necessário registrar a função antes que ela seja chamada. O tipo de retorno `T` também deve ser serializável como JSON. `T` deve corresponder ao tipo .NET que melhor mapeia para o tipo JSON retornado.
+Para chamar o JavaScript do .NET, use a abstração de `IJSRuntime`. Para emitir chamadas de interoperabilidade JS, insira a abstração de `IJSRuntime` em seu componente. O método `InvokeAsync<T>` usa um identificador para a função JavaScript que você deseja invocar junto com qualquer número de argumentos serializáveis para JSON. O identificador de função é relativo ao escopo global (`window`). Se você quiser chamar `window.someScope.someFunction`, o identificador será `someScope.someFunction`. Não é necessário registrar a função antes que ela seja chamada. O tipo de retorno `T` também deve ser serializável como JSON. `T` deve corresponder ao tipo .NET que melhor mapeia para o tipo JSON retornado.
 
-Para aplicativos do Blazor Server:
-
-* Várias solicitações de usuário são processadas pelo aplicativo do Blazor Server. Não chame `JSRuntime.Current` em um componente para invocar funções JavaScript.
-* Injetar a abstração de `IJSRuntime` e usar o objeto injetado para emitir chamadas de interoperabilidade JS.
-* Embora um aplicativo Blazor esteja sendo renderizado, não é possível chamar o JavaScript porque uma conexão com o navegador não foi estabelecida. Para obter mais informações, consulte a seção [detectar quando um aplicativo de Blazor está sendo renderizado](#detect-when-a-blazor-app-is-prerendering) .
+Para aplicativos do Blazor Server com pré-processamento habilitado, não é possível chamar o JavaScript durante o pré-processamento inicial. As chamadas de interoperabilidade do JavaScript devem ser adiadas até que a conexão com o navegador seja estabelecida. Para obter mais informações, consulte a seção [detectar quando um aplicativo de Blazor está sendo renderizado](#detect-when-a-blazor-app-is-prerendering) .
 
 O exemplo a seguir é baseado em [textdecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), um decodificador experimental baseado em JavaScript. O exemplo demonstra como invocar uma função JavaScript a partir C# de um método. A função JavaScript aceita uma matriz de bytes de C# um método, decodifica a matriz e retorna o texto para o componente para exibição.
 

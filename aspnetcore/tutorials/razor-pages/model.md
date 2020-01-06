@@ -5,18 +5,20 @@ description: Saiba como adicionar classes de gerenciamento de filmes em um banco
 ms.author: riande
 ms.date: 12/05/2019
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 95b6d3e016edcd2e13207c8e658cf0d2fb21f945
-ms.sourcegitcommit: 4e3edff24ba6e43a103fee1b126c9826241bb37b
+ms.openlocfilehash: ef4671c9e7628c106b9f68ba5cbfd8a127e095d0
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/10/2019
-ms.locfileid: "74959068"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75358023"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
+
+<!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
 
 Nesta seção, as classes são adicionadas para gerenciar filmes em um banco de [dados SQLite](https://www.sqlite.org/index.html)de plataforma cruzada. Os aplicativos criados por meio de um modelo de ASP.NET Core usam um banco de dados SQLite. As classes de modelo do aplicativo são usadas com [Entity Framework Core (EF Core)](/ef/core) ([SQLite EF Core provedor de banco de dados](/ef/core/providers/sqlite)) para trabalhar com o banco de dados. O EF Core é uma estrutura ORM (mapeamento relacional de objetos) que simplifica o acesso a dados.
 
@@ -46,7 +48,7 @@ Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar**
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * No Gerenciador de Soluções, clique com o botão direito do mouse no projeto **RazorPagesMovie** e então selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
-* Clique com o botão direito do mouse na pasta *Models* e selecione **Adicionar** > **Novo Arquivo**.
+* Clique com o botão direito do mouse na pasta *modelos* e selecione **Adicionar** > **novo arquivo**.
 * Na caixa de diálogo **Novo Arquivo**:
 
   * Selecione **Geral** no painel esquerdo.
@@ -69,14 +71,14 @@ Nesta seção, é feito o scaffold do modelo de filme. Ou seja, a ferramenta de 
 
 Crie uma pasta *Pages/Movies*:
 
-* Clique com o botão direito do mouse na pasta *Pages* > **Adicionar** > **Nova Pasta**.
+* Clique com o botão direito do mouse na pasta *páginas* > **Adicionar** > **nova pasta**.
 * Dê à pasta o nome *Movies*
 
-Clique com o botão direito do mouse na pasta *Pages/Movies* > **Adicionar** > **Novo item com scaffold**.
+Clique com o botão direito do mouse na pasta *páginas/filmes* > **Adicionar** > **novo item com Scaffold**.
 
 ![Imagem das instruções anteriores.](model/_static/sca.png)
 
-Na caixa de diálogo **Adicionar Scaffold**, selecione **Razor Pages usando o Entity Framework (CRUD)** > **Adicionar**.
+Na caixa de diálogo **Adicionar Scaffold** , selecione **Razor Pages usando Entity Framework (CRUD)** > **Adicionar**.
 
 ![Imagem das instruções anteriores.](model/_static/add_scaffold.png)
 
@@ -175,11 +177,11 @@ Nesta seção, o PMC (Console de Gerenciador de Pacotes) é usado para:
 * Adicionar uma migração inicial.
 * Atualize o banco de dados com a migração inicial.
 
-No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet** > **Console do Gerenciador de Pacotes**.
+No menu **ferramentas** , selecione **Gerenciador de pacotes NuGet** > **console do Gerenciador de pacotes**.
 
   ![Menu do PMC](../first-mvc-app/adding-model/_static/pmc.png)
 
-No PMC, digite os seguintes comandos:
+No PMC, insira os seguintes comandos:
 
 ```PMC
 Add-Migration InitialCreate
@@ -299,7 +301,7 @@ Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar**
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * No Gerenciador de Soluções, clique com o botão direito do mouse no projeto **RazorPagesMovie** e então selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
-* Clique com o botão direito do mouse na pasta *Models* e selecione **Adicionar** > **Novo Arquivo**.
+* Clique com o botão direito do mouse na pasta *modelos* e selecione **Adicionar** > **novo arquivo**.
 * Na caixa de diálogo **Novo Arquivo**:
 
   * Selecione **Geral** no painel esquerdo.
@@ -322,14 +324,14 @@ Nesta seção, é feito o scaffold do modelo de filme. Ou seja, a ferramenta de 
 
 Crie uma pasta *Pages/Movies*:
 
-* Clique com o botão direito do mouse na pasta *Pages* > **Adicionar** > **Nova Pasta**.
+* Clique com o botão direito do mouse na pasta *páginas* > **Adicionar** > **nova pasta**.
 * Dê à pasta o nome *Movies*
 
-Clique com o botão direito do mouse na pasta *Pages/Movies* > **Adicionar** > **Novo item com scaffold**.
+Clique com o botão direito do mouse na pasta *páginas/filmes* > **Adicionar** > **novo item com Scaffold**.
 
 ![Imagem das instruções anteriores.](model/_static/sca.png)
 
-Na caixa de diálogo **Adicionar Scaffold**, selecione **Razor Pages usando o Entity Framework (CRUD)** > **Adicionar**.
+Na caixa de diálogo **Adicionar Scaffold** , selecione **Razor Pages usando Entity Framework (CRUD)** > **Adicionar**.
 
 ![Imagem das instruções anteriores.](model/_static/add_scaffold.png)
 
@@ -405,11 +407,11 @@ Nesta seção, o PMC (Console de Gerenciador de Pacotes) é usado para:
 * Adicionar uma migração inicial.
 * Atualize o banco de dados com a migração inicial.
 
-No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet** > **Console do Gerenciador de Pacotes**.
+No menu **ferramentas** , selecione **Gerenciador de pacotes NuGet** > **console do Gerenciador de pacotes**.
 
   ![Menu do PMC](../first-mvc-app/adding-model/_static/pmc.png)
 
-No PMC, digite os seguintes comandos:
+No PMC, insira os seguintes comandos:
 
 ```Powershell
 Add-Migration Initial

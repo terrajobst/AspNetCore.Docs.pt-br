@@ -5,12 +5,12 @@ description: Saiba como adicionar um controlador a um aplicativo ASP.NET Core MV
 ms.author: riande
 ms.date: 08/05/2017
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: 1c54959130f3a9959d4d4fdb8dcaa0d37ee2f046
-ms.sourcegitcommit: 2eb605f4f20ac4dd9de6c3b3e3453e108a357a21
-ms.translationtype: HT
+ms.openlocfilehash: fe0c1d3c066d6ab20387391e15c3a7cfe684c61e
+ms.sourcegitcommit: 077b45eceae044475f04c1d7ef2d153d7c0515a8
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/06/2019
-ms.locfileid: "68820058"
+ms.lasthandoff: 12/29/2019
+ms.locfileid: "75542696"
 ---
 # <a name="add-a-controller-to-an-aspnet-core-mvc-app"></a>Adicionar um controlador a um aplicativo ASP.NET Core MVC
 
@@ -20,13 +20,13 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 O padrão de arquitetura MVC (Model-View-Controller) separa um aplicativo em três componentes principais: **M**odel, **V**iew e **C**ontroller. O padrão MVC ajuda a criar aplicativos que são mais testáveis e fáceis de atualizar comparado aos aplicativos monolíticos tradicionais. Os aplicativos baseados no MVC contêm:
 
-* **M**odelos: classes que representam os dados do aplicativo. As classes de modelo usam a lógica de validação para impor regras de negócio aos dados. Normalmente, os objetos de modelo recuperam e armazenam o estado do modelo em um banco de dados. Neste tutorial, um modelo `Movie` recupera dados de filmes de um banco de dados, fornece-os para a exibição ou atualiza-os. O dados atualizados são gravados em um banco de dados.
+* **M**odels: classes que representam os dados do aplicativo. As classes de modelo usam a lógica de validação para impor regras de negócio aos dados. Normalmente, os objetos de modelo recuperam e armazenam o estado do modelo em um banco de dados. Neste tutorial, um modelo `Movie` recupera dados de filmes de um banco de dados, fornece-os para a exibição ou atualiza-os. O dados atualizados são gravados em um banco de dados.
 
-* **E**xibições: são os componentes que exibem a interface do usuário do aplicativo. Em geral, essa interface do usuário exibe os dados de modelo.
+* **V**iews: exibições são os componentes que exibem a interface do usuário do aplicativo. Em geral, essa interface do usuário exibe os dados de modelo.
 
-* **C**ontroladores: classes que manipulam as solicitações do navegador. Elas recuperam dados de modelo e chamam modelos de exibição que retornam uma resposta. Em um aplicativo MVC, a exibição mostra apenas informações; o controlador manipula e responde à entrada e à interação do usuário. Por exemplo, o controlador manipula os dados de rota e os valores de cadeia de consulta e passa esses valores para o modelo. O modelo pode usar esses valores para consultar o banco de dados. Por exemplo, `https://localhost:5001/Home/Privacy` tem dados de rota de `Home` (o controlador) e `Privacy` (o método de ação a ser chamado no controlador principal). `https://localhost:5001/Movies/Edit/5` é uma solicitação para editar o filme com ID=5 usando o controlador do filme. Os dados de rota são explicados posteriormente no tutorial.
+* **C**ontrollers: classes que manipulam as solicitações do navegador. Elas recuperam dados de modelo e chamam modelos de exibição que retornam uma resposta. Em um aplicativo MVC, a exibição mostra apenas informações; o controlador manipula e responde à entrada e à interação do usuário. Por exemplo, o controlador manipula os dados de rota e os valores de cadeia de consulta e passa esses valores para o modelo. O modelo pode usar esses valores para consultar o banco de dados. Por exemplo, `https://localhost:5001/Home/Privacy` tem dados de rota de `Home` (o controlador) e `Privacy` (o método de ação a ser chamado no controlador principal). `https://localhost:5001/Movies/Edit/5` é uma solicitação para editar o filme com ID=5 usando o controlador do filme. Os dados de rota são explicados posteriormente no tutorial.
 
-O padrão MVC ajuda a criar aplicativos que separam os diferentes aspectos do aplicativo (lógica de entrada, lógica de negócios e lógica da interface do usuário), ao mesmo tempo que fornece um acoplamento flexível entre esses elementos. O padrão especifica o local em que cada tipo de lógica deve estar localizado no aplicativo. A lógica da interface do usuário pertence à exibição. A lógica de entrada pertence ao controlador. A lógica de negócios pertence ao modelo. Essa separação ajuda a gerenciar a complexidade ao criar um aplicativo, porque permite que você trabalhe em um aspecto da implementação por vez, sem afetar o código de outro. Por exemplo, você pode trabalhar no código de exibição sem depender do código da lógica de negócios.
+O padrão MVC ajuda a criar aplicativos que separam os diferentes aspectos do aplicativo (lógica de entrada, lógica de negócios e lógica da interface do usuário), ao mesmo tempo que fornece um acoplamento flexível entre esses elementos. O padrão especifica o local em que cada tipo de lógica deve estar localizado no aplicativo. A lógica da IU fica na exibição. A lógica de entrada fica no controlador. A lógica de negócios fica no modelo. Essa separação ajuda a gerenciar a complexidade ao criar um aplicativo, porque permite que você trabalhe em um aspecto da implementação por vez, sem afetar o código de outro. Por exemplo, você pode trabalhar no código de exibição sem depender do código da lógica de negócios.
 
 Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los para criar um aplicativo de filme. O projeto MVC contém pastas para os *Controladores* e as *Exibições*.
 
@@ -106,9 +106,9 @@ Execute o aplicativo e navegue até:
 
    `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-(Substitua `{PORT}` pelo número da porta.) Você pode tentar valores diferentes para `name` e `numtimes` na URL. O sistema de [model binding](xref:mvc/models/model-binding) do MVC mapeia automaticamente os parâmetros nomeados da cadeia de consulta na barra de endereços para os parâmetros no método. Consulte [Model binding](xref:mvc/models/model-binding) para obter mais informações.
+(Substitua `{PORT}` pelo número da porta.) Você pode experimentar valores diferentes para `name` e `numtimes` na URL. O sistema de [model binding](xref:mvc/models/model-binding) do MVC mapeia automaticamente os parâmetros nomeados da cadeia de consulta na barra de endereços para os parâmetros no método. Consulte [Model binding](xref:mvc/models/model-binding) para obter mais informações.
 
-![Janela do navegador mostrando a resposta do aplicativo Olá, Ricardo, NumTimes é: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Janela do navegador mostrando uma resposta de aplicativo de Hello Rick, NumTimes é\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
 Na imagem acima, o segmento de URL (`Parameters`) não é usado e os parâmetros `name` e `numTimes` são transmitidos como [cadeias de consulta](https://wikipedia.org/wiki/Query_string). O `?` (ponto de interrogação) na URL acima é um separador seguido pelas cadeias de consulta. O caractere `&` separa as cadeias de consulta.
 
@@ -134,13 +134,13 @@ Nestes exemplos, o controlador tem feito a parte "VC" do MVC – ou seja, o trab
 
 O padrão de arquitetura MVC (Model-View-Controller) separa um aplicativo em três componentes principais: **M**odel, **V**iew e **C**ontroller. O padrão MVC ajuda a criar aplicativos que são mais testáveis e fáceis de atualizar comparado aos aplicativos monolíticos tradicionais. Os aplicativos baseados no MVC contêm:
 
-* **M**odelos: classes que representam os dados do aplicativo. As classes de modelo usam a lógica de validação para impor regras de negócio aos dados. Normalmente, os objetos de modelo recuperam e armazenam o estado do modelo em um banco de dados. Neste tutorial, um modelo `Movie` recupera dados de filmes de um banco de dados, fornece-os para a exibição ou atualiza-os. O dados atualizados são gravados em um banco de dados.
+* **M**odels: classes que representam os dados do aplicativo. As classes de modelo usam a lógica de validação para impor regras de negócio aos dados. Normalmente, os objetos de modelo recuperam e armazenam o estado do modelo em um banco de dados. Neste tutorial, um modelo `Movie` recupera dados de filmes de um banco de dados, fornece-os para a exibição ou atualiza-os. O dados atualizados são gravados em um banco de dados.
 
-* **E**xibições: são os componentes que exibem a interface do usuário do aplicativo. Em geral, essa interface do usuário exibe os dados de modelo.
+* **V**iews: exibições são os componentes que exibem a interface do usuário do aplicativo. Em geral, essa interface do usuário exibe os dados de modelo.
 
-* **C**ontroladores: classes que manipulam as solicitações do navegador. Elas recuperam dados de modelo e chamam modelos de exibição que retornam uma resposta. Em um aplicativo MVC, a exibição mostra apenas informações; o controlador manipula e responde à entrada e à interação do usuário. Por exemplo, o controlador manipula os dados de rota e os valores de cadeia de consulta e passa esses valores para o modelo. O modelo pode usar esses valores para consultar o banco de dados. Por exemplo, `https://localhost:5001/Home/About` tem dados de rota de `Home` (o controlador) e `About` (o método de ação a ser chamado no controlador principal). `https://localhost:5001/Movies/Edit/5` é uma solicitação para editar o filme com ID=5 usando o controlador do filme. Os dados de rota são explicados posteriormente no tutorial.
+* **C**ontrollers: classes que manipulam as solicitações do navegador. Elas recuperam dados de modelo e chamam modelos de exibição que retornam uma resposta. Em um aplicativo MVC, a exibição mostra apenas informações; o controlador manipula e responde à entrada e à interação do usuário. Por exemplo, o controlador manipula os dados de rota e os valores de cadeia de consulta e passa esses valores para o modelo. O modelo pode usar esses valores para consultar o banco de dados. Por exemplo, `https://localhost:5001/Home/About` tem dados de rota de `Home` (o controlador) e `About` (o método de ação a ser chamado no controlador principal). `https://localhost:5001/Movies/Edit/5` é uma solicitação para editar o filme com ID=5 usando o controlador do filme. Os dados de rota são explicados posteriormente no tutorial.
 
-O padrão MVC ajuda a criar aplicativos que separam os diferentes aspectos do aplicativo (lógica de entrada, lógica de negócios e lógica da interface do usuário), ao mesmo tempo que fornece um acoplamento flexível entre esses elementos. O padrão especifica o local em que cada tipo de lógica deve estar localizado no aplicativo. A lógica da interface do usuário pertence à exibição. A lógica de entrada pertence ao controlador. A lógica de negócios pertence ao modelo. Essa separação ajuda a gerenciar a complexidade ao criar um aplicativo, porque permite que você trabalhe em um aspecto da implementação por vez, sem afetar o código de outro. Por exemplo, você pode trabalhar no código de exibição sem depender do código da lógica de negócios.
+O padrão MVC ajuda a criar aplicativos que separam os diferentes aspectos do aplicativo (lógica de entrada, lógica de negócios e lógica da interface do usuário), ao mesmo tempo que fornece um acoplamento flexível entre esses elementos. O padrão especifica o local em que cada tipo de lógica deve estar localizado no aplicativo. A lógica da IU fica na exibição. A lógica de entrada fica no controlador. A lógica de negócios fica no modelo. Essa separação ajuda a gerenciar a complexidade ao criar um aplicativo, porque permite que você trabalhe em um aspecto da implementação por vez, sem afetar o código de outro. Por exemplo, você pode trabalhar no código de exibição sem depender do código da lógica de negócios.
 
 Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los para criar um aplicativo de filme. O projeto MVC contém pastas para os *Controladores* e as *Exibições*.
 
@@ -225,9 +225,9 @@ Execute o aplicativo e navegue até:
 
    `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-(Substitua `{PORT}` pelo número da porta.) Você pode tentar valores diferentes para `name` e `numtimes` na URL. O sistema de [model binding](xref:mvc/models/model-binding) do MVC mapeia automaticamente os parâmetros nomeados da cadeia de consulta na barra de endereços para os parâmetros no método. Consulte [Model binding](xref:mvc/models/model-binding) para obter mais informações.
+(Substitua `{PORT}` pelo número da porta.) Você pode experimentar valores diferentes para `name` e `numtimes` na URL. O sistema de [model binding](xref:mvc/models/model-binding) do MVC mapeia automaticamente os parâmetros nomeados da cadeia de consulta na barra de endereços para os parâmetros no método. Consulte [Model binding](xref:mvc/models/model-binding) para obter mais informações.
 
-![Janela do navegador mostrando a resposta do aplicativo Olá, Ricardo, NumTimes é: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Janela do navegador mostrando uma resposta de aplicativo de Hello Rick, NumTimes é\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
 Na imagem acima, o segmento de URL (`Parameters`) não é usado e os parâmetros `name` e `numTimes` são transmitidos como [cadeias de consulta](https://wikipedia.org/wiki/Query_string). O `?` (ponto de interrogação) na URL acima é um separador seguido pelas cadeias de consulta. O caractere `&` separa as cadeias de consulta.
 

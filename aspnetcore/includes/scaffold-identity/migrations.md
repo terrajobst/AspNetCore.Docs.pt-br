@@ -5,6 +5,7 @@ O código do banco de dados de identidade gerado requer [migrações Entity Fram
 No Visual Studio **Package Manager Console**:
 
 ```powershell
+Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 Add-Migration CreateIdentitySchema
 Update-Database
 ```
@@ -18,4 +19,4 @@ dotnet ef database update
 
 ---
 
-O parâmetro de nome "CreateIdentitySchema" para `Add-Migration` o comando é arbitrário. `"CreateIdentitySchema"`Descreve a migração.
+O parâmetro de nome "CreateIdentitySchema" para o comando `Add-Migration` é arbitrário. `"CreateIdentitySchema"` descreve a migração.

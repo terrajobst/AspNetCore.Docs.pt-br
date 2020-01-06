@@ -9,12 +9,12 @@ ms.date: 11/28/2018
 no-loc:
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: 7fc767939996a489174be949742637030924616d
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 6506430202870ba9de2f8eb6f33d79c7c1fbbbd4
+ms.sourcegitcommit: e7d4fe6727d423f905faaeaa312f6c25ef844047
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963741"
+ms.lasthandoff: 01/02/2020
+ms.locfileid: "75608061"
 ---
 # <a name="aspnet-core-opno-locsignalr-hosting-and-scaling"></a>ASP.NET Core a hospedagem e o dimensionamento de SignalR
 
@@ -90,11 +90,26 @@ O backplane Redis é a abordagem de expansão recomendada para aplicativos hospe
 
 As vantagens do serviço de SignalR do Azure observadas anteriormente são desvantagens do Redis backplane:
 
-* As sessões adesivas, também conhecidas como [afinidade de cliente](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), são necessárias. Depois que uma conexão é iniciada em um servidor, a conexão precisa permanecer nesse servidor.
+* As sessões adesivas, também conhecidas como [afinidade de cliente](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), são necessárias, exceto quando **ambas** das seguintes opções são verdadeiras:
+  * Todos os clientes estão configurados para usar **apenas** WebSockets.
+  * A [configuração SkipNegotiation](xref:signalr/configuration#configure-additional-options) é habilitada na configuração do cliente. 
+   Depois que uma conexão é iniciada em um servidor, a conexão precisa permanecer nesse servidor.
 * Um aplicativo SignalR deve escalar horizontalmente com base no número de clientes, mesmo que poucas mensagens estejam sendo enviadas.
 * Um aplicativo SignalR usa significativamente mais recursos de conexão do que um aplicativo Web sem SignalR.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="iis-limitations-on-windows-client-os"></a>Limitações do IIS no sistema operacional do cliente Windows
+
+O Windows 10 e o Windows 8. x são sistemas operacionais cliente. O IIS em sistemas operacionais cliente tem um limite de 10 conexões simultâneas. as conexões do SignalRsão:
+
+* Transitório e frequentemente restabelecida.
+* **Não** Descartado imediatamente quando não é mais usado.
+
+As condições anteriores tornam possível atingir o limite de 10 conexões em um sistema operacional cliente. Quando um sistema operacional cliente é usado para desenvolvimento, recomendamos:
+
+* Evite o IIS.
+* Use Kestrel ou IIS Express como destinos de implantação.
+
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Para obter mais informações, consulte os seguintes recursos:
 

@@ -5,12 +5,12 @@ description: Aprenda a trabalhar com os métodos, as exibições e as DataAnnota
 ms.author: riande
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: 6d960da5acecbb95893bd339b4391560bedffb3d
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
-ms.translationtype: HT
+ms.openlocfilehash: 2c442060872ab1d2d79a2e355ae257fdf1005914
+ms.sourcegitcommit: 991442dfb16ef08a0aae05bc79f9e9a2d819c587
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815410"
+ms.lasthandoff: 12/26/2019
+ms.locfileid: "75492647"
 ---
 # <a name="controller-methods-and-views-in-aspnet-core"></a>Os métodos e as exibições do controlador no ASP.NET Core
 
@@ -18,7 +18,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Temos um bom começo para o aplicativo de filme, mas a apresentação não é ideal. Por exemplo, **ReleaseDate** deveria ser separado em duas palavras.
 
-![Exibição de índice: a Data de Lançamento é uma palavra (sem espaço) e cada data de lançamento do filme mostra o horário 0h](working-with-sql/_static/m55.png)
+![Exibição de índice: a Data de Lançamento é uma palavra (sem espaço) e cada data de lançamento do filme mostra o horário 12h](working-with-sql/_static/m55.png)
 
 Abra o arquivo *Models/Movie.cs* e adicione as linhas realçadas mostradas abaixo:
 
@@ -36,7 +36,7 @@ Os links **Editar**, **Detalhes** e **Excluir** são gerados pelo Auxiliar de Ma
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
 
-Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. No código acima, o `AnchorTagHelper` gera dinamicamente o valor do atributo `href` HTML com base na ID de rota e no método de ação do controlador. Use a opção **Exibir Código-fonte** em seu navegador favorito ou as ferramentas do desenvolvedor para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
+Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o código do servidor participe da criação e renderização de elementos HTML em arquivos do Razor. No código acima, o `AnchorTagHelper` gera dinamicamente o valor do atributo HTML `href` do método de ação do controlador e da ID da rota. Use o **modo de exibição de origem** do seu navegador favorito ou use as ferramentas de desenvolvedor para examinar a marcação gerada. Uma parte do HTML gerado é mostrada abaixo:
 
 ```html
  <td>
@@ -48,7 +48,7 @@ Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) permitem que o c
 
 Lembre-se do formato do [roteamento](xref:mvc/controllers/routing) definido no arquivo *Startup.cs*:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
 O ASP.NET Core converte `https://localhost:5001/Movies/Edit/4` de uma solicitação no método de ação `Edit` do controlador `Movies` com o parâmetro `Id` igual a 4. (Os métodos do controlador também são conhecidos como métodos de ação.)
 
@@ -149,7 +149,7 @@ Todos os métodos `HttpGet` no controlador de filme seguem um padrão semelhante
 * [Globalização e localização](xref:fundamentals/localization)
 * [Introdução aos auxiliares de marcação](xref:mvc/views/tag-helpers/intro)
 * [Auxiliares de marca de autor](xref:mvc/views/tag-helpers/authoring)
-* [Falsificação anti-solicitação](xref:security/anti-request-forgery)
+* [Falsificação antissolicitação](xref:security/anti-request-forgery)
 * Proteger o controlador contra o [excesso de postagem](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application)
 * [ViewModels](https://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/)
 * [Auxiliar de marcação de formulário](xref:mvc/views/working-with-forms)

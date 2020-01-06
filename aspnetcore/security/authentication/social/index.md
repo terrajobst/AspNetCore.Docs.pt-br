@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/21/2019
 uid: security/authentication/social/index
-ms.openlocfilehash: 627ca483d60514d85e38c0e346ff5aef64ad9fee
-ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
+ms.openlocfilehash: 06ce9c72f43955345efb61afed2538158810005f
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2019
-ms.locfileid: "73034301"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75358063"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 
@@ -45,7 +45,7 @@ Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as 
 
 * Altere os diretórios (`cd`) para uma pasta que conterá o projeto.
 
-* Para o Windows, execute o seguinte comando:
+* Para Windows, execute o seguinte comando:
 
   ```dotnetcli
   dotnet new webapp -o WebApp1 -au Individual -uld
@@ -99,7 +99,7 @@ Ao registrar um provedor de logon externo, você não precisa ter uma senha regi
 
 Para criar uma senha e entrar usando seu email definido durante o processo de entrada com provedores externos:
 
-* Selecione o link **Olá,&lt; &gt;alias de email** no canto superior direito para navegar até a exibição **Gerenciar**.
+* Selecione o link **Olá,&lt;&gt;alias de email** no canto superior direito para navegar até a exibição **Gerenciar**.
 
 ![Exibição Gerenciar do Aplicativo Web](index/_static/pass1a.png)
 
@@ -109,10 +109,9 @@ Para criar uma senha e entrar usando seu email definido durante o processo de en
 
 * Defina uma senha válida e use-a para entrar com seu email.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
+* Consulte [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/10563) para obter informações sobre como personalizar os botões de logon.
 * Este artigo apresentou a autenticação externa e explicou os pré-requisitos necessários para adicionar logons externos ao aplicativo ASP.NET Core.
-
 * Páginas de referência específicas ao provedor para configurar logons para os provedores necessários para o aplicativo.
-
 * Você talvez queira manter os dados adicionais sobre o usuário e seus tokens de atualização e acesso. Para obter mais informações, consulte <xref:security/authentication/social/additional-claims>.

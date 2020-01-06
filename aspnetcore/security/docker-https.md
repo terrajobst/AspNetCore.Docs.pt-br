@@ -6,13 +6,15 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/05/2019
+no-loc:
+- Let's Encrypt
 uid: security/docker-https
-ms.openlocfilehash: c13ba02845eef5c53a939feec2be8a01bc4ca128
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: 47027033c0b7130f2d38d22c02a54945b2cc31b3
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71082540"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75358907"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-over-https"></a>Hospedando ASP.NET Core imagens com o Docker via HTTPS
 
@@ -26,22 +28,22 @@ Consulte [desenvolvendo aplicativos ASP.NET Core com o Docker sobre HTTPS](https
 
 Este exemplo requer o [docker 17, 6](https://docs.docker.com/release-notes/docker-ce) ou posterior do [cliente do Docker](https://www.docker.com/products/docker).
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 O [SDK do .NET Core 2,2](https://www.microsoft.com/net/download) ou posterior é necessário para algumas das instruções neste documento.
 
 ## <a name="certificates"></a>Certificados
 
-Um certificado de uma [autoridade de certificação](https://en.wikipedia.org/wiki/Certificate_authority) é necessário para [Hospedagem de produção](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) para um domínio.  [Vamos criptografar](https://letsencrypt.org/) é uma autoridade de certificação que oferece certificados gratuitos.
+Um certificado de uma [autoridade de certificação](https://wikipedia.org/wiki/Certificate_authority) é necessário para [Hospedagem de produção](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) para um domínio. [Let's Encrypt](https://letsencrypt.org/) é uma autoridade de certificação que oferece certificados gratuitos.
 
-Este documento usa [certificados de desenvolvimento autoassinados](https://en.wikipedia.org/wiki/Self-signed_certificate) para hospedar imagens `localhost`predefinidas. As instruções são semelhantes ao uso de certificados de produção.
+Este documento usa [certificados de desenvolvimento autoassinado](https://en.wikipedia.org/wiki/Self-signed_certificate) para hospedar imagens predefinidas em `localhost`. As instruções são semelhantes ao uso de certificados de produção.
 
 Para certificados de produção:
 
-* A `dotnet dev-certs` ferramenta não é necessária.
+* A ferramenta de `dotnet dev-certs` não é necessária.
 * Os certificados não precisam ser armazenados no local usado nas instruções. Qualquer local deve funcionar, embora o armazenamento de certificados no diretório do site não seja recomendado.
 
-As instruções montam os certificados de montagem em contêineres. Você pode adicionar certificados em imagens de contêiner com `COPY` um comando em um Dockerfile. Não é recomendável copiar certificados em uma imagem:
+As instruções montam os certificados de montagem em contêineres. Você pode adicionar certificados em imagens de contêiner com um comando `COPY` em um *Dockerfile*. A cópia de certificados em uma imagem não é recomendada pelos seguintes motivos:
 
 * Torna difícil usar a mesma imagem para teste com certificados de desenvolvedor.
 * Dificulta o uso da mesma imagem para hospedagem com certificados de produção.
@@ -80,7 +82,7 @@ dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password her
 dotnet dev-certs https --trust
 ```
 
-`dotnet dev-certs https --trust`Só tem suporte no macOS e no Windows. Você precisa confiar em certificados no Linux na forma com que o seu distribuição dá suporte. É provável que você precise confiar no certificado em seu navegador.
+Só há suporte para `dotnet dev-certs https --trust` no macOS e no Windows. Você precisa confiar em certificados no Linux na forma com que o seu distribuição dá suporte. É provável que você precise confiar no certificado em seu navegador.
 
 Nos comandos anteriores, substitua `{ password here }` por uma senha.
 

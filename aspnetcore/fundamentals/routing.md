@@ -5,14 +5,14 @@ description: Descubra como o roteamento do ASP.NET Core é responsável por mape
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/24/2019
+ms.date: 12/13/2019
 uid: fundamentals/routing
-ms.openlocfilehash: be4493cc927bd5437a2c9dab00b6a555756195bb
-ms.sourcegitcommit: eb2fe5ad2e82fab86ca952463af8d017ba659b25
+ms.openlocfilehash: 9780183f8f9bc322f73d058b3cab7f8c10f7cd5f
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/01/2019
-ms.locfileid: "73416134"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75354735"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -20,7 +20,7 @@ Por [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/
 
 ::: moniker range=">= aspnetcore-3.0"
 
-O roteamento é responsável por mapear URIs de solicitação para pontos de extremidade e expedir solicitações de entrada para esses pontos de extremidade. As rotas são definidas no aplicativo e configuradas quando o aplicativo é iniciado. Uma rota pode opcionalmente extrair os valores da URL contida na solicitação e esses valores podem então ser usados para o processamento da solicitação. Usando informações de rota do aplicativo, o roteamento também é capaz de gerar URLs que são mapeadas para pontos de extremidade.
+O roteamento é responsável por mapear URIs de solicitação para pontos de extremidade e expedir solicitações de entrada para esses pontos de extremidade. As rotas são definidas no aplicativo e configuradas quando o aplicativo é iniciado. Uma rota pode opcionalmente extrair os valores da URL contida na solicitação e esses valores podem então ser usados para o processamento da solicitação. Usando informações de rota do aplicativo, o roteamento também é capaz de gerar URLs que são mapeadas para pontos de extremidade. Muitos aplicativos não precisam adicionar rotas além do que os modelos fornecem. Os modelos de ASP.NET Core para controladores e páginas Razor configuram pontos de extremidade de rota. Se você precisar adicionar pontos de extremidade de rota personalizados, os pontos de extremidade personalizados poderão ser configurados juntamente com os pontos de extremidade de rota gerados pelo modelo.
 
 > [!IMPORTANT]
 > Este documento aborda o roteamento de nível inferior do ASP.NET Core. Para obter informações sobre o roteamento do ASP.NET Core MVC, confira <xref:mvc/controllers/routing>. Para obter informações sobre convenções de roteamento no Razor Pages, confira <xref:razor-pages/razor-pages-conventions>.
@@ -126,6 +126,22 @@ Os métodos fornecidos pelo <xref:Microsoft.AspNetCore.Routing.LinkGenerator> d�
 > * Use métodos de extensão de `GetUri*` com cuidado em uma configuração de aplicativo que não valide o cabeçalho `Host` das solicitações de entrada. Se o cabeçalho `Host` das solicitações de entrada não é validado, uma entrada de solicitação não confiável pode ser enviada novamente ao cliente em URIs em uma exibição/página. Recomendamos que todos os aplicativos de produção configurem seu servidor para validar o cabeçalho `Host` com os valores válidos conhecidos.
 >
 > * Use <xref:Microsoft.AspNetCore.Routing.LinkGenerator> com cuidado no middleware em combinação com `Map` ou `MapWhen`. `Map*` altera o caminho base da solicitação em execução, o que afeta a saída da geração de link. Todas as APIs de <xref:Microsoft.AspNetCore.Routing.LinkGenerator> permitem a especificação de um caminho base. Sempre especifique um caminho base vazio para desfazer o efeito de `Map*` na geração de link.
+
+## <a name="endpoint-routing"></a>Roteamento de ponto de extremidade
+
+* Um ponto de extremidade de rota tem um modelo, metadados e um delegado de solicitação que atendem à resposta do ponto de extremidade. Os metadados são usados para implementar preocupações abrangentes com base em políticas e configurações anexadas a cada ponto de extremidade. Por exemplo, um middleware de autorização pode interrogar a coleção de metadados do ponto de extremidade para uma [política de autorização](xref:security/authorization/policies#applying-policies-to-mvc-controllers).
+* O roteamento de ponto de extremidade integra-se com o middleware usando dois métodos de extensão:
+  * [UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) adiciona correspondência de rota ao pipeline de middleware. Ele deve vir antes de qualquer middleware com reconhecimento de rota, como autorização, execução de ponto de extremidade, etc.
+  * [UseEndpoints](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*) adiciona a execução de ponto de extremidade ao pipeline de middleware. Ele executa o delegado de solicitação que atende à resposta do ponto de extremidade.
+  `UseEndpoints` também é onde os pontos de extremidade de rota são configurados que podem ser correspondidos e executados pelo aplicativo. Por exemplo, <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>e <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>.
+* Os aplicativos usam os métodos auxiliares do ASP.NET Core para configurar suas rotas. ASP.NET Core frameworks fornecem métodos auxiliares como <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*>,, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> e `MapHub<THub>`. Também há métodos auxiliares para configurar seus próprios pontos de extremidade de rota personalizados: <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>e [MapVerb](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions). 
+* O roteamento de ponto de extremidade também dá suporte à alteração de pontos de extremidades após a inicialização de um aplicativo. Para dar suporte a isso em seu aplicativo ou ASP.NET Core Framework, uma <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> personalizada deve ser criada e registrada. Esse é um recurso avançado e, normalmente, não é necessário. Os pontos de extremidade normalmente são configurados na inicialização e são estáticos durante o tempo de vida do aplicativo. Carregar a configuração de rota de um arquivo ou banco de dados na inicialização não é dinâmico.
+
+O código a seguir mostra um exemplo básico de roteamento de ponto de extremidade:
+
+[!code-csharp[](routing/samples/3.x/Startup.cs?name=snippet)]
+
+Consulte [correspondência de URL](#url-matching) neste documento para obter mais informações sobre roteamento de ponto de extremidade.
 
 ## <a name="endpoint-routing-differences-from-earlier-versions-of-routing"></a>Diferenças de roteamento de ponto de extremidade de versões anteriores do roteamento
 
@@ -349,14 +365,14 @@ Adicione o roteamento ao contêiner de serviço em `Startup.ConfigureServices`:
 As rotas precisam ser configuradas no método `Startup.Configure`. O aplicativo de exemplo usa as seguintes APIs:
 
 * <xref:Microsoft.AspNetCore.Routing.RouteBuilder>
-* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet*> &ndash; Corresponde apenas às solicitações HTTP GET.
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet*> &ndash; corresponde apenas a solicitações HTTP GET.
 * <xref:Microsoft.AspNetCore.Builder.RoutingBuilderExtensions.UseRouter*>
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Startup.cs?name=snippet_RouteHandler)]
 
 A tabela a seguir mostra as respostas com os URIs fornecidos.
 
-| URI                    | Resposta                                          |
+| {1&gt;URI&lt;1}                    | Resposta                                          |
 | ---------------------- | ------------------------------------------------- |
 | `/package/create/3`    | Olá! Valores de rota: [operation, create], [id, 3] |
 | `/package/track/-3`    | Olá! Valores de rota: [operation, track], [id, -3] |
@@ -441,7 +457,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | Anotações |
+| restrição | Exemplo | Correspondências de exemplo | {1&gt;Observações&lt;1} |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |
@@ -462,7 +478,7 @@ A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento 
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | A cadeia de caracteres deve corresponder à expressão regular (veja as dicas sobre como definir uma expressão regular) |
 | `required` | `{name:required}` | `Rick` | Usado para impor que um valor não parâmetro está presente durante a geração de URL |
 
-Várias restrições delimitadas por dois-pontos podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
+Várias restrições delimitadas por vírgula podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
 
 ```csharp
 [Route("users/{id:int:min(1)}")]
@@ -478,20 +494,20 @@ A estrutura do ASP.NET Core adiciona `RegexOptions.IgnoreCase | RegexOptions.Com
 
 As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo Roteamento e pela linguagem C#. Os tokens de expressão regular precisam ter escape. Para usar a expressão regular `^\d{3}-\d{2}-\d{4}$` no roteamento, a expressão precisa ter os caracteres `\` (barra invertida) fornecidos na cadeia de caracteres como caracteres `\\` (barra invertida dupla) no arquivo de origem C# para fazer o escape do caractere de escape da cadeia de caracteres `\` (a menos que estejam sendo usados [literais de cadeia de caracteres textuais](/dotnet/csharp/language-reference/keywords/string)). Para fazer o escape dos caracteres de delimitador de parâmetro de roteamento (`{`, `}`, `[`, `]`), duplique os caracteres na expressão (`{{`, `}`, `[[`, `]]`). A tabela a seguir mostra uma expressão regular e a versão com escape.
 
-| Expressão regular    | Expressão regular com escape     |
+| Expressão Regular    | Expressão regular com escape     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere de acento circunflexo (`^`) e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de cifrão (`$`) e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expressão   | Cadeia de Caracteres    | Corresponder a | Comentário               |
+| Expressão   | Cadeia de caracteres    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
 | `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | olá     | Não    | Confira `^` e `$` acima |
 | `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
@@ -1010,14 +1026,14 @@ Adicione o roteamento ao contêiner de serviço em `Startup.ConfigureServices`:
 As rotas precisam ser configuradas no método `Startup.Configure`. O aplicativo de exemplo usa as seguintes APIs:
 
 * <xref:Microsoft.AspNetCore.Routing.RouteBuilder>
-* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet*> &ndash; Corresponde apenas às solicitações HTTP GET.
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet*> &ndash; corresponde apenas a solicitações HTTP GET.
 * <xref:Microsoft.AspNetCore.Builder.RoutingBuilderExtensions.UseRouter*>
 
 [!code-csharp[](routing/samples/2.x/RoutingSample/Startup.cs?name=snippet_RouteHandler)]
 
 A tabela a seguir mostra as respostas com os URIs fornecidos.
 
-| URI                    | Resposta                                          |
+| {1&gt;URI&lt;1}                    | Resposta                                          |
 | ---------------------- | ------------------------------------------------- |
 | `/package/create/3`    | Olá! Valores de rota: [operation, create], [id, 3] |
 | `/package/track/-3`    | Olá! Valores de rota: [operation, track], [id, -3] |
@@ -1102,7 +1118,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | Anotações |
+| restrição | Exemplo | Correspondências de exemplo | {1&gt;Observações&lt;1} |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |
@@ -1123,7 +1139,7 @@ A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento 
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | A cadeia de caracteres deve corresponder à expressão regular (veja as dicas sobre como definir uma expressão regular) |
 | `required` | `{name:required}` | `Rick` | Usado para impor que um valor não parâmetro está presente durante a geração de URL |
 
-Várias restrições delimitadas por dois-pontos podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
+Várias restrições delimitadas por vírgula podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
 
 ```csharp
 [Route("users/{id:int:min(1)}")]
@@ -1139,20 +1155,20 @@ A estrutura do ASP.NET Core adiciona `RegexOptions.IgnoreCase | RegexOptions.Com
 
 As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo Roteamento e pela linguagem C#. Os tokens de expressão regular precisam ter escape. Para usar a expressão regular `^\d{3}-\d{2}-\d{4}$` no roteamento, a expressão precisa ter os caracteres `\` (barra invertida) fornecidos na cadeia de caracteres como caracteres `\\` (barra invertida dupla) no arquivo de origem C# para fazer o escape do caractere de escape da cadeia de caracteres `\` (a menos que estejam sendo usados [literais de cadeia de caracteres textuais](/dotnet/csharp/language-reference/keywords/string)). Para fazer o escape dos caracteres de delimitador de parâmetro de roteamento (`{`, `}`, `[`, `]`), duplique os caracteres na expressão (`{{`, `}`, `[[`, `]]`). A tabela a seguir mostra uma expressão regular e a versão com escape.
 
-| Expressão regular    | Expressão regular com escape     |
+| Expressão Regular    | Expressão regular com escape     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere de acento circunflexo (`^`) e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de cifrão (`$`) e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expressão   | Cadeia de Caracteres    | Corresponder a | Comentário               |
+| Expressão   | Cadeia de caracteres    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
 | `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | olá     | Não    | Confira `^` e `$` acima |
 | `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
@@ -1462,14 +1478,14 @@ Adicione o roteamento ao contêiner de serviço em `Startup.ConfigureServices`:
 As rotas precisam ser configuradas no método `Startup.Configure`. O aplicativo de exemplo usa as seguintes APIs:
 
 * <xref:Microsoft.AspNetCore.Routing.RouteBuilder>
-* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet*> &ndash; Corresponde apenas às solicitações HTTP GET.
+* <xref:Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet*> &ndash; corresponde apenas a solicitações HTTP GET.
 * <xref:Microsoft.AspNetCore.Builder.RoutingBuilderExtensions.UseRouter*>
 
 [!code-csharp[](routing/samples/2.x/RoutingSample/Startup.cs?name=snippet_RouteHandler)]
 
 A tabela a seguir mostra as respostas com os URIs fornecidos.
 
-| URI                    | Resposta                                          |
+| {1&gt;URI&lt;1}                    | Resposta                                          |
 | ---------------------- | ------------------------------------------------- |
 | `/package/create/3`    | Olá! Valores de rota: [operation, create], [id, 3] |
 | `/package/track/-3`    | Olá! Valores de rota: [operation, track], [id, -3] |
@@ -1556,7 +1572,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | Anotações |
+| restrição | Exemplo | Correspondências de exemplo | {1&gt;Observações&lt;1} |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |
@@ -1577,7 +1593,7 @@ A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento 
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | A cadeia de caracteres deve corresponder à expressão regular (veja as dicas sobre como definir uma expressão regular) |
 | `required` | `{name:required}` | `Rick` | Usado para impor que um valor não parâmetro está presente durante a geração de URL |
 
-Várias restrições delimitadas por dois-pontos podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
+Várias restrições delimitadas por vírgula podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
 
 ```csharp
 [Route("users/{id:int:min(1)}")]
@@ -1593,20 +1609,20 @@ A estrutura do ASP.NET Core adiciona `RegexOptions.IgnoreCase | RegexOptions.Com
 
 As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo Roteamento e pela linguagem C#. Os tokens de expressão regular precisam ter escape. Para usar a expressão regular `^\d{3}-\d{2}-\d{4}$` no roteamento, a expressão precisa ter os caracteres `\` (barra invertida) fornecidos na cadeia de caracteres como caracteres `\\` (barra invertida dupla) no arquivo de origem C# para fazer o escape do caractere de escape da cadeia de caracteres `\` (a menos que estejam sendo usados [literais de cadeia de caracteres textuais](/dotnet/csharp/language-reference/keywords/string)). Para fazer o escape dos caracteres de delimitador de parâmetro de roteamento (`{`, `}`, `[`, `]`), duplique os caracteres na expressão (`{{`, `}`, `[[`, `]]`). A tabela a seguir mostra uma expressão regular e a versão com escape.
 
-| Expressão regular    | Expressão regular com escape     |
+| Expressão Regular    | Expressão regular com escape     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere de acento circunflexo (`^`) e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de cifrão (`$`) e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expressão   | Cadeia de Caracteres    | Corresponder a | Comentário               |
+| Expressão   | Cadeia de caracteres    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
 | `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | olá     | Não    | Confira `^` e `$` acima |
 | `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).

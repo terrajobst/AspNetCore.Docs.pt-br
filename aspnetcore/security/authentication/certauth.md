@@ -4,14 +4,14 @@ author: blowdart
 description: Saiba como configurar a autenticação de certificado no ASP.NET Core para IIS e HTTP. sys.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
-ms.date: 12/09/2019
+ms.date: 01/02/2020
 uid: security/authentication/certauth
-ms.openlocfilehash: 38ee8a6767191bb3eee4286e49b96162b14d9889
-ms.sourcegitcommit: 4e3edff24ba6e43a103fee1b126c9826241bb37b
+ms.openlocfilehash: 9c175439c0313d62c75898f1af097774b06f353a
+ms.sourcegitcommit: e7d4fe6727d423f905faaeaa312f6c25ef844047
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/10/2019
-ms.locfileid: "74959054"
+ms.lasthandoff: 01/02/2020
+ms.locfileid: "75608139"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurar a autenticação de certificado no ASP.NET Core
 
@@ -63,23 +63,33 @@ O manipulador de `CertificateAuthenticationOptions` tem algumas validações int
 
 ### <a name="allowedcertificatetypes--chained-selfsigned-or-all-chained--selfsigned"></a>AllowedCertificateTypes = encadeado, SelfSigned ou todos (encadeados | SelfSigned)
 
-Essa verificação valida que apenas o tipo de certificado apropriado é permitido.
+Valor padrão: `CertificateTypes.Chained`
+
+Essa verificação valida que apenas o tipo de certificado apropriado é permitido. Se o aplicativo estiver usando certificados autoassinados, essa opção precisará ser definida como `CertificateTypes.All` ou `CertificateTypes.SelfSigned`.
 
 ### <a name="validatecertificateuse"></a>ValidateCertificateUse
+
+Valor padrão: `true`
 
 Essa verificação valida que o certificado apresentado pelo cliente tem o EKU (uso estendido de chave) de autenticação de cliente ou nenhum EKUs. Como as especificações dizem, se nenhum EKU for especificado, todos os EKUs serão considerados válidos.
 
 ### <a name="validatevalidityperiod"></a>ValidateValidityPeriod
 
+Valor padrão: `true`
+
 Essa verificação valida que o certificado está dentro do período de validade. Em cada solicitação, o manipulador garante que um certificado que era válido quando foi apresentado não tenha expirado durante sua sessão atual.
 
 ### <a name="revocationflag"></a>RevocationFlag
+
+Valor padrão: `X509RevocationFlag.ExcludeRoot`
 
 Um sinalizador que especifica quais certificados na cadeia são verificados para revogação.
 
 As verificações de revogação são executadas somente quando o certificado é encadeado a um certificado raiz.
 
 ### <a name="revocationmode"></a>RevocationMode
+
+Valor padrão: `X509RevocationMode.Online`
 
 Um sinalizador que especifica como as verificações de revogação são executadas.
 
@@ -376,6 +386,9 @@ Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertif
 
 Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath root_ca_dev_damienbod.crt
 ```
+
+> [!NOTE]
+> O valor do parâmetro `-DnsName` deve corresponder ao destino de implantação do aplicativo. Por exemplo, "localhost" para desenvolvimento.
 
 #### <a name="install-in-the-trusted-root"></a>Instalar na raiz confiável
 

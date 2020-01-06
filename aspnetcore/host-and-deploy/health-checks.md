@@ -5,14 +5,14 @@ description: Saiba como configurar verificações de integridade para a infraest
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/13/2019
+ms.date: 12/15/2019
 uid: host-and-deploy/health-checks
-ms.openlocfilehash: 4a4606a58178018f0d71d467d4c8b6c9982c09dc
-ms.sourcegitcommit: 231780c8d7848943e5e9fd55e93f437f7e5a371d
+ms.openlocfilehash: dfd26b775b6c6a1af0108d34981d7ec3737980dd
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/15/2019
-ms.locfileid: "74115999"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75356125"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Verificações de integridade no ASP.NET Core
 
@@ -32,7 +32,7 @@ As verificações de integridade são expostas por um aplicativo como pontos de 
 
 O aplicativo de exemplo inclui exemplos dos cenários descritos neste tópico. Para executar o aplicativo de exemplo para determinado cenário, use o comando [dotnet run](/dotnet/core/tools/dotnet-run) na pasta do projeto em um shell de comando. Confira o arquivo *README.md* do aplicativo de exemplo e as descrições de cenários neste tópico para obter detalhes sobre como usar o aplicativo de exemplo.
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 As verificações de integridade são normalmente usadas com um orquestrador de contêineres ou um serviço de monitoramento externo para verificar o status de um aplicativo. Antes de adicionar verificações de integridade a um aplicativo, decida qual sistema de monitoramento será usado. O sistema de monitoramento determina quais tipos de verificações de integridade serão criados e como configurar seus pontos de extremidade.
 
@@ -186,7 +186,7 @@ services.AddHealthChecks()
 
 ## <a name="use-health-checks-routing"></a>Usar roteamento de verificações de integridade
 
-No `Startup.Configure`, chame `MapHealthChecks` no construtor de ponto de extremidade com a URL do ponto de extremidade ou o caminho relativo:
+Em `Startup.Configure`, chame `MapHealthChecks` no construtor de ponto de extremidade com a URL do ponto de extremidade ou o caminho relativo:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -300,9 +300,7 @@ app.UseEndpoints(endpoints =>
 
 ### <a name="customize-output"></a>Personalizar a saída
 
-A opção <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter> obtém ou define um representante usado para gravar a resposta.
-
-No `Startup.Configure`:
+Em `Startup.Configure`, defina a opção [HealthCheckOptions. ResponseWriter](xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter) como um delegado para gravar a resposta:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -314,27 +312,19 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-O representante padrão grava uma resposta mínima de texto sem formatação com o valor de cadeia de caracteres [HealthReport.Status](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReport.Status). O seguinte delegado personalizado, `WriteResponse`, gera uma resposta JSON personalizada:
+O representante padrão grava uma resposta mínima de texto sem formatação com o valor de cadeia de caracteres [HealthReport.Status](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReport.Status). Os delegados personalizados a seguir geram uma resposta JSON personalizada.
 
-```csharp
-private static Task WriteResponse(HttpContext httpContext, HealthReport result)
-{
-    httpContext.Response.ContentType = "application/json";
+O primeiro exemplo do aplicativo de exemplo demonstra como usar <xref:System.Text.Json?displayProperty=fullName>:
 
-    var json = new JObject(
-        new JProperty("status", result.Status.ToString()),
-        new JProperty("results", new JObject(result.Entries.Select(pair =>
-            new JProperty(pair.Key, new JObject(
-                new JProperty("status", pair.Value.Status.ToString()),
-                new JProperty("description", pair.Value.Description),
-                new JProperty("data", new JObject(pair.Value.Data.Select(
-                    p => new JProperty(p.Key, p.Value))))))))));
-    return httpContext.Response.WriteAsync(
-        json.ToString(Formatting.Indented));
-}
-```
+[!code-csharp[](health-checks/samples/3.x/HealthChecksSample/CustomWriterStartup.cs?name=snippet_WriteResponse_SystemTextJson)]
 
-O sistema de verificações de integridade não fornece suporte interno para formatos de retorno JSON complexos porque o formato é específico à sua escolha de sistema de monitoramento. Fique à vontade para personalizar o `JObject` no exemplo anterior, conforme necessário, para atender às suas necessidades.
+O segundo exemplo demonstra como usar [Newtonsoft. JSON](https://www.nuget.org/packages/Newtonsoft.Json/):
+
+[!code-csharp[](health-checks/samples/3.x/HealthChecksSample/CustomWriterStartup.cs?name=snippet_WriteResponse_NewtonSoftJson)]
+
+No aplicativo de exemplo, comente a diretiva de [pré-processador](xref:index#preprocessor-directives-in-sample-code) de `SYSTEM_TEXT_JSON` em *CustomWriterStartup.cs* para habilitar a versão `Newtonsoft.Json` do `WriteResponse`.
+
+A API de verificações de integridade não fornece suporte interno para formatos de retorno JSON complexos porque o formato é específico à sua escolha de sistema de monitoramento. Personalize a resposta nos exemplos anteriores, conforme necessário. Para obter mais informações sobre serialização JSON com `System.Text.Json`, consulte [como serializar e desserializar JSON no .net](/dotnet/standard/serialization/system-text-json-how-to).
 
 ## <a name="database-probe"></a>Investigação de banco de dados
 
@@ -531,11 +521,11 @@ O aplicativo de exemplo demonstra uma verificação de integridade da memória c
 
 Registre os serviços de verificação de integridade com <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> em `Startup.ConfigureServices`. Em vez de permitir a verificação de integridade passando-a para <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*>, a `MemoryHealthCheck` é registrada como um serviço. Todos os serviços registrados da <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> estão disponíveis para os serviços de verificação de integridade e middleware. Recomendamos registrar os serviços de verificação de integridade como serviços Singleton.
 
-No aplicativo de exemplo (*CustomWriterStartup.cs*):
+Em *CustomWriterStartup.cs* do aplicativo de exemplo:
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/CustomWriterStartup.cs?name=snippet_ConfigureServices&highlight=4)]
 
-Um ponto de extremidade de verificação de integridade é criado chamando `MapHealthChecks` em `Startup.Configure`. Um representante `WriteResponse` é fornecido para a propriedade `ResponseWriter` para gerar uma resposta JSON personalizada quando a verificação de integridade é executada:
+Um ponto de extremidade de verificação de integridade é criado chamando `MapHealthChecks` em `Startup.Configure`. Um delegado `WriteResponse` é fornecido para a propriedade < Microsoft. AspNetCore. Diagnostics. HealthChecks. HealthCheckOptions. ResponseWriter > para gerar uma resposta JSON personalizada quando a verificação de integridade é executada:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -547,9 +537,7 @@ app.UseEndpoints(endpoints =>
 }
 ```
 
-O método `WriteResponse` formata o `CompositeHealthCheckResult` em um objeto JSON e produz a saída JSON para a resposta da verificação de integridade:
-
-[!code-csharp[](health-checks/samples/3.x/HealthChecksSample/CustomWriterStartup.cs?name=snippet_WriteResponse)]
+O `WriteResponse` delegado formata o `CompositeHealthCheckResult` em um objeto JSON e produz a saída JSON para a resposta da verificação de integridade. Para obter mais informações, consulte a seção [Personalizar saída](#customize-output) .
 
 Para executar a investigação baseada em métrica com a saída do gravador de resposta personalizada usando o aplicativo de exemplo, execute o seguinte comando na pasta do projeto em um shell de comando:
 
@@ -756,10 +744,10 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 
 <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> permite que você defina:
 
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay> &ndash; O atraso inicial aplicado após o aplicativo começar a executar instâncias <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. O atraso é aplicado uma vez na inicialização e não ocorre em iterações subsequentes. O valor padrão é cinco segundos.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period> &ndash; O período da execução <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. O valor padrão é 30 segundos.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> &ndash; Se <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> for `null` (padrão), o serviço publicador de verificação de integridade executará todas as verificações de integridade registradas. Para executar um subconjunto das verificações de integridade, forneça uma função que filtre o conjunto de verificações. O predicado é avaliado a cada período.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Timeout> &ndash; O tempo limite para a execução de verificações de integridade em todas as instâncias <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Use <xref:System.Threading.Timeout.InfiniteTimeSpan> para executar sem um tempo limite. O valor padrão é 30 segundos.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay> &ndash; o atraso inicial aplicado depois que o aplicativo é iniciado antes de executar <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> instâncias. O atraso é aplicado uma vez na inicialização e não ocorre em iterações subsequentes. O valor padrão é cinco segundos.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period> &ndash; o período de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> execução. O valor padrão é 30 segundos.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> &ndash; se <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> for `null` (padrão), o serviço de Publicador de verificação de integridade executará todas as verificações de integridade registradas. Para executar um subconjunto das verificações de integridade, forneça uma função que filtre o conjunto de verificações. O predicado é avaliado a cada período.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Timeout> &ndash; o tempo limite para executar as verificações de integridade de todas as instâncias de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Use <xref:System.Threading.Timeout.InfiniteTimeSpan> para executar sem um tempo limite. O valor padrão é 30 segundos.
 
 No aplicativo de exemplo, `ReadinessPublisher` é uma implementação <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. O status da verificação de integridade é registrado para cada verificação em um nível de log de:
 
@@ -813,7 +801,7 @@ As verificações de integridade são expostas por um aplicativo como pontos de 
 
 O aplicativo de exemplo inclui exemplos dos cenários descritos neste tópico. Para executar o aplicativo de exemplo para determinado cenário, use o comando [dotnet run](/dotnet/core/tools/dotnet-run) na pasta do projeto em um shell de comando. Confira o arquivo *README.md* do aplicativo de exemplo e as descrições de cenários neste tópico para obter detalhes sobre como usar o aplicativo de exemplo.
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 As verificações de integridade são normalmente usadas com um orquestrador de contêineres ou um serviço de monitoramento externo para verificar o status de um aplicativo. Antes de adicionar verificações de integridade a um aplicativo, decida qual sistema de monitoramento será usado. O sistema de monitoramento determina quais tipos de verificações de integridade serão criados e como configurar seus pontos de extremidade.
 
@@ -1431,10 +1419,10 @@ Task PublishAsync(HealthReport report, CancellationToken cancellationToken);
 
 <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> permite que você defina:
 
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay> &ndash; O atraso inicial aplicado após o aplicativo começar a executar instâncias <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. O atraso é aplicado uma vez na inicialização e não ocorre em iterações subsequentes. O valor padrão é cinco segundos.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period> &ndash; O período da execução <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. O valor padrão é 30 segundos.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> &ndash; Se <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> for `null` (padrão), o serviço publicador de verificação de integridade executará todas as verificações de integridade registradas. Para executar um subconjunto das verificações de integridade, forneça uma função que filtre o conjunto de verificações. O predicado é avaliado a cada período.
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Timeout> &ndash; O tempo limite para a execução de verificações de integridade em todas as instâncias <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Use <xref:System.Threading.Timeout.InfiniteTimeSpan> para executar sem um tempo limite. O valor padrão é 30 segundos.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay> &ndash; o atraso inicial aplicado depois que o aplicativo é iniciado antes de executar <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> instâncias. O atraso é aplicado uma vez na inicialização e não ocorre em iterações subsequentes. O valor padrão é cinco segundos.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period> &ndash; o período de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> execução. O valor padrão é 30 segundos.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> &ndash; se <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> for `null` (padrão), o serviço de Publicador de verificação de integridade executará todas as verificações de integridade registradas. Para executar um subconjunto das verificações de integridade, forneça uma função que filtre o conjunto de verificações. O predicado é avaliado a cada período.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Timeout> &ndash; o tempo limite para executar as verificações de integridade de todas as instâncias de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>. Use <xref:System.Threading.Timeout.InfiniteTimeSpan> para executar sem um tempo limite. O valor padrão é 30 segundos.
 
 > [!WARNING]
 > Na versão para ASP.NET Core 2.2, a configuração de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period> não é respeitada pela implementação <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>; ela define o valor de <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay>. Esse problema foi resolvido no ASP.NET Core 3,0.

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: fundamentals/error-handling
-ms.openlocfilehash: 162972043a90fc8cc45aed52b5fa80ade3e11f39
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: c20d8757eef80fdbb73b1b7a9933a3c0be9bb8ed
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880068"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75358971"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Tratar erros no ASP.NET Core
 
@@ -84,6 +84,8 @@ Uma alternativa a uma [página personalizada de manipulador de exceção](#excep
 Este é um exemplo de como usar um lambda para a manipulação de exceção:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_HandlerPageLambda)]
+
+No código anterior, `await context.Response.WriteAsync(new string(' ', 512));` é adicionado para que o navegador Internet Explorer exiba a mensagem de erro em vez de uma mensagem de erro do IE. Para obter mais informações, consulte [esse problema de GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/16144).
 
 > [!WARNING]
 > **Não** forneça informações de erro confidenciais de <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> ou <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> para clientes. Fornecer erros é um risco à segurança.

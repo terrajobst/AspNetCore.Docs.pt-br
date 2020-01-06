@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba mais sobre a validação de modelo no ASP.NET Core MVC e Razor Pages.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/15/2019
 uid: mvc/models/validation
-ms.openlocfilehash: 7a6017141eb1016128c4a135c187479717580bb5
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: 042a9933e561de4957f6332bdff3c4f09d2e119b
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74881039"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75355274"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Validação de modelo no ASP.NET Core MVC e Razor Pages
 
@@ -58,7 +58,7 @@ Aqui estão alguns dos atributos de validação internos:
 * `[Required]`: valida que o campo não é nulo. Consulte [`[Required]` atributo](#required-attribute) para obter detalhes sobre o comportamento desse atributo.
 * `[StringLength]`: valida que um valor de propriedade da cadeia de caracteres não excede um limite de comprimento especificado.
 * `[Url]`: valida que a propriedade tem um formato de URL.
-* `[Remote]`: valida a entrada no cliente chamando um método de ação no servidor. Consulte `[`[Remote] ' atributo] (#remote-Attribute) para obter detalhes sobre o comportamento desse atributo.
+* `[Remote]`: valida a entrada no cliente chamando um método de ação no servidor. Consulte [`[Remote]` atributo](#remote-attribute) para obter detalhes sobre o comportamento desse atributo.
 
 Uma lista completa de atributos de validação pode ser encontrada no namespace [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations).
 
@@ -423,6 +423,8 @@ Os atributos de validação internos incluem:
 * `[StringLength]`: valida que um valor de propriedade da cadeia de caracteres não excede um limite de comprimento especificado.
 * `[Url]`: valida que a propriedade tem um formato de URL.
 * `[Remote]`: valida a entrada no cliente chamando um método de ação no servidor. Consulte [`[Remote]` atributo](#remote-attribute) para obter detalhes sobre o comportamento desse atributo.
+
+Ao usar o atributo `[RegularExpression]` com validação do lado do cliente, o Regex é executado em JavaScript no cliente. Isso significa que o comportamento de correspondência [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) será usado. Para obter mais informações, consulte [esse problema de GitHub](https://github.com/dotnet/corefx/issues/42487).
 
 Uma lista completa de atributos de validação pode ser encontrada no namespace [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations).
 

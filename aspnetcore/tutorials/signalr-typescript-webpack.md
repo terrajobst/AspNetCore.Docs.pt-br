@@ -8,12 +8,12 @@ ms.date: 11/21/2019
 no-loc:
 - SignalR
 uid: tutorials/signalr-typescript-webpack
-ms.openlocfilehash: a7c99c9e79647995886aec5b3a91584fd2f24451
-ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
+ms.openlocfilehash: 331176f299c0efcd7acb19430ffddcaee7ca1cf3
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/22/2019
-ms.locfileid: "74317480"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75357939"
 ---
 # <a name="use-aspnet-core-opno-locsignalr-with-typescript-and-webpack"></a>Usar ASP.NET Core SignalR com TypeScript e webpack
 
@@ -34,7 +34,7 @@ Neste tutorial, você aprenderá como:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -173,7 +173,7 @@ As etapas a seguir configuram a conversão do TypeScript para JavaScript e o agr
 
    O código precedente permite que o servidor localize e forneça o arquivo *index.html*, se o usuário inserir a URL completa ou a URL raiz do aplicativo Web.
 
-1. No final do método `Startup.Configure`, mapeie uma rota */Hub* para o Hub `ChatHub`. Substitua o código que exibe *Olá, mundo!* com a seguinte linha: 
+1. No final do método `Startup.Configure`, mapeie uma rota */Hub* para o Hub `ChatHub`. Substitua o código que exibe *Olá, mundo!* pela seguinte linha: 
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_UseSignalR&highlight=3)]
 
@@ -433,7 +433,7 @@ Atualmente, o aplicativo exibe um formulário simples para enviar mensagens. Nad
 1. Execute o comando a seguir na raiz do projeto:
 
     ```console
-    npm install @microsoft/signalr
+    npm install @aspnet/signalr
     ```
 
     O comando anterior instala o [SignalR cliente TypeScript](https://www.npmjs.com/package/@microsoft/signalr), que permite ao cliente enviar mensagens para o servidor.

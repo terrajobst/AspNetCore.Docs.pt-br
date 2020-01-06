@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/25/2019
 uid: grpc/migration
-ms.openlocfilehash: c4c07808540c9af370bfa253e8154a8a19f0f3de
-ms.sourcegitcommit: 897d4abff58505dae86b2947c5fe3d1b80d927f3
+ms.openlocfilehash: 451171a041f7bbb3711babd73d2fa2e245aadd28
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73634064"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75355135"
 ---
 # <a name="migrating-grpc-services-from-c-core-to-aspnet-core"></a>Migrando serviços gRPCs do C-Core para ASP.NET Core
 
@@ -82,7 +82,7 @@ Aplicativos baseados em C-Core configuram HTTPS por meio da [Propriedade Server.
 
 ## <a name="grpc-interceptors-vs-middleware"></a>Interceptores gRPC vs middleware
 
-ASP.NET Core [middleware](xref:fundamentals/middleware/index) oferece funcionalidades semelhantes em comparação com os interceptores em aplicativos gRPC baseados em C-Core. ASP.NET Core middleware e interceptores são conceitualmente semelhantes. Mesmo
+ASP.NET Core [middleware](xref:fundamentals/middleware/index) oferece funcionalidades semelhantes em comparação com os interceptores em aplicativos gRPC baseados em C-Core. ASP.NET Core middleware e interceptores são conceitualmente semelhantes. Ambos:
 
 * São usados para construir um pipeline que manipula uma solicitação gRPC.
 * Permitir que o trabalho seja executado antes ou depois do próximo componente no pipeline.
@@ -97,7 +97,8 @@ diferenças de interceptador gRPC do middleware ASP.NET Core:
   * Fornecer acesso a:
     * A mensagem desserializada enviada a uma chamada.
     * A mensagem que está sendo retornada da chamada antes de ser serializada.
-* Middleware
+  * Pode detectar e tratar exceções lançadas dos serviços gRPCs.
+* Middleware -
   * É executado antes de interceptadores gRPC.
   * Opera nas mensagens HTTP/2 subjacentes.
   * Pode acessar somente os bytes dos fluxos de solicitação e resposta.

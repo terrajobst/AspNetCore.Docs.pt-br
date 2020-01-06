@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como os componentes de exibição são usados no ASP.NET Core e como adicioná-los aos aplicativos.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2019
+ms.date: 12/18/2019
 uid: mvc/views/view-components
-ms.openlocfilehash: e6990368519857a27b291d7d565c09072f23f1b0
-ms.sourcegitcommit: 7001657c00358b082734ba4273693b9b3ed35d2a
+ms.openlocfilehash: a4583d49eb0b42f1fa6e3d8c444d263cba34da79
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "68670079"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75356841"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componentes de exibição no ASP.NET Core
 
@@ -69,14 +69,14 @@ Uma classe de componente de exibição:
 Um componente de exibição define sua lógica em um método `InvokeAsync` que retorna um `Task<IViewComponentResult>` ou em um método `Invoke` síncrono que retorna um `IViewComponentResult`. Os parâmetros são recebidos diretamente da invocação do componente de exibição, não do model binding. Um componente de exibição nunca manipula uma solicitação diretamente. Normalmente, um componente de exibição inicializa um modelo e passa-o para uma exibição chamando o método `View`. Em resumo, os métodos de componente de exibição:
 
 * Definem um método `InvokeAsync` que retorna um `Task<IViewComponentResult>` ou um método `Invoke` síncrono que retorna um `IViewComponentResult`.
-* Normalmente, inicializam um modelo e o passam para uma exibição chamando o método `ViewComponent` `View`.
+* Normalmente Inicializa um modelo e o passa para uma exibição chamando o método `ViewComponent` `View`.
 * Os parâmetros são recebidos do método de chamada, não do HTTP. Não há nenhum model binding.
 * Não são acessíveis diretamente como um ponto de extremidade HTTP. Eles são invocados no código (normalmente, em uma exibição). Um componente de exibição nunca manipula uma solicitação.
 * São sobrecarregados na assinatura, em vez de nos detalhes da solicitação HTTP atual.
 
 ### <a name="view-search-path"></a>Caminho de pesquisa de exibição
 
-O tempo de execução pesquisa a exibição nos seguintes caminhos:
+O runtime pesquisa a exibição nos seguintes caminhos:
 
 * /Views/{Nome do Controlador}/Components/{Nome do Componente da Exibição}/{Nome da Exibição}
 * /Views/Shared/Components/{Nome do Componente da Exibição}/{Nome da Exibição}
@@ -87,6 +87,14 @@ O caminho de pesquisa se aplica a projetos usando controladores + exibições e 
 O nome de exibição padrão de um componente de exibição é *Default*, o que significa que o arquivo de exibição geralmente será nomeado *Default.cshtml*. Especifique outro nome de exibição ao criar o resultado do componente de exibição ou ao chamar o método `View`.
 
 Recomendamos que você nomeie o arquivo de exibição *Default.cshtml* e use o caminho *Views/Shared/Components/{Nome do Componente da Exibição}/{Nome da Exibição}* . O componente de exibição `PriorityList` usado nesta amostra usa *Views/Shared/Components/PriorityList/Default.cshtml* como a exibição do componente de exibição.
+
+### <a name="customize-the-view-search-path"></a>Personalizar o caminho de pesquisa de exibição
+
+Para personalizar o caminho de pesquisa de exibição, modifique a coleção de <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> do Razor. Por exemplo, para procurar exibições no caminho "nome do componente/Components/{View}/{View nome}", adicione um novo item à coleção:
+
+[!code-cs[](view-components/samples_snapshot/2.x/Startup.cs?name=snippet_ViewLocationFormats&highlight=4)]
+
+No código anterior, o espaço reservado "{0}" representa o caminho "Components/{View Component Name}/{View Name}".
 
 ## <a name="invoking-a-view-component"></a>Invocando um componente de exibição
 
@@ -145,7 +153,7 @@ Neste exemplo, o componente de exibição é chamado diretamente no controlador:
 
 [!code-csharp[](view-components/sample/ViewCompFinal/Controllers/ToDoController.cs?name=snippet_IndexVC)]
 
-## <a name="walkthrough-creating-a-simple-view-component"></a>Passo a passo: Como criar um componente de exibição simples
+## <a name="walkthrough-creating-a-simple-view-component"></a>Passo a passo: criando um componente de exibição simples
 
 [Baixe](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample), compile e teste o código inicial. É um projeto simples com um controlador `ToDo` que exibe uma lista de itens *ToDo*.
 
@@ -160,7 +168,7 @@ Crie uma pasta *ViewComponents* e adicione a seguinte classe `PriorityListViewCo
 Observações sobre o código:
 
 * As classes de componente de exibição podem ser contidas em **qualquer** pasta do projeto.
-* Como o nome da classe PriorityList**ViewComponent** termina com o sufixo **ViewComponent**, o tempo de execução usará a cadeia de caracteres "PriorityList" ao referenciar o componente de classe em uma exibição. Explicarei isso mais detalhadamente mais adiante.
+* Como o nome da classe PriorityList**ViewComponent** termina com o sufixo **ViewComponent**, o runtime usará a cadeia de caracteres "PriorityList" ao referenciar o componente de classe em uma exibição. Explicarei isso mais detalhadamente mais adiante.
 * O atributo `[ViewComponent]` pode alterar o nome usado para referenciar um componente de exibição. Por exemplo, poderíamos nomear a classe `XYZ` e aplicar o atributo `ViewComponent`:
 
   ```csharp

@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Usar o recurso de migrações - ASP.NET MVC com EF Core'
+title: 'Tutorial: usando o recurso de migrações – ASP.NET MVC com EF Core'
 description: Neste tutorial, você começa a usar o recurso de migrações do EF Core para gerenciar alterações do modelo de dados em um aplicativo ASP.NET Core MVC.
 author: rick-anderson
 ms.author: riande
@@ -7,14 +7,14 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: 4c96815461898ce9273f953f083143d8b50d406e
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: bcd36509fe42da0a79b9243d17701f40e066a212
+ms.sourcegitcommit: 077b45eceae044475f04c1d7ef2d153d7c0515a8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259412"
+ms.lasthandoff: 12/29/2019
+ms.locfileid: "75542695"
 ---
-# <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Tutorial: Usar o recurso de migrações - ASP.NET MVC com EF Core
+# <a name="tutorial-using-the-migrations-feature---aspnet-mvc-with-ef-core"></a>Tutorial: usando o recurso de migrações – ASP.NET MVC com EF Core
 
 Neste tutorial, você começa usando o recurso de migrações do EF Core para o gerenciamento de alterações do modelo de dados. Em tutoriais seguintes, você adicionará mais migrações conforme você alterar o modelo de dados.
 
@@ -28,7 +28,7 @@ Neste tutorial, você:
 > * Aprenderá sobre o instantâneo do modelo de dados
 > * Aplicar a migração
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [Classificação, filtragem e paginação](sort-filter-page.md)
 
@@ -86,7 +86,7 @@ Done. To undo this action, use 'ef migrations remove'
 > [!NOTE]
 > Se você receber uma mensagem de erro *Nenhum comando "dotnet-ef" executável correspondente encontrado*, consulte [esta postagem no blog](https://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/) para ajudar a solucionar o problema.
 
-Se você receber uma mensagem de erro "*Não é possível acessar o arquivo... ContosoUniversity.dll porque ele está sendo usado por outro processo*", localize o ícone do IIS Express na Bandeja do Sistema do Windows, clique com o botão direito do mouse nele e, em seguida, clique em **ContosoUniversity > Parar Site**.
+Se você vir uma mensagem de erro "*não é possível acessar o arquivo... ContosoUniversity. dll porque ele está sendo usado por outro processo.* ", localize o ícone de IIS Express na bandeja do sistema do Windows e clique com o botão direito do mouse nele e clique em **ContosoUniversity > parar site**.
 
 ## <a name="examine-up-and-down-methods"></a>Examinará os métodos Up e Down
 
@@ -104,7 +104,7 @@ Se você criou a migração inicial quando o banco de dados já existia, o códi
 
 As migrações criam um *instantâneo* do esquema de banco de dados atual em *Migrations/SchoolContextModelSnapshot.cs*. Quando você adiciona uma migração, o EF determina o que foi alterado, comparando o modelo de dados com o arquivo de instantâneo.
 
-Ao excluir uma migração, use o comando [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove). `dotnet ef migrations remove` exclui a migração e garante que o instantâneo seja redefinido corretamente.
+Use o comando [dotnet EF migrações remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) para remover uma migração. `dotnet ef migrations remove` exclui a migração e garante que o instantâneo seja redefinido corretamente. Se `dotnet ef migrations remove` falhar, use `dotnet ef migrations remove -v` para obter mais informações sobre a falha.
 
 Confira [Migrações do EF Core em ambientes de equipe](/ef/core/managing-schemas/migrations/teams) para obter mais informações de como o arquivo de instantâneo é usado.
 

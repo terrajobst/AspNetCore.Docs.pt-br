@@ -5,12 +5,12 @@ description: Saiba como começar a usar o ASP.NET Core MVC.
 ms.author: riande
 ms.date: 10/16/2019
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 0c8c59a5c59c8a70985dc8463c80f9569a00621f
-ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
+ms.openlocfilehash: e70384a6f20f3ef06059ed6b51c76e923187c317
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2019
-ms.locfileid: "73761241"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75354933"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Introdução ao ASP.NET Core MVC
 
@@ -34,19 +34,19 @@ No final, você terá um aplicativo que pode gerenciar e exibir dados de filmes.
 
 [!INCLUDE[](~/includes/mvc-intro/download.md)]
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
 ---
 
@@ -90,15 +90,15 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Selecione **Arquivo** > **Nova Solução**.
+* Selecione **arquivo** > **nova solução**.
 
   ![Nova Solução do macOS](./start-mvc/_static/new_project_vsmac.png)
 
-* Selecione **.NET Core** > **Aplicativo** > **Aplicativo Web (Model-View-Controller)** > **Próximo**.
+* Selecione **.NET Core** > **aplicativo** > **aplicativo Web (Model-View-Controller)** > **Avançar**.
 
   ![Caixa de diálogo Novo Projeto do macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
 
-* Na caixa de diálogo **Configurar sua nova API Web do ASP.NET Core**, defina a **Estrutura de Destino** do **.NET Core 3.0**.
+* Na caixa de diálogo **configurar sua nova API Web do ASP.NET Core** , defina a **estrutura de destino** do **.NET Core 3,1**.
 
 <!-- 
   ![macOS .NET Core 2.2 selection](./start-mvc/_static/new_project_22_vsmac.png)
@@ -120,7 +120,7 @@ Pressione **Ctrl+F5** para executar o aplicativo no modo sem depuração.
 * Iniciar o aplicativo com Ctrl+F5 (modo de não depuração) permite que você faça alterações de código, salve o arquivo, atualize o navegador e veja as alterações de código. Muitos desenvolvedores preferem usar modo de não depuração para iniciar o aplicativo e exibir alterações rapidamente.
 * Você pode iniciar o aplicativo no modo de não depuração ou de depuração por meio do item de menu **Depurar**:
 
-  ![Menu Depurar](start-mvc/_static/debug_menu.png)
+  ![menu Depurar](start-mvc/_static/debug_menu.png)
 
 * Você pode depurar o aplicativo selecionando o botão **IIS Express**
 
@@ -184,7 +184,7 @@ No final, você terá um aplicativo que pode gerenciar e exibir dados de filmes.
 
 [!INCLUDE[](~/includes/mvc-intro/download.md)]
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -240,11 +240,11 @@ O tutorial pressupõe que você já tenha familiaridade com o VS Code. Consulte 
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Selecione **Arquivo** > **Nova Solução**.
+* Selecione **arquivo** > **nova solução**.
 
   ![Nova Solução do macOS](./start-mvc/_static/new_project_vsmac.png)
 
-* Selecione **.NET Core** > **Aplicativo** > **Aplicativo Web (Model-View-Controller)** > **Próximo**.
+* Selecione **.NET Core** > **aplicativo** > **aplicativo Web (Model-View-Controller)** > **Avançar**.
 
   ![Caixa de diálogo Novo Projeto do macOS](./start-mvc/_static/new_project_mvc_vsmac.png)
 
@@ -268,17 +268,17 @@ Pressione **Ctrl+F5** para executar o aplicativo no modo sem depuração.
 * Iniciar o aplicativo com Ctrl+F5 (modo de não depuração) permite que você faça alterações de código, salve o arquivo, atualize o navegador e veja as alterações de código. Muitos desenvolvedores preferem usar modo de não depuração para iniciar o aplicativo e exibir alterações rapidamente.
 * Você pode iniciar o aplicativo no modo de não depuração ou de depuração por meio do item de menu **Depurar**:
 
-  ![Menu Depurar](start-mvc/_static/debug_menu.png)
+  ![menu Depurar](start-mvc/_static/debug_menu.png)
 
 * Você pode depurar o aplicativo selecionando o botão **IIS Express**
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
-* Selecione **Aceitar** para dar consentimento de rastreamento. Este aplicativo não rastreia informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
+* Selecione **Aceitar** para dar consentimento ao acompanhamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
 
   ![Página Inicial ou de Índice](start-mvc/_static/privacy.png)
 
-  A imagem a seguir mostra o aplicativo depois de aceitar o rastreamento:
+  A imagem a seguir mostra o aplicativo depois de aceitar o acompanhamento:
 
   ![Página Inicial ou de Índice](start-mvc/_static/home2.2.png)
 
@@ -292,11 +292,11 @@ Pressione Ctrl + F5 para execução sem o depurador.
 
   Iniciar o aplicativo com Ctrl+F5 (modo de não depuração) permite que você faça alterações de código, salve o arquivo, atualize o navegador e veja as alterações de código. Muitos desenvolvedores preferem usar o modo sem depuração para atualizar a página e exibir alterações.
 
-* Selecione **Aceitar** para dar consentimento de rastreamento. Este aplicativo não rastreia informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
+* Selecione **Aceitar** para dar consentimento ao acompanhamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
 
   ![Página Inicial ou de Índice](start-mvc/_static/privacy.png)
 
-  A imagem a seguir mostra o aplicativo depois de aceitar o rastreamento:
+  A imagem a seguir mostra o aplicativo depois de aceitar o acompanhamento:
 
   ![Página Inicial ou de Índice](start-mvc/_static/home2.2.png)
 
@@ -309,11 +309,11 @@ Selecione **Executar** > **Iniciar Sem Depuração** para iniciar o aplicativo. 
 * A barra de endereços mostra `localhost:port#` e não algo como `example.com`. Isso ocorre porque `localhost` é o nome do host padrão do computador local. Quando o Visual Studio cria um projeto Web, uma porta aleatória é usada para o servidor Web. Quando você executar o aplicativo, verá um número de porta diferente.
 * Você pode iniciar o aplicativo no modo de depuração ou sem depuração no item de menu **Executar**.
 
-* Selecione **Aceitar** para dar consentimento de rastreamento. Este aplicativo não rastreia informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
+* Selecione **Aceitar** para dar consentimento ao acompanhamento. Este aplicativo não acompanha informações pessoais. O código de modelo gerado inclui ativos para ajudar a cumprir o [RGPD (Regulamento Geral sobre a Proteção de Dados)](xref:security/gdpr).
 
   ![Página Inicial ou de Índice](./start-mvc/_static/output_privacy_macos.png)
 
-  A imagem a seguir mostra o aplicativo depois de aceitar o rastreamento:
+  A imagem a seguir mostra o aplicativo depois de aceitar o acompanhamento:
 
   ![Página Inicial ou de Índice](./start-mvc/_static/output_macos.png)
 

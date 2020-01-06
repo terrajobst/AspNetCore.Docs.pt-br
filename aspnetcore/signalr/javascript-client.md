@@ -9,12 +9,12 @@ ms.date: 11/12/2019
 no-loc:
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 926160a41c82853d83890f0d52b14d7d5561a990
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: eaf737642cdbd7ab2b1b5c16538b47a70cddd332
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963776"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75354693"
 ---
 # <a name="aspnet-core-opno-locsignalr-javascript-client"></a>ASP.NET Core SignalR cliente JavaScript
 
@@ -35,7 +35,7 @@ A biblioteca de cliente SignalR JavaScript é entregue como um pacote [NPM](http
   npm install @microsoft/signalr
   ```
 
-o NPM instala o conteúdo do pacote na pasta *node_modules\\@microsoft\signalr\dist\browser* . Crie uma nova pasta chamada *signalr* na pasta *wwwroot\\lib* . Copie o arquivo *signalr. js* para a pasta *wwwroot\lib\signalr* .
+NPM instala o conteúdo do pacote na *node_modules\\@microsoft\signalr\dist\browser* pasta. Crie uma nova pasta chamada *signalr* na pasta *wwwroot\\lib* . Copie o arquivo *signalr. js* para a pasta *wwwroot\lib\signalr* .
 
 ::: moniker-end
 
@@ -46,7 +46,7 @@ o NPM instala o conteúdo do pacote na pasta *node_modules\\@microsoft\signalr\d
   npm install @aspnet/signalr
   ```
 
-o NPM instala o conteúdo do pacote na pasta *node_modules\\@aspnet\signalr\dist\browser* . Crie uma nova pasta chamada *signalr* na pasta *wwwroot\\lib* . Copie o arquivo *signalr. js* para a pasta *wwwroot\lib\signalr* .
+NPM instala o conteúdo do pacote na *node_modules\\@aspnet\signalr\dist\browser* pasta. Crie uma nova pasta chamada *signalr* na pasta *wwwroot\\lib* . Copie o arquivo *signalr. js* para a pasta *wwwroot\lib\signalr* .
 
 ::: moniker-end
 
@@ -109,7 +109,7 @@ SignalR determina qual método de cliente deve ser chamado, correspondendo ao no
 > [!NOTE]
 > Como prática recomendada, chame o método [Start](/javascript/api/%40aspnet/signalr/hubconnection#start) no `HubConnection` depois de `on`. Isso garante que seus manipuladores sejam registrados antes que todas as mensagens sejam recebidas.
 
-## <a name="error-handling-and-logging"></a>Tratamento de erros e registro em log
+## <a name="error-handling-and-logging"></a>Registro em log e tratamento de erros
 
 Encadeamento um método de `catch` ao final do método `start` para manipular erros do lado do cliente. Use `console.error` para gerar erros no console do navegador.
 
@@ -236,15 +236,16 @@ const connection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub")
     .withAutomaticReconnect({
         nextRetryDelayInMilliseconds: retryContext => {
-          if (retryContext.elapsedMilliseconds < 60000) {
-            // If we've been reconnecting for less than 60 seconds so far,
-            // wait between 0 and 10 seconds before the next reconnect attempt.
-            return Math.random() * 10000;
-          } else {
-            // If we've been reconnecting for more than 60 seconds so far, stop reconnecting.
-            return null;
-          }
-        })
+            if (retryContext.elapsedMilliseconds < 60000) {
+                // If we've been reconnecting for less than 60 seconds so far,
+                // wait between 0 and 10 seconds before the next reconnect attempt.
+                return Math.random() * 10000;
+            } else {
+                // If we've been reconnecting for more than 60 seconds so far, stop reconnecting.
+                return null;
+            }
+        }
+    })
     .build();
 ```
 

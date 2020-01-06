@@ -17,3 +17,5 @@ Os comandos anteriores adicionam:
 * Pacotes necessários para scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` e `Microsoft.EntityFrameworkCore.SqlServer`.
 
 Para obter orientação sobre a configuração de vários ambientes que permite que um aplicativo Configure seus contextos de banco de dados por ambiente, consulte <xref:fundamentals/environments#environment-based-startup-class-and-methods>.
+
+[!INCLUDE[](~/includes/scaffoldTFM.md)]

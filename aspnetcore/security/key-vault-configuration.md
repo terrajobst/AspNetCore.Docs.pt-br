@@ -5,14 +5,14 @@ description: Saiba como usar o provedor de configuração Azure Key Vault para c
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2019
+ms.date: 12/16/2019
 uid: security/key-vault-configuration
-ms.openlocfilehash: e0e55d40734e0cb6e3e1afe1c708ec47c6f43054
-ms.sourcegitcommit: f91d322f790123d41ec3271fa084ae20ed9f89a6
+ms.openlocfilehash: 37ba756cc4170c145d2ab1f9f0a465057cc826c1
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/18/2019
-ms.locfileid: "74155182"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75358702"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Azure Key Vault provedor de configuração no ASP.NET Core
 
@@ -90,7 +90,7 @@ As instruções fornecidas pelo guia de [início rápido: definem e recuperam um
 1. Crie um cofre de chaves no grupo de recursos com o comando a seguir, em que `{KEY VAULT NAME}` é o nome do novo cofre de chaves e `{LOCATION}` é a região do Azure (Datacenter):
 
    ```azure-cli
-   az keyvault create --name "{KEY VAULT NAME}" --resource-group "{RESOURCE GROUP NAME}" --location {LOCATION}
+   az keyvault create --name {KEY VAULT NAME} --resource-group "{RESOURCE GROUP NAME}" --location {LOCATION}
    ```
 
 1. Crie segredos no cofre de chaves como pares de nome-valor.
@@ -100,13 +100,13 @@ As instruções fornecidas pelo guia de [início rápido: definem e recuperam um
    Os segredos a seguir são para uso com o aplicativo de exemplo. Os valores incluem um sufixo `_prod` para distingui-los dos valores de sufixo `_dev` carregados no ambiente de desenvolvimento de segredos do usuário. Substitua `{KEY VAULT NAME}` pelo nome do cofre de chaves que você criou na etapa anterior:
 
    ```azure-cli
-   az keyvault secret set --vault-name "{KEY VAULT NAME}" --name "SecretName" --value "secret_value_1_prod"
-   az keyvault secret set --vault-name "{KEY VAULT NAME}" --name "Section--SecretName" --value "secret_value_2_prod"
+   az keyvault secret set --vault-name {KEY VAULT NAME} --name "SecretName" --value "secret_value_1_prod"
+   az keyvault secret set --vault-name {KEY VAULT NAME} --name "Section--SecretName" --value "secret_value_2_prod"
    ```
 
 ## <a name="use-application-id-and-x509-certificate-for-non-azure-hosted-apps"></a>Use a ID do aplicativo e o certificado X. 509 para aplicativos não hospedados no Azure
 
-Configure o Azure AD, Azure Key Vault e o aplicativo para usar uma ID de aplicativo Azure Active Directory e um certificado X. 509 para autenticar em um cofre de chaves **quando o aplicativo estiver hospedado fora do Azure**. Para obter mais informações, consulte [sobre chaves, segredos e certificados](/azure/key-vault/about-keys-secrets-and-certificates).
+Configure o Azure AD, Azure Key Vault e o aplicativo para usar uma ID de aplicativo Azure Active Directory e um certificado X. 509 para autenticar em um cofre de chaves **quando o aplicativo estiver hospedado fora do Azure**. Para obter mais informações, consulte [Sobre chaves, segredos e certificados](/azure/key-vault/about-keys-secrets-and-certificates).
 
 > [!NOTE]
 > Embora o uso de uma ID de aplicativo e um certificado X. 509 tenha suporte para aplicativos hospedados no Azure, é recomendável usar [identidades gerenciadas para recursos do Azure](#use-managed-identities-for-azure-resources) ao hospedar um aplicativo no Azure. Identidades gerenciadas não exigem o armazenamento de um certificado no aplicativo ou no ambiente de desenvolvimento.
@@ -124,10 +124,10 @@ O aplicativo de exemplo usa uma ID de aplicativo e um certificado X. 509 quando 
 1. Armazene o nome do cofre de chaves, a ID do aplicativo e a impressão digital do certificado no arquivo *appSettings. JSON* do aplicativo.
 1. Navegue até **cofres de chaves** na portal do Azure.
 1. Selecione o cofre de chaves que você criou no [armazenamento de segredo no ambiente de produção com Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) seção.
-1. Selecione **políticas de acesso**.
+1. Selecione **Políticas de acesso**.
 1. Selecione **Adicionar política de acesso**.
 1. Abra **permissões de segredo** e forneça ao aplicativo as permissões **Get** e **list** .
-1. Selecione **selecionar entidade de segurança** e selecione o aplicativo registrado por nome. Selecione o botão **selecionar** .
+1. Selecione **selecionar entidade de segurança** e selecione o aplicativo registrado por nome. Escolha o botão **Selecionar**.
 1. Selecione **OK**.
 1. Selecione **Salvar**.
 1. Implante o aplicativo.
@@ -190,7 +190,7 @@ Um aplicativo implantado no serviço Azure App é registrado automaticamente com
 Usando CLI do Azure e a ID de objeto do aplicativo, forneça ao aplicativo as permissões de `list` e `get` para acessar o cofre de chaves:
 
 ```azure-cli
-az keyvault set-policy --name '{KEY VAULT NAME}' --object-id {OBJECT ID} --secret-permissions get list
+az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-permissions get list
 ```
 
 **Reinicie o aplicativo** usando CLI do Azure, PowerShell ou o portal do Azure.
@@ -231,7 +231,7 @@ Para obter informações sobre como usar o provedor com uma identidade gerenciad
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="configuration-options"></a>Opções de configuração
+## <a name="configuration-options"></a>{1&gt;Opções de configuração&lt;1}
 
 <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> pode aceitar uma <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions>:
 
@@ -304,8 +304,8 @@ Quando essa abordagem é implementada:
 1. Os segredos são salvos em Azure Key Vault usando os seguintes comandos CLI do Azure:
 
    ```azure-cli
-   az keyvault secret set --vault-name "{KEY VAULT NAME}" --name "5000-AppSecret" --value "5.0.0.0_secret_value_prod"
-   az keyvault secret set --vault-name "{KEY VAULT NAME}" --name "5100-AppSecret" --value "5.1.0.0_secret_value_prod"
+   az keyvault secret set --vault-name {KEY VAULT NAME} --name "5000-AppSecret" --value "5.0.0.0_secret_value_prod"
+   az keyvault secret set --vault-name {KEY VAULT NAME} --name "5100-AppSecret" --value "5.1.0.0_secret_value_prod"
    ```
 
 1. Quando o aplicativo é executado, os segredos do cofre de chaves são carregados. O segredo da cadeia de caracteres para `5000-AppSecret` corresponde à versão do aplicativo especificada no arquivo de projeto do aplicativo (`5.0.0.0`).
@@ -323,7 +323,7 @@ O provedor é capaz de ler valores de configuração em uma matriz para associa�
 
 Ao ler de uma fonte de configuração que permite que as chaves contenham separadores de dois pontos (`:`), um segmento de chave numérico é usado para distinguir as chaves que compõem uma matriz (`:0:`, `:1:`,... `:{n}:`). Para obter mais informações, consulte [configuração: associar uma matriz a uma classe](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
 
-Azure Key Vault chaves não podem usar dois-pontos como separador. A abordagem descrita neste tópico usa traços duplos (`--`) como um separador de valores hierárquicos (seções). As chaves de matriz são armazenadas em Azure Key Vault com traços duplos e segmentos de chave numérica (`--0--`, `--1--` &hellip; `--{n}--`).
+Azure Key Vault chaves não podem usar dois-pontos como separador. A abordagem descrita neste tópico usa traços duplos (`--`) como um separador de valores hierárquicos (seções). As chaves de matriz são armazenadas em Azure Key Vault com traços duplos e segmentos de chave numérica (`--0--`, `--1--`&hellip; `--{n}--`).
 
 Examine a seguinte configuração do provedor de log [Serilog](https://serilog.net/) fornecida por um arquivo JSON. Há dois literais de objeto definidos na matriz de `WriteTo` que refletem dois *coletores*Serilog, que descrevem os destinos para a saída de log:
 
@@ -350,7 +350,7 @@ Examine a seguinte configuração do provedor de log [Serilog](https://serilog.n
 
 A configuração mostrada no arquivo JSON anterior é armazenada em Azure Key Vault usando a notação de travessão duplo (`--`) e os segmentos numéricos:
 
-| Chave | Valor |
+| Chave | Value |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |

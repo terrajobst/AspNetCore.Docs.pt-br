@@ -6,16 +6,18 @@ ms.author: casoper
 ms.date: 12/05/2019
 ms.custom: mvc, seodec18
 uid: security/authentication/azure-ad-b2c-webapi
-ms.openlocfilehash: 0c7e8a1db924bdedf29468bf6b8cc17f03962c6d
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: 9b18b19838a2d25944a2498b6eec1677e56b12cc
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880734"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75358255"
 ---
 # <a name="authentication-in-web-apis-with-azure-active-directory-b2c-in-aspnet-core"></a>Autenticação em APIs web com o Azure Active Directory B2C no ASP.NET Core
 
 Por [Cam Soper](https://twitter.com/camsoper)
+
+<!-- Next update remove screenshots. They become obsolete too soon and are more work to update -->
 
 [Azure Active Directory B2C do diretório](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) é uma solução de gerenciamento de identidade de nuvem para aplicativos web e móveis. O serviço fornece autenticação para aplicativos hospedados na nuvem e locais. Tipos de autenticação incluem contas individuais, contas de rede social e contas corporativas de federado. B2C do AD do Azure também fornece a autenticação multifator com configuração mínima.
 

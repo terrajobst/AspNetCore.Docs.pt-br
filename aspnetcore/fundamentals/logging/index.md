@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/04/2019
 uid: fundamentals/logging/index
-ms.openlocfilehash: 49d598330948c5f4a137c534094e14ed5e01e27c
-ms.sourcegitcommit: f4cd3828e26e6d549ba8d0c36a17be35ad9e5a51
+ms.openlocfilehash: e1c50c4592b21d56ed813dac43204d63f1bfe46c
+ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74825484"
+ms.lasthandoff: 12/25/2019
+ms.locfileid: "75359342"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Como fazer registro em log no .NET Core e no ASP.NET Core
 
@@ -753,7 +753,7 @@ Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anter
 | 5      | Console do       | Todas as categorias                          | Informações do       |
 | 6      | Todos os provedores | Todas as categorias                          | Depuração             |
 | 7      | Todos os provedores | System                                  | Depuração             |
-| 8      | Depuração         | Microsoft                               | Rastrear             |
+| 8      | Depuração         | Microsoft                               | Rastreamento             |
 
 Quando um objeto `ILogger` é criado, o objeto `ILoggerFactory` seleciona uma única regra por provedor para aplicar a esse agente. Todas as mensagens gravadas pela instância `ILogger` são filtradas com base nas regras selecionadas. A regra mais específica possível para cada par de categoria e provedor é selecionada dentre as regras disponíveis.
 
@@ -1057,6 +1057,16 @@ As [sobrecargas de AddEventLog](xref:Microsoft.Extensions.Logging.EventLoggerFac
 * `SourceName` &ndash; ".NET Runtime"
 * `MachineName` &ndash; computador local
 
+Os eventos são registrados em log para o [nível de aviso e superior](#log-level). Para registrar em log eventos inferiores a `Warning`, defina explicitamente o nível de log. Por exemplo, adicione o seguinte ao arquivo *appSettings. JSON* :
+
+```json
+"EventLog": {
+  "LogLevel": {
+    "Default": "Information"
+  }
+}
+```
+
 ### <a name="tracesource-provider"></a>Provedor TraceSource
 
 O pacote de provedor [Microsoft.Extensions.Logging.TraceSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource) usa as bibliotecas e provedores de <xref:System.Diagnostics.TraceSource>.
@@ -1142,7 +1152,7 @@ O pacote de provedor [Microsoft.Extensions.Logging.ApplicationInsights](https://
 
 O provedor de registro em log está incluído como uma dependência de [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore), que é o pacote que fornece toda a telemetria disponível para o ASP.NET Core. Se você usar esse pacote, não precisará instalar o pacote de provedor.
 
-Não use o pacote [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) &mdash;que é para o ASP.NET 4.x.
+Não use o pacote [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web)&mdash;que é para o ASP.NET 4.x.
 
 Para obter mais informações, consulte os seguintes recursos:
 

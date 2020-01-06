@@ -5,16 +5,16 @@ description: Saiba como criar e usar componentes do Razor, incluindo como associ
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/28/2019
 no-loc:
 - Blazor
 uid: blazor/components
-ms.openlocfilehash: a79202565f45b4d26e280427892ea16b33f3f853
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: 87f21d84c17e5bbd1247bb955acee81384b890e7
+ms.sourcegitcommit: 47d453f34b6fd0179119c572cb8be64c5365cbb6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74943856"
+ms.lasthandoff: 01/02/2020
+ms.locfileid: "75597896"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -579,7 +579,7 @@ Os `EventArgs` com suporte são mostrados na tabela a seguir.
 
 | Event            | Classe                | Eventos e observações do DOM |
 | ---------------- | -------------------- | -------------------- |
-| Área de transferência        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
+| Área de Transferência        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
 | Arrastar             | `DragEventArgs`      | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br>`DataTransfer` e `DataTransferItem` manter os dados do item arrastados. |
 | Erro do            | `ErrorEventArgs`     | `onerror` |
 | Event            | `EventArgs`          | *Geral*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Área de transferência*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Mídia*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
@@ -1624,7 +1624,8 @@ No exemplo a seguir, o loop no método `CreateComponent` gera três componentes 
 }
 ```
 
-> ! ALERTA Os tipos no `Microsoft.AspNetCore.Components.RenderTree` permitem o processamento dos *resultados* de operações de renderização. Estes são detalhes internos da implementação do Blazor Framework. Esses tipos devem ser considerados *instáveis* e sujeitos a alterações em versões futuras.
+> [!WARNING]
+> Os tipos no `Microsoft.AspNetCore.Components.RenderTree` permitem o processamento dos *resultados* de operações de renderização. Estes são detalhes internos da implementação do Blazor Framework. Esses tipos devem ser considerados *instáveis* e sujeitos a alterações em versões futuras.
 
 ### <a name="sequence-numbers-relate-to-code-line-numbers-and-not-execution-order"></a>Números de sequência se relacionam a números de linha de código e não a ordem de execução
 
