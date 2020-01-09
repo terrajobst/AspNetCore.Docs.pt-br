@@ -5,14 +5,14 @@ description: Saiba como hospedar aplicativos ASP.NET Core no Windows Server IIS 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/26/2019
+ms.date: 01/06/2020
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: de1b3e270ccd90bde741975de38a224e557f1a08
-ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
+ms.openlocfilehash: c2b524472b276dee215ff5eca7fd4e48e98957ef
+ms.sourcegitcommit: 79850db9e79b1705b89f466c6f2c961ff15485de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/03/2019
-ms.locfileid: "74717410"
+ms.lasthandoff: 01/07/2020
+ms.locfileid: "75693850"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -139,13 +139,33 @@ Para saber mais sobre hospedagem, confira [Host no ASP.NET Core](xref:fundamenta
 
 ### <a name="enable-the-iisintegration-components"></a>Habilitar os componentes de IISIntegration
 
-Um *Program.cs* típico chama <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> para começar a configurar um host que permite a integração com o IIS:
+::: moniker range=">= aspnetcore-3.0"
+
+Ao criar um host no `CreateHostBuilder` (*Program.cs*), chame <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> para habilitar a integração do IIS:
+
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        ...
+```
+
+Para obter mais informações sobre o `CreateDefaultBuilder`, consulte <xref:fundamentals/host/generic-host#default-builder-settings>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Ao criar um host no `CreateWebHostBuilder` (*Program.cs*), chame <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> para habilitar a integração do IIS:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         ...
 ```
+
+Para obter mais informações sobre o `CreateDefaultBuilder`, consulte <xref:fundamentals/host/web-host#set-up-a-host>.
+
+::: moniker-end
 
 ### <a name="iis-options"></a>Opções do IIS
 
@@ -243,7 +263,7 @@ Existem arquivos confidenciais no caminho físico do aplicativo, como *\<assembl
 
 **O arquivo *Web. config* deve estar presente na implantação o tempo todo, corretamente nomeado e ser capaz de configurar o site para inicialização normal. Nunca remova o arquivo *Web. config* de uma implantação de produção.**
 
-### <a name="transform-webconfig"></a>Transformação do Web.config
+### <a name="transform-webconfig"></a>Transformação do web.config
 
 Se você precisar transformar o *Web.config* em publicação (por exemplo, definir variáveis ​​de ambiente com base na configuração, no perfil ou no ambiente), consulte <xref:host-and-deploy/iis/transform-webconfig>.
 
@@ -273,7 +293,7 @@ Habilite a função **Servidor Web (IIS)** e estabeleça serviços de função.
 
 Habilite o **Console de Gerenciamento do IIS** e os **Serviços na World Wide Web**.
 
-1. Navegue para **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
+1. Navegue até **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
 
 1. Abra o nó **Serviços de Informações da Internet**. Abra o nó **Ferramentas de Gerenciamento da Web**.
 
@@ -324,11 +344,11 @@ Para obter uma versão anterior do instalador:
 
 1. Execute o instalador no servidor. Os parâmetros a seguir estão disponíveis ao executar o instalador por meio de um shell de comando do administrador:
 
-   * `OPT_NO_ANCM=1` &ndash; Ignorar a instalação do Módulo do ASP.NET Core.
-   * `OPT_NO_RUNTIME=1`&ndash; Ignorar a instalação do runtime do .NET Core. Usado quando o servidor hospeda apenas [implantações independentes (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_SHAREDFX=1`&ndash; Ignorar a instalação da Estrutura Compartilhada do ASP.NET (runtime do ASP.NET). Usado quando o servidor hospeda apenas [implantações independentes (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
-   * `OPT_NO_X86=1`&ndash; Ignorar a instalação dos runtimes x86. Use esse parâmetro quando você souber que não hospedará aplicativos de 32 bits. Se houver uma possibilidade de hospedar aplicativos de 32 bits e 64 bits no futuro, não use esse parâmetro e instale ambos os runtimes.
-   * `OPT_NO_SHARED_CONFIG_CHECK=1` &ndash; Desabilite a verificação para usar uma Configuração Compartilhada do IIS quando a configuração compartilhada (*applicationHost.config*) estiver no mesmo computador do que a instalação do IIS. *Disponível somente para instaladores do ASP.NET Core 2.2 ou Hosting Bundler posterior.* Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
+   * `OPT_NO_ANCM=1` &ndash; ignorar a instalação do módulo ASP.NET Core.
+   * `OPT_NO_RUNTIME=1` &ndash; ignorar a instalação do tempo de execução do .NET Core. Usado quando o servidor hospeda apenas [implantações independentes (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_SHAREDFX=1` &ndash; ignorar a instalação da estrutura compartilhada ASP.NET (tempo de execução do ASP.NET). Usado quando o servidor hospeda apenas [implantações independentes (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+   * `OPT_NO_X86=1` &ndash; ignorar a instalação de tempos de execução x86. Use esse parâmetro quando você souber que não hospedará aplicativos de 32 bits. Se houver uma possibilidade de hospedar aplicativos de 32 bits e 64 bits no futuro, não use esse parâmetro e instale ambos os runtimes.
+   * `OPT_NO_SHARED_CONFIG_CHECK=1` &ndash; desabilitar a verificação de uso de uma configuração compartilhada do IIS quando a configuração compartilhada (*ApplicationHost. config*) estiver no mesmo computador que a instalação do IIS. *Disponível somente para instaladores do ASP.NET Core 2.2 ou Hosting Bundler posterior.* Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
 1. Reinicie o sistema ou execute os seguintes comandos em um shell de comando:
 
    ```console
@@ -421,7 +441,7 @@ Para obter mais informações sobre a implantação do ASP.NET Core no IIS, cons
 
 Depois de implantar o aplicativo no sistema de hospedagem, faça uma solicitação para um dos pontos de extremidade públicos do aplicativo.
 
-No exemplo a seguir, o site está associado a um **Nome do Host** IIS de `www.mysite.com` na **Porta** `80`. É feita uma solicitação para `http://www.mysite.com`:
+No exemplo a seguir, o site está associado a um **nome de host** do IIS de `www.mysite.com` na **porta** `80`. É feita uma solicitação para `http://www.mysite.com`:
 
 ![O navegador Microsoft Edge carregou a página de inicialização do IIS.](index/_static/browsewebsite.png)
 
@@ -678,8 +698,8 @@ Para um aplicativo ASP.NET Core com o .NET Framework como destino, as solicitaç
 
 Quando hospedado no IIS pela versão 2 do Módulo do ASP.NET Core:
 
-* [Módulo de Inicialização de Aplicativo](#application-initialization-module) &ndash; Aplicativos hospedados [em processo](#in-process-hosting-model) ou [fora do processo](#out-of-process-hosting-model) podem ser configurados para iniciar automaticamente em uma reinicialização do servidor ou do processo de trabalho.
-* [Tempo Limite de Ociosidade](#idle-timeout) &ndash; Aplicativos hospedados [em processo](#in-process-hosting-model) podem ser configurados para não atingir o tempo limite durante períodos de inatividade.
+* O [módulo de inicialização do aplicativo](#application-initialization-module) &ndash; hospedado [no processo](#in-process-hosting-model) ou [fora do processo](#out-of-process-hosting-model) do aplicativo pode ser configurado para iniciar automaticamente em uma reinicialização do processo de trabalho ou reinicialização do servidor.
+* O [tempo limite de ociosidade](#idle-timeout) &ndash; hospedado [no processo](#in-process-hosting-model) do aplicativo pode ser configurado para não atingir o tempo limite durante períodos de inatividade.
 
 ### <a name="application-initialization-module"></a>Módulo de Inicialização de Aplicativo
 
@@ -691,8 +711,8 @@ Confirme se o recurso da função Inicialização de Aplicativo do IIS está hab
 
 No Windows 7 ou sistemas de área de trabalho posteriores, ao usar o IIS localmente:
 
-1. Navegue até **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
-1. Abra **Serviços de Informações da Internet** > **Serviços da World Wide Web** > **Recursos de Desenvolvimento de Aplicativos**.
+1. Navegue até **painel de controle** > **programas** > **programas e recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
+1. Abra **Serviços de Informações da Internet** > **serviços de World Wide Web** > **recursos de desenvolvimento de aplicativos**.
 1. Marque a caixa de seleção **Inicialização de Aplicativo**.
 
 No Windows Server 2008 R2 ou posterior:
@@ -709,7 +729,7 @@ Use quaisquer das abordagens a seguir para habilitar o Módulo de Inicializaçã
   1. Clique com o botão direito do mouse no pool de aplicativos do aplicativo na lista e selecione **Configurações Avançadas**.
   1. O **Modo de Inicialização** padrão é **OnDemand**. Defina o **Modo de Inicialização** como **AlwaysRunning**. Selecione **OK**.
   1. Abra o nó **Sites** no painel **Conexões**.
-  1. Clique com o botão direito do mouse no aplicativo e selecione **Gerenciar Site** > **Configurações Avançadas**.
+  1. Clique com o botão direito do mouse no aplicativo e selecione **gerenciar site** > **Configurações avançadas**.
   1. A configuração de **Pré-carregamento Habilitado** padrão é **Falso**. Defina **Pré-carregamento Habilitado** como **Verdadeiro**. Selecione **OK**.
 
 * Usando o *web.config*, adicione o elemento `<applicationInitialization>` definindo `doAppInitAfterRestart` como `true` aos elementos `<system.webServer>` no arquivo *web.config* do aplicativo:

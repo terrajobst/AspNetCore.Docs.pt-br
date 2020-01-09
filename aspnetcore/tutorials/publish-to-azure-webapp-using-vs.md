@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
 uid: tutorials/publish-to-azure-webapp-using-vs
-ms.openlocfilehash: 802d5c65423227e5fb7ccf39d692df2f0178ad34
-ms.sourcegitcommit: e6bd2bbe5683e9a7dbbc2f2eab644986e6dc8a87
+ms.openlocfilehash: 7fc3644df3dcb957f2537538aaa9506c6b38a480
+ms.sourcegitcommit: 79850db9e79b1705b89f466c6f2c961ff15485de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/03/2019
-ms.locfileid: "70238192"
+ms.lasthandoff: 01/07/2020
+ms.locfileid: "75693967"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a>Publicar um aplicativo ASP.NET Core no Azure com o Visual Studio
 
@@ -23,7 +23,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 ::: moniker-end
 
 
-Confira [Publicar no Azure do Visual Studio para Mac](https://blog.xamarin.com/publish-azure-visual-studio-mac/) se você estiver trabalhando no macOS.
+Consulte [publicar um aplicativo Web para Azure app serviço usando Visual Studio para Mac](https://docs.microsoft.com/visualstudio/mac/publish-app-svc?view=vsmac-2019) se você estiver trabalhando no MacOS.
 
 Para solucionar um problema de implantação do Serviço de Aplicativo, confira <xref:test/troubleshoot-azure-iis>.
 
@@ -72,10 +72,10 @@ O Visual Studio cria a solução.
 
 * Selecione **Registrar** e registre um novo usuário. Você pode usar um endereço de email fictício. Ao enviar, a página exibirá o seguinte erro:
 
-    *"Erro Interno do Servidor: uma operação de banco de dados falhou ao processar a solicitação. Exceção do SQL: não é possível abrir o banco de dados. A aplicação de migrações existentes ao contexto do BD do Aplicativo pode resolver esse problema."*
+    *"Erro interno do servidor: uma operação de banco de dados falhou ao processar a solicitação. Exceção SQL: não é possível abrir o banco de dados. A aplicação de migrações existentes para o contexto do BD de aplicativos pode resolver esse problema. "*
 * Selecione **Aplicar Migrações** e, depois que a página for atualizada, atualize a página.
 
-![Erro Interno do Servidor: uma operação de banco de dados falhou ao processar a solicitação. Exceção do SQL: não é possível abrir o banco de dados. A aplicação de migrações existentes ao contexto do BD do Aplicativo pode resolver esse problema.](publish-to-azure-webapp-using-vs/_static/mig.png)
+![Erro interno do servidor: uma operação de banco de dados falhou ao processar a solicitação. Exceção SQL: não é possível abrir o banco de dados. A aplicação de migrações existentes ao contexto do BD do Aplicativo pode resolver esse problema.](publish-to-azure-webapp-using-vs/_static/mig.png)
 
 O aplicativo exibe o email usado para registrar o novo usuário e um link **Fazer logout**.
 
@@ -139,12 +139,12 @@ Quando a implantação for concluída, selecione **Configurações**:
 
 Na página **Configurações** da caixa de diálogo **Publicar**:
 
-* Expanda **Bancos de Dados** e marque a opção **Usar esta cadeia de conexão no tempo de execução**.
+* Expanda **Bancos de Dados** e marque a opção **Usar esta cadeia de conexão no runtime**.
 * Expanda **Migrações do Entity Framework** e marque a opção **Aplicar esta migração durante a publicação**.
 
 * Selecione **Salvar**. O Visual Studio retorna para a caixa de diálogo **Publicar**. 
 
-![Caixa de diálogo Publicar: Painel Configurações](publish-to-azure-webapp-using-vs/_static/pubs.png)
+![Caixa de diálogo Publicar: painel Configurações](publish-to-azure-webapp-using-vs/_static/pubs.png)
 
 Clique em **Publicar**. O Visual Studio publica seu aplicativo no Azure. Quando a implantação for concluída, o aplicativo será aberto em um navegador.
 
@@ -184,7 +184,7 @@ Quando você concluir o teste do aplicativo, acesse o [portal do Azure](https://
 
 * Insira o nome do grupo de recursos e selecione **Excluir**. O aplicativo e todos os outros recursos criados neste tutorial agora foram excluídos do Azure.
 
-### <a name="next-steps"></a>Próximas etapas
+### <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 * <xref:host-and-deploy/azure-apps/azure-continuous-deployment>
 
