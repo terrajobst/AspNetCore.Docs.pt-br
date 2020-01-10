@@ -9,12 +9,12 @@ ms.date: 11/21/2019
 no-loc:
 - Blazor
 uid: host-and-deploy/blazor/configure-linker
-ms.openlocfilehash: 0bc987d72d2f684b1ecbd4a883e9a09fac7c801e
-ms.sourcegitcommit: 3e503ef510008e77be6dd82ee79213c9f7b97607
+ms.openlocfilehash: cdf506f0c0fa720df64e59342d352ef41271d24b
+ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/22/2019
-ms.locfileid: "74317285"
+ms.lasthandoff: 01/10/2020
+ms.locfileid: "75866040"
 ---
 # <a name="configure-the-linker-for-aspnet-core-opno-locblazor"></a>Configurar o vinculador para ASP.NET Core Blazor
 
@@ -62,7 +62,7 @@ Controle a vinculação por assembly fornecendo um arquivo de configuração XML
     <!--
       Preserve the methods in WasmRuntime because its methods are called by 
       JavaScript client-side code to implement timers.
-      Fixes: https://github.com/aspnet/Blazor/issues/239
+      Fixes: https://github.com/dotnet/blazor/issues/239
     -->
     <type fullname="System.Threading.WasmRuntime" />
   </assembly>
@@ -100,7 +100,7 @@ Para controlar quais assemblies de I18N são retidos, defina a propriedade `<Mon
 | `all`            | Todos os assemblies incluídos |
 | `cjk`            | *Nacional. CJK. dll*          |
 | `mideast`        | *Nacional. Oriente Médio. dll*      |
-| `none` (padrão) | Nenhum                    |
+| `none` (padrão) | {1&gt;Nenhum&lt;1}                    |
 | `other`          | *Nacional. Outro. dll*        |
 | `rare`           | *Nacional. Raras. dll*         |
 | `west`           | *Nacional. West. dll*         |
