@@ -9,12 +9,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 89c676b96ef66f648544a8a884593bdafa3876de
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: 06c1d2596bff34bbfe3b55e782ea2d24321dd839
+ms.sourcegitcommit: da2fb2d78ce70accdba903ccbfdcfffdd0112123
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74944220"
+ms.lasthandoff: 01/07/2020
+ms.locfileid: "75722746"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>O que há de novo no ASP.NET Core 3,1
 
@@ -38,7 +38,7 @@ os aplicativos do Blazor Server agora podem passar parâmetros para componentes 
 
 Por exemplo, PreRender um componente `Counter` com um valor de incremento (`IncrementAmount`):
 
-```razor
+```cshtml
 <component type="typeof(Counter)" render-mode="ServerPrerendered" 
     param-IncrementAmount="10" />
 ```

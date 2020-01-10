@@ -5,12 +5,12 @@ description: Saiba mais sobre como usar o LocalDB ou o SQLite do SQL Server em u
 ms.author: riande
 ms.date: 8/16/2019
 uid: tutorials/first-mvc-app/working-with-sql
-ms.openlocfilehash: de392f4220cf0182d02a20f387164d2f4b184b58
-ms.sourcegitcommit: 020c3760492efed71b19e476f25392dda5dd7388
+ms.openlocfilehash: d556f07111fb2022a1c2f1a066459566e302835d
+ms.sourcegitcommit: da2fb2d78ce70accdba903ccbfdcfffdd0112123
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/12/2019
-ms.locfileid: "72289087"
+ms.lasthandoff: 01/07/2020
+ms.locfileid: "75722759"
 ---
 # <a name="work-with-sql-in-aspnet-core"></a>Trabalhar com o SQL no ASP.NET Core
 
@@ -231,7 +231,7 @@ Exclua todos os registros no BD (para que o método de semeadura seja executado)
 
 O aplicativo mostra os dados propagados.
 
-![Aplicativo de filme MVC aberto no Microsoft Edge, mostrando os dados do filme](working-with-sql/_static/m55.png)
+![Aplicativo de filme MVC aberto no Microsoft Edge, mostrando os dados do filme](working-with-sql/_static/m55_mac.png)
 
 > [!div class="step-by-step"]
 > [Anterior](adding-model.md)

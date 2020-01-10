@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/16/2019
 uid: fundamentals/http-requests
-ms.openlocfilehash: f2494a5815396e693f6fd2a45ad78ebffe4d54a3
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: 482f8e28c23c621cecaf9ce111d89e9166ea6d85
+ms.sourcegitcommit: da2fb2d78ce70accdba903ccbfdcfffdd0112123
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75358076"
+ms.lasthandoff: 01/07/2020
+ms.locfileid: "75722720"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Fazer solicitações HTTP usando IHttpClientFactory no ASP.NET Core
 
@@ -300,7 +300,7 @@ Há maneiras alternativas de resolver os problemas anteriores usando uma instân
 
 - Crie uma instância do `SocketsHttpHandler` quando o aplicativo for iniciado e usado para a vida útil do aplicativo.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> para um valor apropriado com base em tempos de atualização de DNS.
-- Crie `HttpClient` instâncias usando `new HttpClient(handler, dispostHandler: false)` conforme necessário.
+- Crie `HttpClient` instâncias usando `new HttpClient(handler, disposeHandler: false)` conforme necessário.
 
 As abordagens anteriores resolvem os problemas de gerenciamento de recursos que `IHttpClientFactory` resolve de forma semelhante.
 
@@ -602,7 +602,7 @@ Há maneiras alternativas de resolver os problemas anteriores usando uma instân
 
 - Crie uma instância do `SocketsHttpHandler` quando o aplicativo for iniciado e usado para a vida útil do aplicativo.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> para um valor apropriado com base em tempos de atualização de DNS.
-- Crie `HttpClient` instâncias usando `new HttpClient(handler, dispostHandler: false)` conforme necessário.
+- Crie `HttpClient` instâncias usando `new HttpClient(handler, disposeHandler: false)` conforme necessário.
 
 As abordagens anteriores resolvem os problemas de gerenciamento de recursos que `IHttpClientFactory` resolve de forma semelhante.
 
@@ -910,7 +910,7 @@ Há maneiras alternativas de resolver os problemas anteriores usando uma instân
 
 - Crie uma instância do `SocketsHttpHandler` quando o aplicativo for iniciado e usado para a vida útil do aplicativo.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> para um valor apropriado com base em tempos de atualização de DNS.
-- Crie `HttpClient` instâncias usando `new HttpClient(handler, dispostHandler: false)` conforme necessário.
+- Crie `HttpClient` instâncias usando `new HttpClient(handler, disposeHandler: false)` conforme necessário.
 
 As abordagens anteriores resolvem os problemas de gerenciamento de recursos que `IHttpClientFactory` resolve de forma semelhante.
 
