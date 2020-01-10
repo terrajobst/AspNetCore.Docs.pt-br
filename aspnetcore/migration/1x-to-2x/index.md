@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: migration/1x-to-2x/index
-ms.openlocfilehash: 1242ec9f71f4a26b07f9a56a2a960bf315b56ccf
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: c46f50a418cf630980ac2ba94407e4370d36e7d5
+ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880009"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75828926"
 ---
 # <a name="migrate-from-aspnet-core-1x-to-20"></a>Migrar do ASP.NET Core 1.x para 2.0
 
@@ -42,7 +42,7 @@ Projetos direcionados ao .NET Framework devem usar o TFM de uma versão maior ou
 > [!NOTE]
 > O .NET Core 2.0 oferece uma área de superfície muito maior do que o .NET Core 1.x. Se você estiver direcionando o .NET Framework exclusivamente devido a APIs ausentes no .NET Core 1.x, o direcionamento do .NET Core 2.0 provavelmente funcionará.
 
-Se o arquivo de projeto contiver `<RuntimeFrameworkVersion>1.{sub-version}</RuntimeFrameworkVersion>`, confira [esse problema de GitHub](https://github.com/aspnet/AspNetCore/issues/3221#issuecomment-413094268).
+Se o arquivo de projeto contiver `<RuntimeFrameworkVersion>1.{sub-version}</RuntimeFrameworkVersion>`, confira [esse problema de GitHub](https://github.com/dotnet/AspNetCore/issues/3221#issuecomment-413094268).
 
 <a name="global-json"></a>
 
@@ -152,7 +152,7 @@ Em projetos do 2.0, mova a chamada `SeedData.Initialize` para o método `Main` d
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program2.cs?name=snippet_Main2Code&highlight=10)]
 
-A partir do 2.0, é uma prática inadequada realizar qualquer ação no `BuildWebHost`, exceto compilação e configuração do host da Web. Tudo relacionado à execução do aplicativo deve ser tratado fora do `BuildWebHost` &mdash;, normalmente no método `Main` do *Program.cs*.
+A partir do 2.0, é uma prática inadequada realizar qualquer ação no `BuildWebHost`, exceto compilação e configuração do host da Web. Qualquer coisa sobre a execução do aplicativo deve ser tratada fora do `BuildWebHost` &mdash; normalmente no método `Main` de *Program.cs*.
 
 <a name="view-compilation"></a>
 

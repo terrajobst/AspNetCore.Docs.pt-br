@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/23/2019
 uid: security/authentication/identity-custom-storage-providers
-ms.openlocfilehash: 6d0d9b5467d9d27b936a17fa86f73e7d8123b75b
-ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
+ms.openlocfilehash: 70951085474d88fd57f1b1496a41adcda520b91f
+ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2019
-ms.locfileid: "73760976"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75829147"
 ---
 # <a name="custom-storage-providers-for-aspnet-core-identity"></a>Provedores de armazenamento personalizados para identidade de ASP.NET Core
 
@@ -57,11 +57,11 @@ Ao criar uma nova instância de `UserManager` ou `RoleManager` você fornece o t
 
 [ASP.NET Core](https://github.com/aspnet/identity) tipos de dados de identidade são detalhados nas seções a seguir:
 
-### <a name="users"></a>Usuários
+### <a name="users"></a>Usuários do
 
 Usuários registrados do seu site da Web. O tipo [IdentityUser](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuser) pode ser estendido ou usado como um exemplo para seu próprio tipo personalizado. Você não precisa herdar de um tipo específico para implementar sua própria solução de armazenamento de identidade personalizada.
 
-### <a name="user-claims"></a>Declarações do usuário
+### <a name="user-claims"></a>Declarações de usuário
 
 Um conjunto de instruções (ou [declarações](/dotnet/api/system.security.claims.claim)) sobre o usuário que representa a identidade do usuário. Pode habilitar uma expressão maior da identidade do usuário do que pode ser obtido por meio de funções.
 
@@ -69,7 +69,7 @@ Um conjunto de instruções (ou [declarações](/dotnet/api/system.security.clai
 
 Informações sobre o provedor de autenticação externa (como o Facebook ou um conta Microsoft) para usar ao fazer logon em um usuário. [Exemplo](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuserlogin)
 
-### <a name="roles"></a>Funções
+### <a name="roles"></a>Funções do
 
 Grupos de autorização para seu site. Inclui a ID da função e o nome da função (como "admin" ou "Employee"). [Exemplo](/dotnet/api/microsoft.aspnet.identity.corecompat.identityrole)
 
@@ -238,4 +238,4 @@ public void ConfigureServices(IServiceCollection services)
 ## <a name="references"></a>Referências
 
 * [Provedores de armazenamento personalizados para a identidade ASP.NET 4. x](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
-* [ASP.NET Core identidade](https://github.com/aspnet/AspNetCore/tree/master/src/Identity) &ndash; este repositório inclui links para provedores de loja mantidos pela Comunidade.
+* [ASP.NET Core identidade](https://github.com/dotnet/AspNetCore/tree/master/src/Identity) &ndash; este repositório inclui links para provedores de loja mantidos pela Comunidade.

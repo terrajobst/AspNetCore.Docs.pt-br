@@ -9,25 +9,25 @@ ms.date: 11/27/2019
 no-loc:
 - SignalR
 uid: signalr/introduction
-ms.openlocfilehash: e84dd0d086cbfc80a80bc10baa33979da9b5d137
-ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
+ms.openlocfilehash: 635431abf9263c2dff261aea47e6f8324061763f
+ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/03/2019
-ms.locfileid: "74717228"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75829277"
 ---
 # <a name="introduction-to-aspnet-core-opno-locsignalr"></a>Introdução ao ASP.NET Core SignalR
 
-## <a name="what-is-opno-locsignalr"></a>O que é SignalR?
+## <a name="what-is-opno-locsignalr"></a>O que é o SignalR?
 
 ASP.NET Core SignalR é uma biblioteca de software livre que simplifica a adição da funcionalidade da Web em tempo real a aplicativos. A funcionalidade da Web em tempo real permite que o código do lado do servidor envie conteúdo aos clientes instantaneamente.
 
 Bons candidatos para SignalR:
 
-* Aplicativos que exigem atualizações de alta frequência do servidor. Exemplos são jogos, redes sociais, votação, leilão, mapas e aplicativos de GPS.
-* Painéis e aplicativos de monitoramento. Os exemplos incluem painéis da empresa, atualizações de vendas instantâneas ou alertas de viagem.
-* Aplicativos de colaboração. Os aplicativos de quadro de comunicações e o software de reunião de equipe são exemplos de aplicativos de colaboração.
-* Aplicativos que exigem notificações. Redes sociais, email, bate-papo, jogos, alertas de viagem e muitos outros aplicativos usam notificações.
+* Aplicativos que exigem atualizações frequentes do servidor. Por exemplo, jogos, redes sociais, votação, leilão, mapas e aplicativos de GPS.
+* Painéis e aplicativos de monitoramento. Por exemplo, painéis de empresa, atualizações de vendas instantâneas ou alertas de viagem.
+* Aplicativos de colaboração. Aplicativos de quadro de comunicação e software de reunião de equipe são exemplos de aplicativos de colaboração.
+* Aplicativos que exigem notificações. Redes sociais, email, chat, jogos, alertas de viagem e muitos outros aplicativos usam notificações.
 
 SignalR fornece uma API para criar [chamadas de procedimento remoto (RPC)](https://wikipedia.org/wiki/Remote_procedure_call)de servidor para cliente. As RPCs chamam funções JavaScript em clientes do código .NET Core do lado do servidor.
 
@@ -38,7 +38,7 @@ Aqui estão alguns recursos de SignalR para ASP.NET Core:
 * Envia mensagens para clientes ou grupos de clientes específicos.
 * Dimensiona para lidar com o aumento do tráfego.
 
-A origem é hospedada em um [repositórioSignalR no GitHub](https://github.com/aspnet/AspNetCore/tree/master/src/SignalR).
+A origem é hospedada em um [repositórioSignalR no GitHub](https://github.com/dotnet/AspNetCore/tree/master/src/SignalR).
 
 ## <a name="transports"></a>Transportes
 

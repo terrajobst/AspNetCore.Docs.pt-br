@@ -5,12 +5,12 @@ description: Saiba mais sobre os novos recursos no ASP.NET Core 1.1.
 ms.author: riande
 ms.date: 12/18/2018
 uid: aspnetcore-1.1
-ms.openlocfilehash: 0b1c4eb467dd13a7654229b3ed76dd14e984e94b
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: df9fd6bda00ac5f5516f40507001463fd7d0b92e
+ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75355222"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75828497"
 ---
 # <a name="whats-new-in-aspnet-core-11"></a>Novidades do ASP.NET Core 1.1
 
@@ -33,5 +33,5 @@ ASP.NET Core 1,1 tem mais recursos do que ASP.NET Core 1,0. Em geral, recomendam
 
 ## <a name="additional-information"></a>{1&gt;Informações Adicionais&lt;1}
 
-- [Notas de versão do ASP.NET Core 1.1.0](https://github.com/aspnet/Home/releases/tag/1.1.0)
+- [Notas de versão do ASP.NET Core 1.1.0](https://github.com/dotnet/aspnetcore/releases/tag/1.1.0)
 - Para se conectar ao progresso e aos planos da equipe de desenvolvimento do ASP.NET Core, fique ligado no [ASP.NET Community Standup](https://live.asp.net/).

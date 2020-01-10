@@ -5,12 +5,12 @@ description: Este tutorial demonstra como instalar e usar a ferramenta observado
 ms.author: riande
 ms.date: 05/31/2018
 uid: tutorials/dotnet-watch
-ms.openlocfilehash: a2a0bcdace67052975630f99aab23bbb0fd99bff
-ms.sourcegitcommit: 383017d7060a6d58f6a79cf4d7335d5b4b6c5659
+ms.openlocfilehash: 053c98ba032c85b61776d5b5644c5575cd4f890c
+ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72816145"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75828991"
 ---
 # <a name="develop-aspnet-core-apps-using-a-file-watcher"></a>Desenvolver aplicativos ASP.NET Core usando um observador de arquivo
 
@@ -71,7 +71,7 @@ A ferramenta de observador de arquivo `dotnet watch` está incluída com a vers�
 
 Qualquer [comando da CLI do .NET Core](/dotnet/core/tools#cli-commands) pode ser executado com `dotnet watch`. Por exemplo:
 
-| Comando | Comando com inspeção |
+| {1&gt;Comando&lt;1} | Comando com inspeção |
 | ---- | ----- |
 | dotnet run | dotnet watch run |
 | dotnet run -f netcoreapp2.0 | dotnet watch run -f netcoreapp2.0 |
@@ -185,4 +185,4 @@ O VSTest é executado quando há qualquer mudança de arquivo no projeto de test
 
 ## <a name="dotnet-watch-in-github"></a>`dotnet-watch` no GitHub
 
-`dotnet-watch` faz parte do [repositório aspnet/AspNetCore](https://github.com/aspnet/AspNetCore/tree/master/src/Tools/dotnet-watch) do GitHub.
+`dotnet-watch` faz parte do [repositório dotnet/AspNetCore](https://github.com/dotnet/AspNetCore/tree/master/src/Tools/dotnet-watch)do github.

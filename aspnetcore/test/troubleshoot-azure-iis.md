@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/20/2019
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 49a0f59fb6930235de10c726f3695f2a5352efb2
-ms.sourcegitcommit: 8157e5a351f49aeef3769f7d38b787b4386aad5f
+ms.openlocfilehash: b0f5d44f153a095a6108a12ee91f4cc46fe0a0de
+ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/20/2019
-ms.locfileid: "74251972"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75829004"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
 
@@ -63,7 +63,7 @@ O erro geralmente é causado por uma implantação quebrada no sistema de hosped
 * O processo de implantação não moveu todos os arquivos e pastas do aplicativo para a pasta de implantação no sistema de hospedagem.
 * O arquivo *Web. config* está ausente na implantação ou o conteúdo do arquivo *Web. config* está malformado.
 
-Execute as seguintes etapas:
+Realize as seguintes etapas:
 
 1. Exclua todos os arquivos e pastas da pasta de implantação no sistema de hospedagem.
 1. Reimplante o conteúdo da pasta de *publicação* do aplicativo no sistema de hospedagem usando o método normal de implantação, como o Visual Studio, o PowerShell ou a implantação manual:
@@ -109,7 +109,7 @@ Erro desconhecido ao carregar ASP.NET Core componentes do [módulo](xref:host-an
 
 * Entre em contato com o [Suporte da Microsoft](https://support.microsoft.com/oas/default.aspx?prid=15832) (selecione **Ferramentas para Desenvolvedores** e, em seguida, **ASP.NET Core**).
 * Faça uma pergunta no Stack Overflow.
-* Registre um problema no nosso [Repositório do GitHub](https://github.com/aspnet/AspNetCore).
+* Registre um problema no nosso [Repositório do GitHub](https://github.com/dotnet/AspNetCore).
 
 ### <a name="50030-in-process-startup-failure"></a>500.30 Falha de inicialização em processo
 
@@ -507,7 +507,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/aspnet-core-module
 
 ### <a name="enable-the-developer-exception-page"></a>Habilitar a página de exceção do desenvolvedor
 
-A `ASPNETCORE_ENVIRONMENT`variável de ambiente [ pode ser adicionada ao web.config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) para executar o aplicativo no ambiente de desenvolvimento. Desde que o ambiente não seja substituído na inicialização do aplicativo por `UseEnvironment` no compilador do host, definir a variável de ambiente permite que a [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) apareça quando o aplicativo é executado.
+A [variável de ambiente `ASPNETCORE_ENVIRONMENT` pode ser adicionada a Web. config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) para executar o aplicativo no ambiente de desenvolvimento. Desde que o ambiente não seja substituído na inicialização do aplicativo por `UseEnvironment` no compilador do host, definir a variável de ambiente permite que a [Página de Exceções do Desenvolvedor](xref:fundamentals/error-handling) apareça quando o aplicativo é executado.
 
 ::: moniker range=">= aspnetcore-2.2"
 

@@ -7,18 +7,18 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/08/2019
 uid: security/authentication/identity/spa
-ms.openlocfilehash: f58d92634ce1ef6110533d56c40b7520dda90514
-ms.sourcegitcommit: 4818385c3cfe0805e15138a2c1785b62deeaab90
+ms.openlocfilehash: 31a5e47d772e7416646c4d83c3209d7d2b254199
+ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/09/2019
-ms.locfileid: "73897043"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75829155"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Autenticação e autorização para SPAs
 
 O ASP.NET Core 3,0 ou posterior oferece autenticação em aplicativos de página única (SPAs) usando o suporte para autorização de API. ASP.NET Core identidade para autenticação e armazenamento de usuários é combinada com o [IdentityServer](https://identityserver.io/) para implementar o Open ID Connect.
 
-Um parâmetro de autenticação foi adicionado aos modelos de projeto **angular** e **reajam** que é semelhante ao parâmetro de autenticação no **aplicativo Web (Model-View-Controller)** (MVC) e **aplicativo Web** (Razor Pages) modelos de projeto. Os valores de parâmetro permitidos são **None** e **individual**. O modelo de projeto **reajam. js e Redux** não dá suporte ao parâmetro de autenticação no momento.
+Um parâmetro de autenticação foi adicionado aos modelos de projeto **angular** e **reajam** que é semelhante ao parâmetro de autenticação nos modelos de projeto de **aplicativo Web (Model-View-Controller)** (MVC) e **aplicativo Web** (Razor Pages). Os valores de parâmetro permitidos são **None** e **individual**. O modelo de projeto **reajam. js e Redux** não dá suporte ao parâmetro de autenticação no momento.
 
 ## <a name="create-an-app-with-api-authorization-support"></a>Criar um aplicativo com suporte à autorização de API
 
@@ -30,7 +30,7 @@ A autenticação e a autorização do usuário podem ser usadas com SPAs angular
 dotnet new angular -o <output_directory_name> -au Individual
 ```
 
-**React**:
+**Reagir**:
 
 ```dotnetcli
 dotnet new react -o <output_directory_name> -au Individual
@@ -121,7 +121,7 @@ No arquivo *appSettings. JSON* da raiz do projeto, há uma nova seção `Identit
 }
 ```
 
-### <a name="appsettingsdevelopmentjson"></a>AppSettings. Development. JSON
+### <a name="appsettingsdevelopmentjson"></a>appsettings.Development.json
 
 Em *appSettings. Arquivo Development. JSON* da raiz do projeto, há uma seção `IdentityServer` que descreve a chave usada para assinar tokens. Ao implantar na produção, uma chave precisa ser provisionada e implantada juntamente com o aplicativo, conforme explicado na seção [implantar na produção](#deploy-to-production) .
 
@@ -192,8 +192,8 @@ services.Configure<JwtBearerOptions>(
     IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
     options =>
     {
-        var onTokenValidated = options.Events.OnTokenValidated;
-
+        var onTokenValidated = options.Events.OnTokenValidated;       
+        
         options.Events.OnTokenValidated = async context =>
         {
             await onTokenValidated(context);
@@ -260,7 +260,7 @@ async populateWeatherData() {
 }
 ```
 
-## <a name="deploy-to-production"></a>Implantar na produção
+## <a name="deploy-to-production"></a>Implantar para a produção
 
 Para implantar o aplicativo na produção, os seguintes recursos precisam ser provisionados:
 

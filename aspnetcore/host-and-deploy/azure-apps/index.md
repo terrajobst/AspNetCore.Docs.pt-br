@@ -7,12 +7,12 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 12/16/2019
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: 51d82d1deadb3d2adbdccd39c8d949e3f9f812fd
-ms.sourcegitcommit: 79850db9e79b1705b89f466c6f2c961ff15485de
+ms.openlocfilehash: 286d73d732b146fef15bbfc309caeb214cdbbe0d
+ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/07/2020
-ms.locfileid: "75693837"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75829173"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -192,7 +192,7 @@ O [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contém as imagen
 
 ### <a name="install-the-preview-site-extension"></a>Instalar a extensão de site de visualização
 
-Se houver problemas ao usar a extensão de site de visualização, abra um [aspnet/AspNetCore](https://github.com/aspnet/AspNetCore/issues).
+Se ocorrer um problema usando a extensão de site de visualização, abra um [problema dotnet/AspNetCore](https://github.com/dotnet/AspNetCore/issues).
 
 1. No portal do Azure, navegue até o Serviço de Aplicativo.
 1. Selecione o aplicativo Web.

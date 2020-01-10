@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
 uid: performance/caching/response
-ms.openlocfilehash: a456e97053fea7c9ee9ec634ae9b7bbd52febe7f
-ms.sourcegitcommit: 09f4a5ded39cc8204576fe801d760bd8b611f3aa
+ms.openlocfilehash: 9246305e6979a6a7e006f567ee6bf9569029aef1
+ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/05/2019
-ms.locfileid: "73611467"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75828302"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Cache de resposta no ASP.NET Core
 
@@ -29,15 +29,15 @@ Para o cache do lado do servidor que segue a especificação de cache HTTP 1,1, 
 
 A [especificação de cache HTTP 1,1](https://tools.ietf.org/html/rfc7234) descreve como os caches da Internet devem se comportar. O cabeçalho HTTP primário usado para cache é o [controle de cache](https://tools.ietf.org/html/rfc7234#section-5.2), que é usado para especificar *diretivas*de cache. As diretivas controlam o comportamento do cache à medida que as solicitações fazem seu caminho de clientes para servidores e, à medida que as respostas voltam dos servidores para os clientes. As solicitações e respostas são movidas por meio de servidores proxy, e os servidores proxy também devem estar em conformidade com a especificação de cache HTTP 1,1.
 
-As diretivas comuns `Cache-Control` são mostradas na tabela a seguir.
+As diretivas `Cache-Control` comuns são mostradas na tabela a seguir.
 
-| Diretiva                                                       | Ação |
+| Directive                                                       | Action |
 | --------------------------------------------------------------- | ------ |
 | [public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Um cache pode armazenar a resposta. |
 | [private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | A resposta não deve ser armazenada por um cache compartilhado. Um cache privado pode armazenar e reutilizar a resposta. |
-| [idade máxima](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | O cliente não aceita uma resposta cuja idade é maior que o número especificado de segundos. Exemplos: `max-age=60` (60 segundos), `max-age=2592000` (1 mês) |
+| [max-age](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | O cliente não aceita uma resposta cuja idade é maior que o número especificado de segundos. Exemplos: `max-age=60` (60 segundos), `max-age=2592000` (1 mês) |
 | [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **Em solicitações**: um cache não deve usar uma resposta armazenada para atender à solicitação. O servidor de origem regenera a resposta para o cliente e o middleware atualiza a resposta armazenada em seu cache.<br><br>**Em respostas**: a resposta não deve ser usada para uma solicitação subsequente sem validação no servidor de origem. |
-| [sem armazenamento](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Em solicitações**: um cache não deve armazenar a solicitação.<br><br>**Em respostas**: um cache não deve armazenar nenhuma parte da resposta. |
+| [no-store](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Em solicitações**: um cache não deve armazenar a solicitação.<br><br>**Em respostas**: um cache não deve armazenar nenhuma parte da resposta. |
 
 Outros cabeçalhos de cache que desempenham uma função no Caching são mostrados na tabela a seguir.
 
@@ -45,16 +45,16 @@ Outros cabeçalhos de cache que desempenham uma função no Caching são mostrad
 | ---------------------------------------------------------- | -------- |
 | [Idade](https://tools.ietf.org/html/rfc7234#section-5.1)     | Uma estimativa da quantidade de tempo em segundos desde que a resposta foi gerada ou validada com êxito no servidor de origem. |
 | [Expira](https://tools.ietf.org/html/rfc7234#section-5.3) | O tempo após o qual a resposta é considerada obsoleta. |
-| [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)  | Existe para compatibilidade com versões anteriores com caches HTTP/1.0 para definir o comportamento `no-cache`. Se o cabeçalho `Cache-Control` estiver presente, o cabeçalho `Pragma` será ignorado. |
-| [Varia](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Especifica que uma resposta armazenada em cache não deve ser enviada, a menos que todos os campos de cabeçalho `Vary` coincidam com a solicitação original da resposta armazenada em cache e a nova solicitação. |
+| [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)  | Existe para compatibilidade com versões anteriores com caches HTTP/1.0 para definir `no-cache` comportamento. Se o cabeçalho de `Cache-Control` estiver presente, o cabeçalho `Pragma` será ignorado. |
+| [Varia](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Especifica que uma resposta armazenada em cache não deve ser enviada, a menos que todos os campos de cabeçalho de `Vary` coincidam com a solicitação original da resposta armazenada em cache e a nova solicitação. |
 
 ## <a name="http-based-caching-respects-request-cache-control-directives"></a>Os aspectos do cache baseado em HTTP solicitam diretivas de controle de cache
 
-A [especificação de cache HTTP 1,1 para o cabeçalho Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) requer um cache para honrar um cabeçalho `Cache-Control` válido enviado pelo cliente. Um cliente pode fazer solicitações com um valor de cabeçalho `no-cache` e forçar o servidor a gerar uma nova resposta para cada solicitação.
+A [especificação de cache HTTP 1,1 para o cabeçalho de controle de cache](https://tools.ietf.org/html/rfc7234#section-5.2) requer um cache para honrar um cabeçalho de `Cache-Control` válido enviado pelo cliente. Um cliente pode fazer solicitações com um valor de cabeçalho `no-cache` e forçar o servidor a gerar uma nova resposta para cada solicitação.
 
-Sempre respeitando os cabeçalhos de solicitação do cliente `Cache-Control` faz sentido se você considerar a meta do cache HTTP. Sob a especificação oficial, o Caching destina-se a reduzir a latência e a sobrecarga de rede de satisfazer solicitações em uma rede de clientes, proxies e servidores. Não é necessariamente uma maneira de controlar a carga em um servidor de origem.
+Sempre respeitando os cabeçalhos de solicitação de `Cache-Control` cliente faz sentido se você considerar a meta do cache HTTP. Sob a especificação oficial, o Caching destina-se a reduzir a latência e a sobrecarga de rede de satisfazer solicitações em uma rede de clientes, proxies e servidores. Não é necessariamente uma maneira de controlar a carga em um servidor de origem.
 
-Não há nenhum controle de desenvolvedor sobre esse comportamento de cache ao usar o [middleware de cache de resposta](xref:performance/caching/middleware) porque o middleware segue a especificação de cache oficial. Os [aprimoramentos planejados para o middleware](https://github.com/aspnet/AspNetCore/issues/2612) são uma oportunidade de configurar o middleware para ignorar o cabeçalho `Cache-Control` de uma solicitação ao decidir atender a uma resposta armazenada em cache. Os aprimoramentos planejados oferecem uma oportunidade de controlar melhor a carga do servidor.
+Não há nenhum controle de desenvolvedor sobre esse comportamento de cache ao usar o [middleware de cache de resposta](xref:performance/caching/middleware) porque o middleware segue a especificação de cache oficial. Os [aprimoramentos planejados para o middleware](https://github.com/dotnet/AspNetCore/issues/2612) são uma oportunidade de configurar o middleware para ignorar o cabeçalho `Cache-Control` de uma solicitação ao decidir atender a uma resposta armazenada em cache. Os aprimoramentos planejados oferecem uma oportunidade de controlar melhor a carga do servidor.
 
 ## <a name="other-caching-technology-in-aspnet-core"></a>Outra tecnologia de cache no ASP.NET Core
 
@@ -101,11 +101,11 @@ O [middleware de cache de resposta](xref:performance/caching/middleware) deve es
 
 A primeira solicitação é retornada pelo servidor e armazenada em cache no middleware. A segunda solicitação é retornada pelo middleware porque a cadeia de caracteres de consulta corresponde à solicitação anterior. A terceira solicitação não está no cache do middleware porque o valor da cadeia de caracteres de consulta não corresponde a uma solicitação anterior.
 
-O <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> é usado para configurar e criar (via <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>) um `Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter`. O `ResponseCacheFilter` executa o trabalho de atualizar os cabeçalhos HTTP e os recursos apropriados da resposta. O filtro:
+O <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> é usado para configurar e criar (via <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>) uma `Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter`. O `ResponseCacheFilter` executa o trabalho de atualizar os cabeçalhos HTTP e os recursos apropriados da resposta. O filtro:
 
-* Remove todos os cabeçalhos existentes para `Vary`, `Cache-Control` e `Pragma`.
+* Remove todos os cabeçalhos existentes para `Vary`, `Cache-Control`e `Pragma`.
 * Grava os cabeçalhos apropriados com base nas propriedades definidas no <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>.
-* Atualiza o recurso HTTP do cache de resposta se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> estiver definido.
+* Atualiza o recurso HTTP de resposta do cache se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> estiver definido.
 
 ### <a name="vary"></a>Varia
 
@@ -127,9 +127,9 @@ Vary: User-Agent
 * `Cache-Control` é definido como `no-store,no-cache`.
 * `Pragma` é definido como `no-cache`.
 
-Se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> for `false` e <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> for `None`, `Cache-Control` e `Pragma` serão definidos como `no-cache`.
+Se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> for `false` e <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> for `None`, `Cache-Control`e `Pragma` serão definidos como `no-cache`.
 
-o <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> normalmente é definido como `true` para páginas de erro. A página Cache2 no aplicativo de exemplo produz cabeçalhos de resposta que instruem o cliente a não armazenar a resposta.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> normalmente é definido como `true` para páginas de erro. A página Cache2 no aplicativo de exemplo produz cabeçalhos de resposta que instruem o cliente a não armazenar a resposta.
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache2.cshtml.cs?name=snippet)]
 
@@ -142,9 +142,9 @@ Pragma: no-cache
 
 ### <a name="location-and-duration"></a>Localização e duração
 
-Para habilitar o Caching, o <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> deve ser definido como um valor positivo e <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> deve ser `Any` (o padrão) ou `Client`. A estrutura define o cabeçalho de `Cache-Control` como o valor de local seguido pelo `max-age` da resposta.
+Para habilitar o Caching, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> deve ser definido como um valor positivo e <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> deve ser `Any` (o padrão) ou `Client`. A estrutura define o cabeçalho de `Cache-Control` como o valor de local seguido pelo `max-age` da resposta.
 
-as opções de <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> de `Any` e `Client` são transvertidas em valores de cabeçalho `Cache-Control` de `public` e `private`, respectivamente. Conforme observado na seção [NoStore e Location. None](#nostore-and-locationnone) , definir <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> como `None` define os cabeçalhos `Cache-Control` e `Pragma` como `no-cache`.
+as opções de <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>de `Any` e `Client` são transvertidas em valores de cabeçalho `Cache-Control` de `public` e `private`, respectivamente. Conforme observado na seção [NoStore e Location. None](#nostore-and-locationnone) , definir <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> como `None` define os cabeçalhos `Cache-Control` e `Pragma` como `no-cache`.
 
 `Location.Any` (`Cache-Control` definido como `public`) indica que o *cliente ou qualquer proxy intermediário* pode armazenar em cache o valor, incluindo o [middleware de cache de resposta](xref:performance/caching/middleware).
 
@@ -152,7 +152,7 @@ as opções de <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> de `Any` e 
 
 Os cabeçalhos de controle de cache simplesmente fornecem diretrizes para clientes e proxies intermediários quando e como armazenar em cache as respostas. Não há nenhuma garantia de que os clientes e proxies respeitarão a [especificação de cache HTTP 1,1](https://tools.ietf.org/html/rfc7234). O [middleware de cache de resposta](xref:performance/caching/middleware) sempre segue as regras de cache apresentadas pela especificação.
 
-O exemplo a seguir mostra o modelo de página Cache3 do aplicativo de exemplo e os cabeçalhos produzidos pela configuração <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> e deixando o valor padrão <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>:
+O exemplo a seguir mostra o modelo de página Cache3 do aplicativo de exemplo e os cabeçalhos produzidos pela configuração <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> e deixando o valor de <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> padrão:
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache3.cshtml.cs?name=snippet)]
 
@@ -176,9 +176,9 @@ O modelo de página Cache4 do aplicativo de exemplo faz referência ao perfil de
 
 O <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> pode ser aplicado a:
 
-* Os manipuladores de página Razor (classes) &ndash; atributos não podem ser aplicados a métodos de manipulador.
+* Manipuladores de página Razor (classes) &ndash; atributos não podem ser aplicados a métodos de manipulador.
 * Controladores MVC (classes).
-* Os atributos de nível de método de ações do MVC (métodos) &ndash; substituem as configurações especificadas em atributos de nível de classe.
+* As ações do MVC (métodos) &ndash; atributos de nível de método substituem as configurações especificadas em atributos de nível de classe.
 
 O cabeçalho resultante aplicado à resposta da página Cache4 pelo perfil de cache `Default30`:
 
@@ -189,7 +189,7 @@ Cache-Control: public,max-age=30
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Armazenando respostas em caches](https://tools.ietf.org/html/rfc7234#section-3)
-* [Controle de cache](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
+* [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
 * <xref:performance/caching/memory>
 * <xref:performance/caching/distributed>
 * <xref:fundamentals/change-tokens>
