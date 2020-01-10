@@ -4,16 +4,16 @@ author: rick-anderson
 description: Um breve tutorial que cria e executa um aplicativo básico Olá, Mundo usando o ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/22/2019
+ms.date: 01/07/2020
 uid: getting-started
-ms.openlocfilehash: 116a22bce80257948bfcc02c03a74a4b5568b8b5
-ms.sourcegitcommit: 4649814d1ae32248419da4e8f8242850fd8679a5
+ms.openlocfilehash: c806bd1e79dea9119f1c9e99d0a2b9742a10987a
+ms.sourcegitcommit: ef1720cb733908f36a54825d84c3461c5280bdbe
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/05/2019
-ms.locfileid: "71975687"
+ms.lasthandoff: 01/08/2020
+ms.locfileid: "75737471"
 ---
-# <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: Introdução ao ASP.NET Core
+# <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: introdução ao ASP.NET Core
 
 Este tutorial mostra como usar a interface de linha de comando do .NET Core para criar e executar um aplicativo Web ASP.NET Core.
 
@@ -29,9 +29,9 @@ No final, você terá um aplicativo Web de trabalho em execução no seu computa
 
 ![Página inicial do aplicativo Web](_static/home-page.png)
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
-[!INCLUDE[](~/includes/3.0-SDK.md)]
+[!INCLUDE[](~/includes/3.1-SDK.md)]
 
 ## <a name="create-a-web-app-project"></a>Criar um projeto de aplicativo Web
 
@@ -41,7 +41,7 @@ Abra um shell de comando e insira o seguinte comando:
 dotnet new webapp -o aspnetcoreapp
 ```
 
-O comando anterior:
+No comando anterior:
 
 * Cria um novo aplicativo Web.  
 * O parâmetro `-o aspnetcoreapp` cria um diretório chamado *aspnetcoreapp* com os arquivos de origem para o aplicativo.
@@ -70,7 +70,7 @@ dotnet dev-certs https --trust
 
 O comando anterior exibe a mensagem a seguir:
 
-*Foi solicitada confiança no certificado de desenvolvimento HTTPS. Se o certificado já não for confiável, executaremos o seguinte comando:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
+*A confiança do certificado de desenvolvimento https foi solicitada. Se o certificado ainda não for confiável, executaremos o seguinte comando:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
 
 Esse comando pode solicitar que você insira sua senha para instalar o certificado no conjunto de chaves do sistema. Insira sua senha se você concordar em confiar no certificado de desenvolvimento.
 
@@ -101,7 +101,7 @@ Abra *pages/index. cshtml* e modifique e salve a página com a seguinte marcaç�
 
 Navegue até [https://localhost:5001](https://localhost:5001), atualize a página e verifique se as alterações são exibidas.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Neste tutorial, você aprendeu como:
 

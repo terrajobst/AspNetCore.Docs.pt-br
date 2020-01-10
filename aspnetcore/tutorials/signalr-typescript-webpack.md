@@ -8,12 +8,12 @@ ms.date: 11/21/2019
 no-loc:
 - SignalR
 uid: tutorials/signalr-typescript-webpack
-ms.openlocfilehash: 331176f299c0efcd7acb19430ffddcaee7ca1cf3
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: 9094a1d391c087a6f58aa9dd66e3697a79f4af86
+ms.sourcegitcommit: ef1720cb733908f36a54825d84c3461c5280bdbe
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75357939"
+ms.lasthandoff: 01/08/2020
+ms.locfileid: "75737510"
 ---
 # <a name="use-aspnet-core-opno-locsignalr-with-typescript-and-webpack"></a>Usar ASP.NET Core SignalR com TypeScript e webpack
 
@@ -270,6 +270,8 @@ Confirme que o aplicativo funciona com as seguintes etapas.
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
+
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
