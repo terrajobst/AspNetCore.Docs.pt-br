@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
 uid: performance/caching/response
-ms.openlocfilehash: 9246305e6979a6a7e006f567ee6bf9569029aef1
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: e20c197c7ce3334d4f4f0b917d1fc94174e6c615
+ms.sourcegitcommit: 57b85708f4cded99b8f008a69830cb104cd8e879
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75828302"
+ms.lasthandoff: 01/13/2020
+ms.locfileid: "75914195"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Cache de resposta no ASP.NET Core
 
@@ -66,7 +66,7 @@ Para obter mais informações, consulte <xref:performance/caching/memory>.
 
 ### <a name="distributed-cache"></a>Cache distribuído
 
-Use um cache distribuído para armazenar dados na memória quando o aplicativo estiver hospedado em uma nuvem ou farm de servidores. O cache é compartilhado entre os servidores que processam solicitações. Um cliente pode enviar uma solicitação que é tratada por qualquer servidor no grupo se os dados armazenados em cache para o cliente estiverem disponíveis. O ASP.NET Core oferece caches distribuídos SQL Server e Redis.
+Use um cache distribuído para armazenar dados na memória quando o aplicativo estiver hospedado em uma nuvem ou farm de servidores. O cache é compartilhado entre os servidores que processam solicitações. Um cliente pode enviar uma solicitação que é tratada por qualquer servidor no grupo se os dados armazenados em cache para o cliente estiverem disponíveis. ASP.NET Core funciona com caches distribuídos SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)e [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) .
 
 Para obter mais informações, consulte <xref:performance/caching/distributed>.
 
@@ -78,7 +78,7 @@ Para obter mais informações, consulte <xref:mvc/views/tag-helpers/builtin-th/c
 
 ### <a name="distributed-cache-tag-helper"></a>Auxiliar de Marca de Cache Distribuído
 
-Armazene em cache o conteúdo de uma exibição MVC ou página Razor em cenários de nuvem distribuída ou web farm com o auxiliar de marca de cache distribuído. O auxiliar de marca de cache distribuído usa SQL Server ou Redis para armazenar dados.
+Armazene em cache o conteúdo de uma exibição MVC ou página Razor em cenários de nuvem distribuída ou web farm com o auxiliar de marca de cache distribuído. O auxiliar de marca de cache distribuído usa SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)ou [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) para armazenar dados.
 
 Para obter mais informações, consulte <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>.
 

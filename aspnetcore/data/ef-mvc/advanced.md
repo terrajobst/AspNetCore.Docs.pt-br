@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Saiba mais sobre cenários avançados - ASP.NET MVC com EF Core'
+title: 'Tutorial: Saiba mais sobre cenários avançados – ASP.NET MVC com EF Core'
 description: Este tutorial apresenta tópicos úteis para ir além das noções básicas de desenvolvimento de aplicativos Web ASP.NET Core que usam o Entity Framework Core.
 author: rick-anderson
 ms.author: riande
@@ -7,14 +7,14 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: d4a2aad6d93cc9a53c730323620de59fead6d5ab
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: abea9b189861954533b24cb73650af41952d1a86
+ms.sourcegitcommit: 57b85708f4cded99b8f008a69830cb104cd8e879
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259595"
+ms.lasthandoff: 01/13/2020
+ms.locfileid: "75914110"
 ---
-# <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Tutorial: Saiba mais sobre cenários avançados - ASP.NET MVC com EF Core
+# <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Tutorial: Saiba mais sobre cenários avançados – ASP.NET MVC com EF Core
 
 No tutorial anterior, você implementou a herança de tabela por hierarquia. Este tutorial apresenta vários tópicos que são úteis para consideração quando você vai além dos conceitos básicos de desenvolvimento de aplicativos Web ASP.NET Core que usam o Entity Framework Core.
 
@@ -31,7 +31,7 @@ Neste tutorial, você:
 > * Aprender sobre o código-fonte e planos de desenvolvimento do EF Core
 > * Aprender a usar o LINQ dinâmico para simplificar o código
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [Implementar herança](inheritance.md)
 
@@ -109,7 +109,7 @@ Clique em **Atualizar**. O número de linhas afetadas é exibido:
 
 Clique em **Voltar para a Lista** para ver a lista de cursos com o número revisado de créditos.
 
-Observe que o código de produção deve garantir que as atualizações sempre resultem em dados válidos. O código simplificado mostrado aqui pode multiplicar o número de créditos o suficiente para resultar em números maiores que 5. (A propriedade `Credits` tem um atributo `[Range(0, 5)]`.) A consulta de atualização funciona, mas os dados inválidos podem causar resultados inesperados em outras partes do sistema que supõem que o número de créditos seja 5 ou inferior.
+Observe que o código de produção deve garantir que as atualizações sempre resultem em dados válidos. O código simplificado mostrado aqui pode multiplicar o número de créditos o suficiente para resultar em números maiores que 5. (A propriedade `Credits` tem um atributo `[Range(0, 5)]`.) A consulta de atualização funcionaria, mas os dados inválidos poderiam causar resultados inesperados em outras partes do sistema que assumem que o número de créditos é de 5 ou menos.
 
 Para obter mais informações sobre consultas SQL brutas, consulte [Consultas SQL brutas](/ef/core/querying/raw-sql).
 
@@ -181,7 +181,7 @@ _context.ChangeTracker.AutoDetectChangesEnabled = false;
 
 ## <a name="ef-core-source-code-and-development-plans"></a>Código-fonte e planos de desenvolvimento do EF Core
 
-O código-fonte do Entity Framework Core está em [https://github.com/aspnet/EntityFrameworkCore](https://github.com/aspnet/EntityFrameworkCore). O repositório do EF Core contém builds noturnos, acompanhamento de questões, especificações de recurso, notas de reuniões de design e [o roteiro para desenvolvimento futuro](https://github.com/aspnet/EntityFrameworkCore/wiki/Roadmap). Arquive ou encontre bugs e contribua.
+O código-fonte do Entity Framework Core está em [https://github.com/dotnet/efcore](https://github.com/dotnet/efcore). O repositório do EF Core contém builds noturnos, acompanhamento de questões, especificações de recurso, notas de reuniões de design e [o roteiro para desenvolvimento futuro](https://github.com/dotnet/efcore/wiki/Roadmap). Arquive ou encontre bugs e contribua.
 
 Embora o código-fonte seja aberto, há suporte completo para o Entity Framework Core como um produto Microsoft. A equipe do Microsoft Entity Framework mantém controle sobre quais contribuições são aceitas e testa todas as alterações de código para garantir a qualidade de cada versão.
 
@@ -243,7 +243,7 @@ dotnet ef database drop
 
 Mensagem de erro:
 
-> Ocorreu um erro relacionado à rede ou específico a uma instância ao estabelecer uma conexão com o SQL Server. O servidor não foi encontrado ou não estava acessível. Verifique se o nome da instância está correto e se o SQL Server está configurado para permitir conexões remotas. (provedor: Adaptadores de Rede do SQL, erro: 26 – Erro ao localizar a instância/o servidor especificado)
+> Ocorreu um erro relacionado à rede ou específico a uma instância ao estabelecer uma conexão com o SQL Server. O servidor não foi encontrado ou não estava acessível. Verifique se o nome da instância está correto e se o SQL Server está configurado para permitir conexões remotas. (provedor: Adaptadores de Rede do SQL, erro: 26 – Erro ao Localizar Servidor/Instância Especificada)
 
 Solução:
 
@@ -255,13 +255,13 @@ Verifique a cadeia de conexão. Se você excluiu o arquivo de banco de dados man
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-Para obter mais informações sobre o EF Core, consulte a [documentação do Entity Framework Core](/ef/core). Também há um livro disponível: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action) (Entity Framework Core em ação).
+Para obter mais informações sobre o EF Core, consulte a [documentação do Entity Framework Core](/ef/core). Um manual também está disponível: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action) (Entity Framework Core em ação).
 
 Para obter informações sobre como implantar um aplicativo Web, confira <xref:host-and-deploy/index>.
 
 Para obter informações sobre outros tópicos relacionados ao ASP.NET Core MVC, como autenticação e autorização, confira <xref:index>.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Neste tutorial, você:
 
