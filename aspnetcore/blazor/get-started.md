@@ -9,12 +9,12 @@ ms.date: 12/09/2019
 no-loc:
 - Blazor
 uid: blazor/get-started
-ms.openlocfilehash: 554f4daff92a0839ee7679287a4618e9b51e0fe5
-ms.sourcegitcommit: 925cdbd94613243f33bc7613a62ea34006219931
+ms.openlocfilehash: 2135c2a090d60ec7a46fa4f899f0f14987b6b4e0
+ms.sourcegitcommit: 2388c2a7334ce66b6be3ffbab06dd7923df18f60
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/13/2020
-ms.locfileid: "75921302"
+ms.lasthandoff: 01/14/2020
+ms.locfileid: "75951718"
 ---
 # <a name="get-started-with-aspnet-core-opno-locblazor"></a>Introdução ao ASP.NET Core Blazor
 
@@ -101,7 +101,7 @@ Introdução ao Blazor:
 
    7 \. Selecione **executar** > **executar sem depuração** para executar o aplicativo *sem o depurador*. Execute o aplicativo com **Iniciar Depuração** para executar o aplicativo *com o depurador*.
 
-       If a prompt appears to trust the development certificate, trust the certificate and continue.
+   Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no certificado e continue.
 
    # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
