@@ -5,14 +5,14 @@ description: Saiba como diagnosticar problemas com implantações de serviço Az
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/20/2019
+ms.date: 01/10/2020
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: b0f5d44f153a095a6108a12ee91f4cc46fe0a0de
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: 23c90c33d197d26d1c4ad758449e318e20ef3760
+ms.sourcegitcommit: 2388c2a7334ce66b6be3ffbab06dd7923df18f60
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75829004"
+ms.lasthandoff: 01/14/2020
+ms.locfileid: "75952148"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
 
@@ -433,7 +433,7 @@ Para obter mais informações, veja [Habilitar log de diagnósticos para aplicat
 
 Acesse o Log de Eventos do Aplicativo:
 
-1. Abra o menu Iniciar, procure **Visualizador de Eventos** e, em seguida, selecione o aplicativo **Visualizador de Eventos**.
+1. Abra o menu Iniciar, procure *Visualizador de eventos*e selecione o aplicativo **Visualizador de eventos** .
 1. No **Visualizador de Eventos**, abra o nó **Logs do Windows**.
 1. Selecione **Aplicativo** para abrir o Log de Eventos do Aplicativo.
 1. Procure erros associados ao aplicativo com falha. Os erros têm um valor *Módulo AspNetCore do IIS* ou *Módulo AspNetCore do IIS Express* na coluna *Origem*.
@@ -597,10 +597,10 @@ Um despejo de memória pode ser analisado usando várias abordagens. Para obter 
 
 ## <a name="clear-package-caches"></a>Limpar caches de pacote
 
-Às vezes, um aplicativo funcional falha imediatamente após a atualização do SDK do .NET Core no computador de desenvolvimento ou a alteração das versões do pacote no aplicativo. Em alguns casos, pacotes incoerentes podem interromper um aplicativo ao executar atualizações principais. A maioria desses problemas pode ser corrigida seguindo estas instruções:
+Um aplicativo em funcionamento pode falhar imediatamente após a atualização do SDK do .NET Core no computador de desenvolvimento ou a alteração das versões do pacote no aplicativo. Em alguns casos, pacotes incoerentes podem interromper um aplicativo ao executar atualizações principais. A maioria desses problemas pode ser corrigida seguindo estas instruções:
 
 1. Exclua as pastas *bin* e *obj*.
-1. Limpe os caches de pacote executando `dotnet nuget locals all --clear` de um shell de comando.
+1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
 
    A limpeza dos caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e a execução do comando `nuget locals all -clear`. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
 

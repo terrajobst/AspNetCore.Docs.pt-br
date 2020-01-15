@@ -5,14 +5,14 @@ description: Saiba como hospedar aplicativos ASP.NET Core no Windows Server IIS 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/06/2020
+ms.date: 01/13/2020
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: 8e0475e3e18688c7d4344661826290d15a2443c0
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: bf035bc65f0f120f52e55effe4d413bfecdf735d
+ms.sourcegitcommit: 2388c2a7334ce66b6be3ffbab06dd7923df18f60
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75829186"
+ms.lasthandoff: 01/14/2020
+ms.locfileid: "75952079"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -771,31 +771,19 @@ Para impedir que aplicativos hospedados [fora de processo](#out-of-process-hosti
 
 ## <a name="deployment-resources-for-iis-administrators"></a>Recursos de implantação para administradores do IIS
 
-Conheça o ISS detalhadamente na documentação do IIS.  
-[Documentação do ISS](/iis)
-
-Saiba mais sobre os modelos de implantação de aplicativos do .NET Core.  
-[Implantação de aplicativos do .NET Core](/dotnet/core/deploying/)
-
-Saiba mais sobre o módulo ASP.NET Core, incluindo diretrizes de configuração.  
-<xref:host-and-deploy/aspnet-core-module>
-
-Saiba mais sobre a estrutura do diretório de aplicativos publicados do ASP.NET Core.  
-[Estrutura de diretórios](xref:host-and-deploy/directory-structure)
-
-Descubra módulos ativos e inativos do IIS para aplicativos do ASP.NET Core e como gerenciar os módulos do IIS.  
-[Módulos do IIS](xref:host-and-deploy/iis/modules)
-
-Saiba como diagnosticar problemas com as implantações do ISS dos aplicativos do ASP.NET Core.  
-[Solução de problemas](xref:test/troubleshoot-azure-iis)
-
-Distinga erros comuns ao hospedar aplicativos do ASP.NET Core no IIS.  
-[Referência de erros comuns para o Serviço de Aplicativo do Azure e o IIS](xref:host-and-deploy/azure-iis-errors-reference)
+* [Documentação do ISS](/iis)
+* [Introdução ao Gerenciador do IIS no IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
+* [Implantação de aplicativos do .NET Core](/dotnet/core/deploying/)
+* <xref:host-and-deploy/aspnet-core-module>
+* <xref:host-and-deploy/directory-structure>
+* <xref:host-and-deploy/iis/modules>
+* <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:test/troubleshoot>
-* [Introdução ao ASP.NET Core](xref:index)
+* <xref:index>
 * [O site oficial da IIS da Microsoft](https://www.iis.net/)
 * [Biblioteca de conteúdo técnico do Windows Server](/windows-server/windows-server)
 * [HTTP/2 no IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis)

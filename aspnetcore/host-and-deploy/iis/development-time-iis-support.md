@@ -5,14 +5,14 @@ description: Descubra o suporte para depuração de aplicativos do ASP.NET Core 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/26/2019
+ms.date: 01/13/2020
 uid: host-and-deploy/iis/development-time-iis-support
-ms.openlocfilehash: 2d2c8d8e4b39d18a3a727e2a2bdef3be566897c1
-ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
+ms.openlocfilehash: 704a8dae9da904e4bbdfae0754a6fcdabee6dc82
+ms.sourcegitcommit: 2388c2a7334ce66b6be3ffbab06dd7923df18f60
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2019
-ms.locfileid: "73034153"
+ms.lasthandoff: 01/14/2020
+ms.locfileid: "75952027"
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>Suporte ao IIS no tempo de desenvolvimento no Visual Studio para ASP.NET Core
 
@@ -20,7 +20,7 @@ Por [Sourabh Shirhatti](https://twitter.com/sshirhatti) e [Luke Latham](https://
 
 Este artigo descreve o suporte do [Visual Studio](https://visualstudio.microsoft.com) para a depuração de aplicativos do ASP.NET Core em execução com o IIS no Windows Server. Este tópico orienta como habilitar esse cenário e configurar um projeto.
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [Visual Studio para Windows](https://visualstudio.microsoft.com/downloads/)
 * Carga de trabalho **ASP.NET e desenvolvimento para a Web**
@@ -38,7 +38,7 @@ A instalação do IIS pode exigir uma reinicialização do sistema.
 
 O IIS deve ter um site configurado com o seguinte:
 
-* **Nome do host** &ndash; Normalmente, o **Site padrão** é usado com um **nome do Host** de `localhost`. No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
+* O **nome do host** &ndash; normalmente, o **site padrão** é usado com um **nome de host** de `localhost`. No entanto, qualquer site válido do IIS com um nome de host exclusivo funciona.
 * **Associação do site**
   * Para aplicativos que exijam HTTPS, crie uma associação à porta 443 com um certificado. Tipicamente, o **Certificado de Desenvolvimento do IIS Express** é usado, mas qualquer certificado válido funciona.
   * Para aplicativos que usam HTTP, confirme a existência de uma associação à porta 80 ou crie uma para um novo site.
@@ -152,6 +152,4 @@ Se for usado um certificado de desenvolvimento não confiável, o navegador pode
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Introdução ao Gerenciador do IIS no IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/aspnet-core-module>
 * <xref:security/enforcing-ssl>

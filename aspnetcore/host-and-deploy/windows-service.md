@@ -5,14 +5,14 @@ description: Saiba como hospedar um aplicativo ASP.NET Core em um serviço Windo
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/30/2019
+ms.date: 01/13/2020
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 014585cd1e170fc94f7f577e11ec19824e54572f
-ms.sourcegitcommit: 6628cd23793b66e4ce88788db641a5bbf470c3c1
+ms.openlocfilehash: 37fc0b7862db3280f9ade8d563feba28153ab79b
+ms.sourcegitcommit: 2388c2a7334ce66b6be3ffbab06dd7923df18f60
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73659863"
+ms.lasthandoff: 01/14/2020
+ms.locfileid: "75951834"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedar o ASP.NET Core em um serviço Windows
 
@@ -22,7 +22,7 @@ Um aplicativo ASP.NET Core pode ser hospedado no Windows somo um [Serviço Windo
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [SDK do ASP.NET Core 2.1 ou posterior](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 ou posterior](https://github.com/PowerShell/PowerShell)
@@ -49,7 +49,7 @@ O aplicativo requer uma referência de pacote para [Microsoft. Extensions. host.
 `IHostBuilder.UseWindowsService` é chamado ao compilar o host. Se o aplicativo estiver sendo executado como um Serviço Windows, o método:
 
 * Define o tempo de vida do host como `WindowsServiceLifetime`.
-* Define a [raiz do conteúdo](xref:fundamentals/index#content-root).
+* Define a [raiz do conteúdo](xref:fundamentals/index#content-root) como [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory). Para saber mais, consulte a seção [Diretório atual e a raiz do conteúdo](#current-directory-and-content-root).
 * Habilita o registro de log no log de eventos com o nome do aplicativo como o nome da fonte padrão.
   * O nível do log pode ser configurado com a chave `Logging:LogLevel:Default` no arquivo *appsettings.Production.json*.
   * Somente administradores podem criar novas fontes de evento. Quando uma fonte de evento não puder ser criada usando o nome do aplicativo, um aviso será registrado em log como a fonte do *Aplicativo* e os logs de eventos serão desabilitados.
@@ -196,13 +196,13 @@ Para criar uma conta de usuário para um serviço, use o cmdlet [New-LocalUser](
 Na Atualização de outubro de 2018 do Windows 10 (versão 1809/build 10.0.17763) ou posterior:
 
 ```PowerShell
-New-LocalUser -Name {NAME}
+New-LocalUser -Name {SERVICE NAME}
 ```
 
 No sistema operacional do Windows anterior à Atualização de outubro de 2018 do Windows 10 (versão 1809/build 10.0.17763):
 
 ```console
-powershell -Command "New-LocalUser -Name {NAME}"
+powershell -Command "New-LocalUser -Name {SERVICE NAME}"
 ```
 
 Forneça uma [senha forte](/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements) quando solicitado.
@@ -239,22 +239,22 @@ $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($acl
 $acl.SetAccessRule($accessRule)
 $acl | Set-Acl "{EXE PATH}"
 
-New-Service -Name {NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
+New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; Caminho para a pasta do aplicativo no host (por exemplo, `d:\myservice`). Não inclua o executável do aplicativo no caminho. A barra à direita não é necessária.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; Conta de usuário do serviço (por exemplo, `Contoso\ServiceUser`).
-* `{NAME}` &ndash; Nome do serviço (por exemplo, `MyService`).
-* `{EXE FILE PATH}` &ndash; O caminho do executável do aplicativo (por exemplo, `d:\myservice\myservice.exe`). Inclua nome do arquivo do executável com a extensão.
-* `{DESCRIPTION}` &ndash; Descrição do serviço (por exemplo, `My sample service`).
-* `{DISPLAY NAME}` &ndash; Nome de exibição do serviço (por exemplo, `My Service`).
+* `{EXE PATH}` &ndash; caminho para a pasta do aplicativo no host (por exemplo, `d:\myservice`). Não inclua o executável do aplicativo no caminho. A barra à direita não é necessária.
+* `{DOMAIN OR COMPUTER NAME\USER}` conta de usuário do serviço de &ndash; (por exemplo, `Contoso\ServiceUser`).
+* `{SERVICE NAME}` &ndash; nome do serviço (por exemplo, `MyService`).
+* `{EXE FILE PATH}` &ndash; o caminho do executável do aplicativo (por exemplo, `d:\myservice\myservice.exe`). Inclua nome do arquivo do executável com a extensão.
+* `{DESCRIPTION}` descrição do serviço &ndash; (por exemplo, `My sample service`).
+* `{DISPLAY NAME}` nome de exibição do serviço &ndash; (por exemplo, `My Service`).
 
 ### <a name="start-a-service"></a>Iniciar um serviço
 
 Inicie o serviço com o seguinte comando do PowerShell 6:
 
 ```powershell
-Start-Service -Name {NAME}
+Start-Service -Name {SERVICE NAME}
 ```
 
 O comando leva alguns segundos para iniciar o serviço.
@@ -264,7 +264,7 @@ O comando leva alguns segundos para iniciar o serviço.
 Para verificar o status de um serviço, use o seguinte comando do PowerShell 6:
 
 ```powershell
-Get-Service -Name {NAME}
+Get-Service -Name {SERVICE NAME}
 ```
 
 O status é relatado como um dos seguintes valores:
@@ -279,7 +279,7 @@ O status é relatado como um dos seguintes valores:
 Pare um serviço com o seguinte comando do Powershell 6:
 
 ```powershell
-Stop-Service -Name {NAME}
+Stop-Service -Name {SERVICE NAME}
 ```
 
 ### <a name="remove-a-service"></a>Remover um serviço
@@ -287,7 +287,7 @@ Stop-Service -Name {NAME}
 Após um pequeno atraso para interromper um serviço, remova o serviço com o seguinte comando do Powershell 6:
 
 ```powershell
-Remove-Service -Name {NAME}
+Remove-Service -Name {SERVICE NAME}
 ```
 
 ::: moniker range="< aspnetcore-3.0"
@@ -342,6 +342,16 @@ O diretório de trabalho atual retornado ao chamar <xref:System.IO.Directory.Get
 
 Use [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath) ou <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootFileProvider> para localizar os recursos do aplicativo.
 
+Quando o aplicativo é executado como um serviço, <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> define o <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> como [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory).
+
+Os arquivos de configurações padrão do aplicativo, *appSettings. JSON* e *appSettings. { Environment}. JSON*, são carregados a partir da raiz do conteúdo do aplicativo chamando [CreateDefaultBuilder durante a construção do host](xref:fundamentals/host/generic-host#set-up-a-host).
+
+Para outros arquivos de configurações carregados pelo código do desenvolvedor no <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>, não há necessidade de chamar <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. No exemplo a seguir, o arquivo *custom_settings. JSON* existe na raiz do conteúdo do aplicativo e é carregado sem definir explicitamente um caminho base:
+
+[!code-csharp[](windows-service/samples_snapshot/CustomSettingsExample.cs?highlight=13)]
+
+Não tente usar <xref:System.IO.Directory.GetCurrentDirectory*> para obter um caminho de recurso porque um aplicativo de serviço do Windows retorna a pasta *C:\\Windows\\system32* como seu diretório atual.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -367,6 +377,83 @@ CreateWebHostBuilder(args)
 ### <a name="store-a-services-files-in-a-suitable-location-on-disk"></a>Armazenar os arquivos do serviço em um local adequado no disco
 
 Especifique um caminho absoluto com <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> quando usar um <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> para a pasta que contém os arquivos.
+
+## <a name="troubleshoot"></a>Solução de problemas
+
+Para solucionar problemas de um aplicativo de serviço do Windows, consulte <xref:test/troubleshoot>.
+
+### <a name="common-errors"></a>Erros comuns
+
+* Uma versão antiga ou de pré-lançamento do PowerShell está em uso.
+* O serviço registrado não usa a saída **publicada** do aplicativo do comando [dotnet Publish](/dotnet/core/tools/dotnet-publish) . A saída do comando [dotnet Build](/dotnet/core/tools/dotnet-build) não tem suporte para implantação de aplicativo. Os ativos publicados são encontrados em uma das seguintes pastas, dependendo do tipo de implantação:
+  * FDD do *compartimento/versão/{estrutura de destino}* (a)
+  * *bin/Release/{Framework de destino} identificador de/{Runtime}/Publish* (SCD)
+* O serviço não está em estado de execução.
+* Os caminhos para os recursos que o aplicativo usa (por exemplo, certificados) estão incorretos. O caminho base de um serviço do Windows é *c:\\Windows\\system32*.
+* O usuário não tem direitos de *logon como um serviço* .
+* A senha do usuário expirou ou foi passada incorretamente ao executar o comando `New-Service` PowerShell.
+* O aplicativo requer autenticação ASP.NET Core, mas não está configurado para conexões seguras (HTTPS).
+* A porta da URL da solicitação está incorreta ou não está configurada corretamente no aplicativo.
+
+### <a name="system-and-application-event-logs"></a>Logs de eventos do sistema e do aplicativo
+
+Acesse os logs de eventos do sistema e do aplicativo:
+
+1. Abra o menu Iniciar, procure *Visualizador de eventos*e selecione o aplicativo **Visualizador de eventos** .
+1. No **Visualizador de Eventos**, abra o nó **Logs do Windows**.
+1. Selecione **sistema** para abrir o log de eventos do sistema. Selecione **Aplicativo** para abrir o Log de Eventos do Aplicativo.
+1. Procure erros associados ao aplicativo com falha.
+
+### <a name="run-the-app-at-a-command-prompt"></a>Execute o aplicativo em um prompt de comando
+
+Muitos erros de inicialização não produzem informações úteis nos logs de eventos. Você pode encontrar a causa de alguns erros ao executar o aplicativo em um prompt de comando no sistema de hospedagem. Para registrar em log detalhes adicionais do aplicativo, reduza o [nível de log](xref:fundamentals/logging/index#log-level) ou execute o aplicativo no [ambiente de desenvolvimento](xref:fundamentals/environments).
+
+### <a name="clear-package-caches"></a>Limpar caches de pacote
+
+Um aplicativo em funcionamento pode falhar imediatamente após a atualização do SDK do .NET Core no computador de desenvolvimento ou a alteração das versões do pacote no aplicativo. Em alguns casos, pacotes incoerentes podem interromper um aplicativo ao executar atualizações principais. A maioria desses problemas pode ser corrigida seguindo estas instruções:
+
+1. Exclua as pastas *bin* e *obj*.
+1. Limpe os caches de pacote executando [dotnet NuGet local All--Clear](/dotnet/core/tools/dotnet-nuget-locals) de um shell de comando.
+
+   A limpeza dos caches de pacote também pode ser realizada com a ferramenta [NuGet. exe](https://www.nuget.org/downloads) e a execução do comando `nuget locals all -clear`. *nuget.exe* não é uma instalação fornecida com o sistema operacional Windows Desktop e devem ser obtidos separadamente do [site do NuGet](https://www.nuget.org/downloads).
+
+1. Restaure e recompile o projeto.
+1. Exclua todos os arquivos na pasta de implantação no servidor antes de reimplantar o aplicativo.
+
+### <a name="slow-or-hanging-app"></a>Aplicativo lento ou travando
+
+Um *despejo* é um instantâneo da memória do sistema e pode ajudar a determinar a causa de uma falha de aplicativo, de inicialização ou de um aplicativo lento.
+
+#### <a name="app-crashes-or-encounters-an-exception"></a>O aplicativo falha ou encontra uma exceção
+
+Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)](/windows/desktop/wer/windows-error-reporting):
+
+1. Crie uma pasta para armazenar os arquivos de despejo de memória em `c:\dumps`.
+1. Execute o [script do PowerShell do EnableDumps](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) com o nome do executável do aplicativo:
+
+   ```console
+   .\EnableDumps {APPLICATION EXE} c:\dumps
+   ```
+
+1. Execute o aplicativo sob as condições que causam a falha.
+1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1):
+
+   ```console
+   .\DisableDumps {APPLICATION EXE}
+   ```
+
+Depois que um aplicativo falhar e a coleta de despejo de memória for concluída, o aplicativo terá permissão para encerrar normalmente. O script do PowerShell configura o WER para coletar até cinco despejos de memória por aplicativo.
+
+> [!WARNING]
+> Os despejos de memória podem usar uma grande quantidade de espaço em disco (até vários gigabytes cada).
+
+#### <a name="app-hangs-fails-during-startup-or-runs-normally"></a>O aplicativo trava, falha durante a inicialização ou executa normalmente
+
+Quando um aplicativo *paralisa* (para de responder, mas não falha), falha durante a inicialização ou é executado normalmente, consulte [arquivos de despejo no modo de usuário: escolhendo a melhor ferramenta](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) para selecionar uma ferramenta apropriada para produzir o despejo.
+
+#### <a name="analyze-the-dump"></a>Analisar o despejo de memória
+
+Um despejo de memória pode ser analisado usando várias abordagens. Para obter mais informações, confira [Analisando um arquivo de despejo de memória do modo de usuário](/windows-hardware/drivers/debugger/analyzing-a-user-mode-dump-file).
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

@@ -5,14 +5,14 @@ description: Saiba como configurar o módulo do ASP.NET Core para hospedar aplic
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 01/13/2020
 uid: host-and-deploy/aspnet-core-module
-ms.openlocfilehash: c9bbd36b8a55b837f6d78abf99215c5496895a39
-ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
+ms.openlocfilehash: 75f4a158253dd3276ed37011d9aa73d82cad5b79
+ms.sourcegitcommit: 2388c2a7334ce66b6be3ffbab06dd7923df18f60
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2019
-ms.locfileid: "73799410"
+ms.lasthandoff: 01/14/2020
+ms.locfileid: "75952014"
 ---
 # <a name="aspnet-core-module"></a>Módulo do ASP.NET Core
 
@@ -302,12 +302,12 @@ Locais (vários locais são permitidos):
 
 * CONSOLE
 * EVENTLOG
-* FILE
+* ARQUIVO
 
 As configurações do manipulador também podem ser fornecidas por meio de variáveis de ambiente:
 
 * `ASPNETCORE_MODULE_DEBUG_FILE` &ndash; caminho para o arquivo de log de depuração. (Padrão: *aspnetcore-debug.log*)
-* `ASPNETCORE_MODULE_DEBUG` &ndash; configuração do nível de depuração.
+* `ASPNETCORE_MODULE_DEBUG` &ndash; configuração de nível de depuração.
 
 > [!WARNING]
 > **Não** deixe o log de depuração habilitado na implantação por mais tempo que o necessário para solucionar um problema. O tamanho do log não é limitado. Deixar o log de depuração habilitado pode esgotar o espaço em disco disponível e causar falha no servidor ou no serviço de aplicativo.
@@ -392,7 +392,7 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 * %ProgramFiles(x86)%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
 
-### <a name="schema"></a>Esquema
+### <a name="schema"></a>Schema
 
 **IIS**
 
@@ -406,7 +406,7 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 * %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema_v2.xml
 
-### <a name="configuration"></a>Configuração
+### <a name="configuration"></a>Configuração do
 
 **IIS**
 
@@ -715,12 +715,12 @@ Locais (vários locais são permitidos):
 
 * CONSOLE
 * EVENTLOG
-* FILE
+* ARQUIVO
 
 As configurações do manipulador também podem ser fornecidas por meio de variáveis de ambiente:
 
 * `ASPNETCORE_MODULE_DEBUG_FILE` &ndash; caminho para o arquivo de log de depuração. (Padrão: *aspnetcore-debug.log*)
-* `ASPNETCORE_MODULE_DEBUG` &ndash; configuração do nível de depuração.
+* `ASPNETCORE_MODULE_DEBUG` &ndash; configuração de nível de depuração.
 
 > [!WARNING]
 > **Não** deixe o log de depuração habilitado na implantação por mais tempo que o necessário para solucionar um problema. O tamanho do log não é limitado. Deixar o log de depuração habilitado pode esgotar o espaço em disco disponível e causar falha no servidor ou no serviço de aplicativo.
@@ -787,7 +787,7 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 * %ProgramFiles(x86)%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
 
-### <a name="schema"></a>Esquema
+### <a name="schema"></a>Schema
 
 **IIS**
 
@@ -801,7 +801,7 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 * %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema_v2.xml
 
-### <a name="configuration"></a>Configuração
+### <a name="configuration"></a>Configuração do
 
 **IIS**
 
@@ -1017,7 +1017,7 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 * %ProgramFiles(x86)%\IIS Express\aspnetcore.dll
 
-### <a name="schema"></a>Esquema
+### <a name="schema"></a>Schema
 
 **IIS**
 
@@ -1027,7 +1027,7 @@ Os logs do instalador do pacote de hospedagem para o módulo são encontrados em
 
 * %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema.xml
 
-### <a name="configuration"></a>Configuração
+### <a name="configuration"></a>Configuração do
 
 **IIS**
 
@@ -1046,5 +1046,6 @@ Os arquivos podem ser encontrados pesquisando por *aspnetcore* no arquivo *appli
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * <xref:host-and-deploy/iis/index>
-* [Repositório do GitHub do Módulo do ASP.NET Core (origem de referência)](https://github.com/aspnet/AspNetCoreModule)
+* <xref:host-and-deploy/azure-apps/index>
+* [ASP.NET Core fonte de referência do módulo (Branch mestre)](https://github.com/dotnet/aspnetcore/tree/master/src/Servers/IIS/AspNetCoreModuleV2) &ndash; use a lista suspensa **Branch** para selecionar uma versão específica (por exemplo, `release/3.1`).
 * <xref:host-and-deploy/iis/modules>
