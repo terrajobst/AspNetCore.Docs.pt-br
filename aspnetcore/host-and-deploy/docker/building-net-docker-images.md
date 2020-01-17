@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como usar as imagens publicadas do Docker do .NET Core no Registro do Docker. Efetuar pull de imagens e compilar suas próprias imagens.
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/18/2019
+ms.date: 01/15/2020
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: 64503ed55438b24f2d3d87092107408ddcb515d7
-ms.sourcegitcommit: fcdf9aaa6c45c1a926bd870ed8f893bdb4935152
+ms.openlocfilehash: 5bed5e9a4a6109a45badcef7c0d4e03eb2312bf0
+ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72165270"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76146336"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Imagens do Docker para o ASP.NET Core
 
@@ -21,7 +21,7 @@ Neste tutorial, você:
 > [!div class="checklist"]
 > * Saiba mais sobre as imagens do Docker no Microsoft .NET Core
 > * Baixar um aplicativo de exemplo do ASP.NET Core
-> * Executar o aplicativo de exemplo localmente
+> * Executou o aplicativo de exemplo localmente
 > * Executar o aplicativo de exemplo em contêineres do Linux
 > * Executar o aplicativo de exemplo em contêineres do Windows
 > * Criar e implantar manualmente
@@ -38,9 +38,9 @@ O exemplo de Dockerfile usa o [recurso de build de vários estágios do Docker](
 
 * `dotnet/core/aspnet`
 
-   O exemplo usa essa imagem para executar o aplicativo. A imagem contém o tempo de execução do ASP.NET Core e as bibliotecas e é otimizada para executar aplicativos em produção. Desenvolvida para acelerar a implantação e a inicialização do aplicativo, a imagem é relativamente pequena, portanto, o desempenho da rede no registro do Docker para o host do Docker é otimizado. Somente os binários e o conteúdo necessários para executar o aplicativo são copiados para o contêiner. O conteúdo está pronto para ser executado, permitindo mais rapidez do `Docker run` para a inicialização do aplicativo. A compilação de código dinâmico não é necessária no modelo do Docker.
+   O exemplo usa essa imagem para executar o aplicativo. A imagem contém o runtime do ASP.NET Core e as bibliotecas e é otimizada para executar aplicativos em produção. Desenvolvida para acelerar a implantação e a inicialização do aplicativo, a imagem é relativamente pequena, portanto, o desempenho da rede no registro do Docker para o host do Docker é otimizado. Somente os binários e o conteúdo necessários para executar o aplicativo são copiados para o contêiner. O conteúdo está pronto para ser executado, permitindo mais rapidez do `Docker run` para a inicialização do aplicativo. A compilação de código dinâmico não é necessária no modelo do Docker.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 ::: moniker range="< aspnetcore-3.0"
 
 * [SDK do .NET Core 2.2](https://www.microsoft.com/net/core)
@@ -187,7 +187,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### <a name="the-dockerfile"></a>O Dockerfile
 
-Aqui está o *Dockerfile* usado pelo comando `docker build` executado anteriormente.  Ele usa `dotnet publish` da mesma maneira que foi feito nesta seção para realizar a criação e implantação.  
+Aqui está o *Dockerfile* usado pelo comando `docker build` que você executou anteriormente.  Ele usa `dotnet publish` da mesma maneira que foi feito nesta seção para realizar a criação e implantação.  
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
@@ -223,7 +223,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### <a name="the-dockerfile"></a>O Dockerfile
 
-Aqui está o *Dockerfile* usado pelo comando `docker build` executado anteriormente.  Ele usa `dotnet publish` da mesma maneira que foi feito nesta seção para realizar a criação e implantação.  
+Aqui está o *Dockerfile* usado pelo comando `docker build` que você executou anteriormente.  Ele usa `dotnet publish` da mesma maneira que foi feito nesta seção para realizar a criação e implantação.  
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
@@ -264,9 +264,9 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 * [Trabalhar com ferramentas de Docker do Visual Studio](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker)
 * [Depurar com o Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers) 
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 O repositório Git que contém o aplicativo de exemplo também inclui a documentação. Para obter uma visão geral dos recursos disponíveis no repositório, confira [o arquivo Leiame](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md). Em particular, saiba como implementar o HTTPS:
 
 > [!div class="nextstepaction"]
-> [Como desenvolver aplicativos ASP.NET Core com o Docker em HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/aspnetcore-docker-https-development.md)
+> [Como desenvolver aplicativos ASP.NET Core com o Docker em HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md)

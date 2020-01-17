@@ -5,14 +5,14 @@ description: Aprenda os conceitos fundamentais para a criação de aplicativos d
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 01/15/2020
 uid: fundamentals/index
-ms.openlocfilehash: 7173a732a04bf3e598adef298fa9120c15dd52fb
-ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
+ms.openlocfilehash: 3fbfc7c4c0d5e568339bc00a7cbe84a3932acf1f
+ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2019
-ms.locfileid: "73799380"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76146347"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
 
@@ -69,7 +69,7 @@ Um aplicativo ASP.NET Core cria um *host* na inicialização. O host é um objet
 * Componentes de middleware
 * Registrando em log
 * DI
-* Configuração
+* Configuração do
 
 O principal motivo para incluir todos os recursos interdependentes do aplicativo em um objeto é o gerenciamento de tempo de vida: controle sobre a inicialização do aplicativo e desligamento normal.
 
@@ -113,7 +113,7 @@ Para obter mais informações, consulte <xref:fundamentals/host/web-host>.
 
 O Host Genérico permite que outros tipos de aplicativos usem extensões de estruturas abrangentes como registro em log, DI (Injeção de Dependência), configuração e gerenciamento do tempo de vida dos aplicativos. Para obter mais informações, consulte <xref:fundamentals/host/generic-host> e <xref:fundamentals/host/hosted-services>.
 
-## <a name="servers"></a>Servidores
+## <a name="servers"></a>{1&gt;Servidores&lt;1}
 
 Um aplicativo ASP.NET Core usa uma implementação do servidor HTTP para ouvir solicitações HTTP. O servidor descobre solicitações ao aplicativo como um conjunto de [recursos de solicitação](xref:fundamentals/request-features) compostos em um `HttpContext`.
 
@@ -162,7 +162,7 @@ O ASP.NET Core fornece a implementação de servidor multiplataforma do *Kestrel
 
 Para obter mais informações, consulte <xref:fundamentals/servers/index>.
 
-## <a name="configuration"></a>Configuração
+## <a name="configuration"></a>Configuração do
 
 O ASP.NET Core fornece uma estrutura de configuração que obtém as configurações como pares nome-valor de um conjunto ordenado de provedores de configuração. Há provedores de configuração internos para uma variedade de fontes, como arquivos *.json*, arquivos *.xml*, variáveis de ambiente e argumentos de linha de comando. Você também pode escrever seus próprios provedores de configuração personalizados.
 
@@ -203,8 +203,8 @@ Para obter mais informações, consulte <xref:fundamentals/environments>.
 
 O ASP.NET Core oferece suporte a uma API de registro em log que funciona com uma variedade de provedores de logs internos e terceirizados. Provedores disponíveis incluem os seguintes:
 
-* Console
-* Depurar
+* Console do
+* Depuração
 * Rastreamento de Eventos no Windows
 * Log de Eventos do Windows
 * TraceSource
@@ -227,7 +227,7 @@ Um *rota* é um padrão de URL mapeado para um manipulador. O manipulador normal
 
 Para obter mais informações, consulte <xref:fundamentals/routing>.
 
-## <a name="error-handling"></a>Tratamento de erros
+## <a name="error-handling"></a>Manipulação de erros
 
 O ASP.NET Core tem recursos internos para tratamento de erros, como:
 
@@ -310,6 +310,12 @@ Impedir a publicação de arquivos em *wwwroot* com o [\<conteúdo > item de pro
   <Content Update="wwwroot\local\**\*.*" CopyToPublishDirectory="Never" />
 </ItemGroup>
 ```
+
+::: moniker range=">= aspnetcore-3.0"
+
+Para evitar a publicação de ativos de identidade estática na raiz da Web, consulte <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.
+
+::: moniker-end
 
 Em arquivos Razor ( *. cshtml*), a barra de tils (`~/`) aponta para a raiz da Web. Um caminho que começa com `~/` é conhecido como um *caminho virtual*.
 

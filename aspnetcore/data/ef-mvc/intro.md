@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Introdução ao EF Core em um aplicativo Web ASP.NET MVC'
+title: 'Tutorial: introdução ao EF Core em um aplicativo Web ASP.NET MVC'
 description: Este é o primeiro de uma série de tutoriais que explica como criar o aplicativo de exemplo Contoso University do zero.
 author: rick-anderson
 ms.author: riande
@@ -7,22 +7,16 @@ ms.custom: mvc
 ms.date: 02/06/2019
 ms.topic: tutorial
 uid: data/ef-mvc/intro
-ms.openlocfilehash: a8909d391ae1a35e9c8155df767ab157701c8a51
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: 42ce63d1a31e033cf97536935b6dc94e015f30fa
+ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259454"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76146375"
 ---
-# <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: Introdução ao EF Core em um aplicativo Web ASP.NET MVC
-
-::: moniker range=">= aspnetcore-3.0"
+# <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: introdução ao EF Core em um aplicativo Web ASP.NET MVC
 
 Este tutorial **não** foi atualizado para o ASP.NET Core 3.0. A [versão do Razor Pages](xref:data/ef-rp/intro) foi atualizada. Para obter informações sobre quando isso pode ser atualizado, confira [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/13920).
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
@@ -43,7 +37,7 @@ Neste tutorial, você:
 > * Criar um controlador e exibições
 > * Exibir o banco de dados
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [SDK do .NET Core 2.2](https://www.microsoft.com/net/download)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com as cargas de trabalho a seguir:
@@ -69,7 +63,7 @@ Os usuários podem exibir e atualizar informações de alunos, cursos e instruto
 
 ## <a name="create-web-app"></a>Criar aplicativo Web
 
-* Abra o Visual Studio.
+* {1&gt;Abra o Visual Studio.&lt;1}
 
 * No menu **Arquivo**, selecione **Novo > Projeto**.
 
@@ -117,7 +111,7 @@ Pressione CTRL+F5 para executar o projeto ou escolha **Depurar > Iniciar sem Dep
 
 Para adicionar o suporte do EF Core a um projeto, instale o provedor de banco de dados que você deseja ter como destino. Este tutorial usa o SQL Server e o pacote de provedor é [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). Esse pacote está incluído no [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app), portanto, você não precisa referenciar o pacote.
 
-O pacote SQL Server do EF e suas dependências (`Microsoft.EntityFrameworkCore` e `Microsoft.EntityFrameworkCore.Relational`) fornecem suporte de tempo de execução para o EF. Você adicionará um pacote de ferramentas posteriormente, no tutorial [Migrações](migrations.md).
+O pacote SQL Server do EF e suas dependências (`Microsoft.EntityFrameworkCore` e `Microsoft.EntityFrameworkCore.Relational`) fornecem suporte de runtime para o EF. Você adicionará um pacote de ferramentas posteriormente, no tutorial [Migrações](migrations.md).
 
 Para obter informações sobre outros provedores de banco de dados que estão disponíveis para o Entity Framework Core, consulte [Provedores de banco de dados](/ef/core/providers/).
 
@@ -255,7 +249,7 @@ A criação automática de métodos de ação CRUD e exibições é conhecida co
 
   * Selecione **Controlador MVC com exibições, usando o Entity Framework**.
 
-  * Clique em **Adicionar** . A caixa de diálogo **Adicionar Controlador MVC com exibições, usando o Entity Framework** é exibida.
+  * Clique em **Adicionar**. A caixa de diálogo **Adicionar Controlador MVC com exibições, usando o Entity Framework** é exibida.
 
     ![Gerar aluno por scaffolding](intro/_static/scaffold-student2.png)
 
@@ -265,7 +259,7 @@ A criação automática de métodos de ação CRUD e exibições é conhecida co
 
   * Aceite o **StudentsController** padrão como o nome.
 
-  * Clique em **Adicionar** .
+  * Clique em **Adicionar**.
 
   Quando você clica em **Adicionar**, o mecanismo de scaffolding do Visual Studio cria um arquivo *StudentsController.cs* e um conjunto de exibições (arquivos *.cshtml*) que funcionam com o controlador.
 
@@ -365,7 +359,7 @@ Para obter mais informações sobre a programação assíncrona no .NET, consult
 
 [Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Neste tutorial, você:
 
@@ -387,4 +381,3 @@ Vá para o próximo tutorial para aprender a executar operações CRUD (criar, l
 > [!div class="nextstepaction"]
 > [Implementar a funcionalidade CRUD básica](crud.md)
 
-::: moniker-end

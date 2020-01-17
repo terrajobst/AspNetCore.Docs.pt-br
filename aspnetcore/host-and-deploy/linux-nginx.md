@@ -5,14 +5,14 @@ description: Saiba como configurar o Nginx como um proxy reverso no Ubuntu 16.04
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/02/2019
+ms.date: 01/13/2020
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: f307a1c3e0dc62c5dc03e50d710696fadd9fd487
-ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
+ms.openlocfilehash: e718592127115e46df3154364957943a457b0b1b
+ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/03/2019
-ms.locfileid: "74717384"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76146323"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Host ASP.NET Core no Linux com Nginx
 
@@ -205,7 +205,7 @@ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 WantedBy=multi-user.target
 ```
 
-Se o usuário *www-data* não é usado pela configuração, o usuário definido aqui deve ser criado primeiro e a propriedade adequada dos arquivos deve ser concedida a ele.
+No exemplo anterior, o usuário que gerencia o serviço é especificado pela opção `User`. O usuário (`www-data`) deve existir e ter a propriedade adequada dos arquivos do aplicativo.
 
 Use `TimeoutStopSec` para configurar a duração do tempo de espera para o aplicativo desligar depois de receber o sinal de interrupção inicial. Se o aplicativo não desligar nesse período, o SIGKILL será emitido para encerrá-lo. Forneça o valor como segundos sem unidade (por exemplo, `150`), um valor de duração (por exemplo, `2min 30s`) ou `infinity` para desabilitar o tempo limite. `TimeoutStopSec` é revertido para o valor padrão de `DefaultTimeoutStopSec` no arquivo de configuração do gerenciador (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf* e *user.conf.d*). O tempo limite padrão para a maioria das distribuições é de 90 segundos.
 
@@ -267,7 +267,7 @@ Já que o aplicativo Web usando Kestrel é gerenciado usando `systemd`, todos os
 sudo journalctl -fu kestrel-helloapp.service
 ```
 
-Para obter mais filtragem, opções de tempo como `--since today`, `--until 1 hour ago` ou uma combinação desses fatores pode reduzir a quantidade de entradas retornadas.
+Para obter mais filtragem, opções de hora como `--since today`, `--until 1 hour ago` ou uma combinação delas, pode reduzir a quantidade de entradas retornadas.
 
 ```bash
 sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-10-18 04:00"

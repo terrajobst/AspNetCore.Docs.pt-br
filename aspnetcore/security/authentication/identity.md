@@ -3,14 +3,14 @@ title: Introdução à identidade do ASP.NET Core
 author: rick-anderson
 description: Use a identidade com um aplicativo ASP.NET Core. Saiba como definir os requisitos de senha (RequireDigit, RequiredLength, RequiredUniqueChars e mais).
 ms.author: riande
-ms.date: 12/05/2019
+ms.date: 01/15/2020
 uid: security/authentication/identity
-ms.openlocfilehash: d4cda43c417a0d8e1b78f8b59b7050debf017269
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: 98fee261a741a20eed181ca5b9a4ebb693deeb63
+ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75828224"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76146505"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>Introdução à identidade do ASP.NET Core
 
@@ -213,6 +213,22 @@ Consulte [configuração](#pw) para obter um exemplo que defina os requisitos m�
 * <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders*>
 
 Consulte [AddDefaultIdentity Source](https://github.com/dotnet/AspNetCore/blob/release/3.0/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) para obter mais informações.
+
+## <a name="prevent-publish-of-static-identity-assets"></a>Impedir a publicação de ativos de identidade estática
+
+Para evitar a publicação de ativos de identidade estática (folhas de estilo e arquivos JavaScript para a interface do usuário de identidade) na raiz da Web, adicione a seguinte propriedade de `ResolveStaticWebAssetsInputsDependsOn` e `RemoveIdentityAssets` destino ao arquivo de projeto do aplicativo:
+
+```xml
+<PropertyGroup>
+  <ResolveStaticWebAssetsInputsDependsOn>RemoveIdentityAssets</ResolveStaticWebAssetsInputsDependsOn>
+</PropertyGroup>
+
+<Target Name="RemoveIdentityAssets">
+  <ItemGroup>
+    <StaticWebAsset Remove="@(StaticWebAsset)" Condition="%(SourceId) == 'Microsoft.AspNetCore.Identity.UI'" />
+  </ItemGroup>
+</Target>
+```
 
 ## <a name="next-steps"></a>Próximas etapas
 

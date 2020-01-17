@@ -2,20 +2,20 @@
 title: Proteger ASP.NET Core aplicativos do Blazor Server
 author: guardrex
 description: Saiba como mitigar as ameaças de segurança para Blazor aplicativos de servidor.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/18/2019
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/server
-ms.openlocfilehash: 2d644b84b304a31ad0debc16164ad155c7f7da65
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: d87aac02137681e62cf8f5cbd4dc8b0be6f8431e
+ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74944276"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76146297"
 ---
 # <a name="secure-aspnet-core-opno-locblazor-server-apps"></a>Proteger ASP.NET Core aplicativos do Blazor Server
 
@@ -206,7 +206,7 @@ Ao adicionar a `if (count < 3) { ... }` verificação dentro do manipulador, a d
 
 ### <a name="guard-against-multiple-dispatches"></a>Proteção contra vários despachos
 
-Se um retorno de chamada de evento invocar uma operação de execução demorada, como buscar dados de um serviço ou banco de dado externo, considere usar uma proteção. A proteção pode impedir que o usuário enfileirar várias operações enquanto a operação está em andamento com comentários visuais. O código de componente a seguir define `isLoading` para `true` enquanto `GetForecastAsync` obtém dados do servidor. Embora `isLoading` seja `true`, o botão é desabilitado na interface do usuário:
+Se um retorno de chamada de evento invocar uma operação de execução longa de forma assíncrona, como a busca de dados de um serviço externo ou banco de dado, considere o uso de uma proteção. A proteção pode impedir que o usuário enfileirar várias operações enquanto a operação está em andamento com comentários visuais. O código de componente a seguir define `isLoading` para `true` enquanto `GetForecastAsync` obtém dados do servidor. Embora `isLoading` seja `true`, o botão é desabilitado na interface do usuário:
 
 ```razor
 @page "/fetchdata"
@@ -230,6 +230,8 @@ Se um retorno de chamada de evento invocar uma operação de execução demorada
     }
 }
 ```
+
+O padrão de proteção demonstrado no exemplo anterior funcionará se a operação em segundo plano for executada de forma assíncrona com o padrão de `await` de -de `async`.
 
 ### <a name="cancel-early-and-avoid-use-after-dispose"></a>Cancelar antes e evitar usar-After-Dispose
 
@@ -292,7 +294,7 @@ O erro do lado do cliente não inclui a pilha de chamadas e não fornece detalhe
 Habilitar erros detalhados com:
 
 * `CircuitOptions.DetailedErrors`.
-* Chave de configuração de `DetailedErrors`. Por exemplo, defina a variável de ambiente `ASPNETCORE_DETAILEDERRORS` como um valor de `true`.
+* `DetailedErrors` chave de configuração. Por exemplo, defina a variável de ambiente `ASPNETCORE_DETAILEDERRORS` como um valor de `true`.
 
 > [!WARNING]
 > Expor informações de erro aos clientes na Internet é um risco de segurança que sempre deve ser evitado.

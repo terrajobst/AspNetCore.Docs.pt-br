@@ -5,14 +5,14 @@ description: Saiba como Scaffold a identidade em um projeto ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 01/15/2020
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: 2432d346d9678157848a38fa01d9057cdd7503ff
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: a0e9603cbca8c7f5771b0acf1a60839dffc89d4e
+ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75356286"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76146479"
 ---
 # <a name="scaffold-identity-in-aspnet-core-projects"></a>Identidade Scaffold em projetos ASP.NET Core
 
@@ -111,7 +111,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-Algumas opções de identidade são configuradas em *áreas/identidade/IdentityHostingStartup. cs*. Para obter mais informações, consulte [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Algumas opções de identidade são configuradas em *áreas/identidade/IdentityHostingStartup. cs*. para obter mais informações, consulte [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## <a name="scaffold-identity-into-an-mvc-project-without-existing-authorization"></a>Scaffold identidade em um projeto MVC sem autorização existente
 
@@ -257,6 +257,10 @@ O código a seguir descreve como adicionar um usuário:
 
 Uma abordagem semelhante pode ser seguida para cenários de produção.
 
+## <a name="prevent-publish-of-static-identity-assets"></a>Impedir a publicação de ativos de identidade estática
+
+Para evitar a publicação de ativos de identidade estática na raiz da Web, consulte <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.
+
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Alterações no código de autenticação para ASP.NET Core 2,1 e posterior](xref:migration/20_21#changes-to-authentication-code)
@@ -349,7 +353,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-Algumas opções de identidade são configuradas em *áreas/identidade/IdentityHostingStartup. cs*. Para obter mais informações, consulte [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Algumas opções de identidade são configuradas em *áreas/identidade/IdentityHostingStartup. cs*. para obter mais informações, consulte [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## <a name="scaffold-identity-into-an-mvc-project-without-existing-authorization"></a>Scaffold identidade em um projeto MVC sem autorização existente
 

@@ -5,14 +5,14 @@ description: Saiba como configurar o Apache como um servidor proxy reverso no Ce
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
 ms.custom: mvc
-ms.date: 12/02/2019
+ms.date: 01/13/2020
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: 730ed1847ec5728657d56db3ccf0f1f5fab6b5dd
-ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
+ms.openlocfilehash: 028f5112188e2b74f4f01409e25268aecdc761c0
+ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/03/2019
-ms.locfileid: "74717358"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76146284"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hospedar o ASP.NET Core no Linux com o Apache
 
@@ -198,7 +198,7 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 ```
 
-Se o usuário *apache* não for usado pela configuração, o usuário precisará ser criado primeiro e a propriedade adequada dos arquivos precisará ser concedida a ele.
+No exemplo anterior, o usuário que gerencia o serviço é especificado pela opção `User`. O usuário (`apache`) deve existir e ter a propriedade adequada dos arquivos do aplicativo.
 
 Use `TimeoutStopSec` para configurar a duração do tempo de espera para o aplicativo desligar depois de receber o sinal de interrupção inicial. Se o aplicativo não desligar nesse período, o SIGKILL será emitido para encerrá-lo. Forneça o valor como segundos sem unidade (por exemplo, `150`), um valor de duração (por exemplo, `2min 30s`) ou `infinity` para desabilitar o tempo limite. `TimeoutStopSec` é revertido para o valor padrão de `DefaultTimeoutStopSec` no arquivo de configuração do gerenciador (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf* e *user.conf.d*). O tempo limite padrão para a maioria das distribuições é de 90 segundos.
 

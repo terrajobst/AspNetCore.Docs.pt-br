@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/03/2019
 uid: security/samesite
-ms.openlocfilehash: 988069a66cc4772583444303948bff2e47ff4310
-ms.sourcegitcommit: 169ea5116de729c803685725d96450a270bc55b7
+ms.openlocfilehash: b344ed8f539979210980b3421659207edd513f32
+ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/03/2019
-ms.locfileid: "74733980"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76146427"
 ---
 # <a name="work-with-samesite-cookies-in-aspnet-core"></a>Trabalhar com cookies SameSite no ASP.NET Core
 
@@ -72,7 +72,7 @@ No ASP.NET Core 3,0 e posteriores, os padrões de SameSite foram alterados para 
 
 O suporte a SameSite foi implementado pela primeira vez em ASP.NET Core em 2,0 usando o [padrão de rascunho 2016](https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-4.1). O padrão 2016 foi aceitar. ASP.NET Core aceitou-in definindo vários cookies para `Lax` por padrão. Depois de encontrar vários [problemas](https://github.com/aspnet/Announcements/issues/318) com a autenticação, a maior parte do uso do SameSite foi [desabilitada](https://github.com/aspnet/Announcements/issues/348).
 
-Patches foram emitidos em novembro de 2019 para atualizar do padrão 2016 para o padrão 2019. O [rascunho 2019 da especificação de SameSite](https://github.com/aspnet/Announcements/issues/390):
+[Patches](https://devblogs.microsoft.com/dotnet/net-core-November-2019/) foram emitidos em novembro de 2019 para atualizar do padrão 2016 para o padrão 2019. O [rascunho 2019 da especificação de SameSite](https://github.com/aspnet/Announcements/issues/390):
 
 * **Não** é compatível com versões anteriores com o rascunho 2016. Para obter mais informações, consulte [dando suporte a navegadores mais antigos](#sob) neste documento.
 * Especifica que os cookies são tratados como `SameSite=Lax` por padrão.
@@ -168,3 +168,4 @@ As versões do at-SS são versões mais antigas do Chromium. Por exemplo, a vers
 
 * [Blog do Chromium: desenvolvedores: Prepare-se para o New SameSite = None; Configurações de cookie seguro](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html)
 * [SameSite cookies explicados](https://web.dev/samesite-cookies-explained/)
+* [Patches de novembro de 2019](https://devblogs.microsoft.com/dotnet/net-core-November-2019/)
