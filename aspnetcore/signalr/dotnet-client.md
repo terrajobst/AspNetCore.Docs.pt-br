@@ -5,16 +5,16 @@ description: Informações sobre o cliente ASP.NET Core SignalR .NET
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 01/14/2020
 no-loc:
 - SignalR
 uid: signalr/dotnet-client
-ms.openlocfilehash: 28e8fcf808406cd0251ba94e2ef97ab04841fcd0
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 39d9eccdb1e0457b177e75e6f94f3dd185b0093d
+ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963962"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76146310"
 ---
 # <a name="aspnet-core-opno-locsignalr-net-client"></a>ASP.NET Core SignalR cliente .NET
 
@@ -26,7 +26,7 @@ O exemplo de código neste artigo é um aplicativo do WPF que usa o cliente ASP.
 
 ## <a name="install-the-opno-locsignalr-net-client-package"></a>Instalar o pacote do cliente .NET SignalR
 
-O [Microsoft. AspNetCore.SignalR. ](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client)O pacote do cliente é necessário para que os clientes .net se conectem a hubs de SignalR.
+O [Microsoft.AspNetCore.SignalR.](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client)O pacote do cliente é necessário para que os clientes .net se conectem a hubs de SignalR.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -164,7 +164,7 @@ O comportamento personalizado, em seguida, deriva novamente do comportamento pad
 
 Se você quiser ter ainda mais controle sobre o tempo e o número de tentativas de reconexão automática, `WithAutomaticReconnect` aceitará um objeto que implementa a interface `IRetryPolicy`, que tem um único método chamado `NextRetryDelay`.
 
-`NextRetryDelay` usa um único argumento com o tipo `RetryContext`. O `RetryContext` tem três propriedades: `PreviousRetryCount`, `ElapsedTime` e `RetryReason` que são um `long`, um `TimeSpan` e um `Exception` respectivamente. Antes da primeira tentativa de reconexão, `PreviousRetryCount` e `ElapsedTime` serão zero e a `RetryReason` será a exceção que fez com que a conexão fosse perdida. Após cada tentativa de repetição com falha, `PreviousRetryCount` será incrementado em uma, `ElapsedTime` será atualizado para refletir o tempo gasto se reconectando até agora, e a `RetryReason` será a exceção que causou a falha da última tentativa de reconexão.
+`NextRetryDelay` usa um único argumento com o tipo `RetryContext`. O `RetryContext` tem três propriedades: `PreviousRetryCount`, `ElapsedTime` e `RetryReason`, que são uma `long`, uma `TimeSpan` e uma `Exception` respectivamente. Antes da primeira tentativa de reconexão, `PreviousRetryCount` e `ElapsedTime` serão zero e a `RetryReason` será a exceção que fez com que a conexão fosse perdida. Após cada tentativa de repetição com falha, `PreviousRetryCount` será incrementado em uma, `ElapsedTime` será atualizado para refletir o tempo gasto se reconectando até agora, e a `RetryReason` será a exceção que causou a falha da última tentativa de reconexão.
 
 `NextRetryDelay` deve retornar um TimeSpan que representa o tempo de espera antes da próxima tentativa de reconexão ou `null` se o `HubConnection` deve parar de reconectar.
 
@@ -179,7 +179,7 @@ public class RandomRetryPolicy : IRetryPolicy
         // wait between 0 and 10 seconds before the next reconnect attempt.
         if (retryContext.ElapsedTime < TimeSpan.FromSeconds(60))
         {
-            return TimeSpan.FromSeconds(_random.Next() * 10);
+            return TimeSpan.FromSeconds(_random.NextDouble() * 10);
         }
         else
         {
@@ -250,7 +250,7 @@ O código anterior em `connection.On` é executado quando o código do lado do s
 
 [!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?name=snippet_SendMessage)]
 
-## <a name="error-handling-and-logging"></a>Tratamento de erros e registro em log
+## <a name="error-handling-and-logging"></a>Registro em log e tratamento de erros
 
 Tratar erros com uma instrução try-catch. Inspecione o objeto `Exception` para determinar a ação apropriada a ser tomada após ocorrer um erro.
 
