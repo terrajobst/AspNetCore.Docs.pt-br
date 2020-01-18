@@ -7,16 +7,21 @@ ms.custom: mvc
 ms.date: 02/06/2019
 ms.topic: tutorial
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 42ce63d1a31e033cf97536935b6dc94e015f30fa
-ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
+ms.openlocfilehash: 04694f20c7142cc2917df25458e8e335ee933900
+ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76146375"
+ms.lasthandoff: 01/18/2020
+ms.locfileid: "76268779"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: introdução ao EF Core em um aplicativo Web ASP.NET MVC
 
-Este tutorial **não** foi atualizado para o ASP.NET Core 3.0. A [versão do Razor Pages](xref:data/ef-rp/intro) foi atualizada. Para obter informações sobre quando isso pode ser atualizado, confira [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/13920).
+Este tutorial **não** foi atualizado para o ASP.NET Core 3.0. A [versão do Razor Pages](xref:data/ef-rp/intro) foi atualizada. A maioria das alterações de código para o ASP.NET Core 3,0 e a versão mais recente deste tutorial:
+
+* Estão nos arquivos *Startup.cs* e *Program.cs* .
+* Pode ser encontrado na [versão Razor Pages](xref:data/ef-rp/intro). 
+
+Para obter informações sobre quando isso pode ser atualizado, confira [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/13920).
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
