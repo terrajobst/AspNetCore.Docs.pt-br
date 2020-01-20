@@ -2,28 +2,26 @@
 title: Tratar erros em aplicativos ASP.NET Core Blazor
 author: guardrex
 description: Descubra como ASP.NET Core Blazor como o Blazor gerencia exceções sem tratamento e como desenvolver aplicativos que detectam e manipulam erros.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/18/2019
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: d73eb9a0dd0ec7a4bec4b7b9aeaaa4a9ee888bce
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: fe4cc13b1efb8c70c9632f032626aa938fb65ea3
+ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74943700"
+ms.lasthandoff: 01/17/2020
+ms.locfileid: "76159944"
 ---
 # <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Tratar erros em aplicativos ASP.NET Core Blazor
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 Este artigo descreve como o Blazor gerencia exceções sem tratamento e como desenvolver aplicativos que detectam e manipulam erros.
-
-::: moniker range=">= aspnetcore-3.1"
 
 ## <a name="detailed-errors-during-development"></a>Erros detalhados durante o desenvolvimento
 
@@ -58,8 +56,6 @@ Em um aplicativo do Blazor Server, personalize a experiência no arquivo *pages/
 ```
 
 O elemento `blazor-error-ui` é ocultado pelos estilos incluídos com os modelos de Blazor e, em seguida, mostrados quando ocorre um erro.
-
-::: moniker-end
 
 ## <a name="how-the-opno-locblazor-framework-reacts-to-unhandled-exceptions"></a>Como a estrutura de Blazor reage a exceções sem tratamento
 
@@ -213,8 +209,6 @@ Quando um circuito termina porque um usuário se desconectou e a estrutura está
 
 ### <a name="prerendering"></a>Prerenderizando
 
-::: moniker range=">= aspnetcore-3.1"
-
 Blazor componentes podem ser renderizados usando o auxiliar de marca de `Component` para que sua marcação HTML renderizada seja retornada como parte da solicitação HTTP inicial do usuário. Isso funciona por:
 
 * Criar um novo circuito para todos os componentes renderizados que fazem parte da mesma página.
@@ -229,27 +223,6 @@ Se qualquer componente lançar uma exceção sem tratamento durante o pré-proce
 Em circunstâncias normais, quando o pré-processamento falha, continuar a criar e renderizar o componente não faz sentido porque um componente de trabalho não pode ser renderizado.
 
 Para tolerar erros que podem ocorrer durante o pré-processamento, a lógica de tratamento de erro deve ser colocada dentro de um componente que pode gerar exceções. Use instruções [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log. Em vez de encapsular o auxiliar de marca de `Component` em uma instrução `try-catch`, coloque a lógica de tratamento de erros no componente renderizado pelo auxiliar de marca de `Component`.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.1"
-
-Blazor componentes podem ser renderizados usando `Html.RenderComponentAsync` para que a marcação HTML renderizada seja retornada como parte da solicitação HTTP inicial do usuário. Isso funciona por:
-
-* Criar um novo circuito para todos os componentes renderizados que fazem parte da mesma página.
-* Gerando o HTML inicial.
-* Tratar o circuito como `disconnected` até que o navegador do usuário estabeleça uma conexão de SignalR de volta para o mesmo servidor. Quando a conexão é estabelecida, a interatividade no circuito é retomada e a marcação HTML dos componentes é atualizada.
-
-Se qualquer componente lançar uma exceção sem tratamento durante o pré-processamento, por exemplo, durante um método de ciclo de vida ou na lógica de renderização:
-
-* A exceção é fatal para o circuito.
-* A exceção é gerada na pilha de chamadas da chamada `Html.RenderComponentAsync`. Portanto, toda a solicitação HTTP falha, a menos que a exceção seja explicitamente detectada pelo código do desenvolvedor.
-
-Em circunstâncias normais, quando o pré-processamento falha, continuar a criar e renderizar o componente não faz sentido porque um componente de trabalho não pode ser renderizado.
-
-Para tolerar erros que podem ocorrer durante o pré-processamento, a lógica de tratamento de erro deve ser colocada dentro de um componente que pode gerar exceções. Use instruções [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log. Em vez de encapsular a chamada para `RenderComponentAsync` em uma instrução `try-catch`, coloque a lógica de tratamento de erros no componente renderizado por `RenderComponentAsync`.
-
-::: moniker-end
 
 ## <a name="advanced-scenarios"></a>Cenários avançados
 

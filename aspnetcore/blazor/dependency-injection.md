@@ -2,19 +2,20 @@
 title: Injeção de dependência de Blazor ASP.NET Core
 author: guardrex
 description: Veja como Blazor aplicativos podem injetar serviços em componentes.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 01/08/2020
 no-loc:
 - Blazor
+- SignalR
 uid: blazor/dependency-injection
-ms.openlocfilehash: aad6cfee500b5cb502470f6a4a7cb5756df09dc4
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: 6930d721f04fd5f7cad2ba472724497a157fda0f
+ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74943778"
+ms.lasthandoff: 01/17/2020
+ms.locfileid: "76159970"
 ---
 # <a name="aspnet-core-opno-locblazor-dependency-injection"></a>Injeção de dependência de Blazor ASP.NET Core
 
@@ -36,8 +37,8 @@ Os serviços padrão são adicionados automaticamente à coleção de serviços 
 | Service | Tempo de vida | Descrição |
 | ------- | -------- | ----------- |
 | <xref:System.Net.Http.HttpClient> | Singleton | Fornece métodos para enviar solicitações HTTP e receber respostas HTTP de um recurso identificado por um URI.<br><br>A instância do `HttpClient` em um aplicativo Webassembly Blazor usa o navegador para manipular o tráfego HTTP em segundo plano.<br><br>os aplicativos do Blazor Server não incluem uma `HttpClient` configurada como um serviço por padrão. Forneça um `HttpClient` para um aplicativo Blazor Server.<br><br>Para obter mais informações, consulte <xref:blazor/call-web-api>. |
-| `IJSRuntime` | Singleton | Representa uma instância de um tempo de execução JavaScript em que as chamadas JavaScript são expedidas. Para obter mais informações, consulte <xref:blazor/javascript-interop>. |
-| `NavigationManager` | Singleton | Contém auxiliares para trabalhar com URIs e estado de navegação. Para obter mais informações, consulte [URI e auxiliares de estado de navegação](xref:blazor/routing#uri-and-navigation-state-helpers). |
+| `IJSRuntime` | Singleton (Blazor Webassembly)<br>Com escopo (servidorBlazor) | Representa uma instância de um tempo de execução JavaScript em que as chamadas JavaScript são expedidas. Para obter mais informações, consulte <xref:blazor/javascript-interop>. |
+| `NavigationManager` | Singleton (Blazor Webassembly)<br>Com escopo (servidorBlazor) | Contém auxiliares para trabalhar com URIs e estado de navegação. Para obter mais informações, consulte [URI e auxiliares de estado de navegação](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
 Um provedor de serviços personalizado não fornece automaticamente os serviços padrão listados na tabela. Se você usar um provedor de serviços personalizado e precisar de qualquer um dos serviços mostrados na tabela, adicione os serviços necessários ao novo provedor de serviços.
 
