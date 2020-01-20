@@ -2,20 +2,20 @@
 title: Introdução ao ASP.NET Core Blazor
 author: guardrex
 description: Explore ASP.NET Core Blazor, uma maneira de criar interface do usuário da Web interativa do lado do cliente com o .NET em um aplicativo ASP.NET Core.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, seoapril2019
-ms.date: 12/05/2019
+ms.date: 12/18/2019
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: 4ab6af649afe66d92fb2ea07d3abed057f321bce
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: 9f43735fc02ba9f8da4ba27c8b5763d587b5429a
+ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74943713"
+ms.lasthandoff: 01/17/2020
+ms.locfileid: "76159918"
 ---
 # <a name="introduction-to-aspnet-core-opno-locblazor"></a>Introdução ao ASP.NET Core Blazor
 
@@ -128,7 +128,7 @@ O tamanho do aplicativo publicado, seu *tamanho de payload*, é um fator de dese
 * As respostas HTTP são compactadas.
 * O runtime do .NET e os assemblies são armazenados em cache no navegador.
 
-## <a name="opno-locblazor-server"></a>Servidor do Blazor
+## <a name="opno-locblazor-server"></a>Servidor de Blazor
 
 Blazor dissocia a lógica de renderização do componente de como as atualizações da interface do usuário são aplicadas. o Blazor Server fornece suporte para hospedar componentes do Razor no servidor em um aplicativo ASP.NET Core. As atualizações da interface do usuário são manipuladas por uma conexão [SignalR](xref:signalr/introduction) .
 

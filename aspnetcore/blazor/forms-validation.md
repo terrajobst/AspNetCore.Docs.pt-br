@@ -2,19 +2,20 @@
 title: ASP.NET Core Blazor formulários e validação
 author: guardrex
 description: Saiba como usar formulários e cenários de validação de campo no Blazor.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/18/2019
 no-loc:
 - Blazor
+- SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: a94a433f26e451bbadc73615e502e46d273f05c2
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: 6f6fdc13dbb754ecfe06025d496017d3c16951fe
+ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75828133"
+ms.lasthandoff: 01/17/2020
+ms.locfileid: "76159957"
 ---
 # <a name="aspnet-core-opno-locblazor-forms-and-validation"></a>ASP.NET Core Blazor formulários e validação
 
@@ -37,8 +38,8 @@ public class ExampleModel
 
 Um formulário é definido usando o componente `EditForm`. O formulário a seguir demonstra elementos típicos, componentes e código do Razor:
 
-```csharp
-<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
+```razor
+<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -57,7 +58,12 @@ Um formulário é definido usando o componente `EditForm`. O formulário a segui
 }
 ```
 
+No exemplo anterior:
+
 * O formulário valida a entrada do usuário no campo `name` usando a validação definida no tipo de `ExampleModel`. O modelo é criado no bloco de `@code` do componente e mantido em um campo privado (`exampleModel`). O campo é atribuído ao atributo `Model` do elemento `<EditForm>`.
+* O `@bind-Value` do componente de `InputText` associa:
+  * A propriedade de modelo (`exampleModel.Name`) para a propriedade `Value` do componente de `InputText`.
+  * Um delegado de evento de alteração para a propriedade `ValueChanged` do componente de `InputText`.
 * O componente `DataAnnotationsValidator` anexa o suporte à validação usando anotações de dados.
 * O componente `ValidationSummary` resume as mensagens de validação.
 * `HandleValidSubmit` é disparado quando o formulário é enviado com êxito (aprovado na validação).
@@ -118,39 +124,50 @@ O formulário a seguir valida a entrada do usuário usando a validação definid
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     <p>
-        <label for="identifier">Identifier: </label>
-        <InputText id="identifier" @bind-Value="starship.Identifier" />
+        <label>
+            Identifier:
+            <InputText @bind-Value="starship.Identifier" />
+        </label>
     </p>
     <p>
-        <label for="description">Description (optional): </label>
-        <InputTextArea id="description" @bind-Value="starship.Description" />
+        <label>
+            Description (optional):
+            <InputTextArea @bind-Value="starship.Description" />
+        </label>
     </p>
     <p>
-        <label for="classification">Primary Classification: </label>
-        <InputSelect id="classification" @bind-Value="starship.Classification">
-            <option value="">Select classification ...</option>
-            <option value="Exploration">Exploration</option>
-            <option value="Diplomacy">Diplomacy</option>
-            <option value="Defense">Defense</option>
-        </InputSelect>
+        <label>
+            Primary Classification:
+            <InputSelect @bind-Value="starship.Classification">
+                <option value="">Select classification ...</option>
+                <option value="Exploration">Exploration</option>
+                <option value="Diplomacy">Diplomacy</option>
+                <option value="Defense">Defense</option>
+            </InputSelect>
+        </label>
     </p>
     <p>
-        <label for="accommodation">Maximum Accommodation: </label>
-        <InputNumber id="accommodation" 
-            @bind-Value="starship.MaximumAccommodation" />
+        <label>
+            Maximum Accommodation:
+            <InputNumber @bind-Value="starship.MaximumAccommodation" />
+        </label>
     </p>
     <p>
-        <label for="valid">Engineering Approval: </label>
-        <InputCheckbox id="valid" @bind-Value="starship.IsValidatedDesign" />
+        <label>
+            Engineering Approval:
+            <InputCheckbox @bind-Value="starship.IsValidatedDesign" />
+        </label>
     </p>
     <p>
-        <label for="productionDate">Production Date: </label>
-        <InputDate id="productionDate" @bind-Value="starship.ProductionDate" />
+        <label>
+            Production Date:
+            <InputDate @bind-Value="starship.ProductionDate" />
+        </label>
     </p>
 
     <button type="submit">Submit</button>
@@ -174,6 +191,54 @@ O formulário a seguir valida a entrada do usuário usando a validação definid
 
 O `EditForm` cria um `EditContext` como um [valor em cascata](xref:blazor/components#cascading-values-and-parameters) que controla os metadados sobre o processo de edição, incluindo quais campos foram modificados e as mensagens de validação atuais. O `EditForm` também fornece eventos convenientes para envios válidos e inválidos (`OnValidSubmit`, `OnInvalidSubmit`). Como alternativa, use `OnSubmit` para disparar a validação e verificar os valores do campo com o código de validação personalizado.
 
+No exemplo a seguir:
+
+* O método `HandleSubmit` é executado quando o botão **Enviar** é selecionado.
+* O formulário é validado usando o `EditContext`do formulário.
+* O formulário é validado ainda mais, passando o `EditContext` para o método `ServerValidate` que chama um ponto de extremidade da API Web no servidor (*não mostrado*).
+* O código adicional é executado dependendo do resultado da validação do cliente e do lado do servidor, verificando `isValid`.
+
+```razor
+<EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
+
+    ...
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private Starship starship = new Starship();
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(starship);
+    }
+
+    private async Task HandleSubmit()
+    {
+        var isValid = editContext.Validate() && 
+            await ServerValidate(editContext);
+
+        if (isValid)
+        {
+            ...
+        }
+        else
+        {
+            ...
+        }
+    }
+
+    private async Task<bool> ServerValidate(EditContext editContext)
+    {
+        var serverChecksValid = ...
+
+        return serverChecksValid;
+    }
+}
+```
+
 ## <a name="inputtext-based-on-the-input-event"></a>InputText com base no evento de entrada
 
 Use o componente `InputText` para criar um componente personalizado que usa o evento `input` em vez do evento `change`.
@@ -189,6 +254,94 @@ Crie um componente com a marcação a seguir e use o componente da mesma forma q
     value="@CurrentValue" 
     @oninput="EventCallback.Factory.CreateBinder<string>(
         this, __value => CurrentValueAsString = __value, CurrentValueAsString)" />
+```
+
+## <a name="work-with-radio-buttons"></a>Trabalhar com botões de opção
+
+Ao trabalhar com botões de opção em um formulário, a vinculação de dados é tratada de forma diferente de outros elementos porque os botões de opção são avaliados como um grupo. O valor de cada botão de opção é fixo, mas o valor do grupo de botões de opção é o valor do botão de opção selecionado. O exemplo a seguir mostra como:
+
+* Manipular a vinculação de dados para um grupo de botões de opção.
+* Suporte à validação usando um componente de `InputRadio` personalizado.
+
+```razor
+@using System.Globalization
+@typeparam TValue
+@inherits InputBase<TValue>
+
+<input @attributes="AdditionalAttributes" type="radio" value="@SelectedValue" 
+       checked="@(SelectedValue.Equals(Value))" @onchange="OnChange" />
+
+@code {
+    [Parameter]
+    public TValue SelectedValue { get; set; }
+
+    private void OnChange(ChangeEventArgs args)
+    {
+        CurrentValueAsString = args.Value.ToString();
+    }
+
+    protected override bool TryParseValueFromString(string value, 
+        out TValue result, out string errorMessage)
+    {
+        var success = BindConverter.TryConvertTo<TValue>(
+            value, CultureInfo.CurrentCulture, out var parsedValue);
+        if (success)
+        {
+            result = parsedValue;
+            errorMessage = null;
+
+            return true;
+        }
+        else
+        {
+            result = default;
+            errorMessage = $"{FieldIdentifier.FieldName} field isn't valid.";
+
+            return false;
+        }
+    }
+}
+```
+
+O `EditForm` a seguir usa o componente `InputRadio` anterior para obter e validar uma classificação do usuário:
+
+```razor
+@page "/RadioButtonExample"
+@using System.ComponentModel.DataAnnotations
+
+<h1>Radio Button Group Test</h1>
+
+<EditForm Model="model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    @for (int i = 1; i <= 5; i++)
+    {
+        <label>
+            <InputRadio name="rate" SelectedValue="i" @bind-Value="model.Rating" />
+            @i
+        </label>
+    }
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+<p>You chose: @model.Rating</p>
+
+@code {
+    private Model model = new Model();
+
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine("valid");
+    }
+
+    public class Model
+    {
+        [Range(1, 5)]
+        public int Rating { get; set; }
+    }
+}
 ```
 
 ## <a name="validation-support"></a>Suporte à validação
@@ -243,15 +396,13 @@ private class MyCustomValidator : ValidationAttribute
 }
 ```
 
-::: moniker range=">= aspnetcore-3.1"
-
 ### <a name="opno-locblazor-data-annotations-validation-package"></a>Blazor pacote de validação de anotações de dados
 
 O [Microsoft. AspNetCore.Blazor. Annotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) é um pacote que preenche as lacunas da experiência de validação usando o componente `DataAnnotationsValidator`. O pacote está *experimental*no momento.
 
 ### <a name="compareproperty-attribute"></a>Atributo [compareproperty]
 
-O <xref:System.ComponentModel.DataAnnotations.CompareAttribute> não funciona bem com o componente `DataAnnotationsValidator`. O [Microsoft. AspNetCore.Blazor. Annotations.](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) o pacote *experimental* de validação introduz um atributo de validação adicional, `ComparePropertyAttribute`, que funciona em relação a essas limitações. Em um aplicativo Blazor, `[CompareProperty]` é uma substituição direta para o atributo `[Compare]`. Para obter mais informações, consulte [compareAttribute ignorado com OnValidSubmit EditForm (dotNet/AspNetCore #10643)](https://github.com/dotnet/AspNetCore/issues/10643#issuecomment-543909748).
+O <xref:System.ComponentModel.DataAnnotations.CompareAttribute> não funciona bem com o componente `DataAnnotationsValidator` porque ele não associa o resultado da validação a um membro específico. Isso pode resultar em comportamento inconsistente entre a validação em nível de campo e quando todo o modelo é validado em um envio. O [Microsoft. AspNetCore.Blazor. Annotations.](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) o pacote *experimental* de validação introduz um atributo de validação adicional, `ComparePropertyAttribute`, que funciona em relação a essas limitações. Em um aplicativo Blazor, `[CompareProperty]` é uma substituição direta para o atributo `[Compare]`.
 
 ### <a name="nested-models-collection-types-and-complex-types"></a>Modelos aninhados, tipos de coleção e tipos complexos
 
@@ -260,7 +411,7 @@ Blazor fornece suporte para validar a entrada de formulário usando anotações 
 Para validar o gráfico de objeto inteiro do modelo associado, incluindo propriedades de tipo de coleção e complexas, use o `ObjectGraphDataAnnotationsValidator` fornecido pelo [Microsoft. AspNetCore.Blazorexperimental. Pacote Annotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) :
 
 ```razor
-<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
     ...
 </EditForm>
@@ -303,12 +454,69 @@ public class ShipDescription
 }
 ```
 
-::: moniker-end
+### <a name="enable-the-submit-button-based-on-form-validation"></a>Habilitar o botão enviar com base na validação do formulário
 
-::: moniker range="< aspnetcore-3.1"
+Para habilitar e desabilitar o botão enviar com base na validação do formulário:
 
-### <a name="validation-of-complex-or-collection-type-properties"></a>Validação de propriedades de tipo de coleção ou complexas
+* Use o `EditContext` do formulário para atribuir o modelo quando o componente for inicializado.
+* Valide o formulário no retorno de chamada de `OnFieldChanged` do contexto para habilitar e desabilitar o botão enviar.
 
-Os atributos de validação aplicados às propriedades de um modelo são validados quando o formulário é enviado. No entanto, as propriedades de coleções ou tipos de dados complexos de um modelo não são validadas no envio de formulários pelo componente `DataAnnotationsValidator`. Para honrar os atributos de validação aninhados nesse cenário, use um componente de validação personalizado. Para obter um exemplo, consulte o [exemplo de validação deBlazor (ASPNET/samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
+```razor
+<EditForm EditContext="@editContext">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-::: moniker-end
+    ...
+
+    <button type="submit" disabled="@formInvalid">Submit</button>
+</EditForm>
+
+@code {
+    private Starship starship = new Starship();
+    private bool formInvalid = true;
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(starship);
+
+        editContext.OnFieldChanged += (_, __) =>
+        {
+            formInvalid = !editContext.Validate();
+            StateHasChanged();
+        };
+    }
+}
+```
+
+No exemplo anterior, defina `formInvalid` como `false` se:
+
+* O formulário é pré-carregado com valores padrão válidos.
+* Você deseja que o botão enviar seja habilitado quando o formulário é carregado.
+
+Um efeito colateral da abordagem anterior é que um componente `ValidationSummary` é preenchido com campos inválidos depois que o usuário interage com um campo. Esse cenário pode ser resolvido de uma das seguintes maneiras:
+
+* Não use um componente `ValidationSummary` no formulário.
+* Torne o componente `ValidationSummary` visível quando o botão enviar for selecionado (por exemplo, em um método `HandleValidSubmit`).
+
+```razor
+<EditForm EditContext="@editContext" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary style="@displaySummary" />
+
+    ...
+
+    <button type="submit" disabled="@formInvalid">Submit</button>
+</EditForm>
+
+@code {
+    private string displaySummary = "display:none";
+
+    ...
+
+    private void HandleValidSubmit()
+    {
+        displaySummary = "display:block";
+    }
+}
+```

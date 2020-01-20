@@ -2,20 +2,20 @@
 title: Autenticação e autorização do ASP.NET Core Blazor
 author: guardrex
 description: Saiba mais sobre os cenários de autenticação e autorização do Blazor.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/18/2019
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/index
-ms.openlocfilehash: d3860a5e7f6ae5a3193d657b77fc593c9bd39131
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: 2ce2cff8d3ab77f21181070b6f1e48c50561036c
+ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74944194"
+ms.lasthandoff: 01/17/2020
+ms.locfileid: "76160282"
 ---
 # <a name="aspnet-core-opno-locblazor-authentication-and-authorization"></a>Autenticação e autorização do ASP.NET Core Blazor
 
@@ -51,7 +51,7 @@ Depois de escolher o modelo de **aplicativo doBlazor Server** na caixa de diálo
 Uma caixa de diálogo é aberta para oferecer o mesmo conjunto de mecanismos de autenticação para outros projetos ASP.NET Core:
 
 * **Sem Autenticação**
-* **Contas de usuário individuais** &ndash; as contas de usuário podem ser armazenadas:
+* **Contas de usuário individuais** &ndash; contas de usuário podem ser armazenadas:
   * Dentro do aplicativo usando o sistema de [Identidade](xref:security/authentication/identity) do ASP.NET Core.
   * Com o [Azure AD B2C](xref:security/authentication/azure-ad-b2c).
 * **Contas corporativas ou de estudante**

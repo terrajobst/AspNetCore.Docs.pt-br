@@ -2,19 +2,20 @@
 title: Hospedar e implantar ASP.NET Core Blazor Webassembly
 author: guardrex
 description: Saiba como hospedar e implantar um aplicativo Blazor usando ASP.NET Core, redes de distribuição de conteúdo (CDN), servidores de arquivos e páginas do GitHub.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 12/18/2019
 no-loc:
 - Blazor
+- SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: 0fcefc3f1e51beb7cc29aef6dd4f4b8557e61965
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 8ed95cdb96804e08c3f1273bbea8f64a8e4f173c
+ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963643"
+ms.lasthandoff: 01/17/2020
+ms.locfileid: "76160238"
 ---
 # <a name="host-and-deploy-aspnet-core-opno-locblazor-webassembly"></a>Hospedar e implantar ASP.NET Core Blazor Webassembly
 
@@ -36,8 +37,8 @@ Há suporte para as seguintes estratégias de implantação:
 
 O roteamento de solicitações para componentes de página em um aplicativo Webassembly Blazor não é tão simples quanto o roteamento de solicitações em um servidor Blazor, hospedado em um aplicativo. Considere um aplicativo Webassembly Blazor com dois componentes:
 
-* *Main.razor* &ndash; É carregado na raiz do aplicativo e contém um link para o componente `About` (`href="About"`).
-* *About.Razor* &ndash; componente `About`.
+* *Main. razor* &ndash; carrega na raiz do aplicativo e contém um link para o componente `About` (`href="About"`).
+* *About. razor* &ndash; `About` componente.
 
 Quando o documento padrão do aplicativo é solicitado usando a barra de endereços do navegador (por exemplo, `https://www.contoso.com/`):
 
@@ -81,11 +82,11 @@ Os ativos publicados são criados na pasta */bin/Release/{TARGET FRAMEWORK}/publ
 Quando um projeto de Blazor é publicado, um arquivo *Web. config* é criado com a seguinte configuração do IIS:
 
 * Os tipos MIME são definidos para as seguintes extensões de arquivo:
-  * *.dll* &ndash; `application/octet-stream`
-  * *.json* &ndash; `application/json`
-  * *.wasm* &ndash; `application/wasm`
-  * *.woff* &ndash; `application/font-woff`
-  * *.woff2* &ndash; `application/font-woff`
+  * *. dll* &ndash; `application/octet-stream`
+  * &ndash; *. json* `application/json`
+  * *. wasm* &ndash; `application/wasm`
+  * *. woff* &ndash; `application/font-woff`
+  * *. woff2* &ndash; `application/font-woff`
 * A compactação HTTP está habilitada para os seguintes tipos MIME:
   * `application/octet-stream`
   * `application/wasm`
