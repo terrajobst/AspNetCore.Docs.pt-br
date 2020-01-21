@@ -5,14 +5,14 @@ description: Saiba como diagnosticar problemas com implantações de serviço Az
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/10/2020
+ms.date: 01/18/2020
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 23c90c33d197d26d1c4ad758449e318e20ef3760
-ms.sourcegitcommit: 2388c2a7334ce66b6be3ffbab06dd7923df18f60
+ms.openlocfilehash: 071dba9e936351e201b7582b3d0667cd6fac54bb
+ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/14/2020
-ms.locfileid: "75952148"
+ms.lasthandoff: 01/21/2020
+ms.locfileid: "76294615"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
 
@@ -117,7 +117,10 @@ O processo de trabalho falha. O aplicativo não foi iniciado.
 
 O [módulo ASP.NET Core](xref:host-and-deploy/aspnet-core-module) tenta iniciar o .NET Core CLR em processo, mas falha ao iniciar. A causa de uma falha de inicialização do processo normalmente pode ser determinada das entradas no log de eventos do aplicativo e do log de stdout do módulo ASP.NET Core.
 
-Uma condição de falha comum é o aplicativo configurado incorretamente, direcionado a uma versão da estrutura compartilhada do ASP.NET Core que não está presente. Verifique quais versões da estrutura compartilhada do ASP.NET Core estão instaladas no computador de destino.
+Condições comuns de falha:
+
+* O aplicativo está configurado incorretamente devido ao direcionamento de uma versão do ASP.NET Core estrutura compartilhada que não está presente. Verifique quais versões da estrutura compartilhada do ASP.NET Core estão instaladas no computador de destino.
+* Usando Azure Key Vault, falta de permissões para o Key Vault. Verifique as políticas de acesso no Key Vault de destino para garantir que as permissões corretas sejam concedidas.
 
 ### <a name="50031-ancm-failed-to-find-native-dependencies"></a>500.31 O ANCM não pôde encontrar dependências nativas
 

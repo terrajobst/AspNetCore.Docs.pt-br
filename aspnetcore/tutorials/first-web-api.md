@@ -1,19 +1,19 @@
 ---
-title: 'Tutorial: criar uma API Web com ASP.NET Core'
+title: 'Tutorial: Create a web API with ASP.NET Core'
 author: rick-anderson
 description: Saiba como criar uma API Web com o ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: tutorials/first-web-api
-ms.openlocfilehash: 3bf930d19684e84365f0ff0255fccd2939fb3f39
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: 73e547b014d78dcbcbf1c887ebec16e0743d10b9
+ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75354915"
+ms.lasthandoff: 01/21/2020
+ms.locfileid: "76294744"
 ---
-# <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: criar uma API Web com ASP.NET Core
+# <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Create a web API with ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Mike Wasson](https://github.com/mikewasson)
 
@@ -42,7 +42,7 @@ Este tutorial cria a seguinte API:
 |GET /api/TodoItems/{id} | Obter um item por ID | {1&gt;Nenhum&lt;1} | Item de tarefas pendentes|
 |POST /api/TodoItems | Adicionar um novo item | Item de tarefas pendentes | Item de tarefas pendentes |
 |PUT /api/TodoItems/{id} | Atualizar um item &nbsp; existente | Item de tarefas pendentes | {1&gt;Nenhum&lt;1} |
-|EXCLUIR/api/TodoItems/{id} &nbsp; &nbsp; | Excluir um item &nbsp; &nbsp; | {1&gt;Nenhum&lt;1} | {1&gt;Nenhum&lt;1}|
+|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | {1&gt;Nenhum&lt;1} | {1&gt;Nenhum&lt;1}|
 
 O diagrama a seguir mostra o design do aplicativo.
 
@@ -68,10 +68,10 @@ O diagrama a seguir mostra o design do aplicativo.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No menu **arquivo** , selecione **novo** **projeto**de >.
+* From the **File** menu, select **New** > **Project**.
 * Selecione o modelo **Aplicativo Web ASP.NET Core** e clique em **Próximo**.
 * Nomeie o projeto como *TodoApi* e clique em **Criar**.
-* Na caixa de diálogo **criar um novo ASP.NET Core aplicativo Web** , confirme se o **.net Core** e **ASP.NET Core 3,1** estão selecionados. Selecione o modelo **API** e clique em **Criar**.
+* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Selecione o modelo **API** e clique em **Criar**.
 
 ![Caixa de diálogo Novo projeto do VS](first-web-api/_static/vs3.png)
 
@@ -98,15 +98,15 @@ O diagrama a seguir mostra o design do aplicativo.
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Selecione **arquivo** > **nova solução**.
+* Select **File** > **New Solution**.
 
   ![Nova Solução do macOS](first-web-api-mac/_static/sln.png)
 
-* Selecione **.NET Core** > **aplicativo** > **API** > **Avançar**.
+* Select **.NET Core** > **App** > **API** > **Next**.
 
   ![Caixa de diálogo Novo Projeto do macOS](first-web-api-mac/_static/1.png)
   
-* Na caixa de diálogo **configurar sua nova API Web do ASP.NET Core** , selecione **estrutura de destino** do * *.NET Core 3,1*.
+* In the **Configure your new ASP.NET Core Web API** dialog, select **Target Framework** of * *.NET Core 3.1*.
 
 * Insira *TodoApi* para o **Nome do Projeto** e, em seguida, selecione **Criar**.
 
@@ -204,7 +204,7 @@ Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo 
 
   ![nova pasta](first-web-api-mac/_static/folder.png)
 
-* Clique com o botão direito do mouse na pasta *modelos* e selecione **Adicionar** > **novo arquivo** > **geral** > **classe vazia**.
+* Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
 * Nomeie a classe como *TodoItem* e, em seguida, clique em **Novo**.
 
@@ -228,7 +228,7 @@ O *contexto de banco de dados* é a classe principal que coordena a funcionalida
 
 * No menu **Ferramentas**, selecione **Gerenciador de Pacotes do NuGet > Gerenciar Pacotes do NuGet para a Solução**.
 * Selecione a guia **Procurar** e, em seguida, insira **Microsoft.EntityFrameworkCore.SqlServer** na caixa de pesquisa.
-* Selecione **Microsoft. EntityFrameworkCore. SqlServer** no painel esquerdo.
+* Select **Microsoft.EntityFrameworkCore.SqlServer** in the left pane.
 * Selecione a caixa de seleção **Projeto** no painel direito e, em seguida, selecione **Instalar**.
 * Use as instruções anteriores para adicionar o pacote do NuGet `Microsoft.EntityFrameworkCore.InMemory`.
 
@@ -267,12 +267,12 @@ O código anterior:
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Clique com o botão direito do mouse na pasta *Controllers*.
-* Selecione **adicionar** > **novo item com Scaffold**.
+* Select **Add** > **New Scaffolded Item**.
 * Selecione **Controlador de API com ações, usando o Entity Framework** e, em seguida, selecione **Adicionar**.
 * Na caixa de diálogo **Adicionar Controlador de API com ações, usando o Entity Framework**:
 
-  * Selecione **TodoItem (TodoApi. Models)** na **classe Model**.
-  * Selecione **TodoContext (TodoApi. Models)** na **classe de contexto de dados**.
+  * Select **TodoItem (TodoApi.Models)** in the **Model class**.
+  * Select **TodoContext (TodoApi.Models)** in the **Data context class**.
   * Selecione **Adicionar**.
 
 # <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
@@ -296,8 +296,7 @@ Os comandos anteriores:
 
 O código gerado:
 
-* Define uma classe de controlador de API sem métodos.
-* Marca a classe com o atributo [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) . Esse atributo indica se o controlador responde às solicitações da API Web. Para saber mais sobre comportamentos específicos habilitados pelo atributo, consulte <xref:web-api/index>.
+* Marks the class with the [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute. Esse atributo indica se o controlador responde às solicitações da API Web. Para saber mais sobre comportamentos específicos habilitados pelo atributo, consulte <xref:web-api/index>.
 * Usa a DI para injetar o contexto de banco de dados (`TodoContext`) no controlador. O contexto de banco de dados é usado em cada um dos métodos [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) no controlador.
 
 ## <a name="examine-the-posttodoitem-create-method"></a>Examine o método criar do PostTodoItem
@@ -306,7 +305,7 @@ Substitua a instrução return no `PostTodoItem` para usar o operador [nameof](/
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
-O código anterior é um método HTTP POST, conforme indicado pelo atributo [`[HttpPost]`](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) . O método obtém o valor do item pendente no corpo da solicitação HTTP.
+The preceding code is an HTTP POST method, as indicated by the [`[HttpPost]`](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. O método obtém o valor do item pendente no corpo da solicitação HTTP.
 
 O método <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*>:
 
@@ -322,7 +321,7 @@ Este tutorial usa o Postman para testar a API Web.
 * Inicie o aplicativo Web.
 * Inicie o Postman.
 * Desabilite a **Verificação do certificado SSL**
-* Em **configurações** de > de **arquivo** (guia**geral** ), desabilite a **verificação de certificado SSL**.
+  * From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Habilite novamente a verificação do certificado SSL depois de testar o controlador.
 
@@ -356,7 +355,7 @@ Este tutorial usa o Postman para testar a API Web.
   ![Guia Cabeçalhos do console do Postman](first-web-api/_static/3/create.png)
 
 * Defina o método como GET.
-* Cole o URI (por exemplo, `https://localhost:5001/api/TodoItems/1`).
+* Paste the URI (for example, `https://localhost:5001/api/TodoItems/1`).
 * Selecione **Enviar**.
 
 ## <a name="examine-the-get-methods"></a>Examine os métodos GET
@@ -404,7 +403,7 @@ O atributo [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) 
 * Substitua `[controller]` pelo nome do controlador, que é o nome de classe do controlador menos o sufixo "Controlador" por convenção. Para esta amostra, o nome da classe do controlador é **TodoItems**Controller. Portanto, o nome do controlador é "TodoItems". O [roteamento](xref:mvc/controllers/routing) do ASP.NET Core não diferencia maiúsculas de minúsculas.
 * Se o atributo `[HttpGet]` tiver um modelo de rota (por exemplo, `[HttpGet("products")]`), acrescente isso ao caminho. Esta amostra não usa um modelo. Para obter mais informações, confira [Roteamento de atributo com atributos Http[Verb]](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
-No método `GetTodoItem` a seguir, `"{id}"` é uma variável de espaço reservado para o identificador exclusivo do item pendente. Quando `GetTodoItem` é invocado, o valor de `"{id}"` na URL é fornecido ao método em seu parâmetro `id`.
+No método `GetTodoItem` a seguir, `"{id}"` é uma variável de espaço reservado para o identificador exclusivo do item pendente. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its `id` parameter.
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
 
@@ -429,7 +428,7 @@ Se você vir um erro ao chamar `PutTodoItem`, chame `GET` para garantir que exis
 
 ### <a name="test-the-puttodoitem-method"></a>Testar o método PutTodoItem
 
-Este exemplo usa um banco de dados na memória que deve ser inicializado toda vez que o aplicativo é iniciado. Deverá haver um item no banco de dados antes de você fazer uma chamada PUT. Chame GET para garantir a existência de um item no banco de dados antes de fazer uma chamada PUT.
+This sample uses an in-memory database that must be initialized each time the app is started. Deverá haver um item no banco de dados antes de você fazer uma chamada PUT. Chame GET para garantir a existência de um item no banco de dados antes de fazer uma chamada PUT.
 
 Atualize o item pendente que tem a ID = 1 e defina seu nome como "feed fish":
 
@@ -456,12 +455,12 @@ Examine o método `DeleteTodoItem`:
 Use o Postman para excluir um item pendente:
 
 * Defina o método como `DELETE`.
-* Defina o URI do objeto a ser excluído (por exemplo `https://localhost:5001/api/TodoItems/1`).
+* Set the URI of the object to delete (for example `https://localhost:5001/api/TodoItems/1`).
 * Selecione **Enviar**.
 
 ## <a name="call-the-web-api-with-javascript"></a>Chamar a API Web com o JavaScript
 
-Consulte [o tutorial: chamar uma API Web do ASP.NET Core com JavaScript](xref:tutorials/web-api-javascript).
+See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
 
 ::: moniker-end
 
@@ -491,7 +490,7 @@ Este tutorial cria a seguinte API:
 |GET /api/TodoItems/{id} | Obter um item por ID | {1&gt;Nenhum&lt;1} | Item de tarefas pendentes|
 |POST /api/TodoItems | Adicionar um novo item | Item de tarefas pendentes | Item de tarefas pendentes |
 |PUT /api/TodoItems/{id} | Atualizar um item &nbsp; existente | Item de tarefas pendentes | {1&gt;Nenhum&lt;1} |
-|EXCLUIR/api/TodoItems/{id} &nbsp; &nbsp; | Excluir um item &nbsp; &nbsp; | {1&gt;Nenhum&lt;1} | {1&gt;Nenhum&lt;1}|
+|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | {1&gt;Nenhum&lt;1} | {1&gt;Nenhum&lt;1}|
 
 O diagrama a seguir mostra o design do aplicativo.
 
@@ -517,7 +516,7 @@ O diagrama a seguir mostra o design do aplicativo.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No menu **arquivo** , selecione **novo** **projeto**de >.
+* From the **File** menu, select **New** > **Project**.
 * Selecione o modelo **Aplicativo Web ASP.NET Core** e clique em **Próximo**.
 * Nomeie o projeto como *TodoApi* e clique em **Criar**.
 * Na caixa de diálogo **Criar um aplicativo Web ASP.NET Core**, confirme se **.NET Core** e **ASP.NET Core 2.2** estão selecionados. Selecione o modelo **API** e clique em **Criar**. **Não** selecione **Habilitar Suporte ao Docker**.
@@ -541,11 +540,11 @@ O diagrama a seguir mostra o design do aplicativo.
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* Selecione **arquivo** > **nova solução**.
+* Select **File** > **New Solution**.
 
   ![Nova Solução do macOS](first-web-api-mac/_static/sln.png)
 
-* Selecione **.NET Core** > **aplicativo** > **API** > **Avançar**.
+* Select **.NET Core** > **App** > **API** > **Next**.
 
   ![Caixa de diálogo Novo Projeto do macOS](first-web-api-mac/_static/1.png)
   
@@ -607,7 +606,7 @@ Um *modelo* é um conjunto de classes que representam os dados gerenciados pelo 
 
   ![nova pasta](first-web-api-mac/_static/folder.png)
 
-* Clique com o botão direito do mouse na pasta *modelos* e selecione **Adicionar** > **novo arquivo** > **geral** > **classe vazia**.
+* Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
 * Nomeie a classe como *TodoItem* e, em seguida, clique em **Novo**.
 
@@ -658,7 +657,7 @@ O código anterior:
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Clique com o botão direito do mouse na pasta *Controllers*.
-* Selecione **adicionar** > **novo item**.
+* Select **Add** > **New Item**.
 * Na caixa de diálogo **Adicionar Novo Item**, selecione o modelo **Classe do Controlador de API**.
 * Dê à classe o nome *TodoController* e selecione **Adicionar**.
 
@@ -677,7 +676,7 @@ O código anterior:
 O código anterior:
 
 * Define uma classe de controlador de API sem métodos.
-* Marca a classe com o atributo [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) . Esse atributo indica se o controlador responde às solicitações da API Web. Para saber mais sobre comportamentos específicos habilitados pelo atributo, consulte <xref:web-api/index>.
+* Marks the class with the [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute. Esse atributo indica se o controlador responde às solicitações da API Web. Para saber mais sobre comportamentos específicos habilitados pelo atributo, consulte <xref:web-api/index>.
 * Usa a DI para injetar o contexto de banco de dados (`TodoContext`) no controlador. O contexto de banco de dados é usado em cada um dos métodos [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) no controlador.
 * Adiciona um item chamado `Item1` ao banco de dados se o banco de dados está vazio. Esse código está no construtor, de modo que ele seja executado sempre que há uma nova solicitação HTTP. Se você excluir todos os itens, o construtor criará `Item1` novamente na próxima vez que um método de API for chamado. Portanto, pode parecer que a exclusão não funcionou quando ela realmente funcionou.
 
@@ -739,14 +738,14 @@ Os tipos de retorno `ActionResult` podem representar uma ampla variedade de cód
 
 Este tutorial usa o Postman para testar a API Web.
 
-* Instalar o [postmaster](https://www.getpostman.com/downloads/).
+* Install [Postman](https://www.getpostman.com/downloads/).
 * Inicie o aplicativo Web.
 * Inicie o Postman.
-* Desabilite a **verificação de certificado SSL**.
+* Disable **SSL certificate verification**.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Em **configurações** de > de **arquivo** (guia**geral** ), desabilite a **verificação de certificado SSL**.
+* From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
 
 # <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -771,7 +770,7 @@ Adicione o seguinte método `PostTodoItem` dentro de *Controllers/TodoController
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
-O código anterior é um método HTTP POST, conforme indicado pelo atributo [`[HttpPost]`](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) . O método obtém o valor do item pendente no corpo da solicitação HTTP.
+The preceding code is an HTTP POST method, as indicated by the [`[HttpPost]`](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. O método obtém o valor do item pendente no corpo da solicitação HTTP.
 
 O método `CreatedAtAction`:
 
@@ -811,7 +810,7 @@ O método `CreatedAtAction`:
   ![Guia Cabeçalhos do console do Postman](first-web-api/_static/pmc2.png)
 
 * Defina o método como GET.
-* Cole o URI (por exemplo, `https://localhost:5001/api/Todo/2`).
+* Paste the URI (for example, `https://localhost:5001/api/Todo/2`).
 * Selecione **Enviar**.
 
 ## <a name="add-a-puttodoitem-method"></a>Adicionar um método PutTodoItem
@@ -826,7 +825,7 @@ Se você vir um erro ao chamar `PutTodoItem`, chame `GET` para garantir que exis
 
 ### <a name="test-the-puttodoitem-method"></a>Testar o método PutTodoItem
 
-Este exemplo usa um banco de dados na memória que deve ser inicializado toda vez que o aplicativo é iniciado. Deverá haver um item no banco de dados antes de você fazer uma chamada PUT. Chame GET para garantir a existência de um item no banco de dados antes de fazer uma chamada PUT.
+This sample uses an in-memory database that must be initialized each time the app is started. Deverá haver um item no banco de dados antes de você fazer uma chamada PUT. Chame GET para garantir a existência de um item no banco de dados antes de fazer uma chamada PUT.
 
 Atualize o item pendente que tem a ID = 1 e defina seu nome como "feed fish":
 
@@ -855,14 +854,14 @@ A resposta `DeleteTodoItem` é [204 (Sem conteúdo)](https://www.w3.org/Protocol
 Use o Postman para excluir um item pendente:
 
 * Defina o método como `DELETE`.
-* Defina o URI do objeto a ser excluído (por exemplo `https://localhost:5001/api/todo/1`).
+* Set the URI of the object to delete (for example `https://localhost:5001/api/todo/1`).
 * Selecione **Enviar**.
 
 O aplicativo de exemplo permite que você exclua todos os itens. No entanto, quando o último item é excluído, um novo é criado pelo construtor de classe de modelo na próxima vez que a API for chamada.
 
 ## <a name="call-the-web-api-with-javascript"></a>Chamar a API Web com o JavaScript
 
-Nesta seção, é adicionada uma página HTML que usa o JavaScript para chamar a API Web. o jQuery inicia a solicitação. O JavaScript atualiza a página com os detalhes da resposta da API Web.
+Nesta seção, é adicionada uma página HTML que usa o JavaScript para chamar a API Web. jQuery initiates the request. O JavaScript atualiza a página com os detalhes da resposta da API Web.
 
 Configurar o aplicativo para [servir arquivos estáticos](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) e [habilitar o mapeamento de arquivo padrão](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) atualizando *Startup.cs* com o código realçado a seguir:
 
@@ -887,13 +886,13 @@ Esta amostra chama todos os métodos CRUD da API Web. Veja a seguir explicaçõe
 
 ### <a name="get-a-list-of-to-do-items"></a>Obter uma lista de itens pendentes
 
-o jQuery envia uma solicitação HTTP GET para a API da Web, que retorna JSON representando uma matriz de itens de tarefas pendentes. A função de retorno de chamada `success` será invocada se a solicitação for bem-sucedida. No retorno de chamada, o DOM é atualizado com as informações do item pendente.
+jQuery sends an HTTP GET request to the web API, which returns JSON representing an array of to-do items. A função de retorno de chamada `success` será invocada se a solicitação for bem-sucedida. No retorno de chamada, o DOM é atualizado com as informações do item pendente.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_GetData)]
 
 ### <a name="add-a-to-do-item"></a>Adicionar um item pendente
 
-o jQuery envia uma solicitação HTTP POST com o item de tarefas pendentes no corpo da solicitação. As opções `accepts` e `contentType` são definidas como `application/json` para especificar o tipo de mídia que está sendo recebido e enviado. O item pendente é convertido em JSON usando [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). Quando a API retorna um código de status de êxito, a função `getData` é invocada para atualizar a tabela HTML.
+jQuery sends an HTTP POST request with the to-do item in the request body. As opções `accepts` e `contentType` são definidas como `application/json` para especificar o tipo de mídia que está sendo recebido e enviado. O item pendente é convertido em JSON usando [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). Quando a API retorna um código de status de êxito, a função `getData` é invocada para atualizar a tabela HTML.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AddItem)]
 
@@ -913,7 +912,7 @@ A exclusão de um item pendente é feita definindo o `type` na chamada do AJAX c
 
 <a name="auth"></a>
 
-## <a name="add-authentication-support-to-a-web-api"></a>Adicionar suporte de autenticação a uma API da Web
+## <a name="add-authentication-support-to-a-web-api"></a>Add authentication support to a web API
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 

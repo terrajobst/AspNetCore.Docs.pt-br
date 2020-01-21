@@ -5,16 +5,16 @@ description: Saiba como usar a autenticação e a autorização no ASP.NET Core 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 01/16/2020
 no-loc:
 - SignalR
 uid: signalr/security
-ms.openlocfilehash: 1bdb8b10a24c65735f49f04285e4129cb77eb3fb
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: 4b27d9abb36938ed8161ff0d3535204e3fa68765
+ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75828939"
+ms.lasthandoff: 01/21/2020
+ms.locfileid: "76294711"
 ---
 # <a name="security-considerations-in-aspnet-core-opno-locsignalr"></a>Considerações sobre segurança no ASP.NET Core SignalR
 
@@ -112,16 +112,20 @@ No ASP.NET Core 2,1 e posterior, a validação de cabeçalho pode ser obtida usa
 
 ::: moniker-end
 
+## <a name="connectionid"></a>ConnectionId
+
+A exposição de `ConnectionId` pode levar a uma representação mal-intencionada se a versão do cliente ou do servidor SignalR for ASP.NET Core 2,2 ou anterior. Se o servidor SignalR e a versão do cliente forem ASP.NET Core 3,0 ou posterior, o `ConnectionToken` em vez do `ConnectionId` deverá ser mantido em segredo. A `ConnectionToken` é intencionalmente não exposta em nenhuma API.  Pode ser difícil garantir que os clientes SignalR mais antigos não se conectem ao servidor, portanto, mesmo que a versão do SignalR Server seja ASP.NET Core 3,0 ou posterior, a `ConnectionId` não deve ser exposta.
+
 ## <a name="access-token-logging"></a>Log de token de acesso
 
-Ao usar Websockets ou eventos enviados pelo servidor, o cliente de navegador envia o token de acesso na cadeia de caracteres de consulta. O recebimento do token de acesso por meio da cadeia de caracteres de consulta geralmente é tão seguro quanto usar o cabeçalho de `Authorization` padrão. Você sempre deve usar HTTPS para garantir uma conexão segura de ponta a ponta entre o cliente e o servidor. Muitos servidores Web registram a URL para cada solicitação, incluindo a cadeia de caracteres de consulta. O registro em log das URLs pode registrar o token de acesso. O ASP.NET Core registra em log a URL para cada solicitação por padrão, o que incluirá a cadeia de caracteres de consulta. Por exemplo:
+Ao usar Websockets ou eventos enviados pelo servidor, o cliente de navegador envia o token de acesso na cadeia de caracteres de consulta. O recebimento do token de acesso por meio da cadeia de caracteres de consulta é geralmente seguro ao usar o cabeçalho de `Authorization` padrão. Sempre use HTTPS para garantir uma conexão segura de ponta a ponta entre o cliente e o servidor. Muitos servidores Web registram a URL para cada solicitação, incluindo a cadeia de caracteres de consulta. O registro em log das URLs pode registrar o token de acesso. O ASP.NET Core registra em log a URL para cada solicitação por padrão, o que incluirá a cadeia de caracteres de consulta. Por exemplo:
 
 ```
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
       Request starting HTTP/1.1 GET http://localhost:5000/myhub?access_token=1234
 ```
 
-Se você tiver dúvidas sobre como registrar esses dados nos logs do servidor, poderá desabilitar esse log totalmente Configurando o agente de `Microsoft.AspNetCore.Hosting` para o nível de `Warning` ou acima (essas mensagens são gravadas no nível `Info`). Consulte a documentação sobre [filtragem de log](xref:fundamentals/logging/index#log-filtering) para obter mais informações. Se você ainda quiser registrar determinadas informações de solicitação, poderá [escrever um middleware](xref:fundamentals/middleware/write) para registrar os dados necessários e filtrar o `access_token` valor da cadeia de caracteres de consulta (se houver).
+Se você tiver dúvidas sobre como registrar esses dados nos logs do servidor, poderá desabilitar esse log totalmente Configurando o agente de `Microsoft.AspNetCore.Hosting` para o nível de `Warning` ou acima (essas mensagens são gravadas no nível `Info`). Para obter mais informações, consulte [filtragem de log](xref:fundamentals/logging/index#log-filtering) para obter mais informações. Se você ainda quiser registrar determinadas informações de solicitação, poderá [escrever um middleware](xref:fundamentals/middleware/write) para registrar os dados necessários e filtrar o `access_token` valor da cadeia de caracteres de consulta (se houver).
 
 ## <a name="exceptions"></a>Exceções
 

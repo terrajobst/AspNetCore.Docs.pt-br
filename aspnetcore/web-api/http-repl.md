@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/11/2019
 uid: web-api/http-repl
-ms.openlocfilehash: 34ec2b2eb511f33e1263cdad4a338183a3e4b83a
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: 15899917826fb6559244998766d99d00f56e0521
+ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75356179"
+ms.lasthandoff: 01/21/2020
+ms.locfileid: "76294725"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testar APIs Web com o HTTP REPL
 
@@ -554,7 +554,7 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 
 Para emitir uma solicitação HTTP PUT:
 
-1. *Opcional*: execute o comando `get` para exibir os dados antes de modificá-los:
+1. *Optional*: Run the `get` command to view the data before modifying it:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -578,8 +578,9 @@ Para emitir uma solicitação HTTP PUT:
         "data": "Strawberry"
       }
     ]
+    ```
 
-1. Run the `put` command on an endpoint that supports it:
+1. Execute o comando `put` em um ponto de extremidade compatível:
 
     ```console
     https://localhost:5001/fruits~ put 2 -h Content-Type=application/json
@@ -615,7 +616,7 @@ Para emitir uma solicitação HTTP PUT:
     Server: Kestrel
     ```
 
-1. *Opcional*: emita um comando `get` para ver as modificações. Por exemplo, se você digitou "Cereja" no editor de texto, um `get` retornará o seguinte:
+1. *Optional*: Issue a `get` command to see the modifications. Por exemplo, se você digitou "Cereja" no editor de texto, um `get` retornará o seguinte:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -666,7 +667,7 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 
 Para emitir uma solicitação HTTP DELETE:
 
-1. *Opcional*: execute o comando `get` para exibir os dados antes de modificá-los:
+1. *Optional*: Run the `get` command to view the data before modifying it:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -706,7 +707,7 @@ Para emitir uma solicitação HTTP DELETE:
     Server: Kestrel
     ```
 
-1. *Opcional*: emita um comando `get` para ver as modificações. Neste exemplo, o `get` retornará o seguinte:
+1. *Optional*: Issue a `get` command to see the modifications. Neste exemplo, o `get` retornará o seguinte:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -811,15 +812,15 @@ Para configurar um cabeçalho de solicitação HTTP, use uma das seguintes abord
     https://localhost:5001/people~ set header Content-Type
     ```
 
-## <a name="test-secured-endpoints"></a>Pontos de extremidade protegidos de teste
+## <a name="test-secured-endpoints"></a>Test secured endpoints
 
-O HTTP REPL dá suporte ao teste de pontos de extremidade protegidos por meio do uso de cabeçalhos de solicitação HTTP. Exemplos de autenticação e esquemas de autorização com suporte incluem autenticação básica, tokens de portador JWT e autenticação Digest. Por exemplo, você pode enviar um token de portador para um ponto de extremidade com o seguinte comando:
+The HTTP REPL supports the testing of secured endpoints through the use of HTTP request headers. Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, you can send a bearer token to an endpoint with the following command:
 
 ```console
 set header Authorization "bearer <TOKEN VALUE>"
 ```
 
-Para acessar um ponto de extremidade hospedado no Azure ou usar a [API REST do Azure](/rest/api/azure/), você precisa de um token de portador. Use as etapas a seguir para obter um token de portador para sua assinatura do Azure por meio do [CLI do Azure](/cli/azure/). O HTTP REPL define o token de portador em um cabeçalho de solicitação HTTP e recupera uma lista de aplicativos Web do serviço Azure App.
+To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HTTP REPL sets the bearer token in an HTTP request header and retrieves a list of Azure App Service Web Apps.
 
 1. Faça logon no Azure:
 
@@ -827,49 +828,49 @@ Para acessar um ponto de extremidade hospedado no Azure ou usar a [API REST do A
     az login
     ```
 
-1. Obtenha sua ID de assinatura com o seguinte comando:
+1. Get your subscription ID with the following command:
 
     ```azcli
     az account show --query id
     ```
 
-1. Copie sua ID de assinatura e execute o seguinte comando:
+1. Copy your subscription ID and run the following command:
 
     ```azcli
     az account set --subscription "<SUBSCRIPTION ID>"
     ```
 
-1. Obtenha seu token de portador com o seguinte comando:
+1. Get your bearer token with the following command:
 
     ```azcli
     az account get-access-token --query accessToken
     ```
 
-1. Conecte-se à API REST do Azure por meio do HTTP REPL:
+1. Connect to the Azure REST API via the HTTP REPL:
 
     ```console
     httprepl https://management.azure.com
     ```
 
-1. Defina o cabeçalho de solicitação HTTP `Authorization`:
+1. Set the `Authorization` HTTP request header:
 
     ```console
     https://management.azure.com/> set header Authorization "bearer <ACCESS TOKEN>"
     ```
 
-1. Navegue até a assinatura:
+1. Navigate to the subscription:
 
     ```console
     https://management.azure.com/> cd subscriptions/<SUBSCRIPTION ID>
     ```
 
-1. Obtenha uma lista dos aplicativos Web do serviço de Azure App da sua assinatura:
+1. Get a list of your subscription's Azure App Service Web Apps:
 
     ```console
     https://management.azure.com/subscriptions/{SUBSCRIPTION ID}> get providers/Microsoft.Web/sites?api-version=2016-08-01
     ```
 
-    A seguinte resposta é exibida:
+    The following response is displayed:
 
     ```console
     HTTP/1.1 200 OK

@@ -5,16 +5,16 @@ description: Saiba como usar hubs no ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 01/16/2020
 no-loc:
 - SignalR
 uid: signalr/hubs
-ms.openlocfilehash: f95766cab84bddff2c7c62f30bce1e6d1e43deab
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: e5bc12c5ccafe2b5273d72e6bde0f631ca043428
+ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963799"
+ms.lasthandoff: 01/21/2020
+ms.locfileid: "76294635"
 ---
 # <a name="use-hubs-in-opno-locsignalr-for-aspnet-core"></a>Usar hubs no SignalR para ASP.NET Core
 
@@ -173,6 +173,8 @@ A API de hubs de SignalR fornece o `OnConnectedAsync` e `OnDisconnectedAsync` m�
 Substitua o método virtual `OnDisconnectedAsync` para executar ações quando um cliente se desconectar. Se o cliente se desconectar intencionalmente (chamando `connection.stop()`, por exemplo), o parâmetro `exception` será `null`. No entanto, se o cliente for desconectado devido a um erro (como uma falha de rede), o parâmetro `exception` conterá uma exceção que descreve a falha.
 
 [!code-csharp[Handle disconnection](hubs/sample/hubs/chathub.cs?name=OnDisconnectedAsync)]
+
+[!INCLUDE[](~/includes/connectionid-signalr.md)]
 
 ## <a name="handle-errors"></a>Tratar erros
 
