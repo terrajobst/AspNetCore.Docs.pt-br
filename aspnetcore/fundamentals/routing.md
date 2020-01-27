@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/13/2019
 uid: fundamentals/routing
-ms.openlocfilehash: 462f34664540b92ba6758224a722c7ca8f9c8de0
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: 5e3ff65420b3c6769d52f8b96c216043cb1fdc1a
+ms.sourcegitcommit: eca76bd065eb94386165a0269f1e95092f23fa58
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75829056"
+ms.lasthandoff: 01/24/2020
+ms.locfileid: "76727001"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -134,7 +134,7 @@ Os métodos fornecidos pelo <xref:Microsoft.AspNetCore.Routing.LinkGenerator> d�
   * [UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) adiciona correspondência de rota ao pipeline de middleware. Ele deve vir antes de qualquer middleware com reconhecimento de rota, como autorização, execução de ponto de extremidade, etc.
   * [UseEndpoints](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*) adiciona a execução de ponto de extremidade ao pipeline de middleware. Ele executa o delegado de solicitação que atende à resposta do ponto de extremidade.
   `UseEndpoints` também é onde os pontos de extremidade de rota são configurados que podem ser correspondidos e executados pelo aplicativo. Por exemplo, <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>e <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>.
-* Os aplicativos usam os métodos auxiliares do ASP.NET Core para configurar suas rotas. ASP.NET Core frameworks fornecem métodos auxiliares como <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*>,, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> e `MapHub<THub>`. Também há métodos auxiliares para configurar seus próprios pontos de extremidade de rota personalizados: <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>e [MapVerb](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions). 
+* Os aplicativos usam os métodos auxiliares do ASP.NET Core para configurar suas rotas. ASP.NET Core frameworks fornecem métodos auxiliares como <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> e `MapHub<THub>`. Também há métodos auxiliares para configurar seus próprios pontos de extremidade de rota personalizados: <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>e [MapVerb](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions). 
 * O roteamento de ponto de extremidade também dá suporte à alteração de pontos de extremidades após a inicialização de um aplicativo. Para dar suporte a isso em seu aplicativo ou ASP.NET Core Framework, uma <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> personalizada deve ser criada e registrada. Esse é um recurso avançado e, normalmente, não é necessário. Os pontos de extremidade normalmente são configurados na inicialização e são estáticos durante o tempo de vida do aplicativo. Carregar a configuração de rota de um arquivo ou banco de dados na inicialização não é dinâmico.
 
 O código a seguir mostra um exemplo básico de roteamento de ponto de extremidade:

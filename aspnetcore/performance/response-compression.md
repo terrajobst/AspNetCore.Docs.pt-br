@@ -5,14 +5,14 @@ description: Saiba mais sobre a compactação de resposta e como usar o Middlewa
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 01/22/2020
 uid: performance/response-compression
-ms.openlocfilehash: 04b2ffd7047e8b127968adb5d40e0141365fb5fe
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: b8a84418a3258e9ac43b4eadd8564c0708590bce
+ms.sourcegitcommit: eca76bd065eb94386165a0269f1e95092f23fa58
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880904"
+ms.lasthandoff: 01/24/2020
+ms.locfileid: "76726967"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Compactação de resposta no ASP.NET Core
 
@@ -139,7 +139,7 @@ public class Startup
 
 Observações:
 
-* `app.UseResponseCompression` deve ser chamado antes de `app.UseMvc`.
+* `app.UseResponseCompression` deve ser chamado antes de qualquer middleware que compacte as respostas. Para obter mais informações, consulte <xref:fundamentals/middleware/index#middleware-order>.
 * Use uma ferramenta como o [Fiddler](https://www.telerik.com/fiddler), o [Firebug](https://getfirebug.com/)ou o [postmaster](https://www.getpostman.com/) para definir o cabeçalho de solicitação `Accept-Encoding` e estudar os cabeçalhos, o tamanho e o corpo da resposta.
 
 Envie uma solicitação para o aplicativo de exemplo sem o cabeçalho `Accept-Encoding` e observe que a resposta é descompactada. Os cabeçalhos `Content-Encoding` e `Vary` não estão presentes na resposta.
@@ -202,7 +202,7 @@ O provedor de compactação Brotoli deve ser adicionado quando qualquer provedor
 
 Defina o nível de compactação com <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions>. O provedor de compactação Brotli usa como padrão o nível de compactação mais rápido ([CompressionLevel. mais rápido](xref:System.IO.Compression.CompressionLevel)), que pode não produzir a compactação mais eficiente. Se a compactação mais eficiente for desejada, configure o middleware para uma compactação ideal.
 
-| Nível de Compactação | Descrição |
+| Nível de compactação | Descrição |
 | ----------------- | ----------- |
 | [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) | A compactação deve ser concluída o mais rápido possível, mesmo que a saída resultante não seja compactada de forma ideal. |
 | [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | Nenhuma compactação deve ser executada. |
@@ -265,7 +265,7 @@ O provedor de compactação Gzip deve ser adicionado quando qualquer provedor de
 
 Defina o nível de compactação com <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>. O provedor de compactação Gzip usa como padrão o nível de compactação mais rápido ([CompressionLevel. mais rápido](xref:System.IO.Compression.CompressionLevel)), que pode não produzir a compactação mais eficiente. Se a compactação mais eficiente for desejada, configure o middleware para uma compactação ideal.
 
-| Nível de Compactação | Descrição |
+| Nível de compactação | Descrição |
 | ----------------- | ----------- |
 | [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) | A compactação deve ser concluída o mais rápido possível, mesmo que a saída resultante não seja compactada de forma ideal. |
 | [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | Nenhuma compactação deve ser executada. |

@@ -30,7 +30,7 @@ A autenticação e a autorização do usuário podem ser usadas com SPAs angular
 dotnet new angular -o <output_directory_name> -au Individual
 ```
 
-**Reagir**:
+**React**:
 
 ```dotnetcli
 dotnet new react -o <output_directory_name> -au Individual
