@@ -1,0 +1,61 @@
+### YamlMime:Landing
+title: Documentação de ASP.NET Core – o que há de novo?
+summary: Bem-vindo ao que há de novo no ASP.NET Core docs. Use esta página para localizar rapidamente as alterações mais recentes.
+metadata:
+  title: Documentação de ASP.NET Core – o que há de novo?
+  description: Saiba mais sobre o conteúdo novo e atualizado em ASP.NET Core docs.
+  ms.topic: landing-page
+  ms.date: 01/17/2020
+  ms.openlocfilehash: edd748d4d53583e531a280e64979190dcd3c9296
+  ms.sourcegitcommit: eca76bd065eb94386165a0269f1e95092f23fa58
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 01/24/2020
+  ms.locfileid: "76727416"
+landingContent:
+- title: Localizar atualizações do ASP.NET Core docs
+  linkLists:
+  - linkListType: whats-new
+    links:
+    - text: Dezembro de 2019
+      url: 2019-12.md
+    - text: Novembro de 2019
+      url: 2019-11.md
+    - text: Outubro de 2019
+      url: 2019-10.md
+    - text: Setembro de 2019
+      url: 2019-09.md
+- title: Participe-contribuir para ASP.NET Core docs
+  linkLists:
+  - linkListType: overview
+    links:
+    - text: Repositório do ASP.NET Core docs
+      url: https://github.com/aspnet/AspNetCore.Docs/blob/master/README.md
+    - text: Estrutura e rótulos do projeto para problemas e solicitações pull
+      url: https://github.com/dotnet/docs/blob/master/styleguide/labels-projects.md
+  - linkListType: concept
+    links:
+    - text: Guia do colaborador do Microsoft docs
+      url: https://docs.microsoft.com/contribute
+    - text: Guia do colaborador do ASP.NET Core docs
+      url: https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md
+    - text: Guia do colaborador do docs do ASP.NET Core API Reference
+      url: https://github.com/aspnet/ApiDocs/blob/master/CONTRIBUTING.md
+- title: Páginas de novidades relacionadas
+  linkLists:
+  - linkListType: whats-new
+    links:
+    - text: Atualizações do Xamarin docs
+      url: /xamarin/whats-new/
+    - text: Notas de versão do .NET Core
+      url: https://github.com/dotnet/core/blob/master/release-notes/README.md
+    - text: Notas de versão do ASP.NET Core
+      url: /aspnet/core/release-notes/aspnetcore-3.1
+    - text: C#notas de versão do compilador (Roslyn)
+      url: https://github.com/dotnet/roslyn/tree/master/docs/ide
+    - text: Notas de versão do Visual Studio
+      url: /visualstudio/releases/2019/release-notes
+    - text: Notas de versão do Visual Studio para Mac
+      url: /visualstudio/releasenotes/vs2019-mac-relnotes
+    - text: Notas de versão do Visual Studio Code
+      url: https://code.visualstudio.com/updates
