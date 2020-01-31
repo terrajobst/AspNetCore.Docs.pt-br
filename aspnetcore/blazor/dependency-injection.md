@@ -5,17 +5,17 @@ description: Veja como Blazor aplicativos podem injetar serviços em componentes
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/08/2020
+ms.date: 01/29/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/dependency-injection
-ms.openlocfilehash: fa6762522c831c7fbe2742dbfe4e25a377988e1e
-ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
-ms.translationtype: HT
+ms.openlocfilehash: 859fd484fc00104575f176fa7d3bf752895475a0
+ms.sourcegitcommit: c81ef12a1b6e6ac838e5e07042717cf492e6635b
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 01/29/2020
-ms.locfileid: "76869558"
+ms.locfileid: "76885496"
 ---
 # <a name="aspnet-core-blazor-dependency-injection"></a>ASP.NET Core injeção de dependência mais incrivelmente
 
@@ -44,6 +44,69 @@ Um provedor de serviços personalizado não fornece automaticamente os serviços
 
 ## <a name="add-services-to-an-app"></a>Adicionar serviços a um aplicativo
 
+### <a name="blazor-webassembly"></a>WebAssembly Blazor
+
+Configure serviços para a coleção de serviços do aplicativo no método `Main` de *Program.cs*. No exemplo a seguir, a implementação de `MyDependency` é registrada para `IMyDependency`:
+
+```csharp
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.Services.AddSingleton<IMyDependency, MyDependency>();
+        builder.RootComponents.Add<App>("app");
+
+        await builder.Build().RunAsync();
+    }
+}
+```
+
+Depois que o host é criado, os serviços podem ser acessados do escopo de DI raiz antes de qualquer componente ser renderizado. Isso pode ser útil para executar a lógica de inicialização antes de renderizar o conteúdo:
+
+```csharp
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.Services.AddSingleton<WeatherService>();
+        builder.RootComponents.Add<App>("app");
+
+        var host = builder.Build();
+
+        var weatherService = host.Services.GetRequiredService<WeatherService>();
+        await weatherService.InitializeWeatherAsync();
+
+        await host.RunAsync();
+    }
+}
+```
+
+O host também fornece uma instância de configuração central para o aplicativo. Com base no exemplo anterior, a URL do serviço meteorológico é passada de uma fonte de configuração padrão (por exemplo, *appSettings. JSON*) para `InitializeWeatherAsync`:
+
+```csharp
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.Services.AddSingleton<WeatherService>();
+        builder.RootComponents.Add<App>("app");
+
+        var host = builder.Build();
+
+        var weatherService = host.Services.GetRequiredService<WeatherService>();
+        await weatherService.InitializeWeatherAsync(
+            host.Configuration["WeatherServiceUrl"]);
+
+        await host.RunAsync();
+    }
+}
+```
+
+### <a name="blazor-server"></a>Servidor Blazor
+
 Depois de criar um novo aplicativo, examine o método `Startup.ConfigureServices`:
 
 ```csharp
@@ -61,6 +124,8 @@ public void ConfigureServices(IServiceCollection services)
     services.AddSingleton<IDataAccess, DataAccess>();
 }
 ```
+
+### <a name="service-lifetime"></a>Tempo de vida do serviço
 
 Os serviços podem ser configurados com os tempos de vida mostrados na tabela a seguir.
 
