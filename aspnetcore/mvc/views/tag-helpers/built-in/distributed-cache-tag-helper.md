@@ -4,14 +4,14 @@ author: pkellner
 description: Saiba como usar o Auxiliar de marca de cache distribuído.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/10/2018
+ms.date: 01/24/2020
 uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
-ms.openlocfilehash: 4e4d383bac67c73bad8b0a31b9ceb9452251761b
-ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
-ms.translationtype: HT
+ms.openlocfilehash: e5100d7244600358186b653073990985f48434a7
+ms.sourcegitcommit: b5ceb0a46d0254cc3425578116e2290142eec0f0
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/12/2019
-ms.locfileid: "67856193"
+ms.lasthandoff: 01/28/2020
+ms.locfileid: "76809049"
 ---
 # <a name="distributed-cache-tag-helper-in-aspnet-core"></a>Auxiliar de Marca de Cache Distribuído no ASP.NET Core
 
@@ -19,7 +19,7 @@ Por [Peter Kellner](https://peterkellner.net) e [Luke Latham](https://github.com
 
 O Auxiliar de Marca de Cache Distribuído fornece a capacidade de melhorar consideravelmente o desempenho do aplicativo ASP.NET Core armazenando seu conteúdo em cache em uma fonte de cache distribuído.
 
-Para obter uma visão geral dos Auxiliares de Marca, confira <xref:mvc/views/tag-helpers/intro>.
+Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
 
 O Auxiliar de Marca de Cache Distribuído herda da mesma classe base do Auxiliar de Marca de Cache. Todos os atributos de [Auxiliar de Marca de Cache](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper) estão disponíveis ao Auxiliar de Marca Distribuído.
 
@@ -42,11 +42,11 @@ O Auxiliar de Marca de Cache distribuído usa [injeção de construtor](xref:fun
 
 O Auxiliar de Marca de Cache Distribuído herda da mesma classe que o Auxiliar de Marca de Cache. Para obter descrições desses atributos, confira [Auxiliar de Marca de Cache](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper).
 
-### <a name="name"></a>name
+### <a name="name"></a>{1&gt;name&lt;1}
 
 | Tipo de atributo | Exemplo                               |
 | -------------- | ------------------------------------- |
-| Cadeia de Caracteres         | `my-distributed-cache-unique-key-101` |
+| Cadeia de caracteres         | `my-distributed-cache-unique-key-101` |
 
 `name` é obrigatório. O atributo `name` é usado como uma chave para cada instância de cache armazenada. Ao contrário do Auxiliar de Marca de Cache que atribui uma chave de cache a cada instância com base no nome da página do Razor e na localização na página do Razor, o Auxiliar de Marca de Cache Distribuído somente localiza suas chaves no atributo `name`.
 
@@ -60,7 +60,7 @@ Exemplo:
 
 ## <a name="distributed-cache-tag-helper-idistributedcache-implementations"></a>Implementações de IDistributedCache do Auxiliar de Marca de Cache Distribuído
 
-Há duas implementações de <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> internas do ASP.NET Core. Uma é baseada no SQL Server e a outra, no Redis. Os detalhes dessas implementações podem ser encontrados em <xref:performance/caching/distributed>. Ambas as implementações envolvem configurar de uma instância do `IDistributedCache` em `Startup`.
+Há duas implementações de <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> internas do ASP.NET Core. Uma é baseada no SQL Server e a outra, no Redis. Implementações de terceiros também estão disponíveis, como o [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html). Os detalhes dessas implementações podem ser encontrados em <xref:performance/caching/distributed>. Ambas as implementações envolvem configurar de uma instância do `IDistributedCache` em `Startup`.
 
 Não há nenhum atributo de marca especificamente associado ao uso de uma implementação específica de `IDistributedCache`.
 

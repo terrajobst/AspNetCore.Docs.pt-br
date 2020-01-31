@@ -3,14 +3,14 @@ title: Visão geral sobre o ASP.NET Core MVC
 author: ardalis
 description: Saiba como o ASP.NET Core MVC é uma estrutura avançada para a criação de aplicativos Web e APIs usando o padrão de design Model-View-Controller.
 ms.author: riande
-ms.date: 11/07/2019
+ms.date: 01/28/2020
 uid: mvc/overview
-ms.openlocfilehash: 4f4ea3da8563cabaaa6183c6835c2f1eb8c387b4
-ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
+ms.openlocfilehash: a147c2aa01f1440f8ac59f73eb7be734193f802a
+ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2019
-ms.locfileid: "73799491"
+ms.lasthandoff: 01/29/2020
+ms.locfileid: "76869965"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Visão geral sobre o ASP.NET Core MVC
 
@@ -41,7 +41,7 @@ As exibições são responsáveis por apresentar o conteúdo por meio da interfa
 
 ### <a name="controller-responsibilities"></a>Responsabilidades do Controlador
 
-Os controladores são os componentes que cuidam da interação do usuário, trabalham com o modelo e, em última análise, selecionam uma exibição a ser renderizada. Em um aplicativo MVC, a exibição mostra apenas informações; o controlador manipula e responde à entrada e à interação do usuário. No padrão MVC, o controlador é o ponto de entrada inicial e é responsável por selecionar quais tipos de modelo serão usados para o trabalho e qual exibição será renderizada (daí seu nome – ele controla como o aplicativo responde a determinada solicitação).
+Os controladores são os componentes que cuidam da interação do usuário, trabalham com o modelo e, em última análise, selecionam uma exibição a ser renderizada. Em um aplicativo MVC, a exibição só mostra informações; o controlador manipula e responde à entrada e à interação do usuário. No padrão MVC, o controlador é o ponto de entrada inicial e é responsável por selecionar quais tipos de modelo serão usados para o trabalho e qual exibição será renderizada (daí seu nome – ele controla como o aplicativo responde a determinada solicitação).
 
 > [!NOTE]
 > Os controladores não devem ser excessivamente complicados por muitas responsabilidades. Para evitar que a lógica do controlador se torne excessivamente complexa, efetue push da lógica de negócios para fora do controlador e insira-a no modelo de domínio.
@@ -69,7 +69,7 @@ ASP.NET Core MVC inclui o seguinte:
 * [Capacidade de teste](#testability)
 * [Mecanismo de exibição do Razor](#razor-view-engine)
 * [Exibições fortemente tipadas](#strongly-typed-views)
-* [Auxiliares de Marcas](#tag-helpers)
+* [Auxiliares de marcação](#tag-helpers)
 * [Componentes da exibição](#view-components)
 
 ### <a name="routing"></a>Roteamento
@@ -161,7 +161,7 @@ O aplicativo também pode usar a [injeção de dependência em arquivos no exibi
 </html>
 ```
 
-### <a name="filters"></a>Filtros
+### <a name="filters"></a>Filtros.
 
 Os [filtros](controllers/filters.md) ajudam os desenvolvedores a encapsular interesses paralelos, como tratamento de exceção ou autorização. Os filtros permitem a execução de uma lógica pré e pós-processamento personalizada para métodos de ação e podem ser configurados para execução em determinados pontos no pipeline de execução de uma solicitação específica. Os filtros podem ser aplicados a controladores ou ações como atributos (ou podem ser executados globalmente). Vários filtros (como `Authorize`) são incluídos na estrutura. `[Authorize]` é o atributo usado para criar filtros de autorização do MVC.
 
@@ -258,4 +258,5 @@ Para obter mais informações, consulte <xref:mvc/compatibility-version>.
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Mytested. AspNetCore. Mvc-biblioteca de testes fluente para ASP.NET Core Mvc](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; biblioteca de testes de unidade fortemente tipada, fornecendo uma interface fluente para testar aplicativos de API da Web e MVC. (*Não é mantido ou não tem suporte da Microsoft.* )
+* [Integrar componentes do Razor em aplicativos Razor Pages e MVC](xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps)
 

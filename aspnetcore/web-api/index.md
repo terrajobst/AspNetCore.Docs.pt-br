@@ -5,14 +5,14 @@ description: Aprenda os fundamentos da criação de uma API Web no ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/22/2019
+ms.date: 01/27/2020
 uid: web-api/index
-ms.openlocfilehash: 5ef8b4d012f4ed90339ffea191612e4dc365d958
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: 8609e2095c202643cdc905cc610298195b654215
+ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880536"
+ms.lasthandoff: 01/29/2020
+ms.locfileid: "76870011"
 ---
 # <a name="create-web-apis-with-aspnet-core"></a>Criar APIs Web com o ASP.NET Core
 
@@ -78,13 +78,28 @@ Veja uma lista que inclui os atributos disponíveis no namespace <xref:Microsoft
 
 O atributo [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) pode ser aplicado a uma classe de controlador para habilitar os seguintes conceituada, comportamentos específicos de API:
 
+::: moniker range=">= aspnetcore-2.2"
+
 * [Requisito de roteamento de atributo](#attribute-routing-requirement)
 * [Respostas HTTP 400 automáticas](#automatic-http-400-responses)
 * [Inferência de parâmetro de origem da associação](#binding-source-parameter-inference)
 * [Inferência de solicitação de várias partes/dados de formulário](#multipartform-data-request-inference)
 * [Detalhes do problema dos códigos de status de erro](#problem-details-for-error-status-codes)
 
+O recurso *detalhes do problema para códigos de status de erro* requer uma versão de [compatibilidade](xref:mvc/compatibility-version) do 2,2 ou posterior. Os outros recursos exigem uma versão de compatibilidade do 2,1 ou posterior.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.1"
+
+* [Requisito de roteamento de atributo](#attribute-routing-requirement)
+* [Respostas HTTP 400 automáticas](#automatic-http-400-responses)
+* [Inferência de parâmetro de origem da associação](#binding-source-parameter-inference)
+* [Inferência de solicitação de várias partes/dados de formulário](#multipartform-data-request-inference)
+
 Esses recursos exigem [compatibilidade com a versão](xref:mvc/compatibility-version) 2.1 ou posterior.
+
+::: moniker-end
 
 ### <a name="attribute-on-specific-controllers"></a>Atributo em controladores específicos
 

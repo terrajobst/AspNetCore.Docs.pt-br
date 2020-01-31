@@ -5,17 +5,17 @@ description: Saiba mais sobre os modelos de aplicativo do ASP.NET Core Blazor e 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 01/29/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: 2a95b986450471b474d93ead252255f2bd9d4918
-ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
+ms.openlocfilehash: acfa4b8a42cbd310c6fc6dc973573578e94ef999
+ms.sourcegitcommit: c81ef12a1b6e6ac838e5e07042717cf492e6635b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2020
-ms.locfileid: "76160113"
+ms.lasthandoff: 01/29/2020
+ms.locfileid: "76885515"
 ---
 # <a name="aspnet-core-opno-locblazor-templates"></a>Modelos de Blazor ASP.NET Core
 
@@ -36,16 +36,20 @@ Para obter as instruções passo a passo sobre como criar um aplicativo Blazor d
 
 Os arquivos e pastas a seguir compõem um aplicativo Blazor gerado a partir de um modelo de Blazor:
 
-* *Program.cs* &ndash; o ponto de entrada do aplicativo que configura o [host](xref:fundamentals/host/generic-host)ASP.NET Core. O código nesse arquivo é comum a todos os aplicativos ASP.NET Core gerados a partir de modelos de ASP.NET Core.
+* *Program.cs* &ndash; o ponto de entrada do aplicativo que configura:
 
-* *Startup.cs* &ndash; contém a lógica de inicialização do aplicativo. A classe `Startup` define dois métodos:
+  * [Host](xref:fundamentals/host/generic-host) ASP.NET Core (servidorBlazor)
+  * O netassembly host (Blazor Webassembly) &ndash; o código nesse arquivo é exclusivo para aplicativos criados a partir do modelo de Webassembly Blazor (`blazorwasm`).
+    * O componente `App`, que é o componente raiz do aplicativo, é especificado como o elemento DOM `app` para o método `Add`.
+    * Os serviços podem ser configurados com o método `ConfigureServices` no construtor de hosts (por exemplo, `builder.Services.AddSingleton<IMyDependency, MyDependency>();`).
+    * A configuração pode ser fornecida por meio do host Builder (`builder.Configuration`).
+
+* *Startup.cs* (servidorBlazor) &ndash; contém a lógica de inicialização do aplicativo. A classe `Startup` define dois métodos:
 
   * `ConfigureServices` &ndash; configura os serviços de injeção de [dependência (di)](xref:fundamentals/dependency-injection) do aplicativo. Em aplicativos do Blazor Server, os serviços são adicionados chamando <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>e o `WeatherForecastService` é adicionado ao contêiner de serviço para ser usado pelo componente de `FetchData` de exemplo.
   * `Configure` &ndash; configura o pipeline de tratamento de solicitação do aplicativo:
-    * Blazor Webassembly &ndash; adiciona o componente `App` (especificado como o elemento DOM `app` ao método `AddComponent`), que é o componente raiz do aplicativo.
-    * Servidor de Blazor
-      * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> é chamado para configurar um ponto de extremidade para a conexão em tempo real com o navegador. A conexão é criada com [SignalR](xref:signalr/introduction), que é uma estrutura para adicionar funcionalidade da Web em tempo real a aplicativos.
-      * [MapFallbackToPage ("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) é chamado para configurar a página raiz do aplicativo (*pages/_Host. cshtml*) e habilitar a navegação.
+    * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> é chamado para configurar um ponto de extremidade para a conexão em tempo real com o navegador. A conexão é criada com [SignalR](xref:signalr/introduction), que é uma estrutura para adicionar funcionalidade da Web em tempo real a aplicativos.
+    * [MapFallbackToPage ("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) é chamado para configurar a página raiz do aplicativo (*pages/_Host. cshtml*) e habilitar a navegação.
 
 * *wwwroot/index.html* (Blazor Webassembly) &ndash; página raiz do aplicativo implementada como uma página HTML:
   * Quando qualquer página do aplicativo é solicitada inicialmente, essa página é renderizada e retornada na resposta.

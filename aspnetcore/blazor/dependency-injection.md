@@ -10,22 +10,22 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/dependency-injection
-ms.openlocfilehash: 6930d721f04fd5f7cad2ba472724497a157fda0f
-ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
-ms.translationtype: MT
+ms.openlocfilehash: fa6762522c831c7fbe2742dbfe4e25a377988e1e
+ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
+ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2020
-ms.locfileid: "76159970"
+ms.lasthandoff: 01/29/2020
+ms.locfileid: "76869558"
 ---
-# <a name="aspnet-core-opno-locblazor-dependency-injection"></a>Injeção de dependência de Blazor ASP.NET Core
+# <a name="aspnet-core-blazor-dependency-injection"></a>ASP.NET Core injeção de dependência mais incrivelmente
 
 Por [Rainer Stropek](https://www.timecockpit.com)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Blazor dá suporte à [injeção de dependência (di)](xref:fundamentals/dependency-injection). Os aplicativos podem usar serviços internos injetando-os em componentes. Os aplicativos também podem definir e registrar serviços personalizados e torná-los disponíveis em todo o aplicativo por meio de DI.
+O mais incrivelmente dá suporte à [injeção de dependência (di)](xref:fundamentals/dependency-injection). Os aplicativos podem usar serviços internos injetando-os em componentes. Os aplicativos também podem definir e registrar serviços personalizados e torná-los disponíveis em todo o aplicativo por meio de DI.
 
-DI é uma técnica para acessar os serviços configurados em um local central. Isso pode ser útil em aplicativos Blazor para:
+DI é uma técnica para acessar os serviços configurados em um local central. Isso pode ser útil em aplicativos mais incrivelmente para:
 
 * Compartilhe uma única instância de uma classe de serviço em vários componentes, conhecido como um serviço *singleton* .
 * Dissociar componentes de classes de serviço concretas usando abstrações de referência. Por exemplo, considere uma interface `IDataAccess` para acessar dados no aplicativo. A interface é implementada por uma classe de `DataAccess` concreta e registrada como um serviço no contêiner de serviço do aplicativo. Quando um componente usa DI para receber uma implementação de `IDataAccess`, o componente não é acoplado ao tipo concreto. A implementação pode ser trocada, talvez para uma implementação fictícia em testes de unidade.
@@ -36,9 +36,9 @@ Os serviços padrão são adicionados automaticamente à coleção de serviços 
 
 | Service | Tempo de vida | Descrição |
 | ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Singleton | Fornece métodos para enviar solicitações HTTP e receber respostas HTTP de um recurso identificado por um URI.<br><br>A instância do `HttpClient` em um aplicativo Webassembly Blazor usa o navegador para manipular o tráfego HTTP em segundo plano.<br><br>os aplicativos do Blazor Server não incluem uma `HttpClient` configurada como um serviço por padrão. Forneça um `HttpClient` para um aplicativo Blazor Server.<br><br>Para obter mais informações, consulte <xref:blazor/call-web-api>. |
-| `IJSRuntime` | Singleton (Blazor Webassembly)<br>Com escopo (servidorBlazor) | Representa uma instância de um tempo de execução JavaScript em que as chamadas JavaScript são expedidas. Para obter mais informações, consulte <xref:blazor/javascript-interop>. |
-| `NavigationManager` | Singleton (Blazor Webassembly)<br>Com escopo (servidorBlazor) | Contém auxiliares para trabalhar com URIs e estado de navegação. Para obter mais informações, consulte [URI e auxiliares de estado de navegação](xref:blazor/routing#uri-and-navigation-state-helpers). |
+| <xref:System.Net.Http.HttpClient> | Singleton | Fornece métodos para enviar solicitações HTTP e receber respostas HTTP de um recurso identificado por um URI.<br><br>A instância do `HttpClient` em um aplicativo Webassembly mais incrivelmente usa o navegador para manipular o tráfego HTTP em segundo plano.<br><br>Os aplicativos de servidor mais incrivelmente não incluem um `HttpClient` configurado como um serviço por padrão. Forneça um `HttpClient` para um aplicativo de servidor mais incrivelmente.<br><br>Para obter mais informações, consulte <xref:blazor/call-web-api>. |
+| `IJSRuntime` | Singleton (Webassembly de mais incrivelmente)<br>Com escopo (servidor mais incrivelmente) | Representa uma instância de um tempo de execução JavaScript em que as chamadas JavaScript são expedidas. Para obter mais informações, consulte <xref:blazor/javascript-interop>. |
+| `NavigationManager` | Singleton (Webassembly de mais incrivelmente)<br>Com escopo (servidor mais incrivelmente) | Contém auxiliares para trabalhar com URIs e estado de navegação. Para obter mais informações, consulte [URI e auxiliares de estado de navegação](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
 Um provedor de serviços personalizado não fornece automaticamente os serviços padrão listados na tabela. Se você usar um provedor de serviços personalizado e precisar de qualquer um dos serviços mostrados na tabela, adicione os serviços necessários ao novo provedor de serviços.
 
@@ -134,7 +134,7 @@ Pré-requisitos para injeção de construtor:
 
 Em aplicativos ASP.NET Core, os serviços com escopo normalmente são incluídos no escopo da solicitação atual. Depois que a solicitação for concluída, todos os serviços com escopo ou transitórios serão descartados pelo sistema de DI. Em aplicativos Blazor Server, o escopo da solicitação dura a duração da conexão do cliente, o que pode resultar em serviços transitórios e no escopo que vivem muito mais do que o esperado.
 
-Para os serviços de escopo até o tempo de vida de um componente, o pode usar as classes base `OwningComponentBase` e `OwningComponentBase<TService>`. Essas classes base expõem uma propriedade `ScopedServices` do tipo `IServiceProvider` que resolve serviços que estão no escopo do tempo de vida do componente. Para criar um componente que herda de uma classe base no Razor, use a diretiva `@inherits`.
+Para fazer o escopo dos serviços até o tempo de vida de um componente, você pode usar as classes base `OwningComponentBase` e `OwningComponentBase<TService>`. Essas classes base expõem uma propriedade `ScopedServices` do tipo `IServiceProvider` que resolve serviços que estão no escopo do tempo de vida do componente. Para criar um componente que herda de uma classe base no Razor, use a diretiva `@inherits`.
 
 ```razor
 @page "/users"

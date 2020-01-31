@@ -5,19 +5,19 @@ description: Saiba mais sobre os cenários de autenticação e autorização do 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 01/29/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/index
-ms.openlocfilehash: 2ce2cff8d3ab77f21181070b6f1e48c50561036c
-ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
+ms.openlocfilehash: e9087c246f4805e5931180fa0869fc8a8d23a6c1
+ms.sourcegitcommit: c81ef12a1b6e6ac838e5e07042717cf492e6635b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2020
-ms.locfileid: "76160282"
+ms.lasthandoff: 01/29/2020
+ms.locfileid: "76885588"
 ---
-# <a name="aspnet-core-opno-locblazor-authentication-and-authorization"></a>Autenticação e autorização do ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-authentication-and-authorization"></a>Autorização e autenticação no Blazor em ASP.NET Core
 
 Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -25,28 +25,28 @@ Por [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 O ASP.NET Core dá suporte à configuração e ao gerenciamento de segurança em aplicativos Blazor.
 
-Os cenários de segurança diferem entre o servidor Blazor e Blazor aplicativos Webassembly. Como os aplicativos do Blazor Server são executados no servidor, as verificações de autorização são capazes de determinar:
+Os cenários de segurança diferem entre o servidor mais incrivelmente e os aplicativos Webassembly de mais incrivelmente. Como os aplicativos de servidor mais amseriais executados no servidor, as verificações de autorização são capazes de determinar:
 
 * As opções de interface do usuário apresentadas ao usuário (por exemplo, as entradas de menu disponíveis a um usuário).
 * As regras de acesso para áreas do aplicativo e componentes.
 
-Blazor aplicativos Webassembly são executados no cliente. A autorização é *somente* usada para determinar quais opções da interface do usuário serão apresentadas. Como as verificações do lado do cliente podem ser modificadas ou ignoradas por um usuário, um aplicativo Webassembly Blazor não pode impor regras de acesso de autorização.
+Aplicativos Webassembly de mais de-vela são executados no cliente. A autorização é *somente* usada para determinar quais opções da interface do usuário serão apresentadas. Como as verificações do lado do cliente podem ser modificadas ou ignoradas por um usuário, um aplicativo Webassembly de mais alto que não pode impor regras de acesso de autorização.
 
 ## <a name="authentication"></a>Autenticação
 
-Blazor usa os mecanismos de autenticação ASP.NET Core existentes para estabelecer a identidade do usuário. O mecanismo exato depende de como o aplicativo Blazor está hospedado, Blazor servidor ou Blazor Webassembly.
+O Blazor usa os mecanismos de autenticação do ASP.NET Core existentes para estabelecer a identidade do usuário. O mecanismo exato depende de como o aplicativo mais incrivelmente é hospedado, um servidor mais incrivelmente ou um Webassembly de mais incrivelmente.
 
-### <a name="opno-locblazor-server-authentication"></a>autenticação do Blazor Server
+### <a name="blazor-server-authentication"></a>Autenticação de servidor mais incrivelmente
 
-os aplicativos do Blazor Server operam em uma conexão em tempo real que é criada usando SignalR. A [autenticação em aplicativos baseados em SignalR](xref:signalr/authn-and-authz) é tratada quando a conexão é estabelecida. A autenticação pode ser baseada em um cookie ou um algum outro token de portador.
+Os aplicativos de servidor mais incrivelmente operam em uma conexão em tempo real que é criada usando o Signalr. A [autenticação em aplicativos baseados em SignalR](xref:signalr/authn-and-authz) é realizada quando a conexão é estabelecida. A autenticação pode ser baseada em um cookie ou um algum outro token de portador.
 
-O modelo de projeto do Blazor Server pode configurar a autenticação para você quando o projeto é criado.
+O modelo de projeto de servidor mais incrivelmente pode configurar a autenticação para você quando o projeto é criado.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Siga as diretrizes do Visual Studio no artigo <xref:blazor/get-started> para criar um novo projeto do Blazor Server com um mecanismo de autenticação.
+Siga as diretrizes do Visual Studio no artigo de <xref:blazor/get-started> para criar um novo projeto de servidor com um mecanismo de autenticação.
 
-Depois de escolher o modelo de **aplicativo doBlazor Server** na caixa de diálogo **criar um novo ASP.NET Core aplicativo Web** , selecione **alterar** em **autenticação**.
+Depois de escolher o modelo **Blazor Server App** na caixa de diálogo **Criar um novo aplicativo Web ASP.NET Core**, selecione **Alterar** em **Autenticação**.
 
 Uma caixa de diálogo é aberta para oferecer o mesmo conjunto de mecanismos de autenticação para outros projetos ASP.NET Core:
 
@@ -59,7 +59,7 @@ Uma caixa de diálogo é aberta para oferecer o mesmo conjunto de mecanismos de 
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Siga as diretrizes de Visual Studio Code no artigo <xref:blazor/get-started> para criar um novo projeto do Blazor Server com um mecanismo de autenticação:
+Siga as diretrizes de Visual Studio Code no artigo de <xref:blazor/get-started> para criar um novo projeto de servidor com um mecanismo de autenticação:
 
 ```dotnetcli
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
@@ -69,7 +69,7 @@ Os valores de autenticação permitidos (`{AUTHENTICATION}`) são mostrados na t
 
 | Mecanismo de autenticação                                                                 | Valor `{AUTHENTICATION}` |
 | ---------------------------------------------------------------------------------------- | :----------------------: |
-| Sem Autenticação                                                                        | `None`                   |
+| Sem autenticação                                                                        | `None`                   |
 | Individual<br>Usuários armazenados no aplicativo com o ASP.NET Core Identity.                        | `Individual`             |
 | Individual<br>Usuários armazenados no [Azure AD B2C](xref:security/authentication/azure-ad-b2c). | `IndividualB2C`          |
 | Contas corporativas ou de estudante<br>Autenticação organizacional para um único locatário.            | `SingleOrg`              |
@@ -191,13 +191,26 @@ namespace BlazorSample.Services
 }
 ```
 
-O serviço `CustomAuthStateProvider` é registrado em `Startup.ConfigureServices`:
+Em um aplicativo Webassembly Blazor, o serviço `CustomAuthStateProvider` é registrado em `Main` do *Program.cs*:
 
 ```csharp
-// using Microsoft.AspNetCore.Components.Authorization;
-// using BlazorSample.Services;
+using Microsoft.AspNetCore.Blazor.Hosting;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.DependencyInjection;
+using BlazorSample.Services;
 
-services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.Services.AddScoped<AuthenticationStateProvider, 
+            CustomAuthStateProvider>();
+        builder.RootComponents.Add<App>("app");
+
+        await builder.Build().RunAsync();
+    }
+}
 ```
 
 Ao usarem o `CustomAuthStateProvider`, todos os usuários são autenticados com o nome de usuário `mrfibuli`.
@@ -492,7 +505,7 @@ Em Blazor aplicativos Webassembly, as verificações de autorização podem ser 
 
 **Sempre execute as verificações de autorização no servidor em qualquer ponto de extremidade da API acessada pelo aplicativo do lado do cliente.**
 
-## <a name="troubleshoot-errors"></a>Solucionar problemas de erros
+## <a name="troubleshoot-errors"></a>Solucionar erros
 
 Erros comuns:
 

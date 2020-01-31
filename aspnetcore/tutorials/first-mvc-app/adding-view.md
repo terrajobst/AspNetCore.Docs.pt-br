@@ -5,12 +5,12 @@ description: Adicionando uma exibição a um aplicativo ASP.NET Core MVC simples
 ms.author: riande
 ms.date: 8/04/2019
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: de75c3b0651c0cda6629af786d7db9dc83bc4fef
-ms.sourcegitcommit: 020c3760492efed71b19e476f25392dda5dd7388
+ms.openlocfilehash: a25233968f115c6e3a214d97cf2ca5ab81df8d83
+ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/12/2019
-ms.locfileid: "72288825"
+ms.lasthandoff: 01/29/2020
+ms.locfileid: "76870422"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Adicionar uma exibição a um aplicativo ASP.NET Core MVC
 
@@ -61,9 +61,9 @@ Adicione uma exibição `Index` ao `HelloWorldController`.
 * Clique com o botão direito do mouse na pasta *Views/HelloWorld* e, em seguida, clique em **Adicionar > Novo Arquivo**.
 * Na caixa de diálogo **Novo Arquivo**:
 
-  * Selecione **Web** no painel esquerdo.
-  * Selecione **Arquivo HTML vazio** no painel central.
-  * Digite *Index.cshtml* na caixa **Nome**.
+  * Selecione **ASP .NET Core** no painel esquerdo.
+  * Selecione a **página exibição do MVC** no painel central.
+  * Digite *index* na caixa **nome** .
   * Selecione **Novo**.
 
 ![Caixa de diálogo Adicionar Novo Item](adding-view/_static/add_view_mac.png)
@@ -250,7 +250,7 @@ A seguinte marcação mostra as alterações realçadas:
 
 [!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24,51)]
 
-Na marcação anterior, o `asp-area` [atributo do Auxiliar de Marca de Âncora](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) foi omitido porque este aplicativo não está usando [Áreas](xref:mvc/controllers/areas).
+Na marcação anterior, o [atributo auxiliar da marca de ancoragem](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-area` foi omitido porque este aplicativo não está usando [áreas](xref:mvc/controllers/areas).
 
 <!-- Routing has changed in 2.2, it's going to the last route.
 >[!WARNING]

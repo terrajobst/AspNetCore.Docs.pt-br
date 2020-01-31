@@ -4,14 +4,14 @@ author: Rick-Anderson
 description: Saiba como as Páginas Razor no ASP.NET Core tornam a codificação de cenários centrados em página mais fácil e mais produtiva do que com o uso de MVC.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 01/18/2020
+ms.date: 01/28/2020
 uid: razor-pages/index
-ms.openlocfilehash: 69c9f09aa0e3dbdbe78720c573b5e1fc63464571
-ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
+ms.openlocfilehash: da30908b38d553405fd3f959f09a19eff750ed17
+ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/21/2020
-ms.locfileid: "76294661"
+ms.lasthandoff: 01/29/2020
+ms.locfileid: "76870499"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introdução a Páginas do Razor no ASP.NET Core
 
@@ -198,7 +198,7 @@ Examinando o arquivo de exibição *páginas/Create. cshtml* :
 * No código anterior, o [auxiliar de marca de entrada](xref:mvc/views/working-with-forms#the-input-tag-helper) `<input asp-for="Customer.Name" />` associa o elemento HTML `<input>` à expressão do modelo `Customer.Name`.
 * [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#addtaghelper-makes-tag-helpers-available) torna os auxiliares de marca disponíveis.
 
-### <a name="the-home-page"></a>Home page
+### <a name="the-home-page"></a>O home page
 
 *Index. cshtml* é o Home Page:
 
@@ -603,6 +603,7 @@ Adicione <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuil
 * <xref:razor-pages/razor-pages-conventions>
 * <xref:test/razor-pages-tests>
 * <xref:mvc/views/partial>
+* [Integrar componentes do Razor em aplicativos Razor Pages e MVC](xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps)
 
 ::: moniker-end
 

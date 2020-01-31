@@ -5,14 +5,14 @@ description: Saiba mais sobre a estrutura do diretório de aplicativos publicado
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/17/2019
+ms.date: 01/28/2020
 uid: host-and-deploy/directory-structure
-ms.openlocfilehash: f1df047decc7a0a6b7dcee57a690c55eea428b05
-ms.sourcegitcommit: 28a2874765cefe9eaa068dceb989a978ba2096aa
+ms.openlocfilehash: ba5cb96dfdcdca10034299e3bbe662ce056af791
+ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 06/17/2019
-ms.locfileid: "67166974"
+ms.lasthandoff: 01/29/2020
+ms.locfileid: "76870260"
 ---
 # <a name="aspnet-core-directory-structure"></a>Estrutura do diretório do ASP.NET Core
 
@@ -24,12 +24,12 @@ O diretório *publish* contém os ativos implantáveis do aplicativo produzidos 
 * Arquivos de configuração
 * Ativos estáticos
 * Pacotes
-* Um tempo de execução ([somente implantação autocontida](/dotnet/core/deploying/#self-contained-deployments-scd))
+* Um runtime ([somente implantação autocontida](/dotnet/core/deploying/#self-contained-deployments-scd))
 
 | Tipo de aplicativo | Estrutura de diretórios |
 | -------- | ------------------- |
-| [Implantação dependente de estrutura](/dotnet/core/deploying/#framework-dependent-deployments-fdd) | <ul><li>publish&dagger;<ul><li>Exibições&dagger; (aplicativos MVC; se as exibições não são pré-compiladas)</li><li>Páginas&dagger; (aplicativos de Páginas do Razor ou MVC, se as páginas não são pré-compiladas)</li><li>wwwroot&dagger;</li><li>arquivos *\.dll</li><li>{NOME DO ASSEMBLY}.deps.json</li><li>{NOME DO ASSEMBLY}.dll</li><li>{NOME DO ASSEMBLY}.pdb</li><li>{NOME DO ASSEMBLY}.Views.dll</li><li>{NOME DO ASSEMBLY}.Views.pdb</li><li>{NOME DO ASSEMBLY}.runtimeconfig.json</li><li>web.config (implantações do IIS)</li></ul></li></ul> |
-| [Implantação autossuficiente](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>Exibições&dagger; (aplicativos MVC; se as exibições não são pré-compiladas)</li><li>Páginas&dagger; (aplicativos de Páginas do Razor ou MVC, se as páginas não são pré-compiladas)</li><li>wwwroot&dagger;</li><li>arquivos \*.dll</li><li>{NOME DO ASSEMBLY}.deps.json</li><li>{NOME DO ASSEMBLY}.dll</li><li>{NOME DO ASSEMBLY}.exe</li><li>{NOME DO ASSEMBLY}.pdb</li><li>{NOME DO ASSEMBLY}.Views.dll</li><li>{NOME DO ASSEMBLY}.Views.pdb</li><li>{NOME DO ASSEMBLY}.runtimeconfig.json</li><li>web.config (implantações do IIS)</li></ul></li></ul> |
+| [Executável dependente de estrutura (FDE)](/dotnet/core/deploying/#framework-dependent-executables-fde) | <ul><li>publish&dagger;<ul><li>Exibições&dagger; aplicativos MVC; Se as exibições não forem pré-compiladas</li><li>Páginas&dagger; aplicativos MVC ou Razor Pages, se as páginas não forem pré-compiladas</li><li>wwwroot&dagger;</li><li>*arquivos. dll</li><li>{nome do assembly}. deps. json</li><li>{nome do assembly}. dll</li><li>{nome do assembly} {. Extensão da extensão} *. exe* no Windows, nenhuma extensão no MacOS ou Linux</li><li>{nome do assembly}. pdb</li><li>{nome do assembly}. Views. dll</li><li>{nome do ASSEMBLY}. Views. pdb</li><li>{nome do ASSEMBLY}. runtimeconfig. JSON</li><li>Web. config (implantações do IIS)</li><li>createdump ([utilitário createdump do Linux](https://github.com/dotnet/coreclr/blob/master/Documentation/botr/xplat-minidump-generation.md#configurationpolicy))</li><li>* . portanto (biblioteca de objetos compartilhados do Linux)</li><li>*. a (arquivo MacOS)</li><li>* . dylib (biblioteca dinâmica MacOS)</li></ul></li></ul> |
+| [Implantação independente (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>Exibições&dagger; aplicativos MVC, se as exibições não forem pré-compiladas</li><li>Páginas&dagger; aplicativos MVC ou Razor Pages, se as páginas não forem pré-compiladas</li><li>wwwroot&dagger;</li><li>arquivos *. dll</li><li>{NOME DO ASSEMBLY}.deps.json</li><li>{NOME DO ASSEMBLY}.dll</li><li>{NOME DO ASSEMBLY}.exe</li><li>{NOME DO ASSEMBLY}.pdb</li><li>{NOME DO ASSEMBLY}.Views.dll</li><li>{NOME DO ASSEMBLY}.Views.pdb</li><li>{NOME DO ASSEMBLY}.runtimeconfig.json</li><li>web.config (implantações do IIS)</li></ul></li></ul> |
 
 &dagger;Indica um diretório
 

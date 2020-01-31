@@ -5,14 +5,14 @@ description: Saiba como usar a API de configuração para configurar um aplicati
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2020
+ms.date: 01/29/2020
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 141ae5cda7672159032013cbda1ef4bfa7c142dd
-ms.sourcegitcommit: eca76bd065eb94386165a0269f1e95092f23fa58
+ms.openlocfilehash: df49286c3f050b8e90cb5427cf03e2b896a39294
+ms.sourcegitcommit: c81ef12a1b6e6ac838e5e07042717cf492e6635b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2020
-ms.locfileid: "76726973"
+ms.lasthandoff: 01/29/2020
+ms.locfileid: "76885566"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configuração no ASP.NET Core
 
@@ -54,6 +54,19 @@ O *padrão de opções* é uma extensão dos conceitos de configuração descrit
 ## <a name="host-versus-app-configuration"></a>Configuração do host versus do aplicativo
 
 Antes do aplicativo ser configurado e iniciado, um *host* é configurado e iniciado. O host é responsável pelo gerenciamento de tempo de vida e pela inicialização do aplicativo. O aplicativo e o host são configurados usando os provedores de configuração descritos neste tópico. Os pares chave-valor de configuração do host também estão incluídos na configuração do aplicativo. Para saber mais sobre como os provedores de configuração são usados quando o host for compilado, e como as fontes de configuração afetam o host e a configuração, confira <xref:fundamentals/index#host>.
+
+## <a name="other-configuration"></a>Outra configuração
+
+Este tópico pertence apenas à *configuração do aplicativo*. Outros aspectos da execução e Hospedagem de aplicativos ASP.NET Core são configurados usando arquivos de configuração não abordados neste tópico:
+
+* *Launch. json*/*launchSettings. JSON* são arquivos de configuração de ferramentas para o ambiente de desenvolvimento, descritos:
+  * Em <xref:fundamentals/environments#development>.
+  * No conjunto de documentação, onde os arquivos são usados para configurar aplicativos ASP.NET Core para cenários de desenvolvimento.
+* o *Web. config* é um arquivo de configuração de servidor, descrito nos seguintes tópicos:
+  * <xref:host-and-deploy/iis/index>
+  * <xref:host-and-deploy/aspnet-core-module>
+
+Para obter mais informações sobre como migrar a configuração de aplicativo de versões anteriores do ASP.NET, consulte <xref:migration/proper-to-2x/index#store-configurations>.
 
 ## <a name="default-configuration"></a>Configuração padrão
 

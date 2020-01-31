@@ -3,15 +3,15 @@ title: Adicionar, baixar e excluir dados de usuário à identidade em um projeto
 author: rick-anderson
 description: Saiba como adicionar dados personalizados do usuário a identidade em um projeto ASP.NET Core. Exclua dados por GDPR.
 ms.author: riande
-ms.date: 12/05/2019
+ms.date: 01/28/2020
 ms.custom: mvc, seodec18
 uid: security/authentication/add-user-data
-ms.openlocfilehash: f54df68834cd3e2493e558aaab9851f036f3f01b
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: e08c02e2e5d4a429aae10c59e7ae3ea48c975067
+ms.sourcegitcommit: c81ef12a1b6e6ac838e5e07042717cf492e6635b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880751"
+ms.lasthandoff: 01/29/2020
+ms.locfileid: "76885550"
 ---
 # <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>Adicionar, baixar e excluir dados de usuário personalizada à identidade em um projeto ASP.NET Core
 
@@ -78,15 +78,15 @@ dotnet new webapp -o WebApp1
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Partir **Gerenciador de soluções**, clique com botão direito no projeto > **Add** > **New Scaffolded Item**.
-* No painel à esquerda do **adicionar Scaffold** caixa de diálogo, selecione **identidade** > **adicionar**.
-* No **identidade de adição** caixa de diálogo, as seguintes opções:
+* No painel esquerdo da caixa de diálogo **Adicionar Scaffold** , selecione **identidade** > **Adicionar**.
+* Na caixa de diálogo **Adicionar identidade** , as seguintes opções:
   * Selecione o arquivo de layout existente *~/Pages/Shared/_Layout.cshtml*
   * Selecione os arquivos a seguir para substituir:
     * **Conta/registro**
     * **Conta/gerenciar/índice**
   * Selecione o **+** botão para criar um novo **classe de contexto de dados**. Aceite o tipo (**WebApp1.Models.WebApp1Context** se o projeto é denominado **WebApp1**).
   * Selecione o **+** botão para criar um novo **classe User**. Aceite o tipo (**WebApp1User** se o projeto é denominado **WebApp1**) > **adicionar**.
-* Selecione **adicionar**.
+* Selecione **Adicionar**.
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 

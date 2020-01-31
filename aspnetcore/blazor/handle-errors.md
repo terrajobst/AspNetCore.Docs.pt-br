@@ -5,17 +5,17 @@ description: Descubra como ASP.NET Core Blazor como o Blazor gerencia exceções
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 01/22/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: fe4cc13b1efb8c70c9632f032626aa938fb65ea3
-ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
+ms.openlocfilehash: 7b5602d5ae5e58d1678762fe1cd2adec1f31c969
+ms.sourcegitcommit: b5ceb0a46d0254cc3425578116e2290142eec0f0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2020
-ms.locfileid: "76159944"
+ms.lasthandoff: 01/28/2020
+ms.locfileid: "76808997"
 ---
 # <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Tratar erros em aplicativos ASP.NET Core Blazor
 
@@ -112,7 +112,7 @@ As exceções sem tratamento anteriores são descritas nas seções a seguir des
 Quando Blazor cria uma instância de um componente:
 
 * O construtor do componente é invocado.
-* Os construtores de quaisquer serviços não singleton de DI fornecidos ao construtor do componente por meio da diretiva [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) ou do atributo [`[Inject]`](xref:blazor/dependency-injection#request-a-service-in-a-component) são invocados. 
+* Os construtores de quaisquer serviços não singleton de DI fornecidos ao construtor do componente por meio da diretiva [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) ou do atributo [`[Inject]`](xref:blazor/dependency-injection#request-a-service-in-a-component) são invocados.
 
 Um circuito falha quando qualquer Construtor executado ou um setter para qualquer propriedade de `[Inject]` gera uma exceção sem tratamento. A exceção é fatal porque a estrutura não pode instanciar o componente. Se a lógica do Construtor puder gerar exceções, o aplicativo deverá interceptar as exceções usando uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log.
 
@@ -165,7 +165,7 @@ Se o código do usuário não interceptar e manipular a exceção, a estrutura r
 
 ### <a name="component-disposal"></a>Disposição do componente
 
-Um componente pode ser removido da interface do usuário, por exemplo, porque o usuário navegou para outra página. Quando um componente que implementa <xref:System.IDisposable?displayProperty=fullName> é removido da interface do usuário, a estrutura chama o método <xref:System.IDisposable.Dispose*> do componente. 
+Um componente pode ser removido da interface do usuário, por exemplo, porque o usuário navegou para outra página. Quando um componente que implementa <xref:System.IDisposable?displayProperty=fullName> é removido da interface do usuário, a estrutura chama o método <xref:System.IDisposable.Dispose*> do componente.
 
 Se o método de `Dispose` do componente lançar uma exceção sem tratamento, a exceção será fatal para o circuito. Se a lógica de descarte puder gerar exceções, o aplicativo deverá interceptar as exceções usando uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com o tratamento de erros e o registro em log.
 
@@ -192,16 +192,49 @@ Para obter mais informações, consulte <xref:blazor/javascript-interop>.
 
 ### <a name="circuit-handlers"></a>Manipuladores de circuito
 
-Blazor permite que o código defina um *manipulador de circuito*, que recebe notificações quando o estado do circuito de um usuário é alterado. Os seguintes Estados são usados:
+Blazor Server permite que o código defina um *manipulador de circuito*, que permite a execução de código em alterações no estado do circuito de um usuário. Um manipulador de circuito é implementado derivando de `CircuitHandler` e registrando a classe no contêiner de serviço do aplicativo. O exemplo a seguir de um manipulador de circuito rastreia conexões SignalR abertas:
 
-* `initialized`
-* `connected`
-* `disconnected`
-* `disposed`
+```csharp
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Server.Circuits;
 
-As notificações são gerenciadas pelo registro de um serviço DI que herda da classe base abstrata `CircuitHandler`.
+public class TrackingCircuitHandler : CircuitHandler
+{
+    private HashSet<Circuit> _circuits = new HashSet<Circuit>();
 
-Se os métodos de um manipulador de circuitos personalizados lançarem uma exceção sem tratamento, a exceção será fatal para o circuito. Para tolerar exceções no código de um manipulador ou em métodos chamados, empacote o código em uma ou mais instruções [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com o tratamento de erros e o registro em log.
+    public override Task OnConnectionUpAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        _circuits.Add(circuit);
+
+        return Task.CompletedTask;
+    }
+
+    public override Task OnConnectionDownAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        _circuits.Remove(circuit);
+
+        return Task.CompletedTask;
+    }
+
+    public int ConnectedCircuits => _circuits.Count;
+}
+```
+
+Os manipuladores de circuito são registrados usando DI. Instâncias com escopo são criadas por instância de um circuito. Usando o `TrackingCircuitHandler` no exemplo anterior, um serviço singleton é criado porque o estado de todos os circuitos deve ser acompanhado:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    ...
+    services.AddSingleton<CircuitHandler, TrackingCircuitHandler>();
+}
+```
+
+Se os métodos de um manipulador de circuitos personalizados lançarem uma exceção sem tratamento, a exceção será fatal para o circuito de servidor Blazor. Para tolerar exceções no código de um manipulador ou em métodos chamados, empacote o código em uma ou mais instruções [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com o tratamento de erros e o registro em log.
 
 ### <a name="circuit-disposal"></a>Disposição do circuito
 

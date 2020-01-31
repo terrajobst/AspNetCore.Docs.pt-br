@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/16/2019
 uid: fundamentals/http-requests
-ms.openlocfilehash: 482f8e28c23c621cecaf9ce111d89e9166ea6d85
-ms.sourcegitcommit: da2fb2d78ce70accdba903ccbfdcfffdd0112123
+ms.openlocfilehash: 9b9da82191a587be0603ee114562e9a964f05250
+ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/07/2020
-ms.locfileid: "75722720"
+ms.lasthandoff: 01/29/2020
+ms.locfileid: "76870392"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Fazer solicitações HTTP usando IHttpClientFactory no ASP.NET Core
 
@@ -352,6 +352,22 @@ No exemplo a seguir:
 * `Main` cria um escopo para executar o método `GetPage` do serviço e gravar os primeiros 500 caracteres do conteúdo da página da Web no console.
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
+
+## <a name="header-propagation-middleware"></a>Middleware de propagação de cabeçalho
+
+A propagação de cabeçalho é um middleware ASP.NET Core para propagar cabeçalhos HTTP da solicitação de entrada para as solicitações de cliente HTTP de saída. Para usar a propagação de cabeçalho:
+
+* Referencie o pacote [Microsoft. AspNetCore. HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) .
+* Configure o middleware e o `HttpClient` no `Startup`:
+
+  [!code-csharp[](http-requests/samples/3.x/Startup.cs?highlight=5-9,21&name=snippet)]
+
+* O cliente inclui os cabeçalhos configurados nas solicitações de saída:
+
+  ```C#
+  var client = clientFactory.CreateClient("MyForwardingClient");
+  var response = client.GetAsync(...);
+  ```
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
@@ -962,6 +978,23 @@ No exemplo a seguir:
 * `Main` cria um escopo para executar o método `GetPage` do serviço e gravar os primeiros 500 caracteres do conteúdo da página da Web no console.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
+
+## <a name="header-propagation-middleware"></a>Middleware de propagação de cabeçalho
+
+A propagação de cabeçalho é um middleware com suporte da Comunidade para propagar cabeçalhos HTTP da solicitação de entrada para as solicitações de cliente HTTP de saída. Para usar a propagação de cabeçalho:
+
+* Referencie a porta com suporte da Comunidade do pacote [HeaderPropagation](https://www.nuget.org/packages/HeaderPropagation). ASP.NET Core 3,1 e posterior dá suporte a [Microsoft. AspNetCore. HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation).
+
+* Configure o middleware e o `HttpClient` no `Startup`:
+
+  [!code-csharp[](http-requests/samples/2.x/Startup21.cs?highlight=5-9,25&name=snippet)]
+
+* O cliente inclui os cabeçalhos configurados nas solicitações de saída:
+
+  ```C#
+  var client = clientFactory.CreateClient("MyForwardingClient");
+  var response = client.GetAsync(...);
+  ```
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
