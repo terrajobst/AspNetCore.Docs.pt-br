@@ -1,69 +1,69 @@
 ---
-title: Usar a CLI (interface de linha de comando) LibMan com ASP.NET Core
+title: Usar a CLI do LibMan com ASP.NET Core
 author: scottaddie
-description: Saiba como usar a CLI (interface de linha de comando) do LibMan em um projeto ASP.NET Core.
+description: Saiba como usar a CLI do LibMan em um projeto ASP.NET Core.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
 - SignalR
 uid: client-side/libman/libman-cli
-ms.openlocfilehash: 8b2b1e45ab4685482554ac439b0276e0cf381609
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 02d88d09805bd23a86ef924766373245fec7ff52
+ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73962795"
+ms.lasthandoff: 02/01/2020
+ms.locfileid: "76928358"
 ---
-# <a name="use-the-libman-command-line-interface-cli-with-aspnet-core"></a><span data-ttu-id="438e6-103">Usar a CLI (interface de linha de comando) LibMan com ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="438e6-103">Use the LibMan command-line interface (CLI) with ASP.NET Core</span></span>
+# <a name="use-the-libman-cli-with-aspnet-core"></a><span data-ttu-id="38ad9-103">Usar a CLI do LibMan com ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="38ad9-103">Use the LibMan CLI with ASP.NET Core</span></span>
 
-<span data-ttu-id="438e6-104">Por [Scott Addie](https://twitter.com/Scott_Addie)</span><span class="sxs-lookup"><span data-stu-id="438e6-104">By [Scott Addie](https://twitter.com/Scott_Addie)</span></span>
+<span data-ttu-id="38ad9-104">Por [Scott Addie](https://twitter.com/Scott_Addie)</span><span class="sxs-lookup"><span data-stu-id="38ad9-104">By [Scott Addie](https://twitter.com/Scott_Addie)</span></span>
 
-<span data-ttu-id="438e6-105">A CLI do [LibMan](xref:client-side/libman/index) é uma ferramenta de plataforma cruzada com suporte em todo o .NET Core.</span><span class="sxs-lookup"><span data-stu-id="438e6-105">The [LibMan](xref:client-side/libman/index) CLI is a cross-platform tool that's supported everywhere .NET Core is supported.</span></span>
+<span data-ttu-id="38ad9-105">A CLI do [LibMan](xref:client-side/libman/index) é uma ferramenta de plataforma cruzada com suporte em todo o .NET Core.</span><span class="sxs-lookup"><span data-stu-id="38ad9-105">The [LibMan](xref:client-side/libman/index) CLI is a cross-platform tool that's supported everywhere .NET Core is supported.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="438e6-106">Prerequisites</span><span class="sxs-lookup"><span data-stu-id="438e6-106">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="38ad9-106">{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}</span><span class="sxs-lookup"><span data-stu-id="38ad9-106">Prerequisites</span></span>
 
 * [!INCLUDE [2.1-SDK](../../includes/2.1-SDK.md)]
 
-## <a name="installation"></a><span data-ttu-id="438e6-107">Instalação</span><span class="sxs-lookup"><span data-stu-id="438e6-107">Installation</span></span>
+## <a name="installation"></a><span data-ttu-id="38ad9-107">Instalação</span><span class="sxs-lookup"><span data-stu-id="38ad9-107">Installation</span></span>
 
-<span data-ttu-id="438e6-108">Para instalar a CLI do LibMan:</span><span class="sxs-lookup"><span data-stu-id="438e6-108">To install the LibMan CLI:</span></span>
+<span data-ttu-id="38ad9-108">Para instalar a CLI do LibMan:</span><span class="sxs-lookup"><span data-stu-id="38ad9-108">To install the LibMan CLI:</span></span>
 
 ```dotnetcli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
 
-<span data-ttu-id="438e6-109">Uma [ferramenta global do .NET Core](/dotnet/core/tools/global-tools#install-a-global-tool) é instalada do pacote NuGet [Microsoft. Web. LibraryManager. CLI](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Cli/) .</span><span class="sxs-lookup"><span data-stu-id="438e6-109">A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.Web.LibraryManager.Cli](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Cli/) NuGet package.</span></span>
+<span data-ttu-id="38ad9-109">Uma [ferramenta global do .NET Core](/dotnet/core/tools/global-tools#install-a-global-tool) é instalada do pacote NuGet [Microsoft. Web. LibraryManager. CLI](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Cli/) .</span><span class="sxs-lookup"><span data-stu-id="38ad9-109">A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.Web.LibraryManager.Cli](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Cli/) NuGet package.</span></span>
 
-<span data-ttu-id="438e6-110">Para instalar a CLI do LibMan de uma origem específica do pacote NuGet:</span><span class="sxs-lookup"><span data-stu-id="438e6-110">To install the LibMan CLI from a specific NuGet package source:</span></span>
+<span data-ttu-id="38ad9-110">Para instalar a CLI do LibMan de uma origem específica do pacote NuGet:</span><span class="sxs-lookup"><span data-stu-id="38ad9-110">To install the LibMan CLI from a specific NuGet package source:</span></span>
 
 ```dotnetcli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli --version 1.0.94-g606058a278 --add-source C:\Temp\
 ```
 
-<span data-ttu-id="438e6-111">No exemplo anterior, uma ferramenta global do .NET Core é instalada a partir do arquivo *C:\Temp\Microsoft.Web.LibraryManager.CLI.1.0.94-g606058a278.nupkg* do computador Windows local.</span><span class="sxs-lookup"><span data-stu-id="438e6-111">In the preceding example, a .NET Core Global Tool is installed from the local Windows machine's *C:\Temp\Microsoft.Web.LibraryManager.Cli.1.0.94-g606058a278.nupkg* file.</span></span>
+<span data-ttu-id="38ad9-111">No exemplo anterior, uma ferramenta global do .NET Core é instalada a partir do arquivo *C:\Temp\Microsoft.Web.LibraryManager.CLI.1.0.94-g606058a278.nupkg* do computador Windows local.</span><span class="sxs-lookup"><span data-stu-id="38ad9-111">In the preceding example, a .NET Core Global Tool is installed from the local Windows machine's *C:\Temp\Microsoft.Web.LibraryManager.Cli.1.0.94-g606058a278.nupkg* file.</span></span>
 
-## <a name="usage"></a><span data-ttu-id="438e6-112">Uso</span><span class="sxs-lookup"><span data-stu-id="438e6-112">Usage</span></span>
+## <a name="usage"></a><span data-ttu-id="38ad9-112">Medição de</span><span class="sxs-lookup"><span data-stu-id="38ad9-112">Usage</span></span>
 
-<span data-ttu-id="438e6-113">Após a instalação bem-sucedida da CLI, o comando a seguir pode ser usado:</span><span class="sxs-lookup"><span data-stu-id="438e6-113">After successful installation of the CLI, the following command can be used:</span></span>
+<span data-ttu-id="38ad9-113">Após a instalação bem-sucedida da CLI, o comando a seguir pode ser usado:</span><span class="sxs-lookup"><span data-stu-id="38ad9-113">After successful installation of the CLI, the following command can be used:</span></span>
 
 ```console
 libman
 ```
 
-<span data-ttu-id="438e6-114">Para exibir a versão instalada da CLI:</span><span class="sxs-lookup"><span data-stu-id="438e6-114">To view the installed CLI version:</span></span>
+<span data-ttu-id="38ad9-114">Para exibir a versão instalada da CLI:</span><span class="sxs-lookup"><span data-stu-id="38ad9-114">To view the installed CLI version:</span></span>
 
 ```console
 libman --version
 ```
 
-<span data-ttu-id="438e6-115">Para exibir os comandos da CLI disponíveis:</span><span class="sxs-lookup"><span data-stu-id="438e6-115">To view the available CLI commands:</span></span>
+<span data-ttu-id="38ad9-115">Para exibir os comandos da CLI disponíveis:</span><span class="sxs-lookup"><span data-stu-id="38ad9-115">To view the available CLI commands:</span></span>
 
 ```console
 libman --help
 ```
 
-<span data-ttu-id="438e6-116">O comando anterior exibe uma saída semelhante à seguinte:</span><span class="sxs-lookup"><span data-stu-id="438e6-116">The preceding command displays output similar to the following:</span></span>
+<span data-ttu-id="38ad9-116">O comando anterior exibe uma saída semelhante à seguinte:</span><span class="sxs-lookup"><span data-stu-id="38ad9-116">The preceding command displays output similar to the following:</span></span>
 
 ```console
  1.0.163+g45474d37ed
@@ -90,53 +90,53 @@ Commands:
 Use "libman [command] --help" for more information about a command.
 ```
 
-<span data-ttu-id="438e6-117">As seções a seguir descrevem os comandos da CLI disponíveis.</span><span class="sxs-lookup"><span data-stu-id="438e6-117">The following sections outline the available CLI commands.</span></span>
+<span data-ttu-id="38ad9-117">As seções a seguir descrevem os comandos da CLI disponíveis.</span><span class="sxs-lookup"><span data-stu-id="38ad9-117">The following sections outline the available CLI commands.</span></span>
 
-## <a name="initialize-libman-in-the-project"></a><span data-ttu-id="438e6-118">Inicializar LibMan no projeto</span><span class="sxs-lookup"><span data-stu-id="438e6-118">Initialize LibMan in the project</span></span>
+## <a name="initialize-libman-in-the-project"></a><span data-ttu-id="38ad9-118">Inicializar LibMan no projeto</span><span class="sxs-lookup"><span data-stu-id="38ad9-118">Initialize LibMan in the project</span></span>
 
-<span data-ttu-id="438e6-119">O comando `libman init` cria um arquivo *Libman. JSON* se ele não existir.</span><span class="sxs-lookup"><span data-stu-id="438e6-119">The `libman init` command creates a *libman.json* file if one doesn't exist.</span></span> <span data-ttu-id="438e6-120">O arquivo é criado com o conteúdo do modelo de item padrão.</span><span class="sxs-lookup"><span data-stu-id="438e6-120">The file is created with the default item template content.</span></span>
+<span data-ttu-id="38ad9-119">O comando `libman init` cria um arquivo *Libman. JSON* se ele não existir.</span><span class="sxs-lookup"><span data-stu-id="38ad9-119">The `libman init` command creates a *libman.json* file if one doesn't exist.</span></span> <span data-ttu-id="38ad9-120">O arquivo é criado com o conteúdo do modelo de item padrão.</span><span class="sxs-lookup"><span data-stu-id="38ad9-120">The file is created with the default item template content.</span></span>
 
-### <a name="synopsis"></a><span data-ttu-id="438e6-121">Sinopse</span><span class="sxs-lookup"><span data-stu-id="438e6-121">Synopsis</span></span>
+### <a name="synopsis"></a><span data-ttu-id="38ad9-121">Sinopse</span><span class="sxs-lookup"><span data-stu-id="38ad9-121">Synopsis</span></span>
 
 ```console
 libman init [-d|--default-destination] [-p|--default-provider] [--verbosity]
 libman init [-h|--help]
 ```
 
-### <a name="options"></a><span data-ttu-id="438e6-122">Opções</span><span class="sxs-lookup"><span data-stu-id="438e6-122">Options</span></span>
+### <a name="options"></a><span data-ttu-id="38ad9-122">Opções</span><span class="sxs-lookup"><span data-stu-id="38ad9-122">Options</span></span>
 
-<span data-ttu-id="438e6-123">As opções a seguir estão disponíveis para o comando `libman init`:</span><span class="sxs-lookup"><span data-stu-id="438e6-123">The following options are available for the `libman init` command:</span></span>
+<span data-ttu-id="38ad9-123">As opções a seguir estão disponíveis para o comando `libman init`:</span><span class="sxs-lookup"><span data-stu-id="38ad9-123">The following options are available for the `libman init` command:</span></span>
 
 * `-d|--default-destination <PATH>`
 
-  <span data-ttu-id="438e6-124">Um caminho relativo à pasta atual.</span><span class="sxs-lookup"><span data-stu-id="438e6-124">A path relative to the current folder.</span></span> <span data-ttu-id="438e6-125">Os arquivos de biblioteca serão instalados nesse local se nenhuma propriedade `destination` for definida para uma biblioteca em *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="438e6-125">Library files are installed in this location if no `destination` property is defined for a library in *libman.json*.</span></span> <span data-ttu-id="438e6-126">O valor de `<PATH>` é gravado na propriedade `defaultDestination` de *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="438e6-126">The `<PATH>` value is written to the `defaultDestination` property of *libman.json*.</span></span>
+  <span data-ttu-id="38ad9-124">Um caminho relativo à pasta atual.</span><span class="sxs-lookup"><span data-stu-id="38ad9-124">A path relative to the current folder.</span></span> <span data-ttu-id="38ad9-125">Os arquivos de biblioteca serão instalados nesse local se nenhuma propriedade `destination` for definida para uma biblioteca em *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="38ad9-125">Library files are installed in this location if no `destination` property is defined for a library in *libman.json*.</span></span> <span data-ttu-id="38ad9-126">O valor de `<PATH>` é gravado na propriedade `defaultDestination` de *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="38ad9-126">The `<PATH>` value is written to the `defaultDestination` property of *libman.json*.</span></span>
 
 * `-p|--default-provider <PROVIDER>`
 
-  <span data-ttu-id="438e6-127">O provedor a ser usado se nenhum provedor for definido para uma determinada biblioteca.</span><span class="sxs-lookup"><span data-stu-id="438e6-127">The provider to use if no provider is defined for a given library.</span></span> <span data-ttu-id="438e6-128">O valor de `<PROVIDER>` é gravado na propriedade `defaultProvider` de *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="438e6-128">The `<PROVIDER>` value is written to the `defaultProvider` property of *libman.json*.</span></span> <span data-ttu-id="438e6-129">Substitua `<PROVIDER>` por um dos seguintes valores:</span><span class="sxs-lookup"><span data-stu-id="438e6-129">Replace `<PROVIDER>` with one of the following values:</span></span>
+  <span data-ttu-id="38ad9-127">O provedor a ser usado se nenhum provedor for definido para uma determinada biblioteca.</span><span class="sxs-lookup"><span data-stu-id="38ad9-127">The provider to use if no provider is defined for a given library.</span></span> <span data-ttu-id="38ad9-128">O valor de `<PROVIDER>` é gravado na propriedade `defaultProvider` de *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="38ad9-128">The `<PROVIDER>` value is written to the `defaultProvider` property of *libman.json*.</span></span> <span data-ttu-id="38ad9-129">Substitua `<PROVIDER>` por um dos seguintes valores:</span><span class="sxs-lookup"><span data-stu-id="38ad9-129">Replace `<PROVIDER>` with one of the following values:</span></span>
 
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a><span data-ttu-id="438e6-130">Exemplos</span><span class="sxs-lookup"><span data-stu-id="438e6-130">Examples</span></span>
+### <a name="examples"></a><span data-ttu-id="38ad9-130">Exemplos</span><span class="sxs-lookup"><span data-stu-id="38ad9-130">Examples</span></span>
 
-<span data-ttu-id="438e6-131">Para criar um arquivo *Libman. JSON* em um projeto ASP.NET Core:</span><span class="sxs-lookup"><span data-stu-id="438e6-131">To create a *libman.json* file in an ASP.NET Core project:</span></span>
+<span data-ttu-id="38ad9-131">Para criar um arquivo *Libman. JSON* em um projeto ASP.NET Core:</span><span class="sxs-lookup"><span data-stu-id="38ad9-131">To create a *libman.json* file in an ASP.NET Core project:</span></span>
 
-* <span data-ttu-id="438e6-132">Navegue até a raiz do projeto.</span><span class="sxs-lookup"><span data-stu-id="438e6-132">Navigate to the project root.</span></span>
-* <span data-ttu-id="438e6-133">Execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="438e6-133">Run the following command:</span></span>
+* <span data-ttu-id="38ad9-132">Navegue até a raiz do projeto.</span><span class="sxs-lookup"><span data-stu-id="38ad9-132">Navigate to the project root.</span></span>
+* <span data-ttu-id="38ad9-133">Execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="38ad9-133">Run the following command:</span></span>
 
   ```console
   libman init
   ```
 
-* <span data-ttu-id="438e6-134">Digite o nome do provedor padrão ou pressione `Enter` para usar o provedor CDNJS padrão.</span><span class="sxs-lookup"><span data-stu-id="438e6-134">Type the name of the default provider, or press `Enter` to use the default CDNJS provider.</span></span> <span data-ttu-id="438e6-135">Os valores válidos incluem:</span><span class="sxs-lookup"><span data-stu-id="438e6-135">Valid values include:</span></span>
+* <span data-ttu-id="38ad9-134">Digite o nome do provedor padrão ou pressione `Enter` para usar o provedor CDNJS padrão.</span><span class="sxs-lookup"><span data-stu-id="38ad9-134">Type the name of the default provider, or press `Enter` to use the default CDNJS provider.</span></span> <span data-ttu-id="38ad9-135">Os valores válidos incluem:</span><span class="sxs-lookup"><span data-stu-id="38ad9-135">Valid values include:</span></span>
 
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
   ![comando init Libman – provedor padrão](_static/libman-init-provider.png)
 
-<span data-ttu-id="438e6-137">Um arquivo *Libman. JSON* é adicionado à raiz do projeto com o seguinte conteúdo:</span><span class="sxs-lookup"><span data-stu-id="438e6-137">A *libman.json* file is added to the project root with the following content:</span></span>
+<span data-ttu-id="38ad9-137">Um arquivo *Libman. JSON* é adicionado à raiz do projeto com o seguinte conteúdo:</span><span class="sxs-lookup"><span data-stu-id="38ad9-137">A *libman.json* file is added to the project root with the following content:</span></span>
 
 ```json
 {
@@ -146,48 +146,48 @@ libman init [-h|--help]
 }
 ```
 
-## <a name="add-library-files"></a><span data-ttu-id="438e6-138">Adicionar arquivos de biblioteca</span><span class="sxs-lookup"><span data-stu-id="438e6-138">Add library files</span></span>
+## <a name="add-library-files"></a><span data-ttu-id="38ad9-138">Adicionar arquivos de biblioteca</span><span class="sxs-lookup"><span data-stu-id="38ad9-138">Add library files</span></span>
 
-<span data-ttu-id="438e6-139">O comando `libman install` baixa e instala arquivos de biblioteca no projeto.</span><span class="sxs-lookup"><span data-stu-id="438e6-139">The `libman install` command downloads and installs library files into the project.</span></span> <span data-ttu-id="438e6-140">Um arquivo *Libman. JSON* será adicionado se um não existir.</span><span class="sxs-lookup"><span data-stu-id="438e6-140">A *libman.json* file is added if one doesn't exist.</span></span> <span data-ttu-id="438e6-141">O arquivo *Libman. JSON* é modificado para armazenar detalhes de configuração dos arquivos de biblioteca.</span><span class="sxs-lookup"><span data-stu-id="438e6-141">The *libman.json* file is modified to store configuration details for the library files.</span></span>
+<span data-ttu-id="38ad9-139">O comando `libman install` baixa e instala arquivos de biblioteca no projeto.</span><span class="sxs-lookup"><span data-stu-id="38ad9-139">The `libman install` command downloads and installs library files into the project.</span></span> <span data-ttu-id="38ad9-140">Um arquivo *Libman. JSON* será adicionado se um não existir.</span><span class="sxs-lookup"><span data-stu-id="38ad9-140">A *libman.json* file is added if one doesn't exist.</span></span> <span data-ttu-id="38ad9-141">O arquivo *Libman. JSON* é modificado para armazenar detalhes de configuração dos arquivos de biblioteca.</span><span class="sxs-lookup"><span data-stu-id="38ad9-141">The *libman.json* file is modified to store configuration details for the library files.</span></span>
 
-### <a name="synopsis"></a><span data-ttu-id="438e6-142">Sinopse</span><span class="sxs-lookup"><span data-stu-id="438e6-142">Synopsis</span></span>
+### <a name="synopsis"></a><span data-ttu-id="38ad9-142">Sinopse</span><span class="sxs-lookup"><span data-stu-id="38ad9-142">Synopsis</span></span>
 
 ```console
 libman install <LIBRARY> [-d|--destination] [--files] [-p|--provider] [--verbosity]
 libman install [-h|--help]
 ```
 
-### <a name="arguments"></a><span data-ttu-id="438e6-143">Arguments</span><span class="sxs-lookup"><span data-stu-id="438e6-143">Arguments</span></span>
+### <a name="arguments"></a><span data-ttu-id="38ad9-143">Arguments</span><span class="sxs-lookup"><span data-stu-id="38ad9-143">Arguments</span></span>
 
 `LIBRARY`
 
-<span data-ttu-id="438e6-144">O nome da biblioteca a ser instalada.</span><span class="sxs-lookup"><span data-stu-id="438e6-144">The name of the library to install.</span></span> <span data-ttu-id="438e6-145">Esse nome pode incluir a notação de número de versão (por exemplo, `@1.2.0`).</span><span class="sxs-lookup"><span data-stu-id="438e6-145">This name may include version number notation (for example, `@1.2.0`).</span></span>
+<span data-ttu-id="38ad9-144">O nome da biblioteca a ser instalada.</span><span class="sxs-lookup"><span data-stu-id="38ad9-144">The name of the library to install.</span></span> <span data-ttu-id="38ad9-145">Esse nome pode incluir a notação de número de versão (por exemplo, `@1.2.0`).</span><span class="sxs-lookup"><span data-stu-id="38ad9-145">This name may include version number notation (for example, `@1.2.0`).</span></span>
 
-### <a name="options"></a><span data-ttu-id="438e6-146">Opções</span><span class="sxs-lookup"><span data-stu-id="438e6-146">Options</span></span>
+### <a name="options"></a><span data-ttu-id="38ad9-146">Opções</span><span class="sxs-lookup"><span data-stu-id="38ad9-146">Options</span></span>
 
-<span data-ttu-id="438e6-147">As opções a seguir estão disponíveis para o comando `libman install`:</span><span class="sxs-lookup"><span data-stu-id="438e6-147">The following options are available for the `libman install` command:</span></span>
+<span data-ttu-id="38ad9-147">As opções a seguir estão disponíveis para o comando `libman install`:</span><span class="sxs-lookup"><span data-stu-id="38ad9-147">The following options are available for the `libman install` command:</span></span>
 
 * `-d|--destination <PATH>`
 
-  <span data-ttu-id="438e6-148">O local para instalar a biblioteca.</span><span class="sxs-lookup"><span data-stu-id="438e6-148">The location to install the library.</span></span> <span data-ttu-id="438e6-149">Se não for especificado, o local padrão será usado.</span><span class="sxs-lookup"><span data-stu-id="438e6-149">If not specified, the default location is used.</span></span> <span data-ttu-id="438e6-150">Se nenhuma propriedade `defaultDestination` for especificada em *Libman. JSON*, essa opção será necessária.</span><span class="sxs-lookup"><span data-stu-id="438e6-150">If no `defaultDestination` property is specified in *libman.json*, this option is required.</span></span>
+  <span data-ttu-id="38ad9-148">O local para instalar a biblioteca.</span><span class="sxs-lookup"><span data-stu-id="38ad9-148">The location to install the library.</span></span> <span data-ttu-id="38ad9-149">Se não for especificado, o local padrão será usado.</span><span class="sxs-lookup"><span data-stu-id="38ad9-149">If not specified, the default location is used.</span></span> <span data-ttu-id="38ad9-150">Se nenhuma propriedade `defaultDestination` for especificada em *Libman. JSON*, essa opção será necessária.</span><span class="sxs-lookup"><span data-stu-id="38ad9-150">If no `defaultDestination` property is specified in *libman.json*, this option is required.</span></span>
 
 * `--files <FILE>`
 
-  <span data-ttu-id="438e6-151">Especifique o nome do arquivo a ser instalado da biblioteca.</span><span class="sxs-lookup"><span data-stu-id="438e6-151">Specify the name of the file to install from the library.</span></span> <span data-ttu-id="438e6-152">Se não for especificado, todos os arquivos da biblioteca serão instalados.</span><span class="sxs-lookup"><span data-stu-id="438e6-152">If not specified, all files from the library are installed.</span></span> <span data-ttu-id="438e6-153">Forneça uma opção de `--files` por arquivo a ser instalada.</span><span class="sxs-lookup"><span data-stu-id="438e6-153">Provide one `--files` option per file to be installed.</span></span> <span data-ttu-id="438e6-154">Caminhos relativos também têm suporte.</span><span class="sxs-lookup"><span data-stu-id="438e6-154">Relative paths are supported too.</span></span> <span data-ttu-id="438e6-155">Por exemplo: `--files dist/browser/signalr.js`.</span><span class="sxs-lookup"><span data-stu-id="438e6-155">For example: `--files dist/browser/signalr.js`.</span></span>
+  <span data-ttu-id="38ad9-151">Especifique o nome do arquivo a ser instalado da biblioteca.</span><span class="sxs-lookup"><span data-stu-id="38ad9-151">Specify the name of the file to install from the library.</span></span> <span data-ttu-id="38ad9-152">Se não for especificado, todos os arquivos da biblioteca serão instalados.</span><span class="sxs-lookup"><span data-stu-id="38ad9-152">If not specified, all files from the library are installed.</span></span> <span data-ttu-id="38ad9-153">Forneça uma opção de `--files` por arquivo a ser instalada.</span><span class="sxs-lookup"><span data-stu-id="38ad9-153">Provide one `--files` option per file to be installed.</span></span> <span data-ttu-id="38ad9-154">Caminhos relativos também têm suporte.</span><span class="sxs-lookup"><span data-stu-id="38ad9-154">Relative paths are supported too.</span></span> <span data-ttu-id="38ad9-155">Por exemplo: `--files dist/browser/signalr.js`.</span><span class="sxs-lookup"><span data-stu-id="38ad9-155">For example: `--files dist/browser/signalr.js`.</span></span>
 
 * `-p|--provider <PROVIDER>`
 
-  <span data-ttu-id="438e6-156">O nome do provedor a ser usado para a aquisição da biblioteca.</span><span class="sxs-lookup"><span data-stu-id="438e6-156">The name of the provider to use for the library acquisition.</span></span> <span data-ttu-id="438e6-157">Substitua `<PROVIDER>` por um dos seguintes valores:</span><span class="sxs-lookup"><span data-stu-id="438e6-157">Replace `<PROVIDER>` with one of the following values:</span></span>
+  <span data-ttu-id="38ad9-156">O nome do provedor a ser usado para a aquisição da biblioteca.</span><span class="sxs-lookup"><span data-stu-id="38ad9-156">The name of the provider to use for the library acquisition.</span></span> <span data-ttu-id="38ad9-157">Substitua `<PROVIDER>` por um dos seguintes valores:</span><span class="sxs-lookup"><span data-stu-id="38ad9-157">Replace `<PROVIDER>` with one of the following values:</span></span>
   
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
-  <span data-ttu-id="438e6-158">Se não for especificado, a propriedade `defaultProvider` em *Libman. JSON* será usada.</span><span class="sxs-lookup"><span data-stu-id="438e6-158">If not specified, the `defaultProvider` property in *libman.json* is used.</span></span> <span data-ttu-id="438e6-159">Se nenhuma propriedade `defaultProvider` for especificada em *Libman. JSON*, essa opção será necessária.</span><span class="sxs-lookup"><span data-stu-id="438e6-159">If no `defaultProvider` property is specified in *libman.json*, this option is required.</span></span>
+  <span data-ttu-id="38ad9-158">Se não for especificado, a propriedade `defaultProvider` em *Libman. JSON* será usada.</span><span class="sxs-lookup"><span data-stu-id="38ad9-158">If not specified, the `defaultProvider` property in *libman.json* is used.</span></span> <span data-ttu-id="38ad9-159">Se nenhuma propriedade `defaultProvider` for especificada em *Libman. JSON*, essa opção será necessária.</span><span class="sxs-lookup"><span data-stu-id="38ad9-159">If no `defaultProvider` property is specified in *libman.json*, this option is required.</span></span>
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a><span data-ttu-id="438e6-160">Exemplos</span><span class="sxs-lookup"><span data-stu-id="438e6-160">Examples</span></span>
+### <a name="examples"></a><span data-ttu-id="38ad9-160">Exemplos</span><span class="sxs-lookup"><span data-stu-id="38ad9-160">Examples</span></span>
 
-<span data-ttu-id="438e6-161">Considere o seguinte arquivo *Libman. JSON* :</span><span class="sxs-lookup"><span data-stu-id="438e6-161">Consider the following *libman.json* file:</span></span>
+<span data-ttu-id="38ad9-161">Considere o seguinte arquivo *Libman. JSON* :</span><span class="sxs-lookup"><span data-stu-id="38ad9-161">Consider the following *libman.json* file:</span></span>
 
 ```json
 {
@@ -197,13 +197,13 @@ libman install [-h|--help]
 }
 ```
 
-<span data-ttu-id="438e6-162">Para instalar o arquivo jQuery versão 3.2.1 *jQuery. min. js* na pasta *wwwroot/scripts/jQuery* usando o provedor CDNJS:</span><span class="sxs-lookup"><span data-stu-id="438e6-162">To install the jQuery version 3.2.1 *jquery.min.js* file to the *wwwroot/scripts/jquery* folder using the CDNJS provider:</span></span>
+<span data-ttu-id="38ad9-162">Para instalar o arquivo jQuery versão 3.2.1 *jQuery. min. js* na pasta *wwwroot/scripts/jQuery* usando o provedor CDNJS:</span><span class="sxs-lookup"><span data-stu-id="38ad9-162">To install the jQuery version 3.2.1 *jquery.min.js* file to the *wwwroot/scripts/jquery* folder using the CDNJS provider:</span></span>
 
 ```console
 libman install jquery@3.2.1 --provider cdnjs --destination wwwroot/scripts/jquery --files jquery.min.js
 ```
 
-<span data-ttu-id="438e6-163">O arquivo *Libman. JSON* é semelhante ao seguinte:</span><span class="sxs-lookup"><span data-stu-id="438e6-163">The *libman.json* file resembles the following:</span></span>
+<span data-ttu-id="38ad9-163">O arquivo *Libman. JSON* é semelhante ao seguinte:</span><span class="sxs-lookup"><span data-stu-id="38ad9-163">The *libman.json* file resembles the following:</span></span>
 
 ```json
 {
@@ -221,20 +221,20 @@ libman install jquery@3.2.1 --provider cdnjs --destination wwwroot/scripts/jquer
 }
 ```
 
-<span data-ttu-id="438e6-164">Para instalar os arquivos *Calendar. js* e *Calendar. css* de *C:\\Temp\\contosoCalendar\\* usando o provedor do sistema de arquivos:</span><span class="sxs-lookup"><span data-stu-id="438e6-164">To install the *calendar.js* and *calendar.css* files from *C:\\temp\\contosoCalendar\\* using the file system provider:</span></span>
+<span data-ttu-id="38ad9-164">Para instalar os arquivos *Calendar. js* e *Calendar. css* de *C:\\Temp\\contosoCalendar\\* usando o provedor do sistema de arquivos:</span><span class="sxs-lookup"><span data-stu-id="38ad9-164">To install the *calendar.js* and *calendar.css* files from *C:\\temp\\contosoCalendar\\* using the file system provider:</span></span>
 
   ```console
   libman install C:\temp\contosoCalendar\ --provider filesystem --files calendar.js --files calendar.css
   ```
 
-<span data-ttu-id="438e6-165">O prompt a seguir aparece por dois motivos:</span><span class="sxs-lookup"><span data-stu-id="438e6-165">The following prompt appears for two reasons:</span></span>
+<span data-ttu-id="38ad9-165">O prompt a seguir aparece por dois motivos:</span><span class="sxs-lookup"><span data-stu-id="38ad9-165">The following prompt appears for two reasons:</span></span>
 
-* <span data-ttu-id="438e6-166">O arquivo *Libman. JSON* não contém uma propriedade `defaultDestination`.</span><span class="sxs-lookup"><span data-stu-id="438e6-166">The *libman.json* file doesn't contain a `defaultDestination` property.</span></span>
-* <span data-ttu-id="438e6-167">O comando `libman install` não contém a opção `-d|--destination`.</span><span class="sxs-lookup"><span data-stu-id="438e6-167">The `libman install` command doesn't contain the `-d|--destination` option.</span></span>
+* <span data-ttu-id="38ad9-166">O arquivo *Libman. JSON* não contém uma propriedade `defaultDestination`.</span><span class="sxs-lookup"><span data-stu-id="38ad9-166">The *libman.json* file doesn't contain a `defaultDestination` property.</span></span>
+* <span data-ttu-id="38ad9-167">O comando `libman install` não contém a opção `-d|--destination`.</span><span class="sxs-lookup"><span data-stu-id="38ad9-167">The `libman install` command doesn't contain the `-d|--destination` option.</span></span>
 
 ![comando de instalação do Libman-destino](_static/libman-install-destination.png)
 
-<span data-ttu-id="438e6-169">Depois de aceitar o destino padrão, o arquivo *Libman. JSON* é semelhante ao seguinte:</span><span class="sxs-lookup"><span data-stu-id="438e6-169">After accepting the default destination, the *libman.json* file resembles the following:</span></span>
+<span data-ttu-id="38ad9-169">Depois de aceitar o destino padrão, o arquivo *Libman. JSON* é semelhante ao seguinte:</span><span class="sxs-lookup"><span data-stu-id="38ad9-169">After accepting the default destination, the *libman.json* file resembles the following:</span></span>
 
 ```json
 {
@@ -261,100 +261,100 @@ libman install jquery@3.2.1 --provider cdnjs --destination wwwroot/scripts/jquer
 }
 ```
 
-## <a name="restore-library-files"></a><span data-ttu-id="438e6-170">Restaurar arquivos de biblioteca</span><span class="sxs-lookup"><span data-stu-id="438e6-170">Restore library files</span></span>
+## <a name="restore-library-files"></a><span data-ttu-id="38ad9-170">Restaurar arquivos de biblioteca</span><span class="sxs-lookup"><span data-stu-id="38ad9-170">Restore library files</span></span>
 
-<span data-ttu-id="438e6-171">O comando `libman restore` instala os arquivos de biblioteca definidos em *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="438e6-171">The `libman restore` command installs library files defined in *libman.json*.</span></span> <span data-ttu-id="438e6-172">As seguintes regras se aplicam:</span><span class="sxs-lookup"><span data-stu-id="438e6-172">The following rules apply:</span></span>
+<span data-ttu-id="38ad9-171">O comando `libman restore` instala os arquivos de biblioteca definidos em *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="38ad9-171">The `libman restore` command installs library files defined in *libman.json*.</span></span> <span data-ttu-id="38ad9-172">As seguintes regras se aplicam:</span><span class="sxs-lookup"><span data-stu-id="38ad9-172">The following rules apply:</span></span>
 
-* <span data-ttu-id="438e6-173">Se nenhum arquivo *Libman. JSON* existir na raiz do projeto, um erro será retornado.</span><span class="sxs-lookup"><span data-stu-id="438e6-173">If no *libman.json* file exists in the project root, an error is returned.</span></span>
-* <span data-ttu-id="438e6-174">Se uma biblioteca especificar um provedor, a propriedade `defaultProvider` em *Libman. JSON* será ignorada.</span><span class="sxs-lookup"><span data-stu-id="438e6-174">If a library specifies a provider, the `defaultProvider` property in *libman.json* is ignored.</span></span>
-* <span data-ttu-id="438e6-175">Se uma biblioteca especificar um destino, a propriedade `defaultDestination` em *Libman. JSON* será ignorada.</span><span class="sxs-lookup"><span data-stu-id="438e6-175">If a library specifies a destination, the `defaultDestination` property in *libman.json* is ignored.</span></span>
+* <span data-ttu-id="38ad9-173">Se nenhum arquivo *Libman. JSON* existir na raiz do projeto, um erro será retornado.</span><span class="sxs-lookup"><span data-stu-id="38ad9-173">If no *libman.json* file exists in the project root, an error is returned.</span></span>
+* <span data-ttu-id="38ad9-174">Se uma biblioteca especificar um provedor, a propriedade `defaultProvider` em *Libman. JSON* será ignorada.</span><span class="sxs-lookup"><span data-stu-id="38ad9-174">If a library specifies a provider, the `defaultProvider` property in *libman.json* is ignored.</span></span>
+* <span data-ttu-id="38ad9-175">Se uma biblioteca especificar um destino, a propriedade `defaultDestination` em *Libman. JSON* será ignorada.</span><span class="sxs-lookup"><span data-stu-id="38ad9-175">If a library specifies a destination, the `defaultDestination` property in *libman.json* is ignored.</span></span>
 
-### <a name="synopsis"></a><span data-ttu-id="438e6-176">Sinopse</span><span class="sxs-lookup"><span data-stu-id="438e6-176">Synopsis</span></span>
+### <a name="synopsis"></a><span data-ttu-id="38ad9-176">Sinopse</span><span class="sxs-lookup"><span data-stu-id="38ad9-176">Synopsis</span></span>
 
 ```console
 libman restore [--verbosity]
 libman restore [-h|--help]
 ```
 
-### <a name="options"></a><span data-ttu-id="438e6-177">Opções</span><span class="sxs-lookup"><span data-stu-id="438e6-177">Options</span></span>
+### <a name="options"></a><span data-ttu-id="38ad9-177">Opções</span><span class="sxs-lookup"><span data-stu-id="38ad9-177">Options</span></span>
 
-<span data-ttu-id="438e6-178">As opções a seguir estão disponíveis para o comando `libman restore`:</span><span class="sxs-lookup"><span data-stu-id="438e6-178">The following options are available for the `libman restore` command:</span></span>
+<span data-ttu-id="38ad9-178">As opções a seguir estão disponíveis para o comando `libman restore`:</span><span class="sxs-lookup"><span data-stu-id="38ad9-178">The following options are available for the `libman restore` command:</span></span>
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a><span data-ttu-id="438e6-179">Exemplos</span><span class="sxs-lookup"><span data-stu-id="438e6-179">Examples</span></span>
+### <a name="examples"></a><span data-ttu-id="38ad9-179">Exemplos</span><span class="sxs-lookup"><span data-stu-id="38ad9-179">Examples</span></span>
 
-<span data-ttu-id="438e6-180">Para restaurar os arquivos de biblioteca definidos em *Libman. JSON*:</span><span class="sxs-lookup"><span data-stu-id="438e6-180">To restore the library files defined in *libman.json*:</span></span>
+<span data-ttu-id="38ad9-180">Para restaurar os arquivos de biblioteca definidos em *Libman. JSON*:</span><span class="sxs-lookup"><span data-stu-id="38ad9-180">To restore the library files defined in *libman.json*:</span></span>
 
 ```console
 libman restore
 ```
 
-## <a name="delete-library-files"></a><span data-ttu-id="438e6-181">Excluir arquivos de biblioteca</span><span class="sxs-lookup"><span data-stu-id="438e6-181">Delete library files</span></span>
+## <a name="delete-library-files"></a><span data-ttu-id="38ad9-181">Excluir arquivos de biblioteca</span><span class="sxs-lookup"><span data-stu-id="38ad9-181">Delete library files</span></span>
 
-<span data-ttu-id="438e6-182">O comando `libman clean` exclui os arquivos de biblioteca restaurados anteriormente por meio de LibMan.</span><span class="sxs-lookup"><span data-stu-id="438e6-182">The `libman clean` command deletes library files previously restored via LibMan.</span></span> <span data-ttu-id="438e6-183">Pastas que se tornam vazias depois que essa operação é excluída.</span><span class="sxs-lookup"><span data-stu-id="438e6-183">Folders that become empty after this operation are deleted.</span></span> <span data-ttu-id="438e6-184">As configurações associadas dos arquivos de biblioteca na propriedade `libraries` de *Libman. JSON* não são removidas.</span><span class="sxs-lookup"><span data-stu-id="438e6-184">The library files' associated configurations in the `libraries` property of *libman.json* aren't removed.</span></span>
+<span data-ttu-id="38ad9-182">O comando `libman clean` exclui os arquivos de biblioteca restaurados anteriormente por meio de LibMan.</span><span class="sxs-lookup"><span data-stu-id="38ad9-182">The `libman clean` command deletes library files previously restored via LibMan.</span></span> <span data-ttu-id="38ad9-183">Pastas que se tornam vazias depois que essa operação é excluída.</span><span class="sxs-lookup"><span data-stu-id="38ad9-183">Folders that become empty after this operation are deleted.</span></span> <span data-ttu-id="38ad9-184">As configurações associadas dos arquivos de biblioteca na propriedade `libraries` de *Libman. JSON* não são removidas.</span><span class="sxs-lookup"><span data-stu-id="38ad9-184">The library files' associated configurations in the `libraries` property of *libman.json* aren't removed.</span></span>
 
-### <a name="synopsis"></a><span data-ttu-id="438e6-185">Sinopse</span><span class="sxs-lookup"><span data-stu-id="438e6-185">Synopsis</span></span>
+### <a name="synopsis"></a><span data-ttu-id="38ad9-185">Sinopse</span><span class="sxs-lookup"><span data-stu-id="38ad9-185">Synopsis</span></span>
 
 ```console
 libman clean [--verbosity]
 libman clean [-h|--help]
 ```
 
-### <a name="options"></a><span data-ttu-id="438e6-186">Opções</span><span class="sxs-lookup"><span data-stu-id="438e6-186">Options</span></span>
+### <a name="options"></a><span data-ttu-id="38ad9-186">Opções</span><span class="sxs-lookup"><span data-stu-id="38ad9-186">Options</span></span>
 
-<span data-ttu-id="438e6-187">As opções a seguir estão disponíveis para o comando `libman clean`:</span><span class="sxs-lookup"><span data-stu-id="438e6-187">The following options are available for the `libman clean` command:</span></span>
+<span data-ttu-id="38ad9-187">As opções a seguir estão disponíveis para o comando `libman clean`:</span><span class="sxs-lookup"><span data-stu-id="38ad9-187">The following options are available for the `libman clean` command:</span></span>
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a><span data-ttu-id="438e6-188">Exemplos</span><span class="sxs-lookup"><span data-stu-id="438e6-188">Examples</span></span>
+### <a name="examples"></a><span data-ttu-id="38ad9-188">Exemplos</span><span class="sxs-lookup"><span data-stu-id="38ad9-188">Examples</span></span>
 
-<span data-ttu-id="438e6-189">Para excluir arquivos de biblioteca instalados por meio do LibMan:</span><span class="sxs-lookup"><span data-stu-id="438e6-189">To delete library files installed via LibMan:</span></span>
+<span data-ttu-id="38ad9-189">Para excluir arquivos de biblioteca instalados por meio do LibMan:</span><span class="sxs-lookup"><span data-stu-id="38ad9-189">To delete library files installed via LibMan:</span></span>
 
 ```console
 libman clean
 ```
 
-## <a name="uninstall-library-files"></a><span data-ttu-id="438e6-190">Desinstalar arquivos de biblioteca</span><span class="sxs-lookup"><span data-stu-id="438e6-190">Uninstall library files</span></span>
+## <a name="uninstall-library-files"></a><span data-ttu-id="38ad9-190">Desinstalar arquivos de biblioteca</span><span class="sxs-lookup"><span data-stu-id="38ad9-190">Uninstall library files</span></span>
 
-<span data-ttu-id="438e6-191">O comando `libman uninstall`:</span><span class="sxs-lookup"><span data-stu-id="438e6-191">The `libman uninstall` command:</span></span>
+<span data-ttu-id="38ad9-191">O comando `libman uninstall`:</span><span class="sxs-lookup"><span data-stu-id="38ad9-191">The `libman uninstall` command:</span></span>
 
-* <span data-ttu-id="438e6-192">Exclui todos os arquivos associados à biblioteca especificada do destino em *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="438e6-192">Deletes all files associated with the specified library from the destination in *libman.json*.</span></span>
-* <span data-ttu-id="438e6-193">Remove a configuração de biblioteca associada de *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="438e6-193">Removes the associated library configuration from *libman.json*.</span></span>
+* <span data-ttu-id="38ad9-192">Exclui todos os arquivos associados à biblioteca especificada do destino em *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="38ad9-192">Deletes all files associated with the specified library from the destination in *libman.json*.</span></span>
+* <span data-ttu-id="38ad9-193">Remove a configuração de biblioteca associada de *Libman. JSON*.</span><span class="sxs-lookup"><span data-stu-id="38ad9-193">Removes the associated library configuration from *libman.json*.</span></span>
 
-<span data-ttu-id="438e6-194">Ocorrerá um erro quando:</span><span class="sxs-lookup"><span data-stu-id="438e6-194">An error occurs when:</span></span>
+<span data-ttu-id="38ad9-194">Ocorrerá um erro quando:</span><span class="sxs-lookup"><span data-stu-id="38ad9-194">An error occurs when:</span></span>
 
-* <span data-ttu-id="438e6-195">Nenhum arquivo *Libman. JSON* existe na raiz do projeto.</span><span class="sxs-lookup"><span data-stu-id="438e6-195">No *libman.json* file exists in the project root.</span></span>
-* <span data-ttu-id="438e6-196">A biblioteca especificada não existe.</span><span class="sxs-lookup"><span data-stu-id="438e6-196">The specified library doesn't exist.</span></span>
+* <span data-ttu-id="38ad9-195">Nenhum arquivo *Libman. JSON* existe na raiz do projeto.</span><span class="sxs-lookup"><span data-stu-id="38ad9-195">No *libman.json* file exists in the project root.</span></span>
+* <span data-ttu-id="38ad9-196">A biblioteca especificada não existe.</span><span class="sxs-lookup"><span data-stu-id="38ad9-196">The specified library doesn't exist.</span></span>
 
-<span data-ttu-id="438e6-197">Se mais de uma biblioteca com o mesmo nome estiver instalada, você será solicitado a escolher uma.</span><span class="sxs-lookup"><span data-stu-id="438e6-197">If more than one library with the same name is installed, you're prompted to choose one.</span></span>
+<span data-ttu-id="38ad9-197">Se mais de uma biblioteca com o mesmo nome estiver instalada, você será solicitado a escolher uma.</span><span class="sxs-lookup"><span data-stu-id="38ad9-197">If more than one library with the same name is installed, you're prompted to choose one.</span></span>
 
-### <a name="synopsis"></a><span data-ttu-id="438e6-198">Sinopse</span><span class="sxs-lookup"><span data-stu-id="438e6-198">Synopsis</span></span>
+### <a name="synopsis"></a><span data-ttu-id="38ad9-198">Sinopse</span><span class="sxs-lookup"><span data-stu-id="38ad9-198">Synopsis</span></span>
 
 ```console
 libman uninstall <LIBRARY> [--verbosity]
 libman uninstall [-h|--help]
 ```
 
-### <a name="arguments"></a><span data-ttu-id="438e6-199">Arguments</span><span class="sxs-lookup"><span data-stu-id="438e6-199">Arguments</span></span>
+### <a name="arguments"></a><span data-ttu-id="38ad9-199">Arguments</span><span class="sxs-lookup"><span data-stu-id="38ad9-199">Arguments</span></span>
 
 `LIBRARY`
 
-<span data-ttu-id="438e6-200">O nome da biblioteca a ser desinstalada.</span><span class="sxs-lookup"><span data-stu-id="438e6-200">The name of the library to uninstall.</span></span> <span data-ttu-id="438e6-201">Esse nome pode incluir a notação de número de versão (por exemplo, `@1.2.0`).</span><span class="sxs-lookup"><span data-stu-id="438e6-201">This name may include version number notation (for example, `@1.2.0`).</span></span>
+<span data-ttu-id="38ad9-200">O nome da biblioteca a ser desinstalada.</span><span class="sxs-lookup"><span data-stu-id="38ad9-200">The name of the library to uninstall.</span></span> <span data-ttu-id="38ad9-201">Esse nome pode incluir a notação de número de versão (por exemplo, `@1.2.0`).</span><span class="sxs-lookup"><span data-stu-id="38ad9-201">This name may include version number notation (for example, `@1.2.0`).</span></span>
 
-### <a name="options"></a><span data-ttu-id="438e6-202">Opções</span><span class="sxs-lookup"><span data-stu-id="438e6-202">Options</span></span>
+### <a name="options"></a><span data-ttu-id="38ad9-202">Opções</span><span class="sxs-lookup"><span data-stu-id="38ad9-202">Options</span></span>
 
-<span data-ttu-id="438e6-203">As opções a seguir estão disponíveis para o comando `libman uninstall`:</span><span class="sxs-lookup"><span data-stu-id="438e6-203">The following options are available for the `libman uninstall` command:</span></span>
+<span data-ttu-id="38ad9-203">As opções a seguir estão disponíveis para o comando `libman uninstall`:</span><span class="sxs-lookup"><span data-stu-id="38ad9-203">The following options are available for the `libman uninstall` command:</span></span>
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a><span data-ttu-id="438e6-204">Exemplos</span><span class="sxs-lookup"><span data-stu-id="438e6-204">Examples</span></span>
+### <a name="examples"></a><span data-ttu-id="38ad9-204">Exemplos</span><span class="sxs-lookup"><span data-stu-id="38ad9-204">Examples</span></span>
 
-<span data-ttu-id="438e6-205">Considere o seguinte arquivo *Libman. JSON* :</span><span class="sxs-lookup"><span data-stu-id="438e6-205">Consider the following *libman.json* file:</span></span>
+<span data-ttu-id="38ad9-205">Considere o seguinte arquivo *Libman. JSON* :</span><span class="sxs-lookup"><span data-stu-id="38ad9-205">Consider the following *libman.json* file:</span></span>
 
 [!code-json[](samples/LibManSample/libman.json)]
 
-* <span data-ttu-id="438e6-206">Para desinstalar o jQuery, qualquer um dos seguintes comandos é executado com sucesso:</span><span class="sxs-lookup"><span data-stu-id="438e6-206">To uninstall jQuery, either of the following commands succeed:</span></span>
+* <span data-ttu-id="38ad9-206">Para desinstalar o jQuery, qualquer um dos seguintes comandos é executado com sucesso:</span><span class="sxs-lookup"><span data-stu-id="38ad9-206">To uninstall jQuery, either of the following commands succeed:</span></span>
 
   ```console
   libman uninstall jquery
@@ -364,75 +364,75 @@ libman uninstall [-h|--help]
   libman uninstall jquery@3.3.1
   ```
 
-* <span data-ttu-id="438e6-207">Para desinstalar os arquivos do Lodash instalados por meio do provedor de `filesystem`:</span><span class="sxs-lookup"><span data-stu-id="438e6-207">To uninstall the Lodash files installed via the `filesystem` provider:</span></span>
+* <span data-ttu-id="38ad9-207">Para desinstalar os arquivos do Lodash instalados por meio do provedor de `filesystem`:</span><span class="sxs-lookup"><span data-stu-id="38ad9-207">To uninstall the Lodash files installed via the `filesystem` provider:</span></span>
 
   ```console
   libman uninstall C:\temp\lodash\
   ```
 
-## <a name="update-library-version"></a><span data-ttu-id="438e6-208">Atualizar versão da biblioteca</span><span class="sxs-lookup"><span data-stu-id="438e6-208">Update library version</span></span>
+## <a name="update-library-version"></a><span data-ttu-id="38ad9-208">Atualizar versão da biblioteca</span><span class="sxs-lookup"><span data-stu-id="38ad9-208">Update library version</span></span>
 
-<span data-ttu-id="438e6-209">O comando `libman update` atualiza uma biblioteca instalada via LibMan para a versão especificada.</span><span class="sxs-lookup"><span data-stu-id="438e6-209">The `libman update` command updates a library installed via LibMan to the specified version.</span></span>
+<span data-ttu-id="38ad9-209">O comando `libman update` atualiza uma biblioteca instalada via LibMan para a versão especificada.</span><span class="sxs-lookup"><span data-stu-id="38ad9-209">The `libman update` command updates a library installed via LibMan to the specified version.</span></span>
 
-<span data-ttu-id="438e6-210">Ocorrerá um erro quando:</span><span class="sxs-lookup"><span data-stu-id="438e6-210">An error occurs when:</span></span>
+<span data-ttu-id="38ad9-210">Ocorrerá um erro quando:</span><span class="sxs-lookup"><span data-stu-id="38ad9-210">An error occurs when:</span></span>
 
-* <span data-ttu-id="438e6-211">Nenhum arquivo *Libman. JSON* existe na raiz do projeto.</span><span class="sxs-lookup"><span data-stu-id="438e6-211">No *libman.json* file exists in the project root.</span></span>
-* <span data-ttu-id="438e6-212">A biblioteca especificada não existe.</span><span class="sxs-lookup"><span data-stu-id="438e6-212">The specified library doesn't exist.</span></span>
+* <span data-ttu-id="38ad9-211">Nenhum arquivo *Libman. JSON* existe na raiz do projeto.</span><span class="sxs-lookup"><span data-stu-id="38ad9-211">No *libman.json* file exists in the project root.</span></span>
+* <span data-ttu-id="38ad9-212">A biblioteca especificada não existe.</span><span class="sxs-lookup"><span data-stu-id="38ad9-212">The specified library doesn't exist.</span></span>
 
-<span data-ttu-id="438e6-213">Se mais de uma biblioteca com o mesmo nome estiver instalada, você será solicitado a escolher uma.</span><span class="sxs-lookup"><span data-stu-id="438e6-213">If more than one library with the same name is installed, you're prompted to choose one.</span></span>
+<span data-ttu-id="38ad9-213">Se mais de uma biblioteca com o mesmo nome estiver instalada, você será solicitado a escolher uma.</span><span class="sxs-lookup"><span data-stu-id="38ad9-213">If more than one library with the same name is installed, you're prompted to choose one.</span></span>
 
-### <a name="synopsis"></a><span data-ttu-id="438e6-214">Sinopse</span><span class="sxs-lookup"><span data-stu-id="438e6-214">Synopsis</span></span>
+### <a name="synopsis"></a><span data-ttu-id="38ad9-214">Sinopse</span><span class="sxs-lookup"><span data-stu-id="38ad9-214">Synopsis</span></span>
 
 ```console
 libman update <LIBRARY> [-pre] [--to] [--verbosity]
 libman update [-h|--help]
 ```
 
-### <a name="arguments"></a><span data-ttu-id="438e6-215">Arguments</span><span class="sxs-lookup"><span data-stu-id="438e6-215">Arguments</span></span>
+### <a name="arguments"></a><span data-ttu-id="38ad9-215">Arguments</span><span class="sxs-lookup"><span data-stu-id="38ad9-215">Arguments</span></span>
 
 `LIBRARY`
 
-<span data-ttu-id="438e6-216">O nome da biblioteca a ser atualizada.</span><span class="sxs-lookup"><span data-stu-id="438e6-216">The name of the library to update.</span></span>
+<span data-ttu-id="38ad9-216">O nome da biblioteca a ser atualizada.</span><span class="sxs-lookup"><span data-stu-id="38ad9-216">The name of the library to update.</span></span>
 
-### <a name="options"></a><span data-ttu-id="438e6-217">Opções</span><span class="sxs-lookup"><span data-stu-id="438e6-217">Options</span></span>
+### <a name="options"></a><span data-ttu-id="38ad9-217">Opções</span><span class="sxs-lookup"><span data-stu-id="38ad9-217">Options</span></span>
 
-<span data-ttu-id="438e6-218">As opções a seguir estão disponíveis para o comando `libman update`:</span><span class="sxs-lookup"><span data-stu-id="438e6-218">The following options are available for the `libman update` command:</span></span>
+<span data-ttu-id="38ad9-218">As opções a seguir estão disponíveis para o comando `libman update`:</span><span class="sxs-lookup"><span data-stu-id="38ad9-218">The following options are available for the `libman update` command:</span></span>
 
 * `-pre`
 
-  <span data-ttu-id="438e6-219">Obtenha a versão de pré-lançamento mais recente da biblioteca.</span><span class="sxs-lookup"><span data-stu-id="438e6-219">Obtain the latest prerelease version of the library.</span></span>
+  <span data-ttu-id="38ad9-219">Obtenha a versão de pré-lançamento mais recente da biblioteca.</span><span class="sxs-lookup"><span data-stu-id="38ad9-219">Obtain the latest prerelease version of the library.</span></span>
 
 * `--to <VERSION>`
 
-  <span data-ttu-id="438e6-220">Obtenha uma versão específica da biblioteca.</span><span class="sxs-lookup"><span data-stu-id="438e6-220">Obtain a specific version of the library.</span></span>
+  <span data-ttu-id="38ad9-220">Obtenha uma versão específica da biblioteca.</span><span class="sxs-lookup"><span data-stu-id="38ad9-220">Obtain a specific version of the library.</span></span>
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a><span data-ttu-id="438e6-221">Exemplos</span><span class="sxs-lookup"><span data-stu-id="438e6-221">Examples</span></span>
+### <a name="examples"></a><span data-ttu-id="38ad9-221">Exemplos</span><span class="sxs-lookup"><span data-stu-id="38ad9-221">Examples</span></span>
 
-* <span data-ttu-id="438e6-222">Para atualizar o jQuery para a versão mais recente:</span><span class="sxs-lookup"><span data-stu-id="438e6-222">To update jQuery to the latest version:</span></span>
+* <span data-ttu-id="38ad9-222">Para atualizar o jQuery para a versão mais recente:</span><span class="sxs-lookup"><span data-stu-id="38ad9-222">To update jQuery to the latest version:</span></span>
 
   ```console
   libman update jquery
   ```
 
-* <span data-ttu-id="438e6-223">Para atualizar o jQuery para a versão 3.3.1:</span><span class="sxs-lookup"><span data-stu-id="438e6-223">To update jQuery to version 3.3.1:</span></span>
+* <span data-ttu-id="38ad9-223">Para atualizar o jQuery para a versão 3.3.1:</span><span class="sxs-lookup"><span data-stu-id="38ad9-223">To update jQuery to version 3.3.1:</span></span>
 
   ```console
   libman update jquery --to 3.3.1
   ```
 
-* <span data-ttu-id="438e6-224">Para atualizar o jQuery para a versão de pré-lançamento mais recente:</span><span class="sxs-lookup"><span data-stu-id="438e6-224">To update jQuery to the latest prerelease version:</span></span>
+* <span data-ttu-id="38ad9-224">Para atualizar o jQuery para a versão de pré-lançamento mais recente:</span><span class="sxs-lookup"><span data-stu-id="38ad9-224">To update jQuery to the latest prerelease version:</span></span>
 
   ```console
   libman update jquery -pre
   ```
 
-## <a name="manage-library-cache"></a><span data-ttu-id="438e6-225">Gerenciar cache de biblioteca</span><span class="sxs-lookup"><span data-stu-id="438e6-225">Manage library cache</span></span>
+## <a name="manage-library-cache"></a><span data-ttu-id="38ad9-225">Gerenciar cache de biblioteca</span><span class="sxs-lookup"><span data-stu-id="38ad9-225">Manage library cache</span></span>
 
-<span data-ttu-id="438e6-226">O comando `libman cache` gerencia o cache da biblioteca LibMan.</span><span class="sxs-lookup"><span data-stu-id="438e6-226">The `libman cache` command manages the LibMan library cache.</span></span> <span data-ttu-id="438e6-227">O provedor de `filesystem` não usa o cache de biblioteca.</span><span class="sxs-lookup"><span data-stu-id="438e6-227">The `filesystem` provider doesn't use the library cache.</span></span>
+<span data-ttu-id="38ad9-226">O comando `libman cache` gerencia o cache da biblioteca LibMan.</span><span class="sxs-lookup"><span data-stu-id="38ad9-226">The `libman cache` command manages the LibMan library cache.</span></span> <span data-ttu-id="38ad9-227">O provedor de `filesystem` não usa o cache de biblioteca.</span><span class="sxs-lookup"><span data-stu-id="38ad9-227">The `filesystem` provider doesn't use the library cache.</span></span>
 
-### <a name="synopsis"></a><span data-ttu-id="438e6-228">Sinopse</span><span class="sxs-lookup"><span data-stu-id="438e6-228">Synopsis</span></span>
+### <a name="synopsis"></a><span data-ttu-id="38ad9-228">Sinopse</span><span class="sxs-lookup"><span data-stu-id="38ad9-228">Synopsis</span></span>
 
 ```console
 libman cache clean [<PROVIDER>] [--verbosity]
@@ -440,31 +440,31 @@ libman cache list [--files] [--libraries] [--verbosity]
 libman cache [-h|--help]
 ```
 
-### <a name="arguments"></a><span data-ttu-id="438e6-229">Arguments</span><span class="sxs-lookup"><span data-stu-id="438e6-229">Arguments</span></span>
+### <a name="arguments"></a><span data-ttu-id="38ad9-229">Arguments</span><span class="sxs-lookup"><span data-stu-id="38ad9-229">Arguments</span></span>
 
 `PROVIDER`
 
-<span data-ttu-id="438e6-230">Usado somente com o comando `clean`.</span><span class="sxs-lookup"><span data-stu-id="438e6-230">Only used with the `clean` command.</span></span> <span data-ttu-id="438e6-231">Especifica o cache do provedor a ser limpo.</span><span class="sxs-lookup"><span data-stu-id="438e6-231">Specifies the provider cache to clean.</span></span> <span data-ttu-id="438e6-232">Os valores válidos incluem:</span><span class="sxs-lookup"><span data-stu-id="438e6-232">Valid values include:</span></span>
+<span data-ttu-id="38ad9-230">Usado somente com o comando `clean`.</span><span class="sxs-lookup"><span data-stu-id="38ad9-230">Only used with the `clean` command.</span></span> <span data-ttu-id="38ad9-231">Especifica o cache do provedor a ser limpo.</span><span class="sxs-lookup"><span data-stu-id="38ad9-231">Specifies the provider cache to clean.</span></span> <span data-ttu-id="38ad9-232">Os valores válidos incluem:</span><span class="sxs-lookup"><span data-stu-id="38ad9-232">Valid values include:</span></span>
 
 [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
-### <a name="options"></a><span data-ttu-id="438e6-233">Opções</span><span class="sxs-lookup"><span data-stu-id="438e6-233">Options</span></span>
+### <a name="options"></a><span data-ttu-id="38ad9-233">Opções</span><span class="sxs-lookup"><span data-stu-id="38ad9-233">Options</span></span>
 
-<span data-ttu-id="438e6-234">As opções a seguir estão disponíveis para o comando `libman cache`:</span><span class="sxs-lookup"><span data-stu-id="438e6-234">The following options are available for the `libman cache` command:</span></span>
+<span data-ttu-id="38ad9-234">As opções a seguir estão disponíveis para o comando `libman cache`:</span><span class="sxs-lookup"><span data-stu-id="38ad9-234">The following options are available for the `libman cache` command:</span></span>
 
 * `--files`
 
-  <span data-ttu-id="438e6-235">Lista os nomes de arquivos que são armazenados em cache.</span><span class="sxs-lookup"><span data-stu-id="438e6-235">List the names of files that are cached.</span></span>
+  <span data-ttu-id="38ad9-235">Lista os nomes de arquivos que são armazenados em cache.</span><span class="sxs-lookup"><span data-stu-id="38ad9-235">List the names of files that are cached.</span></span>
 
 * `--libraries`
 
-  <span data-ttu-id="438e6-236">Liste os nomes das bibliotecas armazenadas em cache.</span><span class="sxs-lookup"><span data-stu-id="438e6-236">List the names of libraries that are cached.</span></span>
+  <span data-ttu-id="38ad9-236">Liste os nomes das bibliotecas armazenadas em cache.</span><span class="sxs-lookup"><span data-stu-id="38ad9-236">List the names of libraries that are cached.</span></span>
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
-### <a name="examples"></a><span data-ttu-id="438e6-237">Exemplos</span><span class="sxs-lookup"><span data-stu-id="438e6-237">Examples</span></span>
+### <a name="examples"></a><span data-ttu-id="38ad9-237">Exemplos</span><span class="sxs-lookup"><span data-stu-id="38ad9-237">Examples</span></span>
 
-* <span data-ttu-id="438e6-238">Para exibir os nomes das bibliotecas armazenadas em cache por provedor, use um dos seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="438e6-238">To view the names of cached libraries per provider, use one of the following commands:</span></span>
+* <span data-ttu-id="38ad9-238">Para exibir os nomes das bibliotecas armazenadas em cache por provedor, use um dos seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="38ad9-238">To view the names of cached libraries per provider, use one of the following commands:</span></span>
 
   ```console
   libman cache list
@@ -474,7 +474,7 @@ libman cache [-h|--help]
   libman cache list --libraries
   ```
 
-  <span data-ttu-id="438e6-239">Uma saída semelhante à apresentada a seguir será exibida:</span><span class="sxs-lookup"><span data-stu-id="438e6-239">Output similar to the following is displayed:</span></span>
+  <span data-ttu-id="38ad9-239">Uma saída semelhante à apresentada a seguir será exibida:</span><span class="sxs-lookup"><span data-stu-id="38ad9-239">Output similar to the following is displayed:</span></span>
 
   ```console
   Cache contents:
@@ -491,13 +491,13 @@ libman cache [-h|--help]
       react
   ```
 
-* <span data-ttu-id="438e6-240">Para exibir os nomes dos arquivos de biblioteca armazenados em cache por provedor:</span><span class="sxs-lookup"><span data-stu-id="438e6-240">To view the names of cached library files per provider:</span></span>
+* <span data-ttu-id="38ad9-240">Para exibir os nomes dos arquivos de biblioteca armazenados em cache por provedor:</span><span class="sxs-lookup"><span data-stu-id="38ad9-240">To view the names of cached library files per provider:</span></span>
 
   ```console
   libman cache list --files
   ```
 
-  <span data-ttu-id="438e6-241">Uma saída semelhante à apresentada a seguir será exibida:</span><span class="sxs-lookup"><span data-stu-id="438e6-241">Output similar to the following is displayed:</span></span>
+  <span data-ttu-id="38ad9-241">Uma saída semelhante à apresentada a seguir será exibida:</span><span class="sxs-lookup"><span data-stu-id="38ad9-241">Output similar to the following is displayed:</span></span>
 
   ```console
   Cache contents:
@@ -540,15 +540,15 @@ libman cache [-h|--help]
           metadata.json
   ```
 
-  <span data-ttu-id="438e6-242">Observe que a saída anterior mostra que as versões 3.2.1 e 3.3.1 do jQuery são armazenadas em cache no provedor CDNJS.</span><span class="sxs-lookup"><span data-stu-id="438e6-242">Notice the preceding output shows that jQuery versions 3.2.1 and 3.3.1 are cached under the CDNJS provider.</span></span>
+  <span data-ttu-id="38ad9-242">Observe que a saída anterior mostra que as versões 3.2.1 e 3.3.1 do jQuery são armazenadas em cache no provedor CDNJS.</span><span class="sxs-lookup"><span data-stu-id="38ad9-242">Notice the preceding output shows that jQuery versions 3.2.1 and 3.3.1 are cached under the CDNJS provider.</span></span>
 
-* <span data-ttu-id="438e6-243">Para esvaziar o cache de biblioteca para o provedor CDNJS:</span><span class="sxs-lookup"><span data-stu-id="438e6-243">To empty the library cache for the CDNJS provider:</span></span>
+* <span data-ttu-id="38ad9-243">Para esvaziar o cache de biblioteca para o provedor CDNJS:</span><span class="sxs-lookup"><span data-stu-id="38ad9-243">To empty the library cache for the CDNJS provider:</span></span>
 
   ```console
   libman cache clean cdnjs
   ```
 
-  <span data-ttu-id="438e6-244">Depois de esvaziar o cache do provedor de CDNJS, o comando `libman cache list` exibe o seguinte:</span><span class="sxs-lookup"><span data-stu-id="438e6-244">After emptying the CDNJS provider cache, the `libman cache list` command displays the following:</span></span>
+  <span data-ttu-id="38ad9-244">Depois de esvaziar o cache do provedor de CDNJS, o comando `libman cache list` exibe o seguinte:</span><span class="sxs-lookup"><span data-stu-id="38ad9-244">After emptying the CDNJS provider cache, the `libman cache list` command displays the following:</span></span>
 
   ```console
   Cache contents:
@@ -561,13 +561,13 @@ libman cache [-h|--help]
       (empty)
   ```
 
-* <span data-ttu-id="438e6-245">Para esvaziar o cache para todos os provedores com suporte:</span><span class="sxs-lookup"><span data-stu-id="438e6-245">To empty the cache for all supported providers:</span></span>
+* <span data-ttu-id="38ad9-245">Para esvaziar o cache para todos os provedores com suporte:</span><span class="sxs-lookup"><span data-stu-id="38ad9-245">To empty the cache for all supported providers:</span></span>
 
   ```console
   libman cache clean
   ```
 
-  <span data-ttu-id="438e6-246">Depois de esvaziar todos os caches do provedor, o comando `libman cache list` exibe o seguinte:</span><span class="sxs-lookup"><span data-stu-id="438e6-246">After emptying all provider caches, the `libman cache list` command displays the following:</span></span>
+  <span data-ttu-id="38ad9-246">Depois de esvaziar todos os caches do provedor, o comando `libman cache list` exibe o seguinte:</span><span class="sxs-lookup"><span data-stu-id="38ad9-246">After emptying all provider caches, the `libman cache list` command displays the following:</span></span>
 
   ```console
   Cache contents:
@@ -578,8 +578,8 @@ libman cache [-h|--help]
       (empty)
   ```
 
-## <a name="additional-resources"></a><span data-ttu-id="438e6-247">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="438e6-247">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="38ad9-247">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="38ad9-247">Additional resources</span></span>
 
-* [<span data-ttu-id="438e6-248">Instalar uma ferramenta global</span><span class="sxs-lookup"><span data-stu-id="438e6-248">Install a Global Tool</span></span>](/dotnet/core/tools/global-tools#install-a-global-tool)
+* [<span data-ttu-id="38ad9-248">Instalar uma ferramenta global</span><span class="sxs-lookup"><span data-stu-id="38ad9-248">Install a Global Tool</span></span>](/dotnet/core/tools/global-tools#install-a-global-tool)
 * <xref:client-side/libman/libman-vs>
-* [<span data-ttu-id="438e6-249">Repositório do GitHub do LibMan</span><span class="sxs-lookup"><span data-stu-id="438e6-249">LibMan GitHub repository</span></span>](https://github.com/aspnet/LibraryManager)
+* [<span data-ttu-id="38ad9-249">Repositório do GitHub do LibMan</span><span class="sxs-lookup"><span data-stu-id="38ad9-249">LibMan GitHub repository</span></span>](https://github.com/aspnet/LibraryManager)
