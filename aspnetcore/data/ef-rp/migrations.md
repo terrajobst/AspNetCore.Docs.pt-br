@@ -5,12 +5,12 @@ description: Neste tutorial, você começa a usar o recurso de migrações do EF
 ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/migrations
-ms.openlocfilehash: e6f44a32a473f8f3bacfa4d9608deba2f879b6b6
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: 4246d9d8f6e6ba9e9d735b944ed748720bcf3e16
+ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259714"
+ms.lasthandoff: 02/01/2020
+ms.locfileid: "76928371"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---migrations---4-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Migrações – 4 de 8
 
@@ -42,7 +42,7 @@ Drop-Database
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Execute o comando a seguir no prompt de comando para instalar as ferramentas da CLI do EF:
+* Execute o seguinte comando em um prompt de comando para instalar a CLI do EF:
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef
@@ -145,7 +145,7 @@ A solução pode ser executar `dotnet ef database update` em um prompt de comand
 * [CLI do EF Core](/ef/core/miscellaneous/cli/dotnet).
 * [Console do Gerenciador de Pacotes (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 O próximo tutorial cria o modelo de dados adicionando propriedades da entidade e novas entidades.
 

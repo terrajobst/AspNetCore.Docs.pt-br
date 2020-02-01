@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/08/2019
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 31a5e47d772e7416646c4d83c3209d7d2b254199
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: 623f739b17c0bed3ce929f562c9581ab26ecf5bc
+ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75829155"
+ms.lasthandoff: 02/01/2020
+ms.locfileid: "76928557"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Autenticação e autorização para SPAs
 
@@ -30,7 +30,7 @@ A autenticação e a autorização do usuário podem ser usadas com SPAs angular
 dotnet new angular -o <output_directory_name> -au Individual
 ```
 
-**React**:
+**Reagir**:
 
 ```dotnetcli
 dotnet new react -o <output_directory_name> -au Individual
@@ -260,7 +260,7 @@ async populateWeatherData() {
 }
 ```
 
-## <a name="deploy-to-production"></a>Implantar para a produção
+## <a name="deploy-to-production"></a>Implantar na produção
 
 Para implantar o aplicativo na produção, os seguintes recursos precisam ser provisionados:
 
@@ -285,9 +285,9 @@ Esta seção descreve a implantação do aplicativo nos sites do Azure usando um
 }
 ```
 
-* A propriedade Name no certificado corresponde ao assunto distinto do certificado.
-* O local do repositório representa onde carregar o certificado (`CurrentUser` ou `LocalMachine`).
 * O nome do repositório representa o nome do repositório de certificados onde o certificado está armazenado. Nesse caso, ele aponta para o repositório de usuários pessoais.
+* O local do repositório representa onde carregar o certificado (`CurrentUser` ou `LocalMachine`).
+* A propriedade Name no certificado corresponde ao assunto distinto do certificado.
 
 Para implantar os sites do Azure, implante o aplicativo seguindo as etapas em [implantar o aplicativo no Azure](xref:tutorials/publish-to-azure-webapp-using-vs#deploy-the-app-to-azure) para criar os recursos necessários do Azure e implantar o aplicativo para produção.
 

@@ -7,12 +7,12 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 12/16/2019
 uid: host-and-deploy/azure-apps/index
-ms.openlocfilehash: 286d73d732b146fef15bbfc309caeb214cdbbe0d
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: ba9671f68a0faf99ff5232a6d5dd132d0a1d5ac5
+ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75829173"
+ms.lasthandoff: 02/01/2020
+ms.locfileid: "76928425"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -280,7 +280,7 @@ Para uma implantação de 64 bits:
 
 ### <a name="deploy-the-app-self-contained"></a>Implantar o aplicativo autocontido
 
-Use o Visual Studio ou as ferramentas da CLI (interface de linha de comando) para uma [SCD (implantação autossuficiente)](/dotnet/core/deploying/#self-contained-deployments-scd).
+Use o Visual Studio ou o CLI do .NET Core para uma [SCD (implantação autônoma)](/dotnet/core/deploying/#self-contained-deployments-scd).
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 

@@ -1,1 +1,1 @@
-Para obter mais informações sobre as ferramentas CLI para EF Core, veja a [referência de ferramentas de EF Core para a CLI do .Net](/ef/core/miscellaneous/cli/dotnet).
+Para obter mais informações sobre a CLI para EF Core, consulte [referência de ferramentas de EF Core para a CLI do .net](/ef/core/miscellaneous/cli/dotnet).
