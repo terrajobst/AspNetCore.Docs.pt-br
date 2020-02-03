@@ -108,7 +108,7 @@ Para incluir o middleware em um projeto, adicione uma referência ao [metapacote
 
 ::: moniker-end
 
-## <a name="configuration"></a>Configuração do
+## <a name="configuration"></a>Configuração
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -202,11 +202,11 @@ O provedor de compactação Brotoli deve ser adicionado quando qualquer provedor
 
 Defina o nível de compactação com <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions>. O provedor de compactação Brotli usa como padrão o nível de compactação mais rápido ([CompressionLevel. mais rápido](xref:System.IO.Compression.CompressionLevel)), que pode não produzir a compactação mais eficiente. Se a compactação mais eficiente for desejada, configure o middleware para uma compactação ideal.
 
-| Nível de compactação | Descrição |
+| Nível de Compactação | Descrição |
 | ----------------- | ----------- |
-| [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) | A compactação deve ser concluída o mais rápido possível, mesmo que a saída resultante não seja compactada de forma ideal. |
-| [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | Nenhuma compactação deve ser executada. |
-| [CompressionLevel.Optimal](xref:System.IO.Compression.CompressionLevel) | As respostas devem ser compactadas de forma ideal, mesmo que a compactação leve mais tempo para ser concluída. |
+| [CompressionLevel. mais rápido](xref:System.IO.Compression.CompressionLevel) | A compactação deve ser concluída o mais rápido possível, mesmo que a saída resultante não seja compactada de forma ideal. |
+| [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Nenhuma compactação deve ser executada. |
+| [CompressionLevel. ideal](xref:System.IO.Compression.CompressionLevel) | As respostas devem ser compactadas de forma ideal, mesmo que a compactação leve mais tempo para ser concluída. |
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -265,11 +265,11 @@ O provedor de compactação Gzip deve ser adicionado quando qualquer provedor de
 
 Defina o nível de compactação com <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>. O provedor de compactação Gzip usa como padrão o nível de compactação mais rápido ([CompressionLevel. mais rápido](xref:System.IO.Compression.CompressionLevel)), que pode não produzir a compactação mais eficiente. Se a compactação mais eficiente for desejada, configure o middleware para uma compactação ideal.
 
-| Nível de compactação | Descrição |
+| Nível de Compactação | Descrição |
 | ----------------- | ----------- |
-| [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) | A compactação deve ser concluída o mais rápido possível, mesmo que a saída resultante não seja compactada de forma ideal. |
-| [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | Nenhuma compactação deve ser executada. |
-| [CompressionLevel.Optimal](xref:System.IO.Compression.CompressionLevel) | As respostas devem ser compactadas de forma ideal, mesmo que a compactação leve mais tempo para ser concluída. |
+| [CompressionLevel. mais rápido](xref:System.IO.Compression.CompressionLevel) | A compactação deve ser concluída o mais rápido possível, mesmo que a saída resultante não seja compactada de forma ideal. |
+| [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Nenhuma compactação deve ser executada. |
+| [CompressionLevel. ideal](xref:System.IO.Compression.CompressionLevel) | As respostas devem ser compactadas de forma ideal, mesmo que a compactação leve mais tempo para ser concluída. |
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

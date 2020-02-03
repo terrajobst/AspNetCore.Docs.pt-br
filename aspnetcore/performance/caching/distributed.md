@@ -194,7 +194,7 @@ Para configurar o NCache:
 
 1. Instale o [NuGet de código-fonte aberto do NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
 1. Configure o cluster de cache em [Client. ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html).
-1. Adicione o seguinte código ao `Startup.ConfigureServices`:
+1. Adicione o seguinte código a `Startup.ConfigureServices`:
 
    ```csharp
    services.AddNCacheDistributedCache(configuration =>    

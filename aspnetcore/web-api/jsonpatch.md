@@ -131,7 +131,7 @@ Em um controlador de API, um método de ação para JSON Patch:
 * Aceita um `JsonPatchDocument<T>`, normalmente com `[FromBody]`.
 * Chama `ApplyTo` no documento de patch para aplicar as alterações.
 
-Veja um exemplo:
+Aqui está um exemplo:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
@@ -343,7 +343,7 @@ Em um controlador de API, um método de ação para JSON Patch:
 * Aceita um `JsonPatchDocument<T>`, normalmente com `[FromBody]`.
 * Chama `ApplyTo` no documento de patch para aplicar as alterações.
 
-Veja um exemplo:
+Aqui está um exemplo:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 

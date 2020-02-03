@@ -17,13 +17,13 @@ ms.contentlocale: pt-BR
 ms.lasthandoff: 01/24/2020
 ms.locfileid: "76726769"
 ---
-# <a name="configure-the-linker-for-aspnet-core-opno-locblazor"></a>Configurar o vinculador para ASP.NET Core Blazor
+# <a name="configure-the-linker-for-aspnet-core-opno-locblazor"></a>Configurar o vinculador para ASP.NET Core [!OP.NO-LOC(Blazor)]
 
 Por [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Blazor executa a vinculação de [Il (linguagem intermediária)](/dotnet/standard/managed-code#intermediate-language--execution) durante uma compilação para remover o Il desnecessário dos assemblies de saída do aplicativo.
+[!OP.NO-LOC(Blazor)] executa a vinculação de [Il (linguagem intermediária)](/dotnet/standard/managed-code#intermediate-language--execution) durante uma compilação para remover o Il desnecessário dos assemblies de saída do aplicativo.
 
 Controle a vinculação do assembly com uma das seguintes abordagens:
 
@@ -55,7 +55,7 @@ Controle a vinculação por assembly fornecendo um arquivo de configuração XML
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-  This file specifies which parts of the BCL or Blazor packages must not be
+  This file specifies which parts of the BCL or [!OP.NO-LOC(Blazor)] packages must not be
   stripped by the IL Linker even if they aren't referenced by user code.
 -->
 <linker>
@@ -86,7 +86,7 @@ Para obter mais informações, consulte [vinculador Il: sintaxe do descritor XML
 
 ### <a name="configure-the-linker-for-internationalization"></a>Configurar o vinculador para internacionalização
 
-Por padrão, a configuração do vinculador Blazorpara aplicativos Webassembly Blazor retira informações de internacionalização, exceto as localidades explicitamente solicitadas. Remover esses assemblies minimiza o tamanho do aplicativo.
+Por padrão, a configuração do vinculador [!OP.NO-LOC(Blazor)]para aplicativos Webassembly [!OP.NO-LOC(Blazor)] retira informações de internacionalização, exceto as localidades explicitamente solicitadas. Remover esses assemblies minimiza o tamanho do aplicativo.
 
 Para controlar quais assemblies de I18N são retidos, defina a propriedade `<MonoLinkerI18NAssemblies>` MSBuild no arquivo de projeto:
 
@@ -101,7 +101,7 @@ Para controlar quais assemblies de I18N são retidos, defina a propriedade `<Mon
 | `all`            | Todos os assemblies incluídos |
 | `cjk`            | *Nacional. CJK. dll*          |
 | `mideast`        | *Nacional. Oriente Médio. dll*      |
-| `none` (padrão) | {1&gt;Nenhum&lt;1}                    |
+| `none` (padrão) | Nenhum                    |
 | `other`          | *Nacional. Outro. dll*        |
 | `rare`           | *Nacional. Raras. dll*         |
 | `west`           | *Nacional. West. dll*         |

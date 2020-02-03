@@ -31,7 +31,7 @@ Usando o [modelo de hospedagem do servidorBlazor](xref:blazor/hosting-models#bla
 
 É necessário um servidor Web capaz de hospedar um aplicativo ASP.NET Core. O Visual Studio inclui o modelo de projeto de **aplicativo doBlazor Server** (`blazorserverside` modelo ao usar o comando [dotnet New](/dotnet/core/tools/dotnet-new) ).
 
-## <a name="scalability"></a>Dimensionamento
+## <a name="scalability"></a>Escalabilidade
 
 Planeje uma implantação para fazer o melhor uso da infraestrutura disponível para um aplicativo do Blazor Server. Consulte os seguintes recursos para resolver a escalabilidade do aplicativo Blazor Server:
 

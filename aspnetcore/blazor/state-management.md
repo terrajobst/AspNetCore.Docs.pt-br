@@ -78,7 +78,7 @@ Existem três localizações comuns para o estado persistente em um aplicativo d
 Para persistência de dados permanentes ou para quaisquer dados que devam abranger vários usuários ou dispositivos, um banco de dado independente do servidor é quase certamente a melhor opção. As opções incluem:
 
 * Banco de dados SQL relacional
-* Repositório de chave-valor
+* Repositório de valor-chave
 * Repositório de BLOB
 * Repositório de tabelas
 

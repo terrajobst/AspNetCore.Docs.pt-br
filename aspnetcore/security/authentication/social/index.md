@@ -45,7 +45,7 @@ Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as 
 
 * Altere os diretórios (`cd`) para uma pasta que conterá o projeto.
 
-* Para o Windows, execute o seguinte comando:
+* Para Windows, execute o seguinte comando:
 
   ```dotnetcli
   dotnet new webapp -o WebApp1 -au Individual -uld
@@ -103,7 +103,7 @@ Para criar uma senha e entrar usando seu email definido durante o processo de en
 
 ![Exibição Gerenciar do Aplicativo Web](index/_static/pass1a.png)
 
-* Selecione **Criar**
+* Escolha **Criar**
 
 ![Definir a página de senha](index/_static/pass2a.png)
 

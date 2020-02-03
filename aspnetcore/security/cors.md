@@ -466,7 +466,7 @@ Se a resposta não incluir o cabeçalho `Access-Control-Allow-Origin`, a solicit
 
 <a name="test"></a>
 
-## <a name="test-cors"></a>Testar CORS
+## <a name="test-cors"></a>Testar o CORS
 
 Para testar o CORS:
 

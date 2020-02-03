@@ -22,7 +22,7 @@ Para uma experiência de tutorial sobre como publicar um aplicativo de ASP.NET C
 
 [Instalar o pacote de hospedagem do .NET Core](#install-the-net-core-hosting-bundle)
 
-## <a name="supported-operating-systems"></a>Supported operating systems
+## <a name="supported-operating-systems"></a>Sistemas operacionais compatíveis
 
 Há suporte para os seguintes sistemas operacionais:
 
@@ -46,7 +46,7 @@ Para obter mais informações sobre hospedagem no Azure, consulte <xref:host-and
 
 Para obter as diretrizes de solução de problemas, consulte <xref:test/troubleshoot>.
 
-## <a name="supported-platforms"></a>Plataformas com suporte
+## <a name="supported-platforms"></a>Plataformas compatíveis
 
 Aplicativos publicados para implantação de 32 bits (x86) ou 64 bits (x64) têm suporte. Implantar um aplicativo de 32 bits com um SDK do .NET Core de 32 bits (x86), a menos que o aplicativo:
 
@@ -146,7 +146,7 @@ Para orientação sobre a configuração do Módulo do ASP.NET Core, consulte <x
 
 Para saber mais sobre hospedagem, confira [Host no ASP.NET Core](xref:fundamentals/index#host).
 
-## <a name="application-configuration"></a>Configuração do aplicativo
+## <a name="application-configuration"></a>Configuração de aplicativo
 
 ### <a name="enable-the-iisintegration-components"></a>Habilitar os componentes de IISIntegration
 
@@ -197,7 +197,7 @@ services.Configure<IISServerOptions>(options =>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-| Opção                         | Padrão | Configuração |
+| {1&gt;Opção&lt;1}                         | Padrão | Configuração |
 | ------------------------------ | :-----: | ------- |
 | `AutomaticAuthentication`      | `true`  | Se `true`, o Servidor do IIS define o `HttpContext.User` autenticado pela [Autenticação do Windows](xref:security/authentication/windowsauth). Se `false`, o servidor fornecerá apenas uma identidade para `HttpContext.User` e responderá a desafios quando explicitamente solicitado pelo `AuthenticationScheme`. A autenticação do Windows deve estar habilitada no IIS para que o `AutomaticAuthentication` funcione. Para obter mais informações, veja [Autenticação do Windows](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Configura o nome de exibição mostrado aos usuários em páginas de logon. |
@@ -210,7 +210,7 @@ services.Configure<IISServerOptions>(options =>
 
 ::: moniker range="< aspnetcore-3.0"
 
-| Opção                         | Padrão | Configuração |
+| {1&gt;Opção&lt;1}                         | Padrão | Configuração |
 | ------------------------------ | :-----: | ------- |
 | `AutomaticAuthentication`      | `true`  | Se `true`, o Servidor do IIS define o `HttpContext.User` autenticado pela [Autenticação do Windows](xref:security/authentication/windowsauth). Se `false`, o servidor fornecerá apenas uma identidade para `HttpContext.User` e responderá a desafios quando explicitamente solicitado pelo `AuthenticationScheme`. A autenticação do Windows deve estar habilitada no IIS para que o `AutomaticAuthentication` funcione. Para obter mais informações, veja [Autenticação do Windows](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Configura o nome de exibição mostrado aos usuários em páginas de logon. |
@@ -232,7 +232,7 @@ services.Configure<IISOptions>(options =>
 });
 ```
 
-| Opção                         | Padrão | Configuração |
+| {1&gt;Opção&lt;1}                         | Padrão | Configuração |
 | ------------------------------ | :-----: | ------- |
 | `AutomaticAuthentication`      | `true`  | Se `true`, o [middleware de integração do IIS](#enable-the-iisintegration-components) define o `HttpContext.User` autenticado pela [Autenticação do Windows](xref:security/authentication/windowsauth). Se `false`, o middleware fornecerá apenas uma identidade para `HttpContext.User` e responderá a desafios quando explicitamente solicitado pelo `AuthenticationScheme`. A autenticação do Windows deve estar habilitada no IIS para que o `AutomaticAuthentication` funcione. Saiba mais no tópico [Autenticação do Windows](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Configura o nome de exibição mostrado aos usuários em páginas de logon. |
@@ -274,7 +274,7 @@ Existem arquivos confidenciais no caminho físico do aplicativo, como *\<assembl
 
 **O arquivo *Web. config* deve estar presente na implantação o tempo todo, corretamente nomeado e ser capaz de configurar o site para inicialização normal. Nunca remova o arquivo *Web. config* de uma implantação de produção.**
 
-### <a name="transform-webconfig"></a>Transformação do web.config
+### <a name="transform-webconfig"></a>Transformação do Web.config
 
 Se você precisar transformar o *Web.config* em publicação (por exemplo, definir variáveis ​​de ambiente com base na configuração, no perfil ou no ambiente), consulte <xref:host-and-deploy/iis/transform-webconfig>.
 
@@ -304,7 +304,7 @@ Habilite a função **Servidor Web (IIS)** e estabeleça serviços de função.
 
 Habilite o **Console de Gerenciamento do IIS** e os **Serviços na World Wide Web**.
 
-1. Navegue até **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
+1. Navegue para **Painel de Controle** > **Programas** > **Programas e Recursos** > **Ativar ou desativar recursos do Windows** (lado esquerdo da tela).
 
 1. Abra o nó **Serviços de Informações da Internet**. Abra o nó **Ferramentas de Gerenciamento da Web**.
 
@@ -448,7 +448,7 @@ Use qualquer um dos vários métodos para mover o aplicativo para o sistema host
 
 Para obter mais informações sobre a implantação do ASP.NET Core no IIS, consulte a seção [Recursos de implantação para administradores do IIS](#deployment-resources-for-iis-administrators).
 
-## <a name="browse-the-website"></a>Navegar no site
+## <a name="browse-the-website"></a>Procurar no site
 
 Depois de implantar o aplicativo no sistema de hospedagem, faça uma solicitação para um dos pontos de extremidade públicos do aplicativo.
 
@@ -588,7 +588,7 @@ Para obter mais informações sobre o modelo de hospedagem em processo e como co
 
 A configuração do IIS é influenciada pela seção `<system.webServer>` do *web.config* para cenários do IIS que são funcionais para aplicativos ASP.NET Core com o Módulo do ASP.NET Core. Por exemplo, a configuração do IIS é funcional para a compactação dinâmica. Se o IIS for configurado no nível do servidor para usar a compactação dinâmica, o elemento `<urlCompression>` no arquivo *web.config* do aplicativo pode desabilitá-la para um aplicativo do ASP.NET Core.
 
-Para mais informações, consulte os seguintes tópicos:
+Para obter mais informações, consulte estes tópicos:
 
 * [Referência de configuração para \<System. WebServer >](/iis/configuration/system.webServer/)
 * <xref:host-and-deploy/aspnet-core-module>
@@ -662,7 +662,7 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 
 Para saber mais, veja o tópico [icacls](/windows-server/administration/windows-commands/icacls).
 
-## <a name="http2-support"></a>Compatibilidade com HTTP/2
+## <a name="http2-support"></a>Suporte do HTTP/2
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -756,7 +756,7 @@ Use quaisquer das abordagens a seguir para habilitar o Módulo de Inicializaçã
   </configuration>
   ```
 
-### <a name="idle-timeout"></a>Tempo Limite de Ociosidade
+### <a name="idle-timeout"></a>Tempo limite de ociosidade
 
 *Só se aplica a aplicativos hospedados em processo.*
 
