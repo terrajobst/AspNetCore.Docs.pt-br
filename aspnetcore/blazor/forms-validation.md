@@ -17,11 +17,11 @@ ms.contentlocale: pt-BR
 ms.lasthandoff: 01/24/2020
 ms.locfileid: "76726889"
 ---
-# <a name="aspnet-core-opno-locblazor-forms-and-validation"></a>ASP.NET Core Blazor formulários e validação
+# <a name="aspnet-core-opno-locblazor-forms-and-validation"></a>ASP.NET Core [!OP.NO-LOC(Blazor)] formulários e validação
 
 Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)
 
-Há suporte para formulários e validação em Blazor usando [anotações de dados](xref:mvc/models/validation).
+Há suporte para formulários e validação em [!OP.NO-LOC(Blazor)] usando [anotações de dados](xref:mvc/models/validation).
 
 O tipo de `ExampleModel` a seguir define a lógica de validação usando anotações de dados:
 
@@ -398,11 +398,11 @@ private class MyCustomValidator : ValidationAttribute
 
 ### <a name="opno-locblazor-data-annotations-validation-package"></a>Blazor pacote de validação de anotações de dados
 
-O [Microsoft. AspNetCore.Blazor. Annotations. Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) é um pacote que preenche as lacunas da experiência de validação usando o componente `DataAnnotationsValidator`. O pacote está *experimental*no momento.
+O [Microsoft.AspNetCore.Blazor.Annotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) é um pacote que preenche as lacunas da experiência de validação usando o componente `DataAnnotationsValidator`. O pacote está *experimental*no momento.
 
 ### <a name="compareproperty-attribute"></a>Atributo [compareproperty]
 
-O <xref:System.ComponentModel.DataAnnotations.CompareAttribute> não funciona bem com o componente `DataAnnotationsValidator` porque ele não associa o resultado da validação a um membro específico. Isso pode resultar em comportamento inconsistente entre a validação em nível de campo e quando todo o modelo é validado em um envio. O [Microsoft. AspNetCore.Blazor. Annotations.](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) o pacote *experimental* de validação introduz um atributo de validação adicional, `ComparePropertyAttribute`, que funciona em relação a essas limitações. Em um aplicativo Blazor, `[CompareProperty]` é uma substituição direta para o atributo `[Compare]`.
+O <xref:System.ComponentModel.DataAnnotations.CompareAttribute> não funciona bem com o componente `DataAnnotationsValidator` porque ele não associa o resultado da validação a um membro específico. Isso pode resultar em comportamento inconsistente entre a validação em nível de campo e quando todo o modelo é validado em um envio. O [Microsoft.AspNetCore.Blazor.Annotations.](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) o pacote *experimental* de validação introduz um atributo de validação adicional, `ComparePropertyAttribute`, que funciona em relação a essas limitações. Em um aplicativo Blazor, `[CompareProperty]` é uma substituição direta para o atributo `[Compare]`.
 
 ### <a name="nested-models-collection-types-and-complex-types"></a>Modelos aninhados, tipos de coleção e tipos complexos
 

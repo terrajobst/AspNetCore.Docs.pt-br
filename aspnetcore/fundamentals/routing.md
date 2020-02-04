@@ -372,7 +372,7 @@ As rotas precisam ser configuradas no método `Startup.Configure`. O aplicativo 
 
 A tabela a seguir mostra as respostas com os URIs fornecidos.
 
-| {1&gt;URI&lt;1}                    | Resposta                                          |
+| URI                    | Resposta                                          |
 | ---------------------- | ------------------------------------------------- |
 | `/package/create/3`    | Olá! Valores de rota: [operation, create], [id, 3] |
 | `/package/track/-3`    | Olá! Valores de rota: [operation, track], [id, -3] |
@@ -457,7 +457,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | {1&gt;Observações&lt;1} |
+| restrição | {1&gt;Exemplo&lt;1} | Correspondências de exemplo | {1&gt;Observações&lt;1} |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |
@@ -478,7 +478,7 @@ A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento 
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | A cadeia de caracteres deve corresponder à expressão regular (veja as dicas sobre como definir uma expressão regular) |
 | `required` | `{name:required}` | `Rick` | Usado para impor que um valor não parâmetro está presente durante a geração de URL |
 
-Várias restrições delimitadas por vírgula podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
+Várias restrições delimitadas por dois-pontos podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
 
 ```csharp
 [Route("users/{id:int:min(1)}")]
@@ -492,7 +492,7 @@ public User GetUserById(int id) { }
 
 A estrutura do ASP.NET Core adiciona `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` ao construtor de expressão regular. Confira <xref:System.Text.RegularExpressions.RegexOptions> para obter uma descrição desses membros.
 
-As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo Roteamento e pela linguagem C#. Os tokens de expressão regular precisam ter escape. Para usar a expressão regular `^\d{3}-\d{2}-\d{4}$` no roteamento, a expressão precisa ter os caracteres `\` (barra invertida) fornecidos na cadeia de caracteres como caracteres `\\` (barra invertida dupla) no arquivo de origem C# para fazer o escape do caractere de escape da cadeia de caracteres `\` (a menos que estejam sendo usados [literais de cadeia de caracteres textuais](/dotnet/csharp/language-reference/keywords/string)). Para fazer o escape dos caracteres de delimitador de parâmetro de roteamento (`{`, `}`, `[`, `]`), duplique os caracteres na expressão (`{{`, `}`, `[[`, `]]`). A tabela a seguir mostra uma expressão regular e a versão com escape.
+As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo Roteamento e pela linguagem C#. Os tokens de expressão regular precisam ter escape. Para usar a expressão regular `^\d`\\`-\d`\`-\d`\`$` no roteamento, a expressão precisa ter os caracteres `\` (barra invertida) fornecidos na cadeia de caracteres como caracteres `\\` (barra invertida dupla) no arquivo de origem C# para fazer o escape do caractere de escape da cadeia de caracteres `\` (a menos que estejam sendo usados [literais de cadeia de caracteres textuais](/dotnet/csharp/language-reference/keywords/string)). Para fazer o escape dos caracteres de delimitador de parâmetro de roteamento (`{`, `}`, `[`, `]`), duplique os caracteres na expressão (`{{`, `}`, `[[`, `]]`). A tabela a seguir mostra uma expressão regular e a versão com escape.
 
 | Expressão Regular    | Expressão regular com escape     |
 | --------------------- | ------------------------------ |
@@ -501,7 +501,7 @@ As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere de acento circunflexo (`^`) e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de cifrão (`$`) e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expressão   | Cadeia de caracteres    | Corresponder a | Comentário               |
+| Expressão   | String    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
@@ -580,7 +580,7 @@ O exemplo a seguir mostra como gerar um link para uma rota com base em um dicion
 
 O <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath> gerado no final do exemplo anterior é `/package/create/123`. O dicionário fornece os valores de rota `operation` e `id` do modelo "Rastrear rota do pacote", `package/{operation}/{id}`. Para obter detalhes, consulte o código de exemplo na seção [Usar o middleware de roteamento](#use-routing-middleware) ou no [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples).
 
-O segundo parâmetro para o construtor <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> é uma coleção de *valores de ambiente*. Os valores de ambiente são convenientes de serem usados porque limitam o número de valores que um desenvolvedor precisa especificar em um contexto de solicitação. Os valores de rota atuais da solicitação atual são considerados valores de ambiente para a geração de link. Na ação `About` de um aplicativo ASP.NET Core MVC do `HomeController`, não é necessário especificar o valor de rota do controlador a ser vinculado à ação `Index` – o valor de ambiente `Home` é usado.
+O segundo parâmetro para o construtor <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> é uma coleção de *valores de ambiente*. Os valores de ambiente são convenientes de serem usados porque limitam o número de valores que um desenvolvedor precisa especificar em um contexto de solicitação. Os valores de rota atuais da solicitação atual são considerados valores de ambiente para a geração de link. Na ação `About` de um aplicativo ASP.NET Core MVC do `HomeController`, não é necessário especificar o valor de rota do controlador a ser vinculado à ação `Index` – o valor de ambiente &mdash; é usado.
 
 Os valores de ambiente que não correspondem a um parâmetro são ignorados. Os valores de ambiente também são ignorados quando um valor fornecido explicitamente substitui o valor de ambiente. A correspondência ocorre da esquerda para a direita na URL.
 
@@ -1033,7 +1033,7 @@ As rotas precisam ser configuradas no método `Startup.Configure`. O aplicativo 
 
 A tabela a seguir mostra as respostas com os URIs fornecidos.
 
-| {1&gt;URI&lt;1}                    | Resposta                                          |
+| URI                    | Resposta                                          |
 | ---------------------- | ------------------------------------------------- |
 | `/package/create/3`    | Olá! Valores de rota: [operation, create], [id, 3] |
 | `/package/track/-3`    | Olá! Valores de rota: [operation, track], [id, -3] |
@@ -1118,7 +1118,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | {1&gt;Observações&lt;1} |
+| restrição | {1&gt;Exemplo&lt;1} | Correspondências de exemplo | {1&gt;Observações&lt;1} |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |
@@ -1139,7 +1139,7 @@ A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento 
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | A cadeia de caracteres deve corresponder à expressão regular (veja as dicas sobre como definir uma expressão regular) |
 | `required` | `{name:required}` | `Rick` | Usado para impor que um valor não parâmetro está presente durante a geração de URL |
 
-Várias restrições delimitadas por vírgula podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
+Várias restrições delimitadas por dois-pontos podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
 
 ```csharp
 [Route("users/{id:int:min(1)}")]
@@ -1153,7 +1153,7 @@ public User GetUserById(int id) { }
 
 A estrutura do ASP.NET Core adiciona `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` ao construtor de expressão regular. Confira <xref:System.Text.RegularExpressions.RegexOptions> para obter uma descrição desses membros.
 
-As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo Roteamento e pela linguagem C#. Os tokens de expressão regular precisam ter escape. Para usar a expressão regular `^\d{3}-\d{2}-\d{4}$` no roteamento, a expressão precisa ter os caracteres `\` (barra invertida) fornecidos na cadeia de caracteres como caracteres `\\` (barra invertida dupla) no arquivo de origem C# para fazer o escape do caractere de escape da cadeia de caracteres `\` (a menos que estejam sendo usados [literais de cadeia de caracteres textuais](/dotnet/csharp/language-reference/keywords/string)). Para fazer o escape dos caracteres de delimitador de parâmetro de roteamento (`{`, `}`, `[`, `]`), duplique os caracteres na expressão (`{{`, `}`, `[[`, `]]`). A tabela a seguir mostra uma expressão regular e a versão com escape.
+As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo Roteamento e pela linguagem C#. Os tokens de expressão regular precisam ter escape. Para usar a expressão regular `^\d`\\`-\d`\`-\d`\`$` no roteamento, a expressão precisa ter os caracteres `\` (barra invertida) fornecidos na cadeia de caracteres como caracteres `\\` (barra invertida dupla) no arquivo de origem C# para fazer o escape do caractere de escape da cadeia de caracteres `\` (a menos que estejam sendo usados [literais de cadeia de caracteres textuais](/dotnet/csharp/language-reference/keywords/string)). Para fazer o escape dos caracteres de delimitador de parâmetro de roteamento (`{`, `}`, `[`, `]`), duplique os caracteres na expressão (`{{`, `}`, `[[`, `]]`). A tabela a seguir mostra uma expressão regular e a versão com escape.
 
 | Expressão Regular    | Expressão regular com escape     |
 | --------------------- | ------------------------------ |
@@ -1162,7 +1162,7 @@ As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere de acento circunflexo (`^`) e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de cifrão (`$`) e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expressão   | Cadeia de caracteres    | Corresponder a | Comentário               |
+| Expressão   | String    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
@@ -1241,7 +1241,7 @@ O exemplo a seguir mostra como gerar um link para uma rota com base em um dicion
 
 O <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath> gerado no final do exemplo anterior é `/package/create/123`. O dicionário fornece os valores de rota `operation` e `id` do modelo "Rastrear rota do pacote", `package/{operation}/{id}`. Para obter detalhes, consulte o código de exemplo na seção [Usar o middleware de roteamento](#use-routing-middleware) ou no [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples).
 
-O segundo parâmetro para o construtor <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> é uma coleção de *valores de ambiente*. Os valores de ambiente são convenientes de serem usados porque limitam o número de valores que um desenvolvedor precisa especificar em um contexto de solicitação. Os valores de rota atuais da solicitação atual são considerados valores de ambiente para a geração de link. Na ação `About` de um aplicativo ASP.NET Core MVC do `HomeController`, não é necessário especificar o valor de rota do controlador a ser vinculado à ação `Index` – o valor de ambiente `Home` é usado.
+O segundo parâmetro para o construtor <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> é uma coleção de *valores de ambiente*. Os valores de ambiente são convenientes de serem usados porque limitam o número de valores que um desenvolvedor precisa especificar em um contexto de solicitação. Os valores de rota atuais da solicitação atual são considerados valores de ambiente para a geração de link. Na ação `About` de um aplicativo ASP.NET Core MVC do `HomeController`, não é necessário especificar o valor de rota do controlador a ser vinculado à ação `Index` – o valor de ambiente &mdash; é usado.
 
 Os valores de ambiente que não correspondem a um parâmetro são ignorados. Os valores de ambiente também são ignorados quando um valor fornecido explicitamente substitui o valor de ambiente. A correspondência ocorre da esquerda para a direita na URL.
 
@@ -1485,7 +1485,7 @@ As rotas precisam ser configuradas no método `Startup.Configure`. O aplicativo 
 
 A tabela a seguir mostra as respostas com os URIs fornecidos.
 
-| {1&gt;URI&lt;1}                    | Resposta                                          |
+| URI                    | Resposta                                          |
 | ---------------------- | ------------------------------------------------- |
 | `/package/create/3`    | Olá! Valores de rota: [operation, create], [id, 3] |
 | `/package/track/-3`    | Olá! Valores de rota: [operation, track], [id, -3] |
@@ -1572,7 +1572,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | {1&gt;Observações&lt;1} |
+| restrição | {1&gt;Exemplo&lt;1} | Correspondências de exemplo | {1&gt;Observações&lt;1} |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |
@@ -1593,7 +1593,7 @@ A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento 
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | A cadeia de caracteres deve corresponder à expressão regular (veja as dicas sobre como definir uma expressão regular) |
 | `required` | `{name:required}` | `Rick` | Usado para impor que um valor não parâmetro está presente durante a geração de URL |
 
-Várias restrições delimitadas por vírgula podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
+Várias restrições delimitadas por dois-pontos podem ser aplicadas a um único parâmetro. Por exemplo, a restrição a seguir restringe um parâmetro para um valor inteiro de 1 ou maior:
 
 ```csharp
 [Route("users/{id:int:min(1)}")]
@@ -1607,7 +1607,7 @@ public User GetUserById(int id) { }
 
 A estrutura do ASP.NET Core adiciona `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` ao construtor de expressão regular. Confira <xref:System.Text.RegularExpressions.RegexOptions> para obter uma descrição desses membros.
 
-As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo Roteamento e pela linguagem C#. Os tokens de expressão regular precisam ter escape. Para usar a expressão regular `^\d{3}-\d{2}-\d{4}$` no roteamento, a expressão precisa ter os caracteres `\` (barra invertida) fornecidos na cadeia de caracteres como caracteres `\\` (barra invertida dupla) no arquivo de origem C# para fazer o escape do caractere de escape da cadeia de caracteres `\` (a menos que estejam sendo usados [literais de cadeia de caracteres textuais](/dotnet/csharp/language-reference/keywords/string)). Para fazer o escape dos caracteres de delimitador de parâmetro de roteamento (`{`, `}`, `[`, `]`), duplique os caracteres na expressão (`{{`, `}`, `[[`, `]]`). A tabela a seguir mostra uma expressão regular e a versão com escape.
+As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo Roteamento e pela linguagem C#. Os tokens de expressão regular precisam ter escape. Para usar a expressão regular `^\d`\\`-\d`\`-\d`\`$` no roteamento, a expressão precisa ter os caracteres `\` (barra invertida) fornecidos na cadeia de caracteres como caracteres `\\` (barra invertida dupla) no arquivo de origem C# para fazer o escape do caractere de escape da cadeia de caracteres `\` (a menos que estejam sendo usados [literais de cadeia de caracteres textuais](/dotnet/csharp/language-reference/keywords/string)). Para fazer o escape dos caracteres de delimitador de parâmetro de roteamento (`{`, `}`, `[`, `]`), duplique os caracteres na expressão (`{{`, `}`, `[[`, `]]`). A tabela a seguir mostra uma expressão regular e a versão com escape.
 
 | Expressão Regular    | Expressão regular com escape     |
 | --------------------- | ------------------------------ |
@@ -1616,7 +1616,7 @@ As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere de acento circunflexo (`^`) e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de cifrão (`$`) e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expressão   | Cadeia de caracteres    | Corresponder a | Comentário               |
+| Expressão   | String    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
 | `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
@@ -1657,7 +1657,7 @@ O exemplo a seguir mostra como gerar um link para uma rota com base em um dicion
 
 O <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath> gerado no final do exemplo anterior é `/package/create/123`. O dicionário fornece os valores de rota `operation` e `id` do modelo "Rastrear rota do pacote", `package/{operation}/{id}`. Para obter detalhes, consulte o código de exemplo na seção [Usar o middleware de roteamento](#use-routing-middleware) ou no [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples).
 
-O segundo parâmetro para o construtor <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> é uma coleção de *valores de ambiente*. Os valores de ambiente são convenientes de serem usados porque limitam o número de valores que um desenvolvedor precisa especificar em um contexto de solicitação. Os valores de rota atuais da solicitação atual são considerados valores de ambiente para a geração de link. Na ação `About` de um aplicativo ASP.NET Core MVC do `HomeController`, não é necessário especificar o valor de rota do controlador a ser vinculado à ação `Index` – o valor de ambiente `Home` é usado.
+O segundo parâmetro para o construtor <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> é uma coleção de *valores de ambiente*. Os valores de ambiente são convenientes de serem usados porque limitam o número de valores que um desenvolvedor precisa especificar em um contexto de solicitação. Os valores de rota atuais da solicitação atual são considerados valores de ambiente para a geração de link. Na ação `About` de um aplicativo ASP.NET Core MVC do `HomeController`, não é necessário especificar o valor de rota do controlador a ser vinculado à ação `Index` – o valor de ambiente &mdash; é usado.
 
 Os valores de ambiente que não correspondem a um parâmetro são ignorados. Os valores de ambiente também são ignorados quando um valor fornecido explicitamente substitui o valor de ambiente. A correspondência ocorre da esquerda para a direita na URL.
 
