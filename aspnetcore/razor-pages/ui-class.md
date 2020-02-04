@@ -6,12 +6,12 @@ ms.author: riande
 ms.date: 01/25/2020
 ms.custom: mvc, seodec18
 uid: razor-pages/ui-class
-ms.openlocfilehash: 420cc54701394673e2b442b1fdf999e421820fd5
-ms.sourcegitcommit: b5ceb0a46d0254cc3425578116e2290142eec0f0
+ms.openlocfilehash: 1a20b136203921e6a147058eb34da6dcbb7863e7
+ms.sourcegitcommit: 990a4c2e623c202a27f60bdf3902f250359c13be
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/28/2020
-ms.locfileid: "76809114"
+ms.lasthandoff: 02/03/2020
+ms.locfileid: "76971988"
 ---
 # <a name="create-reusable-ui-using-the-razor-class-library-project-in-aspnet-core"></a>Criar interface do usuário reutilizável usando o projeto de biblioteca de classes Razor no ASP.NET Core
 

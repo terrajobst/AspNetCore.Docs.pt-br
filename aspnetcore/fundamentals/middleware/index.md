@@ -5,14 +5,14 @@ description: Saiba mais sobre o middleware do ASP.NET Core e o pipeline de solic
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/19/2019
+ms.date: 02/02/2020
 uid: fundamentals/middleware/index
-ms.openlocfilehash: 63566c1642e17ad333bb65b122330d11c4472aff
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: 5c8e9e58ab222e482ef029f5099d0a8acd07d8a6
+ms.sourcegitcommit: 990a4c2e623c202a27f60bdf3902f250359c13be
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75355013"
+ms.lasthandoff: 02/03/2020
+ms.locfileid: "76972028"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware do ASP.NET Core
 
@@ -226,6 +226,7 @@ O ASP.NET Core é fornecido com os seguintes componentes de middleware. A coluna
 | [Diagnóstico](xref:fundamentals/error-handling) | Vários middleware separados que fornecem uma página de exceção do desenvolvedor, tratamento de exceção, páginas de código de status e a página da Web padrão para novos aplicativos. | Antes dos componentes que geram erros. Terminal para exceções ou para servir a página da Web padrão para novos aplicativos. |
 | [Cabeçalhos encaminhados](xref:host-and-deploy/proxy-load-balancer) | Encaminha cabeçalhos como proxy para a solicitação atual. | Antes dos componentes que consomem os campos atualizados. Exemplos: esquema, host, IP do cliente e método. |
 | [Verificações de integridade](xref:host-and-deploy/health-checks) | Verifica a integridade de um aplicativo ASP.NET Core e suas dependências, como a verificação da disponibilidade do banco de dados. | Terminal, se uma solicitação corresponde a um ponto de extremidade da verificação de integridade. |
+| [Propagação de cabeçalho](xref:fundamentals/http-requests#header-propagation-middleware) | Propaga cabeçalhos HTTP da solicitação de entrada para as solicitações de cliente HTTP de saída. |
 | [Substituição do Método HTTP](xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions) | Permite que uma solicitação de entrada POST substitua o método. | Antes dos componentes que consomem o método atualizado. |
 | [Redirecionamento de HTTPS](xref:security/enforcing-ssl#require-https) | Redirecione todas as solicitações HTTP para HTTPS. | Antes dos componentes que consomem a URL. |
 | [Segurança de Transporte Estrita de HTTP (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) | Middleware de aprimoramento de segurança que adiciona um cabeçalho de resposta especial. | Antes das respostas serem enviadas e depois dos componentes que modificam solicitações. Exemplos: Cabeçalhos encaminhados, regravação de URL. |
