@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2020
 uid: fundamentals/middleware/index
-ms.openlocfilehash: 5c8e9e58ab222e482ef029f5099d0a8acd07d8a6
-ms.sourcegitcommit: 990a4c2e623c202a27f60bdf3902f250359c13be
+ms.openlocfilehash: 47f465c00138acf434c6ec59f757e37361ad97db
+ms.sourcegitcommit: 0e21d4f8111743bcb205a2ae0f8e57910c3e8c25
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/03/2020
-ms.locfileid: "76972028"
+ms.lasthandoff: 02/05/2020
+ms.locfileid: "77034098"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware do ASP.NET Core
 
@@ -162,6 +162,13 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
+Para aplicativos de página única, o middleware SPA <xref:Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.UseSpaStaticFiles*> geralmente vem por último no pipeline de middleware. O middleware SPA vem por último:
+
+* Para permitir que todos os outros middleware respondam primeiro a solicitações correspondentes.
+* Para permitir que o SPAs com roteamento do lado do cliente seja executado para todas as rotas que não são reconhecidas pelo aplicativo do servidor.
+
+Para obter mais detalhes sobre aplicativos de página única, consulte os guias para os modelos de projeto [reagir](xref:spa/react) e [angular](xref: client-side/spa/angular) .
+
 ## <a name="branch-the-middleware-pipeline"></a>Ramificar o pipeline de middleware
 
 As extensões <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map*> são usadas como uma convenção de ramificação do pipeline. `Map` ramifica o pipeline de solicitação com base na correspondência do caminho da solicitação em questão. Se o caminho da solicitação iniciar com o caminho especificado, o branch será executado.
@@ -217,7 +224,7 @@ No exemplo anterior, uma resposta de "Olá do pipeline principal". é gravado pa
 
 O ASP.NET Core é fornecido com os seguintes componentes de middleware. A coluna *Ordem* fornece observações sobre o posicionamento do middleware no pipeline de processamento da solicitação e sob quais condições o middleware podem encerrar o processamento da solicitação. Quando um middleware causa um curto-circuito na solicitação ao processar o pipeline e impede outros middleware downstream de processar uma solicitação, ele é chamado de *middleware terminal*. Para saber mais sobre curto-circuito, confira a seção [Criar um pipeline de middleware com o IApplicationBuilder](#create-a-middleware-pipeline-with-iapplicationbuilder).
 
-| Middleware | Descrição | Ordem |
+| Middleware | DESCRIÇÃO | Order |
 | ---------- | ----------- | ----- |
 | [Autenticação](xref:security/authentication/identity) | Fornece suporte à autenticação. | Antes de `HttpContext.User` ser necessário. Terminal para retornos de chamada OAuth. |
 | [Autorização](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*) | Fornece suporte à autorização. | Imediatamente após o middleware de autenticação. |
@@ -236,7 +243,8 @@ O ASP.NET Core é fornecido com os seguintes componentes de middleware. A coluna
 | [Compactação de resposta](xref:performance/response-compression) | Fornece suporte para a compactação de respostas. | Antes dos componentes que exigem compactação. |
 | [Localização de Solicitação](xref:fundamentals/localization) | Fornece suporte à localização. | Antes dos componentes de localização importantes. |
 | [Roteamento de ponto de extremidade](xref:fundamentals/routing) | Define e restringe as rotas de solicitação. | Terminal de rotas correspondentes. |
-| [Sessão](xref:fundamentals/app-state) | Fornece suporte para gerenciar sessões de usuário. | Antes de componentes que exigem a sessão. |
+| [SPA](xref:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa*) | Lida com todas as solicitações desse ponto na cadeia de middleware retornando a página padrão para o aplicativo de página única (SPA) | No final da cadeia, para que outro middleware para servir arquivos estáticos, as ações do MVC, etc., tem precedência.|
+| [Sessão](xref:fundamentals/app-state) | Fornece suporte para gerenciar sessões de usuário. | Antes de componentes que exigem a sessão. | 
 | [Arquivos estáticos](xref:fundamentals/static-files) | Fornece suporte para servir arquivos estáticos e pesquisa no diretório. | Terminal, se uma solicitação corresponde a um arquivo. |
 | [Regravação de URL](xref:fundamentals/url-rewriting) | Fornece suporte para regravar URLs e redirecionar solicitações. | Antes dos componentes que consomem a URL. |
 | [WebSockets](xref:fundamentals/websockets) | Habilita o protocolo WebSockets. | Antes dos componentes que são necessários para aceitar solicitações de WebSocket. |
@@ -422,7 +430,7 @@ app.Map("/level1", level1App => {
 
 O ASP.NET Core é fornecido com os seguintes componentes de middleware. A coluna *Ordem* fornece observações sobre o posicionamento do middleware no pipeline de processamento da solicitação e sob quais condições o middleware podem encerrar o processamento da solicitação. Quando um middleware causa um curto-circuito na solicitação ao processar o pipeline e impede outros middleware downstream de processar uma solicitação, ele é chamado de *middleware terminal*. Para saber mais sobre curto-circuito, confira a seção [Criar um pipeline de middleware com o IApplicationBuilder](#create-a-middleware-pipeline-with-iapplicationbuilder).
 
-| Middleware | Descrição | Ordem |
+| Middleware | DESCRIÇÃO | Order |
 | ---------- | ----------- | ----- |
 | [Autenticação](xref:security/authentication/identity) | Fornece suporte à autenticação. | Antes de `HttpContext.User` ser necessário. Terminal para retornos de chamada OAuth. |
 | [Política de cookies](xref:security/gdpr) | Acompanha o consentimento dos usuários para o armazenamento de informações pessoais e impõe padrões mínimos para campos de cookie, tais como `secure` e `SameSite`. | Antes do middleware que emite cookies. Exemplos: Autenticação, Sessão e MVC (TempData). |

@@ -5,17 +5,17 @@ description: Entenda Blazor Webassembly e modelos de hospedagem do Blazor Server
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 01/31/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 145f385fd6c5d04510a4ac15a41b879591ab5caa
-ms.sourcegitcommit: c81ef12a1b6e6ac838e5e07042717cf492e6635b
+ms.openlocfilehash: 7b4d4aca0bc4650c31bc8e5c4a84ecbad6a49b09
+ms.sourcegitcommit: 0e21d4f8111743bcb205a2ae0f8e57910c3e8c25
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/29/2020
-ms.locfileid: "76885518"
+ms.lasthandoff: 02/05/2020
+ms.locfileid: "77034074"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>Modelos de hospedagem mais amASP.NET Core
 
@@ -35,7 +35,7 @@ O modelo de hospedagem principal para o mais alto é executar o lado do cliente 
 
 Para criar um aplicativo mais novo usando o modelo de hospedagem do lado do cliente, use o modelo de **aplicativo Webassembly** mais[novo (dotNet New blazorwasm](/dotnet/core/tools/dotnet-new)).
 
-Depois de selecionar o modelo de **aplicativo Webassembly** mais novo, você tem a opção de configurar o aplicativo para usar um ASP.NET Core back-end marcando a caixa de seleção **ASP.NET Core hospedado** ([dotnet New blazorwasm – hospedado](/dotnet/core/tools/dotnet-new)). O aplicativo ASP.NET Core serve para o aplicativo mais incrivelmente para os clientes. O aplicativo Webassembly mais novo pode interagir com o servidor pela rede usando chamadas de API Web ou [signalr](xref:signalr/introduction).
+Depois de selecionar o modelo de **aplicativo Webassembly** mais novo, você tem a opção de configurar o aplicativo para usar um ASP.NET Core back-end marcando a caixa de seleção **ASP.NET Core hospedado** ([dotnet New blazorwasm – hospedado](/dotnet/core/tools/dotnet-new)). O aplicativo ASP.NET Core serve para o aplicativo mais incrivelmente para os clientes. O aplicativo Webassembly mais novo pode interagir com o servidor pela rede usando chamadas de API Web ou [signalr](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
 
 Os modelos incluem o script de `blazor.webassembly.js` que manipula:
 
@@ -365,7 +365,7 @@ Os aplicativos de servidor mais poseriais são configurados por padrão para Pre
 * É renderizado na página.
 * É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um aplicativo mais incrivelmente do agente do usuário.
 
-| `RenderMode`        | Descrição |
+| `RenderMode`        | DESCRIÇÃO |
 | ------------------- | ----------- |
 | `ServerPrerendered` | Renderiza o componente em HTML estático e inclui um marcador para um aplicativo do Blazor Server. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo Blazor. |
 | `Server`            | Renderiza um marcador para um aplicativo do Blazor Server. A saída do componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo Blazor. |
@@ -504,3 +504,4 @@ Para configurar o cliente do SignalR no arquivo *pages/_Host. cshtml* :
 
 * <xref:blazor/get-started>
 * <xref:signalr/introduction>
+* <xref:tutorials/signalr-blazor-webassembly>
