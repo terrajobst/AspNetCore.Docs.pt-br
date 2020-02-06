@@ -5,14 +5,14 @@ description: Saiba como começar a trabalhar com o modelo de projeto do SPA (Apl
 monikerRange: '>= aspnetcore-2.1'
 ms.author: stevesa
 ms.custom: mvc
-ms.date: 03/07/2019
+ms.date: 02/06/2020
 uid: spa/angular
-ms.openlocfilehash: 150b2176eac2e68c1ef9ec6deabb087836ff84ce
-ms.sourcegitcommit: cb6015f737b6a93127016ab0f21b58e34b624ff3
+ms.openlocfilehash: 11ad5d4c7cadcc582b3e288a331569f62f0b98ac
+ms.sourcegitcommit: bd896935e91236e03241f75e6534ad6debcecbbf
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/04/2020
-ms.locfileid: "77004260"
+ms.lasthandoff: 02/06/2020
+ms.locfileid: "77044857"
 ---
 # <a name="use-the-angular-project-template-with-aspnet-core"></a>Usar o modelo de projeto Angular com o ASP.NET Core
 
@@ -61,7 +61,7 @@ O modelo de projeto cria um aplicativo ASP.NET Core e um aplicativo do Angular. 
 
 ## <a name="add-pages-images-styles-modules-etc"></a>Adicione páginas, imagens, estilos, módulos, etc.
 
-O diretório *ClientApp* contém um aplicativo padrão da CLI do Angular. Veja a [documentação oficial do Angular](https://https://angular.io) para obter mais informações.
+O diretório *ClientApp* contém um aplicativo padrão da CLI do Angular. Veja a [documentação oficial do Angular](https://angular.io) para obter mais informações.
 
 Há pequenas diferenças entre o aplicativo do Angular criado por este modelo e um criado pela CLI do Angular propriamente dita (por meio de `ng new`); no entanto, os recursos do aplicativo são inalterados. O aplicativo criado pelo modelo contém um layout com base em [Bootstrap](https://getbootstrap.com/) e um exemplo básico de roteamento.
 

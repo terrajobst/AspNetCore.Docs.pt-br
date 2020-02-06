@@ -5,14 +5,14 @@ description: Saiba como usar a estrutura de registro em log fornecida pelo pacot
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/08/2020
+ms.date: 02/05/2020
 uid: fundamentals/logging/index
-ms.openlocfilehash: f21559e43ae004c81abc18fe8a768d4145ffb184
-ms.sourcegitcommit: 57b85708f4cded99b8f008a69830cb104cd8e879
+ms.openlocfilehash: 3c75fdc940701b8f4d367990b5073861467079b2
+ms.sourcegitcommit: bd896935e91236e03241f75e6534ad6debcecbbf
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/13/2020
-ms.locfileid: "75914235"
+ms.lasthandoff: 02/06/2020
+ms.locfileid: "77044909"
 ---
 # <a name="logging-in-net-core-and-aspnet-core"></a>Como fazer registro em log no .NET Core e no ASP.NET Core
 
@@ -49,7 +49,7 @@ Em um aplicativo de console não host, chame o método de extensão `Add{provide
 Os modelos de projeto padrão do ASP.NET Core chamam <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, que adiciona os seguintes provedores de log:
 
 * [Console](#console-provider)
-* [Depuração](#debug-provider)
+* [Depurar](#debug-provider)
 * [EventSource](#event-source-provider)
 * [EventLog](#windows-eventlog-provider) (somente quando executado no Windows)
 
@@ -69,8 +69,8 @@ O código anterior requer referências a `Microsoft.Extensions.Logging` e `Micro
 
 O modelo de projeto padrão chama o <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, que adiciona os seguintes provedores de log:
 
-* Console do
-* Depuração
+* Console
+* Depurar
 * EventSource (a partir do ASP.NET Core 2.2)
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_TemplateCode&highlight=7)]
@@ -297,7 +297,7 @@ public class Program
 
 O registro em log deve ser tão rápido que não justifique o custo de desempenho de código assíncrono. Se o armazenamento de dados em log estiver lento, não grave diretamente nele. Grave as mensagens de log em um repositório rápido primeiro e, depois, mova-as para um repositório lento. Por exemplo, se você estiver enviado logs para o SQL Server, convém não fazer isso diretamente em um método `Log`, uma vez que os métodos `Log` são síncronos. Em vez disso, adicione mensagens de log de forma síncrona a uma fila na memória e faça com que uma função de trabalho de plano de fundo efetue pull das mensagens para fora da fila para fazer o trabalho assíncrono de envio de dados por push para o SQL Server. Para obter mais informações, consulte [este](https://github.com/aspnet/AspNetCore.Docs/issues/11801) problema do github.
 
-## <a name="configuration"></a>Configuração do
+## <a name="configuration"></a>Configuração
 
 A configuração do provedor de logs é fornecida por um ou mais provedores de sincronização:
 
@@ -431,7 +431,7 @@ O restante deste artigo explica alguns detalhes e opções para registro em log.
 
 As interfaces `ILogger` e `ILoggerFactory` estão em [Microsoft.Extensions.Logging.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/) e as implementações padrão para elas estão em [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/).
 
-## <a name="log-category"></a>Categoria de log
+## <a name="log-category"></a>Categoria do log
 
 Quando um objeto `ILogger` é criado, uma *categoria* é especificada para ele. Essa categoria é incluída em cada mensagem de log criada por essa instância de `ILogger`. A categoria pode ser qualquer cadeia de caracteres, mas a convenção é usar o nome da classe, como "TodoApi.Controllers.TodoController".
 
@@ -696,7 +696,7 @@ System.Exception: Item not found exception.
    at TodoApiSample.Controllers.TodoController.GetById(String id) in C:\TodoApiSample\Controllers\TodoController.cs:line 226
 ```
 
-## <a name="log-filtering"></a>Filtragem de log
+## <a name="log-filtering"></a>Filtragem de linha
 
 Você pode especificar um nível de log mínimo para um provedor e uma categoria específicos ou para todos os provedores ou todas as categorias. Os logs abaixo do nível mínimo não serão passados para esse provedor, para que não sejam exibidos ou armazenados.
 
@@ -728,7 +728,7 @@ O exemplo a seguir mostra como registrar regras de filtro no código:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_FilterInCode&highlight=4-5)]
+[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_FilterInCode&highlight=2-3)]
 
 ::: moniker-end
 
@@ -744,16 +744,16 @@ O segundo `AddFilter` especifica o provedor Depuração usando seu nome de tipo.
 
 Os dados de configuração e o código `AddFilter`, mostrados nos exemplos anteriores, criam as regras mostradas na tabela a seguir. As primeiras seis vêm do exemplo de configuração e as últimas duas vêm do exemplo de código.
 
-| Número | Provider      | Categorias que começam com...          | Nível de log mínimo |
+| Número | Provedor      | Categorias que começam com...          | Nível de log mínimo |
 | :----: | ------------- | --------------------------------------- | ----------------- |
-| 1      | Depuração         | Todas as categorias                          | Informações do       |
-| 2      | Console do       | Microsoft.AspNetCore.Mvc.Razor.Internal | Aviso           |
-| 3      | Console do       | Microsoft.AspNetCore.Mvc.Razor.Razor    | Depuração             |
-| 4      | Console do       | Microsoft.AspNetCore.Mvc.Razor          | Erro do             |
-| 5      | Console do       | Todas as categorias                          | Informações do       |
-| 6      | Todos os provedores | Todas as categorias                          | Depuração             |
-| 7      | Todos os provedores | System                                  | Depuração             |
-| 8      | Depuração         | Microsoft                               | Rastreamento             |
+| 1      | Depurar         | Todas as categorias                          | Informações       |
+| 2      | Console       | Microsoft.AspNetCore.Mvc.Razor.Internal | Aviso           |
+| 3      | Console       | Microsoft.AspNetCore.Mvc.Razor.Razor    | Depurar             |
+| 4      | Console       | Microsoft.AspNetCore.Mvc.Razor          | Erro             |
+| 5      | Console       | Todas as categorias                          | Informações       |
+| 6      | Todos os provedores | Todas as categorias                          | Depurar             |
+| 7      | Todos os provedores | Sistema                                  | Depurar             |
+| 8      | Depurar         | Microsoft                               | Trace             |
 
 Quando um objeto `ILogger` é criado, o objeto `ILoggerFactory` seleciona uma única regra por provedor para aplicar a esse agente. Todas as mensagens gravadas pela instância `ILogger` são filtradas com base nas regras selecionadas. A regra mais específica possível para cada par de categoria e provedor é selecionada dentre as regras disponíveis.
 
@@ -775,8 +775,8 @@ A instância `ILogger` resultante envia logs de nível `Trace` e superior para o
 
 Cada provedor define um *alias* que pode ser usado na configuração no lugar do nome de tipo totalmente qualificado.  Para os provedores internos, use os seguintes aliases:
 
-* Console do
-* Depuração
+* Console
+* Depurar
 * EventSource
 * EventLog
 * TraceSource
@@ -822,7 +822,7 @@ Uma função de filtro é invocada para todos os provedores e categorias que nã
 
 Veja algumas categorias usadas pelo ASP.NET Core e Entity Framework Core, com anotações sobre quais logs esperar delas:
 
-| Categoria                            | {1&gt;Observações&lt;1} |
+| Categoria                            | Observações |
 | ----------------------------------- | ----- |
 | Microsoft.AspNetCore                | Diagnóstico geral de ASP.NET Core. |
 | Microsoft.AspNetCore.DataProtection | Quais chaves foram consideradas, encontradas e usadas. |
@@ -889,7 +889,7 @@ warn: TodoApiSample.Controllers.TodoController[4000]
 O ASP.NET Core vem com os seguintes provedores:
 
 * [Console](#console-provider)
-* [Depuração](#debug-provider)
+* [Depurar](#debug-provider)
 * [EventSource](#event-source-provider)
 * [EventLog](#windows-eventlog-provider)
 * [TraceSource](#tracesource-provider)
@@ -989,14 +989,14 @@ Use as ferramentas de rastreamento dotnet para coletar um rastreamento de um apl
 
    Em plataformas não Windows, adicione a opção `-f speedscope` para alterar o formato do arquivo de rastreamento de saída para `speedscope`.
 
-   | Palavra-chave | Descrição |
+   | Palavra-chave | DESCRIÇÃO |
    | :-----: | ----------- |
    | 1       | Eventos meta de log sobre o `LoggingEventSource`. Não registra eventos de `ILogger`). |
    | 2       | Ativa o evento `Message` quando `ILogger.Log()` é chamado. Fornece informações em uma maneira programática (não formatada). |
    | 4       | Ativa o evento `FormatMessage` quando `ILogger.Log()` é chamado. Fornece a versão de cadeia de caracteres formatada das informações. |
    | 8       | Ativa o evento `MessageJson` quando `ILogger.Log()` é chamado. Fornece uma representação JSON dos argumentos. |
 
-   | Nível de evento | Descrição     |
+   | Nível de evento | DESCRIÇÃO     |
    | :---------: | --------------- |
    | 0           | `LogAlways`     |
    | 1           | `Critical`      |
@@ -1024,7 +1024,7 @@ Use as ferramentas de rastreamento dotnet para coletar um rastreamento de um apl
 
 1. Abra o rastreamento com [Perfview](#perfview). Abra o arquivo *trace. NetTrace* e explore os eventos de rastreamento.
 
-Para obter mais informações, consulte .
+Para obter mais informações, consulte:
 
 * [Rastreamento do utilitário de análise de desempenho (dotNet-Trace)](/dotnet/core/diagnostics/dotnet-trace) (documentação do .NET Core)
 * [Rastreamento do utilitário de análise de desempenho (dotNet-Trace)](https://github.com/dotnet/diagnostics/blob/master/documentation/dotnet-trace-instructions.md) (documentação do repositório do GitHub de dotnet/diagnóstico)
@@ -1141,7 +1141,7 @@ O fluxo de log do Azure permite que você exiba a atividade de log em tempo real
 Para configurar o fluxo de log do Azure:
 
 * Navegue até a página **Logs do Serviço de Aplicativo** da página do portal do seu aplicativo.
-* Defina o **Log de aplicativo (Sistema de Arquivos)** como **Ativado**.
+* Defina **Habilitar o log de aplicativo (sistema de arquivos)** como **Ativada**.
 * Escolha o **Nível** de log. Essa configuração se aplica somente ao streaming de log do Azure, não a outros provedores de log no aplicativo.
 
 Navegue até a página **Fluxo de Log** para exibir as mensagens de aplicativo. Elas são registradas pelo aplicativo por meio da interface `ILogger`.
@@ -1154,7 +1154,7 @@ O provedor de registro em log está incluído como uma dependência de [Microsof
 
 Não use o pacote [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web)&mdash;que é para o ASP.NET 4.x.
 
-Para obter mais informações, consulte os seguintes recursos:
+Para saber mais, consulte os recursos a seguir:
 
 * [Visão geral do Application Insights](/azure/application-insights/app-insights-overview)
 * [Application Insights para aplicativos ASP.NET Core](/azure/azure-monitor/app/asp-net-core) – Comece aqui se você deseja implementar toda a gama de telemetria do Application Insights junto com o registro em log.

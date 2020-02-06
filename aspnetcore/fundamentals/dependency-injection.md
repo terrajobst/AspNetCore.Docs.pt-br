@@ -5,14 +5,14 @@ description: Saiba como o ASP.NET Core implementa a injeção de dependência e 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/30/2020
+ms.date: 02/05/2020
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: a9d268489ebcef69d64c6fd65087bc38a3581821
-ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
+ms.openlocfilehash: 7c0789dafcb7dfacd15ac448a39bad94649963c8
+ms.sourcegitcommit: bd896935e91236e03241f75e6534ad6debcecbbf
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "76928413"
+ms.lasthandoff: 02/06/2020
+ms.locfileid: "77044926"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Injeção de dependência no ASP.NET Core
 
@@ -45,7 +45,7 @@ public class MyDependency
 }
 ```
 
-Uma instância da classe `MyDependency` pode ser criada para tornar o método `WriteMessage` disponível para uma classe. A classe `MyDependency` é uma dependência da classe`IndexModel`:
+Uma instância da classe `MyDependency` pode ser criada para tornar o método `WriteMessage` disponível para uma classe. A classe `MyDependency` é uma dependência da classe`IndexModel`{3}{4}:
 
 ```csharp
 public class IndexModel : PageModel
@@ -184,7 +184,7 @@ O método `Startup.ConfigureServices` é responsável por definir os serviços q
 
 ::: moniker range=">= aspnetcore-3.0"
 
-| Tipo de serviço | Tempo de vida |
+| Tipo de Serviço | Tempo de vida |
 | ------------ | -------- |
 | <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Transitório |
 | `IHostApplicationLifetime` | Singleton |
@@ -205,7 +205,7 @@ O método `Startup.ConfigureServices` é responsável por definir os serviços q
 
 ::: moniker range="< aspnetcore-3.0"
 
-| Tipo de serviço | Tempo de vida |
+| Tipo de Serviço | Tempo de vida |
 | ------------ | -------- |
 | <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Transitório |
 | <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime?displayProperty=fullName> | Singleton |
@@ -272,7 +272,7 @@ Serviços de tempo de vida singleton (<xref:Microsoft.Extensions.DependencyInjec
 
 Os métodos de extensão de registro de serviço oferecem sobrecargas que são úteis em cenários específicos.
 
-| Método | Automático<br>Objeto do<br>descarte | Múltiplo<br>implementações | Passar argumentos |
+| Método | Automático<br>objeto<br>descarte | Vários<br>implementações | Passar argumentos |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
 | `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Exemplo:<br>`services.AddSingleton<IMyDep, MyDep>();` | Sim | Sim | Não |
 | `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Exemplos:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Sim | Sim | Sim |
@@ -292,7 +292,7 @@ services.AddSingleton<IMyDependency, MyDependency>();
 services.TryAddSingleton<IMyDependency, DifferentDependency>();
 ```
 
-Para obter mais informações, consulte .
+Para obter mais informações, consulte:
 
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAdd*>
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddTransient*>
@@ -448,7 +448,7 @@ Observe qual dos valores de `OperationId` varia em uma solicitação, e entre as
 
 * Os objetos *transitórios* sempre são diferentes. O valor `OperationId` transitório da primeira e da segunda solicitações de cliente é diferente para as duas operações `OperationService` e em todas as solicitações de cliente. Uma nova instância é fornecida para cada solicitação de serviço e solicitação de cliente.
 * Objetos *com escopo* são os mesmos em uma solicitação de cliente, mas diferentes entre solicitações de cliente.
-* Os pbjetos *singleton* são os mesmos para cada objeto e solicitação, independentemente de uma instância `Operation` ser fornecida em `Startup.ConfigureServices`.
+* Os objetos *singleton* são os mesmos para cada objeto e solicitação, independentemente de uma instância `Operation` ser fornecida em `Startup.ConfigureServices`.
 
 ## <a name="call-services-from-main"></a>Chamar os serviços desde o principal
 
@@ -544,7 +544,17 @@ public class Program
 
 ## <a name="scope-validation"></a>Validação de escopo
 
-Quando o aplicativo está em execução no ambiente de desenvolvimento, o provedor de serviço padrão executa verificações para saber se:
+::: moniker range=">= aspnetcore-3.0"
+
+Quando o aplicativo está em execução no ambiente de desenvolvimento e chama [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) para criar o host, o provedor de serviço padrão executa verificações para verificar se:
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Quando o aplicativo está em execução no ambiente de desenvolvimento e chama [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host) para criar o host, o provedor de serviço padrão executa verificações para verificar se:
+
+::: moniker-end
 
 * Os serviços com escopo não são resolvidos direta ou indiretamente pelo provedor de serviço raiz.
 * Os serviços com escopo não são injetados direta ou indiretamente em singletons.

@@ -5,14 +5,14 @@ description: Saiba como configurar o Nginx como um proxy reverso no Ubuntu 16.04
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/13/2020
+ms.date: 02/05/2020
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 1a83b7d1b211862793e3ba086234b97248f9ae70
-ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
+ms.openlocfilehash: 7f17be1d883e8cce375487aa39f4d1ebbe8a95f4
+ms.sourcegitcommit: bd896935e91236e03241f75e6534ad6debcecbbf
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "76928497"
+ms.lasthandoff: 02/06/2020
+ms.locfileid: "77044869"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Host ASP.NET Core no Linux com Nginx
 
@@ -32,7 +32,7 @@ Este guia:
 * Assegura que o aplicativo Web seja executado na inicialização como um daemon.
 * Configura uma ferramenta de gerenciamento de processo para ajudar a reiniciar o aplicativo Web.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Prerequisites
 
 1. Acesso a um servidor Ubuntu 16.04 com uma conta de usuário padrão com privilégio sudo.
 1. Instale o runtime do .NET Core no servidor.
@@ -88,6 +88,8 @@ Qualquer componente que dependa do esquema, como autenticação, geração de li
 Invoque o método <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> em `Startup.Configure` antes de chamar <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> ou outro middleware de esquema de autenticação semelhante. Configure o middleware para encaminhar os cabeçalhos `X-Forwarded-For` e `X-Forwarded-Proto`:
 
 ```csharp
+// using Microsoft.AspNetCore.HttpOverrides;
+
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
@@ -101,6 +103,8 @@ Se nenhum <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> for especi
 Os proxies em execução em endereços de loopback (127.0.0.0/8, [::1]), incluindo o endereço de host local padrão (127.0.0.1), são confiáveis por padrão. Se outros proxies ou redes confiáveis em que a organização trata solicitações entre a Internet e o servidor Web, adicione-os à lista de <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> ou <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> com <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. O exemplo a seguir adiciona um servidor proxy confiável no endereço IP 10.0.0.100 ao Middleware de cabeçalhos encaminhados `KnownProxies` em `Startup.ConfigureServices`:
 
 ```csharp
+// using System.Net;
+
 services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
@@ -269,7 +273,7 @@ Já que o aplicativo Web usando Kestrel é gerenciado usando `systemd`, todos os
 sudo journalctl -fu kestrel-helloapp.service
 ```
 
-Para obter mais filtragem, opções de hora como `--since today`, `--until 1 hour ago` ou uma combinação delas, pode reduzir a quantidade de entradas retornadas.
+Para obter mais filtragem, opções de tempo como `--since today`, `--until 1 hour ago` ou uma combinação desses fatores pode reduzir a quantidade de entradas retornadas.
 
 ```bash
 sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-10-18 04:00"

@@ -5,14 +5,14 @@ description: Saiba como configurar o Apache como um servidor proxy reverso no Ce
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
 ms.custom: mvc
-ms.date: 01/13/2020
+ms.date: 02/05/2020
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: 028f5112188e2b74f4f01409e25268aecdc761c0
-ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
+ms.openlocfilehash: f522c54fdc584845f18040bae1b2a2bda36d28fa
+ms.sourcegitcommit: bd896935e91236e03241f75e6534ad6debcecbbf
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76146284"
+ms.lasthandoff: 02/06/2020
+ms.locfileid: "77044849"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hospedar o ASP.NET Core no Linux com o Apache
 
@@ -20,7 +20,7 @@ Por [Shayne Boyer](https://github.com/spboyer)
 
 Usando este guia, saiba como configurar o [Apache](https://httpd.apache.org/) como um servidor proxy reverso no [CentOS 7](https://www.centos.org/) para redirecionar o tráfego HTTP para um aplicativo Web ASP.NET Core em execução no servidor [Kestrel](xref:fundamentals/servers/kestrel). A [extensão mod_proxy](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html) e os módulos relacionados criam o proxy reverso do servidor.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Prerequisites
 
 * Servidor que executa o CentOS 7 com uma conta de usuário padrão com privilégio sudo.
 * Instale o runtime do .NET Core no servidor.
@@ -67,6 +67,8 @@ Qualquer componente que dependa do esquema, como autenticação, geração de li
 Invoque o método <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> em `Startup.Configure` antes de chamar <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> ou outro middleware de esquema de autenticação semelhante. Configure o middleware para encaminhar os cabeçalhos `X-Forwarded-For` e `X-Forwarded-Proto`:
 
 ```csharp
+// using Microsoft.AspNetCore.HttpOverrides;
+
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
@@ -80,6 +82,8 @@ Se nenhum <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> for especi
 Os proxies em execução em endereços de loopback (127.0.0.0/8, [::1]), incluindo o endereço de host local padrão (127.0.0.1), são confiáveis por padrão. Se outros proxies ou redes confiáveis em que a organização trata solicitações entre a Internet e o servidor Web, adicione-os à lista de <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> ou <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> com <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. O exemplo a seguir adiciona um servidor proxy confiável no endereço IP 10.0.0.100 ao Middleware de cabeçalhos encaminhados `KnownProxies` em `Startup.ConfigureServices`:
 
 ```csharp
+// using System.Net;
+
 services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
@@ -424,7 +428,7 @@ sudo nano /etc/httpd/conf/httpd.conf
 
 Adicione a linha `Header set X-Content-Type-Options "nosniff"`. Salve o arquivo. Reinicie o Apache.
 
-### <a name="load-balancing"></a>Balanceamento de carga
+### <a name="load-balancing"></a>Balanceamento de Carga
 
 Este exemplo mostra como instalar e configurar o Apache no CentOS 7 e no Kestrel no mesmo computador da instância. Para não ter um ponto único de falha, o uso de *mod_proxy_balancer* e a modificação do **VirtualHost** permitiriam o gerenciamento de várias instâncias dos aplicativos Web protegidos pelo servidor proxy do Apache.
 

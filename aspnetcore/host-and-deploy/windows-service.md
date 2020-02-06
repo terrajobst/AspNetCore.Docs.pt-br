@@ -5,14 +5,14 @@ description: Saiba como hospedar um aplicativo ASP.NET Core em um serviço Windo
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/13/2020
+ms.date: 02/06/2020
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: d4b540de50f4153f517f871f037521347fb5eb84
-ms.sourcegitcommit: 990a4c2e623c202a27f60bdf3902f250359c13be
+ms.openlocfilehash: 71f7bf3f5dcf8068d0ada03675ef7948267b79f4
+ms.sourcegitcommit: bd896935e91236e03241f75e6534ad6debcecbbf
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/03/2020
-ms.locfileid: "76971999"
+ms.lasthandoff: 02/06/2020
+ms.locfileid: "77044891"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedar o ASP.NET Core em um serviço Windows
 
@@ -22,7 +22,7 @@ Um aplicativo ASP.NET Core pode ser hospedado no Windows somo um [Serviço Windo
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Prerequisites
 
 * [SDK do ASP.NET Core 2.1 ou posterior](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 ou posterior](https://github.com/PowerShell/PowerShell)
@@ -50,8 +50,10 @@ O aplicativo requer uma referência de pacote para [Microsoft. Extensions. host.
 
 * Define o tempo de vida do host como `WindowsServiceLifetime`.
 * Define a [raiz do conteúdo](xref:fundamentals/index#content-root) como [AppContext. BaseDirectory](xref:System.AppContext.BaseDirectory). Para saber mais, consulte a seção [Diretório atual e a raiz do conteúdo](#current-directory-and-content-root).
-* Habilita o registro de log no log de eventos com o nome do aplicativo como o nome da fonte padrão.
-  * O nível do log pode ser configurado com a chave `Logging:LogLevel:Default` no arquivo *appsettings.Production.json*.
+* Habilita o registro em log no log de eventos:
+  * O nome do aplicativo é usado como o nome de origem padrão.
+  * O nível de log padrão é *aviso* ou superior para um aplicativo com base em um modelo de ASP.NET Core que chama `CreateDefaultBuilder` para criar o host.
+  * Substitua o nível de log padrão pela chave de `Logging:EventLog:LogLevel:Default` em *appSettings. json*/*appSettings. { Ambiente}. JSON* ou outro provedor de configuração.
   * Somente administradores podem criar novas fontes de evento. Quando uma fonte de evento não puder ser criada usando o nome do aplicativo, um aviso será registrado em log como a fonte do *Aplicativo* e os logs de eventos serão desabilitados.
 
 Em `CreateHostBuilder` de *Program.cs*:
@@ -94,7 +96,7 @@ No exemplo a seguir do aplicativo de exemplo, `RunAsCustomService` é chamado em
 
 Para saber mais e obter conselhos sobre cenários de implantação, consulte [Implantação de aplicativos .NET Core](/dotnet/core/deploying/).
 
-### <a name="sdk"></a>SDK
+### <a name="sdk"></a>.
 
 Para um serviço baseado em aplicativo Web que usa as estruturas Razor Pages ou MVC, especifique o SDK Web no arquivo de projeto:
 
@@ -378,7 +380,7 @@ CreateWebHostBuilder(args)
 
 Especifique um caminho absoluto com <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> quando usar um <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> para a pasta que contém os arquivos.
 
-## <a name="troubleshoot"></a>Solução de problemas
+## <a name="troubleshoot"></a>Solucionar problemas
 
 Para solucionar problemas de um aplicativo de serviço do Windows, consulte <xref:test/troubleshoot>.
 
