@@ -5,14 +5,14 @@ description: Saiba mais sobre o Kestrel, o servidor Web multiplataforma do ASP.N
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/26/2019
+ms.date: 02/06/2020
 uid: fundamentals/servers/kestrel
-ms.openlocfilehash: 9fbf0ec93634100fccef279fc7cad92cb1420e84
-ms.sourcegitcommit: 991442dfb16ef08a0aae05bc79f9e9a2d819c587
+ms.openlocfilehash: 0c5d16b1901a8a8e5ae1914e5eaa86f71fa3a90b
+ms.sourcegitcommit: 80286715afb93c4d13c931b008016d6086c0312b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/26/2019
-ms.locfileid: "75492601"
+ms.lasthandoff: 02/07/2020
+ms.locfileid: "77074530"
 ---
 # <a name="kestrel-web-server-implementation-in-aspnet-core"></a>Implementação do servidor Web Kestrel no ASP.NET Core
 
@@ -35,7 +35,7 @@ Há suporte para o Kestrel em todas as plataformas e versões compatíveis com o
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="http2-support"></a>Compatibilidade com HTTP/2
+## <a name="http2-support"></a>Suporte do HTTP/2
 
 O [HTTP/2](https://httpwg.org/specs/rfc7540.html) estará disponível para aplicativos ASP.NET Core se os seguintes requisitos básicos forem atendidos:
 
@@ -116,7 +116,7 @@ Os exemplos a seguir usam o namespace <xref:Microsoft.AspNetCore.Server.Kestrel.
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-As opções de Kestrel, que são C# configuradas no código nos exemplos a seguir, também podem ser definidas usando um [provedor de configuração](xref:fundamentals/configuration/index). Por exemplo, o provedor de configuração de arquivo pode carregar a configuração Kestrel de *appSettings. JSON* ou *appSettings. { Arquivo de ambiente}. JSON* :
+Nos exemplos mostrados posteriormente neste artigo, as opções de Kestrel são C# configuradas no código. As opções de Kestrel também podem ser definidas usando um [provedor de configuração](xref:fundamentals/configuration/index). Por exemplo, o [provedor de configuração de arquivo](xref:fundamentals/configuration/index#file-configuration-provider) pode carregar a configuração Kestrel de *appSettings. JSON* ou *appSettings. { Arquivo de ambiente}. JSON* :
 
 ```json
 {
@@ -129,6 +129,9 @@ As opções de Kestrel, que são C# configuradas no código nos exemplos a segui
   }
 }
 ```
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> e a [configuração de ponto de extremidade](#endpoint-configuration) são configuráveis a partir de provedores de configuração. A configuração restante do Kestrel deve ser C# configurada no código.
 
 Use **uma** das seguintes abordagens:
 
@@ -358,7 +361,7 @@ Para obter informações sobre outras opções e limites do Kestrel, confira:
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>
 
-## <a name="endpoint-configuration"></a>Configuração do ponto de extremidade
+## <a name="endpoint-configuration"></a>Configuração de ponto de extremidade
 
 Por padrão, o ASP.NET Core associa a:
 
@@ -372,7 +375,7 @@ Especificar URLs usando:
 * A chave de configuração do host `urls`.
 * O método de extensão `UseUrls`.
 
-O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão). Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000; http://localhost:8001"`).
+O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão). Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000; http://localhost:8001"` ).
 
 Veja mais informações sobre essas abordagens em [URLs de servidor](xref:fundamentals/host/web-host#server-urls) e [Substituir configuração](xref:fundamentals/host/web-host#override-configuration).
 
@@ -489,7 +492,6 @@ No exemplo de *appsettings.json* a seguir:
       "Http": {
         "Url": "http://localhost:5000"
       },
-
       "HttpsInlineCertFile": {
         "Url": "https://localhost:5001",
         "Certificate": {
@@ -497,7 +499,6 @@ No exemplo de *appsettings.json* a seguir:
           "Password": "<certificate password>"
         }
       },
-
       "HttpsInlineCertStore": {
         "Url": "https://localhost:5002",
         "Certificate": {
@@ -507,11 +508,9 @@ No exemplo de *appsettings.json* a seguir:
           "AllowInvalid": "<true or false; defaults to false>"
         }
       },
-
       "HttpsDefaultCert": {
         "Url": "https://localhost:5003"
       },
-
       "Https": {
         "Url": "https://*:5004",
         "Certificate": {
@@ -986,7 +985,7 @@ Há suporte para o Kestrel em todas as plataformas e versões compatíveis com o
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="http2-support"></a>Compatibilidade com HTTP/2
+## <a name="http2-support"></a>Suporte do HTTP/2
 
 O [HTTP/2](https://httpwg.org/specs/rfc7540.html) estará disponível para aplicativos ASP.NET Core se os seguintes requisitos básicos forem atendidos:
 
@@ -1340,7 +1339,7 @@ Para obter informações sobre outras opções e limites do Kestrel, confira:
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>
 
-## <a name="endpoint-configuration"></a>Configuração do ponto de extremidade
+## <a name="endpoint-configuration"></a>Configuração de ponto de extremidade
 
 Por padrão, o ASP.NET Core associa a:
 
@@ -1354,7 +1353,7 @@ Especificar URLs usando:
 * A chave de configuração do host `urls`.
 * O método de extensão `UseUrls`.
 
-O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão). Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000; http://localhost:8001"`).
+O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão). Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000; http://localhost:8001"` ).
 
 Veja mais informações sobre essas abordagens em [URLs de servidor](xref:fundamentals/host/web-host#server-urls) e [Substituir configuração](xref:fundamentals/host/web-host#override-configuration).
 
@@ -2202,7 +2201,7 @@ Para obter informações sobre outras opções e limites do Kestrel, confira:
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>
 
-## <a name="endpoint-configuration"></a>Configuração do ponto de extremidade
+## <a name="endpoint-configuration"></a>Configuração de ponto de extremidade
 
 Por padrão, o ASP.NET Core associa a:
 
@@ -2216,7 +2215,7 @@ Especificar URLs usando:
 * A chave de configuração do host `urls`.
 * O método de extensão `UseUrls`.
 
-O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão). Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000; http://localhost:8001"`).
+O valor fornecido usando essas abordagens pode ser um ou mais pontos de extremidade HTTP e HTTPS (HTTPS se houver um certificado padrão). Configure o valor como uma lista separada por ponto e vírgula (por exemplo, `"Urls": "http://localhost:8000; http://localhost:8001"` ).
 
 Veja mais informações sobre essas abordagens em [URLs de servidor](xref:fundamentals/host/web-host#server-urls) e [Substituir configuração](xref:fundamentals/host/web-host#override-configuration).
 

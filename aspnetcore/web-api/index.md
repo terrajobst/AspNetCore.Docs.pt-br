@@ -5,14 +5,14 @@ description: Aprenda os fundamentos da criação de uma API Web no ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 01/27/2020
+ms.date: 02/02/2020
 uid: web-api/index
-ms.openlocfilehash: 8609e2095c202643cdc905cc610298195b654215
-ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
+ms.openlocfilehash: 3dca07db3d6be4ab219a2e05e3adcf1b24ee5c40
+ms.sourcegitcommit: 80286715afb93c4d13c931b008016d6086c0312b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/29/2020
-ms.locfileid: "76870011"
+ms.lasthandoff: 02/07/2020
+ms.locfileid: "77074504"
 ---
 # <a name="create-web-apis-with-aspnet-core"></a>Criar APIs Web com o ASP.NET Core
 
@@ -46,7 +46,7 @@ A classe `ControllerBase` fornece muitas propriedades e métodos úteis para lid
 
 Veja mais alguns exemplos de métodos fornecidos por `ControllerBase`.
 
-|Método   |{1&gt;Observações&lt;1}    |
+|Método   |Observações    |
 |---------|---------|
 |<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A>| Retorna o código de status 400.|
 |<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A>|Retorna o código de status 404.|
@@ -56,7 +56,7 @@ Veja mais alguns exemplos de métodos fornecidos por `ControllerBase`.
 
 Confira uma lista com todos os métodos e propriedades disponíveis em <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
 
-## <a name="attributes"></a>{1&gt;{2&gt;Atributos&lt;2}&lt;1}
+## <a name="attributes"></a>Atributos
 
 O namespace <xref:Microsoft.AspNetCore.Mvc> fornece atributos que podem ser usados para configurar o comportamento de controladores de API Web e dos métodos de ação. O exemplo a seguir usa atributos para especificar o verbo de ação HTTP com suporte e quaisquer códigos de status HTTP conhecidos que poderiam ser retornados:
 
@@ -64,7 +64,7 @@ O namespace <xref:Microsoft.AspNetCore.Mvc> fornece atributos que podem ser usad
 
 Confira mais alguns exemplos de atributos disponíveis.
 
-|Atributo|{1&gt;Observações&lt;1}|
+|Atributo|Observações|
 |---------|-----|
 |[`[Route]`](<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>)      |Especifica o padrão de URL para um controlador ou ação.|
 |[`[Bind]`](<xref:Microsoft.AspNetCore.Mvc.BindAttribute>)        |Especifica o prefixo e as propriedades que serão incluídos no model binding.|
@@ -397,6 +397,30 @@ A criação automática de uma instância de `ProblemDetails` é desabilitada qu
 [!code-csharp[](index/samples/2.x/2.2/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=3,8)]
 
 ::: moniker-end
+
+<a name="consumes"></a>
+
+## <a name="define-supported-request-content-types-with-the-consumes-attribute"></a>Definir tipos de conteúdo de solicitação com suporte com o atributo [Consumes]
+
+Por padrão, uma ação dá suporte a todos os tipos de conteúdo de solicitação disponíveis. Por exemplo, se um aplicativo estiver configurado para dar suporte a [formatadores de entrada](xref:mvc/models/model-binding#input-formatters)JSON e XML, uma ação dará suporte a vários tipos de conteúdo, incluindo `application/json` e `application/xml`.
+
+O atributo [[consume]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) permite que uma ação limite os tipos de conteúdo de solicitação com suporte. Aplique o atributo `[Consumes]` a uma ação ou controlador, especificando um ou mais tipos de conteúdo:
+
+```csharp
+[HttpPost]
+[Consumes("application/xml")]
+public IActionResult CreateProduct(Product product)
+```
+
+No código anterior, a ação `CreateProduct` especifica o tipo de conteúdo `application/xml`. As solicitações roteadas para esta ação devem especificar um cabeçalho de `Content-Type` de `application/xml`. Solicitações que não especificam um cabeçalho de `Content-Type` de `application/xml` resultam em uma resposta de [tipo de mídia sem suporte 415](https://developer.mozilla.org/docs/Web/HTTP/Status/415) .
+
+O atributo `[Consumes]` também permite que uma ação influencie sua seleção com base em um tipo de conteúdo de solicitação de entrada aplicando uma restrição de tipo. Considere o exemplo a seguir:
+
+[!code-csharp[](index/samples/3.x/Controllers/ConsumesController.cs?name=snippet_Class)]
+
+No código anterior, `ConsumesController` é configurado para tratar as solicitações enviadas para a URL de `https://localhost:5001/api/Consumes`. Ambas as ações do controlador, `PostJson` e `PostForm`, lidam com solicitações POST com a mesma URL. Sem o atributo `[Consumes]` aplicando uma restrição de tipo, uma exceção de correspondência ambígua é gerada.
+
+O atributo `[Consumes]` é aplicado a ambas as ações. A ação de `PostJson` manipula solicitações enviadas com um cabeçalho de `Content-Type` de `application/json`. A ação de `PostForm` manipula solicitações enviadas com um cabeçalho de `Content-Type` de `application/x-www-form-urlencoded`. 
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 uid: security/enforcing-ssl
-ms.openlocfilehash: d7d4eece935bd83b69a6a5d81898012b99d73193
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: 59883a8165040fa58edb2f6cf22d4d6b3abf6f3e
+ms.sourcegitcommit: 80286715afb93c4d13c931b008016d6086c0312b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75828900"
+ms.lasthandoff: 02/07/2020
+ms.locfileid: "77074543"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Impor HTTPS em ASP.NET Core
 
@@ -85,7 +85,7 @@ O código realçado anterior:
 
 É recomendável usar redirecionamentos temporários em vez de redirecionamentos permanentes. O cache de link pode causar comportamento instável em ambientes de desenvolvimento. Se você preferir enviar um código de status de redirecionamento permanente quando o aplicativo estiver em um ambiente que não seja de desenvolvimento, consulte a seção [Configurar redirecionamentos permanentes na produção](#configure-permanent-redirects-in-production) . É recomendável usar [HSTS](#http-strict-transport-security-protocol-hsts) para sinalizar para clientes que apenas as solicitações de recursos de segurança devem ser enviadas para o aplicativo (somente em produção).
 
-### <a name="port-configuration"></a>Configuração de porta
+### <a name="port-configuration"></a>Configuração de portas
 
 Uma porta deve estar disponível para o middleware redirecionar uma solicitação insegura para HTTPS. Se nenhuma porta estiver disponível:
 
@@ -419,9 +419,9 @@ Consulte [erro de HTTPS usando IIS Express (dotNet/AspNetCore #16892)](https://g
 
 ### <a name="iis-express-ssl-certificate-used-with-visual-studio"></a>IIS Express certificado SSL usado com o Visual Studio
 
-Para corrigir problemas com o certificado de IIS Express, selecione **reparar** no instalador do Visual Studio.
+Para corrigir problemas com o certificado de IIS Express, selecione **reparar** no instalador do Visual Studio. Saiba mais neste [tópico do GitHub](https://github.com/dotnet/aspnetcore/issues/16892).
 
-## <a name="additional-information"></a>{1&gt;{2&gt;Informações adicionais&lt;2}&lt;1}
+## <a name="additional-information"></a>Informações adicionais
 
 * <xref:host-and-deploy/proxy-load-balancer>
 * [ASP.NET Core de host no Linux com Apache: Configuração HTTPS](xref:host-and-deploy/linux-apache#https-configuration)

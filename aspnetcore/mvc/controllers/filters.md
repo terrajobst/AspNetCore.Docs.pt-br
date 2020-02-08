@@ -4,14 +4,14 @@ author: Rick-Anderson
 description: Saiba como os filtros funcionam e como usá-los no ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/1/2020
+ms.date: 02/04/2020
 uid: mvc/controllers/filters
-ms.openlocfilehash: 759c150e7f35f3f6a52947edc5ef41448dc227fe
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: c4bb9d5746e494106ead6ad5bbf972bbcc5a39f1
+ms.sourcegitcommit: 0e21d4f8111743bcb205a2ae0f8e57910c3e8c25
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75828965"
+ms.lasthandoff: 02/05/2020
+ms.locfileid: "77034059"
 ---
 # <a name="filters-in-aspnet-core"></a>Filtros no ASP.NET Core
 
@@ -28,13 +28,16 @@ O filtros internos lidam com tarefas como:
 
 É possível criar filtros personalizados para lidar com interesses paralelos. Entre os exemplos de interesses paralelos estão o tratamento de erros, cache, configuração, autorização e registro em log.  Filtros evitam a duplicação do código. Por exemplo, um filtro de exceção de tratamento de erro poderia consolidar o tratamento de erro.
 
-Este documento se aplica ao Razor Pages, a controladores de API e controladores com exibição.
+Este documento se aplica ao Razor Pages, a controladores de API e controladores com exibição. Os filtros não funcionam diretamente com os [componentes do Razor](xref:blazor/components). Um filtro só pode afetar indiretamente um componente quando:
+
+* O componente é inserido em uma página ou exibição.
+* A página ou o controlador/modo de exibição usa o filtro.
 
 [Exibir ou baixar exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample) ([como baixar](xref:index#how-to-download-a-sample)).
 
 ## <a name="how-filters-work"></a>Como os filtros funcionam
 
-Os filtros são executados dentro do *pipeline de invocação de ações do ASP.NET Core*, às vezes chamado de *pipeline de filtros*.  O pipeline de filtros é executado após o ASP.NET Core selecionar a ação a ser executada.
+Os filtros são executados dentro do *pipeline de invocação de ações do ASP.NET Core*, às vezes chamado de *pipeline de filtros*. O pipeline de filtros é executado após o ASP.NET Core selecionar a ação a ser executada.
 
 ![A solicitação é processada por meio de outro middleware, middleware de roteamento, seleção de ação e o pipeline de invocação de ação. O processamento de solicitações continua por meio da Seleção de Ação, do Middleware de Roteamento e de diversos Outros Middlewares antes de se tornar uma resposta enviada ao cliente.](filters/_static/filter-pipeline-1.png)
 
@@ -173,7 +176,7 @@ Como resultado do aninhamento de filtro, o código *posterior* dos filtros é ex
   
 O exemplo a seguir ilustra a ordem na qual os métodos de filtro são chamados para filtros de ação síncrona.
 
-| Sequence | Escopo do filtro | Método Filter |
+| Sequência | Escopo do filtro | Método Filter |
 |:--------:|:------------:|:-------------:|
 | 1 | Global | `OnActionExecuting` |
 | 2 | Controlador ou página Razor| `OnActionExecuting` |
@@ -194,7 +197,7 @@ Cada controlador que herda da classe base <xref:Microsoft.AspNetCore.Mvc.Control
 
 Por exemplo, no download de exemplo, `MySampleActionFilter` é aplicado globalmente na inicialização.
 
-O `TestController`:
+`TestController`:
 
 * Aplica o `SampleActionFilterAttribute` (`[SampleActionFilter]`) à ação `FilterTest2`.
 * Substitui `OnActionExecuting` e `OnActionExecuted`.
@@ -264,7 +267,7 @@ O pipeline de filtro pode sofrer um curto-circuito por meio da configuração da
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/ShortCircuitingResourceFilterAttribute.cs?name=snippet)]
 
-No código a seguir, os filtros `ShortCircuitingResourceFilter` e `AddHeader` têm como destino o método de ação `SomeResource`. O `ShortCircuitingResourceFilter`:
+No código a seguir, os filtros `ShortCircuitingResourceFilter` e `AddHeader` têm como destino o método de ação `SomeResource`. `ShortCircuitingResourceFilter`:
 
 * É executado primeiro, porque ele é um filtro de recurso e `AddHeader` é um filtro de ação.
 * Causa um curto-circuito no restante do pipeline.
@@ -544,7 +547,7 @@ O filtro é aplicado no código a seguir:
 Teste o código anterior executando o [exemplo de download](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample):
 
 * Invocar as ferramentas de desenvolvedor F12.
-* Navegue para `https://localhost:5001/Sample/HeaderWithFactory`.
+* Navegue até `https://localhost:5001/Sample/HeaderWithFactory`.
 
 As ferramentas de desenvolvedor F12 exibem os seguintes cabeçalhos de resposta adicionados pelo código de exemplo:
 
@@ -714,13 +717,13 @@ Como resultado do aninhamento de filtro, o código *posterior* dos filtros é ex
   
 O exemplo a seguir ilustra a ordem na qual os métodos de filtro são chamados para filtros de ação síncrona.
 
-| Sequence | Escopo do filtro | Método Filter |
+| Sequência | Escopo do filtro | Método Filter |
 |:--------:|:------------:|:-------------:|
 | 1 | Global | `OnActionExecuting` |
-| 2 | Controlador | `OnActionExecuting` |
+| 2 | Controller | `OnActionExecuting` |
 | 3 | Método | `OnActionExecuting` |
 | 4 | Método | `OnActionExecuted` |
-| 5 | Controlador | `OnActionExecuted` |
+| 5 | Controller | `OnActionExecuted` |
 | 6 | Global | `OnActionExecuted` |
 
 Esta sequência mostra:
@@ -740,7 +743,7 @@ Cada controlador que herda da classe base <xref:Microsoft.AspNetCore.Mvc.Control
 
 Por exemplo, no download de exemplo, `MySampleActionFilter` é aplicado globalmente na inicialização.
 
-O `TestController`:
+`TestController`:
 
 * Aplica o `SampleActionFilterAttribute` (`[SampleActionFilter]`) à ação `FilterTest2`.
 * Substitui `OnActionExecuting` e `OnActionExecuted`.
@@ -774,13 +777,13 @@ A propriedade `Order` pode ser definida com um parâmetro de construtor:
 
 Considere os mesmos filtros de 3 ações mostrados no exemplo anterior. Se a propriedade `Order` do controlador e os filtros globais estiverem definidos como 1 e 2, respectivamente, a ordem de execução será invertida.
 
-| Sequence | Escopo do filtro | Propriedade `Order` | Método Filter |
+| Sequência | Escopo do filtro | Propriedade `Order` | Método Filter |
 |:--------:|:------------:|:-----------------:|:-------------:|
 | 1 | Método | 0 | `OnActionExecuting` |
-| 2 | Controlador | 1  | `OnActionExecuting` |
+| 2 | Controller | 1  | `OnActionExecuting` |
 | 3 | Global | 2  | `OnActionExecuting` |
 | 4 | Global | 2  | `OnActionExecuted` |
-| 5 | Controlador | 1  | `OnActionExecuted` |
+| 5 | Controller | 1  | `OnActionExecuted` |
 | 6 | Método | 0  | `OnActionExecuted` |
 
 A propriedade `Order` substitui o escopo ao determinar a ordem na qual os filtros serão executados. Os filtros são classificados primeiro pela ordem e o escopo é usado para desempatar. Todos os filtros internos implementam `IOrderedFilter` e definem o valor de `Order` padrão como 0. Para os filtros internos, o escopo determina a ordem, a menos que você defina `Order` com um valor diferente de zero.
@@ -793,7 +796,7 @@ O pipeline de filtro pode sofrer um curto-circuito por meio da configuração da
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/ShortCircuitingResourceFilterAttribute.cs?name=snippet)]
 
-No código a seguir, os filtros `ShortCircuitingResourceFilter` e `AddHeader` têm como destino o método de ação `SomeResource`. O `ShortCircuitingResourceFilter`:
+No código a seguir, os filtros `ShortCircuitingResourceFilter` e `AddHeader` têm como destino o método de ação `SomeResource`. `ShortCircuitingResourceFilter`:
 
 * É executado primeiro, porque ele é um filtro de recurso e `AddHeader` é um filtro de ação.
 * Causa um curto-circuito no restante do pipeline.
@@ -1067,7 +1070,7 @@ Implemente `IFilterFactory` usando implementações personalizadas de atributo c
 O código anterior pode ser testado executando o [exemplo para download](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample):
 
 * Invocar as ferramentas de desenvolvedor F12.
-* Navegue para `https://localhost:5001/Sample/HeaderWithFactory`.
+* Navegue até `https://localhost:5001/Sample/HeaderWithFactory`.
 
 As ferramentas de desenvolvedor F12 exibem os seguintes cabeçalhos de resposta adicionados pelo código de exemplo:
 
