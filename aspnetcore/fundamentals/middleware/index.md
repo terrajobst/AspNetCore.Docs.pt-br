@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2020
 uid: fundamentals/middleware/index
-ms.openlocfilehash: 47f465c00138acf434c6ec59f757e37361ad97db
-ms.sourcegitcommit: 0e21d4f8111743bcb205a2ae0f8e57910c3e8c25
+ms.openlocfilehash: 6698e269e0a6480cd5a03c59f9a19da31e23bf69
+ms.sourcegitcommit: 235623b6e5a5d1841139c82a11ac2b4b3f31a7a9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/05/2020
-ms.locfileid: "77034098"
+ms.lasthandoff: 02/08/2020
+ms.locfileid: "77089143"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware do ASP.NET Core
 
@@ -167,7 +167,7 @@ Para aplicativos de página única, o middleware SPA <xref:Microsoft.Extensions.
 * Para permitir que todos os outros middleware respondam primeiro a solicitações correspondentes.
 * Para permitir que o SPAs com roteamento do lado do cliente seja executado para todas as rotas que não são reconhecidas pelo aplicativo do servidor.
 
-Para obter mais detalhes sobre aplicativos de página única, consulte os guias para os modelos de projeto [reagir](xref:spa/react) e [angular](xref: client-side/spa/angular) .
+Para obter mais detalhes sobre aplicativos de página única, consulte os guias para os modelos de projeto [reagir](xref:spa/react) e [angular](xref:spa/angular) .
 
 ## <a name="branch-the-middleware-pipeline"></a>Ramificar o pipeline de middleware
 

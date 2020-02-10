@@ -4,14 +4,14 @@ author: scottaddie
 description: Saiba como usar os vários tipos de retorno do método de ação do controlador em uma API da Web do ASP.NET Core.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 09/09/2019
+ms.date: 02/03/2020
 uid: web-api/action-return-types
-ms.openlocfilehash: fe665026fdced22ccf4b4f1ba655e858a7acf016
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: aeea005abfcfd45a6fc94dfddfd65e60ffb15df8
+ms.sourcegitcommit: 235623b6e5a5d1841139c82a11ac2b4b3f31a7a9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74879734"
+ms.lasthandoff: 02/08/2020
+ms.locfileid: "77089182"
 ---
 # <a name="controller-action-return-types-in-aspnet-core-web-api"></a>Tipos de retorno de ação do controlador em ASP.NET Core API Web
 
@@ -60,8 +60,8 @@ public IEnumerable<Product> GetOnSaleProducts() =>
 Para evitar a enumeração síncrona e as esperas de bloqueio no banco de dados no ASP.NET Core 2,2 e anteriores, invoque `ToListAsync`:
 
 ```csharp
-public IEnumerable<Product> GetOnSaleProducts() =>
-    _context.Products.Where(p => p.IsOnSale).ToListAsync();
+public async Task<IEnumerable<Product>> GetOnSaleProducts() =>
+    await _context.Products.Where(p => p.IsOnSale).ToListAsync();
 ```
 
 No ASP.NET Core 3,0 e posterior, retornando `IAsyncEnumerable<T>` de uma ação:
