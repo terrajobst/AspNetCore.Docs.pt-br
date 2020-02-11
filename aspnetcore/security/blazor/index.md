@@ -5,17 +5,17 @@ description: Saiba mais sobre os cenários de autenticação e autorização do 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2020
+ms.date: 02/02/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/index
-ms.openlocfilehash: e9087c246f4805e5931180fa0869fc8a8d23a6c1
-ms.sourcegitcommit: c81ef12a1b6e6ac838e5e07042717cf492e6635b
+ms.openlocfilehash: c7b3788b5737073100e7fa449fd6bb4a83c0043a
+ms.sourcegitcommit: 235623b6e5a5d1841139c82a11ac2b4b3f31a7a9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/29/2020
-ms.locfileid: "76885588"
+ms.lasthandoff: 02/10/2020
+ms.locfileid: "77114881"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Autorização e autenticação no Blazor em ASP.NET Core
 
@@ -67,9 +67,9 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 Os valores de autenticação permitidos (`{AUTHENTICATION}`) são mostrados na tabela a seguir.
 
-| Mecanismo de autenticação                                                                 | Valor `{AUTHENTICATION}` |
+| Mecanismo de autenticação                                                                 | `{AUTHENTICATION}` valor |
 | ---------------------------------------------------------------------------------------- | :----------------------: |
-| Sem autenticação                                                                        | `None`                   |
+| Sem Autenticação                                                                        | `None`                   |
 | Individual<br>Usuários armazenados no aplicativo com o ASP.NET Core Identity.                        | `Individual`             |
 | Individual<br>Usuários armazenados no [Azure AD B2C](xref:security/authentication/azure-ad-b2c). | `IndividualB2C`          |
 | Contas corporativas ou de estudante<br>Autenticação organizacional para um único locatário.            | `SingleOrg`              |
@@ -505,7 +505,7 @@ Em Blazor aplicativos Webassembly, as verificações de autorização podem ser 
 
 **Sempre execute as verificações de autorização no servidor em qualquer ponto de extremidade da API acessada pelo aplicativo do lado do cliente.**
 
-## <a name="troubleshoot-errors"></a>Solucionar erros
+## <a name="troubleshoot-errors"></a>Solucionar problemas de erros
 
 Erros comuns:
 
@@ -530,3 +530,4 @@ O `CascadingAuthenticationState` fornece o parâmetro em cascata `Task<Authentic
 * <xref:security/index>
 * <xref:security/blazor/server>
 * <xref:security/authentication/windowsauth>
+* [Awesome Blazor:](https://github.com/AdrienTorris/awesome-blazor#authentication) links de exemplo da comunidade de autenticação

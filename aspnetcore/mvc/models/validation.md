@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
 uid: mvc/models/validation
-ms.openlocfilehash: b697f02183c76b9a96471a748a86c144fde47bb0
-ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
+ms.openlocfilehash: c4fd16ef682627810c6d7629671de056f1cf3b3f
+ms.sourcegitcommit: 235623b6e5a5d1841139c82a11ac2b4b3f31a7a9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/18/2020
-ms.locfileid: "76268753"
+ms.lasthandoff: 02/10/2020
+ms.locfileid: "77114751"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Validação de modelo no ASP.NET Core MVC e Razor Pages
 
@@ -84,7 +84,9 @@ Para descobrir quais parâmetros são passados para `String.Format` no caso de u
 
 O sistema de validação no .NET Core 3,0 e posterior trata parâmetros não anuláveis ou propriedades associadas como se tivessem um atributo `[Required]`. [Tipos de valor](/dotnet/csharp/language-reference/keywords/value-types) como `decimal` e `int` são não anuláveis. Esse comportamento pode ser desabilitado Configurando <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> no `Startup.ConfigureServices`:
 
-' ' serviços Csharp. Addcontrollers (opções = > opções. SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true); ...
+```csharp
+services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+```
 
 ### <a name="required-validation-on-the-server"></a>Validação de [Required] no servidor
 
@@ -426,7 +428,7 @@ Os atributos de validação internos incluem:
 * `[Url]`: valida que a propriedade tem um formato de URL.
 * `[Remote]`: valida a entrada no cliente chamando um método de ação no servidor. Consulte [`[Remote]` atributo](#remote-attribute) para obter detalhes sobre o comportamento desse atributo.
 
-Ao usar o atributo `[RegularExpression]` com validação do lado do cliente, o Regex é executado em JavaScript no cliente. Isso significa que o comportamento de correspondência [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) será usado. Para obter mais informações, consulte [esse problema de GitHub](https://github.com/dotnet/corefx/issues/42487).
+Ao usar o atributo `[RegularExpression]` com validação do lado do cliente, o Regex é executado em JavaScript no cliente. Isso significa que o comportamento de correspondência [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) será usado. Saiba mais neste [tópico do GitHub](https://github.com/dotnet/corefx/issues/42487).
 
 Uma lista completa de atributos de validação pode ser encontrada no namespace [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations).
 

@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/26/2019
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: 5a31aa2974eb41938db89f97c070c352a26290fd
-ms.sourcegitcommit: 0dd224b2b7efca1fda0041b5c3f45080327033f6
+ms.openlocfilehash: 2a19a7d16ca8b8f5d6ac8eb99ad919b89f1e368b
+ms.sourcegitcommit: 235623b6e5a5d1841139c82a11ac2b4b3f31a7a9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/02/2019
-ms.locfileid: "74681169"
+ms.lasthandoff: 02/10/2020
+ms.locfileid: "77114647"
 ---
 # <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Tutorial: chamar uma API Web do ASP.NET Core com JavaScript
 
@@ -27,7 +27,7 @@ Para o ASP.NET Core 2.2, confira a versão 2.2 de [Chamar a API Web com o JavaSc
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Prerequisites
 
 * [Tutorial completo: criar uma API Web](xref:tutorials/first-web-api)
 * Familiaridade com CSS, HTML e JavaScript
@@ -36,7 +36,7 @@ Para o ASP.NET Core 2.2, confira a versão 2.2 de [Chamar a API Web com o JavaSc
 
 Nesta seção, você adicionará uma página HTML que contém formulários para criar e gerenciar itens de tarefas pendentes. Manipuladores de eventos são anexados aos elementos na página. Os manipuladores de eventos resultam em solicitações HTTP para os métodos de ação da API Web. A função `fetch` da API Fetch inicia cada solicitação HTTP.
 
-A função `fetch` retorna um objeto `Promise`, que contém uma resposta HTTP representada como um objeto `Response`. Um padrão comum é extrair o corpo da resposta JSON invocando a função `json` no objeto `Response`. O JavaScript atualiza a página com os detalhes da resposta da API Web.
+A função `fetch` retorna um objeto [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) , que contém uma resposta http representada como um objeto `Response`. Um padrão comum é extrair o corpo da resposta JSON invocando a função `json` no objeto `Response`. O JavaScript atualiza a página com os detalhes da resposta da API Web.
 
 A chamada `fetch` mais simples aceita um parâmetro único que representa a rota. Um segundo parâmetro, conhecido como objeto `init`, é opcional. `init` é usado para configurar a solicitação HTTP.
 
@@ -77,9 +77,9 @@ No seguinte código:
 
 * Uma variável `item` é declarada para construir uma representação literal de objeto do item de tarefas pendentes.
 * Uma solicitação Fetch é configurada com as seguintes opções:
-  * `method` &mdash; especifica o verbo de ação HTTP POST.
-  * `body` &mdash; especifica a representação JSON do corpo da solicitação. O JSON é produzido passando o literal de objeto armazenado em `item` para a função [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
-  * `headers` &mdash; especifica os cabeçalhos de solicitação HTTP `Accept` e `Content-Type`. Ambos os cabeçalhos são definidos como `application/json` para especificar o tipo de mídia que está sendo recebido e enviado, respectivamente.
+  * `method`&mdash; especifica o verbo de ação HTTP POST.
+  * `body`&mdash; especifica a representação JSON do corpo da solicitação. O JSON é produzido passando o literal de objeto armazenado em `item` para a função [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
+  * `headers`&mdash; especifica os cabeçalhos de solicitação HTTP `Accept` e `Content-Type`. Ambos os cabeçalhos são definidos como `application/json` para especificar o tipo de mídia que está sendo recebido e enviado, respectivamente.
 * Uma solicitação HTTP POST é enviada para a rota de *api/TodoItems*.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_AddItem)]
