@@ -5,14 +5,14 @@ description: Como usar o model binding e o streaming para carregar arquivos no A
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/04/2019
+ms.date: 02/11/2020
 uid: mvc/models/file-uploads
-ms.openlocfilehash: b5433576ff3e997e6d80201236be2d8463a52d07
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: 56fd26c1864089558f5cd89f693dc86ea30c3331
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75829225"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172468"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Carregar arquivos no ASP.NET Core
 
@@ -24,7 +24,7 @@ O ASP.NET Core dá suporte ao carregamento de um ou mais arquivos usando a assoc
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Considerações sobre segurança
+## <a name="security-considerations"></a>Considerações de segurança
 
 Tome cuidado ao fornecer aos usuários a capacidade de carregar arquivos em um servidor. Os invasores podem tentar:
 
@@ -64,7 +64,7 @@ Para obter mais informações sobre como implementar medidas de segurança, incl
 
 As opções de armazenamento comuns para arquivos incluem:
 
-* Banco de Dados
+* Banco de dados
 
   * Para carregamentos de arquivos pequenos, um banco de dados geralmente é mais rápido do que as opções de armazenamento físico (sistema de arquivos ou compartilhamento de rede).
   * Um banco de dados é muitas vezes mais conveniente do que as opções de armazenamento físico, pois a recuperação de um registro de banco de dados para o usuário pode fornecer simultaneamente o conteúdo do arquivo (por exemplo, uma imagem de Avatar).
@@ -83,7 +83,7 @@ As opções de armazenamento comuns para arquivos incluem:
   * Os serviços geralmente oferecem escalabilidade e resiliência aprimoradas sobre soluções locais que geralmente estão sujeitas a pontos únicos de falha.
   * Os serviços são um custo potencialmente menor em cenários de infraestrutura de armazenamento grandes.
 
-  Para obter mais informações, consulte [início rápido: usar o .net para criar um blob no armazenamento de objetos](/azure/storage/blobs/storage-quickstart-blobs-dotnet). O tópico demonstra <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync*>, mas <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync*> pode ser usado para salvar um <xref:System.IO.FileStream> no armazenamento de BLOBs ao trabalhar com um <xref:System.IO.Stream>.
+  Para obter mais informações, consulte [início rápido: usar o .net para criar um blob no armazenamento de objetos](/azure/storage/blobs/storage-quickstart-blobs-dotnet).
 
 ## <a name="file-upload-scenarios"></a>Cenários de upload de arquivo
 
@@ -101,7 +101,7 @@ Os recursos (disco, memória) usados por carregamentos de arquivos dependem do n
 O armazenamento em buffer de arquivos pequenos é abordado nas seguintes seções deste tópico:
 
 * [Armazenamento físico](#upload-small-files-with-buffered-model-binding-to-physical-storage)
-* [Banco de dados](#upload-small-files-with-buffered-model-binding-to-a-database)
+* [Backup de banco de dados](#upload-small-files-with-buffered-model-binding-to-a-database)
 
 **Streaming**
 
@@ -228,7 +228,7 @@ Os arquivos individuais carregados no servidor podem ser acessados por meio de [
 >
 > Os exemplos fornecidos até o momento não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
-> * [Considerações sobre segurança](#security-considerations)
+> * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
 
 Ao carregar arquivos usando Associação de modelo e <xref:Microsoft.AspNetCore.Http.IFormFile>, o método de ação pode aceitar:
@@ -399,7 +399,7 @@ O exemplo anterior é semelhante a um cenário demonstrado no aplicativo de exem
 >
 > Os exemplos fornecidos não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
-> * [Considerações sobre segurança](#security-considerations)
+> * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Carregar arquivos grandes com streaming
@@ -718,7 +718,7 @@ Essa configuração só se aplica ao IIS. Esse comportamento não ocorre por pad
 
 As limitações no módulo ASP.NET Core ou na presença do módulo filtragem de solicitações do IIS podem limitar os carregamentos a dois ou 4 GB. Para obter mais informações, consulte [não é possível carregar o arquivo com mais de 2GB de tamanho (dotNet/AspNetCore #2711)](https://github.com/dotnet/AspNetCore/issues/2711).
 
-## <a name="troubleshoot"></a>Solução de problemas
+## <a name="troubleshoot"></a>Solucionar problemas
 
 Abaixo, são listados alguns problemas comuns encontrados ao trabalhar com o upload de arquivos e suas possíveis soluções.
 
@@ -753,7 +753,7 @@ O ASP.NET Core dá suporte ao carregamento de um ou mais arquivos usando a assoc
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Considerações sobre segurança
+## <a name="security-considerations"></a>Considerações de segurança
 
 Tome cuidado ao fornecer aos usuários a capacidade de carregar arquivos em um servidor. Os invasores podem tentar:
 
@@ -793,7 +793,7 @@ Para obter mais informações sobre como implementar medidas de segurança, incl
 
 As opções de armazenamento comuns para arquivos incluem:
 
-* Banco de Dados
+* Banco de dados
 
   * Para carregamentos de arquivos pequenos, um banco de dados geralmente é mais rápido do que as opções de armazenamento físico (sistema de arquivos ou compartilhamento de rede).
   * Um banco de dados é muitas vezes mais conveniente do que as opções de armazenamento físico, pois a recuperação de um registro de banco de dados para o usuário pode fornecer simultaneamente o conteúdo do arquivo (por exemplo, uma imagem de Avatar).
@@ -830,7 +830,7 @@ Os recursos (disco, memória) usados por carregamentos de arquivos dependem do n
 O armazenamento em buffer de arquivos pequenos é abordado nas seguintes seções deste tópico:
 
 * [Armazenamento físico](#upload-small-files-with-buffered-model-binding-to-physical-storage)
-* [Banco de dados](#upload-small-files-with-buffered-model-binding-to-a-database)
+* [Backup de banco de dados](#upload-small-files-with-buffered-model-binding-to-a-database)
 
 **Streaming**
 
@@ -957,7 +957,7 @@ Os arquivos individuais carregados no servidor podem ser acessados por meio de [
 >
 > Os exemplos fornecidos até o momento não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
-> * [Considerações sobre segurança](#security-considerations)
+> * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
 
 Ao carregar arquivos usando Associação de modelo e <xref:Microsoft.AspNetCore.Http.IFormFile>, o método de ação pode aceitar:
@@ -1128,7 +1128,7 @@ O exemplo anterior é semelhante a um cenário demonstrado no aplicativo de exem
 >
 > Os exemplos fornecidos não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
-> * [Considerações sobre segurança](#security-considerations)
+> * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Carregar arquivos grandes com streaming
@@ -1440,7 +1440,7 @@ Essa configuração só se aplica ao IIS. Esse comportamento não ocorre por pad
 
 As limitações no módulo ASP.NET Core ou na presença do módulo filtragem de solicitações do IIS podem limitar os carregamentos a dois ou 4 GB. Para obter mais informações, consulte [não é possível carregar o arquivo com mais de 2GB de tamanho (dotNet/AspNetCore #2711)](https://github.com/dotnet/AspNetCore/issues/2711).
 
-## <a name="troubleshoot"></a>Solução de problemas
+## <a name="troubleshoot"></a>Solucionar problemas
 
 Abaixo, são listados alguns problemas comuns encontrados ao trabalhar com o upload de arquivos e suas possíveis soluções.
 

@@ -5,12 +5,12 @@ description: Saiba como adicionar classes de gerenciamento de filmes em um banco
 ms.author: riande
 ms.date: 12/05/2019
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 9d9266ae08c7abe747d4497bbcf52778cf2e370e
-ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
+ms.openlocfilehash: d2f9a64c77d76702004b94cdf36e558b33d7e19a
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/18/2020
-ms.locfileid: "76268760"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172571"
 ---
 # <a name="add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Adicionar um modelo a um aplicativo Páginas Razor no ASP.NET Core
 
@@ -30,7 +30,7 @@ As classes de modelo são conhecidas como classes POCO (de "objetos CLR básicos
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Clique com o botão direito do mouse no projeto **RazorPagesMovie** > **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
+Clique com o botão direito do mouse no projeto **RazorPagesMovie** > **Adicionar** > **Nova Pasta**. Nomeie a pasta *Models*.
 
 Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar** > **Classe**. Dê à classe o nome **Movie**.
 
@@ -38,7 +38,7 @@ Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar**
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Adicione uma pasta denominada *Modelos*.
+* Adicione uma pasta chamada *Models*.
 * Adicionar uma classe denominada *Movie.cs* à pasta *Modelos*.
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]
@@ -202,16 +202,16 @@ Os arquivos criados são explicados na próxima seção.
 
 Nesta seção, o PMC (Console de Gerenciador de Pacotes) é usado para:
 
-* Adicionar uma migração inicial.
+* Adicione uma migração inicial.
 * Atualize o banco de dados com a migração inicial.
 
 No menu **ferramentas** , selecione **Gerenciador de pacotes NuGet** > **console do Gerenciador de pacotes**.
 
   ![Menu do PMC](../first-mvc-app/adding-model/_static/pmc.png)
 
-No PMC, insira os seguintes comandos:
+No PMC, digite os seguintes comandos:
 
-```PMC
+```powershell
 Add-Migration InitialCreate
 Update-Database
 ```
@@ -311,7 +311,7 @@ As classes de modelo são conhecidas como classes POCO (de "objetos CLR básicos
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Clique com o botão direito do mouse no projeto **RazorPagesMovie** > **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
+Clique com o botão direito do mouse no projeto **RazorPagesMovie** > **Adicionar** > **Nova Pasta**. Nomeie a pasta *Models*.
 
 Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar** > **Classe**. Dê à classe o nome **Movie**.
 
@@ -319,7 +319,7 @@ Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar**
 
 # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Adicione uma pasta denominada *Modelos*.
+* Adicione uma pasta chamada *Models*.
 * Adicionar uma classe denominada *Movie.cs* à pasta *Modelos*.
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]
@@ -328,7 +328,7 @@ Clique com o botão direito do mouse na pasta *Modelos*. Selecione **Adicionar**
 
 # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* No Gerenciador de Soluções, clique com o botão direito do mouse no projeto **RazorPagesMovie** e então selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta como *Modelos*.
+* No Gerenciador de Soluções, clique com o botão direito do mouse no projeto **RazorPagesMovie** e então selecione **Adicionar** > **Nova Pasta**. Nomeie a pasta *Models*.
 * Clique com o botão direito do mouse na pasta *modelos* e selecione **Adicionar** > **novo arquivo**.
 * Na caixa de diálogo **Novo Arquivo**:
 
@@ -444,16 +444,16 @@ Os arquivos criados e atualizados são explicados na próxima seção.
 
 Nesta seção, o PMC (Console de Gerenciador de Pacotes) é usado para:
 
-* Adicionar uma migração inicial.
+* Adicione uma migração inicial.
 * Atualize o banco de dados com a migração inicial.
 
 No menu **ferramentas** , selecione **Gerenciador de pacotes NuGet** > **console do Gerenciador de pacotes**.
 
   ![Menu do PMC](../first-mvc-app/adding-model/_static/pmc.png)
 
-No PMC, insira os seguintes comandos:
+No PMC, digite os seguintes comandos:
 
-```Powershell
+```powershell
 Add-Migration Initial
 Update-Database
 ```

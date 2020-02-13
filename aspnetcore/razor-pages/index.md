@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 01/28/2020
 uid: razor-pages/index
-ms.openlocfilehash: da30908b38d553405fd3f959f09a19eff750ed17
-ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
+ms.openlocfilehash: 402e11d653cf0e7433c63844cb7e2802abc61679
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/29/2020
-ms.locfileid: "76870499"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172617"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>Introdução a Páginas do Razor no ASP.NET Core
 
@@ -25,7 +25,7 @@ Se você estiver procurando um tutorial que utiliza a abordagem Modelo-Exibiçã
 
 Este documento proporciona uma introdução a páginas do Razor. Este não é um tutorial passo a passo. Se você achar que algumas das seções são muito avançadas, consulte a [Introdução a Páginas do Razor](xref:tutorials/razor-pages/razor-pages-start). Para obter uma visão geral do ASP.NET Core, consulte a [Introdução ao ASP.NET Core](xref:index).
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Prerequisites
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -126,7 +126,7 @@ Por convenção, a classe `PageModel` é chamada de `<PageName>Model` e está no
 A classe `PageModel` permite separar a lógica de uma página da respectiva apresentação. Ela define manipuladores para as solicitações enviadas e os dados usados para renderizar a página. Essa separação permite:
 
 * Gerenciamento de dependências de página por meio de [injeção de dependência](xref:fundamentals/dependency-injection).
-* [Teste de unidade](xref:test/razor-pages-tests)
+* [Testes de unidade](xref:test/razor-pages-tests)
 
 A página tem um *método de manipulador*de `OnPostAsync`, que é executado em `POST` solicitações (quando um usuário posta o formulário). Métodos de manipulador para qualquer verbo HTTP podem ser adicionados. Os manipuladores mais comuns são:
 
@@ -198,7 +198,7 @@ Examinando o arquivo de exibição *páginas/Create. cshtml* :
 * No código anterior, o [auxiliar de marca de entrada](xref:mvc/views/working-with-forms#the-input-tag-helper) `<input asp-for="Customer.Name" />` associa o elemento HTML `<input>` à expressão do modelo `Customer.Name`.
 * [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#addtaghelper-makes-tag-helpers-available) torna os auxiliares de marca disponíveis.
 
-### <a name="the-home-page"></a>O home page
+### <a name="the-home-page"></a>Home page
 
 *Index. cshtml* é o Home Page:
 
@@ -220,7 +220,7 @@ O arquivo *index. cshtml* contém marcação para criar um botão de exclusão p
 
 O HTML renderizado:
 
-```HTML
+```html
 <button type="submit" formaction="/Customers?id=1&amp;handler=delete">delete</button>
 ```
 
@@ -317,7 +317,7 @@ A página criar para o modelo de `Movie` mostra exibe erros com valores inválid
 
 ![Formulário da exibição de filmes com vários erros de validação do lado do cliente do jQuery](~/tutorials/razor-pages/validation/_static/val.png)
 
-Para obter mais informações, consulte .
+Para obter mais informações, consulte:
 
 * [Adicionar validação ao aplicativo de filme](xref:tutorials/razor-pages/validation)
 * [Validação de modelo no ASP.NET Core](xref:mvc/models/validation).
@@ -425,7 +425,7 @@ O aplicativo tem a estrutura de arquivos/pastas a seguir:
 * */Pages*
 
   * *Index.cshtml*
-  * *Privacy.cshtml*
+  * *Privacidade. cshtml*
   * */Clientes*
 
     * *Create.cshtml*
@@ -522,7 +522,7 @@ A marcação a seguir no arquivo *Pages/Customers/Index.cshtml* exibe o valor de
 
 O modelo de página *Pages/Customers/Index.cshtml.cs* aplica o atributo `[TempData]` à propriedade `Message`.
 
-```cs
+```csharp
 [TempData]
 public string Message { get; set; }
 ```
@@ -603,7 +603,7 @@ Adicione <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuil
 * <xref:razor-pages/razor-pages-conventions>
 * <xref:test/razor-pages-tests>
 * <xref:mvc/views/partial>
-* [Integrar componentes do Razor em aplicativos Razor Pages e MVC](xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps)
+* [Integrar componentes do Razor em aplicativos Razor Pages e MVC](xref:blazor/hosting-model-configuration#integrate-razor-components-into-razor-pages-and-mvc-apps)
 
 ::: moniker-end
 
@@ -617,7 +617,7 @@ Se você estiver procurando um tutorial que utiliza a abordagem Modelo-Exibiçã
 
 Este documento proporciona uma introdução a páginas do Razor. Este não é um tutorial passo a passo. Se você achar que algumas das seções são muito avançadas, consulte a [Introdução a Páginas do Razor](xref:tutorials/razor-pages/razor-pages-start). Para obter uma visão geral do ASP.NET Core, consulte a [Introdução ao ASP.NET Core](xref:index).
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Prerequisites
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -1026,7 +1026,7 @@ A marcação a seguir no arquivo *Pages/Customers/Index.cshtml* exibe o valor de
 
 O modelo de página *Pages/Customers/Index.cshtml.cs* aplica o atributo `[TempData]` à propriedade `Message`.
 
-```cs
+```csharp
 [TempData]
 public string Message { get; set; }
 ```

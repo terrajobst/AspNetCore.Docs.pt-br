@@ -6,12 +6,12 @@ description: Descubra os atributos auxiliares de marca de script ASP.NET Core e 
 ms.custom: mvc
 ms.date: 12/02/2019
 uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
-ms.openlocfilehash: 8a90eb5a74ff3f8178a47c59ad7ba1b6a389ab87
-ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
+ms.openlocfilehash: a037abb6a454e6d06305e7d7f6ecad0c2a0ca717
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/03/2019
-ms.locfileid: "74717371"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77171849"
 ---
 # <a name="script-tag-helper-in-aspnet-core"></a>Auxiliar de marca de script no ASP.NET Core
 
@@ -25,7 +25,7 @@ O auxiliar de marca de script permite que você especifique uma CDN para o arqui
 
 A marcação Razor a seguir mostra um elemento `script` com um fallback:
 
-```HTML
+```html
 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
         asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
         asp-fallback-test="window.jQuery"

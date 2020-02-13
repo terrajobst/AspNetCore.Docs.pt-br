@@ -4,14 +4,14 @@ author: rick-anderson
 description: Saiba como usar a autenticação de cookie sem ASP.NET Core identidade.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 08/20/2019
+ms.date: 02/11/2020
 uid: security/authentication/cookie
-ms.openlocfilehash: 288fa4317801544bf0d689280c56836431017c89
-ms.sourcegitcommit: 9e85c2562df5e108d7933635c830297f484bb775
+ms.openlocfilehash: 62a3d247dade6c83156a8378407d5e3891713fd1
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/04/2019
-ms.locfileid: "73462925"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172114"
 ---
 # <a name="use-cookie-authentication-without-aspnet-core-identity"></a>Usar autenticação de cookie sem identidade ASP.NET Core
 
@@ -76,11 +76,11 @@ var cookiePolicyOptions = new CookiePolicyOptions
 
 A configuração de middleware de política de cookie para `MinimumSameSitePolicy` pode afetar a configuração de `Cookie.SameSite` nas configurações de `CookieAuthenticationOptions` de acordo com a matriz abaixo.
 
-| MinimumSameSitePolicy | Cookie. SameSite | Cookie resultante. configuração de SameSite |
+| MinimumSameSitePolicy | Cookie.SameSite | Cookie resultante. configuração de SameSite |
 | --------------------- | --------------- | --------------------------------- |
-| SameSiteMode. None     | SameSiteMode. None<br>SameSiteMode. LAX<br>SameSiteMode. Strict | SameSiteMode. None<br>SameSiteMode. LAX<br>SameSiteMode. Strict |
-| SameSiteMode. LAX      | SameSiteMode. None<br>SameSiteMode. LAX<br>SameSiteMode. Strict | SameSiteMode. LAX<br>SameSiteMode. LAX<br>SameSiteMode. Strict |
-| SameSiteMode. Strict   | SameSiteMode. None<br>SameSiteMode. LAX<br>SameSiteMode. Strict | SameSiteMode. Strict<br>SameSiteMode. Strict<br>SameSiteMode. Strict |
+| SameSiteMode.None     | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict |
+| SameSiteMode.Lax      | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Lax<br>SameSiteMode.Lax<br>SameSiteMode.Strict |
+| SameSiteMode.Strict   | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Strict<br>SameSiteMode.Strict<br>SameSiteMode.Strict |
 
 ## <a name="create-an-authentication-cookie"></a>Criar um cookie de autenticação
 
@@ -215,7 +215,7 @@ await HttpContext.SignInAsync(
 
 ## <a name="absolute-cookie-expiration"></a>Expiração de cookie absoluto
 
-Um tempo de expiração absoluto pode ser definido com <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc>. Para criar um cookie persistente, `IsPersistent` também deve ser definido. Caso contrário, o cookie é criado com um tempo de vida baseado em sessão e pode expirar antes ou depois do tíquete de autenticação que ele contém. Quando `ExpiresUtc` é definido, ele substitui o valor da <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.ExpireTimeSpan> opção de <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions>, se definido.
+Um tempo de expiração absoluto pode ser definido com <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc>. Para criar um cookie persistente, `IsPersistent` também deve ser definido. Caso contrário, o cookie é criado com um tempo de vida baseado em sessão e pode expirar antes ou depois do tíquete de autenticação que ele contém. Quando `ExpiresUtc` é definido, ele substitui o valor da <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.ExpireTimeSpan> opção de <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>, se definido.
 
 O trecho de código a seguir cria uma identidade e um cookie correspondente que dura 20 minutos. Isso ignora as configurações de expiração deslizante configuradas anteriormente.
 
@@ -293,11 +293,11 @@ var cookiePolicyOptions = new CookiePolicyOptions
 
 A configuração de middleware de política de cookie para `MinimumSameSitePolicy` pode afetar a configuração de `Cookie.SameSite` nas configurações de `CookieAuthenticationOptions` de acordo com a matriz abaixo.
 
-| MinimumSameSitePolicy | Cookie. SameSite | Cookie resultante. configuração de SameSite |
+| MinimumSameSitePolicy | Cookie.SameSite | Cookie resultante. configuração de SameSite |
 | --------------------- | --------------- | --------------------------------- |
-| SameSiteMode. None     | SameSiteMode. None<br>SameSiteMode. LAX<br>SameSiteMode. Strict | SameSiteMode. None<br>SameSiteMode. LAX<br>SameSiteMode. Strict |
-| SameSiteMode. LAX      | SameSiteMode. None<br>SameSiteMode. LAX<br>SameSiteMode. Strict | SameSiteMode. LAX<br>SameSiteMode. LAX<br>SameSiteMode. Strict |
-| SameSiteMode. Strict   | SameSiteMode. None<br>SameSiteMode. LAX<br>SameSiteMode. Strict | SameSiteMode. Strict<br>SameSiteMode. Strict<br>SameSiteMode. Strict |
+| SameSiteMode.None     | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict |
+| SameSiteMode.Lax      | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Lax<br>SameSiteMode.Lax<br>SameSiteMode.Strict |
+| SameSiteMode.Strict   | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Strict<br>SameSiteMode.Strict<br>SameSiteMode.Strict |
 
 ## <a name="create-an-authentication-cookie"></a>Criar um cookie de autenticação
 

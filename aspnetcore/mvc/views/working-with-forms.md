@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: 61b50a63bd026f917035f64785d8d3b1956958a6
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: 1c7652c909432b25ae373873cd593afd879cfa00
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880958"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172559"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Auxiliares de marca em formulários no ASP.NET Core
 
@@ -27,7 +27,7 @@ Em muitos casos, os Auxiliares HTML fornecem uma abordagem alternativa a um Auxi
 
 O Auxiliar de marca de [formulário](https://www.w3.org/TR/html401/interact/forms.html):
 
-* Gera o valor do atributo HTML [\<FORM>](https://www.w3.org/TR/html401/interact/forms.html) `action` para uma ação do controlador MVC ou uma rota nomeada
+* Gera o [formulário de\<HTML >](https://www.w3.org/TR/html401/interact/forms.html) `action` valor de atributo para uma ação do controlador MVC ou rota nomeada
 
 * Gera um [Token de verificação de solicitação](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) oculto para evitar a falsificação de solicitações entre sites (quando usado com o atributo `[ValidateAntiForgeryToken]` no método de ação HTTP Post)
 
@@ -41,7 +41,7 @@ Exemplo:
 
 O Auxiliar de marca de formulário acima gera o HTML a seguir:
 
-```HTML
+```html
 <form method="post" action="/Demo/Register">
     <!-- Input and Submit elements -->
     <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
@@ -69,11 +69,11 @@ Muitas das exibições na pasta *Modos de Exibição/Conta* (gerada quando você
 
 ## <a name="the-form-action-tag-helper"></a>Auxiliar de Marcação de Ação de Formulário
 
-O Auxiliar de Marcação de Ação de Formulário gera o atributo `formaction` na marcação `<button ...>` ou `<input type="image" ...>` gerada. O atributo `formaction` controla onde um formulário envia seus dados. Ele se associa à [\<entrada >](https://www.w3.org/wiki/HTML/Elements/input) elementos do tipo `image` e elementos [\<botão >](https://www.w3.org/wiki/HTML/Elements/button). O Auxiliar de Marcação de Ação de Formulário permite o uso de vários atributos [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-` para controlar qual link `formaction` será gerado para o elemento correspondente.
+O Auxiliar de Marcação de Ação de Formulário gera o atributo `formaction` na marcação `<button ...>` ou `<input type="image" ...>` gerada. O atributo `formaction` controla onde um formulário envia seus dados. Ele se associa à [\<entrada >](https://www.w3.org/wiki/HTML/Elements/input) elementos do tipo `image` e elementos [\<botão >](https://www.w3.org/wiki/HTML/Elements/button). O auxiliar de marca de ação de formulário permite o uso de vários atributos [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-` para controlar qual `formaction` link é gerado para o elemento correspondente.
 
 Atributos [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) com suporte para controlar o valor de `formaction`:
 
-|Atributo|Descrição|
+|Atributo|DESCRIÇÃO|
 |---|---|
 |[asp-controller](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-controller)|O nome do controlador.|
 |[asp-action](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-action)|O nome do método de ação.|
@@ -165,13 +165,13 @@ O Auxiliar de marca de entrada associa um elemento HTML [\<input>](https://www.w
 
 Sintaxe:
 
-```HTML
+```cshtml
 <input asp-for="<Expression Name>">
 ```
 
 O auxiliar de marca de entrada:
 
-* Gera os atributos HTML `id` e `name` para o nome da expressão especificada no atributo `asp-for`. `asp-for="Property1.Property2"` equivale a `m => m.Property1.Property2`. O nome da expressão é o que é usado para o valor do atributo `asp-for`. Consulte a seção [Nomes de expressão](#expression-names) para obter informações adicionais.
+* Gera os atributos HTML `id` e `name` para o nome da expressão especificada no atributo `asp-for`. `asp-for="Property1.Property2"` é equivalente a `m => m.Property1.Property2`. O nome da expressão é o que é usado para o valor do atributo `asp-for`. Consulte a seção [Nomes de expressão](#expression-names) para obter informações adicionais.
 
 * Define o valor do atributo HTML `type` com base nos atributos de tipo de modelo e [anotação de dados](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) aplicados à propriedade de modelo
 
@@ -183,7 +183,7 @@ O auxiliar de marca de entrada:
 
 * Fornece tipagem forte. Se o nome da propriedade for alterado e você não atualizar o Auxiliar de marca, você verá um erro semelhante ao seguinte:
 
-```HTML
+```
 An error occurred during the compilation of a resource required to process
 this request. Please review the following specific error details and modify
 your source code appropriately.
@@ -199,11 +199,11 @@ O Auxiliar de marca `Input` define o atributo HTML `type` com base no tipo .NET.
 |Tipo .NET|Tipo de entrada|
 |---|---|
 |Bool|type="checkbox"|
-|Cadeia de Caracteres|type="text"|
-|DateTime|type=["datetime-local"](https://developer.mozilla.org/docs/Web/HTML/Element/input/datetime-local)|
+|String|type="text"|
+|Datetime|type=["datetime-local"](https://developer.mozilla.org/docs/Web/HTML/Element/input/datetime-local)|
 |Byte|type="number"|
 |Int|type="number"|
-|Single e Double|type="number"|
+|Single, Double|type="number"|
 
 A tabela a seguir mostra alguns atributos de [anotações de dados](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) comuns que o auxiliar de marca de entrada mapeará para tipos de entrada específicos (não são listados todos os atributos de validação):
 
@@ -225,7 +225,7 @@ Exemplo:
 
 O código acima gera o seguinte HTML:
 
-```HTML
+```html
   <form method="post" action="/Demo/RegisterInput">
       Email:
       <input type="email" data-val="true"
@@ -241,7 +241,7 @@ O código acima gera o seguinte HTML:
    </form>
 ```
 
-As anotações de dados aplicadas às propriedades `Email` e `Password` geram metadados no modelo. O Auxiliar de marca de entrada consome os metadados do modelo e produz atributos [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) `data-val-*` (consulte [Validação de modelo](../models/validation.md)). Esses atributos descrevem os validadores a serem anexados aos campos de entrada. Isso fornece validação de [jQuery](https://jquery.com/) e HTML5 discreto. Os atributos discretos têm o formato `data-val-rule="Error Message"`, em que Rule é o nome da regra de validação (como `data-val-required`, `data-val-email`, `data-val-maxlength`, etc.) Se uma mensagem de erro for fornecida no atributo, ela será exibida como o valor para o atributo `data-val-rule`. Também há atributos do formulário `data-val-ruleName-argumentName="argumentValue"` que fornecem detalhes adicionais sobre a regra, por exemplo, `data-val-maxlength-max="1024"`.
+As anotações de dados aplicadas às propriedades `Email` e `Password` geram metadados no modelo. O auxiliar de marca de entrada consome os metadados do modelo e produz os atributos de `data-val-*` [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) (consulte a [validação do modelo](../models/validation.md)). Esses atributos descrevem os validadores a serem anexados aos campos de entrada. Isso fornece validação de [jQuery](https://jquery.com/) e HTML5 discreto. Os atributos discretos têm o formato `data-val-rule="Error Message"`, em que Rule é o nome da regra de validação (como `data-val-required`, `data-val-email`, `data-val-maxlength`, etc.) Se uma mensagem de erro for fornecida no atributo, ela será exibida como o valor para o atributo `data-val-rule`. Também há atributos do formulário `data-val-ruleName-argumentName="argumentValue"` que fornecem detalhes adicionais sobre a regra, por exemplo, `data-val-maxlength-max="1024"`.
 
 ### <a name="html-helper-alternatives-to-input-tag-helper"></a>Alternativas de Auxiliar HTML ao Auxiliar de marca de entrada
 
@@ -251,7 +251,7 @@ As anotações de dados aplicadas às propriedades `Email` e `Password` geram me
 
 `@Html.Editor()` e `@Html.EditorFor()` usam uma entrada `ViewDataDictionary` especial chamada `htmlAttributes` ao executar seus modelos padrão. Esse comportamento pode ser aumentado usando parâmetros `additionalViewData`. A chave "htmlAttributes" diferencia maiúsculas de minúsculas. A chave "htmlAttributes" é tratada de forma semelhante ao objeto `htmlAttributes` passado para auxiliares de entrada como `@Html.TextBox()`.
 
-```HTML
+```cshtml
 @Html.EditorFor(model => model.YourProperty, 
   new { htmlAttributes = new { @class="myCssClass", style="Width:100px" } })
 ```
@@ -260,16 +260,17 @@ As anotações de dados aplicadas às propriedades `Email` e `Password` geram me
 
 O valor do atributo `asp-for` é um `ModelExpression` e o lado direito de uma expressão lambda. Portanto, `asp-for="Property1"` se torna `m => m.Property1` no código gerado e é por isso você não precisa colocar o prefixo `Model`. Você pode usar o caractere "\@" para iniciar uma expressão embutida e mover para antes de `m.`:
 
-```HTML
+```cshtml
 @{
-       var joe = "Joe";
-   }
-   <input asp-for="@joe">
+  var joe = "Joe";
+}
+
+<input asp-for="@joe">
 ```
 
 Gera o seguinte:
 
-```HTML
+```html
 <input type="text" id="joe" name="joe" value="Joe">
 ```
 
@@ -294,7 +295,7 @@ Na exibição, associamos a `Address.AddressLine1`:
 
 O HTML a seguir é gerado para `Address.AddressLine1`:
 
-```HTML
+```html
 <input type="text" id="Address_AddressLine1" name="Address.AddressLine1" value="">
 ```
 
@@ -308,10 +309,10 @@ O método de ação:
 
 ```csharp
 public IActionResult Edit(int id, int colorIndex)
-   {
-       ViewData["Index"] = colorIndex;
-       return View(GetPerson(id));
-   }
+{
+    ViewData["Index"] = colorIndex;
+    return View(GetPerson(id));
+}
 ```
 
 O Razor a seguir mostra como você acessa um elemento `Color` específico:
@@ -359,7 +360,7 @@ Exemplo:
 
 O HTML a seguir é gerado:
 
-```HTML
+```html
 <form method="post" action="/Demo/RegisterTextArea">
   <textarea data-val="true"
    data-val-maxlength="The field Description must be a string or array type with a maximum length of &#x27;1024&#x27;."
@@ -395,7 +396,7 @@ Exemplo:
 
 O HTML a seguir é gerado para o elemento `<label>`:
 
-```HTML
+```html
 <label for="Email">Email Address</label>
 ```
 
@@ -407,7 +408,7 @@ Há dois auxiliares de marca de validação. O `Validation Message Tag Helper` (
 
 ### <a name="the-validation-message-tag-helper"></a>O Auxiliar de marca de mensagem de validação
 
-* Adiciona o atributo `data-valmsg-for="property"` [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) ao elemento [span](https://developer.mozilla.org/docs/Web/HTML/Element/span), que anexa as mensagens de erro de validação no campo de entrada da propriedade do modelo especificado. Quando ocorre um erro de validação do lado do cliente, [jQuery](https://jquery.com/) exibe a mensagem de erro no elemento `<span>`.
+* Adiciona o atributo`data-valmsg-for="property"` do [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) ao elemento [span](https://developer.mozilla.org/docs/Web/HTML/Element/span) , que anexa as mensagens de erro de validação no campo de entrada da propriedade de modelo especificada. Quando ocorre um erro de validação do lado do cliente, [jQuery](https://jquery.com/) exibe a mensagem de erro no elemento `<span>`.
 
 * A validação também é feita no servidor. Os clientes poderão ter o JavaScript desabilitado e parte da validação só pode ser feita no lado do servidor.
 
@@ -415,13 +416,13 @@ Há dois auxiliares de marca de validação. O `Validation Message Tag Helper` (
 
 O `Validation Message Tag Helper` é usado com o atributo `asp-validation-for` em um elemento HTML [span](https://developer.mozilla.org/docs/Web/HTML/Element/span).
 
-```HTML
+```cshtml
 <span asp-validation-for="Email"></span>
 ```
 
 O Auxiliar de marca de mensagem de validação gerará o HTML a seguir:
 
-```HTML
+```html
 <span class="field-validation-valid"
   data-valmsg-for="Email"
   data-valmsg-replace="true"></span>
@@ -434,7 +435,7 @@ Geralmente, você usa o `Validation Message Tag Helper` após um Auxiliar de mar
 
 Quando ocorre um erro de validação do lado do servidor (por exemplo, quando você tem validação do lado do servidor personalizada ou a validação do lado do cliente está desabilitada), o MVC coloca essa mensagem de erro como o corpo do elemento `<span>`.
 
-```HTML
+```html
 <span class="field-validation-error" data-valmsg-for="Email"
             data-valmsg-replace="true">
    The Email Address field is required.
@@ -453,7 +454,7 @@ O `Validation Summary Tag Helper` é usado para exibir um resumo das mensagens d
 |--- |--- |
 |ValidationSummary.All|Nível da propriedade e do modelo|
 |ValidationSummary.ModelOnly|Modelo|
-|ValidationSummary.None|{1&gt;Nenhum&lt;1}|
+|ValidationSummary.None|Nenhum|
 
 ### <a name="sample"></a>Amostra
 
@@ -465,7 +466,7 @@ No exemplo a seguir, o modelo de dados tem atributos `DataAnnotation`, que geram
 
 O código HTML gerado (quando o modelo é válido):
 
-```HTML
+```html
 <form action="/DemoReg/Register" method="post">
   <div class="validation-summary-valid" data-valmsg-summary="true">
   <ul><li style="display:none"></li></ul></div>
@@ -490,7 +491,7 @@ O código HTML gerado (quando o modelo é válido):
 
 * Tem uma alternativa de Auxiliar HTML `Html.DropDownListFor` e `Html.ListBoxFor`
 
-O `Select Tag Helper` `asp-for` especifica o nome da propriedade do modelo para o elemento [select](https://www.w3.org/wiki/HTML/Elements/select) e `asp-items` especifica os elementos [option](https://www.w3.org/wiki/HTML/Elements/option).  Por exemplo:
+O `Select Tag Helper` `asp-for` especifica o nome da Propriedade do modelo para o elemento [Select](https://www.w3.org/wiki/HTML/Elements/select) e `asp-items` especifica os elementos de [opção](https://www.w3.org/wiki/HTML/Elements/option) .  Por exemplo:
 
 [!code-HTML[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
@@ -551,7 +552,7 @@ Você pode marcar sua lista de enumeradores com o atributo `Display` para obter 
 
 O HTML a seguir é gerado:
 
-```HTML
+```html
   <form method="post" action="/Home/IndexEnum">
          <select data-val="true" data-val-required="The EnumCountry field is required."
                  id="EnumCountry" name="EnumCountry">
@@ -581,7 +582,7 @@ Os dois grupos são mostrados abaixo:
 
 O HTML gerado:
 
-```HTML
+```html
  <form method="post" action="/Home/IndexGroup">
       <select id="Country" name="Country">
           <optgroup label="North America">
@@ -612,7 +613,7 @@ Com a seguinte exibição:
 
 Gera o seguinte HTML:
 
-```HTML
+```html
 <form method="post" action="/Home/IndexMultiSelect">
     <select id="CountryCodes"
     multiple="multiple"
@@ -648,7 +649,7 @@ O elemento `<option>` correto será selecionado (contém o atributo `selected="s
 
 [!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
 
-```HTML
+```html
  <form method="post" action="/Home/IndexEmpty">
       <select id="Country" name="Country">
           <option value="">&lt;none&gt;</option>

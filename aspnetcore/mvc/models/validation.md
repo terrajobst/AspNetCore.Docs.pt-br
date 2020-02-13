@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
 uid: mvc/models/validation
-ms.openlocfilehash: c4fd16ef682627810c6d7629671de056f1cf3b3f
-ms.sourcegitcommit: 235623b6e5a5d1841139c82a11ac2b4b3f31a7a9
+ms.openlocfilehash: a39eeead10849d11349688c42fe814ede9e8a847
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/10/2020
-ms.locfileid: "77114751"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172496"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Validação de modelo no ASP.NET Core MVC e Razor Pages
 
@@ -146,7 +146,7 @@ Quando o usuário insere o primeiro nome ou o sobrenome, o JavaScript faz uma ch
 
 Para validar dois ou mais campos adicionais, forneça-os como uma lista delimitada por vírgulas. Por exemplo, para adicionar uma propriedade `MiddleName` ao modelo, defina o atributo `[Remote]`, conforme mostrado no seguinte exemplo:
 
-```cs
+```csharp
 [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
 public string MiddleName { get; set; }
 ```
@@ -271,7 +271,7 @@ Para obter informações sobre a validação não invasiva, consulte [este probl
 
 O jQuery Unobtrusive Validation passa parâmetros e a lógica de validação para o jQuery Validate quando a página é carregada pela primeira vez. Portanto, a validação não funciona automaticamente em formulários gerados dinamicamente. Para habilitar a validação é necessário instruir o jQuery Unobtrusive Validation a analisar o formulário dinâmico imediatamente depois de criá-lo. Por exemplo, o código a seguir define a validação do lado do cliente em um formulário adicionado por meio do AJAX.
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/form",
     dataType: "html",
@@ -294,7 +294,7 @@ O método `$.validator.unobtrusive.parse()` aceita um seletor do jQuery para um 
 
 O método `$.validator.unobtrusive.parse()` funciona em um formulário inteiro, não em controles individuais gerados dinamicamente, como `<input>` e `<select/>`. Para uma nova análise do formulário, remova os dados de validação que foram adicionados ao formulário mesmo quando foi analisado anteriormente, conforme mostrado no exemplo a seguir:
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/control",
     dataType: "html",
@@ -512,7 +512,7 @@ Quando o usuário insere o primeiro nome ou o sobrenome, o JavaScript faz uma ch
 
 Para validar dois ou mais campos adicionais, forneça-os como uma lista delimitada por vírgulas. Por exemplo, para adicionar uma propriedade `MiddleName` ao modelo, defina o atributo `[Remote]`, conforme mostrado no seguinte exemplo:
 
-```cs
+```csharp
 [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
 public string MiddleName { get; set; }
 ```
@@ -642,7 +642,7 @@ A validação de tipo de dados é baseada no tipo .NET de uma propriedade, a men
 
 O jQuery Unobtrusive Validation passa parâmetros e a lógica de validação para o jQuery Validate quando a página é carregada pela primeira vez. Portanto, a validação não funciona automaticamente em formulários gerados dinamicamente. Para habilitar a validação é necessário instruir o jQuery Unobtrusive Validation a analisar o formulário dinâmico imediatamente depois de criá-lo. Por exemplo, o código a seguir define a validação do lado do cliente em um formulário adicionado por meio do AJAX.
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/form",
     dataType: "html",
@@ -665,7 +665,7 @@ O método `$.validator.unobtrusive.parse()` aceita um seletor do jQuery para um 
 
 O método `$.validator.unobtrusive.parse()` funciona em um formulário inteiro, não em controles individuais gerados dinamicamente, como `<input>` e `<select/>`. Para uma nova análise do formulário, remova os dados de validação que foram adicionados ao formulário mesmo quando foi analisado anteriormente, conforme mostrado no exemplo a seguir:
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/control",
     dataType: "html",

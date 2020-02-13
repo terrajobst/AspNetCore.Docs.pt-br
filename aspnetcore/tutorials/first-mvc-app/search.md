@@ -5,12 +5,12 @@ description: Mostra como adicionar uma pesquisa a um aplicativo ASP.NET Core MVC
 ms.author: riande
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/search
-ms.openlocfilehash: 97ee5f66c142780d54d28013c109da61241d967b
-ms.sourcegitcommit: 2719c70cd15a430479ab4007ff3e197fbf5dfee0
-ms.translationtype: HT
+ms.openlocfilehash: 89f1fa84783430f160ca0b840bf7ae9699520cb7
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68862953"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77171630"
 ---
 # <a name="add-search-to-an-aspnet-core-mvc-app"></a>Adicionar a pesquisa a um aplicativo ASP.NET Core MVC
 
@@ -39,7 +39,7 @@ O código `s => s.Title.Contains()` acima é uma [Expressão Lambda](/dotnet/csh
 
 Observação: o método [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) é executado no banco de dados, não no código C# mostrado acima. A diferenciação de maiúsculas e minúsculas na consulta depende do banco de dados e da ordenação. No SQL Server, [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) é mapeado para [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), que não diferencia maiúsculas de minúsculas. No SQLite, com a ordenação padrão, ele diferencia maiúsculas de minúsculas.
 
-Navegue para `/Movies/Index`. Acrescente uma cadeia de consulta, como `?searchString=Ghost`, à URL. Os filmes filtrados são exibidos.
+Navegue até `/Movies/Index`. Acrescente uma cadeia de consulta, como `?searchString=Ghost`, à URL. Os filmes filtrados são exibidos.
 
 ![Exibição de índice](~/tutorials/first-mvc-app/search/_static/ghost.png)
 
@@ -101,9 +101,9 @@ Agora, quando você enviar uma pesquisa, a URL conterá a cadeia de consulta da 
 
 A seguinte marcação mostra a alteração para a marcação `form`:
 
-```html
+```cshtml
 <form asp-controller="Movies" asp-action="Index" method="get">
-   ```
+```
 
 ## <a name="add-search-by-genre"></a>Adicionar pesquisa por gênero
 
@@ -136,7 +136,7 @@ Atualize `Index.cshtml`, encontrado em *Views/Movies/* , da seguinte maneira:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,19,28,31,34,37,43)]
 
-Examine a expressão lambda usada no seguinte Auxiliar de HTML:
+Examine a expressão lambda usada no auxiliar HTML a seguir:
 
 `@Html.DisplayNameFor(model => model.Movies[0].Title)`
 

@@ -5,12 +5,12 @@ description: Adicione um modelo a um aplicativo ASP.NET Core simples.
 ms.author: riande
 ms.date: 01/13/2020
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 2b656f316a25759456a1d00a9176ea160b2fe5bf
-ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
+ms.openlocfilehash: 3fe22511b4d887177d86013d080f307e16361d5b
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "76928588"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172164"
 ---
 # <a name="add-a-model-to-an-aspnet-core-mvc-app"></a>Adicione um modelo a um aplicativo ASP.NET Core MVC
 
@@ -18,7 +18,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Tom Dykstra](https://git
 
 Nesta seção, você adiciona classes para gerenciamento de filmes em um banco de dados. Essas classes serão a parte “**M**odel” parte do aplicativo **M**VC.
 
-Você usa essas classes com o [EF Core](/ef/core) (Entity Framework Core) para trabalhar com um banco de dados. O EF Core é uma estrutura ORM (de mapeamento relacional de objetos) que simplifica o código de acesso a dados que você precisa escrever.
+Você usa essas classes com o [EF Core](/ef/core) (Entity Framework Core) para trabalhar com um banco de dados. O EF Core é uma estrutura ORM (mapeamento relacional de objetos) que simplifica o código de acesso a dados que você precisa escrever.
 
 As classes de modelo que você cria são conhecidas como classes de dados POCO (de **o**bjetos **C**L**R** **b**ásicos) porque elas não têm nenhuma dependência no EF Core. Elas apenas definem as propriedades dos dados que serão armazenados no banco de dados.
 
@@ -55,7 +55,7 @@ O atributo [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.inter
 
 [DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) são abordados em um tutorial posterior.
 
-## <a name="add-nuget-packages"></a>Adicionar pacotes do NuGet
+## <a name="add-nuget-packages"></a>Adicionar pacotes NuGet
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -111,7 +111,7 @@ O código anterior cria uma propriedade [DbSet\<Movie>](/dotnet/api/microsoft.en
 
 <a name="reg"></a>
 
-## <a name="register-the-database-context"></a>Registrar o contexto do banco de dados
+## <a name="register-the-database-context"></a>Registrar o contexto de banco de dados
 
 O ASP.NET Core foi criado com a [DI (injeção de dependência)](xref:fundamentals/dependency-injection). Os serviços (como o contexto de BD do EF Core) devem ser registrados com a DI durante a inicialização do aplicativo. Os componentes que exigem esses serviços (como as Páginas do Razor) recebem esses serviços por meio de parâmetros do construtor. O código de construtor que obtém uma instância de contexto do BD será mostrado mais adiante no tutorial. Nesta seção, você registra o contexto do banco de dados com o contêiner DI.
 
@@ -196,7 +196,7 @@ A criação automática desses arquivos é conhecida como *scaffolding*.
   export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* Execute o seguinte comando:
+* Execute o comando a seguir:
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -208,7 +208,7 @@ A criação automática desses arquivos é conhecida como *scaffolding*.
 
 * Abra uma janela de comando no diretório do projeto (o diretório que contém os arquivos *Program.cs*, *Startup.cs* e *.csproj*).
 
-* Execute o seguinte comando:
+* Execute o comando a seguir:
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -232,7 +232,7 @@ Use o recurso [Migrações](xref:data/ef-mvc/migrations) do EF Core para criar o
 
 No menu **ferramentas** , selecione **Gerenciador de pacotes NuGet** > **Package Manager Console** (PMC).
 
-No PMC, insira os seguintes comandos:
+No PMC, digite os seguintes comandos:
 
 ```powershell
 Add-Migration InitialCreate
@@ -401,7 +401,7 @@ Como o objeto `Model` é fortemente tipado (como um objeto `IEnumerable<Movie>`)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Auxiliares de marcação](xref:mvc/views/tag-helpers/intro)
+* [Auxiliares de Marcas](xref:mvc/views/tag-helpers/intro)
 * [Globalização e localização](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
@@ -482,7 +482,7 @@ A criação automática do contexto de banco de dados e das exibições e métod
     export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* Execute o seguinte comando:
+* Execute o comando a seguir:
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -501,7 +501,7 @@ A criação automática do contexto de banco de dados e das exibições e métod
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* Execute o seguinte comando:
+* Execute o comando a seguir:
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -517,7 +517,7 @@ Se você executar o aplicativo e clicar no link **Filme do MVC**, receberá um e
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-``` error
+```
 An unhandled exception occurred while processing the request.
 
 SqlException: Cannot open database "MvcMovieContext-<GUID removed>" requested by the login. The login failed.
@@ -528,7 +528,7 @@ System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity id
 
 # <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
-``` error
+```
 An unhandled exception occurred while processing the request.
 SqliteException: SQLite Error 1: 'no such table: Movie'.
 Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(int rc, sqlite3 db)
@@ -545,7 +545,7 @@ Você precisa criar o banco de dados e usará o recurso [Migrações](xref:data/
 
 Nesta seção, há estas tarefas:
 
-* Adicionar uma migração inicial.
+* Adicione uma migração inicial.
 * Atualize o banco de dados com a migração inicial.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
@@ -554,9 +554,9 @@ Nesta seção, há estas tarefas:
 
    ![Menu do PMC](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
 
-1. No PMC, insira os seguintes comandos:
+1. No PMC, digite os seguintes comandos:
 
-   ```PMC
+   ```powershell
    Add-Migration Initial
    Update-Database
    ```
@@ -686,9 +686,9 @@ Examine o conteúdo do arquivo *Views/Movies/Details.cshtml*:
 
 Incluindo uma instrução `@model` na parte superior do arquivo de exibição, você pode especificar o tipo de objeto esperado pela exibição. Quando você criou o controlador de filmes, a seguinte instrução `@model` foi automaticamente incluída na parte superior do arquivo *Details.cshtml*:
 
-```HTML
+```cshtml
 @model MvcMovie.Models.Movie
-   ```
+```
 
 Esta diretiva `@model` permite acessar o filme que o controlador passou para a exibição usando um objeto `Model` fortemente tipado. Por exemplo, na exibição *Details.cshtml*, o código passa cada campo de filme para os Auxiliares de HTML `DisplayNameFor` e `DisplayFor` com o objeto `Model` fortemente tipado. Os métodos `Create` e `Edit` e as exibições também passam um objeto de modelo `Movie`.
 
@@ -710,7 +710,7 @@ Como o objeto `Model` é fortemente tipado (como um objeto `IEnumerable<Movie>`)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Auxiliares de marcação](xref:mvc/views/tag-helpers/intro)
+* [Auxiliares de Marcas](xref:mvc/views/tag-helpers/intro)
 * [Globalização e localização](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]

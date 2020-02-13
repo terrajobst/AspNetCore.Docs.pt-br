@@ -1,17 +1,17 @@
 ---
 title: Migrar do ASP.NET para o ASP.NET Core 2.0
 author: isaac2004
-description: Receba orientações para migrar aplicativos existentes de ASP.NET MVC ou API da Web para ASP.NET Core 2.0.
+description: Receba diretrizes para migrar aplicativos existentes do ASP.NET MVC ou da API Web para ASP.NET Core 2,0.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: migration/mvc2
-ms.openlocfilehash: e9dffe8bce502e48a09af04ea0be9952a68aa46f
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.openlocfilehash: 11bd3b948afaedc675ac4249099969382683f653
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815451"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172447"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core-20"></a>Migrar do ASP.NET para o ASP.NET Core 2.0
 
@@ -19,11 +19,11 @@ Por [Isaac Levin](https://isaaclevin.com)
 
 Este artigo serve como um guia de referência para migração de aplicativos ASP.NET para o ASP.NET Core 2.0.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
-Instale **uma** das seguintes opções de [Downloads do .NET: Windows](https://www.microsoft.com/net/download/windows):
+Instale **um** dos seguintes itens de [downloads do .net: Windows](https://www.microsoft.com/net/download/windows):
 
-* SDK do .NET Core
+* SDK do .Net Core
 * Visual Studio para Windows
   * Carga de trabalho **ASP.NET e desenvolvimento para a Web**
   * Carga de trabalho de **desenvolvimento multiplataforma do .NET Core**
@@ -42,7 +42,7 @@ Usar o .NET Core como destino permite que você elimine várias referências de 
 </ItemGroup>
 ```
 
-Quando o metapacote é usado, nenhum pacote referenciado no metapacote é implantado com o aplicativo. O repositório de tempo de execução do .NET Core inclui esses ativos e eles são pré-compilados para melhorar o desempenho. Consulte <xref:fundamentals/metapackage> para obter mais detalhes.
+Quando o metapacote é usado, nenhum pacote referenciado no metapacote é implantado com o aplicativo. O repositório de runtime do .NET Core inclui esses ativos e eles são pré-compilados para melhorar o desempenho. Consulte <xref:fundamentals/metapackage> para obter mais detalhes.
 
 ## <a name="project-structure-differences"></a>Diferenças de estrutura do projeto
 
@@ -66,7 +66,7 @@ Essa abordagem associa o aplicativo e o servidor no qual ele é implantado de um
 
 Isso configura as rotas padrão e usa XmlSerialization em Json por padrão. Adicione outro Middleware para este pipeline conforme necessário (carregamento de serviços, definições de configuração, arquivos estáticos, etc.).
 
-O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manipular a entrada. Em vez disso, isso é feito por meio do método `Main` de *Program.cs* (semelhante a aplicativos de console) e `Startup` é carregado por lá.
+O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manipular a entrada. Em vez disso, isso é feito por meio do método de `Main` *Program.cs* (semelhante a aplicativos de console) e `Startup` é carregado por aí.
 
 [!code-csharp[](samples/program.cs)]
 
@@ -82,7 +82,7 @@ O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manip
 
 O host e o aplicativo foram separados, o que fornece a flexibilidade de mover para uma plataforma diferente no futuro.
 
-Para obter uma referência mais aprofundada Startup do ASP.NET Core e Middleware, consulte <xref:fundamentals/startup>.
+Para obter uma referência mais detalhada para ASP.NET Core inicialização e middleware, consulte <xref:fundamentals/startup>.
 
 ## <a name="storing-configurations"></a>Armazenando configurações
 
@@ -108,20 +108,20 @@ O aplicativo lê de `Configuration` para obter as configurações:
 
 Existem extensões para essa abordagem para tornar o processo mais robusto, tais como o uso de DI ([injeção de dependência](xref:fundamentals/dependency-injection)) para carregar um serviço com esses valores. A abordagem de DI fornece um conjunto fortemente tipado de objetos de configuração.
 
-````csharp
+```csharp
 // Assume AppConfiguration is a class representing a strongly-typed version of AppConfiguration section
 services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
-````
+```
 
-**Observação:** Para obter uma referência mais aprofundada sobre a configuração do ASP.NET Core, consulte <xref:fundamentals/configuration/index>.
+**Observação:** Para obter uma referência mais detalhada para ASP.NET Core configuração, consulte <xref:fundamentals/configuration/index>.
 
 ## <a name="native-dependency-injection"></a>Injeção de dependência nativa
 
-Uma meta importante ao criar aplicativos escalonáveis e grandes é o acoplamento flexível de componentes e serviços. [Injeção de dependência](xref:fundamentals/dependency-injection) é uma técnica popular para conseguir isso, e é um componente nativo do ASP.NET Core.
+Uma meta importante ao criar aplicativos escalonáveis e grandes é o acoplamento flexível de componentes e serviços. A [injeção de dependência](xref:fundamentals/dependency-injection) é uma técnica popular para conseguir isso, e é um componente nativo do ASP.NET Core.
 
-Em aplicativos ASP.NET, os desenvolvedores contam com uma biblioteca de terceiros para implementar injeção de dependência. Um biblioteca desse tipo é a [Unity](https://github.com/unitycontainer/unity), fornecida pelas Diretrizes da Microsoft.
+Em aplicativos ASP.NET, os desenvolvedores contam com uma biblioteca de terceiros para implementar a injeção de dependência. Um biblioteca desse tipo é a [Unity](https://github.com/unitycontainer/unity), fornecida pelas Diretrizes da Microsoft.
 
-Um exemplo de como configurar a injeção de dependência com o Unity está implementando `IDependencyResolver` que encapsula um `UnityContainer`:
+Um exemplo de configuração da injeção de dependência com o Unity é implementar `IDependencyResolver` que encapsula um `UnityContainer`:
 
 [!code-csharp[](samples/sample8.cs)]
 
@@ -133,13 +133,13 @@ Injete `IProductRepository` quando necessário:
 
 [!code-csharp[](samples/sample5.cs)]
 
-Como a injeção de dependência é parte do ASP.NET Core, você pode adicionar seu serviço no `Startup.ConfigureServices`:
+Como a injeção de dependência faz parte do ASP.NET Core, você pode adicionar seu serviço no `Startup.ConfigureServices`:
 
 [!code-csharp[](samples/configure-services.cs)]
 
 O repositório pode ser injetado em qualquer lugar, como ocorria com a Unity.
 
-Para obter mais informações sobre injeção de dependência no ASP.NET Core, consulte <xref:fundamentals/dependency-injection>.
+Para obter mais informações sobre injeção de dependência em ASP.NET Core, consulte <xref:fundamentals/dependency-injection>.
 
 ## <a name="serving-static-files"></a>Servindo arquivos estáticos
 
@@ -151,11 +151,11 @@ No ASP.NET Core, arquivos estáticos são armazenados na "raiz da Web" ( *&lt;ra
 
 [!code-csharp[](../../fundamentals/static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
-**Observação:** Se você usar o .NET Framework como destino, instale o pacote NuGet `Microsoft.AspNetCore.StaticFiles`.
+**Observação**: se você usar o .NET Framework como destino, instale o pacote NuGet `Microsoft.AspNetCore.StaticFiles`.
 
 Por exemplo, um ativo de imagem na pasta *wwwroot/imagens* está acessível para o navegador em um local como `http://<app>/images/<imageFileName>`.
 
-**Observação:** Para obter uma referência mais aprofundada sobre como servir arquivos estáticos no ASP.NET Core, consulte <xref:fundamentals/static-files>.
+**Observação:** Para obter uma referência mais detalhada para o fornecimento de arquivos estáticos no ASP.NET Core, consulte <xref:fundamentals/static-files>.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

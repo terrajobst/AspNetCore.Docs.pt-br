@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 12/18/2018
 uid: fundamentals/owin
-ms.openlocfilehash: 7edb4db026f1b778d43ac72883690a0b2a18ee31
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
-ms.translationtype: HT
+ms.openlocfilehash: 980b60512bdeadd2a58b87e633ebf1416f725851
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67814890"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172087"
 ---
 # <a name="open-web-interface-for-net-owin-with-aspnet-core"></a>OWIN (Open Web Interface para .NET) com o ASP.NET Core
 
@@ -79,11 +79,14 @@ Configure outras ações a serem executadas no pipeline do OWIN.
 ```csharp
 app.UseOwin(pipeline =>
 {
-    pipeline(async (next) =>
+    pipeline(next =>
     {
-        // do something before
-        await OwinHello(new OwinEnvironment(HttpContext));
-        // do something after
+        return async environment =>
+        {
+            // Do something before.
+            await next(environment);
+            // Do something after.
+        };
     });
 });
 ```
@@ -218,7 +221,7 @@ Essa [amostra](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/
 
 ![Cliente de teste de Soquete da Web](owin/_static/websocket-test.png)
 
-## <a name="owin-environment"></a>Ambiente do OWIN
+## <a name="owin-environment"></a>Ambiente OWIN
 
 Você pode construir um ambiente do OWIN usando o `HttpContext`.
 

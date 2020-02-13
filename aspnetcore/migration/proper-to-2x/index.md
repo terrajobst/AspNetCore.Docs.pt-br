@@ -5,12 +5,12 @@ description: Receba orientações para migrar os aplicativos existentes do ASP.N
 ms.author: scaddie
 ms.date: 10/18/2019
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 19be7191792c44fb5414eb0a7b24772c45391253
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: e9ebfa7352350cf39917e515a1a66d6271829f38
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75359406"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172349"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Migrar do ASP.NET para o ASP.NET Core
 
@@ -18,7 +18,7 @@ Por [Isaac Levin](https://isaaclevin.com)
 
 Este artigo serve como um guia de referência para migração de aplicativos ASP.NET para o ASP.NET Core.
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Prerequisites
 
 [SDK 2.2 ou posterior do .NET Core](https://www.microsoft.com/net/download)
 
@@ -102,10 +102,10 @@ O aplicativo lê de `Configuration` para obter as configurações:
 
 Existem extensões para essa abordagem para tornar o processo mais robusto, tais como o uso de DI ([injeção de dependência](xref:fundamentals/dependency-injection)) para carregar um serviço com esses valores. A abordagem de DI fornece um conjunto fortemente tipado de objetos de configuração.
 
-````csharp
+```csharp
 // Assume AppConfiguration is a class representing a strongly-typed version of AppConfiguration section
 services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
-````
+```
 
 > [!NOTE]
 > Para uma referência mais detalhada sobre configuração do ASP.NET Core, veja [Configuração no ASP.NET Core](xref:fundamentals/configuration/index).

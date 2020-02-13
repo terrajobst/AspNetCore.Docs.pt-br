@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: 8ed95cdb96804e08c3f1273bbea8f64a8e4f173c
-ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
+ms.openlocfilehash: 861935ff31652f923399a8aa5ae52baa6b77fa91
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2020
-ms.locfileid: "76160238"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172404"
 ---
 # <a name="host-and-deploy-aspnet-core-opno-locblazor-webassembly"></a>Hospedar e implantar ASP.NET Core Blazor Webassembly
 
@@ -140,7 +140,7 @@ Se um aplicativo autônomo for hospedado como um subaplicativo do IIS, execute u
 
 A remoção do manipulador ou a desabilitação da herança é executada além da [configuração do caminho base do aplicativo](xref:host-and-deploy/blazor/index#app-base-path). Defina o caminho base do aplicativo no arquivo *index.html* do aplicativo do alias do IIS usado ao configurar o subaplicativo no IIS.
 
-#### <a name="troubleshooting"></a>Solução de problemas
+#### <a name="troubleshooting"></a>solução de problemas
 
 Se um *500 – Erro Interno do Servidor* for recebido e o Gerenciador do IIS gerar erros ao tentar acessar a configuração do site, confirme se o Módulo de Regeneração de URL está instalado. Quando o módulo não estiver instalado, o arquivo *web.config* não poderá ser analisado pelo IIS. Isso impede que o Gerenciador do IIS carregue a configuração do site e o site de servir arquivos estáticos de Blazor.
 
@@ -155,7 +155,7 @@ Quando o serviço de blob está habilitado para hospedagem de site estático em 
 * Defina o **Nome do documento de índice** como `index.html`.
 * Defina o **Caminho do documento de erro** como `index.html`. Os componentes do Razor e outros pontos de extremidade que não são arquivos não residem em caminhos físicos no conteúdo estático armazenado pelo serviço de blob. Quando uma solicitação para um desses recursos é recebida que o roteador de Blazor deve tratar, o erro *404-não encontrado* gerado pelo serviço blob roteia a solicitação para o **caminho do documento de erro**. O blob *index. html* é retornado e o roteador de Blazor carrega e processa o caminho.
 
-Para saber mais, confira [Hospedagem de site estático no Armazenamento do Azure](/azure/storage/blobs/storage-blob-static-website).
+Para mais informações, confira [Hospedagem de site estático no Armazenamento do Azure](/azure/storage/blobs/storage-blob-static-website).
 
 ### <a name="nginx"></a>Nginx
 
@@ -183,7 +183,7 @@ Para hospedar Blazor no Docker usando o Nginx, configure o Dockerfile para usar 
 
 Adicione uma linha ao Dockerfile, conforme é mostrado no exemplo a seguir:
 
-```Dockerfile
+```dockerfile
 FROM nginx:alpine
 COPY ./bin/Release/netstandard2.0/publish /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf

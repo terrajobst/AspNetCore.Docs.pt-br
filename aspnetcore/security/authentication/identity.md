@@ -5,12 +5,12 @@ description: Use a identidade com um aplicativo ASP.NET Core. Saiba como definir
 ms.author: riande
 ms.date: 01/15/2020
 uid: security/authentication/identity
-ms.openlocfilehash: 98fee261a741a20eed181ca5b9a4ebb693deeb63
-ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
+ms.openlocfilehash: 164ba10c1d1e2a73ebeb8240293a58f158055699
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76146505"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172539"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>Introdução à identidade do ASP.NET Core
 
@@ -148,7 +148,7 @@ Se o usuário tiver sido criado com êxito, o usuário será conectado pela cham
 
 Consulte [confirmação da conta](xref:security/authentication/accconfirm#prevent-login-at-registration) para obter as etapas para impedir o logon imediato no registro.
 
-### <a name="log-in"></a>Fazer Logon
+### <a name="log-in"></a>Fazer logon
 
 O formulário de logon é exibido quando:
 
@@ -161,7 +161,7 @@ Quando o formulário na página de logon é enviado, a ação de `OnPostAsync` �
 
 A classe base `Controller` expõe uma propriedade `User` que pode ser acessada por meio de métodos do controlador. Por exemplo, você pode enumerar `User.Claims` e tomar decisões de autorização. Para obter mais informações, consulte <xref:security/authorization/introduction>.
 
-### <a name="log-out"></a>Logoff
+### <a name="log-out"></a>Faça logoff
 
 O link **logout** invoca a ação `LogoutModel.OnPost`. 
 
@@ -202,7 +202,7 @@ Para obter mais informações e orientações sobre como migrar seu repositório
 
 ## <a name="setting-password-strength"></a>Definindo a força da senha
 
-Consulte [configuração](#pw) para obter um exemplo que defina os requisitos mínimos de senha.
+Consulte [configuração](#pw) para um exemplo que define os requisitos mínimos de senha.
 
 ## <a name="adddefaultidentity-and-addidentity"></a>AddDefaultIdentity e addidentity
 
@@ -301,7 +301,9 @@ Aplique as migrações para inicializar o banco de dados.
 
 Execute o seguinte comando no console do Gerenciador de pacotes (PMC):
 
-```PM> Update-Database```
+```powershell
+Update-Database
+```
 
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
@@ -362,9 +364,9 @@ Quando um usuário clica no link **registrar** , a ação `RegisterModel.OnPostA
 
 Se o usuário tiver sido criado com êxito, o usuário será conectado pela chamada para `_signInManager.SignInAsync`.
 
-**Observação:** consulte a [confirmação de conta](xref:security/authentication/accconfirm#prevent-login-at-registration) para verificar as etapas para impedir o logon imediato no registro.
+**Observação:** Consulte [confirmação da conta](xref:security/authentication/accconfirm#prevent-login-at-registration) para obter as etapas para impedir o logon imediato no registro.
 
-### <a name="log-in"></a>Fazer Logon
+### <a name="log-in"></a>Fazer logon
 
 O formulário de logon é exibido quando:
 
@@ -377,7 +379,7 @@ Quando o formulário na página de logon é enviado, a ação de `OnPostAsync` �
 
 A classe base `Controller` expõe uma propriedade `User` que você pode acessar por meio de métodos do controlador. Por exemplo, você pode enumerar `User.Claims` e tomar decisões de autorização. Para obter mais informações, consulte <xref:security/authorization/introduction>.
 
-### <a name="log-out"></a>Logoff
+### <a name="log-out"></a>Faça logoff
 
 O link **logout** invoca a ação `LogoutModel.OnPost`. 
 
@@ -416,7 +418,7 @@ Para obter mais informações e orientações sobre como migrar seu repositório
 
 ## <a name="setting-password-strength"></a>Definindo a força da senha
 
-Consulte [configuração](#pw) para obter um exemplo que defina os requisitos mínimos de senha.
+Consulte [configuração](#pw) para um exemplo que define os requisitos mínimos de senha.
 
 ## <a name="next-steps"></a>Próximas etapas
 

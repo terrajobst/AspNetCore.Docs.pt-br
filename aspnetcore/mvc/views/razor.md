@@ -5,12 +5,12 @@ description: Saiba mais sobre a sintaxe de marcação Razor para inserir código
 ms.author: riande
 ms.date: 12/05/2019
 uid: mvc/views/razor
-ms.openlocfilehash: baac0ac38a0781cb9c16689cf3e29526b602d8da
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: 2d47fbc33328ab454616bcabab796df089686d79
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74944246"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77171853"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -128,7 +128,7 @@ O código renderiza o HTML a seguir:
 
 O HTML é mostrado no navegador como:
 
-```
+```html
 <span>Hello World</span>
 ```
 
@@ -389,7 +389,7 @@ O Razor tem a capacidade de proteger seções críticas com instruções de bloq
 }
 ```
 
-### <a name="comments"></a>Comments
+### <a name="comments"></a>Comentários
 
 O Razor dá suporte a comentários em C# e HTML:
 
@@ -872,7 +872,7 @@ Saída renderizada:
 
 Há três diretivas que relacionadas aos [Auxiliares de marca](xref:mvc/views/tag-helpers/intro).
 
-| Directive | Função |
+| Diretiva | Função |
 | --------- | -------- |
 | [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#add-helper-label) | Disponibiliza os Auxiliares de marca para uma exibição. |
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Remove os Auxiliares de marca adicionados anteriormente de uma exibição. |
@@ -883,10 +883,10 @@ Há três diretivas que relacionadas aos [Auxiliares de marca](xref:mvc/views/ta
 ### <a name="razor-keywords"></a>Palavras-chave do Razor
 
 * page (exige o ASP.NET Core 2.1 ou posterior)
-* Namespace
+* namespace
 * funções
 * herda
-* {1&gt;modelo&lt;1}
+* modelo
 * section
 * helper (atualmente sem suporte do ASP.NET Core)
 
@@ -896,24 +896,24 @@ Palavras-chave do Razor têm o escape feito com `@(Razor Keyword)` (por exemplo,
 
 * case
 * do
-* {1&gt;default&lt;1}
-* para
+* padrão
+* for
 * foreach
 * if
 * else
-* bloqueio
+* lock
 * switch
-* try
+* experimentar
 * catch
 * finally
-* usando
+* Usando
 * while
 
 Palavras-chave do Razor em C# precisam ter o escape duplo com `@(@C# Razor Keyword)` (por exemplo, `@(@case)`). O primeiro `@` faz o escape do analisador Razor. O segundo `@` faz o escape do analisador C#.
 
 ### <a name="reserved-keywords-not-used-by-razor"></a>Palavras-chave reservadas não usadas pelo Razor
 
-* {1&gt;classe&lt;1}
+* class
 
 ## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Inspecionar a classe do Razor C# gerada para uma exibição
 
@@ -967,7 +967,7 @@ Em `Startup.ConfigureServices`, substitua o `RazorTemplateEngine` adicionado pel
 
 [!code-csharp[](razor/sample/Startup.cs?highlight=4&range=10-14)]
 
-Defina o ponto de interrupção `CustomTemplateEngine` na instrução `return csharpDocument;`. Quando a execução do programa for interrompida no ponto de interrupção, veja o valor de `generatedCode`.
+Defina o ponto de interrupção `return csharpDocument;` na instrução `CustomTemplateEngine`. Quando a execução do programa for interrompida no ponto de interrupção, veja o valor de `generatedCode`.
 
 ![Exibição do Visualizador de Texto de generatedCode](razor/_static/tvr.png)
 

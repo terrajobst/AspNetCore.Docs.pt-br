@@ -5,14 +5,14 @@ description: Aprenda a implementar tarefas em segundo plano com serviços hosped
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/05/2020
+ms.date: 02/10/2020
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: 6a88e56afc4fb1b4f673c362f83d948eda84b930
-ms.sourcegitcommit: bd896935e91236e03241f75e6534ad6debcecbbf
+ms.openlocfilehash: 9b7224c07df027c9466db34dcc23505410893f1f
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/06/2020
-ms.locfileid: "77044882"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77171789"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Tarefas em segundo plano com serviços hospedados no ASP.NET Core
 
@@ -166,6 +166,10 @@ Um serviço de `MonitorLoop` trata das tarefas de enfileiramento para o serviço
 Os serviços são registrados em `IHostBuilder.ConfigureServices` (*Program.cs*). O serviço hospedado está registrado com o método de extensão `AddHostedService`:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
+
+`MontiorLoop` é iniciado no `Program.Main`:
+
+[!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet4)]
 
 ::: moniker-end
 

@@ -1,18 +1,18 @@
 ---
-title: Visão geral sobre o ASP.NET Core MVC
+title: Visão geral do ASP.NET Core MVC
 author: ardalis
 description: Saiba como o ASP.NET Core MVC é uma estrutura avançada para a criação de aplicativos Web e APIs usando o padrão de design Model-View-Controller.
 ms.author: riande
 ms.date: 01/28/2020
 uid: mvc/overview
-ms.openlocfilehash: a147c2aa01f1440f8ac59f73eb7be734193f802a
-ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
+ms.openlocfilehash: a0d1e364bf4cda4ad30c5070c9e61e6972759bb0
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/29/2020
-ms.locfileid: "76869965"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77171824"
 ---
-# <a name="overview-of-aspnet-core-mvc"></a>Visão geral sobre o ASP.NET Core MVC
+# <a name="overview-of-aspnet-core-mvc"></a>Visão geral do ASP.NET Core MVC
 
 Por [Steve Smith](https://ardalis.com/)
 
@@ -65,11 +65,11 @@ ASP.NET Core MVC inclui o seguinte:
 * [Injeção de dependência](../fundamentals/dependency-injection.md)
 * [Filtros](#filters)
 * [Áreas](#areas)
-* [APIs Web](#web-apis)
+* [APIs da Web](#web-apis)
 * [Capacidade de teste](#testability)
 * [Mecanismo de exibição do Razor](#razor-view-engine)
 * [Exibições fortemente tipadas](#strongly-typed-views)
-* [Auxiliares de marcação](#tag-helpers)
+* [Auxiliares de Marcas](#tag-helpers)
 * [Componentes da exibição](#view-components)
 
 ### <a name="routing"></a>Roteamento
@@ -161,7 +161,7 @@ O aplicativo também pode usar a [injeção de dependência em arquivos no exibi
 </html>
 ```
 
-### <a name="filters"></a>Filtros.
+### <a name="filters"></a>Filtros
 
 Os [filtros](controllers/filters.md) ajudam os desenvolvedores a encapsular interesses paralelos, como tratamento de exceção ou autorização. Os filtros permitem a execução de uma lógica pré e pós-processamento personalizada para métodos de ação e podem ser configurados para execução em determinados pontos no pipeline de execução de uma solicitação específica. Os filtros podem ser aplicados a controladores ou ações como atributos (ou podem ser executados globalmente). Vários filtros (como `Authorize`) são incluídos na estrutura. `[Authorize]` é o atributo usado para criar filtros de autorização do MVC.
 
@@ -258,5 +258,5 @@ Para obter mais informações, consulte <xref:mvc/compatibility-version>.
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Mytested. AspNetCore. Mvc-biblioteca de testes fluente para ASP.NET Core Mvc](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; biblioteca de testes de unidade fortemente tipada, fornecendo uma interface fluente para testar aplicativos de API da Web e MVC. (*Não é mantido ou não tem suporte da Microsoft.* )
-* [Integrar componentes do Razor em aplicativos Razor Pages e MVC](xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps)
+* [Integrar componentes do Razor em aplicativos Razor Pages e MVC](xref:blazor/hosting-model-configuration#integrate-razor-components-into-razor-pages-and-mvc-apps)
 

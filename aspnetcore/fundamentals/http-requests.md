@@ -5,14 +5,14 @@ description: Saiba mais sobre como usar a interface IHttpClientFactory para gere
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/16/2019
+ms.date: 02/09/2020
 uid: fundamentals/http-requests
-ms.openlocfilehash: 9b9da82191a587be0603ee114562e9a964f05250
-ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
+ms.openlocfilehash: 93b75525e8a3f10c4e0b655baaff83c0f6e8131b
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/29/2020
-ms.locfileid: "76870392"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77171799"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Fazer solicitações HTTP usando IHttpClientFactory no ASP.NET Core
 
@@ -109,7 +109,12 @@ O código a seguir chama <xref:Microsoft.Extensions.DependencyInjection.HttpClie
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet3)]
 
-O cliente com tipo é registrado como transitório com a DI. O cliente com tipo pode ser injetado e consumido diretamente:
+O cliente com tipo é registrado como transitório com a DI. No código anterior, `AddHttpClient` registra `GitHubService` como um serviço transitório. Esse registro usa um método de fábrica para:
+
+1. Crie uma instância de `HttpClient`.
+1. Crie uma instância do `GitHubService`, passando a instância do `HttpClient` para seu construtor.
+
+O cliente com tipo pode ser injetado e consumido diretamente:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/TypedClient.cshtml.cs?name=snippet1&highlight=11-14,20)]
 
@@ -188,10 +193,10 @@ public class ValuesController : ControllerBase
   * É semelhante ao pipeline de middleware de entrada no ASP.NET Core.
   * Fornece um mecanismo para gerenciar preocupações abrangentes em relação a solicitações HTTP, como:
 
-    * caching
+    * cache
     * tratamento de erros
     * serialização
-    * log
+    * registro em log
 
 Para criar um manipulador de delegação:
 
@@ -318,7 +323,7 @@ Chame <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
-## <a name="logging"></a>Registrando em log
+## <a name="logging"></a>Registro em log
 
 Os clientes criado pelo `IHttpClientFactory` registram mensagens de log para todas as solicitações. Habilite o nível de informações apropriado na configuração de log para ver as mensagens de log padrão. Os registros em log adicionais, como o registro em log dos cabeçalhos de solicitação, estão incluídos somente no nível de rastreamento.
 
@@ -364,7 +369,7 @@ A propagação de cabeçalho é um middleware ASP.NET Core para propagar cabeça
 
 * O cliente inclui os cabeçalhos configurados nas solicitações de saída:
 
-  ```C#
+  ```csharp
   var client = clientFactory.CreateClient("MyForwardingClient");
   var response = client.GetAsync(...);
   ```
@@ -636,7 +641,7 @@ Chame <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
-## <a name="logging"></a>Registrando em log
+## <a name="logging"></a>Registro em log
 
 Os clientes criado pelo `IHttpClientFactory` registram mensagens de log para todas as solicitações. Habilite o nível apropriado de informações na configuração de log para ver as mensagens de log padrão. Os registros em log adicionais, como o registro em log dos cabeçalhos de solicitação, estão incluídos somente no nível de rastreamento.
 
@@ -692,7 +697,7 @@ Por [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Prerequisites
 
 Os projetos direcionados ao .NET Framework exigem a instalação do pacote do NuGet [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/). Os projetos destinados ao .Net Core e a referência ao [metapacote Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) já incluem o pacote `Microsoft.Extensions.Http`.
 
@@ -944,7 +949,7 @@ Chame <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
-## <a name="logging"></a>Registrando em log
+## <a name="logging"></a>Registro em log
 
 Os clientes criado pelo `IHttpClientFactory` registram mensagens de log para todas as solicitações. Habilite o nível apropriado de informações na configuração de log para ver as mensagens de log padrão. Os registros em log adicionais, como o registro em log dos cabeçalhos de solicitação, estão incluídos somente no nível de rastreamento.
 
@@ -991,7 +996,7 @@ A propagação de cabeçalho é um middleware com suporte da Comunidade para pro
 
 * O cliente inclui os cabeçalhos configurados nas solicitações de saída:
 
-  ```C#
+  ```csharp
   var client = clientFactory.CreateClient("MyForwardingClient");
   var response = client.GetAsync(...);
   ```

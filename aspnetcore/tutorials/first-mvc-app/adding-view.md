@@ -5,12 +5,12 @@ description: Adicionando uma exibição a um aplicativo ASP.NET Core MVC simples
 ms.author: riande
 ms.date: 8/04/2019
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: a25233968f115c6e3a214d97cf2ca5ab81df8d83
-ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
+ms.openlocfilehash: 5510fb6844452571ca764e21640f0bd16444c782
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/29/2020
-ms.locfileid: "76870422"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77171980"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Adicionar uma exibição a um aplicativo ASP.NET Core MVC
 
@@ -74,7 +74,7 @@ Substitua o conteúdo do arquivo de exibição *Views/HelloWorld/Index.cshtml* d
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Navegue para `https://localhost:{PORT}/HelloWorld`. O método `Index` no `HelloWorldController` não fez muita coisa: ele executou a instrução `return View();`, que especificou que o método deve usar um arquivo de modelo de exibição para renderizar uma resposta para o navegador. Como um nome de arquivo de modo de exibição não foi especificado, o MVC é padronizado para usar o arquivo de exibição padrão. O arquivo de exibição padrão tem o mesmo nome que o método (`Index`), portanto, é usado */Views/HelloWorld/Index.cshtml*. A imagem abaixo mostra a cadeia de caracteres “Olá de nosso modelo de exibição!” embutida em código na exibição.
+Navegue até `https://localhost:{PORT}/HelloWorld`. O método `Index` no `HelloWorldController` não fez muita coisa: ele executou a instrução `return View();`, que especificou que o método deve usar um arquivo de modelo de exibição para renderizar uma resposta para o navegador. Como um nome de arquivo de modo de exibição não foi especificado, o MVC é padronizado para usar o arquivo de exibição padrão. O arquivo de exibição padrão tem o mesmo nome que o método (`Index`), portanto, é usado */Views/HelloWorld/Index.cshtml*. A imagem abaixo mostra a cadeia de caracteres “Olá de nosso modelo de exibição!” embutida em código na exibição.
 
 ![Janela do navegador](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -95,7 +95,7 @@ A marcação anterior fez as seguintes alterações:
 * 3 ocorrências de `MvcMovie` para `Movie App`.
 * O elemento de âncora `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` para `<a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
-Na marcação anterior, o valor do atributo e o `asp-area=""` [atributo do Auxiliar de Marca de Âncora](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) foram omitidos porque este aplicativo não está usando [Áreas](xref:mvc/controllers/areas).
+Na marcação anterior, o [atributo auxiliar de marca de ancoragem](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-area=""` e o valor do atributo foi omitido porque esse aplicativo não está usando [áreas](xref:mvc/controllers/areas).
 
 **Observação**: o controlador de `Movies` não foi implementado. Neste ponto, o link `Movie App` não está funcionando.
 
@@ -107,7 +107,7 @@ Selecione o link **Página Inicial** e observe que o texto do título e de ânco
 
 Examine o arquivo *Views/_ViewStart.cshtml*:
 
-```HTML
+```cshtml
 @{
     Layout = "_Layout";
 }
@@ -123,9 +123,9 @@ O título e o elemento `<h2>` são ligeiramente diferentes para que possa ver qu
 
 `ViewData["Title"] = "Movie List";` no código acima define a propriedade `Title` do dicionário `ViewData` como “Lista de Filmes”. A propriedade `Title` é usada no elemento HTML `<title>` na página de layout:
 
-```HTML
+```cshtml
 <title>@ViewData["Title"] - Movie App</title>
-   ```
+```
 
 Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione CTRL + F5 em seu navegador para forçar a resposta do servidor a ser carregado.) O título do navegador é criado com `ViewData["Title"]` que definimos no modelo de exibição *index. cshtml* e o "aplicativo de filme" adicional adicionado ao arquivo de layout.
 
@@ -231,7 +231,7 @@ Substitua o conteúdo do arquivo de exibição *Views/HelloWorld/Index.cshtml* d
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Navegue para `https://localhost:{PORT}/HelloWorld`. O método `Index` no `HelloWorldController` não fez muita coisa: ele executou a instrução `return View();`, que especificou que o método deve usar um arquivo de modelo de exibição para renderizar uma resposta para o navegador. Como um nome de arquivo de modo de exibição não foi especificado, o MVC é padronizado para usar o arquivo de exibição padrão. O arquivo de exibição padrão tem o mesmo nome que o método (`Index`), portanto, é usado */Views/HelloWorld/Index.cshtml*. A imagem abaixo mostra a cadeia de caracteres “Olá de nosso modelo de exibição!” embutida em código na exibição.
+Navegue até `https://localhost:{PORT}/HelloWorld`. O método `Index` no `HelloWorldController` não fez muita coisa: ele executou a instrução `return View();`, que especificou que o método deve usar um arquivo de modelo de exibição para renderizar uma resposta para o navegador. Como um nome de arquivo de modo de exibição não foi especificado, o MVC é padronizado para usar o arquivo de exibição padrão. O arquivo de exibição padrão tem o mesmo nome que o método (`Index`), portanto, é usado */Views/HelloWorld/Index.cshtml*. A imagem abaixo mostra a cadeia de caracteres “Olá de nosso modelo de exibição!” embutida em código na exibição.
 
 ![Janela do navegador](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -267,7 +267,7 @@ Selecione o link **Página Inicial** e observe que o texto do título e de ânco
 
 Examine o arquivo *Views/_ViewStart.cshtml*:
 
-```HTML
+```cshtml
 @{
     Layout = "_Layout";
 }
@@ -283,9 +283,9 @@ O título e o elemento `<h2>` são ligeiramente diferentes para que possa ver qu
 
 `ViewData["Title"] = "Movie List";` no código acima define a propriedade `Title` do dicionário `ViewData` como “Lista de Filmes”. A propriedade `Title` é usada no elemento HTML `<title>` na página de layout:
 
-```HTML
+```cshtml
 <title>@ViewData["Title"] - Movie App</title>
-   ```
+```
 
 Salve as alterações e navegue para `https://localhost:{PORT}/HelloWorld`. Observe que o título do navegador, o cabeçalho primário e os títulos secundários foram alterados. (Se as alterações não forem exibidas no navegador, talvez o conteúdo armazenado em cache esteja sendo exibido. Pressione CTRL + F5 em seu navegador para forçar a resposta do servidor a ser carregado.) O título do navegador é criado com `ViewData["Title"]` que definimos no modelo de exibição *index. cshtml* e o "aplicativo de filme" adicional adicionado ao arquivo de layout.
 

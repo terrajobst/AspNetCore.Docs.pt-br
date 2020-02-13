@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 uid: security/enforcing-ssl
-ms.openlocfilehash: 59883a8165040fa58edb2f6cf22d4d6b3abf6f3e
-ms.sourcegitcommit: 80286715afb93c4d13c931b008016d6086c0312b
+ms.openlocfilehash: 9efd49bb246a10c4eb49fb1bb0374ae9442d55a1
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/07/2020
-ms.locfileid: "77074543"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172623"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Impor HTTPS em ASP.NET Core
 
@@ -327,7 +327,7 @@ dotnet new webapp --no-https
 
 O SDK do .NET Core inclui um certificado de desenvolvimento HTTPS. O certificado é instalado como parte da experiência de primeira execução. Por exemplo, `dotnet --info` produz uma saída semelhante à seguinte:
 
-```text
+```
 ASP.NET Core
 ------------
 Successfully installed the ASP.NET Core HTTPS Development Certificate.

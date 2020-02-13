@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 34157a63e43372876a02a858741dfd3a83a063b1
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: f283234ed8a32dc9b7904bc6fee1cc9c04741029
+ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75354805"
+ms.lasthandoff: 02/12/2020
+ms.locfileid: "77172597"
 ---
 # <a name="add-validation-to-an-aspnet-core-razor-page"></a>Adicionar validação a uma Página Razor do ASP.NET Core
 
@@ -161,7 +161,7 @@ As DataAnnotations aplicadas à classe alteram o esquema. Por exemplo, as DataAn
 
 Atualmente a tabela `Movie` tem o seguinte esquema:
 
-``` sql
+```sql
 CREATE TABLE [dbo].[Movie] (
     [ID]          INT             IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (MAX)  NULL,
@@ -176,7 +176,7 @@ CREATE TABLE [dbo].[Movie] (
 As alterações do esquema anterior não fazem com que o EF lance uma exceção. No entanto, crie uma migração de forma que o esquema seja consistente com o modelo.
 
 No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**.
-No PMC, insira os seguintes comandos:
+No PMC, digite os seguintes comandos:
 
 ```powershell
 Add-Migration New_DataAnnotations
@@ -189,7 +189,7 @@ Update-Database
 
 A tabela `Movie` atualizada tem o seguinte esquema:
 
-``` sql
+```sql
 CREATE TABLE [dbo].[Movie] (
     [ID]          INT             IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (60)   NOT NULL,
