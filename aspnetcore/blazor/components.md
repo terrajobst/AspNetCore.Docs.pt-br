@@ -5,17 +5,17 @@ description: Saiba como criar e usar componentes do Razor, incluindo como associ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/24/2020
+ms.date: 02/04/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: d6ba60b20d21636c7f780a80d8fbdb152505a3a3
-ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
+ms.openlocfilehash: 0da0d83a4fde7b753a84bf05d3a9284776f2881f
+ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "76928253"
+ms.lasthandoff: 02/14/2020
+ms.locfileid: "77213344"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -70,7 +70,7 @@ Para usar uma pasta personalizada, adicione o namespace da pasta personalizada a
 
 Os componentes do Razor podem ser integrados em aplicativos Razor Pages e MVC. Quando a página ou a exibição é renderizada, os componentes podem ser renderizados ao mesmo tempo.
 
-Para preparar um aplicativo Razor Pages ou MVC para hospedar componentes do Razor, siga as orientações na seção *integrar componentes do Razor em Razor Pages e aplicativos MVC* do artigo <xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps>.
+Para preparar um aplicativo Razor Pages ou MVC para hospedar componentes do Razor, siga as orientações na seção *integrar componentes do Razor em Razor Pages e aplicativos MVC* do artigo <xref:blazor/hosting-model-configuration#integrate-razor-components-into-razor-pages-and-mvc-apps>.
 
 Ao usar uma pasta personalizada para manter os componentes do aplicativo, adicione o namespace que representa a pasta à página/exibição ou ao arquivo *_ViewImports. cshtml* . No exemplo a seguir:
 
@@ -107,7 +107,10 @@ Embora as páginas e exibições possam usar componentes, o inverso não é verd
 
 Não há suporte para a renderização de componentes de servidor de uma página HTML estática.
 
-Para obter mais informações sobre como os componentes são renderizados, estado do componente e o auxiliar de marca de `Component`, consulte <xref:blazor/hosting-models>.
+Para obter mais informações sobre como os componentes são renderizados, estado do componente e o auxiliar de marca de `Component`, consulte os seguintes artigos:
+
+* <xref:blazor/hosting-models>
+* <xref:blazor/hosting-model-configuration>
 
 ## <a name="tag-helpers-arent-used-in-components"></a>Os auxiliares de marca não são usados em componentes
 
@@ -149,7 +152,7 @@ No exemplo a seguir do aplicativo de exemplo, o `ParentComponent` define o valor
 <h1>Parent-child example</h1>
 
 <ChildComponent Title="Panel Title from Parent"
-                OnClick="@ShowMessage">
+                OnClickCallback="@ShowMessage">
     Content of the child component is supplied
     by the parent component.
 </ChildComponent>
@@ -180,7 +183,7 @@ O `ParentComponent` no aplicativo de exemplo pode fornecer conteúdo para render
 <h1>Parent-child example</h1>
 
 <ChildComponent Title="Panel Title from Parent"
-                OnClick="@ShowMessage">
+                OnClickCallback="@ShowMessage">
     Content of the child component is supplied
     by the parent component.
 </ChildComponent>
@@ -351,7 +354,7 @@ Ao contrário de `onchange`, que é disparado quando o elemento perde o foco, `o
 * A expressão especificada (`CurrentValue`) para o atributo `value` do elemento.
 * Um delegado de evento de alteração para o evento especificado por `@bind-value:event`.
 
-**Valores não analisáveis**
+### <a name="unparsable-values"></a>Valores não analisáveis
 
 Quando um usuário fornece um valor não analisável para um elemento de ligação de valores, o valor não analisável é revertido automaticamente para seu valor anterior quando o evento de ligação é disparado.
 
@@ -379,7 +382,7 @@ Por padrão, a associação aplica-se ao evento de `onchange` do elemento (`@bin
   * Permitir que o usuário forneça erros de entrada e de validação inválidos no `EditContext`associado.
   * Exibir erros de validação na interface de usuário sem interferir no usuário inserindo dados adicionais do WebForms.
 
-**Globalização**
+### <a name="globalization"></a>Globalização
 
 `@bind` valores são formatados para exibição e analisados usando as regras da cultura atual.
 
@@ -406,7 +409,7 @@ Os seguintes tipos de campo têm requisitos de formatação específicos e atual
 
 Para obter informações sobre como definir a cultura do usuário, consulte a seção [localização](#localization) .
 
-**Formatar cadeias de caracteres**
+### <a name="format-strings"></a>Formatar cadeias de caracteres
 
 A vinculação de dados funciona com <xref:System.DateTime> cadeias de caracteres de formato usando [`@bind:format`](xref:mvc/views/razor#bind). Outras expressões de formato, como formatos de moeda ou número, não estão disponíveis no momento.
 
@@ -434,9 +437,9 @@ Não é recomendável especificar um formato para o tipo de campo de `date` porq
 <input type="date" @bind="StartDate" @bind:format="yyyy-MM-dd">
 ```
 
-**Parâmetros do componente**
+### <a name="parent-to-child-binding-with-component-parameters"></a>Associação de pai para filho com parâmetros de componente
 
-A associação reconhece os parâmetros do componente, em que `@bind-{property}` pode associar um valor de propriedade entre componentes.
+A associação reconhece os parâmetros do componente, em que `@bind-{property}` pode associar um valor de propriedade de um componente pai a um componente filho. A associação de um filho a um pai é abordada na [Associação filho para pai com a seção de ligação encadeada](#child-to-parent-binding-with-chained-bind) .
 
 O componente filho a seguir (`ChildComponent`) tem um parâmetro de componente `Year` e `YearChanged` retorno de chamada:
 
@@ -456,7 +459,10 @@ O componente filho a seguir (`ChildComponent`) tem um parâmetro de componente `
 
 `EventCallback<T>` é explicado na seção [EventCallback](#eventcallback) .
 
-O componente pai a seguir usa `ChildComponent` e associa o parâmetro `ParentYear` do pai ao parâmetro `Year` no componente filho:
+O seguinte componente pai usa:
+
+* `ChildComponent` e associa o parâmetro `ParentYear` do pai ao parâmetro `Year` no componente filho.
+* O evento `onclick` é usado para disparar o método `ChangeTheYear`. Para obter mais informações, consulte a seção [manipulação de eventos](#event-handling) .
 
 ```razor
 @page "/ParentComponent"
@@ -520,7 +526,138 @@ Em geral, uma propriedade pode ser associada a um manipulador de eventos corresp
 <MyComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
 ```
 
-**Botões de opção**
+### <a name="child-to-parent-binding-with-chained-bind"></a>Associação de filho para pai com associação encadeada
+
+Um cenário comum é encadear um parâmetro de associação de dados a um elemento de página na saída do componente. Esse cenário é chamado de *Associação encadeada* porque vários níveis de associação ocorrem simultaneamente.
+
+Uma associação encadeada não pode ser implementada com `@bind` sintaxe no elemento da página. O manipulador de eventos e o valor devem ser especificados separadamente. Um componente pai, no entanto, pode usar `@bind` sintaxe com o parâmetro do componente.
+
+O componente `PasswordField` a seguir (*passwordField. Razor*):
+
+* Define um valor de elemento de `<input>` para uma propriedade `Password`.
+* Expõe as alterações da propriedade `Password` para um componente pai com um [EventCallback](#eventcallback).
+* Usa o evento `onclick` é usado para disparar o método `ToggleShowPassword`. Para obter mais informações, consulte a seção [manipulação de eventos](#event-handling) .
+
+```razor
+<h1>Child Component</h2>
+
+Password: 
+
+<input @oninput="OnPasswordChanged" 
+       required 
+       type="@(_showPassword ? "text" : "password")" 
+       value="@Password" />
+
+<button class="btn btn-primary" @onclick="ToggleShowPassword">
+    Show password
+</button>
+
+@code {
+    private bool _showPassword;
+
+    [Parameter]
+    public string Password { get; set; }
+
+    [Parameter]
+    public EventCallback<string> PasswordChanged { get; set; }
+
+    private Task OnPasswordChanged(ChangeEventArgs e)
+    {
+        Password = e.Value.ToString();
+
+        return PasswordChanged.InvokeAsync(Password);
+    }
+
+    private void ToggleShowPassword()
+    {
+        _showPassword = !_showPassword;
+    }
+}
+```
+
+O componente `PasswordField` é usado em outro componente:
+
+```razor
+@page "/ParentComponent"
+
+<h1>Parent Component</h1>
+
+<PasswordField @bind-Password="_password" />
+
+@code {
+    private string _password;
+}
+```
+
+Para executar verificações ou interceptar erros na senha no exemplo anterior:
+
+* Crie um campo de backup para `Password` (`_password` no código de exemplo a seguir).
+* Execute os erros de verificação ou interceptação no setter de `Password`.
+
+O exemplo a seguir fornecerá comentários imediatos para o usuário se um espaço for usado no valor da senha:
+
+```razor
+@page "/ParentComponent"
+
+<h1>Parent Component</h1>
+
+Password: 
+
+<input @oninput="OnPasswordChanged" 
+       required 
+       type="@(_showPassword ? "text" : "password")" 
+       value="@Password" />
+
+<button class="btn btn-primary" @onclick="ToggleShowPassword">
+    Show password
+</button>
+
+<span class="text-danger">@_validationMessage</span>
+
+@code {
+    private bool _showPassword;
+    private string _password;
+    private string _validationMessage;
+
+    [Parameter]
+    public string Password
+    {
+        get { return _password ?? string.Empty; }
+        set
+        {
+            if (_password != value)
+            {
+                if (value.Contains(' '))
+                {
+                    _validationMessage = "Spaces not allowed!";
+                }
+                else
+                {
+                    _password = value;
+                    _validationMessage = string.Empty;
+                }
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string> PasswordChanged { get; set; }
+
+    private Task OnPasswordChanged(ChangeEventArgs e)
+    {
+        Password = e.Value.ToString();
+
+        return PasswordChanged.InvokeAsync(Password);
+    }
+
+    private void ToggleShowPassword()
+    {
+        _showPassword = !_showPassword;
+    }
+}
+```
+
+### <a name="radio-buttons"></a>Botões de opção
 
 Para obter informações sobre a associação a botões de opção em um formulário, consulte <xref:blazor/forms-validation#work-with-radio-buttons>.
 
@@ -579,22 +716,25 @@ Para alguns eventos, são permitidos tipos de argumento de evento. Se o acesso a
 
 Os `EventArgs` com suporte são mostrados na tabela a seguir.
 
-| Event            | Classe                | Eventos e observações do DOM |
+| {1&gt;Evento&lt;1}            | Classe                | Eventos e observações do DOM |
 | ---------------- | -------------------- | -------------------- |
-| Área de Transferência        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
+| Área de transferência        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
 | Arraste             | `DragEventArgs`      | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br>`DataTransfer` e `DataTransferItem` manter os dados do item arrastados. |
-| Erro do            | `ErrorEventArgs`     | `onerror` |
-| Event            | `EventArgs`          | *Geral*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Área de transferência*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Meio*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
+| Error            | `ErrorEventArgs`     | `onerror` |
+| {1&gt;Evento&lt;1}            | `EventArgs`          | *Geral*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Área de transferência*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Mídia*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
 | Foco            | `FocusEventArgs`     | `onfocus`, `onblur`, `onfocusin`, `onfocusout`<br><br>Não inclui suporte para `relatedTarget`. |
 | Entrada            | `ChangeEventArgs`    | `onchange`, `oninput` |
 | Teclado         | `KeyboardEventArgs`  | `onkeydown`, `onkeypress`, `onkeyup` |
 | Mouse            | `MouseEventArgs`     | `onclick`, `oncontextmenu`, `ondblclick`, `onmousedown`, `onmouseup`, `onmouseover`, `onmousemove`, `onmouseout` |
 | Ponteiro do mouse    | `PointerEventArgs`   | `onpointerdown`, `onpointerup`, `onpointercancel`, `onpointermove`, `onpointerover`, `onpointerout`, `onpointerenter`, `onpointerleave`, `ongotpointercapture`, `onlostpointercapture` |
 | Roda do mouse      | `WheelEventArgs`     | `onwheel`, `onmousewheel` |
-| Progresso         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
+| Andamento         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
 | Toque            | `TouchEventArgs`     | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br>`TouchPoint` representa um único ponto de contato em um dispositivo sensível ao toque. |
 
-Para obter informações sobre as propriedades e o comportamento de manipulação de eventos dos eventos na tabela anterior, consulte [classes EventArgs na fonte de referência (a ramificação dotnet/aspnetcore Release/3.1)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/Components/Web/src/Web).
+Para obter mais informações, consulte os seguintes recursos:
+
+* [Classes EventArgs no ASP.NET Core fonte de referência (dotNet/aspnetcore versão/3.1 Branch)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/Components/Web/src/Web).
+* [MDN Web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers) &ndash; inclui informações sobre quais elementos HTML oferecem suporte a cada evento dom.
 
 ### <a name="lambda-expressions"></a>Expressões lambda
 
@@ -641,7 +781,7 @@ O `ChildComponent` no aplicativo de exemplo (*Components/ChildComponent. Razor*)
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
-O `ParentComponent` define o `EventCallback<T>` (`OnClick`) do filho como seu método `ShowMessage`.
+O `ParentComponent` define o `EventCallback<T>` (`OnClickCallback`) do filho como seu método `ShowMessage`.
 
 *Páginas/ParentComponent. Razor*:
 
@@ -651,7 +791,7 @@ O `ParentComponent` define o `EventCallback<T>` (`OnClick`) do filho como seu m�
 <h1>Parent-child example</h1>
 
 <ChildComponent Title="Panel Title from Parent"
-                OnClick="@ShowMessage">
+                OnClickCallback="@ShowMessage">
     Content of the child component is supplied
     by the parent component.
 </ChildComponent>
@@ -677,7 +817,7 @@ Quando o botão estiver selecionado na `ChildComponent`:
 
 ```razor
 <ChildComponent 
-    OnClick="@(async () => { await Task.Yield(); _messageText = "Blaze It!"; })" />
+    OnClickCallback="@(async () => { await Task.Yield(); _messageText = "Blaze It!"; })" />
 ```
 
 Invoque um `EventCallback` ou `EventCallback<T>` com `InvokeAsync` e aguardar a <xref:System.Threading.Tasks.Task>:
@@ -756,126 +896,6 @@ No exemplo a seguir, marcar a caixa de seleção impede que eventos de clique do
 }
 ```
 
-## <a name="chained-bind"></a>Associação encadeada
-
-Um cenário comum é encadear um parâmetro de associação de dados a um elemento de página na saída do componente. Esse cenário é chamado de *Associação encadeada* porque vários níveis de associação ocorrem simultaneamente.
-
-Uma associação encadeada não pode ser implementada com `@bind` sintaxe no elemento da página. O manipulador de eventos e o valor devem ser especificados separadamente. Um componente pai, no entanto, pode usar `@bind` sintaxe com o parâmetro do componente.
-
-O componente `PasswordField` a seguir (*passwordField. Razor*):
-
-* Define um valor de elemento de `<input>` para uma propriedade `Password`.
-* Expõe as alterações da propriedade `Password` para um componente pai com um [EventCallback](#eventcallback).
-
-```razor
-Password: 
-
-<input @oninput="OnPasswordChanged" 
-       required 
-       type="@(_showPassword ? "text" : "password")" 
-       value="@Password" />
-
-<button class="btn btn-primary" @onclick="ToggleShowPassword">
-    Show password
-</button>
-
-@code {
-    private bool _showPassword;
-
-    [Parameter]
-    public string Password { get; set; }
-
-    [Parameter]
-    public EventCallback<string> PasswordChanged { get; set; }
-
-    private Task OnPasswordChanged(ChangeEventArgs e)
-    {
-        Password = e.Value.ToString();
-
-        return PasswordChanged.InvokeAsync(Password);
-    }
-
-    private void ToggleShowPassword()
-    {
-        _showPassword = !_showPassword;
-    }
-}
-```
-
-O componente `PasswordField` é usado em outro componente:
-
-```razor
-<PasswordField @bind-Password="_password" />
-
-@code {
-    private string _password;
-}
-```
-
-Para executar verificações ou interceptar erros na senha no exemplo anterior:
-
-* Crie um campo de backup para `Password` (`_password` no código de exemplo a seguir).
-* Execute os erros de verificação ou interceptação no setter de `Password`.
-
-O exemplo a seguir fornecerá comentários imediatos para o usuário se um espaço for usado no valor da senha:
-
-```razor
-Password: 
-
-<input @oninput="OnPasswordChanged" 
-       required 
-       type="@(_showPassword ? "text" : "password")" 
-       value="@Password" />
-
-<button class="btn btn-primary" @onclick="ToggleShowPassword">
-    Show password
-</button>
-
-<span class="text-danger">@_validationMessage</span>
-
-@code {
-    private bool _showPassword;
-    private string _password;
-    private string _validationMessage;
-
-    [Parameter]
-    public string Password
-    {
-        get { return _password ?? string.Empty; }
-        set
-        {
-            if (_password != value)
-            {
-                if (value.Contains(' '))
-                {
-                    _validationMessage = "Spaces not allowed!";
-                }
-                else
-                {
-                    _password = value;
-                    _validationMessage = string.Empty;
-                }
-            }
-        }
-    }
-
-    [Parameter]
-    public EventCallback<string> PasswordChanged { get; set; }
-
-    private Task OnPasswordChanged(ChangeEventArgs e)
-    {
-        Password = e.Value.ToString();
-
-        return PasswordChanged.InvokeAsync(Password);
-    }
-
-    private void ToggleShowPassword()
-    {
-        _showPassword = !_showPassword;
-    }
-}
-```
-
 ## <a name="capture-references-to-components"></a>Capturar referências a componentes
 
 As referências de componente fornecem uma maneira de fazer referência a uma instância de componente para que você possa emitir comandos para essa instância, como `Show` ou `Reset`. Para capturar uma referência de componente:
@@ -928,7 +948,21 @@ public class NotifierService
 }
 ```
 
-Uso do `NotifierService` para atualizar um componente:
+Registre o `NotifierService` como um singletion:
+
+* No Webassembly mais incrivelmente, registre o serviço no `Program.Main`:
+
+  ```csharp
+  builder.Services.AddSingleton<NotifierService>();
+  ```
+
+* Em um servidor mais incrivelmente, registre o serviço no `Startup.ConfigureServices`:
+
+  ```csharp
+  services.AddSingleton<NotifierService>();
+  ```
+
+Use o `NotifierService` para atualizar um componente:
 
 ```razor
 @page "/"
@@ -1373,7 +1407,7 @@ Em alguns cenários, é inconveniente fluir dados de um componente ancestral par
 
 No exemplo a seguir do aplicativo de exemplo, a classe `ThemeInfo` especifica as informações do tema para fluir para baixo na hierarquia do componente para que todos os botões de uma determinada parte do aplicativo compartilhem o mesmo estilo.
 
-*UIThemeClasses/ThemeInfo.cs*:
+*UIThemeClasses/ThemeInfo. cs*:
 
 ```csharp
 public class ThemeInfo
@@ -1654,14 +1688,14 @@ builder.AddContent(1, "Second");
 
 Quando o código é executado pela primeira vez, se `someFlag` for `true`, o Construtor receberá:
 
-| Sequence | {1&gt;Tipo&lt;1}      | Dados   |
+| Sequence | Tipo      | Dados   |
 | :------: | --------- | :----: |
 | 0        | Nó de texto | First  |
 | 1        | Nó de texto | Segundo |
 
 Imagine que `someFlag` se torna `false`e a marcação é renderizada novamente. Desta vez, o Construtor recebe:
 
-| Sequence | {1&gt;Tipo&lt;1}       | Dados   |
+| Sequence | Tipo       | Dados   |
 | :------: | ---------- | :----: |
 | 1        | Nó de texto  | Segundo |
 
@@ -1686,14 +1720,14 @@ builder.AddContent(seq++, "Second");
 
 Agora, a primeira saída é:
 
-| Sequence | {1&gt;Tipo&lt;1}      | Dados   |
+| Sequence | Tipo      | Dados   |
 | :------: | --------- | :----: |
 | 0        | Nó de texto | First  |
 | 1        | Nó de texto | Segundo |
 
 Esse resultado é idêntico ao caso anterior, portanto, não existem problemas negativos. `someFlag` é `false` no segundo processamento e a saída é:
 
-| Sequence | {1&gt;Tipo&lt;1}      | Dados   |
+| Sequence | Tipo      | Dados   |
 | :------: | --------- | ------ |
 | 0        | Nó de texto | Segundo |
 

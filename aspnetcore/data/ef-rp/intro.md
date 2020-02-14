@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 uid: data/ef-rp/intro
-ms.openlocfilehash: 01e507326ddd57057aa178ad3909fd4027a013fd
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: 1a9d83be9180b1d32ab941932eb3cab8612dff01
+ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259366"
+ms.lasthandoff: 02/14/2020
+ms.locfileid: "77213396"
 ---
 # <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Páginas Razor com o Entity Framework Core no ASP.NET Core – Tutorial 1 de 8
 
@@ -19,11 +19,11 @@ Por [Tom Dykstra](https://github.com/tdykstra) e [Rick Anderson](https://twitter
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Este é o primeiro de uma série de tutoriais que mostram como usar o Entity Framework (EF) Core em um aplicativo [ASP.NET Core Razor Pages](xref:razor-pages/index) . O tutorial cria um site de uma Contoso University fictícia. O site inclui funcionalidades como admissão de alunos, criação de cursos e atribuições de instrutor.
+Este é o primeiro de uma série de tutoriais que mostram como usar o Entity Framework (EF) Core em um aplicativo [ASP.NET Core Razor Pages](xref:razor-pages/index) . O tutorial cria um site de uma Contoso University fictícia. O site inclui funcionalidades como admissão de alunos, criação de cursos e atribuições de instrutor. O tutorial usa a abordagem Code First. Para obter informações sobre como seguir este tutorial usando a abordagem do banco de dados primeiro, consulte [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/16897).
 
 [Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Instruções de download](xref:index#how-to-download-a-sample).
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * Se você for novo no Razor Pages, confira a série de tutoriais de [Introdução ao Razor Pages](xref:tutorials/razor-pages/razor-pages-start) antes de iniciar este.
 
@@ -66,7 +66,7 @@ Siga o link na parte superior da página para obter o código-fonte do projeto c
 Para executar o aplicativo depois de baixar o projeto concluído:
 
 * Exclua três arquivos e uma pasta que tenha *SQLite* no nome.
-* Compile o projeto.
+* Crie o projeto.
 * No PMC (Console do Gerenciador de Pacotes), execute o seguinte comando:
 
   ```powershell
@@ -83,7 +83,7 @@ Para executar o aplicativo depois de baixar o projeto concluído:
 * Exclua *Startup.cs* e altere o nome de *StartupSQLite.cs* para *Startup.cs*.
 * Exclua *appSettings.json* e altere o nome de *appSettingsSQLite.json* para *appSettings.json*.
 * Exclua a pasta *Migrations* e altere o nome de *MigrationsSQL* para *Migrations*.
-* Compile o projeto.
+* Crie o projeto.
 * Em um prompt de comando na pasta do projeto, execute os seguintes comandos:
 
   ```dotnetcli
@@ -105,7 +105,7 @@ Para executar o aplicativo depois de baixar o projeto concluído:
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**.
+* No menu **arquivo** do Visual Studio, selecione **novo** **projeto**de >.
 * Selecione **Aplicativo Web ASP.NET Core**.
 * Nomeie o projeto *ContosoUniversity*. É importante usar esse nome exato, incluindo maiúsculas e minúsculas, para que os namespaces correspondam quando o código for copiado e colado.
 * Selecione **.NET Core** e **ASP.NET Core 3.0** na lista suspensa e, em seguida, selecione **Aplicativo Web**.
@@ -209,8 +209,8 @@ Nesta seção, você usa a ferramenta de scaffolding do ASP.NET Core para gerar:
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Crie uma pasta *Alunos* na pasta *Páginas*.
-* No **Gerenciador de Soluções**, clique com o botão direito do mouse na pasta *Páginas/Alunos* e selecione **Adicionar** > **Novo Item com Scaffold**.
-* Na caixa de diálogo **Adicionar Scaffold**, selecione **Razor Pages usando o Entity Framework (CRUD)** > **Adicionar**.
+* Em **Gerenciador de soluções**, clique com o botão direito do mouse na pasta *páginas/alunos* e selecione **Adicionar** > **novo item com Scaffold**.
+* Na caixa de diálogo **Adicionar Scaffold** , selecione **Razor Pages usando Entity Framework (CRUD)** > **Adicionar**.
 * Na caixa de diálogo **Adicionar Razor Pages usando o Entity Framework (CRUD)** :
   * Na lista suspensa **classe Modelo**, selecione **Aluno (ContosoUniversity.Models)** .
   * Na linha **Classe de contexto de dados**, selecione o sinal de **+** (adição).
@@ -377,7 +377,7 @@ Crie *Data/DbInitializer.cs* com o seguinte código:
   ```csharp
   // context.Database.EnsureCreated();
   DbInitializer.Initialize(context);
-  ````
+  ```
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -445,7 +445,7 @@ Algumas coisas a serem consideradas ao escrever um código assíncrono que usa o
 
 Para obter mais informações sobre a programação assíncrona, consulte [Visão geral de Async](/dotnet/standard/async) e [Programação assíncrona com async e await](/dotnet/csharp/programming-guide/concepts/async/).
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 > [!div class="step-by-step"]
 > [Próximo tutorial](xref:data/ef-rp/crud)
@@ -460,7 +460,7 @@ O aplicativo de exemplo é um site de uma Contoso University fictícia. Ele incl
 
 [Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Instruções de download](xref:index#how-to-download-a-sample).
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -494,7 +494,7 @@ O estilo de interface do usuário deste site é próximo ao que é gerado pelos 
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No menu **Arquivo** do Visual Studio, selecione **Novo** > **Projeto**.
+* No menu **arquivo** do Visual Studio, selecione **novo** **projeto**de >.
 * Crie um novo Aplicativo Web ASP.NET Core. Nomeie o projeto **ContosoUniversity**. É importante nomear o projeto *ContosoUniversity* para que os namespaces sejam correspondentes quando o código for copiado/colado.
 * Selecione **ASP.NET Core 2.1** na lista suspensa e selecione **Aplicativo Web**.
 
@@ -585,13 +585,13 @@ O atributo `DatabaseGenerated` permite que o aplicativo especifique a chave prim
 
 Nesta seção, é feito o scaffold do modelo de aluno. Ou seja, a ferramenta de scaffolding gera páginas para operações de CRUD (Criar, Ler, Atualizar e Excluir) para o modelo de aluno.
 
-* Compile o projeto.
+* Crie o projeto.
 * Crie a pasta *Pages/Students*.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* No **Gerenciador de Soluções**, clique com o botão direito do mouse na pasta *Páginas/Alunos* pasta > **Adicionar** > **Novo item com scaffold**.
-* Na caixa de diálogo **Adicionar Scaffold**, selecione **Razor Pages usando o Entity Framework (CRUD)** > **Adicionar**.
+* Em **Gerenciador de soluções**, clique com o botão direito do mouse na pasta *páginas/alunos* > **Adicionar** > **novo item com Scaffold**.
+* Na caixa de diálogo **Adicionar Scaffold** , selecione **Razor Pages usando Entity Framework (CRUD)** > **Adicionar**.
 
 Conclua a caixa de diálogo **Adicionar Razor Pages usando o Entity Framework (CRUD)** :
 
@@ -697,7 +697,7 @@ Na pasta *Dados*, crie um novo arquivo de classe chamado *DbInitializer.cs* e ad
 
 [!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Intro)]
 
-Observação: O código anterior usa `Models` para o namespace (`namespace ContosoUniversity.Models`) em vez de `Data`. `Models` é consistente com o código gerado pelo scaffolder. Para saber mais, confira [este problema de scaffolding do GitHub](https://github.com/aspnet/Scaffolding/issues/822).
+Observação: o código anterior usa `Models` para o namespace (`namespace ContosoUniversity.Models`) em vez de `Data`. `Models` é consistente com o código gerado pelo scaffolder. Para saber mais, confira [este problema de scaffolding do GitHub](https://github.com/aspnet/Scaffolding/issues/822).
 
 O código verifica se há alunos no BD. Se não houver nenhum aluno no BD, o BD será inicializado com os dados de teste. Ele carrega os dados de teste em matrizes em vez de em coleções `List<T>` para otimizar o desempenho.
 

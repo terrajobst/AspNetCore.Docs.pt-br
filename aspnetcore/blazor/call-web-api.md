@@ -5,17 +5,17 @@ description: Saiba como chamar uma API da Web de um aplicativo Blazor usando aux
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 01/22/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: 66605f38a6fcaedebc92b0946dca1e5f28b593c6
-ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
+ms.openlocfilehash: 345fb6962e3376c22551eb7914c70c89cb7100d5
+ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2020
-ms.locfileid: "76160061"
+ms.lasthandoff: 02/14/2020
+ms.locfileid: "77213269"
 ---
 # <a name="call-a-web-api-from-aspnet-core-opno-locblazor"></a>Chamar uma API da Web de ASP.NET Core Blazor
 
@@ -23,9 +23,9 @@ Por [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-[Blazor aplicativos Webassembly](xref:blazor/hosting-models#blazor-webassembly) chamam APIs Web usando um serviço de `HttpClient` pré-configurado. Redação de solicitações, que podem incluir opções de [API de busca](https://developer.mozilla.org/docs/Web/API/Fetch_API) de JavaScript, usando Blazor auxiliares JSON ou com <xref:System.Net.Http.HttpRequestMessage>.
+[Blazor aplicativos Webassembly](xref:blazor/hosting-models#blazor-webassembly) chamam APIs Web usando um serviço de `HttpClient` pré-configurado. Redação de solicitações, que podem incluir opções de [API de busca](https://developer.mozilla.org/docs/Web/API/Fetch_API) de JavaScript, usando Blazor auxiliares JSON ou com <xref:System.Net.Http.HttpRequestMessage>. O serviço de `HttpClient` em Blazor aplicativos Webassembly é voltado para fazer solicitações de volta ao servidor de origem. As diretrizes neste tópico referem-se apenas a Blazor aplicativos Webassembly.
 
-os aplicativos [doBlazor Server](xref:blazor/hosting-models#blazor-server) chamam APIs da web usando <xref:System.Net.Http.HttpClient> instâncias normalmente criadas usando <xref:System.Net.Http.IHttpClientFactory>. Para obter mais informações, consulte <xref:fundamentals/http-requests>.
+os aplicativos [doBlazor Server](xref:blazor/hosting-models#blazor-server) chamam APIs da web usando <xref:System.Net.Http.HttpClient> instâncias, normalmente criadas usando <xref:System.Net.Http.IHttpClientFactory>. As diretrizes neste tópico não pertencem a aplicativos do Blazor Server. Ao desenvolver aplicativos do Blazor Server, siga as orientações em <xref:fundamentals/http-requests>.
 
 [Exiba ou baixe o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([como baixar](xref:index#how-to-download-a-sample)) &ndash; selecione o aplicativo *BlazorWebAssemblySample* .
 

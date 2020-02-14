@@ -5,17 +5,17 @@ description: Descubra como os componentes podem ser incluídos em Blazor aplicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 01/23/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/class-libraries
-ms.openlocfilehash: f8e8688cdb3d1aef0d470e0e2d8c3857140ef65f
-ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
+ms.openlocfilehash: 32088b43f91174596f6b9251d36782e806f966b9
+ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2020
-ms.locfileid: "76160022"
+ms.lasthandoff: 02/14/2020
+ms.locfileid: "77213243"
 ---
 # <a name="aspnet-core-razor-components-class-libraries"></a>ASP.NET Core bibliotecas de classes de componentes Razor
 
@@ -31,7 +31,7 @@ Assim como os componentes são tipos .NET regulares, os componentes fornecidos p
 
 ## <a name="create-an-rcl"></a>Criar um RCL
 
-Siga as orientações no artigo <xref:blazor/get-started> para configurar seu ambiente para Blazor.
+Siga as orientações no artigo <xref:blazor/get-started> para configurar seu ambiente para um mais incrivelmente.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -47,6 +47,15 @@ Siga as orientações no artigo <xref:blazor/get-started> para configurar seu am
    1. Clique com o botão direito do mouse no projeto do aplicativo. Selecione **Adicionar** **referência**de > .
    1. Selecione o projeto RCL. Selecione **OK**.
 
+> [!NOTE]
+> Se a caixa de seleção **páginas de suporte e exibições** estiver marcada ao gerar o RCL do modelo, adicione também um arquivo *_Imports. Razor* à raiz do projeto gerado com o seguinte conteúdo para habilitar a criação de componentes Razor:
+>
+> ```razor
+> @using Microsoft.AspNetCore.Components.Web
+> ```
+>
+> Adicione manualmente o arquivo a raiz do projeto gerado.
+
 # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 1. Use o modelo de **biblioteca de classes Razor** (`razorclasslib`) com o comando [dotnet New](/dotnet/core/tools/dotnet-new) em um shell de comando. No exemplo a seguir, um RCL é criado com o nome `MyComponentLib1`. A pasta que contém `MyComponentLib1` é criada automaticamente quando o comando é executado:
@@ -54,6 +63,15 @@ Siga as orientações no artigo <xref:blazor/get-started> para configurar seu am
    ```dotnetcli
    dotnet new razorclasslib -o MyComponentLib1
    ```
+
+   > [!NOTE]
+   > Se a opção `-s|--support-pages-and-views` for usada ao gerar o RCL do modelo, adicione também um arquivo *_Imports. Razor* à raiz do projeto gerado com o seguinte conteúdo para habilitar a criação de componentes do Razor:
+   >
+   > ```razor
+   > @using Microsoft.AspNetCore.Components.Web
+   > ```
+   >
+   > Adicione manualmente o arquivo a raiz do projeto gerado.
 
 1. Para adicionar a biblioteca a um projeto existente, use o comando [dotnet Add Reference](/dotnet/core/tools/dotnet-add-reference) em um shell de comando. No exemplo a seguir, o RCL é adicionado ao aplicativo. Execute o seguinte comando na pasta do projeto do aplicativo com o caminho para a biblioteca:
 

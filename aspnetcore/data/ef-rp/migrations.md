@@ -5,12 +5,12 @@ description: Neste tutorial, você começa a usar o recurso de migrações do EF
 ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/migrations
-ms.openlocfilehash: 4246d9d8f6e6ba9e9d735b944ed748720bcf3e16
-ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
+ms.openlocfilehash: f8e78cf7230528a4047eac1d52a12e2ed8392dec
+ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "76928371"
+ms.lasthandoff: 02/14/2020
+ms.locfileid: "77213436"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---migrations---4-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Migrações – 4 de 8
 
@@ -180,7 +180,7 @@ Use o **SSOX** (Pesquisador de Objetos do SQL Server) ou o comando `database dro
 
 No **PMC** (Console do Gerenciador de Pacotes), execute o seguinte comando:
 
-```PMC
+```powershell
 Drop-Database
 ```
 
@@ -204,7 +204,7 @@ Crie o projeto e a primeira migração.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-```PMC
+```powershell
 Add-Migration InitialCreate
 Update-Database
 ```

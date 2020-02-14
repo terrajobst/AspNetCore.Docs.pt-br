@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 1244b2e23a842538ff2fca01a513317a690afe7c
-ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
+ms.openlocfilehash: 411c0874d2b2c6ecadd1da9aff7a093f1e8e525a
+ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2019
-ms.locfileid: "73034026"
+ms.lasthandoff: 02/14/2020
+ms.locfileid: "77213422"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Modelo de dados – 5 de 8
 
@@ -301,7 +301,7 @@ Atualize *Models/Course.cs* com o seguinte código:
 
 A entidade `Course` tem uma propriedade de FK (chave estrangeira) `DepartmentID`. `DepartmentID` aponta para a entidade `Department` relacionada. A entidade `Course` tem uma propriedade de navegação `Department`.
 
-O EF Core não exige uma propriedade de chave estrangeira para um modelo de dados quando o modelo tem uma propriedade de navegação para uma entidade relacionada. O EF Core cria automaticamente FKs no banco de dados sempre que forem necessárias. O EF Core cria [propriedades de sombra](/ef/core/modeling/shadow-properties) para FKs criadas automaticamente. Porém, incluir explicitamente a FK no modelo de dados pode tornar as atualizações mais simples e mais eficientes. Por exemplo, considere um modelo em que a propriedade de FK `DepartmentID` *não* é incluída. Quando uma entidade de curso é buscada para editar:
+O EF Core não exige uma propriedade de chave estrangeira para um modelo de dados quando o modelo tem uma propriedade de navegação para uma entidade relacionada. O EF Core cria automaticamente FKs no banco de dados sempre que forem necessárias. O EF Core cria [propriedades de sombra](/ef/core/modeling/shadow-properties) para FKs criadas automaticamente. Porém, incluir explicitamente a FK no modelo de dados pode tornar as atualizações mais simples e mais eficientes. Por exemplo, considere um modelo em que a propriedade de FK `DepartmentID`*não* é incluída. Quando uma entidade de curso é buscada para editar:
 
 * A propriedade `Department` será nula se não for carregada de forma explícita.
 * Para atualizar a entidade de curso, a entidade `Department` primeiro deve ser buscada.
@@ -713,7 +713,7 @@ Como o método `DbInitializer.Initialize` foi projetado para funcionar apenas co
 
 Execute o aplicativo. A execução do aplicativo executa o método `DbInitializer.Initialize`. O `DbInitializer.Initialize` preenche o novo banco de dados.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Os próximos dois tutoriais mostram como ler e atualizar dados relacionados.
 
@@ -821,7 +821,7 @@ Com a alteração anterior, `Student.FirstMidName` no aplicativo é mapeado para
 
 A adição do atributo `Column` altera o modelo que dá suporte ao `SchoolContext`. O modelo que dá suporte ao `SchoolContext` não corresponde mais ao banco de dados. Se o aplicativo for executado antes da aplicação das migrações, a seguinte exceção será gerada:
 
-```SQL
+```
 SqlException: Invalid column name 'FirstName'.
 ```
 
@@ -832,7 +832,7 @@ Para atualizar o BD:
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-```PMC
+```powershell
 Add-Migration ColumnFirstName
 Update-Database
 ```
@@ -998,7 +998,7 @@ A entidade `Course` tem uma propriedade de FK (chave estrangeira) `DepartmentID`
 
 O EF Core não exige uma propriedade de FK para um modelo de dados quando o modelo tem uma propriedade de navegação para uma entidade relacionada.
 
-O EF Core cria automaticamente FKs no banco de dados sempre que forem necessárias. O EF Core cria [propriedades de sombra](/ef/core/modeling/shadow-properties) para FKs criadas automaticamente. Ter a FK no modelo de dados pode tornar as atualizações mais simples e mais eficientes. Por exemplo, considere um modelo em que a propriedade de FK `DepartmentID` *não* é incluída. Quando uma entidade de curso é buscada para editar:
+O EF Core cria automaticamente FKs no banco de dados sempre que forem necessárias. O EF Core cria [propriedades de sombra](/ef/core/modeling/shadow-properties) para FKs criadas automaticamente. Ter a FK no modelo de dados pode tornar as atualizações mais simples e mais eficientes. Por exemplo, considere um modelo em que a propriedade de FK `DepartmentID`*não* é incluída. Quando uma entidade de curso é buscada para editar:
 
 * A entidade `Department` será nula se não for carregada de forma explícita.
 * Para atualizar a entidade de curso, a entidade `Department` primeiro deve ser buscada.
@@ -1290,7 +1290,7 @@ O código no `DbInitializer` atualizado adiciona dados de semente às novas enti
 
 No **PMC** (Console do Gerenciador de Pacotes), execute o seguinte comando:
 
-```PMC
+```powershell
 Drop-Database
 Update-Database
 ```
@@ -1358,7 +1358,7 @@ Adicione o código realçado a seguir. O novo código é inserido após o bloco 
 
 [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
 
-Com as alterações anteriores, as linhas `Course` existentes estarão relacionadas ao departamento "Temp" após a execução do método `ComplexDataModel` `Up`.
+Com as alterações anteriores, as linhas de `Course` existentes estarão relacionadas ao departamento "Temp" após a execução do método de `Up` de `ComplexDataModel`.
 
 Um aplicativo de produção:
 

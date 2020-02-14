@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: 51720af8fec5b4427fc66660eb8ac9c54ba2e99e
-ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
+ms.openlocfilehash: 8e7294f6b66d34781473522a71f929ed5f9c33f2
+ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2020
-ms.locfileid: "76159853"
+ms.lasthandoff: 02/14/2020
+ms.locfileid: "77213370"
 ---
 # <a name="aspnet-core-opno-locblazor-layouts"></a>Layouts de Blazor ASP.NET Core
 
@@ -66,7 +66,7 @@ Cada pasta de um aplicativo pode, opcionalmente, conter um arquivo de modelo cha
 
 As seguintes importações de arquivo *_Imports. Razor* :
 
-* `MyCoolLayout`.
+* `MyCoolLayout`
 * Todos os componentes do Razor na mesma pasta e em todas as subpastas.
 * O namespace `BlazorApp1.Data`.
  
@@ -94,7 +94,7 @@ Por fim, `MasterLayout` no *MasterLayout. Razor* contém os elementos de layout 
 
 ## <a name="share-a-razor-pages-layout-with-integrated-components"></a>Compartilhar um layout de Razor Pages com componentes integrados
 
-Quando os componentes roteáveis são integrados a um aplicativo Razor Pages, o layout compartilhado do aplicativo pode ser usado com os componentes. Para obter mais informações, consulte <xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps>.
+Quando os componentes roteáveis são integrados a um aplicativo Razor Pages, o layout compartilhado do aplicativo pode ser usado com os componentes. Para obter mais informações, consulte <xref:blazor/hosting-model-configuration#integrate-razor-components-into-razor-pages-and-mvc-apps>.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
