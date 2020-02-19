@@ -5,17 +5,17 @@ description: Saiba como invocar funções JavaScript de métodos .NET e .NET do 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2020
+ms.date: 02/12/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/javascript-interop
-ms.openlocfilehash: c4f2444b60fc2d3a8af893df379cf62636a7bdd5
-ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
+ms.openlocfilehash: d681eea5a5e876912bd614fba8ea45a464844496
+ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/14/2020
-ms.locfileid: "77213357"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77447159"
 ---
 # <a name="aspnet-core-opno-locblazor-javascript-interop"></a>ASP.NET Core interoperabilidade Blazor JavaScript
 
@@ -74,7 +74,7 @@ Para usar a abstração de `IJSRuntime`, adote qualquer uma das seguintes aborda
 
   [!code-html[](javascript-interop/samples_snapshot/index-script-handleTickerChanged2.html)]
 
-* Para a geração de conteúdo dinâmico com [BuildRenderTree](xref:blazor/components#manual-rendertreebuilder-logic), use o atributo `[Inject]`:
+* Para a geração de conteúdo dinâmico com [BuildRenderTree](xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic), use o atributo `[Inject]`:
 
   ```razor
   [Inject]
@@ -512,7 +512,9 @@ returnArrayAsyncJs: function () {
 
 Você também pode chamar os métodos de instância do .NET do JavaScript. Para invocar um método de instância .NET do JavaScript:
 
-* Passe a instância do .NET para JavaScript, encapsulando-a em uma instância de `DotNetObjectReference`. A instância do .NET é passada por referência ao JavaScript.
+* Passe a instância do .NET por referência ao JavaScript:
+  * Faça uma chamada estática para `DotNetObjectReference.Create`.
+  * Empacote a instância em uma instância de `DotNetObjectReference` e chame `Create` na instância de `DotNetObjectReference`. Descartar objetos de `DotNetObjectReference` (um exemplo aparece mais adiante nesta seção).
 * Invoque os métodos de instância do .NET na instância usando as funções `invokeMethod` ou `invokeMethodAsync`. A instância do .NET também pode ser passada como um argumento ao invocar outros métodos .NET do JavaScript.
 
 > [!NOTE]
@@ -556,6 +558,68 @@ Saída do console nas ferramentas de desenvolvedor da Web do navegador:
 
 ```console
 Hello, Blazor!
+```
+
+Para evitar um vazamento de memória e permitir a coleta de lixo em um componente que cria um `DotNetObjectReference`, descarte o objeto na classe que criou a instância de `DotNetObjectReference`:
+
+```csharp
+public class ExampleJsInterop : IDisposable
+{
+    private readonly IJSRuntime _jsRuntime;
+    private DotNetObjectReference<HelloHelper> _objRef;
+
+    public ExampleJsInterop(IJSRuntime jsRuntime)
+    {
+        _jsRuntime = jsRuntime;
+    }
+
+    public ValueTask<string> CallHelloHelperSayHello(string name)
+    {
+        _objRef = DotNetObjectReference.Create(new HelloHelper(name));
+
+        return _jsRuntime.InvokeAsync<string>(
+            "exampleJsFunctions.sayHello",
+            _objRef);
+    }
+
+    public void Dispose()
+    {
+        _objRef?.Dispose();
+    }
+}
+```
+  
+O padrão anterior mostrado na classe `ExampleJsInterop` também pode ser implementado em um componente:
+  
+```razor
+@page "/JSInteropComponent"
+@using BlazorSample.JsInteropClasses
+@implements IDisposable
+@inject IJSRuntime JSRuntime
+
+<h1>JavaScript Interop</h1>
+
+<button type="button" class="btn btn-primary" @onclick="TriggerNetInstanceMethod">
+    Trigger .NET instance method HelloHelper.SayHello
+</button>
+
+@code {
+    private DotNetObjectReference<HelloHelper> _objRef;
+
+    public async Task TriggerNetInstanceMethod()
+    {
+        _objRef = DotNetObjectReference.Create(new HelloHelper("Blazor"));
+
+        await JSRuntime.InvokeAsync<string>(
+            "exampleJsFunctions.sayHello",
+            _objRef);
+    }
+
+    public void Dispose()
+    {
+        _objRef?.Dispose();
+    }
+}
 ```
 
 ## <a name="share-interop-code-in-a-class-library"></a>Compartilhar código de interoperabilidade em uma biblioteca de classes

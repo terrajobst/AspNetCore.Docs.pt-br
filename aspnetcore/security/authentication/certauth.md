@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
 ms.date: 01/02/2020
 uid: security/authentication/certauth
-ms.openlocfilehash: 9c175439c0313d62c75898f1af097774b06f353a
-ms.sourcegitcommit: e7d4fe6727d423f905faaeaa312f6c25ef844047
+ms.openlocfilehash: 280daa86510d4445c791b6952653122961f13aeb
+ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/02/2020
-ms.locfileid: "75608139"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77447276"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Configurar a autenticação de certificado no ASP.NET Core
 
@@ -236,19 +236,26 @@ Consulte a [documentação de host e implantação](xref:host-and-deploy/proxy-l
 
 ### <a name="use-certificate-authentication-in-azure-web-apps"></a>Usar autenticação de certificado em aplicativos Web do Azure
 
+Nenhuma configuração de encaminhamento é necessária para o Azure. Isso já está configurado no middleware de encaminhamento de certificado.
+
+> [!NOTE]
+> Isso requer que o CertificateForwardingMiddleware esteja presente.
+
+### <a name="use-certificate-authentication-in-custom-web-proxies"></a>Usar autenticação de certificado em proxies da Web personalizados
+
 O método `AddCertificateForwarding` é usado para especificar:
 
 * O nome do cabeçalho do cliente.
 * Como o certificado deve ser carregado (usando a propriedade `HeaderConverter`).
 
-Nos aplicativos Web do Azure, o certificado é passado como um cabeçalho de solicitação personalizado chamado `X-ARR-ClientCert`. Para usá-lo, configure o encaminhamento de certificado no `Startup.ConfigureServices`:
+Em proxies da Web personalizados, o certificado é passado como um cabeçalho de solicitação personalizado, por exemplo `X-SSL-CERT`. Para usá-lo, configure o encaminhamento de certificado no `Startup.ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddCertificateForwarding(options =>
     {
-        options.CertificateHeader = "X-ARR-ClientCert";
+        options.CertificateHeader = "X-SSL-CERT";
         options.HeaderConverter = (headerValue) =>
         {
             X509Certificate2 clientCertificate = null;
@@ -326,46 +333,80 @@ namespace AspNetCoreCertificateAuthApi
 }
 ```
 
-#### <a name="implement-an-httpclient-using-a-certificate"></a>Implementar um HttpClient usando um certificado
+#### <a name="implement-an-httpclient-using-a-certificate-and-the-httpclienthandler"></a>Implementar um HttpClient usando um certificado e o HttpClientHandler
 
-O cliente da API Web usa um `HttpClient`, que foi criado usando uma instância de `IHttpClientFactory`. Isso não fornece uma maneira de definir um manipulador para o `HttpClient`, portanto, use uma `HttpRequestMessage` para adicionar o certificado ao cabeçalho de solicitação do `X-ARR-ClientCert`. O certificado é adicionado como uma cadeia de caracteres usando o método `GetRawCertDataString`. 
+O HttpClientHandler pode ser adicionado diretamente no construtor da classe HttpClient. Deve-se tomar cuidado ao criar instâncias do HttpClient. Em seguida, o HttpClient enviará o certificado a cada solicitação.
 
 ```csharp
-private async Task<JsonDocument> GetApiDataAsync()
+private async Task<JsonDocument> GetApiDataUsingHttpClientHandler()
 {
-    try
+    var cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
+    var handler = new HttpClientHandler();
+    handler.ClientCertificates.Add(cert);
+    var client = new HttpClient(handler);
+     
+    var request = new HttpRequestMessage()
     {
-        // Do not hardcode passwords in production code
-        // Use thumbprint or key vault
-        var cert = new X509Certificate2(
-            Path.Combine(_environment.ContentRootPath, 
-                "sts_dev_cert.pfx"), "1234");
-        var client = _clientFactory.CreateClient();
-        var request = new HttpRequestMessage()
-        {
-            RequestUri = new Uri("https://localhost:44379/api/values"),
-            Method = HttpMethod.Get,
-        };
-
-        request.Headers.Add("X-ARR-ClientCert", cert.GetRawCertDataString());
-        var response = await client.SendAsync(request);
-
-        if (response.IsSuccessStatusCode)
-        {
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var data = JsonDocument.Parse(responseContent);
-
-            return data;
-        }
-
-        throw new ApplicationException(
-            $"Status code: {response.StatusCode}, " +
-            $"Error: {response.ReasonPhrase}");
-    }
-    catch (Exception e)
+        RequestUri = new Uri("https://localhost:44379/api/values"),
+        Method = HttpMethod.Get,
+    };
+    var response = await client.SendAsync(request);
+    if (response.IsSuccessStatusCode)
     {
-        throw new ApplicationException($"Exception {e}");
+        var responseContent = await response.Content.ReadAsStringAsync();
+        var data = JsonDocument.Parse(responseContent);
+        return data;
     }
+ 
+    throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
+}
+```
+
+#### <a name="implement-an-httpclient-using-a-certificate-and-a-named-httpclient-from-ihttpclientfactory"></a>Implementar um HttpClient usando um certificado e um HttpClient nomeado do IHttpClientFactory 
+
+No exemplo a seguir, um certificado de cliente é adicionado a um HttpClientHandler usando a propriedade ClientCertificates do manipulador. Esse manipulador pode ser usado em uma instância nomeada de um HttpClient usando o método ConfigurePrimaryHttpMessageHandler. Isso é configurado na classe de inicialização no método configuraservices.
+
+```csharp
+var clientCertificate = 
+    new X509Certificate2(
+      Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
+ 
+var handler = new HttpClientHandler();
+handler.ClientCertificates.Add(clientCertificate);
+ 
+services.AddHttpClient("namedClient", c =>
+{
+}).ConfigurePrimaryHttpMessageHandler(() => handler);
+```
+
+O IHttpClientFactory pode então ser usado para obter a instância nomeada com o manipulador e o certificado. O método CreateClient com o nome do cliente definido na classe Startup é usado para obter a instância. A solicitação HTTP pode ser enviada usando o cliente, conforme necessário.
+
+```csharp
+private readonly IHttpClientFactory _clientFactory;
+ 
+public ApiService(IHttpClientFactory clientFactory)
+{
+    _clientFactory = clientFactory;
+}
+ 
+private async Task<JsonDocument> GetApiDataWithNamedClient()
+{
+    var client = _clientFactory.CreateClient("namedClient");
+ 
+    var request = new HttpRequestMessage()
+    {
+        RequestUri = new Uri("https://localhost:44379/api/values"),
+        Method = HttpMethod.Get,
+    };
+    var response = await client.SendAsync(request);
+    if (response.IsSuccessStatusCode)
+    {
+        var responseContent = await response.Content.ReadAsStringAsync();
+        var data = JsonDocument.Parse(responseContent);
+        return data;
+    }
+ 
+    throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
 }
 ```
 

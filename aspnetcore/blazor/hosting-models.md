@@ -5,17 +5,17 @@ description: Entenda Blazor Webassembly e modelos de hospedagem do Blazor Server
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/31/2020
+ms.date: 02/12/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 2314ba39e67fbf734807b96de6c54bc94283a67d
-ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
+ms.openlocfilehash: 54be0e032a60c69880f428e52f9d778032385dc5
+ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/14/2020
-ms.locfileid: "77213308"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77447042"
 ---
 # <a name="aspnet-core-opno-locblazor-hosting-models"></a>Modelos de Hospedagem de Blazor ASP.NET Core
 
@@ -121,7 +121,7 @@ Um aplicativo do Blazor Server é criado sobre [ASP.NET Core SignalR](xref:signa
 
 Cada tela do navegador (guia do navegador ou iframe) que está conectada a um aplicativo do Blazor Server usa uma conexão SignalR. Essa é ainda outra distinção importante em comparação com os aplicativos típicos renderizados pelo servidor. Em um aplicativo renderizado pelo servidor, a abertura do mesmo aplicativo em várias telas do navegador geralmente não se traduz em demandas de recursos adicionais no servidor. Em um aplicativo do Blazor Server, cada tela do navegador requer um circuito separado e instâncias separadas do estado do componente a serem gerenciadas pelo servidor.
 
-Blazor considera fechar uma guia do navegador ou navegar até uma URL externa um encerramento *normal* . No caso de um encerramento normal, o circuito e os recursos associados são lançados imediatamente. Um cliente também pode se desconectar não normalmente, por exemplo, devido a uma interrupção de rede. Blazor Server armazena circuitos desconectados para um intervalo configurável para permitir que o cliente se reconecte. Para obter mais informações, consulte [reconexão com o mesmo servidor](xref:blazor/hosting-model-configuration#reconnection-to-the-same-server).
+Blazor considera fechar uma guia do navegador ou navegar até uma URL externa um encerramento *normal* . No caso de um encerramento normal, o circuito e os recursos associados são lançados imediatamente. Um cliente também pode se desconectar não normalmente, por exemplo, devido a uma interrupção de rede. Blazor Server armazena circuitos desconectados para um intervalo configurável para permitir que o cliente se reconecte.
 
 ### <a name="ui-latency"></a>Latência da interface do usuário
 

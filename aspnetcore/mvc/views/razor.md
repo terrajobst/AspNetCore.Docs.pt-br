@@ -3,14 +3,14 @@ title: Referência da sintaxe Razor para ASP.NET Core
 author: rick-anderson
 description: Saiba mais sobre a sintaxe de marcação Razor para inserir código baseado em servidor em páginas da Web.
 ms.author: riande
-ms.date: 12/05/2019
+ms.date: 02/12/2020
 uid: mvc/views/razor
-ms.openlocfilehash: 2d47fbc33328ab454616bcabab796df089686d79
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: 0b1eed2816329d62fca4bdb5719825a4197af353
+ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77171853"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77447172"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
@@ -719,13 +719,13 @@ Nos [componentes de Razor](xref:blazor/components), `@using` também controla qu
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
-A vinculação de dados nos componentes é realizada com o atributo `@bind`. Para obter mais informações, consulte <xref:blazor/components#data-binding>.
+A vinculação de dados nos componentes é realizada com o atributo `@bind`. Para obter mais informações, consulte <xref:blazor/data-binding>.
 
 ### <a name="onevent"></a>\@no {EVENT}
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
-O Razor fornece recursos de manipulação de eventos para os componentes. Para obter mais informações, consulte <xref:blazor/components#event-handling>.
+O Razor fornece recursos de manipulação de eventos para os componentes. Para obter mais informações, consulte <xref:blazor/event-handling>.
 
 ::: moniker-end
 
@@ -763,7 +763,7 @@ Referências de componente (`@ref`) proporcionam uma maneira de fazer referênci
 
 *Este cenário aplica-se somente a componentes do Razor (.razor).*
 
-A diretiva `@typeparam` declara um parâmetro de tipo genérico para a classe de componente gerada. Para obter mais informações, consulte <xref:blazor/components#generic-typed-components>.
+A diretiva `@typeparam` declara um parâmetro de tipo genérico para a classe de componente gerada. Para obter mais informações, consulte <xref:blazor/templated-components#generic-typed-components>.
 
 ::: moniker-end
 

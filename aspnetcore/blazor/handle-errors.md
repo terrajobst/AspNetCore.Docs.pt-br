@@ -5,17 +5,17 @@ description: Descubra como ASP.NET Core Blazor como o Blazor gerencia exceções
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/22/2020
+ms.date: 02/12/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: b987513e5410e95ab632b9935d858b648838d94f
-ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
+ms.openlocfilehash: 7191ae50d64ebd6a9b23b391116aedf3a6d01de2
+ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "76928269"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77447016"
 ---
 # <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Tratar erros em aplicativos ASP.NET Core Blazor
 
@@ -285,7 +285,7 @@ Para evitar padrões de recursão infinitos, verifique se o código de renderiza
 
 ### <a name="custom-render-tree-logic"></a>Lógica de árvore de renderização personalizada
 
-A maioria dos componentes Blazor são implementados como arquivos *. Razor* e são compilados para produzir uma lógica que opere em uma `RenderTreeBuilder` para processar sua saída. Um desenvolvedor pode implementar manualmente `RenderTreeBuilder` lógica usando código C# de procedimento. Para obter mais informações, consulte <xref:blazor/components#manual-rendertreebuilder-logic>.
+A maioria dos componentes Blazor são implementados como arquivos *. Razor* e são compilados para produzir uma lógica que opere em uma `RenderTreeBuilder` para processar sua saída. Um desenvolvedor pode implementar manualmente `RenderTreeBuilder` lógica usando código C# de procedimento. Para obter mais informações, consulte <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
 > [!WARNING]
 > O uso da lógica do construtor de árvore de renderização manual é considerado um cenário avançado e não seguro, não recomendado para o desenvolvimento geral de componentes.

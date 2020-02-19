@@ -4,16 +4,16 @@ author: rick-anderson
 description: Explica ASP.NET Core vs. ASP.NET 4. x e como escolher entre eles.
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 11/12/2019
+ms.date: 02/12/2020
 no-loc:
 - SignalR
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
-ms.openlocfilehash: 8b1681476f96e8613f9461c507fbb7696f888cbc
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: a7280b59578ee1d96edeeccf9c9df0b0e4eb4eb8
+ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963620"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77447289"
 ---
 # <a name="choose-between-aspnet-4x-and-aspnet-core"></a>Escolher entre o ASP.NET 4.x e o ASP.NET Core
 
@@ -48,7 +48,7 @@ Confira [ASP.NET Core targeting .NET Framework](xref:index#target-framework) (AS
 
 * [Sites](xref:tutorials/first-mvc-app/index)
 * [APIs](xref:tutorials/first-web-api)
-* [Em tempo real](xref:signalr/index)
+* [Em tempo real](xref:signalr/introduction)
 * [Implantar um aplicativo ASP.NET Core no Azure](/azure/app-service/app-service-web-get-started-dotnet)
 
 ## <a name="aspnet-4x-scenarios"></a>Cenários do ASP.NET 4.x

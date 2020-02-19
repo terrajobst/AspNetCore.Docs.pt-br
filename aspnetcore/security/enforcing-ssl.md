@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 uid: security/enforcing-ssl
-ms.openlocfilehash: 9efd49bb246a10c4eb49fb1bb0374ae9442d55a1
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: 43f3abfa4bc311ed246f6f2585d522661e492039
+ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77172623"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77447146"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Impor HTTPS em ASP.NET Core
 
@@ -259,7 +259,7 @@ ASP.NET Core 2,1 e posterior implementa HSTS com o método de extensão `UseHsts
 
 o `UseHsts` não é recomendado no desenvolvimento porque as configurações de HSTS são altamente armazenáveis em cache pelos navegadores. Por padrão, `UseHsts` exclui o endereço de loopback local.
 
-Para ambientes de produção que estão implementando HTTPS pela primeira vez, defina o [HstsOptions inicial. MaxAge](xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*) como um valor pequeno usando um dos métodos <xref:System.TimeSpan>. Defina o valor de horas para não mais do que um único dia, caso precise reverter a infraestrutura HTTPS para HTTP. Depois que você estiver confiante na sustentabilidade da configuração de HTTPS, aumente o valor de idade máxima HSTS; um valor comumente usado é de um ano.
+Para ambientes de produção que estão implementando HTTPS pela primeira vez, defina o [HstsOptions inicial. MaxAge](xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*) como um valor pequeno usando um dos métodos <xref:System.TimeSpan>. Defina o valor de horas para não mais do que um único dia, caso precise reverter a infraestrutura HTTPS para HTTP. Depois que você estiver confiante na sustentabilidade da configuração de HTTPS, aumente o valor de `max-age` HSTS; um valor comumente usado é de um ano.
 
 O seguinte código:
 
@@ -277,9 +277,9 @@ O seguinte código:
 ::: moniker-end
 
 
-* Define o parâmetro PreLoad do cabeçalho Strict-Transport-Security. Pré-carregar não faz parte da [especificação RFC HSTS](https://tools.ietf.org/html/rfc6797), mas tem suporte de navegadores da Web para pré-carregar HSTS sites na nova instalação. Veja [https://hstspreload.org/](https://hstspreload.org/) para obter mais informações.
+* Define o parâmetro PreLoad do cabeçalho `Strict-Transport-Security`. Pré-carregar não faz parte da [especificação RFC HSTS](https://tools.ietf.org/html/rfc6797), mas tem suporte de navegadores da Web para pré-carregar HSTS sites na nova instalação. Para obter mais informações, confira [https://hstspreload.org/](https://hstspreload.org/).
 * Habilita [includeSubDomain](https://tools.ietf.org/html/rfc6797#section-6.1.2), que aplica a política HSTS aos subdomínios de host.
-* Define explicitamente o parâmetro Max-age do cabeçalho Strict-Transport-Security como 60 dias. Se não estiver definido, o padrão será 30 dias. Consulte a [diretiva Max-age](https://tools.ietf.org/html/rfc6797#section-6.1.1) para obter mais informações.
+* Define explicitamente o `max-age` parâmetro do cabeçalho de `Strict-Transport-Security` como 60 dias. Se não estiver definido, o padrão será 30 dias. Para obter mais informações, consulte a [diretiva Max-age](https://tools.ietf.org/html/rfc6797#section-6.1.1).
 * Adiciona `example.com` à lista de hosts a serem excluídos.
 
 `UseHsts` exclui os seguintes hosts de auto-retorno:
@@ -294,7 +294,7 @@ Em alguns cenários de serviço de back-end em que a segurança de conexão é t
 
 Para recusar o HTTPS/HSTS:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio) 
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio) 
 
 Desmarque a caixa de seleção **Configurar para https** .
 
@@ -311,7 +311,7 @@ Desmarque a caixa de seleção **Configurar para https** .
 ::: moniker-end
 
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli) 
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli) 
 
 Use a opção `--no-https`. Por exemplo
 
@@ -325,7 +325,7 @@ dotnet new webapp --no-https
 
 ## <a name="trust-the-aspnet-core-https-development-certificate-on-windows-and-macos"></a>Confiar no certificado de desenvolvimento ASP.NET Core HTTPS no Windows e no macOS
 
-O SDK do .NET Core inclui um certificado de desenvolvimento HTTPS. O certificado é instalado como parte da experiência de primeira execução. Por exemplo, `dotnet --info` produz uma saída semelhante à seguinte:
+O SDK do .NET Core inclui um certificado de desenvolvimento HTTPS. O certificado é instalado como parte da experiência de primeira execução. Por exemplo, `dotnet --info` produz uma variação da seguinte saída:
 
 ```
 ASP.NET Core
@@ -358,7 +358,7 @@ Consulte [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/iss
 
 O subsistema do Windows para Linux (WSL) gera um certificado HTTPS autoassinado. Para configurar o repositório de certificados do Windows para confiar no certificado WSL:
 
-* Execute o seguinte comando para exportar o certificado gerado WSL: `dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <cryptic-password>`
+* Execute o seguinte comando para exportar o certificado gerado pelo WSL: `dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <cryptic-password>`
 * Em uma janela do WSL, execute o seguinte comando: `ASPNETCORE_Kestrel__Certificates__Default__Password="<cryptic-password>" ASPNETCORE_Kestrel__Certificates__Default__Path=/mnt/c/Users/user-name/.aspnet/https/aspnetapp.pfx dotnet watch run`
 
   O comando anterior define as variáveis de ambiente para que o Linux use o certificado confiável do Windows.
@@ -404,7 +404,7 @@ Feche todas as instâncias do navegador abertas. Abra uma nova janela do navegad
 * Abra o acesso ao conjunto de chaves.
 * Selecione o conjunto de chaves do sistema.
 * Verifique a presença de um certificado localhost.
-* Verifique se ele contém um símbolo de `+` no ícone para indicar seu confiável para todos os usuários.
+* Verifique se ele contém um símbolo de `+` no ícone para indicar que ele é confiável para todos os usuários.
 * Remova o certificado do conjunto de chaves do sistema.
 * Execute os seguintes comandos:
 

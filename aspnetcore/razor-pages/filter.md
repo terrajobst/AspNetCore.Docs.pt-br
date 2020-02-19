@@ -4,14 +4,14 @@ author: Rick-Anderson
 description: Saiba como criar métodos de filtro para as Páginas Razor no ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 12/28/2019
+ms.date: 2/18/2020
 uid: razor-pages/filter
-ms.openlocfilehash: 02771219454556b236080c2668243f788693b2c1
-ms.sourcegitcommit: 077b45eceae044475f04c1d7ef2d153d7c0515a8
+ms.openlocfilehash: a60b17685c6f836de7c0afcc5b89a9894fb8b28f
+ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/29/2019
-ms.locfileid: "75542710"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77447225"
 ---
 # <a name="filter-methods-for-razor-pages-in-aspnet-core"></a>Métodos de filtro para Páginas Razor no ASP.NET Core
 
@@ -30,7 +30,7 @@ Filtros de página Razor:
 * Não podem ser aplicados a métodos do manipulador de uma página específica.
 * Pode haver dependências de Construtor preenchidas pela [injeção de dependência](xref:fundamentals/dependency-injection) (di). Para obter mais informações, [consulte](/aspnet/core/mvc/controllers/filters#servicefilterattribute) [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute)e.
 
-O código pode ser executado antes que um método de manipulador seja executado usando o construtor de página ou middleware, mas somente filtros de página Razor têm acesso a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext>. Os filtros têm um <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> parâmetro derivado, que fornece acesso ao `HttpContext`. Por exemplo, a amostra [Implementar um atributo de filtro](#ifa) adiciona um cabeçalho à resposta, algo que não pode ser feito com construtores nem middlewares.
+Embora os construtores de página e o middleware habilitem a execução do código personalizado antes que um método de manipulador seja executado, somente filtros de página Razor habilitam o acesso a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext> e à página. O middleware tem acesso ao `HttpContext`, mas não ao "contexto da página". Os filtros têm um <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> parâmetro derivado, que fornece acesso ao `HttpContext`. Por exemplo, a amostra [Implementar um atributo de filtro](#ifa) adiciona um cabeçalho à resposta, algo que não pode ser feito com construtores nem middlewares.
 
 [Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/3.1sample) ([como baixar](xref:index#how-to-download-a-sample))
 

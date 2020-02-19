@@ -3,14 +3,14 @@ title: Visão geral do ASP.NET Core MVC
 author: ardalis
 description: Saiba como o ASP.NET Core MVC é uma estrutura avançada para a criação de aplicativos Web e APIs usando o padrão de design Model-View-Controller.
 ms.author: riande
-ms.date: 01/28/2020
+ms.date: 02/12/2020
 uid: mvc/overview
-ms.openlocfilehash: a0d1e364bf4cda4ad30c5070c9e61e6972759bb0
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: 2911399f6ed4e14345171c908c4306b9c3e33805
+ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77171824"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77447406"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Visão geral do ASP.NET Core MVC
 
@@ -258,5 +258,4 @@ Para obter mais informações, consulte <xref:mvc/compatibility-version>.
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Mytested. AspNetCore. Mvc-biblioteca de testes fluente para ASP.NET Core Mvc](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; biblioteca de testes de unidade fortemente tipada, fornecendo uma interface fluente para testar aplicativos de API da Web e MVC. (*Não é mantido ou não tem suporte da Microsoft.* )
-* [Integrar componentes do Razor em aplicativos Razor Pages e MVC](xref:blazor/hosting-model-configuration#integrate-razor-components-into-razor-pages-and-mvc-apps)
-
+* <xref:blazor/integrate-components>
