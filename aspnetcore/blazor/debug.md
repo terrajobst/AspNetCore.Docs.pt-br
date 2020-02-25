@@ -17,13 +17,13 @@ ms.contentlocale: pt-BR
 ms.lasthandoff: 01/17/2020
 ms.locfileid: "76159983"
 ---
-# <a name="debug-aspnet-core-opno-locblazor"></a>Depurar ASP.NET Core Blazor
+# <a name="debug-aspnet-core-opno-locblazor"></a>Depurar ASP.NET Core [!OP.NO-LOC(Blazor)]
 
 [Daniel Roth](https://github.com/danroth27)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Há suporte *antecipado* para depuração Blazor Webassembly usando as ferramentas de desenvolvimento do navegador em navegadores baseados em Chromium (Chrome/Edge). O trabalho está em andamento para:
+Há suporte *antecipado* para depuração [!OP.NO-LOC(Blazor)] Webassembly usando as ferramentas de desenvolvimento do navegador em navegadores baseados em Chromium (Chrome/Microsoft Edge). O trabalho está em andamento para:
 
 * Habilite totalmente a depuração no Visual Studio.
 * Habilite a depuração no Visual Studio Code.
@@ -55,15 +55,15 @@ A depuração requer um dos seguintes navegadores:
 
 ## <a name="procedure"></a>Procedimento
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 > [!WARNING]
 > O suporte à depuração no Visual Studio está em um estágio inicial do desenvolvimento. Não há suporte para a depuração **F5** no momento.
 
-1. Execute um aplicativo Webassembly Blazor no `Debug` configuração sem depuração (**Ctrl**+**F5** em vez de **F5**).
-1. Abra as propriedades de depuração do aplicativo (última entrada no menu **depurar** ) e copie a URL do **aplicativo**http. Navegue até o endereço HTTP (não o endereço HTTPS) do aplicativo usando um navegador baseado em Chromium (Edge beta ou Chrome).
+1. Execute um aplicativo Webassembly [!OP.NO-LOC(Blazor)] no `Debug` configuração sem depuração (**Ctrl**+**F5** em vez de **F5**).
+1. Abra as propriedades de depuração do aplicativo (última entrada no menu **depurar** ) e copie a URL do **aplicativo**http. Navegue até o endereço HTTP (não o endereço HTTPS) do aplicativo usando um navegador baseado em Chromium (Microsoft Edge beta ou Chrome).
 1. Coloque o foco do teclado no aplicativo na janela do navegador, não no painel Ferramentas do desenvolvedor. É melhor manter o painel Ferramentas do desenvolvedor fechado para este procedimento. Depois que a depuração for iniciada, você poderá abrir novamente o painel Ferramentas de desenvolvedor.
-1. Selecione o seguinte atalho de teclado específico do Blazor:
+1. Selecione o seguinte atalho de teclado específico do [!OP.NO-LOC(Blazor)]:
 
    * `Shift+Alt+D` no Windows
    * `Shift+Cmd+D` no macOS
@@ -76,18 +76,18 @@ A depuração requer um dos seguintes navegadores:
 
    2 \. Coloque o foco do teclado no aplicativo na janela do navegador.
 
-   3 \. Selecione o atalho de teclado específico do Blazorna nova janela do navegador: `Shift+Alt+D` no Windows ou `Shift+Cmd+D` no macOS.
+   3 \. Selecione o atalho de teclado específico do [!OP.NO-LOC(Blazor)]na nova janela do navegador: `Shift+Alt+D` no Windows ou `Shift+Cmd+D` no macOS.
 
    4 \. A guia **devtools** é aberta no navegador. **Selecione novamente a guia do aplicativo na janela do navegador.**
 
    Para anexar o aplicativo ao Visual Studio, consulte a seção [anexar ao processo no Visual Studio](#attach-to-process-in-visual-studio) .
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
-1. Execute um aplicativo Webassembly Blazor na configuração do `Debug` passando a opção `--configuration Debug` para o comando [dotnet Run](/dotnet/core/tools/dotnet-run) : `dotnet run --configuration Debug`.
+1. Execute um aplicativo Webassembly [!OP.NO-LOC(Blazor)] na configuração do `Debug` passando a opção `--configuration Debug` para o comando [dotnet Run](/dotnet/core/tools/dotnet-run) : `dotnet run --configuration Debug`.
 1. Navegue até o aplicativo na URL HTTP mostrada na janela do Shell.
 1. Coloque o foco do teclado no aplicativo, não no painel Ferramentas do desenvolvedor. É melhor manter o painel Ferramentas do desenvolvedor fechado para este procedimento. Depois que a depuração for iniciada, você poderá abrir novamente o painel Ferramentas de desenvolvedor.
-1. Selecione o seguinte atalho de teclado específico do Blazor:
+1. Selecione o seguinte atalho de teclado específico do [!OP.NO-LOC(Blazor)]:
 
    * `Shift+Alt+D` no Windows
    * `Shift+Cmd+D` no macOS
@@ -100,7 +100,7 @@ A depuração requer um dos seguintes navegadores:
 
    2 \. Coloque o foco do teclado no aplicativo na janela do navegador, não no painel Ferramentas do desenvolvedor.
 
-   3 \. Selecione o atalho de teclado específico do Blazorna nova janela do navegador: `Shift+Alt+D` no Windows ou `Shift+Cmd+D` no macOS.
+   3 \. Selecione o atalho de teclado específico do [!OP.NO-LOC(Blazor)]na nova janela do navegador: `Shift+Alt+D` no Windows ou `Shift+Cmd+D` no macOS.
 
 ---
 
@@ -125,7 +125,7 @@ Para anexar o processo do aplicativo em execução ao Visual Studio:
 1. Para o **destino de conexão**, Cole o endereço http (não o endereço https) do aplicativo.
 1. Selecione **Atualizar** para atualizar as entradas em **processos disponíveis**.
 1. Selecione o processo do navegador a ser depurado e selecione **anexar**.
-1. Na caixa de diálogo **Selecionar tipo de código** , selecione o tipo de código para o navegador específico ao qual você está anexando (Edge ou Chrome) e, em seguida, selecione **OK**.
+1. Na caixa de diálogo **Selecionar tipo de código** , selecione o tipo de código para o navegador específico ao qual você está anexando (Microsoft Edge ou Chrome) e, em seguida, selecione **OK**.
 
 ## <a name="browser-source-maps"></a>Mapas de origem do navegador
 
