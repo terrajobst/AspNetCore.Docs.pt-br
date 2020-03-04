@@ -31,7 +31,7 @@ Neste tutorial, você:
 > * Criar uma página Instrutores
 > * Aprender sobre o carregamento explícito
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 * [Criar um modelo de dados complexo](complex-data-model.md)
 

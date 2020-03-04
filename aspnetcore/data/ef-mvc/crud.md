@@ -30,7 +30,7 @@ Neste tutorial, você:
 > * Atualizar a página Excluir
 > * Fechará conexões de banco de dados
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 * [Introdução ao EF Core e ASP.NET Core MVC](intro.md)
 

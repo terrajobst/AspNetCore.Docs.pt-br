@@ -8,7 +8,7 @@ ms.date: 12/06/2018
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
 ms.openlocfilehash: 3b344505739bb4292ed1683c73ff314b6e4e01e9
 ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
-ms.translationtype: HT
+ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 04/27/2019
 ms.locfileid: "64890091"
@@ -26,7 +26,7 @@ Consulte também [Criar seu primeiro pipeline com o Azure Pipelines](/azure/devo
 > [!NOTE]
 > Para concluir este tutorial, você precisa de uma conta do Microsoft Azure. Para obter uma conta, [ative os benefícios do assinante do MSDN](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/?WT.mc_id=A261C142F) ou [inscreva-se em uma avaliação gratuita](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 Este tutorial pressupõe que o seguinte software está instalado:
 
@@ -40,7 +40,7 @@ Este tutorial pressupõe que o seguinte software está instalado:
 
 1. No menu **Arquivo**, selecione **Novo** > **Projeto**.
 
-1. Selecione o modelo de projeto **Aplicativo Web ASP.NET Core**. Ele será exibido em **Instalado** > **Modelos** > **Visual C#** > **.NET Core**. Nomeie o projeto `SampleWebAppDemo`. Selecione a opção **Criar novo repositório GIT** e clique em **OK**.
+1. Selecione o modelo de projeto **Aplicativo Web ASP.NET Core**. Ele será exibido em **Instalado** > **Modelos** > **Visual C#**  >  **.NET Core**. Nomeie o projeto `SampleWebAppDemo`. Selecione a opção **Criar novo repositório GIT** e clique em **OK**.
 
    ![Caixa de diálogo Novo Projeto](azure-continuous-deployment/_static/01-new-project.png)
 

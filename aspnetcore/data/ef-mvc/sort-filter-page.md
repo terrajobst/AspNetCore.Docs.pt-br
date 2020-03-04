@@ -31,7 +31,7 @@ Neste tutorial, você:
 > * Adicionar links de paginação
 > * Criar uma página Sobre
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 * [Implementar funcionalidade CRUD](crud.md)
 

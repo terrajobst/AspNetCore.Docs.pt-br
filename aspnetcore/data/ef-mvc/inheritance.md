@@ -30,7 +30,7 @@ Neste tutorial, você:
 > * Criará e atualizará migrações
 > * Testará a implementação
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 * [Manipular a simultaneidade](concurrency.md)
 

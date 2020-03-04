@@ -33,7 +33,7 @@ Neste tutorial, você:
 > * Atualizar a página Excluir
 > * Adicionar o local do escritório e cursos à página Criar
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 * [Ler dados relacionados](read-related-data.md)
 
@@ -225,7 +225,7 @@ Em *Views/Instructors/Edit.cshtml*, adicione um campo **Cursos** com uma matriz 
 
 <a id="notepad"></a>
 > [!NOTE]
-> Quando você colar o código no Visual Studio, as quebras de linha poderão ser alteradas de uma forma que divide o código. Se o código ficar com aparência diferente depois de colá-lo, pressione Ctrl + Z uma vez para desfazer a formatação automática. Isso corrigirá as quebras de linha para que elas se pareçam com o que você vê aqui. O recuo não precisa ser perfeito, mas cada uma das linhas `@</tr><tr>`, `@:<td>`, `@:</td>` e `@:</tr>` precisa estar em uma única linha, conforme mostrado, ou você receberá um erro de tempo de execução. Com o bloco de novo código selecionado, pressione Tab três vezes para alinhar o novo código com o código existente. Esse problema foi corrigido no Visual Studio 2019.
+> Quando você colar o código no Visual Studio, as quebras de linha poderão ser alteradas de uma forma que divide o código. Se o código ficar com aparência diferente depois de colá-lo, pressione Ctrl + Z uma vez para desfazer a formatação automática. Isso corrigirá as quebras de linha para que elas se pareçam com o que você vê aqui. O recuo não precisa ser perfeito, mas cada uma das linhas `@</tr><tr>`, `@:<td>`, `@:</td>` e `@:</tr>` precisa estar em uma única linha, conforme mostrado, ou você receberá um erro de runtime. Com o bloco de novo código selecionado, pressione Tab três vezes para alinhar o novo código com o código existente. Esse problema foi corrigido no Visual Studio 2019.
 
 [!code-html[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
 

@@ -37,7 +37,7 @@ Neste tutorial, você:
 > * Atualizar a página Excluir
 > * Exibições Atualizar Detalhes e Criar
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 * [Atualizar dados relacionados](update-related-data.md)
 

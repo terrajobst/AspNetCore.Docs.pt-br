@@ -27,7 +27,7 @@ Este tutorial cobre os seguintes assuntos:
 > * Criar um site do IIS no Gerenciador do IIS.
 > * Implantar um aplicativo ASP.NET Core.
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Prerequisites
 
 * [SDK do .NET Core](/dotnet/core/sdk) instalado no computador de desenvolvimento.
 * O Windows Server foi configurado com a função de servidor **Servidor Web (IIS)** . Se o servidor não estiver configurado para hospedar sites com o IIS, siga as orientações na seção *Configuração do IIS* do artigo <xref:host-and-deploy/iis/index#iis-configuration> e, em seguida, retorne a este tutorial.
@@ -43,7 +43,7 @@ Este tutorial cobre os seguintes assuntos:
 
 ## <a name="install-the-net-core-hosting-bundle"></a>Instalar o pacote de hospedagem do .NET Core
 
-Instalar o *Pacote de Hospedagem do .NET Core* no servidor IIS. O pacote instala o Tempo de Execução .NET Core, a Biblioteca do .NET Core e o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module). O módulo permite que aplicativos do ASP.NET Core sejam executados por trás do IIS.
+Instalar o *Pacote de Hospedagem do .NET Core* no servidor IIS. O pacote instala o Runtime .NET Core, a Biblioteca do .NET Core e o [Módulo do ASP.NET Core](xref:host-and-deploy/aspnet-core-module). O módulo permite que aplicativos do ASP.NET Core sejam executados por trás do IIS.
 
 Baixe o instalador usando o seguinte link:
 
@@ -72,7 +72,7 @@ Siga o tutorial <xref:getting-started> para criar um aplicativo Razor Pages.
 * O aplicativo é publicado em uma pasta.
 * O conteúdo da pasta é movido para a pasta do site do IIS (o **caminho físico** para o site no Gerenciador do IIS).
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Clique com o botão direito do mouse no projeto, no **Gerenciador de Soluções**, e selecione **Publicar**.
 1. Na caixa de diálogo **Escolher um destino de publicação**, selecione a opção de publicação de **Pasta**.
@@ -80,7 +80,7 @@ Siga o tutorial <xref:getting-started> para criar um aplicativo Razor Pages.
    * Se você criou uma pasta para o site do IIS que está disponível no computador de desenvolvimento como um compartilhamento de rede, forneça o caminho para o compartilhamento. O usuário atual deve ter acesso de gravação para publicar no compartilhamento.
    * Se não for possível implantar diretamente na pasta do site do IIS no servidor IIS, publique em uma pasta na mídia removida e mova fisicamente o aplicativo publicado para a pasta do site do IIS no servidor, que é o **Caminho físico** do site no IIS Manager. Mova o conteúdo da pasta *bin/Release/{TARGET FRAMEWORK}/publish* para a pasta do site do IIS no servidor, que é o **Caminho físico** do site no Gerenciador do IIS.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 1. Em um shell de comando, publique o aplicativo na Configuração de versão usando o comando [dotnet publish](/dotnet/core/tools/dotnet-publish):
 
@@ -90,7 +90,7 @@ Siga o tutorial <xref:getting-started> para criar um aplicativo Razor Pages.
 
 1. Mova o conteúdo da pasta *bin/Release/{TARGET FRAMEWORK}/publish* para a pasta do site do IIS no servidor, que é o **Caminho físico** do site no Gerenciador do IIS.
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 1. Clique com o botão direito do mouse no projeto em **Solução** e selecione **Publicar** > **Publicar na Pasta**.
 1. Defina o caminho **Escolher uma pasta**.
