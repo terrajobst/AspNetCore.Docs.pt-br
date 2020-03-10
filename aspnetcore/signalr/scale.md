@@ -11,7 +11,7 @@ no-loc:
 uid: signalr/scale
 ms.openlocfilehash: 260e2f0c16288fec2e0a694d070f357529782d8d
 ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 02/19/2020
 ms.locfileid: "77447328"
@@ -52,7 +52,7 @@ Para manter o uso de recursos do Signalr de causar erros em outros aplicativos W
 
 Para manter o uso de recursos do Signalr de causar erros em um aplicativo Signalr, escale horizontalmente para limitar o número de conexões que um servidor tem para lidar.
 
-## <a name="scale-out"></a>Expansão
+## <a name="scale-out"></a>Escalar horizontalmente
 
 Um aplicativo que usa o Signalr precisa manter o controle de todas as suas conexões, o que cria problemas para um farm de servidores. Adicione um servidor e obtenha novas conexões que os outros servidores não conhecem. Por exemplo, o Signalr em cada servidor no diagrama a seguir não reconhece as conexões nos outros servidores. Quando o Signalr em um dos servidores quiser enviar uma mensagem a todos os clientes, a mensagem vai apenas para os clientes conectados a esse servidor.
 
