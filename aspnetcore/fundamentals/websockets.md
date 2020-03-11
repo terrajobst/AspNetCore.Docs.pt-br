@@ -9,12 +9,12 @@ ms.date: 11/12/2019
 no-loc:
 - SignalR
 uid: fundamentals/websockets
-ms.openlocfilehash: fc07d572116f8eea2b30ea6cf80324e5c66f994c
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: a8040003374906fd93e12c9fde44c4a5ccc2cf37
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963167"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78655781"
 ---
 # <a name="websockets-support-in-aspnet-core"></a>Suporte ao WebSockets no ASP.NET Core
 
@@ -22,15 +22,15 @@ Por [Tom Dykstra](https://github.com/tdykstra) e [Andrew Stanton-Nurse](https://
 
 Este artigo explica como começar a usar o WebSockets no ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) é um protocolo que permite canais de comunicação persistentes bidirecionais em conexões TCP. Ele é usado em aplicativos que se beneficiam de comunicação rápida e em tempo real, como chat, painel e aplicativos de jogos.
 
-[Exibir ou baixar um código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) ([como baixar](xref:index#how-to-download-a-sample)). [Como executar](#sample-app).
+[Exibir ou baixar um código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) ([como baixar](xref:index#how-to-download-a-sample)). [Como executar](#sample-app).
 
-## SignalR
+## <a name="signalr"></a>SignalR
 
-[ASP.NET Core SignalR](xref:signalr/introduction) é uma biblioteca que simplifica a adição de funcionalidades da Web em tempo real a aplicativos. Ele usa WebSockets sempre que possível.
+[SignalR do ASP.NET Core](xref:signalr/introduction) é uma biblioteca que simplifica a adição da funcionalidade da Web em tempo real aos aplicativos. Ele usa WebSockets sempre que possível.
 
-Para a maioria dos aplicativos, é recomendável SignalR sobre WebSockets brutos. SignalR fornece fallback de transporte para ambientes em que o WebSockets não está disponível. Ele também fornece um modelo de aplicativo de chamada de procedimento remoto simples. E na maioria dos cenários, SignalR não tem uma desvantagem significativa de desempenho em comparação com o uso de WebSockets brutos.
+Para a maioria dos aplicativos, recomendamos o SignalR sobre WebSockets brutos. O SignalR fornece o fallback de transporte para os ambientes em que o WebSocket não está disponível. Ele também fornece um modelo de aplicativo de chamada de procedimento remoto simples. E, na maioria dos cenários, o SignalR não tem nenhuma desvantagem de desempenho significativa em comparação ao uso de WebSockets brutos.
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * ASP.NET Core 1.1 ou posterior
 * Qualquer sistema operacional compatível com o ASP.NET Core:
@@ -68,7 +68,7 @@ Adicione o middleware do WebSockets no método `Configure` da classe `Startup`:
 
 ::: moniker range="< aspnetcore-2.2"
 
-As seguintes configurações podem ser definidas:
+As seguintes definições podem ser configuradas:
 
 * `KeepAliveInterval` – a frequência para enviar quadros "ping" ao cliente para garantir que os proxies mantenham a conexão aberta. O padrão é dois minutos.
 * `ReceiveBufferSize` – o tamanho do buffer usado para receber dados. Os usuários avançados podem precisar alterar isso para ajuste de desempenho com base no tamanho dos dados. O padrão é 4 KB.
@@ -77,7 +77,7 @@ As seguintes configurações podem ser definidas:
 
 ::: moniker range=">= aspnetcore-2.2"
 
-As seguintes configurações podem ser definidas:
+As seguintes definições podem ser configuradas:
 
 * `KeepAliveInterval` – a frequência para enviar quadros "ping" ao cliente para garantir que os proxies mantenham a conexão aberta. O padrão é dois minutos.
 * <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.ReceiveBufferSize> – o tamanho do buffer usado para receber dados. Os usuários avançados podem precisar alterar isso para ajuste de desempenho com base no tamanho dos dados. O padrão é 4 KB.
@@ -176,7 +176,7 @@ Para habilitar o suporte para o protocolo WebSocket no Windows Server 2012 ou po
 1. Expanda **Servidor Web (IIS)** na árvore **Funções**, expanda **Servidor Web** e, em seguida, expanda **Desenvolvimento de Aplicativos**.
 1. Selecione o **Protocolo WebSocket**. Selecione **Avançar**.
 1. Se não forem necessários recursos adicionais, selecione **Avançar**.
-1. Clique em **Instalar**.
+1. Selecione **Instalar**.
 1. Quando a instalação for concluída, selecione **Fechar** para sair do assistente.
 
 Para habilitar o suporte para o protocolo WebSocket no Windows 8 ou posterior:
@@ -200,7 +200,7 @@ Se estiver usando o suporte WebSocket no [Socket.Io](https://socket.io/) no [nod
 
 ## <a name="sample-app"></a>Aplicativo de exemplo
 
-O [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) que acompanha este artigo é um aplicativo de eco. Ele tem uma página da Web que faz conexões WebSocket e o servidor reenvia para o cliente todas as mensagens recebidas. Execute o aplicativo em um prompt de comando (ele não está configurado para execução no Visual Studio com o IIS Express) e navegue para http://localhost:5000. A página da Web exibe o status de conexão no canto superior esquerdo:
+O [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) que acompanha este artigo é um aplicativo de eco. Ele tem uma página da Web que faz conexões WebSocket e o servidor reenvia para o cliente todas as mensagens recebidas. Execute o aplicativo em um prompt de comando (ele não está configurado para execução no Visual Studio com o IIS Express) e navegue para http://localhost:5000. A página da Web exibe o status de conexão no canto superior esquerdo:
 
 ![Estado inicial da página da Web](websockets/_static/start.png)
 

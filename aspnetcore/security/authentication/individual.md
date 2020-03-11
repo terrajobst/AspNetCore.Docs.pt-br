@@ -6,11 +6,11 @@ ms.author: riande
 ms.date: 12/11/2019
 uid: security/authentication/individual
 ms.openlocfilehash: 7ef0d5eabded61d04fb9fe7be384a663ad7ea5f4
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75828705"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78659617"
 ---
 # <a name="articles-based-on-aspnet-core-projects-created-with-individual-user-accounts"></a>Artigos baseados em projetos ASP.NET Core criados com contas de usuário individuais
 
@@ -61,9 +61,9 @@ Se a autenticação do Windows for selecionada, o aplicativo será configurado p
 
 A tabela a seguir mostra as opções de autenticação disponíveis para novos aplicativos Web:
 
-| Opção | Tipo de autenticação | Link para mais informações |
+| {1&gt;Opção&lt;1} | Tipo de autenticação | Link para obter mais informações |
  | ----------------- | ------------ | ---------- |
-| {1&gt;Nenhum&lt;1}            |  Sem autenticação | | 
+| Nenhum            |  Sem autenticação | | 
 | Individual      |  Autenticação individual | <xref:security/authentication/identity>
 | IndividualB2C   |  Autenticação individual hospedada na nuvem com o Azure AD B2C | [B2C do AD do Azure](/azure/active-directory-b2c/) |
 | SingleOrg       |  Autenticação organizacional para um único locatário | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
@@ -74,9 +74,9 @@ A tabela a seguir mostra as opções de autenticação disponíveis para novos a
 
 A tabela a seguir mostra as opções de autenticação disponíveis ao criar um novo aplicativo Web com o Visual Studio:
 
-| Opção | Tipo de autenticação | Link para mais informações |
+| {1&gt;Opção&lt;1} | Tipo de autenticação | Link para obter mais informações |
  | ----------------- | ------------ | ---------- |
-| {1&gt;Nenhum&lt;1}            |  Sem autenticação | | 
+| Nenhum            |  Sem autenticação | | 
 | Contas de usuário individuais/armazenar contas de usuário no aplicativo |  Autenticação individual | <xref:security/authentication/identity> |
 | Contas de usuário individuais/Conecte-se a um armazenamento de usuário existente na nuvem |  Autenticação individual hospedada na nuvem com o Azure AD B2C | [B2C do AD do Azure](/azure/active-directory-b2c/) |
 | Nuvem corporativa ou de estudante/organização única  |  Autenticação organizacional para um único locatário | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |

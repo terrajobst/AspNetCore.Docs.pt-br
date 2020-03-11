@@ -9,12 +9,12 @@ ms.date: 11/12/2019
 no-loc:
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: eaf737642cdbd7ab2b1b5c16538b47a70cddd332
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: 3086b4aa532dfe992e19c193ef76f216f7835164
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75354693"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657853"
 ---
 # <a name="aspnet-core-opno-locsignalr-javascript-client"></a>ASP.NET Core SignalR cliente JavaScript
 
@@ -22,7 +22,7 @@ Por [Rachel Appel](https://twitter.com/rachelappel)
 
 O ASP.NET Core SignalR biblioteca de cliente JavaScript permite que os desenvolvedores chamem o código de Hub do lado do servidor.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="install-the-opno-locsignalr-client-package"></a>Instalar o pacote do cliente do SignalR
 
@@ -35,7 +35,7 @@ A biblioteca de cliente SignalR JavaScript é entregue como um pacote [NPM](http
   npm install @microsoft/signalr
   ```
 
-NPM instala o conteúdo do pacote na *node_modules\\@microsoft\signalr\dist\browser* pasta. Crie uma nova pasta chamada *signalr* na pasta *wwwroot\\lib* . Copie o arquivo *signalr. js* para a pasta *wwwroot\lib\signalr* .
+o NPM instala o conteúdo do pacote na pasta *node_modules\\@microsoft\signalr\dist\browser* . Crie uma nova pasta chamada *signalr* na pasta *wwwroot\\lib* . Copie o arquivo *signalr. js* para a pasta *wwwroot\lib\signalr* .
 
 ::: moniker-end
 
@@ -46,7 +46,7 @@ NPM instala o conteúdo do pacote na *node_modules\\@microsoft\signalr\dist\brow
   npm install @aspnet/signalr
   ```
 
-NPM instala o conteúdo do pacote na *node_modules\\@aspnet\signalr\dist\browser* pasta. Crie uma nova pasta chamada *signalr* na pasta *wwwroot\\lib* . Copie o arquivo *signalr. js* para a pasta *wwwroot\lib\signalr* .
+o NPM instala o conteúdo do pacote na pasta *node_modules\\@aspnet\signalr\dist\browser* . Crie uma nova pasta chamada *signalr* na pasta *wwwroot\\lib* . Copie o arquivo *signalr. js* para a pasta *wwwroot\lib\signalr* .
 
 ::: moniker-end
 
@@ -273,7 +273,7 @@ Uma implementação do mundo real usaria um retirada exponencial ou tentaria um 
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Referência de API JavaScript](/javascript/api/?view=signalr-js-latest)
+* [Referência da API de JavaScript](/javascript/api/?view=signalr-js-latest)
 * [Tutorial do JavaScript](xref:tutorials/signalr)
 * [Tutorial do webpack e TypeScript](xref:tutorials/signalr-typescript-webpack)
 * [Hubs](xref:signalr/hubs)

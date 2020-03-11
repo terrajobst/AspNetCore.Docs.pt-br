@@ -9,11 +9,11 @@ no-loc:
 - SignalR
 uid: aspnetcore-2.2
 ms.openlocfilehash: 97deafd520926476f7653fc3de40d577b394734b
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75829121"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78661045"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>Novidades do ASP.NET Core 2.2
 

@@ -1,51 +1,51 @@
 ---
-title: Impedir ataques de redirecionamento aberto no ASP.NET Core
+title: Impedir ataques de redirecionamento abertos no ASP.NET Core
 author: ardalis
-description: Mostra como evitar ataques de redirecionamento abertos em relação a um aplicativo ASP.NET Core
+description: Mostra como evitar ataques de redirecionamento abertos em um aplicativo ASP.NET Core
 ms.author: riande
 ms.date: 07/07/2017
 uid: security/preventing-open-redirects
 ms.openlocfilehash: 9d8cac8708fe9aeadba5af1287362a20df7f6bfe
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815495"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660520"
 ---
-# <a name="prevent-open-redirect-attacks-in-aspnet-core"></a>Impedir ataques de redirecionamento aberto no ASP.NET Core
+# <a name="prevent-open-redirect-attacks-in-aspnet-core"></a>Impedir ataques de redirecionamento abertos no ASP.NET Core
 
-Um aplicativo web que redireciona para uma URL que é especificada por meio de solicitação, como os dados de formulário ou cadeia de consulta potencialmente pode ser violado para redirecionar usuários para uma URL externa e mal-intencionado. Essa violação é chamado de um ataque de redirecionamento aberto.
+Um aplicativo Web que redireciona para uma URL especificada por meio da solicitação, como a QueryString ou os dados de formulário, pode ser adulterado para redirecionar os usuários para uma URL externa e mal-intencionada. Essa violação é chamada de ataque de redirecionamento aberto.
 
-Sempre que a lógica do aplicativo redireciona para uma URL especificada, verifique se a URL de redirecionamento não foi adulterada. O ASP.NET Core tem funcionalidade interna para ajudar a proteger aplicativos contra ataques de redirecionamento aberto (também conhecido como open redirecionamento).
+Sempre que a lógica do aplicativo redireciona para uma URL especificada, você deve verificar se a URL de redirecionamento não foi violada. ASP.NET Core tem funcionalidade interna para ajudar a proteger aplicativos contra ataques de redirecionamento aberto (também conhecidos como redirecionamento aberto).
 
 ## <a name="what-is-an-open-redirect-attack"></a>O que é um ataque de redirecionamento aberto?
 
-Aplicativos Web com frequência redirecionar os usuários para uma página de logon quando acessarem os recursos que exigem a autenticação. O redirecionamento normalmente inclui uma `returnUrl` parâmetro querystring para que o usuário pode ser retornado para a URL solicitada originalmente depois que eles fizeram logon com êxito. Depois que o usuário é autenticado, ele serão redirecionados para a URL que eles solicitaram originalmente.
+Os aplicativos Web geralmente redirecionam os usuários para uma página de logon quando acessam recursos que exigem autenticação. O redirecionamento normalmente inclui um parâmetro `returnUrl` QueryString para que o usuário possa ser retornado para a URL solicitada originalmente depois de ter feito logon com êxito. Depois que o usuário é autenticado, ele é redirecionado para a URL que ele solicitou originalmente.
 
-Como a URL de destino é especificada na sequência de consulta da solicitação, um usuário mal-intencionado pode violar a querystring. Uma cadeia de consulta violada pode permitir que o site redirecionar o usuário para um site externo, mal-intencionado. Essa técnica é chamada de um ataque de redirecionamento (ou redirecionamento) aberto.
+Como a URL de destino é especificada na QueryString da solicitação, um usuário mal-intencionado pode adulterar a QueryString. Uma QueryString violada pode permitir que o site redirecione o usuário para um site externo e mal-intencionado. Essa técnica é chamada de ataque de redirecionamento aberto (ou redirecionamento).
 
 ### <a name="an-example-attack"></a>Um ataque de exemplo
 
-Um usuário mal-intencionado pode desenvolver um ataque de objetivo de permitir que o usuário mal-intencionado acesso a informações confidenciais ou as credenciais de um usuário. Para iniciar o ataque, o usuário mal-intencionado convence o usuário clicar em um link para a página de logon do seu site com um `returnUrl` valor de cadeia de consulta adicionada à URL. Por exemplo, considere um aplicativo na `contoso.com` que inclui uma página de logon no `http://contoso.com/Account/LogOn?returnUrl=/Home/About`. O ataque segue estas etapas:
+Um usuário mal-intencionado pode desenvolver um ataque destinado a permitir que o usuário mal-intencionado acesse as credenciais de um usuário ou informações confidenciais. Para iniciar o ataque, o usuário mal-intencionado convencer o usuário a clicar em um link para a página de logon do site com um `returnUrl` valor de QueryString adicionado à URL. Por exemplo, considere um aplicativo em `contoso.com` que inclui uma página de logon no `http://contoso.com/Account/LogOn?returnUrl=/Home/About`. O ataque segue estas etapas:
 
-1. O usuário clica no link para mal-intencionado `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` (a segunda URL é "contoso**1**.com", não "contoso.com").
-2. O usuário fizer logon com êxito.
-3. O usuário é redirecionado (pelo site) para `http://contoso1.com/Account/LogOn` (um site mal-intencionado que se parece exatamente com o site real).
-4. O usuário fizer logon novamente (dando mal-intencionado suas credenciais do site) e é redirecionado para o site real.
+1. O usuário clica em um link mal-intencionado para `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` (a segunda URL é "Contoso**1**. com", não "contoso.com").
+2. O usuário faz logon com êxito.
+3. O usuário é redirecionado (pelo site) para `http://contoso1.com/Account/LogOn` (um site mal-intencionado que é exatamente como um site real).
+4. O usuário faz logon novamente (concedendo ao site mal-intencionado suas credenciais) e é Redirecionado de volta para o site real.
 
-O usuário provavelmente acredita que sua primeira tentativa de fazer logon falhou e que sua segunda tentativa seja bem-sucedida. O usuário provavelmente permanecerá ciente de que suas credenciais estão comprometidas.
+O usuário provavelmente acredita que a primeira tentativa de fazer logon falhou e que a segunda tentativa é bem-sucedida. O usuário provavelmente ainda não sabe que suas credenciais estão comprometidas.
 
-![Processo de ataque de redirecionamento aberto](preventing-open-redirects/_static/open-redirection-attack-process.png)
+![Abrir processo de ataque de redirecionamento](preventing-open-redirects/_static/open-redirection-attack-process.png)
 
-Além das páginas de logon, alguns sites fornecem páginas de redirecionamento ou pontos de extremidade. Imagine que seu aplicativo tem uma página com um redirecionamento aberto, `/Home/Redirect`. Um invasor pode criar, por exemplo, um link em um email que vai para `[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login`. Um usuário típico examinará a URL e ver que ele começa com o nome do site. Confiar em que, eles clicarem no link. O redirecionamento aberto, em seguida, enviaria o usuário para o site de phishing, que parece ser idêntico ao seu, e provavelmente o usuário faça logon no que acreditam for seu site.
+Além das páginas de logon, alguns sites fornecem páginas de redirecionamento ou pontos de extremidade. Imagine que seu aplicativo tenha uma página com um redirecionamento aberto, `/Home/Redirect`. Um invasor pode criar, por exemplo, um link em um email que vai para `[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login`. Um usuário típico irá examinar a URL e vê-la começar com o nome do site. Confiando nele, eles clicarão no link. O redirecionamento aberto, em seguida, enviaria o usuário para o site de phishing, que parece ser idêntico ao seu, e o usuário provavelmente fazer logon no que eles acreditam ser seu site.
 
-## <a name="protecting-against-open-redirect-attacks"></a>Proteção contra ataques de redirecionamento abertos
+## <a name="protecting-against-open-redirect-attacks"></a>Protegendo contra ataques de redirecionamento abertos
 
-Ao desenvolver aplicativos da web, trate todos os dados fornecidos pelo usuário como não confiáveis. Se seu aplicativo tem funcionalidade que redireciona o usuário com base no conteúdo da URL, certifique-se de que tais redirecionamentos são feitos somente localmente dentro de seu aplicativo (ou uma URL conhecida, não qualquer URL que pode ser fornecido na cadeia de consulta).
+Ao desenvolver aplicativos Web, trate todos os dados fornecidos pelo usuário como não confiáveis. Se seu aplicativo tiver funcionalidade que redireciona o usuário com base no conteúdo da URL, verifique se esses redirecionamentos só são feitos localmente no seu aplicativo (ou em uma URL conhecida, e não qualquer URL que possa ser fornecida na QueryString).
 
 ### <a name="localredirect"></a>LocalRedirect
 
-Use o `LocalRedirect` o método auxiliar da base `Controller` classe:
+Use o método auxiliar `LocalRedirect` da classe base `Controller`:
 
 ```csharp
 public IActionResult SomeAction(string redirectUrl)
@@ -54,13 +54,13 @@ public IActionResult SomeAction(string redirectUrl)
 }
 ```
 
-`LocalRedirect` lançará uma exceção se uma URL de local não for especificada. Caso contrário, ele se comporta exatamente como o `Redirect` método.
+`LocalRedirect` gerará uma exceção se uma URL não local for especificada. Caso contrário, ele se comporta exatamente como o método `Redirect`.
 
 ### <a name="islocalurl"></a>IsLocalUrl
 
-Use o [IsLocalUrl](/dotnet/api/Microsoft.AspNetCore.Mvc.IUrlHelper.islocalurl#Microsoft_AspNetCore_Mvc_IUrlHelper_IsLocalUrl_System_String_) método para testar a antes de redirecionar URLs:
+Use o método [IsLocalUrl](/dotnet/api/Microsoft.AspNetCore.Mvc.IUrlHelper.islocalurl#Microsoft_AspNetCore_Mvc_IUrlHelper_IsLocalUrl_System_String_) para testar URLs antes de redirecionar:
 
-O exemplo a seguir mostra como verificar se uma URL é local antes de redirecionar.
+O exemplo a seguir mostra como verificar se uma URL é local antes do redirecionamento.
 
 ```csharp
 private IActionResult RedirectToLocal(string returnUrl)
@@ -76,4 +76,4 @@ private IActionResult RedirectToLocal(string returnUrl)
 }
 ```
 
-O `IsLocalUrl` método protege os usuários contra inadvertidamente sendo redirecionado para um site mal-intencionado. Você pode registrar os detalhes da URL que foi fornecido quando uma URL de local não é fornecida em uma situação em que você esperava uma URL local. URLs de redirecionamento de registro em log podem ajudar no diagnóstico de ataques de redirecionamento.
+O método `IsLocalUrl` protege os usuários de serem redirecionados inadvertidamente para um site mal-intencionado. Você pode registrar em log os detalhes da URL que foi fornecida quando uma URL não local é fornecida em uma situação em que você esperava uma URL local. As URLs de redirecionamento de log podem ajudar no diagnóstico de ataques de redirecionamento.

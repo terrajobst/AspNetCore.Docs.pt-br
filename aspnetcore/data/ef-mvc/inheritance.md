@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Implementar a herança - ASP.NET MVC com EF Core'
+title: 'Tutorial: implementar a herança – ASP.NET MVC com o EF Core'
 description: Este tutorial mostrará como implementar a herança no modelo de dados, usando o Entity Framework Core em um aplicativo ASP.NET Core.
 author: rick-anderson
 ms.author: riande
@@ -7,14 +7,14 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/inheritance
-ms.openlocfilehash: c10df60a43f5d59f3ce13afd38aad42b88c80516
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: dab3d2b057162f6d986db10e74e3681acc0ada3b
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259395"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657237"
 ---
-# <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Tutorial: Implementar a herança - ASP.NET MVC com EF Core
+# <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Tutorial: implementar a herança – ASP.NET MVC com o EF Core
 
 No tutorial anterior, você tratou exceções de simultaneidade. Este tutorial mostrará como implementar a herança no modelo de dados.
 
@@ -30,7 +30,7 @@ Neste tutorial, você:
 > * Criará e atualizará migrações
 > * Testará a implementação
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [Manipular a simultaneidade](concurrency.md)
 
@@ -150,13 +150,13 @@ Clique com o botão direito do mouse na tabela Person e, em seguida, clique em *
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Baixe ou exiba o aplicativo concluído.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
 Para obter mais informações sobre a herança no Entity Framework Core, consulte [Herança](/ef/core/modeling/inheritance).
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Neste tutorial, você:
 
@@ -171,4 +171,4 @@ Neste tutorial, você:
 Vá para o próximo tutorial para saber como lidar com vários cenários relativamente avançados do Entity Framework.
 
 > [!div class="nextstepaction"]
-> [Avançar: tópicos avançados](advanced.md)
+> [Próximo: Tópicos avançados](advanced.md)

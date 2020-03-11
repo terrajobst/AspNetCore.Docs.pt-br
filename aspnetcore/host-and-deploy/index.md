@@ -1,18 +1,18 @@
 ---
 title: Hospedar e implantar o ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Aprenda como configurar ambientes de hospedagem e implantar aplicativos ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/index
-ms.openlocfilehash: 173fcfe6d9368a1892d82b32d7b8f5e3cc71fc65
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: 464d19bd63e1f0f06bd7d218e7644afde04a5672
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77172364"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657916"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hospedar e implantar o ASP.NET Core
 
@@ -43,7 +43,7 @@ Um aplicativo ASP.NET Core é um aplicativo de console que deve ser iniciado qua
 * Linux
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Apache](xref:host-and-deploy/linux-apache)
-* Windows
+* Portal
   * [IIS](xref:host-and-deploy/iis/index)
   * [Serviço Windows](xref:host-and-deploy/windows-service)
 
@@ -121,7 +121,7 @@ Um aplicativo ASP.NET Core é um aplicativo de console que deve ser iniciado qua
 * Linux
   * [Nginx](xref:host-and-deploy/linux-nginx)
   * [Apache](xref:host-and-deploy/linux-apache)
-* Windows
+* Portal
   * [IIS](xref:host-and-deploy/iis/index)
   * [Serviço Windows](xref:host-and-deploy/windows-service)
 

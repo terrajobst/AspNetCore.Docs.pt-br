@@ -7,11 +7,11 @@ ms.custom: mvc
 ms.date: 07/10/2019
 uid: tutorials/publish-to-azure-webapp-using-vs
 ms.openlocfilehash: 7fc3644df3dcb957f2537538aaa9506c6b38a480
-ms.sourcegitcommit: 79850db9e79b1705b89f466c6f2c961ff15485de
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/07/2020
-ms.locfileid: "75693967"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78662200"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a>Publicar um aplicativo ASP.NET Core no Azure com o Visual Studio
 
@@ -31,13 +31,13 @@ Para solucionar um problema de implantação do Serviço de Aplicativo, confira 
 
 * Abra uma [conta do Azure gratuita](https://azure.microsoft.com/free/dotnet/) se você não tiver uma. 
 
-## <a name="create-a-web-app"></a>Como criar um aplicativo Web
+## <a name="create-a-web-app"></a>Criar um aplicativo Web
 
 Na página inicial do Visual Studio, selecione **Arquivo > Novo > Projeto...**
 
 ![Menu Arquivo](publish-to-azure-webapp-using-vs/_static/file_new_project.png)
 
-Complete a caixa de diálogo **Novo Projeto**:
+Faça as configurações necessárias na caixa de diálogo **Novo Projeto**:
 
 * No painel esquerdo, selecione **.NET Core**.
 * No painel central, toque em **Aplicativo Web ASP.NET Core**.
@@ -89,7 +89,7 @@ Clique com o botão direito do mouse no projeto no Gerenciador de Soluções e s
 
 Na caixa de diálogo **Publicar**:
 
-* Selecione **Serviço de Aplicativo do Microsoft Azure**.
+* Clique em **Serviço de Aplicativo do Microsoft Azure**.
 * Selecione o ícone de engrenagem e, em seguida, **Criar Perfil**.
 * Selecione **Criar Perfil**.
 
@@ -108,7 +108,7 @@ A caixa de diálogo **Criar Serviço de Aplicativo** será exibida:
 
 * Selecione o ícone verde **+** para criar um novo Banco de Dados SQL
 
-![Novo Banco de Dados SQL](publish-to-azure-webapp-using-vs/_static/sql.png)
+![Novo banco de dados SQL](publish-to-azure-webapp-using-vs/_static/sql.png)
 
 * Selecione **Novo...** na caixa de diálogo **Configurar Banco de Dados SQL** para criar um novo banco de dados.
 
@@ -148,7 +148,7 @@ Na página **Configurações** da caixa de diálogo **Publicar**:
 
 Clique em **Publicar**. O Visual Studio publica seu aplicativo no Azure. Quando a implantação for concluída, o aplicativo será aberto em um navegador.
 
-### <a name="test-your-app-in-azure"></a>Testar o aplicativo no Azure
+### <a name="test-your-app-in-azure"></a>Teste seu aplicativo no Azure
 
 * Teste os links **Sobre** e **Contato**
 
@@ -192,7 +192,7 @@ Quando você concluir o teste do aplicativo, acesse o [portal do Azure](https://
 
 * Para o Visual Studio Code, confira [Perfis de publicação](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles).
 * [Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-overview)
-* [Grupo de recursos do Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)
+* [Grupos de recursos do Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)
 * [Banco de Dados SQL do Azure](/azure/sql-database/)
 * <xref:host-and-deploy/visual-studio-publish-profiles>
 * <xref:test/troubleshoot-azure-iis>

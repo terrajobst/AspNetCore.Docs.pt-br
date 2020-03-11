@@ -6,18 +6,18 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
 uid: performance/caching/response
-ms.openlocfilehash: ab5d1414ae72edade81ab55aef6b0fa5af30f0f4
-ms.sourcegitcommit: 990a4c2e623c202a27f60bdf3902f250359c13be
+ms.openlocfilehash: 91358e2553d09c5e7366ba7a2301a798ad921d69
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/03/2020
-ms.locfileid: "76971974"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78655725"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Cache de resposta no ASP.NET Core
 
-Por [John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardalis.com/)e [Luke Latham](https://github.com/guardrex)
+Por [John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.com/RickAndMSFT)e [Steve Smith](https://ardalis.com/)
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/response/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/response/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 O cache de resposta reduz o número de solicitações que um cliente ou proxy faz a um servidor Web. O cache de resposta também reduz a quantidade de trabalho que o servidor Web executa para gerar uma resposta. O cache de resposta é controlado por cabeçalhos que especificam como você deseja que o cliente, o proxy e o middleware armazenem em cache as respostas.
 
@@ -31,13 +31,13 @@ A [especificação de cache HTTP 1,1](https://tools.ietf.org/html/rfc7234) descr
 
 As diretivas `Cache-Control` comuns são mostradas na tabela a seguir.
 
-| Directive                                                       | Action |
+| Directive                                                       | Ação |
 | --------------------------------------------------------------- | ------ |
-| [public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Um cache pode armazenar a resposta. |
+| [público](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Um cache pode armazenar a resposta. |
 | [private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | A resposta não deve ser armazenada por um cache compartilhado. Um cache privado pode armazenar e reutilizar a resposta. |
-| [max-age](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | O cliente não aceita uma resposta cuja idade é maior que o número especificado de segundos. Exemplos: `max-age=60` (60 segundos), `max-age=2592000` (1 mês) |
+| [idade máxima](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | O cliente não aceita uma resposta cuja idade é maior que o número especificado de segundos. Exemplos: `max-age=60` (60 segundos), `max-age=2592000` (1 mês) |
 | [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **Em solicitações**: um cache não deve usar uma resposta armazenada para atender à solicitação. O servidor de origem regenera a resposta para o cliente e o middleware atualiza a resposta armazenada em seu cache.<br><br>**Em respostas**: a resposta não deve ser usada para uma solicitação subsequente sem validação no servidor de origem. |
-| [no-store](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Em solicitações**: um cache não deve armazenar a solicitação.<br><br>**Em respostas**: um cache não deve armazenar nenhuma parte da resposta. |
+| [sem armazenamento](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Em solicitações**: um cache não deve armazenar a solicitação.<br><br>**Em respostas**: um cache não deve armazenar nenhuma parte da resposta. |
 
 Outros cabeçalhos de cache que desempenham uma função no Caching são mostrados na tabela a seguir.
 
@@ -124,8 +124,8 @@ Vary: User-Agent
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> substitui a maioria das outras propriedades. Quando essa propriedade é definida como `true`, o cabeçalho `Cache-Control` é definido como `no-store`. Se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> for definido como `None`:
 
-* `Cache-Control` é definido como `no-store,no-cache`.
-* `Pragma` é definido como `no-cache`.
+* `Cache-Control` está definido como `no-store,no-cache`.
+* `Pragma` está definido como `no-cache`.
 
 Se <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> for `false` e <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> for `None`, `Cache-Control`e `Pragma` serão definidos como `no-cache`.
 
@@ -189,7 +189,7 @@ Cache-Control: public,max-age=30
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Armazenando respostas em caches](https://tools.ietf.org/html/rfc7234#section-3)
-* [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
+* [Controle de cache](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
 * <xref:performance/caching/memory>
 * <xref:performance/caching/distributed>
 * <xref:fundamentals/change-tokens>

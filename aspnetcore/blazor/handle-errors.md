@@ -5,17 +5,17 @@ description: Descubra como ASP.NET Core Blazor como o Blazor gerencia exceções
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 02/19/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: 7191ae50d64ebd6a9b23b391116aedf3a6d01de2
-ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
+ms.openlocfilehash: d8098db3977b7515f2665e4230c2d6d3e415dc58
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "77447016"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78661696"
 ---
 # <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Tratar erros em aplicativos ASP.NET Core Blazor
 
@@ -103,8 +103,6 @@ O Framework e o código do aplicativo podem disparar exceções sem tratamento e
 * [Manipuladores de eventos](#event-handlers)
 * [Disposição do componente](#component-disposal)
 * [Interoperabilidade de JavaScript](#javascript-interop)
-* [manipuladores de circuito de servidor Blazor](#blazor-server-circuit-handlers)
-* [Descarte de circuitos de servidor Blazor](#blazor-server-circuit-disposal)
 * [rerenderização do Blazor Server](#blazor-server-prerendering)
 
 As exceções sem tratamento anteriores são descritas nas seções a seguir deste artigo.
@@ -183,64 +181,17 @@ As seguintes condições se aplicam ao tratamento de erros com `InvokeAsync<T>`:
 * Se uma chamada para `InvokeAsync<T>` falhar de forma assíncrona, o <xref:System.Threading.Tasks.Task> .NET falhará. Uma chamada para `InvokeAsync<T>` pode falhar, por exemplo, porque o código do lado do JavaScript gera uma exceção ou retorna uma `Promise` concluída como `rejected`. O código do desenvolvedor deve capturar a exceção. Se estiver usando o operador [Await](/dotnet/csharp/language-reference/keywords/await) , considere encapsular a chamada de método em uma instrução [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com tratamento de erros e registro em log. Caso contrário, o código com falha resultará em uma exceção sem tratamento que é fatal para um circuito de servidor Blazor.
 * Por padrão, as chamadas para `InvokeAsync<T>` devem ser concluídas em um determinado período ou, caso contrário, a chamada expirará. O período de tempo limite padrão é de um minuto. O tempo limite protege o código contra uma perda na conectividade de rede ou no código JavaScript que nunca envia uma mensagem de conclusão. Se a chamada atingir o tempo limite, a `Task` resultante falhará com um <xref:System.OperationCanceledException>. Interceptar e processar a exceção com registro em log.
 
-Da mesma forma, o código JavaScript pode iniciar chamadas para métodos .NET indicados pelo atributo [`[JSInvokable]`](xref:blazor/javascript-interop#invoke-net-methods-from-javascript-functions) . Se esses métodos .NET lançarem uma exceção sem tratamento:
+Da mesma forma, o código JavaScript pode iniciar chamadas para métodos .NET indicados pelo atributo [`[JSInvokable]`](xref:blazor/call-dotnet-from-javascript) . Se esses métodos .NET lançarem uma exceção sem tratamento:
 
 * A exceção não é tratada como fatal para um circuito de servidor Blazor.
 * O `Promise` do lado do JavaScript é rejeitado.
 
 Você tem a opção de usar o código de tratamento de erros no lado do .NET ou no lado do JavaScript da chamada do método.
 
-Para obter mais informações, consulte <xref:blazor/javascript-interop>.
+Para obter mais informações, consulte os seguintes artigos:
 
-### <a name="opno-locblazor-server-circuit-handlers"></a>manipuladores de circuito de servidor Blazor
-
-Blazor Server permite que o código defina um *manipulador de circuito*, que permite a execução de código em alterações no estado do circuito de um usuário. Um manipulador de circuito é implementado derivando de `CircuitHandler` e registrando a classe no contêiner de serviço do aplicativo. O exemplo a seguir de um manipulador de circuito rastreia conexões SignalR abertas:
-
-```csharp
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.Server.Circuits;
-
-public class TrackingCircuitHandler : CircuitHandler
-{
-    private HashSet<Circuit> _circuits = new HashSet<Circuit>();
-
-    public override Task OnConnectionUpAsync(Circuit circuit, 
-        CancellationToken cancellationToken)
-    {
-        _circuits.Add(circuit);
-
-        return Task.CompletedTask;
-    }
-
-    public override Task OnConnectionDownAsync(Circuit circuit, 
-        CancellationToken cancellationToken)
-    {
-        _circuits.Remove(circuit);
-
-        return Task.CompletedTask;
-    }
-
-    public int ConnectedCircuits => _circuits.Count;
-}
-```
-
-Os manipuladores de circuito são registrados usando DI. Instâncias com escopo são criadas por instância de um circuito. Usando o `TrackingCircuitHandler` no exemplo anterior, um serviço singleton é criado porque o estado de todos os circuitos deve ser acompanhado:
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    ...
-    services.AddSingleton<CircuitHandler, TrackingCircuitHandler>();
-}
-```
-
-Se os métodos de um manipulador de circuitos personalizados lançarem uma exceção sem tratamento, a exceção será fatal para o circuito de servidor Blazor. Para tolerar exceções no código de um manipulador ou em métodos chamados, empacote o código em uma ou mais instruções [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) com o tratamento de erros e o registro em log.
-
-### <a name="opno-locblazor-server-circuit-disposal"></a>Descarte de circuitos de servidor Blazor
-
-Quando um circuito termina porque um usuário se desconectou e a estrutura está limpando o estado do circuito, a estrutura descarta o escopo de DI do circuito. Descartar o escopo descarta todos os serviços de DI no escopo do circuito que implementam <xref:System.IDisposable?displayProperty=fullName>. Se qualquer serviço de DI lançar uma exceção sem tratamento durante a alienação, a estrutura registrará a exceção.
+* <xref:blazor/call-javascript-from-dotnet>
+* <xref:blazor/call-dotnet-from-javascript>
 
 ### <a name="opno-locblazor-server-prerendering"></a>pré-processamento do Blazor Server
 

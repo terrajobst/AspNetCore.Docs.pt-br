@@ -7,22 +7,22 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/06/2019
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-ms.openlocfilehash: 508f91cdcd93c149602223250520eecb73625b24
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: 269be9ece674b39d03cb50720f4fb182c565a639
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880986"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78659645"
 ---
 # <a name="partial-tag-helper-in-aspnet-core"></a>Auxiliar de marca parcial no ASP.NET Core
 
 Por [Scott Addie](https://github.com/scottaddie)
 
-Para obter uma visão geral de Auxiliares de marcação, consulte <xref:mvc/views/tag-helpers/intro>.
+Para obter uma visão geral dos Auxiliares de Marca, confira <xref:mvc/views/tag-helpers/intro>.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="overview"></a>{1&gt;Visão Geral&lt;1}
+## <a name="overview"></a>Visão geral
 
 O auxiliar de marca parcial é usado para renderizar uma [exibição parcial](xref:mvc/views/partial) em Páginas Razor e em aplicativos MVC. Considere que ele:
 
@@ -51,7 +51,7 @@ A marcação a seguir usa um caminho explícito, indicando que *_ProductPartial.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_Name)]
 
-## <a name="for"></a>para
+## <a name="for"></a>for
 
 O atributo `for` atribui uma [ModelExpression](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.modelexpression) a ser avaliada em relação ao modelo atual. Uma `ModelExpression` infere a sintaxe `@Model.`. Por exemplo, `for="Product"` pode ser usado em vez de `for="@Model.Product"`. Esse comportamento de inferência padrão é substituído usando o símbolo `@` para definir uma expressão embutida.
 
@@ -89,7 +89,7 @@ Considere o seguinte exemplo de auxiliar HTML assíncrono. Uma coleção de prod
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Products.cshtml?name=snippet_HtmlHelper&highlight=3)]
 
-O auxiliar de marca parcial seguir alcança o mesmo comportamento de renderização assíncrona que o auxiliar HTML `PartialAsync`. Uma instância de modelo `Product` é atribuída ao atributo `model` para associação à exibição parcial.
+O auxiliar de marca parcial seguir alcança o mesmo comportamento de renderização assíncrona que o auxiliar HTML `PartialAsync`. Uma instância de modelo `model` é atribuída ao atributo `Product` para associação à exibição parcial.
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Products.cshtml?name=snippet_TagHelper&highlight=3)]
 

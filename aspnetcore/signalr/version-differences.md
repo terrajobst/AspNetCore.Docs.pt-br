@@ -9,24 +9,24 @@ no-loc:
 - SignalR
 uid: signalr/version-differences
 ms.openlocfilehash: cca9a0cb0c46fc25eb5d1f7127d31fd3ab92f0b4
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880360"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78663544"
 ---
-# <a name="differences-between-aspnet-opno-locsignalr-and-aspnet-core-opno-locsignalr"></a>Diferenças entre ASP.NET SignalR e ASP.NET Core SignalR
+# <a name="differences-between-aspnet-signalr-and-aspnet-core-signalr"></a>Diferenças entre o signalr ASP.NET e o sinalizador de ASP.NET Core
 
-ASP.NET Core SignalR não é compatível com clientes ou servidores do ASP.NET SignalR. Este artigo detalha os recursos que foram removidos ou alterados em ASP.NET Core SignalR.
+ASP.NET Core Signalr não é compatível com clientes ou servidores para o Signalr ASP.NET. Este artigo detalha os recursos que foram removidos ou alterados no ASP.NET Core Signalr.
 
-## <a name="how-to-identify-the-opno-locsignalr-version"></a>Como identificar a versão de SignalR
+## <a name="how-to-identify-the-signalr-version"></a>Como identificar a versão do Signalr
 
 ::: moniker range=">= aspnetcore-3.0"
 
-|                      | SignalR ASP.NET | ASP.NET Core SignalR |
+|                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
-| Pacote NuGet do servidor | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | nenhuma. Incluído na estrutura compartilhada [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) . |
-| Pacotes NuGet do cliente | [Microsoft. AspNet.SignalR. Cliente](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. AspNet.SignalR. JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. AspNetCore.SignalR. Cliente](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
+| Pacote NuGet do servidor | [Microsoft. AspNet. Signalr](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | None. Incluído na estrutura compartilhada [Microsoft. AspNetCore. app](xref:fundamentals/metapackage-app) . |
+| Pacotes NuGet do cliente | [Microsoft. AspNet. Signalr. Client](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. AspNet. Signalr. JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. AspNetCore. Signalr. Client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
 | Pacote de NPM de cliente JavaScript | [signalr](https://www.npmjs.com/package/signalr) | [`@microsoft/signalr`](https://www.npmjs.com/package/@microsoft/signalr) |
 | Cliente Java | [Repositório do GitHub](https://github.com/SignalR/java-client) (preterido)  | Pacote Maven [com. Microsoft. signalr](https://search.maven.org/artifact/com.microsoft.signalr/signalr) |
 | Tipo de aplicativo do servidor | ASP.NET (System. Web) ou OWIN Self-host | ASP.NET Core |
@@ -36,7 +36,7 @@ ASP.NET Core SignalR não é compatível com clientes ou servidores do ASP.NET S
 
 ::: moniker range="<= aspnetcore-2.2"
 
-|                      | SignalR ASP.NET | ASP.NET Core SignalR |
+|                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
 | Pacote NuGet do servidor | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | [Microsoft. AspNetCore. app](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) (.NET Core)<br>[Microsoft. AspNetCore.SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR/) (.NET Framework) |
 | Pacotes NuGet do cliente | [Microsoft. AspNet.SignalR. Cliente](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft. AspNet.SignalR. JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [Microsoft. AspNetCore.SignalR. Cliente](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
@@ -83,7 +83,7 @@ Antes do ASP.NET Core 3,0, o SignalR não dá suporte a reconexões automáticas
 
 ::: moniker-end
 
-### <a name="protocol-support"></a>Suporte de protocolo
+### <a name="protocol-support"></a>Suporte a protocolo
 
 ASP.NET Core SignalR dá suporte a JSON, bem como a um novo protocolo binário com base em [MessagePack](xref:signalr/messagepackhubprotocol). Além disso, os protocolos personalizados podem ser criados.
 
@@ -285,4 +285,4 @@ ASP.NET SignalR dá suporte a SQL Server e Redis. ASP.NET Core SignalR dá supor
 * [Hubs](xref:signalr/hubs)
 * [Cliente JavaScript](xref:signalr/javascript-client)
 * [Cliente .NET](xref:signalr/dotnet-client)
-* [Plataformas compatíveis](xref:signalr/supported-platforms)
+* [Plataformas com suporte](xref:signalr/supported-platforms)

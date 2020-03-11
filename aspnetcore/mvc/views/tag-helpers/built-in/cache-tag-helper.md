@@ -6,16 +6,16 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: 0273a9805dd5db5450f57dcf3fd4d952308df074
-ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
-ms.translationtype: HT
+ms.openlocfilehash: db9e1a968588410f11e5f137dfdd4542df505ebc
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/12/2019
-ms.locfileid: "67856206"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78662732"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>Auxiliar de Marca de Cache no ASP.NET Core MVC
 
-Por [Peter Kellner](https://peterkellner.net) e [Luke Latham](https://github.com/guardrex) 
+Por [Peter Kellner](https://peterkellner.net)
 
 O Auxiliar de Marca de Cache possibilita melhorar o desempenho de seu aplicativo ASP.NET Core armazenando seu conteúdo em cache no provedor de cache interno do ASP.NET Core.
 
@@ -31,9 +31,9 @@ A primeira solicitação para a página que contém o Auxiliar de Marca exibe a 
 
 ## <a name="cache-tag-helper-attributes"></a>Atributos do Auxiliar de Marca de Cache
 
-### <a name="enabled"></a>habilitado
+### <a name="enabled"></a>Habilitado
 
-| Tipo de atributo  | Exemplos        | Padrão |
+| Tipo de Atributo  | Exemplos        | Padrão |
 | --------------- | --------------- | ------- |
 | Boolean         | `true`, `false` | `true`  |
 
@@ -49,7 +49,7 @@ Exemplo:
 
 ### <a name="expires-on"></a>expires-on
 
-| Tipo de atributo   | Exemplo                            |
+| Tipo de Atributo   | {1&gt;Exemplo&lt;1}                            |
 | ---------------- | ---------------------------------- |
 | `DateTimeOffset` | `@new DateTime(2025,1,29,17,02,0)` |
 
@@ -65,7 +65,7 @@ O exemplo a seguir armazena em cache o conteúdo do Auxiliar de Marca de Cache a
 
 ### <a name="expires-after"></a>expires-after
 
-| Tipo de atributo | Exemplo                      | Padrão    |
+| Tipo de Atributo | {1&gt;Exemplo&lt;1}                      | Padrão    |
 | -------------- | ---------------------------- | ---------- |
 | `TimeSpan`     | `@TimeSpan.FromSeconds(120)` | 20 minutos |
 
@@ -83,7 +83,7 @@ O Mecanismo de Exibição do Razor define o valor `expires-after` padrão como v
 
 ### <a name="expires-sliding"></a>expires-sliding
 
-| Tipo de atributo | Exemplo                     |
+| Tipo de Atributo | {1&gt;Exemplo&lt;1}                     |
 | -------------- | --------------------------- |
 | `TimeSpan`     | `@TimeSpan.FromSeconds(60)` |
 
@@ -99,9 +99,9 @@ Exemplo:
 
 ### <a name="vary-by-header"></a>vary-by-header
 
-| Tipo de atributo | Exemplos                                    |
+| Tipo de Atributo | Exemplos                                    |
 | -------------- | ------------------------------------------- |
-| Cadeia de Caracteres         | `User-Agent`, `User-Agent,content-encoding` |
+| String         | `User-Agent`, `User-Agent,content-encoding` |
 
 `vary-by-header` aceita uma lista delimitada por vírgulas de valores de cabeçalho que disparam uma atualização do cache quando eles mudam.
 
@@ -115,9 +115,9 @@ O exemplo a seguir monitora o valor do cabeçalho `User-Agent`. O exemplo armaze
 
 ### <a name="vary-by-query"></a>vary-by-query
 
-| Tipo de atributo | Exemplos             |
+| Tipo de Atributo | Exemplos             |
 | -------------- | -------------------- |
-| Cadeia de Caracteres         | `Make`, `Make,Model` |
+| String         | `Make`, `Make,Model` |
 
 `vary-by-query` aceita uma lista delimitada por vírgula de <xref:Microsoft.AspNetCore.Http.IQueryCollection.Keys*> em uma cadeia de consulta (<xref:Microsoft.AspNetCore.Http.HttpRequest.Query*>) que dispara uma atualização do cache quando o valor de qualquer chave listada é alterado.
 
@@ -131,9 +131,9 @@ O exemplo a seguir monitora os valores de `Make` e `Model`. O exemplo armazena e
 
 ### <a name="vary-by-route"></a>vary-by-route
 
-| Tipo de atributo | Exemplos             |
+| Tipo de Atributo | Exemplos             |
 | -------------- | -------------------- |
-| Cadeia de Caracteres         | `Make`, `Make,Model` |
+| String         | `Make`, `Make,Model` |
 
 `vary-by-route` aceita uma lista delimitada por vírgulas de nomes de parâmetros de rota que disparam uma atualização do cache quando o valor de parâmetro de dados de rota muda.
 
@@ -157,9 +157,9 @@ routes.MapRoute(
 
 ### <a name="vary-by-cookie"></a>vary-by-cookie
 
-| Tipo de atributo | Exemplos                                                                         |
+| Tipo de Atributo | Exemplos                                                                         |
 | -------------- | -------------------------------------------------------------------------------- |
-| Cadeia de Caracteres         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
+| String         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
 `vary-by-cookie` aceita uma lista delimitada por vírgulas de nomes de cookie que disparam uma atualização do cache quando os valores de cookie mudam.
 
@@ -173,7 +173,7 @@ O exemplo a seguir monitora o cookie associado à identidade do ASP.NET Core. Qu
 
 ### <a name="vary-by-user"></a>vary-by-user
 
-| Tipo de atributo  | Exemplos        | Padrão |
+| Tipo de Atributo  | Exemplos        | Padrão |
 | --------------- | --------------- | ------- |
 | Boolean         | `true`, `false` | `true`  |
 
@@ -191,9 +191,9 @@ Usar esse atributo mantém o conteúdo no cache durante um ciclo de entrada e sa
 
 ### <a name="vary-by"></a>vary-by
 
-| Tipo de atributo | Exemplo  |
+| Tipo de Atributo | {1&gt;Exemplo&lt;1}  |
 | -------------- | -------- |
-| Cadeia de Caracteres         | `@Model` |
+| String         | `@Model` |
 
 `vary-by` permite a personalização de quais dados são armazenados em cache. Quando o objeto referenciado pelo valor de cadeia de caracteres do atributo é alterado, o conteúdo do Auxiliar de Marca de Cache é atualizado. Frequentemente, uma concatenação de cadeia de caracteres de valores do modelo é atribuída a este atributo. Na verdade, isso resulta em um cenário em que uma atualização de qualquer um dos valores concatenados invalida o cache.
 
@@ -222,7 +222,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 
 ### <a name="priority"></a>priority
 
-| Tipo de atributo      | Exemplos                               | Padrão  |
+| Tipo de Atributo      | Exemplos                               | Padrão  |
 | ------------------- | -------------------------------------- | -------- |
 | `CacheItemPriority` | `High`, `Low`, `NeverRemove`, `Normal` | `Normal` |
 

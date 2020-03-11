@@ -8,11 +8,11 @@ ms.date: 12/4/2019
 monikerRange: '>= aspnetcore-3.0'
 uid: security/authentication/microsoft-logins
 ms.openlocfilehash: ddaae1a25a1dcf167ffae0f24b480e2cde6aca5b
-ms.sourcegitcommit: f4cd3828e26e6d549ba8d0c36a17be35ad9e5a51
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74825458"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78659792"
 ---
 # <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>Configuração de logon externo da conta da Microsoft com o ASP.NET Core
 
@@ -87,7 +87,7 @@ Agora você está conectado usando suas credenciais da Microsoft:
 
   Embora a mensagem de erro pareça indicar um problema com a autenticação da Microsoft, a causa mais comum é o URI do aplicativo não corresponder a nenhum dos **URIs de redirecionamento** especificados para a plataforma **da Web** .
 * Se a identidade não estiver configurada chamando `services.AddIdentity` no `ConfigureServices`, tentar autenticar resultará em *ArgumentException: a opção ' SignInScheme ' deve ser fornecida*. O modelo de projeto usado neste exemplo garante que isso seja feito.
-* Se o banco de dados do site não tiver sido criado aplicando-se a migração inicial, você obterá *uma operação de banco de dados falhou ao processar a solicitação* erro. Toque **aplicar migrações** para criar o banco de dados e atualizar para continuar após o erro.
+* Se o banco de dados do site não tiver sido criado aplicando a migração inicial, você obterá *uma operação de banco de dados com falha ao processar o erro de solicitação* . Toque em **aplicar migrações** para criar o banco de dados e atualizar para continuar após o erro.
 
 ## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
@@ -95,4 +95,4 @@ Agora você está conectado usando suas credenciais da Microsoft:
 
 * Depois de publicar seu site no aplicativo Web do Azure, crie novos segredos de cliente no portal do desenvolvedor da Microsoft.
 
-* Defina as `Authentication:Microsoft:ClientId` e `Authentication:Microsoft:ClientSecret` como configurações de aplicativo no portal do Azure. Configurar o sistema de configuração para ler as chaves de variáveis de ambiente.
+* Defina o `Authentication:Microsoft:ClientId` e `Authentication:Microsoft:ClientSecret` como configurações de aplicativo no portal do Azure. Configurar o sistema de configuração para ler as chaves de variáveis de ambiente.

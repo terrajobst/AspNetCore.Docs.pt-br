@@ -6,11 +6,11 @@ ms.author: riande
 ms.date: 8/04/2019
 uid: tutorials/first-mvc-app/adding-view
 ms.openlocfilehash: 5510fb6844452571ca764e21640f0bd16444c782
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77171980"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660205"
 ---
 # <a name="add-a-view-to-an-aspnet-core-mvc-app"></a>Adicionar uma exibição a um aplicativo ASP.NET Core MVC
 
@@ -30,7 +30,7 @@ O código anterior chama o método <xref:Microsoft.AspNetCore.Mvc.Controller.Vie
 
 ## <a name="add-a-view"></a>Adicionar uma exibição
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Clique com o botão direito do mouse na pasta *Exibições* e, em seguida, **Adicionar > Nova Pasta** e nomeie a pasta *HelloWorld*.
 
@@ -48,14 +48,14 @@ O código anterior chama o método <xref:Microsoft.AspNetCore.Mvc.Controller.Vie
 
 ![Caixa de diálogo Adicionar Novo Item](adding-view/_static/add_view.png)
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Adicione uma exibição `Index` ao `HelloWorldController`.
 
 * Adicione uma nova pasta chamada *Views/HelloWorld*.
 * Adicione um novo arquivo à pasta *Views/HelloWorld* chamada *Index.cshtml*.
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Clique com o botão direito do mouse na pasta *Exibições* e, em seguida, **Adicionar > Nova Pasta** e nomeie a pasta *HelloWorld*.
 * Clique com o botão direito do mouse na pasta *Views/HelloWorld* e, em seguida, clique em **Adicionar > Novo Arquivo**.
@@ -187,7 +187,7 @@ O código anterior chama o método <xref:Microsoft.AspNetCore.Mvc.Controller.Vie
 
 ## <a name="add-a-view"></a>Adicionar uma exibição
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Clique com o botão direito do mouse na pasta *Exibições* e, em seguida, **Adicionar > Nova Pasta** e nomeie a pasta *HelloWorld*.
 
@@ -205,14 +205,14 @@ O código anterior chama o método <xref:Microsoft.AspNetCore.Mvc.Controller.Vie
 
 ![Caixa de diálogo Adicionar Novo Item](adding-view/_static/add_view.png)
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Adicione uma exibição `Index` ao `HelloWorldController`.
 
 * Adicione uma nova pasta chamada *Views/HelloWorld*.
 * Adicione um novo arquivo à pasta *Views/HelloWorld* chamada *Index.cshtml*.
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Clique com o botão direito do mouse na pasta *Exibições* e, em seguida, **Adicionar > Nova Pasta** e nomeie a pasta *HelloWorld*.
 * Clique com o botão direito do mouse na pasta *Views/HelloWorld* e, em seguida, clique em **Adicionar > Novo Arquivo**.

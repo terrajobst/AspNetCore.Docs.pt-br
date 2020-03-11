@@ -6,22 +6,22 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 02/11/2020
 uid: security/authentication/cookie
-ms.openlocfilehash: 62a3d247dade6c83156a8378407d5e3891713fd1
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: 64f881441a7a7f9a5529cb6ee5ce81142ccd69e6
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77172114"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78662998"
 ---
 # <a name="use-cookie-authentication-without-aspnet-core-identity"></a>Usar autenticação de cookie sem identidade ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Luke Latham](https://github.com/guardrex)
+Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
 A identidade de ASP.NET Core é um provedor de autenticação completo e repleto de recursos para criar e manter logons. No entanto, um provedor de autenticação baseado em cookie sem ASP.NET Core identidade pode ser usado. Para obter mais informações, consulte <xref:security/authentication/identity>.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 Para fins de demonstração no aplicativo de exemplo, a conta de usuário para o usuário hipotético, Maria Rodriguez, é codificada no aplicativo. Use o endereço de **Email** `maria.rodriguez@contoso.com` e qualquer senha para conectar o usuário. O usuário é autenticado no método `AuthenticateUser` no arquivo *pages/Account/Login. cshtml. cs* . Em um exemplo do mundo real, o usuário seria autenticado em um banco de dados.
 
@@ -238,7 +238,7 @@ await HttpContext.SignInAsync(
 
 A identidade de ASP.NET Core é um provedor de autenticação completo e repleto de recursos para criar e manter logons. No entanto, um provedor de autenticação de autenticação baseada em cookie sem ASP.NET Core identidade pode ser usado. Para obter mais informações, consulte <xref:security/authentication/identity>.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 Para fins de demonstração no aplicativo de exemplo, a conta de usuário para o usuário hipotético, Maria Rodriguez, é codificada no aplicativo. Use o endereço de **Email** `maria.rodriguez@contoso.com` e qualquer senha para conectar o usuário. O usuário é autenticado no método `AuthenticateUser` no arquivo *pages/Account/Login. cshtml. cs* . Em um exemplo do mundo real, o usuário seria autenticado em um banco de dados.
 

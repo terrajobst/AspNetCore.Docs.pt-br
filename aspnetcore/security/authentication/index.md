@@ -4,14 +4,14 @@ author: mjrousos
 description: Saiba mais sobre a autenticação no ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/04/2019
+ms.date: 03/03/2020
 uid: security/authentication/index
-ms.openlocfilehash: 40b2fb59b96486435a2ec0a7d69bee5ab4a814d2
-ms.sourcegitcommit: 76d7fff62014c3db02564191ab768acea00f1b26
+ms.openlocfilehash: 24113fd4f090cf76746a7b077212fdab012f82c1
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/05/2019
-ms.locfileid: "74852708"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78659624"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Visão geral da autenticação ASP.NET Core
 
@@ -78,16 +78,16 @@ Com base na configuração do esquema de autenticação e no contexto de solicit
   * Eles não são autorizados a acessar (proíba).
   * Quando eles não são autenticados (desafio).
 
-### <a name="authenticate"></a>Autenticar
+### <a name="authenticate"></a>Authenticate
 
-A ação de autenticação de um esquema de autenticação é responsável por construir a identidade do usuário com base no contexto da solicitação. Ele retorna um <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicando se a autenticação foi bem-sucedida e, em caso afirmativo, a identidade do usuário em um tíquete de autenticação. Consulte `HttpContext.AuthenticateAsync`. Os exemplos de autenticação incluem:
+A ação de autenticação de um esquema de autenticação é responsável por construir a identidade do usuário com base no contexto da solicitação. Ele retorna um <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicando se a autenticação foi bem-sucedida e, em caso afirmativo, a identidade do usuário em um tíquete de autenticação. Consulte <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Os exemplos de autenticação incluem:
 
 * Um esquema de autenticação de cookie que constrói a identidade do usuário a partir de cookies.
 * Um esquema de portador JWT desserializando e Validando um token de portador JWT para construir a identidade do usuário.
 
 ### <a name="challenge"></a>Desafio
 
-Um desafio de autenticação é invocado pela autorização quando um usuário não autenticado solicita um ponto de extremidade que requer autenticação. Um desafio de autenticação é emitido, por exemplo, quando um usuário anônimo solicita um recurso restrito ou clica em um link de logon. A autorização invoca um desafio usando os esquemas de autenticação especificados ou o padrão, se nenhum for especificado. Consulte `HttpContext.ChallengeAsync`. Os exemplos de desafio de autenticação incluem:
+Um desafio de autenticação é invocado pela autorização quando um usuário não autenticado solicita um ponto de extremidade que requer autenticação. Um desafio de autenticação é emitido, por exemplo, quando um usuário anônimo solicita um recurso restrito ou clica em um link de logon. A autorização invoca um desafio usando os esquemas de autenticação especificados ou o padrão, se nenhum for especificado. Consulte <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Os exemplos de desafio de autenticação incluem:
 
 * Um esquema de autenticação de cookie redirecionando o usuário para uma página de logon.
 * Um esquema de portador JWT que retorna um resultado 401 com um cabeçalho `www-authenticate: bearer`.
@@ -96,7 +96,7 @@ Uma ação de desafio deve permitir que o usuário saiba qual mecanismo de auten
 
 ### <a name="forbid"></a>Proíba
 
-Uma ação proibir do esquema de autenticação é chamada por autorização quando um usuário autenticado tenta acessar um recurso que não tem permissão para acessar. Consulte `HttpContext.ForbidAsync`. A autenticação proíbem exemplos incluem:
+Uma ação proibir do esquema de autenticação é chamada por autorização quando um usuário autenticado tenta acessar um recurso que não tem permissão para acessar. Consulte <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ForbidAsync%2A>. A autenticação proíbem exemplos incluem:
 * Um esquema de autenticação de cookie redirecionando o usuário para uma página indicando que o acesso foi proibido.
 * Um esquema de portador JWT que retorna um resultado 403.
 * Um esquema de autenticação personalizado redirecionando para uma página na qual o usuário pode solicitar acesso ao recurso.

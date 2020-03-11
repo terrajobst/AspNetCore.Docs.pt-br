@@ -7,11 +7,11 @@ ms.date: 01/21/2020
 ms.custom: mvc, seodec18
 uid: security/authentication/azure-active-directory/index
 ms.openlocfilehash: 7829a062d4727238addca051d0599438c99e90dc
-ms.sourcegitcommit: eca76bd065eb94386165a0269f1e95092f23fa58
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2020
-ms.locfileid: "76726763"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78661416"
 ---
 # <a name="azure-active-directory-with-aspnet-core"></a>Azure Active Directory com o ASP.NET Core
 

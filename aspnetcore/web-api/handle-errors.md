@@ -7,18 +7,18 @@ ms.author: prkrishn
 ms.custom: mvc
 ms.date: 12/10/2019
 uid: web-api/handle-errors
-ms.openlocfilehash: c2dbc47b4495b7187aefbc62eb6d2f0c9683c2da
-ms.sourcegitcommit: 29ace642ca0e1f0b48a18d66de266d8811df2b83
+ms.openlocfilehash: e445fb3d50973643c9cea60395d1ed02c2f5f675
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/10/2019
-ms.locfileid: "74987824"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660884"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>Tratar erros em APIs da Web ASP.NET Core
 
 Este artigo descreve como lidar e personalizar o tratamento de erros com as APIs da Web do ASP.NET Core.
 
-[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/handle-errors/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/handle-errors/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="developer-exception-page"></a>Página de exceção do desenvolvedor
 

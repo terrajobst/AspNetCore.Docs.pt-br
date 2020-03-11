@@ -1,22 +1,22 @@
 ---
 title: Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
-author: guardrex
+author: rick-anderson
 description: Saiba como diagnosticar problemas com implantações de serviço Azure App e Serviços de Informações da Internet (IIS) de aplicativos ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: a5cd17e46126828c6bc8436ccaaca28edb2573d0
-ms.sourcegitcommit: 235623b6e5a5d1841139c82a11ac2b4b3f31a7a9
+ms.openlocfilehash: 671f68da2ea261cb8ae32a9d5ef875217859054d
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/10/2020
-ms.locfileid: "77114842"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78655326"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Solucionar problemas ASP.NET Core no serviço Azure App e no IIS
 
-De [Luke Latham](https://github.com/guardrex) e [Justin Kotalik](https://github.com/jkotalik)
+De [Justin Kotalik](https://github.com/jkotalik)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -500,7 +500,7 @@ Um *despejo* é um instantâneo da memória do sistema e pode ajudar a determina
 Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)](/windows/desktop/wer/windows-error-reporting):
 
 1. Crie uma pasta para armazenar os arquivos de despejo de memória em `c:\dumps`. O pool de aplicativos deve ter acesso para gravação à pasta.
-1. Execute o [script EnableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1):
+1. Execute o [script EnableDumps do PowerShell](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1):
    * Se o aplicativo usa o [modelo de hospedagem em processo](xref:host-and-deploy/iis/index#in-process-hosting-model), execute o script para *w3wp.exe*:
 
      ```console
@@ -514,7 +514,7 @@ Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)
      ```
 
 1. Execute o aplicativo sob as condições que causam a falha.
-1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1):
+1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1):
    * Se o aplicativo usa o [modelo de hospedagem em processo](xref:host-and-deploy/iis/index#in-process-hosting-model), execute o script para *w3wp.exe*:
 
      ```console
@@ -993,7 +993,7 @@ Um *despejo* é um instantâneo da memória do sistema e pode ajudar a determina
 Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)](/windows/desktop/wer/windows-error-reporting):
 
 1. Crie uma pasta para armazenar os arquivos de despejo de memória em `c:\dumps`. O pool de aplicativos deve ter acesso para gravação à pasta.
-1. Execute o [script EnableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1):
+1. Execute o [script EnableDumps do PowerShell](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1):
    * Se o aplicativo usa o [modelo de hospedagem em processo](xref:host-and-deploy/iis/index#in-process-hosting-model), execute o script para *w3wp.exe*:
 
      ```console
@@ -1007,7 +1007,7 @@ Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)
      ```
 
 1. Execute o aplicativo sob as condições que causam a falha.
-1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1):
+1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1):
    * Se o aplicativo usa o [modelo de hospedagem em processo](xref:host-and-deploy/iis/index#in-process-hosting-model), execute o script para *w3wp.exe*:
 
      ```console
@@ -1424,7 +1424,7 @@ Um *despejo* é um instantâneo da memória do sistema e pode ajudar a determina
 Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)](/windows/desktop/wer/windows-error-reporting):
 
 1. Crie uma pasta para armazenar os arquivos de despejo de memória em `c:\dumps`. O pool de aplicativos deve ter acesso para gravação à pasta.
-1. Execute o [script EnableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1):
+1. Execute o [script EnableDumps do PowerShell](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1):
    * Se o aplicativo usa o [modelo de hospedagem em processo](xref:host-and-deploy/iis/index#in-process-hosting-model), execute o script para *w3wp.exe*:
 
      ```console
@@ -1438,7 +1438,7 @@ Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)
      ```
 
 1. Execute o aplicativo sob as condições que causam a falha.
-1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1):
+1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1):
    * Se o aplicativo usa o [modelo de hospedagem em processo](xref:host-and-deploy/iis/index#in-process-hosting-model), execute o script para *w3wp.exe*:
 
      ```console

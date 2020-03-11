@@ -2,7 +2,7 @@
 
 Execute o scaffolder de identidade:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Em **Gerenciador de soluções**, clique com o botão direito do mouse no projeto > **Adicionar** > **novo item com Scaffold**.
 * No painel esquerdo da caixa de diálogo **Adicionar Scaffold** , selecione **identidade** > **Adicionar**.
@@ -14,12 +14,12 @@ Execute o scaffolder de identidade:
   * Selecione sua classe de contexto de dados.
   * Selecione **Adicionar**.
 * Para criar um novo contexto de usuário e possivelmente criar uma classe de usuário personalizada para identidade:
-  * Selecione o **+** botão para criar um novo **classe de contexto de dados**.
+  * Selecione o botão **+** para criar uma nova **classe de contexto de dados**.
   * Selecione **Adicionar**.
 
 Observação: se você estiver criando um novo contexto de usuário, não precisará selecionar um arquivo para substituir.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 Se você já não tiver instalado o scaffolder de ASP.NET Core, instale-o agora:
 
@@ -68,7 +68,7 @@ Se você executar o scaffolder de identidade sem especificar o sinalizador de `-
 
 Execute o scaffolder de identidade:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Em **Gerenciador de soluções**, clique com o botão direito do mouse no projeto > **Adicionar** > **novo item com Scaffold**.
 * No painel esquerdo da caixa de diálogo **Adicionar Scaffold** , selecione **identidade** > **Adicionar**.
@@ -80,12 +80,12 @@ Execute o scaffolder de identidade:
   * Selecione sua classe de contexto de dados.
   * Selecione **Adicionar**.
 * Para criar um novo contexto de usuário e possivelmente criar uma classe de usuário personalizada para identidade:
-  * Selecione o **+** botão para criar um novo **classe de contexto de dados**.
+  * Selecione o botão **+** para criar uma nova **classe de contexto de dados**.
   * Selecione **Adicionar**.
 
 Observação: se você estiver criando um novo contexto de usuário, não precisará selecionar um arquivo para substituir.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 Se você já não tiver instalado o scaffolder de ASP.NET Core, instale-o agora:
 

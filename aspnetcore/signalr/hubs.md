@@ -9,32 +9,32 @@ ms.date: 01/16/2020
 no-loc:
 - SignalR
 uid: signalr/hubs
-ms.openlocfilehash: e5bc12c5ccafe2b5273d72e6bde0f631ca043428
-ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
+ms.openlocfilehash: 54ffd8614c1cec4cfeba0878e910ed25fc6ba7d2
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/21/2020
-ms.locfileid: "76294635"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78662949"
 ---
-# <a name="use-hubs-in-opno-locsignalr-for-aspnet-core"></a>Usar hubs no SignalR para ASP.NET Core
+# <a name="use-hubs-in-signalr-for-aspnet-core"></a>Usar hubs no Signalr para ASP.NET Core
 
 Por [Rachel appel](https://twitter.com/rachelappel) e [Kevin Griffin](https://twitter.com/1kevgriff)
 
-[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) [(como baixar)](xref:index#how-to-download-a-sample)
+[Exibir ou baixar o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) [(como baixar)](xref:index#how-to-download-a-sample)
 
-## <a name="what-is-a-opno-locsignalr-hub"></a>O que é um hub de SignalR
+## <a name="what-is-a-signalr-hub"></a>O que é um Hub do Signalr
 
-A API de hubs de SignalR permite que você chame métodos em clientes conectados do servidor. No código do servidor, você define os métodos que são chamados pelo cliente. No código do cliente, você define os métodos que são chamados do servidor. SignalR cuida de tudo nos bastidores que possibilitam a comunicação de cliente para servidor e servidor para cliente em tempo real possível.
+A API de hubs de Signalr permite que você chame métodos em clientes conectados do servidor. No código do servidor, você define os métodos que são chamados pelo cliente. No código do cliente, você define os métodos que são chamados do servidor. O signalr cuida de tudo por trás dos bastidores que possibilitam a comunicação de cliente para servidor e servidor para cliente em tempo real possível.
 
-## <a name="configure-opno-locsignalr-hubs"></a>Configurar hubs de SignalR
+## <a name="configure-signalr-hubs"></a>Configurar hubs de sinalização
 
-O middleware SignalR requer alguns serviços, que são configurados chamando `services.AddSignalR`.
+O middleware Signalr requer alguns serviços, que são configurados chamando `services.AddSignalR`.
 
 [!code-csharp[Configure service](hubs/sample/startup.cs?range=38)]
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Ao adicionar SignalR funcionalidade a um aplicativo ASP.NET Core, configure SignalR rotas chamando `endpoint.MapHub` no retorno de chamada `Startup.Configure` do método `app.UseEndpoints`.
+Ao adicionar a funcionalidade do Signalr a um aplicativo ASP.NET Core, configure as rotas do Signalr chamando `endpoint.MapHub` no retorno de chamada `app.UseEndpoints` do método `Startup.Configure`.
 
 ```csharp
 app.UseRouting();
@@ -48,7 +48,7 @@ app.UseEndpoints(endpoints =>
 
 ::: moniker range="<= aspnetcore-2.2"
 
-Ao adicionar SignalR funcionalidade a um aplicativo ASP.NET Core, configure SignalR rotas chamando `app.UseSignalR` no método `Startup.Configure`.
+Ao adicionar a funcionalidade do Signalr a um aplicativo ASP.NET Core, configure as rotas do Signalr chamando `app.UseSignalR` no método `Startup.Configure`.
 
 [!code-csharp[Configure routes to hubs](hubs/sample/startup.cs?range=57-60)]
 
@@ -68,7 +68,7 @@ public class ChatHub : Hub
 }
 ```
 
-Você pode especificar um tipo de retorno e parâmetros, incluindo tipos complexos e matrizes, como faria em C# qualquer método. SignalR lida com a serialização e desserialização de objetos e matrizes complexos em seus parâmetros e valores de retorno.
+Você pode especificar um tipo de retorno e parâmetros, incluindo tipos complexos e matrizes, como faria em C# qualquer método. O signalr lida com a serialização e a desserialização de objetos e matrizes complexos em seus parâmetros e valores de retorno.
 
 > [!NOTE]
 > Os hubs são transitórios:
@@ -80,10 +80,10 @@ Você pode especificar um tipo de retorno e parâmetros, incluindo tipos complex
 
 A classe `Hub` tem uma propriedade `Context` que contém as seguintes propriedades com informações sobre a conexão:
 
-| propriedade | Descrição |
+| Propriedade | Descrição |
 | ------ | ----------- |
-| `ConnectionId` | Obtém a ID exclusiva da conexão, atribuída por SignalR. Há uma ID de conexão para cada conexão.|
-| `UserIdentifier` | Obtém o [identificador de usuário](xref:signalr/groups). Por padrão, SignalR usa o `ClaimTypes.NameIdentifier` do `ClaimsPrincipal` associado à conexão como o identificador de usuário. |
+| `ConnectionId` | Obtém a ID exclusiva da conexão, atribuída pelo Signalr. Há uma ID de conexão para cada conexão.|
+| `UserIdentifier` | Obtém o [identificador de usuário](xref:signalr/groups). Por padrão, o Signalr usa o `ClaimTypes.NameIdentifier` do `ClaimsPrincipal` associado à conexão como o identificador de usuário. |
 | `User` | Obtém o `ClaimsPrincipal` associado ao usuário atual. |
 | `Items` | Obtém uma coleção de chave/valor que pode ser usada para compartilhar dados dentro do escopo desta conexão. Os dados podem ser armazenados nessa coleção e serão mantidos para a conexão entre invocações de método de Hub diferentes. |
 | `Features` | Obtém a coleção de recursos disponíveis na conexão. Por enquanto, essa coleção não é necessária na maioria dos cenários, portanto, ela ainda não está documentada em detalhes. |
@@ -100,7 +100,7 @@ o `Hub.Context` também contém os seguintes métodos:
 
 A classe `Hub` tem uma propriedade `Clients` que contém as seguintes propriedades para comunicação entre o servidor e o cliente:
 
-| propriedade | Descrição |
+| Propriedade | Descrição |
 | ------ | ----------- |
 | `All` | Chama um método em todos os clientes conectados |
 | `Caller` | Chama um método no cliente que invocou o método de Hub |

@@ -6,11 +6,11 @@ ms.author: riande
 ms.date: 01/31/2019
 uid: security/authentication/samples
 ms.openlocfilehash: 3d7e28f6e501bd8bd3908ca4b314a63cee52ebe3
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75828666"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78658413"
 ---
 # <a name="authentication-samples-for-aspnet-core"></a>Exemplos de autenticação para ASP.NET Core
 

@@ -5,7 +5,7 @@ Adicione as seguintes propriedades à classe `Movie`:
 A classe `Movie` contém:
 
 * O campo `Id` que é exigido pelo banco de dados para a chave primária.
-* `[DataType(DataType.Date)]`:  O atributo [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) especifica o tipo de dados (`Date`). Com esse atributo:
+* `[DataType(DataType.Date)]`: o atributo [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) especifica o tipo dos dados (`Date`). Com esse atributo:
 
   * O usuário não precisa inserir informações de tempo no campo de data.
   * Somente a data é exibida, não as informações de tempo.

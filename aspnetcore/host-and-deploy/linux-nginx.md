@@ -1,18 +1,18 @@
 ---
 title: Host ASP.NET Core no Linux com Nginx
-author: guardrex
+author: rick-anderson
 description: Saiba como configurar o Nginx como um proxy reverso no Ubuntu 16.04 para encaminhar o tráfego HTTP para um aplicativo Web ASP.NET Core em execução no Kestrel.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/05/2020
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 7f17be1d883e8cce375487aa39f4d1ebbe8a95f4
-ms.sourcegitcommit: bd896935e91236e03241f75e6534ad6debcecbbf
+ms.openlocfilehash: 320a5364efe85b06028d8e80000e3455bb8ebd18
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/06/2020
-ms.locfileid: "77044869"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657909"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Host ASP.NET Core no Linux com Nginx
 
@@ -23,7 +23,7 @@ Este guia explica como configurar um ambiente ASP.NET Core pronto para produçã
 Para saber mais sobre outras distribuições do Linux compatíveis com o ASP.NET Core, veja [Pré-requisitos para o .NET Core no Linux](/dotnet/core/linux-prerequisites).
 
 > [!NOTE]
-> Para Ubuntu 14.04, o *supervisord* é recomendado como uma solução para monitorar o processo do Kestrel. O *systemd* não está disponível no Ubuntu 14.04. Para obter instruções Ubuntu 14.04, veja a [versão anterior deste tópico](https://github.com/aspnet/AspNetCore.Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
+> Para Ubuntu 14.04, o *supervisord* é recomendado como uma solução para monitorar o processo do Kestrel. O *systemd* não está disponível no Ubuntu 14.04. Para obter instruções Ubuntu 14.04, veja a [versão anterior deste tópico](https://github.com/dotnet/AspNetCore.Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
 
 Este guia:
 
@@ -32,7 +32,7 @@ Este guia:
 * Assegura que o aplicativo Web seja executado na inicialização como um daemon.
 * Configura uma ferramenta de gerenciamento de processo para ajudar a reiniciar o aplicativo Web.
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 1. Acesso a um servidor Ubuntu 16.04 com uma conta de usuário padrão com privilégio sudo.
 1. Instale o runtime do .NET Core no servidor.

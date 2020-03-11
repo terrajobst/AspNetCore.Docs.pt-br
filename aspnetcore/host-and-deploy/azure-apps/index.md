@@ -8,11 +8,11 @@ ms.custom: mvc
 ms.date: 12/16/2019
 uid: host-and-deploy/azure-apps/index
 ms.openlocfilehash: ba9671f68a0faf99ff5232a6d5dd132d0a1d5ac5
-ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "76928425"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78665140"
 ---
 # <a name="deploy-aspnet-core-apps-to-azure-app-service"></a>Implantar aplicativos ASP.NET Core no Serviço de Aplicativo do Azure
 
@@ -40,7 +40,7 @@ Aprenda como publicar um aplicativo ASP.NET Core no Serviço de Aplicativo do Az
 <xref:host-and-deploy/azure-apps/azure-continuous-deployment>  
 Saiba como criar um aplicativo Web ASP.NET Core usando o Visual Studio e implantá-lo no Serviço de Aplicativo do Azure, usando o Git para implantação contínua.
 
-[Crie seu primeiro pipeline](/azure/devops/pipelines/get-started-yaml)  
+[Criar seu primeiro pipeline](/azure/devops/pipelines/get-started-yaml)  
 Configurar um build de CI para um aplicativo ASP.NET Core e, em seguida, criar uma versão de implantação contínua para o Serviço de Aplicativo do Azure.
 
 [Área restrita de aplicativo Web do Azure](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
@@ -49,7 +49,7 @@ Descubra as limitações de runtime do Serviço de Aplicativo do Azure impostas 
 <xref:test/troubleshoot>  
 Compreenda e solucione problemas de avisos e erros com projetos do ASP.NET Core.
 
-## <a name="application-configuration"></a>Configuração do aplicativo
+## <a name="application-configuration"></a>Configuração de aplicativo
 
 ### <a name="platform"></a>Platform
 
@@ -117,7 +117,7 @@ Os aplicativos ASP.NET Core implantados no Serviço de Aplicativo recebem automa
 
 Para monitoramento, registro em log e informações de solução de problemas, veja os seguintes artigos:
 
-[Monitore aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor)  
+[Monitorar aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-monitor)  
 Saiba como examinar as cotas e métricas para aplicativos e planos do Serviço de Aplicativo.
 
 [Habilite log de diagnósticos para aplicativos no Serviço de Aplicativo do Azure](/azure/app-service/web-sites-enable-diagnostic-log)  
@@ -139,9 +139,9 @@ Consulte os erros comuns de configuração de implantação para aplicativos hos
 Quando ocorre a troca entre os slots de implantação, nenhum sistema que usa a proteção de dados consegue descriptografar dados armazenados usando o anel de chave dentro do slot anterior. O middleware de cookie do ASP.NET usa a proteção de dados para proteger seus cookies. Com isso, os usuários são desconectados de um aplicativo que usa o Middleware de Cookie padrão do ASP.NET. Para uma solução de anel de chave independente de slot, use um provedor de anel de chave externo, como:
 
 * Armazenamento do Blobs do Azure
-* Azure Key Vault
+* Cofre de Chave do Azure
 * Repositório SQL
-* Cache redis
+* Cache Redis
 
 Para obter mais informações, consulte <xref:security/data-protection/implementation/key-storage-providers>.
 <a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>
@@ -251,7 +251,7 @@ Para uma implantação de 64 bits:
 
 ### <a name="deploy-the-app-framework-dependent"></a>Implantar o aplicativo dependente de estrutura de aplicativos
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Selecione **Compilar** > **Publicar {Application Name}** na barra de ferramentas do Visual Studio ou clique com o botão direito do mouse no projeto no **Gerenciador de Soluções** e selecione **Publicar**.
 1. Na caixa de diálogo **Escolher um destino de publicação**, confirme se o **Serviço de Aplicativo** está selecionado.
@@ -264,7 +264,7 @@ Para uma implantação de 64 bits:
    * Selecione **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
 1. No arquivo de projeto, não especifique um [RID (Identificador de Runtime)](/dotnet/core/rid-catalog).
 
@@ -282,7 +282,7 @@ Para uma implantação de 64 bits:
 
 Use o Visual Studio ou o CLI do .NET Core para uma [SCD (implantação autônoma)](/dotnet/core/deploying/#self-contained-deployments-scd).
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Selecione **Compilar** > **Publicar {Application Name}** na barra de ferramentas do Visual Studio ou clique com o botão direito do mouse no projeto no **Gerenciador de Soluções** e selecione **Publicar**.
 1. Na caixa de diálogo **Escolher um destino de publicação**, confirme se o **Serviço de Aplicativo** está selecionado.
@@ -295,7 +295,7 @@ Use o Visual Studio ou o CLI do .NET Core para uma [SCD (implantação autônoma
    * Selecione **Salvar**.
 1. Crie um novo site ou atualize um site existente seguindo as solicitações restantes do assistente de publicação.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
 1. No arquivo de projeto, especifique um ou mais [RIDs (identificadores de runtime)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` (singular) para um único RID ou use `<RuntimeIdentifiers>` (plural) para fornecer uma lista de RIDs delimitada por ponto e vírgula. No exemplo a seguir, o RID `win-x86` é especificado:
 
@@ -320,7 +320,7 @@ Use o Visual Studio ou o CLI do .NET Core para uma [SCD (implantação autônoma
 
 As associações de protocolo de segurança permitem que você especifique um certificado a ser usado ao responder a solicitações em HTTPS. A associação requer um certificado privado válido ( *.pfx*) emitido para o nome do host específico. Para obter mais informações, consulte [tutorial: associar um certificado SSL personalizado existente ao serviço de Azure app](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
-## <a name="transform-webconfig"></a>Transformação do web.config
+## <a name="transform-webconfig"></a>Transformação do Web.config
 
 Se você precisar transformar o *Web.config* em publicação (por exemplo, definir variáveis ​​de ambiente com base na configuração, no perfil ou no ambiente), consulte <xref:host-and-deploy/iis/transform-webconfig>.
 

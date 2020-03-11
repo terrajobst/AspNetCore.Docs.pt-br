@@ -6,11 +6,11 @@ ms.author: riande
 ms.date: 8/16/2019
 uid: tutorials/first-mvc-app/working-with-sql
 ms.openlocfilehash: d556f07111fb2022a1c2f1a066459566e302835d
-ms.sourcegitcommit: da2fb2d78ce70accdba903ccbfdcfffdd0112123
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/07/2020
-ms.locfileid: "75722759"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78665035"
 ---
 # <a name="work-with-sql-in-aspnet-core"></a>Trabalhar com o SQL no ASP.NET Core
 
@@ -20,7 +20,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 O objeto `MvcMovieContext` cuida da tarefa de se conectar ao banco de dados e mapear objetos `Movie` para registros do banco de dados. O contexto de banco de dados é registrado com o contêiner [Injeção de Dependência](xref:fundamentals/dependency-injection) no método `ConfigureServices` no arquivo *Startup.cs*:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
@@ -28,7 +28,7 @@ O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET 
 
 [!code-json[](start-mvc/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
 
-# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
@@ -40,7 +40,7 @@ O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET 
 
 Quando o aplicativo é implantado em um servidor de teste ou de produção, uma variável de ambiente pode ser usada para definir a cadeia de conexão como um SQL Server de produção. Consulte [Configuração](xref:fundamentals/configuration/index) para obter mais informações.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 ## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
@@ -64,7 +64,7 @@ Observe o ícone de chave ao lado de `ID`. Por padrão, o EF tornará uma propri
 
   ![Tabela Movie aberta mostrando os dados da tabela](working-with-sql/_static/vd22.png)
 
-# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
@@ -74,7 +74,7 @@ Observe o ícone de chave ao lado de `ID`. Por padrão, o EF tornará uma propri
 
 ## <a name="seed-the-database"></a>Propagar o banco de dados
 
-Crie uma nova classe chamada `SeedData` na pasta *Models*. Substitua o código gerado pelo mostrado a seguir:
+Crie uma nova classe chamada `SeedData` na pasta *Models*. Substitua o código gerado pelo seguinte:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/SeedData.cs?name=snippet_1)]
 
@@ -97,7 +97,7 @@ Substitua o conteúdo de *Program.cs* pelo código a seguir:
 
 Testar o aplicativo
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Exclua todos os registros no BD. Faça isso com os links Excluir no navegador ou no SSOX.
 * Force o aplicativo a ser inicializado (chame os métodos na classe `Startup`) para que o método de semeadura seja executado. Para forçar a inicialização, o IIS Express deve ser interrompido e reiniciado. Faça isso com uma das seguintes abordagens:
@@ -111,7 +111,7 @@ Testar o aplicativo
     * Se você estiver executando o VS no modo sem depuração, pressione F5 para executar no modo de depuração
     * Se você estiver executando o VS no modo de depuração, pare o depurador e pressione F5
 
-# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Exclua todos os registros no BD (para que o método de semeadura seja executado). Interrompa e inicie o aplicativo para propagar o banco de dados.
 
@@ -132,7 +132,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 O objeto `MvcMovieContext` cuida da tarefa de se conectar ao banco de dados e mapear objetos `Movie` para registros do banco de dados. O contexto de banco de dados é registrado com o contêiner [Injeção de Dependência](xref:fundamentals/dependency-injection) no método `ConfigureServices` no arquivo *Startup.cs*:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=13-99)]
 
@@ -140,7 +140,7 @@ O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET 
 
 [!code-json[](start-mvc/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
 
-# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
@@ -152,7 +152,7 @@ O sistema de [Configuração](xref:fundamentals/configuration/index) do ASP.NET 
 
 Quando você implanta o aplicativo em um servidor de teste ou de produção, você pode usar uma variável de ambiente ou outra abordagem para definir a cadeia de conexão como um SQL Server real. Consulte [Configuração](xref:fundamentals/configuration/index) para obter mais informações.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 ## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
@@ -176,7 +176,7 @@ Observe o ícone de chave ao lado de `ID`. Por padrão, o EF tornará uma propri
 
   ![Tabela Movie aberta mostrando os dados da tabela](working-with-sql/_static/vd22.png)
 
-# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
@@ -186,7 +186,7 @@ Observe o ícone de chave ao lado de `ID`. Por padrão, o EF tornará uma propri
 
 ## <a name="seed-the-database"></a>Propagar o banco de dados
 
-Crie uma nova classe chamada `SeedData` na pasta *Models*. Substitua o código gerado pelo mostrado a seguir:
+Crie uma nova classe chamada `SeedData` na pasta *Models*. Substitua o código gerado pelo seguinte:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/SeedData.cs?name=snippet_1)]
 
@@ -209,7 +209,7 @@ Substitua o conteúdo de *Program.cs* pelo código a seguir:
 
 Testar o aplicativo
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Exclua todos os registros no BD. Faça isso com os links Excluir no navegador ou no SSOX.
 * Force o aplicativo a ser inicializado (chame os métodos na classe `Startup`) para que o método de semeadura seja executado. Para forçar a inicialização, o IIS Express deve ser interrompido e reiniciado. Faça isso com uma das seguintes abordagens:
@@ -223,7 +223,7 @@ Testar o aplicativo
     * Se você estiver executando o VS no modo sem depuração, pressione F5 para executar no modo de depuração
     * Se você estiver executando o VS no modo de depuração, pare o depurador e pressione F5
 
-# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Exclua todos os registros no BD (para que o método de semeadura seja executado). Interrompa e inicie o aplicativo para propagar o banco de dados.
 

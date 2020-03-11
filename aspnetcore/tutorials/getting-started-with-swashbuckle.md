@@ -6,18 +6,18 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/17/2020
 uid: tutorials/get-started-with-swashbuckle
-ms.openlocfilehash: 16583cde2f4a6deaabc2fc965a5b9484ca94c2fd
-ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
+ms.openlocfilehash: da848ef9c5fa85f5186d1b6f0a6111d8c8d069c4
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/18/2020
-ms.locfileid: "76268715"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78661297"
 ---
 # <a name="get-started-with-swashbuckle-and-aspnet-core"></a>Introdução ao Swashbuckle e ao ASP.NET Core
 
 Por [Shayne Boyer](https://twitter.com/spboyer) e [Scott Addie](https://twitter.com/Scott_Addie)
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 Há três componentes principais bo Swashbuckle:
 
@@ -31,12 +31,12 @@ Há três componentes principais bo Swashbuckle:
 
 O Swashbuckle pode ser adicionado com as seguintes abordagens:
 
-### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Da janela **Console do Gerenciador de Pacotes**:
   * Acesse **Exibição** > **Outras Janelas** > **Console do Gerenciador de Pacotes**
   * Navegue para o diretório no qual o arquivo *TodoApi.csproj* está localizado
-  * Execute o seguinte comando:
+  * Execute o comando a seguir:
 
     ```powershell
     Install-Package Swashbuckle.AspNetCore -Version 5.0.0
@@ -49,7 +49,7 @@ O Swashbuckle pode ser adicionado com as seguintes abordagens:
   * Insira "Swashbuckle.AspNetCore" na caixa de pesquisa
   * Selecione o pacote "Swashbuckle.AspNetCore" mais recente na guia **Procurar** e clique em **Instalar**
 
-### <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+### <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Clique com o botão direito do mouse na pasta *Pacotes* em **Painel de Soluções** > **Adicionar Pacotes...**
 * Defina a lista suspensa **Origem** da janela **Adicionar Pacotes** para "nuget.org"
@@ -57,7 +57,7 @@ O Swashbuckle pode ser adicionado com as seguintes abordagens:
 * Insira "Swashbuckle.AspNetCore" na caixa de pesquisa
 * Selecione o pacote "Swashbuckle.AspNetCore" mais recente no painel de resultados e clique em **Adicionar Pacote**
 
-### <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Execute o comando a seguir do **Terminal Integrado**:
 
@@ -65,9 +65,9 @@ Execute o comando a seguir do **Terminal Integrado**:
 dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0
 ```
 
-### <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+### <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
-Execute o seguinte comando:
+Execute o comando a seguir:
 
 ```dotnetcli
 dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0
@@ -126,7 +126,7 @@ A interface do usuário do Swagger pode ser encontrada em `http://localhost:<por
 >
 > [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup3.cs?name=snippet_UseSwaggerUI&highlight=4)]
 
-Se estiver usando diretórios com o IIS ou um proxy reverso, defina o ponto de extremidade do Swagger como um caminho relativo usando o prefixo `./`. Por exemplo, `./swagger/v1/swagger.json`. Usar o `/swagger/v1/swagger.json` instrui o aplicativo a procurar o arquivo JSON na raiz verdadeira da URL (mais o prefixo da rota, se usado). Por exemplo, use `http://localhost:<port>/<route_prefix>/swagger/v1/swagger.json` em vez de `http://localhost:<port>/<virtual_directory>/<route_prefix>/swagger/v1/swagger.json`.
+Se estiver usando diretórios com o IIS ou um proxy reverso, defina o ponto de extremidade do Swagger como um caminho relativo usando o prefixo `./`. Por exemplo, `./swagger/v1/swagger.json`. Usar o `/swagger/v1/swagger.json` instrui o aplicativo a procurar o arquivo JSON na raiz verdadeira da URL (mais o prefixo da rota, se usado). Por exemplo, use `http://localhost:<port>/<route_prefix>/swagger/v1/swagger.json` ao invés de `http://localhost:<port>/<virtual_directory>/<route_prefix>/swagger/v1/swagger.json`.
 
 ## <a name="customize-and-extend"></a>Personalizar e estender
 
@@ -154,7 +154,7 @@ A interface do usuário do Swagger exibe as informações da versão:
 
 Comentários XML podem ser habilitados com as seguintes abordagens:
 
-#### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+#### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -172,7 +172,7 @@ Comentários XML podem ser habilitados com as seguintes abordagens:
 
 ::: moniker-end
 
-#### <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+#### <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -190,7 +190,7 @@ Comentários XML podem ser habilitados com as seguintes abordagens:
 
 ::: moniker-end
 
-#### <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+#### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Manualmente, adicione as linhas destacadas ao arquivo *.csproj*:
 
@@ -206,7 +206,7 @@ Manualmente, adicione as linhas destacadas ao arquivo *.csproj*:
 
 ::: moniker-end
 
-#### <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+#### <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 Manualmente, adicione as linhas destacadas ao arquivo *.csproj*:
 

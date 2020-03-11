@@ -16,6 +16,6 @@ Este exemplo ilustra as variações dos auxiliares de marca internos com o MVC e
   - [asp-route-{value}](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-route-value)
 - [Auxiliar de marcação parcial](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper)
   - [for](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#for)
-  - [model](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#model)
+  - [modelo](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#model)
   - [name](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#name)
   - [view-data](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/partial-tag-helper#view-data)

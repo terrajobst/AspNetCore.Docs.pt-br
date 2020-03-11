@@ -1,22 +1,20 @@
 ---
 title: Hospedar o ASP.NET Core no Windows com o IIS
-author: guardrex
+author: rick-anderson
 description: Saiba como hospedar aplicativos ASP.NET Core no Windows Server IIS (Serviços de Informações da Internet).
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: ee7918783c0189a63d17678cda02f54dc40bdc24
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: c2ca867e3eebdc3fcf512cc5d457ff3c1967f9b1
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77172476"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657979"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
-
-Por [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -122,7 +120,7 @@ services.Configure<IISServerOptions>(options =>
 });
 ```
 
-| Opção                         | Padrão | Configuração |
+| {1&gt;Opção&lt;1}                         | Padrão | Configuração |
 | ------------------------------ | :-----: | ------- |
 | `AutomaticAuthentication`      | `true`  | Se `true`, o Servidor do IIS define o `HttpContext.User` autenticado pela [Autenticação do Windows](xref:security/authentication/windowsauth). Se `false`, o servidor fornecerá apenas uma identidade para `HttpContext.User` e responderá a desafios quando explicitamente solicitado pelo `AuthenticationScheme`. A autenticação do Windows deve estar habilitada no IIS para que o `AutomaticAuthentication` funcione. Para obter mais informações, veja [Autenticação do Windows](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Configura o nome de exibição mostrado aos usuários em páginas de logon. |
@@ -140,7 +138,7 @@ services.Configure<IISOptions>(options =>
 });
 ```
 
-| Opção                         | Padrão | Configuração |
+| {1&gt;Opção&lt;1}                         | Padrão | Configuração |
 | ------------------------------ | :-----: | ------- |
 | `AutomaticAuthentication`      | `true`  | Se `true`, o [middleware de integração do IIS](#enable-the-iisintegration-components) define o `HttpContext.User` autenticado pela [Autenticação do Windows](xref:security/authentication/windowsauth). Se `false`, o middleware fornecerá apenas uma identidade para `HttpContext.User` e responderá a desafios quando explicitamente solicitado pelo `AuthenticationScheme`. A autenticação do Windows deve estar habilitada no IIS para que o `AutomaticAuthentication` funcione. Saiba mais no tópico [Autenticação do Windows](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Configura o nome de exibição mostrado aos usuários em páginas de logon. |
@@ -182,7 +180,7 @@ Existem arquivos confidenciais no caminho físico do aplicativo, como *\<assembl
 
 **O arquivo *Web. config* deve estar presente na implantação o tempo todo, corretamente nomeado e ser capaz de configurar o site para inicialização normal. Nunca remova o arquivo *Web. config* de uma implantação de produção.**
 
-### <a name="transform-webconfig"></a>Transformação do web.config
+### <a name="transform-webconfig"></a>Transformação do Web.config
 
 Se você precisar transformar o *Web.config* em publicação (por exemplo, definir variáveis ​​de ambiente com base na configuração, no perfil ou no ambiente), consulte <xref:host-and-deploy/iis/transform-webconfig>.
 
@@ -731,7 +729,7 @@ services.Configure<IISServerOptions>(options =>
 });
 ```
 
-| Opção                         | Padrão | Configuração |
+| {1&gt;Opção&lt;1}                         | Padrão | Configuração |
 | ------------------------------ | :-----: | ------- |
 | `AutomaticAuthentication`      | `true`  | Se `true`, o Servidor do IIS define o `HttpContext.User` autenticado pela [Autenticação do Windows](xref:security/authentication/windowsauth). Se `false`, o servidor fornecerá apenas uma identidade para `HttpContext.User` e responderá a desafios quando explicitamente solicitado pelo `AuthenticationScheme`. A autenticação do Windows deve estar habilitada no IIS para que o `AutomaticAuthentication` funcione. Para obter mais informações, veja [Autenticação do Windows](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Configura o nome de exibição mostrado aos usuários em páginas de logon. |
@@ -747,7 +745,7 @@ services.Configure<IISOptions>(options =>
 });
 ```
 
-| Opção                         | Padrão | Configuração |
+| {1&gt;Opção&lt;1}                         | Padrão | Configuração |
 | ------------------------------ | :-----: | ------- |
 | `AutomaticAuthentication`      | `true`  | Se `true`, o [middleware de integração do IIS](#enable-the-iisintegration-components) define o `HttpContext.User` autenticado pela [Autenticação do Windows](xref:security/authentication/windowsauth). Se `false`, o middleware fornecerá apenas uma identidade para `HttpContext.User` e responderá a desafios quando explicitamente solicitado pelo `AuthenticationScheme`. A autenticação do Windows deve estar habilitada no IIS para que o `AutomaticAuthentication` funcione. Saiba mais no tópico [Autenticação do Windows](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Configura o nome de exibição mostrado aos usuários em páginas de logon. |
@@ -789,7 +787,7 @@ Existem arquivos confidenciais no caminho físico do aplicativo, como *\<assembl
 
 **O arquivo *Web. config* deve estar presente na implantação o tempo todo, corretamente nomeado e ser capaz de configurar o site para inicialização normal. Nunca remova o arquivo *Web. config* de uma implantação de produção.**
 
-### <a name="transform-webconfig"></a>Transformação do web.config
+### <a name="transform-webconfig"></a>Transformação do Web.config
 
 Se você precisar transformar o *Web.config* em publicação (por exemplo, definir variáveis ​​de ambiente com base na configuração, no perfil ou no ambiente), consulte <xref:host-and-deploy/iis/transform-webconfig>.
 
@@ -1309,7 +1307,7 @@ Para obter mais informações sobre o `CreateDefaultBuilder`, consulte <xref:fun
 
 ### <a name="iis-options"></a>Opções do IIS
 
-| Opção                         | Padrão | Configuração |
+| {1&gt;Opção&lt;1}                         | Padrão | Configuração |
 | ------------------------------ | :-----: | ------- |
 | `AutomaticAuthentication`      | `true`  | Se `true`, o Servidor do IIS define o `HttpContext.User` autenticado pela [Autenticação do Windows](xref:security/authentication/windowsauth). Se `false`, o servidor fornecerá apenas uma identidade para `HttpContext.User` e responderá a desafios quando explicitamente solicitado pelo `AuthenticationScheme`. A autenticação do Windows deve estar habilitada no IIS para que o `AutomaticAuthentication` funcione. Para obter mais informações, veja [Autenticação do Windows](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Configura o nome de exibição mostrado aos usuários em páginas de logon. |
@@ -1323,7 +1321,7 @@ services.Configure<IISOptions>(options =>
 });
 ```
 
-| Opção                         | Padrão | Configuração |
+| {1&gt;Opção&lt;1}                         | Padrão | Configuração |
 | ------------------------------ | :-----: | ------- |
 | `AutomaticAuthentication`      | `true`  | Se `true`, o [middleware de integração do IIS](#enable-the-iisintegration-components) define o `HttpContext.User` autenticado pela [Autenticação do Windows](xref:security/authentication/windowsauth). Se `false`, o middleware fornecerá apenas uma identidade para `HttpContext.User` e responderá a desafios quando explicitamente solicitado pelo `AuthenticationScheme`. A autenticação do Windows deve estar habilitada no IIS para que o `AutomaticAuthentication` funcione. Saiba mais no tópico [Autenticação do Windows](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Configura o nome de exibição mostrado aos usuários em páginas de logon. |
@@ -1365,7 +1363,7 @@ Existem arquivos confidenciais no caminho físico do aplicativo, como *\<assembl
 
 **O arquivo *Web. config* deve estar presente na implantação o tempo todo, corretamente nomeado e ser capaz de configurar o site para inicialização normal. Nunca remova o arquivo *Web. config* de uma implantação de produção.**
 
-### <a name="transform-webconfig"></a>Transformação do web.config
+### <a name="transform-webconfig"></a>Transformação do Web.config
 
 Se você precisar transformar o *Web.config* em publicação (por exemplo, definir variáveis ​​de ambiente com base na configuração, no perfil ou no ambiente), consulte <xref:host-and-deploy/iis/transform-webconfig>.
 

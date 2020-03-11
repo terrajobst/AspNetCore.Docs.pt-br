@@ -10,22 +10,22 @@ no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/server
-ms.openlocfilehash: d87aac02137681e62cf8f5cbd4dc8b0be6f8431e
-ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
+ms.openlocfilehash: 61030f9b5beb849a7cf03571da425e49b144994c
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76146297"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78663348"
 ---
-# <a name="secure-aspnet-core-opno-locblazor-server-apps"></a>Proteger ASP.NET Core aplicativos do Blazor Server
+# <a name="secure-aspnet-core-blazor-server-apps"></a>Proteger os aplicativos de servidor do mais ASP.NET Core
 
 Por [Javier Calvarro Nelson](https://github.com/javiercn)
 
-os aplicativos do Blazor Server adotam um modelo de processamento de dados com *estado* , onde o servidor e o cliente mantêm uma relação de vida longa. O estado persistente é mantido por um [circuito](xref:blazor/state-management), que pode abranger conexões que também são potencialmente de longa duração.
+Os aplicativos de servidor mais incrivelmente adotam um modelo de processamento de dados com *estado* , onde o servidor e o cliente mantêm uma relação de vida longa. O estado persistente é mantido por um [circuito](xref:blazor/state-management), que pode abranger conexões que também são potencialmente de longa duração.
 
-Quando um usuário visita um site do Blazor Server, o servidor cria um circuito na memória do servidor. O circuito indica ao navegador qual conteúdo renderizar e responde a eventos, como quando o usuário seleciona um botão na interface do usuário. Para executar essas ações, um circuito invoca funções JavaScript no navegador do usuário e nos métodos do .NET no servidor. Essa interação baseada em JavaScript bidirecional é conhecida como interoperabilidade [JavaScript (JS Interop)](xref:blazor/javascript-interop).
+Quando um usuário visita um site de servidor mais incrivelmente, o servidor cria um circuito na memória do servidor. O circuito indica ao navegador qual conteúdo renderizar e responde a eventos, como quando o usuário seleciona um botão na interface do usuário. Para executar essas ações, um circuito invoca funções JavaScript no navegador do usuário e nos métodos do .NET no servidor. Essa interação baseada em JavaScript bidirecional é conhecida como interoperabilidade [JavaScript (JS Interop)](xref:blazor/call-javascript-from-dotnet).
 
-Como a interoperabilidade do JS ocorre pela Internet e o cliente usa um navegador remoto, os aplicativos do Blazor Server compartilham a maioria das preocupações de segurança do aplicativo Web. Este tópico descreve as ameaças comuns a aplicativos Blazor Server e fornece diretrizes de mitigação de ameaças voltadas para aplicativos voltados para a Internet.
+Como a interoperabilidade do JS ocorre pela Internet e o cliente usa um navegador remoto, os aplicativos de servidor mais incrivelmente compartilham a maioria das preocupações com segurança de aplicativos Web. Este tópico descreve ameaças comuns a aplicativos de servidor mais eficientes e fornece diretrizes de mitigação de ameaças voltadas para aplicativos voltados para a Internet.
 
 Em ambientes restritos, como dentro de redes corporativas ou intranets, algumas das diretrizes de mitigação:
 
@@ -38,25 +38,25 @@ O esgotamento de recursos pode ocorrer quando um cliente interage com o servidor
 
 * [CPU](#cpu)
 * [Memória](#memory)
-* [Conexões de clientes](#client-connections)
+* [Conexões de cliente](#client-connections)
 
 Ataques de DoS (negação de serviço) geralmente buscam esgotar os recursos de um aplicativo ou servidor. No entanto, o esgotamento de recursos não é necessariamente o resultado de um ataque no sistema. Por exemplo, recursos finitos podem ser esgotados devido à alta demanda do usuário. O DoS é abordado mais detalhadamente na seção [ataques dos (negação de serviço)](#denial-of-service-dos-attacks) .
 
-Recursos externos à estrutura de Blazor, como bancos de dados e identificadores de arquivo (usados para ler e gravar arquivos), também podem ter esgotamento de recursos. Para obter mais informações, consulte <xref:performance/performance-best-practices>.
+Recursos externos à estrutura mais experiente, como bancos de dados e identificadores de arquivos (usados para ler e gravar arquivos), também podem ter esgotamento de recursos. Para obter mais informações, consulte <xref:performance/performance-best-practices>.
 
 ### <a name="cpu"></a>CPU
 
 O esgotamento de CPU pode ocorrer quando um ou mais clientes forçam o servidor a executar um trabalho intensivo de CPU.
 
-Por exemplo, considere um aplicativo de servidor Blazor que calcula um *número Fibonnacci*. Um número Fibonnacci é produzido de uma sequência Fibonnacci, em que cada número na sequência é a soma dos dois números anteriores. A quantidade de trabalho necessária para alcançar a resposta depende do comprimento da sequência e do tamanho do valor inicial. Se o aplicativo não coloca limites na solicitação de um cliente, os cálculos com uso intensivo de CPU podem dominar o tempo da CPU e diminuir o desempenho de outras tarefas. O consumo excessivo de recursos é uma preocupação de segurança que afeta a disponibilidade.
+Por exemplo, considere um aplicativo de servidor mais incrivelmente que calcula um *número Fibonnacci*. Um número Fibonnacci é produzido de uma sequência Fibonnacci, em que cada número na sequência é a soma dos dois números anteriores. A quantidade de trabalho necessária para alcançar a resposta depende do comprimento da sequência e do tamanho do valor inicial. Se o aplicativo não coloca limites na solicitação de um cliente, os cálculos com uso intensivo de CPU podem dominar o tempo da CPU e diminuir o desempenho de outras tarefas. O consumo excessivo de recursos é uma preocupação de segurança que afeta a disponibilidade.
 
-O esgotamento da CPU é uma preocupação para todos os aplicativos voltados ao público. Em aplicativos Web regulares, solicitações e conexões atingiram o tempo limite como uma proteção, mas os aplicativos do Blazor Server não fornecem as mesmas proteções. os aplicativos do Blazor Server devem incluir verificações e limites apropriados antes de executar um trabalho potencialmente intensivo de CPU.
+O esgotamento da CPU é uma preocupação para todos os aplicativos voltados ao público. Em aplicativos Web regulares, solicitações e conexões atingiram o tempo limite como uma proteção, mas aplicativos de servidor mais podestas não fornecem as mesmas proteções. Os aplicativos de servidor mais úteis devem incluir verificações e limites apropriados antes de executar um trabalho potencialmente intensivo de CPU.
 
 ### <a name="memory"></a>Memória
 
 O esgotamento de memória pode ocorrer quando um ou mais clientes forçam o servidor a consumir uma grande quantidade de memória.
 
-Por exemplo, considere um aplicativo do lado do BlazorServer com um componente que aceita e exibe uma lista de itens. Se o aplicativo Blazor não coloca limites no número de itens permitidos ou no número de itens processados de volta para o cliente, o processamento e a renderização com uso intensivo de memória podem dominar a memória do servidor até o ponto em que o desempenho do servidor sofre. O servidor pode falhar ou ficar lento até o ponto em que parece ter falhado.
+Por exemplo, considere um aplicativo do lado do servidor mais incrivelmente com um componente que aceita e exibe uma lista de itens. Se o aplicativo mais grande não coloca os limites no número de itens permitidos ou no número de itens processados de volta para o cliente, o processamento e a renderização com uso intensivo de memória podem dominar a memória do servidor até o ponto em que o desempenho do servidor sofre. O servidor pode falhar ou ficar lento até o ponto em que parece ter falhado.
 
 Considere o cenário a seguir para manter e exibir uma lista de itens que pertencem a um possível cenário de esgotamento de memória no servidor:
 
@@ -66,20 +66,20 @@ Considere o cenário a seguir para manter e exibir uma lista de itens que perten
   * Exiba apenas os primeiros 100 a 1.000 itens e exija que o usuário insira critérios de pesquisa para localizar itens além dos itens exibidos.
   * Para um cenário de renderização mais avançado, implemente listas ou grades que dão suporte à *virtualização*. Usando a virtualização, as listas só renderizam um subconjunto de itens visíveis no momento para o usuário. Quando o usuário interage com a barra de rolagem na interface do usuário, o componente renderiza somente os itens necessários para exibição. Os itens que atualmente não são necessários para exibição podem ser mantidos no armazenamento secundário, que é a abordagem ideal. Itens não exibidos também podem ser mantidos na memória, o que é menos ideal.
 
-os aplicativos do Blazor Server oferecem um modelo de programação semelhante a outras estruturas de interface do usuário para aplicativos com estado, como WPF, Windows Forms ou Blazor Webassembly. A principal diferença é que, em várias das estruturas da interface do usuário, a memória consumida pelo aplicativo pertence ao cliente e afeta apenas esse cliente individual. Por exemplo, um aplicativo Webassembly Blazor é executado inteiramente no cliente e usa apenas recursos de memória do cliente. No cenário do Blazor Server, a memória consumida pelo aplicativo pertence ao servidor e é compartilhada entre clientes na instância do servidor.
+Os aplicativos de servidor mais poseriais oferecem um modelo de programação semelhante a outras estruturas de interface do usuário para aplicativos com estado, como WPF, Windows Forms ou Webassembly mais incrivelmente. A principal diferença é que, em várias das estruturas da interface do usuário, a memória consumida pelo aplicativo pertence ao cliente e afeta apenas esse cliente individual. Por exemplo, um aplicativo Webassembly mais completo é executado inteiramente no cliente e usa apenas recursos de memória do cliente. No cenário de servidor mais incrivelmente, a memória consumida pelo aplicativo pertence ao servidor e é compartilhada entre clientes na instância do servidor.
 
-As demandas de memória do lado do servidor são uma consideração para todos os aplicativos do Blazor Server. No entanto, a maioria dos aplicativos Web não tem estado e a memória usada durante o processamento de uma solicitação é liberada quando a resposta é retornada. Como recomendação geral, não permita que os clientes aloquem uma quantidade não associada de memória como em qualquer outro aplicativo do lado do servidor que persista as conexões do cliente. A memória consumida por um aplicativo do Blazor Server persiste por mais tempo do que uma única solicitação.
+As demandas de memória do lado do servidor são uma consideração para todos os aplicativos de servidor mais incrivelmente. No entanto, a maioria dos aplicativos Web não tem estado e a memória usada durante o processamento de uma solicitação é liberada quando a resposta é retornada. Como recomendação geral, não permita que os clientes aloquem uma quantidade não associada de memória como em qualquer outro aplicativo do lado do servidor que persista as conexões do cliente. A memória consumida por um aplicativo de servidor mais incrivelmente persiste por mais tempo do que uma única solicitação.
 
 > [!NOTE]
 > Durante o desenvolvimento, um criador de perfil pode ser usado ou um rastreamento capturado para avaliar as demandas de memória dos clientes. Um criador de perfil ou rastreamento não capturará a memória alocada para um cliente específico. Para capturar o uso de memória de um cliente específico durante o desenvolvimento, Capture um despejo e examine a demanda de memória de todos os objetos com raiz no circuito do usuário.
 
-### <a name="client-connections"></a>Conexões de clientes
+### <a name="client-connections"></a>Conexões de cliente
 
 O esgotamento de conexão pode ocorrer quando um ou mais clientes abrem muitas conexões simultâneas com o servidor, impedindo que outros clientes estabeleçam novas conexões.
 
-Blazor clientes estabelecem uma única conexão por sessão e mantêm a conexão aberta enquanto a janela do navegador está aberta. As demandas no servidor de manutenção de todas as conexões não são específicas para Blazor aplicativos. Considerando a natureza persistente das conexões e a natureza com estado dos aplicativos do Blazor Server, o esgotamento da conexão é um risco maior à disponibilidade do aplicativo.
+Clientes mais grandes estabelecem uma única conexão por sessão e mantêm a conexão aberta enquanto a janela do navegador está aberta. As demandas no servidor de manutenção de todas as conexões não são específicas para aplicativos mais Incrivelmenteos. Considerando a natureza persistente das conexões e a natureza com estado dos aplicativos de servidor mais grande, o esgotamento de conexão é um risco maior à disponibilidade do aplicativo.
 
-Por padrão, não há limite para o número de conexões por usuário para um aplicativo de Blazor Server. Se o aplicativo exigir um limite de conexão, execute uma ou mais das seguintes abordagens:
+Por padrão, não há limite para o número de conexões por usuário para um aplicativo de servidor mais incrivelmente. Se o aplicativo exigir um limite de conexão, execute uma ou mais das seguintes abordagens:
 
 * Exigir autenticação, o que limita naturalmente a capacidade de usuários não autorizados se conectarem ao aplicativo. Para que esse cenário seja eficaz, os usuários devem ser impedidos de provisionar novos usuários no.
 * Limite o número de conexões por usuário. A limitação de conexões pode ser realizada por meio das abordagens a seguir. Tome cuidado para permitir que usuários legítimos acessem o aplicativo (por exemplo, quando um limite de conexão é estabelecido com base no endereço IP do cliente).
@@ -87,22 +87,22 @@ Por padrão, não há limite para o número de conexões por usuário para um ap
     * Extensibilidade de roteamento de ponto de extremidade.
     * Exigir autenticação para se conectar ao aplicativo e controlar as sessões ativas por usuário.
     * Rejeite novas sessões após atingir um limite.
-    * Conexões de WebSocket de proxy para um aplicativo por meio do uso de um proxy, como o [serviço de SignalR do Azure](/azure/azure-signalr/signalr-overview) que multiplexa conexões de clientes para um aplicativo. Isso fornece um aplicativo com maior capacidade de conexão do que um único cliente pode estabelecer, impedindo que um cliente esgotasse as conexões com o servidor.
+    * Conexões de WebSocket de proxy para um aplicativo por meio do uso de um proxy, como o [serviço de signalr do Azure](/azure/azure-signalr/signalr-overview) que multiplexa conexões de clientes para um aplicativo. Isso fornece um aplicativo com maior capacidade de conexão do que um único cliente pode estabelecer, impedindo que um cliente esgotasse as conexões com o servidor.
   * No nível do servidor: Use um proxy/gateway na frente do aplicativo. Por exemplo, a [porta frontal do Azure](/azure/frontdoor/front-door-overview) permite que você defina, gerencie e monitore o roteamento global do tráfego da Web para um aplicativo.
 
 ## <a name="denial-of-service-dos-attacks"></a>Ataques de negação de serviço (DoS)
 
-Ataques de DoS (negação de serviço) envolvem um cliente que está fazendo com que o servidor esgotasse um ou mais de seus recursos, tornando o aplicativo indisponível. os aplicativos do Blazor Server incluem alguns limites padrão e contam com outros limites de ASP.NET Core e SignalR para proteger contra ataques de DoS:
+Ataques de DoS (negação de serviço) envolvem um cliente que está fazendo com que o servidor esgotasse um ou mais de seus recursos, tornando o aplicativo indisponível. Os aplicativos de servidor mais incrivelmente incluem alguns limites padrão e contam com outros limites de ASP.NET Core e Signalr para proteger contra ataques de DoS:
 
-| limite de aplicativo do Blazor Server                            | Descrição | Padrão |
+| Limite de aplicativos de servidor mais incrivelmente                            | Descrição | Padrão |
 | ------------------------------------------------------- | ----------- | ------- |
 | `CircuitOptions.DisconnectedCircuitMaxRetained`         | Número máximo de circuitos desconectados que um determinado servidor mantém na memória por vez. | 100 |
-| `CircuitOptions.DisconnectedCircuitRetentionPeriod`     | Quantidade máxima de tempo que um circuito desconectado é mantido na memória antes de ser interrompido. | Três minutos |
+| `CircuitOptions.DisconnectedCircuitRetentionPeriod`     | Quantidade máxima de tempo que um circuito desconectado é mantido na memória antes de ser interrompido. | 3 minutos |
 | `CircuitOptions.JSInteropDefaultCallTimeout`            | Quantidade máxima de tempo que o servidor espera antes de atingir o tempo limite de uma invocação de função JavaScript assíncrona. | 1 minuto |
 | `CircuitOptions.MaxBufferedUnacknowledgedRenderBatches` | Número máximo de lotes de renderização não confirmados que o servidor mantém na memória por circuito em um determinado momento para dar suporte à reconexão robusta. Depois de atingir o limite, o servidor para de produzir novos lotes de renderização até que um ou mais lotes tenham sido confirmados pelo cliente. | 10 |
 
 
-| limite de SignalR e ASP.NET Core             | Descrição | Padrão |
+| Limite de sinalização e ASP.NET Core             | Descrição | Padrão |
 | ------------------------------------------ | ----------- | ------- |
 | `CircuitOptions.MaximumReceiveMessageSize` | Tamanho da mensagem para uma mensagem individual. | 32 KB |
 
@@ -118,7 +118,7 @@ Um cliente interage com o servidor por meio de expedição de evento de interope
 Para chamadas de métodos .NET para JavaScript:
 
 * Todas as invocações têm um tempo limite configurável após o qual falham, retornando um <xref:System.OperationCanceledException> ao chamador.
-  * Há um tempo limite padrão para as chamadas (`CircuitOptions.JSInteropDefaultCallTimeout`) de um minuto. Para configurar esse limite, consulte <xref:blazor/javascript-interop#harden-js-interop-calls>.
+  * Há um tempo limite padrão para as chamadas (`CircuitOptions.JSInteropDefaultCallTimeout`) de um minuto. Para configurar esse limite, consulte <xref:blazor/call-javascript-from-dotnet#harden-js-interop-calls>.
   * Um token de cancelamento pode ser fornecido para controlar o cancelamento em uma base por chamada. Conte com o tempo limite de chamada padrão quando possível e Associação de tempo qualquer chamada ao cliente se um token de cancelamento for fornecido.
 * O resultado de uma chamada JavaScript não pode ser confiável. O cliente de aplicativo Blazor em execução no navegador pesquisa a função JavaScript a ser invocada. A função é invocada e o resultado ou um erro é produzido. Um cliente mal-intencionado pode tentar:
   * Causar um problema no aplicativo retornando um erro da função JavaScript.
@@ -144,7 +144,7 @@ Não confie em chamadas de JavaScript para métodos .NET. Quando um método .NET
   * Evite passar dados fornecidos pelo usuário em parâmetros para chamadas JavaScript. Se a passagem de dados em parâmetros for absolutamente necessária, verifique se o código JavaScript lida com a passagem dos dados sem introduzir vulnerabilidades de [XSS (script entre sites)](#cross-site-scripting-xss) . Por exemplo, não grave dados fornecidos pelo usuário no Modelo de Objeto do Documento (DOM) definindo a propriedade `innerHTML` de um elemento. Considere o uso da [política de segurança de conteúdo (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) para desabilitar `eval` e outros primitivos JavaScript não seguros.
 * Evite implementar a expedição personalizada de invocações do .NET sobre a implementação de expedição da estrutura. Expor métodos .NET ao navegador é um cenário avançado, não recomendado para desenvolvimento de Blazor geral.
 
-### <a name="events"></a>Events
+### <a name="events"></a>Eventos
 
 Os eventos fornecem um ponto de entrada para um aplicativo do Blazor Server. As mesmas regras para proteger pontos de extremidade em aplicativos Web se aplicam à manipulação de eventos em aplicativos do Blazor Server. Um cliente mal-intencionado pode enviar todos os dados que deseja enviar como a carga de um evento.
 

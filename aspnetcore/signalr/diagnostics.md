@@ -10,31 +10,31 @@ no-loc:
 - SignalR
 uid: signalr/diagnostics
 ms.openlocfilehash: c5bd2ac27f8ca486b0d75aed8439747f72448625
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963857"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660968"
 ---
-# <a name="logging-and-diagnostics-in-aspnet-core-opno-locsignalr"></a>Registro em log e diagnóstico no ASP.NET Core SignalR
+# <a name="logging-and-diagnostics-in-aspnet-core-signalr"></a>Registro em log e diagnóstico no ASP.NET Core Signalr
 
 Por [Andrew Stanton-enfermaria](https://twitter.com/anurse)
 
-Este artigo fornece diretrizes para coletar diagnósticos de seu aplicativo ASP.NET Core SignalR para ajudar a solucionar problemas.
+Este artigo fornece orientação para a coleta de diagnósticos de seu aplicativo de sinal de ASP.NET Core para ajudar a solucionar problemas.
 
 ## <a name="server-side-logging"></a>Registro em log do lado do servidor
 
 > [!WARNING]
 > Os logs do lado do servidor podem conter informações confidenciais do seu aplicativo. **Nunca** poste logs brutos de aplicativos de produção em fóruns públicos, como o github.
 
-Como SignalR faz parte do ASP.NET Core, ele usa o sistema de registro em log de ASP.NET Core. Na configuração padrão, SignalR registra muito poucas informações, mas isso pode ser configurado. Consulte a documentação em [log de ASP.NET Core](xref:fundamentals/logging/index#configuration) para obter detalhes sobre como configurar o log de ASP.NET Core.
+Como o Signalr faz parte do ASP.NET Core, ele usa o sistema de registro em log de ASP.NET Core. Na configuração padrão, o Signalr registra muito pouca informação, mas isso pode ser configurado. Consulte a documentação em [log de ASP.NET Core](xref:fundamentals/logging/index#configuration) para obter detalhes sobre como configurar o log de ASP.NET Core.
 
-SignalR usa duas categorias de agente:
+O signalr usa duas categorias de agente:
 
 * `Microsoft.AspNetCore.SignalR` &ndash; para logs relacionados a protocolos de Hub, ativação de hubs, invocação de métodos e outras atividades relacionadas ao Hub.
-* `Microsoft.AspNetCore.Http.Connections` &ndash; para logs relacionados aos transportes, como WebSockets, sondagem longa e eventos enviados pelo servidor e infraestrutura de SignalR de nível baixo.
+* `Microsoft.AspNetCore.Http.Connections` &ndash; para logs relacionados aos transportes, como WebSockets, sondagem longa e eventos enviados pelo servidor e infraestrutura de sinal de baixo nível.
 
-Para habilitar logs detalhados de SignalR, configure os dois prefixos anteriores para o nível de `Debug` no arquivo *appSettings. JSON* adicionando os seguintes itens à subseção `LogLevel` no `Logging`:
+Para habilitar logs detalhados do Signalr, configure os dois prefixos anteriores para o nível de `Debug` no arquivo *appSettings. JSON* adicionando os seguintes itens à subseção `LogLevel` no `Logging`:
 
 [!code-json[](diagnostics/logging-config.json?highlight=7-8)]
 
@@ -57,13 +57,13 @@ A maneira como você acessa os logs do lado do servidor depende do ambiente no q
 
 ### <a name="as-a-console-app-outside-iis"></a>Como um aplicativo de console fora do IIS
 
-Se você estiver executando o em um aplicativo de console, o [agente de log do console](xref:fundamentals/logging/index#console-provider) deverá ser habilitado por padrão. os logs de SignalR aparecerão no console do.
+Se você estiver executando o em um aplicativo de console, o [agente de log do console](xref:fundamentals/logging/index#console-provider) deverá ser habilitado por padrão. Os logs do signalr serão exibidos no console do.
 
 ### <a name="within-iis-express-from-visual-studio"></a>Dentro de IIS Express do Visual Studio
 
 O Visual Studio exibe a saída de log na janela **saída** . Selecione a opção de menu suspenso do **ASP.NET Core Web Server** .
 
-### <a name="azure-app-service"></a>Serviço de Aplicativo do Azure
+### <a name="azure-app-service"></a>Serviço de aplicativo do Azure
 
 Habilite a opção de **log do aplicativo (Filesystem)** na seção **logs de diagnóstico** do portal do serviço Azure app e configure o **nível** para `Verbose`. Os logs devem estar disponíveis no serviço de **streaming de log** e nos logs no sistema de arquivos do serviço de aplicativo. Para obter mais informações, consulte [Azure log streaming](xref:fundamentals/logging/index#azure-log-streaming).
 

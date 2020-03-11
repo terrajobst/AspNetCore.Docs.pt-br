@@ -8,11 +8,11 @@ ms.custom: mvc
 ms.date: 11/07/2019
 uid: host-and-deploy/visual-studio-publish-profiles
 ms.openlocfilehash: 274dd2cd528d3766aa07f69aac3470a131c79ffe
-ms.sourcegitcommit: 67116718dc33a7a01696d41af38590fdbb58e014
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/07/2019
-ms.locfileid: "73799346"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78659372"
 ---
 # <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>Perfis de publicação do Visual Studio (. pubxml) para implantação de aplicativo ASP.NET Core
 
@@ -28,7 +28,7 @@ O comando `dotnet new mvc` produz um arquivo de projeto contendo o seguinte nív
 </Project>
 ```
 
-O atributo `Sdk` do elemento `<Project>` anterior importa as [propriedades](/visualstudio/msbuild/msbuild-properties) e os [destinos](/visualstudio/msbuild/msbuild-targets) do MSBuild de *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.props* e *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets*, respectivamente. O local padrão para `$(MSBuildSDKsPath)` (com o Visual Studio 2019 Enterprise) é a pasta *%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Sdks*.
+O atributo `<Project>` do elemento `Sdk` anterior importa as [propriedades](/visualstudio/msbuild/msbuild-properties) e os [destinos](/visualstudio/msbuild/msbuild-targets) do MSBuild de *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.props* e *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets*, respectivamente. O local padrão para `$(MSBuildSDKsPath)` (com o Visual Studio 2019 Enterprise) é a pasta *%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Sdks*.
 
 `Microsoft.NET.Sdk.Web` (SDK da Web) depende de outros SDKs, incluindo `Microsoft.NET.Sdk` (SDK do .NET Core) e `Microsoft.NET.Sdk.Razor` ([SDK do Razor](xref:razor-pages/sdk)). As propriedades e os destinos do MSBuild associados a cada SDK dependente são importados. Os destinos de publicação importam o conjunto apropriado de destinos com base no método de publicação usado.
 
@@ -42,7 +42,7 @@ Quando o MSBuild ou o Visual Studio carrega um projeto, as seguintes ações de 
 
 Quando o projeto é carregado, os [itens de projeto do MSBuild](/visualstudio/msbuild/common-msbuild-project-items) (arquivos) são computados. O tipo de item determina como o arquivo é processado. Por padrão, os arquivos *.cs* são incluídos na lista de itens `Compile`. Os arquivos na lista de itens `Compile` são compilados.
 
-A lista de itens `Content` contém arquivos que são publicados juntamente com as saídas de build. Por padrão, os arquivos que correspondem aos padrões `wwwroot\**`, `**\*.config` e `**\*.json` são incluídos na lista de itens `Content`. Por exemplo, o [padrão de recurso de curinga](https://gruntjs.com/configuring-tasks#globbing-patterns) `wwwroot\**` corresponde a todos os arquivos na pasta *wwwroot* e suas subpastas.
+A lista de itens `Content` contém arquivos que são publicados juntamente com as saídas de build. Por padrão, os arquivos que correspondem aos padrões `wwwroot\**`, `**\*.config` e `**\*.json` são incluídos na lista de itens `Content`. Por exemplo, o [padrão de mascaramento](https://gruntjs.com/configuring-tasks#globbing-patterns) `wwwroot\**` corresponde a todos os arquivos na pasta *wwwroot* e suas subpastas.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -117,7 +117,7 @@ Por exemplo, o comando a seguir publica um build de `Release` para um compartilh
 dotnet publish -c Release /p:PublishDir=//r8/release/AdminWeb
 ```
 
-Confirme que o aplicativo publicado para implantação não está em execução. Os arquivos da pasta *publish* são bloqueados quando o aplicativo está em execução. A implantação não pode ocorrer porque arquivos bloqueados não podem ser copiados.
+Confirme se o aplicativo publicado para implantação não está em execução. Os arquivos da pasta *publish* são bloqueados quando o aplicativo está em execução. A implantação não pode ocorrer porque arquivos bloqueados não podem ser copiados.
 
 ## <a name="publish-profiles"></a>Perfis de publicação
 
@@ -125,15 +125,15 @@ Esta seção usa o Visual Studio 2019 ou posterior para criar um perfil de publi
 
 Crie um perfil de publicação no Visual Studio escolhendo um dos seguintes caminhos:
 
-* Clique com o botão direito do mouse no projeto no **Gerenciador de soluções** e selecione **publicar**.
+* No Visual Studio, clique com o botão direito do mouse no nome do projeto no **Gerenciador de Soluções** e selecione **Publicar**.
 * Selecione **Publicar {NOME DO PROJETO}** no menu **Build**.
 
 A guia **Publicar** da página de capacidades do aplicativo é exibida. Se o projeto não tiver um perfil de publicação, a página **Escolher um destino de publicação** é exibida. Você deverá selecionar um dos seguintes destinos de publicação:
 
-* Serviço de Aplicativo do Azure
+* Serviço de aplicativo do Azure
 * Serviço de Aplicativo do Azure no Linux
 * Máquinas Virtuais do Azure
-* Pasta
+* Folder
 * Implantação da Web, IIS, FTP (para qualquer servidor web)
 * Importar Perfil
 
@@ -307,7 +307,7 @@ msbuild {PATH}
 * {PERFIL} &ndash; Nome do perfil de publicação.
 * {NOME DE USUÁRIO} &ndash; Nome de usuário do MSDeploy. O {NOME DE USUÁRIO} pode ser encontrado no perfil de publicação.
 * {SENHA} &ndash; Senha do MSDeploy. Obtenha a {SENHA} do arquivo *{PERFIL}.PublishSettings*. Baixe o arquivo *.PublishSettings* de uma das seguintes opções:
-  * **Gerenciador de soluções**: selecione **Exibir**  > **Cloud Explorer**. Conecte-se à sua assinatura do Azure. Abra **Serviços de Aplicativos**. Clique com o botão direito do mouse no aplicativo. Selecione **Baixar Perfil de Publicação**.
+  * **Gerenciador de soluções**: selecione **Exibir** > **Cloud Explorer**. Conecte-se à sua assinatura do Azure. Abra **Serviços de Aplicativos**. Clique com o botão direito do mouse no aplicativo. Selecione **Baixar Perfil de Publicação**.
   * Portal do Azure: selecione **obter perfil de publicação** no painel **visão geral** do aplicativo Web.
 
 O exemplo a seguir usa um perfil de publicação denominado *AzureWebApp – Implantação da Web*:
@@ -503,7 +503,7 @@ Adicione a propriedade `<AllowUntrustedCertificate>` com um valor `True` ao perf
 
 Para exibir os arquivos em uma implantação de aplicativo Web do Serviço de Aplicativo do Azure, use o [serviço Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). Acrescente o token `scm` ao nome do aplicativo Web. Por exemplo:
 
-| URL                                    | Resultado       |
+| {1&gt;URL&lt;1}                                    | Resultado       |
 | -------------------------------------- | ------------ |
 | `http://mysite.azurewebsites.net/`     | Aplicativo Web      |
 | `http://mysite.scm.azurewebsites.net/` | Serviço Kudu |

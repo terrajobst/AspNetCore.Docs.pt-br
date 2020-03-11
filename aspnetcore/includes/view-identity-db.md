@@ -1,14 +1,14 @@
 ### <a name="view-the-identity-database"></a>Exibir o banco de dados de identidade
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio) 
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio) 
 
-* Dos **modo de exibição** menu, selecione **Pesquisador de objetos do SQL Server** (SSOX).
-* Navegue até **(localdb) MSSQLLocalDB (SQL Server 13)** . Clique duas vezes em **dbo. AspNetUsers** > **exibir dados**:
+* No menu **Exibir** , selecione **pesquisador de objetos do SQL Server** (SSOX).
+* Navegue até **(LocalDB) MSSQLLocalDB (SQL Server 13)** . Clique com o botão direito do mouse em **dbo. AspNetUsers** > **exibir dados**:
 
-![Menu contextual em tabela AspNetUsers no Pesquisador de objetos do SQL Server](~/security/authentication/accconfirm/_static/ssox.png)
+![Menu contextual na tabela AspNetUsers no Pesquisador de Objetos do SQL Server](~/security/authentication/accconfirm/_static/ssox.png)
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
-Há muitas ferramentas de terceiros, você pode baixar para gerenciar e exibir um banco de dados SQLite, por exemplo [navegador do BD do SQLite](https://sqlitebrowser.org/).
+Há muitas ferramentas de terceiros que você pode baixar para gerenciar e exibir um banco de dados SQLite, por exemplo, [navegador de BD para SQLite](https://sqlitebrowser.org/).
 
 ---

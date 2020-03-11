@@ -5,16 +5,16 @@ description: Saiba mais sobre a sintaxe de marcação Razor para inserir código
 ms.author: riande
 ms.date: 02/12/2020
 uid: mvc/views/razor
-ms.openlocfilehash: 0b1eed2816329d62fca4bdb5719825a4197af353
-ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
+ms.openlocfilehash: e9d2e42ba3c36bc1661739f3b105ec8efe03de48
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "77447172"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78658714"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>Referência da sintaxe Razor para ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Luke Latham](https://github.com/guardrex), [Taylor Mullen](https://twitter.com/ntaylormullen) e [Dan Vicarel](https://github.com/Rabadash8820)
+Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen)e [Dan Vicarel](https://github.com/Rabadash8820)
 
 Razor é uma sintaxe de marcação para inserir código baseado em servidor em páginas da Web. A sintaxe Razor é composta pela marcação Razor, por C# e por HTML. Arquivos que contêm Razor geralmente têm a extensão de arquivo *.cshtml*. O Razor também é encontrado em arquivos de [Componentes do Razor](xref:blazor/components) ( *.razor*).
 
@@ -389,7 +389,7 @@ O Razor tem a capacidade de proteger seções críticas com instruções de bloq
 }
 ```
 
-### <a name="comments"></a>Comentários
+### <a name="comments"></a>Comments
 
 O Razor dá suporte a comentários em C# e HTML:
 
@@ -652,7 +652,7 @@ Para o exemplo de Razor Pages mostrado na tabela a seguir:
 * *Pages/_ViewImports.cshtml* contém `@namespace Hello.World`.
 * Cada página tem `Hello.World` como a raiz do namespace.
 
-| Página                                        | Namespace                             |
+| {1&gt;Página&lt;1}                                        | {1&gt;Namespace&lt;1}                             |
 | ------------------------------------------- | ------------------------------------- |
 | *Pages/Index.cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
@@ -664,7 +664,7 @@ Quando vários arquivos de importação têm uma diretiva `@namespace`, o arquiv
 
 Se a pasta *EvenMorePages* no exemplo anterior tiver um arquivo de importações com `@namespace Another.Planet` (ou se o arquivo *Pages/MorePages/EvenMorePages/Page.cshtml* contiver `@namespace Another.Planet`), o resultado será mostrado na tabela a seguir.
 
-| Página                                        | Namespace               |
+| {1&gt;Página&lt;1}                                        | {1&gt;Namespace&lt;1}               |
 | ------------------------------------------- | ----------------------- |
 | *Pages/Index.cshtml*                        | `Hello.World`           |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
@@ -872,7 +872,7 @@ Saída renderizada:
 
 Há três diretivas que relacionadas aos [Auxiliares de marca](xref:mvc/views/tag-helpers/intro).
 
-| Diretiva | Função |
+| Directive | Função |
 | --------- | -------- |
 | [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#add-helper-label) | Disponibiliza os Auxiliares de marca para uma exibição. |
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Remove os Auxiliares de marca adicionados anteriormente de uma exibição. |
@@ -886,7 +886,7 @@ Há três diretivas que relacionadas aos [Auxiliares de marca](xref:mvc/views/ta
 * namespace
 * funções
 * herda
-* modelo
+* {1&gt;modelo&lt;1}
 * section
 * helper (atualmente sem suporte do ASP.NET Core)
 
@@ -896,24 +896,24 @@ Palavras-chave do Razor têm o escape feito com `@(Razor Keyword)` (por exemplo,
 
 * case
 * do
-* padrão
+* {1&gt;default&lt;1}
 * for
 * foreach
 * if
 * else
-* lock
+* bloqueio
 * switch
 * experimentar
 * catch
 * finally
-* Usando
+* usando
 * while
 
 Palavras-chave do Razor em C# precisam ter o escape duplo com `@(@C# Razor Keyword)` (por exemplo, `@(@case)`). O primeiro `@` faz o escape do analisador Razor. O segundo `@` faz o escape do analisador C#.
 
 ### <a name="reserved-keywords-not-used-by-razor"></a>Palavras-chave reservadas não usadas pelo Razor
 
-* class
+* {1&gt;classe&lt;1}
 
 ## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Inspecionar a classe do Razor C# gerada para uma exibição
 

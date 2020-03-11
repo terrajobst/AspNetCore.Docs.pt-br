@@ -5,23 +5,23 @@ description: Saiba como criar e usar componentes do Razor, incluindo como associ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 02/25/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: f9b4eab29fafe8113528062f57d28dadd0f57577
-ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
+ms.openlocfilehash: e444ebfef5143a6c33ed2d122933903ad3a4f4a7
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "77447094"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660695"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
 De [Luke Latham](https://github.com/guardrex) e [Daniel Roth](https://github.com/danroth27)
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 Blazor aplicativos são criados usando *componentes*. Um componente é uma parte independente da interface do usuário (IU), como uma página, uma caixa de diálogo ou um formulário. Um componente inclui marcação HTML e a lógica de processamento necessária para injetar dados ou responder a eventos da interface do usuário. Os componentes são flexíveis e leves. Eles podem ser aninhados, reutilizados e compartilhados entre projetos.
 
@@ -66,7 +66,21 @@ Para usar uma pasta personalizada, adicione o namespace da pasta personalizada a
 @using BlazorApp.Components
 ```
 
-## <a name="tag-helpers-arent-used-in-components"></a>Os auxiliares de marca não são usados em componentes
+## <a name="static-assets"></a>Ativos estáticos
+
+Blazor segue a Convenção de ASP.NET Core aplicativos que estão colocando ativos estáticos na [pasta raiz da Web do projeto (wwwroot)](xref:fundamentals/index#web-root).
+
+Use um caminho relativo de base (`/`) para se referir à raiz da Web para um ativo estático. No exemplo a seguir, *logo. png* está localizado fisicamente na pasta *{Project root}/wwwroot/images* :
+
+```razor
+<img alt="Company logo" src="/images/logo.png" />
+```
+
+Os componentes do Razor **não** dão suporte à notação de barra de til (`~/`).
+
+Para obter informações sobre como definir o caminho base de um aplicativo, consulte <xref:host-and-deploy/blazor/index#app-base-path>.
+
+## <a name="tag-helpers-arent-supported-in-components"></a>Não há suporte para auxiliares de marcas nos componentes
 
 Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) não têm suporte em componentes do Razor (arquivos *. Razor* ). Para fornecer a funcionalidade do tipo auxiliar da marca no Blazor, crie um componente com a mesma funcionalidade que o auxiliar de marca e use o componente em vez disso.
 
@@ -102,7 +116,7 @@ Quando um arquivo Razor com uma diretiva `@page` é compilado, a classe gerada r
 
 Para obter mais informações, consulte <xref:blazor/routing>.
 
-## <a name="parameters"></a>parâmetros
+## <a name="parameters"></a>Parâmetros
 
 ### <a name="route-parameters"></a>Parâmetros de rota
 
@@ -290,7 +304,7 @@ Quando o componente é renderizado, o campo `_loginDialog` é populado com a ins
 > [!IMPORTANT]
 > A variável `_loginDialog` é populada apenas depois que o componente é renderizado e sua saída inclui o elemento `MyLoginDialog`. Até esse ponto, não há nada a fazer referência. Para manipular referências de componentes após a conclusão da renderização do componente, use os [métodos OnAfterRenderAsync ou OnAfterRender](xref:blazor/lifecycle#after-component-render).
 
-Embora a captura de referências de componente use uma sintaxe semelhante à [captura de referências de elemento](xref:blazor/javascript-interop#capture-references-to-elements), ela não é um recurso de [interoperabilidade do JavaScript](xref:blazor/javascript-interop) . As referências de componente não são passadas para o código JavaScript&mdash;elas são usadas apenas no código .NET.
+Embora a captura de referências de componente use uma sintaxe semelhante à [captura de referências de elemento](xref:blazor/call-javascript-from-dotnet#capture-references-to-elements), ela não é um recurso de interoperabilidade do JavaScript. As referências de componente não são passadas para o código JavaScript&mdash;elas são usadas apenas no código .NET.
 
 > [!NOTE]
 > Não **use referências** de componente para converter o estado dos componentes filho. Em vez disso, use parâmetros declarativos normais para passar dados para componentes filho. O uso de parâmetros declarativos normais resulta em componentes filho que são reprocessados nos horários corretos automaticamente.

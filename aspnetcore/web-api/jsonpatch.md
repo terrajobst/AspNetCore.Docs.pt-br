@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/01/2019
 uid: web-api/jsonpatch
-ms.openlocfilehash: e57556e4b3fba55c6c187092593ffab4e31ee2d9
-ms.sourcegitcommit: eca76bd065eb94386165a0269f1e95092f23fa58
+ms.openlocfilehash: cf1a00c1928652bf5210b2442087209e23b8868e
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2020
-ms.locfileid: "76727109"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78661780"
 ---
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JsonPatch na API Web do ASP.NET Core
 
@@ -239,7 +239,7 @@ O seguinte exemplo de documento de patch não terá nenhum efeito se o valor ini
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([Como baixar](xref:index#how-to-download-a-sample).)
+[Exibir ou baixar o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([Como baixar](xref:index#how-to-download-a-sample).)
 
 Para testar o exemplo, execute o aplicativo e envie solicitações HTTP com as seguintes configurações:
 
@@ -451,7 +451,7 @@ O seguinte exemplo de documento de patch não terá nenhum efeito se o valor ini
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([Como baixar](xref:index#how-to-download-a-sample).)
+[Exibir ou baixar o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([Como baixar](xref:index#how-to-download-a-sample).)
 
 Para testar o exemplo, execute o aplicativo e envie solicitações HTTP com as seguintes configurações:
 

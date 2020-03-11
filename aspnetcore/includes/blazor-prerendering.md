@@ -3,11 +3,11 @@ no-loc:
 - Blazor
 - SignalR
 ms.openlocfilehash: 5f3e22e04fe18149ec5a8acb42f42a8ef83a7664
-ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2020
-ms.locfileid: "76159880"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78659715"
 ---
 Embora um aplicativo de servidor Blazor esteja sendo renderizado, determinadas ações, como a chamada para JavaScript, não são possíveis porque uma conexão com o navegador não foi estabelecida. Os componentes podem precisar ser renderizados de forma diferente quando renderizados.
 

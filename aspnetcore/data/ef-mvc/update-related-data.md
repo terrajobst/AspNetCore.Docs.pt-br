@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Atualizar dados relacionados - ASP.NET MVC com EF Core'
+title: 'Tutorial: atualizar dados relacionados-ASP.NET MVC com EF Core'
 description: Neste tutorial, você atualizará dados relacionados pela atualização dos campos de chave estrangeira e das propriedades de navegação.
 author: rick-anderson
 ms.author: riande
@@ -7,14 +7,14 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 98f9f780c5814c0bd6e33052ee812b01a2bce306
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: 83d662659fb4bc7a2867be563e4e36927d2adafe
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259354"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657139"
 ---
-# <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Atualizar dados relacionados - ASP.NET MVC com EF Core
+# <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: atualizar dados relacionados-ASP.NET MVC com EF Core
 
 No tutorial anterior, você exibiu dados relacionados; neste tutorial, você atualizará dados relacionados pela atualização dos campos de chave estrangeira e das propriedades de navegação.
 
@@ -33,7 +33,7 @@ Neste tutorial, você:
 > * Atualizar a página Excluir
 > * Adicionar o local do escritório e cursos à página Criar
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [Ler dados relacionados](read-related-data.md)
 
@@ -301,9 +301,9 @@ Conforme explicado no [tutorial do CRUD](crud.md), o Entity Framework implementa
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Baixe ou exiba o aplicativo concluído.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Neste tutorial, você:
 

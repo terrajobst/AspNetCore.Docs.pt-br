@@ -10,11 +10,11 @@ no-loc:
 - Blazor
 uid: tutorials/first-blazor-app
 ms.openlocfilehash: 8830dcf26b58b5f5fdd36b60298e7b365f99bdd9
-ms.sourcegitcommit: 925cdbd94613243f33bc7613a62ea34006219931
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/13/2020
-ms.locfileid: "75921286"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78655305"
 ---
 # <a name="build-your-first-opno-locblazor-app"></a>Crie seu primeiro aplicativo Blazor
 
@@ -44,7 +44,7 @@ Siga as orientações no artigo <xref:blazor/get-started> para criar um projeto 
 
    Quando o botão **Clique aqui** botão é selecionado:
 
-   * O manipulador `onclick` registrado do componente `Counter` é chamado (o método `IncrementCount`).
+   * O manipulador `Counter` registrado do componente `onclick` é chamado (o método `IncrementCount`).
    * O componente `Counter` regenera sua árvore de renderização.
    * A nova árvore de renderização é comparada à anterior.
    * Apenas as modificações ao DOM (Modelo de Objeto do Documento) são aplicadas. A contagem exibida é atualizada.
@@ -87,7 +87,7 @@ Componentes também podem ter parâmetros. Os parâmetros de componente são def
        > From Visual Studio, you can quickly add a component parameter by using the `para` snippet. Type `para` and press the `Tab` key twice.
    -->
 
-1. Especifique um parâmetro `IncrementAmount` no elemento `<Counter>` do componente `Index` usando um atributo. Defina o valor para incrementar o contador em 10.
+1. Especifique um parâmetro `IncrementAmount` no elemento `Index` do componente `<Counter>` usando um atributo. Defina o valor para incrementar o contador em 10.
 
    *Pages/Index.razor*:
 

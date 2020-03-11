@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/10/2020
 uid: fundamentals/configuration/index
-ms.openlocfilehash: d0ef670aa0ac4960318f86ea7888b9eab71f17fd
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: 3dcabae3f76d81e641057c346dbb9097c2da42c7
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77171893"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78656327"
 ---
 # <a name="configuration-in-aspnet-core"></a>Configuração no ASP.NET Core
 
@@ -41,7 +41,7 @@ using Microsoft.Extensions.Configuration;
 
 O *padrão de opções* é uma extensão dos conceitos de configuração descritos neste tópico. As opções usam classes para representar grupos de configurações relacionadas. Para obter mais informações, consulte <xref:fundamentals/configuration/options>.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="host-versus-app-configuration"></a>Configuração do host versus do aplicativo
 
@@ -162,7 +162,7 @@ public class HomeController : Controller
 
 Os provedores de configuração não podem utilizar a DI, pois ela não é disponibilizada quando eles são configurados pelo host.
 
-### <a name="keys"></a>simétricas
+### <a name="keys"></a>Keys
 
 As chaves de configuração adotam as convenções a seguir:
 
@@ -309,7 +309,7 @@ O aplicativo de exemplo aproveita o método de conveniência estático `CreateDe
 
 O valor deve vir após um sinal de igual (`=`), ou a chave deve ter um prefixo (`--` ou `/`) quando o valor vier após um espaço. O valor não é necessário se um sinal de igual é usado (por exemplo, `CommandLineKey=`).
 
-| Prefixo da chave               | Exemplo                                                |
+| Prefixo da chave               | {1&gt;Exemplo&lt;1}                                                |
 | ------------------------ | ------------------------------------------------------ |
 | Nenhum prefixo                | `CommandLineKey1=value1`                               |
 | Dois traços (`--`)        | `--CommandLineKey2=value2`, `--CommandLineKey2 value2` |
@@ -360,7 +360,7 @@ Para aplicativos que usam mapeamentos de opção, a chamada `CreateDefaultBuilde
 
 Depois que o dicionário de mapeamentos de comutador for criado, ele conterá os dados mostrados na tabela a seguir.
 
-| Chave       | Valor             |
+| Chave       | {1&gt;Valor&lt;1}             |
 | --------- | ----------------- |
 | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
@@ -373,7 +373,7 @@ dotnet run -CLKey1=value1 -CLKey2=value2
 
 Após a execução do comando anterior, a configuração conterá os valores mostrados na tabela a seguir.
 
-| Chave               | Valor    |
+| Chave               | {1&gt;Valor&lt;1}    |
 | ----------------- | -------- |
 | `CommandLineKey1` | `value1` |
 | `CommandLineKey2` | `value2` |
@@ -856,13 +856,13 @@ A seção `starship` do arquivo *starship.json* cria a configuração quando o a
 
 Os seguintes pares chave-valor de configuração são criados:
 
-| Chave                   | Valor                                             |
+| Chave                   | {1&gt;Valor&lt;1}                                             |
 | --------------------- | ------------------------------------------------- |
 | starship:name         | USS Enterprise                                    |
 | starship:registry     | NCC-1701                                          |
 | starship:class        | Constituição                                      |
 | starship:length       | 304,8                                             |
-| starship:commissioned | Falso                                             |
+| starship:commissioned | False                                             |
 | marca             | Paramount Pictures Corp. https://www.paramount.com |
 
 O aplicativo de exemplo chama `GetSection` com a chave `starship`. Os pares chave-valor `starship` são isolados. O método `Bind` é chamado na subseção passando uma instância da classe `Starship`. Depois de associar os valores de instância, a instância é atribuída a uma propriedade para renderização:
@@ -906,7 +906,7 @@ O <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> dá suport
 
 Considere as chaves de configuração e os valores mostrados na tabela a seguir.
 
-| Chave             | Valor  |
+| Chave             | {1&gt;Valor&lt;1}  |
 | :-------------: | :----: |
 | array:entries:0 | value0 |
 | array:entries:1 | value1 |
@@ -966,7 +966,7 @@ config.AddJsonFile(
 
 O par chave-valor mostrado na tabela é carregado na configuração.
 
-| Chave             | Valor  |
+| Chave             | {1&gt;Valor&lt;1}  |
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 
@@ -989,7 +989,7 @@ Se um arquivo JSON contiver uma matriz, as chaves de configuração serão criad
 
 O Provedor de Configuração JSON lê os dados de configuração para os seguintes pares chave-valor:
 
-| Chave                     | Valor  |
+| Chave                     | {1&gt;Valor&lt;1}  |
 | ----------------------- | :----: |
 | json_array:key          | valueA |
 | json_array:subsection:0 | valueB |
@@ -1155,7 +1155,7 @@ using Microsoft.Extensions.Configuration;
 
 O *padrão de opções* é uma extensão dos conceitos de configuração descritos neste tópico. As opções usam classes para representar grupos de configurações relacionadas. Para obter mais informações, consulte <xref:fundamentals/configuration/options>.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="host-versus-app-configuration"></a>Configuração do host versus do aplicativo
 
@@ -1271,7 +1271,7 @@ public class HomeController : Controller
 
 Os provedores de configuração não podem utilizar a DI, pois ela não é disponibilizada quando eles são configurados pelo host.
 
-### <a name="keys"></a>simétricas
+### <a name="keys"></a>Keys
 
 As chaves de configuração adotam as convenções a seguir:
 
@@ -1418,7 +1418,7 @@ O aplicativo de exemplo aproveita o método de conveniência estático `CreateDe
 
 O valor deve vir após um sinal de igual (`=`), ou a chave deve ter um prefixo (`--` ou `/`) quando o valor vier após um espaço. O valor não é necessário se um sinal de igual é usado (por exemplo, `CommandLineKey=`).
 
-| Prefixo da chave               | Exemplo                                                |
+| Prefixo da chave               | {1&gt;Exemplo&lt;1}                                                |
 | ------------------------ | ------------------------------------------------------ |
 | Nenhum prefixo                | `CommandLineKey1=value1`                               |
 | Dois traços (`--`)        | `--CommandLineKey2=value2`, `--CommandLineKey2 value2` |
@@ -1469,7 +1469,7 @@ Para aplicativos que usam mapeamentos de opção, a chamada `CreateDefaultBuilde
 
 Depois que o dicionário de mapeamentos de comutador for criado, ele conterá os dados mostrados na tabela a seguir.
 
-| Chave       | Valor             |
+| Chave       | {1&gt;Valor&lt;1}             |
 | --------- | ----------------- |
 | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
@@ -1482,7 +1482,7 @@ dotnet run -CLKey1=value1 -CLKey2=value2
 
 Após a execução do comando anterior, a configuração conterá os valores mostrados na tabela a seguir.
 
-| Chave               | Valor    |
+| Chave               | {1&gt;Valor&lt;1}    |
 | ----------------- | -------- |
 | `CommandLineKey1` | `value1` |
 | `CommandLineKey2` | `value2` |
@@ -1965,13 +1965,13 @@ A seção `starship` do arquivo *starship.json* cria a configuração quando o a
 
 Os seguintes pares chave-valor de configuração são criados:
 
-| Chave                   | Valor                                             |
+| Chave                   | {1&gt;Valor&lt;1}                                             |
 | --------------------- | ------------------------------------------------- |
 | starship:name         | USS Enterprise                                    |
 | starship:registry     | NCC-1701                                          |
 | starship:class        | Constituição                                      |
 | starship:length       | 304,8                                             |
-| starship:commissioned | Falso                                             |
+| starship:commissioned | False                                             |
 | marca             | Paramount Pictures Corp. https://www.paramount.com |
 
 O aplicativo de exemplo chama `GetSection` com a chave `starship`. Os pares chave-valor `starship` são isolados. O método `Bind` é chamado na subseção passando uma instância da classe `Starship`. Depois de associar os valores de instância, a instância é atribuída a uma propriedade para renderização:
@@ -2015,7 +2015,7 @@ O <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> dá suport
 
 Considere as chaves de configuração e os valores mostrados na tabela a seguir.
 
-| Chave             | Valor  |
+| Chave             | {1&gt;Valor&lt;1}  |
 | :-------------: | :----: |
 | array:entries:0 | value0 |
 | array:entries:1 | value1 |
@@ -2075,7 +2075,7 @@ config.AddJsonFile(
 
 O par chave-valor mostrado na tabela é carregado na configuração.
 
-| Chave             | Valor  |
+| Chave             | {1&gt;Valor&lt;1}  |
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 
@@ -2098,7 +2098,7 @@ Se um arquivo JSON contiver uma matriz, as chaves de configuração serão criad
 
 O Provedor de Configuração JSON lê os dados de configuração para os seguintes pares chave-valor:
 
-| Chave                     | Valor  |
+| Chave                     | {1&gt;Valor&lt;1}  |
 | ----------------------- | :----: |
 | json_array:key          | valueA |
 | json_array:subsection:0 | valueB |

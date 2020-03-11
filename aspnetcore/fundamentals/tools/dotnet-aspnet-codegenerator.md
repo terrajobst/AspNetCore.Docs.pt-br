@@ -7,11 +7,11 @@ ms.author: riande
 ms.date: 07/04/2019
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ms.openlocfilehash: 1043a578f66d5bb57f4a81e9fe21afa5e3c37cb8
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71081503"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78665182"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -46,7 +46,7 @@ dotnet aspnet-codegenerator [-h|--help]
 
 O comando global `dotnet aspnet-codegenerator` executa o mecanismo de scaffolding e o gerador de código do ASP.NET Core.
 
-## <a name="arguments"></a>Arguments
+## <a name="arguments"></a>Argumentos
 
 `generator`
 
@@ -54,13 +54,13 @@ O gerador de código para ser executado. Os geradores a seguir estão disponíve
 
 | Gerador | Operação |
 | ----------------- | ------------ | 
-| Rede      | [Faz scaffold de uma área](/aspnet/core/mvc/controllers/areas) |
+| área      | [Faz scaffold de uma área](/aspnet/core/mvc/controllers/areas) |
   controlador| [Faz scaffold de um controlador](/aspnet/core/tutorials/first-mvc-app/adding-model) |
   identidade  | [Faz scaffold de uma identidade](/aspnet/core/security/authentication/scaffold-identity) |
   razorpage | [Faz scaffold de Razor Pages](/aspnet/core/tutorials/razor-pages/model) |
-  Exibição      | [Faz scaffolds de um modo de exibição](/aspnet/core/mvc/views/overview) |
+  modo de exibição      | [Faz scaffolds de um modo de exibição](/aspnet/core/mvc/views/overview) |
 
-## <a name="options"></a>Opções
+## <a name="options"></a>{1&gt;Opções&lt;1}
 
 `-n|--nuget-package-dir`
 
@@ -72,7 +72,7 @@ Define a configuração da compilação. O valor padrão é `Debug`.
 
 `-tfm|--target-framework`
 
-O [Framework](/dotnet/standard/frameworks) destino para usar. Por exemplo: `net46`.
+O [Framework](/dotnet/standard/frameworks) destino para usar. Por exemplo, `net46`.
 
 `-b|--build-base-path`
 
@@ -96,7 +96,7 @@ As seções a seguir detalham as opções disponíveis para os geradores com sup
 
 * Área
 * Controlador
-* Identidade  
+* Identity  
 * Razorpage
 * Exibir
 
@@ -127,7 +127,7 @@ A tabela a seguir lista as opções para `aspnet-codegenerator` `controller` e `
 
 A tabela a seguir lista as opções exclusivas para `aspnet-codegenerator controller`:
 
-| Opção               | Descrição|
+| {1&gt;Opção&lt;1}               | Descrição|
 | ----------------- | ------------ |
 | --controllerName ou -name | O nome do controlador. |
 | --useAsyncActions ou -async | Gera ações do controlador assíncrono. |
@@ -176,7 +176,7 @@ A tabela a seguir lista as opções para `aspnet-codegenerator` `razorpage` e `c
 
 A tabela a seguir lista as opções exclusivas para `aspnet-codegenerator razorpage`:
 
-| Opção               | Descrição|
+| {1&gt;Opção&lt;1}               | Descrição|
 | ----------------- | ------------ |
 |   --namespaceName ou -namespace | O nome do namespace a ser usado no PageModel gerado |
 | --partialView ou -partial | Gere uma exibição parcial. As opções de layout -l e - udl são ignoradas, se isso for especificado. |
@@ -190,6 +190,6 @@ dotnet aspnet-codegenerator razorpage -h
 
 Confira [Fazer scaffold do modelo de filme](/aspnet/core/tutorials/razor-pages/model) para obter um exemplo de `dotnet aspnet-codegenerator razorpage`.
 
-### <a name="identity"></a>Identidade
+### <a name="identity"></a>Identity
 
 Confira [Identidade Scaffold](/aspnet/core/security/authentication/scaffold-identity)

@@ -7,11 +7,11 @@ ms.author: johluo
 ms.date: 09/25/2019
 uid: grpc/migration
 ms.openlocfilehash: 451171a041f7bbb3711babd73d2fa2e245aadd28
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75355135"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78664132"
 ---
 # <a name="migrating-grpc-services-from-c-core-to-aspnet-core"></a>Migrando serviços gRPCs do C-Core para ASP.NET Core
 
@@ -63,7 +63,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Para obter mais informações sobre a configuração, consulte <xref:grpc/configuration>.
 
-## <a name="logging"></a>Registrando em log
+## <a name="logging"></a>Registro em log
 
 Os aplicativos baseados em núcleo com base no `GrpcEnvironment` para [Configurar o agente](https://grpc.io/grpc/csharp/api/Grpc.Core.GrpcEnvironment.html?q=size#Grpc_Core_GrpcEnvironment_SetLogger_Grpc_Core_Logging_ILogger_) para fins de depuração. A pilha de ASP.NET Core fornece essa funcionalidade por meio da [API de log](xref:fundamentals/logging/index). Por exemplo, um agente de log pode ser adicionado ao serviço gRPC por meio de injeção de construtor:
 
@@ -98,7 +98,7 @@ diferenças de interceptador gRPC do middleware ASP.NET Core:
     * A mensagem desserializada enviada a uma chamada.
     * A mensagem que está sendo retornada da chamada antes de ser serializada.
   * Pode detectar e tratar exceções lançadas dos serviços gRPCs.
-* Middleware -
+* Middleware
   * É executado antes de interceptadores gRPC.
   * Opera nas mensagens HTTP/2 subjacentes.
   * Pode acessar somente os bytes dos fluxos de solicitação e resposta.

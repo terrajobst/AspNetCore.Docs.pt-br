@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/23/2020
 uid: security/authentication/social/index
-ms.openlocfilehash: 7d0f6647a6f5a4d41067b13acd3d294144027bb7
-ms.sourcegitcommit: eca76bd065eb94386165a0269f1e95092f23fa58
+ms.openlocfilehash: c698edbd85d665509366287b1dcad08e276e71cc
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/24/2020
-ms.locfileid: "76727325"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78668038"
 ---
 # <a name="facebook-google-and-external-provider-authentication-in-aspnet-core"></a>Autenticação de Facebook, Google e de provedor externo no ASP.NET Core
 
@@ -30,7 +30,7 @@ Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as 
 
 ## <a name="create-a-new-aspnet-core-project"></a>Criar um novo projeto ASP.NET Core
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Crie um novo projeto.
 * Selecione **Aplicativo Web ASP.NET Core** e **Próximo**.
@@ -39,7 +39,7 @@ Para obter exemplos de como os logons sociais podem impulsionar o tráfego e as 
 * Selecione **Autenticação** selecione **Mudar** e configure a autenticação para **Contas de Usuário Individuais**. Selecione **OK**.
 * Na janela **Criar novo aplicativo Web ASP.NET Core**, selecione **Criar**.
 
-# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Abra o terminal.  Para Visual Studio Code você pode abrir o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
@@ -111,7 +111,7 @@ Para criar uma senha e entrar usando seu email definido durante o processo de en
 
 ## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
-* Consulte [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/10563) para obter informações sobre como personalizar os botões de logon.
+* Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/10563) para obter informações sobre como personalizar os botões de logon.
 * Este artigo apresentou a autenticação externa e explicou os pré-requisitos necessários para adicionar logons externos ao aplicativo ASP.NET Core.
 * Páginas de referência específicas ao provedor para configurar logons para os provedores necessários para o aplicativo.
 * Você talvez queira manter os dados adicionais sobre o usuário e seus tokens de atualização e acesso. Para obter mais informações, consulte <xref:security/authentication/social/additional-claims>.

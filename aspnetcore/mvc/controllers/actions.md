@@ -6,11 +6,11 @@ ms.author: riande
 ms.date: 12/05/2019
 uid: mvc/controllers/actions
 ms.openlocfilehash: 715a73863513870d1cbd522e75013d41830da1e7
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74881102"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78662788"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Tratar solicitações com controladores no ASP.NET Core MVC
 
@@ -43,7 +43,7 @@ O controlador usa o resultado do processamento do modelo (se houver) e retorna a
 
 O controlador é uma abstração no *nível da interface do usuário*. Suas responsabilidades são garantir que os dados de solicitação sejam válidos e escolher qual exibição (ou resultado de uma API) deve ser retornada. Em aplicativos bem fatorados, ele não inclui diretamente o acesso a dados ou a lógica de negócios. Em vez disso, o controlador delega essas responsabilidades a serviços.
 
-## <a name="defining-actions"></a>Definindo ações
+## <a name="defining-actions"></a>Como definir ações
 
 Os métodos públicos em um controlador, exceto aqueles com o atributo `[NonAction]`, são ações. Parâmetros em ações são associados aos dados de solicitação e validados usando o [model binding](xref:mvc/models/model-binding). A validação de modelo ocorre em tudo o que é associado ao modelo. O valor da propriedade `ModelState.IsValid` indica se o model binding e a validação foram bem-sucedidas.
 
@@ -61,7 +61,7 @@ Nenhum cabeçalho de resposta HTTP `Content-Type` é incluído, pois o corpo da 
 
 Há dois tipos de resultado nessa categoria: Redirecionamento e Código de Status HTTP.
 
-* **Código de Status HTTP**
+* **Código de status HTTP**
 
     Esse tipo retorna um código de status HTTP. Alguns métodos auxiliares desse tipo são `BadRequest`, `NotFound` e `Ok`. Por exemplo, `return BadRequest();` produz um código de status 400 quando executado. Quando métodos como `BadRequest`, `NotFound` e `Ok` estão sobrecarregados, eles deixam de se qualificar como respondentes do Código de Status HTTP, pois a negociação de conteúdo está em andamento.
 

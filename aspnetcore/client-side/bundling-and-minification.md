@@ -1,5 +1,5 @@
 ---
-title: Empacotar e reduzir ativos estáticos no ASP.NET Core
+title: Empacotar e reduzirr ativos estáticos no ASP.NET Core
 author: scottaddie
 description: Saiba como otimizar recursos estáticos em um aplicativo Web ASP.NET Core aplicando técnicas de agrupamento e minificação.
 ms.author: scaddie
@@ -7,13 +7,13 @@ ms.custom: mvc
 ms.date: 06/17/2019
 uid: client-side/bundling-and-minification
 ms.openlocfilehash: a7a5c40d6c31c4416212c02c1b491dd794f2a1d3
-ms.sourcegitcommit: b3e1e31e5d8bdd94096cf27444594d4a7b065525
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74803273"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78658266"
 ---
-# <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Empacotar e reduzir ativos estáticos no ASP.NET Core
+# <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Empacotar e reduzirr ativos estáticos no ASP.NET Core
 
 Por [Scott Addie](https://twitter.com/Scott_Addie) e [David Pinheiro](https://twitter.com/davidpine7)
 
@@ -53,7 +53,7 @@ Original | Renomeado
 
 A tabela a seguir descreve as diferenças entre os ativos de carregamento individualmente e o uso de agrupamento e minificação:
 
-Action | Com B/M | Sem B/M | Alteração
+Ação | Com B/M | Sem B/M | Alterar
 --- | :---: | :---: | :---:
 Solicitações de arquivo  | 7   | 18     | 157%
 KB transferidos | 156 | 264.68 | 70%
@@ -103,7 +103,7 @@ O pacote NuGet [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundle
 > [!NOTE]
 > O BuildBundlerMinifier pertence a um projeto controlado pela Comunidade no GitHub para o qual a Microsoft não oferece nenhum suporte. Os problemas devem ser arquivados [aqui](https://github.com/madskristensen/BundlerMinifier/issues).
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 Adicione o pacote *BuildBundlerMinifier* ao seu projeto.
 
@@ -130,7 +130,7 @@ Limpe o projeto. O seguinte aparece na janela de saída:
 ========== Clean: 1 succeeded, 0 failed, 0 skipped ==========
 ```
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 Adicione o pacote *BuildBundlerMinifier* ao seu projeto:
 
@@ -218,7 +218,7 @@ Para reduzir *Custom. css* e agrupá-lo com *site. css* em um arquivo *site. min
 >
 > Esse padrão de mascaramento corresponde a todos os arquivos CSS e exclui o padrão de arquivo reduzidos.
 
-Compile o aplicativo. Abra *site. min. css* e observe que o conteúdo de *Custom. css* é acrescentado ao final do arquivo.
+Construa o aplicativo. Abra *site. min. css* e observe que o conteúdo de *Custom. css* é acrescentado ao final do arquivo.
 
 ## <a name="environment-based-bundling-and-minification"></a>Agrupamento baseado em ambiente e minificação
 

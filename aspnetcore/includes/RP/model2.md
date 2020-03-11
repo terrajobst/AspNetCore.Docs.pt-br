@@ -24,7 +24,7 @@ Adicione uma cadeia de conexão ao arquivo *appsettings.json*, conforme mostrado
 
 <a name="reg"></a>
 
-### <a name="register-the-database-context"></a>Registrar o contexto do banco de dados
+### <a name="register-the-database-context"></a>Registrar o contexto de banco de dados
 
 Adicione os demonstrativos do `using` a seguir à parte superior do *Startup.cs*:
 
@@ -57,7 +57,7 @@ O pacote `Microsoft.VisualStudio.Web.CodeGeneration.Design` é necessário para 
 
 <a name="reg"></a>
 
-### <a name="register-the-database-context"></a>Registrar o contexto do banco de dados
+### <a name="register-the-database-context"></a>Registrar o contexto de banco de dados
 
 Adicione os demonstrativos do `using` a seguir à parte superior do *Startup.cs*:
 

@@ -7,12 +7,12 @@ ms.author: stevesa
 ms.custom: mvc
 ms.date: 02/06/2020
 uid: spa/angular
-ms.openlocfilehash: 11ad5d4c7cadcc582b3e288a331569f62f0b98ac
-ms.sourcegitcommit: bd896935e91236e03241f75e6534ad6debcecbbf
+ms.openlocfilehash: fee872ff237e14cbe491efed9b320809df4c5654
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/06/2020
-ms.locfileid: "77044857"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657629"
 ---
 # <a name="use-the-angular-project-template-with-aspnet-core"></a>Usar o modelo de projeto Angular com o ASP.NET Core
 
@@ -33,13 +33,13 @@ cd my-new-app
 
 Execute o aplicativo do Visual Studio ou da CLI do .NET Core:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio/)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
 
 Abra o arquivo *.csproj* gerado e execute o aplicativo normalmente de lá.
 
 O processo de build restaura dependências npm na primeira execução, o que pode levar vários minutos. Builds subsequentes são muito mais rápidos.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
 Verifique se você tem uma variável de ambiente chamada `ASPNETCORE_Environment` com um valor de `Development`. No Windows (em prompts que não são do PowerShell), execute `SET ASPNETCORE_Environment=Development`. No Linux ou macOS, execute `export ASPNETCORE_Environment=Development`.
 
@@ -53,7 +53,8 @@ Now listening on: http://localhost:<port>
 
 Navegue até essa URL em um navegador.
 
-O aplicativo inicia uma instância do servidor da CLI do Angular em segundo plano. Uma mensagem semelhante à seguinte será registrada: *O NG Live Development Server está escutando em localhost:&lt;otherport&gt;, abra seu navegador em http://localhost:&lt;otherport&gt;/* . Ignore essa mensagem&mdash;**não** se trata da URL para o aplicativo combinado do ASP.NET Core e da CLI do Angular.
+> [!WARNING]
+> O aplicativo inicia uma instância do servidor da CLI do Angular em segundo plano. Uma mensagem semelhante à seguinte é registrada: *ng Live Development Server está escutando no localhost:&lt;otherport&gt;, abra um navegador para http://localhost:&lt; otherport&gt;/* . Ignore essa mensagem&mdash;**não** se trata da URL para o aplicativo combinado do ASP.NET Core e da CLI do Angular.
 
 ---
 

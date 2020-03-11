@@ -6,18 +6,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/07/2020
 uid: getting-started
-ms.openlocfilehash: 4f7e67e1e422afe3f7e2970e0c40380f065390ac
-ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
+ms.openlocfilehash: 047fd7a74d3d53f68a730d67b63c65fe6bda529f
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "76928326"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78658462"
 ---
 # <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: introdução ao ASP.NET Core
 
-Este tutorial mostra como usar o CLI do .NET Core para criar e executar um aplicativo Web ASP.NET Core.
+Este tutorial mostra como criar e executar um aplicativo Web ASP.NET Core usando o CLI do .NET Core.
 
-Você aprenderá como:
+Você aprenderá a:
 
 > [!div class="checklist"]
 > * Criar um projeto de aplicativo Web.
@@ -33,7 +33,7 @@ No final, você terá um aplicativo Web de trabalho em execução no seu computa
 
 [!INCLUDE[](~/includes/3.1-SDK.md)]
 
-## <a name="create-a-web-app-project"></a>Criar um projeto de aplicativo Web
+## <a name="create-a-web-app-project"></a>Criar um projeto do aplicativo Web
 
 Abra um shell de comando e insira o seguinte comando:
 
@@ -50,7 +50,7 @@ O comando anterior:
 
 Confie no certificado de desenvolvimento HTTPS:
 
-# <a name="windowstabwindows"></a>[Windows](#tab/windows)
+# <a name="windows"></a>[Windows](#tab/windows)
 
 ```dotnetcli
 dotnet dev-certs https --trust
@@ -62,7 +62,7 @@ O comando anterior exibe a caixa de diálogo a seguir:
 
 Selecione **Sim** se você concordar com confiar no certificado de desenvolvimento.
 
-# <a name="macostabmacos"></a>[macOS](#tab/macos)
+# <a name="macos"></a>[macOS](#tab/macos)
 
 ```dotnetcli
 dotnet dev-certs https --trust
@@ -74,7 +74,7 @@ O comando anterior exibe a mensagem a seguir:
 
 Esse comando pode solicitar que você insira sua senha para instalar o certificado no conjunto de chaves do sistema. Insira sua senha se você concordar em confiar no certificado de desenvolvimento.
 
-# <a name="linuxtablinux"></a>[Linux](#tab/linux)
+# <a name="linux"></a>[Linux](#tab/linux)
 
 Consulte a documentação para sua distribuição do Linux sobre como confiar no certificado de desenvolvimento HTTPS.
 
@@ -103,7 +103,7 @@ Navegue até [https://localhost:5001](https://localhost:5001), atualize a págin
 
 ## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
-Neste tutorial, você aprendeu como:
+Neste tutorial, você aprendeu a:
 
 > [!div class="checklist"]
 > * Criar um projeto de aplicativo Web.

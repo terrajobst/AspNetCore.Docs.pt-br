@@ -1,22 +1,22 @@
 ---
 title: Hospedar o ASP.NET Core em um web farm
-author: guardrex
+author: rick-anderson
 description: Saiba como hospedar várias instâncias de um aplicativo ASP.NET Core com recursos compartilhados em um ambiente de web farm.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 uid: host-and-deploy/web-farm
-ms.openlocfilehash: 5c13e9bc4c514f9b42871d55a430265c8ec2da23
-ms.sourcegitcommit: 2388c2a7334ce66b6be3ffbab06dd7923df18f60
+ms.openlocfilehash: 316c87e5f49593c05991a94cbe5e55d175a49bb3
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/14/2020
-ms.locfileid: "75951826"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78659365"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Hospedar o ASP.NET Core em um web farm
 
-Por [Luke Latham](https://github.com/guardrex) e [Chris Ross](https://github.com/Tratcher)
+Por [Chris Ross](https://github.com/Tratcher)
 
 Um *web farm* é um grupo de dois ou mais servidores web (ou *nós*) que hospedam várias instâncias de um aplicativo. Quando as solicitações de usuários chegam a um web farm, um *balanceador de carga* distribui as solicitações para os nós de farm da web. Os web farms melhoram:
 
@@ -46,7 +46,7 @@ Quando um aplicativo é dimensionado para várias instâncias, pode haver um est
 
 O serviço de cache e a proteção de dados exigem uma configuração para aplicativos implantados em um web farm.
 
-### <a name="data-protection"></a>Proteção de Dados
+### <a name="data-protection"></a>Proteção de dados
 
 O [sistema de proteção de dados do ASP.NET Core](xref:security/data-protection/introduction) é usado por aplicativos para proteger os dados. A proteção de dados baseia-se em um conjunto de chaves de criptografia armazenados em um *token de autenticação*. Quando o sistema de Proteção de dados é inicializado, ele aplica [as configurações padrão](xref:security/data-protection/configuration/default-settings) que armazenam localmente o token de autenticação. Sob a configuração padrão, um token de autenticação exclusivo é armazenado em cada nó do web farm. Consequentemente, cada nó do web farm não pode descriptografar os dados criptografados por um aplicativo em qualquer outro nó. A configuração padrão normalmente não é adequada para hospedagem de aplicativos em um web farm. Uma alternativa à implementação de um token de autenticação compartilhado é sempre rotear as solicitações do usuário para o mesmo nó. Para saber mais sobre a configuração do sistema de Proteção de dados para implantações de web farm, confira <xref:security/data-protection/configuration/overview>.
 
@@ -62,8 +62,8 @@ Os cenários a seguir não exigem configuração adicional, mas dependem de tecn
 | -------- | ------------------- |
 | Autenticação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/authentication/cookie> e <xref:security/cookie-sharing>. |
 | Identity | Configuração e autenticação do banco de dados.<br><br>Para obter mais informações, consulte <xref:security/authentication/identity>. |
-| Sessão | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) e cache (confira <xref:performance/caching/distributed>).<br><br>Para saber mais, confira [Estado de sessão e aplicativo: estado de sessão](xref:fundamentals/app-state#session-state). |
-| TempData | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) ou sessão (confira [Estado de sessão e aplicativo: estado de sessão](xref:fundamentals/app-state#session-state)).<br><br>Para saber mais, consulte [Estado de sessão e aplicativo: TempData](xref:fundamentals/app-state#tempdata). |
+| Session | Proteção de dados (cookies criptografados) (confira <xref:security/data-protection/configuration/overview>) e cache (confira <xref:performance/caching/distributed>).<br><br>Para obter mais informações, consulte [Gerenciamento de sessão e estado: estado da sessão](xref:fundamentals/app-state#session-state). |
+| TempData | Proteção de dados (cookies criptografados) (consulte <xref:security/data-protection/configuration/overview>) ou sessão (consulte [Gerenciamento de sessão e estado: estado de sessão](xref:fundamentals/app-state#session-state)).<br><br>Para obter mais informações, consulte [Gerenciamento de sessão e estado: TempData](xref:fundamentals/app-state#tempdata). |
 | Antifalsificação | Proteção de dados (confira <xref:security/data-protection/configuration/overview>).<br><br>Para obter mais informações, consulte <xref:security/anti-request-forgery>. |
 
 ## <a name="troubleshoot"></a>Solução de problemas
@@ -93,3 +93,4 @@ Se os aplicativos do web farm forem capazes de responder às solicitações, obt
 
 * A [extensão de script personalizado para o Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; baixa e executa scripts em máquinas virtuais do Azure, o que é útil para configuração de pós-implantação e instalação de software.
 * <xref:host-and-deploy/proxy-load-balancer>
+ 

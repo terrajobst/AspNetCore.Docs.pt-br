@@ -1,15 +1,15 @@
 Execute o scaffolder de identidade:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Partir **Gerenciador de soluções**, clique com botão direito no projeto > **Add** > **New Scaffolded Item**.
-* No painel à esquerda do **adicionar Scaffold** caixa de diálogo, selecione **identidade** > **adicionar**.
+* Em **Gerenciador de soluções**, clique com o botão direito do mouse no projeto > **Adicionar** > **novo item com Scaffold**.
+* No painel esquerdo da caixa de diálogo **Adicionar Scaffold** , selecione **identidade** > **Adicionar**.
 * Na caixa de diálogo **Adicionar identidade** , selecione as opções desejadas.
   * Selecione a página de layout existente ou o arquivo de layout será substituído por marcação incorreta. Por exemplo `~/Pages/Shared/_Layout.cshtml` para Razor Pages `~/Views/Shared/_Layout.cshtml` para projetos MVC
-  * Selecione o **+** botão para criar um novo **classe de contexto de dados**.
-* Selecione **adicionar**.
+  * Selecione o botão **+** para criar uma nova **classe de contexto de dados**.
+* Selecione **Adicionar**.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 Se você já não tiver instalado o scaffolder de ASP.NET Core, instale-o agora:
 

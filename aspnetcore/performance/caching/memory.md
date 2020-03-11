@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2020
 uid: performance/caching/memory
-ms.openlocfilehash: 23acc17c861c203a87b1c113940e7bf42b51e810
-ms.sourcegitcommit: 990a4c2e623c202a27f60bdf3902f250359c13be
+ms.openlocfilehash: e01e4a139893297a71aabb1af11b25cf0deb85a9
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/03/2020
-ms.locfileid: "76972011"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78663033"
 ---
 # <a name="cache-in-memory-in-aspnet-core"></a>Cache na memória no ASP.NET Core
 
@@ -19,13 +19,13 @@ ms.locfileid: "76972011"
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.com/JunTaoLuo)e [Steve Smith](https://ardalis.com/)
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/memory/3.0sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/memory/3.0sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="caching-basics"></a>Noções básicas de cache
 
 O cache pode melhorar significativamente o desempenho e a escalabilidade de um aplicativo, reduzindo o trabalho necessário para gerar o conteúdo. O Caching funciona melhor com dados que são alterados com pouca frequência **e** é caro de gerar. O Caching faz uma cópia dos dados que podem ser retornados muito mais rápido do que a partir da origem. Os aplicativos devem ser escritos e testados para **nunca** depender de dados armazenados em cache.
 
-O ASP.NET Core dá suporte a vários caches diferentes. O cache mais simples é baseado no [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache). `IMemoryCache` representa um cache armazenado na memória do servidor Web. Os aplicativos em execução em um farm de servidores (vários servidores) devem garantir que as sessões sejam adesivas ao usar o cache na memória. Sessões aderentes garantem que todas as solicitações subsequentes de um cliente vão para o mesmo servidor. Por exemplo, uso de aplicativos da Web do Azure [Application Request Routing](https://www.iis.net/learn/extensions/planning-for-arr) (ARR) para rotear todas as solicitações subsequentes para o mesmo servidor.
+O ASP.NET Core dá suporte a vários caches diferentes. O cache mais simples é baseado no [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache). `IMemoryCache` representa um cache armazenado na memória do servidor Web. Os aplicativos em execução em um farm de servidores (vários servidores) devem garantir que as sessões sejam adesivas ao usar o cache na memória. Sessões aderentes garantem que todas as solicitações subsequentes de um cliente vão para o mesmo servidor. Por exemplo, os aplicativos Web do Azure usam [Application Request Routing](https://www.iis.net/learn/extensions/planning-for-arr) (ARR) para rotear todas as solicitações subsequentes para o mesmo servidor.
 
 As sessões não adesivas em um web farm exigem um [cache distribuído](distributed.md) para evitar problemas de consistência do cache. Para alguns aplicativos, um cache distribuído pode dar suporte a escalabilidade horizontal maior que um cache na memória. O uso de um cache distribuído descarrega a memória de cache para um processo externo.
 
@@ -37,7 +37,7 @@ O cache na memória pode armazenar qualquer objeto. A interface de cache distrib
 
 * .NET Standard 2,0 ou posterior.
 * Qualquer [implementação .net](/dotnet/standard/net-standard#net-implementation-support) que tenha como destino .net Standard 2,0 ou posterior. Por exemplo, ASP.NET Core 2,0 ou posterior.
-* .NET Framework 4,5 ou posterior.
+* .NET Framework 4.5 ou posterior.
 
 [Microsoft. Extensions. Caching. Memory](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/)/`IMemoryCache` (descrito neste artigo) é recomendado sobre `System.Runtime.Caching`/`MemoryCache` porque ele é mais integrado ao ASP.NET Core. Por exemplo, `IMemoryCache` funciona nativamente com ASP.NET Core [injeção de dependência](xref:fundamentals/dependency-injection).
 
@@ -74,11 +74,11 @@ A hora atual e a hora em cache são exibidas:
 
 O valor de `DateTime` em cache permanece no cache enquanto houver solicitações dentro do período de tempo limite.
 
-O código a seguir usa [GetOrCreate](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.getorcreate#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreate__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry___0__) e [GetOrCreateAsync](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.getorcreateasync#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreateAsync__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry_System_Threading_Tasks_Task___0___) para fazer o cache dos dados.
+O código a seguir usa [GetOrCreate](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.getorcreate#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreate__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry___0__) e [GetOrCreateAsync](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.getorcreateasync#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreateAsync__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry_System_Threading_Tasks_Task___0___) para armazenar dados em cache.
 
 [!code-csharp[](memory/3.0sample/WebCacheSample/Controllers/HomeController.cs?name=snippet2&highlight=3-7,14-19)]
 
-O código a seguir chama o método [Get](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.get#Microsoft_Extensions_Caching_Memory_CacheExtensions_Get__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_) para buscar a hora em cache:
+O código a seguir chama [Get](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.get#Microsoft_Extensions_Caching_Memory_CacheExtensions_Get__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_) para buscar o tempo em cache:
 
 [!code-csharp[](memory/3.0sample/WebCacheSample/Controllers/HomeController.cs?name=snippet_gct)]
 
@@ -196,13 +196,13 @@ O uso de um <xref:System.Threading.CancellationTokenSource> permite que várias 
 <!-- This is the 2.1 version -->
 Por [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.com/JunTaoLuo)e [Steve Smith](https://ardalis.com/)
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/memory/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/memory/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="caching-basics"></a>Noções básicas de cache
 
 O cache pode melhorar significativamente o desempenho e a escalabilidade de um aplicativo, reduzindo o trabalho necessário para gerar o conteúdo. O armazenamento em cache funciona melhor com dados que raramente são alterados. O cache faz uma cópia dos dados que pode ser retornada muito mais rapidamente do que a partir da origem. O código deve ser escrito e testado para **nunca** depender de dados armazenados em cache.
 
-O ASP.NET Core dá suporte a vários caches diferentes. O cache mais simples se baseia o [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache), que representa um cache armazenado na memória do servidor web. Os aplicativos que são executados em um farm de servidores (vários servidores) devem garantir que as sessões sejam adesivas ao usar o cache na memória. As sessões adesivas garantem que todas as solicitações posteriores de um cliente passem para o mesmo servidor. Por exemplo, os aplicativos Web do Azure usam [Application Request Routing](https://www.iis.net/learn/extensions/planning-for-arr) (ARR) para rotear todas as solicitações de um agente do usuário para o mesmo servidor.
+O ASP.NET Core dá suporte a vários caches diferentes. O cache mais simples é baseado no [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache), que representa um cache armazenado na memória do servidor Web. Os aplicativos que são executados em um farm de servidores (vários servidores) devem garantir que as sessões sejam adesivas ao usar o cache na memória. As sessões adesivas garantem que todas as solicitações posteriores de um cliente passem para o mesmo servidor. Por exemplo, os aplicativos Web do Azure usam [Application Request Routing](https://www.iis.net/learn/extensions/planning-for-arr) (ARR) para rotear todas as solicitações de um agente do usuário para o mesmo servidor.
 
 As sessões não adesivas em um web farm exigem um [cache distribuído](distributed.md) para evitar problemas de consistência do cache. Para alguns aplicativos, um cache distribuído pode dar suporte a escalabilidade horizontal maior que um cache na memória. O uso de um cache distribuído descarrega a memória de cache para um processo externo.
 
@@ -214,7 +214,7 @@ O cache na memória pode armazenar qualquer objeto. A interface de cache distrib
 
 * .NET Standard 2,0 ou posterior.
 * Qualquer [implementação .net](/dotnet/standard/net-standard#net-implementation-support) que tenha como destino .net Standard 2,0 ou posterior. Por exemplo, ASP.NET Core 2,0 ou posterior.
-* .NET Framework 4,5 ou posterior.
+* .NET Framework 4.5 ou posterior.
 
 [Microsoft. Extensions. Caching. Memory](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/)/`IMemoryCache` (descrito neste artigo) é recomendado sobre `System.Runtime.Caching`/`MemoryCache` porque ele é mais integrado ao ASP.NET Core. Por exemplo, `IMemoryCache` funciona nativamente com ASP.NET Core [injeção de dependência](xref:fundamentals/dependency-injection).
 
@@ -258,11 +258,11 @@ O valor de `DateTime` em cache permanece no cache enquanto houver solicitações
 
 ![Exibição de índice com duas horas diferentes exibidas](memory/_static/time.png)
 
-O código a seguir usa [GetOrCreate](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.getorcreate#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreate__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry___0__) e [GetOrCreateAsync](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.getorcreateasync#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreateAsync__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry_System_Threading_Tasks_Task___0___) para fazer o cache dos dados.
+O código a seguir usa [GetOrCreate](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.getorcreate#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreate__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry___0__) e [GetOrCreateAsync](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.getorcreateasync#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreateAsync__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry_System_Threading_Tasks_Task___0___) para armazenar dados em cache.
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet2&highlight=3-7,14-19)]
 
-O código a seguir chama o método [Get](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.get#Microsoft_Extensions_Caching_Memory_CacheExtensions_Get__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_) para buscar a hora em cache:
+O código a seguir chama [Get](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.get#Microsoft_Extensions_Caching_Memory_CacheExtensions_Get__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_) para buscar o tempo em cache:
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_gct)]
 

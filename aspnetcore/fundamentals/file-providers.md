@@ -1,22 +1,22 @@
 ---
 title: Provedores de arquivos no ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Saiba como o ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de provedores de arquivos.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2019
 uid: fundamentals/file-providers
-ms.openlocfilehash: a454ca394546184968222ca2ca44d7159b19a12a
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: 34a48bbcf9ffb20bb61f89c80adedc1cc4783988
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74944302"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78658784"
 ---
 # <a name="file-providers-in-aspnet-core"></a>Provedores de arquivos no ASP.NET Core
 
-Por [Steve Smith](https://ardalis.com/) e [Luke Latham](https://github.com/guardrex)
+Por [Steve Smith](https://ardalis.com/)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -27,7 +27,7 @@ O ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de proved
 * [Razor](xref:mvc/views/razor) usa provedores de arquivos para localizar páginas e modos de exibição.
 * As ferramentas do .NET Core usam provedores de arquivos e padrões glob para especificar quais arquivos devem ser publicados.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="file-provider-interfaces"></a>Interfaces de provedor de arquivo
 
@@ -132,8 +132,8 @@ No aplicativo de amostra, um `PhysicalFileProvider` e um `ManifestEmbeddedFilePr
 
 O método [IFileProvider.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*) proporciona um cenário para monitorar um ou mais arquivos ou diretórios quanto a alterações. `Watch` aceita uma cadeia de caracteres de caminho, que pode usar [padrões glob](#glob-patterns) para especificar vários arquivos. `Watch` retorna um <xref:Microsoft.Extensions.Primitives.IChangeToken>. O token de alteração expõe:
 
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged> &ndash; Uma propriedade que pode ser inspecionada para determinar se uma alteração ocorreu.
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*> &ndash; Chamada quando são detectadas alterações na cadeia de caracteres do caminho especificado. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged> &ndash; uma propriedade que pode ser inspecionada para determinar se ocorreu uma alteração.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*> &ndash; chamado quando são detectadas alterações na cadeia de caracteres do caminho especificado. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
 
 No aplicativo de amostra, o aplicativo de console *WatchConsole* é configurado para exibir uma mensagem sempre que um arquivo de texto é modificado:
 
@@ -176,7 +176,7 @@ O ASP.NET Core abstrai o acesso ao sistema de arquivos por meio do uso de proved
 * [Razor](xref:mvc/views/razor) usa provedores de arquivos para localizar páginas e modos de exibição.
 * As ferramentas do .NET Core usam provedores de arquivos e padrões glob para especificar quais arquivos devem ser publicados.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="file-provider-interfaces"></a>Interfaces de provedor de arquivo
 
@@ -279,8 +279,8 @@ No aplicativo de amostra, um `PhysicalFileProvider` e um `ManifestEmbeddedFilePr
 
 O método [IFileProvider.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*) proporciona um cenário para monitorar um ou mais arquivos ou diretórios quanto a alterações. `Watch` aceita uma cadeia de caracteres de caminho, que pode usar [padrões glob](#glob-patterns) para especificar vários arquivos. `Watch` retorna um <xref:Microsoft.Extensions.Primitives.IChangeToken>. O token de alteração expõe:
 
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged> &ndash; Uma propriedade que pode ser inspecionada para determinar se uma alteração ocorreu.
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*> &ndash; Chamada quando são detectadas alterações na cadeia de caracteres do caminho especificado. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged> &ndash; uma propriedade que pode ser inspecionada para determinar se ocorreu uma alteração.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*> &ndash; chamado quando são detectadas alterações na cadeia de caracteres do caminho especificado. Cada token de alteração chama apenas seu retorno de chamada associado em resposta a uma única alteração. Para permitir o monitoramento constante, use um <xref:System.Threading.Tasks.TaskCompletionSource`1> (mostrado abaixo) ou recrie instâncias de `IChangeToken` em resposta a alterações.
 
 No aplicativo de amostra, o aplicativo de console *WatchConsole* é configurado para exibir uma mensagem sempre que um arquivo de texto é modificado:
 

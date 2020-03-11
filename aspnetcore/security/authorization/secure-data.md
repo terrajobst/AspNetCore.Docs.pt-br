@@ -6,12 +6,12 @@ ms.author: riande
 ms.date: 12/18/2018
 ms.custom: mvc, seodec18
 uid: security/authorization/secure-data
-ms.openlocfilehash: 65c72d4dd457f85451796c5713bedebafec7a7de
-ms.sourcegitcommit: 8157e5a351f49aeef3769f7d38b787b4386aad5f
+ms.openlocfilehash: 7710a8965771db02e601dafb7da752906bcd43e5
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/20/2019
-ms.locfileid: "74239829"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78659575"
 ---
 # <a name="create-an-aspnet-core-app-with-user-data-protected-by-authorization"></a>Criar um aplicativo ASP.NET Core com os dados de usuário protegidos por autorização
 
@@ -19,7 +19,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Joe Audette](https://twi
 
 ::: moniker range="<= aspnetcore-1.1"
 
-Consulte [este PDF](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) para a versão ASP.NET Core MVC. A versão ASP.NET Core 1,1 deste tutorial está [nesta pasta.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data) O exemplo de ASP.NET Core de 1,1 está nos [exemplos](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
+Consulte [este PDF](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) para a versão ASP.NET Core MVC. A versão ASP.NET Core 1,1 deste tutorial está [nesta pasta.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data) O exemplo de ASP.NET Core de 1,1 está nos [exemplos](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
 
 ::: moniker-end
 
@@ -69,7 +69,7 @@ O exemplo contém os seguintes manipuladores de autorização:
 * `ContactManagerAuthorizationHandler`: permite que os gerentes aprovem ou rejeitem contatos.
 * `ContactAdministratorsAuthorizationHandler`: permite que os administradores aprovem ou rejeitem contatos e editem/excluam contatos.
 
-## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 Este tutorial é avançado. Você deve estar familiarizado com:
 
@@ -81,11 +81,11 @@ Este tutorial é avançado. Você deve estar familiarizado com:
 
 ## <a name="the-starter-and-completed-app"></a>O aplicativo inicial e o concluído
 
-[Baixe](xref:index#how-to-download-a-sample) o aplicativo [concluído](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples) . [Teste](#test-the-completed-app) o aplicativo concluído para que você se familiarize com seus recursos de segurança.
+[Baixe](xref:index#how-to-download-a-sample) o aplicativo [concluído](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples) . [Teste](#test-the-completed-app) o aplicativo concluído para que você se familiarize com seus recursos de segurança.
 
 ### <a name="the-starter-app"></a>O aplicativo inicial
 
-[Baixe](xref:index#how-to-download-a-sample) o aplicativo [inicial](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/) .
+[Baixe](xref:index#how-to-download-a-sample) o aplicativo [inicial](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/) .
 
 Execute o aplicativo, toque no link do **ContactManager** e verifique se você pode criar, editar e excluir um contato.
 
@@ -267,7 +267,7 @@ Atualize o modelo de página de detalhes:
 
 ## <a name="add-or-remove-a-user-to-a-role"></a>Adicionar ou remover um usuário a uma função
 
-Consulte [este problema](https://github.com/aspnet/AspNetCore.Docs/issues/8502) para obter informações sobre:
+Consulte [este problema](https://github.com/dotnet/AspNetCore.Docs/issues/8502) para obter informações sobre:
 
 * Remoção de privilégios de um usuário. Por exemplo, ativar mudo de um usuário em um aplicativo de chat.
 * Adicionando privilégios a um usuário.
@@ -308,7 +308,7 @@ Uma maneira fácil de testar o aplicativo concluído é iniciar três diferentes
 * Os gerentes podem Aprovar/rejeitar dados de contato. A exibição `Details` mostra os botões **aprovar** e **rejeitar** .
 * Os administradores podem Aprovar/rejeitar e editar/excluir todos os dados.
 
-| Usuário                | Propagada pelo aplicativo | Opções                                  |
+| Usuário                | Propagada pelo aplicativo | {1&gt;Opções&lt;1}                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | Não                | Editar/Excluir os próprios dados.                |
 | manager@contoso.com | Sim               | Aprovar/rejeitar e editar/excluir os próprios dados. |
@@ -355,7 +355,7 @@ Se você tiver um bug com o comando `dotnet aspnet-codegenerator razorpage`, con
 
 ### <a name="seed-the-database"></a>Propagar o banco de dados
 
-Adicione a classe [SeedData](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter3/Data/SeedData.cs) à pasta de *dados* :
+Adicione a classe [SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter3/Data/SeedData.cs) à pasta de *dados* :
 
 [!code-csharp[](secure-data/samples/starter3/Data/SeedData.cs)]
 
@@ -405,7 +405,7 @@ O exemplo contém os seguintes manipuladores de autorização:
 * `ContactManagerAuthorizationHandler`: permite que os gerentes aprovem ou rejeitem contatos.
 * `ContactAdministratorsAuthorizationHandler`: permite que os administradores aprovem ou rejeitem contatos e editem/excluam contatos.
 
-## <a name="prerequisites"></a>{1&gt;Pré-requisitos&lt;1}
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 Este tutorial é avançado. Você deve estar familiarizado com:
 
@@ -417,11 +417,11 @@ Este tutorial é avançado. Você deve estar familiarizado com:
 
 ## <a name="the-starter-and-completed-app"></a>O aplicativo inicial e o concluído
 
-[Baixe](xref:index#how-to-download-a-sample) o aplicativo [concluído](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples) . [Teste](#test-the-completed-app) o aplicativo concluído para que você se familiarize com seus recursos de segurança.
+[Baixe](xref:index#how-to-download-a-sample) o aplicativo [concluído](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples) . [Teste](#test-the-completed-app) o aplicativo concluído para que você se familiarize com seus recursos de segurança.
 
 ### <a name="the-starter-app"></a>O aplicativo inicial
 
-[Baixe](xref:index#how-to-download-a-sample) o aplicativo [inicial](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/) .
+[Baixe](xref:index#how-to-download-a-sample) o aplicativo [inicial](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/) .
 
 Execute o aplicativo, toque no link do **ContactManager** e verifique se você pode criar, editar e excluir um contato.
 
@@ -603,7 +603,7 @@ Atualize o modelo de página de detalhes:
 
 ## <a name="add-or-remove-a-user-to-a-role"></a>Adicionar ou remover um usuário a uma função
 
-Consulte [este problema](https://github.com/aspnet/AspNetCore.Docs/issues/8502) para obter informações sobre:
+Consulte [este problema](https://github.com/dotnet/AspNetCore.Docs/issues/8502) para obter informações sobre:
 
 * Remoção de privilégios de um usuário. Por exemplo, ativar mudo de um usuário em um aplicativo de chat.
 * Adicionando privilégios a um usuário.
@@ -635,7 +635,7 @@ Uma maneira fácil de testar o aplicativo concluído é iniciar três diferentes
 * Os gerentes podem Aprovar/rejeitar dados de contato. A exibição `Details` mostra os botões **aprovar** e **rejeitar** .
 * Os administradores podem Aprovar/rejeitar e editar/excluir todos os dados.
 
-| Usuário                | Propagada pelo aplicativo | Opções                                  |
+| Usuário                | Propagada pelo aplicativo | {1&gt;Opções&lt;1}                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | Não                | Editar/Excluir os próprios dados.                |
 | manager@contoso.com | Sim               | Aprovar/rejeitar e editar/excluir os próprios dados. |
@@ -678,7 +678,7 @@ Crie um contato no navegador do administrador. Copie a URL para excluir e editar
 
 ### <a name="seed-the-database"></a>Propagar o banco de dados
 
-Adicione a classe [SeedData](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2.1/Data/SeedData.cs) à pasta de *dados* .
+Adicione a classe [SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2.1/Data/SeedData.cs) à pasta de *dados* .
 
 Chamar `SeedData.Initialize` de `Main`:
 

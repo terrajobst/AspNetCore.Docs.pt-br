@@ -6,16 +6,16 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/12/2019
 uid: mvc/views/partial
-ms.openlocfilehash: 50c4f41d5d3099184aa3992ed7e176b74c488d2a
-ms.sourcegitcommit: 805f625d16d74e77f02f5f37326e5aceafcb78e3
+ms.openlocfilehash: 04b6d6e620f34ac7154728b1b3048195e87c5860
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/13/2019
-ms.locfileid: "70985564"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78663047"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Exibições parciais no ASP.NET Core
 
-Por [Steve Smith](https://ardalis.com/), [Luke Latham](https://github.com/guardrex), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT) e [Scott Sauber](https://twitter.com/scottsauber)
+Por [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT) e [Scott Sauber](https://twitter.com/scottsauber)
 
 Uma exibição parcial é um arquivo de marcação [Razor](xref:mvc/views/razor) ( *.cshtml*) que renderiza a saída HTML *dentro* da saída processada de outro arquivo de marcação.
 
@@ -25,7 +25,7 @@ O termo *exibição parcial* é usado durante o desenvolvimento de um aplicativo
 
 ::: moniker-end
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/partial/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/partial/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="when-to-use-partial-views"></a>Quando usar exibições parciais
 
@@ -266,7 +266,7 @@ As convenções a seguir se aplicam à descoberta de exibição parcial:
 * Exibições parciais podem ser *encadeadas*&mdash;uma exibição parcial pode chamar outra se uma referência circular não tiver sido formada por chamadas. Caminhos relativos sempre são relativos ao arquivo atual, não à raiz ou ao pai do arquivo.
 
 > [!NOTE]
-> Um [Razor](xref:mvc/views/razor) `section` definido em uma exibição parcial é invisível para arquivos de marcação pai. A `section` só é visível para a exibição parcial na qual ela está definida.
+> Um `section` [Razor](xref:mvc/views/razor) definido em uma exibição parcial é invisível para arquivos de marcação pai. A `section` só é visível para a exibição parcial na qual ela está definida.
 
 ## <a name="access-data-from-partial-views"></a>Acessar dados de exibições parciais
 
@@ -325,15 +325,15 @@ No tempo de execução, as parciais são renderizadas para a saída renderizada 
 
 A segunda exibição parcial renderiza as seções do artigo:
 
-> Section One Index: 0
+> Índice da seção um: 0
 >
 > Pontuação de quatro e há sete anos...
 >
-> Section Two Index: 1
+> Índice da seção dois: 1
 >
 > Agora estamos envolvidos em uma grande guerra civil, testando...
 >
-> Section Three Index: 2
+> Índice da seção três: 2
 >
 > Mas, em um sentido mais amplo, não podemos dedicar...
 

@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/11/2019
 uid: web-api/http-repl
-ms.openlocfilehash: 15899917826fb6559244998766d99d00f56e0521
-ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
+ms.openlocfilehash: d9beae68cc869b665ff5d2b6cf34f120406098dc
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/21/2020
-ms.locfileid: "76294725"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78661885"
 ---
 # <a name="test-web-apis-with-the-http-repl"></a>Testar APIs Web com o HTTP REPL
 
@@ -34,7 +34,7 @@ Os [verbos HTTP](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelin
 * [POST](#test-http-post-requests)
 * [PUT](#test-http-put-requests)
 
-Para acompanhar, [exiba ou baixe a API Web de exemplo do ASP.NET Core](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([como baixar](xref:index#how-to-download-a-sample)).
+Para acompanhar, [exiba ou baixe a API Web de exemplo do ASP.NET Core](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([como baixar](xref:index#how-to-download-a-sample)).
 
 ## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
@@ -50,7 +50,7 @@ dotnet tool install -g Microsoft.dotnet-httprepl
 
 Uma [ferramenta global do .NET Core](/dotnet/core/tools/global-tools#install-a-global-tool) é instalada pelo pacote do NuGet [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl).
 
-## <a name="usage"></a>Medição de
+## <a name="usage"></a>Uso
 
 Após a instalação da ferramenta, execute o seguinte comando para iniciar o HTTP REPL:
 
@@ -225,15 +225,15 @@ https://localhost:5001/people~
 
 As [cores](#set-color-preferences) padrão do HTTP REPL podem ser personalizadas. Além disso, um [editor de texto padrão](#set-the-default-text-editor) pode ser definido. As preferências de HTTP REPL são persistidas em toda a sessão atual e serão respeitadas nas sessões futuras. Depois de modificadas, as preferências são armazenadas no seguinte arquivo:
 
-# <a name="linuxtablinux"></a>[Linux](#tab/linux)
+# <a name="linux"></a>[Linux](#tab/linux)
 
 *%HOME%/.httpreplprefs*
 
-# <a name="macostabmacos"></a>[macOS](#tab/macos)
+# <a name="macos"></a>[macOS](#tab/macos)
 
 *%HOME%/.httpreplprefs*
 
-# <a name="windowstabwindows"></a>[Windows](#tab/windows)
+# <a name="windows"></a>[Windows](#tab/windows)
 
 *%USERPROFILE%\\.httpreplprefs*
 
@@ -335,19 +335,19 @@ pref set editor.command.default "<EXECUTABLE>"
 
 No comando anterior, `<EXECUTABLE>` é o caminho completo para o arquivo executável do editor de texto. Por exemplo, execute o seguinte comando para definir o Visual Studio Code como o editor de texto padrão:
 
-# <a name="linuxtablinux"></a>[Linux](#tab/linux)
+# <a name="linux"></a>[Linux](#tab/linux)
 
 ```console
 pref set editor.command.default "/usr/bin/code"
 ```
 
-# <a name="macostabmacos"></a>[macOS](#tab/macos)
+# <a name="macos"></a>[macOS](#tab/macos)
 
 ```console
 pref set editor.command.default "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
 ```
 
-# <a name="windowstabwindows"></a>[Windows](#tab/windows)
+# <a name="windows"></a>[Windows](#tab/windows)
 
 ```console
 pref set editor.command.default "C:\Program Files\Microsoft VS Code\Code.exe"
@@ -355,7 +355,7 @@ pref set editor.command.default "C:\Program Files\Microsoft VS Code\Code.exe"
 
 ---
 
-Para iniciar o editor de texto padrão com argumentos específicos da CLI, defina a chave `editor.command.default.arguments`. Por exemplo, imagine que o Visual Studio Code é o editor de texto padrão e que você quer que o HTTP REPL sempre o abra em uma nova sessão com as extensões desabilitadas. Execute o seguinte comando:
+Para iniciar o editor de texto padrão com argumentos específicos da CLI, defina a chave `editor.command.default.arguments`. Por exemplo, imagine que o Visual Studio Code é o editor de texto padrão e que você quer que o HTTP REPL sempre o abra em uma nova sessão com as extensões desabilitadas. Execute o comando a seguir:
 
 ```console
 pref set editor.command.default.arguments "--disable-extensions --new-window"
@@ -384,19 +384,19 @@ pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json"
 get <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 As opções a seguir estão disponíveis para o comando `get`:
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
-### <a name="example"></a>Exemplo
+### <a name="example"></a>{1&gt;Exemplo&lt;1}
 
 Para emitir uma solicitação HTTP GET:
 
@@ -468,19 +468,19 @@ Para emitir uma solicitação HTTP GET:
 post <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
 [!INCLUDE [HTTP request body CLI options](~/includes/http-repl/requires-body-options.md)]
 
-### <a name="example"></a>Exemplo
+### <a name="example"></a>{1&gt;Exemplo&lt;1}
 
 Para emitir uma solicitação HTTP POST:
 
@@ -538,23 +538,23 @@ Para emitir uma solicitação HTTP POST:
 put <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
 [!INCLUDE [HTTP request body CLI options](~/includes/http-repl/requires-body-options.md)]
 
-### <a name="example"></a>Exemplo
+### <a name="example"></a>{1&gt;Exemplo&lt;1}
 
 Para emitir uma solicitação HTTP PUT:
 
-1. *Optional*: Run the `get` command to view the data before modifying it:
+1. *Opcional*: execute o comando `get` para exibir os dados antes de modificá-los:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -616,7 +616,7 @@ Para emitir uma solicitação HTTP PUT:
     Server: Kestrel
     ```
 
-1. *Optional*: Issue a `get` command to see the modifications. Por exemplo, se você digitou "Cereja" no editor de texto, um `get` retornará o seguinte:
+1. *Opcional*: emita um comando `get` para ver as modificações. Por exemplo, se você digitou "Cereja" no editor de texto, um `get` retornará o seguinte:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -653,21 +653,21 @@ Para emitir uma solicitação HTTP PUT:
 delete <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
-### <a name="example"></a>Exemplo
+### <a name="example"></a>{1&gt;Exemplo&lt;1}
 
 Para emitir uma solicitação HTTP DELETE:
 
-1. *Optional*: Run the `get` command to view the data before modifying it:
+1. *Opcional*: execute o comando `get` para exibir os dados antes de modificá-los:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -707,7 +707,7 @@ Para emitir uma solicitação HTTP DELETE:
     Server: Kestrel
     ```
 
-1. *Optional*: Issue a `get` command to see the modifications. Neste exemplo, o `get` retornará o seguinte:
+1. *Opcional*: emita um comando `get` para ver as modificações. Neste exemplo, o `get` retornará o seguinte:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -740,13 +740,13 @@ Para emitir uma solicitação HTTP DELETE:
 patch <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -760,13 +760,13 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 head <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -778,13 +778,13 @@ O parâmetro de rota, se houver, esperado pelo método de ação do controlador 
 options <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PARAMETER`
 
 O parâmetro de rota, se houver, esperado pelo método de ação do controlador associado.
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 [!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
@@ -812,15 +812,15 @@ Para configurar um cabeçalho de solicitação HTTP, use uma das seguintes abord
     https://localhost:5001/people~ set header Content-Type
     ```
 
-## <a name="test-secured-endpoints"></a>Test secured endpoints
+## <a name="test-secured-endpoints"></a>Pontos de extremidade protegidos de teste
 
-The HTTP REPL supports the testing of secured endpoints through the use of HTTP request headers. Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, you can send a bearer token to an endpoint with the following command:
+O HTTP REPL dá suporte ao teste de pontos de extremidade protegidos por meio do uso de cabeçalhos de solicitação HTTP. Exemplos de autenticação e esquemas de autorização com suporte incluem autenticação básica, tokens de portador JWT e autenticação Digest. Por exemplo, você pode enviar um token de portador para um ponto de extremidade com o seguinte comando:
 
 ```console
 set header Authorization "bearer <TOKEN VALUE>"
 ```
 
-To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HTTP REPL sets the bearer token in an HTTP request header and retrieves a list of Azure App Service Web Apps.
+Para acessar um ponto de extremidade hospedado no Azure ou usar a [API REST do Azure](/rest/api/azure/), você precisa de um token de portador. Use as etapas a seguir para obter um token de portador para sua assinatura do Azure por meio do [CLI do Azure](/cli/azure/). O HTTP REPL define o token de portador em um cabeçalho de solicitação HTTP e recupera uma lista de aplicativos Web do serviço Azure App.
 
 1. Faça logon no Azure:
 
@@ -828,49 +828,49 @@ To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azur
     az login
     ```
 
-1. Get your subscription ID with the following command:
+1. Obtenha sua ID de assinatura com o seguinte comando:
 
     ```azcli
     az account show --query id
     ```
 
-1. Copy your subscription ID and run the following command:
+1. Copie sua ID de assinatura e execute o seguinte comando:
 
     ```azcli
     az account set --subscription "<SUBSCRIPTION ID>"
     ```
 
-1. Get your bearer token with the following command:
+1. Obtenha seu token de portador com o seguinte comando:
 
     ```azcli
     az account get-access-token --query accessToken
     ```
 
-1. Connect to the Azure REST API via the HTTP REPL:
+1. Conecte-se à API REST do Azure por meio do HTTP REPL:
 
     ```console
     httprepl https://management.azure.com
     ```
 
-1. Set the `Authorization` HTTP request header:
+1. Defina o cabeçalho de solicitação HTTP `Authorization`:
 
     ```console
     https://management.azure.com/> set header Authorization "bearer <ACCESS TOKEN>"
     ```
 
-1. Navigate to the subscription:
+1. Navegue até a assinatura:
 
     ```console
     https://management.azure.com/> cd subscriptions/<SUBSCRIPTION ID>
     ```
 
-1. Get a list of your subscription's Azure App Service Web Apps:
+1. Obtenha uma lista dos aplicativos Web do serviço de Azure App da sua assinatura:
 
     ```console
     https://management.azure.com/subscriptions/{SUBSCRIPTION ID}> get providers/Microsoft.Web/sites?api-version=2016-08-01
     ```
 
-    The following response is displayed:
+    A seguinte resposta é exibida:
 
     ```console
     HTTP/1.1 200 OK

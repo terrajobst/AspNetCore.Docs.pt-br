@@ -5,12 +5,12 @@ description: Saiba como o ASP.NET Core permite a injeção de dependência em ex
 ms.author: riande
 ms.date: 10/14/2016
 uid: mvc/views/dependency-injection
-ms.openlocfilehash: 63feea5ddf286dd3e659f3a622cfb0f7451b9bba
-ms.sourcegitcommit: 8516b586541e6ba402e57228e356639b85dfb2b9
+ms.openlocfilehash: 6241bb8e262f64e2e30721bc5fe6f8f1be84b60d
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/11/2019
-ms.locfileid: "67815335"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78656096"
 ---
 # <a name="dependency-injection-into-views-in-aspnet-core"></a>Injeção de dependência em exibições no ASP.NET Core
 
@@ -18,7 +18,7 @@ Por [Steve Smith](https://ardalis.com/)
 
 O ASP.NET Core dá suporte à [injeção de dependência](xref:fundamentals/dependency-injection) em exibições. Isso pode ser útil para serviços específicos a uma exibição, como localização ou dados necessários apenas para o preenchimento de elementos de exibição. Você deve tentar manter a [separação de interesses](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) entre os controladores e as exibições. A maioria dos dados exibida pelas exibições deve ser passada pelo controlador.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/dependency-injection/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/dependency-injection/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="configuration-injection"></a>Injeção de configuração
 
@@ -90,7 +90,7 @@ O `ProfileOptionsService` é um serviço no nível da interface do usuário cria
 [!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Model/Services/ProfileOptionsService.cs?highlight=7,13,24)]
 
 > [!IMPORTANT]
-> Não se esqueça de registrar tipos que você solicita por meio de injeção de dependência no `Startup.ConfigureServices`. Um tipo não registrado gera uma exceção em tempo de execução porque o provedor de serviços é consultado internamente por meio de [GetRequiredService](/dotnet/api/microsoft.extensions.dependencyinjection.serviceproviderserviceextensions.getrequiredservice).
+> Não se esqueça de registrar tipos que você solicita por meio de injeção de dependência no `Startup.ConfigureServices`. Um tipo não registrado gera uma exceção em runtime porque o provedor de serviços é consultado internamente por meio de [GetRequiredService](/dotnet/api/microsoft.extensions.dependencyinjection.serviceproviderserviceextensions.getrequiredservice).
 
 ## <a name="overriding-services"></a>Substituindo serviços
 
@@ -104,6 +104,6 @@ Como você pode ver, os campos padrão incluem `Html`, `Component` e `Url` (bem 
 
 Se deseja estender os serviços existentes, basta usar essa técnica herdando da implementação existente ou encapsulando-a com sua própria implementação.
 
-## <a name="see-also"></a>Veja também
+## <a name="see-also"></a>Consulte Também
 
-* Blog de Simon Timms: [Inserir dados de pesquisa na exibição](https://blog.simontimms.com/2015/06/09/getting-lookup-data-into-you-view/)
+* Blog de Simon Timms: [Getting Lookup Data Into Your View](https://blog.simontimms.com/2015/06/09/getting-lookup-data-into-you-view/) (Inserindo dados de pesquisa na exibição)

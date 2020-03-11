@@ -6,18 +6,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
 uid: mvc/views/view-components
-ms.openlocfilehash: 8df070b580b6125db6616b33a81f3ffebad69f3a
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: 910fffbf360ed0f62f7fe20bc8bfdf5be8198876
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75828913"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660646"
 ---
 # <a name="view-components-in-aspnet-core"></a>Componentes de exibição no ASP.NET Core
 
 Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="view-components"></a>Componentes da exibição
 
@@ -155,7 +155,7 @@ Neste exemplo, o componente de exibição é chamado diretamente no controlador:
 
 ## <a name="walkthrough-creating-a-simple-view-component"></a>Passo a passo: criando um componente de exibição simples
 
-[Baixe](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample), compile e teste o código inicial. É um projeto simples com um controlador `ToDo` que exibe uma lista de itens *ToDo*.
+[Baixe](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample), compile e teste o código inicial. É um projeto simples com um controlador `ToDo` que exibe uma lista de itens *ToDo*.
 
 ![Lista de ToDos](view-components/_static/2dos.png)
 
@@ -202,7 +202,7 @@ Observações sobre o código:
 
 A marcação `@await Component.InvokeAsync` mostra a sintaxe para chamar componentes de exibição. O primeiro argumento é o nome do componente que queremos invocar ou chamar. Os parâmetros seguintes são passados para o componente. `InvokeAsync` pode usar um número arbitrário de argumentos.
 
-Teste o aplicativo. A seguinte imagem mostra a lista ToDo e os itens de prioridade:
+Testar o aplicativo. A seguinte imagem mostra a lista ToDo e os itens de prioridade:
 
 ![lista de tarefas pendentes e itens de prioridade](view-components/_static/pi.png)
 

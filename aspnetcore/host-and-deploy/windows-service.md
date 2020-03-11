@@ -1,30 +1,28 @@
 ---
 title: Hospedar o ASP.NET Core em um serviço Windows
-author: guardrex
+author: rick-anderson
 description: Saiba como hospedar um aplicativo ASP.NET Core em um serviço Windows.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 829c282606e60a80682233555e1268acb706090e
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: 4eed461788f8fffa2ea00d8c931b0a0f5aaf1b46
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77172324"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78656180"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hospedar o ASP.NET Core em um serviço Windows
-
-Por [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 
 Um aplicativo ASP.NET Core pode ser hospedado no Windows somo um [Serviço Windows](/dotnet/framework/windows-services/introduction-to-windows-service-applications) sem usar o IIS. Quando hospedado como um Serviço Windows, o aplicativo é iniciado automaticamente após a reinicialização do servidor.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [SDK do ASP.NET Core 2.1 ou posterior](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 ou posterior](https://github.com/PowerShell/PowerShell)
@@ -256,7 +254,7 @@ Não tente usar <xref:System.IO.Directory.GetCurrentDirectory*> para obter um ca
 
 Especifique um caminho absoluto com <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> quando usar um <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> para a pasta que contém os arquivos.
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 Para solucionar problemas de um aplicativo de serviço do Windows, consulte <xref:test/troubleshoot>.
 
@@ -307,14 +305,14 @@ Um *despejo* é um instantâneo da memória do sistema e pode ajudar a determina
 Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)](/windows/desktop/wer/windows-error-reporting):
 
 1. Crie uma pasta para armazenar os arquivos de despejo de memória em `c:\dumps`.
-1. Execute o [script do PowerShell do EnableDumps](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) com o nome do executável do aplicativo:
+1. Execute o [script do PowerShell do EnableDumps](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) com o nome do executável do aplicativo:
 
    ```console
    .\EnableDumps {APPLICATION EXE} c:\dumps
    ```
 
 1. Execute o aplicativo sob as condições que causam a falha.
-1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1):
+1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1):
 
    ```console
    .\DisableDumps {APPLICATION EXE}
@@ -345,9 +343,9 @@ Um despejo de memória pode ser analisado usando várias abordagens. Para obter 
 
 Um aplicativo ASP.NET Core pode ser hospedado no Windows somo um [Serviço Windows](/dotnet/framework/windows-services/introduction-to-windows-service-applications) sem usar o IIS. Quando hospedado como um Serviço Windows, o aplicativo é iniciado automaticamente após a reinicialização do servidor.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [SDK do ASP.NET Core 2.1 ou posterior](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 ou posterior](https://github.com/PowerShell/PowerShell)
@@ -590,7 +588,7 @@ CreateWebHostBuilder(args)
 
 Especifique um caminho absoluto com <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> quando usar um <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> para a pasta que contém os arquivos.
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 Para solucionar problemas de um aplicativo de serviço do Windows, consulte <xref:test/troubleshoot>.
 
@@ -641,14 +639,14 @@ Um *despejo* é um instantâneo da memória do sistema e pode ajudar a determina
 Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)](/windows/desktop/wer/windows-error-reporting):
 
 1. Crie uma pasta para armazenar os arquivos de despejo de memória em `c:\dumps`.
-1. Execute o [script do PowerShell do EnableDumps](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) com o nome do executável do aplicativo:
+1. Execute o [script do PowerShell do EnableDumps](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) com o nome do executável do aplicativo:
 
    ```console
    .\EnableDumps {APPLICATION EXE} c:\dumps
    ```
 
 1. Execute o aplicativo sob as condições que causam a falha.
-1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1):
+1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1):
 
    ```console
    .\DisableDumps {APPLICATION EXE}
@@ -679,9 +677,9 @@ Um despejo de memória pode ser analisado usando várias abordagens. Para obter 
 
 Um aplicativo ASP.NET Core pode ser hospedado no Windows somo um [Serviço Windows](/dotnet/framework/windows-services/introduction-to-windows-service-applications) sem usar o IIS. Quando hospedado como um Serviço Windows, o aplicativo é iniciado automaticamente após a reinicialização do servidor.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [SDK do ASP.NET Core 2.1 ou posterior](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 ou posterior](https://github.com/PowerShell/PowerShell)
@@ -927,7 +925,7 @@ CreateWebHostBuilder(args)
 
 Especifique um caminho absoluto com <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> quando usar um <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> para a pasta que contém os arquivos.
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 Para solucionar problemas de um aplicativo de serviço do Windows, consulte <xref:test/troubleshoot>.
 
@@ -978,14 +976,14 @@ Um *despejo* é um instantâneo da memória do sistema e pode ajudar a determina
 Obter e analisar um despejo de memória do [WER (Relatório de Erros do Windows)](/windows/desktop/wer/windows-error-reporting):
 
 1. Crie uma pasta para armazenar os arquivos de despejo de memória em `c:\dumps`.
-1. Execute o [script do PowerShell do EnableDumps](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) com o nome do executável do aplicativo:
+1. Execute o [script do PowerShell do EnableDumps](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1) com o nome do executável do aplicativo:
 
    ```console
    .\EnableDumps {APPLICATION EXE} c:\dumps
    ```
 
 1. Execute o aplicativo sob as condições que causam a falha.
-1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1):
+1. Após a falha, execute o [script DisableDumps do PowerShell](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1):
 
    ```console
    .\DisableDumps {APPLICATION EXE}

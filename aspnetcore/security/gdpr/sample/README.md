@@ -1,6 +1,6 @@
-# <a name="gdpr-sample"></a>Exemplo GDPR
+# <a name="gdpr-sample"></a>Exemplo de GDPR
 
-* Na *appSettings. JSON*, defina `CheckNotConsentNeeded` para `false` exigir consentimento; caso contrário, definida como true ou omitir. Testar o aplicativo com `CheckNotConsentNeeded` definido como `false` e defina como `true`.
-* Criar cookies essenciais e não essenciais com cada variação de `CheckConsentNeeded` e consentimento concedido.
-* Registre-se um usuário.
-* Exclua cookies.
+* Em *appSettings. JSON*, defina `CheckNotConsentNeeded` como `false` para exigir consentimento; caso contrário, defina como true ou omita. Teste o aplicativo com `CheckNotConsentNeeded` definido como `false` e defina como `true`.
+* Crie cookies essenciais e não essenciais com cada variação de `CheckConsentNeeded` e consentimento concedidos.
+* Registrar um usuário.
+* Excluir cookies.

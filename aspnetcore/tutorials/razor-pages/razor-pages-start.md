@@ -6,11 +6,11 @@ ms.author: riande
 ms.date: 11/12/2019
 uid: tutorials/razor-pages/razor-pages-start
 ms.openlocfilehash: 6e1d58ccd83f7d7c1083dc2bf9ce7476650812a1
-ms.sourcegitcommit: da2fb2d78ce70accdba903ccbfdcfffdd0112123
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/07/2020
-ms.locfileid: "75722981"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78658539"
 ---
 # <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>Tutorial: introdução ao Razor Pages no ASP.NET Core
 
@@ -38,15 +38,15 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 [!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
@@ -54,7 +54,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ## <a name="create-a-razor-pages-web-app"></a>Criar um aplicativo Web das Páginas do Razor
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * No menu **arquivo** do Visual Studio, selecione **novo** **projeto**de >.
 * Crie um aplicativo Web ASP.NET Core e selecione **Avançar**.
@@ -70,7 +70,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   ![Gerenciador de soluções](razor-pages-start/_static/se2.2.png)
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
@@ -90,15 +90,15 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   Um diretório *.vscode*, contendo os arquivos *launch.json* e *tasks.json*, é adicionado ao diretório raiz do projeto.
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Selecione **arquivo** > **nova solução**.
 
-![Nova Solução do macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
+![Nova solução do macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
 * Selecione **.NET Core** > **aplicativo** > **aplicativo Web** > **Avançar**.
 
-  ![Caixa de diálogo Novo Projeto do macOS](razor-pages-start/_static/webapp.png)
+  ![Caixa de diálogo Novo projeto do macOS](razor-pages-start/_static/webapp.png)
 
 * Na caixa de diálogo **configurar seu novo aplicativo Web** , defina a **estrutura de destino** como **.NET Core 3,1**.
 
@@ -179,15 +179,15 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 [!INCLUDE[](~/includes/net-core-prereqs-vs2019-2.2.md)]
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/net-core-prereqs-vsc-2.2.md)]
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-core-prereqs-mac-2.2.md)]
 
@@ -195,7 +195,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ## <a name="create-a-razor-pages-web-app"></a>Criar um aplicativo Web das Páginas do Razor
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * No menu **arquivo** do Visual Studio, selecione **novo** **projeto**de >.
 
@@ -215,7 +215,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   ![Gerenciador de soluções](razor-pages-start/_static/se2.2.png)
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * Abra o [terminal integrado](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
@@ -235,15 +235,15 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   Um diretório *.vscode*, contendo os arquivos *launch.json* e *tasks.json*, é adicionado ao diretório raiz do projeto.
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Selecione **arquivo** > **nova solução**.
 
-![Nova Solução do macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
+![Nova solução do macOS](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
 * Selecione **.NET Core** > **aplicativo** > **aplicativo Web** > **Avançar**.
 
-  ![Caixa de diálogo Novo Projeto do macOS](razor-pages-start/_static/webapp.png)
+  ![Caixa de diálogo Novo projeto do macOS](razor-pages-start/_static/webapp.png)
 
 * Na caixa de diálogo **configurar sua nova API Web do ASP.NET Core** , defina a **estrutura de destino** como **.NET Core 3,1**.
 
@@ -259,7 +259,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
 ## <a name="run-the-app"></a>Executar o aplicativo
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Pressione Ctrl + F5 para execução sem o depurador.
 
@@ -277,7 +277,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
   
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
   [!INCLUDE[](~/includes/trustCertVSC.md)]
 
@@ -295,7 +295,7 @@ No final deste tutorial, você terá um aplicativo Web em funcionamento do Razor
 
   ![Página Inicial ou de Índice](razor-pages-start/_static/home2.2.png)
   
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
   [!INCLUDE[](~/includes/trustCertMac.md)]
 

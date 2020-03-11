@@ -7,12 +7,12 @@ ms.custom: mvc
 ms.date: 02/06/2019
 ms.topic: tutorial
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 04694f20c7142cc2917df25458e8e335ee933900
-ms.sourcegitcommit: f259889044d1fc0f0c7e3882df0008157ced4915
+ms.openlocfilehash: 8f6561616ccd0fde050276467920da8aa93677c6
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/18/2020
-ms.locfileid: "76268779"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657244"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: introdução ao EF Core em um aplicativo Web ASP.NET MVC
 
@@ -21,7 +21,7 @@ Este tutorial **não** foi atualizado para o ASP.NET Core 3.0. A [versão do Raz
 * Estão nos arquivos *Startup.cs* e *Program.cs* .
 * Pode ser encontrado na [versão Razor Pages](xref:data/ef-rp/intro). 
 
-Para obter informações sobre quando isso pode ser atualizado, confira [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/13920).
+Para obter informações sobre quando isso pode ser atualizado, confira [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
@@ -51,7 +51,7 @@ Neste tutorial, você:
 
 ## <a name="troubleshooting"></a>Solução de problemas
 
-Caso tenha um problema que não consiga resolver, em geral, você poderá encontrar a solução comparando o código com o [projeto concluído](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final). Para obter uma lista de erros comuns e como resolvê-los, consulte [a seção Solução de problemas do último tutorial da série](advanced.md#common-errors). Caso não encontre o que precisa na seção, poste uma pergunta no StackOverflow.com sobre o [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) ou o [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
+Caso tenha um problema que não consiga resolver, em geral, você poderá encontrar a solução comparando o código com o [projeto concluído](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final). Para obter uma lista de erros comuns e como resolvê-los, consulte [a seção Solução de problemas do último tutorial da série](advanced.md#common-errors). Caso não encontre o que precisa na seção, poste uma pergunta no StackOverflow.com sobre o [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) ou o [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
 > [!TIP]
 > Esta é uma série de dez tutoriais, cada um se baseando no que é feito nos tutoriais anteriores. Considere a possibilidade de salvar uma cópia do projeto após a conclusão bem-sucedida de cada tutorial. Caso tenha problemas, comece novamente no tutorial anterior em vez de voltar ao início de toda a série.
@@ -66,7 +66,7 @@ Os usuários podem exibir e atualizar informações de alunos, cursos e instruto
 
 ![Página Editar Alunos](intro/_static/student-edit.png)
 
-## <a name="create-web-app"></a>Criar aplicativo Web
+## <a name="create-web-app"></a>Criar um aplicativo Web
 
 * {1&gt;Abra o Visual Studio.&lt;1}
 
@@ -140,7 +140,7 @@ Na pasta *Models*, crie um arquivo de classe chamado *Student.cs* e substitua o 
 
 A propriedade `ID` se tornará a coluna de chave primária da tabela de banco de dados que corresponde a essa classe. Por padrão, o Entity Framework interpreta uma propriedade nomeada `ID` ou `classnameID` como a chave primária.
 
-A propriedade `Enrollments` é uma [propriedade de navegação](/ef/core/modeling/relationships). As propriedades de navegação armazenam outras entidades que estão relacionadas a essa entidade. Nesse caso, a propriedade `Enrollments` de uma `Student entity` armazenará todas as entidades `Enrollment` relacionadas a essa entidade `Student`. Em outras palavras, se determinada linha Aluno no banco de dados tiver duas linhas Registro relacionadas (linhas que contêm o valor de chave primária do aluno na coluna de chave estrangeira StudentID), a propriedade de navegação `Enrollments` dessa entidade `Student` conterá as duas entidades `Enrollment`.
+A propriedade `Enrollments` é uma [propriedade de navegação](/ef/core/modeling/relationships). As propriedades de navegação armazenam outras entidades que estão relacionadas a essa entidade. Nesse caso, a propriedade `Enrollments` de uma `Student entity` armazenará todas as entidades `Enrollment` relacionadas a essa entidade `Student`. Em outras palavras, se determinada linha Aluno no banco de dados tiver duas linhas Registro relacionadas (linhas que contêm o valor de chave primária do aluno na coluna de chave estrangeira StudentID), a propriedade de navegação `Student` dessa entidade `Enrollments` conterá as duas entidades `Enrollment`.
 
 Se uma propriedade de navegação pode armazenar várias entidades (como em relações muitos para muitos ou um-para-muitos), o tipo precisa ser uma lista na qual entradas podem ser adicionadas, excluídas e atualizadas, como `ICollection<T>`. Especifique `ICollection<T>` ou um tipo, como `List<T>` ou `HashSet<T>`. Se você especificar `ICollection<T>`, o EF criará uma coleção `HashSet<T>` por padrão.
 
@@ -362,7 +362,7 @@ Para obter mais informações sobre a programação assíncrona no .NET, consult
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Baixe ou exiba o aplicativo concluído.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 

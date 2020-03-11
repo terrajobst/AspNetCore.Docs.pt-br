@@ -40,7 +40,7 @@ PhysicalFileProvider fileProvider = new PhysicalFileProvider(Directory.GetCurren
 
 ## <a name="secure-redirection-extensions"></a>Proteger extensões de redirecionamento
 
-Esta amostra inclui a configuração `WebHostBuilder` para o aplicativo usar URLs (`https://localhost:5001`, `https://localhost`) e um certificado de teste (*testCert.pfx*) para ajudá-lo a explorar os métodos de redirecionamento seguros. Se o servidor já tiver a porta 443 atribuída ou em uso, o exemplo `https://localhost` não funcionará, remova o `ListenOptions` para a porta 443 no método `CreateWebHostBuilder` do arquivo *Program.cs* ou desassocie a porta 443 no servidor para que o Kestrel possa usar a porta.
+Esta amostra inclui a configuração `WebHostBuilder` para o aplicativo usar URLs (`https://localhost:5001`, `https://localhost`) e um certificado de teste (*testCert.pfx*) para ajudá-lo a explorar os métodos de redirecionamento seguros. Se o servidor já tiver a porta 443 atribuída ou em uso, o exemplo `https://localhost` não funcionará, remova o &mdash; para a porta 443 no método `ListenOptions` do arquivo `CreateWebHostBuilder`Program.cs* ou desassocie a porta 443 no servidor para que o Kestrel possa usar a porta.
 
 | Método                           | Código de status |    Porta    |
 | -------------------------------- | :---------: | :--------: |

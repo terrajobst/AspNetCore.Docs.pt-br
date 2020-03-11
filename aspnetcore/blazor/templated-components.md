@@ -11,11 +11,11 @@ no-loc:
 - SignalR
 uid: blazor/templated-components
 ms.openlocfilehash: b64d6a731e540b13c50b2c6108f75efd0ac9290c
-ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "77453222"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657713"
 ---
 # <a name="aspnet-core-opno-locblazor-templated-components"></a>ASP.NET Core Blazor componentes modelados
 
@@ -26,7 +26,7 @@ Componentes modelo são componentes que aceitam um ou mais modelos de interface 
 * Um componente de tabela que permite que um usuário especifique modelos para o cabeçalho, as linhas e o rodapé da tabela.
 * Um componente de lista que permite que um usuário especifique um modelo para renderizar itens em uma lista.
 
-## <a name="template-parameters"></a>Parâmetros de modelo
+## <a name="template-parameters"></a>Parâmetros do Modelo
 
 Um componente modelo é definido especificando um ou mais parâmetros de componente do tipo `RenderFragment` ou `RenderFragment<T>`. Um fragmento de renderização representa um segmento de interface do usuário a ser renderizado. `RenderFragment<T>` usa um parâmetro de tipo que pode ser especificado quando o fragmento de renderização é invocado.
 

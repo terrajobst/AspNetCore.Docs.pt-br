@@ -1,16 +1,16 @@
 ---
 title: Páginas Razor com o EF Core no ASP.NET Core – Atualizar dados relacionados – 7 de 8
-author: tdykstra
+author: rick-anderson
 description: Neste tutorial, você atualizará dados relacionados pela atualização dos campos de chave estrangeira e das propriedades de navegação.
 ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: bc237cf928d852b92c5c1984527129404f88018d
-ms.sourcegitcommit: 257cc3fe8c1d61341aa3b07e5bc0fa3d1c1c1d1c
-ms.translationtype: HT
+ms.openlocfilehash: fdfdb14ff8414b8bf30f9b95be7ba0a6bcbd2995
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/19/2019
-ms.locfileid: "69583500"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78656418"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---update-related-data---7-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Atualizar dados relacionados – 7 de 8
 
@@ -48,6 +48,8 @@ Um Curso é atribuído a um Departamento. A classe base para as páginas Criar e
 Atualize *Pages/Courses/Create.cshtml.cs* com o seguinte código:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Create.cshtml.cs?highlight=7,18,27-41)]
+
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 O código anterior:
 
@@ -197,7 +199,7 @@ Esse código anterior cria uma tabela HTML que contém três colunas. Cada colun
 
 Quando as caixas de seleção são inicialmente renderizadas, os cursos atribuídos ao instrutor são selecionados.
 
-Observação: A abordagem usada aqui para editar os dados de curso do instrutor funciona bem quando há uma quantidade limitada de cursos. Para coleções muito maiores, uma interface do usuário e um método de atualização diferentes são mais utilizáveis e eficientes.
+Observação: a abordagem usada aqui para editar os dados de curso do instrutor funciona bem quando há uma quantidade limitada de cursos. Para coleções muito maiores, uma interface do usuário e um método de atualização diferentes são mais utilizáveis e eficientes.
 
 Execute o aplicativo e teste a página Editar de Instrutores atualizada. Altere algumas atribuições de curso. As alterações são refletidas na página Índice.
 
@@ -225,7 +227,7 @@ O código anterior faz as seguintes alterações:
 
 Execute o aplicativo e teste a página Excluir.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 > [!div class="step-by-step"]
 > [Tutorial anterior](xref:data/ef-rp/read-related-data)
@@ -235,7 +237,7 @@ Execute o aplicativo e teste a página Excluir.
 
 ::: moniker range="< aspnetcore-3.0"
 
-Este tutorial demonstra como atualizar dados relacionados. Caso tenha problemas que não consiga resolver, [baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Instruções de download](xref:index#how-to-download-a-sample).
+Este tutorial demonstra como atualizar dados relacionados. Caso tenha problemas que não consiga resolver, [baixe ou exiba o aplicativo concluído.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Instruções de download](xref:index#how-to-download-a-sample).
 
 As ilustrações a seguir mostram algumas das páginas concluídas.
 
@@ -414,7 +416,7 @@ Quando as caixas de seleção são inicialmente renderizadas, os cursos atribuí
 
 Execute o aplicativo e teste a página Editar Instrutor atualizada. Altere algumas atribuições de curso. As alterações são refletidas na página Índice.
 
-Observação: A abordagem usada aqui para editar os dados de curso do instrutor funciona bem quando há uma quantidade limitada de cursos. Para coleções muito maiores, uma interface do usuário e um método de atualização diferentes são mais utilizáveis e eficientes.
+Observação: a abordagem usada aqui para editar os dados de curso do instrutor funciona bem quando há uma quantidade limitada de cursos. Para coleções muito maiores, uma interface do usuário e um método de atualização diferentes são mais utilizáveis e eficientes.
 
 ### <a name="update-the-instructors-create-page"></a>Atualizar a página Criar Instrutor
 

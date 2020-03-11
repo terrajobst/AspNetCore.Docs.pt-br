@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/31/2018
 uid: security/ip-safelist
-ms.openlocfilehash: ca5b0f8088773027f7403120247cbeca8900bcf5
-ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
+ms.openlocfilehash: d25c375f7e659168ab8cc9d8e11753cb7dfde831
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2019
-ms.locfileid: "73034338"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78659771"
 ---
 # <a name="client-ip-safelist-for-aspnet-core"></a>IP do cliente da assafe para ASP.NET Core
 
@@ -25,7 +25,7 @@ Este artigo mostra três maneiras de implementar uma lista de permissões de IP 
 
 Em cada caso, uma cadeia de caracteres contendo endereços IP de cliente aprovados é armazenada em uma configuração de aplicativo. O middleware ou o filtro analisa a cadeia de caracteres em uma lista e verifica se o IP remoto está na lista. Caso contrário, um código de status HTTP 403 proibido será retornado.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/ip-safelist/samples/2.x/ClientIpAspNetCore) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/ip-safelist/samples/2.x/ClientIpAspNetCore) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="the-safelist"></a>A SafeList
 
@@ -45,7 +45,7 @@ O middleware analisa a cadeia de caracteres em uma matriz e procura o endereço 
 
 ## <a name="action-filter"></a>Filtro de ação
 
-Se você quiser uma forma segura somente para controladores específicos ou métodos de ação, use um filtro de ação. Veja um exemplo: 
+Se você quiser uma forma segura somente para controladores específicos ou métodos de ação, use um filtro de ação. Aqui está um exemplo: 
 
 [!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Filters/ClientIpCheckFilter.cs)]
 
@@ -61,7 +61,7 @@ No aplicativo de exemplo, o filtro é aplicado ao método `Get`. Então, quando 
 
 ## <a name="razor-pages-filter"></a>Filtro de Razor Pages 
 
-Se você quiser uma assafe para um aplicativo Razor Pages, use um filtro Razor Pages. Veja um exemplo: 
+Se você quiser uma assafe para um aplicativo Razor Pages, use um filtro Razor Pages. Aqui está um exemplo: 
 
 [!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Filters/ClientIpCheckPageFilter.cs)]
 
@@ -71,6 +71,6 @@ Esse filtro é habilitado adicionando-o à coleção de filtros MVC.
 
 Quando você executa o aplicativo e solicita uma página Razor, o filtro de Razor Pages está validando o IP do cliente.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 [Saiba mais sobre o middleware ASP.NET Core](xref:fundamentals/middleware/index).

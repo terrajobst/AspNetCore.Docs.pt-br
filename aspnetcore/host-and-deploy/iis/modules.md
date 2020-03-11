@@ -1,22 +1,20 @@
 ---
 title: Módulos do IIS com o ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Descubra módulos ativos e inativos do IIS para aplicativos do ASP.NET Core e como gerenciar os módulos do IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: ca6cf349aa05db97e145f1cd0cae97a107761fd8
-ms.sourcegitcommit: 2388c2a7334ce66b6be3ffbab06dd7923df18f60
+ms.openlocfilehash: 0f13ef3eb1da03960ef1fa54d33532b6ebbdc128
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/14/2020
-ms.locfileid: "75951806"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657902"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>Módulos do IIS com o ASP.NET Core
-
-Por [Luke Latham](https://github.com/guardrex)
 
 Alguns dos módulos nativos do IIS e todos os módulos gerenciados do IIS não são capazes de processar solicitações para aplicativos do ASP.NET Core. Em muitos casos, o ASP.NET Core oferece uma alternativa aos cenários abordados pelos módulos gerenciados e nativos do IIS.
 
@@ -24,7 +22,7 @@ Alguns dos módulos nativos do IIS e todos os módulos gerenciados do IIS não s
 
 A tabela indica os módulos IIS nativos que funcionam com aplicativos ASP.NET Core e o Módulo do ASP.NET Core.
 
-| Módulo | Funcional com os aplicativos do ASP.NET Core | Opção do ASP.NET Core |
+| {1&gt;Módulo&lt;1} | Funcional com os aplicativos do ASP.NET Core | Opção do ASP.NET Core |
 | --- | :---: | --- |
 | **Autenticação anônima**<br>`AnonymousAuthenticationModule`                                  | Sim | |
 | **Autenticação básica**<br>`BasicAuthenticationModule`                                          | Sim | |
@@ -38,8 +36,8 @@ A tabela indica os módulos IIS nativos que funcionam com aplicativos ASP.NET Co
 | **Pesquisa no Diretório**<br>`DirectoryListingModule`                                               | Não  | [Middleware de navegação no diretório](xref:fundamentals/static-files#enable-directory-browsing) |
 | **Compactação dinâmica**<br>`DynamicCompressionModule`                                            | Sim | [Middleware de compactação de resposta](xref:performance/response-compression) |
 | **Rastreamento de solicitação com falha**<br>`FailedRequestsTracingModule`                                     | Sim | [Registro em log do ASP.NET Core](xref:fundamentals/logging/index#tracesource-provider) |
-| **Cache de arquivo**<br>`FileCacheModule`                                                            | Não  | [Middleware de cache de resposta](xref:performance/caching/middleware) |
-| **Cache HTTP**<br>`HttpCacheModule`                                                            | Não  | [Middleware de cache de resposta](xref:performance/caching/middleware) |
+| **Cache de arquivo**<br>`FileCacheModule`                                                            | Não  | [Middleware de Cache de Resposta](xref:performance/caching/middleware) |
+| **Cache HTTP**<br>`HttpCacheModule`                                                            | Não  | [Middleware de Cache de Resposta](xref:performance/caching/middleware) |
 | **Log HTTP**<br>`HttpLoggingModule`                                                          | Sim | [Registro em log do ASP.NET Core](xref:fundamentals/logging/index) |
 | **Redirecionamento de HTTP**<br>`HttpRedirectionModule`                                                  | Sim | [Middleware de regravação de URL](xref:fundamentals/url-rewriting) |
 | **Rastreamento HTTP**<br>`TracingModule`                                                              | Sim | |
@@ -65,17 +63,17 @@ A tabela indica os módulos IIS nativos que funcionam com aplicativos ASP.NET Co
 
 Os módulos gerenciados *não* funcionam com aplicativos do ASP.NET Core hospedados quando a versão do .NET CLR do pool de aplicativos está definido como **Sem Código Gerenciado**. O ASP.NET Core oferece alternativas de middleware em vários casos.
 
-| Módulo                  | Opção do ASP.NET Core |
+| {1&gt;Módulo&lt;1}                  | Opção do ASP.NET Core |
 | ----------------------- | ------------------- |
 | AnonymousIdentification | |
 | DefaultAuthentication   | |
 | FileAuthorization       | |
 | FormsAuthentication     | [Middleware de autenticação de cookie](xref:security/authentication/cookie) |
-| OutputCache             | [Middleware de cache de resposta](xref:performance/caching/middleware) |
+| OutputCache             | [Middleware de Cache de Resposta](xref:performance/caching/middleware) |
 | Perfil                 | |
 | RoleManager             | |
 | ScriptModule-4.0        | |
-| Sessão                 | [Middleware de sessão](xref:fundamentals/app-state) |
+| Session                 | [Middleware de sessão](xref:fundamentals/app-state) |
 | UrlAuthorization        | |
 | UrlMappingsModule       | [Middleware de regravação de URL](xref:fundamentals/url-rewriting) |
 | UrlRoutingModule-4.0    | [Identidade do ASP.NET Core](xref:security/authentication/identity) |

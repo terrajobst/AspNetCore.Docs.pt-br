@@ -1,22 +1,20 @@
 ---
 title: Referência de erros comuns para o Serviço de Aplicativo do Azure e o IIS com o ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Obtenha conselhos de solução de problemas para erros comuns ao hospedar aplicativos ASP.NET Core no Serviço de Aplicativos do Azure e no IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/azure-iis-errors-reference
-ms.openlocfilehash: dcc0f15c3f4a2747da744e98fe8fbcd3f325b709
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: dd74b451e396ae1dec61b6ccc9136218db39b949
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77172422"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78662410"
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Referência de erros comuns para o Serviço de Aplicativo do Azure e o IIS com o ASP.NET Core
-
-Por [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -46,7 +44,7 @@ A lista de erros neste tópico não é exaustiva. Se você encontrar um erro nã
 
 **Log do Aplicativo:** a DLL do Módulo **C:\WINDOWS\system32\inetsrv\aspnetcore.dll** falhou ao ser carregada. Os dados são o erro.
 
-Solucionar problemas:
+Solucionando problemas:
 
 Arquivos que não são do sistema operacional no diretório **C:\Windows\SysWOW64\inetsrv** não são preservados durante um upgrade do sistema operacional. Se o Módulo do ASP.NET Core estiver instalado antes de uma atualização do sistema operacional e, em seguida, qualquer pool de aplicativos for executado no modo de 32 bits após uma atualização do sistema operacional, esse problema será encontrado. Após um upgrade do sistema operacional, repare o Módulo do ASP.NET Core. Veja [Instalar o pacote de Hospedagem do .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). Selecione **Reparar** ao executar o instalador.
 
@@ -62,7 +60,7 @@ Arquivos que não são do sistema operacional no diretório **C:\Windows\SysWOW6
 
 * **Log de depuração do módulo ASP.NET Core:** Invocar hostfxr para localizar o manipulador de solicitação de inprocesso falhou sem encontrar nenhuma dependência nativa. Isso provavelmente significa que o aplicativo está configurado incorretamente, verifique as versões do Microsoft.NetCore.App e Microsoft.AspNetCore.App que são afetadas pelo aplicativo e estão instaladas no computador. Falha de HRESULT retornado: 0x8000ffff. Não foi possível localizar o manipulador de solicitação inprocess. Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada.
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Se estiver executando o aplicativo em um runtime de visualização, instale a extensão de site de 32 bits (x86) **ou** de 64 bits (x64) que corresponda ao número de bit do aplicativo e à versão de runtime do aplicativo. **Não instale extensões ou várias versões de runtime da extensão.**
 
@@ -91,7 +89,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/azure-apps/index#i
 
 Esse cenário é interceptado pelo SDK ao publicar um aplicativo autocontido. O SDK produzirá um erro se o RID não coincidir com o destino da plataforma (por exemplo, RID `win10-x64` com `<PlatformTarget>x86</PlatformTarget>` no arquivo de projeto).
 
-Solucionar problemas:
+Solucionando problemas:
 
 Para uma implantação dependente da estrutura x86 (`<PlatformTarget>x86</PlatformTarget>`), habilite o pool de aplicativos de IIS para aplicativos de 32 bits. No Gerenciador do IIS, abra as **Configurações Avançadas** do pool de aplicativos e defina **Habilitar Aplicativos de 32 Bits** como **Verdadeiro**.
 
@@ -103,7 +101,7 @@ Para uma implantação dependente da estrutura x86 (`<PlatformTarget>x86</Platfo
 
 * **Log de stdout do módulo ASP.NET Core:** Exceção sem tratamento: System. BadImageFormatException: não foi possível carregar o arquivo ou assembly ' {ASSEMBLY}. dll '. Foi feita uma tentativa de carregar um programa com um formato incorreto.
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, consulte <xref:test/troubleshoot-azure-iis>.
 
@@ -119,7 +117,7 @@ Solucionar problemas:
 
 * **Log de depuração do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Confirme se o ponto de extremidade do URI correto para o aplicativo está sendo usado. Verifique as associações.
 
@@ -129,7 +127,7 @@ Solucionar problemas:
 
 **Exceção do Sistema Operacional:** os recursos CoreWebEngine e W3SVC do IIS 7.0 devem ser instalados para usar o Módulo do ASP.NET Core.
 
-Solucionar problemas:
+Solucionando problemas:
 
 Confirme que a função e os recursos apropriados estão habilitados. Consulte [Configuração do IIS](xref:host-and-deploy/iis/index#iis-configuration).
 
@@ -143,7 +141,7 @@ Confirme que a função e os recursos apropriados estão habilitados. Consulte [
 
 * **Log de depuração do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-Solucionar problemas:
+Solucionando problemas:
 
 Confira as **Configurações Básicas** no site do IIS e a pasta do aplicativo físico. Confirme que o aplicativo está na pasta no **Caminho físico** do site do IIS.
 
@@ -157,7 +155,7 @@ Confira as **Configurações Básicas** no site do IIS e a pasta do aplicativo f
 
 * **Log de depuração do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Confirme que você habilitou a função apropriada. Consulte [Configuração do IIS](xref:host-and-deploy/iis/index#iis-configuration).
 
@@ -187,7 +185,7 @@ Solucionar problemas:
 
 * **Log de depuração do módulo ASP.NET Core:** Log de eventos: ' o aplicativo ' {PATH} ' não pôde ser iniciado. O executável não foi encontrado em '{PATH}'. HRESULT com falha retornado: 0x8007023e
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, consulte <xref:test/troubleshoot-azure-iis>.
 
@@ -217,7 +215,7 @@ Solucionar problemas:
 
 * **Log de depuração do módulo ASP.NET Core:** Invocar hostfxr para localizar o manipulador de solicitação de inprocesso falhou sem encontrar nenhuma dependência nativa. Isso provavelmente significa que o aplicativo está configurado incorretamente, verifique as versões do Microsoft.NetCore.App e Microsoft.AspNetCore.App que são afetadas pelo aplicativo e estão instaladas no computador. Falha de HRESULT retornado: 0x8000ffff não pôde localizar o manipulador de solicitação de inprocesso. Saída capturada da invocação de hostfxr: você pretendia executar comandos do SDK dotnet? Instale o SDK do dotNet de: https://go.microsoft.com/fwlink/?LinkID=798306&clcid=0x409 falha no HRESULT retornado: 0x8000ffff
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, consulte <xref:test/troubleshoot-azure-iis>.
 
@@ -235,7 +233,7 @@ Falha ao iniciar o aplicativo '/LM/W3SVC/5/ROOT', ErrorCode '0x8000ffff'.
 
 * **Log de depuração do módulo ASP.NET Core:** HRESULT com falha retornado: 0x8000ffff
 
-Solucionar problemas:
+Solucionando problemas:
 
 Para uma FDD (implantação dependente de estrutura), confirme se você tem o runtime correto instalado no sistema.
 
@@ -249,7 +247,7 @@ Para uma FDD (implantação dependente de estrutura), confirme se você tem o ru
 
 * **Log de depuração do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-Solucionar problemas:
+Solucionando problemas:
 
 Confirme que o Pool de Aplicativos não está no estado *Parado*.
 
@@ -263,7 +261,7 @@ Confirme que o Pool de Aplicativos não está no estado *Parado*.
 
 * **Log de depuração do módulo ASP.NET Core:** O arquivo de log do aplicativo raiz é criado e mostra a operação normal. O arquivo de log do subaplicativo não é criado.
 
-Solucionar problemas:
+Solucionando problemas:
 
 Confirme se o arquivo *web.config* do subaplicativo não inclui uma seção `<handlers>` ou que o subaplicativo não herda os manipuladores do aplicativo pai.
 
@@ -279,7 +277,7 @@ A seção `<system.webServer>` do aplicativo pai de *web.config* é colocada den
 
 * **Log de depuração do módulo ASP.NET Core:** Não foi possível iniciar o redirecionamento stdout em C:\Program Files\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll. Mensagem de exceção: HRESULT 0x80070005 retornado em {PATH} \aspnetcoremodulev2\commonlib\fileoutputmanager.cpp: 84. Não foi possível parar o redirecionamento de stdout em C:\Arquivos de Programas\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll. Mensagem de exceção: HRESULT 0x80070002 retornado em {PATH}. Não foi possível iniciar o redirecionamento de stdout em {PATH}\aspnetcorev2_inprocess.dll.
 
-Solucionar problemas:
+Solucionando problemas:
 
 * O caminho `stdoutLogFile` especificado no elemento `<aspNetCore>` de *web.config* não existe. Para obter mais informações, consulte [módulo ASP.NET Core: criação e redirecionamento de log](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection).
 
@@ -295,7 +293,7 @@ Solucionar problemas:
 
 * **Log de depuração do módulo ASP.NET Core:** Ela
 
-Solucionar problemas:
+Solucionando problemas:
 
 O processo não pôde ser iniciado, provavelmente, devido a um problema de programação ou configuração do aplicativo.
 
@@ -334,7 +332,7 @@ A lista de erros neste tópico não é exaustiva. Se você encontrar um erro nã
 
 **Log do Aplicativo:** a DLL do Módulo **C:\WINDOWS\system32\inetsrv\aspnetcore.dll** falhou ao ser carregada. Os dados são o erro.
 
-Solucionar problemas:
+Solucionando problemas:
 
 Arquivos que não são do sistema operacional no diretório **C:\Windows\SysWOW64\inetsrv** não são preservados durante um upgrade do sistema operacional. Se o Módulo do ASP.NET Core estiver instalado antes de uma atualização do sistema operacional e, em seguida, qualquer pool de aplicativos for executado no modo de 32 bits após uma atualização do sistema operacional, esse problema será encontrado. Após um upgrade do sistema operacional, repare o Módulo do ASP.NET Core. Veja [Instalar o pacote de Hospedagem do .NET Core](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). Selecione **Reparar** ao executar o instalador.
 
@@ -348,7 +346,7 @@ Arquivos que não são do sistema operacional no diretório **C:\Windows\SysWOW6
 
 * **Log de stdout do módulo ASP.NET Core:** Não foi possível encontrar nenhuma versão de estrutura compatível. A estrutura especificada 'Microsoft.AspNetCore.App', versão '{VERSION}-preview-\*' não foi encontrada.
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Se estiver executando o aplicativo em um runtime de visualização, instale a extensão de site de 32 bits (x86) **ou** de 64 bits (x64) que corresponda ao número de bit do aplicativo e à versão de runtime do aplicativo. **Não instale extensões ou várias versões de runtime da extensão.**
 
@@ -375,7 +373,7 @@ Para obter mais informações, consulte <xref:host-and-deploy/azure-apps/index#i
 
 Esse cenário é interceptado pelo SDK ao publicar um aplicativo autocontido. O SDK produzirá um erro se o RID não coincidir com o destino da plataforma (por exemplo, RID `win10-x64` com `<PlatformTarget>x86</PlatformTarget>` no arquivo de projeto).
 
-Solucionar problemas:
+Solucionando problemas:
 
 Para uma implantação dependente da estrutura x86 (`<PlatformTarget>x86</PlatformTarget>`), habilite o pool de aplicativos de IIS para aplicativos de 32 bits. No Gerenciador do IIS, abra as **Configurações Avançadas** do pool de aplicativos e defina **Habilitar Aplicativos de 32 Bits** como **Verdadeiro**.
 
@@ -387,7 +385,7 @@ Para uma implantação dependente da estrutura x86 (`<PlatformTarget>x86</Platfo
 
 * **Log de stdout do módulo ASP.NET Core:** Exceção sem tratamento: System. BadImageFormatException: não foi possível carregar o arquivo ou assembly ' {ASSEMBLY}. dll '. Foi feita uma tentativa de carregar um programa com um formato incorreto.
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, consulte <xref:test/troubleshoot-azure-iis>.
 
@@ -401,7 +399,7 @@ Solucionar problemas:
 
 * **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Confirme se o ponto de extremidade do URI correto para o aplicativo está sendo usado. Verifique as associações.
 
@@ -411,7 +409,7 @@ Solucionar problemas:
 
 **Exceção do Sistema Operacional:** os recursos CoreWebEngine e W3SVC do IIS 7.0 devem ser instalados para usar o Módulo do ASP.NET Core.
 
-Solucionar problemas:
+Solucionando problemas:
 
 Confirme que a função e os recursos apropriados estão habilitados. Consulte [Configuração do IIS](xref:host-and-deploy/iis/index#iis-configuration).
 
@@ -423,7 +421,7 @@ Confirme que a função e os recursos apropriados estão habilitados. Consulte [
 
 * **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-Solucionar problemas:
+Solucionando problemas:
 
 Confira as **Configurações Básicas** no site do IIS e a pasta do aplicativo físico. Confirme que o aplicativo está na pasta no **Caminho físico** do site do IIS.
 
@@ -435,7 +433,7 @@ Confira as **Configurações Básicas** no site do IIS e a pasta do aplicativo f
 
 * **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Confirme que você habilitou a função apropriada. Consulte [Configuração do IIS](xref:host-and-deploy/iis/index#iis-configuration).
 
@@ -463,7 +461,7 @@ Solucionar problemas:
 
 * **Log de stdout do módulo ASP.NET Core:** O arquivo de log é criado, mas vazio.
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, consulte <xref:test/troubleshoot-azure-iis>.
 
@@ -491,13 +489,13 @@ Solucionar problemas:
 
 * **Log de stdout do módulo ASP.NET Core:** O aplicativo a ser executado não existe: ' PATH\{ASSEMBLY}. dll '
 
-Solucionar problemas:
+Solucionando problemas:
 
 * Confirme se o aplicativo é executado localmente no Kestrel. Uma falha do processo pode ser o resultado de um problema no aplicativo. Para obter mais informações, consulte <xref:test/troubleshoot-azure-iis>.
 
 * Examine o atributo *arguments* no elemento `<aspNetCore>` no *web.config* para confirmar se ele: (a) é `.\{ASSEMBLY}.dll` de uma FDD (implantação dependente de estrutura); ou (b) não está presente, é uma cadeia de caracteres vazia (`arguments=""`) ou uma lista de argumentos do aplicativo (`arguments="{ARGUMENT_1}, {ARGUMENT_2}, ... {ARGUMENT_X}"`) para uma SCD (implantação autossuficiente).
 
-Solucionar problemas:
+Solucionando problemas:
 
 Para uma FDD (implantação dependente de estrutura), confirme se você tem o runtime correto instalado no sistema.
 
@@ -509,7 +507,7 @@ Para uma FDD (implantação dependente de estrutura), confirme se você tem o ru
 
 * **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-Solucionar problemas:
+Solucionando problemas:
 
 Confirme que o Pool de Aplicativos não está no estado *Parado*.
 
@@ -521,7 +519,7 @@ Confirme que o Pool de Aplicativos não está no estado *Parado*.
 
 * **Log de stdout do módulo ASP.NET Core:** O arquivo de log do aplicativo raiz é criado e mostra a operação normal. O arquivo de log do subaplicativo não é criado.
 
-Solucionar problemas:
+Solucionando problemas:
 
 Confirme se o arquivo *web.config* do subaplicativo não inclui uma seção `<handlers>`.
 
@@ -533,7 +531,7 @@ Confirme se o arquivo *web.config* do subaplicativo não inclui uma seção `<ha
 
 * **Log de stdout do módulo ASP.NET Core:** O arquivo de log não foi criado.
 
-Solucionar problemas:
+Solucionando problemas:
 
 * O caminho `stdoutLogFile` especificado no elemento `<aspNetCore>` de *web.config* não existe. Para obter mais informações, consulte [módulo ASP.NET Core: criação e redirecionamento de log](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection).
 
@@ -547,7 +545,7 @@ Solucionar problemas:
 
 * **Log de stdout do módulo ASP.NET Core:** O arquivo de log é criado, mas vazio.
 
-Solucionar problemas:
+Solucionando problemas:
 
 O processo não pôde ser iniciado, provavelmente, devido a um problema de programação ou configuração do aplicativo.
 

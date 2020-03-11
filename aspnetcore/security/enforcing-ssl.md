@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 uid: security/enforcing-ssl
-ms.openlocfilehash: 43f3abfa4bc311ed246f6f2585d522661e492039
-ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
+ms.openlocfilehash: 2a7b4152004cb65ee12487eb4793d42d0b7165d0
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "77447146"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78662634"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Impor HTTPS em ASP.NET Core
 
@@ -150,7 +150,7 @@ Se as solicitações forem encaminhadas em uma configuração de proxy reverso, 
 
 Ao implantar no serviço Azure App, siga as diretrizes em [tutorial: associar um certificado SSL personalizado existente aos aplicativos Web do Azure](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 O código realçado a seguir chama [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) para configurar opções de middleware:
 
@@ -350,7 +350,7 @@ dotnet dev-certs https --help
 
 ## <a name="how-to-set-up-a-developer-certificate-for-docker"></a>Como configurar um certificado de desenvolvedor para o Docker
 
-Consulte [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/6199).
+Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
 <a name="wsl"></a>
 
@@ -421,7 +421,7 @@ Consulte [erro de HTTPS usando IIS Express (dotNet/AspNetCore #16892)](https://g
 
 Para corrigir problemas com o certificado de IIS Express, selecione **reparar** no instalador do Visual Studio. Saiba mais neste [tópico do GitHub](https://github.com/dotnet/aspnetcore/issues/16892).
 
-## <a name="additional-information"></a>Informações adicionais
+## <a name="additional-information"></a>{1&gt;{2&gt;Informações adicionais&lt;2}&lt;1}
 
 * <xref:host-and-deploy/proxy-load-balancer>
 * [ASP.NET Core de host no Linux com Apache: Configuração HTTPS](xref:host-and-deploy/linux-apache#https-configuration)

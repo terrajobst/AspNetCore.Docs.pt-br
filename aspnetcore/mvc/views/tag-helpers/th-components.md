@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
 ms.date: 06/12/2019
 uid: mvc/views/tag-helpers/th-components
-ms.openlocfilehash: 070cc3aae08664c13d8eb793a066766d0a5569ee
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: 5e2eb2d4322068c5864fbe49acaa6d0859bd319a
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880968"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660765"
 ---
 # <a name="tag-helper-components-in-aspnet-core"></a>Componentes do Auxiliar de Marca no ASP.NET Core
 
@@ -21,7 +21,7 @@ Um Componente do Auxiliar de Marca é um Auxiliar de Marca que permite que você
 
 O ASP.NET Core inclui dois Componentes de Auxiliar de Marca internos: `head` e `body`. Eles estão localizados no namespace <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> e podem ser usados no MVC e no Razor Pages. Componentes do Auxiliar de Marca não requerem registro com o aplicativo em *_ViewImports.cshtml*.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="use-cases"></a>Casos de uso
 

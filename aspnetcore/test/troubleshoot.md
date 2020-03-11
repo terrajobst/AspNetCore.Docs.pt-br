@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
 uid: test/troubleshoot
-ms.openlocfilehash: 73a73fb51571e5f7b706ff4b958217854750c1fb
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: 042e1c84a7226cb4bf56bcc0ff4e576b67e68e1b
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75354703"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78655298"
 ---
 # <a name="troubleshoot-and-debug-aspnet-core-projects"></a>Solucionar problemas e depurar projetos ASP.NET Core
 
@@ -170,4 +170,4 @@ Os links a seguir fornecem informações sobre como depurar aplicativos ASP.NET 
 * [Depuração do ASP Core no Linux](https://devblogs.microsoft.com/premier-developer/debugging-asp-core-on-linux-with-visual-studio-2017/)
 * [Depuração do .NET Core no UNIX por SSH](https://devblogs.microsoft.com/devops/debugging-net-core-on-unix-over-ssh/)
 * [Início rápido: Depurar ASP.NET com o depurador do Visual Studio](/visualstudio/debugger/quickstart-debug-aspnet)
-* Consulte [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/2960) para obter mais informações de depuração.
+* Consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/2960) para obter mais informações de depuração.

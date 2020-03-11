@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: 6a2a2ca45f793ab95d45281ebb23180ac64761ec
-ms.sourcegitcommit: 215954a638d24124f791024c66fd4fb9109fd380
+ms.openlocfilehash: a5ea9b75cf8bb1f31cb07a2b32f361bdbfd4efa3
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71082308"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78662900"
 ---
 # <a name="add-a-new-field-to-an-aspnet-core-mvc-app"></a>Adicionar um novo campo a um aplicativo ASP.NET Core MVC
 
@@ -35,17 +35,17 @@ Adicionar uma propriedade `Rating` a *Models/Movie.cs*:
 
 Compilar o aplicativo
 
-### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
  Ctrl+Shift+B
 
-### <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 ```dotnetcli
 dotnet build
 ```
 
-### <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+### <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 Command ⌘ + B
 
@@ -65,13 +65,13 @@ Edite o arquivo */Views/Movies/Index.cshtml* e adicione um campo `Rating`:
 
 Atualize */Views/Movies/Create.cshtml* com um campo `Rating`.
 
-# <a name="visual-studio--visual-studio-for-mactabvisual-studiovisual-studio-mac"></a>[Visual Studio/Visual Studio para Mac](#tab/visual-studio+visual-studio-mac)
+# <a name="visual-studio--visual-studio-for-mac"></a>[Visual Studio/Visual Studio para Mac](#tab/visual-studio+visual-studio-mac)
 
 Copie/cole o “grupo de formulário” anterior e permita que o IntelliSense ajude você a atualizar os campos. O IntelliSense funciona com os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro).
 
 ![O desenvolvedor digitou a letra R para o valor do atributo asp-for no segundo elemento de rótulo da exibição. Um menu contextual do IntelliSense foi exibido, mostrando os campos disponíveis, incluindo Classificação, que é realçada na lista automaticamente. Quando o desenvolvedor clicar no campo ou pressionar Enter no teclado, o valor será definido como Classificação.](new-field/_static/cr.png)
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 <!-- This tab intentionally left blank. -->
 
@@ -99,7 +99,7 @@ Existem algumas abordagens para resolver o erro:
 
 Para este tutorial, as Migrações do Code First são usadas.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 No menu **Ferramentas**, selecione **Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes**.
 
@@ -118,11 +118,11 @@ O nome “Classificação” é arbitrário e é usado para nomear o arquivo de 
 
 Se você excluir todos os registros do BD, o método de inicialização propagará o BD e incluirá o campo `Rating`.
 
-# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Excluir o banco de dados e usar as migrações para recriar o banco de dados. Para excluir o banco de dados, exclua o arquivo de banco de dados (*MvcMovie.db*). Depois, execute o comando `ef database update`:
+Excluir o banco de dados e usar as migrações para recriar o banco de dados. Para excluir o banco de dados, exclua o arquivo de banco de dados (*MvcMovie.db*). Em seguida, execute o comando `ef database update`:
 
 ```dotnetcli
 dotnet ef database update
@@ -131,7 +131,10 @@ dotnet ef database update
 ---
 <!-- End of VS tabs -->
 
-Execute o aplicativo e verifique se você pode criar/editar/exibir filmes com um campo `Rating`. Você deve adicionar o campo `Rating` aos modelos de exibição `Edit`, `Details` e `Delete`.
+Execute o aplicativo e verifique se você pode criar, editar e exibir filmes com um campo `Rating`. Atualize o aplicativo:
+
+* Adicione o campo `Rating` ao `Edit`, `Details`e `Delete` modelos de exibição.
+* Atualize a associação no método editar ação do `MoviesController`.
 
 > [!div class="step-by-step"]
 > [Anterior](search.md)

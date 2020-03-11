@@ -44,6 +44,6 @@ No arquivo *appSettings. JSON* :
    * O aplicativo de exemplo define o valor como `c:\\files`, o que pressupõe que uma pasta chamada *files* existe na raiz da unidade C: do sistema.
    * O caminho deve existir. Crie uma pasta *files* na unidade C: do sistema ou defina o caminho para um local adequado.
    * O processo do aplicativo requer permissões de leitura/gravação para o caminho.
-   * **FUNDAMENTAL!** Desabilite as permissões de execução para todos os usuários no caminho.
+   * **IMPORTANTE:** Desabilite as permissões de execução para todos os usuários no caminho.
 
 1. Defina o limite de tamanho do arquivo (`FileSizeLimit`) em bytes. O valor padrão do aplicativo de exemplo de `2097152` (2.097.152 bytes) permite carregamentos de arquivo de até 2 MB.

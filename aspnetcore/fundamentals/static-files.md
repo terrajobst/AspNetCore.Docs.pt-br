@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/07/2019
 uid: fundamentals/static-files
-ms.openlocfilehash: 00bab51cb411552c884f85fa63d42d0691b401b1
-ms.sourcegitcommit: 3b6b0a54b20dc99b0c8c5978400c60adf431072f
+ms.openlocfilehash: 95a77defc7e98328e1f4e3615648b1d14485e51e
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/03/2019
-ms.locfileid: "74717267"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660121"
 ---
 # <a name="static-files-in-aspnet-core"></a>Arquivos estáticos no ASP.NET Core
 
@@ -19,7 +19,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT) e [Scott Addie](https://twi
 
 Arquivos estáticos, como HTML, CSS, imagens e JavaScript, são ativos que um aplicativo ASP.NET Core fornece diretamente para os clientes. Algumas etapas de configuração são necessárias para habilitar o fornecimento desses arquivos.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="serve-static-files"></a>Fornecer arquivos estáticos
 
@@ -111,6 +111,7 @@ A seguinte marcação referencia *MyStaticFiles/images/banner1.svg*:
 Um objeto [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions) pode ser usado para definir cabeçalhos de resposta HTTP. Além de configurar o serviço de arquivos estáticos na [raiz da Web](xref:fundamentals/index#web-root), o código a seguir define o cabeçalho `Cache-Control`:
 
 [!code-csharp[](static-files/samples/1x/StartupAddHeader.cs?name=snippet_ConfigureMethod)]
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 O método [HeaderDictionaryExtensions.Append](/dotnet/api/microsoft.aspnetcore.http.headerdictionaryextensions.append) existe no pacote [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/).
 
@@ -206,7 +207,7 @@ O seguinte código habilita arquivos estáticos, arquivos padrão e a navegaçã
 
 Com o uso da hierarquia de arquivos e do código anterior, as URLs são resolvidas da seguinte maneira:
 
-| {1&gt;URI&lt;1}            |                             Resposta  |
+| URI            |                             Resposta  |
 | ------- | ------|
 | *http://\<server_address>/StaticFiles/images/banner1.svg*    |      MyStaticFiles/images/banner1.svg |
 | *http://\<server_address>/StaticFiles*             |     MyStaticFiles/default.html |
@@ -241,7 +242,7 @@ Com o código anterior, uma solicitação para um arquivo com um tipo de conteú
 
 ## <a name="serve-files-from-multiple-locations"></a>Fornecer arquivos de vários locais
 
-`UseStaticFiles` e `UseFileServer` usa como padrão o provedor de arquivos que aponta para *wwwroot*. Você pode fornecer instâncias adicionais de `UseStaticFiles` e `UseFileServer` com outros provedores de arquivos para fornecer arquivos de outros locais. Para obter mais informações, consulte [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/15578).
+`UseStaticFiles` e `UseFileServer` usa como padrão o provedor de arquivos que aponta para *wwwroot*. Você pode fornecer instâncias adicionais de `UseStaticFiles` e `UseFileServer` com outros provedores de arquivos para fornecer arquivos de outros locais. Saiba mais neste [tópico do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/15578).
 
 ### <a name="considerations"></a>Considerações
 

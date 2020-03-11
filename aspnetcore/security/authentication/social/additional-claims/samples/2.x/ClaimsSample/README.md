@@ -2,11 +2,11 @@
 
 O aplicativo de exemplo demonstra como:
 
-* Obter o nome fornecido e o sobrenome do usuário do Google e armazenar as declarações de nome com os valores fornecidos pelo Google.
-* Store o token de acesso do Google, o usuário `AuthenticationProperties`.
+* Obtenha o nome do usuário e o sobrenome do Google e armazene as declarações de nome com os valores fornecidos pelo Google.
+* Armazene o token de acesso do Google no `AuthenticationProperties`do usuário.
 
 Para usar o aplicativo de exemplo:
 
-1. Registrar o aplicativo e obter uma ID de cliente válido e o segredo do cliente para autenticação do Google. Para obter mais informações, consulte [configuração de logon externo do Google](https://docs.microsoft.com/aspnet/core/security/authentication/social/google-logins).
-1. Forneça a ID de cliente e o segredo do cliente para o aplicativo na [GoogleOptions](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) de `Startup.ConfigureServices`.
-1. Execute o aplicativo e solicite a página Minhas declarações. Quando o usuário não estiver conectado, o aplicativo redireciona para o Google. Entrar com o Google. Google redireciona o usuário retorne ao aplicativo (`/MyClaims`). O usuário é autenticado e a página Minhas declarações é carregada. O nome e sobrenome declarações estão presentes em **declarações de usuário** com os valores fornecidos pelo Google. O token de acesso é exibido sob **as propriedades de autenticação**.
+1. Registre o aplicativo e obtenha uma ID de cliente e um segredo do cliente válidos para a autenticação do Google. Para obter mais informações, consulte [configuração de logon externo do Google](https://docs.microsoft.com/aspnet/core/security/authentication/social/google-logins).
+1. Forneça a ID do cliente e o segredo do cliente para o aplicativo no [googleoptions](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) do `Startup.ConfigureServices`.
+1. Execute o aplicativo e solicite a página minhas declarações. Quando o usuário não está conectado, o aplicativo redireciona para o Google. Entre com o Google. O Google redireciona o usuário de volta para o aplicativo (`/MyClaims`). O usuário é autenticado e a página minhas declarações é carregada. As declarações nome e sobrenome fornecidas estão presentes em **declarações do usuário** com os valores fornecidos pelo Google. O token de acesso é exibido em **Propriedades de autenticação**.

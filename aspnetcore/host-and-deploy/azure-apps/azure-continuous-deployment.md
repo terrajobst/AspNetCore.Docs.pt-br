@@ -7,11 +7,11 @@ ms.custom: mvc
 ms.date: 12/06/2018
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
 ms.openlocfilehash: 3b344505739bb4292ed1683c73ff314b6e4e01e9
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64890091"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660849"
 ---
 # <a name="continuous-deployment-to-azure-with-visual-studio-and-git-with-aspnet-core"></a>Implantação contínua no Azure com o Visual Studio e o GIT com o ASP.NET Core
 
@@ -26,7 +26,7 @@ Consulte também [Criar seu primeiro pipeline com o Azure Pipelines](/azure/devo
 > [!NOTE]
 > Para concluir este tutorial, você precisa de uma conta do Microsoft Azure. Para obter uma conta, [ative os benefícios do assinante do MSDN](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/?WT.mc_id=A261C142F) ou [inscreva-se em uma avaliação gratuita](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 Este tutorial pressupõe que o seguinte software está instalado:
 
@@ -40,7 +40,7 @@ Este tutorial pressupõe que o seguinte software está instalado:
 
 1. No menu **Arquivo**, selecione **Novo** > **Projeto**.
 
-1. Selecione o modelo de projeto **Aplicativo Web ASP.NET Core**. Ele será exibido em **Instalado** > **Modelos** > **Visual C#**  >  **.NET Core**. Nomeie o projeto `SampleWebAppDemo`. Selecione a opção **Criar novo repositório GIT** e clique em **OK**.
+1. Selecione o modelo de projeto **Aplicativo Web ASP.NET Core**. Ele será exibido em **Instalado** > **Modelos** > **Visual C#**  >  **.NET Core**. Dê ao projeto o nome de `SampleWebAppDemo`. Selecione a opção **Criar novo repositório GIT** e clique em **OK**.
 
    ![Caixa de diálogo Novo Projeto](azure-continuous-deployment/_static/01-new-project.png)
 
@@ -65,13 +65,13 @@ Este tutorial pressupõe que o seguinte software está instalado:
 
 As etapas a seguir criam um aplicativo Web no portal do Azure:
 
-1. Faça logon no [portal do Azure](https://portal.azure.com).
+1. Faça logon no [Portal do Azure](https://portal.azure.com).
 
 1. Selecione **NOVO** na parte superior esquerda da interface do portal.
 
 1. Selecione **Web + Celular** > **Aplicativo Web**.
 
-   ![Portal do Microsoft Azure: Botão Novo: Web + Celular em Marketplace: Botão Aplicativo Web em Aplicativos em Destaque](azure-continuous-deployment/_static/05-azure-newwebapp.png)
+   ![Portal do Microsoft Azure: botão Novo: Web + Móvel em Marketplace: botão Aplicativo Web em Aplicativos em Destaque](azure-continuous-deployment/_static/05-azure-newwebapp.png)
 
 1. Na folha **Aplicativo Web**, insira um valor exclusivo para o **Nome do Serviço de Aplicativo**.
 
@@ -84,13 +84,13 @@ As etapas a seguir criam um aplicativo Web no portal do Azure:
 
 1. Selecione **Criar**. O Azure provisionará e iniciará o aplicativo Web.
 
-   ![Portal do Azure: folha Informações Gerais da Demonstração de Aplicativo Web de Exemplo 01](azure-continuous-deployment/_static/07-azure-webappblade.png)
+   ![Portal do Azure: folha Conceitos Básicos da Demonstração de Aplicativo Web de Exemplo 01](azure-continuous-deployment/_static/07-azure-webappblade.png)
 
-## <a name="enable-git-publishing-for-the-new-web-app"></a>Habilitar a publicação do Git no novo aplicativo Web
+## <a name="enable-git-publishing-for-the-new-web-app"></a>Habilitar a publicação de Git para o novo aplicativo Web
 
 O GIT é um sistema de controle de versão distribuída que pode ser usado para implantar um aplicativo Web do Serviço de Aplicativo do Azure. O código do aplicativo Web é armazenado em um repositório GIT local e implantado no Azure por push para um repositório remoto.
 
-1. Faça logon no [portal do Azure](https://portal.azure.com).
+1. Faça logon no [Portal do Azure](https://portal.azure.com).
 
 1. Selecione **Serviços de Aplicativos** para exibir uma lista de serviços de aplicativos associados à assinatura do Azure.
 
@@ -98,14 +98,14 @@ O GIT é um sistema de controle de versão distribuída que pode ser usado para 
 
 1. Na folha **Implantação**, selecione **Opções de implantação** > **Escolher Origem** > **Repositório Git Local**.
 
-   ![Folha Configurações: Folha Origem da implantação: Escolha a folha de origem](azure-continuous-deployment/_static/deployment-options.png)
+   ![Folha Configurações: folha Origem de implantação: folha Escolher origem](azure-continuous-deployment/_static/deployment-options.png)
 
 1. Selecione **OK**.
 
 1. Caso você não tenha configurado anteriormente as credenciais de implantação para publicar um aplicativo Web ou outro aplicativo do Serviço de Aplicativo, configure-as agora:
 
    * Selecione **Configurações** > **Credenciais de implantação**. A folha **Definir credenciais de implantação** é exibida.
-   * Crie um nome de usuário e uma senha. Salve a senha para uso posterior ao configurar o GIT.
+   * Digite um nome de usuário e senha. Salve a senha para uso posterior ao configurar o GIT.
    * Selecione **Salvar**.
 
 1. Na folha **Aplicativo Web**, selecione **Configurações** > **Propriedades**. A URL do repositório GIT remoto no qual você implantará será mostrada em **URL do GIT**.
@@ -114,7 +114,7 @@ O GIT é um sistema de controle de versão distribuída que pode ser usado para 
 
    ![Portal do Azure: folha Propriedades do aplicativo](azure-continuous-deployment/_static/09-azure-giturl.png)
 
-## <a name="publish-the-web-app-to-azure-app-service"></a>Publicar o aplicativo Web no Serviço de Aplicativo do Azure
+## <a name="publish-the-web-app-to-azure-app-service"></a>Publicar aplicativo Web para Serviço de Aplicativo do Azure
 
 Nesta seção, você criará um repositório GIT local usando o Visual Studio e efetuará push desse repositório para o Azure para implantar o aplicativo Web. As etapas envolvidas incluem as seguintes:
 
@@ -184,7 +184,7 @@ Verifique se a transferência do aplicativo Web do ambiente local para o Azure �
 
 No [portal do Azure](https://portal.azure.com), selecione o aplicativo Web. Selecione **Implantação** > **Opções de implantação**.
 
-![Portal do Azure: Folha Configurações: folha Implantações mostrando a implantação bem-sucedida](azure-continuous-deployment/_static/13-verify-deployment.png)
+![Portal do Azure: folha Configurações: folha Implantações mostrando a implantação bem-sucedida](azure-continuous-deployment/_static/13-verify-deployment.png)
 
 ## <a name="run-the-app-in-azure"></a>Executar o aplicativo no Azure
 
@@ -229,5 +229,5 @@ Exiba o aplicativo Web atualizado selecionando **Procurar** na folha do aplicati
 ## <a name="additional-resources"></a>Recursos adicionais
 
 * [Criar seu primeiro pipeline com o Azure Pipelines](/azure/devops/pipelines/get-started-yaml)
-* [Kudu do projeto](https://github.com/projectkudu/kudu/wiki)
+* [Kudu do Projeto](https://github.com/projectkudu/kudu/wiki)
 * <xref:host-and-deploy/visual-studio-publish-profiles>

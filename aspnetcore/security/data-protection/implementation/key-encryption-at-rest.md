@@ -1,29 +1,29 @@
 ---
-title: Chave de criptografia em repouso no ASP.NET Core
+title: Criptografia de chave em repouso no ASP.NET Core
 author: rick-anderson
-description: Saiba os detalhes da implementação de criptografia de chave de proteção de dados do ASP.NET Core em repouso.
+description: Aprenda detalhes de implementação de criptografia de chave de proteção de dados ASP.NET Core em repouso.
 ms.author: riande
 ms.date: 07/16/2018
 uid: security/data-protection/implementation/key-encryption-at-rest
 ms.openlocfilehash: 52c3137dbe467096364b42430c92aecc7c15e313
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64892303"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78658385"
 ---
-# <a name="key-encryption-at-rest-in-aspnet-core"></a>Chave de criptografia em repouso no ASP.NET Core
+# <a name="key-encryption-at-rest-in-aspnet-core"></a>Criptografia de chave em repouso no ASP.NET Core
 
-O sistema de proteção de dados [emprega um mecanismo de descoberta por padrão](xref:security/data-protection/configuration/default-settings) para determinar as chaves de criptografia como devem ser criptografados em repouso. O desenvolvedor pode substituir o mecanismo de descoberta e especificar manualmente como chaves devem ser criptografadas em repouso.
+O sistema de proteção de dados [emprega um mecanismo de descoberta por padrão](xref:security/data-protection/configuration/default-settings) para determinar como as chaves criptográficas devem ser criptografadas em repouso. O desenvolvedor pode substituir o mecanismo de descoberta e especificar manualmente como as chaves devem ser criptografadas em repouso.
 
 > [!WARNING]
-> Se você especificar um explícito [local de persistência da chave](xref:security/data-protection/implementation/key-storage-providers), o sistema de proteção de dados cancela o registro a criptografia de chave padrão no mecanismo de rest. Consequentemente, as chaves não são criptografadas em repouso. É recomendável que você [especificar um mecanismo de criptografia de chave explícita](xref:security/data-protection/implementation/key-encryption-at-rest) para implantações de produção. As opções de mecanismo de criptografia em repouso são descritas neste tópico.
+> Se você especificar um [local de persistência de chave](xref:security/data-protection/implementation/key-storage-providers)explícita, o sistema de proteção de dados cancelará o registro do mecanismo de criptografia de chave padrão em repouso. Consequentemente, as chaves não são mais criptografadas em repouso. Recomendamos que você [especifique um mecanismo de criptografia de chave explícito](xref:security/data-protection/implementation/key-encryption-at-rest) para implantações de produção. As opções de mecanismo de criptografia em repouso são descritas neste tópico.
 
 ::: moniker range=">= aspnetcore-2.1"
 
-## <a name="azure-key-vault"></a>Azure Key Vault
+## <a name="azure-key-vault"></a>Cofre de Chave do Azure
 
-Para armazenar as chaves na [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure o sistema com [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) no `Startup` classe:
+Para armazenar chaves no [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure o sistema com [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) na classe `Startup`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -34,15 +34,15 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Para obter mais informações, consulte [configurar a proteção de dados do ASP.NET Core: ProtectKeysWithAzureKeyVault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault).
+Para obter mais informações, consulte [Configure ASP.NET Core Data Protection: ProtectKeysWithAzureKeyVault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault).
 
 ::: moniker-end
 
 ## <a name="windows-dpapi"></a>Windows DPAPI
 
-**Só se aplica às implantações do Windows.**
+**Aplica-se somente a implantações do Windows.**
 
-Quando o Windows DPAPI é usado, o material da chave é criptografada com [CryptProtectData](/windows/desktop/api/dpapi/nf-dpapi-cryptprotectdata) antes que estão sendo mantidos no armazenamento. A DPAPI é um mecanismo de criptografia apropriado para os dados que nunca é lida de fora do computador atual (no entanto é possível fazer essas chaves até do Active Directory; Consulte [DPAPI e perfis móveis](https://support.microsoft.com/kb/309408/#6)). Para configurar a criptografia de chave em repouso DPAPI, chame um dos [ProtectKeysWithDpapi](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.protectkeyswithdpapi) métodos de extensão:
+Quando o Windows DPAPI é usado, o material da chave é criptografado com [CryptProtectData](/windows/desktop/api/dpapi/nf-dpapi-cryptprotectdata) antes de ser persistido no armazenamento. O DPAPI é um mecanismo de criptografia apropriado para dados que nunca são lidos fora do computador atual (embora seja possível fazer o back-up dessas chaves até Active Directory; consulte [DPAPI e perfis móveis](https://support.microsoft.com/kb/309408/#6)). Para configurar a criptografia de chave em repouso DPAPI, chame um dos métodos de extensão [ProtectKeysWithDpapi](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.protectkeyswithdpapi) :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -53,7 +53,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Se `ProtectKeysWithDpapi` é chamado sem parâmetros, somente a conta de usuário atual do Windows poderá decifrar o anel de chave persistente. Opcionalmente, você pode especificar que qualquer conta de usuário no computador (não apenas a conta de usuário atual) poderá decifrar o anel de chave:
+Se `ProtectKeysWithDpapi` for chamado sem parâmetros, somente a conta de usuário do Windows atual poderá decifrar o anel de chave persistente. Opcionalmente, você pode especificar que qualquer conta de usuário no computador (não apenas a conta de usuário atual) seja capaz de decifrar o anel de chave:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -68,7 +68,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="x509-certificate"></a>Certificado X.509
 
-Se o aplicativo é distribuído entre vários computadores, pode ser conveniente distribuir um certificado x. 509 compartilhado entre as máquinas e configure os aplicativos hospedados para usar o certificado de criptografia de chaves em repouso:
+Se o aplicativo for distribuído entre vários computadores, poderá ser conveniente distribuir um certificado X. 509 compartilhado entre os computadores e configurar os aplicativos hospedados para usar o certificado para criptografia de chaves em repouso:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -78,17 +78,17 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Devido às limitações do .NET Framework, somente os certificados com chaves privadas de CAPI têm suporte. Consulte o conteúdo abaixo para obter possíveis soluções para essas limitações.
+Devido a limitações de .NET Framework, há suporte apenas para certificados com chaves privadas CAPI. Consulte o conteúdo abaixo para obter possíveis soluções alternativas para essas limitações.
 
 ::: moniker-end
 
 ## <a name="windows-dpapi-ng"></a>Windows DPAPI-NG
 
-**Esse mecanismo está disponível apenas no Windows 8/Windows Server 2012 ou posterior.**
+**Esse mecanismo está disponível somente no Windows 8/Windows Server 2012 ou posterior.**
 
-Começando com o Windows 8, o sistema operacional do Windows oferece suporte a DPAPI-NG (também chamado de CNG DPAPI). Para obter mais informações, consulte [sobre o DPAPI CNG](/windows/desktop/SecCNG/cng-dpapi).
+A partir do Windows 8, o sistema operacional Windows dá suporte a DPAPI-NG (também chamado de CNG DPAPI). Para obter mais informações, consulte [about CNG DPAPI](/windows/desktop/SecCNG/cng-dpapi).
 
-A entidade de segurança é codificada como uma regra de proteção do descritor. No exemplo a seguir que chama [ProtectKeysWithDpapiNG](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.protectkeyswithdpaping), somente o usuário de domínio com o SID especificado pode descriptografar o anel de chave:
+A entidade de segurança é codificada como uma regra de descritor de proteção. No exemplo a seguir que chama [ProtectKeysWithDpapiNG](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.protectkeyswithdpaping), somente o usuário ingressado no domínio com o SID especificado pode descriptografar o anel de chave:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -100,7 +100,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Também há uma sobrecarga sem parâmetros de `ProtectKeysWithDpapiNG`. Use esse método de conveniência para especificar a regra "SID = {CURRENT_ACCOUNT_SID}", onde *CURRENT_ACCOUNT_SID* é o SID da conta de usuário atual do Windows:
+Também há uma sobrecarga sem parâmetros de `ProtectKeysWithDpapiNG`. Use este método de conveniência para especificar a regra "SID = {CURRENT_ACCOUNT_SID}", em que *CURRENT_ACCOUNT_SID* é o SID da conta de usuário atual do Windows:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -111,11 +111,11 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Nesse cenário, o controlador de domínio do AD é responsável por distribuir as chaves de criptografia usadas pelas operações NG DPAPI. O usuário de destino poderá decifrar a carga criptografada de qualquer computador ingressado no domínio (desde que o processo é executado sob sua identidade).
+Nesse cenário, o controlador de domínio do AD é responsável por distribuir as chaves de criptografia usadas pelas operações de DPAPI-NG. O usuário de destino pode decifrar a carga criptografada de qualquer computador associado ao domínio (desde que o processo esteja sendo executado sob sua identidade).
 
 ## <a name="certificate-based-encryption-with-windows-dpapi-ng"></a>Criptografia baseada em certificado com o Windows DPAPI-NG
 
-Se o aplicativo está em execução no Windows 8.1 / Windows Server 2012 R2 ou posterior, você pode usar o Windows DPAPI-NG para executar a criptografia baseada em certificado. Use a cadeia de caracteres do descritor de regra "certificado = HashId:THUMBPRINT", onde *impressão digital* é a impressão digital codificação hexadecimal SHA1 do certificado:
+Se o aplicativo estiver em execução no Windows 8.1/Windows Server 2012 R2 ou posterior, você poderá usar o Windows DPAPI-NG para executar a criptografia baseada em certificado. Use a cadeia de caracteres do descritor de regra "CERTIFICATE = HashId: impressão digital", em que a *impressão digital* é a impressão digital SHA1 codificada em hex do certificado:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -126,8 +126,8 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Qualquer aplicativo apontado para esse repositório deve estar executando no Windows 8.1 / Windows Server 2012 R2 ou posterior para decifrar as chaves.
+Qualquer aplicativo apontado neste repositório deve estar em execução no Windows 8.1/Windows Server 2012 R2 ou posterior para decifrar as chaves.
 
 ## <a name="custom-key-encryption"></a>Criptografia de chave personalizada
 
-Se os mecanismos de caixa de entrada não forem apropriados, o desenvolvedor pode especificar seu próprio mecanismo de criptografia de chave, fornecendo um personalizado [IXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmlencryptor).
+Se os mecanismos na caixa não forem apropriados, o desenvolvedor poderá especificar seu próprio mecanismo de criptografia de chave, fornecendo um [IXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmlencryptor)personalizado.

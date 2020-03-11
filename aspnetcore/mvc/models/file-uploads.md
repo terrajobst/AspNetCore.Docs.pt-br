@@ -1,30 +1,30 @@
 ---
 title: Carregar arquivos no ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Como usar o model binding e o streaming para carregar arquivos no ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/11/2020
+ms.date: 02/25/2020
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 56fd26c1864089558f5cd89f693dc86ea30c3331
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: fc71c39dd1aa70e6b092799fec00bd7bf66703e8
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77172468"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78664825"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Carregar arquivos no ASP.NET Core
 
-De [Luke Latham](https://github.com/guardrex), [Steve Smith](https://ardalis.com/)e [Rutger Storm](https://github.com/rutix)
+Por [Steve Smith](https://ardalis.com/) e [Rutger Storm](https://github.com/rutix)
 
 ::: moniker range=">= aspnetcore-3.0"
 
 O ASP.NET Core dá suporte ao carregamento de um ou mais arquivos usando a associação de modelo em buffer para arquivos menores e streaming sem buffer para arquivos maiores.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Considerações de segurança
+## <a name="security-considerations"></a>Considerações sobre segurança
 
 Tome cuidado ao fornecer aos usuários a capacidade de carregar arquivos em um servidor. Os invasores podem tentar:
 
@@ -64,7 +64,7 @@ Para obter mais informações sobre como implementar medidas de segurança, incl
 
 As opções de armazenamento comuns para arquivos incluem:
 
-* Banco de dados
+* Database
 
   * Para carregamentos de arquivos pequenos, um banco de dados geralmente é mais rápido do que as opções de armazenamento físico (sistema de arquivos ou compartilhamento de rede).
   * Um banco de dados é muitas vezes mais conveniente do que as opções de armazenamento físico, pois a recuperação de um registro de banco de dados para o usuário pode fornecer simultaneamente o conteúdo do arquivo (por exemplo, uma imagem de Avatar).
@@ -226,7 +226,7 @@ Os arquivos individuais carregados no servidor podem ser acessados por meio de [
 > string untrustedFileName = Path.GetFileName(pathName);
 > ```
 >
-> Os exemplos fornecidos até o momento não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
+> Os exemplos fornecidos até o momento não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
 > * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
@@ -270,7 +270,7 @@ public async Task<IActionResult> OnPostUploadAsync(List<IFormFile> files)
     // Process uploaded files
     // Don't rely on or trust the FileName property without validation.
 
-    return Ok(new { count = files.Count, size, filePath });
+    return Ok(new { count = files.Count, size });
 }
 ```
 
@@ -397,7 +397,7 @@ O exemplo anterior é semelhante a um cenário demonstrado no aplicativo de exem
 >
 > Não confie ou confie na propriedade `FileName` de <xref:Microsoft.AspNetCore.Http.IFormFile> sem validação. A propriedade `FileName` só deve ser usada para fins de exibição e somente após a codificação HTML.
 >
-> Os exemplos fornecidos não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
+> Os exemplos fornecidos não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
 > * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
@@ -718,7 +718,7 @@ Essa configuração só se aplica ao IIS. Esse comportamento não ocorre por pad
 
 As limitações no módulo ASP.NET Core ou na presença do módulo filtragem de solicitações do IIS podem limitar os carregamentos a dois ou 4 GB. Para obter mais informações, consulte [não é possível carregar o arquivo com mais de 2GB de tamanho (dotNet/AspNetCore #2711)](https://github.com/dotnet/AspNetCore/issues/2711).
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 Abaixo, são listados alguns problemas comuns encontrados ao trabalhar com o upload de arquivos e suas possíveis soluções.
 
@@ -751,9 +751,9 @@ Os exemplos neste tópico dependem de <xref:System.IO.MemoryStream> para manter 
 
 O ASP.NET Core dá suporte ao carregamento de um ou mais arquivos usando a associação de modelo em buffer para arquivos menores e streaming sem buffer para arquivos maiores.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Considerações de segurança
+## <a name="security-considerations"></a>Considerações sobre segurança
 
 Tome cuidado ao fornecer aos usuários a capacidade de carregar arquivos em um servidor. Os invasores podem tentar:
 
@@ -793,7 +793,7 @@ Para obter mais informações sobre como implementar medidas de segurança, incl
 
 As opções de armazenamento comuns para arquivos incluem:
 
-* Banco de dados
+* Database
 
   * Para carregamentos de arquivos pequenos, um banco de dados geralmente é mais rápido do que as opções de armazenamento físico (sistema de arquivos ou compartilhamento de rede).
   * Um banco de dados é muitas vezes mais conveniente do que as opções de armazenamento físico, pois a recuperação de um registro de banco de dados para o usuário pode fornecer simultaneamente o conteúdo do arquivo (por exemplo, uma imagem de Avatar).
@@ -955,7 +955,7 @@ Os arquivos individuais carregados no servidor podem ser acessados por meio de [
 > string untrustedFileName = Path.GetFileName(pathName);
 > ```
 >
-> Os exemplos fornecidos até o momento não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
+> Os exemplos fornecidos até o momento não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
 > * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
@@ -999,7 +999,7 @@ public async Task<IActionResult> OnPostUploadAsync(List<IFormFile> files)
     // Process uploaded files
     // Don't rely on or trust the FileName property without validation.
 
-    return Ok(new { count = files.Count, size, filePath });
+    return Ok(new { count = files.Count, size });
 }
 ```
 
@@ -1126,7 +1126,7 @@ O exemplo anterior é semelhante a um cenário demonstrado no aplicativo de exem
 >
 > Não confie ou confie na propriedade `FileName` de <xref:Microsoft.AspNetCore.Http.IFormFile> sem validação. A propriedade `FileName` só deve ser usada para fins de exibição e somente após a codificação HTML.
 >
-> Os exemplos fornecidos não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
+> Os exemplos fornecidos não levam em consideração as considerações de segurança. Informações adicionais são fornecidas pelas seções e pelo aplicativo de [exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)a seguir:
 >
 > * [Considerações de segurança](#security-considerations)
 > * [Validação](#validation)
@@ -1440,7 +1440,7 @@ Essa configuração só se aplica ao IIS. Esse comportamento não ocorre por pad
 
 As limitações no módulo ASP.NET Core ou na presença do módulo filtragem de solicitações do IIS podem limitar os carregamentos a dois ou 4 GB. Para obter mais informações, consulte [não é possível carregar o arquivo com mais de 2GB de tamanho (dotNet/AspNetCore #2711)](https://github.com/dotnet/AspNetCore/issues/2711).
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 Abaixo, são listados alguns problemas comuns encontrados ao trabalhar com o upload de arquivos e suas possíveis soluções.
 

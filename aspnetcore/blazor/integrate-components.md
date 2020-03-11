@@ -11,11 +11,11 @@ no-loc:
 - SignalR
 uid: blazor/integrate-components
 ms.openlocfilehash: de1a37ffd9456c956e3d84fcc69431ecb794513c
-ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "77453292"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78663313"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integre ASP.NET Core componentes do Razor em aplicativos Razor Pages e MVC
 
@@ -239,7 +239,7 @@ O tipo de parâmetro deve ser serializável em JSON, o que normalmente significa
 * É renderizado na página.
 * É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um aplicativo mais incrivelmente do agente do usuário.
 
-| `RenderMode`        | DESCRIÇÃO |
+| `RenderMode`        | Descrição |
 | ------------------- | ----------- |
 | `ServerPrerendered` | Renderiza o componente em HTML estático e inclui um marcador para um aplicativo do Blazor Server. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo Blazor. |
 | `Server`            | Renderiza um marcador para um aplicativo do Blazor Server. A saída do componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo Blazor. |

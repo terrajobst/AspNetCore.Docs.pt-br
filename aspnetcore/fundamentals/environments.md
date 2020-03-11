@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/17/2019
 uid: fundamentals/environments
-ms.openlocfilehash: 30e2771c0a24fcbf6490d08c7028566314b6c011
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: b0218b2c77c283c0849dca9491046534b88c5a77
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75358715"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78656215"
 ---
 # <a name="use-multiple-environments-in-aspnet-core"></a>Usar vários ambientes no ASP.NET Core
 
@@ -22,7 +22,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 O ASP.NET Core configura o comportamento do aplicativo com base no ambiente de runtime usando uma variável de ambiente.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="environments"></a>Ambientes
 
@@ -183,7 +183,7 @@ Quando o host é criado, a última configuração de ambiente lida pelo aplicati
 
 ### <a name="environment-variable-or-platform-setting"></a>Configuração de plataforma ou variável de ambiente
 
-#### <a name="azure-app-service"></a>Serviço de Aplicativo do Azure
+#### <a name="azure-app-service"></a>Serviço de aplicativo do Azure
 
 Para definir o ambiente no [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/), execute as seguintes etapas:
 
@@ -417,6 +417,8 @@ public class Startup
 }
 ```
 
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
+
 Use a sobrecarga [UseStartup (IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usestartup) que aceita um nome de assembly:
 
 ```csharp
@@ -452,7 +454,7 @@ Por [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 O ASP.NET Core configura o comportamento do aplicativo com base no ambiente de runtime usando uma variável de ambiente.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="environments"></a>Ambientes
 
@@ -613,7 +615,7 @@ Quando o host é criado, a última configuração de ambiente lida pelo aplicati
 
 ### <a name="environment-variable-or-platform-setting"></a>Configuração de plataforma ou variável de ambiente
 
-#### <a name="azure-app-service"></a>Serviço de Aplicativo do Azure
+#### <a name="azure-app-service"></a>Serviço de aplicativo do Azure
 
 Para definir o ambiente no [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/), execute as seguintes etapas:
 

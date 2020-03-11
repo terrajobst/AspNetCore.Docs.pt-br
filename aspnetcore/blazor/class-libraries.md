@@ -11,11 +11,11 @@ no-loc:
 - SignalR
 uid: blazor/class-libraries
 ms.openlocfilehash: 32088b43f91174596f6b9251d36782e806f966b9
-ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/14/2020
-ms.locfileid: "77213243"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660485"
 ---
 # <a name="aspnet-core-razor-components-class-libraries"></a>ASP.NET Core bibliotecas de classes de componentes Razor
 
@@ -33,7 +33,7 @@ Assim como os componentes são tipos .NET regulares, os componentes fornecidos p
 
 Siga as orientações no artigo <xref:blazor/get-started> para configurar seu ambiente para um mais incrivelmente.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Crie um novo projeto.
 1. Selecione **biblioteca de classes Razor**. Selecione **Avançar**.
@@ -56,7 +56,7 @@ Siga as orientações no artigo <xref:blazor/get-started> para configurar seu am
 >
 > Adicione manualmente o arquivo a raiz do projeto gerado.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 1. Use o modelo de **biblioteca de classes Razor** (`razorclasslib`) com o comando [dotnet New](/dotnet/core/tools/dotnet-new) em um shell de comando. No exemplo a seguir, um RCL é criado com o nome `MyComponentLib1`. A pasta que contém `MyComponentLib1` é criada automaticamente quando o comando é executado:
 

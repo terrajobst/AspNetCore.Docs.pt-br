@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: 345fb6962e3376c22551eb7914c70c89cb7100d5
-ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
+ms.openlocfilehash: e6996f0e6731b05038d0a9329152b8afd5f6796d
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/14/2020
-ms.locfileid: "77213269"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660142"
 ---
 # <a name="call-a-web-api-from-aspnet-core-opno-locblazor"></a>Chamar uma API da Web de ASP.NET Core Blazor
 
@@ -27,7 +27,7 @@ Por [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com
 
 os aplicativos [doBlazor Server](xref:blazor/hosting-models#blazor-server) chamam APIs da web usando <xref:System.Net.Http.HttpClient> instâncias, normalmente criadas usando <xref:System.Net.Http.IHttpClientFactory>. As diretrizes neste tópico não pertencem a aplicativos do Blazor Server. Ao desenvolver aplicativos do Blazor Server, siga as orientações em <xref:fundamentals/http-requests>.
 
-[Exiba ou baixe o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([como baixar](xref:index#how-to-download-a-sample)) &ndash; selecione o aplicativo *BlazorWebAssemblySample* .
+[Exiba ou baixe o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([como baixar](xref:index#how-to-download-a-sample)) &ndash; selecione o aplicativo *BlazorWebAssemblySample* .
 
 Consulte os seguintes componentes no aplicativo de exemplo *BlazorWebAssemblySample* :
 
@@ -160,7 +160,7 @@ No código a seguir, o elemento delete `<button>` chama o método `DeleteItem`. 
 
 A segurança do navegador impede que uma página da Web faça solicitações para um domínio diferente daquele que atuou na página da Web. Essa restrição é chamada de *política de mesma origem*. A política de mesma origem impede que um site mal-intencionado leia dados confidenciais de outro site. Para fazer solicitações do navegador para um ponto de extremidade com uma origem diferente, o *ponto de extremidade* deve habilitar o [CORS (compartilhamento de recursos entre origens)](https://www.w3.org/TR/cors/).
 
-O [aplicativo de exemploBlazor Webassembly (BlazorWebAssemblySample)](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) demonstra o uso do CORS no componente chamar API da Web (*pages/CallWebAPI. Razor*).
+O [aplicativo de exemploBlazor Webassembly (BlazorWebAssemblySample)](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) demonstra o uso do CORS no componente chamar API da Web (*pages/CallWebAPI. Razor*).
 
 Para permitir que outros sites façam solicitações de compartilhamento de recursos entre origens (CORS) para seu aplicativo, consulte <xref:security/cors>.
 

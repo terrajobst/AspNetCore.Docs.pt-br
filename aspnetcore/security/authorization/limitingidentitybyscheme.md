@@ -6,16 +6,16 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/08/2019
 uid: security/authorization/limitingidentitybyscheme
-ms.openlocfilehash: 9c173a4589279b03bc12b4b7dea594fae88cf471
-ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
+ms.openlocfilehash: a3be2b8171c146beef7e62c8f7e55883ca5dc687
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "76928381"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78661815"
 ---
 # <a name="authorize-with-a-specific-scheme-in-aspnet-core"></a>Autorizar com um esquema específico no ASP.NET Core
 
-Em alguns cenários, como SPAs (aplicativos de página única), é comum usar vários métodos de autenticação. Por exemplo, o aplicativo pode usar a autenticação baseada em cookie para fazer logon e autenticação de portador JWT para solicitações de JavaScript. Em alguns casos, o aplicativo pode ter várias instâncias de um manipulador de autenticação. Por exemplo, dois manipuladores de cookies em que um contém uma identidade básica e um é criado quando uma MFA (autenticação multifator) foi disparada. A MFA pode ser disparada porque o usuário solicitou uma operação que requer segurança extra. Para obter mais informações sobre a imposição de MFA quando um usuário solicita um recurso que requer MFA, consulte a seção problema de proteção do GitHub [com MFA](https://github.com/aspnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).
+Em alguns cenários, como SPAs (aplicativos de página única), é comum usar vários métodos de autenticação. Por exemplo, o aplicativo pode usar a autenticação baseada em cookie para fazer logon e autenticação de portador JWT para solicitações de JavaScript. Em alguns casos, o aplicativo pode ter várias instâncias de um manipulador de autenticação. Por exemplo, dois manipuladores de cookies em que um contém uma identidade básica e um é criado quando uma MFA (autenticação multifator) foi disparada. A MFA pode ser disparada porque o usuário solicitou uma operação que requer segurança extra. Para obter mais informações sobre a imposição de MFA quando um usuário solicita um recurso que requer MFA, consulte a seção problema de proteção do GitHub [com MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).
 
 Um esquema de autenticação é nomeado quando o serviço de autenticação é configurado durante a autenticação. Por exemplo:
 

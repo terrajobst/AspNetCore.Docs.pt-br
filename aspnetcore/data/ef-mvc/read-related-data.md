@@ -1,19 +1,19 @@
 ---
-title: 'Tutorial: Ler dados relacionados - ASP.NET MVC com EF Core'
+title: 'Tutorial: ler dados relacionados-ASP.NET MVC com EF Core'
 description: Neste tutorial, você lerá e exibirá dados relacionados – ou seja, os dados que o Entity Framework carrega nas propriedades de navegação.
 author: rick-anderson
 ms.author: riande
 ms.date: 09/28/2019
 ms.topic: tutorial
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: 1a16f905669d0192d713cbba9bfc6e3e75008b5d
-ms.sourcegitcommit: 7d3c6565dda6241eb13f9a8e1e1fd89b1cfe4d18
+ms.openlocfilehash: a6e63723101ab09219db81ee9796c3938a612226
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/11/2019
-ms.locfileid: "72259428"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657104"
 ---
-# <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Ler dados relacionados - ASP.NET MVC com EF Core
+# <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: ler dados relacionados-ASP.NET MVC com EF Core
 
 No tutorial anterior, você concluiu o modelo de dados Escola. Neste tutorial, você lerá e exibirá dados relacionados – ou seja, os dados que o Entity Framework carrega nas propriedades de navegação.
 
@@ -31,7 +31,7 @@ Neste tutorial, você:
 > * Criar uma página Instrutores
 > * Aprender sobre o carregamento explícito
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [Criar um modelo de dados complexo](complex-data-model.md)
 
@@ -53,7 +53,7 @@ Há várias maneiras pelas quais um software ORM (Object-Relational Mapping), co
 
 * Carregamento lento. Quando a entidade é lida pela primeira vez, os dados relacionados não são recuperados. No entanto, na primeira vez que você tenta acessar uma propriedade de navegação, os dados necessários para essa propriedade de navegação são recuperados automaticamente. Uma consulta é enviada ao banco de dados sempre que você tenta obter dados de uma propriedade de navegação pela primeira vez. O Entity Framework Core 1.0 não dá suporte ao carregamento lento.
 
-### <a name="performance-considerations"></a>Considerações sobre o desempenho
+### <a name="performance-considerations"></a>Considerações sobre desempenho
 
 Se você sabe que precisa de dados relacionados para cada entidade recuperada, o carregamento adiantado costuma oferecer o melhor desempenho, porque uma única consulta enviada para o banco de dados é geralmente mais eficiente do que consultas separadas para cada entidade recuperada. Por exemplo, suponha que cada departamento tenha dez cursos relacionados. O carregamento adiantado de todos os dados relacionados resultará em apenas uma única consulta (junção) e uma única viagem de ida e volta para o banco de dados. Uma consulta separada para cursos de cada departamento resultará em onze viagens de ida e volta para o banco de dados. As viagens de ida e volta extras para o banco de dados são especialmente prejudiciais ao desempenho quando a latência é alta.
 
@@ -207,7 +207,7 @@ Você fez as seguintes alterações no código existente:
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 
-Execute o aplicativo e selecione a guia **Instrutores**. A página exibe a propriedade Location das entidades OfficeAssignment relacionadas e uma célula de tabela vazia quando não há nenhuma entidade OfficeAssignment relacionada.
+Execute o aplicativo e selecione a guia **instrutores** . A página exibe a propriedade Location das entidades OfficeAssignment relacionadas e uma célula de tabela vazia quando não há nenhuma entidade OfficeAssignment relacionada.
 
 ![Página Índice de Instrutores – nenhuma opção selecionada](read-related-data/_static/instructors-index-no-selection.png)
 
@@ -245,9 +245,9 @@ Execute que o aplicativo, acesse a página Índice de Instrutores agora e você 
 
 ## <a name="get-the-code"></a>Obter o código
 
-[Baixe ou exiba o aplicativo concluído.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Baixe ou exiba o aplicativo concluído.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Neste tutorial, você:
 

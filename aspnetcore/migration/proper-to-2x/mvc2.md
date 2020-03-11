@@ -7,11 +7,11 @@ ms.custom: mvc
 ms.date: 10/24/2018
 uid: migration/mvc2
 ms.openlocfilehash: 11bd3b948afaedc675ac4249099969382683f653
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77172447"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78664608"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core-20"></a>Migrar do ASP.NET para o ASP.NET Core 2.0
 
@@ -19,7 +19,7 @@ Por [Isaac Levin](https://isaaclevin.com)
 
 Este artigo serve como um guia de referência para migração de aplicativos ASP.NET para o ASP.NET Core 2.0.
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 Instale **um** dos seguintes itens de [downloads do .net: Windows](https://www.microsoft.com/net/download/windows):
 
@@ -76,7 +76,7 @@ O ASP.NET Core usa uma abordagem semelhante, mas não depende de OWIN para manip
 * Páginas de erro
 * Arquivos estáticos
 * ASP.NET Core MVC
-* Identidade
+* Identity
 
 [!code-csharp[](../../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
 

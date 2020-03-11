@@ -6,12 +6,12 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 07/03/2019
 uid: grpc/basics
-ms.openlocfilehash: 8d99d036fd4b00fc4568e67ea5225dc006dea4b1
-ms.sourcegitcommit: 73e255e846e414821b8cc20ffa3aec946735cd4e
+ms.openlocfilehash: 59257449e211ddf9c7faa5f21a3986caba4eebc6
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/03/2019
-ms.locfileid: "71925184"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78664202"
 ---
 # <a name="grpc-services-with-c"></a>serviços gRPCs com C\#
 
@@ -33,6 +33,7 @@ Por exemplo, considere o arquivo *Greet. proto* usado em [introdução ao servi�
 * `SayHello` envia uma mensagem de `HelloRequest` e recebe uma mensagem de `HelloReply`:
 
 [!code-protobuf[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Protos/greet.proto)]
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 ## <a name="add-a-proto-file-to-a-c-app"></a>Adicionar um arquivo. proto a um aplicativo C\#
 

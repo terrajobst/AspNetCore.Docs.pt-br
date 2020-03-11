@@ -9,11 +9,11 @@ no-loc:
 - SignalR
 uid: client-side/using-browserlink
 ms.openlocfilehash: 19cc3c2ed91bd9e05df3c036123c78ecbf81fcc0
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75828264"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78658847"
 ---
 # <a name="browser-link-in-aspnet-core"></a>Link do navegador no ASP.NET Core
 
@@ -47,7 +47,7 @@ O modelo de projeto de **aplicativo Web** ASP.NET Core 1. x tem uma referência 
 
 ::: moniker-end
 
-### <a name="configuration"></a>Configuração do
+### <a name="configuration"></a>Configuração
 
 Chame `UseBrowserLink` no método `Startup.Configure`:
 
@@ -69,20 +69,20 @@ Para obter mais informações, consulte <xref:fundamentals/environments>.
 
 ## <a name="how-to-use-browser-link"></a>Como usar o link do navegador
 
-Quando um projeto do ASP.NET Core está aberto, o Visual Studio mostra o controle de barra de ferramentas do Link do navegador ao lado do controle de barra de ferramentas do **Destino de Depuração**:
+Quando você tem um projeto ASP.NET Core aberto, o Visual Studio mostra o controle da barra de ferramentas link do navegador ao lado do controle da barra de ferramentas de **destino de depuração** :
 
 ![Menu suspenso de link do navegador](using-browserlink/_static/browserLink-dropdown-menu.png)
 
 No controle da barra de ferramentas do link do navegador, você pode:
 
 * Atualize o aplicativo Web em vários navegadores de uma vez.
-* Abrir o **Painel de link do navegador**.
+* Abra o **painel de link do navegador**.
 * Habilitar ou desabilitar o **link do navegador**. Observação: o link do navegador está desabilitado por padrão no Visual Studio.
 * Habilitar ou desabilitar [a sincronização automática de CSS](#enable-or-disable-css-auto-sync).
 
 ## <a name="refresh-the-web-app-in-several-browsers-at-once"></a>Atualizar o aplicativo Web em vários navegadores de uma vez
 
-Para escolher um único navegador Web para abrir ao iniciar o projeto, use o menu suspenso do controle de barra de ferramentas do **Destino de depuração**:
+Para escolher um único navegador da Web para iniciar ao iniciar o projeto, use o menu suspenso no controle da barra de ferramentas de **destino de depuração** :
 
 ![F5 menu suspenso](using-browserlink/_static/debug-target-dropdown-menu.png)
 
@@ -110,7 +110,7 @@ Abra a janela do **Painel link do navegador** no menu suspenso link do navegador
 
 ![open-browserslink-dashboard](using-browserlink/_static/open-browserlink-dashboard.png)
 
-Se nenhum navegador estiver conectado, você pode iniciar uma sessão de depuração não, selecionando Se nenhum navegador estiver conectado, você poderá iniciar uma sessão de não depuração selecionando o link **exibir no navegador**:
+Se nenhum navegador estiver conectado, você poderá iniciar uma sessão de não depuração selecionando o link **Exibir no navegador** :
 
 ![browserlink-dashboard-no-connections](using-browserlink/_static/browserlink-dashboard-no-connections.png)
 
@@ -128,7 +128,7 @@ Ao reabilitar o link do navegador depois de desabilitá-lo, você deve atualizar
 
 Quando a sincronização automática de CSS está habilitada, os navegadores conectados são atualizados automaticamente quando você faz qualquer alteração em arquivos CSS.
 
-## <a name="how-it-works"></a>Como funciona
+## <a name="how-it-works"></a>Como ele funciona
 
 O link do navegador usa [SignalR](xref:signalr/introduction) para criar um canal de comunicação entre o Visual Studio e o navegador. Quando o link do navegador está habilitado, o Visual Studio atua como um SignalR servidor ao qual vários clientes (navegadores) podem se conectar. O link do navegador também registra um componente de middleware no pipeline de solicitação de ASP.NET Core. Esse componente injeta referências especiais de `<script>` em cada solicitação de página do servidor. Você pode ver as referências de script selecionando **Exibir origem** no navegador e rolando até o final do `<body>` conteúdo da marca:
 

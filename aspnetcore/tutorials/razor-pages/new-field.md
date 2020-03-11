@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: b31711eb6f797de2de1559a3303e14b32a88f1ff
-ms.sourcegitcommit: b3ebf96560b75b752d0e71161d788da800ad0999
+ms.openlocfilehash: d34b938dbd1b512ddb167cac0c035837889cd38f
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/24/2019
-ms.locfileid: "72822379"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657811"
 ---
 # <a name="add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Adicionar um novo campo em uma página Razor no ASP.NET Core
 
@@ -50,7 +50,7 @@ Edite *Pages/Movies/Index.cshtml* e adicione um campo `Rating`:
 Atualize as seguintes páginas:
 
 * Adicione o campo `Rating` às páginas Excluir e Detalhes.
-* Atualize [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) com um campo `Rating`.
+* Atualize [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) com um campo `Rating`.
 * Adicione o campo `Rating` à página Editar.
 
 O aplicativo não funcionará até que o BD seja atualizado para incluir o novo campo. Executar o aplicativo sem Atualizar o banco de dados gera um `SqlException`:
@@ -73,11 +73,11 @@ Atualize a classe `SeedData` para que ela forneça um valor para a nova coluna. 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-Consulte o [arquivo SeedData.cs concluído](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/SeedDataRating.cs).
+Consulte o [arquivo SeedData.cs concluído](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/SeedDataRating.cs).
 
 {1&gt;Compile a solução.&lt;1}
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 <a name="pmc"></a>
 
@@ -116,7 +116,7 @@ Outra opção é excluir o banco de dados e usar as migrações para recriar o b
   Update-Database
   ```
 
-# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 ### <a name="drop-and-re-create-the-database"></a>Remover e recriar o banco de dados
 
@@ -175,7 +175,7 @@ Edite *Pages/Movies/Index.cshtml* e adicione um campo `Rating`:
 Atualize as seguintes páginas:
 
 * Adicione o campo `Rating` às páginas Excluir e Detalhes.
-* Atualize [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml) com um campo `Rating`.
+* Atualize [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml) com um campo `Rating`.
 * Adicione o campo `Rating` à página Editar.
 
 O aplicativo não funcionará até que o BD seja atualizado para incluir o novo campo. Se for executado agora, o aplicativo gerará uma `SqlException`:
@@ -198,11 +198,11 @@ Atualize a classe `SeedData` para que ela forneça um valor para a nova coluna. 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-Consulte o [arquivo SeedData.cs concluído](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs).
+Consulte o [arquivo SeedData.cs concluído](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs).
 
 {1&gt;Compile a solução.&lt;1}
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 <a name="pmc"></a>
 
@@ -241,13 +241,13 @@ Outra opção é excluir o banco de dados e usar as migrações para recriar o b
   Update-Database
   ```
 
-# <a name="visual-studio-code--visual-studio-for-mactabvisual-studio-codevisual-studio-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code/Visual Studio para Mac](#tab/visual-studio-code+visual-studio-mac)
 
 ### <a name="drop-and-re-create-the-database"></a>Remover e recriar o banco de dados
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Excluir o banco de dados e usar as migrações para recriar o banco de dados. Para excluir o banco de dados, exclua o arquivo de banco de dados (*MvcMovie.db*). Depois, execute o comando `ef database update`:
+Excluir o banco de dados e usar as migrações para recriar o banco de dados. Para excluir o banco de dados, exclua o arquivo de banco de dados (*MvcMovie.db*). Em seguida, execute o comando `ef database update`:
 
 ```dotnetcli
 dotnet ef database update

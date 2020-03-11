@@ -6,11 +6,11 @@ ms.author: riande
 ms.date: 04/13/2017
 uid: tutorials/first-mvc-app/validation
 ms.openlocfilehash: 2bb4ed173d154e3b7457ce3f8009f0f9406e36c4
-ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72334070"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78661962"
 ---
 # <a name="add-validation-to-an-aspnet-core-mvc-app"></a>Adicionar a validação a um aplicativo ASP.NET Core MVC
 
@@ -85,7 +85,7 @@ Abra o arquivo *Movie.cs* e examine a classe `Movie`. O namespace `System.Compon
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 
-Os atributos `DataType` fornecem dicas apenas para que o mecanismo de exibição formate os dados (e fornece atributos como `<a>` para as URLs e `<a href="mailto:EmailAddress.com">` para o email). Use o atributo `RegularExpression` para validar o formato dos dados. O atributo `DataType` é usado para especificar um tipo de dados mais específico do que o tipo intrínseco de banco de dados; eles não são atributos de validação. Nesse caso, apenas desejamos acompanhar a data, não a hora. A Enumeração `DataType` fornece muitos tipos de dados, como Date, Time, PhoneNumber, Currency, EmailAddress e muito mais. O atributo `DataType` também pode permitir que o aplicativo forneça automaticamente recursos específicos a um tipo. Por exemplo, um link `mailto:` pode ser criado para `DataType.EmailAddress` e um seletor de data pode ser fornecido para `DataType.Date` em navegadores que dão suporte a HTML5. Os atributos `DataType` emitem atributos `data-` HTML 5 (ou "data dash") que são reconhecidos pelos navegadores HTML 5. Os atributos `DataType` **não** fornecem nenhuma validação.
+Os atributos `DataType` fornecem dicas apenas para que o mecanismo de exibição formate os dados (e fornece atributos como `<a>` para as URLs e `<a href="mailto:EmailAddress.com">` para o email). Use o atributo `RegularExpression` para validar o formato dos dados. O atributo `DataType` é usado para especificar um tipo de dados mais específico do que o tipo intrínseco de banco de dados; eles não são atributos de validação. Nesse caso, apenas desejamos acompanhar a data, não a hora. A Enumeração `DataType` fornece muitos tipos de dados, como Date, Time, PhoneNumber, Currency, EmailAddress e muito mais. O atributo `DataType` também pode permitir que o aplicativo forneça automaticamente recursos específicos a um tipo. Por exemplo, um link `mailto:` pode ser criado para `DataType.EmailAddress` e um seletor de data pode ser fornecido para `DataType.Date` em navegadores que dão suporte a HTML5. Os atributos `DataType` emitem atributos `data-` HTML 5 (ou "data dash") que são reconhecidos pelos navegadores HTML 5. Os atributos `DataType`**não** fornecem nenhuma validação.
 
 `DataType.Date` não especifica o formato da data exibida. Por padrão, o campo de dados é exibido de acordo com os formatos padrão com base nas `CultureInfo` do servidor.
 

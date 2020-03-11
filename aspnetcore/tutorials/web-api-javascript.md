@@ -7,11 +7,11 @@ ms.custom: mvc
 ms.date: 11/26/2019
 uid: tutorials/web-api-javascript
 ms.openlocfilehash: 2a19a7d16ca8b8f5d6ac8eb99ad919b89f1e368b
-ms.sourcegitcommit: 235623b6e5a5d1841139c82a11ac2b4b3f31a7a9
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/10/2020
-ms.locfileid: "77114647"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78655249"
 ---
 # <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Tutorial: chamar uma API Web do ASP.NET Core com JavaScript
 
@@ -27,7 +27,7 @@ Para o ASP.NET Core 2.2, confira a versão 2.2 de [Chamar a API Web com o JavaSc
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [Tutorial completo: criar uma API Web](xref:tutorials/first-web-api)
 * Familiaridade com CSS, HTML e JavaScript

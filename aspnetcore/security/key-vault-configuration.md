@@ -1,22 +1,22 @@
 ---
 title: Azure Key Vault provedor de configuração no ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Saiba como usar o provedor de configuração Azure Key Vault para configurar um aplicativo usando pares de nome-valor carregados em tempo de execução.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: security/key-vault-configuration
-ms.openlocfilehash: 7eb8cf5dcd6b9f112a2ef30e694b6223a7d1f2fe
-ms.sourcegitcommit: 235623b6e5a5d1841139c82a11ac2b4b3f31a7a9
+ms.openlocfilehash: d617627154e3125a6a59d082fd401fc69c25fcb3
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/10/2020
-ms.locfileid: "77114868"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660345"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Azure Key Vault provedor de configuração no ASP.NET Core
 
-De [Luke Latham](https://github.com/guardrex) e [Andrew Stanton-enfermaria](https://github.com/anurse)
+Por [Andrew Stanton-enfermaria](https://github.com/anurse)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -25,7 +25,7 @@ Este documento explica como usar o provedor de configuração do [Microsoft Azur
 * Controlando o acesso a dados de configuração confidenciais.
 * Atendendo ao requisito de módulos de segurança de hardware (HSM) validados do FIPS 140-2 nível 2 ao armazenar dados de configuração.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/key-vault-configuration/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/key-vault-configuration/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="packages"></a>Pacotes
 
@@ -131,7 +131,7 @@ O aplicativo de exemplo usa uma ID de aplicativo e um certificado X. 509 quando 
 1. Abra **permissões de segredo** e forneça ao aplicativo as permissões **Get** e **list** .
 1. Selecione **selecionar entidade de segurança** e selecione o aplicativo registrado por nome. Escolha o botão **Selecionar**.
 1. Selecione **OK**.
-1. Clique em **Salvar**.
+1. Selecione **Salvar**.
 1. Implante o aplicativo.
 
 O aplicativo de exemplo `Certificate` obtém seus valores de configuração de `IConfigurationRoot` com o mesmo nome que o nome do segredo:
@@ -201,7 +201,7 @@ Se você receber um erro de `Access denied`, confirme se o aplicativo está regi
 
 Para obter informações sobre como usar o provedor com uma identidade gerenciada e um pipeline DevOps do Azure, consulte [criar uma conexão de serviço Azure Resource Manager para uma VM com uma identidade de serviço gerenciado](/azure/devops/pipelines/library/connect-to-azure#create-an-azure-resource-manager-service-connection-to-a-vm-with-a-managed-service-identity).
 
-## <a name="configuration-options"></a>Opções de configuração
+## <a name="configuration-options"></a>{1&gt;Opções de configuração&lt;1}
 
 <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> pode aceitar uma <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions>:
 
@@ -213,7 +213,7 @@ config.AddAzureKeyVault(
     });
 ```
 
-| Propriedade         | DESCRIÇÃO |
+| Propriedade         | Descrição |
 | ---------------- | ----------- |
 | `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient> a ser usado para recuperar valores. |
 | `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> instância usada para controlar o carregamento do segredo. |
@@ -289,7 +289,7 @@ Quando essa abordagem é implementada:
 
 O provedor é capaz de ler valores de configuração em uma matriz para associação a uma matriz POCO.
 
-Ao ler de uma fonte de configuração que permite que as chaves contenham separadores de dois pontos (`:`), um segmento de chave numérico é usado para distinguir as chaves que compõem uma matriz (`:0:`, `:1:`,... `:{n}:`). Para obter mais informações, consulte [configuração: associar uma matriz a uma classe](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
+Ao ler de uma fonte de configuração que permite que as chaves contenham separadores de dois pontos (`:`), um segmento de chave numérico é usado para distinguir as chaves que compõem uma matriz (`:0:`, `:1:`&hellip; `:{n}:`). Para obter mais informações, consulte [configuração: associar uma matriz a uma classe](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
 
 Azure Key Vault chaves não podem usar dois-pontos como separador. A abordagem descrita neste tópico usa traços duplos (`--`) como um separador de valores hierárquicos (seções). As chaves de matriz são armazenadas em Azure Key Vault com traços duplos e segmentos de chave numérica (`--0--`, `--1--`&hellip; `--{n}--`).
 
@@ -318,7 +318,7 @@ Examine a seguinte configuração do provedor de log [Serilog](https://serilog.n
 
 A configuração mostrada no arquivo JSON anterior é armazenada em Azure Key Vault usando a notação de travessão duplo (`--`) e os segmentos numéricos:
 
-| Chave | Valor |
+| Chave | {1&gt;Valor&lt;1} |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -339,7 +339,7 @@ Configuration.Reload();
 
 Os segredos desabilitados e expirados lançam um <xref:Microsoft.Azure.KeyVault.Models.KeyVaultErrorException>. Para impedir que o aplicativo seja acionado, forneça a configuração usando um provedor de configuração diferente ou atualize o segredo desabilitado ou expirado.
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 Quando o aplicativo falha ao carregar a configuração usando o provedor, uma mensagem de erro é gravada na [infraestrutura de log de ASP.NET Core](xref:fundamentals/logging/index). As seguintes condições impedirão que a configuração seja carregada:
 
@@ -371,7 +371,7 @@ Este documento explica como usar o provedor de configuração do [Microsoft Azur
 * Controlando o acesso a dados de configuração confidenciais.
 * Atendendo ao requisito de módulos de segurança de hardware (HSM) validados do FIPS 140-2 nível 2 ao armazenar dados de configuração.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/key-vault-configuration/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/key-vault-configuration/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="packages"></a>Pacotes
 
@@ -477,7 +477,7 @@ O aplicativo de exemplo usa uma ID de aplicativo e um certificado X. 509 quando 
 1. Abra **permissões de segredo** e forneça ao aplicativo as permissões **Get** e **list** .
 1. Selecione **selecionar entidade de segurança** e selecione o aplicativo registrado por nome. Escolha o botão **Selecionar**.
 1. Selecione **OK**.
-1. Clique em **Salvar**.
+1. Selecione **Salvar**.
 1. Implante o aplicativo.
 
 O aplicativo de exemplo `Certificate` obtém seus valores de configuração de `IConfigurationRoot` com o mesmo nome que o nome do segredo:
@@ -616,7 +616,7 @@ Quando essa abordagem é implementada:
 
 O provedor é capaz de ler valores de configuração em uma matriz para associação a uma matriz POCO.
 
-Ao ler de uma fonte de configuração que permite que as chaves contenham separadores de dois pontos (`:`), um segmento de chave numérico é usado para distinguir as chaves que compõem uma matriz (`:0:`, `:1:`,... `:{n}:`). Para obter mais informações, consulte [configuração: associar uma matriz a uma classe](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
+Ao ler de uma fonte de configuração que permite que as chaves contenham separadores de dois pontos (`:`), um segmento de chave numérico é usado para distinguir as chaves que compõem uma matriz (`:0:`, `:1:`&hellip; `:{n}:`). Para obter mais informações, consulte [configuração: associar uma matriz a uma classe](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
 
 Azure Key Vault chaves não podem usar dois-pontos como separador. A abordagem descrita neste tópico usa traços duplos (`--`) como um separador de valores hierárquicos (seções). As chaves de matriz são armazenadas em Azure Key Vault com traços duplos e segmentos de chave numérica (`--0--`, `--1--`&hellip; `--{n}--`).
 
@@ -645,7 +645,7 @@ Examine a seguinte configuração do provedor de log [Serilog](https://serilog.n
 
 A configuração mostrada no arquivo JSON anterior é armazenada em Azure Key Vault usando a notação de travessão duplo (`--`) e os segmentos numéricos:
 
-| Chave | Valor |
+| Chave | {1&gt;Valor&lt;1} |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -666,7 +666,7 @@ Configuration.Reload();
 
 Os segredos desabilitados e expirados lançam um <xref:Microsoft.Azure.KeyVault.Models.KeyVaultErrorException>. Para impedir que o aplicativo seja acionado, forneça a configuração usando um provedor de configuração diferente ou atualize o segredo desabilitado ou expirado.
 
-## <a name="troubleshoot"></a>Solucionar problemas
+## <a name="troubleshoot"></a>Solução de problemas
 
 Quando o aplicativo falha ao carregar a configuração usando o provedor, uma mensagem de erro é gravada na [infraestrutura de log de ASP.NET Core](xref:fundamentals/logging/index). As seguintes condições impedirão que a configuração seja carregada:
 

@@ -11,11 +11,11 @@ no-loc:
 - SignalR
 uid: blazor/event-handling
 ms.openlocfilehash: 25844ef39aee849072d16f3d73eda0a1c20ee788
-ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "77453236"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78661871"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>ASP.NET Core manipulação de eventos mais incrivelmente
 
@@ -74,12 +74,12 @@ Para alguns eventos, são permitidos tipos de argumento de evento. A especifica�
 
 Os `EventArgs` com suporte são mostrados na tabela a seguir.
 
-| Evento            | Classe                | Eventos e observações do DOM |
+| {1&gt;Evento&lt;1}            | Classe                | Eventos e observações do DOM |
 | ---------------- | -------------------- | -------------------- |
 | Área de transferência        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
 | Arraste             | `DragEventArgs`      | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br>`DataTransfer` e `DataTransferItem` manter os dados do item arrastados. |
-| Erro            | `ErrorEventArgs`     | `onerror` |
-| Evento            | `EventArgs`          | *Geral*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Área de transferência*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Mídia*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
+| Error            | `ErrorEventArgs`     | `onerror` |
+| {1&gt;Evento&lt;1}            | `EventArgs`          | *Geral*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Área de transferência*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Entrada*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Mídia*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
 | Focus            | `FocusEventArgs`     | `onfocus`, `onblur`, `onfocusin`, `onfocusout`<br><br>Não inclui suporte para `relatedTarget`. |
 | Entrada            | `ChangeEventArgs`    | `onchange`, `oninput` |
 | Teclado         | `KeyboardEventArgs`  | `onkeydown`, `onkeypress`, `onkeyup` |
@@ -89,7 +89,7 @@ Os `EventArgs` com suporte são mostrados na tabela a seguir.
 | Andamento         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
 | Toque            | `TouchEventArgs`     | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br>`TouchPoint` representa um único ponto de contato em um dispositivo sensível ao toque. |
 
-Para saber mais, consulte os recursos a seguir:
+Para obter mais informações, consulte os seguintes recursos:
 
 * [Classes EventArgs no ASP.NET Core fonte de referência (dotNet/aspnetcore versão/3.1 Branch)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/Components/Web/src/Web).
 * [MDN Web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers) &ndash; inclui informações sobre quais elementos HTML oferecem suporte a cada evento dom.

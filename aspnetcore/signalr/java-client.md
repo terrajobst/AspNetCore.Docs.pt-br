@@ -9,12 +9,12 @@ ms.date: 11/12/2019
 no-loc:
 - SignalR
 uid: signalr/java-client
-ms.openlocfilehash: d7143b2c22ecdc4e68f484aa4c244e1c520beae0
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.openlocfilehash: 6919eabf454f16887e012161a454a4848c45002b
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963789"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660513"
 ---
 # <a name="aspnet-core-opno-locsignalr-java-client"></a>ASP.NET Core SignalR cliente Java
 
@@ -24,7 +24,7 @@ O cliente Java permite conectar-se a um ASP.NET Core SignalR Server do código J
 
 O aplicativo de console Java de exemplo referenciado neste artigo usa o cliente Java SignalR.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/java-client/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/java-client/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="install-the-opno-locsignalr-java-client-package"></a>Instalar o pacote de cliente Java SignalR
 

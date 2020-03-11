@@ -6,16 +6,16 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
 uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
-ms.openlocfilehash: e2e038fe69da696b67f7aef61795e23dc8512fdf
-ms.sourcegitcommit: 7a40c56bf6a6aaa63a7ee83a2cac9b3a1d77555e
-ms.translationtype: HT
+ms.openlocfilehash: 308e7db47104ebd4d6bb8d08c64f14bbd118898b
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/12/2019
-ms.locfileid: "67856128"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78663985"
 ---
 # <a name="environment-tag-helper-in-aspnet-core"></a>Auxiliar de Marca de Ambiente no ASP.NET Core
 
-Por [Peter Kellner](https://peterkellner.net), [Hisham Bin Ateya](https://twitter.com/hishambinateya) e [Luke Latham](https://github.com/guardrex)
+Por [Peter Kellner](https://peterkellner.net) e [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
 O Auxiliar de Marca de Ambiente renderiza condicionalmente seu conteúdo contido com base no [ambiente de hospedagem](xref:fundamentals/environments) atual. Atributo único do Auxiliar de Marca de Ambiente, `names`, é uma lista separada por vírgulas de nomes de ambiente. Se nenhum dos nomes de ambiente fornecido corresponder ao ambiente atual, o conteúdo contido será renderizado.
 
@@ -41,7 +41,7 @@ O exemplo a seguir usa um Auxiliar de Marca de Ambiente. O conteúdo será rende
 
 ## <a name="include-and-exclude-attributes"></a>incluir e excluir atributos
 
-Os atributos `include` & `exclude` controlam a renderização do conteúdo contido com base nos nomes de ambiente de hospedagem incluídos ou excluídos.
+`include` & `exclude` o controle de atributos que processam o conteúdo incluído com base nos nomes de ambiente de hospedagem incluídos ou excluídos.
 
 ### <a name="include"></a>include
 
@@ -53,7 +53,7 @@ A propriedade `include` exibe um comportamento semelhante para o atributo `names
 </environment>
 ```
 
-### <a name="exclude"></a>exclude
+### <a name="exclude"></a>excluir
 
 Em contraste com o atributo `include`, o conteúdo da marcação `<environment>` é processado quando o ambiente de hospedagem não corresponde a um ambiente listado no valor do atributo `exclude`.
 

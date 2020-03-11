@@ -5,12 +5,12 @@ description: Saiba como migrar a configuração de um projeto MVC do ASP.NET par
 ms.author: riande
 ms.date: 10/14/2016
 uid: migration/configuration
-ms.openlocfilehash: 455e66b94dd69ee6aab88768b64c525d56b8bbcf
-ms.sourcegitcommit: 16cf016035f0c9acf3ff0ad874c56f82e013d415
+ms.openlocfilehash: 2c50ea768a42aa38d14c55d8c403fea4176b3650
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/29/2019
-ms.locfileid: "73033899"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78659323"
 ---
 # <a name="migrate-configuration-to-aspnet-core"></a>Migrar configuração para ASP.NET Core
 
@@ -18,7 +18,7 @@ Por [Steve Smith](https://ardalis.com/) e [Scott Addie](https://scottaddie.com)
 
 No artigo anterior, começamos a [migrar um projeto ASP.NET MVC para ASP.NET Core MVC](xref:migration/mvc). Neste artigo, migramos a configuração.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/migration/configuration/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/migration/configuration/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="setup-configuration"></a>Configuração da instalação
 

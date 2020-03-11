@@ -1,22 +1,20 @@
 ---
 title: Registro em log de alto desempenho com o LoggerMessage no ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Saiba como usar o LoggerMessage para criar representantes que podem ser armazenados em cache e exigem menos alocações de objeto para cenários de registro em log de alto desempenho.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/26/2019
 uid: fundamentals/logging/loggermessage
-ms.openlocfilehash: 56c60fe405660ff39e2696de591449c25f669de2
-ms.sourcegitcommit: 0774a61a3a6c1412a7da0e7d932dc60c506441fc
-ms.translationtype: HT
+ms.openlocfilehash: 48ebba69b5c15a0f9a42f7f6b3d2c1fcb0a2211c
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70059039"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78663215"
 ---
 # <a name="high-performance-logging-with-loggermessage-in-aspnet-core"></a>Registro em log de alto desempenho com o LoggerMessage no ASP.NET Core
-
-Por [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -27,7 +25,7 @@ Os recursos do <xref:Microsoft.Extensions.Logging.LoggerMessage> criam delegados
 * Métodos de extensão do agente exigem tipos de valor de conversão boxing, como `int`, em `object`. O padrão <xref:Microsoft.Extensions.Logging.LoggerMessage> evita a conversão boxing usando campos <xref:System.Action> estáticos e métodos de extensão com parâmetros fortemente tipados.
 * Os métodos de extensão do agente precisam analisar o modelo de mensagem (cadeia de caracteres de formato nomeada) sempre que uma mensagem de log é gravada. <xref:Microsoft.Extensions.Logging.LoggerMessage> exige apenas a análise de um modelo uma vez quando a mensagem é definida.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 O aplicativo de exemplo demonstra recursos do <xref:Microsoft.Extensions.Logging.LoggerMessage> com um sistema básico de acompanhamento de aspas. O aplicativo adiciona e exclui aspas usando um banco de dados em memória. Conforme ocorrem essas operações, são geradas mensagens de log usando o padrão <xref:Microsoft.Extensions.Logging.LoggerMessage>.
 
@@ -43,7 +41,7 @@ Cada mensagem de log é uma <xref:System.Action> mantida em um campo estático c
 
 Para a <xref:System.Action>, especifique:
 
-* O nível de log.
+* O nível do log.
 * Um identificador de evento exclusivo (<xref:Microsoft.Extensions.Logging.EventId>) com o nome do método de extensão estático.
 * O modelo de mensagem (cadeia de caracteres de formato nomeada). 
 
@@ -193,7 +191,7 @@ Os recursos do <xref:Microsoft.Extensions.Logging.LoggerMessage> criam delegados
 * Métodos de extensão do agente exigem tipos de valor de conversão boxing, como `int`, em `object`. O padrão <xref:Microsoft.Extensions.Logging.LoggerMessage> evita a conversão boxing usando campos <xref:System.Action> estáticos e métodos de extensão com parâmetros fortemente tipados.
 * Os métodos de extensão do agente precisam analisar o modelo de mensagem (cadeia de caracteres de formato nomeada) sempre que uma mensagem de log é gravada. <xref:Microsoft.Extensions.Logging.LoggerMessage> exige apenas a análise de um modelo uma vez quando a mensagem é definida.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 O aplicativo de exemplo demonstra recursos do <xref:Microsoft.Extensions.Logging.LoggerMessage> com um sistema básico de acompanhamento de aspas. O aplicativo adiciona e exclui aspas usando um banco de dados em memória. Conforme ocorrem essas operações, são geradas mensagens de log usando o padrão <xref:Microsoft.Extensions.Logging.LoggerMessage>.
 
@@ -209,7 +207,7 @@ Cada mensagem de log é uma <xref:System.Action> mantida em um campo estático c
 
 Para a <xref:System.Action>, especifique:
 
-* O nível de log.
+* O nível do log.
 * Um identificador de evento exclusivo (<xref:Microsoft.Extensions.Logging.EventId>) com o nome do método de extensão estático.
 * O modelo de mensagem (cadeia de caracteres de formato nomeada). 
 
@@ -354,4 +352,4 @@ info: LoggerMessageSample.Pages.IndexModel[4]
 
 ## <a name="additional-resources"></a>Recursos adicionais
 
-* [Registro em log](xref:fundamentals/logging/index)
+* [Logging](xref:fundamentals/logging/index)

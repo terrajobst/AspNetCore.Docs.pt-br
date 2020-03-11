@@ -1,29 +1,29 @@
 ---
-title: Transformação do web.config
-author: guardrex
+title: Transformação do Web.config
+author: rick-anderson
 description: Saiba como transformar o arquivo web.config ao publicar um aplicativo ASP.NET Core.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 uid: host-and-deploy/iis/transform-webconfig
-ms.openlocfilehash: ef627de70c6aea44962d2187c4d401baab6557ae
-ms.sourcegitcommit: 2388c2a7334ce66b6be3ffbab06dd7923df18f60
+ms.openlocfilehash: 069b9bb516644a1a722235b33d4916460488ebf2
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/14/2020
-ms.locfileid: "75952043"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657930"
 ---
-# <a name="transform-webconfig"></a>Transformação do web.config
+# <a name="transform-webconfig"></a>Transformação do Web.config
 
-Por [Vijay Ramakrishnan](https://github.com/vijayrkn) e [Luke Latham](https://github.com/guardrex)
+Por [Vijay Ramakrishnan](https://github.com/vijayrkn)
 
 As transformações no arquivo *web.config* podem ser aplicadas automaticamente quando um aplicativo é publicado com base em:
 
 * [Configuração do build](#build-configuration)
 * [Perfil](#profile)
 * [Ambiente](#environment)
-* [Personalizado](#custom)
+* [Custom](#custom)
 
 Essas transformações ocorrem para qualquer um dos seguintes cenários de geração *web.config*:
 

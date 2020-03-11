@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: migration/webapi
-ms.openlocfilehash: c68cf83f427f53b110075168c6d5e4d021808782
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: 7f61b78c589fc9d01061b50554e5a639e372c3d8
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74881141"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78661843"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Migrar de ASP.NET Web API para ASP.NET Core
 
@@ -19,7 +19,7 @@ De [Scott Addie](https://twitter.com/scott_addie) e [Steve Smith](https://ardali
 
 Uma API Web do ASP.NET 4. x é um serviço HTTP que atinge uma ampla variedade de clientes, incluindo navegadores e dispositivos móveis. ASP.NET Core unifica os modelos de aplicativo de API Web e MVC do ASP.NET 4. x em um modelo de programação mais simples conhecido como ASP.NET Core MVC. Este artigo demonstra as etapas necessárias para migrar da API Web do ASP.NET 4. x para ASP.NET Core MVC.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/migration/webapi/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/migration/webapi/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
@@ -53,7 +53,7 @@ As seções a seguir demonstram a migração do projeto de API Web para ASP.NET 
 
 Conclua as seguintes etapas no Visual Studio:
 
-* Vá para o **arquivo** > **novo** > **projeto** > **outros tipos de projeto** > soluções do **Visual Studio**. Selecione **solução em branco**e nomeie a solução *WebAPIMigration*. Clique no botão **OK** .
+* Vá para o **arquivo** > **novo** > **projeto** > **outros tipos de projeto** > soluções do **Visual Studio**. Selecione **solução em branco**e nomeie a solução *WebAPIMigration*. Clique no botão **OK**.
 * Adicione o projeto *ProductsApp* existente à solução.
 * Adicione um novo projeto de **aplicativo Web ASP.NET Core** à solução. Selecione a estrutura de destino **.NET Core** na lista suspensa e selecione o modelo projeto de **API** . Nomeie o projeto *ProductsCore*e clique no botão **OK** .
 
@@ -78,12 +78,12 @@ Copie sobre o controlador do projeto *ProductApp* e o modelo que ele usa. Siga e
 Neste ponto, a criação do aplicativo resulta em vários erros de compilação. Os erros ocorrem porque os seguintes componentes não existem no ASP.NET Core:
 
 * Classe `ApiController`
-* Namespace do `System.Web.Http`
-* Interface `IHttpActionResult`
+* Namespace `System.Web.Http`
+* interface `IHttpActionResult`
 
 Corrija os erros da seguinte maneira:
 
-1. Alteração `ApiController` para <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Adicione `using Microsoft.AspNetCore.Mvc;` para resolver a referência de `ControllerBase`.
+1. Alterar `ApiController` para <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Adicione `using Microsoft.AspNetCore.Mvc;` para resolver a referência de `ControllerBase`.
 1. Excluir `using System.Web.Http;`.
 1. Altere o tipo de retorno da ação de `GetProduct` de `IHttpActionResult` para `ActionResult<Product>`.
 
@@ -93,7 +93,7 @@ Simplifique a instrução `return` da ação de `GetProduct` para o seguinte:
 return product;
 ```
 
-## <a name="configure-routing"></a>Configurar roteamento
+## <a name="configure-routing"></a>Configurar o roteamento
 
 Configure o roteamento da seguinte maneira:
 
@@ -123,7 +123,7 @@ Após as alterações anteriores e a remoção de instruções de `using` não u
 
 [!code-csharp[](webapi/sample/ProductsCore/Controllers/ProductsController.cs)]
 
-Execute o projeto migrado e navegue até `/api/products`. Uma lista completa de três produtos é exibida. Navegue para `/api/products/1`. O primeiro produto é exibido.
+Execute o projeto migrado e navegue até `/api/products`. Uma lista completa de três produtos é exibida. Navegue até `/api/products/1`. O primeiro produto é exibido.
 
 ## <a name="compatibility-shim"></a>Correção de compatibilidade
 
