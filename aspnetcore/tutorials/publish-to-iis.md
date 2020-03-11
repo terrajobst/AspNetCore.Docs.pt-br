@@ -1,22 +1,20 @@
 ---
 title: Publicar um aplicativo ASP.NET Core no IIS
-author: guardrex
+author: rick-anderson
 description: Saiba como hospedar um aplicativo ASP.NET Core em um servidor IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/03/2019
 uid: tutorials/publish-to-iis
-ms.openlocfilehash: 820527cc15f883c906d2fdf1c073d443a5b3b40e
-ms.sourcegitcommit: d8b12cc1716ee329d7bd2300e201b61e15d506ac
+ms.openlocfilehash: f3860ba6ca7b99e63000ba0066749751f80cdc23
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/04/2019
-ms.locfileid: "71942878"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78657832"
 ---
 # <a name="publish-an-aspnet-core-app-to-iis"></a>Publicar um aplicativo ASP.NET Core no IIS
-
-Por [Luke Latham](https://github.com/guardrex)
 
 Este tutorial mostra como hospedar um aplicativo ASP.NET Core em um servidor IIS.
 
@@ -27,7 +25,7 @@ Este tutorial cobre os seguintes assuntos:
 > * Criar um site do IIS no Gerenciador do IIS.
 > * Implantar um aplicativo ASP.NET Core.
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 * [SDK do .NET Core](/dotnet/core/sdk) instalado no computador de desenvolvimento.
 * O Windows Server foi configurado com a função de servidor **Servidor Web (IIS)** . Se o servidor não estiver configurado para hospedar sites com o IIS, siga as orientações na seção *Configuração do IIS* do artigo <xref:host-and-deploy/iis/index#iis-configuration> e, em seguida, retorne a este tutorial.
@@ -99,13 +97,13 @@ Siga o tutorial <xref:getting-started> para criar um aplicativo Razor Pages.
 
 ---
 
-## <a name="browse-the-website"></a>Navegar no site
+## <a name="browse-the-website"></a>Procurar no site
 
 O aplicativo pode ser acessado em um navegador depois de receber a primeira solicitação. Faça uma solicitação para o aplicativo na associação de ponto de extremidade que você estabeleceu no Gerenciador do IIS para o site.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
-Neste tutorial, você aprendeu como:
+Neste tutorial, você aprendeu a:
 
 > [!div class="checklist"]
 > * Instalar o Pacote de Hospedagem do .NET Core no Windows Server.

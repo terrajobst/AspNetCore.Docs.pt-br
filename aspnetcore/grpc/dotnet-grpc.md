@@ -7,11 +7,11 @@ ms.author: johluo
 ms.date: 10/17/2019
 uid: grpc/dotnet-grpc
 ms.openlocfilehash: 994597c854a95bb33de1686ab025cb3744cf6845
-ms.sourcegitcommit: e71b6a85b0e94a600af607107e298f932924c849
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2019
-ms.locfileid: "72519040"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78667331"
 ---
 # <a name="manage-protobuf-references-with-dotnet-grpc"></a>Gerenciar referências de Protobuf com dotnet-grpc
 
@@ -21,7 +21,7 @@ Por [John Luo](https://github.com/juntaoluo)
 
 ## <a name="installation"></a>Instalação
 
-Para instalar a ferramenta global do `dotnet-grpc` [.NET Core](/dotnet/core/tools/global-tools), execute o seguinte comando:
+Para instalar a [ferramenta Global `dotnet-grpc` .NET Core](/dotnet/core/tools/global-tools), execute o seguinte comando:
 
 ```dotnetcli
 dotnet tool install -g dotnet-grpc
@@ -29,7 +29,7 @@ dotnet tool install -g dotnet-grpc
 
 ## <a name="add-references"></a>Adicionar referências
 
-`dotnet-grpc` pode ser usado para adicionar referências Protobuf como itens `<Protobuf />` ao arquivo *. csproj* :
+`dotnet-grpc` pode ser usado para adicionar referências de Protobuf como `<Protobuf />` itens ao arquivo *. csproj* :
 
 ```xml
 <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
@@ -41,7 +41,7 @@ As referências de Protobuf são usadas para gerar C# os ativos de cliente e/ou 
 * Crie uma referência de Protobuf de um arquivo remoto especificado por uma URL.
 * Verifique se as dependências do pacote gRPC corretas foram adicionadas ao projeto.
 
-Por exemplo, o pacote `Grpc.AspNetCore` é adicionado a um aplicativo Web. `Grpc.AspNetCore` contém bibliotecas de servidor e cliente gRPC e suporte a ferramentas. Como alternativa, os pacotes `Grpc.Net.Client`, `Grpc.Tools` e `Google.Protobuf`, que contêm apenas as bibliotecas de cliente gRPC e o suporte de ferramentas, são adicionados a um aplicativo de console.
+Por exemplo, o pacote de `Grpc.AspNetCore` é adicionado a um aplicativo Web. o `Grpc.AspNetCore` contém bibliotecas de cliente e de servidor gRPC e suporte a ferramentas. Como alternativa, os pacotes `Grpc.Net.Client`, `Grpc.Tools` e `Google.Protobuf`, que contêm apenas as bibliotecas de cliente gRPC e o suporte de ferramentas, são adicionados a um aplicativo de console.
 
 ### <a name="add-file"></a>Adicionar arquivo
 
@@ -58,18 +58,18 @@ Se algum arquivo estiver fora do diretório do projeto, um elemento `Link` será
 dotnet grpc add-file [options] <files>...
 ```
 
-#### <a name="arguments"></a>Arguments
+#### <a name="arguments"></a>Argumentos
 
-| Argumento | Descrição |
+| {1&gt;Argumento&lt;1} | Descrição |
 |-|-|
-| arquivos | O arquivo protobuf faz referência a. Eles podem ser um caminho para glob para arquivos protobuf locais. |
+| files | O arquivo protobuf faz referência a. Eles podem ser um caminho para glob para arquivos protobuf locais. |
 
-#### <a name="options"></a>Opções
+#### <a name="options"></a>{1&gt;Opções&lt;1}
 
 | Opção curta | Opção Long | Descrição |
 |-|-|-|
 | -p | --projeto | O caminho para o arquivo de projeto no qual operar. Se um arquivo não for especificado, o comando pesquisará o diretório atual em busca de um.
-| -s | --serviços | O tipo de serviços gRPCs que devem ser gerados. Se `Default` for especificado, `Both` será usado para projetos Web e `Client` será usado para projetos não Web. Os valores aceitos são `Both`, `Client`, `Default`, `None`, `Server`.
+| -s | --serviços | O tipo de serviços gRPCs que devem ser gerados. Se `Default` for especificado, `Both` será usado para projetos Web e `Client` será usado para projetos não Web. Os valores aceitos são `Both`, `Client`, `Default`, `None``Server`.
 | -i | --Additional-importar-dirs | Diretórios adicionais a serem usados ao resolver importações para os arquivos protobuf. Esta é uma lista de caminhos separados por ponto e vírgula.
 | | --acesso | O modificador de acesso a ser usado C# para as classes geradas. O valor padrão é `Public`. Os valores aceitos são `Internal` e `Public`.
 
@@ -83,19 +83,19 @@ O comando `add-url` é usado para adicionar um arquivo remoto especificado por u
 dotnet-grpc add-url [options] <url>
 ```
 
-#### <a name="arguments"></a>Arguments
+#### <a name="arguments"></a>Argumentos
 
-| Argumento | Descrição |
+| {1&gt;Argumento&lt;1} | Descrição |
 |-|-|
 | url | A URL para um arquivo protobuf remoto. |
 
-#### <a name="options"></a>Opções
+#### <a name="options"></a>{1&gt;Opções&lt;1}
 
 | Opção curta | Opção Long | Descrição |
 |-|-|-|
-| -o | --saída | Especifica o caminho de download para o arquivo protobuf remoto. Trata-se de uma opção obrigatória.
+| -o | --output | Especifica o caminho de download para o arquivo protobuf remoto. Trata-se de uma opção obrigatória.
 | -p | --projeto | O caminho para o arquivo de projeto no qual operar. Se um arquivo não for especificado, o comando pesquisará o diretório atual em busca de um.
-| -s | --serviços | O tipo de serviços gRPCs que devem ser gerados. Se `Default` for especificado, `Both` será usado para projetos Web e `Client` será usado para projetos não Web. Os valores aceitos são `Both`, `Client`, `Default`, `None`, `Server`.
+| -s | --serviços | O tipo de serviços gRPCs que devem ser gerados. Se `Default` for especificado, `Both` será usado para projetos Web e `Client` será usado para projetos não Web. Os valores aceitos são `Both`, `Client`, `Default`, `None``Server`.
 | -i | --Additional-importar-dirs | Diretórios adicionais a serem usados ao resolver importações para os arquivos protobuf. Esta é uma lista de caminhos separados por ponto e vírgula.
 | | --acesso | O modificador de acesso a ser usado C# para as classes geradas. O valor padrão é `Public`. Os valores aceitos são `Internal` e `Public`.
 
@@ -112,13 +112,13 @@ O comando `remove` é usado para remover referências Protobuf do arquivo *. csp
 dotnet-grpc remove [options] <references>...
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
-| Argumento | Descrição |
+| {1&gt;Argumento&lt;1} | Descrição |
 |-|-|
 | referências | As URLs ou caminhos de arquivo das referências de protobuf a serem removidas. |
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 | Opção curta | Opção Long | Descrição |
 |-|-|-|
@@ -139,13 +139,13 @@ A ferramenta sempre substituirá o arquivo local pelo arquivo remoto se uma atua
 dotnet-grpc refresh [options] [<references>...]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
-| Argumento | Descrição |
+| {1&gt;Argumento&lt;1} | Descrição |
 |-|-|
 | referências | As URLs ou caminhos de arquivo para referências de protobuf remotas que devem ser atualizadas. Deixe esse argumento vazio para atualizar todas as referências remotas. |
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 | Opção curta | Opção Long | Descrição |
 |-|-|-|
@@ -162,7 +162,7 @@ O comando `list` é usado para exibir todas as referências de Protobuf no arqui
 dotnet-grpc list [options]
 ```
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 | Opção curta | Opção Long | Descrição |
 |-|-|-|

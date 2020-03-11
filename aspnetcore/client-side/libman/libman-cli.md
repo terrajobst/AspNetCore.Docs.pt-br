@@ -9,11 +9,11 @@ no-loc:
 - SignalR
 uid: client-side/libman/libman-cli
 ms.openlocfilehash: 02d88d09805bd23a86ef924766373245fec7ff52
-ms.sourcegitcommit: 0b0e485a8a6dfcc65a7a58b365622b3839f4d624
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "76928358"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78664629"
 ---
 # <a name="use-the-libman-cli-with-aspnet-core"></a>Usar a CLI do LibMan com ASP.NET Core
 
@@ -43,7 +43,7 @@ dotnet tool install -g Microsoft.Web.LibraryManager.Cli --version 1.0.94-g606058
 
 No exemplo anterior, uma ferramenta global do .NET Core é instalada a partir do arquivo *C:\Temp\Microsoft.Web.LibraryManager.CLI.1.0.94-g606058a278.nupkg* do computador Windows local.
 
-## <a name="usage"></a>Medição de
+## <a name="usage"></a>Uso
 
 Após a instalação bem-sucedida da CLI, o comando a seguir pode ser usado:
 
@@ -103,7 +103,7 @@ libman init [-d|--default-destination] [-p|--default-provider] [--verbosity]
 libman init [-h|--help]
 ```
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 As opções a seguir estão disponíveis para o comando `libman init`:
 
@@ -124,7 +124,7 @@ As opções a seguir estão disponíveis para o comando `libman init`:
 Para criar um arquivo *Libman. JSON* em um projeto ASP.NET Core:
 
 * Navegue até a raiz do projeto.
-* Execute o seguinte comando:
+* Execute o comando a seguir:
 
   ```console
   libman init
@@ -157,13 +157,13 @@ libman install <LIBRARY> [-d|--destination] [--files] [-p|--provider] [--verbosi
 libman install [-h|--help]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `LIBRARY`
 
 O nome da biblioteca a ser instalada. Esse nome pode incluir a notação de número de versão (por exemplo, `@1.2.0`).
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 As opções a seguir estão disponíveis para o comando `libman install`:
 
@@ -276,7 +276,7 @@ libman restore [--verbosity]
 libman restore [-h|--help]
 ```
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 As opções a seguir estão disponíveis para o comando `libman restore`:
 
@@ -301,7 +301,7 @@ libman clean [--verbosity]
 libman clean [-h|--help]
 ```
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 As opções a seguir estão disponíveis para o comando `libman clean`:
 
@@ -336,13 +336,13 @@ libman uninstall <LIBRARY> [--verbosity]
 libman uninstall [-h|--help]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `LIBRARY`
 
 O nome da biblioteca a ser desinstalada. Esse nome pode incluir a notação de número de versão (por exemplo, `@1.2.0`).
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 As opções a seguir estão disponíveis para o comando `libman uninstall`:
 
@@ -388,13 +388,13 @@ libman update <LIBRARY> [-pre] [--to] [--verbosity]
 libman update [-h|--help]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `LIBRARY`
 
 O nome da biblioteca a ser atualizada.
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 As opções a seguir estão disponíveis para o comando `libman update`:
 
@@ -440,7 +440,7 @@ libman cache list [--files] [--libraries] [--verbosity]
 libman cache [-h|--help]
 ```
 
-### <a name="arguments"></a>Arguments
+### <a name="arguments"></a>Argumentos
 
 `PROVIDER`
 
@@ -448,7 +448,7 @@ Usado somente com o comando `clean`. Especifica o cache do provedor a ser limpo.
 
 [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
-### <a name="options"></a>Opções
+### <a name="options"></a>{1&gt;Opções&lt;1}
 
 As opções a seguir estão disponíveis para o comando `libman cache`:
 

@@ -7,11 +7,11 @@ ms.custom: mvc
 ms.date: 10/07/2019
 uid: security/data-protection/configuration/overview
 ms.openlocfilehash: c0846aca4bb663b1d562ab0c877fefba02da460f
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75829030"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78666589"
 ---
 # <a name="configure-aspnet-core-data-protection"></a>Configurar a proteção de dados do ASP.NET Core
 
@@ -389,7 +389,7 @@ Ao hospedar em um contêiner do [Docker](/dotnet/standard/microservices-architec
 
 ## <a name="persisting-keys-with-redis"></a>Mantendo chaves com Redis
 
-Somente versões Redis que dão suporte à [persistência de dados Redis](/azure/azure-cache-for-redis/cache-how-to-premium-persistence) devem ser usadas para armazenar chaves. O [armazenamento de BLOBs do Azure](/azure/storage/blobs/storage-blobs-introduction) é persistente e pode ser usado para armazenar chaves. Para obter mais informações, consulte [esse problema de GitHub](https://github.com/dotnet/AspNetCore/issues/13476).
+Somente versões Redis que dão suporte à [persistência de dados Redis](/azure/azure-cache-for-redis/cache-how-to-premium-persistence) devem ser usadas para armazenar chaves. O [armazenamento de BLOBs do Azure](/azure/storage/blobs/storage-blobs-introduction) é persistente e pode ser usado para armazenar chaves. Saiba mais neste [tópico do GitHub](https://github.com/dotnet/AspNetCore/issues/13476).
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

@@ -9,12 +9,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: 1dee9a7e1cc381547e7ece71f302f407223dc838
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: 35accdd2f65ac5430525be88cc621094e37d3e40
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75829108"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78667247"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>O que há de novo no ASP.NET Core 3,0
 
@@ -398,7 +398,7 @@ Para obter mais informações, consulte <xref:security/authentication/windowsaut
 Os modelos de interface do usuário da Web (Razor Pages, MVC com controlador e exibições) têm o seguinte removido:
 
 * A interface do usuário de consentimento do cookie não está mais incluída. Para habilitar o recurso de consentimento de cookie em um ASP.NET Core aplicativo gerado pelo modelo 3,0, consulte <xref:security/gdpr>.
-* Os scripts e ativos estáticos relacionados agora são referenciados como arquivos locais em vez de usar CDNs. Para obter mais informações, consulte [scripts e ativos estáticos relacionados agora são referenciados como arquivos locais em vez de usar o CDNs com base no ambiente atual (ASPNET/AspNetCore. Docs #14350)](https://github.com/aspnet/AspNetCore.Docs/issues/14350).
+* Os scripts e ativos estáticos relacionados agora são referenciados como arquivos locais em vez de usar CDNs. Para obter mais informações, consulte [scripts e ativos estáticos relacionados agora são referenciados como arquivos locais em vez de usar o CDNs com base no ambiente atual (ASPNET/AspNetCore. Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350).
 
 O modelo angular atualizado para usar o angular 8.
 
@@ -456,7 +456,7 @@ O roteamento de ponto de extremidade, que permite que as estruturas (por exemplo
 
 Para obter mais informações, consulte <xref:fundamentals/routing#routing-basics>.
 
-## <a name="health-checks"></a>Verificações de Integridade
+## <a name="health-checks"></a>Verificações de integridade
 
 As verificações de integridade usam o roteamento de ponto de extremidade com o host genérico. Em `Startup.Configure`, chame `MapHealthChecks` no construtor de ponto de extremidade com a URL do ponto de extremidade ou o caminho relativo:
 
@@ -473,14 +473,14 @@ Os pontos de extremidade de verificações de integridade podem:
 * Exigir autorização.
 * Exigir CORS.
 
-Para obter mais informações, confira os seguintes artigos:
+Para obter mais informações, consulte os seguintes artigos:
 
 * <xref:migration/22-to-30#health-checks>
 * <xref:host-and-deploy/health-checks>
 
 ## <a name="pipes-on-httpcontext"></a>Pipes em HttpContext
 
-Agora é possível ler o corpo da solicitação e gravar o corpo da resposta usando a API <xref:System.IO.Pipelines>. O <!-- <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader> --> `HttpRequest.BodyReader` propriedade fornece um <xref:System.IO.Pipelines.PipeReader> que pode ser usado para ler o corpo da solicitação. O <!-- <xref:Microsoft.AspNetCore.Http.> --> `HttpResponse.BodyWriter` propriedade fornece um <xref:System.IO.Pipelines.PipeWriter> que pode ser usado para gravar o corpo da resposta. `HttpRequest.BodyReader` é um análogo do fluxo de `HttpRequest.Body`. `HttpResponse.BodyWriter` é um análogo do fluxo de `HttpResponse.Body`.
+Agora é possível ler o corpo da solicitação e gravar o corpo da resposta usando a API <xref:System.IO.Pipelines>. O parâmetro <!-- <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader> --> `HttpRequest.BodyReader` propriedade fornece um <xref:System.IO.Pipelines.PipeReader> que pode ser usado para ler o corpo da solicitação. O parâmetro <!-- <xref:Microsoft.AspNetCore.Http.> --> `HttpResponse.BodyWriter` propriedade fornece um <xref:System.IO.Pipelines.PipeWriter> que pode ser usado para gravar o corpo da resposta. `HttpRequest.BodyReader` é um análogo do fluxo de `HttpRequest.Body`. `HttpResponse.BodyWriter` é um análogo do fluxo de `HttpResponse.Body`.
 
 <!-- indirectly related, https://github.com/dotnet/docs/pull/14414 won't be published by 9/23  -->
 
@@ -492,7 +492,7 @@ Os erros de inicialização ao hospedar aplicativos ASP.NET Core no IIS agora pr
 
 O .NET Core 3,0 apresenta o novo modelo de aplicativo do serviço de trabalho. Este modelo fornece um ponto de partida para escrever serviços de longa execução no .NET Core.
 
-Para obter mais informações, consulte .
+Para obter mais informações, consulte:
 
 * [Trabalhos do .NET Core como serviços do Windows](https://devblogs.microsoft.com/aspnet/net-core-workers-as-windows-services/)
 * <xref:fundamentals/host/hosted-services>

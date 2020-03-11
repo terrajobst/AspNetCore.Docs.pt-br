@@ -8,11 +8,11 @@ ms.custom: mvc
 ms.date: 01/15/2020
 uid: fundamentals/index
 ms.openlocfilehash: 3fbfc7c4c0d5e568339bc00a7cbe84a3932acf1f
-ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76146347"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78664230"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
 
@@ -67,9 +67,9 @@ Um aplicativo ASP.NET Core cria um *host* na inicialização. O host é um objet
 
 * Uma implementação do servidor HTTP
 * Componentes de middleware
-* Registrando em log
+* Registro em log
 * DI
-* Configuração do
+* Configuração
 
 O principal motivo para incluir todos os recursos interdependentes do aplicativo em um objeto é o gerenciamento de tempo de vida: controle sobre a inicialização do aplicativo e desligamento normal.
 
@@ -113,13 +113,13 @@ Para obter mais informações, consulte <xref:fundamentals/host/web-host>.
 
 O Host Genérico permite que outros tipos de aplicativos usem extensões de estruturas abrangentes como registro em log, DI (Injeção de Dependência), configuração e gerenciamento do tempo de vida dos aplicativos. Para obter mais informações, consulte <xref:fundamentals/host/generic-host> e <xref:fundamentals/host/hosted-services>.
 
-## <a name="servers"></a>{1&gt;Servidores&lt;1}
+## <a name="servers"></a>Servidores
 
 Um aplicativo ASP.NET Core usa uma implementação do servidor HTTP para ouvir solicitações HTTP. O servidor descobre solicitações ao aplicativo como um conjunto de [recursos de solicitação](xref:fundamentals/request-features) compostos em um `HttpContext`.
 
 ::: moniker range=">= aspnetcore-2.2"
 
-# <a name="windowstabwindows"></a>[Windows](#tab/windows)
+# <a name="windows"></a>[Windows](#tab/windows)
 
 O ASP.NET Core vem com as seguintes implementações de servidor:
 
@@ -127,11 +127,11 @@ O ASP.NET Core vem com as seguintes implementações de servidor:
 * O *Servidor HTTP de IIS* é um servidor do Windows que usa o IIS. Com esse servidor, o aplicativo ASP.NET Core e o IIS são executados no mesmo processo.
 * *HTTP.sys* é um servidor para Windows que não é usado com IIS.
 
-# <a name="macostabmacos"></a>[macOS](#tab/macos)
+# <a name="macos"></a>[macOS](#tab/macos)
 
 O ASP.NET Core fornece a implementação de servidor multiplataforma do *Kestrel*. No ASP.NET Core 2.0 ou posterior, o Kestrel também pode ser executado como um servidor de borda voltado para o público exposto diretamente à Internet. O Kestrel normalmente é executado em uma configuração de proxy reverso com [Nginx](https://nginx.org) ou [Apache](https://httpd.apache.org/).
 
-# <a name="linuxtablinux"></a>[Linux](#tab/linux)
+# <a name="linux"></a>[Linux](#tab/linux)
 
 O ASP.NET Core fornece a implementação de servidor multiplataforma do *Kestrel*. No ASP.NET Core 2.0 ou posterior, o Kestrel também pode ser executado como um servidor de borda voltado para o público exposto diretamente à Internet. O Kestrel normalmente é executado em uma configuração de proxy reverso com [Nginx](https://nginx.org) ou [Apache](https://httpd.apache.org/).
 
@@ -141,18 +141,18 @@ O ASP.NET Core fornece a implementação de servidor multiplataforma do *Kestrel
 
 ::: moniker range="< aspnetcore-2.2"
 
-# <a name="windowstabwindows"></a>[Windows](#tab/windows)
+# <a name="windows"></a>[Windows](#tab/windows)
 
 O ASP.NET Core vem com as seguintes implementações de servidor:
 
 * *Kestrel* é um servidor Web multiplataforma. O Kestrel normalmente é executado em uma configuração de proxy reverso que usa o [IIS](https://www.iis.net/). No ASP.NET Core 2.0 ou posterior, o Kestrel também pode ser executado como um servidor de borda voltado para o público exposto diretamente à Internet.
 * *HTTP.sys* é um servidor para Windows que não é usado com IIS.
 
-# <a name="macostabmacos"></a>[macOS](#tab/macos)
+# <a name="macos"></a>[macOS](#tab/macos)
 
 O ASP.NET Core fornece a implementação de servidor multiplataforma do *Kestrel*. No ASP.NET Core 2.0 ou posterior, o Kestrel também pode ser executado como um servidor de borda voltado para o público exposto diretamente à Internet. O Kestrel normalmente é executado em uma configuração de proxy reverso com [Nginx](https://nginx.org) ou [Apache](https://httpd.apache.org/).
 
-# <a name="linuxtablinux"></a>[Linux](#tab/linux)
+# <a name="linux"></a>[Linux](#tab/linux)
 
 O ASP.NET Core fornece a implementação de servidor multiplataforma do *Kestrel*. No ASP.NET Core 2.0 ou posterior, o Kestrel também pode ser executado como um servidor de borda voltado para o público exposto diretamente à Internet. O Kestrel normalmente é executado em uma configuração de proxy reverso com [Nginx](https://nginx.org) ou [Apache](https://httpd.apache.org/).
 
@@ -162,7 +162,7 @@ O ASP.NET Core fornece a implementação de servidor multiplataforma do *Kestrel
 
 Para obter mais informações, consulte <xref:fundamentals/servers/index>.
 
-## <a name="configuration"></a>Configuração do
+## <a name="configuration"></a>Configuração
 
 O ASP.NET Core fornece uma estrutura de configuração que obtém as configurações como pares nome-valor de um conjunto ordenado de provedores de configuração. Há provedores de configuração internos para uma variedade de fontes, como arquivos *.json*, arquivos *.xml*, variáveis de ambiente e argumentos de linha de comando. Você também pode escrever seus próprios provedores de configuração personalizados.
 
@@ -172,7 +172,7 @@ Para gerenciar dados de configuração confidenciais como senhas, o ASP.NET Core
 
 Para obter mais informações, consulte <xref:fundamentals/configuration/index>.
 
-## <a name="options"></a>Opções
+## <a name="options"></a>{1&gt;Opções&lt;1}
 
 Sempre que possível, o ASP.NET Core segue o *padrão de opções* para armazenar e recuperar valores de configuração. O padrão de opções usa classes para representar grupos de configurações relacionadas.
 
@@ -199,16 +199,16 @@ O seguinte código de exemplo da classe `Startup` configura o aplicativo para fo
 
 Para obter mais informações, consulte <xref:fundamentals/environments>.
 
-## <a name="logging"></a>Registrando em log
+## <a name="logging"></a>Registro em log
 
-O ASP.NET Core oferece suporte a uma API de registro em log que funciona com uma variedade de provedores de logs internos e terceirizados. Provedores disponíveis incluem os seguintes:
+O ASP.NET Core dá suporte a uma API de registro em log que funciona com uma série de provedores de registro em log internos e de terceiros. Provedores disponíveis incluem os seguintes:
 
-* Console do
+* Console
 * Depuração
 * Rastreamento de Eventos no Windows
-* Log de Eventos do Windows
+* Log de eventos do Windows
 * TraceSource
-* Serviço de Aplicativo do Azure
+* Serviço de aplicativo do Azure
 * Azure Application Insights
 
 Escreva logs de qualquer lugar no código do aplicativo obtendo um objeto `ILogger` da DI e chamando os métodos de log.

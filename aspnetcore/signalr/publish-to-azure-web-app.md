@@ -10,22 +10,22 @@ no-loc:
 - SignalR
 uid: signalr/publish-to-azure-web-app
 ms.openlocfilehash: d03a007ca883b3d0391b848e3e92c90469ee640a
-ms.sourcegitcommit: 3fc3020961e1289ee5bf5f3c365ce8304d8ebf19
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73963928"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78661353"
 ---
-# <a name="publish-an-aspnet-core-opno-locsignalr-app-to-azure-app-service"></a>Publicar um aplicativo de SignalR de ASP.NET Core no serviço Azure App
+# <a name="publish-an-aspnet-core-signalr-app-to-azure-app-service"></a>Publicar um aplicativo Signalr ASP.NET Core no serviço Azure App
 
 Por [Brady GASTER](https://twitter.com/bradygaster)
 
 O [serviço de Azure app](/azure/app-service/app-service-web-overview) é um serviço de plataforma de computação em nuvem da [Microsoft](https://azure.microsoft.com/) para hospedar aplicativos Web, incluindo ASP.NET Core.
 
 > [!NOTE]
-> Este artigo refere-se à publicação de um aplicativo ASP.NET Core SignalR do Visual Studio. Para obter mais informações, consulte [SignalR Service for Azure](https://azure.microsoft.com/services/signalr-service).
+> Este artigo refere-se à publicação de um aplicativo Signalr ASP.NET Core do Visual Studio. Para obter mais informações, consulte [serviço de sinalização para o Azure](https://azure.microsoft.com/services/signalr-service).
 
-## <a name="publish-the-app"></a>Publique o aplicativo
+## <a name="publish-the-app"></a>Publicar o aplicativo
 
 Este artigo aborda a publicação usando as ferramentas do Visual Studio. Visual Studio Code usuários podem usar [CLI do Azure](/cli/azure) comandos para publicar aplicativos no Azure. Para obter mais informações, consulte [publicar um aplicativo ASP.NET Core no Azure com ferramentas de linha de comando](/azure/app-service/app-service-web-get-started-dotnet).
 
@@ -46,7 +46,7 @@ Este artigo aborda a publicação usando as ferramentas do Visual Studio. Visual
 
 1. Selecione o **serviço de SignalR do Azure** na lista suspensa **dependências** > **Adicionar** :
 
-   ![Área de dependências mostrando a seleção do Azure [! Parar. Serviço no-LOC (Signalr)] na lista suspensa adicionar](publish-to-azure-web-app/_static/signalr-service-dependency.png)
+   ![área de dependências mostrando a seleção do serviço de SignalR do Azure na lista suspensa adicionar](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 
 1. Na caixa de diálogo **serviço de SignalR do Azure** , selecione **criar uma nova instância do serviço de SignalR do Azure**.
 

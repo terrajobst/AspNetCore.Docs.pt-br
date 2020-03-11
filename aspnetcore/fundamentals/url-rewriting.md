@@ -1,22 +1,22 @@
 ---
 title: Middleware de Reconfiguração de URL no ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Saiba mais sobre a reconfiguração de URL e o redirecionamento com o Middleware de Reconfiguração de URL em aplicativos ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/16/2019
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: e284d2172af723bb80a7be9f6e6f1a87ebe5208e
-ms.sourcegitcommit: 41f2c1a6b316e6e368a4fd27a8b18d157cef91e1
-ms.translationtype: HT
+ms.openlocfilehash: 7d63cf381f1d8a19ed4fb789348e36f94304ad63
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/21/2019
-ms.locfileid: "69886503"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78666463"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>Middleware de Reconfiguração de URL no ASP.NET Core
 
-Por [Luke Latham](https://github.com/guardrex) e [Mikael Mengistu](https://github.com/mikaelm12)
+Por [Mikael Mengistu](https://github.com/mikaelm12)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -35,7 +35,7 @@ A reconfiguração de URL é o ato de modificar URLs de solicitação com base e
 > [!NOTE]
 > A reconfiguração de URL pode reduzir o desempenho de um aplicativo. Sempre que possível, limite o número e a complexidade das regras.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="url-redirect-and-url-rewrite"></a>Redirecionamento e reconfiguração de URL
 
@@ -65,7 +65,7 @@ Embora o cliente possa ter a capacidade de recuperar o recurso na URL reconfigur
 
 ## <a name="url-rewriting-sample-app"></a>Aplicativo de exemplo de reconfiguração de URL
 
-Explore as funcionalidades do Middleware de Reconfiguração de URL com o [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/). O aplicativo aplica as regras de redirecionamento e reconfiguração e mostra a URL redirecionada ou reconfigurada para vários cenários.
+Explore as funcionalidades do Middleware de Reconfiguração de URL com o [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/). O aplicativo aplica as regras de redirecionamento e reconfiguração e mostra a URL redirecionada ou reconfigurada para vários cenários.
 
 ## <a name="when-to-use-url-rewriting-middleware"></a>Quando usar o Middleware de Reconfiguração de URL
 
@@ -100,9 +100,9 @@ Estabeleça regras de reconfiguração e redirecionamento de URL criando uma ins
 
 Três opções permitem que o aplicativo redirecione solicitações não `www`para `www`:
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*> &ndash; Redirecionar permanentemente a solicitação para o subdomínio `www` se a solicitação não for `www`. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*> &ndash; redirecionar permanentemente a solicitação para o subdomínio `www` se a solicitação for não`www`. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*> &ndash; Redirecionar a solicitação para o subdomínio `www` se a solicitação de entrada não for `www`. Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*> &ndash; redirecionar a solicitação para o subdomínio `www` se a solicitação de entrada for não`www`. Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
 
 ### <a name="url-redirect"></a>Redirecionamento de URL
 
@@ -359,7 +359,7 @@ Solicitação original: `/image.jpg`
 
 ## <a name="regex-examples"></a>Exemplos do regex
 
-| Goal | Cadeia de caracteres do regex &<br>Exemplo de correspondência | Cadeia de caracteres de substituição &<br>Exemplo de saída |
+| Meta | Cadeia de caracteres do regex &<br>Exemplo de correspondência | Cadeia de caracteres de substituição &<br>Exemplo de saída |
 | ---- | ------------------------------- | -------------------------------------- |
 | Reconfigurar o caminho na cadeia de consulta | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
 | Barra "/" à direita da faixa | `(.*)/$`<br>`/path/` | `$1`<br>`/path` |
@@ -387,7 +387,7 @@ A reconfiguração de URL é o ato de modificar URLs de solicitação com base e
 > [!NOTE]
 > A reconfiguração de URL pode reduzir o desempenho de um aplicativo. Sempre que possível, limite o número e a complexidade das regras.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="url-redirect-and-url-rewrite"></a>Redirecionamento e reconfiguração de URL
 
@@ -417,7 +417,7 @@ Embora o cliente possa ter a capacidade de recuperar o recurso na URL reconfigur
 
 ## <a name="url-rewriting-sample-app"></a>Aplicativo de exemplo de reconfiguração de URL
 
-Explore as funcionalidades do Middleware de Reconfiguração de URL com o [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/). O aplicativo aplica as regras de redirecionamento e reconfiguração e mostra a URL redirecionada ou reconfigurada para vários cenários.
+Explore as funcionalidades do Middleware de Reconfiguração de URL com o [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/). O aplicativo aplica as regras de redirecionamento e reconfiguração e mostra a URL redirecionada ou reconfigurada para vários cenários.
 
 ## <a name="when-to-use-url-rewriting-middleware"></a>Quando usar o Middleware de Reconfiguração de URL
 
@@ -454,9 +454,9 @@ Estabeleça regras de reconfiguração e redirecionamento de URL criando uma ins
 
 Três opções permitem que o aplicativo redirecione solicitações não `www`para `www`:
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*> &ndash; Redirecionar permanentemente a solicitação para o subdomínio `www` se a solicitação não for `www`. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*> &ndash; redirecionar permanentemente a solicitação para o subdomínio `www` se a solicitação for não`www`. Redireciona com um código de status [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect).
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*> &ndash; Redirecionar a solicitação para o subdomínio `www` se a solicitação de entrada não for `www`. Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*> &ndash; redirecionar a solicitação para o subdomínio `www` se a solicitação de entrada for não`www`. Redireciona com um código de status [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect). Uma sobrecarga permite que você forneça o código de status para a resposta. Use um campo da classe <xref:Microsoft.AspNetCore.Http.StatusCodes> para uma atribuição de código de status.
 
 ### <a name="url-redirect"></a>Redirecionamento de URL
 
@@ -713,7 +713,7 @@ Solicitação original: `/image.jpg`
 
 ## <a name="regex-examples"></a>Exemplos do regex
 
-| Goal | Cadeia de caracteres do regex &<br>Exemplo de correspondência | Cadeia de caracteres de substituição &<br>Exemplo de saída |
+| Meta | Cadeia de caracteres do regex &<br>Exemplo de correspondência | Cadeia de caracteres de substituição &<br>Exemplo de saída |
 | ---- | ------------------------------- | -------------------------------------- |
 | Reconfigurar o caminho na cadeia de consulta | `^path/(.*)/(.*)`<br>`/path/abc/123` | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
 | Barra "/" à direita da faixa | `(.*)/$`<br>`/path/` | `$1`<br>`/path` |

@@ -10,11 +10,11 @@ no-loc:
 - SignalR
 uid: signalr/scale
 ms.openlocfilehash: 260e2f0c16288fec2e0a694d070f357529782d8d
-ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
-ms.translationtype: HT
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "77447328"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78668150"
 ---
 # <a name="aspnet-core-signalr-hosting-and-scaling"></a>Hospedagem e dimensionamento de ASP.NET Core Signalr
 
@@ -52,7 +52,7 @@ Para manter o uso de recursos do Signalr de causar erros em outros aplicativos W
 
 Para manter o uso de recursos do Signalr de causar erros em um aplicativo Signalr, escale horizontalmente para limitar o número de conexões que um servidor tem para lidar.
 
-## <a name="scale-out"></a>Escalar horizontalmente
+## <a name="scale-out"></a>Expansão
 
 Um aplicativo que usa o Signalr precisa manter o controle de todas as suas conexões, o que cria problemas para um farm de servidores. Adicione um servidor e obtenha novas conexões que os outros servidores não conhecem. Por exemplo, o Signalr em cada servidor no diagrama a seguir não reconhece as conexões nos outros servidores. Quando o Signalr em um dos servidores quiser enviar uma mensagem a todos os clientes, a mensagem vai apenas para os clientes conectados a esse servidor.
 
@@ -125,9 +125,9 @@ Para obter mais informações, consulte [Nginx como um proxy WebSocket](https://
 * [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
 * [Orleans](https://github.com/OrleansContrib/SignalR.Orleans)
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
-Para saber mais, consulte os recursos a seguir:
+Para obter mais informações, consulte os seguintes recursos:
 
 * [Documentação do serviço de SignalR do Azure](/azure/azure-signalr/signalr-overview)
 * [Configurar um backplane Redis](xref:signalr/redis-backplane)

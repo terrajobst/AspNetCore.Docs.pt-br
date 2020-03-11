@@ -1,17 +1,17 @@
 ---
 title: Configuração de logon externo do Google no ASP.NET Core
 author: rick-anderson
-description: Este tutorial demonstra a integração da autenticação do usuário da conta do Google em um aplicativo ASP.NET Core existente.
+description: Este tutorial demonstra a integração da autenticação de usuário de conta do Google em um aplicativo ASP.NET Core existente.
 ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 10/30/2019
 uid: security/authentication/google-logins
 ms.openlocfilehash: 83f45143eca1be43410880bfd875a3fce1d2e9c9
-ms.sourcegitcommit: de0fc77487a4d342bcc30965ec5c142d10d22c03
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/30/2019
-ms.locfileid: "73143459"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78667506"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>Configuração de logon externo do Google no ASP.NET Core
 
@@ -28,7 +28,7 @@ Este tutorial mostra como permitir que os usuários entrem com sua conta do Goog
 * Salve a **ID do cliente** e o **segredo do cliente**.
 * Ao implantar o site, registre a nova URL pública do console do **Google**.
 
-## <a name="store-google-clientid-and-clientsecret"></a>Armazenar Google ClientID e ClientSecret
+## <a name="store-google-clientid-and-clientsecret"></a>Store Google ClientID e ClientSecret
 
 Armazene configurações confidenciais, como o Google `Client ID` e `Client Secret` com o [Gerenciador de segredo](xref:security/app-secrets). Para os fins deste tutorial, nomeie os tokens `Authentication:Google:ClientId` e `Authentication:Google:ClientSecret`:
 
@@ -68,11 +68,11 @@ O segmento de URI `/signin-google` é definido como o retorno de chamada padrão
 ## <a name="troubleshooting"></a>Solução de problemas
 
 * Se a entrada não funcionar e você não estiver recebendo erros, mude para o modo de desenvolvimento para facilitar a depuração do problema.
-* Se a identidade não estiver configurada chamando `services.AddIdentity` no `ConfigureServices`, tentar autenticar os resultados em *ArgumentException: a opção ' SignInScheme ' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso seja feito.
+* Se a identidade não estiver configurada chamando `services.AddIdentity` no `ConfigureServices`, tentar autenticar os resultados em *ArgumentException: a opção ' SignInScheme ' deve ser fornecida*. O modelo de projeto usado neste tutorial garante que isso é feito.
 * Se o banco de dados do site não tiver sido criado aplicando a migração inicial, você obterá *uma operação de banco de dados com falha ao processar o erro de solicitação* . Selecione **aplicar migrações** para criar o banco de dados e atualize a página para continuar após o erro.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 * Este artigo mostrou como você pode autenticar com o Google. Você pode seguir uma abordagem semelhante para autenticar com outros provedores listados na [página anterior](xref:security/authentication/social/index).
 * Depois de publicar o aplicativo no Azure, redefina o `ClientSecret` no console de API do Google.
-* Defina o `Authentication:Google:ClientId` e `Authentication:Google:ClientSecret` como configurações de aplicativo no portal do Azure. O sistema de configuração é configurado para ler chaves de variáveis de ambiente.
+* Defina o `Authentication:Google:ClientId` e `Authentication:Google:ClientSecret` como configurações de aplicativo no portal do Azure. Configurar o sistema de configuração para ler as chaves de variáveis de ambiente.

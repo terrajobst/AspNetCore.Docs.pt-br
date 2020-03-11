@@ -4,7 +4,7 @@ Este exemplo ilustra o uso de Razor Pages autorização por convenções. Este e
 
 A autorização do usuário neste exemplo usa os recursos de autenticação de cookie descritos no tópico [usar autenticação de cookie sem ASP.NET Core identidade](https://docs.microsoft.com/aspnet/core/security/authentication/cookie) . Os conceitos e exemplos mostrados neste tópico se aplicam igualmente a aplicativos que usam ASP.NET Core identidade. Para obter informações sobre como usar a identidade ASP.NET Core, consulte [introdução à identidade em ASP.NET Core](https://docs.microsoft.com/aspnet/core/security/authentication/identity).
 
-Use o endereço **maria.rodriguez@contoso.com** de email para autenticar o usuário com qualquer senha. O usuário é autenticado no `AuthenticateUser` método no arquivo *pages/Account/Login. cshtml. cs* . Em um exemplo do mundo real, o usuário seria autenticado em um banco de dados.
+Use o endereço de email **maria.rodriguez@contoso.com** para autenticar o usuário com qualquer senha. O usuário é autenticado no método `AuthenticateUser` no arquivo *pages/Account/Login. cshtml. cs* . Em um exemplo do mundo real, o usuário seria autenticado em um banco de dados.
 
 ## <a name="examples-in-this-sample"></a>Exemplos desta amostra
 

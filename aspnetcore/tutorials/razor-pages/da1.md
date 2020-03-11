@@ -6,11 +6,11 @@ ms.author: riande
 ms.date: 12/20/2018
 uid: tutorials/razor-pages/da1
 ms.openlocfilehash: 0f6535462fe2d308825bf7289c10d2b0690cebd4
-ms.sourcegitcommit: 07d98ada57f2a5f6d809d44bdad7a15013109549
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72334107"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78666211"
 ---
 # <a name="update-the-generated-pages-in-an-aspnet-core-app"></a>Atualizar as páginas geradas em um aplicativo ASP.NET Core
 
@@ -76,7 +76,7 @@ Para testar o comportamento de `@page "{id:int?}"`:
 
 * defina a diretiva de página em *Pages/Movies/Details.cshtml* como `@page "{id:int?}"`.
 * Defina um ponto de interrupção em `public async Task<IActionResult> OnGetAsync(int? id)` (em *Pages/Movies/Details.cshtml.cs*).
-* Navegue para `https://localhost:5001/Movies/Details/`.
+* Navegue até `https://localhost:5001/Movies/Details/`.
 
 Com a diretiva `@page "{id:int}"`, o ponto de interrupção nunca é atingido. O mecanismo de roteamento retorna HTTP 404. Usando `@page "{id:int?}"`, o método `OnGetAsync` retorna `NotFound` (HTTP 404).
 
@@ -189,7 +189,7 @@ Para testar o comportamento de `@page "{id:int?}"`:
 
 * defina a diretiva de página em *Pages/Movies/Details.cshtml* como `@page "{id:int?}"`.
 * Defina um ponto de interrupção em `public async Task<IActionResult> OnGetAsync(int? id)` (em *Pages/Movies/Details.cshtml.cs*).
-* Navegue para `https://localhost:5001/Movies/Details/`.
+* Navegue até `https://localhost:5001/Movies/Details/`.
 
 Com a diretiva `@page "{id:int}"`, o ponto de interrupção nunca é atingido. O mecanismo de roteamento retorna HTTP 404. Usando `@page "{id:int?}"`, o método `OnGetAsync` retorna `NotFound` (HTTP 404).
 

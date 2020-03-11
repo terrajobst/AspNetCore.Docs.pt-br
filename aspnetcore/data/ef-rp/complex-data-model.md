@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 411c0874d2b2c6ecadd1da9aff7a093f1e8e525a
-ms.sourcegitcommit: d2ba66023884f0dca115ff010bd98d5ed6459283
+ms.openlocfilehash: 1d81a0444487c6396bb32381ed2cb26d44312c3a
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/14/2020
-ms.locfileid: "77213422"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78665714"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---data-model---5-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – Modelo de dados – 5 de 8
 
@@ -99,7 +99,7 @@ O atributo `StringLength` não impede que um usuário insira um espaço em branc
 [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
 ```
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 No **SSOX** (Pesquisador de Objetos do SQL Server), abra o designer de tabela Aluno clicando duas vezes na tabela **Aluno**.
 
@@ -107,7 +107,7 @@ No **SSOX** (Pesquisador de Objetos do SQL Server), abra o designer de tabela Al
 
 A imagem anterior mostra o esquema para a tabela `Student`. Os campos de nome têm o tipo `nvarchar(MAX)`. Quando uma migração é criada e aplicada posteriormente neste tutorial, os campos de nome se tornam `nvarchar(50)` como resultado dos atributos de comprimento da cadeia de caracteres.
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Em sua ferramenta SQLite, examine as definições de coluna da tabela `Student`. Os campos de nome têm o tipo `Text`. Observe que o campo nome é chamado `FirstMidName`. Na próxima seção, altere o nome dessa coluna para `FirstName`.
 
@@ -157,7 +157,7 @@ O atributo `Display` especifica que a legenda para as caixas de texto deve ser "
 
 Execute o aplicativo e acesse a página Alunos. Uma exceção é gerada. O atributo `[Column]` faz com que o EF Espere encontrar uma coluna chamada `FirstName`, mas o nome da coluna no banco de dados ainda é `FirstMidName`.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 A mensagem de erro é semelhante ao exemplo a seguir:
 
@@ -187,7 +187,7 @@ SqlException: Invalid column name 'FirstName'.
 
   Antes de a migração ser aplicada, as colunas de nome eram do tipo [nvarchar(MAX)](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql). As colunas de nome agora são `nvarchar(50)`. O nome da coluna foi alterado de `FirstMidName` para `FirstName`.
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 A mensagem de erro é semelhante ao exemplo a seguir:
 
@@ -349,7 +349,7 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 ## <a name="the-department-entity"></a>A entidade Department
 
-![Entidade Department](complex-data-model/_static/department-entity.png)
+![Entidade de departamento](complex-data-model/_static/department-entity.png)
 
 Crie *Models/Department.cs* com o seguinte código:
 
@@ -518,7 +518,7 @@ A ilustração a seguir mostra o diagrama criado pelo EF Power Tools para o mode
 
 ![Diagrama de entidade](complex-data-model/_static/diagram.png)
 
-O diagrama anterior mostra:
+O diagrama acima mostra:
 
 * Várias linhas de relação um-para-muitos (1 para \*).
 * A linha de relação um para zero ou um (1 para 0..1) entre as entidades `Instructor` e `OfficeAssignment`.
@@ -536,7 +536,7 @@ O código anterior fornece dados de semente para as novas entidades. A maioria d
 
 Crie o projeto.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 No PMC, execute o seguinte comando.
 
@@ -561,7 +561,7 @@ database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 
 Na próxima seção, você verá o que fazer sobre esse erro.
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Se você adicionar uma migração e executar o comando `database update`, o seguinte erro será produzido:
 
@@ -591,7 +591,7 @@ Qualquer opção funciona para o SQL Server. Embora o método apply-migration se
 
 Para forçar o EF Core a criar um novo banco de dados, remova e atualize o banco de dados:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * No **PMC** (Console do Gerenciador de Pacotes), execute o seguinte comando:
 
@@ -606,11 +606,11 @@ Para forçar o EF Core a criar um novo banco de dados, remova e atualize o banco
   Update-Database
   ```
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * Abra uma janela Comando e navegue para a pasta do projeto. A pasta do projeto contém o arquivo *ContosoUniversity.csproj*.
 
-* Execute o seguinte comando:
+* Execute o comando a seguir:
 
   ```dotnetcli
   dotnet ef database drop --force
@@ -627,7 +627,7 @@ Para forçar o EF Core a criar um novo banco de dados, remova e atualize o banco
 
 Execute o aplicativo. A execução do aplicativo executa o método `DbInitializer.Initialize`. O `DbInitializer.Initialize` preenche o novo banco de dados.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 Abra o banco de dados no SSOX:
 
@@ -643,7 +643,7 @@ Abra o banco de dados no SSOX:
 
   ![Dados de CourseAssignment no SSOX](complex-data-model/_static/ssox-ci-data.png)
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Use sua ferramenta SQLite para examinar o banco de dados:
 
@@ -691,7 +691,7 @@ A maneira de lidar com a situação mostrada aqui é simplificada para este tuto
 * Inclui código ou scripts para adicionar linhas `Department` e linhas `Course` relacionadas às novas linhas `Department`.
 * Não usa o departamento "Temp" nem o valor padrão para `Course.DepartmentID`.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * No **PMC** (Console do Gerenciador de Pacotes), execute o seguinte comando:
 
@@ -701,7 +701,7 @@ A maneira de lidar com a situação mostrada aqui é simplificada para este tuto
 
 Como o método `DbInitializer.Initialize` foi projetado para funcionar apenas com um banco de dados vazio, use SSOX para excluir todas as linhas nas tabelas Student e Course. (A exclusão em cascata cuidará da tabela de Registro.)
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * Se você estiver usando o SQL Server LocalDB com o Visual Studio Code, execute o seguinte comando:
 
@@ -735,7 +735,7 @@ As classes de entidade para o modelo de dados concluído são mostradas na segui
 ![Diagrama de entidade](complex-data-model/_static/diagram.png)
 
 Caso tenha problemas que não consiga resolver, baixe o [aplicativo concluído](
-https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
+https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
 ## <a name="customize-the-data-model-with-attributes"></a>Personalizar o modelo de dados com atributos
 
@@ -830,14 +830,14 @@ Para atualizar o BD:
 * Crie o projeto.
 * Abra uma janela Comando na pasta do projeto. Insira os seguintes comandos para criar uma nova migração e atualizar o BD:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 ```powershell
 Add-Migration ColumnFirstName
 Update-Database
 ```
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 ```dotnetcli
 dotnet ef migrations add ColumnFirstName
@@ -855,7 +855,7 @@ Please review the migration for accuracy.
 
 O aviso é gerado porque os campos de nome agora estão limitados a 50 caracteres. Se um nome no BD tiver mais de 50 caracteres, o 51º caractere até o último caractere serão perdidos.
 
-* Teste o aplicativo.
+* Testar o aplicativo.
 
 Abra a tabela Alunos no SSOX:
 
@@ -1046,7 +1046,7 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 ## <a name="create-the-department-entity"></a>Criar a entidade Department
 
-![Entidade Department](complex-data-model/_static/department-entity.png)
+![Entidade de departamento](complex-data-model/_static/department-entity.png)
 
 Crie *Models/Department.cs* com o seguinte código:
 
@@ -1226,7 +1226,7 @@ A ilustração a seguir mostra o diagrama criado pelo EF Power Tools para o mode
 
 ![Diagrama de entidade](complex-data-model/_static/diagram.png)
 
-O diagrama anterior mostra:
+O diagrama acima mostra:
 
 * Várias linhas de relação um-para-muitos (1 para \*).
 * A linha de relação um para zero ou um (1 para 0..1) entre as entidades `Instructor` e `OfficeAssignment`.
@@ -1244,13 +1244,13 @@ O código anterior fornece dados de semente para as novas entidades. A maioria d
 
 Crie o projeto.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 ```powershell
 Add-Migration ComplexDataModel
 ```
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 ```dotnetcli
 dotnet ef migrations add ComplexDataModel
@@ -1286,7 +1286,7 @@ Agora que você tem um banco de dados existente, precisa pensar sobre como aplic
 
 O código no `DbInitializer` atualizado adiciona dados de semente às novas entidades. Para forçar o EF Core a criar um novo BD, remova e atualize o BD:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 No **PMC** (Console do Gerenciador de Pacotes), execute o seguinte comando:
 
@@ -1297,7 +1297,7 @@ Update-Database
 
 Execute `Get-Help about_EntityFrameworkCore` no PMC para obter informações de ajuda.
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Abra uma janela Comando e navegue para a pasta do projeto. A pasta do projeto contém o arquivo *Startup.cs*.
 

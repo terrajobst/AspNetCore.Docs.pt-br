@@ -1,27 +1,25 @@
 ---
 title: Detectar alterações com tokens de alteração no ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Saiba como usar tokens de alteração para controlar alterações.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 10/07/2019
 uid: fundamentals/change-tokens
-ms.openlocfilehash: bb30d7a4c7dc82200821c60a49c314b246562111
-ms.sourcegitcommit: 3d082bd46e9e00a3297ea0314582b1ed2abfa830
+ms.openlocfilehash: 70451e219f1295b854e2f84aac55f0cfd1786b19
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/07/2019
-ms.locfileid: "72007215"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78656341"
 ---
 # <a name="detect-changes-with-change-tokens-in-aspnet-core"></a>Detectar alterações com tokens de alteração no ASP.NET Core
-
-Por [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 
 Um *token de alteração* é um bloco de construção de uso geral e de baixo nível, usado para controlar as alterações de estado.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="ichangetoken-interface"></a>Interface IChangeToken
 
@@ -83,7 +81,7 @@ O `FileSystemWatcher` de um arquivo de configuração pode disparar vários reto
 
 Registre um retorno de chamada `Action` do consumidor de token para notificações de alteração no token de recarregamento de configuração.
 
-No `Startup.Configure`:
+Em `Startup.Configure`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Startup.cs?name=snippet2)]
 
@@ -116,7 +114,7 @@ O construtor da classe implementada, `ConfigurationMonitor`, registra um retorno
 `config.GetReloadToken()` fornece o token. `InvokeChanged` é o método de retorno de chamada. O `state` nesta instância é uma referência à instância `IConfigurationMonitor` que é usada para acessar o estado de monitoramento. Duas propriedades são usadas:
 
 * `MonitoringEnabled` &ndash; indica se o retorno de chamada deve executar seu código personalizado.
-* `CurrentState` &ndash; descreve o estado atual de monitoramento para uso na interface do usuário.
+* `CurrentState` &ndash; descreve o estado de monitoramento atual para uso na interface do usuário.
 
 O método `InvokeChanged` é semelhante à abordagem anterior, exceto que ele:
 
@@ -178,7 +176,7 @@ No exemplo a seguir, os arquivos são armazenados na raiz do [conteúdo](xref:fu
 
 O `FileService` é registrado no contêiner de serviço junto com o serviço de cache da memória.
 
-No `Startup.ConfigureServices`:
+Em `Startup.ConfigureServices`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Startup.cs?name=snippet4)]
 
@@ -219,7 +217,7 @@ var compositeChangeToken =
 
 Um *token de alteração* é um bloco de construção de uso geral e de baixo nível, usado para controlar as alterações de estado.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="ichangetoken-interface"></a>Interface IChangeToken
 
@@ -281,7 +279,7 @@ O `FileSystemWatcher` de um arquivo de configuração pode disparar vários reto
 
 Registre um retorno de chamada `Action` do consumidor de token para notificações de alteração no token de recarregamento de configuração.
 
-No `Startup.Configure`:
+Em `Startup.Configure`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Startup.cs?name=snippet2)]
 
@@ -314,7 +312,7 @@ O construtor da classe implementada, `ConfigurationMonitor`, registra um retorno
 `config.GetReloadToken()` fornece o token. `InvokeChanged` é o método de retorno de chamada. O `state` nesta instância é uma referência à instância `IConfigurationMonitor` que é usada para acessar o estado de monitoramento. Duas propriedades são usadas:
 
 * `MonitoringEnabled` &ndash; indica se o retorno de chamada deve executar seu código personalizado.
-* `CurrentState` &ndash; descreve o estado atual de monitoramento para uso na interface do usuário.
+* `CurrentState` &ndash; descreve o estado de monitoramento atual para uso na interface do usuário.
 
 O método `InvokeChanged` é semelhante à abordagem anterior, exceto que ele:
 
@@ -376,7 +374,7 @@ No exemplo a seguir, os arquivos são armazenados na raiz do [conteúdo](xref:fu
 
 O `FileService` é registrado no contêiner de serviço junto com o serviço de cache da memória.
 
-No `Startup.ConfigureServices`:
+Em `Startup.ConfigureServices`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Startup.cs?name=snippet4)]
 

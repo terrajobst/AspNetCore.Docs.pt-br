@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 12/18/2018
 uid: fundamentals/owin
-ms.openlocfilehash: 980b60512bdeadd2a58b87e633ebf1416f725851
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: 14b23ba6d284413e20417bbd4142e19a656350ac
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77172087"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78666680"
 ---
 # <a name="open-web-interface-for-net-owin-with-aspnet-core"></a>OWIN (Open Web Interface para .NET) com o ASP.NET Core
 
@@ -29,7 +29,7 @@ Isso permite que o ASP.NET Core seja hospedado em um servidor/host compatível c
 > [!NOTE]
 > O uso desses adaptadores implica um custo de desempenho. Os aplicativos que usam somente componentes do ASP.NET Core não devem usar o pacote `Microsoft.AspNetCore.Owin` ou os adaptadores.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/owin/sample) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/owin/sample) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="running-owin-middleware-in-the-aspnet-core-pipeline"></a>Executando o middleware do OWIN no pipeline do ASP.NET Core
 
@@ -217,7 +217,7 @@ public class Startup
 }
 ```
 
-Essa [amostra](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/owin/sample) é configurada usando o mesmo `NowinServer` que o anterior – a única diferença está em como o aplicativo é configurado em seu método `Configure`. Um teste usando [um cliente simples do WebSocket](https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo?hl=en) demonstra o aplicativo:
+Essa [amostra](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/owin/sample) é configurada usando o mesmo `NowinServer` que o anterior – a única diferença está em como o aplicativo é configurado em seu método `Configure`. Um teste usando [um cliente simples do WebSocket](https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo?hl=en) demonstra o aplicativo:
 
 ![Cliente de teste de Soquete da Web](owin/_static/websocket-test.png)
 
@@ -237,7 +237,7 @@ O OWIN depende de um objeto `IDictionary<string,object>` para transmitir informa
 
 ### <a name="request-data-owin-v100"></a>Dados de solicitação (OWIN v1.0.0)
 
-| Chave               | Valor (tipo) | DESCRIÇÃO |
+| Chave               | Valor (tipo) | Descrição |
 | ----------------- | ------------ | ----------- |
 | owin.RequestScheme | `String` |  |
 | owin.RequestMethod  | `String` | |    
@@ -250,13 +250,13 @@ O OWIN depende de um objeto `IDictionary<string,object>` para transmitir informa
 
 ### <a name="request-data-owin-v110"></a>Dados de solicitação (OWIN v1.1.0)
 
-| Chave               | Valor (tipo) | DESCRIÇÃO |
+| Chave               | Valor (tipo) | Descrição |
 | ----------------- | ------------ | ----------- |
 | owin.RequestId | `String` | Opcional |
 
 ### <a name="response-data-owin-v100"></a>Dados de resposta (OWIN v1.0.0)
 
-| Chave               | Valor (tipo) | DESCRIÇÃO |
+| Chave               | Valor (tipo) | Descrição |
 | ----------------- | ------------ | ----------- |
 | owin.ResponseStatusCode | `int` | Opcional |
 | owin.ResponseReasonPhrase | `String` | Opcional |
@@ -265,14 +265,14 @@ O OWIN depende de um objeto `IDictionary<string,object>` para transmitir informa
 
 ### <a name="other-data-owin-v100"></a>Outros dados (OWIN v1.0.0)
 
-| Chave               | Valor (tipo) | DESCRIÇÃO |
+| Chave               | Valor (tipo) | Descrição |
 | ----------------- | ------------ | ----------- |
 | owin.CallCancelled | `CancellationToken` |  |
 | owin.Version  | `String` | |   
 
 ### <a name="common-keys"></a>Chaves comuns
 
-| Chave               | Valor (tipo) | DESCRIÇÃO |
+| Chave               | Valor (tipo) | Descrição |
 | ----------------- | ------------ | ----------- |
 | ssl.ClientCertificate | `X509Certificate` |  |
 | ssl.LoadClientCertAsync  | `Func<Task>` | |    
@@ -285,13 +285,13 @@ O OWIN depende de um objeto `IDictionary<string,object>` para transmitir informa
 
 ### <a name="sendfiles-v030"></a>SendFiles v0.3.0
 
-| Chave               | Valor (tipo) | DESCRIÇÃO |
+| Chave               | Valor (tipo) | Descrição |
 | ----------------- | ------------ | ----------- |
 | sendfile.SendAsync | Consulte [Assinatura do delegado](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) | Por solicitação |
 
 ### <a name="opaque-v030"></a>Opaque v0.3.0
 
-| Chave               | Valor (tipo) | DESCRIÇÃO |
+| Chave               | Valor (tipo) | Descrição |
 | ----------------- | ------------ | ----------- |
 | opaque.Version | `String` |  |
 | opaque.Upgrade | `OpaqueUpgrade` | Consulte [Assinatura do delegado](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |
@@ -300,7 +300,7 @@ O OWIN depende de um objeto `IDictionary<string,object>` para transmitir informa
 
 ### <a name="websocket-v030"></a>WebSocket v0.3.0
 
-| Chave               | Valor (tipo) | DESCRIÇÃO |
+| Chave               | Valor (tipo) | Descrição |
 | ----------------- | ------------ | ----------- |
 | websocket.Version | `String` |  |
 | websocket.Accept | `WebSocketAccept` | Consulte [Assinatura do delegado](https://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm) |

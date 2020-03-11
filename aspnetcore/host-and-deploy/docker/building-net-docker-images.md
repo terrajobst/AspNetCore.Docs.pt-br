@@ -7,11 +7,11 @@ ms.custom: mvc
 ms.date: 01/15/2020
 uid: host-and-deploy/docker/building-net-docker-images
 ms.openlocfilehash: 5bed5e9a4a6109a45badcef7c0d4e03eb2312bf0
-ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76146336"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78664069"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Imagens do Docker para o ASP.NET Core
 
@@ -21,8 +21,8 @@ Neste tutorial, você:
 > [!div class="checklist"]
 > * Saiba mais sobre as imagens do Docker no Microsoft .NET Core
 > * Baixar um aplicativo de exemplo do ASP.NET Core
-> * Executou o aplicativo de exemplo localmente
-> * Executar o aplicativo de exemplo em contêineres do Linux
+> * Executar o aplicativo de exemplo localmente
+> * Executou o aplicativo de exemplo em contêineres do Linux
 > * Executar o aplicativo de exemplo em contêineres do Windows
 > * Criar e implantar manualmente
 

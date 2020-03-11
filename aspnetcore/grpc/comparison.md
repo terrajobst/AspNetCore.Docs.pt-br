@@ -9,11 +9,11 @@ no-loc:
 - SignalR
 uid: grpc/comparison
 ms.openlocfilehash: 8935e665dfd5d8f9afa002f475c202ec0f0ee657
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880681"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78667156"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Comparar serviços gRPC com APIs HTTP
 
@@ -32,7 +32,7 @@ A tabela a seguir oferece uma comparação de alto nível dos recursos entre as 
 | Carga          | [Protobuf (pequeno, binário)](#performance)           | JSON (grande, legível por humanos)  |
 | Prescriptiveness | [Especificação estrita](#strict-specification)      | Cancelar. Qualquer HTTP é válido.     |
 | Streaming        | [Cliente, servidor, bidirecional](#streaming)       | Cliente, servidor                |
-| Suporte a navegador  | [Não (requer grpc-Web)](#limited-browser-support) | Sim                           |
+| Suporte ao navegador  | [Não (requer grpc-Web)](#limited-browser-support) | Sim                           |
 | Segurança         | Transporte (TLS)                                    | Transporte (TLS)               |
 | Geração de código de cliente | [Sim](#code-generation)                      | OpenAPI + ferramentas de terceiros |
 

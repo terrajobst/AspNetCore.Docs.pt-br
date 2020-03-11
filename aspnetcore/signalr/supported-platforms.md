@@ -10,23 +10,23 @@ no-loc:
 - SignalR
 uid: signalr/supported-platforms
 ms.openlocfilehash: 054965921c87c1a9be27e5ddaa8a87b0fa1f4113
-ms.sourcegitcommit: cbd30479f42cbb3385000ef834d9c7d021fd218d
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76146492"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78668136"
 ---
-# <a name="aspnet-core-opno-locsignalr-supported-platforms"></a>ASP.NET Core SignalR plataformas com suporte
+# <a name="aspnet-core-signalr-supported-platforms"></a>Plataformas com suporte do Signalr ASP.NET Core
 
 ## <a name="server-system-requirements"></a>Requisitos do sistema do servidor do
 
-SignalR para ASP.NET Core dá suporte a qualquer plataforma de servidor com suporte no ASP.NET Core.
+O signalr para ASP.NET Core dá suporte a qualquer plataforma de servidor com suporte ASP.NET Core.
 
 ## <a name="javascript-client"></a>Cliente JavaScript
 
 O [cliente JavaScript](xref:signalr/javascript-client) é executado no NodeJS 8 e versões posteriores e nos seguintes navegadores:
 
-| Navegador                         | Versão do         |
+| Navegador.                         | {1&gt;Version&lt;1}         |
 | ------------------------------- | --------------- |
 | Microsoft Edge                  | &dagger; atual |
 | Mozilla Firefox                 | &dagger; atual |

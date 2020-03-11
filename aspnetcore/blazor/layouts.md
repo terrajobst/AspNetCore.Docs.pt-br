@@ -11,11 +11,11 @@ no-loc:
 - SignalR
 uid: blazor/layouts
 ms.openlocfilehash: 5b6e1c7ceb4a6e41230e31bbe379bde1bb0a8286
-ms.sourcegitcommit: 6645435fc8f5092fc7e923742e85592b56e37ada
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "77447133"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78660408"
 ---
 # <a name="aspnet-core-opno-locblazor-layouts"></a>Layouts de Blazor ASP.NET Core
 

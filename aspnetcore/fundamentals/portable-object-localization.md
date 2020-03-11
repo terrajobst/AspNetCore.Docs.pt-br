@@ -5,12 +5,12 @@ description: Este artigo apresenta arquivos de Objeto Portátil e descreve as et
 ms.author: scaddie
 ms.date: 09/26/2017
 uid: fundamentals/portable-object-localization
-ms.openlocfilehash: 6ec7afc59d6dfd2629a3d6d83ae619575397a9df
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
-ms.translationtype: HT
+ms.openlocfilehash: 08002564eb68bc04eebaeafed560202d0d69958a
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64884371"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78656187"
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>Configurar a localização de objeto portátil no ASP.NET Core
 
@@ -18,9 +18,9 @@ Por [Sébastien Ros](https://github.com/sebastienros) e [Scott Addie](https://tw
 
 Este artigo explica as etapas para usar arquivos PO (Objeto Portátil) em um aplicativo ASP.NET Core com a estrutura [Orchard Core](https://github.com/OrchardCMS/OrchardCore).
 
-**Observação:** Orchard Core não é um produto da Microsoft. Consequentemente, a Microsoft não fornece suporte para esse recurso.
+**Observação:** o Orchard Core não é um produto da Microsoft. Consequentemente, a Microsoft não fornece suporte para esse recurso.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="what-is-a-po-file"></a>O que é um arquivo PO?
 
@@ -29,7 +29,7 @@ Os arquivos PO são distribuídos como arquivos de texto que contém cadeias de 
 - Os arquivos PO não são compilados como os arquivos *.resx*. Dessa forma, não são necessárias ferramentas especializadas nem etapas de build.
 - Os arquivos PO funcionam bem com ferramentas de colaboração de edição online.
 
-### <a name="example"></a>Exemplo
+### <a name="example"></a>{1&gt;Exemplo&lt;1}
 
 Este é um arquivo PO de exemplo que contém a tradução de duas cadeias de caracteres em francês, incluindo uma com sua forma plural:
 
@@ -99,9 +99,9 @@ Esse arquivo armazena a cadeia de caracteres a ser traduzida e a cadeia de carac
 
 ### <a name="testing-the-application"></a>Testando o aplicativo
 
-Execute o aplicativo e navegue para a URL `/Home/About`. O texto **Olá, Mundo!** é exibido.
+Execute o aplicativo e navegue para a URL `/Home/About`. O texto **Olá, Mundo!** seja exibido.
 
-Navegue para a URL `/Home/About?culture=fr-FR`. O texto **Bonjour le monde!** é exibido.
+Navegue para a URL `/Home/About?culture=fr-FR`. O texto **Bonjour le monde!** seja exibido.
 
 ## <a name="pluralization"></a>Pluralização
 

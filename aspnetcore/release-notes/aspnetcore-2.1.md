@@ -8,12 +8,12 @@ ms.date: 12/05/2019
 no-loc:
 - SignalR
 uid: aspnetcore-2.1
-ms.openlocfilehash: 57fe6c4e32ad666987c782fac75ddb19e3d3b5c7
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: af5807b782d4acec8c7d40111dc508dfa6127057
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75829134"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78667541"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Novidades do ASP.NET Core 2.1
 
@@ -51,9 +51,9 @@ Para obter mais informações, veja [Identidade scaffold em projetos ASP.NET Cor
 
 ## <a name="https"></a>HTTPS
 
-Com o foco cada vez maior em segurança e privacidade, é importante habilitar HTTPS para aplicativos Web. A imposição de HTTPS está se tornando cada vez mais rígida na Web. Sites que não usam HTTPS são considerados inseguros. Navegadores (Chrome, Mozilla) estão começando a impor o uso de recursos Web em um contexto de seguro. O [RGPD](xref:security/gdpr) requer o uso de HTTPS para proteger a privacidade do usuário. Quando usar HTTPS em produção for fundamental, usar HTTPS no desenvolvimento pode ajudar a evitar problemas de implantação (por exemplo, links inseguros). O ASP.NET Core 2.1 inclui uma série de melhorias que tornam mais fácil usar HTTPS em desenvolvimento e configurar HTTPS em produção. Para obter mais informações, veja [Impor HTTPS](xref:security/enforcing-ssl).
+Com o foco cada vez maior em segurança e privacidade, é importante habilitar HTTPS para aplicativos Web. A imposição de HTTPS está se tornando cada vez mais rígida na Web. Sites que não usam HTTPS são considerados inseguros. Navegadores (Chrome, Mozilla) estão começando a impor o uso de recursos Web em um contexto de seguro. O [RGPD](xref:security/gdpr) requer o uso de HTTPS para proteger a privacidade do usuário. Quando usar HTTPS em produção for fundamental, usar HTTPS no desenvolvimento pode ajudar a evitar problemas de implantação (por exemplo, links inseguros). O ASP.NET Core 2.1 inclui uma série de melhorias que tornam mais fácil usar HTTPS em desenvolvimento e configurar HTTPS em produção. Para mais informações, consulte [Impor o HTTPS](xref:security/enforcing-ssl).
 
-### <a name="on-by-default"></a>Ativo por padrão
+### <a name="on-by-default"></a>Ativado por padrão
 
 Para facilitar o desenvolvimento de site seguro, HTTPS está habilitado por padrão. Da versão 2.1 em diante, o Kestrel escuta em `https://localhost:5001` quando um certificado de desenvolvimento local está presente. Um certificado de desenvolvimento é criado:
 
@@ -75,9 +75,9 @@ Em produção, HTTPS precisa ser configurado explicitamente. Na versão 2.1, foi
 * Vários pontos de extremidade incluindo as URLs. Para obter mais informações, veja [Implementação do servidor Web Kestrel: configuração de ponto de extremidade](xref:fundamentals/servers/kestrel#endpoint-configuration).
 * O certificado a ser usado para HTTPS de um arquivo no disco ou de um repositório de certificados.
 
-## <a name="gdpr"></a>RGPD
+## <a name="gdpr"></a>GDPR
 
-O ASP.NET Core fornece APIs e modelos para ajudar a atender alguns dos requisitos do [RGPD (Regulamento de Proteção de Dados Geral) da UE](https://www.eugdpr.org/). Para obter mais informações, veja [Suporte RGPD no ASP.NET Core](xref:security/gdpr). Um [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) mostra como usar e permite que você teste a maioria dos pontos de extensão RGPD e APIs adicionados aos modelos do ASP.NET Core 2.1.
+O ASP.NET Core fornece APIs e modelos para ajudar a atender alguns dos requisitos do [RGPD (Regulamento de Proteção de Dados Geral) da UE](https://www.eugdpr.org/). Para obter mais informações, veja [Suporte RGPD no ASP.NET Core](xref:security/gdpr). Um [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) mostra como usar e permite que você teste a maioria dos pontos de extensão RGPD e APIs adicionados aos modelos do ASP.NET Core 2.1.
 
 ## <a name="integration-tests"></a>Testes de integração
 
@@ -147,7 +147,7 @@ Os modelos de Aplicativo de Página Única para Angular, React e React com Redux
 
 O modelo Angular se baseia na CLI Angular e os modelos React baseiam-se em create-react-app.
 
-Para obter mais informações, consulte .
+Para obter mais informações, consulte:
 
 * <xref:spa/angular>
 * <xref:spa/react>

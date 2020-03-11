@@ -1,16 +1,16 @@
 ---
 title: Páginas Razor com o EF Core no ASP.NET Core – CRUD – 2 de 8
-author: tdykstra
+author: rick-anderson
 description: Mostra como criar, ler, atualizar e excluir com o EF Core.
 ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/crud
-ms.openlocfilehash: 57c4a1789d54c29a28ba7e67a1d15815415a461c
-ms.sourcegitcommit: 257cc3fe8c1d61341aa3b07e5bc0fa3d1c1c1d1c
-ms.translationtype: HT
+ms.openlocfilehash: 05519852fab22bd3ad5b77e3494b49191448286f
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/19/2019
-ms.locfileid: "69583120"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78665644"
 ---
 # <a name="razor-pages-with-ef-core-in-aspnet-core---crud---2-of-8"></a>Páginas Razor com o EF Core no ASP.NET Core – CRUD – 2 de 8
 
@@ -116,7 +116,7 @@ O seguinte código usa o modelo de exibição `StudentVM` para criar um novo alu
 
 O método [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues.setvalues#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyValues_SetValues_System_Object_) define os valores desse objeto lendo os valores de outro objeto [PropertyValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues). `SetValues` usa a correspondência de nomes de propriedade. O tipo de modelo de exibição não precisa estar relacionado ao tipo de modelo, apenas precisa ter as propriedades correspondentes.
 
-Usar `StudentVM` requer atualizar [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/2-crud/Pages/Students/CreateVM.cshtml) para usar `StudentVM` em vez de `Student`.
+Usar `StudentVM` requer atualizar [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/2-crud/Pages/Students/CreateVM.cshtml) para usar `StudentVM` em vez de `Student`.
 
 ## <a name="update-the-edit-page"></a>Atualizar a página Editar
 
@@ -138,15 +138,15 @@ O contexto de banco de dados controla se as entidades em memória estão em sinc
 
 Uma entidade pode estar em um dos [seguintes estados](/dotnet/api/microsoft.entityframeworkcore.entitystate):
 
-* `Added`: A entidade ainda não existe no banco de dados. O método `SaveChanges` emite uma instrução INSERT.
+* `Added`: a entidade ainda não existe no banco de dados. O método `SaveChanges` emite uma instrução INSERT.
 
 * `Unchanged`: nenhuma alteração precisa ser salva com essa entidade. Uma entidade tem esse status quando é lida do banco de dados.
 
-* `Modified`: Alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
+* `Modified`: alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
 
-* `Deleted`: A entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
+* `Deleted`: a entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
 
-* `Detached`: A entidade não está sendo controlada pelo contexto de banco de dados.
+* `Detached`: a entidade não está sendo rastreada pelo contexto do banco de dados.
 
 Em um aplicativo da área de trabalho, em geral, as alterações de estado são definidas automaticamente. Uma entidade é lida, as alterações são feitas e o estado da entidade é alterado automaticamente para `Modified`. A chamada a `SaveChanges` gera uma instrução SQL UPDATE que atualiza apenas as propriedades alteradas.
 
@@ -173,7 +173,7 @@ Adicione uma mensagem de erro à página Excluir Razor (*Pages//Students/Delete.
 
 Execute o aplicativo e exclua um aluno para testar a página Excluir.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 > [!div class="step-by-step"]
 > [Tutorial anterior](xref:data/ef-rp/intro)
@@ -322,7 +322,7 @@ O seguinte código usa o modelo de exibição `StudentVM` para criar um novo alu
 
 O método [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues.setvalues#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyValues_SetValues_System_Object_) define os valores desse objeto lendo os valores de outro objeto [PropertyValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues). `SetValues` usa a correspondência de nomes de propriedade. O tipo de modelo de exibição não precisa estar relacionado ao tipo de modelo, apenas precisa ter as propriedades correspondentes.
 
-O uso de `StudentVM` exige a atualização de [CreateVM.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21/Pages/Students/CreateVM.cshtml) para usar `StudentVM` em vez de `Student`.
+O uso de `StudentVM` exige a atualização de [CreateVM.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21/Pages/Students/CreateVM.cshtml) para usar `StudentVM` em vez de `Student`.
 
 Nas Páginas do Razor, a classe derivada `PageModel` é o modelo de exibição.
 
@@ -352,9 +352,9 @@ Uma entidade pode estar em um dos [seguintes estados](/dotnet/api/microsoft.enti
 
 * `Unchanged`: nenhuma alteração precisa ser salva com essa entidade. Uma entidade tem esse status quando é lida do BD.
 
-* `Modified`: Alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
+* `Modified`: alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
 
-* `Deleted`: A entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
+* `Deleted`: a entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
 
 * `Detached`: a entidade não está sendo controlada pelo contexto de BD.
 

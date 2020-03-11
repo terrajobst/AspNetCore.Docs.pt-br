@@ -5,12 +5,12 @@ description: Este artigo descreve as etapas mais comuns para migrar a identidade
 ms.author: scaddie
 ms.date: 06/21/2019
 uid: migration/1x-to-2x/identity-2x
-ms.openlocfilehash: f3817fa1808c331f7e167618e3bb00d68ad08571
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: af905f1127d504839f66d9e0e1ca1dfc27e32772
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75355172"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78667604"
 ---
 # <a name="migrate-authentication-and-identity-to-aspnet-core-20"></a>Migrar autenticação e identidade para o ASP.NET Core 2,0
 
@@ -217,9 +217,9 @@ Faça as seguintes alterações no *Startup.cs*:
             });
     ```
 
-### <a name="microsoft-account-authentication"></a>Autenticação de conta da Microsoft
+### <a name="microsoft-account-authentication"></a>Autenticação de Conta da Microsoft
 
-Para obter mais informações sobre a autenticação conta Microsoft, consulte [este problema do GitHub](https://github.com/aspnet/AspNetCore.Docs/issues/14455).
+Para obter mais informações sobre a autenticação conta Microsoft, consulte [este problema do GitHub](https://github.com/dotnet/AspNetCore.Docs/issues/14455).
 
 Faça as seguintes alterações no *Startup.cs*:
 - Substitua a chamada do método `UseMicrosoftAccountAuthentication` no método `Configure` por `UseAuthentication`:

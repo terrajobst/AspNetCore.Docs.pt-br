@@ -1,3 +1,3 @@
-Suponha que o aplicativo *Secrets* arquivo contém os dois segredos do seguintes:
+Suponha que o arquivo *segredos. JSON* do aplicativo contenha os dois segredos a seguir:
 
 [!INCLUDE[secrets.json file](secrets-json-file.md)]

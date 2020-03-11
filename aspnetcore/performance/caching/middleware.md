@@ -1,28 +1,28 @@
 ---
 title: Middleware de cache de resposta em ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Saiba como configurar e usar o Middleware de cache de resposta no ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: performance/caching/middleware
-ms.openlocfilehash: 61fa42161560ce2b512a73f1d7e32d11cd9bcb2c
-ms.sourcegitcommit: 235623b6e5a5d1841139c82a11ac2b4b3f31a7a9
+ms.openlocfilehash: 4deac15538d4607bd611c4e072daae39447681c1
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/10/2020
-ms.locfileid: "77114790"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78655732"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>Middleware de cache de resposta em ASP.NET Core
 
-De [Luke Latham](https://github.com/guardrex) e [John Luo](https://github.com/JunTaoLuo)
+Por [John Luo](https://github.com/JunTaoLuo)
 
 ::: moniker range=">= aspnetcore-3.0"
 
 Este artigo explica como configurar o middleware de cache de resposta em um aplicativo ASP.NET Core. O middleware determina quando as respostas são armazenáveis em cache, armazena respostas e serve respostas do cache. Para obter uma introdução ao cache HTTP e ao atributo [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) , consulte [cache de resposta](xref:performance/caching/response).
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/middleware/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/middleware/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="configuration"></a>Configuração
 
@@ -48,11 +48,11 @@ O middleware de cache de resposta só armazena em cache as respostas do servidor
 > [!WARNING]
 > As respostas que contêm o conteúdo para clientes autenticados devem ser marcadas como não armazenáveis em cache para impedir que o middleware armazene e atenda a essas respostas. Consulte [condições para o cache](#conditions-for-caching) para obter detalhes sobre como o middleware determina se uma resposta é armazenável em cache.
 
-## <a name="options"></a>Opções
+## <a name="options"></a>{1&gt;Opções&lt;1}
 
 As opções de cache de resposta são mostradas na tabela a seguir.
 
-| Opção | DESCRIÇÃO |
+| {1&gt;Opção&lt;1} | Descrição |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.MaximumBodySize> | O maior tamanho em cache para o corpo da resposta em bytes. O valor padrão é `64 * 1024 * 1024` (64 MB). |
 | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.SizeLimit> | O limite de tamanho do middleware do cache de resposta em bytes. O valor padrão é `100 * 1024 * 1024` (100 MB). |
@@ -95,7 +95,7 @@ A tabela a seguir fornece informações sobre cabeçalhos HTTP que afetam o cach
 | Cabeçalho | Detalhes |
 | ------ | ------- |
 | `Authorization` | A resposta não será armazenada em cache se o cabeçalho existir. |
-| `Cache-Control` | O middleware só considera respostas de cache marcadas com a diretiva de cache `public`. Controlar o cache com os seguintes parâmetros:<ul><li>idade máxima</li><li>max-stale&#8224;</li><li>mín. de atualização</li><li>must-revalidate</li><li>no-cache</li><li>sem armazenamento</li><li>somente-se-em-cache</li><li>privado</li><li>público</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;Se nenhum limite for especificado para `max-stale`, o middleware não executará nenhuma ação.<br>&#8225;`proxy-revalidate` tem o mesmo efeito que `must-revalidate`.<br><br>Para obter mais informações, consulte [RFC 7231: solicitar Cache-Control diretivas](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
+| `Cache-Control` | O middleware só considera respostas de cache marcadas com a diretiva de cache `public`. Controlar o cache com os seguintes parâmetros:<ul><li>idade máxima</li><li>max-stale&#8224;</li><li>mín. de atualização</li><li>must-revalidate</li><li>no-cache</li><li>sem armazenamento</li><li>somente-se-em-cache</li><li>particulares</li><li>{1&gt;públicos&lt;1}</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;Se nenhum limite for especificado para `max-stale`, o middleware não executará nenhuma ação.<br>&#8225;`proxy-revalidate` tem o mesmo efeito que `must-revalidate`.<br><br>Para obter mais informações, consulte [RFC 7231: solicitar Cache-Control diretivas](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
 | `Pragma` | Um cabeçalho `Pragma: no-cache` na solicitação produz o mesmo efeito que `Cache-Control: no-cache`. Esse cabeçalho é substituído pelas diretivas relevantes no cabeçalho `Cache-Control`, se presente. Considerado para compatibilidade com versões anteriores com HTTP/1.0. |
 | `Set-Cookie` | A resposta não será armazenada em cache se o cabeçalho existir. Qualquer middleware no pipeline de processamento de solicitação que define um ou mais cookies impede que o middleware de cache de resposta em cache a resposta (por exemplo, o [provedor TempData baseado em cookie](xref:fundamentals/app-state#tempdata)).  |
 | `Vary` | O cabeçalho de `Vary` é usado para variar a resposta armazenada em cache por outro cabeçalho. Por exemplo, armazenar em cache as respostas por codificação incluindo o cabeçalho `Vary: Accept-Encoding`, que armazena em cache as respostas para solicitações com cabeçalhos `Accept-Encoding: gzip` e `Accept-Encoding: text/plain` separadamente. Uma resposta com um valor de cabeçalho de `*` nunca é armazenada. |
@@ -117,7 +117,7 @@ Para obter mais controle sobre o comportamento de caching, explore outros recurs
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
 
-## <a name="troubleshooting"></a>solução de problemas
+## <a name="troubleshooting"></a>Solução de problemas
 
 Se o comportamento de caching não for o esperado, confirme se as respostas são armazenáveis em cache e capazes de serem servidas do cache. Examine os cabeçalhos de entrada da solicitação e os cabeçalhos de saída da resposta. Habilite o [log](xref:fundamentals/logging/index) para ajudar com a depuração.
 
@@ -162,7 +162,7 @@ Ao testar e solucionar problemas de comportamento de cache, um navegador pode de
 
 Este artigo explica como configurar o middleware de cache de resposta em um aplicativo ASP.NET Core. O middleware determina quando as respostas são armazenáveis em cache, armazena respostas e serve respostas do cache. Para obter uma introdução ao cache HTTP e ao atributo [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) , consulte [cache de resposta](xref:performance/caching/response).
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/middleware/samples) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/middleware/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="configuration"></a>Configuração
 
@@ -188,11 +188,11 @@ O middleware de cache de resposta só armazena em cache as respostas do servidor
 > [!WARNING]
 > As respostas que contêm o conteúdo para clientes autenticados devem ser marcadas como não armazenáveis em cache para impedir que o middleware armazene e atenda a essas respostas. Consulte [condições para o cache](#conditions-for-caching) para obter detalhes sobre como o middleware determina se uma resposta é armazenável em cache.
 
-## <a name="options"></a>Opções
+## <a name="options"></a>{1&gt;Opções&lt;1}
 
 As opções de cache de resposta são mostradas na tabela a seguir.
 
-| Opção | DESCRIÇÃO |
+| {1&gt;Opção&lt;1} | Descrição |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.MaximumBodySize> | O maior tamanho em cache para o corpo da resposta em bytes. O valor padrão é `64 * 1024 * 1024` (64 MB). |
 | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.SizeLimit> | O limite de tamanho do middleware do cache de resposta em bytes. O valor padrão é `100 * 1024 * 1024` (100 MB). |
@@ -235,7 +235,7 @@ A tabela a seguir fornece informações sobre cabeçalhos HTTP que afetam o cach
 | Cabeçalho | Detalhes |
 | ------ | ------- |
 | `Authorization` | A resposta não será armazenada em cache se o cabeçalho existir. |
-| `Cache-Control` | O middleware só considera respostas de cache marcadas com a diretiva de cache `public`. Controlar o cache com os seguintes parâmetros:<ul><li>idade máxima</li><li>max-stale&#8224;</li><li>mín. de atualização</li><li>must-revalidate</li><li>no-cache</li><li>sem armazenamento</li><li>somente-se-em-cache</li><li>privado</li><li>público</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;Se nenhum limite for especificado para `max-stale`, o middleware não executará nenhuma ação.<br>&#8225;`proxy-revalidate` tem o mesmo efeito que `must-revalidate`.<br><br>Para obter mais informações, consulte [RFC 7231: solicitar Cache-Control diretivas](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
+| `Cache-Control` | O middleware só considera respostas de cache marcadas com a diretiva de cache `public`. Controlar o cache com os seguintes parâmetros:<ul><li>idade máxima</li><li>max-stale&#8224;</li><li>mín. de atualização</li><li>must-revalidate</li><li>no-cache</li><li>sem armazenamento</li><li>somente-se-em-cache</li><li>particulares</li><li>{1&gt;públicos&lt;1}</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;Se nenhum limite for especificado para `max-stale`, o middleware não executará nenhuma ação.<br>&#8225;`proxy-revalidate` tem o mesmo efeito que `must-revalidate`.<br><br>Para obter mais informações, consulte [RFC 7231: solicitar Cache-Control diretivas](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
 | `Pragma` | Um cabeçalho `Pragma: no-cache` na solicitação produz o mesmo efeito que `Cache-Control: no-cache`. Esse cabeçalho é substituído pelas diretivas relevantes no cabeçalho `Cache-Control`, se presente. Considerado para compatibilidade com versões anteriores com HTTP/1.0. |
 | `Set-Cookie` | A resposta não será armazenada em cache se o cabeçalho existir. Qualquer middleware no pipeline de processamento de solicitação que define um ou mais cookies impede que o middleware de cache de resposta em cache a resposta (por exemplo, o [provedor TempData baseado em cookie](xref:fundamentals/app-state#tempdata)).  |
 | `Vary` | O cabeçalho de `Vary` é usado para variar a resposta armazenada em cache por outro cabeçalho. Por exemplo, armazenar em cache as respostas por codificação incluindo o cabeçalho `Vary: Accept-Encoding`, que armazena em cache as respostas para solicitações com cabeçalhos `Accept-Encoding: gzip` e `Accept-Encoding: text/plain` separadamente. Uma resposta com um valor de cabeçalho de `*` nunca é armazenada. |
@@ -257,7 +257,7 @@ Para obter mais controle sobre o comportamento de caching, explore outros recurs
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
 
-## <a name="troubleshooting"></a>solução de problemas
+## <a name="troubleshooting"></a>Solução de problemas
 
 Se o comportamento de caching não for o esperado, confirme se as respostas são armazenáveis em cache e capazes de serem servidas do cache. Examine os cabeçalhos de entrada da solicitação e os cabeçalhos de saída da resposta. Habilite o [log](xref:fundamentals/logging/index) para ajudar com a depuração.
 

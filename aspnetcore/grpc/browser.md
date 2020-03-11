@@ -4,14 +4,14 @@ author: jamesnk
 description: Saiba como configurar os serviços gRPCs em ASP.NET Core para que possam ser chamados de aplicativos de navegador usando o gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 02/10/2020
+ms.date: 02/16/2020
 uid: grpc/browser
-ms.openlocfilehash: 333fc8c4277bbac47042d4904c276e963186914a
-ms.sourcegitcommit: 85564ee396c74c7651ac47dd45082f3f1803f7a2
+ms.openlocfilehash: 3beeffc26ffd3c2dc85bfc22a46d97d5fd78d3d0
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/12/2020
-ms.locfileid: "77172272"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78664195"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Usar o gRPC em aplicativos de navegador
 
@@ -49,7 +49,19 @@ Como alternativa, configure todos os serviços para dar suporte a gRPC-Web adici
 
 [!code-csharp[](~/grpc/browser/sample/AllServicesSupportExample_Startup.cs?name=snippet_1&highlight=6,13)]
 
-Algumas configurações adicionais podem ser necessárias para chamar gRPC-Web do navegador, como configurar ASP.NET Core para dar suporte a CORS. Para obter mais informações, consulte [support CORS](xref:security/cors).
+### <a name="grpc-web-and-cors"></a>gRPC-Web e CORS
+
+A segurança do navegador impede que uma página da Web faça solicitações para um domínio diferente daquele que servia a página da Web. Essa restrição se aplica a fazer chamadas gRPC com aplicativos de navegador. Por exemplo, um aplicativo de navegador servido por `https://www.contoso.com` é impedido de chamar gRPC-Web Services hospedados no `https://services.contoso.com`. O CORS (compartilhamento de recursos entre origens) pode ser usado para relaxar essa restrição.
+
+Para permitir que o aplicativo de navegador faça chamadas gRPC-Web entre origens, configure o [CORS no ASP.NET Core](xref:security/cors). Use o suporte interno a CORS e exponha cabeçalhos específicos do gRPC com <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*>.
+
+[!code-csharp[](~/grpc/browser/sample/CORS_Startup.cs?name=snippet_1&highlight=5-11,19,24)]
+
+O código anterior:
+
+* Chama `AddCors` para adicionar serviços CORS e configura uma política CORS que expõe cabeçalhos específicos do gRPC.
+* Chama `UseCors` para adicionar o middleware CORS após o roteamento e antes dos pontos de extremidade.
+* Especifica o método de `endpoints.MapGrpcService<GreeterService>()` dá suporte a CORS com `RequiresCors`.
 
 ## <a name="call-grpc-web-from-the-browser"></a>Chamar gRPC-Web do navegador
 

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2019
 uid: mvc/controllers/testing
-ms.openlocfilehash: 449d8791962e4233d599f364b2e8c922f0975d2f
-ms.sourcegitcommit: 0dd224b2b7efca1fda0041b5c3f45080327033f6
+ms.openlocfilehash: 597f1472bb30ae3b34fa98659c8c8bb464223e84
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/02/2019
-ms.locfileid: "74681091"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78666281"
 ---
 # <a name="unit-test-controller-logic-in-aspnet-core"></a>Lógica do controlador de teste de unidade no ASP.NET Core
 
@@ -30,7 +30,7 @@ Se você estiver escrevendo filtros e rotas personalizados, realize testes de un
 
 Para demonstrar testes de unidade do controlador, examine o controlador a seguir no aplicativo de exemplo. 
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/testing/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/testing/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 O controlador Home exibe uma lista de sessões de debate e permite que novas sessões sejam criadas com uma solicitação POST:
 
@@ -57,7 +57,7 @@ O método `HTTP GET Index` não tem nenhum loop ou branch e chama apenas um mét
 
 Os testes método `HTTP POST Index` do controlador Home verificam se:
 
-* Quando [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) é `false`, o método de ação retorna uma *400 Solicitação inválida* <xref:Microsoft.AspNetCore.Mvc.ViewResult> com os dados apropriados.
+* Quando [ModelState. IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) é `false`, o método Action retorna uma *solicitação incorreta de 400* <xref:Microsoft.AspNetCore.Mvc.ViewResult> com os dados apropriados.
 * Quando `ModelState.IsValid` é `true`:
   * O método `Add` no repositório é chamado.
   * Um <xref:Microsoft.AspNetCore.Mvc.RedirectToActionResult> é retornado com os argumentos corretos.
@@ -78,7 +78,7 @@ Chamadas fictícias que não são chamadas são normalmente ignoradas, mas a cha
 > [!NOTE]
 > A biblioteca do Moq usada neste exemplo possibilita a combinação de simulações verificáveis ou "estritas" com simulações não verificáveis (também chamadas de simulações "flexíveis" ou stubs). Saiba mais sobre como [personalizar o comportamento de Simulação com o Moq](https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior).
 
-[SessionController](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) no exemplo de aplicativo exibe informações relacionadas a uma sessão de debate específica. O controlador inclui lógica para lidar com valores `id` inválidos (há dois cenários `return` no exemplo a seguir para abordar esses cenários). A última instrução `return` retorna um novo `StormSessionViewModel` para a exibição (*Controllers/SessionController.cs*):
+[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) no exemplo de aplicativo exibe informações relacionadas a uma sessão de debate específica. O controlador inclui lógica para lidar com valores `id` inválidos (há dois cenários `return` no exemplo a seguir para abordar esses cenários). A última instrução `return` retorna um novo `StormSessionViewModel` para a exibição (*Controllers/SessionController.cs*):
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs?name=snippet_SessionController&highlight=12-16,18-22,31)]
 
@@ -137,7 +137,7 @@ Dois testes do controlador `ForSessionActionResult` estão incluídos no `ApiIde
 
 O primeiro teste confirma se o controlador retorna um `ActionResult`, mas não uma lista de ideias inexistente para uma sessão `id` inexistente:
 
-* O tipo `ActionResult<List<IdeaDTO>>` é `ActionResult`.
+* O tipo `ActionResult` é `ActionResult<List<IdeaDTO>>`.
 * O <xref:Microsoft.AspNetCore.Mvc.ActionResult`1.Result*> é um <xref:Microsoft.AspNetCore.Mvc.NotFoundObjectResult>.
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ForSessionActionResult_ReturnsNotFoundObjectResultForNonexistentSession&highlight=7,10,13-14)]
@@ -185,7 +185,7 @@ Para uma sessão `id` válida, o teste final confirmará se:
 
 [Controladores](xref:mvc/controllers/actions) desempenham um papel central em qualquer aplicativo ASP.NET Core MVC. Assim, você precisa estar confiante de que os controladores se comportarão conforme o esperado. Testes automatizados podem detectar erros antes do aplicativo ser implantado em um ambiente de produção.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/testing/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/testing/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="unit-tests-of-controller-logic"></a>Testes de unidade da lógica do controlador
 
@@ -220,7 +220,7 @@ O método `HTTP GET Index` não tem nenhum loop ou branch e chama apenas um mét
 
 Os testes método `HTTP POST Index` do controlador Home verificam se:
 
-* Quando [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) é `false`, o método de ação retorna uma *400 Solicitação inválida* <xref:Microsoft.AspNetCore.Mvc.ViewResult> com os dados apropriados.
+* Quando [ModelState. IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid*) é `false`, o método Action retorna uma *solicitação incorreta de 400* <xref:Microsoft.AspNetCore.Mvc.ViewResult> com os dados apropriados.
 * Quando `ModelState.IsValid` é `true`:
   * O método `Add` no repositório é chamado.
   * Um <xref:Microsoft.AspNetCore.Mvc.RedirectToActionResult> é retornado com os argumentos corretos.
@@ -241,7 +241,7 @@ Chamadas fictícias que não são chamadas são normalmente ignoradas, mas a cha
 > [!NOTE]
 > A biblioteca do Moq usada neste exemplo possibilita a combinação de simulações verificáveis ou "estritas" com simulações não verificáveis (também chamadas de simulações "flexíveis" ou stubs). Saiba mais sobre como [personalizar o comportamento de Simulação com o Moq](https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior).
 
-[SessionController](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) no exemplo de aplicativo exibe informações relacionadas a uma sessão de debate específica. O controlador inclui lógica para lidar com valores `id` inválidos (há dois cenários `return` no exemplo a seguir para abordar esses cenários). A última instrução `return` retorna um novo `StormSessionViewModel` para a exibição (*Controllers/SessionController.cs*):
+[SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) no exemplo de aplicativo exibe informações relacionadas a uma sessão de debate específica. O controlador inclui lógica para lidar com valores `id` inválidos (há dois cenários `return` no exemplo a seguir para abordar esses cenários). A última instrução `return` retorna um novo `StormSessionViewModel` para a exibição (*Controllers/SessionController.cs*):
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs?name=snippet_SessionController&highlight=12-16,18-22,31)]
 
@@ -300,7 +300,7 @@ Dois testes do controlador `ForSessionActionResult` estão incluídos no `ApiIde
 
 O primeiro teste confirma se o controlador retorna um `ActionResult`, mas não uma lista de ideias inexistente para uma sessão `id` inexistente:
 
-* O tipo `ActionResult<List<IdeaDTO>>` é `ActionResult`.
+* O tipo `ActionResult` é `ActionResult<List<IdeaDTO>>`.
 * O <xref:Microsoft.AspNetCore.Mvc.ActionResult`1.Result*> é um <xref:Microsoft.AspNetCore.Mvc.NotFoundObjectResult>.
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ForSessionActionResult_ReturnsNotFoundObjectResultForNonexistentSession&highlight=7,10,13-14)]

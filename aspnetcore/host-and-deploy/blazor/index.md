@@ -11,29 +11,29 @@ no-loc:
 - SignalR
 uid: host-and-deploy/blazor/index
 ms.openlocfilehash: 238e7fc8f8d64c7847dc8847fb66e22442a3c8e0
-ms.sourcegitcommit: 9ee99300a48c810ca6fd4f7700cd95c3ccb85972
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2020
-ms.locfileid: "76160256"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78667149"
 ---
-# <a name="host-and-deploy-aspnet-core-opno-locblazor"></a>Hospedar e implantar ASP.NET Core Blazor
+# <a name="host-and-deploy-aspnet-core-blazor"></a>Hospedar e implantar o ASP.NET Core Blazor
 
 Por [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com) e [Daniel Roth](https://github.com/danroth27)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-## <a name="publish-the-app"></a>Publique o aplicativo
+## <a name="publish-the-app"></a>Publicar o aplicativo
 
 Os aplicativos são publicados para implantação na configuração de versão.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Selecione **Versão** > **Publicar {APLICATIVO}** na barra de navegação.
 1. Selecione o botão *destino de publicação*. Para publicar localmente, selecione **Pasta**.
-1. Aceite o local padrão no campo **Escolher uma pasta** ou especifique um local diferente. Selecione o botão **Publicar**.
+1. Aceite o local padrão no campo **Escolher uma pasta** ou especifique um local diferente. Clique no botão **Publicar**.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 Use o comando [dotnet publish](/dotnet/core/tools/dotnet-publish) para publicar o aplicativo com uma configuração de versão:
 

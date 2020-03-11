@@ -7,16 +7,16 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: fundamentals/startup
-ms.openlocfilehash: 8d878d692f0488f99385b0bd6944fc6cd276c306
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: e3249df4b7388beeff13fe4b4e0ff481c35725c5
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75355696"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78667653"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Inicialização de aplicativo no ASP.NET Core
 
-Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), [Luke Latham](https://github.com/guardrex) e [Steve Smith](https://ardalis.com)
+Por [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra) e [Steve Smith](https://ardalis.com)
 
 A classe `Startup` configura serviços e o pipeline de solicitação do aplicativo.
 
@@ -64,7 +64,7 @@ O método <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> é:
 
 * Opcional.
 * Chamado pelo host antes do método `Configure` para configurar os serviços do aplicativo.
-* Quando as [opções de configuração](xref:fundamentals/configuration/index) são definidas por convenção.
+* Onde as [opções de configuração](xref:fundamentals/configuration/index) são definidas por convenção.
 
 O host pode configurar alguns serviços antes que métodos `Startup` sejam chamados. Para obter mais informações, confira [O host](xref:fundamentals/index#host).
 
@@ -196,7 +196,7 @@ O método <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> é:
 
 * Opcional.
 * Chamado pelo host antes do método `Configure` para configurar os serviços do aplicativo.
-* Quando as [opções de configuração](xref:fundamentals/configuration/index) são definidas por convenção.
+* Onde as [opções de configuração](xref:fundamentals/configuration/index) são definidas por convenção.
 
 O host pode configurar alguns serviços antes que métodos `Startup` sejam chamados. Para obter mais informações, confira [O host](xref:fundamentals/index#host).
 
@@ -220,7 +220,7 @@ Os [modelos do ASP.NET Core](/dotnet/core/tools/dotnet-new) configuram o pipelin
 * [Redirecionamento de HTTPS](xref:security/enforcing-ssl)
 * [Arquivos estáticos](xref:fundamentals/static-files)
 * [MVC](xref:mvc/overview) do ASP.NET Core e [Razor Pages](xref:razor-pages/index)
-* [RGPD (Regulamento Geral sobre a Proteção de Dados) da UE](xref:security/gdpr)
+* [Regulamentação de Proteção Geral de Dados (GDPR)](xref:security/gdpr)
 
 [!code-csharp[](startup/sample_snapshot/Startup4.cs)]
 

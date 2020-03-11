@@ -6,11 +6,11 @@ ms.author: riande
 ms.date: 08/05/2017
 uid: tutorials/first-mvc-app/adding-controller
 ms.openlocfilehash: fb670902b0dafa7dce2b3372e550095387844936
-ms.sourcegitcommit: 57b85708f4cded99b8f008a69830cb104cd8e879
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/13/2020
-ms.locfileid: "75914246"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78666988"
 ---
 # <a name="add-a-controller-to-an-aspnet-core-mvc-app"></a>Adicionar um controlador a um aplicativo ASP.NET Core MVC
 
@@ -32,7 +32,7 @@ Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los
 
 ## <a name="add-a-controller"></a>Adicionar um controlador
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * No **Gerenciador de Soluções**, clique com o botão direito do mouse em **Controladores > Adicionar > Controlador**
   ![Menu de Contexto](adding-controller/_static/add_controller.png)
@@ -43,13 +43,13 @@ Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los
 
 * Na **caixa de diálogo Adicionar Controlador MVC Vazio**, insira **HelloWorldController** e selecione **ADICIONAR**.
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Selecione o ícone **EXPLORER** e, em seguida, pressione Control (clique com o botão direito do mouse) **Controladores > Novo Arquivo** e nomeie o novo arquivo *HelloWorldController.cs*.
 
   ![Menu contextual](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 No **Gerenciador de Soluções**, clique com o botão direito do mouse em **Controladores > Adicionar > Novo Arquivo**.
 ![Menu contextual](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
@@ -88,7 +88,7 @@ Quando você acessa o aplicativo e não fornece nenhum segmento de URL, ele usa 
 
 O primeiro segmento de URL determina a classe do controlador a ser executada. Portanto, o `localhost:{PORT}/HelloWorld` mapeia para a classe **HelloWorld**Controller. A segunda parte do segmento de URL determina o método de ação na classe. Portanto, `localhost:{PORT}/HelloWorld/Index` fará com que o método `Index` da classe `HelloWorldController` seja executado. Observe que você precisou apenas navegar para `localhost:{PORT}/HelloWorld` e o método `Index` foi chamado por padrão. Isso ocorre porque `Index` é o método padrão que será chamado em um controlador se não houver um nome de método explicitamente especificado. A terceira parte do segmento de URL (`id`) refere-se aos dados de rota. Os dados de rota são explicados posteriormente no tutorial.
 
-Navegue para `https://localhost:{PORT}/HelloWorld/Welcome`. O método `Welcome` é executado e retorna a cadeia de caracteres `This is the Welcome action method...`. Para essa URL, o controlador é `HelloWorld` e `Welcome` é o método de ação. Você ainda não usou a parte `[Parameters]` da URL.
+Navegue até `https://localhost:{PORT}/HelloWorld/Welcome`. O método `Welcome` é executado e retorna a cadeia de caracteres `This is the Welcome action method...`. Para essa URL, o controlador é `HelloWorld` e `Welcome` é o método de ação. Você ainda não usou a parte `[Parameters]` da URL.
 
 ![Janela do navegador mostrando a resposta do aplicativo Este é o método de ação Boas-vindas](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
@@ -146,7 +146,7 @@ Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los
 
 ## <a name="add-a-controller"></a>Adicionar um controlador
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * No **Gerenciador de Soluções**, clique com o botão direito do mouse em **Controladores > Adicionar > Controlador**
   ![Menu de Contexto](adding-controller/_static/add_controller.png)
@@ -157,13 +157,13 @@ Abrangemos esses conceitos nesta série de tutoriais e mostraremos como usá-los
 
 * Na **caixa de diálogo Adicionar Controlador MVC Vazio**, insira **HelloWorldController** e selecione **ADICIONAR**.
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 Selecione o ícone **EXPLORER** e, em seguida, pressione Control (clique com o botão direito do mouse) **Controladores > Novo Arquivo** e nomeie o novo arquivo *HelloWorldController.cs*.
 
   ![Menu contextual](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 No **Gerenciador de Soluções**, clique com o botão direito do mouse em **Controladores > Adicionar > Novo Arquivo**.
 ![Menu contextual](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
@@ -207,7 +207,7 @@ Quando você acessa o aplicativo e não fornece nenhum segmento de URL, ele usa 
 
 O primeiro segmento de URL determina a classe do controlador a ser executada. Portanto, `localhost:{PORT}/HelloWorld` é mapeado para a classe `HelloWorldController`. A segunda parte do segmento de URL determina o método de ação na classe. Portanto, `localhost:{PORT}/HelloWorld/Index` fará com que o método `Index` da classe `HelloWorldController` seja executado. Observe que você precisou apenas navegar para `localhost:{PORT}/HelloWorld` e o método `Index` foi chamado por padrão. Isso ocorre porque `Index` é o método padrão que será chamado em um controlador se um nome de método não for especificado explicitamente. A terceira parte do segmento de URL (`id`) refere-se aos dados de rota. Os dados de rota são explicados posteriormente no tutorial.
 
-Navegue para `https://localhost:{PORT}/HelloWorld/Welcome`. O método `Welcome` é executado e retorna a cadeia de caracteres `This is the Welcome action method...`. Para essa URL, o controlador é `HelloWorld` e `Welcome` é o método de ação. Você ainda não usou a parte `[Parameters]` da URL.
+Navegue até `https://localhost:{PORT}/HelloWorld/Welcome`. O método `Welcome` é executado e retorna a cadeia de caracteres `This is the Welcome action method...`. Para essa URL, o controlador é `HelloWorld` e `Welcome` é o método de ação. Você ainda não usou a parte `[Parameters]` da URL.
 
 ![Janela do navegador mostrando a resposta do aplicativo Este é o método de ação Boas-vindas](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 

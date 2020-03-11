@@ -7,11 +7,11 @@ ms.custom: mvc
 ms.date: 12/07/2019
 uid: tutorials/web-api-help-pages-using-swagger
 ms.openlocfilehash: 4408e02996b958bf009903aa1e4eeda9ad4f457c
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74944077"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78658469"
 ---
 # <a name="aspnet-core-web-api-help-pages-with-swagger--openapi"></a>Páginas de ajuda da API Web ASP.NET Core com o Swagger/OpenAPI
 
@@ -31,7 +31,7 @@ O Swagger é uma especificação independente de linguagem para descrever APIs [
 
 ## <a name="swagger-specification-swaggerjson"></a>Especificação do Swagger (swagger.json)
 
-O ponto central para o fluxo do Swagger é a especificação do Swagger que é, por padrão, um documento chamado *swagger.json*. Ele é gerado pela cadeia de ferramentas do Swagger (ou por implementações de terceiros) com base no seu serviço. Ele descreve os recursos da API e como acessá-lo com HTTP. Ele gera a interface do usuário do Swagger e é usado pela cadeia de ferramentas para habilitar a geração e a descoberta de código de cliente. Aqui está um exemplo de uma especificação do Swagger, resumida:
+O ponto central para o fluxo do Swagger é a especificação do Swagger que é, por padrão, um documento chamado &mdash;swagger.json *. Ele é gerado pela cadeia de ferramentas do Swagger (ou por implementações de terceiros) com base no seu serviço. Ele descreve os recursos da API e como acessá-lo com HTTP. Ele gera a interface do usuário do Swagger e é usado pela cadeia de ferramentas para habilitar a geração e a descoberta de código de cliente. Aqui está um exemplo de uma especificação do Swagger, resumida:
 
 ```json
 {
@@ -102,11 +102,11 @@ O ponto central para o fluxo do Swagger é a especificação do Swagger que é, 
 }
 ```
 
-## <a name="swagger-ui"></a>Interface do usuário do Swagger
+## <a name="swagger-ui"></a>IU do Swagger
 
 A [Interface do usuário do Swagger](https://swagger.io/swagger-ui/) oferece uma interface do usuário baseada na Web que conta com informações sobre o serviço, usando a especificação do Swagger gerada. O Swashbuckle e o NSwag incluem uma versão incorporada da interface do usuário do Swagger, para que ele possa ser hospedado em seu aplicativo ASP.NET Core usando uma chamada de registro de middleware. A interface do usuário da Web tem esta aparência:
 
-![Interface do usuário do Swagger](web-api-help-pages-using-swagger/_static/swagger-ui.png)
+![IU do Swagger](web-api-help-pages-using-swagger/_static/swagger-ui.png)
 
 Todo método de ação pública nos controladores pode ser testado da interface do usuário. Clique em um nome de método para expandir a seção. Adicione os parâmetros necessários e, em seguida, clique em **Experimente!** .
 

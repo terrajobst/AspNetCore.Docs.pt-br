@@ -5,12 +5,12 @@ description: Este tutorial demonstra como instalar e usar a ferramenta observado
 ms.author: riande
 ms.date: 05/31/2018
 uid: tutorials/dotnet-watch
-ms.openlocfilehash: 053c98ba032c85b61776d5b5644c5575cd4f890c
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.openlocfilehash: bedb3e6a65839db915ca7bc821a267a14d34bf30
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75828991"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78667408"
 ---
 # <a name="develop-aspnet-core-apps-using-a-file-watcher"></a>Desenvolver aplicativos ASP.NET Core usando um observador de arquivo
 
@@ -20,9 +20,9 @@ a [inspeção dotnet](https://www.nuget.org/packages/dotnet-watch) é uma ferram
 
 Este tutorial usa um aplicativo de API Web existente com dois pontos de extremidade: um que retorna uma soma e outro que retorna um produto. O método de produto tem um bug, que é corrigido neste tutorial.
 
-Baixe o [aplicativo de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). Ele consiste em dois projetos: *WebApp* (uma API Web ASP.NET Core) e *WebAppTests* (testes de unidade para a API Web).
+Baixe o [aplicativo de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). Ele consiste em dois projetos: *WebApp* (uma API Web ASP.NET Core) e *WebAppTests* (testes de unidade para a API Web).
 
-Em um shell de comando, navegue até a pasta *WebApp*. Execute o seguinte comando:
+Em um shell de comando, navegue até a pasta *WebApp*. Execute o comando a seguir:
 
 ```dotnetcli
 dotnet run
@@ -41,7 +41,7 @@ Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
 ```
 
-Em um navegador da Web, navegue até `http://localhost:<port number>/api/math/sum?a=4&b=5`. Você deve ver o resultado de `9`.
+Em um navegador web, navegue até `http://localhost:<port number>/api/math/sum?a=4&b=5`. Você deve ver o resultado de `9`.
 
 Navegue para o API do produto (`http://localhost:<port number>/api/math/product?a=4&b=5`). Ele retorna `9`, não `20`, conforme o esperado. Esse problema é corrigido mais adiante no tutorial.
 
@@ -175,7 +175,7 @@ Se a meta é observar ambos os projetos, crie um arquivo de projeto personalizad
 </Project>
 ```
 
-Para iniciar a observação de arquivo em ambos os projetos, mude para a pasta de *teste*. Execute o seguinte comando:
+Para iniciar a observação de arquivo em ambos os projetos, mude para a pasta de *teste*. Execute o comando a seguir:
 
 ```dotnetcli
 dotnet watch msbuild /t:Test

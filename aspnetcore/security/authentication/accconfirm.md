@@ -6,11 +6,11 @@ ms.author: riande
 ms.date: 03/11/2019
 uid: security/authentication/accconfirm
 ms.openlocfilehash: 49d3d214fd64edc5b17df2df929ddc3c2af47ede
-ms.sourcegitcommit: 7dfe6cc8408ac6a4549c29ca57b0c67ec4baa8de
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75829264"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78665385"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Confirmação de conta e de recuperação de senha no ASP.NET Core
 
@@ -91,7 +91,7 @@ Este tutorial mostra como adicionar notificações por email por meio do [SendGr
 
 Instale o `SendGrid` pacote NuGet:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 No console do Gerenciador de pacotes, digite o seguinte comando:
 
@@ -99,7 +99,7 @@ No console do Gerenciador de pacotes, digite o seguinte comando:
 Install-Package SendGrid
 ```
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 No console do, digite o seguinte comando:
 
@@ -297,7 +297,7 @@ Este tutorial mostra como adicionar notificações por email por meio do [SendGr
 
 Instale o `SendGrid` pacote NuGet:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 No console do Gerenciador de pacotes, digite o seguinte comando:
 
@@ -305,7 +305,7 @@ No console do Gerenciador de pacotes, digite o seguinte comando:
 Install-Package SendGrid
 ```
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 No console do, digite o seguinte comando:
 

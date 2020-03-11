@@ -6,12 +6,12 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: tutorials/get-started-with-nswag
-ms.openlocfilehash: bd68e134fb71fd396a30ec9c674111bc8536860d
-ms.sourcegitcommit: 851b921080fe8d719f54871770ccf6f78052584e
+ms.openlocfilehash: 3eae5d3c66204a10806a8036c8f114af6c501b2c
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/09/2019
-ms.locfileid: "74944168"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78666050"
 ---
 # <a name="get-started-with-nswag-and-aspnet-core"></a>Introdução ao NSwag e ao ASP.NET Core
 
@@ -19,13 +19,13 @@ Por [Christoph Nienaber](https://twitter.com/zuckerthoben), [Rico Suter](https:/
 
 ::: moniker range=">= aspnetcore-2.1"
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([como baixar](xref:index#how-to-download-a-sample))
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.0"
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag) ([como baixar](xref:index#how-to-download-a-sample))
 
 ::: moniker-end
 
@@ -47,12 +47,12 @@ Para usar o middleware ASP.NET Core do [NSwag](https://github.com/RicoSuter/NSwa
 
 Use uma das seguintes abordagens para instalar o pacote do NuGet do NSwag:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Da janela **Console do Gerenciador de Pacotes**:
   * Acesse **Exibição** > **Outras Janelas** > **Console do Gerenciador de Pacotes**
   * Navegue para o diretório no qual o arquivo *TodoApi.csproj* está localizado
-  * Execute o seguinte comando:
+  * Execute o comando a seguir:
 
     ```powershell
     Install-Package NSwag.AspNetCore
@@ -64,16 +64,16 @@ Use uma das seguintes abordagens para instalar o pacote do NuGet do NSwag:
   * Insira "NSwag.AspNetCore" na caixa de pesquisa
   * Selecione o pacote "NSwag.AspNetCore" na guia **Procurar** e clique em **Instalar**
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 * Clique com o botão direito do mouse na pasta *Pacotes* em **Painel de Soluções** > **Adicionar Pacotes...**
 * Defina a lista suspensa **Origem** da janela **Adicionar Pacotes** para "nuget.org"
 * Insira "NSwag.AspNetCore" na caixa de pesquisa
 * Selecione o pacote "NSwag.AspNetCore" no painel de resultados e clique em **Adicionar Pacote**
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
-Execute o seguinte comando:
+Execute o comando a seguir:
 
 ```dotnetcli
 dotnet add TodoApi.csproj package NSwag.AspNetCore
@@ -101,11 +101,11 @@ Realize estas etapas para adicionar e configurar o Swagger em seu aplicativo ASP
 
 Você pode tirar proveito dos recursos de geração de código do NSwag, escolhendo uma das opções a seguir:
 
-* [NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio) &ndash; um aplicativo da área de trabalho do Windows para geração do código do cliente da API em C# ou TypeScript.
+* [NSwagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio) &ndash; um aplicativo de área de trabalho do Windows para gerar C# código de cliente de API no ou TypeScript.
 * Pacotes NuGet [NSwag.CodeGeneration.CSharp](https://www.nuget.org/packages/NSwag.CodeGeneration.CSharp/) ou [NSwag.CodeGeneration.TypeScript](https://www.nuget.org/packages/NSwag.CodeGeneration.TypeScript/) para a geração de código dentro do seu projeto.
 * NSwag na [linha de comando](https://github.com/RicoSuter/NSwag/wiki/CommandLine).
 * O pacote NuGet [NSwag.MSBuild](https://github.com/RicoSuter/NSwag/wiki/NSwag.MSBuild).
-* O [Serviço Conectado do Unchase OpenAPI (Swagger)](https://marketplace.visualstudio.com/items?itemName=Unchase.unchaseopenapiconnectedservice) &ndash; um Serviço Conectado do Visual Studio para a geração de código do cliente de API em C# ou em TypeScript. Também gera controladores C# para serviços de OpenAPI com o NSwag.
+* O [serviço conectado openapi (Swagger)](https://marketplace.visualstudio.com/items?itemName=Unchase.unchaseopenapiconnectedservice) &ndash; um serviço conectado do Visual Studio para gerar código de cliente de API C# no ou TypeScript. Também gera controladores C# para serviços de OpenAPI com o NSwag.
 
 ### <a name="generate-code-with-nswagstudio"></a>Gerar o código com NSwagStudio
 
@@ -193,7 +193,7 @@ A interface do usuário do Swagger exibe as informações da versão:
 
 Para habilitar os comentários XML, execute as seguintes etapas:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -211,7 +211,7 @@ Para habilitar os comentários XML, execute as seguintes etapas:
 
 ::: moniker-end
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -224,12 +224,12 @@ Para habilitar os comentários XML, execute as seguintes etapas:
 
 ::: moniker range="<= aspnetcore-1.1"
 
-* Abra a caixa de diálogo **Opções do Projeto** > **Compilar**>**Compilador**
+* Abra a caixa de diálogo **Opções do projeto** > **Compilar** > **compilador**
 * Marque a caixa **Gerar documentação XML** na seção **Opções Gerais**
 
 ::: moniker-end
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
 Manualmente, adicione as linhas destacadas ao arquivo *.csproj*:
 

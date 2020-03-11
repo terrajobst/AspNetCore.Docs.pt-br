@@ -4,14 +4,14 @@ Este documento aborda o processo para contribuir para os artigos e exemplos de c
 
 ## <a name="how-to-make-a-simple-correction-or-suggestion"></a>Como fazer uma correção ou sugestão simples
 
-Artigos são armazenados no repositório, como arquivos de Markdown. São feitas alterações simples ao conteúdo de um arquivo Markdown no navegador selecionando o link **Editar** no canto superior direito da janela do navegador. (Em uma janela de navegador estreita, expanda a barra **Opções** para ver o link **Editar**.) Siga as instruções para criar uma PR (solicitação de pull). Vamos examinar a PR e aceitá-la ou sugerir alterações.
+Artigos são armazenados no repositório, como arquivos de Markdown. São feitas alterações simples ao conteúdo de um arquivo Markdown no navegador selecionando o link **Editar** no canto superior direito da janela do navegador. (Em uma janela estreita do navegador, expanda a barra de **Opções** para ver o link **Editar** .) Siga as instruções para criar uma solicitação de pull (PR). Vamos examinar a PR e aceitá-la ou sugerir alterações.
 
 ## <a name="how-to-make-a-more-complex-submission"></a>Como fazer um envio mais complexo
 
 Você precisa de uma compreensão básica do [Git e do GitHub.com](https://guides.github.com/activities/hello-world/).
 
-* Abra um [Problema](https://github.com/aspnet/Docs/issues/new) descrevendo o que você deseja fazer, como alterar um artigo existente ou criar um novo. Geralmente, solicitamos uma estrutura de tópicos para uma nova sugestão de tópico. Aguarde a aprovação da equipe antes de investir muito tempo.
-* Bifurque o repositório [aspnet/Docs](https://github.com/aspnet/Docs/) e crie uma ramificação para suas alterações.
+* Abra um [Problema](https://github.com/dotnet/AspNetCore.Docs/issues/new) descrevendo o que você deseja fazer, como alterar um artigo existente ou criar um novo. Geralmente, solicitamos uma estrutura de tópicos para uma nova sugestão de tópico. Aguarde a aprovação da equipe antes de investir muito tempo.
+* Bifurque o repositório [aspnet/Docs](https://github.com/dotnet/AspNetCore.Docs/) e crie uma ramificação para suas alterações.
 * Enviar um PR para mestre com suas alterações.
 * Se a PR tiver o rótulo 'cla-required' atribuído, [conclua o CLA (Contrato de Licença de Contribuição)](https://cla.dotnetfoundation.org/).
 * Responda aos comentários de PR.
@@ -28,13 +28,13 @@ Os artigos são escritos em [Markdown para DocFx](https://dotnet.github.io/docfx
 
 ## <a name="folder-structure-conventions"></a>Convenções de estrutura de pasta
 
-Para cada arquivo de Markdown, podem existir uma pasta para imagens e uma pasta para o código de exemplo. Se o artigo for [fundamentals/configuration/index.md](https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/configuration/index.md), as imagens estarão em [fundamentals/configuration/index/\_static](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/_static) e os arquivos de projeto do aplicativo de exemplo estarão em [fundamentals/configuration/index/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample). Uma imagem no arquivo *fundamentals/configuration/index.md* é processado pelo seguinte Markdown:
+Para cada arquivo de Markdown, podem existir uma pasta para imagens e uma pasta para o código de exemplo. Se o artigo for [fundamentals/configuration/index.md](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/fundamentals/configuration/index.md), as imagens estarão em [fundamentals/configuration/index/\_static](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/_static) e os arquivos de projeto do aplicativo de exemplo estarão em [fundamentals/configuration/index/sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample). Uma imagem no arquivo *fundamentals/configuration/index.md* é processado pelo seguinte Markdown:
 
 ```md
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
 ```
 
-Todas as imagens devem ter um [texto alternativo (alt)](https://wikipedia.org/wiki/Alt_attribute). Para obter orientação sobre como especificar texto alternativo, confira recursos online, como [WebAIM: texto alternativo](https://webaim.org/techniques/alttext/).
+Todas as imagens devem ter um [texto alternativo (alt)](https://wikipedia.org/wiki/Alt_attribute). Para orientação sobre a especificação de texto alternativo, confira recursos online, como [WebAIM: Texto Alternativo](https://webaim.org/techniques/alttext/).
 
 Use letras minúsculas para nomes de arquivo de Markdown e nomes de arquivo de imagem.
 
@@ -122,7 +122,7 @@ O DocFX requer:
 
 * Em um navegador, navegue até `http://localhost:8080/group1-dest/`.
 
-### <a name="mono-instructions"></a>Instruções do Mono
+### <a name="mono-instructions"></a>Instruções do mono
 
 * Instalar o Mono por meio do Homebrew:
 
@@ -149,7 +149,7 @@ O DocFX requer:
 
 ## <a name="voice-and-tone"></a>Voz e tom
 
-Nossa meta é escrever documentação que possa ser facilmente compreendida pelo maior público possível. Para esse fim, estabelecemos diretrizes para estilo de escrita que pedimos que nosso colaboradores sigam. Para obter mais informações, confira [Diretrizes de voz e tom](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md) no repositório do .NET.
+Nossa meta é escrever uma documentação que possa ser facilmente compreendida pelo maior público possível. Para esse fim, estabelecemos diretrizes para estilo de escrita que pedimos que nosso colaboradores sigam. Para obter mais informações, confira [Diretrizes de voz e tom](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md) no repositório do .NET.
 
 ## <a name="microsoft-writing-style-guide"></a>Guia de Estilo de Escrita da Microsoft
 
@@ -157,4 +157,4 @@ O [Guia de Estilo de Escrita da Microsoft](https://docs.microsoft.com/style-guid
 
 ## <a name="redirects"></a>Redirecionamentos
 
-Se você excluir um artigo, altere seu nome de arquivo ou mova-o para uma pasta diferente, crie um redirecionamento para que as pessoas que marcaram o artigo como favorito não recebem um erro *404 Não Encontrado*. Adicione redirecionamentos para o [arquivo de redirecionamento mestre](https://github.com/aspnet/Docs/blob/master/.openpublishing.redirection.json).
+Se você excluir um artigo, altere seu nome de arquivo ou mova-o para uma pasta diferente, crie um redirecionamento para que as pessoas que marcaram o artigo como favorito não recebem um erro *404 Não Encontrado*. Adicione redirecionamentos para o [arquivo de redirecionamento mestre](https://github.com/dotnet/AspNetCore.Docs/blob/master/.openpublishing.redirection.json).

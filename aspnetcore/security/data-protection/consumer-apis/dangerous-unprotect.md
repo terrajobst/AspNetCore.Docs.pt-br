@@ -1,47 +1,47 @@
 ---
-title: Desproteger cargas cujas chaves foram revogadas no ASP.NET Core
+title: Desproteja as cargas cujas chaves foram revogadas no ASP.NET Core
 author: rick-anderson
-description: Saiba como Desproteger dados, protegidos com chaves que já tem sido revogadas, em um aplicativo ASP.NET Core.
+description: Saiba como desproteger dados, protegidos com chaves que foram revogadas desde então, em um aplicativo ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: security/data-protection/consumer-apis/dangerous-unprotect
 ms.openlocfilehash: 26061d048dcd9c1e3d8909e9388d8b565376fa2f
-ms.sourcegitcommit: 5b0eca8c21550f95de3bb21096bd4fd4d9098026
+ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/27/2019
-ms.locfileid: "64897103"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78666596"
 ---
-# <a name="unprotect-payloads-whose-keys-have-been-revoked-in-aspnet-core"></a>Desproteger cargas cujas chaves foram revogadas no ASP.NET Core
+# <a name="unprotect-payloads-whose-keys-have-been-revoked-in-aspnet-core"></a>Desproteja as cargas cujas chaves foram revogadas no ASP.NET Core
 
 <a name="data-protection-consumer-apis-dangerous-unprotect"></a>
 
-As APIs de proteção de dados do ASP.NET Core não destinam principalmente para persistência indefinida de cargas confidenciais. Outras tecnologias, como [DPAPI do Windows CNG](https://msdn.microsoft.com/library/windows/desktop/hh706794%28v=vs.85%29.aspx) e [do Azure Rights Management](/rights-management/) são mais adequados para o cenário de armazenamento indefinido, e eles têm recursos de gerenciamento de chave forte de forma correspondente. Dito isso, não há nada proibindo um desenvolvedor que usa as APIs de proteção de dados do ASP.NET Core para proteção de longo prazo de dados confidenciais. As chaves nunca são removidas do anel de chave, portanto, `IDataProtector.Unprotect` sempre pode recuperar conteúdos existentes desde que as chaves estão disponíveis e válido.
+O ASP.NET Core APIs de proteção de dados não se destina principalmente à persistência indefinida de cargas confidenciais. Outras tecnologias como o [Windows CNG DPAPI](https://msdn.microsoft.com/library/windows/desktop/hh706794%28v=vs.85%29.aspx) e o [Azure Rights Management](/rights-management/) são mais adequadas para o cenário de armazenamento indefinido e têm recursos de gerenciamento de chaves de alta segurança. Dito isso, não há nada proibindo um desenvolvedor de usar o ASP.NET Core APIs de proteção de dados para proteção de longo prazo de dados confidenciais. As chaves nunca são removidas do anel de chave, portanto `IDataProtector.Unprotect` sempre pode recuperar cargas existentes, desde que as chaves estejam disponíveis e válidas.
 
-No entanto, um problema surge quando o desenvolvedor tenta desproteger os dados que foi protegidos com uma chave revogada, como `IDataProtector.Unprotect` lançará uma exceção, nesse caso. Isso pode ser adequado para cargas de curta duração ou transitórias (como tokens de autenticação), pois esses tipos de cargas podem ser facilmente recriados pelo sistema e, na pior das hipóteses, o visitante do site pode ser necessário fazer logon novamente. Mas para cargas persistentes, tendo `Unprotect` throw pode levar à perda de dados inaceitável.
+No entanto, surge um problema quando o desenvolvedor tenta desproteger dados que foram protegidos com uma chave revogada, pois `IDataProtector.Unprotect` gerará uma exceção nesse caso. Isso pode ser adequado para cargas de curta duração ou transitórias (como tokens de autenticação), pois esses tipos de cargas podem ser facilmente recriados pelo sistema e, no pior, o visitante do site pode precisar fazer logon novamente. Mas, para as cargas persistentes, ter `Unprotect` throw pode levar a uma perda de dados inaceitável.
 
 ## <a name="ipersisteddataprotector"></a>IPersistedDataProtector
 
-Para suportar o cenário de permitir que os conteúdos a serem desprotegidos mesmo diante de chaves revogadas, o sistema de proteção de dados contém um `IPersistedDataProtector` tipo. Para obter uma instância de `IPersistedDataProtector`, simplesmente obtém uma instância do `IDataProtector` no modo normal e tente conversão a `IDataProtector` para `IPersistedDataProtector`.
+Para dar suporte ao cenário de permitir que as cargas sejam desprotegidas mesmo diante de chaves revogadas, o sistema de proteção de dados contém um tipo de `IPersistedDataProtector`. Para obter uma instância de `IPersistedDataProtector`, basta obter uma instância de `IDataProtector` da maneira normal e tentar converter a `IDataProtector` em `IPersistedDataProtector`.
 
 > [!NOTE]
-> Nem todos os `IDataProtector` instâncias podem ser convertidas em `IPersistedDataProtector`. Os desenvolvedores devem usar o C# operador ou semelhante ou evitar exceções de tempo de execução causado por conversões inválidas, e eles devem estar preparados para tratar o caso de falha de forma adequada.
+> Nem todas as instâncias de `IDataProtector` podem ser convertidas em `IPersistedDataProtector`. Os desenvolvedores devem usar C# o operador as ou semelhante para evitar exceções de tempo de execução causadas por conversões inválidas e devem estar preparados para lidar adequadamente com o caso de falha.
 
-`IPersistedDataProtector` expõe a superfície de API a seguir:
+`IPersistedDataProtector` expõe a seguinte superfície de API:
 
 ```csharp
 DangerousUnprotect(byte[] protectedData, bool ignoreRevocationErrors,
      out bool requiresMigration, out bool wasRevoked) : byte[]
 ```
 
-Essa API usa o conteúdo protegido (como uma matriz de bytes) e retorna a carga desprotegida. Não há nenhuma sobrecarga baseada em cadeia de caracteres. Os dois parâmetros de saída são da seguinte maneira.
+Essa API usa a carga protegida (como uma matriz de bytes) e retorna a carga não protegida. Não há sobrecarga baseada em cadeia de caracteres. Os dois parâmetros de saída são os seguintes.
 
-* `requiresMigration`: será ser definido como true se a chave usada para proteger esse conteúdo não é mais a chave padrão do Active Directory, por exemplo, a chave usada para proteger essa carga é antiga e uma chave sem interrupção operação tem desde ocorrido. O chamador poderá considerar o proteger novamente a carga, dependendo de suas necessidades de negócios.
+* `requiresMigration`: será definido como true se a chave usada para proteger essa carga não for mais a chave padrão ativa, por exemplo, a chave usada para proteger essa carga é antiga e uma operação sem interrupção de chave desde que ocorreu. O chamador pode desejar considerar a nova proteção da carga, dependendo de suas necessidades comerciais.
 
-* `wasRevoked`: será definido como true se a chave usada para proteger este conteúdo foi revogada.
+* `wasRevoked`: será definido como true se a chave usada para proteger essa carga tiver sido revogada.
 
 >[!WARNING]
-> Tenha bastante cuidado ao passar `ignoreRevocationErrors: true` para o `DangerousUnprotect` método. Se, depois de chamar esse método o `wasRevoked` valor for true, em seguida, a chave usada para proteger este conteúdo foi revogada e autenticidade do conteúdo deve ser tratada como suspeito. Nesse caso, apenas continue a operar na carga de desprotegidos se você tiver alguma garantia separada que é autêntico, por exemplo, se ele é proveniente de um banco de dados seguro em vez de que está sendo enviada por um cliente da web não confiável.
+> Tenha muito cuidado ao passar `ignoreRevocationErrors: true` para o método `DangerousUnprotect`. Se, depois de chamar esse método, o valor de `wasRevoked` for true, a chave usada para proteger esse conteúdo foi revogada e a autenticidade da carga deverá ser tratada como suspeita. Nesse caso, só continue a operar na carga desprotegida se você tiver alguma garantia separada de que ela é autêntica, por exemplo, que ela é proveniente de um banco de dados seguro em vez de ser enviada por um cliente Web não confiável.
 
 [!code-csharp[](dangerous-unprotect/samples/dangerous-unprotect.cs)]
