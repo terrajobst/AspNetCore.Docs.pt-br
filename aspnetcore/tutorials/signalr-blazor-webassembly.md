@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: d3605c0823e9ec3ce34fb781da66a7470aa00622
-ms.sourcegitcommit: 0e21d4f8111743bcb205a2ae0f8e57910c3e8c25
+ms.openlocfilehash: 605cf8ebd3e85586f3e479c815f0b9902ce5a91a
+ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/05/2020
-ms.locfileid: "77034174"
+ms.lasthandoff: 03/11/2020
+ms.locfileid: "79083386"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Usar Signalr ASP.NET Core com Webassembly de mais incrivelmente
 
@@ -34,23 +34,23 @@ Este tutorial ensina as noções básicas da criação de um aplicativo em tempo
 
 No final deste tutorial, você terá um aplicativo de chat em funcionamento.
 
-[Exibir ou baixar código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-blazor-webassembly/samples/) ([como baixar](xref:index#how-to-download-a-sample))
+[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-blazor-webassembly/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
 ## <a name="prerequisites"></a>Prerequisites
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 [!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
 [!INCLUDE[](~/includes/3.1-SDK.md)]
 
@@ -58,15 +58,15 @@ No final deste tutorial, você terá um aplicativo de chat em funcionamento.
 
 ## <a name="create-a-hosted-blazor-webassembly-app-project"></a>Criar um projeto de aplicativo Webassembly de mais incrivelmente hospedado
 
-Instale o modelo [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) . O pacote [Microsoft. AspNetCore. incrivelmente. templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/) tem uma versão de visualização enquanto o Webassembly de mais de baixo está em visualização. Em um shell de comando, execute o seguinte comando:
+Instale o modelo [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) . O pacote [Microsoft. AspNetCore. Components. Webassembly. templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) tem uma versão de visualização enquanto o Webassembly de mais de baixo está em visualização. Em um shell de comando, execute o seguinte comando:
 
 ```dotnetcli
-dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.2.0-preview1.20073.1
+dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview2.20160.5
 ```
 
 Siga as orientações para sua escolha de ferramentas:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Criar um novo projeto.
 
@@ -83,7 +83,7 @@ Siga as orientações para sua escolha de ferramentas:
 > [!NOTE]
 > Se você atualizou ou instalou uma nova versão do Visual Studio e o modelo Webassembly mais novo não aparece na interface do usuário do VS, reinstale o modelo usando o comando `dotnet new` mostrado anteriormente.
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 1. Em um shell de comando, execute o seguinte comando:
 
@@ -95,7 +95,7 @@ Siga as orientações para sua escolha de ferramentas:
 
 1. Quando a caixa de diálogo aparecer para adicionar ativos para compilar e depurar o aplicativo, selecione **Sim**. Visual Studio Code adiciona automaticamente a pasta *. vscode* com arquivos *Launch. JSON* e *Tasks. JSON* gerados.
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 1. Em um shell de comando, execute o seguinte comando:
 
@@ -105,7 +105,7 @@ Siga as orientações para sua escolha de ferramentas:
 
 1. No Visual Studio para Mac, abra o projeto navegando até a pasta do projeto e abrindo o arquivo de solução do projeto ( *. sln*).
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
 Em um shell de comando, execute o seguinte comando:
 
@@ -117,7 +117,7 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 ## <a name="add-the-signalr-client-library"></a>Adicionar a biblioteca de clientes do SignalR
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio/)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
 
 1. Em **Gerenciador de soluções**, clique com o botão direito do mouse no projeto **BlazorSignalRApp. Client** e selecione **gerenciar pacotes NuGet**.
 
@@ -131,7 +131,7 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 1. Se a caixa de diálogo de **aceitação da licença** for exibida **, selecione aceito** se você concordar com os termos de licença.
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code/)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code/)
 
 No **terminal integrado** (**Exibir** > **terminal** na barra de ferramentas), execute os seguintes comandos:
 
@@ -139,7 +139,7 @@ No **terminal integrado** (**Exibir** > **terminal** na barra de ferramentas), e
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 ```
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 1. Na barra lateral da **solução** , clique com o botão direito do mouse no projeto **BlazorSignalRApp. Client** e selecione **gerenciar pacotes NuGet**.
 
@@ -151,7 +151,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. Se a caixa de diálogo de **aceitação da licença** for exibida, selecione **aceitar** se você concordar com os termos de licença.
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
 Em um shell de comando, execute os seguintes comandos:
 
@@ -200,7 +200,7 @@ No projeto **BlazorSignalRApp. Server** , crie uma pasta *hubs* (plural) e adici
 
 1. Siga as orientações para suas ferramentas:
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 1. Em **Gerenciador de soluções**, selecione o projeto **BlazorSignalRApp. Server** . Pressione **Ctrl + F5** para executar o aplicativo sem depuração.
 
@@ -212,7 +212,7 @@ No projeto **BlazorSignalRApp. Server** , crie uma pasta *hubs* (plural) e adici
 
    Aspas: *Star Trek VI: o país não descoberto* &copy;1991 de [extrema importância](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
-# <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 1. Selecione **depurar** > **executar sem depuração** na barra de ferramentas.
 
@@ -224,7 +224,7 @@ No projeto **BlazorSignalRApp. Server** , crie uma pasta *hubs* (plural) e adici
 
    Aspas: *Star Trek VI: o país não descoberto* &copy;1991 de [extrema importância](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
-# <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
 1. Na barra lateral da **solução** , selecione o projeto **BlazorSignalRApp. Server** . No menu, selecione **executar** > **Iniciar sem depuração**.
 
@@ -236,7 +236,7 @@ No projeto **BlazorSignalRApp. Server** , crie uma pasta *hubs* (plural) e adici
 
    Aspas: *Star Trek VI: o país não descoberto* &copy;1991 de [extrema importância](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
-# <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
 1. Em um shell de comando, execute os seguintes comandos:
 

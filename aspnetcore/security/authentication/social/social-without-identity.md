@@ -5,14 +5,16 @@ description: Uma explicação de como usar o Facebook, o Google, o Twitter, etc.
 ms.author: riande
 ms.date: 12/10/2019
 uid: security/authentication/social/social-without-identity
-ms.openlocfilehash: 612964ec9ed4975cdc81780dda3bac6cce96037f
-ms.sourcegitcommit: 2cb857f0de774df421e35289662ba92cfe56ffd1
+ms.openlocfilehash: b30ce7055b35b721c7fb83b61a328200d6a136b1
+ms.sourcegitcommit: 3ca4a2235a8129def9e480d0a6ad54cc856920ec
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/25/2019
-ms.locfileid: "75359052"
+ms.lasthandoff: 03/10/2020
+ms.locfileid: "79025401"
 ---
 # <a name="use-social-sign-in-provider-authentication-without-aspnet-core-identity"></a>Usar autenticação de provedor de entrada social sem identidade ASP.NET Core
+
+Por [Kirk Larkin](https://twitter.com/serpent5) e [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -27,7 +29,7 @@ Este exemplo usa a [autenticação do Google](xref:security/authentication/googl
 * [Autenticação do Twitter](xref:security/authentication/twitter-logins)
 * [Outros provedores](xref:security/authentication/otherlogins)
 
-## <a name="configuration"></a>Configuração do
+## <a name="configuration"></a>Configuração
 
 No método `ConfigureServices`, configure os esquemas de autenticação do aplicativo com os métodos <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*>, <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>e <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle*>:
 
@@ -82,7 +84,7 @@ Este exemplo usa a [autenticação do Google](xref:security/authentication/googl
 * [Autenticação do Twitter](xref:security/authentication/twitter-logins)
 * [Outros provedores](xref:security/authentication/otherlogins)
 
-## <a name="configuration"></a>Configuração do
+## <a name="configuration"></a>Configuração
 
 No método `ConfigureServices`, configure os esquemas de autenticação do aplicativo com os métodos `AddAuthentication`, `AddCookie`e `AddGoogle`:
 

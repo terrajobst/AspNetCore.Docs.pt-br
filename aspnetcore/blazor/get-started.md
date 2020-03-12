@@ -5,17 +5,17 @@ description: Comece a usar o Blazor criando um aplicativo Blazor com as ferramen
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/28/2019
+ms.date: 03/10/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: bd33d874b3d6122f2ab820e9b147b0e62ba03a58
-ms.sourcegitcommit: fe41cff0b99f3920b727286944e5b652ca301640
+ms.openlocfilehash: 89c7529d2b8ec97db731f7c7268e19937c398115
+ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/29/2020
-ms.locfileid: "76869574"
+ms.lasthandoff: 03/11/2020
+ms.locfileid: "79083243"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introdução ao ASP.NET Core mais incrivelmente
 
@@ -28,37 +28,40 @@ Introdução ao mais incrivelmente:
 1. Instale o [SDK do .NET Core 3,1](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
 1. Opcionalmente, instale o modelo [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) :
-   * Instale o [SDK do .NET Core 3,1 ou posterior (versão prévia)](https://dotnet.microsoft.com/download/dotnet-core/3.1).
-   * Execute o comando a seguir em um shell de comando. O pacote [Microsoft. AspNetCore. incrivelmente. templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/) tem uma versão de visualização enquanto o Webassembly de mais de baixo está em visualização.
+   * Instale o [SDK do .NET Core 3.1.102 ou posterior (versão prévia)](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+   * Execute o comando a seguir em um shell de comando. O pacote [Microsoft. AspNetCore. Components. Webassembly. templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) tem uma versão de visualização enquanto o Webassembly de mais de baixo está em visualização.
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.2.0-preview1.20073.1
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview2.20160.5
    ```
+
+   > [!NOTE]
+   > SDK do .NET Core versão 3.1.102 ou posterior é **necessária** para usar o modelo Webassembly do 3,2 Preview 2 mais recente. Confirme a versão do SDK do .NET Core instalada executando `dotnet --version` em um shell de comando.
 
 1. Siga as orientações para sua escolha de ferramentas:
 
-   # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+   # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
    1 \. Instale o [Visual Studio 2019 versão 16,4 ou posterior](https://visualstudio.microsoft.com/vs/preview/) com a ASP.net e a carga de trabalho de **desenvolvimento Web** .
 
-   2 \. Crie um novo projeto.
+   2 \. Criar um novo projeto.
 
    3 \. Selecione **aplicativo mais incrivelmente**. Selecione **Avançar**.
 
    4 \. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Confirme se a entrada de **local** está correta ou forneça um local para o projeto. Selecione **Criar**.
 
-   5 \. Para obter uma experiência de Webassembly mais experiente, escolha o modelo de **aplicativo Webassembly mais incrivelmente** . Para uma experiência de servidor mais incrivelmente, escolha o modelo de **aplicativo de servidor** mais experiente. Selecione **Criar**. Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>.
+   5 \. Para obter uma experiência de Webassembly mais experiente, escolha o modelo de **aplicativo Webassembly mais incrivelmente** . Para uma experiência de servidor mais incrivelmente, escolha o modelo de **aplicativo de servidor** mais experiente. Selecione **Criar**. Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>. Se o modelo Webassembly mais antigo não estiver presente, retorne à etapa anterior e reinstale o modelo.
 
    6 \. Pressione **Ctrl**+**F5** para executar o aplicativo.
 
    > [!NOTE]
    > Se você instalou a extensão do Visual Studio para uma versão prévia anterior do ASP.NET Core mais recente (visualização 6 ou anterior), você pode desinstalar a extensão. Instalar os modelos mais bem em um shell de comando agora é suficiente para trazer os modelos no Visual Studio.
 
-   # <a name="visual-studio-codetabvisual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+   # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-   1 \. Instalar o [Visual Studio Code](https://code.visualstudio.com/).
+   1 \. Instale o [Visual Studio Code](https://code.visualstudio.com/).
 
-   2 \. Instale o mais recente [ C# para a extensão de Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
+   2 \. Instale o mais recente [ C# para a extensão de Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
    3 \. Para uma experiência de Webassembly mais experiente, execute o seguinte comando em um shell de comando:
 
@@ -76,13 +79,13 @@ Introdução ao mais incrivelmente:
 
    4 \. Abra a pasta *WebApplication1* em Visual Studio Code.
 
-   5 \. Para um projeto de servidor mais incrivelmente, o IDE solicita que você adicione ativos para compilar e depurar o projeto. Selecione **Sim**.
+   5 \. Para um projeto de servidor mais incrivelmente, o IDE solicita que você adicione ativos para compilar e depurar o projeto. Selecione **Sim** na barra superior.
 
    6 \. Se estiver usando um aplicativo de servidor mais incrivelmente, execute o aplicativo usando o depurador de Visual Studio Code. Se estiver usando um aplicativo Webassembly mais incrivelmente, execute `dotnet run` na pasta do projeto do aplicativo.
 
    7 \. Em um navegador, navegue até `https://localhost:5001`.
 
-   # <a name="visual-studio-for-mactabvisual-studio-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+   # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
    1 \. Instale o [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/).
 
@@ -102,7 +105,7 @@ Introdução ao mais incrivelmente:
 
    Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no certificado e continue.
 
-   # <a name="net-core-clitabnetcore-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+   # <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
 
    Para uma experiência de Webassembly mais experiente, execute os seguintes comandos em um shell de comando:
 
@@ -128,7 +131,7 @@ Introdução ao mais incrivelmente:
 
 Várias páginas estão disponíveis em guias na barra lateral:
 
-* Página inicial do
+* Home
 * Contador
 * Buscar dados
 
@@ -174,7 +177,7 @@ Especifique o `IncrementAmount` no elemento `<Counter>` do componente de `Index`
 
 Execute o aplicativo. O componente `Index` tem seu próprio contador que é incrementado em dez cada vez que o botão **Click me** está selecionado. O componente `Counter` (*Counter. Razor*) em `/counter` continua a incrementar um.
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 <xref:tutorials/first-blazor-app>
 

@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2020
 uid: fundamentals/middleware/index
-ms.openlocfilehash: 6698e269e0a6480cd5a03c59f9a19da31e23bf69
-ms.sourcegitcommit: 235623b6e5a5d1841139c82a11ac2b4b3f31a7a9
+ms.openlocfilehash: afa71b2c2b75be2c000fadd9545ac3fb4587825a
+ms.sourcegitcommit: 51c86c003ab5436598dbc42f26ea4a83a795fd6e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/08/2020
-ms.locfileid: "77089143"
+ms.lasthandoff: 03/10/2020
+ms.locfileid: "78964461"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware do ASP.NET Core
 
@@ -60,6 +60,7 @@ Quando um delegado não transmite uma solicitação ao próximo delegado, consid
 <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run*> delegados não recebem um parâmetro `next`. O primeiro `Run` delegado é sempre terminal e encerra o pipeline. `Run` é uma convenção. Alguns componentes de middleware podem expor `Run[Middleware]` métodos que são executados no final do pipeline:
 
 [!code-csharp[](index/snapshot/Chain/Startup.cs?highlight=12-15)]
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 No exemplo anterior, o delegado `Run` grava `"Hello from 2nd delegate."` na resposta e, em seguida, encerra o pipeline. Se outro delegado de `Use` ou `Run` for adicionado após o delegado de `Run`, ele não será chamado.
 
@@ -214,9 +215,9 @@ A tabela a seguir mostra as solicitações e as respostas de `http://localhost:1
 | localhost:1234                | Saudação do delegado diferente de Map. |
 | localhost:1234/?branch=master | Branch usado = mestre         |
 
-<xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen*> também ramifica o pipeline de solicitação com base no resultado do predicado fornecido. Ao contrário de `MapWhen`, essa ramificação é reunida ao pipeline principal se ele faz um circuito curto ou contém um middleware de terminal:
+<xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen*> também ramifica o pipeline de solicitação com base no resultado do predicado fornecido. Ao contrário de com `MapWhen`, essa ramificação será reunida ao pipeline principal se não for curto-Circuit ou contiver um middleware de terminal:
 
-[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=23-24)]
+[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=25-26)]
 
 No exemplo anterior, uma resposta de "Olá do pipeline principal". é gravado para todas as solicitações. Se a solicitação incluir uma variável de cadeia de caracteres de consulta `branch`, seu valor será registrado antes que o pipeline principal seja reassociado.
 

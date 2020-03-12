@@ -6,12 +6,12 @@ ms.author: riserrad
 ms.custom: mvc
 ms.date: 07/10/2019
 uid: tutorials/publish-to-azure-webapp-using-vscode
-ms.openlocfilehash: 90ba130f13903cd45eca062c0eca8945eff2e0fa
-ms.sourcegitcommit: 7a2c820692f04bfba04398641b70f27fa15391f5
+ms.openlocfilehash: eaf9cca61b21d04d127ff15a579f3d8da794f7d9
+ms.sourcegitcommit: 40dc9b00131985abcd99bd567647420d798e798a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/12/2019
-ms.locfileid: "72290648"
+ms.lasthandoff: 03/09/2020
+ms.locfileid: "78935421"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio-code"></a>Publicar um aplicativo ASP.NET Core no Azure com o Visual Studio Code
 
@@ -25,12 +25,12 @@ Para solucionar um problema de implantação do Serviço de Aplicativo, confira 
 
 Com este tutorial, você aprenderá a criar um aplicativo ASP.NET Core MVC e implantá-lo no Visual Studio Code.
 
-## <a name="set-up"></a>Configurar
+## <a name="set-up"></a>Configuração
 
 - Abra uma [conta do Azure gratuita](https://azure.microsoft.com/free/dotnet/) se você não tiver uma.
 - Instale o [SDK do .NET Core](https://dotnet.microsoft.com/download)
-- Instale o [Visual Studio Code](https://code.visualstudio.com/Download)
-  - Instale a [Extensão do C#](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) para o Visual Studio Code
+- Instalar o [Visual Studio Code](https://code.visualstudio.com/Download)
+  - Instale a [Extensão do C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) para o Visual Studio Code
   - Instale a [extensão de serviço Azure app](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) para Visual Studio Code e configure-a antes de continuar
 
 ## <a name="create-an-aspnet-core-mvc-project"></a>Criar um projeto ASP.NET Core MVC
@@ -148,4 +148,4 @@ A extensão implantará o conteúdo atualizado no aplicativo Web. Após a conclu
 ## <a name="additional-resources"></a>Recursos adicionais
 
 - [Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-overview)
-- [Grupo de recursos do Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)
+- [Grupos de recursos do Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)

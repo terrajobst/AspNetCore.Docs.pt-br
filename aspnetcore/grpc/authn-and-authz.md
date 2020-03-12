@@ -6,18 +6,18 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 12/05/2019
 uid: grpc/authn-and-authz
-ms.openlocfilehash: 258b34113f3c3d9ef2031a43295ea5806b1e22ff
-ms.sourcegitcommit: c0b72b344dadea835b0e7943c52463f13ab98dd1
+ms.openlocfilehash: c0312b186bbb35e3b802984484b7213016d8bf04
+ms.sourcegitcommit: 51c86c003ab5436598dbc42f26ea4a83a795fd6e
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74880684"
+ms.lasthandoff: 03/10/2020
+ms.locfileid: "78964437"
 ---
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>Autenticação e autorização no gRPC para ASP.NET Core
 
 Por [James Newton – King](https://twitter.com/jamesnk)
 
-[Exibir ou baixar o código de exemplo](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/grpc/authn-and-authz/sample/) [(como baixar)](xref:index#how-to-download-a-sample)
+[Exibir ou baixar o código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/grpc/authn-and-authz/sample/) [(como baixar)](xref:index#how-to-download-a-sample)
 
 ## <a name="authenticate-users-calling-a-grpc-service"></a>Autenticar usuários chamando um serviço gRPC
 
@@ -35,7 +35,7 @@ public void Configure(IApplicationBuilder app)
 
     app.UseEndpoints(endpoints =>
     {
-        routes.MapGrpcService<GreeterService>();
+        endpoints.MapGrpcService<GreeterService>();
     });
 }
 ```
@@ -106,7 +106,7 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
 }
 ```
 
-### <a name="client-certificate-authentication"></a>Autenticação de certificado do cliente
+### <a name="client-certificate-authentication"></a>Autenticação de certificado de cliente
 
 Um cliente pode, opcionalmente, fornecer um certificado de cliente para autenticação. A [autenticação de certificado](https://tools.ietf.org/html/rfc5246#section-7.4.4) ocorre no nível de TLS, muito antes que ele chegue a ASP.NET Core. Quando a solicitação entra ASP.NET Core, o [pacote de autenticação de certificado de cliente](xref:security/authentication/certauth) permite que você resolva o certificado para um `ClaimsPrincipal`.
 
@@ -144,7 +144,7 @@ Muitos ASP.NET Core mecanismos de autenticação com suporte funcionam com o gRP
 * JWT Token
 * OAuth 2.0
 * OpenID Connect
-* WS-Federation
+* O certificado do provedor de identidade do Web Services Federation
 
 Para obter mais informações sobre como configurar a autenticação no servidor, consulte [ASP.NET Core autenticação](xref:security/authentication/identity).
 
