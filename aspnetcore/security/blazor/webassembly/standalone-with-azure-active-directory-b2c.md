@@ -5,17 +5,17 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/09/2020
+ms.date: 03/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-ms.openlocfilehash: 0ea42943c908d8cf9d083c1cfc568c1835588ce9
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.openlocfilehash: b4d32e91b4013cbea37baecb972a535d2874d3d1
+ms.sourcegitcommit: 5bdc54162d7dea8d9fa54ac3055678db23586af1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79083828"
+ms.lasthandoff: 03/17/2020
+ms.locfileid: "79434454"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a>Proteger um aplicativo ASP.NET Core Blazor Webassembly autônomo com Azure Active Directory B2C
 
@@ -42,7 +42,9 @@ Para criar um aplicativo autônomo Webassembly Blazor que usa [Azure Active Dire
 
      Registre a ID do aplicativo (ID do cliente) (por exemplo, `11111111-1111-1111-1111-111111111111`).
 
-   * [Criar fluxos de usuário](/azure/active-directory-b2c/tutorial-create-user-flows) & ndash; Crie um fluxo de usuário de inscrição e entrada.
+   * [Criar fluxos de usuário](/azure/active-directory-b2c/tutorial-create-user-flows) &ndash; criar um fluxo de usuário de inscrição e entrada.
+
+     No mínimo, selecione o atributo **Application claims** > **Display Name** user para preencher o `context.User.Identity.Name` no componente `LoginDisplay` (*Shared/LoginDisplay. Razor*).
 
      Registre o nome do fluxo de usuário de entrada e de entrada criado para o aplicativo (por exemplo, `B2C_1_signupsignin`).
 

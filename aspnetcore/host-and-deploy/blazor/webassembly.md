@@ -5,17 +5,17 @@ description: Saiba como hospedar e implantar um aplicativo Blazor usando ASP.NET
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/19/2020
+ms.date: 03/11/2020
 no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: eae12b266e91a30a47daf63ac77ba082c25225aa
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 748ac9969134f4c89cc8c1235958dcc7ac1d1080
+ms.sourcegitcommit: 5bdc54162d7dea8d9fa54ac3055678db23586af1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78664097"
+ms.lasthandoff: 03/17/2020
+ms.locfileid: "79434272"
 ---
 # <a name="host-and-deploy-aspnet-core-opno-locblazor-webassembly"></a>Hospedar e implantar ASP.NET Core Blazor Webassembly
 
@@ -59,7 +59,7 @@ Ao implantar em um servidor IIS, você pode usar o módulo de reescrita de URL c
 
 Uma *implantação hospedada* serve o aplicativo webassembly Blazor para os navegadores de um [aplicativo ASP.NET Core](xref:index) executado em um servidor Web.
 
-O aplicativo Blazor está incluído no aplicativo ASP.NET Core na saída publicada para que os dois aplicativos sejam implantados juntos. É necessário um servidor Web capaz de hospedar um aplicativo do ASP.NET Core. Para uma implantação hospedada, o Visual Studio inclui o modelo de projeto de **aplicativo WebassemblyBlazor** (`blazorwasm` modelo ao usar o comando [dotnet New](/dotnet/core/tools/dotnet-new) ) com a opção **Hosted** selecionada.
+O aplicativo Webassembly Blazor cliente é publicado na pasta */bin/Release/{Target Framework}/Publish/wwwroot* do aplicativo de servidor, juntamente com quaisquer outros ativos estáticos da Web do aplicativo de servidor. Os dois aplicativos são implantados juntos. É necessário um servidor Web capaz de hospedar um aplicativo do ASP.NET Core. Para uma implantação hospedada, o Visual Studio inclui o modelo de projeto de **aplicativo WebassemblyBlazor** (`blazorwasm` modelo ao usar o comando [dotnet New](/dotnet/core/tools/dotnet-new) ) com a opção **Hosted** selecionada (`-ho|--hosted` ao usar o comando `dotnet new`).
 
 Para obter mais informações sobre a implantação e a hospedagem de aplicativo do ASP.NET Core, confira <xref:host-and-deploy/index>.
 
@@ -69,7 +69,7 @@ Confira como implantar o Serviço de Aplicativo do Azure em <xref:tutorials/publ
 
 Uma *implantação autônoma* serve o aplicativo webassembly Blazor como um conjunto de arquivos estáticos que são solicitados diretamente pelos clientes. Qualquer servidor de arquivos estático é capaz de atender o aplicativo Blazor.
 
-Ativos de implantação autônomos são publicados na pasta */bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist*.
+Os ativos de implantação autônomo são publicados na pasta */bin/Release/{Target Framework}/Publish/wwwroot*
 
 ### <a name="iis"></a>IIS
 
@@ -155,7 +155,7 @@ Quando o serviço de blob está habilitado para hospedagem de site estático em 
 * Defina o **Nome do documento de índice** como `index.html`.
 * Defina o **Caminho do documento de erro** como `index.html`. Os componentes do Razor e outros pontos de extremidade que não são arquivos não residem em caminhos físicos no conteúdo estático armazenado pelo serviço de blob. Quando uma solicitação para um desses recursos é recebida que o roteador de Blazor deve tratar, o erro *404-não encontrado* gerado pelo serviço blob roteia a solicitação para o **caminho do documento de erro**. O blob *index. html* é retornado e o roteador de Blazor carrega e processa o caminho.
 
-Para mais informações, confira [Hospedagem de site estático no Armazenamento do Azure](/azure/storage/blobs/storage-blob-static-website).
+Para saber mais, confira [Hospedagem de site estático no Armazenamento do Azure](/azure/storage/blobs/storage-blob-static-website).
 
 ### <a name="nginx"></a>Nginx
 
@@ -318,4 +318,4 @@ O argumento `--urls` define os endereços IP ou os endereços de host com portas
 
 ## <a name="configure-the-linker"></a>Configurar o vinculador
 
-Blazor executa a vinculação de IL (linguagem intermediária) em cada compilação para remover o IL desnecessário dos assemblies de saída. A vinculação de assembly pode ser controlada no build. Para obter mais informações, consulte <xref:host-and-deploy/blazor/configure-linker>.
+Blazor executa a vinculação de IL (linguagem intermediária) em cada Build de versão para remover o IL desnecessário dos assemblies de saída. Para obter mais informações, consulte <xref:host-and-deploy/blazor/configure-linker>.

@@ -5,17 +5,17 @@ description: Descubra como hospedar e implantar aplicativos Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 03/11/2020
 no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/index
-ms.openlocfilehash: 238e7fc8f8d64c7847dc8847fb66e22442a3c8e0
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: ddf70da29a82d462422c1bdf74ff45b92bb10b56
+ms.sourcegitcommit: 5bdc54162d7dea8d9fa54ac3055678db23586af1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78667149"
+ms.lasthandoff: 03/17/2020
+ms.locfileid: "79434259"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor"></a>Hospedar e implantar o ASP.NET Core Blazor
 
@@ -23,7 +23,7 @@ Por [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.tim
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-## <a name="publish-the-app"></a>Publicar o aplicativo
+## <a name="publish-the-app"></a>Publique o aplicativo
 
 Os aplicativos são publicados para implantação na configuração de versão.
 
@@ -31,7 +31,7 @@ Os aplicativos são publicados para implantação na configuração de versão.
 
 1. Selecione **Versão** > **Publicar {APLICATIVO}** na barra de navegação.
 1. Selecione o botão *destino de publicação*. Para publicar localmente, selecione **Pasta**.
-1. Aceite o local padrão no campo **Escolher uma pasta** ou especifique um local diferente. Clique no botão **Publicar**.
+1. Aceite o local padrão no campo **Escolher uma pasta** ou especifique um local diferente. Selecione o botão **Publicar**.
 
 # <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli)
 
@@ -45,7 +45,12 @@ dotnet publish -c Release
 
 Publicar o aplicativo dispara uma [restauração](/dotnet/core/tools/dotnet-restore) das dependências do projeto e [compila](/dotnet/core/tools/dotnet-build) o projeto antes de criar os ativos para implantação. Como parte do processo de build, os assemblies e métodos não usados são removidos para reduzir o tamanho de download do aplicativo e os tempos de carregamento.
 
-Um aplicativo Webassembly Blazor é publicado na pasta */bin/Release/{Target Framework}/Publish/{Assembly Name}/dist* . Um aplicativo do Blazor Server é publicado na pasta */Publish do/bin/Release/{Target Framework}* .
+Locais de publicação:
+
+* Blazor Webassembly
+  * &ndash; autônomo, o aplicativo é publicado na pasta */bin/Release/{Target Framework}/Publish/wwwroot* . Para implantar o aplicativo como um site estático, copie o conteúdo da pasta *wwwroot* para o host do site estático.
+  * Hospedado &ndash; o aplicativo Webassembly do cliente Blazor é publicado na pasta */bin/Release/{Target Framework}/Publish/wwwroot* do aplicativo de servidor, juntamente com quaisquer outros ativos da Web estáticos do aplicativo do servidor. Implante o conteúdo da pasta de *publicação* no host.
+* Blazor Server &ndash; o aplicativo é publicado na pasta */Publish do/bin/Release/{Target Framework}* . Implante o conteúdo da pasta de *publicação* no host.
 
 Os ativos na pasta são implantados no servidor Web. A implantação pode ser um processo manual ou automatizado, dependendo das ferramentas de desenvolvimento em uso.
 

@@ -5,12 +5,12 @@ description: Adicione um modelo para um aplicativo simples do ASP.NET Core.
 ms.author: riande
 ms.date: 01/13/2020
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: d044ae4416c4528791755506314fc81275474f79
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: e7fc0496438734e13cfafcecf432da4a94737897
+ms.sourcegitcommit: 5bdc54162d7dea8d9fa54ac3055678db23586af1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78660233"
+ms.lasthandoff: 03/17/2020
+ms.locfileid: "79434506"
 ---
 # <a name="add-a-model-to-an-aspnet-core-mvc-app"></a>Adicione um modelo a um aplicativo ASP.NET Core MVC
 
@@ -48,14 +48,14 @@ Atualize o arquivo *Movie.cs* com o seguinte código:
 
 A classe `Movie` contém um campo `Id`, que é exigido pelo banco de dados para a chave primária.
 
-O atributo [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) em `ReleaseDate` especifica o tipo de dados (`Date`). Com esse atributo:
+O atributo <xref:System.ComponentModel.DataAnnotations.DataType> no `ReleaseDate` especifica o tipo dos dados (`Date`). Com esse atributo:
 
 * O usuário não precisa inserir informações de tempo no campo de data.
 * Somente a data é exibida, não as informações de tempo.
 
 [DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) são abordados em um tutorial posterior.
 
-## <a name="add-nuget-packages"></a>Adicionar pacotes NuGet
+## <a name="add-nuget-packages"></a>Adicionar pacotes do NuGet
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -196,7 +196,7 @@ A criação automática desses arquivos é conhecida como *scaffolding*.
   export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -208,7 +208,7 @@ A criação automática desses arquivos é conhecida como *scaffolding*.
 
 * Abra uma janela de comando no diretório do projeto (o diretório que contém os arquivos *Program.cs*, *Startup.cs* e *.csproj*).
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -482,7 +482,7 @@ A criação automática do contexto de banco de dados e das exibições e métod
     export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
@@ -501,7 +501,7 @@ A criação automática do contexto de banco de dados e das exibições e métod
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* Execute o comando a seguir:
+* Execute o seguinte comando:
 
   ```dotnetcli
    dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries

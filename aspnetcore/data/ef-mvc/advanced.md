@@ -8,11 +8,11 @@ ms.date: 03/27/2019
 ms.topic: tutorial
 uid: data/ef-mvc/advanced
 ms.openlocfilehash: fc6f8d8c4ab09848cf316be2e522bf5ce3b9ac76
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78657034"
+ms.lasthandoff: 03/16/2020
+ms.locfileid: "79416229"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Tutorial: Saiba mais sobre cenários avançados – ASP.NET MVC com EF Core
 
@@ -31,7 +31,7 @@ Neste tutorial, você:
 > * Aprender sobre o código-fonte e planos de desenvolvimento do EF Core
 > * Aprender a usar o LINQ dinâmico para simplificar o código
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 * [Implementar herança](inheritance.md)
 
@@ -203,7 +203,7 @@ Tom Dykstra e Rick Anderson (twitter @RickAndMSFT) escreveram este tutorial. Row
 
 <a id="common-errors"></a>
 
-## <a name="troubleshoot-common-errors"></a>Solução de problemas comuns
+## <a name="troubleshoot-common-errors"></a>Solucionar erros comuns
 
 ### <a name="contosouniversitydll-used-by-another-process"></a>ContosoUniversity.dll usada por outro processo
 
@@ -243,7 +243,7 @@ dotnet ef database drop
 
 Mensagem de erro:
 
-> Ocorreu um erro relacionado à rede ou específico da instância ao estabelecer uma conexão com o SQL Server. O servidor não foi encontrado ou não estava acessível. Verifique se o nome de instância está correto e se o SQL Server está configurado para permitir conexões remotas. (provedor: Adaptadores de Rede do SQL, erro: 26 – Erro ao Localizar Servidor/Instância Especificada)
+> Ocorreu um erro relacionado à rede ou específico a uma instância ao estabelecer uma conexão com o SQL Server. O servidor não foi encontrado ou não estava acessível. Verifique se o nome da instância está correto e se o SQL Server está configurado para permitir conexões remotas. (provedor: Adaptadores de Rede do SQL, erro: 26 – Erro ao Localizar Servidor/Instância Especificada)
 
 Solução:
 
@@ -261,7 +261,7 @@ Para obter informações sobre como implantar um aplicativo Web, confira <xref:h
 
 Para obter informações sobre outros tópicos relacionados ao ASP.NET Core MVC, como autenticação e autorização, confira <xref:index>.
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Neste tutorial, você:
 

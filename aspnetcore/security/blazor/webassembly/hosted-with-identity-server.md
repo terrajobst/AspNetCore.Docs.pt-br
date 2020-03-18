@@ -5,17 +5,17 @@ description: Para criar um novo aplicativo hospedado Blazor com autenticação d
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/09/2020
+ms.date: 03/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 98eb126ab3c483e0a6dc2274db8ffcfd9d5bc59a
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.openlocfilehash: a3993bf635e5a7aae408d72796015f2414e13c14
+ms.sourcegitcommit: 5bdc54162d7dea8d9fa54ac3055678db23586af1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79083772"
+ms.lasthandoff: 03/17/2020
+ms.locfileid: "79434467"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-identity-server"></a>Proteger um aplicativo hospedado do Webassembly ASP.NET Core Blazor com o Identity Server
 
@@ -49,7 +49,7 @@ As seções a seguir descrevem as adições ao projeto quando o suporte à auten
 
 A classe `Startup` tem as seguintes adições:
 
-* Em `Startup.ConfigureServices`:
+* No `Startup.ConfigureServices`:
 
   * Identidade com a interface do usuário padrão:
 
@@ -76,7 +76,7 @@ A classe `Startup` tem as seguintes adições:
         .AddIdentityServerJwt();
     ```
 
-* Em `Startup.Configure`:
+* No `Startup.Configure`:
 
   * O middleware de autenticação que é responsável por validar as credenciais de solicitação e definir o usuário no contexto da solicitação:
 
@@ -224,5 +224,9 @@ O componente `LoginDisplay` (*Shared/LoginDisplay. Razor*) é renderizado no com
 ### <a name="fetchdata-component"></a>Componente FetchData
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
+
+## <a name="run-the-app"></a>Executar o aplicativo
+
+Execute o aplicativo no projeto do servidor. Ao usar o Visual Studio, selecione o projeto de servidor no **Gerenciador de soluções** e selecione o botão **executar** na barra de ferramentas ou inicie o aplicativo no menu **depurar** .
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]

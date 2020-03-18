@@ -5,16 +5,16 @@ description: Crie um aplicativo Blazor passo a passo.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/13/2020
+ms.date: 03/13/2020
 no-loc:
 - Blazor
 uid: tutorials/first-blazor-app
-ms.openlocfilehash: 8830dcf26b58b5f5fdd36b60298e7b365f99bdd9
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 8b3802a6ffe3613e5d4ca65c57fafc3f404c8329
+ms.sourcegitcommit: 5bdc54162d7dea8d9fa54ac3055678db23586af1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78655305"
+ms.lasthandoff: 03/17/2020
+ms.locfileid: "79434493"
 ---
 # <a name="build-your-first-opno-locblazor-app"></a>Crie seu primeiro aplicativo Blazor
 
@@ -24,9 +24,9 @@ Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.c
 
 Este tutorial mostra como criar e modificar um aplicativo Blazor.
 
-Siga as orientações no artigo <xref:blazor/get-started> para criar um projeto Blazor para este tutorial. Nomeie o projeto como *ToDoList*.
-
 ## <a name="build-components"></a>Componentes do build
+
+1. Siga as orientações no artigo <xref:blazor/get-started> para criar um projeto Blazor para este tutorial. Nomeie o projeto como *ToDoList*.
 
 1. Navegue até cada uma das três páginas do aplicativo na pasta *páginas* : Home, Counter e FETCH Data. Essas páginas são implementadas pelos arquivos de componente Razor *Index.razor*, *Counter.razor* e *FetchData.razor*.
 
@@ -133,14 +133,14 @@ Um loop de [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) �
 
 Adicione um novo componente ao aplicativo que implemente uma lista de tarefas pendentes simples.
 
-1. Adicione um arquivo vazio chamado *Todo.razor* ao aplicativo na pasta *Pages*:
+1. Adicione um novo `Todo` componente Razor ao aplicativo na pasta *páginas* . No Visual Studio, clique com o botão direito do mouse na pasta **páginas** e selecione **Adicionar** > **novo item** > **componente Razor**. Nomeie o arquivo do componente *todo. Razor*. Em outros ambientes de desenvolvimento, adicione um arquivo em branco à pasta **páginas** chamada *todo. Razor*.
 
 1. Forneça a marcação inicial do componente:
 
    ```razor
    @page "/todo"
 
-   <h1>Todo</h1>
+   <h3>Todo</h3>
    ```
 
 1. Adicione o componente `Todo` à barra de navegação.

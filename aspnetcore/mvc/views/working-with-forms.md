@@ -7,11 +7,11 @@ ms.custom: mvc
 ms.date: 12/05/2019
 uid: mvc/views/working-with-forms
 ms.openlocfilehash: 5af532db35b858d157f61a6aca30f55d15e9ff1e
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78657531"
+ms.lasthandoff: 03/16/2020
+ms.locfileid: "79416236"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>Auxiliares de marca em formulários no ASP.NET Core
 
@@ -35,7 +35,7 @@ O Auxiliar de marca de [formulário](https://www.w3.org/TR/html401/interact/form
 
 * Tem uma alternativa de Auxiliar HTML `Html.BeginForm` e `Html.BeginRouteForm`
 
-Exemplo:
+Amostra:
 
 [!code-HTML[](working-with-forms/sample/final/Views/Demo/RegisterFormOnly.cshtml)]
 
@@ -73,10 +73,10 @@ O Auxiliar de Marcação de Ação de Formulário gera o atributo `formaction` n
 
 Atributos [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) com suporte para controlar o valor de `formaction`:
 
-|Atributo|Descrição|
+|Atributo|DESCRIÇÃO|
 |---|---|
 |[asp-controller](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-controller)|O nome do controlador.|
-|[asp-action](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-action)|O nome do método de ação.|
+|[asp-action](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-action)|O nome do método da ação.|
 |[asp-area](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-area)|O nome da área.|
 |[asp-page](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page)|O nome da Página do Razor.|
 |[asp-page-handler](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page-handler)|O nome do manipulador da Página do Razor.|
@@ -171,7 +171,7 @@ Sintaxe:
 
 O auxiliar de marca de entrada:
 
-* Gera os atributos HTML `id` e `name` para o nome da expressão especificada no atributo `asp-for`. `asp-for="Property1.Property2"` é equivalente a `m => m.Property1.Property2`. O nome da expressão é o que é usado para o valor do atributo `asp-for`. Consulte a seção [Nomes de expressão](#expression-names) para obter informações adicionais.
+* Gera os atributos HTML `id` e `name` para o nome da expressão especificada no atributo `asp-for`. `asp-for="Property1.Property2"` equivale a `m => m.Property1.Property2`. O nome da expressão é o que é usado para o valor do atributo `asp-for`. Consulte a seção [Nomes de expressão](#expression-names) para obter informações adicionais.
 
 * Define o valor do atributo HTML `type` com base nos atributos de tipo de modelo e [anotação de dados](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) aplicados à propriedade de modelo
 
@@ -199,11 +199,11 @@ O Auxiliar de marca `Input` define o atributo HTML `type` com base no tipo .NET.
 |Tipo .NET|Tipo de entrada|
 |---|---|
 |Bool|type="checkbox"|
-|String|type="text"|
-|Datetime|type=["datetime-local"](https://developer.mozilla.org/docs/Web/HTML/Element/input/datetime-local)|
+|Cadeia de Caracteres|type="text"|
+|DateTime|type=["datetime-local"](https://developer.mozilla.org/docs/Web/HTML/Element/input/datetime-local)|
 |Byte|type="number"|
-|Int|type="number"|
-|Single, Double|type="number"|
+|int|type="number"|
+|Single e Double|type="number"|
 
 A tabela a seguir mostra alguns atributos de [anotações de dados](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) comuns que o auxiliar de marca de entrada mapeará para tipos de entrada específicos (não são listados todos os atributos de validação):
 
@@ -217,7 +217,7 @@ A tabela a seguir mostra alguns atributos de [anotações de dados](/dotnet/api/
 |[DataType(DataType.Date)]|type="date"|
 |[DataType(DataType.Time)]|type="time"|
 
-Exemplo:
+Amostra:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/RegisterViewModel.cs)]
 
@@ -352,7 +352,7 @@ O auxiliar de marca `Textarea Tag Helper` é semelhante ao Auxiliar de marca de 
 
 * Alternativa de Auxiliar HTML: `Html.TextAreaFor`
 
-Exemplo:
+Amostra:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/DescriptionViewModel.cs)]
 
@@ -388,7 +388,7 @@ O `Label Tag Helper` fornece os seguintes benefícios em comparação com um ele
 
 * Tipagem forte com a propriedade de modelo.
 
-Exemplo:
+Amostra:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/SimpleViewModel.cs)]
 
@@ -495,7 +495,7 @@ O `Select Tag Helper` `asp-for` especifica o nome da Propriedade do modelo para 
 
 [!code-HTML[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
-Exemplo:
+Amostra:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/CountryViewModel.cs)]
 
@@ -536,7 +536,7 @@ O valor do atributo `asp-for` é um caso especial e não requer um prefixo `Mode
 
 Geralmente, é conveniente usar `<select>` com uma propriedade `enum` e gerar os elementos `SelectListItem` dos valores `enum`.
 
-Exemplo:
+Amostra:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/CountryEnumViewModel.cs?range=3-7)]
 

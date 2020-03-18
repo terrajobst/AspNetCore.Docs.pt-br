@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2020
 uid: security/authentication/index
-ms.openlocfilehash: 24113fd4f090cf76746a7b077212fdab012f82c1
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 404904ecfa30d1fe7e47f0daaa423ddd6f1b06e8
+ms.sourcegitcommit: 5bdc54162d7dea8d9fa54ac3055678db23586af1
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659624"
+ms.lasthandoff: 03/17/2020
+ms.locfileid: "79434324"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Visão geral da autenticação ASP.NET Core
 
@@ -110,6 +110,18 @@ Consulte os seguintes links para obter as diferenças entre o desafio e o proíb
 
 * [Desafio e proíba com um manipulador de recursos operacionais](xref:security/authorization/resourcebased#challenge-and-forbid-with-an-operational-resource-handler).
 * [Diferenças entre desafio e proibir](xref:security/authorization/secure-data#challenge).
+
+## <a name="authentication-providers-per-tenant"></a>Provedores de autenticação por locatário
+
+O ASP.NET Core Framework não tem uma solução interna para autenticação multilocatário.
+Embora seja certamente possível para os clientes escreverem um, usando os recursos internos, recomendamos que os clientes examinem o [Orchard Core](https://www.orchardcore.net/) para essa finalidade.
+
+O Orchard Core é:
+
+* Uma estrutura de aplicativos modular e multilocatários de software livre criada com ASP.NET Core.
+* Um CMS (sistema de gerenciamento de conteúdo) criado sobre essa estrutura de aplicativo.
+
+Consulte a fonte do [Orchard Core](https://github.com/OrchardCMS/OrchardCore) para obter um exemplo de provedores de autenticação por locatário.
 
 ## <a name="additional-resources"></a>Recursos adicionais
 

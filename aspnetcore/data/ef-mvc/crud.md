@@ -8,11 +8,11 @@ ms.date: 02/04/2019
 ms.topic: tutorial
 uid: data/ef-mvc/crud
 ms.openlocfilehash: 2aa4ef48509b9a34f3b25eb657b1ecac51c1374b
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78656859"
+ms.lasthandoff: 03/16/2020
+ms.locfileid: "79416208"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: implementar a funcionalidade CRUD – ASP.NET MVC com EF Core
 
@@ -30,7 +30,7 @@ Neste tutorial, você:
 > * Atualizar a página Excluir
 > * Fechará conexões de banco de dados
 
-## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
+## <a name="prerequisites"></a>Pré-requisitos
 
 * [Introdução ao EF Core e ASP.NET Core MVC](intro.md)
 
@@ -46,7 +46,7 @@ Os métodos `Include` e `ThenInclude` fazem com que o contexto carregue a propri
 
 O método `AsNoTracking` melhora o desempenho em cenários em que as entidades retornadas não serão atualizadas no tempo de vida do contexto atual. Você aprenderá mais sobre `AsNoTracking` ao final deste tutorial.
 
-### <a name="route-data"></a>Rotear dados
+### <a name="route-data"></a>Dados de rota
 
 O valor de chave que é passado para o método `Details` é obtido dos *dados de rota*. Dados de rota são dados que o associador de modelos encontrou em um segmento da URL. Por exemplo, a rota padrão especifica os segmentos de controlador, ação e ID:
 
@@ -199,15 +199,15 @@ O contexto de banco de dados controla se as entidades em memória estão em sinc
 
 Uma entidade pode estar em um dos seguintes estados:
 
-* `Added`. A entidade ainda não existe no banco de dados. O método `SaveChanges` emite uma instrução INSERT.
+* `Added` A entidade ainda não existe no banco de dados. O método `SaveChanges` emite uma instrução INSERT.
 
-* `Unchanged`. Nada precisa ser feito com essa entidade pelo método `SaveChanges`. Ao ler uma entidade do banco de dados, a entidade começa com esse status.
+* `Unchanged` Nada precisa ser feito com essa entidade pelo método `SaveChanges`. Ao ler uma entidade do banco de dados, a entidade começa com esse status.
 
-* `Modified`. Alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
+* `Modified` Alguns ou todos os valores de propriedade da entidade foram modificados. O método `SaveChanges` emite uma instrução UPDATE.
 
-* `Deleted`. A entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
+* `Deleted` A entidade foi marcada para exclusão. O método `SaveChanges` emite uma instrução DELETE.
 
-* `Detached`. A entidade não está sendo controlada pelo contexto de banco de dados.
+* `Detached` A entidade não está sendo controlada pelo contexto de banco de dados.
 
 Em um aplicativo da área de trabalho, em geral, as alterações de estado são definidas automaticamente. Você lê uma entidade e faz alterações em alguns de seus valores de propriedade. Isso faz com que seu estado da entidade seja alterado automaticamente para `Modified`. Em seguida, quando você chama `SaveChanges`, o Entity Framework gera uma instrução SQL UPDATE que atualiza apenas as propriedades reais que você alterou.
 
@@ -295,7 +295,7 @@ Para obter mais informações, consulte [acompanhamento versus sem rastreamento]
 
 [Baixe ou exiba o aplicativo concluído.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
+## <a name="next-steps"></a>Próximas etapas
 
 Neste tutorial, você:
 
