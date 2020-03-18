@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
 uid: test/troubleshoot
-ms.openlocfilehash: 042e1c84a7226cb4bf56bcc0ff4e576b67e68e1b
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 345967f08cf99ef5f18d0c9bcd59ab29c74454f1
+ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78655298"
+ms.lasthandoff: 03/18/2020
+ms.locfileid: "79511503"
 ---
 # <a name="troubleshoot-and-debug-aspnet-core-projects"></a>Solucionar problemas e depurar projetos ASP.NET Core
 
@@ -32,7 +32,7 @@ Na caixa de diálogo **novo projeto** para ASP.NET Core, você poderá ver o seg
 
 > As versões de 32 bits e 64 bits do SDK do .NET Core estão instaladas. Somente os modelos das versões de 64 bits instaladas em ' C:\\arquivos de programas\\dotnet\\SDK\\' são exibidos.
 
-Esse aviso aparece quando as versões de 32 bits (x86) e 64 de bits (x64) do [SDK do .NET Core](https://www.microsoft.com/net/download/all) são instaladas. Os motivos comuns pelos quais ambas as versões podem ser instaladas incluem:
+Esse aviso aparece quando as versões de 32 bits (x86) e 64 de bits (x64) do [SDK do .NET Core](https://dotnet.microsoft.com/download/dotnet-core) são instaladas. Os motivos comuns pelos quais ambas as versões podem ser instaladas incluem:
 
 * Você baixou originalmente o instalador do SDK do .NET Core usando um computador de 32 bits, mas o copiou e o instalou em um computador de 64 bits.
 * O SDK do .NET Core de 32 bits foi instalado por outro aplicativo.

@@ -6,12 +6,12 @@ ms.author: casoper
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 uid: azure/devops/tools-and-downloads
-ms.openlocfilehash: 25ce311373b0aaddfa3bc2728c39e503acbca69d
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 9c1042dd48b9167209b46e97a09e011b80e2609c
+ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78659484"
+ms.lasthandoff: 03/18/2020
+ms.locfileid: "79511139"
 ---
 # <a name="tools-and-downloads"></a>Ferramentas e downloads
 
@@ -28,7 +28,7 @@ As assinaturas a seguir são necessárias:
 As ferramentas a seguir são necessárias:
 
 * O [git](https://git-scm.com/downloads) &mdash; um entendimento fundamental do git é recomendado para este guia. Examine a [documentação do git](https://git-scm.com/doc), especificamente [git remoto](https://git-scm.com/docs/git-remote) e [git Push](https://git-scm.com/docs/git-push).
-* [SDK do .NET Core](https://www.microsoft.com/net/download/) &mdash; versão 2.1.300 ou posterior é necessária para compilar e executar o aplicativo de exemplo. Se o Visual Studio estiver instalado com a carga de trabalho de **desenvolvimento de plataforma cruzada do .NET Core** , o SDK do .NET Core já estará instalado.
+* [SDK do .NET Core](https://dotnet.microsoft.com/download/) &mdash; versão 2.1.300 ou posterior é necessária para compilar e executar o aplicativo de exemplo. Se o Visual Studio estiver instalado com a carga de trabalho de **desenvolvimento de plataforma cruzada do .NET Core** , o SDK do .NET Core já estará instalado.
 
     Verifique se a instalação do SDK do .NET Core. Abra um shell de comando e execute o seguinte comando:
 
@@ -42,6 +42,6 @@ As ferramentas a seguir são necessárias:
 
   Confirme se o Visual Studio tem as seguintes [cargas de trabalho](/visualstudio/install/modify-visual-studio) instaladas:
 
-  * Desenvolvimento Web e ASP.NET
+  * Desenvolvimento do ASP.NET e para a Web
   * Desenvolvimento do Azure
-  * Desenvolvimento multiplataforma com o .NET Core
+  * Desenvolvimento de plataforma cruzada do .NET Core

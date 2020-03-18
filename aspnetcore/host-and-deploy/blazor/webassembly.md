@@ -5,17 +5,17 @@ description: Saiba como hospedar e implantar um aplicativo Blazor usando ASP.NET
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/11/2020
+ms.date: 03/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: host-and-deploy/blazor/webassembly
-ms.openlocfilehash: 748ac9969134f4c89cc8c1235958dcc7ac1d1080
-ms.sourcegitcommit: 5bdc54162d7dea8d9fa54ac3055678db23586af1
+ms.openlocfilehash: ea2c625f424447209a362cdc58bdb18be061e47f
+ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/17/2020
-ms.locfileid: "79434272"
+ms.lasthandoff: 03/18/2020
+ms.locfileid: "79511347"
 ---
 # <a name="host-and-deploy-aspnet-core-opno-locblazor-webassembly"></a>Hospedar e implantar ASP.NET Core Blazor Webassembly
 
@@ -91,8 +91,8 @@ Quando um projeto de Blazor é publicado, um arquivo *Web. config* é criado com
   * `application/octet-stream`
   * `application/wasm`
 * As regras do Módulo de Reescrita de URL são estabelecidas:
-  * Atender ao subdiretório em que residem os ativos estáticos do aplicativo ( *{ASSEMBLY NAME}/dist/{PATH REQUESTED}* ).
-  * Criar o roteamento de fallback do SPA, de modo que as solicitações de ativos, que não sejam arquivos, sejam redirecionadas ao documento padrão do aplicativo na pasta de ativos estáticos dele ( *{ASSEMBLY NAME}/dist/index.html*).
+  * Serve o subdiretório onde residem os ativos estáticos do aplicativo (*wwwroot/{caminho solicitado}* ).
+  * Crie o roteamento de fallback de SPA para que as solicitações de ativos que não sejam de arquivo sejam redirecionadas para o documento padrão do aplicativo em sua pasta de ativos estáticos (*wwwroot/index.html*).
 
 #### <a name="install-the-url-rewrite-module"></a>Instalação do Módulo de Regeneração de URL
 

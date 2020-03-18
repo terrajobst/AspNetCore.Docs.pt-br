@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: c2ca867e3eebdc3fcf512cc5d457ff3c1967f9b1
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: e4da57001ad369a8df87c7e0887772e3d75c032d
+ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78657979"
+ms.lasthandoff: 03/18/2020
+ms.locfileid: "79511217"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hospedar o ASP.NET Core no Windows com o IIS
 
@@ -22,7 +22,7 @@ Para uma experiência de tutorial sobre como publicar um aplicativo de ASP.NET C
 
 [Instalar o pacote de hospedagem do .NET Core](#install-the-net-core-hosting-bundle)
 
-## <a name="supported-operating-systems"></a>Sistemas operacionais compatíveis
+## <a name="supported-operating-systems"></a>Sistemas operacionais com suporte
 
 Há suporte para os seguintes sistemas operacionais:
 
@@ -35,7 +35,7 @@ Para obter mais informações sobre hospedagem no Azure, consulte <xref:host-and
 
 Para obter as diretrizes de solução de problemas, consulte <xref:test/troubleshoot>.
 
-## <a name="supported-platforms"></a>Plataformas compatíveis
+## <a name="supported-platforms"></a>Plataformas com suporte
 
 Aplicativos publicados para implantação de 32 bits (x86) ou 64 bits (x64) têm suporte. Implantar um aplicativo de 32 bits com um SDK do .NET Core de 32 bits (x86), a menos que o aplicativo:
 
@@ -93,7 +93,7 @@ Para orientação sobre a configuração do Módulo do ASP.NET Core, consulte <x
 
 Para saber mais sobre hospedagem, confira [Host no ASP.NET Core](xref:fundamentals/index#host).
 
-## <a name="application-configuration"></a>Configuração de aplicativo
+## <a name="application-configuration"></a>Configuração do aplicativo
 
 ### <a name="enable-the-iisintegration-components"></a>Habilitar os componentes de IISIntegration
 
@@ -243,14 +243,14 @@ Instale o *pacote de hospedagem do .NET Core* no sistema de hospedagem. O pacote
 
 Baixe o instalador usando o seguinte link:
 
-[Instalador de pacote de hospedagem do .NET Core atual (download direto)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+[Instalador de pacote de hospedagem do .NET Core atual (download direto)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 ### <a name="earlier-versions-of-the-installer"></a>Versões anteriores do instalador
 
 Para obter uma versão anterior do instalador:
 
-1. Navegue até os [arquivos de downloads do .NET](https://www.microsoft.com/net/download/archives).
-1. Em **.NET Core**, selecione a versão do .NET Core.
+1. Navegue até a página [baixar o .NET Core](https://dotnet.microsoft.com/download/dotnet-core) .
+1. Clique na versão do .NET Core desejada.
 1. Na coluna **Executar aplicativos – runtime**, localize a linha da versão de runtime do .NET Core desejada.
 1. Baixe o instalador usando o link **Pacote de hospedagem e de runtime**.
 
@@ -342,7 +342,7 @@ Use qualquer um dos vários métodos para mover o aplicativo para o sistema host
 
 Para obter mais informações sobre a implantação do ASP.NET Core no IIS, consulte a seção [Recursos de implantação para administradores do IIS](#deployment-resources-for-iis-administrators).
 
-## <a name="browse-the-website"></a>Procurar no site
+## <a name="browse-the-website"></a>Navegar no site
 
 Depois de implantar o aplicativo no sistema de hospedagem, faça uma solicitação para um dos pontos de extremidade públicos do aplicativo.
 
@@ -445,7 +445,7 @@ Para obter mais informações sobre o modelo de hospedagem em processo e como co
 
 A configuração do IIS é influenciada pela seção `<system.webServer>` do *web.config* para cenários do IIS que são funcionais para aplicativos ASP.NET Core com o Módulo do ASP.NET Core. Por exemplo, a configuração do IIS é funcional para a compactação dinâmica. Se o IIS for configurado no nível do servidor para usar a compactação dinâmica, o elemento `<urlCompression>` no arquivo *web.config* do aplicativo pode desabilitá-la para um aplicativo do ASP.NET Core.
 
-Para obter mais informações, consulte estes tópicos:
+Para mais informações, consulte os seguintes tópicos:
 
 * [Referência de configuração para \<System. WebServer >](/iis/configuration/system.webServer/)
 * <xref:host-and-deploy/aspnet-core-module>
@@ -509,7 +509,7 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 
 Para saber mais, veja o tópico [icacls](/windows-server/administration/windows-commands/icacls).
 
-## <a name="http2-support"></a>Suporte do HTTP/2
+## <a name="http2-support"></a>Compatibilidade com HTTP/2
 
 O [HTTP/2](https://httpwg.org/specs/rfc7540.html) é compatível com ASP.NET Core nos seguintes cenários de implantação de IIS:
 
@@ -584,7 +584,7 @@ Use quaisquer das abordagens a seguir para habilitar o Módulo de Inicializaçã
   </configuration>
   ```
 
-### <a name="idle-timeout"></a>Tempo limite de ociosidade
+### <a name="idle-timeout"></a>Tempo Limite de Ociosidade
 
 *Só se aplica a aplicativos hospedados em processo.*
 
@@ -634,7 +634,7 @@ Para uma experiência de tutorial sobre como publicar um aplicativo de ASP.NET C
 
 [Instalar o pacote de hospedagem do .NET Core](#install-the-net-core-hosting-bundle)
 
-## <a name="supported-operating-systems"></a>Sistemas operacionais compatíveis
+## <a name="supported-operating-systems"></a>Sistemas operacionais com suporte
 
 Há suporte para os seguintes sistemas operacionais:
 
@@ -647,7 +647,7 @@ Para obter mais informações sobre hospedagem no Azure, consulte <xref:host-and
 
 Para obter as diretrizes de solução de problemas, consulte <xref:test/troubleshoot>.
 
-## <a name="supported-platforms"></a>Plataformas compatíveis
+## <a name="supported-platforms"></a>Plataformas com suporte
 
 Aplicativos publicados para implantação de 32 bits (x86) ou 64 bits (x64) têm suporte. Implantar um aplicativo de 32 bits com um SDK do .NET Core de 32 bits (x86), a menos que o aplicativo:
 
@@ -702,7 +702,7 @@ Para orientação sobre a configuração do Módulo do ASP.NET Core, consulte <x
 
 Para saber mais sobre hospedagem, confira [Host no ASP.NET Core](xref:fundamentals/index#host).
 
-## <a name="application-configuration"></a>Configuração de aplicativo
+## <a name="application-configuration"></a>Configuração do aplicativo
 
 ### <a name="enable-the-iisintegration-components"></a>Habilitar os componentes de IISIntegration
 
@@ -850,14 +850,14 @@ Instale o *pacote de hospedagem do .NET Core* no sistema de hospedagem. O pacote
 
 Baixe o instalador usando o seguinte link:
 
-[Instalador de pacote de hospedagem do .NET Core atual (download direto)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+[Instalador de pacote de hospedagem do .NET Core atual (download direto)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 ### <a name="earlier-versions-of-the-installer"></a>Versões anteriores do instalador
 
 Para obter uma versão anterior do instalador:
 
-1. Navegue até os [arquivos de downloads do .NET](https://www.microsoft.com/net/download/archives).
-1. Em **.NET Core**, selecione a versão do .NET Core.
+1. Navegue até a página [baixar o .NET Core](https://dotnet.microsoft.com/download/dotnet-core) .
+1. Clique na versão do .NET Core desejada.
 1. Na coluna **Executar aplicativos – runtime**, localize a linha da versão de runtime do .NET Core desejada.
 1. Baixe o instalador usando o link **Pacote de hospedagem e de runtime**.
 
@@ -946,7 +946,7 @@ Use qualquer um dos vários métodos para mover o aplicativo para o sistema host
 
 Para obter mais informações sobre a implantação do ASP.NET Core no IIS, consulte a seção [Recursos de implantação para administradores do IIS](#deployment-resources-for-iis-administrators).
 
-## <a name="browse-the-website"></a>Procurar no site
+## <a name="browse-the-website"></a>Navegar no site
 
 Depois de implantar o aplicativo no sistema de hospedagem, faça uma solicitação para um dos pontos de extremidade públicos do aplicativo.
 
@@ -1049,7 +1049,7 @@ Para obter mais informações sobre o modelo de hospedagem em processo e como co
 
 A configuração do IIS é influenciada pela seção `<system.webServer>` do *web.config* para cenários do IIS que são funcionais para aplicativos ASP.NET Core com o Módulo do ASP.NET Core. Por exemplo, a configuração do IIS é funcional para a compactação dinâmica. Se o IIS for configurado no nível do servidor para usar a compactação dinâmica, o elemento `<urlCompression>` no arquivo *web.config* do aplicativo pode desabilitá-la para um aplicativo do ASP.NET Core.
 
-Para obter mais informações, consulte estes tópicos:
+Para mais informações, consulte os seguintes tópicos:
 
 * [Referência de configuração para \<System. WebServer >](/iis/configuration/system.webServer/)
 * <xref:host-and-deploy/aspnet-core-module>
@@ -1113,7 +1113,7 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 
 Para saber mais, veja o tópico [icacls](/windows-server/administration/windows-commands/icacls).
 
-## <a name="http2-support"></a>Suporte do HTTP/2
+## <a name="http2-support"></a>Compatibilidade com HTTP/2
 
 O [HTTP/2](https://httpwg.org/specs/rfc7540.html) é compatível com ASP.NET Core nos seguintes cenários de implantação de IIS:
 
@@ -1188,7 +1188,7 @@ Use quaisquer das abordagens a seguir para habilitar o Módulo de Inicializaçã
   </configuration>
   ```
 
-### <a name="idle-timeout"></a>Tempo limite de ociosidade
+### <a name="idle-timeout"></a>Tempo Limite de Ociosidade
 
 *Só se aplica a aplicativos hospedados em processo.*
 
@@ -1238,7 +1238,7 @@ Para uma experiência de tutorial sobre como publicar um aplicativo de ASP.NET C
 
 [Instalar o pacote de hospedagem do .NET Core](#install-the-net-core-hosting-bundle)
 
-## <a name="supported-operating-systems"></a>Sistemas operacionais compatíveis
+## <a name="supported-operating-systems"></a>Sistemas operacionais com suporte
 
 Há suporte para os seguintes sistemas operacionais:
 
@@ -1251,7 +1251,7 @@ Para obter mais informações sobre hospedagem no Azure, consulte <xref:host-and
 
 Para obter as diretrizes de solução de problemas, consulte <xref:test/troubleshoot>.
 
-## <a name="supported-platforms"></a>Plataformas compatíveis
+## <a name="supported-platforms"></a>Plataformas com suporte
 
 Aplicativos publicados para implantação de 32 bits (x86) ou 64 bits (x64) têm suporte. Implantar um aplicativo de 32 bits com um SDK do .NET Core de 32 bits (x86), a menos que o aplicativo:
 
@@ -1291,7 +1291,7 @@ Para orientação sobre a configuração do Módulo do ASP.NET Core, consulte <x
 
 Para saber mais sobre hospedagem, confira [Host no ASP.NET Core](xref:fundamentals/index#host).
 
-## <a name="application-configuration"></a>Configuração de aplicativo
+## <a name="application-configuration"></a>Configuração do aplicativo
 
 ### <a name="enable-the-iisintegration-components"></a>Habilitar os componentes de IISIntegration
 
@@ -1426,14 +1426,14 @@ Instale o *pacote de hospedagem do .NET Core* no sistema de hospedagem. O pacote
 
 Baixe o instalador usando o seguinte link:
 
-[Instalador de pacote de hospedagem do .NET Core atual (download direto)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+[Instalador de pacote de hospedagem do .NET Core atual (download direto)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 ### <a name="earlier-versions-of-the-installer"></a>Versões anteriores do instalador
 
 Para obter uma versão anterior do instalador:
 
-1. Navegue até os [arquivos de downloads do .NET](https://www.microsoft.com/net/download/archives).
-1. Em **.NET Core**, selecione a versão do .NET Core.
+1. Navegue até a página [baixar o .NET Core](https://dotnet.microsoft.com/download/dotnet-core) .
+1. Clique na versão do .NET Core desejada.
 1. Na coluna **Executar aplicativos – runtime**, localize a linha da versão de runtime do .NET Core desejada.
 1. Baixe o instalador usando o link **Pacote de hospedagem e de runtime**.
 
@@ -1522,7 +1522,7 @@ Use qualquer um dos vários métodos para mover o aplicativo para o sistema host
 
 Para obter mais informações sobre a implantação do ASP.NET Core no IIS, consulte a seção [Recursos de implantação para administradores do IIS](#deployment-resources-for-iis-administrators).
 
-## <a name="browse-the-website"></a>Procurar no site
+## <a name="browse-the-website"></a>Navegar no site
 
 Depois de implantar o aplicativo no sistema de hospedagem, faça uma solicitação para um dos pontos de extremidade públicos do aplicativo.
 
@@ -1658,7 +1658,7 @@ Para obter mais informações sobre o modelo de hospedagem em processo e como co
 
 A configuração do IIS é influenciada pela seção `<system.webServer>` do *web.config* para cenários do IIS que são funcionais para aplicativos ASP.NET Core com o Módulo do ASP.NET Core. Por exemplo, a configuração do IIS é funcional para a compactação dinâmica. Se o IIS for configurado no nível do servidor para usar a compactação dinâmica, o elemento `<urlCompression>` no arquivo *web.config* do aplicativo pode desabilitá-la para um aplicativo do ASP.NET Core.
 
-Para obter mais informações, consulte estes tópicos:
+Para mais informações, consulte os seguintes tópicos:
 
 * [Referência de configuração para \<System. WebServer >](/iis/configuration/system.webServer/)
 * <xref:host-and-deploy/aspnet-core-module>
@@ -1717,7 +1717,7 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 
 Para saber mais, veja o tópico [icacls](/windows-server/administration/windows-commands/icacls).
 
-## <a name="http2-support"></a>Suporte do HTTP/2
+## <a name="http2-support"></a>Compatibilidade com HTTP/2
 
 O [HTTP/2](https://httpwg.org/specs/rfc7540.html) é compatível com implantações fora de processo que cumprem os seguintes requisitos básicos:
 

@@ -7,12 +7,12 @@ ms.author: scaddie
 ms.custom: mvc, seodec18
 ms.date: 08/17/2019
 uid: tutorials/first-mongo-app
-ms.openlocfilehash: 0e7881aa93953866c7a90eb62de64c4c000a866c
-ms.sourcegitcommit: 40dc9b00131985abcd99bd567647420d798e798a
+ms.openlocfilehash: d5ce4a1dc3c00b2b12edc12e26f482caa97df6b3
+ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/09/2020
-ms.locfileid: "78935448"
+ms.lasthandoff: 03/18/2020
+ms.locfileid: "79511412"
 ---
 # <a name="create-a-web-api-with-aspnet-core-and-mongodb"></a>Criar uma API Web com o ASP.NET Core e o MongoDB
 
@@ -33,24 +33,24 @@ Neste tutorial, você aprenderá como:
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mongo-app/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* [SDK do .NET Core 3.0 ou posterior](https://www.microsoft.com/net/download/all)
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com a carga de trabalho de **desenvolvimento Web e do ASP.NET**
+* [SDK do .NET Core 3.0 ou posterior](https://dotnet.microsoft.com/download/dotnet-core)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com carga de trabalho **ASP.NET e desenvolvimento Web**
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* [SDK do .NET Core 3.0 ou posterior](https://www.microsoft.com/net/download/all)
+* [SDK do .NET Core 3.0 ou posterior](https://dotnet.microsoft.com/download/dotnet-core)
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [C# para Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* [SDK do .NET Core 3.0 ou posterior](https://www.microsoft.com/net/download/all)
+* [SDK do .NET Core 3.0 ou posterior](https://dotnet.microsoft.com/download/dotnet-core)
 * [Visual Studio para Mac versão 7.7 ou posterior](https://visualstudio.microsoft.com/downloads/)
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
 
@@ -170,7 +170,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
    Um novo projeto de API Web do ASP.NET Core direcionado ao .NET Core é gerado e aberto no Visual Studio Code.
 
-1. Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' BooksApi '. Adicioná-los?** . Selecione **Sim** na barra superior.
+1. Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' BooksApi '. Adicioná-los?** . Selecione **Sim**.
 1. Visite a [Galeria do NuGet: MongoDB. Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .net para MongoDB. Abra **Terminal Integrado** e navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
 
    ```dotnetcli
@@ -383,24 +383,24 @@ Neste tutorial, você aprenderá como:
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mongo-app/samples) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* [SDK do .NET Core 2.2](https://www.microsoft.com/net/download/all)
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com a carga de trabalho de **desenvolvimento Web e do ASP.NET**
+* [SDK do .NET Core 2.2](https://dotnet.microsoft.com/download/dotnet-core)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) com carga de trabalho **ASP.NET e desenvolvimento Web**
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* [SDK do .NET Core 2.2](https://www.microsoft.com/net/download/all)
+* [SDK do .NET Core 2.2](https://dotnet.microsoft.com/download/dotnet-core)
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [C# para Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
 
-* [SDK do .NET Core 2.2](https://www.microsoft.com/net/download/all)
+* [SDK do .NET Core 2.2](https://dotnet.microsoft.com/download/dotnet-core)
 * [Visual Studio para Mac versão 7.7 ou posterior](https://visualstudio.microsoft.com/downloads/)
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
 
@@ -520,7 +520,7 @@ O banco de dados está pronto. Você pode começar a criar a API Web do ASP.NET 
 
    Um novo projeto de API Web do ASP.NET Core direcionado ao .NET Core é gerado e aberto no Visual Studio Code.
 
-1. Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' BooksApi '. Adicioná-los?** . Selecione **Sim** na barra superior.
+1. Depois que o ícone de chama de OmniSharp da barra de status fica verde, uma caixa de diálogo solicita **que os ativos necessários compilem e depurem estão faltando em ' BooksApi '. Adicioná-los?** . Selecione **Sim**.
 1. Visite a [Galeria do NuGet: MongoDB. Driver](https://www.nuget.org/packages/MongoDB.Driver/) para determinar a versão estável mais recente do driver .net para MongoDB. Abra **Terminal Integrado** e navegue até a raiz do projeto. Execute o seguinte comando para instalar o driver .NET para MongoDB:
 
    ```dotnetcli
@@ -720,7 +720,7 @@ Para cumprir os requisitos anteriores, faça as seguintes alterações:
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Para saber mais sobre a criação de APIs Web do ASP.NET Core, confira os seguintes recursos:
 

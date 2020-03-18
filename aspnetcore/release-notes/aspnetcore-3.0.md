@@ -9,12 +9,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: 35accdd2f65ac5430525be88cc621094e37d3e40
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1a4efcd4e9e3296e9c208f1419bc86734951b0c1
+ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78667247"
+ms.lasthandoff: 03/18/2020
+ms.locfileid: "79511516"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>O que há de novo no ASP.NET Core 3,0
 
@@ -473,7 +473,7 @@ Os pontos de extremidade de verificações de integridade podem:
 * Exigir autorização.
 * Exigir CORS.
 
-Para obter mais informações, consulte os seguintes artigos:
+Para obter mais informações, confira os seguintes artigos:
 
 * <xref:migration/22-to-30#health-checks>
 * <xref:host-and-deploy/health-checks>
@@ -517,7 +517,7 @@ O ASP.NET Core 3,0 inclui muitas melhorias que reduzem o uso de memória e melho
 
 ## <a name="aspnet-core-30-only-runs-on-net-core-30"></a>O ASP.NET Core 3,0 só é executado no .NET Core 3,0
 
-A partir de ASP.NET Core 3,0, .NET Framework não é mais uma estrutura de destino com suporte. Os projetos destinados a .NET Framework podem continuar de uma maneira totalmente compatível usando a [versão LTS do .NET Core 2,1](https://www.microsoft.com/net/download/dotnet-core/2.1). A maioria dos pacotes relacionados ao ASP.NET Core 2.1. x terá suporte indefinidamente, além do período de LTS de três anos para o .NET Core 2,1.
+A partir de ASP.NET Core 3,0, .NET Framework não é mais uma estrutura de destino com suporte. Os projetos destinados a .NET Framework podem continuar de uma maneira totalmente compatível usando a [versão LTS do .NET Core 2,1](https://dotnet.microsoft.com/download/dotnet-core/2.1). A maioria dos pacotes relacionados ao ASP.NET Core 2.1. x terá suporte indefinidamente, além do período de LTS de três anos para o .NET Core 2,1.
 
 Para obter informações de migração, consulte [portar seu código do .NET Framework para o .NET Core](/dotnet/core/porting/).
 
@@ -542,3 +542,4 @@ Para obter uma lista completa de assemblies removidos da estrutura compartilhada
 ## Additional information
 For the complete list of changes, see the [ASP.NET Core 3.0 Release Notes](WHERE IS THIS????).
 -->
+ 

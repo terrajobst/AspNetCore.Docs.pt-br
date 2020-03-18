@@ -5,17 +5,17 @@ description: Saiba como criar e usar componentes do Razor, incluindo como associ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/25/2020
+ms.date: 03/16/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/components
-ms.openlocfilehash: e444ebfef5143a6c33ed2d122933903ad3a4f4a7
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 7afc9250cdfb4b791ef939ead0f41b503d83fad8
+ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78660695"
+ms.lasthandoff: 03/18/2020
+ms.locfileid: "79511269"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Criar e usar ASP.NET Core componentes do Razor
 
@@ -87,8 +87,6 @@ Os [auxiliares de marca](xref:mvc/views/tag-helpers/intro) não têm suporte em 
 ## <a name="use-components"></a>Usar componentes
 
 Os componentes podem incluir outros componentes, declarando-os usando a sintaxe do elemento HTML. A marcação para uso de um componente é semelhante a uma marca HTML, em que o nome da marca é o tipo de componente.
-
-A associação de atributo diferencia maiúsculas de minúsculas. Por exemplo, `@bind` é válido e `@Bind` é inválido.
 
 A marcação a seguir no *index. Razor* renderiza uma instância de `HeadingComponent`:
 
@@ -389,7 +387,7 @@ Considere o exemplo a seguir:
 ```csharp
 @foreach (var person in People)
 {
-    <DetailsEditor Details="person.Details" />
+    <DetailsEditor Details="@person.Details" />
 }
 
 @code {
@@ -405,7 +403,7 @@ O processo de mapeamento pode ser controlado com o atributo de diretiva `@key`. 
 ```csharp
 @foreach (var person in People)
 {
-    <DetailsEditor @key="person" Details="person.Details" />
+    <DetailsEditor @key="person" Details="@person.Details" />
 }
 
 @code {

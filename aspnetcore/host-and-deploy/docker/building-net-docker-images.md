@@ -6,12 +6,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/15/2020
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: 5bed5e9a4a6109a45badcef7c0d4e03eb2312bf0
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: b55235ffc44f0bacf44bd1644e45210b37f19607
+ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78664069"
+ms.lasthandoff: 03/18/2020
+ms.locfileid: "79511321"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Imagens do Docker para o ASP.NET Core
 
@@ -22,7 +22,7 @@ Neste tutorial, você:
 > * Saiba mais sobre as imagens do Docker no Microsoft .NET Core
 > * Baixar um aplicativo de exemplo do ASP.NET Core
 > * Executar o aplicativo de exemplo localmente
-> * Executou o aplicativo de exemplo em contêineres do Linux
+> * Executar o aplicativo de exemplo em contêineres do Linux
 > * Executar o aplicativo de exemplo em contêineres do Windows
 > * Criar e implantar manualmente
 
@@ -43,7 +43,7 @@ O exemplo de Dockerfile usa o [recurso de build de vários estágios do Docker](
 ## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 ::: moniker range="< aspnetcore-3.0"
 
-* [SDK do .NET Core 2.2](https://www.microsoft.com/net/core)
+* [SDK do .NET Core 2.2](https://dotnet.microsoft.com/download/dotnet-core)
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"

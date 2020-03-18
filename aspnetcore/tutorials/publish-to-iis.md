@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/03/2019
 uid: tutorials/publish-to-iis
-ms.openlocfilehash: f3860ba6ca7b99e63000ba0066749751f80cdc23
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 47f78ba78741a8e0175ce801c0c0e51f091273a8
+ms.sourcegitcommit: d64ef143c64ee4fdade8f9ea0b753b16752c5998
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78657832"
+ms.lasthandoff: 03/18/2020
+ms.locfileid: "79511386"
 ---
 # <a name="publish-an-aspnet-core-app-to-iis"></a>Publicar um aplicativo ASP.NET Core no IIS
 
@@ -45,7 +45,7 @@ Instalar o *Pacote de Hospedagem do .NET Core* no servidor IIS. O pacote instala
 
 Baixe o instalador usando o seguinte link:
 
-[Instalador de pacote de hospedagem do .NET Core atual (download direto)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+[Instalador de pacote de hospedagem do .NET Core atual (download direto)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 1. Execute o instalador no servidor IIS.
 
@@ -97,13 +97,13 @@ Siga o tutorial <xref:getting-started> para criar um aplicativo Razor Pages.
 
 ---
 
-## <a name="browse-the-website"></a>Procurar no site
+## <a name="browse-the-website"></a>Navegar no site
 
 O aplicativo pode ser acessado em um navegador depois de receber a primeira solicitação. Faça uma solicitação para o aplicativo na associação de ponto de extremidade que você estabeleceu no Gerenciador do IIS para o site.
 
 ## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
-Neste tutorial, você aprendeu a:
+Neste tutorial, você aprendeu como:
 
 > [!div class="checklist"]
 > * Instalar o Pacote de Hospedagem do .NET Core no Windows Server.
