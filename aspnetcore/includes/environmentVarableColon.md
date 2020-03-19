@@ -1,1 +1,4 @@
-Ao trabalhar com chaves hierárquicas em variáveis ​​de ambiente, um separador de dois-pontos (`:`) pode não funcionar em todas as plataformas (por exemplo, Bash). Um sublinhado duplo (`__`) é compatível com todas as plataformas e é substituído automaticamente por dois-pontos.
+O separador de `:` não funciona com chaves hierárquicas de variável de ambiente em todas as plataformas. `__`, o sublinhado duplo, é:
+
+* Compatível com todas as plataformas. Por exemplo, o separador de `:` não é suportado pelo [bash](https://linuxhint.com/bash-environment-variables/), mas `__` é.
+* Substituído automaticamente por um `:`

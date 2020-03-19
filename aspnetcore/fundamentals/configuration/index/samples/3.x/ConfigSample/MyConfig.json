@@ -1,0 +1,15 @@
+{
+    "Position": {
+        "Title": "Meu título de configuração",
+        "Name": "My Config Smith"
+    },
+    "MyKey": "MyConfig.json Value",
+    "Logging": {
+        "LogLevel": {
+            "Default": "Information",
+            "Microsoft": "Warning",
+            "Microsoft.Hosting.Lifetime": "Information"
+        }
+    },
+    "AllowedHosts": "*"
+}
