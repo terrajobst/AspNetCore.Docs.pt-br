@@ -5,17 +5,17 @@ description: ''
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/09/2020
+ms.date: 03/19/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/additional-scenarios
-ms.openlocfilehash: fe87ce76d8e181de788188b021616f2a09833585
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.openlocfilehash: ccb512392341e3eea33f4ab45740b7900f7b63f9
+ms.sourcegitcommit: 9b6e7f421c243963d5e419bdcfc5c4bde71499aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79083884"
+ms.lasthandoff: 03/21/2020
+ms.locfileid: "79989472"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>Cenários de segurança adicionais do Webassembly ASP.NET Core mais incrivelmente
 
@@ -27,7 +27,7 @@ Por [Javier Calvarro Nelson](https://github.com/javiercn)
 
 ## <a name="handle-token-request-errors"></a>Manipular erros de solicitação de token
 
-Quando um SPA (aplicativo de página única) autentica um usuário usando o OIDC (Open ID Connect), o estado de autenticação é mantido localmente no SPA e no provedor de identidade (IP) na forma de um cookie de sessão definido como resultado do usuário que fornece suas credenciais.
+Quando um aplicativo de página única (SPA) autentica um usuário usando o OIDC (Open ID Connect), o estado de autenticação é mantido localmente no SPA e no provedor de identidade (IP) na forma de um cookie de sessão que é definido como resultado do usuário que fornece seu fornecidas.
 
 Os tokens emitidos pelo IP para o usuário normalmente são válidos por curto período de tempo, cerca de uma hora normalmente, de modo que o aplicativo cliente deve buscar regularmente novos tokens. Caso contrário, o usuário será desconectado após os tokens concedidos expirarem. Na maioria dos casos, os clientes do OIDC são capazes de provisionar novos tokens sem exigir que o usuário se autentique novamente graças ao estado de autenticação ou "sessão" que é mantido dentro do IP.
 
@@ -260,14 +260,14 @@ componente `Authentication` (*páginas/autenticação. Razor*):
 
 O `RemoteAuthenticatorView` tem um fragmento que pode ser usado por rota de autenticação mostrada na tabela a seguir.
 
-| Rota                            | Fragmento             |
-| -------------------------------- | -------------------- |
-| `authentication/login`           | `<LoggingIn>`        |
-| `authentication/login-callback`  | `<CompletingLogIn>`  |
-| `authentication/login-failed`    | `<LogInFailed>`      |
-| `authentication/logout`          | `<LoggingOut>`       |
-| `authentication/logout-callback` | `<CompletingLogOut>` |
-| `authentication/logout-failed`   | `<LogOutFailed>`     |
-| `authentication/logged-out`      | `<LogOutSucceeded>`  |
-| `authentication/profile`         | `<UserProfile>`      |
-| `authentication/register`        | `<Registering>`      |
+| Rota                            | Fragmento                |
+| -------------------------------- | ----------------------- |
+| `authentication/login`           | `<LoggingIn>`           |
+| `authentication/login-callback`  | `<CompletingLoggingIn>` |
+| `authentication/login-failed`    | `<LogInFailed>`         |
+| `authentication/logout`          | `<LogOut>`              |
+| `authentication/logout-callback` | `<CompletingLogOut>`    |
+| `authentication/logout-failed`   | `<LogOutFailed>`        |
+| `authentication/logged-out`      | `<LogOutSucceeded>`     |
+| `authentication/profile`         | `<UserProfile>`         |
+| `authentication/register`        | `<Registering>`         |

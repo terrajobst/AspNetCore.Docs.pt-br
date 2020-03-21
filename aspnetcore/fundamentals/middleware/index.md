@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2020
 uid: fundamentals/middleware/index
-ms.openlocfilehash: afa71b2c2b75be2c000fadd9545ac3fb4587825a
-ms.sourcegitcommit: 51c86c003ab5436598dbc42f26ea4a83a795fd6e
+ms.openlocfilehash: 9dcd061d2807fb90884327916d0348af4593df9d
+ms.sourcegitcommit: 9b6e7f421c243963d5e419bdcfc5c4bde71499aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/10/2020
-ms.locfileid: "78964461"
+ms.lasthandoff: 03/21/2020
+ms.locfileid: "79989712"
 ---
 # <a name="aspnet-core-middleware"></a>Middleware do ASP.NET Core
 
@@ -163,12 +163,12 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-Para aplicativos de página única, o middleware SPA <xref:Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.UseSpaStaticFiles*> geralmente vem por último no pipeline de middleware. O middleware SPA vem por último:
+Para aplicativos de página única (SPAs), o middleware SPA <xref:Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.UseSpaStaticFiles*> geralmente vem por último no pipeline de middleware. O middleware SPA vem por último:
 
 * Para permitir que todos os outros middleware respondam primeiro a solicitações correspondentes.
 * Para permitir que o SPAs com roteamento do lado do cliente seja executado para todas as rotas que não são reconhecidas pelo aplicativo do servidor.
 
-Para obter mais detalhes sobre aplicativos de página única, consulte os guias para os modelos de projeto [reagir](xref:spa/react) e [angular](xref:spa/angular) .
+Para obter mais detalhes sobre o SPAs, consulte os guias para os modelos de projeto [reagir](xref:spa/react) e [angular](xref:spa/angular) .
 
 ## <a name="branch-the-middleware-pipeline"></a>Ramificar o pipeline de middleware
 
@@ -225,7 +225,7 @@ No exemplo anterior, uma resposta de "Olá do pipeline principal". é gravado pa
 
 O ASP.NET Core é fornecido com os seguintes componentes de middleware. A coluna *Ordem* fornece observações sobre o posicionamento do middleware no pipeline de processamento da solicitação e sob quais condições o middleware podem encerrar o processamento da solicitação. Quando um middleware causa um curto-circuito na solicitação ao processar o pipeline e impede outros middleware downstream de processar uma solicitação, ele é chamado de *middleware terminal*. Para saber mais sobre curto-circuito, confira a seção [Criar um pipeline de middleware com o IApplicationBuilder](#create-a-middleware-pipeline-with-iapplicationbuilder).
 
-| Middleware | DESCRIÇÃO | Order |
+| Middleware | Descrição | Pedido |
 | ---------- | ----------- | ----- |
 | [Autenticação](xref:security/authentication/identity) | Fornece suporte à autenticação. | Antes de `HttpContext.User` ser necessário. Terminal para retornos de chamada OAuth. |
 | [Autorização](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*) | Fornece suporte à autorização. | Imediatamente após o middleware de autenticação. |
@@ -431,7 +431,7 @@ app.Map("/level1", level1App => {
 
 O ASP.NET Core é fornecido com os seguintes componentes de middleware. A coluna *Ordem* fornece observações sobre o posicionamento do middleware no pipeline de processamento da solicitação e sob quais condições o middleware podem encerrar o processamento da solicitação. Quando um middleware causa um curto-circuito na solicitação ao processar o pipeline e impede outros middleware downstream de processar uma solicitação, ele é chamado de *middleware terminal*. Para saber mais sobre curto-circuito, confira a seção [Criar um pipeline de middleware com o IApplicationBuilder](#create-a-middleware-pipeline-with-iapplicationbuilder).
 
-| Middleware | DESCRIÇÃO | Order |
+| Middleware | Descrição | Pedido |
 | ---------- | ----------- | ----- |
 | [Autenticação](xref:security/authentication/identity) | Fornece suporte à autenticação. | Antes de `HttpContext.User` ser necessário. Terminal para retornos de chamada OAuth. |
 | [Política de cookies](xref:security/gdpr) | Acompanha o consentimento dos usuários para o armazenamento de informações pessoais e impõe padrões mínimos para campos de cookie, tais como `secure` e `SameSite`. | Antes do middleware que emite cookies. Exemplos: Autenticação, Sessão e MVC (TempData). |

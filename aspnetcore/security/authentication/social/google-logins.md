@@ -4,14 +4,14 @@ author: rick-anderson
 description: Este tutorial demonstra a integração da autenticação de usuário de conta do Google em um aplicativo ASP.NET Core existente.
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 10/30/2019
+ms.date: 03/19/2020
 uid: security/authentication/google-logins
-ms.openlocfilehash: 83f45143eca1be43410880bfd875a3fce1d2e9c9
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: a114d23c25201c9fe31ad0397efaf99fe98a312a
+ms.sourcegitcommit: 9b6e7f421c243963d5e419bdcfc5c4bde71499aa
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78667506"
+ms.lasthandoff: 03/21/2020
+ms.locfileid: "79989764"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>Configuração de logon externo do Google no ASP.NET Core
 
@@ -28,14 +28,17 @@ Este tutorial mostra como permitir que os usuários entrem com sua conta do Goog
 * Salve a **ID do cliente** e o **segredo do cliente**.
 * Ao implantar o site, registre a nova URL pública do console do **Google**.
 
-## <a name="store-google-clientid-and-clientsecret"></a>Store Google ClientID e ClientSecret
+## <a name="store-the-google-client-id-and-secret"></a>Armazenar a ID e o segredo do cliente do Google
 
-Armazene configurações confidenciais, como o Google `Client ID` e `Client Secret` com o [Gerenciador de segredo](xref:security/app-secrets). Para os fins deste tutorial, nomeie os tokens `Authentication:Google:ClientId` e `Authentication:Google:ClientSecret`:
+Armazene configurações confidenciais, como os valores de ID do cliente do Google e segredo com o [Gerenciador de segredo](xref:security/app-secrets). Para este exemplo, use as seguintes etapas:
 
-```dotnetcli
-dotnet user-secrets set "Authentication:Google:ClientId" "<client id>"
-dotnet user-secrets set "Authentication:Google:ClientSecret" "<client secret>"
-```
+1. Inicialize o projeto para o armazenamento secreto de acordo com as instruções em [habilitar armazenamento secreto](xref:security/app-secrets#enable-secret-storage).
+1. Armazene as configurações confidenciais no repositório de segredo local com as chaves secretas `Authentication:Google:ClientId` e `Authentication:Google:ClientSecret`:
+
+    ```dotnetcli
+    dotnet user-secrets set "Authentication:Google:ClientId" "<client-id>"
+    dotnet user-secrets set "Authentication:Google:ClientSecret" "<client-secret>"
+    ```
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
