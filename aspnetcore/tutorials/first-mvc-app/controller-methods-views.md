@@ -5,12 +5,12 @@ description: Aprenda a trabalhar com os métodos, as exibições e as DataAnnota
 ms.author: riande
 ms.date: 12/13/2018
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: 2c442060872ab1d2d79a2e355ae257fdf1005914
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 87b3cb2f4429157123d30274d1f12cd589c1cc99
+ms.sourcegitcommit: 99e71ae03319ab386baf2ebde956fc2d511df8b8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78663502"
+ms.lasthandoff: 03/25/2020
+ms.locfileid: "80242504"
 ---
 # <a name="controller-methods-and-views-in-aspnet-core"></a>Os métodos e as exibições do controlador no ASP.NET Core
 
@@ -53,6 +53,8 @@ Lembre-se do formato do [roteamento](xref:mvc/controllers/routing) definido no a
 O ASP.NET Core converte `https://localhost:5001/Movies/Edit/4` de uma solicitação no método de ação `Edit` do controlador `Movies` com o parâmetro `Id` igual a 4. (Os métodos do controlador também são conhecidos como métodos de ação.)
 
 Os [Auxiliares de Marcação](xref:mvc/views/tag-helpers/intro) são um dos novos recursos mais populares do ASP.NET Core. Para obter mais informações, consulte [Recursos adicionais](#additional-resources).
+
+<a name="get-post"></a>
 
 Abra o controlador `Movies` e examine os dois métodos de ação `Edit`. O código a seguir mostra o método `HTTP GET Edit`, que busca o filme e popula o formato de edição gerado pelo arquivo *Edit.cshtml* do Razor.
 

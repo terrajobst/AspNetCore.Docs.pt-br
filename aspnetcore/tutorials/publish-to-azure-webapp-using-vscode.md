@@ -1,17 +1,17 @@
 ---
 title: Publicar um aplicativo ASP.NET Core no Azure com o Visual Studio Code
-author: ricardoserradas
+author: rick-anderson
 description: Saiba como publicar um aplicativo ASP.NET Core no Serviço de Aplicativo do Azure usando o Visual Studio Code
 ms.author: riserrad
 ms.custom: mvc
 ms.date: 07/10/2019
 uid: tutorials/publish-to-azure-webapp-using-vscode
-ms.openlocfilehash: eaf9cca61b21d04d127ff15a579f3d8da794f7d9
-ms.sourcegitcommit: 40dc9b00131985abcd99bd567647420d798e798a
+ms.openlocfilehash: 5f117cb2867a6e7b54269ef39abe819256b429ec
+ms.sourcegitcommit: 99e71ae03319ab386baf2ebde956fc2d511df8b8
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/09/2020
-ms.locfileid: "78935421"
+ms.lasthandoff: 03/25/2020
+ms.locfileid: "80242672"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio-code"></a>Publicar um aplicativo ASP.NET Core no Azure com o Visual Studio Code
 
@@ -25,11 +25,11 @@ Para solucionar um problema de implantação do Serviço de Aplicativo, confira 
 
 Com este tutorial, você aprenderá a criar um aplicativo ASP.NET Core MVC e implantá-lo no Visual Studio Code.
 
-## <a name="set-up"></a>Configuração
+## <a name="set-up"></a>Configurar
 
 - Abra uma [conta do Azure gratuita](https://azure.microsoft.com/free/dotnet/) se você não tiver uma.
 - Instale o [SDK do .NET Core](https://dotnet.microsoft.com/download)
-- Instalar o [Visual Studio Code](https://code.visualstudio.com/Download)
+- Instale o [Visual Studio Code](https://code.visualstudio.com/Download)
   - Instale a [Extensão do C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) para o Visual Studio Code
   - Instale a [extensão de serviço Azure app](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) para Visual Studio Code e configure-a antes de continuar
 
@@ -148,4 +148,4 @@ A extensão implantará o conteúdo atualizado no aplicativo Web. Após a conclu
 ## <a name="additional-resources"></a>Recursos adicionais
 
 - [Serviço de Aplicativo do Azure](/azure/app-service/app-service-web-overview)
-- [Grupos de recursos do Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)
+- [Grupo de recursos do Azure](/azure/azure-resource-manager/resource-group-overview#resource-groups)

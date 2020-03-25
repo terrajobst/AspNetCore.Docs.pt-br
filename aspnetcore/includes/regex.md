@@ -1,0 +1,2 @@
+> [!WARNING]
+> Ao usar <xref:System.Text.RegularExpressions> para processar a entrada não confiável, passe um tempo limite. Um usuário mal-intencionado pode fornecer entrada para `RegularExpressions` causando um [ataque de negação de serviço](https://www.us-cert.gov/ncas/tips/ST04-015). ASP.NET Core APIs do Framework que usam `RegularExpressions` passar um tempo limite.
