@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/15/2020
 uid: fundamentals/index
-ms.openlocfilehash: a16a2fbb4ad2a79f96b6646ffdc359619d361a25
-ms.sourcegitcommit: 5bdc54162d7dea8d9fa54ac3055678db23586af1
+ms.openlocfilehash: 7533242140c31a937f32cc9082d760103347ce25
+ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/17/2020
-ms.locfileid: "79434311"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80219175"
 ---
 # <a name="aspnet-core-fundamentals"></a>Conceitos básicos do ASP.NET Core
 
@@ -69,7 +69,7 @@ Um aplicativo ASP.NET Core cria um *host* na inicialização. O host é um objet
 
 * Uma implementação do servidor HTTP
 * Componentes de middleware
-* Registrando em log
+* Registro em log
 * DI
 * Configuração
 
@@ -102,7 +102,7 @@ Um aplicativo ASP.NET Core usa uma implementação do servidor HTTP para ouvir s
 O ASP.NET Core vem com as seguintes implementações de servidor:
 
 * *Kestrel* é um servidor Web multiplataforma. O Kestrel normalmente é executado em uma configuração de proxy reverso que usa o [IIS](https://www.iis.net/). No ASP.NET Core 2.0 ou posterior, o Kestrel também pode ser executado como um servidor de borda voltado para o público exposto diretamente à Internet.
-* O *Servidor HTTP de IIS* é um servidor do Windows que usa o IIS. Com esse servidor, o aplicativo ASP.NET Core e o IIS são executados no mesmo processo.
+* O *servidor http do IIS* é um servidor para Windows que usa o IIS. Com esse servidor, o aplicativo ASP.NET Core e o IIS são executados no mesmo processo.
 * *HTTP.sys* é um servidor para Windows que não é usado com IIS.
 
 # <a name="macos"></a>[macOS](#tab/macos)
@@ -154,16 +154,16 @@ O seguinte código de exemplo da classe `Startup` configura o aplicativo para fo
 
 Para obter mais informações, consulte <xref:fundamentals/environments>.
 
-## <a name="logging"></a>Registrando em log
+## <a name="logging"></a>Registro em log
 
-O ASP.NET Core oferece suporte a uma API de registro em log que funciona com uma variedade de provedores de logs internos e terceirizados. Provedores disponíveis incluem os seguintes:
+O ASP.NET Core dá suporte a uma API de registro em log que funciona com uma série de provedores de registro em log internos e de terceiros. Provedores disponíveis incluem os seguintes:
 
 * Console
 * Depuração
 * Rastreamento de Eventos no Windows
 * Log de eventos do Windows
 * TraceSource
-* Serviço de Aplicativo do Azure
+* Serviço de aplicativo do Azure
 * Azure Application Insights
 
 Escreva logs de qualquer lugar no código do aplicativo obtendo um objeto `ILogger` da DI e chamando os métodos de log.
@@ -307,7 +307,7 @@ Um aplicativo ASP.NET Core cria um *host* na inicialização. O host é um objet
 
 * Uma implementação do servidor HTTP
 * Componentes de middleware
-* Registrando em log
+* Registro em log
 * DI
 * Configuração
 
@@ -421,16 +421,16 @@ O seguinte código de exemplo da classe `Startup` configura o aplicativo para fo
 
 Para obter mais informações, consulte <xref:fundamentals/environments>.
 
-## <a name="logging"></a>Registrando em log
+## <a name="logging"></a>Registro em log
 
-O ASP.NET Core oferece suporte a uma API de registro em log que funciona com uma variedade de provedores de logs internos e terceirizados. Provedores disponíveis incluem os seguintes:
+O ASP.NET Core dá suporte a uma API de registro em log que funciona com uma série de provedores de registro em log internos e de terceiros. Provedores disponíveis incluem os seguintes:
 
 * Console
 * Depuração
 * Rastreamento de Eventos no Windows
 * Log de eventos do Windows
 * TraceSource
-* Serviço de Aplicativo do Azure
+* Serviço de aplicativo do Azure
 * Azure Application Insights
 
 Escreva logs de qualquer lugar no código do aplicativo obtendo um objeto `ILogger` da DI e chamando os métodos de log.

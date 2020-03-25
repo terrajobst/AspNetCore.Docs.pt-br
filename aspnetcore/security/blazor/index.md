@@ -5,17 +5,17 @@ description: Saiba mais sobre os cenários de autenticação e autorização do 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/13/2020
+ms.date: 02/21/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/index
-ms.openlocfilehash: ba00c0370094df4e0ae0479aeb23eceea6ef04f0
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.openlocfilehash: f7ffb4c3d5a05cb916b4f00cdfaf5898634a1a6d
+ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79083342"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80219019"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>Autorização e autenticação no Blazor em ASP.NET Core
 
@@ -31,6 +31,8 @@ Os cenários de segurança diferem entre o servidor mais incrivelmente e os apli
 * As regras de acesso para áreas do aplicativo e componentes.
 
 Aplicativos Webassembly de mais de-vela são executados no cliente. A autorização é *somente* usada para determinar quais opções da interface do usuário serão apresentadas. Como as verificações do lado do cliente podem ser modificadas ou ignoradas por um usuário, um aplicativo Webassembly de mais alto que não pode impor regras de acesso de autorização.
+
+[Razor Pages as convenções de autorização](xref:security/authorization/razor-pages-authorization) não se aplicam a componentes do Razor roteáveis. Se um componente Razor não roteável for [inserido em uma página](xref:blazor/integrate-components#render-components-from-a-page-or-view), as convenções de autorização da página afetarão indiretamente o componente Razor junto com o restante do conteúdo da página.
 
 ## <a name="authentication"></a>Autenticação
 

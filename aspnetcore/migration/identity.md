@@ -3,14 +3,14 @@ title: Migrar autenticação e identidade para ASP.NET Core
 author: ardalis
 description: Saiba como migrar a autenticação e a identidade de um projeto MVC do ASP.NET para um projeto ASP.NET Core MVC.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 3/22/2020
 uid: migration/identity
-ms.openlocfilehash: f821930dbd36de18db31104cddf34c563009a506
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: c5727c974e455144d04e66fe14ea591e160cb963
+ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78661850"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80219188"
 ---
 # <a name="migrate-authentication-and-identity-to-aspnet-core"></a>Migrar autenticação e identidade para ASP.NET Core
 
@@ -22,9 +22,13 @@ No artigo anterior, [migramos a configuração de um projeto MVC ASP.net para AS
 
 No ASP.NET MVC, os recursos de autenticação e identidade são configurados usando ASP.NET Identity em *Startup.auth.cs* e *IdentityConfig.cs*, localizados na pasta *App_Start* . No ASP.NET Core MVC, esses recursos são configurados em *Startup.cs*.
 
-Instale o `Microsoft.AspNetCore.Identity.EntityFrameworkCore` e `Microsoft.AspNetCore.Authentication.Cookies` pacotes NuGet.
+Instale os seguintes pacotes NuGet:
 
-Em seguida, abra *Startup.cs* e atualize o método `Startup.ConfigureServices` para usar Entity Framework e serviços de identidade:
+* `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
+* `Microsoft.AspNetCore.Authentication.Cookies`
+* `Microsoft.EntityFrameworkCore.SqlServer`
+
+No *Startup.cs*, atualize o método `Startup.ConfigureServices` para usar os serviços de Entity Framework e identidade:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

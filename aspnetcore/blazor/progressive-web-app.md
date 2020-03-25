@@ -5,17 +5,17 @@ description: Saiba como criar um aplicativo Web progressivo baseado em Blazor(PW
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/12/2020
+ms.date: 03/23/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 53e1c4d043c0e8faf13668989cda1f1245c7157a
-ms.sourcegitcommit: 9b6e7f421c243963d5e419bdcfc5c4bde71499aa
+ms.openlocfilehash: fe69e51aefae9c80e5bb4b78151d384ce25d41a7
+ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/21/2020
-ms.locfileid: "79989581"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80218941"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Crie aplicativos Web progressivos com ASP.NET Core Webassembly de mais incrivelmente
 
@@ -128,7 +128,7 @@ A estratégia de cache-First é valiosa porque:
 * **Ele garante a confiabilidade.** &ndash; acesso à rede não é um estado booliano. Um usuário não está simplesmente online ou offline:
 
   * O dispositivo do usuário pode pressupor que está online, mas a rede pode ser tão lenta quanto ser impraticável de esperar.
-  * a rede de ti pode retornar resultados inválidos para determinadas URLs, como quando há um portal WIFI cativo que está bloqueando ou redirecionando determinadas solicitações.
+  * A rede pode retornar resultados inválidos para determinadas URLs, como quando há um portal WIFI cativo que está bloqueando ou redirecionando determinadas solicitações.
   
   É por isso que a API de `navigator.onLine` do navegador não é confiável e não deve ser dependente.
 
@@ -163,7 +163,7 @@ Considere o que acontece quando o usuário navega pela primeira vez para uma URL
 
 O operador de serviço padrão contém uma lógica de caso especial para solicitações de navegação. O trabalho do serviço resolve as solicitações retornando o conteúdo armazenado em cache para `/index.html`, independentemente da URL solicitada. Essa lógica é implementada na função `onFetch` dentro de *Service-Worker. published. js*.
 
-Se seu aplicativo tiver determinadas URLs que devem retornar o HTML renderizado pelo servidor e não atender `/index.html` do cache, você precisará editar a lógica em seu trabalho de serviço. Se todas as URLs que contêm `/Identity/` precisam ser tratadas como solicitações regulares somente online para o servidor, modifique *Service-Worker. published. js* `onFetch` lógica. Localize o seguinte código:
+Se seu aplicativo tiver determinadas URLs que devem retornar o HTML renderizado pelo servidor e não atender `/index.html` do cache, você precisará editar a lógica em seu trabalho de serviço. Se todas as URLs que contêm `/Identity/` precisam ser tratadas como solicitações regulares somente online para o servidor, modifique *Service-Worker. published. js* `onFetch` lógica. Localize o código a seguir:
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate';

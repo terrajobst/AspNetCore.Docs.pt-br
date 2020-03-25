@@ -10,12 +10,12 @@ no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/hosted-with-identity-server
-ms.openlocfilehash: a3993bf635e5a7aae408d72796015f2414e13c14
-ms.sourcegitcommit: 5bdc54162d7dea8d9fa54ac3055678db23586af1
+ms.openlocfilehash: 6c7942a827d88a620e6f295af3f523c23f4b3890
+ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/17/2020
-ms.locfileid: "79434467"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80219045"
 ---
 # <a name="secure-an-aspnet-core-opno-locblazor-webassembly-hosted-app-with-identity-server"></a>Proteger um aplicativo hospedado do Webassembly ASP.NET Core Blazor com o Identity Server
 
@@ -49,7 +49,7 @@ As seções a seguir descrevem as adições ao projeto quando o suporte à auten
 
 A classe `Startup` tem as seguintes adições:
 
-* No `Startup.ConfigureServices`:
+* Em `Startup.ConfigureServices`:
 
   * Identidade com a interface do usuário padrão:
 
@@ -76,7 +76,7 @@ A classe `Startup` tem as seguintes adições:
         .AddIdentityServerJwt();
     ```
 
-* No `Startup.Configure`:
+* Em `Startup.Configure`:
 
   * O middleware de autenticação que é responsável por validar as credenciais de solicitação e definir o usuário no contexto da solicitação:
 
@@ -167,7 +167,7 @@ Por padrão, ele carrega a configuração do aplicativo por convenção de `_con
 
 ### <a name="index-page"></a>Página de índice
 
-[!INCLUDE[](~/includes/blazor-security/index-page.md)]
+[!INCLUDE[](~/includes/blazor-security/index-page-authentication.md)]
 
 ### <a name="app-component"></a>Componente do aplicativo
 

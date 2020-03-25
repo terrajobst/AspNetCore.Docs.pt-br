@@ -5,17 +5,17 @@ description: Saiba como usar formulários e cenários de validação de campo no
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 03/17/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 5aad5a4d4303151ef5be82481dfae7367abeffbc
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.openlocfilehash: 0359a9337860d9b8ce0b81d8833a034a898b05a5
+ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79083228"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80218954"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>Formulários e validação de mais e ASP.NET Core
 
@@ -460,8 +460,11 @@ Para habilitar e desabilitar o botão enviar com base na validação do formulá
 
 * Use o `EditContext` do formulário para atribuir o modelo quando o componente for inicializado.
 * Valide o formulário no retorno de chamada de `OnFieldChanged` do contexto para habilitar e desabilitar o botão enviar.
+* Desvincule o manipulador de eventos no método `Dispose`. Para obter mais informações, consulte <xref:blazor/lifecycle#component-disposal-with-idisposable>.
 
 ```razor
+@implements IDisposable
+
 <EditForm EditContext="@_editContext">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -479,12 +482,18 @@ Para habilitar e desabilitar o botão enviar com base na validação do formulá
     protected override void OnInitialized()
     {
         _editContext = new EditContext(_starship);
+        _editContext.OnFieldChanged += HandleFieldChanged;
+    }
 
-        _editContext.OnFieldChanged += (_, __) =>
-        {
-            _formInvalid = !_editContext.Validate();
-            StateHasChanged();
-        };
+    private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+    {
+        _formInvalid = !_editContext.Validate();
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        _editContext.OnFieldChanged -= HandleFieldChanged;
     }
 }
 ```

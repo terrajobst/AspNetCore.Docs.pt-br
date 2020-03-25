@@ -5,17 +5,17 @@ description: Saiba como persistir o estado em aplicativos do Blazor Server.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 03/17/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/state-management
-ms.openlocfilehash: 990d392b0e1658774256626eb277701e40287b79
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: e8a1959a8fc05ea59362bb5824181a9d2e418811
+ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78657706"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80218863"
 ---
 # <a name="aspnet-core-opno-locblazor-state-management"></a>Gerenciamento de estado de Blazor ASP.NET Core
 
@@ -242,7 +242,7 @@ Durante o pré-processamento:
 
 Uma maneira de resolver o erro é desabilitar o pré-processamento. Normalmente, essa é a melhor opção se o aplicativo fizer uso intensivo de armazenamento baseado em navegador. O pré-processamento adiciona complexidade e não beneficia o aplicativo porque o aplicativo não pode colocar nenhum conteúdo útil antes que `localStorage` ou `sessionStorage` estejam disponíveis.
 
-Para desabilitar o pré-processamento, abra o arquivo *pages/_Host. cshtml* e altere a chamada para `render-mode` do auxiliar de marca de `Component` para `Server`.
+Para desabilitar o pré-processamento, abra o arquivo *pages/_Host. cshtml* e altere o `render-mode` do auxiliar de [marca de componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) para <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.
 
 O pré-processamento pode ser útil para outras páginas que não usam `localStorage` ou `sessionStorage`. Para manter o pré-processamento habilitado, adie a operação de carregamento até que o navegador esteja conectado ao circuito. Veja a seguir um exemplo de como armazenar um valor de contador:
 

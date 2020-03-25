@@ -5,17 +5,17 @@ description: Saiba como proteger Blazor aplicativos WebAssemlby como SPAs (aplic
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/09/2020
+ms.date: 03/12/2020
 no-loc:
 - Blazor
 - SignalR
 uid: security/blazor/webassembly/index
-ms.openlocfilehash: a65d47e55960d6e7bfeb672c0a1e6a7a305ad7ee
-ms.sourcegitcommit: 9b6e7f421c243963d5e419bdcfc5c4bde71499aa
+ms.openlocfilehash: 652d4c61110f786396d9d5af4f131b817c40e333
+ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/21/2020
-ms.locfileid: "79989480"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80219240"
 ---
 # <a name="secure-aspnet-core-opno-locblazor-webassembly"></a>ASP.NET Core seguro Blazor Webassembly
 
@@ -54,3 +54,47 @@ A biblioteca de `Microsoft.AspNetCore.Components.WebAssembly.Authentication` ofe
 * Quando o aplicativo Webassembly Blazor carrega o ponto de extremidade de retorno de chamada de logon (`/authentication/login-callback`), a resposta de autenticação é processada.
   * Se o processo de autenticação for concluído com êxito, o usuário será autenticado e, opcionalmente, enviado de volta para a URL protegida original solicitada pelo usuário.
   * Se o processo de autenticação falhar por algum motivo, o usuário será enviado para a página de falha de logon (`/authentication/login-failed`) e um erro será exibido.
+  
+## <a name="options-for-hosted-apps-and-third-party-login-providers"></a>Opções para aplicativos hospedados e provedores de logon de terceiros
+
+Ao autenticar e autorizar um aplicativo Webassembly hospedado Blazor com um provedor de terceiros, há várias opções disponíveis para autenticar o usuário. O que você escolher dependerá de seu cenário.
+
+Para obter mais informações, consulte <xref:security/authentication/social/additional-claims>.
+
+### <a name="authenticate-users-to-only-call-protected-third-party-apis"></a>Autenticar usuários para chamar somente APIs de terceiros protegidas
+
+Autentique o usuário com um fluxo oAuth do lado do cliente em relação ao provedor de API de terceiros:
+
+ ```csharp
+ builder.services.AddOidcAuthentication(options => { ... });
+ ```
+ 
+ Neste cenário:
+
+* O servidor que hospeda o aplicativo não desempenha uma função.
+* As APIs no servidor não podem ser protegidas.
+* O aplicativo só pode chamar APIs de terceiros protegidas.
+
+### <a name="authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party"></a>Autenticar usuários com um provedor de terceiros e chamar APIs protegidas no servidor host e terceiros
+
+Configure a identidade com um provedor de logon de terceiros. Obtenha os tokens necessários para acesso à API de terceiros e armazene-os.
+
+Quando um usuário faz logon, a identidade coleta tokens de acesso e de atualização como parte do processo de autenticação. Nesse ponto, há algumas abordagens disponíveis para fazer chamadas à API para APIs de terceiros.
+
+#### <a name="use-a-server-access-token-to-retrieve-the-third-party-access-token"></a>Usar um token de acesso do servidor para recuperar o token de acesso de terceiros
+
+Use o token de acesso gerado no servidor para recuperar o token de acesso de terceiros de um ponto de extremidade de API de servidor. A partir daí, use o token de acesso de terceiros para chamar recursos de API de terceiros diretamente da identidade no cliente.
+
+Não recomendamos essa abordagem. Essa abordagem requer tratar o token de acesso de terceiros como se ele fosse gerado para um cliente público. Nos termos do oAuth, o aplicativo público não tem um segredo do cliente porque não pode ser confiável para armazenar segredos com segurança e o token de acesso é produzido para um cliente confidencial. Um cliente confidencial é um cliente que tem um segredo do cliente e é considerado capaz de armazenar segredos com segurança.
+
+* O token de acesso de terceiros pode receber escopos adicionais para executar operações confidenciais com base no fato de que a terceira parte emitiu o token para um cliente mais confiável.
+* Da mesma forma, os tokens de atualização não devem ser emitidos para um cliente que não seja confiável, pois isso dá ao cliente acesso ilimitado, a menos que outras restrições sejam colocadas em vigor.
+
+#### <a name="make-api-calls-from-the-client-to-the-server-api-in-order-to-call-third-party-apis"></a>Fazer chamadas à API do cliente para a API do servidor para chamar APIs de terceiros
+
+Faça uma chamada de API do cliente para a API do servidor. No servidor, recupere o token de acesso para o recurso de API de terceiros e emita qualquer chamada necessária.
+
+Embora essa abordagem exija um salto de rede extra por meio do servidor para chamar uma API de terceiros, ela finalmente resulta em uma experiência mais segura:
+
+* O servidor pode armazenar tokens de atualização e garantir que o aplicativo não perca o acesso a recursos de terceiros.
+* O aplicativo não pode vazar tokens de acesso do servidor que possa conter permissões mais confidenciais.

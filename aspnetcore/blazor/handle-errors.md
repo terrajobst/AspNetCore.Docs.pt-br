@@ -5,17 +5,17 @@ description: Descubra como ASP.NET Core Blazor como o Blazor gerencia exceções
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/19/2020
+ms.date: 03/17/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/handle-errors
-ms.openlocfilehash: d8098db3977b7515f2665e4230c2d6d3e415dc58
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 2177edb9c3197588a9335f3d14495b86d5d53f65
+ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78661696"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80218915"
 ---
 # <a name="handle-errors-in-aspnet-core-opno-locblazor-apps"></a>Tratar erros em aplicativos ASP.NET Core Blazor
 
@@ -195,7 +195,7 @@ Para obter mais informações, consulte os seguintes artigos:
 
 ### <a name="opno-locblazor-server-prerendering"></a>pré-processamento do Blazor Server
 
-Blazor componentes podem ser renderizados usando o auxiliar de marca de `Component` para que sua marcação HTML renderizada seja retornada como parte da solicitação HTTP inicial do usuário. Isso funciona por:
+Blazor componentes podem ser renderizados usando o [auxiliar de marca do componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) para que sua marcação HTML renderizada seja retornada como parte da solicitação HTTP inicial do usuário. Isso funciona por:
 
 * Criar um novo circuito para todos os componentes renderizados que fazem parte da mesma página.
 * Gerando o HTML inicial.

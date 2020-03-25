@@ -5,17 +5,17 @@ description: Saiba como rotear solicitações em aplicativos e sobre o component
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 03/17/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/routing
-ms.openlocfilehash: 32459f9f42220b01ce04e6444a9bb4a9592ee2da
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 87579c88a37e0258921e199db2b5d8c7627f5499
+ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78663803"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80218889"
 ---
 # <a name="aspnet-core-blazor-routing"></a>Roteamento de ASP.NET Core mais
 
@@ -198,16 +198,16 @@ A seguinte marcação HTML é renderizada:
 
 ## <a name="uri-and-navigation-state-helpers"></a>Auxiliares de URI e estado de navegação
 
-Use `Microsoft.AspNetCore.Components.NavigationManager` para trabalhar com URIs e navegação no C# código. `NavigationManager` fornece o evento e os métodos mostrados na tabela a seguir.
+Use <xref:Microsoft.AspNetCore.Components.NavigationManager> para trabalhar com URIs e navegação no C# código. `NavigationManager` fornece o evento e os métodos mostrados na tabela a seguir.
 
 | {1&gt;Membro&lt;1} | Descrição |
 | ------ | ----------- |
-| `Uri` | Obtém o URI absoluto atual. |
-| `BaseUri` | Obtém o URI de base (com uma barra à direita) que pode ser anexado a caminhos de URI relativos para produzir um URI absoluto. Normalmente, `BaseUri` corresponde ao atributo `href` no elemento `<base>` do documento em *wwwroot/index.html* (Blazor Webassembly) ou *pages/_Host. cshtml* (servidorBlazor). |
-| `NavigateTo` | Navega para o URI especificado. Se `forceLoad` for `true`:<ul><li>O roteamento do lado do cliente é ignorado.</li><li>O navegador é forçado a carregar a nova página do servidor, seja ou não o URI normalmente manipulado pelo roteador do lado do cliente.</li></ul> |
-| `LocationChanged` | Um evento que é acionado quando o local de navegação é alterado. |
-| `ToAbsoluteUri` | Converte um URI relativo em um URI absoluto. |
-| `ToBaseRelativePath` | Dado um URI de base (por exemplo, um URI retornado anteriormente pelo `GetBaseUri`), converte um URI absoluto em um URI relativo ao prefixo de URI de base. |
+| Uri | Obtém o URI absoluto atual. |
+| BaseUri | Obtém o URI de base (com uma barra à direita) que pode ser anexado a caminhos de URI relativos para produzir um URI absoluto. Normalmente, `BaseUri` corresponde ao atributo `href` no elemento `<base>` do documento em *wwwroot/index.html* (Blazor Webassembly) ou *pages/_Host. cshtml* (servidorBlazor). |
+| NavigateTo | Navega para o URI especificado. Se `forceLoad` for `true`:<ul><li>O roteamento do lado do cliente é ignorado.</li><li>O navegador é forçado a carregar a nova página do servidor, seja ou não o URI normalmente manipulado pelo roteador do lado do cliente.</li></ul> |
+| Localchanged | Um evento que é acionado quando o local de navegação é alterado. |
+| ToAbsoluteUri | Converte um URI relativo em um URI absoluto. |
+| <span style="word-break:normal;word-wrap:normal">ToBaseRelativePath</span> | Dado um URI de base (por exemplo, um URI retornado anteriormente pelo `GetBaseUri`), converte um URI absoluto em um URI relativo ao prefixo de URI de base. |
 
 O componente a seguir navega para o componente de `Counter` do aplicativo quando o botão é selecionado:
 
@@ -228,3 +228,34 @@ O componente a seguir navega para o componente de `Counter` do aplicativo quando
     }
 }
 ```
+
+O componente a seguir manipula um evento de local alterado. O método `HandleLocationChanged` é desvinculado quando `Dispose` é chamado pela estrutura. A desconexão do método permite a coleta de lixo do componente.
+
+```razor
+@implement IDisposable
+@inject NavigationManager NavigationManager
+
+...
+
+protected override void OnInitialized()
+{
+    NavigationManager.LocationChanged += HandleLocationChanged;
+}
+
+private void HandleLocationChanged(object sender, LocationChangedEventArgs e)
+{
+    ...
+}
+
+public void Dispose()
+{
+    NavigationManager.LocationChanged -= HandleLocationChanged;
+}
+```
+
+<xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs> fornece as seguintes informações sobre o evento:
+
+* <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.Location> &ndash; a URL do novo local.
+* <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted> &ndash; se `true`, Blazor interceptou a navegação do navegador. Se `false`, [navigationmanager. NavigateTo](xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A) fez com que a navegação ocorresse.
+
+Para obter mais informações sobre a disposição de componentes, consulte <xref:blazor/lifecycle#component-disposal-with-idisposable>.

@@ -5,17 +5,17 @@ description: Saiba mais sobre cenários de ligação de dados para componentes e
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 03/17/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/integrate-components
-ms.openlocfilehash: de1a37ffd9456c956e3d84fcc69431ecb794513c
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: cf6056e0985d5433bddecac8dd183ca3f4c2af5b
+ms.sourcegitcommit: 91dc1dd3d055b4c7d7298420927b3fd161067c64
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78663313"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80218928"
 ---
 # <a name="integrate-aspnet-core-razor-components-into-razor-pages-and-mvc-apps"></a>Integre ASP.NET Core componentes do Razor em aplicativos Razor Pages e MVC
 
@@ -60,13 +60,13 @@ Um aplicativo Razor Pages ou MVC existente pode integrar componentes Razor em p�
    @using MyAppNamespace
    ```
 
-1. Em `Startup.ConfigureServices`, registre o serviço de servidor mais incrivelmente:
+1. Em `Startup.ConfigureServices`, registre o serviço do Blazor Server:
 
    ```csharp
    services.AddServerSideBlazor();
    ```
 
-1. Em `Startup.Configure`, adicione o ponto de extremidade do Hub mais incrivelmente a `app.UseEndpoints`:
+1. Em `Startup.Configure`, adicione o ponto de extremidade do hub de Blazor a `app.UseEndpoints`:
 
    ```csharp
    endpoints.MapBlazorHub();
@@ -225,31 +225,10 @@ Para obter mais informações, consulte <xref:blazor/components#import-component
 
 *Esta seção pertence à adição de componentes a páginas ou exibições, em que os componentes não são roteáveis diretamente das solicitações do usuário.*
 
-Para renderizar um componente de uma página ou exibição, use o `Component` o auxiliar de marca:
-
-```cshtml
-<component type="typeof(Counter)" render-mode="ServerPrerendered" 
-    param-IncrementAmount="10" />
-```
-
-O tipo de parâmetro deve ser serializável em JSON, o que normalmente significa que o tipo deve ter propriedades de construtor e settable padrão. Por exemplo, você pode especificar um valor para `IncrementAmount` porque o tipo de `IncrementAmount` é um `int`, que é um tipo primitivo suportado pelo serializador JSON.
-
-`RenderMode` configura se o componente:
-
-* É renderizado na página.
-* É renderizado como HTML estático na página ou se inclui as informações necessárias para inicializar um aplicativo mais incrivelmente do agente do usuário.
-
-| `RenderMode`        | Descrição |
-| ------------------- | ----------- |
-| `ServerPrerendered` | Renderiza o componente em HTML estático e inclui um marcador para um aplicativo do Blazor Server. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo Blazor. |
-| `Server`            | Renderiza um marcador para um aplicativo do Blazor Server. A saída do componente não está incluída. Quando o agente do usuário é iniciado, esse marcador é usado para inicializar um aplicativo Blazor. |
-| `Static`            | Renderiza o componente em HTML estático. |
-
-Embora as páginas e exibições possam usar componentes, o inverso não é verdadeiro. Os componentes não podem usar cenários específicos de exibição e de página, como exibições parciais e seções. Para usar a lógica da exibição parcial em um componente, desfatore a lógica de exibição parcial em um componente.
-
-Não há suporte para a renderização de componentes de servidor de uma página HTML estática.
+Para renderizar um componente de uma página ou exibição, use o [auxiliar de marca do componente](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 Para obter mais informações sobre como os componentes são renderizados, estado do componente e o auxiliar de marca de `Component`, consulte os seguintes artigos:
 
 * <xref:blazor/hosting-models>
 * <xref:blazor/hosting-model-configuration>
+* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
