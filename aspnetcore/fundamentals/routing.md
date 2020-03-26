@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 3/25/2020
 uid: fundamentals/routing
-ms.openlocfilehash: 69d8aa65084d4d2ee13a8ca0e8e275f4344d08c5
-ms.sourcegitcommit: 99e71ae03319ab386baf2ebde956fc2d511df8b8
+ms.openlocfilehash: 2ebba716de90f142a66cf7619b5a4b0c77684bd4
+ms.sourcegitcommit: 0c62042d7d030ec5296c73bccd9f9b961d84496a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
 ms.lasthandoff: 03/25/2020
-ms.locfileid: "80242647"
+ms.locfileid: "80270440"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -101,7 +101,7 @@ O exemplo a seguir mostra o roteamento com [verificações de integridade](xref:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/AuthorizationStartup.cs?name=snippet)]
 
-[!INCLUDE[](~/includes/MTcomments.md)]
+[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
 O exemplo anterior demonstra como:
 
@@ -383,7 +383,7 @@ Os métodos `GetPath*` são mais semelhantes a `Url.Action` e `Url.Page`, pois g
 
 Os métodos fornecidos pelo <xref:Microsoft.AspNetCore.Routing.LinkGenerator> dão suporte a funcionalidades de geração de link padrão para qualquer tipo de endereço. A maneira mais conveniente de usar o link Generator é por meio de métodos de extensão que executam operações para um tipo de endereço específico:
 
-| Método de extensão | DESCRIÇÃO |
+| Método de extensão | Descrição |
 | ---------------- | ----------- |
 | <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*> | Gera um URI com um caminho absoluto com base nos valores fornecidos. |
 | <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetUriByAddress*> | Gera um URI absoluto com base nos valores fornecidos.             |
@@ -490,7 +490,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra as restrições de rota de exemplo e seu comportamento esperado:
 
-| restrição | Exemplo | Correspondências de exemplo | Anotações |
+| restrição | {1&gt;Exemplo&lt;1} | Correspondências de exemplo | {1&gt;Observações&lt;1} |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false`. Não diferenciam maiúsculas de minúsculas |
@@ -555,11 +555,11 @@ As expressões regulares usadas no roteamento geralmente começam com o caracter
 
 | Expressão   | Cadeia de Caracteres    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
 | `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | olá     | Não    | Confira `^` e `$` acima |
 | `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
@@ -1094,7 +1094,7 @@ Os métodos `GetPath*` são mais semelhantes a `Url.Action` e `Url.Page`, pois g
 
 Os métodos fornecidos pelo <xref:Microsoft.AspNetCore.Routing.LinkGenerator> dão suporte a funcionalidades de geração de link padrão para qualquer tipo de endereço. A maneira mais conveniente usar o gerador de link é por meio de métodos de extensão que executam operações para um tipo de endereço específico.
 
-| Método de extensão   | DESCRIÇÃO                                                         |
+| Método de extensão   | Descrição                                                         |
 | ------------------ | ------------------------------------------------------------------- |
 | <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*> | Gera um URI com um caminho absoluto com base nos valores fornecidos. |
 | <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetUriByAddress*> | Gera um URI absoluto com base nos valores fornecidos.             |
@@ -1420,7 +1420,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | Anotações |
+| restrição | {1&gt;Exemplo&lt;1} | Correspondências de exemplo | {1&gt;Observações&lt;1} |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro. |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou ' false '. Não diferencia maiúsculas de minúsculas. |
@@ -1463,7 +1463,7 @@ As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo
 
 Para escapar os caracteres delimitadores de parâmetro de roteamento `{`, `}`, `[``]`, clique duas vezes nos caracteres da expressão `{{`, `}`, `[[`, `]]`. A tabela a seguir mostra uma expressão regular e a versão de escape:
 
-| Expressão regular    | Expressão regular com escape     |
+| Expressão Regular    | Expressão regular com escape     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
@@ -1472,11 +1472,11 @@ As expressões regulares usadas no roteamento geralmente começam com o cursor `
 
 | Expressão   | Cadeia de Caracteres    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
 | `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | olá     | Não    | Confira `^` e `$` acima |
 | `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
@@ -1870,7 +1870,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | Exemplo | Correspondências de exemplo | Anotações |
+| restrição | {1&gt;Exemplo&lt;1} | Correspondências de exemplo | {1&gt;Observações&lt;1} |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |
@@ -1907,7 +1907,7 @@ A estrutura do ASP.NET Core adiciona `RegexOptions.IgnoreCase | RegexOptions.Com
 
 As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo Roteamento e pela linguagem C#. Os tokens de expressão regular precisam ter escape. Para usar a expressão regular `^\d`\\`-\d`\`-\d`\`$` no roteamento, a expressão precisa ter os caracteres `\` (barra invertida) fornecidos na cadeia de caracteres como caracteres `\\` (barra invertida dupla) no arquivo de origem C# para fazer o escape do caractere de escape da cadeia de caracteres `\` (a menos que estejam sendo usados [literais de cadeia de caracteres textuais](/dotnet/csharp/language-reference/keywords/string)). Para fazer o escape dos caracteres de delimitador de parâmetro de roteamento (`{`, `}`, `[`, `]`), duplique os caracteres na expressão (`{{`, `}`, `[[`, `]]`). A tabela a seguir mostra uma expressão regular e a versão com escape.
 
-| Expressão regular    | Expressão regular com escape     |
+| Expressão Regular    | Expressão regular com escape     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
@@ -1916,11 +1916,11 @@ As expressões regulares usadas no roteamento geralmente começam com o caracter
 
 | Expressão   | Cadeia de Caracteres    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
 | `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | olá     | Não    | Confira `^` e `$` acima |
 | `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
