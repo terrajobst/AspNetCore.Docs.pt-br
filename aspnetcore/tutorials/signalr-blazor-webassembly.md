@@ -5,109 +5,109 @@ description: Crie um aplicativo de chat que usa ASP.NET Core SignalR com Blazor 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/31/2020
+ms.date: 03/26/2020
 no-loc:
 - Blazor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 605cf8ebd3e85586f3e479c815f0b9902ce5a91a
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.openlocfilehash: c4843dc282e1978b39738e206ecc79ded87fcff9
+ms.sourcegitcommit: 6ffb583991d6689326605a24565130083a28ef85
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79083386"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "80306568"
 ---
-# <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a><span data-ttu-id="d97d0-103">Usar Signalr ASP.NET Core com Webassembly de mais incrivelmente</span><span class="sxs-lookup"><span data-stu-id="d97d0-103">Use ASP.NET Core SignalR with Blazor WebAssembly</span></span>
+# <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a><span data-ttu-id="a3ac4-103">Usar Signalr ASP.NET Core com Webassembly de mais incrivelmente</span><span class="sxs-lookup"><span data-stu-id="a3ac4-103">Use ASP.NET Core SignalR with Blazor WebAssembly</span></span>
 
-<span data-ttu-id="d97d0-104">Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="d97d0-104">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="a3ac4-104">Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="a3ac4-104">By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)</span></span>
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-<span data-ttu-id="d97d0-105">Este tutorial ensina as noções básicas da criação de um aplicativo em tempo real usando Signalr com Webassembly mais alto.</span><span class="sxs-lookup"><span data-stu-id="d97d0-105">This tutorial teaches the basics of building a real-time app using SignalR with Blazor WebAssembly.</span></span> <span data-ttu-id="d97d0-106">Você aprenderá como:</span><span class="sxs-lookup"><span data-stu-id="d97d0-106">You learn how to:</span></span>
+<span data-ttu-id="a3ac4-105">Este tutorial ensina as noções básicas da criação de um aplicativo em tempo real usando Signalr com Webassembly mais alto.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-105">This tutorial teaches the basics of building a real-time app using SignalR with Blazor WebAssembly.</span></span> <span data-ttu-id="a3ac4-106">Você aprenderá como:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-106">You learn how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="d97d0-107">Criar um projeto de aplicativo hospedado Webassembly de mais incrivelmente</span><span class="sxs-lookup"><span data-stu-id="d97d0-107">Create a Blazor WebAssembly Hosted app project</span></span>
-> * <span data-ttu-id="d97d0-108">Adicionar a biblioteca de clientes do SignalR</span><span class="sxs-lookup"><span data-stu-id="d97d0-108">Add the SignalR client library</span></span>
-> * <span data-ttu-id="d97d0-109">Adicionar um Hub do Signalr</span><span class="sxs-lookup"><span data-stu-id="d97d0-109">Add a SignalR hub</span></span>
-> * <span data-ttu-id="d97d0-110">Adicionar serviços do Signalr e um ponto de extremidade para o Hub do Signalr</span><span class="sxs-lookup"><span data-stu-id="d97d0-110">Add SignalR services and an endpoint for the SignalR hub</span></span>
-> * <span data-ttu-id="d97d0-111">Adicionar código de componente Razor para chat</span><span class="sxs-lookup"><span data-stu-id="d97d0-111">Add Razor component code for chat</span></span>
+> * <span data-ttu-id="a3ac4-107">Criar um projeto de aplicativo hospedado Webassembly de mais incrivelmente</span><span class="sxs-lookup"><span data-stu-id="a3ac4-107">Create a Blazor WebAssembly Hosted app project</span></span>
+> * <span data-ttu-id="a3ac4-108">Adicionar a biblioteca de clientes do SignalR</span><span class="sxs-lookup"><span data-stu-id="a3ac4-108">Add the SignalR client library</span></span>
+> * <span data-ttu-id="a3ac4-109">Adicionar um Hub do Signalr</span><span class="sxs-lookup"><span data-stu-id="a3ac4-109">Add a SignalR hub</span></span>
+> * <span data-ttu-id="a3ac4-110">Adicionar serviços do Signalr e um ponto de extremidade para o Hub do Signalr</span><span class="sxs-lookup"><span data-stu-id="a3ac4-110">Add SignalR services and an endpoint for the SignalR hub</span></span>
+> * <span data-ttu-id="a3ac4-111">Adicionar código de componente Razor para chat</span><span class="sxs-lookup"><span data-stu-id="a3ac4-111">Add Razor component code for chat</span></span>
 
-<span data-ttu-id="d97d0-112">No final deste tutorial, você terá um aplicativo de chat em funcionamento.</span><span class="sxs-lookup"><span data-stu-id="d97d0-112">At the end of this tutorial, you'll have a working chat app.</span></span>
+<span data-ttu-id="a3ac4-112">No final deste tutorial, você terá um aplicativo de chat em funcionamento.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-112">At the end of this tutorial, you'll have a working chat app.</span></span>
 
-<span data-ttu-id="d97d0-113">[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-blazor-webassembly/samples/) ([como baixar](xref:index#how-to-download-a-sample))</span><span class="sxs-lookup"><span data-stu-id="d97d0-113">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-blazor-webassembly/samples/) ([how to download](xref:index#how-to-download-a-sample))</span></span>
+<span data-ttu-id="a3ac4-113">[Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-blazor-webassembly/samples/) ([como baixar](xref:index#how-to-download-a-sample))</span><span class="sxs-lookup"><span data-stu-id="a3ac4-113">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-blazor-webassembly/samples/) ([how to download](xref:index#how-to-download-a-sample))</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="d97d0-114">Prerequisites</span><span class="sxs-lookup"><span data-stu-id="d97d0-114">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="a3ac4-114">{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}</span><span class="sxs-lookup"><span data-stu-id="a3ac4-114">Prerequisites</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="d97d0-115">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="d97d0-115">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="a3ac4-115">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a3ac4-115">Visual Studio</span></span>](#tab/visual-studio)
 
 [!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
-# <a name="visual-studio-code"></a>[<span data-ttu-id="d97d0-116">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="d97d0-116">Visual Studio Code</span></span>](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[<span data-ttu-id="a3ac4-116">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="a3ac4-116">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
-# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="d97d0-117">Visual Studio para Mac</span><span class="sxs-lookup"><span data-stu-id="d97d0-117">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="a3ac4-117">Visual Studio para Mac</span><span class="sxs-lookup"><span data-stu-id="a3ac4-117">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
-# <a name="net-core-cli"></a>[<span data-ttu-id="d97d0-118">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="d97d0-118">.NET Core CLI</span></span>](#tab/netcore-cli/)
+# <a name="net-core-cli"></a>[<span data-ttu-id="a3ac4-118">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="a3ac4-118">.NET Core CLI</span></span>](#tab/netcore-cli/)
 
 [!INCLUDE[](~/includes/3.1-SDK.md)]
 
 ---
 
-## <a name="create-a-hosted-blazor-webassembly-app-project"></a><span data-ttu-id="d97d0-119">Criar um projeto de aplicativo Webassembly de mais incrivelmente hospedado</span><span class="sxs-lookup"><span data-stu-id="d97d0-119">Create a hosted Blazor WebAssembly app project</span></span>
+## <a name="create-a-hosted-blazor-webassembly-app-project"></a><span data-ttu-id="a3ac4-119">Criar um projeto de aplicativo Webassembly de mais incrivelmente hospedado</span><span class="sxs-lookup"><span data-stu-id="a3ac4-119">Create a hosted Blazor WebAssembly app project</span></span>
 
-<span data-ttu-id="d97d0-120">Instale o modelo [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) .</span><span class="sxs-lookup"><span data-stu-id="d97d0-120">Install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template.</span></span> <span data-ttu-id="d97d0-121">O pacote [Microsoft. AspNetCore. Components. Webassembly. templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) tem uma versão de visualização enquanto o Webassembly de mais de baixo está em visualização.</span><span class="sxs-lookup"><span data-stu-id="d97d0-121">The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.</span></span> <span data-ttu-id="d97d0-122">Em um shell de comando, execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="d97d0-122">In a command shell, execute the following command:</span></span>
+<span data-ttu-id="a3ac4-120">Quando não estiver usando o Visual Studio versão 16,6 Preview 2 ou posterior, instale o modelo [Webassembly](xref:blazor/hosting-models#blazor-webassembly) mais recente.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-120">When not using Visual Studio version 16.6 Preview 2 or later, install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template.</span></span> <span data-ttu-id="a3ac4-121">O pacote [Microsoft. AspNetCore. Components. Webassembly. templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) tem uma versão de visualização enquanto o Webassembly de mais de baixo está em visualização.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-121">The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.</span></span> <span data-ttu-id="a3ac4-122">Em um shell de comando, execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-122">In a command shell, execute the following command:</span></span>
 
 ```dotnetcli
-dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview2.20160.5
+dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
 ```
 
-<span data-ttu-id="d97d0-123">Siga as orientações para sua escolha de ferramentas:</span><span class="sxs-lookup"><span data-stu-id="d97d0-123">Follow the guidance for your choice of tooling:</span></span>
+<span data-ttu-id="a3ac4-123">Siga as orientações para sua escolha de ferramentas:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-123">Follow the guidance for your choice of tooling:</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="d97d0-124">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="d97d0-124">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="a3ac4-124">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a3ac4-124">Visual Studio</span></span>](#tab/visual-studio)
 
-1. <span data-ttu-id="d97d0-125">Criar um novo projeto.</span><span class="sxs-lookup"><span data-stu-id="d97d0-125">Create a new project.</span></span>
+1. <span data-ttu-id="a3ac4-125">Crie um novo projeto.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-125">Create a new project.</span></span>
 
-1. <span data-ttu-id="d97d0-126">Selecione **aplicativo** mais novo e selecione **Avançar**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-126">Select **Blazor App** and select **Next**.</span></span>
+1. <span data-ttu-id="a3ac4-126">Selecione **aplicativo** mais novo e selecione **Avançar**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-126">Select **Blazor App** and select **Next**.</span></span>
 
-1. <span data-ttu-id="d97d0-127">Digite "BlazorSignalRApp" no campo **nome do projeto** .</span><span class="sxs-lookup"><span data-stu-id="d97d0-127">Type "BlazorSignalRApp" in the **Project name** field.</span></span> <span data-ttu-id="d97d0-128">Confirme se a entrada de **local** está correta ou forneça um local para o projeto.</span><span class="sxs-lookup"><span data-stu-id="d97d0-128">Confirm the **Location** entry is correct or provide a location for the project.</span></span> <span data-ttu-id="d97d0-129">Selecione **Criar**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-129">Select **Create**.</span></span>
+1. <span data-ttu-id="a3ac4-127">Digite "BlazorSignalRApp" no campo **nome do projeto** .</span><span class="sxs-lookup"><span data-stu-id="a3ac4-127">Type "BlazorSignalRApp" in the **Project name** field.</span></span> <span data-ttu-id="a3ac4-128">Confirme se a entrada de **local** está correta ou forneça um local para o projeto.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-128">Confirm the **Location** entry is correct or provide a location for the project.</span></span> <span data-ttu-id="a3ac4-129">Selecione **Criar**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-129">Select **Create**.</span></span>
 
-1. <span data-ttu-id="d97d0-130">Escolha o modelo de **aplicativo Webassembly mais incrivelmente** .</span><span class="sxs-lookup"><span data-stu-id="d97d0-130">Choose the **Blazor WebAssembly App** template.</span></span>
+1. <span data-ttu-id="a3ac4-130">Escolha o modelo de **aplicativo Webassembly mais incrivelmente** .</span><span class="sxs-lookup"><span data-stu-id="a3ac4-130">Choose the **Blazor WebAssembly App** template.</span></span>
 
-1. <span data-ttu-id="d97d0-131">Em **avançado**, marque a caixa de seleção **ASP.NET Core hospedado** .</span><span class="sxs-lookup"><span data-stu-id="d97d0-131">Under **Advanced**, select the **ASP.NET Core hosted** check box.</span></span>
+1. <span data-ttu-id="a3ac4-131">Em **avançado**, marque a caixa de seleção **ASP.NET Core hospedado** .</span><span class="sxs-lookup"><span data-stu-id="a3ac4-131">Under **Advanced**, select the **ASP.NET Core hosted** check box.</span></span>
 
-1. <span data-ttu-id="d97d0-132">Selecione **Criar**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-132">Select **Create**.</span></span>
+1. <span data-ttu-id="a3ac4-132">Selecione **Criar**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-132">Select **Create**.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="d97d0-133">Se você atualizou ou instalou uma nova versão do Visual Studio e o modelo Webassembly mais novo não aparece na interface do usuário do VS, reinstale o modelo usando o comando `dotnet new` mostrado anteriormente.</span><span class="sxs-lookup"><span data-stu-id="d97d0-133">If you upgraded or installed a new version of Visual Studio and the Blazor WebAssembly template doesn't appear in the VS UI, reinstall the template using the `dotnet new` command shown previously.</span></span>
+> <span data-ttu-id="a3ac4-133">Se você atualizou ou instalou uma nova versão do Visual Studio e o modelo Webassembly mais novo não aparece na interface do usuário do VS, reinstale o modelo usando o comando `dotnet new` mostrado anteriormente.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-133">If you upgraded or installed a new version of Visual Studio and the Blazor WebAssembly template doesn't appear in the VS UI, reinstall the template using the `dotnet new` command shown previously.</span></span>
 
-# <a name="visual-studio-code"></a>[<span data-ttu-id="d97d0-134">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="d97d0-134">Visual Studio Code</span></span>](#tab/visual-studio-code)
+# <a name="visual-studio-code"></a>[<span data-ttu-id="a3ac4-134">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="a3ac4-134">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
-1. <span data-ttu-id="d97d0-135">Em um shell de comando, execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="d97d0-135">In a command shell, execute the following command:</span></span>
-
-   ```dotnetcli
-   dotnet new blazorwasm --hosted --output BlazorSignalRApp
-   ```
-
-1. <span data-ttu-id="d97d0-136">Em Visual Studio Code, abra a pasta do projeto do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="d97d0-136">In Visual Studio Code, open the app's project folder.</span></span>
-
-1. <span data-ttu-id="d97d0-137">Quando a caixa de diálogo aparecer para adicionar ativos para compilar e depurar o aplicativo, selecione **Sim**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-137">When the dialog appears to add assets to build and debug the app, select **Yes**.</span></span> <span data-ttu-id="d97d0-138">Visual Studio Code adiciona automaticamente a pasta *. vscode* com arquivos *Launch. JSON* e *Tasks. JSON* gerados.</span><span class="sxs-lookup"><span data-stu-id="d97d0-138">Visual Studio Code automatically adds the *.vscode* folder with generated *launch.json* and *tasks.json* files.</span></span>
-
-# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="d97d0-139">Visual Studio para Mac</span><span class="sxs-lookup"><span data-stu-id="d97d0-139">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
-
-1. <span data-ttu-id="d97d0-140">Em um shell de comando, execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="d97d0-140">In a command shell, execute the following command:</span></span>
+1. <span data-ttu-id="a3ac4-135">Em um shell de comando, execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-135">In a command shell, execute the following command:</span></span>
 
    ```dotnetcli
    dotnet new blazorwasm --hosted --output BlazorSignalRApp
    ```
 
-1. <span data-ttu-id="d97d0-141">No Visual Studio para Mac, abra o projeto navegando até a pasta do projeto e abrindo o arquivo de solução do projeto ( *. sln*).</span><span class="sxs-lookup"><span data-stu-id="d97d0-141">In Visual Studio for Mac, open the project by navigating to the project folder and opening the project's solution file (*.sln*).</span></span>
+1. <span data-ttu-id="a3ac4-136">Em Visual Studio Code, abra a pasta do projeto do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-136">In Visual Studio Code, open the app's project folder.</span></span>
 
-# <a name="net-core-cli"></a>[<span data-ttu-id="d97d0-142">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="d97d0-142">.NET Core CLI</span></span>](#tab/netcore-cli/)
+1. <span data-ttu-id="a3ac4-137">Quando a caixa de diálogo aparecer para adicionar ativos para compilar e depurar o aplicativo, selecione **Sim**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-137">When the dialog appears to add assets to build and debug the app, select **Yes**.</span></span> <span data-ttu-id="a3ac4-138">Visual Studio Code adiciona automaticamente a pasta *. vscode* com arquivos *Launch. JSON* e *Tasks. JSON* gerados.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-138">Visual Studio Code automatically adds the *.vscode* folder with generated *launch.json* and *tasks.json* files.</span></span>
 
-<span data-ttu-id="d97d0-143">Em um shell de comando, execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="d97d0-143">In a command shell, execute the following command:</span></span>
+# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="a3ac4-139">Visual Studio para Mac</span><span class="sxs-lookup"><span data-stu-id="a3ac4-139">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
+
+1. <span data-ttu-id="a3ac4-140">Em um shell de comando, execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-140">In a command shell, execute the following command:</span></span>
+
+   ```dotnetcli
+   dotnet new blazorwasm --hosted --output BlazorSignalRApp
+   ```
+
+1. <span data-ttu-id="a3ac4-141">No Visual Studio para Mac, abra o projeto navegando até a pasta do projeto e abrindo o arquivo de solução do projeto ( *. sln*).</span><span class="sxs-lookup"><span data-stu-id="a3ac4-141">In Visual Studio for Mac, open the project by navigating to the project folder and opening the project's solution file (*.sln*).</span></span>
+
+# <a name="net-core-cli"></a>[<span data-ttu-id="a3ac4-142">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="a3ac4-142">.NET Core CLI</span></span>](#tab/netcore-cli/)
+
+<span data-ttu-id="a3ac4-143">Em um shell de comando, execute o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-143">In a command shell, execute the following command:</span></span>
 
 ```dotnetcli
 dotnet new blazorwasm --hosted --output BlazorSignalRApp
@@ -115,45 +115,45 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 ---
 
-## <a name="add-the-signalr-client-library"></a><span data-ttu-id="d97d0-144">Adicionar a biblioteca de clientes do SignalR</span><span class="sxs-lookup"><span data-stu-id="d97d0-144">Add the SignalR client library</span></span>
+## <a name="add-the-signalr-client-library"></a><span data-ttu-id="a3ac4-144">Adicionar a biblioteca de clientes do SignalR</span><span class="sxs-lookup"><span data-stu-id="a3ac4-144">Add the SignalR client library</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="d97d0-145">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="d97d0-145">Visual Studio</span></span>](#tab/visual-studio/)
+# <a name="visual-studio"></a>[<span data-ttu-id="a3ac4-145">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a3ac4-145">Visual Studio</span></span>](#tab/visual-studio/)
 
-1. <span data-ttu-id="d97d0-146">Em **Gerenciador de soluções**, clique com o botão direito do mouse no projeto **BlazorSignalRApp. Client** e selecione **gerenciar pacotes NuGet**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-146">In **Solution Explorer**, right-click the **BlazorSignalRApp.Client** project and select **Manage NuGet Packages**.</span></span>
+1. <span data-ttu-id="a3ac4-146">Em **Gerenciador de soluções**, clique com o botão direito do mouse no projeto **BlazorSignalRApp. Client** e selecione **gerenciar pacotes NuGet**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-146">In **Solution Explorer**, right-click the **BlazorSignalRApp.Client** project and select **Manage NuGet Packages**.</span></span>
 
-1. <span data-ttu-id="d97d0-147">Na caixa de diálogo **gerenciar pacotes NuGet** , confirme se a **origem do pacote** está definida como *NuGet.org*.</span><span class="sxs-lookup"><span data-stu-id="d97d0-147">In the **Manage NuGet Packages** dialog, confirm that the **Package source** is set to *nuget.org*.</span></span>
+1. <span data-ttu-id="a3ac4-147">Na caixa de diálogo **gerenciar pacotes NuGet** , confirme se a **origem do pacote** está definida como *NuGet.org*.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-147">In the **Manage NuGet Packages** dialog, confirm that the **Package source** is set to *nuget.org*.</span></span>
 
-1. <span data-ttu-id="d97d0-148">Com **procurar** selecionado, digite "Microsoft. AspNetCore. signaler. Client" na caixa de pesquisa.</span><span class="sxs-lookup"><span data-stu-id="d97d0-148">With **Browse** selected, type "Microsoft.AspNetCore.SignalR.Client" in the search box.</span></span>
+1. <span data-ttu-id="a3ac4-148">Com **procurar** selecionado, digite "Microsoft. AspNetCore. signaler. Client" na caixa de pesquisa.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-148">With **Browse** selected, type "Microsoft.AspNetCore.SignalR.Client" in the search box.</span></span>
 
-1. <span data-ttu-id="d97d0-149">Nos resultados da pesquisa, selecione o pacote `Microsoft.AspNetCore.SignalR.Client` e selecione **instalar**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-149">In the search results, select the `Microsoft.AspNetCore.SignalR.Client` package and select **Install**.</span></span>
+1. <span data-ttu-id="a3ac4-149">Nos resultados da pesquisa, selecione o pacote `Microsoft.AspNetCore.SignalR.Client` e selecione **instalar**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-149">In the search results, select the `Microsoft.AspNetCore.SignalR.Client` package and select **Install**.</span></span>
 
-1. <span data-ttu-id="d97d0-150">Se a caixa de diálogo **Visualizar alterações** for exibida, selecione **OK**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-150">If the **Preview Changes** dialog appears, select **OK**.</span></span>
+1. <span data-ttu-id="a3ac4-150">Se a caixa de diálogo **Visualizar alterações** for exibida, selecione **OK**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-150">If the **Preview Changes** dialog appears, select **OK**.</span></span>
 
-1. <span data-ttu-id="d97d0-151">Se a caixa de diálogo de **aceitação da licença** for exibida **, selecione aceito** se você concordar com os termos de licença.</span><span class="sxs-lookup"><span data-stu-id="d97d0-151">If the **License Acceptance** dialog appears, select **I Accept** if you agree with the license terms.</span></span>
+1. <span data-ttu-id="a3ac4-151">Se a caixa de diálogo de **aceitação da licença** for exibida **, selecione aceito** se você concordar com os termos de licença.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-151">If the **License Acceptance** dialog appears, select **I Accept** if you agree with the license terms.</span></span>
 
-# <a name="visual-studio-code"></a>[<span data-ttu-id="d97d0-152">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="d97d0-152">Visual Studio Code</span></span>](#tab/visual-studio-code/)
+# <a name="visual-studio-code"></a>[<span data-ttu-id="a3ac4-152">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="a3ac4-152">Visual Studio Code</span></span>](#tab/visual-studio-code/)
 
-<span data-ttu-id="d97d0-153">No **terminal integrado** (**Exibir** > **terminal** na barra de ferramentas), execute os seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="d97d0-153">In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following commands:</span></span>
+<span data-ttu-id="a3ac4-153">No **terminal integrado** (**Exibir** > **terminal** na barra de ferramentas), execute os seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-153">In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following commands:</span></span>
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 ```
 
-# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="d97d0-154">Visual Studio para Mac</span><span class="sxs-lookup"><span data-stu-id="d97d0-154">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
+# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="a3ac4-154">Visual Studio para Mac</span><span class="sxs-lookup"><span data-stu-id="a3ac4-154">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-1. <span data-ttu-id="d97d0-155">Na barra lateral da **solução** , clique com o botão direito do mouse no projeto **BlazorSignalRApp. Client** e selecione **gerenciar pacotes NuGet**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-155">In the **Solution** sidebar, right-click the **BlazorSignalRApp.Client** project and select **Manage NuGet Packages**.</span></span>
+1. <span data-ttu-id="a3ac4-155">Na barra lateral da **solução** , clique com o botão direito do mouse no projeto **BlazorSignalRApp. Client** e selecione **gerenciar pacotes NuGet**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-155">In the **Solution** sidebar, right-click the **BlazorSignalRApp.Client** project and select **Manage NuGet Packages**.</span></span>
 
-1. <span data-ttu-id="d97d0-156">Na caixa de diálogo **gerenciar pacotes NuGet** , confirme se a lista suspensa origem está definida como *NuGet.org*.</span><span class="sxs-lookup"><span data-stu-id="d97d0-156">In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to *nuget.org*.</span></span>
+1. <span data-ttu-id="a3ac4-156">Na caixa de diálogo **gerenciar pacotes NuGet** , confirme se a lista suspensa origem está definida como *NuGet.org*.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-156">In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to *nuget.org*.</span></span>
 
-1. <span data-ttu-id="d97d0-157">Com **procurar** selecionado, digite "Microsoft. AspNetCore. signaler. Client" na caixa de pesquisa.</span><span class="sxs-lookup"><span data-stu-id="d97d0-157">With **Browse** selected, type "Microsoft.AspNetCore.SignalR.Client" in the search box.</span></span>
+1. <span data-ttu-id="a3ac4-157">Com **procurar** selecionado, digite "Microsoft. AspNetCore. signaler. Client" na caixa de pesquisa.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-157">With **Browse** selected, type "Microsoft.AspNetCore.SignalR.Client" in the search box.</span></span>
 
-1. <span data-ttu-id="d97d0-158">Nos resultados da pesquisa, marque a caixa de seleção ao lado do pacote de `Microsoft.AspNetCore.SignalR.Client` e selecione **Adicionar pacote**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-158">In the search results, select the check box next to the `Microsoft.AspNetCore.SignalR.Client` package and select **Add Package**.</span></span>
+1. <span data-ttu-id="a3ac4-158">Nos resultados da pesquisa, marque a caixa de seleção ao lado do pacote de `Microsoft.AspNetCore.SignalR.Client` e selecione **Adicionar pacote**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-158">In the search results, select the check box next to the `Microsoft.AspNetCore.SignalR.Client` package and select **Add Package**.</span></span>
 
-1. <span data-ttu-id="d97d0-159">Se a caixa de diálogo de **aceitação da licença** for exibida, selecione **aceitar** se você concordar com os termos de licença.</span><span class="sxs-lookup"><span data-stu-id="d97d0-159">If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.</span></span>
+1. <span data-ttu-id="a3ac4-159">Se a caixa de diálogo de **aceitação da licença** for exibida, selecione **aceitar** se você concordar com os termos de licença.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-159">If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.</span></span>
 
-# <a name="net-core-cli"></a>[<span data-ttu-id="d97d0-160">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="d97d0-160">.NET Core CLI</span></span>](#tab/netcore-cli/)
+# <a name="net-core-cli"></a>[<span data-ttu-id="a3ac4-160">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="a3ac4-160">.NET Core CLI</span></span>](#tab/netcore-cli/)
 
-<span data-ttu-id="d97d0-161">Em um shell de comando, execute os seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="d97d0-161">In a command shell, execute the following commands:</span></span>
+<span data-ttu-id="a3ac4-161">Em um shell de comando, execute os seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-161">In a command shell, execute the following commands:</span></span>
 
 ```dotnetcli
 cd BlazorSignalRApp
@@ -162,115 +162,115 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 ---
 
-## <a name="add-a-signalr-hub"></a><span data-ttu-id="d97d0-162">Adicionar um Hub do Signalr</span><span class="sxs-lookup"><span data-stu-id="d97d0-162">Add a SignalR hub</span></span>
+## <a name="add-a-signalr-hub"></a><span data-ttu-id="a3ac4-162">Adicionar um Hub do Signalr</span><span class="sxs-lookup"><span data-stu-id="a3ac4-162">Add a SignalR hub</span></span>
 
-<span data-ttu-id="d97d0-163">No projeto **BlazorSignalRApp. Server** , crie uma pasta *hubs* (plural) e adicione a seguinte classe de `ChatHub` (*hubs/ChatHub. cs*):</span><span class="sxs-lookup"><span data-stu-id="d97d0-163">In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and add the following `ChatHub` class (*Hubs/ChatHub.cs*):</span></span>
+<span data-ttu-id="a3ac4-163">No projeto **BlazorSignalRApp. Server** , crie uma pasta *hubs* (plural) e adicione a seguinte classe de `ChatHub` (*hubs/ChatHub. cs*):</span><span class="sxs-lookup"><span data-stu-id="a3ac4-163">In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and add the following `ChatHub` class (*Hubs/ChatHub.cs*):</span></span>
 
 [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
-## <a name="add-signalr-services-and-an-endpoint-for-the-signalr-hub"></a><span data-ttu-id="d97d0-164">Adicionar serviços do Signalr e um ponto de extremidade para o Hub do Signalr</span><span class="sxs-lookup"><span data-stu-id="d97d0-164">Add SignalR services and an endpoint for the SignalR hub</span></span>
+## <a name="add-signalr-services-and-an-endpoint-for-the-signalr-hub"></a><span data-ttu-id="a3ac4-164">Adicionar serviços do Signalr e um ponto de extremidade para o Hub do Signalr</span><span class="sxs-lookup"><span data-stu-id="a3ac4-164">Add SignalR services and an endpoint for the SignalR hub</span></span>
 
-1. <span data-ttu-id="d97d0-165">No projeto **BlazorSignalRApp. Server** , abra o arquivo *Startup.cs* .</span><span class="sxs-lookup"><span data-stu-id="d97d0-165">In the **BlazorSignalRApp.Server** project, open the *Startup.cs* file.</span></span>
+1. <span data-ttu-id="a3ac4-165">No projeto **BlazorSignalRApp. Server** , abra o arquivo *Startup.cs* .</span><span class="sxs-lookup"><span data-stu-id="a3ac4-165">In the **BlazorSignalRApp.Server** project, open the *Startup.cs* file.</span></span>
 
-1. <span data-ttu-id="d97d0-166">Adicione o namespace para a classe de `ChatHub` na parte superior do arquivo:</span><span class="sxs-lookup"><span data-stu-id="d97d0-166">Add the namespace for the `ChatHub` class to the top of the file:</span></span>
+1. <span data-ttu-id="a3ac4-166">Adicione o namespace para a classe de `ChatHub` na parte superior do arquivo:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-166">Add the namespace for the `ChatHub` class to the top of the file:</span></span>
 
    ```csharp
    using BlazorSignalRApp.Server.Hubs;
    ```
 
-1. <span data-ttu-id="d97d0-167">Adicione os serviços de sinalização a `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="d97d0-167">Add the SignalR services to `Startup.ConfigureServices`:</span></span>
+1. <span data-ttu-id="a3ac4-167">Adicione os serviços de sinalização a `Startup.ConfigureServices`:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-167">Add the SignalR services to `Startup.ConfigureServices`:</span></span>
 
    ```csharp
    services.AddSignalR();
    ```
 
-1. <span data-ttu-id="d97d0-168">Em `Startup.Configure` entre os pontos de extremidade para a rota do controlador padrão e o fallback do lado do cliente, adicione um ponto final para o Hub:</span><span class="sxs-lookup"><span data-stu-id="d97d0-168">In `Startup.Configure` between the endpoints for the default controller route and the client-side fallback, add an endpoint for the hub:</span></span>
+1. <span data-ttu-id="a3ac4-168">Em `Startup.Configure` entre os pontos de extremidade para a rota do controlador padrão e o fallback do lado do cliente, adicione um ponto final para o Hub:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-168">In `Startup.Configure` between the endpoints for the default controller route and the client-side fallback, add an endpoint for the hub:</span></span>
 
    [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet&highlight=4)]
 
-## <a name="add-razor-component-code-for-chat"></a><span data-ttu-id="d97d0-169">Adicionar código de componente Razor para chat</span><span class="sxs-lookup"><span data-stu-id="d97d0-169">Add Razor component code for chat</span></span>
+## <a name="add-razor-component-code-for-chat"></a><span data-ttu-id="a3ac4-169">Adicionar código de componente Razor para chat</span><span class="sxs-lookup"><span data-stu-id="a3ac4-169">Add Razor component code for chat</span></span>
 
-1. <span data-ttu-id="d97d0-170">No projeto **BlazorSignalRApp. Client** , abra o arquivo *pages/index. Razor* .</span><span class="sxs-lookup"><span data-stu-id="d97d0-170">In the **BlazorSignalRApp.Client** project, open the *Pages/Index.razor* file.</span></span>
+1. <span data-ttu-id="a3ac4-170">No projeto **BlazorSignalRApp. Client** , abra o arquivo *pages/index. Razor* .</span><span class="sxs-lookup"><span data-stu-id="a3ac4-170">In the **BlazorSignalRApp.Client** project, open the *Pages/Index.razor* file.</span></span>
 
-1. <span data-ttu-id="d97d0-171">Substitua a marcação pelo código a seguir:</span><span class="sxs-lookup"><span data-stu-id="d97d0-171">Replace the markup with the following code:</span></span>
+1. <span data-ttu-id="a3ac4-171">Substitua a marcação pelo código a seguir:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-171">Replace the markup with the following code:</span></span>
 
 [!code-razor[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Client/Pages/Index.razor)]
 
-## <a name="run-the-app"></a><span data-ttu-id="d97d0-172">Executar o aplicativo</span><span class="sxs-lookup"><span data-stu-id="d97d0-172">Run the app</span></span>
+## <a name="run-the-app"></a><span data-ttu-id="a3ac4-172">Executar o aplicativo</span><span class="sxs-lookup"><span data-stu-id="a3ac4-172">Run the app</span></span>
 
-1. <span data-ttu-id="d97d0-173">Siga as orientações para suas ferramentas:</span><span class="sxs-lookup"><span data-stu-id="d97d0-173">Follow the guidance for your tooling:</span></span>
+1. <span data-ttu-id="a3ac4-173">Siga as orientações para suas ferramentas:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-173">Follow the guidance for your tooling:</span></span>
 
-# <a name="visual-studio"></a>[<span data-ttu-id="d97d0-174">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="d97d0-174">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studio"></a>[<span data-ttu-id="a3ac4-174">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a3ac4-174">Visual Studio</span></span>](#tab/visual-studio)
 
-1. <span data-ttu-id="d97d0-175">Em **Gerenciador de soluções**, selecione o projeto **BlazorSignalRApp. Server** .</span><span class="sxs-lookup"><span data-stu-id="d97d0-175">In **Solution Explorer**, select the **BlazorSignalRApp.Server** project.</span></span> <span data-ttu-id="d97d0-176">Pressione **Ctrl + F5** para executar o aplicativo sem depuração.</span><span class="sxs-lookup"><span data-stu-id="d97d0-176">Press **Ctrl+F5** to run the app without debugging.</span></span>
+1. <span data-ttu-id="a3ac4-175">Em **Gerenciador de soluções**, selecione o projeto **BlazorSignalRApp. Server** .</span><span class="sxs-lookup"><span data-stu-id="a3ac4-175">In **Solution Explorer**, select the **BlazorSignalRApp.Server** project.</span></span> <span data-ttu-id="a3ac4-176">Pressione **Ctrl + F5** para executar o aplicativo sem depuração.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-176">Press **Ctrl+F5** to run the app without debugging.</span></span>
 
-1. <span data-ttu-id="d97d0-177">Copie a URL da barra de endereços, abra outra instância ou guia do navegador e cole a URL na barra de endereços.</span><span class="sxs-lookup"><span data-stu-id="d97d0-177">Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.</span></span>
+1. <span data-ttu-id="a3ac4-177">Copie a URL da barra de endereços, abra outra instância ou guia do navegador e cole a URL na barra de endereços.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-177">Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.</span></span>
 
-1. <span data-ttu-id="d97d0-178">Escolha qualquer navegador, insira um nome e uma mensagem e selecione o botão **Enviar**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-178">Choose either browser, enter a name and message, and select the **Send** button.</span></span> <span data-ttu-id="d97d0-179">O nome e a mensagem são exibidos em ambas as páginas instantaneamente:</span><span class="sxs-lookup"><span data-stu-id="d97d0-179">The name and message are displayed on both pages instantly:</span></span>
-
-   ![Aplicativo de exemplo Webassembly do signalr mais do que é aberto em duas janelas de navegador mostrando mensagens trocadas.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
-
-   <span data-ttu-id="d97d0-181">Aspas: *Star Trek VI: o país não descoberto* &copy;1991 de [extrema importância](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span><span class="sxs-lookup"><span data-stu-id="d97d0-181">Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span></span>
-
-# <a name="visual-studio-code"></a>[<span data-ttu-id="d97d0-182">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="d97d0-182">Visual Studio Code</span></span>](#tab/visual-studio-code)
-
-1. <span data-ttu-id="d97d0-183">Selecione **depurar** > **executar sem depuração** na barra de ferramentas.</span><span class="sxs-lookup"><span data-stu-id="d97d0-183">Select **Debug** > **Run Without Debugging** from the toolbar.</span></span>
-
-1. <span data-ttu-id="d97d0-184">Copie a URL da barra de endereços, abra outra instância ou guia do navegador e cole a URL na barra de endereços.</span><span class="sxs-lookup"><span data-stu-id="d97d0-184">Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.</span></span>
-
-1. <span data-ttu-id="d97d0-185">Escolha qualquer navegador, insira um nome e uma mensagem e selecione o botão **Enviar**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-185">Choose either browser, enter a name and message, and select the **Send** button.</span></span> <span data-ttu-id="d97d0-186">O nome e a mensagem são exibidos em ambas as páginas instantaneamente:</span><span class="sxs-lookup"><span data-stu-id="d97d0-186">The name and message are displayed on both pages instantly:</span></span>
+1. <span data-ttu-id="a3ac4-178">Escolha qualquer navegador, insira um nome e uma mensagem e selecione o botão **Enviar**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-178">Choose either browser, enter a name and message, and select the **Send** button.</span></span> <span data-ttu-id="a3ac4-179">O nome e a mensagem são exibidos em ambas as páginas instantaneamente:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-179">The name and message are displayed on both pages instantly:</span></span>
 
    ![Aplicativo de exemplo Webassembly do signalr mais do que é aberto em duas janelas de navegador mostrando mensagens trocadas.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
-   <span data-ttu-id="d97d0-188">Aspas: *Star Trek VI: o país não descoberto* &copy;1991 de [extrema importância](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span><span class="sxs-lookup"><span data-stu-id="d97d0-188">Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span></span>
+   <span data-ttu-id="a3ac4-181">Aspas: *Star Trek VI: o país não descoberto* &copy;1991 de [extrema importância](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span><span class="sxs-lookup"><span data-stu-id="a3ac4-181">Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span></span>
 
-# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="d97d0-189">Visual Studio para Mac</span><span class="sxs-lookup"><span data-stu-id="d97d0-189">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
+# <a name="visual-studio-code"></a>[<span data-ttu-id="a3ac4-182">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="a3ac4-182">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
-1. <span data-ttu-id="d97d0-190">Na barra lateral da **solução** , selecione o projeto **BlazorSignalRApp. Server** .</span><span class="sxs-lookup"><span data-stu-id="d97d0-190">In the **Solution** sidebar, select the **BlazorSignalRApp.Server** project.</span></span> <span data-ttu-id="d97d0-191">No menu, selecione **executar** > **Iniciar sem depuração**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-191">From the menu, select **Run** > **Start Without Debugging**.</span></span>
+1. <span data-ttu-id="a3ac4-183">Selecione **depurar** > **executar sem depuração** na barra de ferramentas.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-183">Select **Debug** > **Run Without Debugging** from the toolbar.</span></span>
 
-1. <span data-ttu-id="d97d0-192">Copie a URL da barra de endereços, abra outra instância ou guia do navegador e cole a URL na barra de endereços.</span><span class="sxs-lookup"><span data-stu-id="d97d0-192">Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.</span></span>
+1. <span data-ttu-id="a3ac4-184">Copie a URL da barra de endereços, abra outra instância ou guia do navegador e cole a URL na barra de endereços.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-184">Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.</span></span>
 
-1. <span data-ttu-id="d97d0-193">Escolha qualquer navegador, insira um nome e uma mensagem e selecione o botão **Enviar**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-193">Choose either browser, enter a name and message, and select the **Send** button.</span></span> <span data-ttu-id="d97d0-194">O nome e a mensagem são exibidos em ambas as páginas instantaneamente:</span><span class="sxs-lookup"><span data-stu-id="d97d0-194">The name and message are displayed on both pages instantly:</span></span>
+1. <span data-ttu-id="a3ac4-185">Escolha qualquer navegador, insira um nome e uma mensagem e selecione o botão **Enviar**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-185">Choose either browser, enter a name and message, and select the **Send** button.</span></span> <span data-ttu-id="a3ac4-186">O nome e a mensagem são exibidos em ambas as páginas instantaneamente:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-186">The name and message are displayed on both pages instantly:</span></span>
 
    ![Aplicativo de exemplo Webassembly do signalr mais do que é aberto em duas janelas de navegador mostrando mensagens trocadas.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
-   <span data-ttu-id="d97d0-196">Aspas: *Star Trek VI: o país não descoberto* &copy;1991 de [extrema importância](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span><span class="sxs-lookup"><span data-stu-id="d97d0-196">Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span></span>
+   <span data-ttu-id="a3ac4-188">Aspas: *Star Trek VI: o país não descoberto* &copy;1991 de [extrema importância](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span><span class="sxs-lookup"><span data-stu-id="a3ac4-188">Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span></span>
 
-# <a name="net-core-cli"></a>[<span data-ttu-id="d97d0-197">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="d97d0-197">.NET Core CLI</span></span>](#tab/netcore-cli/)
+# <a name="visual-studio-for-mac"></a>[<span data-ttu-id="a3ac4-189">Visual Studio para Mac</span><span class="sxs-lookup"><span data-stu-id="a3ac4-189">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-1. <span data-ttu-id="d97d0-198">Em um shell de comando, execute os seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="d97d0-198">In a command shell, execute the following commands:</span></span>
+1. <span data-ttu-id="a3ac4-190">Na barra lateral da **solução** , selecione o projeto **BlazorSignalRApp. Server** .</span><span class="sxs-lookup"><span data-stu-id="a3ac4-190">In the **Solution** sidebar, select the **BlazorSignalRApp.Server** project.</span></span> <span data-ttu-id="a3ac4-191">No menu, selecione **executar** > **Iniciar sem depuração**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-191">From the menu, select **Run** > **Start Without Debugging**.</span></span>
+
+1. <span data-ttu-id="a3ac4-192">Copie a URL da barra de endereços, abra outra instância ou guia do navegador e cole a URL na barra de endereços.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-192">Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.</span></span>
+
+1. <span data-ttu-id="a3ac4-193">Escolha qualquer navegador, insira um nome e uma mensagem e selecione o botão **Enviar**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-193">Choose either browser, enter a name and message, and select the **Send** button.</span></span> <span data-ttu-id="a3ac4-194">O nome e a mensagem são exibidos em ambas as páginas instantaneamente:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-194">The name and message are displayed on both pages instantly:</span></span>
+
+   ![Aplicativo de exemplo Webassembly do signalr mais do que é aberto em duas janelas de navegador mostrando mensagens trocadas.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
+
+   <span data-ttu-id="a3ac4-196">Aspas: *Star Trek VI: o país não descoberto* &copy;1991 de [extrema importância](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span><span class="sxs-lookup"><span data-stu-id="a3ac4-196">Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span></span>
+
+# <a name="net-core-cli"></a>[<span data-ttu-id="a3ac4-197">CLI do .NET Core</span><span class="sxs-lookup"><span data-stu-id="a3ac4-197">.NET Core CLI</span></span>](#tab/netcore-cli/)
+
+1. <span data-ttu-id="a3ac4-198">Em um shell de comando, execute os seguintes comandos:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-198">In a command shell, execute the following commands:</span></span>
 
    ```dotnetcli
    cd Server
    dotnet run
    ```
 
-1. <span data-ttu-id="d97d0-199">Copie a URL da barra de endereços, abra outra instância ou guia do navegador e cole a URL na barra de endereços.</span><span class="sxs-lookup"><span data-stu-id="d97d0-199">Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.</span></span>
+1. <span data-ttu-id="a3ac4-199">Copie a URL da barra de endereços, abra outra instância ou guia do navegador e cole a URL na barra de endereços.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-199">Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.</span></span>
 
-1. <span data-ttu-id="d97d0-200">Escolha qualquer navegador, insira um nome e uma mensagem e selecione o botão **Enviar**.</span><span class="sxs-lookup"><span data-stu-id="d97d0-200">Choose either browser, enter a name and message, and select the **Send** button.</span></span> <span data-ttu-id="d97d0-201">O nome e a mensagem são exibidos em ambas as páginas instantaneamente:</span><span class="sxs-lookup"><span data-stu-id="d97d0-201">The name and message are displayed on both pages instantly:</span></span>
+1. <span data-ttu-id="a3ac4-200">Escolha qualquer navegador, insira um nome e uma mensagem e selecione o botão **Enviar**.</span><span class="sxs-lookup"><span data-stu-id="a3ac4-200">Choose either browser, enter a name and message, and select the **Send** button.</span></span> <span data-ttu-id="a3ac4-201">O nome e a mensagem são exibidos em ambas as páginas instantaneamente:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-201">The name and message are displayed on both pages instantly:</span></span>
 
    ![Aplicativo de exemplo Webassembly do signalr mais do que é aberto em duas janelas de navegador mostrando mensagens trocadas.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
-   <span data-ttu-id="d97d0-203">Aspas: *Star Trek VI: o país não descoberto* &copy;1991 de [extrema importância](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span><span class="sxs-lookup"><span data-stu-id="d97d0-203">Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span></span>
+   <span data-ttu-id="a3ac4-203">Aspas: *Star Trek VI: o país não descoberto* &copy;1991 de [extrema importância](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span><span class="sxs-lookup"><span data-stu-id="a3ac4-203">Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)</span></span>
 
 ---
 
-## <a name="next-steps"></a><span data-ttu-id="d97d0-204">Próximas etapas</span><span class="sxs-lookup"><span data-stu-id="d97d0-204">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a3ac4-204">{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}</span><span class="sxs-lookup"><span data-stu-id="a3ac4-204">Next steps</span></span>
 
-<span data-ttu-id="d97d0-205">Neste tutorial, você aprendeu a:</span><span class="sxs-lookup"><span data-stu-id="d97d0-205">In this tutorial, you learned how to:</span></span>
+<span data-ttu-id="a3ac4-205">Neste tutorial, você aprendeu a:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-205">In this tutorial, you learned how to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="d97d0-206">Criar um projeto de aplicativo hospedado do Webassembly Blazor</span><span class="sxs-lookup"><span data-stu-id="d97d0-206">Create a Blazor WebAssembly Hosted app project</span></span>
-> * <span data-ttu-id="d97d0-207">Adicionar a biblioteca de cliente SignalR</span><span class="sxs-lookup"><span data-stu-id="d97d0-207">Add the SignalR client library</span></span>
-> * <span data-ttu-id="d97d0-208">Adicionar um hub de SignalR</span><span class="sxs-lookup"><span data-stu-id="d97d0-208">Add a SignalR hub</span></span>
-> * <span data-ttu-id="d97d0-209">Adicionar serviços de SignalR e um ponto de extremidade para o Hub de SignalR</span><span class="sxs-lookup"><span data-stu-id="d97d0-209">Add SignalR services and an endpoint for the SignalR hub</span></span>
-> * <span data-ttu-id="d97d0-210">Adicionar código de componente Razor para chat</span><span class="sxs-lookup"><span data-stu-id="d97d0-210">Add Razor component code for chat</span></span>
+> * <span data-ttu-id="a3ac4-206">Criar um projeto de aplicativo hospedado do Webassembly Blazor</span><span class="sxs-lookup"><span data-stu-id="a3ac4-206">Create a Blazor WebAssembly Hosted app project</span></span>
+> * <span data-ttu-id="a3ac4-207">Adicionar a biblioteca de cliente SignalR</span><span class="sxs-lookup"><span data-stu-id="a3ac4-207">Add the SignalR client library</span></span>
+> * <span data-ttu-id="a3ac4-208">Adicionar um hub de SignalR</span><span class="sxs-lookup"><span data-stu-id="a3ac4-208">Add a SignalR hub</span></span>
+> * <span data-ttu-id="a3ac4-209">Adicionar serviços de SignalR e um ponto de extremidade para o Hub de SignalR</span><span class="sxs-lookup"><span data-stu-id="a3ac4-209">Add SignalR services and an endpoint for the SignalR hub</span></span>
+> * <span data-ttu-id="a3ac4-210">Adicionar código de componente Razor para chat</span><span class="sxs-lookup"><span data-stu-id="a3ac4-210">Add Razor component code for chat</span></span>
 
-<span data-ttu-id="d97d0-211">Para saber mais sobre como criar Blazor aplicativos, consulte a documentação do Blazor:</span><span class="sxs-lookup"><span data-stu-id="d97d0-211">To learn more about building Blazor apps, see the Blazor documentation:</span></span>
+<span data-ttu-id="a3ac4-211">Para saber mais sobre como criar Blazor aplicativos, consulte a documentação do Blazor:</span><span class="sxs-lookup"><span data-stu-id="a3ac4-211">To learn more about building Blazor apps, see the Blazor documentation:</span></span>
 
 > [!div class="nextstepaction"]
 > <xref:blazor/index>
 
-## <a name="additional-resources"></a><span data-ttu-id="d97d0-212">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="d97d0-212">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="a3ac4-212">Recursos adicionais</span><span class="sxs-lookup"><span data-stu-id="a3ac4-212">Additional resources</span></span>
 
 * <xref:signalr/introduction>
