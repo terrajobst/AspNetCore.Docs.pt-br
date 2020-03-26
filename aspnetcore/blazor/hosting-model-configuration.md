@@ -5,17 +5,17 @@ description: Saiba mais sobre a configuração do modelo de hospedagem Blazor, i
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 03/24/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/hosting-model-configuration
-ms.openlocfilehash: bd44643877e45c5b48b0972bcc2f637fbc5d98f2
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 1f71ac63bbe9dc9d56cfca2ded19a5b863be828f
+ms.sourcegitcommit: 6ffb583991d6689326605a24565130083a28ef85
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78658301"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "80306428"
 ---
 # <a name="aspnet-core-blazor-hosting-model-configuration"></a>ASP.NET Core configuração de modelo de hospedagem mais incrivelmente
 
@@ -25,11 +25,26 @@ Por [Daniel Roth](https://github.com/danroth27)
 
 Este artigo aborda a configuração do modelo de hospedagem.
 
-<!-- For future use:
+## <a name="blazor-webassembly"></a>WebAssembly Blazor
 
-## Blazor WebAssembly
+A partir da versão ASP.NET Core 3,2 Preview 3, o Webassembly mais claro dá suporte à configuração de:
 
--->
+* *wwwroot/appSettings. JSON*
+* *wwwroot/appSettings. {ENVIRONMENT}. JSON*
+
+Em um aplicativo hospedado mais, o [ambiente de tempo de execução](xref:fundamentals/environments) é o mesmo que o valor do aplicativo do servidor.
+
+Ao executar o aplicativo localmente, o ambiente assume como padrão o desenvolvimento. Quando o aplicativo é publicado, o ambiente assume como padrão a produção. Para obter mais informações, incluindo como configurar o ambiente, consulte <xref:fundamentals/environments>.
+
+> [!WARNING]
+> A configuração em um aplicativo Webassembly mais incrivelmente é visível para os usuários. **Não armazene os segredos ou as credenciais do aplicativo na configuração.**
+
+Os arquivos de configuração são armazenados em cache para uso offline. Com [PWAs (aplicativos Web progressivos)](xref:blazor/progressive-web-app), você só pode atualizar arquivos de configuração ao criar uma nova implantação. A edição de arquivos de configuração entre implantações não tem efeito porque:
+
+* Os usuários têm versões em cache dos arquivos que eles continuam a usar.
+* Os arquivos *Service-Worker. js* e *Service-Worker-assets. js* do PWA devem ser recriados na compilação, que sinaliza ao aplicativo no próximo online do usuário que o aplicativo foi reimplantado.
+
+Para obter mais informações sobre como as atualizações em segundo plano são manipuladas pelo PWAs, consulte <xref:blazor/progressive-web-app#background-updates>.
 
 ## <a name="blazor-server"></a>Servidor Blazor
 

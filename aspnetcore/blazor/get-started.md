@@ -5,17 +5,17 @@ description: Comece a usar o Blazor criando um aplicativo Blazor com as ferramen
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/10/2020
+ms.date: 03/26/2020
 no-loc:
 - Blazor
 - SignalR
 uid: blazor/get-started
-ms.openlocfilehash: 89c7529d2b8ec97db731f7c7268e19937c398115
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.openlocfilehash: abecb640930c1e5770c0fad45a1e9a6df31a20f4
+ms.sourcegitcommit: 6ffb583991d6689326605a24565130083a28ef85
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79083243"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "80306450"
 ---
 # <a name="get-started-with-aspnet-core-blazor"></a>Introdução ao ASP.NET Core mais incrivelmente
 
@@ -23,89 +23,107 @@ Por [Daniel Roth](https://github.com/danroth27) e [Luke Latham](https://github.c
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Introdução ao mais incrivelmente:
+Para começar com o mais claro, siga as orientações para sua escolha de ferramentas:
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+1. Para criar aplicativos de servidor mais recentes, instale o [Visual Studio 2019 versão 16,4 ou posterior](https://visualstudio.microsoft.com/vs/preview/) com a ASP.net e a carga de trabalho de **desenvolvimento Web** .
+
+   Para criar aplicativos Webassembly mais popicores e de servidor de mais recente, instale o Visual Studio 2019 16,6 Preview 2 ou posterior com a ASP.NET e a carga de trabalho de **desenvolvimento na Web** .
+
+   Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, *Webassembly* e *servidor*mais incrivelmente, consulte <xref:blazor/hosting-models>.
+
+1. Crie um novo projeto.
+
+1. Selecione **aplicativo mais incrivelmente**. Selecione **Avançar**.
+
+1. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Confirme se a entrada de **local** está correta ou forneça um local para o projeto. Selecione **Criar**.
+
+1. Para obter uma experiência de Webassembly mais experiente (Visual Studio 16,6 Preview 2 ou posterior), escolha o modelo de **aplicativo Webassembly** mais experiente. Para uma experiência de servidor mais incrivelmente (Visual Studio 16,4 ou posterior), escolha o modelo de **aplicativo de servidor** mais experiente. Selecione **Criar**.
+
+1. Pressione <kbd>Ctrl</kbd>+<kbd>F5</kbd> para executar o aplicativo.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 1. Instale o [SDK do .NET Core 3,1](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-1. Opcionalmente, instale o modelo [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) :
-   * Instale o [SDK do .NET Core 3.1.102 ou posterior (versão prévia)](https://dotnet.microsoft.com/download/dotnet-core/3.1).
-   * Execute o comando a seguir em um shell de comando. O pacote [Microsoft. AspNetCore. Components. Webassembly. templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) tem uma versão de visualização enquanto o Webassembly de mais de baixo está em visualização.
+1. Opcionalmente, instale o modelo de visualização do [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) executando o seguinte comando:
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview2.20160.5
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
    ```
 
    > [!NOTE]
-   > SDK do .NET Core versão 3.1.102 ou posterior é **necessária** para usar o modelo Webassembly do 3,2 Preview 2 mais recente. Confirme a versão do SDK do .NET Core instalada executando `dotnet --version` em um shell de comando.
+   > O [SDK do .NET Core versão 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessário** para usar o modelo Webassembly do 3,2 Preview 3 mais recente. Confirme a versão do SDK do .NET Core instalada executando `dotnet --version` em um shell de comando.
 
-1. Siga as orientações para sua escolha de ferramentas:
+1. Instale o [Visual Studio Code](https://code.visualstudio.com/).
 
-   # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+1. Instale o mais recente [ C# para a extensão de Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) e a extensão do [depurador do JavaScript (noturno)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) com `debug.javascript.usePreview` definido como `true`.
 
-   1 \. Instale o [Visual Studio 2019 versão 16,4 ou posterior](https://visualstudio.microsoft.com/vs/preview/) com a ASP.net e a carga de trabalho de **desenvolvimento Web** .
+1. Para uma experiência de servidor mais incrivelmente, execute o seguinte comando em um shell de comando:
 
-   2 \. Criar um novo projeto.
+   ```dotnetcli
+   dotnet new blazorserver -o WebApplication1
+   ```
 
-   3 \. Selecione **aplicativo mais incrivelmente**. Selecione **Avançar**.
+   Para uma experiência de Webassembly mais experiente, execute o seguinte comando em um shell de comando:
 
-   4 \. Forneça um nome ao projeto no campo **Nome do projeto** ou aceite o nome do projeto padrão. Confirme se a entrada de **local** está correta ou forneça um local para o projeto. Selecione **Criar**.
+   ```dotnetcli
+   dotnet new blazorwasm -o WebApplication1
+   ```
 
-   5 \. Para obter uma experiência de Webassembly mais experiente, escolha o modelo de **aplicativo Webassembly mais incrivelmente** . Para uma experiência de servidor mais incrivelmente, escolha o modelo de **aplicativo de servidor** mais experiente. Selecione **Criar**. Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>. Se o modelo Webassembly mais antigo não estiver presente, retorne à etapa anterior e reinstale o modelo.
+   Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>.
 
-   6 \. Pressione **Ctrl**+**F5** para executar o aplicativo.
+1. Abra a pasta *WebApplication1* em Visual Studio Code.
+
+1. O IDE solicita que você adicione ativos para compilar e depurar o projeto. Selecione **Sim**.
+
+1. Execute o aplicativo usando o depurador de Visual Studio Code.
+
+1. Em um navegador, navegue até `https://localhost:5001`.
+
+# <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
+
+Há suporte para o servidor mais incrivelmente no Visual Studio para Mac. Não há suporte para Webassembly mais incrivelmente no momento. Para criar aplicativos Webassembly mais elaborados no macOS, siga as orientações na guia **CLI do .NET Core** .
+
+1. Instale o [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/).
+
+1. Selecione **arquivo** > **nova solução** ou crie um **novo projeto**.
+
+1. Na barra lateral, selecione **.NET Core** > **aplicativo**.
+
+1. Selecione o modelo de **aplicativo de servidor mais incrivelmente** . Selecione **Criar**.
+
+   Para obter informações sobre o modelo de Hospedagem de servidor mais incrivelmente, consulte <xref:blazor/hosting-models>.
+
+1. Defina a **estrutura de destino** como **.NET Core 3,1** e selecione **Avançar**.
+
+1. No campo **nome do projeto** , nomeie o aplicativo `WebApplication1`. Selecione **Criar**.
+
+1. Selecione **executar** > **executar sem depuração** para executar o aplicativo *sem o depurador*. Execute o aplicativo com **Iniciar Depuração** para executar o aplicativo *com o depurador*.
+
+Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no certificado e continue.
+
+# <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+
+1. Instale o [SDK do .NET Core 3,1](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+
+1. Opcionalmente, instale o modelo de visualização do [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) executando o seguinte comando:
+
+   ```dotnetcli
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
+   ```
 
    > [!NOTE]
-   > Se você instalou a extensão do Visual Studio para uma versão prévia anterior do ASP.NET Core mais recente (visualização 6 ou anterior), você pode desinstalar a extensão. Instalar os modelos mais bem em um shell de comando agora é suficiente para trazer os modelos no Visual Studio.
+   > O [SDK do .NET Core versão 3.1.201 ou posterior](https://dotnet.microsoft.com/download/dotnet-core/3.1) é **necessário** para usar o modelo Webassembly do 3,2 Preview 3 mais recente. Confirme a versão do SDK do .NET Core instalada executando `dotnet --version` em um shell de comando.
 
-   # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+1. Para uma experiência de servidor mais incrivelmente, execute os seguintes comandos em um shell de comando:
 
-   1 \. Instale o [Visual Studio Code](https://code.visualstudio.com/).
-
-   2 \. Instale o mais recente [ C# para a extensão de Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
-
-   3 \. Para uma experiência de Webassembly mais experiente, execute o seguinte comando em um shell de comando:
-
-      ```dotnetcli
-      dotnet new blazorwasm -o WebApplication1
-      ```
-
-      Para uma experiência de servidor mais incrivelmente, execute o seguinte comando em um shell de comando:
-
-      ```dotnetcli
-      dotnet new blazorserver -o WebApplication1
-      ```
-
-      Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>.
-
-   4 \. Abra a pasta *WebApplication1* em Visual Studio Code.
-
-   5 \. Para um projeto de servidor mais incrivelmente, o IDE solicita que você adicione ativos para compilar e depurar o projeto. Selecione **Sim** na barra superior.
-
-   6 \. Se estiver usando um aplicativo de servidor mais incrivelmente, execute o aplicativo usando o depurador de Visual Studio Code. Se estiver usando um aplicativo Webassembly mais incrivelmente, execute `dotnet run` na pasta do projeto do aplicativo.
-
-   7 \. Em um navegador, navegue até `https://localhost:5001`.
-
-   # <a name="visual-studio-for-mac"></a>[Visual Studio para Mac](#tab/visual-studio-mac)
-
-   1 \. Instale o [Visual Studio para Mac](https://visualstudio.microsoft.com/vs/mac/).
-
-   2 \. Selecione **arquivo** > **nova solução** ou crie um **novo projeto**.
-
-   3 \. Na barra lateral, selecione **.NET Core** > **aplicativo**.
-
-   4 \. Selecione o modelo de **aplicativo de servidor mais incrivelmente** . Somente o modelo de servidor mais útil está disponível no Visual Studio para Mac no momento. Para obter uma experiência de Webassembly mais experiente, siga as instruções na guia **CLI do .NET Core** . Depois de selecionar o modelo de servidor mais novo, selecione **Avançar**. Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>.
-
-   <!-- For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. -->
-
-   5 \. Defina a **estrutura de destino** como **.NET Core 3,1** e selecione **Avançar**.
-
-   6 \. No campo **nome do projeto** , nomeie o aplicativo `WebApplication1`. Selecione **Criar**.
-
-   7 \. Selecione **executar** > **executar sem depuração** para executar o aplicativo *sem o depurador*. Execute o aplicativo com **Iniciar Depuração** para executar o aplicativo *com o depurador*.
-
-   Se aparecer um prompt para confiar no certificado de desenvolvimento, confie no certificado e continue.
-
-   # <a name="net-core-cli"></a>[CLI do .NET Core](#tab/netcore-cli/)
+   ```dotnetcli
+   dotnet new blazorserver -o WebApplication1
+   cd WebApplication1
+   dotnet run
+   ```
 
    Para uma experiência de Webassembly mais experiente, execute os seguintes comandos em um shell de comando:
 
@@ -115,19 +133,11 @@ Introdução ao mais incrivelmente:
    dotnet run
    ```
 
-   Para uma experiência de servidor mais incrivelmente, execute os seguintes comandos em um shell de comando:
-
-   ```dotnetcli
-   dotnet new blazorserver -o WebApplication1
-   cd WebApplication1
-   dotnet run
-   ```
-
    Para obter informações sobre os dois modelos de hospedagem mais incrivelmente, um *servidor mais incrivelmente* e um *Webassembly*de mais ou mais, consulte <xref:blazor/hosting-models>.
 
-   Em um navegador, navegue até `https://localhost:5001`.
+1. Em um navegador, navegue até `https://localhost:5001`.
 
-   ---
+---
 
 Várias páginas estão disponíveis em guias na barra lateral:
 
@@ -177,7 +187,7 @@ Especifique o `IncrementAmount` no elemento `<Counter>` do componente de `Index`
 
 Execute o aplicativo. O componente `Index` tem seu próprio contador que é incrementado em dez cada vez que o botão **Click me** está selecionado. O componente `Counter` (*Counter. Razor*) em `/counter` continua a incrementar um.
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 <xref:tutorials/first-blazor-app>
 

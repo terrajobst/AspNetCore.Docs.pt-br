@@ -5,17 +5,17 @@ description: Crie um aplicativo de chat que usa ASP.NET Core SignalR com Blazor 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/31/2020
+ms.date: 03/26/2020
 no-loc:
 - Blazor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: 605cf8ebd3e85586f3e479c815f0b9902ce5a91a
-ms.sourcegitcommit: 98bcf5fe210931e3eb70f82fd675d8679b33f5d6
+ms.openlocfilehash: c4843dc282e1978b39738e206ecc79ded87fcff9
+ms.sourcegitcommit: 6ffb583991d6689326605a24565130083a28ef85
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79083386"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "80306568"
 ---
 # <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Usar Signalr ASP.NET Core com Webassembly de mais incrivelmente
 
@@ -36,7 +36,7 @@ No final deste tutorial, você terá um aplicativo de chat em funcionamento.
 
 [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-blazor-webassembly/samples/) ([como baixar](xref:index#how-to-download-a-sample))
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>{1&gt;{2&gt;Pré-requisitos&lt;2}&lt;1}
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -58,17 +58,17 @@ No final deste tutorial, você terá um aplicativo de chat em funcionamento.
 
 ## <a name="create-a-hosted-blazor-webassembly-app-project"></a>Criar um projeto de aplicativo Webassembly de mais incrivelmente hospedado
 
-Instale o modelo [Webassembly mais incrivelmente](xref:blazor/hosting-models#blazor-webassembly) . O pacote [Microsoft. AspNetCore. Components. Webassembly. templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) tem uma versão de visualização enquanto o Webassembly de mais de baixo está em visualização. Em um shell de comando, execute o seguinte comando:
+Quando não estiver usando o Visual Studio versão 16,6 Preview 2 ou posterior, instale o modelo [Webassembly](xref:blazor/hosting-models#blazor-webassembly) mais recente. O pacote [Microsoft. AspNetCore. Components. Webassembly. templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) tem uma versão de visualização enquanto o Webassembly de mais de baixo está em visualização. Em um shell de comando, execute o seguinte comando:
 
 ```dotnetcli
-dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview2.20160.5
+dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
 ```
 
 Siga as orientações para sua escolha de ferramentas:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Criar um novo projeto.
+1. Crie um novo projeto.
 
 1. Selecione **aplicativo** mais novo e selecione **Avançar**.
 
@@ -255,7 +255,7 @@ No projeto **BlazorSignalRApp. Server** , crie uma pasta *hubs* (plural) e adici
 
 ---
 
-## <a name="next-steps"></a>Próximas etapas
+## <a name="next-steps"></a>{1&gt;{2&gt;Próximas etapas&lt;2}&lt;1}
 
 Neste tutorial, você aprendeu a:
 
