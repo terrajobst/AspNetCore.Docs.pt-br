@@ -355,7 +355,7 @@
           uid: blazor/state-management
         - name: Tratar erros
           uid: blazor/handle-errors
-        - name: Depurar
+        - name: Depurar WebAssembly
           uid: blazor/debug
         - name: Chamar uma API Web
           uid: blazor/call-web-api
