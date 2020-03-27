@@ -5,12 +5,12 @@ description: Saiba como o ASP.NET Core MVC usa o middleware de roteamento para c
 ms.author: riande
 ms.date: 3/25/2020
 uid: mvc/controllers/routing
-ms.openlocfilehash: be7da9eeaf64c2f52c095b5179ccc22db43d57c3
-ms.sourcegitcommit: 99e71ae03319ab386baf2ebde956fc2d511df8b8
+ms.openlocfilehash: c1c0d978714718af1de0f627e50a54f66ed391ed
+ms.sourcegitcommit: 4b166b49ec557a03f99f872dd069ca5e56faa524
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/25/2020
-ms.locfileid: "80242563"
+ms.lasthandoff: 03/27/2020
+ms.locfileid: "80362660"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Roteamento para ações do controlador no ASP.NET Core
 
@@ -420,7 +420,7 @@ A tabela a seguir explica os atributos de `[Route]` no código anterior:
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | Sim | `"Home"` |
 | `[Route("Index")]` | Sim | `"Home/Index"` |
-| `[Route("/")]` | **No** | `""` |
+| `[Route("/")]` | **Não** | `""` |
 | `[Route("About")]` | Sim | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
@@ -846,6 +846,8 @@ Os métodos públicos em um controlador, exceto aqueles com o atributo [NonActio
 
  * O método [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs) está incluído no [download de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) e é usado para exibir informações de roteamento.
 * [Exibir ou baixar código de exemplo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) ([como baixar](xref:index#how-to-download-a-sample))
+
+[!INCLUDE[](~/includes/dbg-route.md)]
 
 ::: moniker-end
 
