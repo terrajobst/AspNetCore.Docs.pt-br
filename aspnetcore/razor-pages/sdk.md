@@ -5,16 +5,16 @@ description: Saiba como as Páginas Razor no ASP.NET Core tornam a codificação
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 08/23/2019
+ms.date: 03/26/2020
 no-loc:
 - Blazor
 uid: razor-pages/sdk
-ms.openlocfilehash: 872d90662494735dc0e4caa01c46fcdcc2606bc6
-ms.sourcegitcommit: 9a129f5f3e31cc449742b164d5004894bfca90aa
+ms.openlocfilehash: 2284131ce2d45ec6bc01ce38f91e2c951b108605
+ms.sourcegitcommit: f3b1bcfd108e5d53f73abc0bf2555890869d953b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78660065"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "80321005"
 ---
 # <a name="aspnet-core-razor-sdk"></a>SDK do Razor do ASP.NET Core
 
@@ -113,6 +113,32 @@ As propriedades e os itens na tabela a seguir são usados para configurar entrad
 | `RazorTargetAssemblyAttribute` | Os elementos de item usados para a codificação geram atributos para o assembly Razor. Por exemplo:  <br>`RazorAssemblyAttribute`<br>`Include="System.Reflection.AssemblyMetadataAttribute"`<br>`_Parameter1="BuildSource" _Parameter2="https://docs.microsoft.com/">` |
 | `RazorEmbeddedResource` | Elementos de item adicionados como recursos incorporados ao assembly Razor gerado. |
 
+::: moniker range=">= aspnetcore-3.0"
+
+| Propriedade | Descrição |
+| -------- | ----------- |
+| `RazorTargetName` | Nome do arquivo (sem extensão) do assembly produzido pelo Razor. |
+| `RazorOutputPath` | O diretório de saída do Razor. |
+| `RazorCompileToolset` | Usado para determinar o conjunto de ferramentas usado para criar o assembly do Razor. Os valores válidos são `Implicit`, `RazorSDK` e `PrecompilationTool`. |
+| [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | O padrão é `true`. Quando `true`, inclui arquivos *Web. config*, *. JSON*e *. cshtml* como conteúdo no projeto. Quando referenciado via `Microsoft.NET.Sdk.Web`, os arquivos em arquivos *wwwroot* e config também são incluídos. |
+| `EnableDefaultRazorGenerateItems` | Quando `true`, inclui arquivos *.cshtml* de itens de `Content` em itens de `RazorGenerate`. |
+| `GenerateRazorTargetAssemblyInfo` | Quando `true`, o gera um arquivo *. cs* contendo atributos especificados por `RazorAssemblyAttribute` e inclui o arquivo na saída de compilação. |
+| `EnableDefaultRazorTargetAssemblyInfoAttributes` | Quando `true`, adiciona um conjunto padrão de atributos de assembly em `RazorAssemblyAttribute`. |
+| `CopyRazorGenerateFilesToPublishDirectory` | Quando `true`, o copia os arquivos de `RazorGenerate` itens ( *. cshtml*) para o diretório de publicação. Normalmente, arquivos do Razor não são necessários para um aplicativo publicado se eles participam da compilação em tempo de compilação ou tempo de publicação. Usa `false` como padrão. |
+| `PreserveCompilationReferences` | Quando `true`, copia os itens do assembly de referência no diretório de publicação. Normalmente, os assemblies de referência não são necessários para um aplicativo publicado se a compilação do Razor ocorre em tempo de compilação ou tempo de publicação. Defina como `true` se seu aplicativo publicado exigir compilação em tempo de execução. Por exemplo, defina o valor como `true` se o aplicativo modificar arquivos *. cshtml* em tempo de execução ou usar exibições inseridas. Usa `false` como padrão. |
+| `IncludeRazorContentInPack` | Quando `true`, todos os itens de conteúdo do Razor (arquivos *. cshtml* ) são marcados para inclusão no pacote NuGet gerado. Usa `false` como padrão. |
+| `EmbedRazorGenerateSources` | Quando `true`, adiciona itens de RazorGenerate ( *.cshtml*) como arquivos incorporados ao assembly Razor gerado. Usa `false` como padrão. |
+| `UseRazorBuildServer` | Quando `true`, usa um processo de servidor de build persistente para descarregar o trabalho de geração de código. Seu valor padrão é `UseSharedCompilation`. |
+| `GenerateMvcApplicationPartsAssemblyAttributes` | Quando `true`, o SDK gera atributos adicionais usados pelo MVC em tempo de execução para executar a descoberta de parte do aplicativo. |
+| `DefaultWebContentItemExcludes` | Um padrão de mascaramento para elementos de item que devem ser excluídos do `Content` grupo de itens em projetos direcionados para o SDK Web ou Razor |
+| `ExcludeConfigFilesFromBuildOutput` | Quando os arquivos `true`, *. config* e *. JSON* não são copiados para o diretório de saída da compilação. |
+| `AddRazorSupportForMvc` | Quando `true`, o configura o SDK do Razor para adicionar suporte para a configuração do MVC que é necessária ao criar aplicativos que contenham exibições do MVC ou Razor Pages. Essa propriedade é definida implicitamente para projetos .NET Core 3,0 ou posterior direcionados para o SDK da Web |
+| `RazorLangVersion` | A versão do idioma do Razor para o destino. |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 | Propriedade | Descrição |
 | -------- | ----------- |
 | `RazorTargetName` | Nome do arquivo (sem extensão) do assembly produzido pelo Razor. |
@@ -132,6 +158,8 @@ As propriedades e os itens na tabela a seguir são usados para configurar entrad
 | `ExcludeConfigFilesFromBuildOutput` | Quando os arquivos `true`, *. config* e *. JSON* não são copiados para o diretório de saída da compilação. |
 | `AddRazorSupportForMvc` | Quando `true`, o configura o SDK do Razor para adicionar suporte para a configuração do MVC que é necessária ao criar aplicativos que contenham exibições do MVC ou Razor Pages. Essa propriedade é definida implicitamente para projetos .NET Core 3,0 ou posterior direcionados para o SDK da Web |
 | `RazorLangVersion` | A versão do idioma do Razor para o destino. |
+
+::: moniker-end
 
 Para saber mais sobre as propriedades, confira [Propriedades do MSBuild](/visualstudio/msbuild/msbuild-properties).
 
