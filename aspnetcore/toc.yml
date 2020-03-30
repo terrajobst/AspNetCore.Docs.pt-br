@@ -1,5 +1,5 @@
 - name: Documentação do ASP.NET Core
-  href: '/aspnet/#pivot=core'
+  href: index.yml
 - name: Novidades nos documentos do ASP.NET Core
   href: whats-new/index.yml
 - name: Visão geral
@@ -12,11 +12,11 @@
       href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Introdução
   uid: getting-started
-- name: Notas de Versão
+- name: Notas de versão
   items:
-    - name: Novidades no 3.1
+    - name: Novidades na versão 3.1
       uid: aspnetcore-3.1
-    - name: Novidades no 3.0
+    - name: Novidades na versão 3.0
       uid: aspnetcore-3.0
     - name: Novidades no 2.2
       uid: aspnetcore-2.2
@@ -81,7 +81,7 @@
           uid: tutorials/first-blazor-app
     - name: Aplicativos API Web
       items:
-        - name: Criar uma API Web
+        - name: Criar uma API da Web
           displayName: tutorial
           uid: tutorials/first-web-api
         - name: API Web com o MongoDB
@@ -108,7 +108,7 @@
       items:
         - name: Introdução a um serviço gRPC
           uid: tutorials/grpc/grpc-start
-    - name: Acesso aos dados
+    - name: Acesso de dados
       items:
         - name: EF Core com Razor Pages
           displayName: tutorial
@@ -162,13 +162,13 @@
       href: /learn/modules/create-razor-pages-aspnet-core/
     - name: Aplicativos API Web
       href: /learn/modules/build-web-api-net-core/
-    - name: Acesso aos dados
+    - name: Acesso de dados
       displayName: 'tutorial, ef, entity framework'
       href: /learn/modules/persist-data-ef-core/
     - name: Segurança do aplicativo Web
       displayName: 'tutorial, identity'
       href: /learn/modules/secure-aspnet-core-identity/
-- name: Princípios básicos
+- name: Conceitos básicos
   items:
     - name: Visão geral
       uid: fundamentals/index
@@ -192,7 +192,7 @@
       uid: fundamentals/configuration/options
     - name: 'Ambientes (desenvolvimento, preparação, produção)'
       uid: fundamentals/environments
-    - name: Registrando em log
+    - name: Registro em log
       uid: fundamentals/logging/index
     - name: Roteamento
       uid: fundamentals/routing
@@ -279,7 +279,7 @@
       items:
         - name: Visão geral
           uid: blazor/index
-        - name: Plataformas com suporte
+        - name: Plataformas compatíveis
           uid: blazor/supported-platforms
         - name: Introdução
           uid: blazor/get-started
@@ -357,7 +357,7 @@
           uid: blazor/handle-errors
         - name: Depurar WebAssembly
           uid: blazor/debug
-        - name: Chamar uma API Web
+        - name: Chamar uma API da Web
           uid: blazor/call-web-api
         - name: Aplicativos Web progressivos
           uid: blazor/progressive-web-app
@@ -375,7 +375,7 @@
           uid: blazor/advanced-scenarios
     - name: Desenvolvimento do lado do cliente
       items:
-        - name: Aplicativos de página única
+        - name: Aplicativos de Página Única
           items:
             - name: Angular
               uid: spa/angular
@@ -434,17 +434,17 @@
               href: 'mvc/views/working-with-forms.md#the-form-tag-helper'
             - name: Ação de formulário
               href: 'mvc/views/working-with-forms.md#the-form-action-tag-helper'
-            - name: Image
+            - name: Imagem
               uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
             - name: Entrada
               href: 'mvc/views/working-with-forms.md#the-input-tag-helper'
-            - name: Rotular
+            - name: Rótulo
               href: 'mvc/views/working-with-forms.md#the-label-tag-helper'
             - name: Link
               uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
             - name: Parcial
               uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-            - name: script
+            - name: Script
               uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
             - name: Selecionar
               href: 'mvc/views/working-with-forms.md#the-select-tag-helper'
@@ -517,7 +517,7 @@
   items:
     - name: Visão geral do SignalR
       uid: signalr/introduction
-    - name: Plataformas com suporte
+    - name: Plataformas compatíveis
       uid: signalr/supported-platforms
       displayName: signalr
     - name: Tutoriais
@@ -576,7 +576,7 @@
         - name: Visão geral
           displayName: signalr
           uid: signalr/scale
-        - name: Serviço de Aplicativo do Azure
+        - name: Serviço de aplicativo do Azure
           uid: signalr/publish-to-azure-web-app
           displayName: signalr
         - name: Backplane de Redis
@@ -590,7 +590,7 @@
     - name: Autenticação e autorização
       uid: signalr/authn-and-authz
       displayName: signalr
-    - name: Considerações sobre segurança
+    - name: Considerações de segurança
       uid: signalr/security
       displayName: signalr
     - name: Protocolo de Hub do MessagePack
@@ -605,7 +605,7 @@
     - name: WebSockets sem SignalR
       displayName: signalr
       uid: fundamentals/websockets
-    - name: Log e diagnóstico
+    - name: Logon e diagnósticos
       displayName: signalr
       uid: signalr/diagnostics
     - name: Especificações
@@ -637,9 +637,9 @@
       uid: grpc/configuration
     - name: Autenticação e autorização
       uid: grpc/authn-and-authz
-    - name: Log e diagnóstico
+    - name: Logon e diagnósticos
       uid: grpc/diagnostics
-    - name: Considerações sobre segurança
+    - name: Considerações de segurança
       uid: grpc/security
     - name: Controle de versão de serviços gRPC
       uid: grpc/versioning
@@ -651,7 +651,7 @@
       uid: grpc/comparison
     - name: Exemplos
       href: 'https://github.com/grpc/grpc-dotnet/tree/master/examples'
-    - name: Solução de problemas
+    - name: Solucionar problemas
       uid: grpc/troubleshoot
 - name: 'Testar, depurar e solucionar problemas'
   items:
@@ -671,13 +671,13 @@
       uid: test/loadtests
     - name: Solucionar problemas e depurar
       uid: test/troubleshoot
-    - name: Registrando em log
+    - name: Registro em log
       uid: fundamentals/logging/index
     - name: Solucionar problemas no Azure e no IIS
       uid: test/troubleshoot-azure-iis
     - name: Referência de erros do Azure e do IIS
       uid: host-and-deploy/azure-iis-errors-reference
-- name: Acesso aos dados
+- name: Acesso de dados
   items:
     - name: Tutoriais
       items:
@@ -733,7 +733,7 @@
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-blobs?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Armazenamento de filas
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-        - name: Armazenamento de tabelas
+        - name: Armazenamento de tabela
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Hospedar e implantar
   displayName: publish
@@ -741,7 +741,7 @@
     - name: Visão geral
       displayName: 'azure, deploy, publish'
       uid: host-and-deploy/index
-    - name: Serviço de Aplicativo do Azure
+    - name: Serviço de aplicativo do Azure
       displayName: 'deploy, publish'
       items:
         - name: Visão geral
@@ -765,7 +765,7 @@
         - name: Módulo do ASP.NET Core
           displayName: 'azure, deploy, publish'
           uid: host-and-deploy/aspnet-core-module
-        - name: Solução de problemas
+        - name: Solucionar problemas
           displayName: 'azure, deploy, publish'
           uid: test/troubleshoot-azure-iis
         - name: Referência de erros
@@ -808,7 +808,7 @@
         - name: Módulos do IIS
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/modules
-        - name: Solução de problemas
+        - name: Solucionar problemas
           displayName: 'deploy, publish'
           uid: test/troubleshoot-azure-iis
         - name: Referência de erros
@@ -1078,7 +1078,7 @@
         - name: Provedor de configuração do Azure Key Vault
           displayName: 'password, connection string, API key, secrets'
           uid: security/key-vault-configuration
-    - name: Impor o HTTPS
+    - name: Impor HTTPS
       uid: security/enforcing-ssl
     - name: Hospedar o Docker com HTTPS
       uid: security/docker-https
@@ -1169,7 +1169,7 @@
       uid: fundamentals/portable-object-localization
     - name: Extensibilidade
       uid: fundamentals/localization-extensibility
-    - name: Solução de problemas
+    - name: Solucionar problemas
       uid: fundamentals/troubleshoot-aspnet-core-localization
 - name: Avançado
   items:
@@ -1186,7 +1186,7 @@
     - name: Operações de solicitação e de resposta
       displayName: middleware
       uid: fundamentals/middleware/request-response
-    - name: Reescrita de URL
+    - name: Regravação de URL
       uid: fundamentals/url-rewriting
     - name: Provedores de arquivo
       uid: fundamentals/file-providers
@@ -1263,7 +1263,7 @@
     - name: Registro em log (não o ASP.NET Core)
       displayName: 'migrate, migration'
       uid: migration/logging-nonaspnetcore
-- name: Reference API
+- name: Referência de API
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribuir
   href: 'https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md'

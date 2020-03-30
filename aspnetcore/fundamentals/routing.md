@@ -7,12 +7,12 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 3/25/2020
 uid: fundamentals/routing
-ms.openlocfilehash: 2ebba716de90f142a66cf7619b5a4b0c77684bd4
-ms.sourcegitcommit: 0c62042d7d030ec5296c73bccd9f9b961d84496a
+ms.openlocfilehash: 689f9757aeadd66e1d06ba1a774db13b0011c1d2
+ms.sourcegitcommit: 4b166b49ec557a03f99f872dd069ca5e56faa524
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/25/2020
-ms.locfileid: "80270440"
+ms.lasthandoff: 03/27/2020
+ms.locfileid: "80362698"
 ---
 # <a name="routing-in-aspnet-core"></a>Roteamento no ASP.NET Core
 
@@ -383,7 +383,7 @@ Os métodos `GetPath*` são mais semelhantes a `Url.Action` e `Url.Page`, pois g
 
 Os métodos fornecidos pelo <xref:Microsoft.AspNetCore.Routing.LinkGenerator> dão suporte a funcionalidades de geração de link padrão para qualquer tipo de endereço. A maneira mais conveniente de usar o link Generator é por meio de métodos de extensão que executam operações para um tipo de endereço específico:
 
-| Método de extensão | Descrição |
+| Método de extensão | DESCRIÇÃO |
 | ---------------- | ----------- |
 | <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*> | Gera um URI com um caminho absoluto com base nos valores fornecidos. |
 | <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetUriByAddress*> | Gera um URI absoluto com base nos valores fornecidos.             |
@@ -490,7 +490,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra as restrições de rota de exemplo e seu comportamento esperado:
 
-| restrição | {1&gt;Exemplo&lt;1} | Correspondências de exemplo | {1&gt;Observações&lt;1} |
+| restrição | Exemplo | Correspondências de exemplo | Observações |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false`. Não diferenciam maiúsculas de minúsculas |
@@ -553,13 +553,13 @@ Para escapar os caracteres delimitadores de parâmetro de roteamento `{`, `}`, `
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere `^` e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere `$` e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponda ao valor do parâmetro de rota inteiro. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia dentro da cadeia de caracteres, o que geralmente é indesejável. A tabela a seguir fornece exemplos e explica por que eles correspondem ou falham na correspondência:
 
-| Expressão   | Cadeia de Caracteres    | Corresponder a | Comentário               |
+| Expression   | String    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
 | `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | olá     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
 | `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
@@ -792,7 +792,7 @@ Em seguida, os **valores aceitos** podem ser usados para expandir o modelo de ro
 
 Valores explicitamente fornecidos que não correspondem a um segmento da rota são adicionados à cadeia de caracteres de consulta. A tabela a seguir mostra o resultado do uso do modelo de rota `{controller}/{action}/{id?}`.
 
-| Valores de ambiente                     | Valores explícitos                        | Resultado                  |
+| Valores de ambiente                     | Valores explícitos                        | Result                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
 | controlador = "Home"                | ação = "About"                       | `/Home/About`           |
 | controlador = "Home"                | controlador = "Order", ação = "About" | `/Order/About`          |
@@ -985,6 +985,8 @@ Como exemplo dessa diretriz, considere o middleware `UseAuthorization`. O middle
 
 Isso torna o middleware de autorização útil fora do contexto do roteamento. O middleware de autorização pode ser usado para programação de middleware tradicional.
 
+[!INCLUDE[](~/includes/dbg-route.md)]
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.2"
@@ -1094,7 +1096,7 @@ Os métodos `GetPath*` são mais semelhantes a `Url.Action` e `Url.Page`, pois g
 
 Os métodos fornecidos pelo <xref:Microsoft.AspNetCore.Routing.LinkGenerator> dão suporte a funcionalidades de geração de link padrão para qualquer tipo de endereço. A maneira mais conveniente usar o gerador de link é por meio de métodos de extensão que executam operações para um tipo de endereço específico.
 
-| Método de extensão   | Descrição                                                         |
+| Método de extensão   | DESCRIÇÃO                                                         |
 | ------------------ | ------------------------------------------------------------------- |
 | <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*> | Gera um URI com um caminho absoluto com base nos valores fornecidos. |
 | <xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetUriByAddress*> | Gera um URI absoluto com base nos valores fornecidos.             |
@@ -1420,7 +1422,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | {1&gt;Exemplo&lt;1} | Correspondências de exemplo | {1&gt;Observações&lt;1} |
+| restrição | Exemplo | Correspondências de exemplo | Observações |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro. |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou ' false '. Não diferencia maiúsculas de minúsculas. |
@@ -1463,20 +1465,20 @@ As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo
 
 Para escapar os caracteres delimitadores de parâmetro de roteamento `{`, `}`, `[``]`, clique duas vezes nos caracteres da expressão `{{`, `}`, `[[`, `]]`. A tabela a seguir mostra uma expressão regular e a versão de escape:
 
-| Expressão Regular    | Expressão regular com escape     |
+| Expressão regular    | Expressão regular com escape     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
 As expressões regulares usadas no roteamento geralmente começam com o cursor `^` caractere e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o sinal de cifrão `$` caractere e a extremidade de correspondência da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expressão   | Cadeia de Caracteres    | Corresponder a | Comentário               |
+| Expression   | String    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
 | `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | olá     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
 | `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
@@ -1555,7 +1557,7 @@ Os valores de ambiente que não correspondem a um parâmetro são ignorados. Os 
 
 Valores fornecidos explicitamente, mas que não correspondem a um segmento da rota, são adicionados à cadeia de consulta. A tabela a seguir mostra o resultado do uso do modelo de rota `{controller}/{action}/{id?}`.
 
-| Valores de ambiente                     | Valores explícitos                        | Resultado                  |
+| Valores de ambiente                     | Valores explícitos                        | Result                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
 | controlador = "Home"                | ação = "About"                       | `/Home/About`           |
 | controlador = "Home"                | controlador = "Order", ação = "About" | `/Order/About`          |
@@ -1870,7 +1872,7 @@ As restrições de rota são executadas quando ocorre uma correspondência com a
 
 A tabela a seguir demonstra restrições de rota de exemplo e seu comportamento esperado.
 
-| restrição | {1&gt;Exemplo&lt;1} | Correspondências de exemplo | {1&gt;Observações&lt;1} |
+| restrição | Exemplo | Correspondências de exemplo | Observações |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Corresponde a qualquer inteiro |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Corresponde a `true` ou `false` (não diferencia maiúsculas de minúsculas) |
@@ -1907,20 +1909,20 @@ A estrutura do ASP.NET Core adiciona `RegexOptions.IgnoreCase | RegexOptions.Com
 
 As expressões regulares usam delimitadores e tokens semelhantes aos usados pelo Roteamento e pela linguagem C#. Os tokens de expressão regular precisam ter escape. Para usar a expressão regular `^\d`\\`-\d`\`-\d`\`$` no roteamento, a expressão precisa ter os caracteres `\` (barra invertida) fornecidos na cadeia de caracteres como caracteres `\\` (barra invertida dupla) no arquivo de origem C# para fazer o escape do caractere de escape da cadeia de caracteres `\` (a menos que estejam sendo usados [literais de cadeia de caracteres textuais](/dotnet/csharp/language-reference/keywords/string)). Para fazer o escape dos caracteres de delimitador de parâmetro de roteamento (`{`, `}`, `[`, `]`), duplique os caracteres na expressão (`{{`, `}`, `[[`, `]]`). A tabela a seguir mostra uma expressão regular e a versão com escape.
 
-| Expressão Regular    | Expressão regular com escape     |
+| Expressão regular    | Expressão regular com escape     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
 As expressões regulares usadas no roteamento geralmente começam com o caractere de acento circunflexo (`^`) e correspondem à posição inicial da cadeia de caracteres. As expressões geralmente terminam com o caractere de cifrão (`$`) e correspondem ao final da cadeia de caracteres. Os caracteres `^` e `$` garantem que a expressão regular corresponde a todo o valor do parâmetro de rota. Sem os caracteres `^` e `$`, a expressão regular corresponde a qualquer subcadeia de caracteres na cadeia de caracteres, o que geralmente não é o desejado. A tabela a seguir fornece exemplos e explica por que eles encontram ou não uma correspondência.
 
-| Expressão   | Cadeia de Caracteres    | Corresponder a | Comentário               |
+| Expression   | String    | Corresponder a | Comentário               |
 | ------------ | --------- | :---: |  -------------------- |
-| `[a-z]{2}`   | olá     | Sim   | A subcadeia de caracteres corresponde     |
+| `[a-z]{2}`   | hello     | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | 123abc456 | Sim   | A subcadeia de caracteres corresponde     |
 | `[a-z]{2}`   | mz        | Sim   | Corresponde à expressão    |
 | `[a-z]{2}`   | MZ        | Sim   | Não diferencia maiúsculas de minúsculas    |
-| `^[a-z]{2}$` | olá     | Não    | Confira `^` e `$` acima |
+| `^[a-z]{2}$` | hello     | Não    | Confira `^` e `$` acima |
 | `^[a-z]{2}$` | 123abc456 | Não    | Confira `^` e `$` acima |
 
 Para saber mais sobre a sintaxe de expressões regulares, confira [Expressões regulares do .NET Framework](/dotnet/standard/base-types/regular-expression-language-quick-reference).
@@ -1961,7 +1963,7 @@ Os valores de ambiente que não correspondem a um parâmetro são ignorados. Os 
 
 Valores fornecidos explicitamente, mas que não correspondem a um segmento da rota, são adicionados à cadeia de consulta. A tabela a seguir mostra o resultado do uso do modelo de rota `{controller}/{action}/{id?}`.
 
-| Valores de ambiente                     | Valores explícitos                        | Resultado                  |
+| Valores de ambiente                     | Valores explícitos                        | Result                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
 | controlador = "Home"                | ação = "About"                       | `/Home/About`           |
 | controlador = "Home"                | controlador = "Order", ação = "About" | `/Order/About`          |
@@ -1980,6 +1982,5 @@ A geração de link somente gera um link para essa rota quando os valores corres
 ## <a name="complex-segments"></a>Segmentos complexos
 
 Segmentos complexos (por exemplo, `[Route("/x{token}y")]`) são processados por meio da combinação de literais da direita para a esquerda, de uma maneira diferente de Greedy. Confira [este código](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) para ver uma explicação detalhada de como os segmentos complexos são combinados. O [exemplo de código](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) não é usado pelo ASP.NET Core, mas fornece uma explicação adequada sobre segmentos complexos.
-
 
 ::: moniker-end
